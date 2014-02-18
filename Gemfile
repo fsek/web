@@ -34,6 +34,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# ADDED GEMS FOR FSEK APP
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
