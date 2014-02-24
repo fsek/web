@@ -1,0 +1,5 @@
+
+Some setup:
+==========
+Run the follow commands (do they need to be run for each new setup?)
+rake assets:precompile RAILS_ENV=development
