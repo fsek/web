@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require hover-dropdown.min
 //= require_tree .
+//= require_self

@@ -10,7 +10,15 @@
  *
  *= require bootstrap
  *= require_self
- *= require_tree .
+ *= require style
+ *= require header2
+ *= require responsive
+ *= require font-awesome
+ * require xaxa-font-awesome
+ *= require page_search
+ *= require page_magazine
+ *= require default_theme
+ * require_tree .
  */
 
  /* Override for Bootstrap 3 font location */
