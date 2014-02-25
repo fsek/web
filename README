@@ -1,5 +1,28 @@
+For layout:
+===========
+Replace all css-classes in the HTML named "icon-xxx" with "fa fa-xxx" as we upgraded version of 
+font-awesome.
+
+
+
+
+Alla css-filer och js-filer för vår layout ligger i app/assets/ och inkluderas genom app/assetes/stylesheets/application.css resp. app/assets/javascripts/application.js. 
+
+Dessutom inkluderas de plugin som ligger lokalt i applikationen från vendor/assets (just nu är det bootstrap och hover-dropdown.js)
+
+Dessutom inkluderas de plugin som är installerade som gems i Gemfile, vilket ju nu är bl.a. jQuery och FontAwesome.
+
+Slutligen stötte jag på lite meck då jag valde att ladda ner den senaste versionen av alla plugins  T.ex. måste man över allt där det används ikoner med <i class="icon-blabla"> byta ut detta mot <i class="fa fa-blabla"> (fa =font-awesome) då de bytt namn på sina css-klasser. 
+
+Den senare versionen av bootstrap gör att vissa marginaler blir lite annorlunda, men det är ju småpill att ändra i våra lokala layoutfiler.
+
+
+sedan har jag bara skrivit över app/views/layouts/application.html.erb utan att ta hänsyn till att vi vill visa olika sidor för olika controllers 
+
+
+glömde nämna bilder! Alla <img> taggar byts lämpligen ut mot <%= image_tag "name.jpg, class: "enklass" %> där bilderna ligger i app/assets/images
 
 Some setup:
-==========
+===========
 Run the follow commands (do they need to be run for each new setup?)
 rake assets:precompile RAILS_ENV=development

@@ -121,7 +121,7 @@
 	right: inherit;
 }
 
-.header .navbar .nav > li > a i.icon-angle-down {
+.header .navbar .nav > li > a i.fa-angle-down {
 	top: -1px;
 	left: 1px;
 	font-size: 12px;
@@ -190,7 +190,18 @@
   width: 1.5625em;
 }
 
+
 /* EDIT LINUS */
+.top-v1 .top-v1-data [class^="fa-"],
+.top-v1 .top-v1-data [class*=" fa-"] {
+  width: 0.97em;
+}
+.header .navbar .navbar-nav [class^="fa-"],
+.header .navbar .navbar-nav [class*=" fa-"] {
+  width: 0.7em;
+}
+
+/* EDIT LINUS */ 
 .header .navbar a.search [class^="fa-"],
 .header .navbar a.search [class*=" fa-"] {
   width: 1.25em;
@@ -198,13 +209,12 @@
   display: inline-block;
 }
 
-/* EDIT LINUS */
+/* EDIT LINUS 
 .header .navbar a.search [class^="fa-"].icon-large,
 .header .navbar a.search [class*=" fa-"].icon-large {
-  /* increased font size for icon-large */
   width: 1.5625em;
 }
-
+*/
 
 
 /*Responsive @Media 

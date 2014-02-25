@@ -15,5 +15,10 @@
 //= require turbolinks
 //= require bootstrap
 //= require hover-dropdown.min
+//= require back-to-top
 //= require_tree .
 //= require_self
+
+
+// Fix path to the bottom-right up-arrow
+scrolltotop.controlHTML = '<%= image_tag('unify/up.png', style: 'width:51px, height:42px') %>';

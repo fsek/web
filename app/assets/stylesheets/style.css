@@ -1097,7 +1097,9 @@ ul.blog-tags a:hover i {
 	text-decoration: underline;
 }
 
-.blog-twitter .blog-twitter-inner i.icon-twitter {
+/* EDIT LINUS */
+/* .blog-twitter .blog-twitter-inner i.icon-twitter { */
+.blog-twitter .blog-twitter-inner i.fa-twitter {
 	top: 2px;
 	color: #bbb;
 	font-size: 18px;

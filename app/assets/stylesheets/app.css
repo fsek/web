@@ -6,6 +6,18 @@
  * Website: http://htmlstream.com/preview/unify
 */
 
+
+/* EDIT LINUS -- Fixes for new version of Bootstrap
+------------------------------------*/
+.navbar-brand {
+  height: auto;
+}
+
+dl {
+  margin-bottom: 20px;
+  margin-top: 13px;
+}
+
 /*Reset Styles
 ------------------------------------*/
 * {
