@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Riktigt namn</th>
+      <th>Användarnamn</th>
+      <th>Email</th>
+      <th>Program/År</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.profile.name %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.profile.program %><%= user.profile.start_year %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

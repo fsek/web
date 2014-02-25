@@ -1,28 +1,91 @@
-For layout:
-===========
-Replace all css-classes in the HTML named "icon-xxx" with "fa fa-xxx" as we upgraded version of 
-font-awesome.
+Detta finns:
+============
+- Simpla nyheter
+- Users med profiler och authentication
+- Layout
+
+
+Generella layoutsaker:
+======================
+Lite kunskap om rails layouts
+  Rails bygger ihop css och js filer genom /app/assets/stylesheets/application.css resp. /app/assets/javascripts/application.js.
+  Där tar den och samlar ihop css-filer resp. js-filer från en massa olika källor:
+    - Lokala css-/js-filer för varje view och för huvudlayouten ligger under
+        /app/assets/javascript eller stylesheets
+    - Plugin som sparas lokalt på servern ligger under
+        /vendor/assets
+        t.ex. bootstrap, hover-dropdown.js, back-to-top.js
+    - Plugin som installers som gem finns i Gemfilen (dessa ligger också lokalt på datorn fast utanför rails-applikationen)
+        t.ex. jQuery, FontAwesome, Breadcrumbs
+
+  Bilder sparas i /app/assets/images och koms åt i applikationen genom att anropa
+    <%= image_tag "name.jpg", class: "enklass" %>
+
+
+Vill man ha en ikon 
+  - gå in på http://fortawesome.github.io/Font-Awesome/icons/ och hitta den du vill ha
+  - skapa ikonen genom att anropa
+      icon("namnetpåikonen") #utan 'fa-' prefixet
+  - i den köpta layouten förkomemr ibland klassen 'icon-myicon', den behöver bytas ut mot 'fa fa-myicon', pga versionsbyte
+
+Vill man komma åt den inloggade användaren anropar man
+  current_user() #du måste inte ha paranteser
+
+Vill man kolla om använaren är inloggad anropar man
+  <% if user_signed_in? %>
+    DO STUFF
+  <% end %>
+
+Eftersom vi kör lite olika versioner av diverse plugins/bootstrap kan den köpta layouten strula lite ibland, då får man småpilla! :)
 
 
 
 
-Alla css-filer och js-filer för vår layout ligger i app/assets/ och inkluderas genom app/assetes/stylesheets/application.css resp. app/assets/javascripts/application.js. 
+Skapa nya controllers
+=====================
+Tag news_controller som exempel.
 
-Dessutom inkluderas de plugin som ligger lokalt i applikationen från vendor/assets (just nu är det bootstrap och hover-dropdown.js)
+Breadcrumbs:
+  Hem/Nyheter/Redigera (dvs strängen under menyn som visar var på sidan man befinner sig.
 
-Dessutom inkluderas de plugin som är installerade som gems i Gemfile, vilket ju nu är bl.a. jQuery och FontAwesome.
-
-Slutligen stötte jag på lite meck då jag valde att ladda ner den senaste versionen av alla plugins  T.ex. måste man över allt där det används ikoner med <i class="icon-blabla"> byta ut detta mot <i class="fa fa-blabla"> (fa =font-awesome) då de bytt namn på sina css-klasser. 
-
-Den senare versionen av bootstrap gör att vissa marginaler blir lite annorlunda, men det är ju småpill att ändra i våra lokala layoutfiler.
-
-
-sedan har jag bara skrivit över app/views/layouts/application.html.erb utan att ta hänsyn till att vi vill visa olika sidor för olika controllers 
+  Lämpligen lägger man till
+    add_breadcrumbs "Nyheter", :news_index_path
+  högst upp i controllern någonstans. Därefter lägger man (om man vill) till typ
+    add_breadcrumbs "Redigera", nil
+  inne i en action om man vill specificera breadcrumben mer
 
 
-glömde nämna bilder! Alla <img> taggar byts lämpligen ut mot <%= image_tag "name.jpg, class: "enklass" %> där bilderna ligger i app/assets/images
+Vill man komma åt den inloggade användaren anropar man
+  current_user() #du måste inte ha paranteser
 
-Some setup:
-===========
+Vill man kolla om använaren är inloggad anropar man
+  <% if user_signed_in? %>
+    DO STUFF
+  <% end %>
+
+
+
+
+
+Skapa nya views
+===============
+Lägg till 
+  <% title("MinSida") %> 
+någonstans i en view för att få titeln på sidan under F-sektionsloggan.
+
+Lägg till
+  <% content_for(:sidebar) do %>
+    COOLA SAKER
+  <% end %>
+någonstans i en view för att få content specifikt för just den sidan/viewen.
+
+
+
+Minnasanteckningar om knep som körts för att få det att installera:
+===================================================================
 Run the follow commands (do they need to be run for each new setup?)
+bundle install
 rake assets:precompile RAILS_ENV=development
+rake db:create
+rake db:migrate
+

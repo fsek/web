@@ -11,7 +11,8 @@
  *= require bootstrap
  *= require_self
  *= require style
- *= require header2
+ * require header2
+ *= require header1
  *= require responsive
  *= require font-awesome
  * require xaxa-font-awesome

@@ -1,0 +1,19 @@
+<% title("Användarprofil") %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Namn:</strong>
+  <%= @profile.name %>
+</p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @profile.program %>
+</p>
+
+<p>
+  <strong>Började år:</strong>
+  <%= @profile.start_year %>
+</p>
+
+<%= link_to 'Redigera profil', edit_profile_path(@profile) %>

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   attr_accessor :login
   validates :username, :presence => true, :uniqueness => {:case_sensitive => false}
 
+  # Enable login by username and email
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -17,17 +18,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Overwritten auth method to allow login of both email and username
-  #def self.find_first_by_auth_conditions(warden_conditions)
-  #  conditions = warden_conditions.dup
-  #  if login = conditions.delete(:login)
-  #    a = where(conditions).where(["lower(username) = :value OR lower(email) = :value", {:value => login.downcase}]).first
-  #    puts a
-  #    return a
-  #  
-  #  else
-  #    where(conditions).first
-  #  end
-  #end
+  # Associations
+  has_one :profile
+  
+  # Create profile object when creating new users
+  after_create :create_profile_for_user
+
+  private 
+    def create_profile_for_user
+      Profile.create(user: self)
+    end
+
 
 end

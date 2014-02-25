@@ -1,29 +1,42 @@
-<h1>Listing news</h1>
+<% title("Nyheter") %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="row blog-page">  
+    <% @news.reverse.each do |news| %>
+    <!--Blog Post-->
+    <div class="row blog blog-medium margin-bottom-20">
+      <div class="col-md-5">
+        <%= image_tag "unify/main/11.jpg", class: "img-responsive" %>
+      </div>    
+      <div class="col-md-7">
+        <h2><%= news.title %></h2>
+        <ul class="list-unstyled list-inline blog-info">
+          <li><i class="fa fa-calendar"></i> <%= Time.now %></li>
+          <li><i class="fa fa-comments"></i> <a href="#">24 Comments</a></li>
+          <li><i class="fa fa-tags"></i> Technology, Internet</li>
+        </ul>
+        <p><%= news.content %></p>
+        <p>
+          <%= link_to (content_tag(:i, nil, class: "fa fa-location-arrow") + " Läs mer"), news, class: "btn-u btn-u-small" %>
 
-  <tbody>
-    <% @news.each do |news| %>
-      <tr>
-        <td><%= news.title %></td>
-        <td><%= news.content %></td>
-        <td><%= link_to 'Show', news %></td>
-        <td><%= link_to 'Edit', edit_news_path(news) %></td>
-        <td><%= link_to 'Destroy', news, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <% if user_signed_in? %>
+            <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_news_path(news), class: "btn-u btn-u-small" %>
+            <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), news, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
+          <% end %>
+        </p>
+      </div>    
+    </div>
+   <!--End Blog Post-->        
 
-<br>
+   <hr class="margin-bottom-40"> 
+  <% end %>
 
-<%= link_to 'New News', new_news_path %>
+</div>
+
+<% content_for(:sidebar) do %>
+  <% if user_signed_in? %>
+    <div class="headline headline-md"><h2>Verktyg</h2></div> 
+    <ul>
+      <li><%= link_to "Skapa nyhet", new_news_path %></li>
+    </ul>
+  <% end %>
+<% end %>
