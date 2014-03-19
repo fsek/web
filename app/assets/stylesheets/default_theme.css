@@ -211,6 +211,16 @@ blockquote:hover {
 
 /*Breadcrumb
 ------------------------------------*/
+.breadcrumb li,
+.breadcrumb li a {
+	color: #777;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.breadcrumb li a {
+	color: #aaa;
+}
+
 .breadcrumb li.active,
 .breadcrumb li a:hover {
 	color:#72c02c;

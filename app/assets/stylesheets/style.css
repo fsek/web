@@ -574,7 +574,6 @@ a.thumbnail {
 	margin: 0;
 	padding: 10px 0 0 0;
 	background: none;
-	text-transform: lowercase;
 }
 .breadcrumb a {
 	color: #777;

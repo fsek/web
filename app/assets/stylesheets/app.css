@@ -6,6 +6,25 @@
  * Website: http://htmlstream.com/preview/unify
 */
 
+.blog h2 {
+	font-size: 28px;
+}
+
+.blog p {
+	color: #000;
+	font-size: 14px;
+}
+
+.blog-info li,
+.blog-info li a {
+	color: #aaa;
+	font-size: 12px;
+}
+
+.blog-info:hover li,
+.blog-info:hover li a {
+	color: #777;
+}
 
 /* EDIT LINUS -- Fixes for new version of Bootstrap
 ------------------------------------*/
@@ -26,7 +45,7 @@ dl {
 
 body { 
    color: #333; 
-   font-size: 13px;
+   font-size: 14px;
    line-height: 1.6;
 }
 
