@@ -99,9 +99,9 @@
 /*Header Default
 ------------------------------------*/
 .header {
-	z-index:999;
-	position:relative;
-	border-bottom:solid 2px #eee;
+	z-index: 999;
+	position: relative;
+	border-bottom: solid 1px #eee;
 }
 
 .header .navbar {
@@ -123,15 +123,15 @@
 .header .navbar-brand { 
 	z-index: 2;
 	position: relative;
-	padding: 0 10px 10px;
+	padding: 0 0 0 10px;
+	margin-top: -10px;
 }
 
 /*Navbar*/
 .header .navbar-default .navbar-nav > li > a {
-	color: #687074;
 	font-size: 15px;
 	font-weight:400;
-	padding: 9px 20px;
+	padding: 10px 20px;
 	text-transform: uppercase;
 }
 
@@ -174,21 +174,19 @@
 /*Serach Box*/
 .header .navbar .search-open {
 	right: 0; 
-	top: 50px; 
+	top: 51px; 
 	display: none;
-	padding: 14px; 
+	padding: 4px 8px 3px 8px; 
 	position: absolute;
-	background: #fcfcfc; 
-	border-top: solid 2px #eee;
-	box-shadow: 0 1px 3px #ddd; 
+	background: #fff; 
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
 }
 
 .header .navbar .nav > li > a.search {
-	color: #aaa;
 	cursor: pointer;
-	padding: 8px 8px 10px;
+	padding: 8px 8px 12px;
 	border-bottom-color: #aaa;
-	background: #f7f7f7 !important;
 }
 
 .header .navbar .nav > li > a.search:hover {
@@ -223,19 +221,19 @@
 
 	/*Navbar*/
 	.header .navbar-nav {
-		top: 2px;
+		top: 1px;
 		margin-top: 10px;
 		position: relative;
 	}
 
 	.header .navbar-default .navbar-nav > li > a,
 	.header .navbar-default .navbar-nav > li > a:focus {	
-		border-bottom: solid 2px transparent;
+		border-bottom: solid 1px transparent;
 	}
 
 	.header .navbar-default .navbar-nav > li > a:hover,
 	.header .navbar-default .navbar-nav > .active > a {
-		border-bottom: solid 2px #72c02c;
+		border-bottom: solid 1px #72c02c;
 	}
 
 	.header .navbar-default .navbar-nav > li > a,
@@ -260,13 +258,14 @@
 		min-width: 200px;
 		border-radius: 0; 
 		z-index: 9999 !important;
-		margin-top: -2px !important; 
-		border-top: solid 2px #72c02c; 
-		border-bottom: solid 2px #687074; 
+		margin-top: -1px !important; 
+		border-top: 1px solid #72c02c;
+		border-left: 1px solid #eee;
+		border-right: 1px solid #eee;
+		box-shadow: none;
 	}
 
 	.header .dropdown-menu li a { 
-		color: #687074; 
 		font-size: 13px; 
 		font-weight: 400; 
 		padding: 6px 15px; 
@@ -277,7 +276,8 @@
 	.header .dropdown-menu li > a:hover {
 		color: #fff;
 		filter: none !important;
-		background: #687074 !important;
+		background: #72c02c !important;
+		border-bottom: 1px solid #fff;
 		-webkit-transition: all 0.1s ease-in-out;
 		-moz-transition: all 0.1s ease-in-out;
 		-o-transition: all 0.1s ease-in-out;

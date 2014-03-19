@@ -1,42 +1,45 @@
 <% title("Nyheter") %>
 
-<div class="row blog-page">  
-    <% @news.reverse.each do |news| %>
-    <!--Blog Post-->
-    <div class="row blog blog-medium margin-bottom-20">
-      <div class="col-md-5">
-        <%= image_tag "unify/main/11.jpg", class: "img-responsive" %>
-      </div>    
-      <div class="col-md-7">
-        <h2><%= news.title %></h2>
-        <ul class="list-unstyled list-inline blog-info">
-          <li><i class="fa fa-calendar"></i> <%= Time.now %></li>
-          <li><i class="fa fa-comments"></i> <a href="#">24 Comments</a></li>
-          <li><i class="fa fa-tags"></i> Technology, Internet</li>
-        </ul>
-        <p><%= news.content %></p>
-        <p>
-          <%= link_to (content_tag(:i, nil, class: "fa fa-location-arrow") + " Läs mer"), news, class: "btn-u btn-u-small" %>
+<% @news.reverse.each do |news| %>
+<!--Blog Post-->
+<div class="row blog">
+  <div class="col-md-4">
+    <%= image_tag "unify/main/11.jpg", class: "img-responsive" %>
+  </div>
+  
+  <div class="col-md-8">
+    <h2><%= news.title %></h2>
+	
+    <ul class="list-unstyled list-inline blog-info">
+      <li><i class="fa fa-calendar"></i> <%= Time.now %></li>
+      <li><i class="fa fa-comments"></i> <a href="#">24 Comments</a></li>
+      <li><i class="fa fa-tags"></i> Technology, Internet</li>
+    </ul>
+	
+    <p><%= news.content %></p>
+	
+    <p>
+      <%= link_to (content_tag(:i, nil, class: "fa fa-location-arrow") + " Läs mer"), news, class: "btn-u btn-u-small" %>
 
-          <% if user_signed_in? %>
-            <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_news_path(news), class: "btn-u btn-u-small" %>
-            <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), news, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
-          <% end %>
-        </p>
-      </div>    
-    </div>
-   <!--End Blog Post-->        
-
-   <hr class="margin-bottom-40"> 
-  <% end %>
-
+      <% if user_signed_in? %>
+        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_news_path(news), class: "btn-u btn-u-small" %>
+        <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), news, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
+      <% end %>
+    </p>
+  </div>    
 </div>
+<!--End Blog Post-->        
+
+<hr class="margin-bottom-20"> 
+<% end %>
 
 <% content_for(:sidebar) do %>
   <% if user_signed_in? %>
-    <div class="headline headline-md"><h2>Verktyg</h2></div> 
-    <ul>
-      <li><%= link_to "Skapa nyhet", new_news_path %></li>
-    </ul>
+    <div class="headline headline-md"><h2>Verktyg</h2></div>
+	<p>
+      <ul>
+        <li><%= link_to "Skapa nyhet", new_news_path %></li>
+      </ul>
+	</p>
   <% end %>
 <% end %>

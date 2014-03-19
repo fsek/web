@@ -31,7 +31,7 @@ body {
 }
 
 p, a, li { 
-   color: #555;
+   color: #777;
    line-height: 1.6; 
 }
 
@@ -47,7 +47,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5 {
-   margin-top: 5px; 
+   margin-top: 0; 
    text-shadow: none; 
    font-weight: normal !important; 
    font-family: 'Open Sans', sans-serif; 

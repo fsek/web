@@ -16,13 +16,13 @@
 /*Block Headline*/
 .headline {
 	display: block;
-	margin: 10px 0 25px 0;
+	margin: 0 0 25px 0;
 	border-bottom: 1px dotted #e4e9f0;
 }
 .headline h2, 
 .headline h3, 
 .headline h4 {
-	color: #585f69;
+	color: #555;
 	margin: 0 0 -2px 0;
 	padding-bottom: 5px;
 	display: inline-block;
@@ -33,7 +33,7 @@
 }
 
 .headline-md h2 {
-	font-size: 21px;
+	font-size: 18px;
 }
 
 .headline-md {
@@ -224,7 +224,7 @@ blockquote:hover {
 .work .caption {
 	display: block;
 	padding-top: 5px;
-	color: #585f69 !important;
+	color: #555 !important;
 	font-size: 18px !important;
 }
 .work .caption:hover {
@@ -235,14 +235,20 @@ blockquote:hover {
 
 /*Footer*/
 .footer {
-	color: #dadada;
+	color: #777;
 	margin-top: 40px;
 	padding: 20px 0 30px;
-	background: #585f69;
+	border-top: 1px solid #eee;
+	text-shadow: 0 1px 0 #fff;
+	background: #f9f9f9;
 }
 
 .footer.margin-top-0 {
 	margin-top: 0;
+}
+
+.footer .headline {
+	margin-bottom: 15px !important;
 }
 
 .footer h1, 
@@ -250,8 +256,11 @@ blockquote:hover {
 .footer h3, 
 .footer h4, 
 .footer h5 {
-	text-shadow: none;
-	font-weight: normal !important; 
+	color: #555;
+	font-size: 18px;
+	font-weight: normal !important;
+	text-shadow: 0 1px 0 #fff;
+	border: none !important;
 } 
 
 .footer p,
@@ -259,7 +268,7 @@ blockquote:hover {
 	font-size: 14px;
 } 
 .footer p {
-	color: #dadada;
+	color: #777;
 } 
 
 .footer a {
@@ -273,13 +282,6 @@ blockquote:hover {
     transition: all 0.4s ease-in-out;
 }
 
-.footer h2, 
-.footer h3,
-.footer h4 {
-	color: #e4e4e4;
-	background: none;
-	text-shadow: none;
-}
 
 /*Footer Subsribe*/
 .footer .footer-subsribe {
@@ -308,13 +310,13 @@ blockquote:hover {
 	background: none !important;
 }
 .footer .dl-horizontal a {
-	color: #dadada;
+	color: #777;
 }
 .footer .dl-horizontal a:hover {
 	color: #a8f85f !important;
 }
 .footer .dl-horizontal img {
-	border-color: #888 !important;
+	border-color: #eee !important;
 }
 
 /*Copyright*/
@@ -557,21 +559,22 @@ a.thumbnail {
 
 /*Breadcrumbs*/
 .breadcrumbs {
-	padding: 10px 0 6px;
-	box-shadow: inset 0 0 4px #eee;
-	background: url(../img/breadcrumbs.png) repeat;
+	background: #f9f9f9;
+	color: #777;
+	border-bottom: 1px solid #eee;
 }
 .breadcrumbs h1 {
-	color: #686868;
-	font-size: 26px;
-	margin-top: 12px;
+	color: #555;
+	text-shadow: 0 1px 0 #fff;
+	font-size: 18px;
+	margin-top: 10px;
 }
 
-.breadcrumb { 
-	top: 9px;
-	padding-right: 0;
+.breadcrumb {
+	margin: 0;
+	padding: 10px 0 0 0;
 	background: none;
-	position: relative;
+	text-transform: lowercase;
 }
 .breadcrumb a {
 	color: #777;
