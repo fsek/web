@@ -62,11 +62,11 @@
 
 <!--=== Content Part ===-->
 <div class="container">
-  <div class="row magazine-page">
+  <div class="row page">
     
     <!-- Begin main content -->
     <div class="col-md-9">
-
+	<%=yield%>
       <% if notice %>
         <div class="alert alert-info">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -80,20 +80,31 @@
           <strong>Fel:</strong> <%= alert %>
         </div> 
       <% end %>
-
-      <%= yield %>
+      
+      
    </div>
     <!-- End main content -->
     
     <!-- Begin sidebar -->
     <div class="col-md-3">
       <%= yield :sidebar %>
-
+			<div class="headline headline-md"><h2>Sektionens utskott</h2></div>
+			<ul>
+			<li><%=link_to "Cafémästeriet",:cafe %></li>
+			<li><%=link_to "Föset",:fos %></li>
+			<li><%=link_to "Kultuminsteriet",:km %></li>
+			<li><%=link_to "Näringslivsutskottet",:fnu %></li>
+			<li><%=link_to "Prylmästeriet",:pryl %></li>
+			<li><%=link_to "Sanningsministeriet",:sanning %></li>
+			<li><%=link_to "Sexmästeriet",:sexmasteri %></li>
+			<li><%=link_to "Studierådet",:studierad %></li>
+			<li><%=link_to "Styrelsen",:styrelse %></li>
+			
+		</ul>
+		
       <% if user_signed_in? %>
         <%= render "sysop/admintools" %>
-      <% end %>
-
-      
+      <% end %>    
     </div>
     <!-- End sidebar -->
 
