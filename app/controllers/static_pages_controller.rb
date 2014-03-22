@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController  
   respond_to :html
-  #encoding: utf-8
+  # encoding: UTF-8
   layout "static_page"
   
   def cafe
