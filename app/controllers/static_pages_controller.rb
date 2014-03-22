@@ -1,5 +1,4 @@
-class StaticPagesController < ApplicationController  
-  respond_to :html
+class StaticPagesController < ApplicationController
   # encoding: UTF-8
   layout "static_page"
   

@@ -21,6 +21,7 @@ module Fsek
     # config.i18n.default_locale = :de
 
     # Add /vendor/assets/fonts to autoload
+    config.encoding = "utf-8"
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
   end
 end
