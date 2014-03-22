@@ -5,9 +5,8 @@
                             Student <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="index.html">Option 1: Default Page</a></li>
-                            <li><a href="page_home1.html">Option 2: Layer Slider</a></li>
-                            <li class="active"><a href="page_home6.html">Option 7: Home Magazine</a></li>
+                            <li><%= link_to 'Styrelsen', :styrelse %></li>
+                            <li><%= link_to 'Utskott', :utskott%></li>                                                       
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -15,19 +14,17 @@
                             Vill studera <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="page_about.html">About Us</a></li>
-                            <li><a href="page_about1.html">About Us Option</a></li>
-                            <li><a href="page_registration1.html">Registration Option</a></li>
+                        	<li><%= link_to 'Styrelsen', '/styrelse' %></li>
+                            <li><%= link_to 'Utskott','/utskott'%></li> 
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <!--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
                             Företag <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="feature_grid.html">Grid Layout</a></li>
-                            <li><a href="feature_forms.html">Forms</a></li>
-                            <li><a href="feature_testimonials.html">Testimonials</a></li>
+                            <li><%= link_to 'Styrelsen', '/styrelse'%></li>
+                            <li><%= link_to 'Utskott','/utskott'%></li> 
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -35,17 +32,17 @@
                             Alumn <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="portfolio_text_blocks.html">Portfolio Text Blocks</a></li>
-                            <li><a href="portfolio_item1.html">Portfolio Item Option 2</a></li>
+                            <li><%= link_to 'Styrelsen', '/styrelse' %></li>
+                            <li><%= link_to 'Utskott','/utskott'%></li> 
                         </ul>
-                    </li>
-                    <li class="hidden-sm"><a class="search"><i class="fa fa-search search-btn"></i></a></li>
+                    </li>-->
+            <li class="hidden-sm"><a class="search"><i class="fa fa-search search-btn"></i></a></li>
                 </ul>
                 <div class="search-open">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Sök på hela sidan...">
                         <span class="input-group-btn">
-                            <button class="btn-u" type="button">Go</button>
+                            <button class="btn-u" type="button">Sök</button>
                         </span>
                     </div><!-- /input-group -->
                 </div>                
