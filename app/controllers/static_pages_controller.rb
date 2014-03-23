@@ -1,5 +1,6 @@
+# encoding:UTF-8
 class StaticPagesController < ApplicationController
-  # encoding: UTF-8
+  
   layout "static_page"
   
   def cafe
@@ -19,7 +20,7 @@ class StaticPagesController < ApplicationController
   
   def naringslivsutskott
   add_breadcrumb "Utskott",:utskott_path
-  add_breadcrumb "Näringslivsutskottet",:fnu_path
+  add_breadcrumb "Naringslivsutskottet",:fnu_path
   end
   
   def prylmasteri
