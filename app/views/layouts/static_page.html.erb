@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+  <title>F-sektionen</title>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+<!--=== Top ===-->    
+<div class="top">
+  <div class="container">
+    <%= render "layouts/topbar" %>
+  </div>
+</div>
+<!--=== End Top ===-->    
+
+<!--=== Header ===-->    
+<div class="header">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Logo and toggle-menu button for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <%= link_to image_tag("layout/f-60.png", id: "logo-header", height: "45"), root_path, class: "navbar-brand" %>
+				<div class="pull-left" style="padding: 0 0 0 25px; overflow: visible; font-size: 11px; line-height: 14px; color: #777; font-family: 'Open Sans', sans-serif"><span style="position: absolute; margin-left: -20px">&mdash;</span>TEKNOLOGSEKTIONEN<br>INOM TLTH.</div>
+            </div>
+        
+            <!-- Menus -->
+            <%= render "layouts/menu" %>
+       </div>    
+    </div>    
+</div><!--/header-->
+<!--=== End Header ===-->    
+
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs margin-bottom-40">
+  <div class="container">
+    <h1 class="pull-left"><%= yield(:title) || "CALL title('title') IN VIEW TO SET TITLE" %></h1>
+    <ul class="pull-right breadcrumb">
+      <%= render_breadcrumbs tag: :li, separator: "" %> 
+    </ul>
+  </div>
+</div>
+<!--=== End Breadcrumbs ===--> 
+
+<!--=== Content Part ===-->
+<div class="container">
+  <div class="row page">
+    
+    <!-- Begin main content -->
+    <div class="col-md-9">
+	<%=yield%>
+      <% if notice %>
+        <div class="alert alert-info">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Info:</strong> <%= notice %>
+        </div> 
+      <% end %>
+
+      <% if alert %>
+        <div class="alert alert-danger fade in">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Fel:</strong> <%= alert %>
+        </div> 
+      <% end %>
+      
+      
+   </div>
+    <!-- End main content -->
+    
+    <!-- Begin sidebar -->
+    <div class="col-md-3">
+      <%= yield :sidebar %>
+			<div class="headline headline-md"><h2>Sektionens utskott</h2></div>
+			<ul>
+			<li><%=link_to "Cafémästeriet",:cafe %></li>
+			<li><%=link_to "Föset",:fos %></li>
+			<li><%=link_to "Kultuminsteriet",:km %></li>
+			<li><%=link_to "Näringslivsutskottet",:fnu %></li>
+			<li><%=link_to "Prylmästeriet",:pryl %></li>
+			<li><%=link_to "Sanningsministeriet",:sanning %></li>
+			<li><%=link_to "Sexmästeriet",:sexmasteri %></li>
+			<li><%=link_to "Studierådet",:studierad %></li>
+			<li><%=link_to "Styrelsen",:styrelse %></li>
+			
+		</ul>
+		
+      <% if user_signed_in? %>
+        <%= render "sysop/admintools" %>
+      <% end %>    
+    </div>
+    <!-- End sidebar -->
+
+  </div>
+</div><!--/container-->     
+<!-- End Content Part -->
+
+
+
+
+<!--=== Footer ===-->
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <%= render "layouts/footer" %>
+    </div> 
+  </div>
+</div>   
+<!--=== End Footer ===-->
+
+<!--=== Copyright ===-->
+<div class="copyright">
+  <div class="container">
+    <div class="row">
+      <%= render "layouts/bottombar" %>    
+    </div>
+  </div> 
+</div> 
+<!--=== End Copyright ===-->
+
+<!-- Load javascripts -->           
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+        App.initSliders();
+    });
+</script>
+<!--[if lt IE 9]>
+  <script src="assets/plugins/respond.js"></script>
+<![endif]-->
+
+</body>
+</html> 

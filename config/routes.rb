@@ -2,7 +2,20 @@ Fsek::Application.routes.draw do
 
   # Resources on the page
   resources :news
-
+  
+  
+  get 'styrelse' => 'static_pages#styrelse'
+  get 'utskott' => 'static_pages#utskott'
+  get 'utskott/cafemasteri' => 'static_pages#cafe', as: :cafe 
+  get 'utskott/fos' => 'static_pages#fos', as: :fos
+  get 'utskott/kulturministerie' => 'static_pages#kulturministerie', as: :km
+  get 'utskott/naringslivsutskott' => 'static_pages#naringslivsutskott', as: :fnu
+  get 'utskott/prylmasteri' => 'static_pages#prylmasteri', as: :pryl
+  get 'utskott/sanningsministerie' => 'static_pages#sanningsministerie', as: :sanning  
+  get 'utskott/sexmasteri' => 'static_pages#sexmasteri', as: :sexmasteri
+  get 'utskott/studieradet' => 'static_pages#studierad', as: :studierad
+  
+  get 'libo' => 'static_pages#libo'
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
   devise_scope :user do
