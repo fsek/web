@@ -36,10 +36,8 @@
 <% content_for(:sidebar) do %>
   <% if user_signed_in? %>
     <div class="headline headline-md"><h2>Verktyg</h2></div>
-	<p>
-      <ul>
+      <ul class="list">
         <li><%= link_to "Skapa nyhet", new_news_path %></li>
       </ul>
-	</p>
   <% end %>
 <% end %>

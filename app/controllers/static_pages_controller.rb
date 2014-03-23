@@ -48,7 +48,7 @@ class StaticPagesController < ApplicationController
   end
   
   def utskott
-      add_breadcrumb "Utskott",:utskott_path
+    add_breadcrumb "Utskott",:utskott_path
   end
   
   def libo

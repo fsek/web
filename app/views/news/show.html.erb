@@ -2,15 +2,13 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @news.title %>
-</p>
+<div class="headline headline-md">
+  <h1><%= @news.title %></h1>
+</div>
 
 <p>
-  <strong>Content:</strong>
   <%= @news.content %>
 </p>
 
-<%= link_to 'Edit', edit_news_path(@news) %> |
-<%= link_to 'Back', news_index_path %>
+<%= link_to fa_icon('edit') + ' Edit', edit_news_path(@news) %> 
+<%= link_to fa_icon('location-arrow') + ' Back', news_index_path %>

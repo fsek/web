@@ -6,11 +6,31 @@
  * Website: http://htmlstream.com/preview/unify
 */
 
+/* Temporarily disable breadcrumb */
+.breadcrumb {
+	display: none;
+}
+
+.navbar-brand-text {
+	padding: 0 0 0 25px;
+	overflow: visible;
+	font-size: 11px;
+	line-height: 14px;
+	color: #777;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-brand-text > span {
+	position: absolute;
+	margin-left: -20px;
+}
+
 .blog h2 {
 	font-size: 28px;
 }
 
-.blog p {
+.blog p,
+.page p {
 	color: #000;
 	font-size: 14px;
 }
@@ -19,6 +39,18 @@
 .blog-info li a {
 	color: #aaa;
 	font-size: 12px;
+}
+
+.list {
+   list-style: none;
+   margin-left: 0;
+   padding-left: 1em;
+   text-indent: -1em;
+}
+
+.list li:before {
+	content: '\00BB';
+	margin-right: 10px;
 }
 
 /* EDIT LINUS -- Fixes for new version of Bootstrap
@@ -56,7 +88,7 @@ a:active {
    outline: 0 !important;
 }
 a:hover {
-   color: #72c02c;
+   color: #eb7125;
    text-decoration: underline;
 }
 
@@ -109,22 +141,22 @@ img.img-circle {
 .pagination > .active > span:hover, 
 .pagination > .active > a:focus, 
 .pagination > .active > span:focus {
-   background-color: #72c02c;
-   border-color: #72c02c;
+   background-color: #eb7125;
+   border-color: #eb7125;
 }
 
 .pagination li a:hover {
    color: #fff;
-   background: #5fb611;
-   border-color: #5fb611;   
+   background: #eb7125;
+   border-color: #eb7125;   
 }
 
 /*Pager*/
 .pager li > a:hover, 
 .pager li > a:focus {
    color: #fff;
-   background: #5fb611;
-   border-color: #5fb611;   
+   background: #eb7125;
+   border-color: #eb7125;   
 }
 
 /*Button Styles
@@ -139,7 +171,7 @@ img.img-circle {
    cursor:pointer;
    padding:6px 13px;
    position:relative;
-   background:#72c02c;
+   background:#eb7125;
    display:inline-block;
    color:#fff !important;
    text-decoration:none !important;
@@ -147,12 +179,8 @@ img.img-circle {
 }
 .btn-u:hover {
    color:#fff;
-   background:#5fb611;
+   background:#eb7125;
    text-decoration:none;
-    -webkit-transition:all 0.4s ease-in-out;
-    -moz-transition:all 0.4s ease-in-out;
-    -o-transition:all 0.4s ease-in-out;
-    transition:all 0.4s ease-in-out;
 }
 
 .btn-u-small {
