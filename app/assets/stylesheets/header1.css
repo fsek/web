@@ -136,8 +136,8 @@
 }
 
 .header .navbar-default .navbar-nav > .active > a {
-	color: #72c02c;
-	border-bottom: 1px solid #72c02c;
+	color: #eb7125;
+	border-bottom: 1px solid #eb7125;
 }
 
 /*Dropdown*/
@@ -157,7 +157,7 @@
 .navbar-toggle,
 .navbar-default .navbar-toggle:hover, 
 .navbar-default .navbar-toggle:focus {
-	background: #72c02c;
+	background: #eb7125;
 }
 
 .navbar-toggle:hover {
@@ -191,8 +191,8 @@
 }
 
 .header .navbar .nav > li > a.search:hover {
-	color: #72c02c;
-	border-bottom-color: #72c02c;
+	color: #eb7125;
+	border-bottom-color: #eb7125;
 }
 
 .header .navbar .search-open form {
@@ -240,11 +240,15 @@
 	.header .navbar-default .navbar-nav > .active > a:focus {
 		background: none;
 	}
+	
+	.header .navbar-default .navbar-nav > .active > a:hover {
+		border-bottom: 1px solid #eb7125;
+	}
 
 	.header .navbar-default .navbar-nav > .open > a,
 	.header .navbar-default .navbar-nav > .open > a:hover,
 	.header .navbar-default .navbar-nav > .open > a:focus {
-		color: #000;
+		color: #eb7125;
 	}
 
 	/*Dropdown Menu*/
@@ -271,7 +275,7 @@
 	.header .dropdown-menu li > a:hover {
 		color: #fff;
 		filter: none !important;
-		background: #72c02c !important;
+		background: #eb7125 !important;
 		border-bottom: 1px solid #fff;
 	}
 

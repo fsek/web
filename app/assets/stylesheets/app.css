@@ -21,11 +21,6 @@
 	font-size: 12px;
 }
 
-.blog-info:hover li,
-.blog-info:hover li a {
-	color: #777;
-}
-
 /* EDIT LINUS -- Fixes for new version of Bootstrap
 ------------------------------------*/
 .navbar-brand {
@@ -148,6 +143,7 @@ img.img-circle {
    display:inline-block;
    color:#fff !important;
    text-decoration:none !important;
+   border-radius: 2px !important;
 }
 .btn-u:hover {
    color:#fff;

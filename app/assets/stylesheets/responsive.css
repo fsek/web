@@ -8,6 +8,12 @@
 
 /* Small devices (tablets, 768px and less) */
 @media (max-width: 768px) { 
+	/*Top*/
+	.top {
+		margin-bottom: 20px;
+	}
+	/*End Top*/
+	
 	/*Purchase Block*/
 	.purchase span {
 		font-size: 24px;
