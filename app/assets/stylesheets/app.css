@@ -123,8 +123,8 @@ img.img-circle {
    box-shadow: none;
 }
 .form-control:focus {
-   border-color: #bbb;
-   box-shadow: 0 0 2px #c9c9c9;
+   border-color: #eb7125;
+   box-shadow: none;
 }
 
 /*Form Spacing*/
