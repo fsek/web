@@ -5,12 +5,12 @@ class StaticPagesController < ApplicationController
   
   def cafe
   add_breadcrumb "Utskott",:utskott_path
-  add_breadcrumb "Cafémasteriet",:cafe_path  
+  add_breadcrumb "Cafémästeriet",:cafe_path  
   end
   
   def fos
   add_breadcrumb "Utskott",:utskott_path
-  add_breadcrumb "Foset",:fos_path  
+  add_breadcrumb "Föset",:fos_path  
   end
   
   def kulturministerie
@@ -20,12 +20,12 @@ class StaticPagesController < ApplicationController
   
   def naringslivsutskott
   add_breadcrumb "Utskott",:utskott_path
-  add_breadcrumb "Naringslivsutskottet",:fnu_path
+  add_breadcrumb "Näringslivsutskottet",:fnu_path
   end
   
   def prylmasteri
   add_breadcrumb "Utskott",:utskott_path
-  add_breadcrumb "Prylmasteriet",:pryl_path
+  add_breadcrumb "Prylmästeriet",:pryl_path
   end
   
   def sanningsministerie
@@ -35,12 +35,12 @@ class StaticPagesController < ApplicationController
 
   def sexmasteri
   add_breadcrumb "Utskott",:utskott_path
-  add_breadcrumb "Sexmasteriet",:sexmasteri_path
+  add_breadcrumb "Sexmästeriet",:sexmasteri_path
   end
  
   def studierad
   add_breadcrumb "Utskott",:utskott_path
-  add_breadcrumb "Studieradet",:studierad_path
+  add_breadcrumb "Studierådet",:studierad_path
   end
   
   def styrelse    
