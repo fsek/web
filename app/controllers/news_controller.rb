@@ -31,7 +31,7 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to @news, notice: 'News was successfully created.' }
+        format.html { redirect_to @news, notice: 'Nyheten skapades!' }
         format.json { render action: 'show', status: :created, location: @news }
       else
         format.html { render action: 'new' }
@@ -45,7 +45,7 @@ class NewsController < ApplicationController
   def update
     respond_to do |format|
       if @news.update(news_params)
-        format.html { redirect_to @news, notice: 'News was successfully updated.' }
+        format.html { redirect_to @news, notice: 'Nyheten uppdaterades!' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

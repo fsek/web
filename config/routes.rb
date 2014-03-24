@@ -40,7 +40,7 @@ Fsek::Application.routes.draw do
 
   # Homepage of the system!
   # Will most likely be a controller showing a welcome screen?
-  root 'news#index'
+  root 'start_page#startsida'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

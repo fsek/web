@@ -38,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <%= link_to image_tag("layout/f-60.png", id: "logo-header", height: "45"), root_path, class: "navbar-brand" %>
+                <%= link_to image_tag("layout/f-60.png", id: "logo-header", height: "60"), root_path, class: "navbar-brand" %>
 				<div class="navbar-brand-text pull-left">
 					<span>&mdash;</span>TEKNOLOGSEKTIONEN<br>INOM TLTH.
 				</div>
@@ -58,201 +58,48 @@
                 <div class="carousel-inner">
                     <div class="item active">
                       <%= image_tag "img/bg.jpg" %>
-                        <div class="carousel-caption">
-                            <p>Mattias är bäst</p>
-                        </div>
                     </div>
                 </div>
                 
-                <div class="carousel-arrow">
+               <!-- <div class="carousel-arrow">
                     <a data-slide="prev" href="#myCarousel-1" class="left carousel-control">
                         <i class="fa fa-angle-left"></i>
                     </a>
                     <a data-slide="next" href="#myCarousel-1" class="right carousel-control">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                </div>
+                </div> -->
             </div>
 
 
 <div class="container">
     <div class="row magazine-page">
         <!-- Begin Content -->
-        <div class="col-md-12">
-            <!--Magazine Slider-->
-            
-            <!--Magazine News-->
-           <!-- <div class="magazine-news">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="magazine-news-img">
-                            <a href="#"><%= image_tag "unify/main/9.jpg", class: "img-responsive" %></a>
-                        </div>
-                        <h3><a href="#">Simelque Untine Culpaqui Officia Deserunt Blanditiis Praesentium</a></h3>
-                        <div class="by-author">
-                            <strong>by Jack Villo</strong>
-                            <span>/ September 19, 2013</span>
-                        </div> 
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate...</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="magazine-news-img">
-                            <a href="#"><%= image_tag "unify/main/10.jpg", class: "img-responsive" %></a>
-                        </div>
-                        <h3><a href="#">Simelque Untine Culpaqui Officia Deserunt Blanditiis Praesentium</a></h3>
-                        <div class="by-author">
-                            <strong>by Admin</strong>
-                            <span>/ September 19, 2013</span>
-                        </div> 
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate...</p>
-                    </div>
-                </div>
-            </div>
-            <!--End Magazine News-->
-
-            <hr>
-            
- 
+        <div class="col-md-12"> 
             <!--Magazine Mini News & Info Block-->
             <div class="row">
                 <!--Mini News-->
                 <div class="col-md-4">
-                    <div class="magazine-mini-news">
-                        <h3><a href="#">Blanditiis Praesentium Volupeto</a></h3>
-                        <div class="post-author">
-                            <strong>by Adam Bvio</strong> 
-                            <span>/ September 19, 2013</span>
-                        </div>
-                        <p>At vero eos et accusamus et iusto odiodig nissimos ducimus usce condimentum eleifend enim a feugiat.</p>
-                    </div>
-                    <hr>
-                    <div class="magazine-mini-news">
-                        <h3><a href="#">Blanditiis Praesentium Volupeto</a></h3>
-                        <div class="post-author">
-                            <strong>by Kate Baur</strong> 
-                            <span>/ September 19, 2013</span>
-                        </div>
-                        <p>At vero eos et accusamus et iusto odiodig nissimos ducimus usce condimentum eleifend enim a feugiat.</p>
-                    </div>
-                    <hr>
-                    <div class="magazine-mini-news">
-                        <h3><a href="#">Blanditiis Praesentium Volupeto</a></h3>
-                        <div class="post-author">
-                            <strong>by Admin</strong> 
-                            <span>/ September 19, 2013</span>
-                        </div>
-                        <p>At vero eos et accusamus et iusto odiodig nissimos ducimus usce condimentum eleifend enim a feugiat.</p>
-                    </div>
-                    <div class="news-read-more">
-                        <i class="fa fa-plus"></i>
-                        <a href="#">Read More News</a>
-                    </div>
-                </div>
-                <!--End Mini News-->
+                	<% @news.sort_by{|news|news.created_at}.reverse.slice(0,10).each do |news| %>
+                    <div class="magazine-mini-news">            <!--Mini-news-->
+				    <h2><%= news.title %></h2>					
+				    <ul class="list-unstyled list-inline blog-info">
+				      <li><i class="fa fa-calendar"></i> <%= news.created_at.in_time_zone("Berlin").to_formatted_s(:db) %></li>      
+				    </ul>					
+				    <p><%= news.content %></p>
+				    <hr>
+				  </div>     <!--End Mini News-->
+				  <% end %> 
+                </div><!-- col-md-4 -->
 
                 <!--Info Block-->
-                <div class="col-md-8">
-                    <div class="search-blocks search-blocks-top-sea">
-                        <div class="row">
-                            <div class="col-md-4 search-img">
-                                <%= image_tag "unify/new/img5.jpg", class: "img-responsive" %>
-                                <ul class="list-unstyled">
-                                   <li><i class="fa fa-briefcase"></i> Dell, Google</li>
-                                   <li><i class="fa fa-map-marker"></i> New York, US</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-8">
-                                <h2><a href="#">Sea Bordered Box</a></h2>
-                                <ul class="list-unstyled search-rating">
-                                   <li><i class="fa fa-star"></i></li>
-                                   <li><i class="fa fa-star"></i></li>
-                                   <li><i class="fa fa-star"></i></li>
-                                   <li><i class="fa fa-star"></i></li>
-                                   <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
-                            </div>
-                        </div>                            
-                    </div>
-                    <div class="search-blocks search-blocks-top-yellow">
-                        <div class="row">
-                            <div class="col-md-4 search-img">
-                                <%= image_tag "unify/new/img5.jpg", class: "img-responsive" %>
-                                <ul class="list-unstyled">
-                                   <li><i class="fa fa-briefcase"></i> Dell, Google</li>
-                                   <li><i class="fa fa-map-marker"></i> New York, US</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-8">
-                                <h2><a href="#">Yellow Bordered Box</a></h2>
-                                <ul class="list-unstyled search-rating">
-                                   <li><i class="fa fa-star"></i></li>
-                                   <li><i class="fa fa-star"></i></li>
-                                   <li><i class="fa fa-star"></i></li>
-                                   <li><i class="fa fa-star"></i></li>
-                                   <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
-                            </div>
-                        </div>                            
-                    </div>
-                </div>
+				<%=yield%>
                 <!--End Info Block-->
-            </div>
-
-            <hr>
-
-            <!--Magazine News-->
-            <div class="magazine-news">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="magazine-news-img">
-                            <a href="#">
-                                <%= image_tag "unify/main/1.jpg", class: "img-responsive" %>
-                            </a>
-                        </div>
-                        <h3><a href="#">Simelque Untine Culpaqui Officia Deserunt</a></h3>
-                        <div class="by-author">
-                            <strong>by Jack Villo</strong>
-                            <span>/ September 19, 2013</span>
-                        </div> 
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate...</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="magazine-news-img">
-                              <a href="#">
-                                <%= image_tag "unify/main/2.jpg", class: "img-responsive" %>
-                              </a>
-                        </div>
-                        <h3><a href="#">Simelque Untine Culpaqui Officia Deserunt</a></h3>
-                        <div class="by-author">
-                            <strong>by Ann Diwver</strong>
-                            <span>/ September 19, 2013</span>
-                        </div> 
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate...</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="magazine-news-img">
-                              <a href="#">
-                                <%= image_tag "unify/main/3.jpg", class: "img-responsive" %>
-                              </a>
-                        </div>
-                        <h3><a href="#">Simelque Untine Culpaqui Officia Deserunt</a></h3>
-                        <div class="by-author">
-                            <strong>by Admin</strong>
-                            <span>/ September 19, 2013</span>
-                        </div> 
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate...</p>
-                    </div>
-                </div>
-            </div>
-            <!--End Magazine News-->
+            </div> <!-- row -->
         </div>
-        <!-- End Content -->
-    
-
   </div>
-</div><!--/container-->     
+  </div>
+<!--/container-->     
 <!-- End Content Part -->
 
 
