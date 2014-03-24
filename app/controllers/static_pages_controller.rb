@@ -55,7 +55,12 @@ class StaticPagesController < ApplicationController
   def libo
     add_breadcrumb "Likabehandlingsombud",:libo_path
   end  
-
+  def kurslankar
+    add_breadcrumb "Kurslänkar",:kurslankar_path  
+  end
+  def bane
+    add_breadcrumb "Bane",:bane_path
+  end
 end
 
   

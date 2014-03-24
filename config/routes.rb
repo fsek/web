@@ -3,7 +3,8 @@ Fsek::Application.routes.draw do
   # Resources on the page
   resources :news
   
-  
+  get 'bane' => 'static_pages#bane'
+  get 'kurslankar' => 'static_pages#kurslankar'
   get 'styrelse' => 'static_pages#styrelse'
   get 'utskott' => 'static_pages#utskott'
   get 'utskott/cafemasteri' => 'static_pages#cafe', as: :cafe 

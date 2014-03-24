@@ -1,18 +1,6 @@
         <ul class="loginbar pull-right">
           <li><a href="/"><%= fa_icon("home") %></a></li>
-          <li class="devider"></li>
-          <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-delay="0" data-close-others="false">
-                            <i class="fa fa-bars"></i>Kurslänkar 
-                        </a>
-                        <ul class="dropdown-menu pull-right">
-                        	<li><%= link_to 'Teknisk Fysik', 'http://kurser.lth.se/lot/?val=program&prog=F' ,:target =>'_blank'%></li>
-                            <li><%= link_to 'Teknisk Matematik','http://kurser.lth.se/lot/?val=program&prog=Pi',:target =>'_blank'%></li>
-                            <li><%= link_to 'Teknisk Nanovetenskap','http://kurser.lth.se/lot/?val=program&prog=N',:target =>'_blank'%></li>
-                        </ul>
-                    </li>
-          <!--<li class="devider"></li>
-          <li><a href="#"><%= fa_icon("bars") %> Snabblänkar</a></li>-->
+          
           <li class="devider"></li>
           <% if user_signed_in? %>
             <li class="dropdown">
