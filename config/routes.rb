@@ -16,6 +16,7 @@ Fsek::Application.routes.draw do
   get 'utskott/studieradet' => 'static_pages#studierad', as: :studierad
   get 'start' => 'start_page#startsida'
   get 'libo' => 'static_pages#libo'
+  get 'nyheter' => 'news#nyheter'
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
   devise_scope :user do

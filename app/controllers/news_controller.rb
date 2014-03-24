@@ -2,11 +2,11 @@ class NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
-  add_breadcrumb "Nyheter", :news_index_path
+  add_breadcrumb "Nyheter", :news_path
 
   # GET /news
   # GET /news.json
-  def index
+  def nyheter
     @news = News.all
   end
 

@@ -89,3 +89,6 @@ rake assets:precompile RAILS_ENV=development
 rake db:create
 rake db:migrate
 
+git add -A
+git commit -m "Ditt commit meddelande"
+git push origin master
