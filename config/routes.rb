@@ -14,7 +14,7 @@ Fsek::Application.routes.draw do
   get 'utskott/sanningsministerie' => 'static_pages#sanningsministerie', as: :sanning  
   get 'utskott/sexmasteri' => 'static_pages#sexmasteri', as: :sexmasteri
   get 'utskott/studieradet' => 'static_pages#studierad', as: :studierad
-  
+  get 'start' => 'start_page#startsida'
   get 'libo' => 'static_pages#libo'
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}

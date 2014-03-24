@@ -2,6 +2,7 @@
 class StaticPagesController < ApplicationController
   
   layout "static_page"
+  skip_before_filter :authenticate_user!
   
   def cafe
   add_breadcrumb "Utskott",:utskott_path

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+  <title>F-sektionen</title>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+<!--=== Top ===-->    
+<div class="top">
+  <div class="container">
+    <%= render "layouts/topbar" %>
+  </div>
+</div>
+<!--=== End Top ===-->    
+
+<!--=== Header ===-->    
+<div class="header">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Logo and toggle-menu button for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <%= link_to image_tag("layout/f-60.png", id: "logo-header", height: "45"), root_path, class: "navbar-brand" %>
+				<div class="navbar-brand-text pull-left">
+					<span>&mdash;</span>TEKNOLOGSEKTIONEN<br>INOM TLTH.
+				</div>
+            </div>
+        
+            <!-- Menus -->
+            <%= render "layouts/menu" %>
+       </div>    
+    </div>    
+</div><!--/header-->
+<!--=== End Header ===-->  
+
+
+<!--=== Content Part ===-->
+
+	<div class="carousel slide carousel-v1 margin-bottom-20" id="myCarousel-1">
+                <div class="carousel-inner">
+                    <div class="item active">
+                      <%= image_tag "img/linus2.jpg" %>
+                        <div class="carousel-caption">
+                            <p>Facilisis odio, dapibus ac justo acilisis gestinas. </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                      <%= image_tag "unify/posts/1.jpg" %>
+                        <div class="carousel-caption">
+                            <p>Cras justo odio, dapibus ac facilisis into egestas.</p>
+                        </div>
+                        </div>
+                    <div class="item">
+                      <%= image_tag "unify/posts/3.jpg" %>
+                        <div class="carousel-caption">
+                            <p>Justo cras odio apibus ac afilisis lingestas de.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-arrow">
+                    <a data-slide="prev" href="#myCarousel-1" class="left carousel-control">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a data-slide="next" href="#myCarousel-1" class="right carousel-control">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </div>
+
+
+<div class="container">
+    <div class="row magazine-page">
+        <!-- Begin Content -->
+        <div class="col-md-12">
+            <!--Magazine Slider-->
+            
+            <!--Magazine News-->
+           <!-- <div class="magazine-news">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="magazine-news-img">
+                            <a href="#"><%= image_tag "unify/main/9.jpg", class: "img-responsive" %></a>
+                        </div>
+                        <h3><a href="#">Simelque Untine Culpaqui Officia Deserunt Blanditiis Praesentium</a></h3>
+                        <div class="by-author">
+                            <strong>by Jack Villo</strong>
+                            <span>/ September 19, 2013</span>
+                        </div> 
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate...</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="magazine-news-img">
+                            <a href="#"><%= image_tag "unify/main/10.jpg", class: "img-responsive" %></a>
+                        </div>
+                        <h3><a href="#">Simelque Untine Culpaqui Officia Deserunt Blanditiis Praesentium</a></h3>
+                        <div class="by-author">
+                            <strong>by Admin</strong>
+                            <span>/ September 19, 2013</span>
+                        </div> 
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate...</p>
+                    </div>
+                </div>
+            </div>
+            <!--End Magazine News-->
+
+            <hr>
+            
+ 
+            <!--Magazine Mini News & Info Block-->
+            <div class="row">
+                <!--Mini News-->
+                <div class="col-md-4">
+                    <div class="magazine-mini-news">
+                        <h3><a href="#">Blanditiis Praesentium Volupeto</a></h3>
+                        <div class="post-author">
+                            <strong>by Adam Bvio</strong> 
+                            <span>/ September 19, 2013</span>
+                        </div>
+                        <p>At vero eos et accusamus et iusto odiodig nissimos ducimus usce condimentum eleifend enim a feugiat.</p>
+                    </div>
+                    <hr>
+                    <div class="magazine-mini-news">
+                        <h3><a href="#">Blanditiis Praesentium Volupeto</a></h3>
+                        <div class="post-author">
+                            <strong>by Kate Baur</strong> 
+                            <span>/ September 19, 2013</span>
+                        </div>
+                        <p>At vero eos et accusamus et iusto odiodig nissimos ducimus usce condimentum eleifend enim a feugiat.</p>
+                    </div>
+                    <hr>
+                    <div class="magazine-mini-news">
+                        <h3><a href="#">Blanditiis Praesentium Volupeto</a></h3>
+                        <div class="post-author">
+                            <strong>by Admin</strong> 
+                            <span>/ September 19, 2013</span>
+                        </div>
+                        <p>At vero eos et accusamus et iusto odiodig nissimos ducimus usce condimentum eleifend enim a feugiat.</p>
+                    </div>
+                    <div class="news-read-more">
+                        <i class="fa fa-plus"></i>
+                        <a href="#">Read More News</a>
+                    </div>
+                </div>
+                <!--End Mini News-->
+
+                <!--Info Block-->
+                <div class="col-md-8">
+                    <div class="search-blocks search-blocks-top-sea">
+                        <div class="row">
+                            <div class="col-md-4 search-img">
+                                <%= image_tag "unify/new/img5.jpg", class: "img-responsive" %>
+                                <ul class="list-unstyled">
+                                   <li><i class="fa fa-briefcase"></i> Dell, Google</li>
+                                   <li><i class="fa fa-map-marker"></i> New York, US</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-8">
+                                <h2><a href="#">Sea Bordered Box</a></h2>
+                                <ul class="list-unstyled search-rating">
+                                   <li><i class="fa fa-star"></i></li>
+                                   <li><i class="fa fa-star"></i></li>
+                                   <li><i class="fa fa-star"></i></li>
+                                   <li><i class="fa fa-star"></i></li>
+                                   <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
+                            </div>
+                        </div>                            
+                    </div>
+                    <div class="search-blocks search-blocks-top-yellow">
+                        <div class="row">
+                            <div class="col-md-4 search-img">
+                                <%= image_tag "unify/new/img5.jpg", class: "img-responsive" %>
+                                <ul class="list-unstyled">
+                                   <li><i class="fa fa-briefcase"></i> Dell, Google</li>
+                                   <li><i class="fa fa-map-marker"></i> New York, US</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-8">
+                                <h2><a href="#">Yellow Bordered Box</a></h2>
+                                <ul class="list-unstyled search-rating">
+                                   <li><i class="fa fa-star"></i></li>
+                                   <li><i class="fa fa-star"></i></li>
+                                   <li><i class="fa fa-star"></i></li>
+                                   <li><i class="fa fa-star"></i></li>
+                                   <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
+                            </div>
+                        </div>                            
+                    </div>
+                </div>
+                <!--End Info Block-->
+            </div>
+
+            <hr>
+
+            <!--Magazine News-->
+            <div class="magazine-news">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="magazine-news-img">
+                            <a href="#">
+                                <%= image_tag "unify/main/1.jpg", class: "img-responsive" %>
+                            </a>
+                        </div>
+                        <h3><a href="#">Simelque Untine Culpaqui Officia Deserunt</a></h3>
+                        <div class="by-author">
+                            <strong>by Jack Villo</strong>
+                            <span>/ September 19, 2013</span>
+                        </div> 
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate...</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="magazine-news-img">
+                              <a href="#">
+                                <%= image_tag "unify/main/2.jpg", class: "img-responsive" %>
+                              </a>
+                        </div>
+                        <h3><a href="#">Simelque Untine Culpaqui Officia Deserunt</a></h3>
+                        <div class="by-author">
+                            <strong>by Ann Diwver</strong>
+                            <span>/ September 19, 2013</span>
+                        </div> 
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate...</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="magazine-news-img">
+                              <a href="#">
+                                <%= image_tag "unify/main/3.jpg", class: "img-responsive" %>
+                              </a>
+                        </div>
+                        <h3><a href="#">Simelque Untine Culpaqui Officia Deserunt</a></h3>
+                        <div class="by-author">
+                            <strong>by Admin</strong>
+                            <span>/ September 19, 2013</span>
+                        </div> 
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate...</p>
+                    </div>
+                </div>
+            </div>
+            <!--End Magazine News-->
+        </div>
+        <!-- End Content -->
+    
+
+  </div>
+</div><!--/container-->     
+<!-- End Content Part -->
+
+
+
+
+<!--=== Footer ===-->
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <%= render "layouts/footer" %>
+    </div> 
+  </div>
+</div>   
+<!--=== End Footer ===-->
+
+<!--=== Copyright ===-->
+<div class="copyright">
+  <div class="container">
+    <div class="row">
+      <%= render "layouts/bottombar" %>    
+    </div>
+  </div> 
+</div> 
+<!--=== End Copyright ===-->
+
+<!-- JS Global Compulsory -->           
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+        App.initSliders();
+    });
+</script>
+<!--[if lt IE 9]>
+  <script src="assets/plugins/respond.js"></script>
+<![endif]-->    
+</body>
+</html> 

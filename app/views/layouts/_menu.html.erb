@@ -2,14 +2,14 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Student <i class="fa fa-angle-down"></i>
+                            Sektionen <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li><%= link_to 'Styrelsen', :styrelse %></li>
                             <li><%= link_to 'Utskott', :utskott%></li>                                                       
                         </ul>
                     </li>
-                    <li class="dropdown">
+                   <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
                             Vill studera <i class="fa fa-angle-down"></i>
                         </a>
@@ -17,7 +17,7 @@
                         	<li><%= link_to 'Styrelsen', '/styrelse' %></li>
                             <li><%= link_to 'Utskott','/utskott'%></li> 
                         </ul>
-                    </li>
+                    </li> -->
                     <!--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
                             Företag <i class="fa fa-angle-down"></i>
@@ -36,6 +36,19 @@
                             <li><%= link_to 'Utskott','/utskott'%></li> 
                         </ul>
                     </li>-->
+                    <li>
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Kontakt
+                                <b class="caret"></b>                            
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="mailto:ordf@fsektionen.se">Ordf&ouml;rande</a></li>
+				<li><a href="mailto:styrelsen@fsektionen.se">Styrelsen</a></li>
+				<li><a href="mailto:spindelman@fsektionen.se">Spindelman/Webmaster</a></li>
+				<li><%=link_to 'Likabehandlingsombud', 'libo'%></li>
+                            </ul>
+                            <b class="caret-out"></b>                        
+                        </li>
+
             <li class="hidden-sm"><a class="search"><i class="fa fa-search search-btn"></i></a></li>
                 </ul>
                 <div class="search-open">
