@@ -97,6 +97,15 @@
 	border-top-color: #f39c12;
 }
 
+/*Search Orange Border Top*/
+.search-blocks-top-orange {
+	border-top: solid 2px #eb7125;
+}
+
+.search-blocks-top-orange:hover {
+	border-top-color: #ff6122;
+}
+
 /*Search Orange Border Left*/
 .search-blocks-left-orange {
 	border-left: solid 2px #e67e22;
