@@ -20,6 +20,7 @@
  *= require page_magazine
  *= require default_theme
  * require_tree .
+ *= require start_page
  */
 
  /* Override for Bootstrap 3 font location */

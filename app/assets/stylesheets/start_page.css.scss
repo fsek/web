@@ -1,3 +1,55 @@
 // Place all the styles related to the StartPage controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$highlight: 0 1px 0 #fff;
+$margin: 25px;
+
+.header-start {
+	.navbar-nav {
+		margin-top: $margin;
+	}
+	
+	.navbar-brand-text {
+		padding: 10px 0 0 30px;
+		font-size: 15px;
+		line-height: 17px;
+		
+		span {
+			margin-left: -25px;
+		}
+	}
+	
+	.search-open {
+		top: $margin + 41px !important;
+	}
+	
+	@media screen and (max-width: 768px) {
+		padding-bottom: $margin - 10px;
+	}
+}
+
+.search-blocks {
+	text-shadow: $highlight;
+	background: #f9f9f9;
+	
+	h2 {
+		font-size: 18px;
+		text-shadow: $highlight;
+		border-bottom: 1px dotted #eee;
+		
+		a, a:active, a:visited {
+			color: #555;
+		}
+		
+		a:hover {
+			color: #eb7125;
+			text-decoration: none;
+		}
+	}
+}
+
+.search-blocks-top-orange {
+	border: 1px solid #eee;
+	border-top: 1px solid #eb7125;
+}
