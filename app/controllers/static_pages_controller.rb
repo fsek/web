@@ -14,6 +14,10 @@ class StaticPagesController < ApplicationController
   add_breadcrumb "Föset",:fos_path  
   end
   
+  def kontakt
+    # add_breadcrumb 'Kontakt',:kontakt    
+  end
+  
   def kulturministerie
   add_breadcrumb "Utskott",:utskott_path
   add_breadcrumb "Kulturministeriet",:km_path

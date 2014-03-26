@@ -54,7 +54,7 @@
 
 <!--=== Content Part ===-->
 
-	<div class="carousel slide carousel-v1 margin-bottom-20" id="myCarousel-1">
+	<div class="carousel slide carousel-v1 margin-bottom-20 margin-top-20" id="myCarousel-1">
                 <div class="carousel-inner">
                     <div class="item active">
                       <%= image_tag "img/bg.jpg" %>
@@ -80,7 +80,7 @@
             <div class="row">
                 <!--Mini News-->
                 <div class="col-md-4">
-                	<% @news.sort_by{|news|news.created_at}.reverse.slice(0,10).each do |news| %>
+                	<% @news.sort_by{|news|news.created_at}.reverse.slice(0,3).each do |news| %>
                     <div class="magazine-mini-news">            <!--Mini-news-->
 				    <h2><%= news.title %></h2>					
 				    <ul class="list-unstyled list-inline blog-info">
