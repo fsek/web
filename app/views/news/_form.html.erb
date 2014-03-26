@@ -1,7 +1,7 @@
 <%= form_for(@news) do |f| %>
   <% if @news.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h2>
+      <h2><%= pluralize(@news.errors.count, "error") %> gör att nyheten inte kan sparas:</h2>
 
       <ul>
       <% @news.errors.full_messages.each do |msg| %>
@@ -12,14 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label 'Titel:' %><br>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :content %><br>
+    <%= f.label 'Innehåll:' %><br>
     <%= f.text_area :content %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Spara" %>
   </div>
 <% end %>

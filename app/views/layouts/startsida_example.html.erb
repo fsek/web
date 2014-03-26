@@ -80,9 +80,10 @@
             <div class="row">
                 <!--Mini News-->
                 <div class="col-md-4">
+                	<div class="md-headline"><h3>Nyheter</h3></div>
                 	<% @news.sort_by{|news|news.created_at}.reverse.slice(0,3).each do |news| %>
                     <div class="magazine-mini-news">            <!--Mini-news-->
-				    <h2><%= news.title %></h2>					
+				    <h3><%= news.title %></h3>					
 				    <ul class="list-unstyled list-inline blog-info">
 				      <li><i class="fa fa-calendar"></i> <%= news.created_at.in_time_zone("Berlin").to_formatted_s(:db) %></li>      
 				    </ul>					

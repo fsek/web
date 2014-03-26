@@ -1,7 +1,7 @@
 <%= form_for(@profile) do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+      <h2><%= pluralize(@profile.errors.count, "error") %> hindar profilen från att sparas:</h2>
 
       <ul>
       <% @profile.errors.full_messages.each do |msg| %>
@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label 'Namn:' %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
@@ -20,10 +20,10 @@
     <%= f.text_field :program %>
   </div>
   <div class="field">
-    <%= f.label :start_year %><br>
+    <%= f.label 'Började år:' %><br>
     <%= f.number_field :start_year %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Uppdatera profil"%>
   </div>
 <% end %>
