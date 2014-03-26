@@ -31,7 +31,7 @@ $margin: 25px;
 
 .search-blocks {
 	text-shadow: $highlight;
-	background: #f9f9f9;
+	background: none;
 	
 	h2 {
 		font-size: 18px;
@@ -49,9 +49,9 @@ $margin: 25px;
 	}
 }
 
-.search-blocks-top-orange {
-	border: 1px solid #eee;
+.search-blocks-top-orange {	
 	border-top: 1px solid #eb7125;
+	background:none;
 }
 .blocks-top-orange {
   
