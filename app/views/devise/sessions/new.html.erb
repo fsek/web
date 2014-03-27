@@ -1,19 +1,19 @@
 <% title("Logga in") %>
-<h2>Sign in</h2>
+<h2>Logga in</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
-  <div><%= f.label :login %><br />
+  <div><%= f.label 'Användarnamn:'%><br />
   <%= f.text_field :login, :autofocus => true %></div>
 
-  <div><%= f.label :password %><br />
+  <div><%= f.label 'Lösenord' %><br />
   <%= f.password_field :password %></div>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <div><%= f.check_box :remember_me %> <%= f.label 'Kom ihåg?' %></div>
   <% end -%>
 
-  <div><%= f.submit "Sign in" %></div>
+  <div><%= f.submit "Logga in" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>

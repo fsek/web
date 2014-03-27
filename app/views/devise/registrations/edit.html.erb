@@ -1,33 +1,32 @@
-<% title("Redigera användare") %>
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Redigera <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :username %><br />
+  <div><%= f.label 'Användarnamn' %><br />
   <%= f.text_field :username, :autofocus => true %></div>
 
-  <div><%= f.label :email %><br />
+  <div><%= f.label 'Epost' %><br />
   <%= f.email_field :email %></div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <div><%= f.label 'Lösenord' %> <i>(lämna blankt om du inte vill ändra lösenord)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
+  <div><%= f.label 'Bekräfta lösenord' %><br />
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <div><%= f.label 'Nuvarande lösenord' %> <i>(vi behöver ditt nuvarande lösenord för att kunna ändra dina uppgifter.)</i><br />
   <%= f.password_field :current_password %></div>
 
-  <div><%= f.submit "Update" %></div>
+  <div><%= f.submit "Uppdatera" %></div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>Ta bort konto</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
+<p>Unhappy? <%= button_to "Ta bort mitt konto", registration_path(resource_name), :data => { :confirm => "Är du säker?" }, :method => :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "Tillbaka", :back %>
