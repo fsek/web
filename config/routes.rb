@@ -23,18 +23,18 @@ Fsek::Application.routes.draw do
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
   devise_scope :user do
     #registration
-    get     'cancel_reg'  => 'registrations#cancel', as: :cancel_user_registration
-    post    'user'        => 'registrations#create', as: :user_registration 
-    get     'sign_up'     => 'registrations#new',    as: :new_user_registration 
-    get     'user/edit'   => 'registrations#edit',   as: :edit_user_registration 
+    get     'avbryt_reg'  => 'registrations#cancel', as: :cancel_user_registration
+    post    'anvandare'        => 'registrations#create', as: :user_registration 
+    get     'registrera'     => 'registrations#new',    as: :new_user_registration 
+    get     'anvandare/redigera'   => 'registrations#edit',   as: :edit_user_registration 
     patch   'user'        => 'registrations#update'
     put     'user'        => 'registrations#update'
     delete  'user'        => 'registrations#destroy'
 
     #sessions
-    get     'login'       => 'devise/sessions#new',         as: :new_user_session
-    post    'login'       => 'devise/sessions#create',      as: :user_session
-    delete  'logout'      => 'devise/sessions#destroy',     as: :destroy_user_session
+    get     'logga_in'       => 'devise/sessions#new',         as: :new_user_session
+    post    'logga_in'       => 'devise/sessions#create',      as: :user_session
+    delete  'logga_ut'      => 'devise/sessions#destroy',     as: :destroy_user_session
   end
   get 'users' => 'users#index'
   resources :profiles, only: [:show, :edit, :update]
