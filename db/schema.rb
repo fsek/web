@@ -24,10 +24,12 @@ ActiveRecord::Schema.define(version: 20140328222934) do
     t.string   "name"
     t.string   "program"
     t.integer  "start_year"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
   create_table "roles", force: true do |t|
     t.string   "name",        null: false
@@ -50,7 +52,6 @@ ActiveRecord::Schema.define(version: 20140328222934) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
