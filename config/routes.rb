@@ -40,7 +40,7 @@ Fsek::Application.routes.draw do
   resources :profiles, only: [:show, :edit, :update]
 
 
-
+   
   # Homepage of the system!
   # Will most likely be a controller showing a welcome screen?
   root 'start_page#startsida'

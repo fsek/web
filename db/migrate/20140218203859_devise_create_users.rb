@@ -1,5 +1,5 @@
 class DeviseCreateUsers < ActiveRecord::Migration
-  def change
+  def self.up
     create_table(:users) do |t|
       t.string :username, :null => false
 
@@ -20,7 +20,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :last_sign_in_at
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
-      t.integer  :role_id  ,:null => false, :default => 0
+      t.integer  :role_id, :null => false, :default = 0
       
 
       ## Confirmable

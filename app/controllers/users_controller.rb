@@ -1,9 +1,7 @@
 # encoding:UTF-8
 class UsersController < ApplicationController
   include TheRole::Controller
-  before_filter :login_required
-  before_filter :role_required
-  
+  before_filter :login_required  
   before_filter :authenticate_user!
   
   
@@ -13,11 +11,12 @@ class UsersController < ApplicationController
   def edit; end
 
   def user_params
-    params.require(:user).permit(:username,:email)
+    params.require(:user).permit(:username,:email,:role,:role_id)
   end
    
   def update    
     @user.update_attributes params[:user]
+ 
     flash[:notice] = 'Användare uppdaterades.'
     redirect_to edit_user_path @user
   end
@@ -25,11 +24,12 @@ class UsersController < ApplicationController
   def change_role
     @user = User.find params[:user_id]
     @role = Role.find params[:role_id]
-    @user.update_attribute(:role, 'admin')
+    @user.update_attribute(:role, @role)
+    
     redirect_to edit_user_path @user
   end
 
-  private
+  private 
 
   def find_user
     @user = User.find params[:id]

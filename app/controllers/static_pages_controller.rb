@@ -2,12 +2,9 @@
 class StaticPagesController < ApplicationController
   include TheRole::Controller
   
-  before_action :login_required, except: [:index, :show]
-  before_action :role_required,  except: [:index, :show]
+  before_action :login_required, except: [:index, :show]  
 
-  before_action :set_static_page,       only: [:edit, :update, :destroy]
-  before_action :owner_required, only: [:edit, :update, :destroy]
-   
+
   def edit
      # ONLY OWNER CAN EDIT THIS PAGE
   end

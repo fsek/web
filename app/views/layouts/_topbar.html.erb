@@ -9,6 +9,7 @@
               <ul class="dropdown-menu pull-right">
                 <li><%= link_to "Profil", current_user.profile %></li>
                 <li><%= link_to "Logga ut", destroy_user_session_path, method: :delete %></li>
+                <li><%= current_user.role_id%></li>
                </ul>
             </li>
           <% else %>
