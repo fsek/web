@@ -1,4 +1,5 @@
 class NewsController < ApplicationController
+  include TheRole::Controller
   before_action :set_news, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
 

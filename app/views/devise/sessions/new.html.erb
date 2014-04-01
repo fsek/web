@@ -1,10 +1,9 @@
-<% title("Logga in") %>
 <h2>Logga in</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
   <div><%= f.label 'Användarnamn:'%><br />
-  <%= f.text_field :login, :autofocus => true %></div>
+  <%= f.text_field :username, :autofocus => true %></div>
 
   <div><%= f.label 'Lösenord' %><br />
   <%= f.password_field :password %></div>
@@ -15,5 +14,4 @@
 
   <div><%= f.submit "Logga in" %></div>
 <% end %>
-
 <%= render "devise/shared/links" %>

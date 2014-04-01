@@ -1,25 +1,49 @@
 class ApplicationController < ActionController::Base
+  include TheRole::Controller
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  #protect_from_forgery with: :exception
 
-  # Require all users to be signed in, at all times.
-  # This means that you have to whitelist individual controllers.
-  before_action :authenticate_user!
+  
+  
+  protect_from_forgery
+    def access_denied
+    flash[:error] = t('the_role.access_denied')
+    redirect_to(:back)
+  end
+before_filter :set_locale
+  private
 
-  # Add extra parameters for registration (devise)
-  before_action :permitted_devise_params, if: :devise_controller?
+  def set_locale
+    locale = 'en'
+    langs  = %w{ en ru es pl zh_CN }
 
-  # Add the root breadcrumb
-  add_breadcrumb "Hem", :root_path
-
-  protected
-    # Method to modify variables permitted in the devise controller
-    def permitted_devise_params
-      # append username
-      devise_parameter_sanitizer.for(:sign_up) << :username << :email
-      devise_parameter_sanitizer.for(:sign_in) << :username << :email << :login 
-      devise_parameter_sanitizer.for(:account_update) << :username << :email
+    if params[:locale]
+      lang = params[:locale]
+      if langs.include? lang
+        locale           = lang
+        cookies[:locale] = lang
+      end
+    else
+      if cookies[:locale]
+        lang   = cookies[:locale]
+        locale = lang if langs.include? lang
+      end
     end
 
-end
+    I18n.locale = locale
+    redirect_to(:back) if params[:locale]
+  end
+  
+    protected
+        before_filter :session_sanitized_params, if: :devise_controller?
+      def session_sanitized_params
+      devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(:username, :password, :remember_me)}
+    end
+    
+    before_filter :update_sanitized_params, if: :devise_controller?    
+    def update_sanitized_params
+      devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:username, :email, :password, :password_confirmation)}
+    end
+  end

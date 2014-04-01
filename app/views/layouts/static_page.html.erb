@@ -82,7 +82,8 @@
           <strong>Fel:</strong> <%= alert %>
         </div> 
       <% end %>
-      
+     <%= yield :role_sidebar%>
+     <%= yield :role_main%> 
       
    </div>
     <!-- End main content -->
@@ -104,7 +105,7 @@
 			
 		</ul>
 		
-      <% if user_signed_in? %>
+      <% if current_user.admin? %>
         <%= render "sysop/admintools" %>
       <% end %>    
     </div>

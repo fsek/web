@@ -1,10 +1,23 @@
 # encoding:UTF-8
 class StaticPagesController < ApplicationController
+  include TheRole::Controller
+  
+  before_action :login_required, except: [:index, :show]
+  before_action :role_required,  except: [:index, :show]
+
+  before_action :set_static_page,       only: [:edit, :update, :destroy]
+  before_action :owner_required, only: [:edit, :update, :destroy]
+   
+  def edit
+     # ONLY OWNER CAN EDIT THIS PAGE
+  end
+  
   
   layout "static_page"
   skip_before_filter :authenticate_user!
   
   def cafe
+    
   add_breadcrumb "Utskott",:utskott_path
   add_breadcrumb "Cafémästeriet",:cafe_path  
   end
@@ -64,6 +77,12 @@ class StaticPagesController < ApplicationController
   end
   def bane
     add_breadcrumb "Bane",:bane_path
+  end
+  
+  private 
+  def set_page
+    @static_page = Page.find params[:id]
+    @owner_check_object = @static_page 
   end
 end
 
