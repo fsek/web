@@ -1,14 +1,27 @@
 <% title("Nyheter") %>
 
-<div class="headline headline-md">
-  <h1><%= @news.title %></h1>
+<div class="row blog">
+  <div class="col-md-3">
+    <%= image_tag "unify/main/11.jpg", class: "img-responsive" %>
+  </div>
+  
+  <div class="col-md-9">
+    <h2><%= @news.title %></h2>
+	
+    <ul class="list-unstyled list-inline blog-info">
+    	<li><%= link_to User.find_by(username: @news.author).profile.name, User.find_by(username: @news.author).profile%></li>
+      <li><i class="fa fa-calendar"></i> <%= @news.created_at.in_time_zone("Berlin").to_formatted_s(:db) %></li>      
+    </ul>
+	
+    <p><%= simple_format(@news.content) %></p>
+	
+    <p>
+      <% if current_user.has_role?(:news, :edit) %>
+        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_news_path(@news), class: "btn-u btn-u-small" %>
+        <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @news, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
+      <% end %>
+    </p>
+  </div>    
 </div>
 
-<p id="notice"><%= notice %></p>
 
-<p>
-  <%= @news.content %>
-</p>
-
-<%= link_to fa_icon('edit') + ' Redigera', edit_news_path(@news) %> 
-<%= link_to fa_icon('location-arrow') + ' Tillbaka', news_path %>

@@ -92,11 +92,7 @@
     
     <!-- Begin sidebar -->
     <div class="col-md-3">
-      <%= yield :sidebar %>
-
-      <% if user_signed_in? %>
-        <%= render "sysop/admintools" %>
-      <% end %>
+      <%= yield :sidebar %>     
 	  
       <%= render "layouts/shared_sidebar" %>
     </div>

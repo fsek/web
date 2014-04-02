@@ -106,8 +106,8 @@
 			
 		</ul>
 		
-      <% if current_user.admin? %>
-        <%= render "sysop/admintools" %>
+      <% if current_user.admin? %>        
+        <%= render 'phrasing/initializer'%>
       <% end %>    
     </div>
     <!-- End sidebar -->

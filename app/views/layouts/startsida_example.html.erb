@@ -14,6 +14,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  
 </head>
 
 <body>
@@ -73,7 +74,7 @@
 
 
 <div class="container">
-    <div class="row magazine-page">
+    <div class="row magazine-page">    	
         <!-- Begin Content -->
         <div class="col-md-12"> 
             <!--Magazine Mini News & Info Block-->
@@ -87,7 +88,7 @@
 				    <ul class="list-unstyled list-inline blog-info">
 				      <li><i class="fa fa-calendar"></i> <%= news.created_at.in_time_zone("Berlin").to_formatted_s(:db) %></li>      
 				    </ul>					
-				    <p><%= news.content %></p>
+				    <p><%= simple_format(news.content) %></p>
 				    <hr>
 				  </div>     <!--End Mini News-->
 				  <% end %>

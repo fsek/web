@@ -2,18 +2,20 @@ class NewsController < ApplicationController
   include TheRole::Controller
   before_action :set_news, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
-
-  add_breadcrumb "Nyheter", :news_path
+  
 
   # GET /news
   # GET /news.json
   def nyheter
     @news = News.all
   end
-
+  def index
+    
+  end
   # GET /news/1
   # GET /news/1.json
   def show
+    @news = News.find(params[:id])
   end
 
   # GET /news/new
@@ -22,14 +24,14 @@ class NewsController < ApplicationController
   end
 
   # GET /news/1/edit
-  def edit
+  def redigera
   end
 
   # POST /news
   # POST /news.json
   def create
     @news = News.new(news_params)
-
+    @news.update(author: current_userN)
     respond_to do |format|
       if @news.save
         format.html { redirect_to @news, notice: 'Nyheten skapades!' }

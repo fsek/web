@@ -1,6 +1,7 @@
 <% title("Nyheter") %>
-
+ 
 <% @news.sort_by{|news|news.created_at}.reverse.slice(0,10).each do |news| %>
+
 <!--Blog Post-->
 <div class="row blog">
   <div class="col-md-3">
@@ -10,16 +11,17 @@
   <div class="col-md-9">
     <h2><%= news.title %></h2>
 	
-    <ul class="list-unstyled list-inline blog-info">
+    <ul class="list-unstyled blog-info">
+    	<li><%= fa_icon("user") %> <%= link_to (User.find_by(username: news.author).profile.name)+' - ('+ Role.find(User.find_by(username: news.author).role_id).title+')' ,User.find_by(username: news.author).profile %></li>
       <li><i class="fa fa-calendar"></i> <%= news.created_at.in_time_zone("Berlin").to_formatted_s(:db) %></li>      
     </ul>
 	
-    <p><%= news.content %></p>
+    <p><%= simple_format(news.content) %></p>
 	
     <p>
       <%= link_to (content_tag(:i, nil, class: "fa fa-location-arrow") + " Läs mer"), news, class: "btn-u btn-u-small" %>
 
-      <% if user_signed_in? %>
+      <% if current_user.has_role?(:news, :edit) %>
         <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_news_path(news), class: "btn-u btn-u-small" %>
         <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), news, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
       <% end %>

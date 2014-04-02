@@ -1,5 +1,5 @@
 class CreateProfiles < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :profiles do |t|
       t.string :name
       t.string :program
