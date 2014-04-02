@@ -2,6 +2,11 @@ Fsek::Application.routes.draw do
 
   # Resources on the page
   resources :news
+  match 'nyheter' => 'news#nyheter', via: :get
+  match 'nyheter/ny' => 'news#new', via: :get
+  match 'nyheter/ny' => 'news#new', via: :post
+  match 'nyheter/:id' => 'news#show',via: :get
+  
   
   get 'bane' => 'static_pages#bane'
   get 'kurslankar' => 'static_pages#kurslankar'
@@ -16,15 +21,14 @@ Fsek::Application.routes.draw do
   get 'utskott/sexmasteri' => 'static_pages#sexmasteri', as: :sexmasteri
   get 'utskott/studieradet' => 'static_pages#studierad', as: :studierad
   get 'start' => 'start_page#startsida'
-  get 'libo' => 'static_pages#libo'
-  get 'nyheter' => 'news#nyheter'
+  get 'libo' => 'static_pages#libo'  
   get 'kontakt' => 'static_pages#kontakt'
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
   devise_scope :user do
     #registration
     get     'avbryt_reg'  => 'registrations#cancel', as: :cancel_user_registration
-    post    'anvandare'        => 'registrations#create', as: :user_registration 
+    post    'registrera'        => 'registrations#create', as: :user_registration 
     get     'registrera'     => 'registrations#new',    as: :new_user_registration 
     get     'anvandare/redigera'   => 'registrations#edit',   as: :edit_user_registration 
     patch   'user'        => 'registrations#update'
@@ -36,7 +40,7 @@ Fsek::Application.routes.draw do
     post    'logga_in'       => 'devise/sessions#create',      as: :user_session
     delete  'logga_ut'      => 'devise/sessions#destroy',     as: :destroy_user_session
   end
-  get 'users' => 'users#index'
+  get 'anvandare' => 'users#index', as: :users
   resources :profiles, only: [:show, :edit, :update]
 
 

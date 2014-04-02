@@ -5,13 +5,32 @@
           <% if user_signed_in? %>
             <li class="dropdown">
               <%= fa_icon("user") %> 
-              <%= link_to current_user.username, "#", class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
+              <%= link_to current_user.profile.name, current_user.profile, class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
               <ul class="dropdown-menu pull-right">
                 <li><%= link_to "Profil", current_user.profile %></li>
-                <li><%= link_to "Logga ut", destroy_user_session_path, method: :delete %></li>
-                
-               </ul>
+                <li><%= link_to "Logga ut", destroy_user_session_path, method: :delete %></li>                
+               </ul>               
             </li>
+            
+            <% if current_user.role_id != 3 && current_user.role_id > 0 %>
+            <li class="devider"></li>            
+            <li class="dropdown">              
+              <%= link_to Role.find(current_user.role_id).title, "#", class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
+              <ul class="dropdown-menu pull-right">
+              	<%if current_user.admin?%>
+              	<li><%= link_to "Roller", "/admin/roles" %></li>
+                <li><%= link_to "Hantera användare", "/anvandare"%></li>
+                <%end%>
+              	<%if current_user.has_role?(:utskott, :edit)%>              	
+                <li><%= link_to "Utskott", "/utskott" %></li>                
+                <%end%> 
+              	<%if current_user.has_role?(:styrelse, :edit)%>              	
+                <li><%= link_to "Styrelse", "/styrelse" %></li>                
+                <%end%>                
+               </ul>               
+            </li>
+        	<% end %>
+            
           <% else %>
             <li>
               <%= link_to fa_icon("sign-in") + ' Logga in', new_user_session_path %>

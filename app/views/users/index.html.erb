@@ -4,10 +4,11 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>Riktigt namn</th>
+      <th>Namn</th>
       <th>Användarnamn</th>
       <th>Email</th>
-      <th>Program/År</th>
+      <th>Program</th>
+      <th>År</th>
     </tr>
   </thead>
 
@@ -18,7 +19,8 @@
         <td><%= user.profile.name %></td>
         <td><%= user.username %></td>
         <td><%= user.email %></td>
-        <td><%= user.profile.program %><%= user.profile.start_year %></td>
+        <td><%= user.profile.program %></td>
+        <td><%= user.profile.start_year %></td>
       </tr>
     <% end %>
   </tbody>

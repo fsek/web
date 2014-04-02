@@ -11,11 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328222934) do
+ActiveRecord::Schema.define(version: 20140418200459) do
 
   create_table "news", force: true do |t|
     t.string   "title"
     t.text     "content"
+    t.string   "image_url"
+    t.string   "author"
+    t.boolean  "front_page"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "phrasing_phrase_versions", force: true do |t|
+    t.integer  "phrasing_phrase_id"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "phrasing_phrases", force: true do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,7 +68,7 @@ ActiveRecord::Schema.define(version: 20140328222934) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "role_id"
+    t.integer  "role_id",                default: 0,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -8,7 +8,10 @@ class UsersController < ApplicationController
   before_filter :find_user,      :only   => [:edit, :update]
   before_filter :owner_required, :only   => [:edit, :update]
 
-  def edit; end
+  def index    
+  @users = User.find(:all)
+  end
+  
 
   def user_params
     params.require(:user).permit(:username,:email,:role,:role_id)
