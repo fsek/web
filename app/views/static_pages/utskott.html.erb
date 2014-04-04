@@ -1,5 +1,6 @@
-
-
+<% if current_user.admin? || current_user.moderator?(:utskott) %>        
+        <%= render 'phrasing/initializer'%>
+<% end %> 
 <h1>Sektionens utskott</h1>
 		<div class="col-md-8">	
 			F-sektionens verksamhet sträcker sig över flera stora områden. 

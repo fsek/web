@@ -1,4 +1,4 @@
-<% if current_user.admin? || current_user.moderator(:sanning) %>        
+<% if current_user.admin? || current_user.moderator?(:sanning) %>        
         <%= render 'phrasing/initializer'%>
 <% end %> 
 <div class="container">
