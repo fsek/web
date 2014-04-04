@@ -14,6 +14,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
   
 </head>
 
@@ -46,20 +47,14 @@
             </div>
         
             <!-- Menus -->
-            <%= render "layouts/menu" %>
+            <%= render "layouts/utskottmenu" %>                      
        </div>    
     </div>    
 </div><!--/header-->
 <!--=== End Header ===-->    
 
 <!--=== Breadcrumbs ===-->
-<div class="breadcrumbs margin-bottom-40">
-  <div class="container">
-    <h1 class="pull-left"><%= yield(:title) || "CALL title('title') IN VIEW TO SET TITLE" %></h1>
-    <ul class="pull-right breadcrumb">
-      <%= render_breadcrumbs tag: :li, separator: "" %> 
-    </ul>
-  </div>
+<div class="breadcrumbs margin-bottom-10">
 </div>
 <!--=== End Breadcrumbs ===--> 
 
@@ -73,7 +68,7 @@
       <% if notice %>
         <div class="alert alert-info">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <strong>Info:</strong> <%= notice %>
+          <strong></strong> <%= notice %>
         </div> 
       <% end %>
 
@@ -83,15 +78,14 @@
           <strong>Fel:</strong> <%= alert %>
         </div> 
       <% end %>
-     <%= yield :role_sidebar%>
-     <%= yield :role_main%> 
-      
+	
    </div>
     <!-- End main content -->
     
-    <!-- Begin sidebar -->
+    <!-- Begin sidebar 
     <div class="col-md-3">
       <%= yield :sidebar %>
+      		<br>      		
 			<div class="headline headline-md"><h2>Sektionens utskott</h2></div>
 			<ul>
 			<li><%=link_to "Cafémästeriet",:cafe %></li>
@@ -105,10 +99,6 @@
 			<li><%=link_to "Styrelsen",:styrelse %></li>
 			
 		</ul>
-		
-      <% if current_user.admin? %>        
-        <%= render 'phrasing/initializer'%>
-      <% end %>    
     </div>
     <!-- End sidebar -->
 

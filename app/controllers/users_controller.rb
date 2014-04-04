@@ -11,12 +11,7 @@ class UsersController < ApplicationController
   def index    
   @users = User.find(:all)
   end
-  
-
-  def user_params
-    params.require(:user).permit(:username,:email,:role,:role_id)
-  end
-   
+     
   def update    
     @user.update_attributes params[:user]
  
@@ -33,7 +28,10 @@ class UsersController < ApplicationController
   end
 
   private 
-
+  def user_params
+    params.require(:user).permit(:username,:email,:role,:role_id)
+  end
+  
   def find_user
     @user = User.find params[:id]
 

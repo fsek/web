@@ -14,6 +14,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
   
 </head>
 
@@ -81,17 +82,28 @@
             <div class="row">
                 <!--Mini News-->
                 <div class="col-md-4">
-                	<div class="md-headline"><h3>Nyheter</h3></div>
+                	<div class="search-blocks-top-orange">
+                		<h3>Nyheter</h3>
+                		<hr>                		
+                	</div>
                 	<% @news.sort_by{|news|news.created_at}.reverse.slice(0,3).each do |news| %>
-                    <div class="magazine-mini-news">            <!--Mini-news-->
-				    <h3><%= news.title %></h3>					
-				    <ul class="list-unstyled list-inline blog-info">
-				      <li><i class="fa fa-calendar"></i> <%= news.created_at.in_time_zone("Berlin").to_formatted_s(:db) %></li>      
-				    </ul>					
-				    <p><%= simple_format(news.content) %></p>
-				    <hr>
-				  </div>     <!--End Mini News-->
-				  <% end %>
+									<div class="row">
+											<div class ="col-md-12">
+												<h4><%= news.title %></h4>
+												<ul class="list-unstyled blog-info">
+    											<li><%= fa_icon("user") %> <%= link_to (User.find(news.author).profile.name)+' - ('+ Role.find(User.find(news.author).role_id).title+')' ,User.find(news.author).profile %></li>    	
+      											<li><i class="fa fa-calendar"></i> <%= news.created_at.in_time_zone("Berlin").to_formatted_s(:short) %></li>      
+    											</ul>														
+									      		
+								      		</div>
+						   			</div>							   			
+						   			<div class="row">
+							   			<div class ="col-md-12">							   				
+							   				<%= simple_format(news.content) %>
+							   			</div>
+							   			</div>
+						    		<hr>						    			    		
+					<% end %>
 				   <div class="news-read-more">
                         <i class="fa fa-plus"></i>
                         <%= link_to 'Fler nyheter',:nyheter%>
