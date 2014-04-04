@@ -12,21 +12,42 @@
                </ul>               
             </li>
             
-            <% if current_user.role_id != 3 && current_user.role_id > 0 %>
+            <% if current_user.role_id > 0 %>
             <li class="devider"></li>            
             <li class="dropdown">              
-              <%= link_to Role.find(current_user.role_id).title, "#", class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
+              <%= link_to current_user.role.title, "#", class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
               <ul class="dropdown-menu pull-right">
               	<%if current_user.admin?%>
               	<li><%= link_to "Roller", "/admin/roles" %></li>
                 <li><%= link_to "Hantera användare", "/anvandare"%></li>
                 <%end%>
-              	<%if current_user.has_role?(:utskott, :edit)%>              	
-                <li><%= link_to "Utskott", "/utskott" %></li>                
-                <%end%> 
-              	<%if current_user.has_role?(:styrelse, :edit)%>              	
-                <li><%= link_to "Styrelse", "/styrelse" %></li>                
-                <%end%>                
+                <%if current_user.moderator?(:studierad)%>
+                <li><%= link_to "Studierådet", :studierad %></li>
+                <%end%>
+                <%if current_user.moderator?(:cafe)%>
+                <li><%= link_to "Cafémästeriet", :cafe %></li>
+                <%end%>
+                <%if current_user.moderator?(:styrelse)%>
+                <li><%= link_to "Styrelsen", :styrelse %></li>
+                <%end%>
+                <%if current_user.moderator?(:sexmasteri)%>
+                <li><%= link_to "Sexmästeriet", :sexmasteri %></li>
+                <%end%>
+                <%if current_user.moderator?(:sanning)%>
+                <li><%= link_to "Sanningsministeriet", :sanning %></li>
+                <%end%>
+                <%if current_user.moderator?(:pryl)%>
+                <li><%= link_to "Prylmästeriet", :pryl %></li>
+                <%end%>
+                <%if current_user.moderator?(:kulturministeriet)%>
+                <li><%= link_to "Kulturministeriet", :km %></li>
+                <%end%>
+                <%if current_user.moderator?(:fnu)%>
+                <li><%= link_to "Näringslivsutskottet", :fnu %></li>
+                <%end%>   
+                <%if current_user.moderator?(:utskott)%>
+                <li><%= link_to "Utskott", :utskott %></li>
+                <%end%>                    
                </ul>               
             </li>
         	<% end %>

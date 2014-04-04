@@ -1,3 +1,6 @@
+<% if current_user.admin? || current_user.moderator?(:styrelse) %>        
+        <%= render 'phrasing/initializer'%>
+<% end %> 
 <div class="headline headline-md">
 <h1>Styrelsen</h1>
 </div>
