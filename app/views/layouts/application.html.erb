@@ -14,6 +14,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tag %>
+  <%= favicon_link_tag 'favicon.ico' %>
   
 </head>
 
@@ -85,16 +86,14 @@
       <% end %>
 
       <%= yield %>
-      <%= yield :role_sidebar%>
-      <%= yield :role_main%>
+      
+      <%= yield :role_main%>      
    </div>
     <!-- End main content -->
     
     <!-- Begin sidebar -->
     <div class="col-md-3">
-      <%= yield :sidebar %>     
-	  
-      <%= render "layouts/shared_sidebar" %>
+      <%= yield :role_sidebar%>
     </div>
     <!-- End sidebar -->
 

@@ -1,23 +1,36 @@
-<% title("Utskott") %>
-
-<div class="headline headline-md">
-<h1>Studierådet</h1>
-</div>
+<% if current_user.admin? || current_user.moderator(:studierad) %>        
+        <%= render 'phrasing/initializer'%>
+<% end %> 
 <div class="container">
-	<div class ="row">
-		<div class="col-md-3">		
-			<h4>Utbildningsminister:</h4> <h4>Sara Mikaelsson</h4><br>
-		</div>
-		<div class="col-md-3">
-			<h4>Studierådsordförande:</h4>
-			<h5>
-				<li>Martin Heydman - F</li>
-				<li>Johanna Nordlander - N</li>
-				<li>Samuel Wiqvist - Pi</li>
-			</h5>
-		</div>
-		<div class="col-md-3">
-			<h4>PR-ansvarig</h4><h5>Ragnar Ferrand-Drake <a href="mailto:ragnar.f.drake@gmail.com"><i class="fa fa-envelope"></i></a></h5>
-		</div>
-	</div>
-</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Studierådet</h1>
+			<div class="search-blocks search-blocks-top-orange">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-7">
+							<%=phrase('studierad1')%>
+						</div> <!-- col-md-3 -->						
+						<div class="col-md-5">
+							<div class="row">							
+								<div class="headline headline-md"><h4>Utbildningsminister: <b>Sara Mikaelsson</b> <a href="mailto:um@fsektionen.se"><i class="fa fa-envelope"></i></a></h4></div>
+								<%=phrase('studierordf')%>
+								<hr>
+							</div>
+							<div class="row">
+								<div class="headline headline-md"><h4>Studierådsordförande:</h4></div>
+									<h5><li>Martin Heydman - F</li></h5>
+									<h5><li>Johanna Nordlander - N</li></h5>
+									<h5><li>Samuel Wiqvist - Pi</li></h5>			
+							</div>
+							<div class="row">
+								<div class="headline headline-md"><h4>PR-ansvarig:</h4> </div>
+								Ragnar Ferrand-Drake <a href="mailto:ragnar.f.drake@gmail.com"><i class="fa fa-envelope"></i></a>
+							</div>																						
+						</div> <!-- col-md-6 -->
+					</div> <!-- row -->
+				</div> <!-- col md-12 -->
+			</div> <!-- Search-blocks -->
+		</div> <!-- col-md-9 -->
+	</div> <!-- row -->
+</div> <!-- container -->

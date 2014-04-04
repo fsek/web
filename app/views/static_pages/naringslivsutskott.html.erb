@@ -1,5 +1,23 @@
-<% title("Utskott") %>
-
-<div class="headline headline-md">
-<h1>Näringslivsutskottet - FNU</h1>
-</div>
+<% if current_user.admin? || current_user.moderator(:nfu) %>        
+        <%= render 'phrasing/initializer'%>
+<% end %> 
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Näringslivsutskottet - FNU</h1>
+			<div class="search-blocks search-blocks-top-orange">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-7">
+							<%=phrase('nfu1')%>
+						</div> <!-- col-md-3 -->						
+						<div class="col-md-5">							
+								<div class="headline headline-md"><h4>Näringslivsansvarig: <b>Erik Söderberg</b>  <a href="mailto:fnu@fsektionen.se"><i class="fa fa-envelope"></i></a></h4></div>
+								<%=phrase('nfuordf')%>														
+						</div> <!-- col-md-6 -->
+					</div> <!-- row -->
+				</div> <!-- col md-12 -->
+			</div> <!-- Search-blocks -->
+		</div> <!-- col-md-9 -->
+	</div> <!-- row -->
+</div> <!-- container -->
