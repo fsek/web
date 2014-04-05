@@ -1,6 +1,5 @@
-<% if current_user.admin? || current_user.moderator?(:utskott) %>        
-        <%= render 'phrasing/initializer'%>
-<% end %> 
+<%= render 'phrasing/initializer'%>
+
 <h1>Sektionens utskott</h1>
 		<div class="col-md-8">	
 			F-sektionens verksamhet sträcker sig över flera stora områden. 
@@ -14,9 +13,7 @@
 		</div>
 		<div class="col-md-4">			
 			<img src="http://www.fsektionen.se/assets/img/f/fotograf.jpg">
-		</div>	
-
-
+		</div>
 <style>
 img{
 max-width:100%;

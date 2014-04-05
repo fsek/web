@@ -22,6 +22,8 @@
  * require_tree .
  *= require start_page
  *=require phrasing
+ *= require fullcalendar
+ *= require fullcalendar.print 
  */
 
  /* Override for Bootstrap 3 font location */

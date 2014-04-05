@@ -1,6 +1,4 @@
-<% if current_user.admin? || current_user.moderator?(:pryl) %>        
         <%= render 'phrasing/initializer'%>
-<% end %> 
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -13,7 +11,9 @@
 						</div> <!-- col-md-3 -->						
 						<div class="col-md-5">							
 								<div class="headline headline-md"><h4>Prylmästare: <b>Erik Wilson</b> <a href="mailto:prylm@fsektionen.se"><i class="fa fa-envelope"></i></a></h4></div>
-								<%=phrase('prylmastare')%>														
+								<%=phrase('prylmastare')%>
+								<%= image_tag'profpics/Erik.png', :class => "profile_img"%>
+								<hr>														
 						</div> <!-- col-md-6 -->
 
 					</div> <!-- row -->
