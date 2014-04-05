@@ -951,3 +951,12 @@ i.style-switcher-btn-option:hover {
 .style-switcher li.theme-light {
    background: #ecf0f1;
 }
+/* Profilbilder*/
+.profile_img{
+max-width:60%;
+display:block;
+margin-left:auto;
+margin-right:auto;
+border:2px solid;
+margin-top:15px;
+}

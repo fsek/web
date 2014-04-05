@@ -1,164 +1,47 @@
-<% if current_user.admin? || current_user.moderator?(:styrelse) %>        
-        <%= render 'phrasing/initializer'%>
-<% end %> 
-<div class="headline headline-md">
-<h1>Styrelsen</h1>
-</div>
+<%= render 'phrasing/initializer'%>
 <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <h3>Utbildningsminister</h3><h4>Sara Mikaelsson <a href="mailto:um@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Hej! Jag heter Sara och det är jag som är Utbildningsminister. Tillsammans med
-        Studierådet är jag ansvarig för studiebevakningen på F-sektionens tre program.</p>
-        <p>Vi för studenternas talan mot lärare och institutioner, jobbar med likabehandling och anordnar
-        diverse roliga studierelaterade aktiviteter. Om ni någonsin stöter på problem i era studier eller har åsikter
-        om era kurser - vänd er till oss så kan vi hjälpa till!</p>
-      </body>
-    </div>
-    <div class="col-md-3">
-      <h3>Näringslivsansvarig</h3><h4>Erik Söderberg <a href="mailto:fnu@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Jag är Näringslivsansvarig vid sektionen, och ser därmed till att våra studenter får den
-        viktiga företagskontakten som behövs under studietiden! Genom att förbättra vår bild av
-        sektionen gentemot arbetsmarknaden så ser vi till att vi som studenter blir mer attraktiva,
-        och lättare får jobb när vi väl examinerar. Om ni har några frågor som rör näringslivet så är
-        ni varmt välkomna att prata med mig.</p>
-      </body>
-    </div>
-    <div class="col-md-3">
-      <h3>Sanningsminister</h3><h4>Johanna Lägnert <a href="mailto:sanning@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Hej hej! Jag heter Johanna och det är jag som är ansvarig för informationsspridandet på F-
-        sektionen. Tillsammans med funktionärerna i utskott har vi hand om bland annat
-        anslagstavlor, nyhetsbrev, arkivet och ser till så det fotas vid olika events. Vill du ha hjälp
-        med marknadsföring av ett event är det bara att säga till så hjälper vi dig!</p>
-      </body>
-    </div>
-    <div class="col-md-3">
-      <h3>Cafémästare</h3><h4>Edward Ekstedt  <a href="mailto:cafe@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Edward var namnet, Cafémästare för Hilbert Café. Med min vice, Brange, sköter jag caféet
-        administrativt. Inköp, beställningar, funktionärer, och bokföring är saker jag gillar att ägna
-        mig åt,och inte sällan jobbar jag ett pass eller två. Om du har frågor eller synpunkter om
-        Hilbert Café, vill beställa stort antal baguetter, eller bara vill engagera dig som nyckelpiga
-        eller jobbare, tveka inte att ta kontakt med någon av oss i Cafémästeriet.</p>
-      </body>
-    </div>
-  </div>
-  <div class="row">
-    
-    <div class="col-md-3">
-      <h3>Överfös</h3><h4>Linus Blomgren  <a href="mailto:overfos@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Jag är Överfös på sektionen och tillsammans med mina underbara cofös anordnar jag
-        världens bästa nollning - Piratnollningen 2014. Utanför sektionens föseri så sitter jag med i
-        Överföskollegiet. Där arbetar jag, tillsammans med alla andra överfös från de andra
-        sektionerna, för att de intersektionella delarna av nollningen ska fungera så bra som
-        möjligt. Jag kommer se till att nollorna och alla andra som vill hjälpa till med nollningen får
-        det så roligt det bara går!</p>
-      </body>
-    </div>
-    <div class="col-md-3">
-      <h3>Vice Ordförande</h3><h4>Fabian Ågren <a href="mailto:viceordf@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Hej jag heter Fabian Ågren och är vice ordförande här på sektionen. Som vice ordförande
-        bistår jag främst ordförande i dess arbete men har också andra uppdrag, till exempel att se
-        till att sektionens alla utskott fungerar. Tillsammans med kärnstyrelsen (ordförande, kassör
-        och sekreterare) leder vi styrelsearbetet. Jag är också sektionens visionär vilket innebär
-        att jag har god kontakt med utskotten, medlemmarna och de andra sektionerna för att ta
-        vår sektion in i framtiden. Så har du någon idé, tanke eller projekt som du skulle vilja driva
-        genom sektionen, tveka då inte att kontakta mig.</p>
-      </body>
-    </div>
-        <div class="col-md-3">
-      <h3>Sekreterare</h3><h4>Daniel Damberg <a href="mailto:sekreterare@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Hej! Mitt namn är Daniel Damberg och i egenskap av sektionens sekreterare för jag
-        protokoll vid styrelsens formella möten. Det åligger även mig att förbereda sektionsmöten
-        och, naturligtvis, föra protokoll på dessa. I övrigt sysslar jag med allehanda administration
-        och ser till att alla, av styrelsen tagna, beslut uppföljes. Jag är även en del av
-        kärnstyrelsen vars uppgift är att underlätta den övriga styrelsens administrativa börda. Än
-        roligare är kärnstyrelsens visionära arbete med att utveckla sektionen och dess
-        verksamhet. Om du vill prata med mig i något ärende eller bara kallprata lite om formalia
-        och annat skojigt så påträffas jag oftast på SK. Välkommen att knacka på!</p>
-      </body>
-    </div>
-    <div class="col-md-3">
-      <h3>Kassör</h3><h4>Malin Petersén <a href="mailto:kass@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Hej hej! Jag bokför alla transaktioner som sker i sektionens namn och ser till så att
-        respektive utskottsordförande har koll på utskottets ekonomi. Jag sitter också med i
-        kärnstyrelsen där vi bland annat förbereder frågor som ska diskuteras på styrelsemöten. I
-        kärnstyrelsen har vi även plays att visonera och diskutera lite extra om sektionens
-        utveckling. Har du lagt ut pengar för sektionen och vill ha tillbaka dem är det mig du ska
-        kontakta!</p>
-      </body>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <h3>Prylmästare</h3><h4>Erik Wilson <a href="mailto:prylm@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Har ni hårt hur bra boomboxen sprakar, hur Berit skiner och Mattehuset glänser? Det är
-        prylmästeriets förtjänst. Det är vi som smörjer de små och stora kuggarna i den kärleksfulla
-        och väldigt vackra F-sektionen. De senaste veckorna har vi jobbat med att vara alla till
-        lags. En hammare där och en spik här har det ekat i källaren när uppdragen sakta men
-        säkert
-        fått klart sina farkoster. Nu när nollningen tar slut sätter slår vi oss ner, fötterna på bordetoch en kaffe i handen. – Finns det kakor? säger Eric. Vad ska vi göra härnäst? Det senaste
-        projektet var att göra om alumnirummet, men vad kommer efter? Kanske har du någon
-        idé på vad som behövs förbättras eller förnyas. Le, säg hej och berätta gärna!</p>
-      </body>
-    </div>
-    <div class="col-md-3">
-      <h3>Sexmästare</h3><h4>Michaela Hällevall <a href="mailto:sex@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Jag heter Michaela och det är jag som är sexmästare här på sektionen. Tillsammans med
-        de andra mästarna och alla våra fantastiska jobbare så organiserar vi alla våra sittningar
-        samt andra event. Vi sköter alltifrån matlagningen till underhållningen. Om det är något du
-        undrar över eller om du har några idéer, hör bara av dig till mig i sådana fall!</p>
-      </body>
-    </div>
-    <div class="col-md-3">
-      <h3>Ordförande</h3><h4>Johan Andersson <a href="mailto:ordf@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Som ordförande har jag mest makt och respekt på sektionen. För att förtjäna detta så har
-        jag en hel del ansvar såsom att leda styrelsens arbete, upprätthålla den goda kontakten
-        med huset, se till att vi följer våra uppsatta styrdokument samt en hel del annat dödstungt
-        ansvar.</p>
-        <p>Tillsammans med vice ordföranden, kassören och sekreteraren utgör jag kärnstyrelsen
-        som sköter en stor del av det administrativa arbetet för sektionen.
-        Har du några åsikter, grymma idéer eller bara vill bjuda på en kaka, tveka inte att haffa mig
-        i korridoren!</p>
-      </body>
-    </div>
-        <div class="col-md-3">
-      <h3>Kulturminister</h3><h4>David Israel <a href="mailto:kultur@fsektionen.se"><i class="fa fa-envelope"></i></a></h4>
-<!--      <%= image_tag "profpics/Brange.jpg", class: "profilepic" %> Ballar ur lite med storleken-->
-      <body>
-        <p>Hej hej! Jag heter David och är F-sektionens Kulturminister. I mitt utskott jobbar vi för att
-        du som medlem ska kunna ha så roligt som möjligt när du inte sitter med näsan djupt
-        nedgrävd i kurslitteraturen. Detta gör vi genom att anordna bussresor filmkvällar
-        idrottsaktiviteter lekar och allmänt ståhej så fort vi får chansen.Har du en galen idé, vill du
-        ha ett bollplank eller tycker du något saknas på sektionen, så tveka inte att komma förbi, vi
-        vill förverkliga din dröm! Det är även Kulturministeriet som står för försäljningen av allt du
-        behöver för att sprida vår fantastiska F-kultur vidare såsom overaller, tygmärken,
-        sångböcker muggar och tröjor. Kulturministeriet är ett stort utskott med många grenar,
-        bland annat ansvarar vi för sektionens medverkan i Sångarstriden, Karnevalen och
-        Tandem. Tillsammans skulle man kunna säga att vi i utskottet utgör kittet som binder ihop
-        sektionen, och det gör vi på roligast möjligast sätt!</p>
-      </body>
-    </div>
-  </div>
-</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Kärnstyrelsen</h1>
+			<div class="search-blocks search-blocks-top-orange">
+				<div class="col-md-12">
+					<div class="row">
+						<!-- <div class="col-md-0">
+							<%=phrase('styrelse1')%>
+						</div> <!-- col-md-3 -->
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="headline headline-md"><h4>Ordförande: <br><b>Johan Andersson</b> <a href="mailto:ordf@fsektionen.se"><i class="fa fa-envelope"></i></a></h4></div>
+									<%=phrase('styrelseordf')%>
+									<%= image_tag'profpics/Johan.png', :class => "profile_img"%>
+									<hr>						
+								</div>
+								<div class="col-md-6">
+									<div class="headline headline-md"><h4>Vice-ordförande <br><b>Fabian Ågren</b> <a href="mailto:viceordf@fsektionen.se"><i class="fa fa-envelope"></i></a></h4></div>
+									<%=phrase('styrelseviceordf')%>
+									<%= image_tag'profpics/Fabian.png', :class => "profile_img"%>
+									<hr>
+								</div>
+							</div><!--row -->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="headline headline-md"><h4>Kassör: <br><b>Malin Petersén </b> <a href="mailto:kass@fsektionen.se"><i class="fa fa-envelope"></i></a></h4></div>
+									<%=phrase('styrelsekassör')%>
+									<%= image_tag'profpics/Malin.png', :class => "profile_img"%>
+									<hr>
+								</div>
+								<div class="col-md-6">
+									<div class="headline headline-md"><h4>Sekreterare: <br><b>Daniel Damberg</b> <a href="mailto:sekreterare@fsektionen.se"><i class="fa fa-envelope"></i></a></h4></div>
+									<%=phrase('styrelsesekr')%>
+									<%= image_tag'profpics/Daniel.png', :class => "profile_img"%>
+									<hr>
+								</div>
+							</div><!--row -->
+						</div><!--col-md-6 -->		
+					</div> <!-- row -->
+				</div> <!-- col md-12 -->
+			</div> <!-- Search-blocks -->
+		</div> <!-- col-md-9 -->
+	</div> <!-- row -->
+</div> <!-- container -->

@@ -1,6 +1,4 @@
-<% if current_user.admin? || current_user.moderator?(:foset) %>        
-        <%= render 'phrasing/initializer'%>
-<% end %> 
+<%= render 'phrasing/initializer'%>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -13,9 +11,10 @@
 						</div> <!-- col-md-3 -->						
 						<div class="col-md-5">							
 								<div class="headline headline-md"><h4>Överfös: <b>Linus Blomgren</b> <a href="mailto:overfos@fsektionen.se"><i class="fa fa-envelope"></i></a></h4></div>
-								<%=phrase('overfos')%>														
+								<%=phrase('overfos')%>
+								<%= image_tag'profpics/Linus.jpg', :class => "profile_img"%>
+								<hr>														
 						</div> <!-- col-md-6 -->
-
 					</div> <!-- row -->
 				</div> <!-- col md-12 -->
 			</div> <!-- Search-blocks -->

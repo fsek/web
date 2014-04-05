@@ -37,6 +37,7 @@ class UsersController < ApplicationController
 
     # TheRole: You should define OWNER CHECK OBJECT
     # When editable object was found
+    
     @owner_check_object = @user
   end
 end

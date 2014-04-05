@@ -8,7 +8,7 @@ Fsek::Application.routes.draw do
   match 'nyheter/:id' => 'news#show',via: :get
   
   
-  get 'bane' => 'static_pages#bane'
+  get 'kalender' => 'static_pages#kalender'
   get 'kurslankar' => 'static_pages#kurslankar'
   get 'styrelse' => 'static_pages#styrelse'
   get 'utskott' => 'static_pages#utskott'

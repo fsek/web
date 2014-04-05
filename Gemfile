@@ -42,6 +42,7 @@ gem 'the_role', '~> 2.5.2'
 gem 'the_role_bootstrap3_ui'
 gem 'phrasing'
 gem "paperclip", "~> 4.1"
+gem 'fullcalendar-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

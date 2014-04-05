@@ -1,4 +1,13 @@
 class ProfilesController < ApplicationController
+  
+  before_filter :login_required  
+  before_filter :authenticate_user!
+  
+  
+  before_filter :find_profile,      :only   => [:edit, :update]
+  before_filter :owner_required, :only   => [:edit, :update]
+  
+  
   before_action :set_profile, only: [:show, :edit, :update]  
   
 
@@ -12,8 +21,10 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-    add_breadcrumb "Redigera", nil
+    if true    
     @no_profile_data = @profile.created_at == @profile.updated_at
+    end
+    
   end
 
   # PATCH/PUT /profiles/1

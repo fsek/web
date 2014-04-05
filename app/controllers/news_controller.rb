@@ -24,7 +24,7 @@ class NewsController < ApplicationController
   end
 
   # GET /news/1/edit
-  def redigera
+  def edit
   end
 
   # POST /news
