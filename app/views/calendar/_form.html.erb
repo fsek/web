@@ -1,13 +1,12 @@
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> gör att eventet inte kan sparas:</h2>
-
-      <ul>
+      <h2><%= pluralize(@event.errors.count, "error") %> gör att eventet inte kan sparas:</h2>      
       <% @event.errors.full_messages.each do |msg| %>
+      <ul>
         <li><%= msg %></li>
-      <% end %>
       </ul>
+      <% end %>      
     </div>
   <% end %>
 	
@@ -58,5 +57,8 @@
   	<div class="actions">
     <%= f.submit "Spara" %>
     <hr>
-  </div>
+</div> 
+</div>
+
+
 <% end %>
