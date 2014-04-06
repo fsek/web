@@ -1,8 +1,6 @@
 class AddAttachmentAvatarToProfiles < ActiveRecord::Migration
-  def self.up
-    change_table :profiles do |t|
-      t.attachment :avatar
-    end
+  def self.up    
+     add_attachment :profiles, :avatar    
   end
 
   def self.down
