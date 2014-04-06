@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
       e.summary=self.title
       e.description = self.content    
       e.created=self.created_at    
-      e.url= 'http://localhost:3000/events/'+self.id.to_s      
+      e.url= "#{PUBLIC_URL}events/#{self.id}"      
       e.last_modified=self.updated_at    
       e   
     end
