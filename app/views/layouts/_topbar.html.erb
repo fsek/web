@@ -3,6 +3,9 @@
           
           <li class="devider"></li>
           <% if user_signed_in? %>
+          <li><%= link_to fa_icon("calendar"),"/kalender" %></li>
+          	
+          <li class="devider"></li>
             <li class="dropdown">
               <%= fa_icon("user") %> 
               <%= link_to current_user.profile.name, current_user.profile, class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
