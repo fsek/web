@@ -9,14 +9,31 @@ class ApplicationController < ActionController::Base
     def access_denied
     flash[:error] = t('the_role.access_denied')
     redirect_to(:back)
+        #Catch exception and redirect to root
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
   end
   
   before_filter :set_locale
-  private
+  
+  def authenticate_news!
+  flash[:error] = t('the_role.access_denied')
+    redirect_to(:back) unless current_user.admin? || current_user.moderator?(:nyheter)
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+  end
 
+  def authenticate_editor_events!
+      flash[:error] = t('the_role.access_denied')
+    redirect_to(:back) unless current_user.admin? || current_user.has_role?(:event,:edit)
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+  end
+  private
+  
   def set_locale
     locale = 'en'
-    langs  = %w{ en ru es pl zh_CN }
+    langs  = %w{ sv en ru es pl zh_CN }
 
     if params[:locale]
       lang = params[:locale]

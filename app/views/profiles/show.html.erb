@@ -1,8 +1,8 @@
-<% title("Användarprofil") %>
-
 <div class="container">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4">
 			<p>
 				<strong>Namn:</strong>
 				<%= @profile.name %>
@@ -17,13 +17,18 @@
 				<strong>Började år:</strong>
 				<%= @profile.start_year %>
 			</p>
+			
+			<p>
+				<strong>Roll:</strong>
+				<%= User.find(@profile.user_id).role.title %>
+			</p>
+			<% if %>
 			<%= link_to 'Redigera profil', edit_profile_path(@profile) %>
-		</div>		<!-- col-md-6 closes -->
-		<div class="col-md-">
-			<%= image_tag @profile.avatar.url(:thumb) %>
-		</div>		<!-- col-md-6 closes -->
-	</div>
-	<!-- row closes -->
+			<% end %>
+		</div>		<!-- col-md-4 closes -->
+		<div class="col-md-4">
+		</div>
+	</div>	<!-- row closes -->
 </div><!-- container closes -->
 
 

@@ -1,7 +1,8 @@
 class NewsController < ApplicationController
   include TheRole::Controller
+  before_filter :authenticate_user!, only: [:new,:edit,:create,:update,:destroy]
   before_action :set_news, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_filter :authenticate_news!, only: [:new,:edit]  
   
 
   # GET /news
@@ -9,8 +10,7 @@ class NewsController < ApplicationController
   def nyheter
     @news = News.all
   end
-  def index
-    
+  def index    
   end
   # GET /news/1
   # GET /news/1.json

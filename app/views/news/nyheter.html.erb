@@ -1,13 +1,16 @@
 <% title("Nyheter") %>
- 
+<div class="col-md-2">
+</div> 
+<div class="col-md-10">
 <% @news.sort_by{|news|news.created_at}.reverse.slice(0,10).each do |news| %>
 
 <!--Blog Post-->
 <div class="row blog">
   <div class="col-md-3">
+  	<%if news.image_file_name != nil%>
     <%= image_tag news.image.url(:thumb) %>
-  </div>
-  
+    <% end %>
+  </div>  
   <div class="col-md-9">
     <h2><%= news.title %></h2>
 	
@@ -32,12 +35,15 @@
 
 <hr class="margin-bottom-20"> 
 <% end %>
+</div>
 
 <% content_for(:sidebar) do %>
-  <% if user_signed_in? %>
+ 	<% if user_signed_in? %>
+ 	 <% if current_user.admin? %>
     <div class="headline headline-md"><h2>Verktyg</h2></div>
       <ul class="list">
         <li><%= link_to "Skapa nyhet", new_news_path %></li>
       </ul>
   <% end %>
+  <%end%>
 <% end %>

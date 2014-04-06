@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418200460) do
+ActiveRecord::Schema.define(version: 20140418200461) do
+
+  create_table "events", force: true do |t|
+    t.string   "title"
+    t.string   "author"
+    t.text     "content"
+    t.text     "summary"
+    t.string   "location"
+    t.datetime "date"
+    t.datetime "end_date"
+    t.boolean  "dayevent"
+    t.string   "category"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "news", force: true do |t|
     t.string   "title"
@@ -75,7 +93,7 @@ ActiveRecord::Schema.define(version: 20140418200460) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "role_id",                default: 0,  null: false
+    t.integer  "role_id",                default: 2,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -2,7 +2,9 @@
 
 <div class="row blog">
   <div class="col-md-3">
+  	<%if @news.image_file_name != nil%>
     <%= image_tag @news.image.url(:thumb) %>
+    <% end %>
   </div>
   
   <div class="col-md-9">
