@@ -1,19 +1,30 @@
 <div class="container">
-	<div class="row">		
+	<div class="row">
 		<div class="col-md-12">
-			<div id='calendar'> </div>
+			<div id='calendar'></div>
+			<hr>
 		</div>
-		
+	</div>
+	<div class ="row">
+		<% if user_signed_in? %>
+		<% if current_user.admin? || current_user.has_role?(:event,:edit) %>
+		<div class="headline headline-md">
+			<h2>Verktyg</h2>
+		</div>
+		<ul class="list">
+			<li>
+				<%= link_to "Nytt event", new_event_path %>
+			</li>
+		</ul>
+		<% end %>
+		<%end%>
 	</div>
 </div>
-
 <script>
+		var ready; 
+		ready = function() {
 	
-	$(document).ready(function() {
-		
-    // page is now ready, initialize the calendar...
-
-    $('#calendar').fullCalendar({
+	$('#calendar').fullCalendar({
                 
         
         header: {
@@ -36,7 +47,7 @@
         // put your options and callbacks here  
               
     })
-    <% @events.all.each do|event|%>
+		    <% @events.all.each do|event|%>
     $('#calendar').fullCalendar('renderEvent',{
                 title: '<%= event.title %>',
                 start: '<%=event.date.to_formatted_s(:long)%>',
@@ -45,7 +56,9 @@
                 url: '/events/<%=event.id%>'                   
            })
    <%end%>
-
-});
-</script>
+	};
+	
+	$(document).on('page:load',ready);
+	$(document).ready(ready);
+	</script>
 
