@@ -1,0 +1,6 @@
+<% @calendar=Icalendar::Calendar.new %>
+<% Event.all.each do |event| %>
+<% @calendar.add(event.ical) %>
+<% end %>
+<% @calendar.publish %>
+<%= @calendar.to_ical %>

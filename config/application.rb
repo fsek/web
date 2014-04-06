@@ -22,5 +22,6 @@ module Fsek
 
     # Add /vendor/assets/fonts to autoload    
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
+    config.time_zone ='Berlin'
   end
 end

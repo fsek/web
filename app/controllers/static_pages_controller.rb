@@ -2,14 +2,12 @@
 class StaticPagesController < ApplicationController
   include TheRole::Controller
   
-  before_action :login_required, only: [:kalender]
+  before_action :login_required, only: [:bane]
   
   
   layout "static_page"
   skip_before_filter :authenticate_user!
   
-  def kalender    
-  end  
   def cafe
   end
   def fos
