@@ -10,10 +10,10 @@ class CreateEvents < ActiveRecord::Migration
       t.datetime :date
       t.datetime :end_date
       t.boolean :dayevent
-      t.string :category
-      t.attachment :image
+      t.string :category      
       t.datetime :created_at
       t.datetime :updated_at
+      t.attachment :image
       t.timestamps
     end
   end

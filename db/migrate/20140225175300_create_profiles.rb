@@ -5,6 +5,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :program
       t.integer :start_year
       t.integer :user_id
+      t.attachment :avatar
 
       t.timestamps
     end
