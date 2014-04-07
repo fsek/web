@@ -1,4 +1,5 @@
-<h2>Redigera <%= resource_name.to_s.humanize %></h2>
+
+<h2>Redigera användare</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -22,11 +23,12 @@
   <div><%= f.label 'Nuvarande lösenord' %> <i>(vi behöver ditt nuvarande lösenord för att kunna ändra dina uppgifter.)</i><br />
   <%= f.password_field :current_password %></div>
 
-  <div><%= f.submit "Uppdatera" %></div>
+  <div><%= f.submit "Uppdatera" %></div><br>
 <% end %>
 
 <h3>Ta bort konto</h3>
 
-<p>Unhappy? <%= button_to "Ta bort mitt konto", registration_path(resource_name), :data => { :confirm => "Är du säker?" }, :method => :delete %></p>
+<p><%= button_to "Ta bort mitt konto", registration_path(resource_name), :data => { :confirm => "Är du säker?" }, :method => :delete %></p>
 
 <%= link_to "Tillbaka", :back %>
+

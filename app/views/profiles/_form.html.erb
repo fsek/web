@@ -15,17 +15,20 @@
     <%= f.label 'Namn:' %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :program %><br>
-    <%= f.text_field :program %>
-  </div>
+   <div class="field">   
+   		<%=f.label 'Program:'%><br>
+	   <%= f.select :program, options_for_select([
+	  	[" ","Oklart"],
+	  	["Teknisk Fysik"],
+	  	["Teknisk Matematik"],
+	  	["Teknisk Nanovetenskap"],
+	  	["Gäst"]],@profile.program),{}, html_options = {:class => "listBox",:selected => :program , :style=>"float:left;"} %> <br>
+  	</div>
   <div class="field">
     <%= f.label 'Började år:' %><br>
     <%= f.number_field :start_year %>
   </div>
-  <div class="filed">  
-  <%= f.file_field :avatar %>  
-   </div>
+  
   <div class="actions">
     <%= f.submit "Uppdatera profil"%>
   </div>
