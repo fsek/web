@@ -1,153 +1,181 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
-<head>
-  <title>F-sektionen</title>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+	<!--<![endif]-->
+	<head>
+		<title>F-sektionen</title>
 
-  <!-- Meta -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
 
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <%= favicon_link_tag 'favicon.ico' %>
-  
-</head>
+		<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+		<%= csrf_meta_tags %>
+		<%= favicon_link_tag 'favicon.ico' %>
 
-<body>
+	</head>
 
-<!--=== Top ===-->    
-<div class="top">
-  <div class="container">
-    <%= render "layouts/topbar" %>
-  </div>
-</div>
-<!--=== End Top ===-->    
+	<body>
 
-<!--=== Header ===-->    
-<div class="header">
-    <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <!-- Logo and toggle-menu button for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <%= link_to image_tag("layout/f.svg", id: "logo-header", height: "45"), root_path, class: "navbar-brand" %>
-				<div class="navbar-brand-text pull-left">
-					<span>&mdash;</span>TEKNOLOGSEKTIONEN<br>INOM TLTH.
+		<!--=== Top ===-->
+		<div class="top">
+			<div class="container">
+				<%= render "layouts/topbar" %>
+			</div>
+		</div>
+		<!--=== End Top ===-->
+
+		<!--=== Header ===-->
+		<div class="header">
+			<div class="navbar navbar-default" role="navigation">
+				<div class="container">
+					<!-- Logo and toggle-menu button for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<%= link_to image_tag("layout/f.svg", id: "logo-header", height: "45"), root_path, class: "navbar-brand" %>
+						<div class="navbar-brand-text pull-left">
+							<span>&mdash;</span>TEKNOLOGSEKTIONEN
+							<br>
+							INOM TLTH.
+						</div>
+					</div>
+
+					<!-- Menus -->
+					<%= render "layouts/menu" %>
 				</div>
-            </div>
-        
-            <!-- Menus -->
-            <%= render "layouts/utskottmenu" %>                      
-       </div>    
-    </div>    
-</div><!--/header-->
-<!--=== End Header ===-->    
+			</div>
+		</div><!--/header-->
+		<!--=== End Header ===-->
 
-<!--=== Breadcrumbs ===-->
-<div class="breadcrumbs margin-bottom-10">
-</div>
-<!--=== End Breadcrumbs ===--> 
+		<!--=== Breadcrumbs ===-->
+		<div class="breadcrumbs margin-bottom-10"></div>
+		<!--=== End Breadcrumbs ===-->
 
-<!--=== Content Part ===-->
-<div class="container">
-  <div class="row page">
-    
-    <!-- Begin main content -->
-    <div class="col-md-9">
-	<%= yield %>
-      <% if notice %>
-        <div class="alert alert-info">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <strong></strong> <%= notice %>
-        </div> 
-      <% end %>
+		<!--=== Content Part ===-->
+		<div class="container">
+			<div class="row page">
 
-      <% if alert %>
-        <div class="alert alert-danger fade in">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <strong>Fel:</strong> <%= alert %>
-        </div> 
-      <% end %>
-	
-   </div>
-    <!-- End main content -->
-    
-    <!-- Begin sidebar 
-    <div class="col-md-3">
-      <%= yield :sidebar %>
-      		<br>      		
-			<div class="headline headline-md"><h2>Sektionens utskott</h2></div>
-			<ul>
-			<li><%=link_to "Cafémästeriet",:cafe %></li>
-			<li><%=link_to "Föset",:fos %></li>
-			<li><%=link_to "Kultuminsteriet",:km %></li>
-			<li><%=link_to "Näringslivsutskottet",:fnu %></li>
-			<li><%=link_to "Prylmästeriet",:pryl %></li>
-			<li><%=link_to "Sanningsministeriet",:sanning %></li>
-			<li><%=link_to "Sexmästeriet",:sexmasteri %></li>
-			<li><%=link_to "Studierådet",:studierad %></li>
-			<li><%=link_to "Styrelsen",:styrelse %></li>
-			
-		</ul>
-    </div>
-    <!-- End sidebar -->
+				<!-- Begin main content -->
+				<div class="col-md-9">
+					<%= yield %>
+					<% if notice %>
+					<div class="alert alert-info">
+						<button type="button" class="close" data-dismiss="alert">
+							&times;
+						</button>
+						<strong></strong> <%= notice %>
+					</div>
+					<% end %>
 
-  </div>
-</div><!--/container-->     
-<!-- End Content Part -->
+					<% if alert %>
+					<div class="alert alert-danger fade in">
+						<button type="button" class="close" data-dismiss="alert">
+							&times;
+						</button>
+						<strong>Fel:</strong> <%= alert %>
+					</div>
+					<% end %>
 
+				</div>
+				<!-- End main content -->
 
+				<!-- Begin sidebar -->
 
+				<div class="col-md-3">
 
-<!--=== Footer ===-->
-<div class="footer">
-  <div class="container">
-    <div class="row">
-      <%= render "layouts/footer" %>
-    </div> 
-  </div>
-</div>   
-<!--=== End Footer ===-->
+					<div class="collapse navbar-collapse navbar-responsive-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown active">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"> Utskott <%= fa_icon('angle-down') %></a>
+								<ul class="dropdown-menu">
+									<li>
+										<%= link_to "Cafémästeriet",:cafe %>
+									</li>
+									<li>
+										<%= link_to "Föset",:fos %>
+									</li>
+									<li>
+										<%= link_to "Kultuminsteriet",:km %>
+									</li>
+									<li>
+										<%= link_to "Näringslivsutskottet",:fnu %>
+									</li>
+									<li>
+										<%= link_to "Prylmästeriet",:pryl %>
+									</li>
+									<li>
+										<%= link_to "Sanningsministeriet",:sanning %>
+									</li>
+									<li>
+										<%= link_to "Sexmästeriet",:sexmasteri %>
+									</li>
+									<li>
+										<%= link_to "Studierådet",:studierad %>
+									</li>
+									<li>
+										<%= link_to "Styrelsen",:styrelse %>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 
-<!--=== Copyright ===-->
-<div class="copyright">
-  <div class="container">
-    <div class="row">
-      <%= render "layouts/bottombar" %>    
-    </div>
-  </div> 
-</div> 
-<!--=== End Copyright ===-->
+				</div>
+				<!-- End sidebar -->
 
-<!-- Load javascripts -->           
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        App.init();
-        App.initSliders();
-    });
-    $(document).ready(function() {
+			</div>
+		</div><!--/container-->
+		<!-- End Content Part -->
 
-    // page is now ready, initialize the calendar...
+		<!--=== Footer ===-->
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<%= render "layouts/footer" %>
+				</div>
+			</div>
+		</div>
+		<!--=== End Footer ===-->
 
-    $('#calendar').fullCalendar({
-        // put your options and callbacks here
-    })
+		<!--=== Copyright ===-->
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<%= render "layouts/bottombar" %>
+				</div>
+			</div>
+		</div>
+		<!--=== End Copyright ===-->
 
-});
-</script>
-<!--[if lt IE 9]>
-  <script src="assets/plugins/respond.js"></script>
-<![endif]-->
+		<!-- Load javascripts -->
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				App.init();
+				App.initSliders();
+			});
+			$(document).ready(function() {
 
-</body>
-</html> 
+				// page is now ready, initialize the calendar...
+
+				$('#calendar').fullCalendar({
+					// put your options and callbacks here
+				})
+
+			});
+		</script>
+		<!--[if lt IE 9]>
+		<script src="assets/plugins/respond.js"></script>
+		<![endif]-->
+
+	</body>
+</html>
