@@ -3,30 +3,25 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $highlight: 0 1px 0 #fff;
-$margin: 25px;
 
-.header-start {
-	.navbar-nav {
-		margin-top: $margin;
-	}
+.navbar-nav {
+	margin-top: 15px !important;
+}
+
+.navbar-brand-text {
+	padding: 2px 0 0 35px;
+	font-size: 15px;
+	line-height: 17px;
 	
-	.navbar-brand-text {
-		padding: 8px 0 0 30px;
-		font-size: 15px;
-		line-height: 17px;
-		
-		span {
-			margin-left: -25px;
-		}
+	span {
+		margin-left: -25px;
 	}
-	
-	.search-open {
-		top: $margin + 41px !important;
-	}
-	
-	@media screen and (max-width: 768px) {
-		padding-bottom: $margin - 10px;
-	}
+}
+
+.start-background {
+	width: 100%;
+	height: 300px;
+	background: url(img/bg.jpg) 50% 20%;
 }
 
 .search-blocks {
@@ -49,7 +44,8 @@ $margin: 25px;
 	}
 }
 
-.search-blocks-top-orange {	
+.search-blocks-top-orange {
+	padding-top: 15px;
 	border-top: 1px solid #eb7125;
 	background:none;
 }
