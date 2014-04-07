@@ -7,17 +7,18 @@
 	</div>
 	<div class ="row">
 		<% if user_signed_in? %>
-		<% if current_user.admin? || current_user.has_role?(:event,:edit) %>
+		
 		<div class="headline headline-md">
 			<h2>Verktyg</h2>
 		</div>
 		<ul class="list">
-			<li>
-				<%= link_to "Nytt event", new_event_path %>
-			</li>
+			<% if current_user.admin? || current_user.has_role?(:event,:edit) %>
+			<li><%= link_to "Nytt event", new_event_path %></li>
+			<% end %>
+			<li><%= link_to 'Kalenderprenumeration', 'webcal://dev.fsektionen.se/kalender/export.ics'%></li>
 		</ul>
+		
 		<% end %>
-		<%end%>
 	</div>
 </div>
 <script>
