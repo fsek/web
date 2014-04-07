@@ -44,6 +44,7 @@ gem 'phrasing'
 gem "paperclip", "~> 4.1"
 gem 'fullcalendar-rails'
 gem 'icalendar'
+gem 'jquery-turbolinks'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

@@ -1,0 +1,2 @@
+module CafebokningHelper
+end
