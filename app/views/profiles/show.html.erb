@@ -20,7 +20,7 @@
 			
 			<p>
 				<strong>Roll:</strong>
-				<%= User.find(@profile.user_id).role.title %>
+				<%= User.find(@profile).role.title %>
 			</p>
 			<% if %>
 			<%= link_to 'Redigera profil', edit_profile_path(@profile) %>

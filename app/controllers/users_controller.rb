@@ -1,5 +1,5 @@
 # encoding:UTF-8
-class UsersController < ApplicationController
+class UsersController < ApplicationController  
   include TheRole::Controller
   before_filter :login_required  
   before_filter :authenticate_user!
@@ -8,6 +8,14 @@ class UsersController < ApplicationController
   before_filter :find_user,      :only   => [:edit, :update]
   before_filter :owner_required, :only   => [:edit, :update]
 
+  
+  def change_role
+    @user = User.find params[:user_id]
+    @role = Role.find params[:role_id]
+    @user.update_attribute(:role, @role)
+    redirect_to users_path
+  end
+  
   def index    
   @users = User.find(:all)
   end
@@ -19,17 +27,9 @@ class UsersController < ApplicationController
     redirect_to edit_user_path @user
   end
 
-  def change_role
-    @user = User.find params[:user_id]
-    @role = Role.find params[:role_id]
-    @user.update_attribute(:role, @role)
-    
-    redirect_to edit_user_path @user
-  end
-
   private 
   def user_params
-    params.require(:user).permit(:username,:email,:role,:role_id)
+    params.require(:user).permit(:username,:email)
   end
   
   def find_user

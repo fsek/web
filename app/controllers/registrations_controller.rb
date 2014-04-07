@@ -3,8 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
   # hence there is very little code here :)
 
   protected
-    def after_sign_up_path_for(resource)
-      puts "YEEEEEEEEEEEEEEEEEEEEAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHH\nYEEEEEEEEEEEEEEEEEEAAAAAAAAAAAAAAAAAAHHHHHHHHH"
+    def after_sign_up_path_for(resource)      
       edit_profile_path(resource.profile)
     end
 end

@@ -21,6 +21,15 @@
         <td><%= user.email %></td>
         <td><%= user.profile.program %></td>
         <td><%= user.profile.start_year %></td>
+        <% if current_user.admin? %>
+        <td>
+			<%= form_tag change_role_path, :method => :put do%>
+				<%= hidden_field_tag :user_id, user.id %>
+				<%= select_tag :role_id, options_for_select(Role.all.collect{ |r| [r.name, r.id] },user.role_id)%>
+				<%= submit_tag %>
+				<%end%>
+        </td>
+        <%end%> 
       </tr>
     <% end %>
   </tbody>

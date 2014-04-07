@@ -1,13 +1,11 @@
 Fsek::Application.routes.draw do
 
+  
   # Resources on the page
-  resources :events, controller: 'calendar'
-    
+  resources :events, controller: 'calendar'    
   resources :news  
   match 'nyheter' => 'news#nyheter', via: :get
-  match 'nyheter/ny' => 'news#new', via: :get
-  match 'nyheter/ny' => 'news#new', via: :post
-  match 'nyheter/:id' => 'news#show',via: :get
+
   
   get 'cafebokning' => 'calendar#cafebokning'
   get 'kalender/export' => 'calendar#export.ics'  
@@ -35,7 +33,7 @@ Fsek::Application.routes.draw do
     get     'registrera'     => 'registrations#new',    as: :new_user_registration 
     get     'anvandare/redigera'   => 'registrations#edit',   as: :edit_user_registration 
     patch   'user'        => 'registrations#update'
-    put     'user'        => 'registrations#update'
+    put     'user'        => 'registrations#update'   
     delete  'user'        => 'registrations#destroy'
 
     #sessions
@@ -43,9 +41,11 @@ Fsek::Application.routes.draw do
     post    'logga_in'       => 'devise/sessions#create',      as: :user_session
     delete  'logga_ut'      => 'devise/sessions#destroy',     as: :destroy_user_session
   end
+  put 'change_role' => 'users#change_role'
   get 'anvandare' => 'users#index', as: :users
   resources :profiles, only: [:show, :edit, :update]
-
+  
+ 
 
    
   # Homepage of the system!
