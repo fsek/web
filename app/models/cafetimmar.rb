@@ -1,9 +1,6 @@
-class Event < ActiveRecord::Base
-    has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-    validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/  
-    
-    
-    def ical
+class Cafetimmar < ActiveRecord::Base
+  
+     def ical
       e=Icalendar::Event.new
       e.uid=self.id    
       e.dtstart=DateTime.civil(self.date.year, self.date.month, self.date.day, self.date.hour, self.date.min)    

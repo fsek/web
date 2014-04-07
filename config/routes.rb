@@ -1,13 +1,15 @@
 Fsek::Application.routes.draw do
 
   # Resources on the page
-  resources :events, controller: 'calendar'  
+  resources :events, controller: 'calendar'
+    
   resources :news  
   match 'nyheter' => 'news#nyheter', via: :get
   match 'nyheter/ny' => 'news#new', via: :get
   match 'nyheter/ny' => 'news#new', via: :post
   match 'nyheter/:id' => 'news#show',via: :get
   
+  get 'cafebokning' => 'calendar#cafebokning'
   get 'kalender/export' => 'calendar#export.ics'  
   get 'kalender' => 'calendar#kalender'
   get 'kurslankar' => 'static_pages#kurslankar'
