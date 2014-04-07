@@ -4,19 +4,19 @@
 	padding-top: 8px;
 }
 
-.top .dropdown-menu {
+.dropdown-menu {
 	margin-top: -5px;
 	padding: 0;
 	box-shadow: none;
 	border: 1px solid #eee;
 }
 
-.top .dropdown-menu > li > a {
+.dropdown-menu > li > a {
 	font-size: 12px;
 	padding: 8px 15px;
 }
 
-.top .dropdown-menu > li > a:hover {
+.dropdown-menu > li > a:hover {
 	background: #eb7125;
 	color: #fff;
 }
@@ -140,7 +140,7 @@
 	z-index: 2;
 	position: relative;
 	padding: 0 0 0 10px;
-	margin-top: -10px;
+	margin-top: -18px;
 }
 
 /*Navbar*/

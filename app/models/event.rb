@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
       e.description = self.content    
       e.created=self.created_at    
       e.url= "#{PUBLIC_URL}/events/#{self.id}"      
-      e.last_modified=self.updated_at    
+      e.last_modified=self.updated_at  
       e   
     end 
 end
