@@ -19,8 +19,7 @@ class UsersController < ApplicationController
   def index    
   @users = User.find(:all)
   end
-  def update_password
-    
+  def update_password    
     respond_to do |format|
     if @user.update_with_password(user_params)
       format.html { redirect_to :edit_user_registration, notice: 'Användaruppgifter uppdaterades.'  }
@@ -36,15 +35,22 @@ class UsersController < ApplicationController
     flash[:notice] = 'Användare uppdaterades.'
     redirect_to edit_user_path @user
   end
-  def destroy    
-    @user.destroy
-    if @user.destroy
-        redirect_to root_url
+  def destroy
+    respond_to do |format|
+    if @user.update_with_password(user_params)
+      if @user.destroy
+        format.html { redirect_to root_url, notice: 'Användare togs bort..'  }
+        format.json { head :no_content }
+      end
+    else  
+    format.html{ redirect_to :edit_user_registration , notice: 'Lösenord måste fyllas i för att radera användare.' }      
+    format.json { head :no_content }      
+    end
     end
   end
   private 
   def user_params
-    params.require(:user).permit(:username,:email,:current_password)
+    params.require(:user).permit(:username,:email,:password,:password_confirmation,:current_password)
   end
   
   def find_user
