@@ -23,12 +23,16 @@
   <div><%= f.label 'Nuvarande lösenord' %> <i>(vi behöver ditt nuvarande lösenord för att kunna ändra dina uppgifter.)</i><br />
   <%= f.password_field :current_password %></div>
 
-  <div><%= f.submit "Uppdatera" %></div><br>
+  <div><%= f.submit "Uppdatera" ,:data => { :confirm => "Vid byte av lösenord kommer du att omdirigeras till inloggningssidan." }%></div><br>
 <% end %>
 
+<%= form_for(resource, :as => resource_name, :url => admin_destroy_user_path(resource), :html => { :method => :delete }) do |f| %>
+  <%= devise_error_messages! %>
 <h3>Ta bort konto</h3>
-
-<p><%= button_to "Ta bort mitt konto", admin_destroy_user_path(resource), :data => { :confirm => "Är du säker?" }, :method => :delete %></p>
+  <div><%= f.label 'Lösenord' %> <i>(vi behöver ditt nuvarande lösenord för att kunna ändra dina uppgifter.)</i><br />
+  <%= f.password_field :current_password %></div>
+<div><%= f.submit "Ta bort mitt konto", :data => { :confirm => "Är du säker?" }%></div>
+<% end %>
 
 <%= link_to "Tillbaka", :back %>
 

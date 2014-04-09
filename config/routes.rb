@@ -30,15 +30,15 @@ Fsek::Application.routes.draw do
     get     'avbryt_reg'  => 'registrations#cancel', as: :cancel_user_registration
     post    'anvandare/skapa'        => 'registrations#create', as: :user_registration 
     get     'anvandare/registrera'     => 'registrations#new',    as: :new_user_registration
-    patch   'registrera/:id'        => 'users#update_password', as: :update_user_registration 
+    patch   'anvandare/redigera/:id'        => 'users#update_password', as: :update_user_registration 
     get     'anvandare/redigera'   => 'registrations#edit',   as: :edit_user_registration 
     
-    delete  'users/:id' => 'users#destroy', :as => :admin_destroy_user
+    delete  'anvandare/ta_bort/:id' => 'users#destroy', :as => :admin_destroy_user
 
     #sessions
     get     'logga_in'       => 'devise/sessions#new',         as: :new_user_session
     post    'logga_in'       => 'devise/sessions#create',      as: :user_session   
-    delete  'logga_in'      => 'devise/sessions#destroy',     as: :destroy_user_session
+    delete  'logga_ut'      => 'devise/sessions#destroy',     as: :destroy_user_session
   end
   
   get 'anvandare' => 'users#index', as: :users
