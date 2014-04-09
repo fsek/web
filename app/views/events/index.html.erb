@@ -1,0 +1,42 @@
+<div class="container">
+<h1>Sektionens event</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Titel:</th>
+    <th>Beskrivning:</th>
+    <th>Ansvarig:</th>
+    <th>Utskott:</th>
+    <th>Börjar:</th>
+    <th>Slutar:</th>
+    <th>Heldag?</th>
+    
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event.title %></td>
+    <td><%= event.content %></td>
+    <td><%= link_to User.find(event.author).profile.name, User.find(event.author).profile%></td>
+    <td><%= event.category%></td>
+    <td><%= event.date %></td>
+    <td><%= event.end_date %></td>
+    <td><%if event.dayevent%>Ja <%else%>Nej<%end%></td>
+
+    <td><%= link_to 'Visa', event %></td>
+    <td><%= link_to 'Redigera', edit_event_path(event) %></td>
+    <td><%= link_to 'Förinta', event, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<br />
+
+<%= link_to 'Lägg till nytt event', new_event_path %>
+</div>

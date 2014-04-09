@@ -1,0 +1,64 @@
+<%= form_for(@event) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> gör att eventet inte kan sparas:</h2>      
+      <% @event.errors.full_messages.each do |msg| %>
+      <ul>
+        <li><%= msg %></li>
+      </ul>
+      <% end %>      
+    </div>
+  <% end %>
+	
+  <div class="field">
+    <%= f.label 'Titel:' %><br>
+    <%= f.text_field :title %>    
+  </div>
+  <div class="field">
+    <%= f.label 'Beskrivning:' %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label 'Plats:' %><br>
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">  
+  <%= f.label 'Eventbild:'%>
+  <%= f.file_field :image %> <br 
+   </div>
+   <div class="field">
+   <%= f.label 'Heldagsevent?'%> 
+   <%= f.check_box :all_day%><br>
+   </div>
+   <div class="field">
+   		<%=f.label 'Start:'%> <br>
+   		<%= f.datetime_select :starts_at, :minute_step => 10 %>
+   </div>
+      <div class="field">
+  		<%=f.label 'Slut:'%><br>
+   		<%= f.datetime_select :ends_at, :minute_step => 10 %>
+   </div> 
+   <div class="field">
+   		<%=f.label 'Utskott:'%><br>
+	   <%= f.select :category, options_for_select([
+	  	[" ", nil, {:class=>"bold"}],
+	  	["Cafémästeriet"],
+	  	["Föset"],
+	  	["Kulturministeriet"],
+	  	["Näringslivsutskottet"],
+	  	["Prylmästeriet"],
+	  	["Sanningsmästeriet"],
+	  	["Sexmästeriet"],
+	  	["Stuiderådet"],
+	  	["Styrelsen"], 
+	  	["Spindelmännen"] ], @event.category), {},
+	  	html_options = {:class => "listBox", :style=>"float:left;"} %> <br> 
+	  	</div>
+  	<div class="actions">
+    <%= f.submit "Spara" %>
+    <hr>
+</div> 
+</div>
+
+
+<% end %>
