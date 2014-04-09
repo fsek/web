@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   
   
-  before_filter :find_user,      :only   => [:edit, :update]
+  before_filter :find_user,      :only   => [:edit, :update,:destroy,:update_password]
   before_filter :owner_required, :only   => [:edit, :update]
 
   
@@ -19,21 +19,36 @@ class UsersController < ApplicationController
   def index    
   @users = User.find(:all)
   end
-     
+  def update_password
+    
+    respond_to do |format|
+    if @user.update_with_password(user_params)
+      format.html { redirect_to :edit_user_registration, notice: 'Användaruppgifter uppdaterades.'  }
+      format.json { head :no_content }
+    else
+      format.html{ redirect_to :edit_user_registration , notice: 'Lösenord måste fyllas i för att ändra uppgifter.' }      
+      format.json { head :no_content }      
+    end
+    end    
+  end   
   def update    
-    @user.update_attributes params[:user]
- 
+    @user.update(user_params) 
     flash[:notice] = 'Användare uppdaterades.'
     redirect_to edit_user_path @user
   end
-
+  def destroy    
+    @user.destroy
+    if @user.destroy
+        redirect_to root_url
+    end
+  end
   private 
   def user_params
-    params.require(:user).permit(:username,:email)
+    params.require(:user).permit(:username,:email,:current_password)
   end
   
   def find_user
-    @user = User.find params[:id]
+    @user = User.find(params[:id])
 
     # TheRole: You should define OWNER CHECK OBJECT
     # When editable object was found

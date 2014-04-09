@@ -12,9 +12,7 @@
               <ul class="dropdown-menu pull-right">
                 <li><%= link_to "Profil", current_user.profile %></li>                
                 <li><%= link_to "Kontoinställningar", :edit_user_registration%></li>
-                
-                
-                <li><%= link_to "Logga ut", destroy_user_session_path, method: :delete %></li>                
+                <li><%= link_to "Logga ut", destroy_user_session_path(current_user), method: :delete %></li>                
                </ul>               
             </li>
             

@@ -11,40 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418200463) do
-
-  create_table "cafetimmars", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "controllers", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "controllers", ["email"], name: "index_controllers_on_email", unique: true
-  add_index "controllers", ["reset_password_token"], name: "index_controllers_on_reset_password_token", unique: true
+ActiveRecord::Schema.define(version: 20140418200461) do
 
   create_table "events", force: true do |t|
     t.string   "title"
     t.string   "author"
-    t.text     "content"
-    t.text     "summary"
+    t.text     "description"
     t.string   "location"
-    t.datetime "date"
-    t.datetime "end_date"
-    t.boolean  "dayevent"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "all_day"
     t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -121,7 +97,7 @@ ActiveRecord::Schema.define(version: 20140418200463) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

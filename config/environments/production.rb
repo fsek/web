@@ -77,5 +77,7 @@ Fsek::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  PUBLIC_URL = "http://dev.fsektionen.se"
+  config.assets.precompile = ['*.js', '*.css', '*.css.erb']
+  config.assets.compile = true
+  PUBLIC_URL = "fsektionen.se"
 end
