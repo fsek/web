@@ -2,14 +2,13 @@ Fsek::Application.routes.draw do
 
   
   # Resources on the page
-  resources :events, controller: 'calendar'    
-  resources :news  
-  match 'nyheter' => 'news#nyheter', via: :get
 
+  
+  
   
   get 'cafebokning' => 'calendar#cafebokning'
   get 'kalender/export' => 'calendar#export.ics'  
-  get 'kalender' => 'calendar#kalender'
+  
   get 'kurslankar' => 'static_pages#kurslankar'
   get 'styrelse' => 'static_pages#styrelse'
   get 'utskott' => 'static_pages#utskott'
@@ -29,22 +28,25 @@ Fsek::Application.routes.draw do
   devise_scope :user do
     #registration
     get     'avbryt_reg'  => 'registrations#cancel', as: :cancel_user_registration
-    post    'registrera'        => 'registrations#create', as: :user_registration 
-    get     'registrera'     => 'registrations#new',    as: :new_user_registration 
+    post    'anvandare/skapa'        => 'registrations#create', as: :user_registration 
+    get     'anvandare/registrera'     => 'registrations#new',    as: :new_user_registration
+    patch   'registrera/:id'        => 'users#update_password', as: :update_user_registration 
     get     'anvandare/redigera'   => 'registrations#edit',   as: :edit_user_registration 
-    patch   'user'        => 'registrations#update'
-    put     'user'        => 'registrations#update'   
-    delete  'user'        => 'registrations#destroy'
+    
+    delete  'users/:id' => 'users#destroy', :as => :admin_destroy_user
 
     #sessions
     get     'logga_in'       => 'devise/sessions#new',         as: :new_user_session
-    post    'logga_in'       => 'devise/sessions#create',      as: :user_session
-    delete  'logga_ut'      => 'devise/sessions#destroy',     as: :destroy_user_session
+    post    'logga_in'       => 'devise/sessions#create',      as: :user_session   
+    delete  'logga_in'      => 'devise/sessions#destroy',     as: :destroy_user_session
   end
-  put 'change_role' => 'users#change_role'
-  get 'anvandare' => 'users#index', as: :users
-  resources :profiles, only: [:show, :edit, :update]
   
+  get 'anvandare' => 'users#index', as: :users
+  
+  resources :profiles, path: :profil, only: [:show, :edit, :update]
+    resources :events  
+  resources :news    ,path:  :nyhet
+  resources :calendar , path:  :kalender
  
 
    

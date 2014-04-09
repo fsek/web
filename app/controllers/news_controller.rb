@@ -4,13 +4,8 @@ class NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_news!, only: [:new,:edit]  
   
-
-  # GET /news
-  # GET /news.json
-  def nyheter
-    @news = News.all
-  end
-  def index    
+  def index  
+    @news = News.all  
   end
   # GET /news/1
   # GET /news/1.json

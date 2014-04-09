@@ -16,12 +16,11 @@ ActiveRecord::Schema.define(version: 20140418200461) do
   create_table "events", force: true do |t|
     t.string   "title"
     t.string   "author"
-    t.text     "content"
-    t.text     "summary"
+    t.text     "description"
     t.string   "location"
-    t.datetime "date"
-    t.datetime "end_date"
-    t.boolean  "dayevent"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "all_day"
     t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -98,7 +97,7 @@ ActiveRecord::Schema.define(version: 20140418200461) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

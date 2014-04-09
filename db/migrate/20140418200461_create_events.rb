@@ -4,12 +4,11 @@ class CreateEvents < ActiveRecord::Migration
       
       t.string :title
       t.string :author
-      t.text :content
-      t.text :summary
+      t.text :description      
       t.string :location
-      t.datetime :date
-      t.datetime :end_date
-      t.boolean :dayevent
+      t.datetime :starts_at
+      t.datetime :ends_at
+      t.boolean :all_day
       t.string :category      
       t.datetime :created_at
       t.datetime :updated_at
