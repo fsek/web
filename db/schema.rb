@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418200461) do
+ActiveRecord::Schema.define(version: 20140418200462) do
 
   create_table "events", force: true do |t|
     t.string   "title"
     t.string   "author"
-    t.text     "description"
+    t.text     "content"
+    t.text     "summary"
     t.string   "location"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.boolean  "all_day"
+    t.datetime "date"
+    t.datetime "end_date"
+    t.boolean  "dayevent"
     t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -54,6 +55,11 @@ ActiveRecord::Schema.define(version: 20140418200461) do
     t.string   "locale"
     t.string   "key"
     t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -97,7 +103,7 @@ ActiveRecord::Schema.define(version: 20140418200461) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
