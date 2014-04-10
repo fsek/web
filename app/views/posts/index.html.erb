@@ -29,7 +29,7 @@
 							<% profileList = [] %>
 							<% post.profiles.each do  |profile|%>
 									<% if User.find(profile).profile == profile%>
-									 	<%profileList << [profile.name + " - " + User.find(profile).username,profile.id]%>
+									 	<%profileList << [profile.name.to_s + " - " + User.find(profile).username,profile.id]%>
 									<% end %>
 								<% end %>
 								<%= select_tag :profile_id, options_for_select(profileList)%>								
