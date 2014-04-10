@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   
   before_filter :find_user,      :only   => [:edit, :update,:destroy,:update_password]
   before_filter :owner_required, :only   => [:edit, :update]
+  
 
   
   def change_role
@@ -38,7 +39,9 @@ class UsersController < ApplicationController
   def destroy
     respond_to do |format|
     if @user.update_with_password(user_params)
+      @user.profile.posts.clear
       if @user.destroy
+        
         format.html { redirect_to root_url, notice: 'Användare togs bort..'  }
         format.json { head :no_content }
       end

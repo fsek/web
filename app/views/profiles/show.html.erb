@@ -18,10 +18,21 @@
 				<%= @profile.start_year %>
 			</p>
 			
+			<%if @profile.posts.size == 1%>
 			<p>
-				<strong>Roll:</strong>
-				<%= User.find(@profile).role.title %>
+				<strong>Post:</strong>
+				<%= Post.find(@profile.posts).title %>
 			</p>
+			<%elsif @profile.posts.size > 1%>
+			<p>
+				<strong>Poster:</strong>
+				<ul>
+				<%@profile.posts.each do |p|%>
+				<li><%=Post.find(p).title%></li>
+				<%end%>
+				</ul>	
+			</p>
+			<%end%>
 			<% if %>
 			<%= link_to 'Redigera profil', edit_profile_path(@profile) %>
 			<% end %>

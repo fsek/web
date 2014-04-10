@@ -22,13 +22,18 @@
 	  	["Teknisk Fysik"],
 	  	["Teknisk Matematik"],
 	  	["Teknisk Nanovetenskap"],
-	  	["Gäst"]],@profile.program),{}, html_options = {:class => "listBox",:selected => :program , :style=>"float:left;"} %> <br>
-  	</div>
+	  	["Gäst"]],@profile.program),{}, html_options = {:class => "listBox",:selected => :program , :style=>"float:left;"} %> <br><br>
+  	</div>  	
   <div class="field">
     <%= f.label 'Började år:' %><br>
     <%= f.number_field :start_year %>
   </div>
-  
+  <%if @profile.posts.size > 0%>
+  <div class="field">
+  	<%= f.label 'Välj visningspost:'%>  (har du flera kan du bara visa 1 när du t.ex. skapar en nyhet.)<br>
+  	<%= f.select :first_post, options_for_select(@profile.posts.collect{ |r| [r.title, r.id] })%>
+  </div>
+  <% end %>
   <div class="actions">
     <%= f.submit "Uppdatera profil"%>
   </div>
