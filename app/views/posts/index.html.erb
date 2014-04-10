@@ -24,7 +24,7 @@
 			        <% if current_user.has_role?(:poster,:edit) %>
 			        <td>	<%= form_tag remove_profile_post_path(post), :method => :patch do%>
 							<%= hidden_field_tag :id, post.id%>
-							<%= select_tag :profile_id, options_for_select(post.profiles.collect{ |r| [User.find_by_id(r.user_id).username + " - " + r.name,r.id] })%>
+							<%= select_tag :profile_id, options_for_select(post.profiles.collect{ |r| [r.name,r.id] })%>
 							<%= submit_tag 'Ta bort', data: { confirm: "Den valda profilen kommer att bli av med vald post."} %>
 							<%end%>
 			        </td>
