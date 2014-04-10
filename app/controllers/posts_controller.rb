@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class PostsController < ApplicationController
   include TheRole::Controller
   before_filter :authenticate_user!, only: [:new,:edit,:create,:update,:destroy]

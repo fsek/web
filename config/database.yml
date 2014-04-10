@@ -15,8 +15,12 @@ test:
   pool: 5
   timeout: 5000
  
+
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: mysql2
+  encoding: utf8
+  database: fsek_production
+  username: root
+  password: 
+  host: localhost
+  socket: /tmp/mysql.sock
