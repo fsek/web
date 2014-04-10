@@ -31,12 +31,12 @@ class PostsController < ApplicationController
          end
       elsif @post.limit != nil && @post.profiles.size >= 1
         respond_to do |format|
-         format.html { redirect_to '/poster', flash: {alert: @post.title + ' har sitt maxantal.'}}
+         format.html { redirect_to '/poster', flash: {alert: @post.title.to_s + ' har sitt maxantal.'}}
          end   
       else 
         @post.profiles << @profile
         respond_to do |format|
-        format.html { redirect_to '/poster', notice: @profile.name.to_s + '(' + User.find(@profile).username.to_s + ') tilldelades posten '+@post.title.to_s + '.'}
+        format.html { redirect_to '/poster', notice: @profile.name.to_s + ' (' + User.find(@profile).username.to_s + ') tilldelades posten '+@post.title.to_s + '.'}
         end  
       end
     end
