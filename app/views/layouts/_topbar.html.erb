@@ -3,7 +3,7 @@
           
           <li class="devider"></li>
           <% if user_signed_in? %>
-          <li><%= link_to fa_icon("calendar"),"/kalender" %></li>
+          <li><%= link_to fa_icon("calendar"),:calendar_index %></li>
           	
           <li class="devider"></li>
             <li class="dropdown">
@@ -23,10 +23,10 @@
               <ul class="dropdown-menu pull-right">
               	<%if current_user.admin?%>
               	<li><%= link_to "Roller", "/admin/roles" %></li>
-                <li><%= link_to "Hantera användare", "/anvandare"%></li>
+                <li><%= link_to "Hantera användare", :users%></li>
                 <%end%>
                 <%if current_user.has_role?(:poster,:edit)%>
-                <li><%= link_to "Hantera poster", "/poster"%></li>
+                <li><%= link_to "Hantera poster", '/poster' %></li>
                 <%end%>
                 <%if current_user.moderator?(:studierad)%>
                 <li><%= link_to "Studierådet", :studierad %></li>

@@ -71,6 +71,7 @@ Fsek::Application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
+  config.action_mailer.default_url_options = { :host => 'fsektionen.se' }
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
