@@ -11,7 +11,7 @@ development:
   pool: 5
   username: root
   password:
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.soc
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -24,7 +24,7 @@ test:
 
 production:
   adapter: mysql2  
-  host: localhost
+  host: dev.fsektionen.se
   reconnect: false
   database: fsek_production
   pool: 5
