@@ -13,22 +13,29 @@ class PostsController < ApplicationController
     end 
   end
   def add_profile_username
-    @profile = User.find_by(username: params[:username]).profile
-    if @profile.posts.include?(@post)
-       respond_to do |format|
-       format.html { redirect_to '/poster', flash: {alert: @profile.name + '(' + User.find(@profile).username + ') har redan posten '+@post.title + '.'}}
-       end
-    elsif @post.limit != nil && @post.profiles.size >= 1
-      respond_to do |format|
-       format.html { redirect_to '/poster', flash: {alert: @post.title + ' har sitt maxantal.'}}
-       end   
-    else 
-      @post.profiles << @profile
-      respond_to do |format|
-      format.html { redirect_to '/poster', notice: @profile.name + '(' + User.find(@profile).username + ') tilldelades posten '+@post.title + '.'}
-      end  
+    if User.find_by(username: params[:username]) != nil
+      @profile = User.find_by(username: params[:username]).profile
+    end
+      if @profile == nil
+          respond_to do |format|
+         format.html { redirect_to '/poster', flash: {alert: 'Hittade ingen användare med det användarnamnet.'}}
+         end
+      elsif @profile.posts.include?(@post)
+         respond_to do |format|
+         format.html { redirect_to '/poster', flash: {alert: @profile.name + '(' + User.find(@profile).username + ') har redan posten '+@post.title + '.'}}
+         end
+      elsif @post.limit != nil && @post.profiles.size >= 1
+        respond_to do |format|
+         format.html { redirect_to '/poster', flash: {alert: @post.title + ' har sitt maxantal.'}}
+         end   
+      else 
+        @post.profiles << @profile
+        respond_to do |format|
+        format.html { redirect_to '/poster', notice: @profile.name + '(' + User.find(@profile).username + ') tilldelades posten '+@post.title + '.'}
+        end  
+      end
     end 
-  end
+  
   def index  
     @posts = Post.all  
   end
