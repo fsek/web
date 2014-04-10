@@ -1,4 +1,4 @@
-
+# encoding:UTF-8
 class ProfilesController < ApplicationController
   
   before_filter :login_required
