@@ -1,0 +1,62 @@
+<% title('Poster') %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-11">
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th>#</th>
+			      <th>Titel:</th>
+			      <th>Gräns:</th>
+			      <th>Beskrivning:</th>
+			      <th>Ta bort:</th>
+			      <th>Lägg till: (användarnamn)</th>
+			    </tr>
+			  </thead>
+			
+			  <tbody>
+			    <% @posts.each do |post| %>
+			      <tr>
+			        <td><%= post.id %></td>
+			        <td><%= link_to post.title,edit_post_path(post) %></td>
+			        <td><%= post.limit %></td>
+			        <td><%= post.description %></td>
+			        <% if current_user.has_role?(:poster,:edit) %>
+			        <td>	<%= form_tag remove_profile_post_path(post), :method => :patch do%>
+							<%= hidden_field_tag :id, post.id%>
+							<%= select_tag :profile_id, options_for_select(post.profiles.collect{ |r| [User.find(r).username + " - " + r.name,r.id] })%>
+							<%= submit_tag 'Ta bort', data: { confirm: "Den valda profilen kommer att bli av med vald post."} %>
+							<%end%>
+			        </td>
+			        <%end%>
+			        <% if current_user.admin? %>
+			        <td>	<%= form_tag add_profile_username_post_path(post), :method => :patch do%>
+							<%= hidden_field_tag :id, post.id%>
+							<%= text_field_tag :username %>							
+							<%= submit_tag "Spara", data: { confirm: 'Dubbelkollat användarnamnet?' }%>
+							<%end%>
+			        </td>
+			        <%end%>  
+			      </tr>
+			    <% end %>
+			  </tbody>
+			</table>
+		</div>
+		<% if user_signed_in? %>
+ 	 	<% if current_user.has_role?(:poster,:edit)  %>
+		<div class="col-md-1">
+			    <div class="headline headline-md"><h2>Verktyg</h2></div>
+      			<ul class="list">
+        		<li><%= link_to "Skapa post", new_post_path %></li>
+      			</ul>
+		</div>
+		  <% end %>
+  		<% end %>
+	</div>
+</div>
+
+ 	
+
+
+
+

@@ -39,16 +39,21 @@ Fsek::Application.routes.draw do
     get     'logga_in'       => 'devise/sessions#new',         as: :new_user_session
     post    'logga_in'       => 'devise/sessions#create',      as: :user_session   
     delete  'logga_ut'      => 'devise/sessions#destroy',     as: :destroy_user_session
+    patch   'anvandare/redigera' => 'users#change_role',  as: :change_role
   end
   
   get 'anvandare' => 'users#index', as: :users
   
-  resources :profiles, path: :profil, only: [:show, :edit, :update]
-    resources :events  
+  resources :profiles, path: :profil do
+    patch :remove_post, on: :member
+  end
+  resources :events  
   resources :news    ,path:  :nyhet
   resources :calendar , path:  :kalender
- 
-
+  resources :posts, path: :poster do
+  patch :remove_profile, on: :member
+  patch :add_profile_username, on: :member
+  end
    
   # Homepage of the system!
   # Will most likely be a controller showing a welcome screen?

@@ -25,6 +25,9 @@
               	<li><%= link_to "Roller", "/admin/roles" %></li>
                 <li><%= link_to "Hantera användare", "/anvandare"%></li>
                 <%end%>
+                <%if current_user.has_role?(:poster,:edit)%>
+                <li><%= link_to "Hantera poster", "/poster"%></li>
+                <%end%>
                 <%if current_user.moderator?(:studierad)%>
                 <li><%= link_to "Studierådet", :studierad %></li>
                 <%end%>

@@ -37,6 +37,17 @@ class ApplicationController < ActionController::Base
     rescue ActionController::RedirectBackError
       redirect_to root_path
   end
+  
+    def authenticate_editor_poster!
+      flash[:error] = t('the_role.access_denied')
+    redirect_to(:back) unless current_user.has_role?(:poster,:edit)
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+  end
+  
+  
+  
+  
   private
   
   def set_locale

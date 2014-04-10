@@ -1,8 +1,9 @@
 class NewsController < ApplicationController
   include TheRole::Controller
   before_filter :authenticate_user!, only: [:new,:edit,:create,:update,:destroy]
-  before_action :set_news, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_news!, only: [:new,:edit]  
+  before_action :set_news, only: [:show, :edit, :update, :destroy,:set_author]
+  before_filter :authenticate_news!, only: [:new,:edit] 
+  before_action :set_author, only: [:show] 
   
   def index  
     @news = News.all  
@@ -57,7 +58,7 @@ class NewsController < ApplicationController
   def destroy
     @news.destroy
     respond_to do |format|
-      format.html { redirect_to :nyheter }
+      format.html { redirect_to :nyhet }
       format.json { head :no_content }
     end
   end
@@ -66,6 +67,9 @@ class NewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_news
       @news = News.find(params[:id])
+    end
+    def set_author
+      @author = User.find(@news.author)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

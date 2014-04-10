@@ -3,10 +3,17 @@ class ProfilesController < ApplicationController
   before_filter :login_required
   before_filter :authenticate_user!  
   
-  before_action :set_profile, only: [:show, :edit, :update]  
+  before_action :set_profile, only: [:show, :edit, :update,:remove_post]  
   
   
 
+  def remove_post
+    @post = Post.find(params[:post_id])
+    @profile.posts.delete(@post)    
+    respond_to do |format|
+    format.html { redirect_to edit_profile_path(@profile), notice: 'Du har inte längre posten '+@post.title + '.'}
+    end 
+  end
   # GET /profiles/1
   # GET /profiles/1.json
   def show
@@ -50,6 +57,7 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:name, :program, :start_year,:avatar)
+      params.require(:profile).permit(:name, :program, :start_year,:avatar,:first_post)
     end
+
 end

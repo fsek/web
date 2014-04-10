@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418200461) do
+ActiveRecord::Schema.define(version: 20140418200464) do
 
   create_table "events", force: true do |t|
     t.string   "title"
@@ -58,6 +58,19 @@ ActiveRecord::Schema.define(version: 20140418200461) do
     t.datetime "updated_at"
   end
 
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.integer  "limit"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts_profiles", id: false, force: true do |t|
+    t.integer "post_id"
+    t.integer "profile_id"
+  end
+
   create_table "profiles", force: true do |t|
     t.string   "name"
     t.string   "program"
@@ -69,6 +82,7 @@ ActiveRecord::Schema.define(version: 20140418200461) do
     t.datetime "avatar_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "first_post"
   end
 
   create_table "roles", force: true do |t|
