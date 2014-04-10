@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @profile = Profile.find_by_id(params[:profile_id])
     @post.profiles.delete(@profile)    
     respond_to do |format|
-    format.html { redirect_to '/poster', notice: @profile.name + ' har inte längre posten '+@post.title + '.'}
+    format.html { redirect_to '/poster', notice: @profile.name.to_s + ' har inte längre posten ' + @post.title.to_s + '.'}
     end 
   end
   def add_profile_username
@@ -23,11 +23,11 @@ class PostsController < ApplicationController
          end
       elsif @profile.name == nil || @profile.name == ""
           respond_to do |format|
-         format.html { redirect_to '/poster', flash: {alert: 'Användaren :"' + @user.username + '" måste fylla i fler uppgifter i sin profil.' }}
+         format.html { redirect_to '/poster', flash: {alert: 'Användaren :"' + @user.username.to_s + '" måste fylla i fler uppgifter i sin profil.' }}
          end
       elsif @profile.posts.include?(@post)
          respond_to do |format|
-         format.html { redirect_to '/poster', flash: {alert: @profile.name + '(' + @user.username + ') har redan posten '+@post.title + '.'}}
+         format.html { redirect_to '/poster', flash: {alert: @profile.name.to_s + '(' + @user.username.to_s + ') har redan posten '+@post.title.to_s + '.'}}
          end
       elsif @post.limit != nil && @post.profiles.size >= 1
         respond_to do |format|
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
       else 
         @post.profiles << @profile
         respond_to do |format|
-        format.html { redirect_to '/poster', notice: @profile.name + '(' + User.find(@profile).username + ') tilldelades posten '+@post.title + '.'}
+        format.html { redirect_to '/poster', notice: @profile.name.to_s + '(' + User.find(@profile).username.to_s + ') tilldelades posten '+@post.title.to_s + '.'}
         end  
       end
     end
