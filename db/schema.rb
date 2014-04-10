@@ -11,21 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140418200464) do
-=======
-ActiveRecord::Schema.define(version: 20140418200462) do
->>>>>>> 1ea7de8159b621c3b2a42a9c590e4f35ee8f6268
 
   create_table "events", force: true do |t|
     t.string   "title"
     t.string   "author"
-    t.text     "content"
-    t.text     "summary"
+    t.text     "description"
     t.string   "location"
-    t.datetime "date"
-    t.datetime "end_date"
-    t.boolean  "dayevent"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "all_day"
     t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -64,24 +59,18 @@ ActiveRecord::Schema.define(version: 20140418200462) do
   end
 
   create_table "posts", force: true do |t|
-<<<<<<< HEAD
     t.string   "title"
     t.integer  "limit"
     t.text     "description"
-=======
->>>>>>> 1ea7de8159b621c3b2a42a9c590e4f35ee8f6268
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
   create_table "posts_profiles", id: false, force: true do |t|
     t.integer "post_id"
     t.integer "profile_id"
   end
 
-=======
->>>>>>> 1ea7de8159b621c3b2a42a9c590e4f35ee8f6268
   create_table "profiles", force: true do |t|
     t.string   "name"
     t.string   "program"
@@ -122,7 +111,7 @@ ActiveRecord::Schema.define(version: 20140418200462) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
