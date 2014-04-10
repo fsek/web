@@ -23,6 +23,18 @@ Fsek::Application.routes.draw do
   get 'start' => 'start_page#startsida'
   get 'libo' => 'static_pages#libo'  
   get 'kontakt' => 'static_pages#kontakt'
+  
+  get 'om' => 'static_pages#om', as: :om
+  get 'faq' => 'static_pages#faq', as: :faq
+  get 'dokument' => 'static_pages#dokument', as: :dokument
+  
+  get 'engagemang' => 'static_pages#utskott', as: :engagemang
+  get 'multimedia' => 'static_pages#lankar', as: :multimedia
+  get 'lankar' => 'static_pages#lankar', as: :lankar
+  
+  get 'organisation' => 'static_pages#utskott', as: :organisation
+  get 'erbjudande' => 'static_pages#om', as: :erbjudande
+  
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
   devise_scope :user do
