@@ -22,14 +22,23 @@
 			        <td><%= post.limit %></td>
 			        <td><%= post.description %></td>
 			        <% if current_user.has_role?(:poster,:edit) %>
-			        <td>	<%= form_tag remove_profile_post_path(post), :method => :patch do%>
-							<%= hidden_field_tag :id, post.id%>
-							<%= select_tag :profile_id, options_for_select(post.profiles.collect{ |r| [r.name + " - " + User.find_by_id(r.user_id).username,r.id] })%>
+			        <td>
+			         <% if post.profiles.size > 0 %>
+		        	<%= form_tag remove_profile_post_path(post), :method => :patch do%>
+							<%= hidden_field_tag :id, post.id%>							
+							<% profileList = [] %>
+							<% post.profiles.each do  |profile|%>
+									<% if User.find(profile).profile == profile%>
+									 	<%profileList << [profile.name + " - " + User.find(profile).username,profile.id]%>
+									<% end %>
+								<% end %>
+								<%= select_tag :profile_id, options_for_select(profileList)%>								
+							
+							
 							<%= submit_tag 'Ta bort', data: { confirm: "Den valda profilen kommer att bli av med vald post."} %>
-							<%end%>
-			        </td>
+							<% end %>
 			        <%end%>
-			        <% if current_user.admin? %>
+			        </td>
 			        <td>	<%= form_tag add_profile_username_post_path(post), :method => :patch do%>
 							<%= hidden_field_tag :id, post.id%>
 							<%= text_field_tag :username %>							
