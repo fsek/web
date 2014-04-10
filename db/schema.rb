@@ -59,6 +59,12 @@ ActiveRecord::Schema.define(version: 20140418200464) do
   end
 
   create_table "posts", force: true do |t|
+<<<<<<< HEAD
+=======
+    t.string   "title"
+    t.integer  "limit"
+    t.text     "description"
+>>>>>>> b50c4a8f9b589cc2c3b82cc60856b2292b7e498e
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -108,7 +114,7 @@ ActiveRecord::Schema.define(version: 20140418200464) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
