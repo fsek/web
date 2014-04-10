@@ -60,10 +60,44 @@
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs margin-bottom-20">
 		  <div class="container">
-		    <h1 class="pull-left"><%= yield(:title) || "CALL title('title') IN VIEW TO SET TITLE" %></h1>
-		    <ul class="pull-right breadcrumb">
-		    </ul>
+			  <div class="row">
+			  <div class="col-md-2">
+				  <h1><%= yield(:title) || "CALL title('title') IN VIEW TO SET TITLE" %></h1>
+			  </div>
+			  
+			  <div class="col-md-10">
+				<ul class="list-inline list-unstyled" style="margin-top: 15px; text-align: right">
+					<li>
+						<%= link_to "Cafémästeriet",:cafe %>
+					</li>
+					<li>
+						<%= link_to "Föset",:fos %>
+					</li>
+					<li>
+						<%= link_to "Kultuminsteriet",:km %>
+					</li>
+					<li>
+						<%= link_to "Näringslivsutskottet",:fnu %>
+					</li>
+					<li>
+						<%= link_to "Prylmästeriet",:pryl %>
+					</li>
+					<li>
+						<%= link_to "Sanningsministeriet",:sanning %>
+					</li>
+					<li>
+						<%= link_to "Sexmästeriet",:sexmasteri %>
+					</li>
+					<li>
+						<%= link_to "Studierådet",:studierad %>
+					</li>
+					<li>
+						<%= link_to "Styrelsen",:styrelse %>
+					</li>
+				</ul>
+			</div>
 		  </div>
+	  	</div>
 		</div>
 		<!--=== End Breadcrumbs ===-->
 
@@ -72,68 +106,27 @@
 			<div class="row page">
 
 				<!-- Begin main content -->
-				<div class="col-md-9">
-					<%= yield %>
-					<% if notice %>
-					<div class="alert alert-info">
-						<button type="button" class="close" data-dismiss="alert">
-							&times;
-						</button>
-						<strong></strong> <%= notice %>
-					</div>
-					<% end %>
-
-					<% if alert %>
-					<div class="alert alert-danger fade in">
-						<button type="button" class="close" data-dismiss="alert">
-							&times;
-						</button>
-						<strong>Fel:</strong> <%= alert %>
-					</div>
-					<% end %>
-
+				<%= yield %>
+				<% if notice %>
+				<div class="alert alert-info">
+					<button type="button" class="close" data-dismiss="alert">
+						&times;
+					</button>
+					<strong></strong> <%= notice %>
 				</div>
+				<% end %>
+
+				<% if alert %>
+				<div class="alert alert-danger fade in">
+					<button type="button" class="close" data-dismiss="alert">
+						&times;
+					</button>
+					<strong>Fel:</strong> <%= alert %>
+				</div>
+				<% end %>
 				<!-- End main content -->
 
 				<!-- Begin sidebar -->
-
-				<div class="col-md-3">
-					<div class="collapse navbar-collapse navbar-responsive-collapse">
-						<ul class="list-unstyled pull-right">
-							<li class="dropdown active" style="padding: 5px 0">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><button class="btn-u" type="button">Utskott <%= fa_icon('angle-down') %></button></a>
-								<ul class="dropdown-menu">
-									<li>
-										<%= link_to "Cafémästeriet",:cafe %>
-									</li>
-									<li>
-										<%= link_to "Föset",:fos %>
-									</li>
-									<li>
-										<%= link_to "Kultuminsteriet",:km %>
-									</li>
-									<li>
-										<%= link_to "Näringslivsutskottet",:fnu %>
-									</li>
-									<li>
-										<%= link_to "Prylmästeriet",:pryl %>
-									</li>
-									<li>
-										<%= link_to "Sanningsministeriet",:sanning %>
-									</li>
-									<li>
-										<%= link_to "Sexmästeriet",:sexmasteri %>
-									</li>
-									<li>
-										<%= link_to "Studierådet",:studierad %>
-									</li>
-									<li>
-										<%= link_to "Styrelsen",:styrelse %>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
 
 				</div>
 				<!-- End sidebar -->

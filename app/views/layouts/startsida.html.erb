@@ -51,11 +51,18 @@
        </div>    
     </div>    
 </div><!--/header-->
-<!--=== End Header ===-->  
+<!--=== End Header ===-->
+
+<div class="breadcrumbs">
+  <div class="container">
+    <h1 class="pull-left"><%= yield(:title) || "CALL title('title') IN VIEW TO SET TITLE" %></h1>
+    <ul class="pull-right breadcrumb">
+    </ul>
+  </div>
+</div>
 
 
 <!--=== Content Part ===-->
-
 	<div class="carousel slide carousel-v1 margin-bottom-20 margin-top-20" id="myCarousel-1">
                 <div class="carousel-inner">
                     <div class="item active">
@@ -72,7 +79,6 @@
                     </a>
                 </div> -->
             </div>
-
 
 <div class="container">
     <div class="row magazine-page">    	
