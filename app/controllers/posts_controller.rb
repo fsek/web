@@ -6,23 +6,28 @@ class PostsController < ApplicationController
   before_filter :authenticate_editor_poster! 
 
   def remove_profile
-    @profile = Profile.find(params[:profile_id])
-    @post.profiles.delete(@profile)
+    @profile = Profile.find_by_id(params[:profile_id])
+    @post.profiles.delete(@profile)    
     respond_to do |format|
     format.html { redirect_to '/poster', notice: @profile.name + ' har inte längre posten '+@post.title + '.'}
     end 
   end
   def add_profile_username
-    if User.find_by(username: params[:username]) != nil
-      @profile = User.find_by(username: params[:username]).profile
+    @user = User.find_by(username: params[:username])
+    if @user != nil
+      @profile = @user.profile
     end
       if @profile == nil
           respond_to do |format|
          format.html { redirect_to '/poster', flash: {alert: 'Hittade ingen användare med det användarnamnet.'}}
          end
+      elsif @profile.name == nil || @profile.name == ""
+          respond_to do |format|
+         format.html { redirect_to '/poster', flash: {alert: 'Användaren :"' + @user.username + '" måste fylla i fler uppgifter i sin profil.' }}
+         end
       elsif @profile.posts.include?(@post)
          respond_to do |format|
-         format.html { redirect_to '/poster', flash: {alert: @profile.name + '(' + User.find(@profile).username + ') har redan posten '+@post.title + '.'}}
+         format.html { redirect_to '/poster', flash: {alert: @profile.name + '(' + @user.username + ') har redan posten '+@post.title + '.'}}
          end
       elsif @post.limit != nil && @post.profiles.size >= 1
         respond_to do |format|
@@ -34,7 +39,8 @@ class PostsController < ApplicationController
         format.html { redirect_to '/poster', notice: @profile.name + '(' + User.find(@profile).username + ') tilldelades posten '+@post.title + '.'}
         end  
       end
-    end 
+    end
+   
   
   def index  
     @posts = Post.all  
