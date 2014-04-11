@@ -11,6 +11,18 @@
 	display: none;
 }
 
+.breadcrumbs ul > li {
+	padding-left: 10px;
+}
+
+.breadcrumbs ul > li > a {
+	text-shadow: 0 1px 0 #fff;
+}
+
+.breadcrumbs ul > li > a:hover {
+	text-decoration: none;
+}
+
 .navbar-brand-text {
 	padding: 0 0 0 25px;
 	overflow: visible;
@@ -57,6 +69,7 @@
 ------------------------------------*/
 .navbar-brand {
   height: auto;
+  left: 5px;
 }
 
 dl {

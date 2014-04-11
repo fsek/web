@@ -1,24 +1,20 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div id='calendar'></div>
-			<hr>
-		</div>
+<div class="container row">
+	<div id='calendar'></div>
+
+	<hr>
+	
+	<% if user_signed_in? %>
+	
+	<div class="headline headline-md">
+		<h2>Verktyg</h2>
 	</div>
-	<div class ="row">
-		<% if user_signed_in? %>
-		
-		<div class="headline headline-md">
-			<h2>Verktyg</h2>
-		</div>
-		<ul class="list">
-			<% if current_user.admin? || current_user.has_role?(:event,:edit) %>
-			<li><%= link_to "Nytt event", new_event_path %></li>
-			<% end %>
-			<li><%= link_to 'Kalenderprenumeration', 'webcal://'+PUBLIC_URL+'/kalender/export.ics'%></li>
-		</ul>
-		
+	<ul class="list">
+		<% if current_user.admin? || current_user.has_role?(:event,:edit) %>
+		<li><%= link_to "Nytt event", new_event_path %></li>
 		<% end %>
-	</div>
+		<li><%= link_to 'Kalenderprenumeration', 'webcal://'+PUBLIC_URL+'/kalender/export.ics'%></li>
+	</ul>
+	
+	<% end %>
 </div>
 

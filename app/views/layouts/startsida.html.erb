@@ -53,13 +53,16 @@
 </div><!--/header-->
 <!--=== End Header ===-->
 
+<!--=== Breadcrumbs ===-->
 <div class="breadcrumbs">
   <div class="container">
-    <h1 class="pull-left"><%= yield(:title) || "CALL title('title') IN VIEW TO SET TITLE" %></h1>
-    <ul class="pull-right breadcrumb">
-    </ul>
+		<ul class="list-inline list-unstyled" style="margin-top: 10px; text-align: left">
+			<li><%= link_to "Snabba",:cafe %></li>
+			<li><%= link_to "Länkar",:fos %></li>
+		</ul>
   </div>
 </div>
+<!--=== End Breadcrumbs ===-->
 
 
 <!--=== Content Part ===-->
