@@ -18,7 +18,7 @@ Fsek::Application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-<<<<<<< HEAD
+#<<<<<<< HEAD
 #  config.action_mailer.delivery_method = :smtp
 
 #    config.action_mailer.smtp_settings = {
@@ -32,7 +32,7 @@ Fsek::Application.configure do
 #    }
 
   # Print deprecation notices to the Rails logger.
-=======
+#=======
   # config.action_mailer.delivery_method = :smtp
 # 
   # config.action_mailer.smtp_settings = {
@@ -46,7 +46,7 @@ Fsek::Application.configure do
   # }
 
   # # Print deprecation notices to the Rails logger.
->>>>>>> 01efa7d59ce92a8c7234ecc78a3c60fd999eb7ea
+#>>>>>>> 01efa7d59ce92a8c7234ecc78a3c60fd999eb7ea
   config.active_support.deprecation = :log
 
   # Raise an error on page load if there are pending migrations
