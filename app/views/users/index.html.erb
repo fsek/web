@@ -11,6 +11,9 @@
 			      <th>Email</th>
 			      <th>Program</th>
 			      <th>År</th>
+			       <% if current_user.admin? %>
+			       <th>Roll</th>
+					<% end %>
 			    </tr>
 			  </thead>
 			

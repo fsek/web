@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class PostsController < ApplicationController
   include TheRole::Controller
   before_filter :authenticate_user!, only: [:new,:edit,:create,:update,:destroy]
@@ -5,29 +6,42 @@ class PostsController < ApplicationController
   before_filter :authenticate_editor_poster! 
 
   def remove_profile
-    @profile = Profile.find(params[:profile_id])
-    @post.profiles.delete(@profile)
+    @profile = Profile.find_by_id(params[:profile_id])
+    @post.profiles.delete(@profile)    
     respond_to do |format|
-    format.html { redirect_to '/poster', notice: @profile.name + ' har inte längre posten '+@post.title + '.'}
+    format.html { redirect_to '/poster', notice: @profile.name.to_s + ' har inte längre posten ' + @post.title.to_s + '.'}
     end 
   end
   def add_profile_username
-    @profile = User.find_by(username: params[:username]).profile
-    if @profile.posts.include?(@post)
-       respond_to do |format|
-       format.html { redirect_to '/poster', flash: {alert: @profile.name + '(' + User.find(@profile).username + ') har redan posten '+@post.title + '.'}}
-       end
-    elsif @post.limit != nil && @post.profiles.size >= 1
-      respond_to do |format|
-       format.html { redirect_to '/poster', flash: {alert: @post.title + ' har sitt maxantal.'}}
-       end   
-    else 
-      @post.profiles << @profile
-      respond_to do |format|
-      format.html { redirect_to '/poster', notice: @profile.name + '(' + User.find(@profile).username + ') tilldelades posten '+@post.title + '.'}
-      end  
-    end 
-  end
+    @user = User.find_by(username: params[:username])
+    if @user != nil
+      @profile = @user.profile
+    end
+      if @profile == nil
+          respond_to do |format|
+         format.html { redirect_to '/poster', flash: {alert: 'Hittade ingen användare med det användarnamnet.'}}
+         end
+      elsif @profile.name == nil || @profile.name == ""
+          respond_to do |format|
+         format.html { redirect_to '/poster', flash: {alert: 'Användaren :"' + @user.username.to_s + '" måste fylla i fler uppgifter i sin profil.' }}
+         end
+      elsif @profile.posts.include?(@post)
+         respond_to do |format|
+         format.html { redirect_to '/poster', flash: {alert: @profile.name.to_s + '(' + @user.username.to_s + ') har redan posten '+@post.title.to_s + '.'}}
+         end
+      elsif @post.limit != nil && @post.profiles.size >= 1
+        respond_to do |format|
+         format.html { redirect_to '/poster', flash: {alert: @post.title.to_s + ' har sitt maxantal.'}}
+         end   
+      else 
+        @post.profiles << @profile
+        respond_to do |format|
+        format.html { redirect_to '/poster', notice: @profile.name.to_s + ' (' + User.find(@profile).username.to_s + ') tilldelades posten '+@post.title.to_s + '.'}
+        end  
+      end
+    end
+   
+  
   def index  
     @posts = Post.all  
   end

@@ -3,12 +3,12 @@
           
           <li class="devider"></li>
           <% if user_signed_in? %>
-          <li><%= link_to fa_icon("calendar"),"/kalender" %></li>
+          <li><%= link_to fa_icon("calendar"),:calendar_index %></li>
           	
           <li class="devider"></li>
             <li class="dropdown">
-              <%= fa_icon("user") %> 
-              <%= link_to current_user.profile.name, current_user.profile, class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
+              
+              <%= link_to fa_icon("user") + current_user.profile.name, current_user.profile, class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
               <ul class="dropdown-menu pull-right">
                 <li><%= link_to "Profil", current_user.profile %></li>                
                 <li><%= link_to "Kontoinställningar", :edit_user_registration%></li>
@@ -23,10 +23,10 @@
               <ul class="dropdown-menu pull-right">
               	<%if current_user.admin?%>
               	<li><%= link_to "Roller", "/admin/roles" %></li>
-                <li><%= link_to "Hantera användare", "/anvandare"%></li>
+                <li><%= link_to "Hantera användare", :users%></li>
                 <%end%>
                 <%if current_user.has_role?(:poster,:edit)%>
-                <li><%= link_to "Hantera poster", "/poster"%></li>
+                <li><%= link_to "Hantera poster", '/poster' %></li>
                 <%end%>
                 <%if current_user.moderator?(:studierad)%>
                 <li><%= link_to "Studierådet", :studierad %></li>
@@ -56,8 +56,7 @@
                 <li><%= link_to "Utskott", :utskott %></li>
                 <%end%>                    
                </ul>               
-            </li>
-        	
+            </li>        	
         	<% end %>
             
           <% else %>
