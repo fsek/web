@@ -12,6 +12,8 @@ class StaticPagesController < ApplicationController
   end
   def fos
   end
+  def faq
+  end  
   def kontakt
   end
   def kulturministerie
