@@ -16,12 +16,11 @@ ActiveRecord::Schema.define(version: 20140418200464) do
   create_table "events", force: true do |t|
     t.string   "title"
     t.string   "author"
-    t.text     "content"
-    t.text     "summary"
+    t.text     "description"
     t.string   "location"
-    t.datetime "date"
-    t.datetime "end_date"
-    t.boolean  "dayevent"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "all_day"
     t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -60,6 +59,9 @@ ActiveRecord::Schema.define(version: 20140418200464) do
   end
 
   create_table "posts", force: true do |t|
+    t.string   "title"
+    t.integer  "limit"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
