@@ -1,23 +1,18 @@
-        <%= render 'phrasing/initializer'%>
+<% title('Utskott') %>
+<%= render 'phrasing/initializer'%>
 <div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<h1>Sanningsministeriet</h1>
-			<div class="search-blocks search-blocks-top-orange">
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-7">
-							<%=phrase('sanning1')%>
-						</div> <!-- col-md-3 -->						
-						<div class="col-md-5">							
-								<div class="headline headline-md"><h4>Sanningsminister: <b>Johanna Lägnert</b> <a href="mailto:sanning@fsektionen.se"><i class="fa fa-envelope"></i></a></h4></div>
-								<%=phrase('sanningsordf')%>
-								<%= image_tag'profpics/Johanna.png', :class => "profile_img"%>
-								<hr>																						
-						</div> <!-- col-md-6 -->
-					</div> <!-- row -->
-				</div> <!-- col md-12 -->
-			</div> <!-- Search-blocks -->
-		</div> <!-- col-md-9 -->
-	</div> <!-- row -->
+	<h1>Sanningsministeriet</h1>
+	<div class="search-blocks search-blocks-top-orange">
+		<div class="row">
+			<div class="col-md-7">
+				<%=phrase('sanning1')%>
+			</div> <!-- col-md-3 -->						
+			<div class="col-md-5">							
+					<div class="headline headline-md"><h4>Sanningsminister: <b>Johanna Lägnert</b> <a href="mailto:sanning@fsektionen.se"><i class="fa fa-envelope"></i></a></h4></div>
+					<%=phrase('sanningsordf')%>
+					<%= image_tag'profpics/Johanna.png', :class => "profile_img"%>
+					<hr>																						
+			</div> <!-- col-md-6 -->
+		</div> <!-- row -->
+	</div> <!-- Search-blocks -->
 </div> <!-- container -->

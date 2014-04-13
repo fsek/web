@@ -1,38 +1,12 @@
-            <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Sektionen <%= fa_icon('angle-down') %>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><%= link_to 'Styrelsen', :styrelse %></li>                             
-                            <li><%= link_to 'Kontakt',:kontakt %></li>                                                     
-                        </ul>
-                    </li>
-                    <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Utskott <%= fa_icon('angle-down') %>
-                        </a>
-                        <ul class="dropdown-menu">
-							<li><%=link_to "Cafémästeriet",:cafe %></li>
-							<li><%=link_to "Föset",:fos %></li>
-							<li><%=link_to "Kultuminsteriet",:km %></li>
-							<li><%=link_to "Näringslivsutskottet",:fnu %></li>
-							<li><%=link_to "Prylmästeriet",:pryl %></li>
-							<li><%=link_to "Sanningsministeriet",:sanning %></li>
-							<li><%=link_to "Sexmästeriet",:sexmasteri %></li>
-							<li><%=link_to "Studierådet",:studierad %></li>							                                                   
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Student <%= fa_icon('angle-down') %>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                            <li><%= link_to 'Kurslänkar', :kurslankar %></li>  
-                            <li><a href="https://docs.google.com/spreadsheet/ccc?key=0AlFJsQziMBrLdFA4RFlqcmlqbHczLWNud3JnS2FxUWc&usp=drive_web#gid=11" target="_blank">Bilbokning</a></li>
-                            <li><a href="http://tinyurl.com/hilbertcafelp4" target="_blank">Jobba i caféet</a></li>                                                                               
-                        </ul>
-                    </li>          
-            </div>
+<ul class="list-inline list-unstyled" style="margin-top: 10px; text-align: left">
+	<li><%= link_to "Om",:utskott %>
+	<li><%= link_to "Cafémästeriet",:cafe %></li>
+	<li><%= link_to "Föset",:fos %></li>
+	<li><%= link_to "Kultuminsteriet",:km %></li>
+	<li><%= link_to "Näringslivsutskottet",:fnu %></li>
+	<li><%= link_to "Prylmästeriet",:pryl %></li>
+	<li><%= link_to "Sanningsministeriet",:sanning %></li>
+	<li><%= link_to "Sexmästeriet",:sexmasteri %></li>
+	<li><%= link_to "Studierådet",:studierad %></li>
+	<li><%= link_to "Styrelsen",:styrelse %></li>
+</ul>
