@@ -38,7 +38,17 @@ module PhrasingHelper
                             
                             elsif current_page?(:controller => 'static_pages',:action => 'utskott')
                               current_user.admin? || current_user.moderator?(:utskott)
-                            end                   
+                            
+                            elsif current_page?(:controller => 'static_pages',:action => 'om')
+                              current_user.admin? || current_user.moderator?(:sanningsministerie)
+                            
+                            elsif current_page?(:controller => 'faq',:action => 'utskott')
+                              current_user.admin? || current_user.moderator?(:sanningsministerie)
+                            
+                            elsif current_page?(:controller => 'static_pages',:action => 'utskott')
+                              current_user.admin? || current_user.moderator?(:utskott)
+                            
+                            end
                 elsif controller_name == "phrasing_phrases"
                   true
                 end
