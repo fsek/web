@@ -7,8 +7,7 @@ Fsek::Application.routes.draw do
   
   
   get 'cafebokning' => 'calendar#cafebokning'
-  get 'kalender/export' => 'calendar#export.ics'  
-  
+  get 'kalender/export' => 'calendar#export.ics'
   get 'kurslankar' => 'static_pages#kurslankar'
   get 'styrelse' => 'static_pages#styrelse'
   get 'utskott' => 'static_pages#utskott'
@@ -29,7 +28,7 @@ Fsek::Application.routes.draw do
   get 'dokument' => 'static_pages#dokument', as: :dokument
   
   get 'engagemang' => 'static_pages#utskott', as: :engagemang
-  get 'multimedia' => 'static_pages#lankar', as: :multimedia
+  get 'multimedia' => 'static_pages#lankar', as: :multimedia #Ev. efterfrågad av vårt kära Sanningsministerium!
   get 'lankar' => 'static_pages#lankar', as: :lankar
   
   get 'organisation' => 'static_pages#utskott', as: :organisation
