@@ -20,8 +20,34 @@ $highlight: 0 1px 0 #fff;
 
 .start-background {
 	width: 100%;
-	height: 300px;
-	background: url(img/bg.jpg) 50% 20%;
+	max-height: 400px;
+	background: url(img/bg.jpg) 50% 0%;
+	
+	h1 {
+		display: inline-block;
+		margin: 240px 0 0 0;
+		padding: 5px;
+		background: rgba(235, 113, 37, .75);
+		color: #fff;
+	}
+	
+	p {
+		margin: 5px 0 40px 0;
+		padding: 5px;
+		background: rgba(0, 0, 0, .25);
+		color: #eee;
+		font-size: 15px;
+	}
+	
+	@media (max-width: 768px) {
+		h1 {
+			margin-top: 40px;
+		}
+		
+		p {
+			background: rgba(0, 0, 0, .5);
+		}
+	}
 }
 
 .search-blocks {
