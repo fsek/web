@@ -6,13 +6,14 @@
  * Website: http://htmlstream.com/preview/unify
 */
 
+
 /* Temporarily disable breadcrumb */
 .breadcrumb {
 	display: none;
 }
 
 .breadcrumbs ul > li {
-	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .breadcrumbs ul > li > a {
