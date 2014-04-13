@@ -82,10 +82,7 @@
 			  <% if yield(:title) == 'Utskott' %>
 			  	<%= render "layouts/utskottmenu" %>
 			  <% else %>
-				<ul class="list-inline list-unstyled" style="margin-top: 10px; text-align: left">
-					<li><%= link_to "Snabba",:cafe %></li>
-					<li><%= link_to "Länkar",:fos %></li>
-				</ul>
+				<%= render "layouts/snabblankar" %>
 			  <% end %>
 	  	  </div>
 		</div>
