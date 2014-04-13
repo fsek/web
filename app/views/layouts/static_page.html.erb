@@ -79,18 +79,7 @@
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs margin-bottom-40">
 		  <div class="container">
-				<ul class="list-inline list-unstyled" style="margin-top: 10px; text-align: left">
-					<li><%= link_to "Utskott",:utskott %>
-					<li><%= link_to "Cafémästeriet",:cafe %></li>
-					<li><%= link_to "Föset",:fos %></li>
-					<li><%= link_to "Kultuminsteriet",:km %></li>
-					<li><%= link_to "Näringslivsutskottet",:fnu %></li>
-					<li><%= link_to "Prylmästeriet",:pryl %></li>
-					<li><%= link_to "Sanningsministeriet",:sanning %></li>
-					<li><%= link_to "Sexmästeriet",:sexmasteri %></li>
-					<li><%= link_to "Studierådet",:studierad %></li>
-					<li><%= link_to "Styrelsen",:styrelse %></li>
-				</ul>
+			  <%= render "layouts/utskottmenu" %>
 	  	  </div>
 		</div>
 		<!--=== End Breadcrumbs ===-->
