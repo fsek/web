@@ -77,14 +77,16 @@
 		<!--=== End Header ===-->
 
 		<!--=== Breadcrumbs ===-->
-		<div class="breadcrumbs margin-bottom-40">
+		<div class="breadcrumbs margin-bottom-10">
 		  <div class="container">
-			  <% if yield(:title) == 'Utskott' %>
-			  	<%= render "layouts/utskottmenu" %>
-			  <% else %>
-				<%= render "layouts/snabblankar" %>
-			  <% end %>
+			  <%= render "layouts/snabblankar" %>
 	  	  </div>
+		</div>
+		
+		<div class="container margin-bottom-30">
+		  <% if yield(:title) == 'Utskott' %>
+		  	<%= render "layouts/utskottmenu" %>
+		  <% end %>
 		</div>
 		<!--=== End Breadcrumbs ===-->
 
