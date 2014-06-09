@@ -1,7 +1,4 @@
 <% title("Nyheter") %>
-<div class="col-md-2">
-</div> 
-<div class="col-md-10">
 <% @news.sort_by{|news|news.created_at}.reverse.slice(0,10).each do |news| %>
 
 <!--Blog Post-->
@@ -35,7 +32,6 @@
 
 <hr class="margin-bottom-20"> 
 <% end %>
-</div>
 
 <% content_for(:sidebar) do %>
  	<% if user_signed_in? %>

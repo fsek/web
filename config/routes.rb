@@ -3,9 +3,7 @@ Fsek::Application.routes.draw do
   
   # Resources on the page
 
-  
-  
-  
+   
   get 'cafebokning' => 'calendar#cafebokning'
   get 'kalender/export' => 'calendar#export.ics'
   get 'kurslankar' => 'static_pages#kurslankar'
@@ -65,6 +63,11 @@ Fsek::Application.routes.draw do
   patch :remove_profile, on: :member
   patch :add_profile_username, on: :member
   end
+  
+  resources :albums, path: :galleri do
+    resources :images, path: :bilder
+  end     
+ 
    
   # Homepage of the system!
   # Will most likely be a controller showing a welcome screen?

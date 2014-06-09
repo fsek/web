@@ -23,7 +23,8 @@
  *= require start_page
  *=require phrasing
  *= require fullcalendar
- *= require fullcalendar.print 
+ *= require fullcalendar.print
+ *= require galleria.classic  
  */
 
  /* Override for Bootstrap 3 font location */

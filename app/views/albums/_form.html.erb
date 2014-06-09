@@ -1,0 +1,56 @@
+<%= form_for @album do |f| %>
+		  <% if @album.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@album.errors.count, "error") %> gör att albumet inte kan sparas:</h2>
+		      <ul>
+		      <% @album.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+	<div>
+		<%= f.label 'Titel:' %><br>
+    	<%= f.text_field :title %>    
+  	</div>
+  	<div class="field">
+    	<%= f.label 'Beskrivning:' %><br>
+    	<%= f.text_area :description %>
+  	</div>
+  	<div class="field">
+    	<%= f.label 'Plats:' %><br>
+    	<%= f.text_field :location %>
+  	</div>
+   	<div class="field">
+   		<%=f.label 'Start:'%> <br>
+   		<%= f.datetime_select :start_date, :minute_step => 10 %>
+   	</div>
+   	<div class="field">
+  		<%=f.label 'Slut:'%><br>
+   		<%= f.datetime_select :end_date, :minute_step => 10 %>
+   	</div>
+   	<%= f.fields_for :image do |image|%>
+   	  <% if @image.errors.any? %>
+    <div id="error_explanation">
+	      <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+	
+	      <ul>
+	        <% @image.errors.full_messages.each do |msg| %>
+	          <li><%= msg %></li>
+	        <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+	  <div class="actions">
+	    <%= image.label :image_file, t('.image_new_file') %>
+	    <%= image.file_field :image_file, multiple: true, name: 'image[foto]' %>
+	    x   
+	  </div>
+   	<% end %>
+  	<div class="actions">
+    <%= f.submit "Spara" %>
+    <hr>
+	</div>
+<% end %>
+<script id="template-image" type="text/x-tmpl"><div class="image">{%=o.name%}<div class="progress"><div class="progress-bar bar" style="width: 0%"></div></div></div></script>

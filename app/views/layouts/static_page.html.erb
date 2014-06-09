@@ -30,7 +30,8 @@
 <link rel=“icon” type=“image/png” href=“/assets/images/favicon/favicon-160x160.png” sizes=“160x160”>
 <link rel=“icon” type=“image/png” href=“/assets/images/favicon/favicon-96x96.png” sizes=“96x96”>
 <link rel=“icon” type=“image/png” href=“/assets/images/favicon/favicon-16x16.png” sizes=“16x16”>
-<link rel=“icon” type=“image/png” href=“/assets/images/favicon/favicon-32x32.png” sizes=“32x32”> <meta name=“msapplication-TileColor” content=“#2b5797”>
+<link rel=“icon” type=“image/png” href=“/assets/images/favicon/favicon-32x32.png” sizes=“32x32”>
+<meta name=“msapplication-TileColor” content=“#2b5797”>
 <meta name=“msapplication-TileImage” content=“/assets/images/favicon/mstile-144x144.png”>
 <meta name=“msapplication-square70x70logo” content=“/assets/images/favicon/mstile-70x70.png”>
 <meta name=“msapplication-square144x144logo” content=“/assets/images/favicon/mstile-144x144.png”>
@@ -77,17 +78,16 @@
 		<!--=== End Header ===-->
 
 		<!--=== Breadcrumbs ===-->
-		<div class="breadcrumbs margin-bottom-40">
+		<div class="breadcrumbs margin-bottom-10">
 		  <div class="container">
-			  <% if yield(:title) == 'Utskott' %>
-			  	<%= render "layouts/utskottmenu" %>
-			  <% else %>
-				<ul class="list-inline list-unstyled" style="margin-top: 10px; text-align: left">
-					<li><%= link_to "Snabba",:cafe %></li>
-					<li><%= link_to "Länkar",:fos %></li>
-				</ul>
-			  <% end %>
+			  <%= render "layouts/snabblankar" %>
 	  	  </div>
+		</div>
+		
+		<div class="container margin-bottom-30">
+		  <% if yield(:title) == 'Utskott' %>
+		  	<%= render "layouts/utskottmenu" %>
+		  <% end %>
 		</div>
 		<!--=== End Breadcrumbs ===-->
 
