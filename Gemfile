@@ -46,6 +46,9 @@ gem 'fullcalendar-rails'
 gem 'icalendar'
 gem 'jquery-turbolinks'
 gem 'mysql2'
+gem 'hermitage'
+gem 'jquery-fileupload-rails' #till galleri, ladda upp flera grejer
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

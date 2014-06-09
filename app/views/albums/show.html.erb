@@ -1,0 +1,35 @@
+<% title("Album") %>
+
+	<script src="<%= javascript_path('galleria-1.3.5.min.js') %>"></script>
+	<style>
+		#gallerii{ width:100%; height:700px; background-color:#ffffff}
+	</style>
+
+<div class="row blog">  
+  <div class="col-md-12">
+    <h2><%= @album.title %></h2>	
+    <ul class="list-unstyled blog-info">
+    	<li>Ansvarig: <%= fa_icon("user") %> <%= link_to (Profile.find_by(id: @album.author).name) ,Profile.find_by(id: @album.author) %></li>
+      <li>Datum: <b>      <i class="fa fa-calendar"></i> <%= @album.start_date %></b> till <b><%=@album.end_date%></b></li>
+    </ul>	
+    	<p>Beskrivning: <%= simple_format(@album.description)%>
+		</p>
+		<div id='gallerii'>			
+			<% @album.images.each do |i|%>
+				<td><%= image_tag i.foto.url(:original) %></td>			
+			<% end %>
+		</div>
+    <div>
+    <p>
+      <% if current_user.has_role?(:event, :edit) %>
+        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_album_path(@album), class: "btn-u btn-u-small" %>
+        <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @album, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
+      <% end %>
+    </p>
+    </div>
+  </div>    
+</div>
+<script>
+        Galleria.loadTheme("<%= javascript_path('galleria.classic.js') %>");
+        Galleria.run('#gallerii');
+</script>

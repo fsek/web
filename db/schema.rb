@@ -11,17 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418200464) do
+ActiveRecord::Schema.define(version: 20140418200466) do
+
+  create_table "albums", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "author"
+    t.string   "location"
+    t.boolean  "public"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "albums_images", id: false, force: true do |t|
+    t.integer "album_id"
+    t.integer "image_id"
+  end
 
   create_table "events", force: true do |t|
     t.string   "title"
     t.string   "author"
-    t.text     "content"
-    t.text     "summary"
+    t.text     "description"
     t.string   "location"
-    t.datetime "date"
-    t.datetime "end_date"
-    t.boolean  "dayevent"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "all_day"
     t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -29,6 +45,17 @@ ActiveRecord::Schema.define(version: 20140418200464) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "images", force: true do |t|
+    t.string   "description"
+    t.integer  "album_id"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "news", force: true do |t|
@@ -60,6 +87,9 @@ ActiveRecord::Schema.define(version: 20140418200464) do
   end
 
   create_table "posts", force: true do |t|
+    t.string   "title"
+    t.integer  "limit"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

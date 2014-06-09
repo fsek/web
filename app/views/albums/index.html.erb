@@ -1,0 +1,28 @@
+<% title("Bilder") %>
+
+<div class="col-md-12">
+	<strong>Album</strong>	
+	<%if @albums.size > 0%>
+			<p>				
+				<ul>
+				<%@albums.each do |p|%>
+				<li><%=link_to p.title,album_path(p) %></li>
+				<%end%>
+				</ul>	
+			</p>
+		<%end%>
+</div>
+
+<% content_for(:sidebar) do %>
+ 	<% if user_signed_in? %>
+ 	  <% if current_user.admin? || current_user.has_role?(:news,:edit) %>
+	    	<div class="headline headline-md">
+	    		<h2>Verktyg</h2>
+    		</div>
+		    <ul class="list">
+		        <li><%= link_to "Skapa nyhet", new_news_path %></li>
+		    </ul>
+	  <% end %>
+  <% end %>
+<% end %>
+
