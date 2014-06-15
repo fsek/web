@@ -29,10 +29,10 @@ class AlbumsController < ApplicationController
                 @album.images.create(image: image)
                 }
             end
-          format.html { redirect_to '/galleri', notice: 'Albumet skapades!' }
-          format.json { render action: '/galleri', status: :created, location: @album }
+          format.html { redirect_to @album, notice: 'Albumet skapades!' }
+          format.json { render :json => @album, :status => :created, :location => @album }
         else
-          format.html { render action: '/galleri' }
+          format.html { render action: "new" }
           format.json { render json: @album.errors, status: :unprocessable_entity }
         end
       end
@@ -64,6 +64,6 @@ class AlbumsController < ApplicationController
       params.fetch(:image,{}).permit(:album_id)
     end
     def album_params
-      params.fetch(:album,{}).permit(:title,:description,:author,:location,:public,:start_date,:end_date, images_parameters: [:id, :foto])
+      params.fetch(:album,{}).permit(:title,:category,:description,:author,:location,:public,:start_date,:end_date, images_parameters: [:id, :foto])
     end
 end

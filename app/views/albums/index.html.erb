@@ -1,6 +1,6 @@
 <% title("Bilder") %>
 
-<div class="col-md-12">
+
 	<strong>Album</strong>	
 	<%if @albums.size > 0%>
 			<p>				
@@ -11,7 +11,7 @@
 				</ul>	
 			</p>
 		<%end%>
-</div>
+
 
 <% content_for(:sidebar) do %>
  	<% if user_signed_in? %>
