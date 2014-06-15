@@ -24,8 +24,8 @@ class ImagesController < ApplicationController
   # POST /uploads
   # POST /uploads.json
   def create
-    @image = Image.create(image_params)
-      @album.images << @image    
+    @image = @album.images.create(image_params)
+       
   end
 
   # PATCH/PUT /uploads/1

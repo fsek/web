@@ -10,10 +10,10 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.label :image_file, t('.image_new_file') %>
-    <%= f.file_field :image_file, multiple: true, name: 'image[foto]' %>    
-    <%= f.submit %>    
+  <div class="actions">    
+    <%= f.file_field :image_file, multiple: true, name: 'image[foto]' %> <br />   
+    <%= f.submit %>      
+    <br />
   </div>
 <% end %>
 
