@@ -1,15 +1,12 @@
 <% title("Bilder") %>
 
 
-	<strong>Album</strong>	
-	<%if @albums.size > 0%>
-			<p>				
-				<ul>
+	<strong>Album</strong>	</br>
+	<%if @albums.size > 0%>			
 				<%@albums.each do |p|%>
-				<li><%=link_to p.title,album_path(p) %></li>
-				<%end%>
-				</ul>	
-			</p>
+				<td><%=image_tag p.images.first(:order => "RANDOM()").foto.url(:small)%></br>
+				<%=link_to p.title,album_path(p) %></td>
+				<%end%>							
 		<%end%>
 
 
