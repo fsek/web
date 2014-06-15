@@ -16,7 +16,7 @@ jQuery ->
           data.submit()
           e.preventDefault()           
       else
-        alert("#{file.name} is not a gif, jpg or png image file")
+        alert("#{file.name} är inte en gif-, jpg- eller png-fil.")
     progress: (e, data) ->
       if data.context
         progress = parseInt(data.loaded / data.total * 100, 10)

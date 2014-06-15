@@ -22,12 +22,11 @@
 	  	["Sittning"],
 	  	["Nollning"],
 	  	["Prylmästeriet"],
-	  	["Sanningsmästeriet"],
+	  	["Sanningsministeriet"],
 	  	["Sexmästeriet"],
-	  	["Stuiderådet"],
+	  	["Studierådet"],
 	  	["Styrelsen"], 
-	  	["Spindelmännen"] ], :category), {},
-	  	html_options = {:class => "listBox", :style=>"float:left;"} %> <br> 
+	  	["Spindelmännen"]],@album.category),{}, html_options = {:class => "listBox",:selected => :category , :style=>"float:left;"} %> <br> 
 	  	</div>
   	<div class="field">
     	<%= f.label 'Beskrivning:' %><br>
@@ -46,11 +45,8 @@
    		<%= f.datetime_select :end_date, :minute_step => 10 %>
    	</div>
   	<div class="actions">
-    <%= f.submit "Spara" %>
+    <%= f.submit "Spara album",class: "btn-u btn-u-small" %>
     <hr>
 	</div>
-	<% if @album.title != nil %>
-	<%= link_to 'Lägg till bilder',new_album_image_path(@album)%>
-	<% end %>
 <% end %>
 <script id="template-image" type="text/x-tmpl"><div class="image">{%=o.name%}<div class="progress"><div class="progress-bar bar" style="width: 0%"></div></div></div></script>

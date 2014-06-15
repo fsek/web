@@ -2,10 +2,10 @@ class Image < ActiveRecord::Base
   belongs_to :album 
   
   has_attached_file :foto, 
-                    :styles => { original: "4000x4000>", large: "800x800>", thumb: "100x100>" }, 
-                    :default_url => "/images/:style/missing.png",
-                    :url => "system/:attachment/:album_id/:id/:style/:filename", 
-                    :path => ":rails_root/public/:url"
+                    :styles => { original: "4000x4000>", large: "800x800>", small: "250x250>",thumb: "100x100>" },                     
+                    :path => ":rails_root/public/system/images/:attachment/:album_id/:id/:style/:filename",
+                    :url => "/system/images/:attachment/:album_id/:id/:style/:filename" 
+
                                         
   validates_attachment_content_type :foto, :content_type => /\Aimage\/.*\Z/ 
   

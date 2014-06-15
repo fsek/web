@@ -37,7 +37,7 @@ class ImagesController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @upload.errors, status: :unprocessable_entity }
+        format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -47,7 +47,7 @@ class ImagesController < ApplicationController
   def destroy
     @image.destroy
     respond_to do |format|
-      format.html { redirect_to images_url }
+      format.html { redirect_to edit_album_path(@album) }
       format.json { head :no_content }
     end
   end
