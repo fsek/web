@@ -1,6 +1,4 @@
 <% title("Bilder") %>
-
-
 	<strong>Album</strong>	</br>
 	<%if @albums.size > 0%>			
 				<%@albums.each do |p|%>
@@ -8,8 +6,6 @@
 				<%=link_to p.title,album_path(p) %></td>
 				<%end%>							
 		<%end%>
-
-
 <% content_for(:sidebar) do %>
  	<% if user_signed_in? %>
  	  <% if current_user.admin? || current_user.has_role?(:news,:edit) %>

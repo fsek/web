@@ -978,4 +978,18 @@ margin-top:15px;
 #phrasing-edit-all-phrases { /* Hide to avoid linking to /phrasing*/
 	display:none;
 }
-
+.galleria-info-link {
+	display:none !important;
+}
+.galleria-thumbnails {
+	display:none !important;
+}
+.galleria-thumb-nav-left {
+	display:none !important;
+}
+.galleria-thumb-nav-right {
+	display:none !important;
+}
+.galleria-thumb-nav-left.disabled {
+	display:none !important;
+}
