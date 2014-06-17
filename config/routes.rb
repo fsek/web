@@ -65,7 +65,8 @@ Fsek::Application.routes.draw do
   end
   
   resources :albums, path: :galleri do
-    resources :images, path: :bilder
+    
+    resources :images, path: :bilder    
   end     
  
    
