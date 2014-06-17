@@ -1,14 +1,35 @@
 <% title("Bilder") %>
-	<strong>Album</strong>	</br>
-	<%if @albums.size > 0%>			
-				<%@albums.each do |p|%>
-				<td><%=image_tag p.images.first(:order => "RANDOM()").foto.url(:small)%></br>
-				<%=link_to p.title,album_path(p) %></td>
+	<strong>Senast tillagda</strong>	</br>
+	<%if @albums.size > 0%>
+				<% @albums.sort_by{|album|album.created_at}.reverse.slice(0,4).each do |p| %>
+					<div class ="col-md-3">
+						<%=link_to p.title,album_path(p) %></br>
+						<%=image_tag p.images.first(:order => "RANDOM()").foto.url(:small)%>
+					</div>				
 				<%end%>							
 		<%end%>
+	</div>
+	<div class ="row">	
+	<strong>Sök efter album:</strong>	</br>
+		<%= form_tag albums_path, :method => 'get' do %>
+			<%= select_tag :search, options_for_select([" ","Nollning","FETSM"],:search) %> <br>
+			<%= select_tag :start, options_for_select(1994..Time.zone.now.year,:start) %> </br>
+			<%= submit_tag 'Sök', name: nil%>		  	
+  	<% end %>
+  	<%if @searched.size > 0%>
+				<% @searched.sort_by{|album|album.created_at}.reverse.slice(0,4).each do |p| %>
+					<div class ="col-md-3">
+						<%=link_to p.title,album_path(p) %></br>
+						<%=image_tag p.images.first(:order => "RANDOM()").foto.url(:small)%>
+					</div>				
+				<%end%>							
+		<%end%>
+	</div>	
+	
+	  	
 <% content_for(:sidebar) do %>
  	<% if user_signed_in? %>
- 	  <% if current_user.admin? || current_user.has_role?(:news,:edit) %>
+ 	  <% if current_user.admin? || current_user.has_role?(:galleri,:edit) %>
 	    	<div class="headline headline-md">
 	    		<h2>Verktyg</h2>
     		</div>

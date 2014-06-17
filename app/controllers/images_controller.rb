@@ -1,4 +1,7 @@
 class ImagesController < ApplicationController
+        layout 'static_page'
+  before_filter :login_required
+  before_filter :authenticate_user!  
     before_action :set_image, only: [:show, :edit, :update, :destroy]
     before_action :set_album, only: [:index,:new,:create, :show, :edit, :update, :destroy]
    # GET /uploads

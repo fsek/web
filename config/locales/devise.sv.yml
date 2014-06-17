@@ -19,6 +19,8 @@ sv:
       invalid_token: 'Ogiltig token för autentisering.'
       timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
       inactive: 'Ditt konto har inte aktiverats ännu.'
+      user:
+        not_found_in_database: 'Användarnamn eller lösenord stämmer inte.'
     sessions:
       signed_in: 'Loggade in.'
       signed_out: 'Loggade ut.'

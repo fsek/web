@@ -6,7 +6,8 @@ class AlbumsController < ApplicationController
   
   def index
     @albums = Album.all
-    @images = Image.all
+
+    @searched = Album.find(:all, :conditions => ['category = ? AND start_date <= ?', params[:search], params[:start]])
   end
   def edit
     @album = Album.find(params[:id])    
