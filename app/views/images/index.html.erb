@@ -10,17 +10,12 @@
   </thead>
 
   <tbody>
-    <% @image.each do |image| %>
+    <% @images.each do |image| %>
       <tr>
-      	<td><%= image_tag(image.foto(:small), class: 'thumb')  %></td>
-        <td><%= link_to 'Show', image %></td>
-        <td><%= link_to 'Edit', edit_image_path(image) %></td>
-        <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      	<td><%= image_tag(image.foto(:small), class: 'thumb')  %></td>        
+        <td><%= button_to "Delete", album_image_path(@album, image), method: :delete,data: {confirm: 'Är du säker?'} %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'Lägg till nya bilder', new_image_path %>

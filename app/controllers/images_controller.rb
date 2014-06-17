@@ -1,10 +1,10 @@
 class ImagesController < ApplicationController
     before_action :set_image, only: [:show, :edit, :update, :destroy]
-    before_action :set_album, only: [:new,:create, :show, :edit, :update, :destroy]
+    before_action :set_album, only: [:index,:new,:create, :show, :edit, :update, :destroy]
    # GET /uploads
   # GET /uploads.json
   def index
-    @image = Image.all
+    @images = @album.images
   end
 
   # GET /uploads/1
