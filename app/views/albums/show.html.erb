@@ -23,7 +23,7 @@
   	</div>
 		<div id='gallerii'>			
 			<% @album.images.each do |i|%>
-				<td><%= image_tag i.foto.url(:original) %></td>			
+				<td><%= image_tag i.foto.url(:large) %></td>			
 			<% end %>
 		</div>
   </div>    
