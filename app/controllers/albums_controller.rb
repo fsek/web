@@ -5,9 +5,8 @@ class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit,:destroy,:update] 
   
   def index
-    @albums = Album.all
-
-    @searched = Album.find(:all, :conditions => ['category = ? AND start_date <= ?', params[:search], params[:start]])
+    @albums = Album.all      
+      @searched = Album.find(:all, :conditions => ['category = ? AND start_date >= ?', params[:search], params[:start]])    
   end
   def edit
     @album = Album.find(params[:id])    

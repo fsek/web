@@ -981,15 +981,3 @@ margin-top:15px;
 .galleria-info-link {
 	display:none !important;
 }
-.galleria-thumbnails {
-	display:none !important;
-}
-.galleria-thumb-nav-left {
-	display:none !important;
-}
-.galleria-thumb-nav-right {
-	display:none !important;
-}
-.galleria-thumb-nav-left.disabled {
-	display:none !important;
-}
