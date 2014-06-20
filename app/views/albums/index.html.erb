@@ -12,9 +12,10 @@
 	<div class ="row">	
 	<strong>Sök efter album:</strong>	</br>
 		<%= form_tag albums_path, :method => 'get' do %>
-			<%= select_tag :search, options_for_select([" ","Nollning","FETSM"],:search) %> <br>
-			<%= select_tag :start, options_for_select(1994..Time.zone.now.year,:start) %> </br>
-			<%= submit_tag 'Sök', name: nil%>		  	
+			<%= select_tag :search, options_for_select([" ","Nollning","FETSM"],params[:search]) %> <br>			
+			
+			<%= date_field_tag(:start,value = params[:start]) %>
+			<%= submit_tag 'Visa', name: nil%>					  	
   	<% end %>
   	<%if @searched.size > 0%>
 				<% @searched.sort_by{|album|album.created_at}.reverse.slice(0,4).each do |p| %>
