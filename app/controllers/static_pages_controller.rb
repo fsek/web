@@ -19,8 +19,7 @@ class StaticPagesController < ApplicationController
     if @sent == nil
       @sent = false
     end
-    if params[:recipient] != nil
-      @sent = true
+    if params[:recipient] != nil      
       ContactMailer.contact_email(@name,@email,@msg,@recipient).deliver      
     end
   end
