@@ -1,3 +1,0 @@
-<%= text_field "Namn",:name, :required => true%></br>
-<!--<%= text_field :email, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %>-->
-<!-- <%= text_area :msg, :required => true %> -->

@@ -78,13 +78,11 @@ Fsek::Application.configure do
   config.action_mailer.default :charset => "utf-8"
   
   config.action_mailer.smtp_settings = {
-  address: "smtp.gmail.com",
-  port: 587,
-  domain: ENV["GMAIL_DOMAIN"],
+  address: "127.0.0.1",
+  port: 25,
+  domain: 'dev.fsektionen.se',
   authentication: "plain",
-  enable_starttls_auto: true,
-  user_name: ENV["GMAIL_USERNAME"],
-  password: ENV["GMAIL_PASSWORD"]
+  enable_starttls_auto: false  
   }
 
   # Disable automatic flushing of the log to improve performance.

@@ -10,13 +10,19 @@ class ContactMailer < ActionMailer::Base
     if @recipient == 'Styrelse'       
       mail from: @name + ' <'+@email+'>', to: 'davidwessman@live.se', subject: 'Meddelande via fsektionen.se'      
     elsif @recipient == 'Orförande'
+      mail from: @name + ' <'+@email+'>', to: 'davidwessman@live.se', subject: 'Meddelande via fsektionen.se'
     elsif @recipient == 'Vice ordförande'
+      mail from: @name + ' <'+@email+'>', to: 'davidwessman@live.se', subject: 'Meddelande via fsektionen.se'
     elsif @recipient == 'Kassör'
+      mail from: @name + ' <'+@email+'>', to: 'davidwessman@live.se', subject: 'Meddelande via fsektionen.se'
     elsif @recipient == 'Spindelman(webb)'
+      mail from: @name + ' <'+@email+'>', to: 'davidwessman@live.se', subject: 'Meddelande via fsektionen.se'
     elsif @recipient == 'Näringslivsutskottet'
+      mail from: @name + ' <'+@email+'>', to: 'davidwessman@live.se', subject: 'Meddelande via fsektionen.se'
     elsif @recipient == 'Sanningsministeriet'
-    end    
-    
-    
+      mail from: @name + ' <'+@email+'>', to: 'davidwessman@live.se', subject: 'Meddelande via fsektionen.se'
+    elsif @recipient == 'Likabehandlingsombud'
+      mail from: @name + ' <'+@email+'>', to: 'davidwessman@live.se', subject: 'Meddelande via fsektionen.se'
+    end 
   end
 end
