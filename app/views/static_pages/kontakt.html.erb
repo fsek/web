@@ -1,8 +1,32 @@
 <%= title("Kontakt")%>
 <div class="container">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-8">
+			<% if @sent == false%>
+				<%= form_tag kontakt_path, method: 'post' %>
+					<div class="field">
+						<%= label_tag "Mottagare"%></br>
+						<%= select_tag :recipient, options_for_select(["","Styrelse","Ordförande","Vice ordförande","Kassör","Spindelman","Näringslivsutskottet"]) %> <br>
+					</div>
+					<div class="field">
+						<%= label_tag "Namn"%></br>				
+						<%= text_field "Namn",:namn, :required => true%></br>
+					</div>
+					<div class="field">
+						<%= label_tag "E-post"%></br>
+						<%= text_field :email, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %>
+					</div>
+					<div class="field">
+						<%= label_tag "Meddelande"%></br>
+						<%= text_area :msg, :required => true %>
+					</div>					
+					<div class="field">									
+						<%= submit_tag "Skicka"%>
+					</div>
+			<% end %>
+			
 		</div>
+		<%if 1 == 0%>
 		<div class="col-md-4">
 			<div class="search-blocks blocks-top-orange" style='text-aling:center'>
 				<h2><a href="mailto:ordf@fsektionen.se"><%= fa_icon('envelope') %>Sektionens ordförande</a></h2>
@@ -11,5 +35,6 @@
 				<h2><a href="mailto:libo@fsektionen.se"><%= fa_icon('envelope') %>Likabehandlingsombud</a></h2>
 	       </div>
        </div>
+       <% end %>
 	</div>
 </div>

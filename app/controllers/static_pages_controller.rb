@@ -2,9 +2,6 @@
 class StaticPagesController < ApplicationController
   include TheRole::Controller
   
-  before_action :login_required, only: [:bane]
-  
-  
   layout "static_page"
   skip_before_filter :authenticate_user!
   
@@ -15,6 +12,13 @@ class StaticPagesController < ApplicationController
   def faq
   end  
   def kontakt
+    if @sent == nil
+      @sent = false
+    end
+    if params[:recipient] != nil
+      @sent = true
+      ContactMailer.contact_email(params[:name],params[:email],params[:msg],params[:recipient]).deliver      
+    end
   end
   def kulturministerie
   end  
@@ -35,8 +39,6 @@ class StaticPagesController < ApplicationController
   def libo  
   end 
   def kurslankar    
-  end
-  def bane  
   end
   
   private 
