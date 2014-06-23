@@ -2,29 +2,50 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<% if @sent == false%>
-				<%= form_tag kontakt_path, method: 'post' %>
-					<div class="field">
-						<%= label_tag "Mottagare"%></br>
-						<%= select_tag :recipient, options_for_select(["","Styrelse","Ordförande","Vice ordförande","Kassör","Spindelman","Näringslivsutskottet"]) %> <br>
-					</div>
-					<div class="field">
-						<%= label_tag "Namn"%></br>				
-						<%= text_field_tag :name,'Fyll i namn', :required => true %></br>						
-					</div>
-					<div class="field">
-						<%= label_tag "E-post"%></br>
-						<%= text_field_tag :email, 'Epost', :required => true %></br>					
-					</div>
-					<div class="field">
-						<%= label_tag "Meddelande"%></br>
-						<%= text_area_tag :msg,'Meddelande', :required => true %></br>						
-					</div>					
-					<div class="field">									
-						<%= submit_tag "Skicka"%>
-					</div>
-			<% end %>
-			
+			<div class="kontakt-choose">
+				<%= form_tag kontakt_path, method: 'get' do %>
+					<%= label_tag "Vem vill du kontakta?"%>
+					<%= select_tag :till, options_for_select(KONTAKTLISTA, params[:till])%>
+					<%= submit_tag 'Visa', name: nil%>
+				<% end %>
+				<% case params[:till]%>
+					<% when "Styrelse"%>
+						<%=phrase('kontaktStyrelse')%>
+					<% when "Ordförande"%>
+						<%=phrase('kontaktOrdf')%>
+					<% when "Vice ordförande"%>
+						<%=phrase('kontaktViceOrdf')%>
+					<% when "Kassör"%>
+						<%=phrase('kontaktKassör')%>
+					<% when "Spindelmän"%>
+						<%=phrase('kontaktSpindelman')%>
+					<% when "Näringslivsutskottet"%>
+						<%=phrase('kontaktN')%>
+					<% when "Spindelman"%>
+						<%=phrase('kontaktSpindelman')%>						
+				<% end %>
+			</div>			
+				<% if params[:till] != nil %>
+				<div class ="kontakt-form">								
+					<%= form_tag kontakt_path, method: 'post' %>
+					<%= label_tag 'Kontakta '+params[:till]%>					
+						<div class="field">
+							<%= label_tag "Namn"%></br>				
+							<%= text_field_tag :name,'Fyll i namn', :required => true %></br>						
+						</div>
+						<div class="field">
+							<%= label_tag "E-post"%></br>
+							<%= text_field_tag :email, 'Epost', :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %></br>					
+						</div>
+						<div class="field">
+							<%= label_tag "Meddelande"%></br>
+							<%= text_area_tag :msg,'Meddelande', :required => true %></br>						
+						</div>					
+						<div class="field">																
+							<%= submit_tag "Skicka"%>
+						</div>
+					<% end %>
+				</div>
 		</div>
 		<%if 1 == 0%>
 		<div class="col-md-4">

@@ -44,6 +44,8 @@ module PhrasingHelper
                             
                             elsif current_page?(:controller => 'static_pages',:action => 'faq')
                               current_user.admin? || current_user.moderator?(:faq)
+                            elsif current_page?(:controller => 'static_pages',:action => 'kontakt')
+                              current_user.admin? || current_user.moderator?(:kontakt)
                             end
                 elsif controller_name == "phrasing_phrases"
                   true

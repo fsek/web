@@ -15,12 +15,10 @@ class StaticPagesController < ApplicationController
     @name = params[:name]
     @email = params[:email]
     @msg = params[:msg]
-    @recipient = params[:recipient]
-    if @sent == nil
-      @sent = false
-    end
-    if params[:recipient] != nil      
-      ContactMailer.contact_email(@name,@email,@msg,@recipient).deliver      
+    @recipient = params[:till]
+    if KONTAKTLISTA.include? @recipient && @name != nil && @email != nil && @msg != nil    
+      ContactMailer.contact_email(@name,@email,@msg,@recipient).deliver
+      redirect_to kontakt_path, status: :skickat      
     end
   end
   def kulturministerie
