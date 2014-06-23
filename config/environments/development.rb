@@ -29,7 +29,7 @@ Fsek::Application.configure do
   address: "127.0.0.1",
   port: 25,
   domain: 'dev.fsektionen.se',  
-  enable_starttls_auto: false
+  enable_starttls_auto: false,
   :openssl_verify_mode => 'none'    
   }
 
