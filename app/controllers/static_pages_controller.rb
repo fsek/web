@@ -12,12 +12,16 @@ class StaticPagesController < ApplicationController
   def faq
   end  
   def kontakt
+    @name = params[:name]
+    @email = params[:email]
+    @msg = params[:msg]
+    @recipient = params[:recipient]
     if @sent == nil
       @sent = false
     end
     if params[:recipient] != nil
       @sent = true
-      ContactMailer.contact_email(params[:name],params[:email],params[:msg],params[:recipient]).deliver      
+      ContactMailer.contact_email(@name,@email,@msg,@recipient).deliver      
     end
   end
   def kulturministerie

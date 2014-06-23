@@ -10,15 +10,15 @@
 					</div>
 					<div class="field">
 						<%= label_tag "Namn"%></br>				
-						<%= text_field "Namn",:namn, :required => true%></br>
+						<%= text_field "namn",:name, :required => true %></br>						
 					</div>
 					<div class="field">
 						<%= label_tag "E-post"%></br>
-						<%= text_field :email, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %>
+						<%= text_field "email", :email, :required => true %></br>					
 					</div>
 					<div class="field">
 						<%= label_tag "Meddelande"%></br>
-						<%= text_area :msg, :required => true %>
+						<%= text_area "msg",:msg, :required => true %></br>						
 					</div>					
 					<div class="field">									
 						<%= submit_tag "Skicka"%>
