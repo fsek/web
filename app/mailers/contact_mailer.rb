@@ -7,11 +7,8 @@ class ContactMailer < ActionMailer::Base
      @email = email
      @msg = msg
      @recipient = recipient
-    Rails.logger.info "VAD HÄNDER"
-    Rails.logger.info @name
-    
     if @recipient == 'Styrelse'       
-      mail from: @email, to: 'davidwessman@live.se', subject: 'Meddelande via fsektionen.se'      
+      mail from: '#{@name} <#{@email}>', to: 'davidwessman@live.se', subject: 'Meddelande via fsektionen.se'      
     elsif @recipient == 'Orförande'
     elsif @recipient == 'Vice ordförande'
     elsif @recipient == 'Kassör'

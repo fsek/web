@@ -10,15 +10,15 @@
 					</div>
 					<div class="field">
 						<%= label_tag "Namn"%></br>				
-						<%= text_field "namn",:name, :required => true %></br>						
+						<%= text_field_tag :name,'Fyll i namn', :required => true %></br>						
 					</div>
 					<div class="field">
 						<%= label_tag "E-post"%></br>
-						<%= text_field "email", :email, :required => true %></br>					
+						<%= text_field_tag :email, 'Epost', :required => true %></br>					
 					</div>
 					<div class="field">
 						<%= label_tag "Meddelande"%></br>
-						<%= text_area "msg",:msg, :required => true %></br>						
+						<%= text_area_tag :msg,'Meddelande', :required => true %></br>						
 					</div>					
 					<div class="field">									
 						<%= submit_tag "Skicka"%>
