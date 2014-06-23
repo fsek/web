@@ -8,7 +8,7 @@ class ContactMailer < ActionMailer::Base
     @msg = msg
     @recipient = recipient 
     if @recipient == 'Styrelse'       
-      mail from: '#{@name}<#{@email}>', to: @email, subject: 'Meddelande via fsektionen.se'      
+      mail from: '#{@name}<#{@email}>', to: 'davidwessman@live.se', subject: 'Meddelande via fsektionen.se'      
     elsif @recipient == 'Orförande'
     elsif @recipient == 'Vice ordförande'
     elsif @recipient == 'Kassör'
