@@ -19,6 +19,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     if @profile.created_at == @profile.updated_at
+      UserMailer.welcome_email(@profile.user).deliver
       redirect_to edit_profile_url(@profile) 
     end
   end

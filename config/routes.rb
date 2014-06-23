@@ -5,7 +5,7 @@ Fsek::Application.routes.draw do
 
    
   get 'cafebokning' => 'calendar#cafebokning'
-  get 'kalender/export' => 'calendar#export.ics'
+  get 'kalender/export' => 'calendar#export.ics', as: :subscription
   get 'kurslankar' => 'static_pages#kurslankar'
   get 'styrelse' => 'static_pages#styrelse'
   get 'utskott' => 'static_pages#utskott'
@@ -20,6 +20,8 @@ Fsek::Application.routes.draw do
   get 'start' => 'start_page#startsida'
   get 'libo' => 'static_pages#libo'  
   get 'kontakt' => 'static_pages#kontakt'
+  post 'kontakt' => 'static_pages#kontakt'
+  
   
   get 'om' => 'static_pages#om', as: :om
   get 'faq' => 'static_pages#faq', as: :faq
