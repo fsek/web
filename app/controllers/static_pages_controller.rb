@@ -16,6 +16,10 @@ class StaticPagesController < ApplicationController
     @email = params[:email]
     @msg = params[:msg]
     @recipient = params[:till]
+    Rails.logger.info @name
+    Rails.logger.info @email
+    Rails.logger.info @msg
+    Rails.logger.info @recipient
     if KONTAKTLISTA.include? @recipient && @name != nil && @email != nil && @msg != nil    
       ContactMailer.contact_email(@name,@email,@msg,@recipient).deliver
       redirect_to kontakt_path, status: :skickat      

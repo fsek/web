@@ -41,7 +41,8 @@
 							<%= label_tag "Meddelande"%></br>
 							<%= text_area_tag :msg,'Meddelande', :required => true %></br>						
 						</div>					
-						<div class="field">																
+						<div class="field">
+							<%= hidden_field_tag :till, params[:till]%>																
 							<%= submit_tag "Skicka"%>
 						</div>
 					<% end %>
