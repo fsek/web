@@ -30,7 +30,8 @@ Fsek::Application.configure do
   port: 25,
   domain: 'dev.fsektionen.se',
   authentication: "plain",
-  enable_starttls_auto: false  
+  enable_starttls_auto: false,
+  openssl_verify_mode: 'none'  
   }
 
   # Print deprecation notices to the Rails logger.
