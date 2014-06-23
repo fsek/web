@@ -20,7 +20,13 @@ class StaticPagesController < ApplicationController
     Rails.logger.info @email
     Rails.logger.info @msg
     Rails.logger.info @recipient
-    if KONTAKTLISTA.include? @recipient && @name != nil && @email != nil && @msg != nil    
+    Rails.logger.info KONTAKTLISTA.include? @recipient
+    Rails.logger.info @name != nil
+    Rails.logger.info @email != nil
+    Rails.logger.info @msg != nil
+    Rails.logger.info (KONTAKTLISTA.include? @recipient) && (@name != nil) && (@email != nil) && (@msg != nil)
+    if (KONTAKTLISTA.include? @recipient) && (@name != nil) && (@email != nil) && (@msg != nil)
+      Rails.logger.info 'hit?'    
       ContactMailer.contact_email(@name,@email,@msg,@recipient).deliver
       redirect_to kontakt_path, status: :skickat      
     end
