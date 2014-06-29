@@ -11,7 +11,9 @@
     <h2><%= @news.title %></h2>
 	
     <ul class="list-unstyled blog-info">
-    	<li><%= fa_icon("user") %> <%= link_to @author.profile.name+' - ('+ @author.profile.posts.find(@author.profile.first_post).title+')' , @author.profile %></li>    	
+    	<% if @author.profile.posts.count != 0%>
+    		<li><%= fa_icon("user") %> <%= link_to @author.profile.name+' - ('+ @author.profile.posts.find(@author.profile.first_post).title+')' , @author.profile %></li>
+    	<% end %>    	
       <li><i class="fa fa-calendar"></i> <%= @news.created_at.in_time_zone("Berlin").to_formatted_s(:db) %></li>      
     </ul>
 	

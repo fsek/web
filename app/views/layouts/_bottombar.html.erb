@@ -5,6 +5,8 @@
         </div>
         <div class="col-md-6">   
 			<p class="copyright-space pull-right">
-	            Webmaster: <a href="mailto:spindelman@fsektionen.se"><%= fa_icon('envelope') %> Spindelmännen</a>
+				<% if List.find_by(:name => "Spindelmän") != nil%>
+				Webmaster: <%= link_to fa_icon('envelope')+" Spindelmännen",kontakt_path(:id => List.find_by(:name => "Spindelmän").id)%>
+				<% end %>	            
 			</p>              
         </div>            

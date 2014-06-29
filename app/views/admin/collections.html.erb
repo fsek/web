@@ -1,0 +1,28 @@
+	<div class="row">
+		<%= form_tag admin_kategorier_path, method: 'get' %>
+			<%= label_tag 'Välj en lista att redigera'%>
+			<%= select_tag :list, options_for_select(["Bildkategorier","Kontaktlista"],params[:list])%>
+			<%= submit_tag 'Redigera'%><br><br>
+	</div>
+<% if params[:list] != nil%>
+	<div class="row">
+		<div class="col-md-4">
+			<%= form_tag admin_kategorier_path, method: 'get' %>
+				<%= select_tag :change, options_for_select(@kategorier,params[:change])%><br> 
+				<%= submit_tag 'Redigera'%>
+				<%= submit_tag 'Ta bort'%>
+		</div>
+		<div class="col-md-4">
+			<%= form_tag admin_kategorier_path, method: 'post' %>
+				<%= text_field_tag :ny%> <br>
+				<%= submit_tag 'Lägg till'%>
+		</div>
+		<div class="col-md-4">	
+			<% if @kategori != nil %>
+				<%= form_tag(admin_kategorier_path ,method: 'post')%>
+					<%= text_field_tag :text, params[:change]%><br>
+					<%= submit_tag 'Spara',name: nil%>	
+			<% end %>
+		</div>
+	</div>
+<% end %>

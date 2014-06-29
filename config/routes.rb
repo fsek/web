@@ -21,6 +21,11 @@ Fsek::Application.routes.draw do
   get 'libo' => 'static_pages#libo'  
   get 'kontakt' => 'static_pages#kontakt'
   post 'kontakt' => 'static_pages#kontakt'
+  get 'admin/kategorier' => 'admin#collections'
+  post 'admin/kategorier' => 'admin#collections'
+  get 'admin/kontakt' => 'admin#kontakt', as: :admin_kontakt
+  post 'admin/kontakt'=> 'admin#kontakt', as: :admin_kontakt_path
+  
   
   
   get 'om' => 'static_pages#om', as: :om
@@ -66,10 +71,10 @@ Fsek::Application.routes.draw do
   patch :add_profile_username, on: :member
   end
   
-  resources :albums, path: :galleri do
-    
+  resources :albums, path: :galleri do    
     resources :images, path: :bilder    
-  end     
+  end   
+    
  
    
   # Homepage of the system!

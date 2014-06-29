@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
   include TheRole::Controller
   
   layout "static_page"
-  skip_before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!  
   
   def cafe
   end
@@ -12,23 +12,24 @@ class StaticPagesController < ApplicationController
   def faq
   end  
   def kontakt
+    if (params[:till] != nil) && (List.where(category: 'kontakt').where(name: params[:till]).take != nil)
+      @kontakt = List.where(category: 'kontakt').where(name: params[:till]).take
+    end
+    if user_signed_in?
+      @kontaktlista = List.where(category: 'kontakt')
+    else
+      @kontaktlista = List.where(category: 'kontakt').where(bool1: false) + List.where(category: 'kontakt').where(bool1: nil)
+    end
+    if params[:id] != nil
+      @kontakt = List.find(params[:id])
+    end
     @name = params[:name]
     @email = params[:email]
     @msg = params[:msg]
     @recipient = params[:till]
-    Rails.logger.info @name
-    Rails.logger.info @email
-    Rails.logger.info @msg
-    Rails.logger.info @recipient
-    Rails.logger.info KONTAKTLISTA.include? @recipient
-    Rails.logger.info @name != nil
-    Rails.logger.info @email != nil
-    Rails.logger.info @msg != nil
-    Rails.logger.info (KONTAKTLISTA.include? @recipient) && (@name != nil) && (@email != nil) && (@msg != nil)
-    if (KONTAKTLISTA.include? @recipient) && (@name != nil) && (@email != nil) && (@msg != nil)
-      Rails.logger.info 'hit?'    
-      ContactMailer.contact_email(@name,@email,@msg,@recipient).deliver
-      redirect_to kontakt_path, status: :skickat      
+    if(@name != nil) && (@email != nil) && (@msg != nil) && (@kontakt != nil)       
+      ContactMailer.contact_email(@name,@email,@msg,@kontakt).deliver
+      redirect_to kontakt_path     
     end
   end
   def kulturministerie

@@ -37,14 +37,14 @@
                       </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+                        <a href='/kontakt' class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
                             Kontakt <%= fa_icon('angle-down') %>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><%= link_to 'Näringslivsutskottet', :fnu %></li>
-                            <li><%= link_to 'Likabehandlingsombud', :libo%></li>  
-                            <li><%= link_to 'Spindelman/Webmaster',:pryl %></li>
-                            <li><%= link_to 'Styrelsen',:styrelse %></li>
+                            <li><%= link_to 'Näringslivsutskottet', kontakt_path(:id => List.find_by(:name => "Näringslivsutskottet").id)%></li>
+                            <li><%= link_to 'Likabehandlingsombud', kontakt_path(:id => List.find_by(:name => "Likabehandlingsombud").id)%></li>  
+                            <li><%= link_to 'Spindelman/Webmaster', kontakt_path(:id => List.find_by(:name => "Spindelmän").id)%></li>
+                            <li><%= link_to 'Styrelse', kontakt_path(:id => List.find_by(:name => "Styrelse").id)%></li>
                             <!--<li><%= link_to 'Ordförande',:styrelse %></li>-->                                                     
                         </ul>
                     </li>
