@@ -24,7 +24,7 @@
             </div><!-- /input-group -->                    
           </form> 
           <br>
-          Vill du skicka med en notis i vecktorn? Skicka i så fall in den till <%= link_to fa_icon('envelope')+" Sanningsministeriet",kontakt_path(:till => "Sanningsministeriet")%> senast måndag kl 17.
+          Vill du skicka med en notis i vecktorn? Skicka i så fall in den till <%= render partial: "static_pages/kontakt", locals: {kontakt: List.find_by(:name => 'Sanningsministeriet')}%> senast måndag kl 17.
           <hr>
   		<div class="headline"><h3>Håll dig uppdaterad</h3></div>
         <ul class="social-icons">
@@ -38,7 +38,7 @@
 		<p>
 			<%= fa_icon('phone') %> 046 - 14 47 22
 			<br>
-			<%= link_to fa_icon('envelope')+" Ordförande",kontakt_path(:till => "Ordförande")%>
+			<%= render partial: "static_pages/kontakt", locals: {kontakt: List.find_by(:name => 'Ordförande')}%>
 			<br>
 			<div class="row-fluid">			
 				<div class="headline"><h3>Besöksadress</h3></div>

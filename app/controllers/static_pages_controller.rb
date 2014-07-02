@@ -12,8 +12,14 @@ class StaticPagesController < ApplicationController
   def faq
   end  
   def kontakt
+    @id = 0
     if (params[:till] != nil) && (List.where(category: 'kontakt').where(name: params[:till]).take != nil)
       @kontakt = List.where(category: 'kontakt').where(name: params[:till]).take
+      @id = @kontakt.id
+    end
+    if (params[:id] != nil) && (List.where(category: 'kontakt').where(id: params[:id]) != nil)
+      @kontakt = List.find(params[:id])
+      @id = @kontakt.id
     end
     if user_signed_in?
       @kontaktlista = List.where(category: 'kontakt')
@@ -22,6 +28,7 @@ class StaticPagesController < ApplicationController
     end
     if params[:id] != nil
       @kontakt = List.find(params[:id])
+      @id = @kontakt.id
     end
     @name = params[:name]
     @email = params[:email]

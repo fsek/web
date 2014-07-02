@@ -22,7 +22,7 @@
 		<div class="col-md-4">
 			<%= form_tag admin_kontakt_path, method: 'post'%>
 				<%= label_tag 'Lista av alla kontaktposter'%><br>
-				<%= select_tag(:id, options_from_collection_for_select(@kontakter,:id,:name))%><br><br>
+				<%= select_tag(:id, options_from_collection_for_select(@kontakter,:id,:name,@kontakten.id))%><br><br>
 				<%= submit_tag 'Visa'%>
 		</div>
 		<% if (@kontakten != nil) && (@kontakten.name != nil) %>

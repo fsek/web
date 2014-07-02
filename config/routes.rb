@@ -7,8 +7,8 @@ Fsek::Application.routes.draw do
   get 'cafebokning' => 'calendar#cafebokning'
   get 'kalender/export' => 'calendar#export.ics', as: :subscription
   get 'kurslankar' => 'static_pages#kurslankar'
-  get 'styrelse' => 'static_pages#styrelse'
-  get 'utskott' => 'static_pages#utskott'
+  get 'styrelse' => 'static_pages#styrelse', as: :styrelse
+  get 'utskott' => 'static_pages#utskott', as: :utskott
   get 'utskott/cafemasteri' => 'static_pages#cafe', as: :cafe 
   get 'utskott/fos' => 'static_pages#fos', as: :fos
   get 'utskott/kulturministerie' => 'static_pages#kulturministerie', as: :km
@@ -16,15 +16,14 @@ Fsek::Application.routes.draw do
   get 'utskott/prylmasteri' => 'static_pages#prylmasteri', as: :pryl
   get 'utskott/sanningsministerie' => 'static_pages#sanningsministerie', as: :sanning  
   get 'utskott/sexmasteri' => 'static_pages#sexmasteri', as: :sexmasteri
-  get 'utskott/studieradet' => 'static_pages#studierad', as: :studierad
-  get 'start' => 'start_page#startsida'
-  get 'libo' => 'static_pages#libo'  
-  get 'kontakt' => 'static_pages#kontakt'
-  post 'kontakt' => 'static_pages#kontakt'
-  get 'admin/kategorier' => 'admin#collections'
-  post 'admin/kategorier' => 'admin#collections'
+  get 'utskott/studieradet' => 'static_pages#studierad', as: :studierad  
+  get 'libo' => 'static_pages#libo', as: :libo
+  get 'kontakt' => 'static_pages#kontakt', as: :kontakt
+  post 'kontakt' => 'static_pages#kontakt', as: :kontakt_path  
   get 'admin/kontakt' => 'admin#kontakt', as: :admin_kontakt
   post 'admin/kontakt'=> 'admin#kontakt', as: :admin_kontakt_path
+  get 'admin/bildgalleri' => 'admin#bildgalleri', as: :admin_bildgalleri
+  post 'admin/bildgalleri'=> 'admin#bildgalleri', as: :admin_bildgalleri_path
   
   
   

@@ -82,7 +82,7 @@
 <!--=== End Breadcrumbs ===-->
 
 
-<!--=== Content Part ===-->	
+<!--=== Content Part ===-->
 	<div class="carousel slide carousel-v1 margin-bottom-20 margin-top-20" id="myCarousel-1">
                 <div class="carousel-inner">
                     <div class="item active">
@@ -90,32 +90,22 @@
 							<div class="container">
 								<h1>Välkommen till F-sektionen!</h1>
 								<p>
-									Aliquam sagittis ligula vel leo tempus varius. Sed placerat aliquam lacus, fringilla bibendum nisi laoreet nec. Nulla facilisi. Nam semper mi sed posuere auctor. Quisque fringilla pretium pretium.
+									<%=phrase('startsida')%>
 								</p>
 							</div>
 						</div>
-                    </div>
-                    <div class="item">
-						<div class="start-background">
-							<div class="container">
-								<h1>F-sektionen!</h1>
-								<p>
-									Aliquam sagittis ligula vel leo tempus varius. Sed placerat aliquam lacus, fringilla bibendum nisi laoreet nec. Nulla facilisi. Nam semper mi sed posuere auctor. Quisque fringilla pretium pretium.
-								</p>
-							</div>
-						</div>
-                    </div>
+                    </div>                    
                 </div>
                 
-                <div class="carousel-arrow">
+               <!-- <div class="carousel-arrow">
                     <a data-slide="prev" href="#myCarousel-1" class="left carousel-control">
                         <i class="fa fa-angle-left"></i>
                     </a>
                     <a data-slide="next" href="#myCarousel-1" class="right carousel-control">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                </div>
-            </div>
+               </div> -->
+ 	</div>	
 
 <div class="container">
     <div class="row magazine-page">    	
@@ -141,25 +131,10 @@
                 	<div class="search-blocks-top-orange">
                 		<h3>Nyheter</h3>
                 		<hr>                		
-                	</div>
-                	<% @news.sort_by{|news|news.created_at}.reverse.slice(0,3).each do |news| %>
-									<div class="row">
-											<div class ="col-md-12">
-												<h4><%= news.title%></h4>
-												<ul class="list-unstyled blog-info">
-    											<li><%= fa_icon("user") %> <%= link_to (User.find(news.author).profile.name)+' - ('+ Role.find(User.find(news.author).role_id).title+')' ,User.find(news.author).profile %></li>    	
-      											<li><i class="fa fa-calendar"></i> <%= news.created_at.in_time_zone("Berlin").to_formatted_s(:short) %></li>      
-    											</ul>														
-									      		
-								      		</div>
-						   			</div>							   			
-						   			<div class="row">
-							   			<div class ="col-md-12">							   				
-							   				<%= simple_format(news.content) %>
-							   			</div>
-							   			</div>
-						    		<hr>						    			    		
-					<% end %>
+                	</div>                	
+                	
+									
+					
 				   <div class="news-read-more">
                         <i class="fa fa-plus"></i>
                         <%= link_to 'Fler nyheter','/nyhet'%>
@@ -203,9 +178,11 @@
 <script type="text/javascript">
     jQuery(document).ready(function() {
         App.init();
-        App.initSliders();
+        App.initSliders();        	
     });
-    $(".owl-carousel").owlCarousel();
+     
+  	 
+	
 </script>
 <!--[if lt IE 9]>
   <script src="assets/plugins/respond.js"></script>

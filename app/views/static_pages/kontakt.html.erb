@@ -3,9 +3,9 @@
 	<div class="row">
 		<div class="col-md-8">
 			<div class="kontakt-choose">
-				<%= form_tag kontakt_path, method: 'post' do %>
+					<%= form_tag kontakt_path, method: 'post' do %>
 					<%= label_tag "Vem vill du kontakta?"%><br>
-					<%= select_tag :id, options_from_collection_for_select(@kontaktlista,:id,:name,@kontakt.id)%>
+					<%= select_tag :id, options_from_collection_for_select(@kontaktlista,:id,:name,@id )%>
 					<%= submit_tag 'Visa', name: nil%>
 				<% end %>				
 			</div>			
@@ -31,16 +31,6 @@
 						</div>
 					<% end %>
 				</div>
-		</div>
-		<%if 1 == 0%>
-		<div class="col-md-4">
-			<div class="search-blocks blocks-top-orange" style='text-aling:center'>
-				<h2><a href="mailto:ordf@fsektionen.se"><%= fa_icon('envelope') %>Sektionens ordförande</a></h2>
-				<h2><a href="mailto:styrelsen@fsektionen.se"><%= fa_icon('envelope') %>Styrelsen</a></h2>
-				<h2><a href="mailto:spindelman@fsektionen.se"><%= fa_icon('envelope') %>Spindelman/Webmaster</a></h2>
-				<h2><a href="mailto:libo@fsektionen.se"><%= fa_icon('envelope') %>Likabehandlingsombud</a></h2>
-	       </div>
-       </div>
-       <% end %>
+		</div>		
 	</div>
 </div>

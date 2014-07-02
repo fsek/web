@@ -1,7 +1,5 @@
              <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                	<li><a href="/galleri" class="dropdown-toggle">
-                		Bildgalleri</a></li>                	
+                <ul class="nav navbar-nav navbar-right">                	
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
                             Sektionen <%= fa_icon('angle-down') %>
@@ -18,12 +16,15 @@
                             För medlemmar <%= fa_icon('angle-down') %>
                         </a>
                         <ul class="dropdown-menu">
+                    	  <li><%= link_to 'Bildgalleri', :albums %></li>
+                          <li><%= link_to 'Kalender', :calendar_index %></li>
                           <li><%= link_to 'Bilbokning', 'https://docs.google.com/spreadsheet/ccc?key=0AlFJsQziMBrLdFA4RFlqcmlqbHczLWNud3JnS2FxUWc&usp=drive_web#gid=0',:data => { :confirm => 'Du länkas nu till ett Google Doc för bilbokning :)'},target: '_blank' %></li>
                           <li><%= link_to 'Jobba i Hilbert Cafe', 'http://www.tinyurl.com/hilbertcafelp4',:data => { :confirm => 'Du länkas nu till ett Google Doc för att jobba i Hilbert Café :)'},target: '_blank' %></li> 
-                          <li><%= link_to 'Kalender', :calendar_index %></li>
+                          
                           <!--<li><%= link_to 'Engagera dig', :engagemang %></li>-->
                           <!--<li><%= link_to 'Multimedia', :multimedia %></li>-->
                           <li><%= link_to 'Länkar', :lankar %></li>
+                          
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -37,16 +38,9 @@
                       </ul>
                     </li>
                     <li class="dropdown">
-                        <a href='/kontakt' class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+                        <a href='/kontakt' class="dropdown-toggle">
                             Kontakt <%= fa_icon('angle-down') %>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><%= link_to 'Näringslivsutskottet', kontakt_path(:id => List.find_by(:name => "Näringslivsutskottet").id)%></li>
-                            <li><%= link_to 'Likabehandlingsombud', kontakt_path(:id => List.find_by(:name => "Likabehandlingsombud").id)%></li>  
-                            <li><%= link_to 'Spindelman/Webmaster', kontakt_path(:id => List.find_by(:name => "Spindelmän").id)%></li>
-                            <li><%= link_to 'Styrelse', kontakt_path(:id => List.find_by(:name => "Styrelse").id)%></li>
-                            <!--<li><%= link_to 'Ordförande',:styrelse %></li>-->                                                     
-                        </ul>
                     </li>
                     
                 </ul>          
