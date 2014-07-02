@@ -48,6 +48,7 @@ gem 'icalendar'
 gem 'jquery-turbolinks'
 gem 'mysql2'
 gem 'jquery-fileupload-rails' #till galleri, ladda upp flera grejer
+gem 'owlcarousel-rails'
 
 
 # Use ActiveModel has_secure_password

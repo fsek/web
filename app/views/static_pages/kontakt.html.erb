@@ -3,32 +3,17 @@
 	<div class="row">
 		<div class="col-md-8">
 			<div class="kontakt-choose">
-				<%= form_tag kontakt_path, method: 'get' do %>
-					<%= label_tag "Vem vill du kontakta?"%>
-					<%= select_tag :till, options_for_select(KONTAKTLISTA, params[:till])%>
+					<%= form_tag kontakt_path, method: 'post' do %>
+					<%= label_tag "Vem vill du kontakta?"%><br>
+					<%= select_tag :id, options_from_collection_for_select(@kontaktlista,:id,:name,@id )%>
 					<%= submit_tag 'Visa', name: nil%>
-				<% end %>
-				<% case params[:till]%>
-					<% when "Styrelse"%>
-						<%=phrase('kontaktStyrelse')%>
-					<% when "Ordförande"%>
-						<%=phrase('kontaktOrdf')%>
-					<% when "Vice ordförande"%>
-						<%=phrase('kontaktViceOrdf')%>
-					<% when "Kassör"%>
-						<%=phrase('kontaktKassör')%>
-					<% when "Spindelmän"%>
-						<%=phrase('kontaktSpindelman')%>
-					<% when "Näringslivsutskottet"%>
-						<%=phrase('kontaktN')%>
-					<% when "Spindelman"%>
-						<%=phrase('kontaktSpindelman')%>						
-				<% end %>
+				<% end %>				
 			</div>			
-				<% if params[:till] != nil %>
+				<% if @kontakt != nil %>
+				<%= phrase('kontakt'+@kontakt.name)%>
 				<div class ="kontakt-form">								
 					<%= form_tag kontakt_path, method: 'post' %>
-					<%= label_tag 'Kontakta '+params[:till]%>					
+					<%= label_tag 'Kontakta '+@kontakt.name%>					
 						<div class="field">
 							<%= label_tag "Namn"%></br>				
 							<%= text_field_tag :name,'Fyll i namn', :required => true %></br>						
@@ -41,22 +26,11 @@
 							<%= label_tag "Meddelande"%></br>
 							<%= text_area_tag :msg,'Meddelande', :required => true %></br>						
 						</div>					
-						<div class="field">
-							<%= hidden_field_tag :till, params[:till]%>																
+						<div class="field">																							
 							<%= submit_tag "Skicka"%>
 						</div>
 					<% end %>
 				</div>
-		</div>
-		<%if 1 == 0%>
-		<div class="col-md-4">
-			<div class="search-blocks blocks-top-orange" style='text-aling:center'>
-				<h2><a href="mailto:ordf@fsektionen.se"><%= fa_icon('envelope') %>Sektionens ordförande</a></h2>
-				<h2><a href="mailto:styrelsen@fsektionen.se"><%= fa_icon('envelope') %>Styrelsen</a></h2>
-				<h2><a href="mailto:spindelman@fsektionen.se"><%= fa_icon('envelope') %>Spindelman/Webmaster</a></h2>
-				<h2><a href="mailto:libo@fsektionen.se"><%= fa_icon('envelope') %>Likabehandlingsombud</a></h2>
-	       </div>
-       </div>
-       <% end %>
+		</div>		
 	</div>
 </div>

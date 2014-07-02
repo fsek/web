@@ -22,8 +22,10 @@
               <%= link_to current_user.role.title, "#", class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
               <ul class="dropdown-menu pull-right">
               	<%if current_user.admin?%>
-              	<li><%= link_to "Roller", "/admin/roles" %></li>
+              	<li><%= link_to "Roller", :admin_roles %></li>
                 <li><%= link_to "Hantera användare", :users%></li>
+                <li><%= link_to "Hantera kontaktposter",:admin_kontakt%></li>
+                <li><%= link_to "Hantera bildkategorier",:admin_bildgalleri%></li>
                 <%end%>
                 <%if current_user.has_role?(:poster,:edit)%>
                 <li><%= link_to "Hantera poster", '/poster' %></li>

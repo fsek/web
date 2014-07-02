@@ -12,12 +12,16 @@ class ProfilesController < ApplicationController
     @post = Post.find(params[:post_id])
     @profile.posts.delete(@post)    
     respond_to do |format|
-    format.html { redirect_to edit_profile_path(@profile), notice: 'Du har inte längre posten '+@post.title + '.'}
+      format.html { redirect_to edit_profile_path(@profile), notice: 'Du har inte längre posten '+@post.title + '.'}
+      if @profile.posts.count == 0
+        @profile.update(first_post:  nil)
+      end
     end 
   end
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+
     if @profile.created_at == @profile.updated_at
       UserMailer.welcome_email(@profile.user).deliver
       redirect_to edit_profile_url(@profile) 
@@ -26,8 +30,11 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-    redirect_to(:back) unless current_user.profile == @profile
+    redirect_to(:back) unless current_user.profile == @profile    
     if true   
+      if (@profile.posts.count > 0) && (@profile.first_post == nil)
+        @profile.update(first_post: @profile.posts.first.id)
+      end
     @no_profile_data = @profile.created_at == @profile.updated_at
     end
     rescue ActionController::RedirectBackError

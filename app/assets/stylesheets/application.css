@@ -18,13 +18,15 @@
  * require xaxa-font-awesome
  *= require page_search
  *= require page_magazine
+ *= require page_login_reg
+ *= require timeline  
  *= require default_theme
  * require_tree .
  *= require start_page
- *=require phrasing
+ *= require phrasing
  *= require fullcalendar
  *= require fullcalendar.print
- *= require galleria.classicmod  
+ *= require galleria.classicmod 
  */
 
  /* Override for Bootstrap 3 font location */
