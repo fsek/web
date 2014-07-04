@@ -50,6 +50,11 @@ gem 'mysql2'
 gem 'jquery-fileupload-rails' #till galleri, ladda upp flera grejer
 
 
+if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9
+  Encoding.default_external = Encoding::UTF_8
+  Encoding.default_internal = Encoding::UTF_8
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
