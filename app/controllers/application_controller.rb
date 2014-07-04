@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class ApplicationController < ActionController::Base
   include TheRole::Controller
   protect_from_forgery
