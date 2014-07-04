@@ -1,4 +1,4 @@
-#encoding: utf-8 
+# encoding:UTF-8
 class EventsController < ApplicationController
   
     before_filter :login_required, only: [:kalender,:new,:show,:edit,:create,:update,:destroy]

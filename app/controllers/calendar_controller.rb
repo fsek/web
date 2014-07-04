@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class CalendarController < ApplicationController
     include TheRole::Controller
     

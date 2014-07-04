@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class AlbumsController < ApplicationController
     
   before_filter :login_required
