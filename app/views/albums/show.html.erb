@@ -15,7 +15,7 @@
     	</div>
     	</div>
 	<div class="row">  
-      <% if current_user.has_role?(:event, :edit) %>
+      <% if current_user.has_role?(:galleri, :edit) %>
       	<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till bilder"), new_album_image_path(@album), class: "btn-u btn-u-small" %>
         <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_album_path(@album), class: "btn-u btn-u-small" %>
         <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @album, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>

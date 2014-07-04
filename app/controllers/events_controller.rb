@@ -3,6 +3,7 @@ class EventsController < ApplicationController
     before_filter :login_required, only: [:kalender,:new,:show,:edit,:create,:update,:destroy]
     before_filter :authenticate_user!, only: [:kalender,:new,:show,:edit,:create,:update,:destroy]
     before_filter :authenticate_editor_events!, only: [:new,:edit,:index]
+    before_action :utskott, only: [:new,:edit]
         
   # GET /events
   # GET /events.json
@@ -87,6 +88,9 @@ class EventsController < ApplicationController
         @event = Event.find(params[:id])
       end
       def event_params
-        params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category)
+        params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image)
+      end
+      def utskott
+        @utskott = List.where(:category => 'utskott').sort_by{|l| l.name}
       end
 end

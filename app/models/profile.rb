@@ -1,9 +1,23 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
-  has_and_belongs_to_many :posts
+  has_and_belongs_to_many :posts  
   
-  
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, 
+                    :styles => { original: "800x800>", medium: "300x300>", thumb:  "100x100>" },                   
+                    :path => ":rails_root/public/system/images/:attachment/:id/:style/:filename",
+                    :url => "/system/images/:attachment/:id/:style/:filename"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/ 
+  
+
+  def namn
+    self.name || self.user.username
+  end
+  def to_s
+    if (self.name) && (self.first_post) && (Post.find(self.first_post))
+      self.name + ' (' + Post.find(self.first_post).title + ')'
+    elsif (self.name)
+      self.name
+    end
+  end
 
 end

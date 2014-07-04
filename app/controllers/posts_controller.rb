@@ -19,25 +19,28 @@ class PostsController < ApplicationController
     end
       if @profile == nil
           respond_to do |format|
-         format.html { redirect_to '/poster', flash: {alert: 'Hittade ingen användare med det användarnamnet.'}}
+         format.html { redirect_to :posts, flash: {alert: 'Hittade ingen användare med det användarnamnet.'}}
          end
       elsif @profile.name == nil || @profile.name == ""
           respond_to do |format|
-         format.html { redirect_to '/poster', flash: {alert: 'Användaren :"' + @user.username.to_s + '" måste fylla i fler uppgifter i sin profil.' }}
+         format.html { redirect_to :posts, flash: {alert: 'Användaren :"' + @user.username.to_s + '" måste fylla i fler uppgifter i sin profil.' }}
          end
       elsif @profile.posts.include?(@post)
          respond_to do |format|
-         format.html { redirect_to '/poster', flash: {alert: @profile.name.to_s + '(' + @user.username.to_s + ') har redan posten '+@post.title.to_s + '.'}}
+         format.html { redirect_to :posts, flash: {alert: @profile.name.to_s + '(' + @user.username.to_s + ') har redan posten '+@post.title.to_s + '.'}}
          end
-      elsif @post.limit != nil && @post.profiles.size >= 1
+      elsif @post.limit != nil && @post.profiles.size >= @post.limit
         respond_to do |format|
-         format.html { redirect_to '/poster', flash: {alert: @post.title.to_s + ' har sitt maxantal.'}}
+         format.html { redirect_to :posts, flash: {alert: @post.title.to_s + ' har sitt maxantal.'}}
          end   
       else 
         @post.profiles << @profile
         respond_to do |format|
-        format.html { redirect_to '/poster', notice: @profile.name.to_s + ' (' + User.find(@profile).username.to_s + ') tilldelades posten '+@post.title.to_s + '.'}
-        end  
+          format.html { redirect_to :posts, notice: @profile.name.to_s + ' (' + User.find(@profile).username.to_s + ') tilldelades posten '+@post.title.to_s + '.'}
+            if (@profile.first_post == nil)   
+              @profile.update(first_post: @post.id)
+            end
+          end  
       end
     end
    

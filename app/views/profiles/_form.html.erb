@@ -29,12 +29,21 @@
     <%= f.number_field :start_year %>
   </div>
   <%if @profile.posts.size > 0%>
-  <div class="field">
-  	<%= f.label 'Välj visningspost:'%>  (har du flera kan du bara visa 1 när du t.ex. skapar en nyhet.)<br>
-  	<%= f.select :first_post, options_for_select(@profile.posts.collect{ |r| [r.title, r.id] })%>
-  </div>
+  	<div class="field">
+  		<%= f.label 'Välj visningspost:'%>  (har du flera kan du bara visa 1 när du t.ex. skapar en nyhet.)<br>
+  		<%= f.select :first_post, options_for_select(@profile.posts.collect{ |r| [r.title, r.id] })%><br>
+  	</div>
   <% end %>
-  <div class="actions">
+  <% if @profile.posts.count > 0%>  
+  	<div class="field">
+  		<%= f.label 'Profilbild'%>  (har du flera kan du bara visa 1 när du t.ex. skapar en nyhet.)<br>
+  		<%= f.file_field :avatar %><br>
+  		<% if @profile.avatar_file_name != nil%>
+  			<%= image_tag @profile.avatar.url(:thumb) %>
+  		<%end%>
+ 	</div>
+  <% end %>
+  <div class="actions"><br>
     <%= f.submit "Uppdatera profil"%>
   </div>
 <% end %>

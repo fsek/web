@@ -1,5 +1,5 @@
 class NewsController < ApplicationController
-  include TheRole::Controller
+  include TheRole::Controller  
   before_filter :authenticate_user!, only: [:new,:edit,:create,:update,:destroy]
   before_action :set_news, only: [:show, :edit, :update, :destroy,:set_author]
   before_filter :authenticate_news!, only: [:new,:edit] 
@@ -58,7 +58,7 @@ class NewsController < ApplicationController
   def destroy
     @news.destroy
     respond_to do |format|
-      format.html { redirect_to :nyhet }
+      format.html { redirect_to :news_index }
       format.json { head :no_content }
     end
   end

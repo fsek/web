@@ -12,12 +12,13 @@
 	<div class ="row">	
 	<strong>Sök efter album:</strong>	</br>
 		<%= form_tag albums_path, :method => 'get' do %>
-			<%= select_tag :search, options_for_select([" ","Nollning","FETSM"],params[:search]) %> <br>			
-			
-			<%= date_field_tag(:start,value = params[:start]) %>
+			<%if @kategorier != nil%>
+				<%= select_tag(:id, options_from_collection_for_select(@kategorier,:id,:name))%><br><br>
+			<% end %>
+			<%= date_field_tag(:datum,value = params[:datum]) %>
 			<%= submit_tag 'Visa', name: nil%>					  	
   	<% end %>
-  	<%if @searched.size > 0%>
+  	<%if @searched != nil%>
 				<% @searched.sort_by{|album|album.created_at}.reverse.slice(0,4).each do |p| %>
 					<div class ="col-md-3">
 						<%=link_to p.title,album_path(p) %></br>

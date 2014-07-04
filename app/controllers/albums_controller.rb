@@ -1,12 +1,15 @@
 class AlbumsController < ApplicationController
-    layout 'static_page'
+    
   before_filter :login_required
   before_filter :authenticate_user! 
   before_action :set_album, only: [:show, :edit,:destroy,:update] 
   
   def index
-    @albums = Album.all      
-      @searched = Album.find(:all, :conditions => ['category = ? AND start_date >= ?', params[:search], params[:start]])    
+    @albums = Album.all
+    @kategorier = List.where(category: 'bildgalleri')
+    if params[:id]      
+      @searched = Album.find(:all, :conditions => ['category = ? AND start_date >= ?', List.find(params[:id]).name, params[:datum]]) 
+    end   
   end
   def edit
     @album = Album.find(params[:id])    
@@ -57,6 +60,9 @@ class AlbumsController < ApplicationController
         format.json { render :json => @album.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  def random
+    @album = Album.first
   end
     private
     def set_album

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.1'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -36,7 +36,8 @@ end
 
 # ADDED GEMS FOR FSEK APP
 gem 'devise'
-gem 'font-awesome-sass'
+#gem 'font-awesome-sass'
+gem 'font-awesome-rails'
 gem 'breadcrumbs_on_rails'
 gem 'the_role', '~> 2.5.2'
 gem 'the_role_bootstrap3_ui'
@@ -47,6 +48,7 @@ gem 'icalendar'
 gem 'jquery-turbolinks'
 gem 'mysql2'
 gem 'jquery-fileupload-rails' #till galleri, ladda upp flera grejer
+gem 'owlcarousel-rails'
 
 
 # Use ActiveModel has_secure_password

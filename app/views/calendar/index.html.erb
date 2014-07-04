@@ -1,10 +1,8 @@
 <div class="container row">
-	<div id='calendar'></div>
-
+	<div id='kalender'></div>
 	<hr>
 	
-	<% if user_signed_in? %>
-	
+	<% if user_signed_in? %>	
 	<div class="headline headline-md">
 		<h2>Verktyg</h2>
 	</div>
@@ -13,8 +11,7 @@
 		<li><%= link_to "Nytt event", new_event_path %></li>
 		<% end %>
 		<li><%= link_to 'Kalenderprenumeration', 'webcal://'+PUBLIC_URL+'/kalender/export.ics'%></li>
-	</ul>
-	
+	</ul>	
 	<% end %>
 </div>
 

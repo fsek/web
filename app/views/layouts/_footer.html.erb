@@ -24,7 +24,7 @@
             </div><!-- /input-group -->                    
           </form> 
           <br>
-          Vill du skicka med en notis i vecktorn? Skicka i så fall in den till <a href="mailto:sanning@fsektionen.se">Sanningsministeriet</a> senast måndag kl 17.
+          Vill du skicka med en notis i vecktorn? Skicka i så fall in den till <%= render partial: "static_pages/kontakt", locals: {kontakt: List.find_by(:name => 'Sanningsministeriet')}%> senast måndag kl 17.
           <hr>
   		<div class="headline"><h3>Håll dig uppdaterad</h3></div>
         <ul class="social-icons">
@@ -38,13 +38,12 @@
 		<p>
 			<%= fa_icon('phone') %> 046 - 14 47 22
 			<br>
-			<%= fa_icon('envelope') %> <a href="mailto:ordf@fsektionen.se">ordf@fsektionen.se</a>
-			<br>
+			<%= render partial: "static_pages/kontakt", locals: {kontakt: List.find_by(:name => 'Ordförande')}%>
 			<br>
 			<div class="row-fluid">			
 				<div class="headline"><h3>Besöksadress</h3></div>
 				<adress class="md-margin-bottom-40">
-          C/o Hilbert Älg <br>
+          			C/o Hilbert Älg <br>
 					Matematikhuset <br>
 					Sölvegatan 18, <br>
 					22362 Lund <br><br><br>
@@ -52,33 +51,3 @@
 			</div>
 		</p>
 </div>
-
-
-          
-       <!-- <div class="col-md-4 md-margin-bottom-40">
-          <div class="posts">
-            <div class="headline"><h2>Recent Blog Entries</h2></div>
-              <dl class="dl-horizontal">
-                <dt><a href="#"><%= image_tag "unify/sliders/elastislide/6.jpg" %></a></dt>
-                <dd>
-                  <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p> 
-                </dd>
-              </dl>
-              <dl class="dl-horizontal">
-                <dt><a href="#"><%= image_tag "unify/sliders/elastislide/10.jpg" %></a></dt>
-                <dd>
-                  <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p> 
-                </dd>
-              </dl>
-              <dl class="dl-horizontal">
-                <dt><a href="#"><%= image_tag "unify/sliders/elastislide/11.jpg" %></a></dt>
-                <dd>
-                  <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p> 
-                </dd>
-              </dl>
-           </div>
-         </div><!--/col-md-4-->
-         
-
-
-

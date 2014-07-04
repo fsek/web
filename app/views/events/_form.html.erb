@@ -1,64 +1,45 @@
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> gör att eventet inte kan sparas:</h2>      
-      <% @event.errors.full_messages.each do |msg| %>
-      <ul>
-        <li><%= msg %></li>
-      </ul>
-      <% end %>      
-    </div>
-  <% end %>
-	
-  <div class="field">
-    <%= f.label 'Titel:' %><br>
-    <%= f.text_field :title %>    
-  </div>
-  <div class="field">
-    <%= f.label 'Beskrivning:' %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label 'Plats:' %><br>
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">  
-  <%= f.label 'Eventbild:'%>
-  <%= f.file_field :image %> <br 
-   </div>
-   <div class="field">
-   <%= f.label 'Heldagsevent?'%> 
-   <%= f.check_box :all_day%><br>
-   </div>
-   <div class="field">
-   		<%=f.label 'Start:'%> <br>
-   		<%= f.datetime_select :starts_at, :minute_step => 10 %>
-   </div>
-      <div class="field">
-  		<%=f.label 'Slut:'%><br>
-   		<%= f.datetime_select :ends_at, :minute_step => 10 %>
-   </div> 
-   <div class="field">
-   		<%=f.label 'Utskott:'%><br>
-	   <%= f.select :category, options_for_select([
-	  	[" ", nil, {:class=>"bold"}],
-	  	["Cafémästeriet"],
-	  	["Föset"],
-	  	["Kulturministeriet"],
-	  	["Näringslivsutskottet"],
-	  	["Prylmästeriet"],
-	  	["Sanningsministeriet"],
-	  	["Sexmästeriet"],
-	  	["Studierådet"],
-	  	["Styrelsen"], 
-	  	["Spindelmännen"] ], @event.category), {},
-	  	html_options = {:class => "listBox", :style=>"float:left;"} %> <br> 
-	  	</div>
-  	<div class="actions">
-    <%= f.submit "Spara" %>
-    <hr>
-</div> 
-</div>
+<%= form_for(@event, :html => {  :autocomplete => 'off' }) do |f| %>
+  	<%= f.label 'Titel', :class => 'reg-label'%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		
+  	</div>
+  	<%= f.label 'Beskrivning', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.text_area :description, :class => 'form-control',:placeholder => 'Beskrivning' %>
+  	</div>			  
+  	<%= f.label 'Plats', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.text_field :location, :class => 'form-control',:placeholder => 'Plats',:autocomplete => 'off' %>
+  	</div>
+  	<%= f.label 'Visningsbild', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	
+  		<% if @event.image != nil%>
+  			<%= image_tag(@event.image(:thumb))%>
+		<% end %>  		 	 		  	
+  		<%= f.file_field :image, :class => 'form-control' %>
+  	</div>
+  	<%= f.label 'Heldagsevent', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.check_box :all_day, :class => '' %>
+  	</div>
+  	<%= f.label 'Startar', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.datetime_select :starts_at, :minute_step => 10, :class => 'form-control' %>
+  	</div>
+  	<%= f.label 'Slutar', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.datetime_select :ends_at, :minute_step => 10, :class => 'form-control' %>
+  	</div>
+  	<%= f.label 'Ansvarigt utskott', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.select :category, 
+  				     options_from_collection_for_select(@utskott,:name,:name,@event.category),
+  				     include_blank: true, 
+  				     :class => "form-control listBox"%>		  	  		 		  	
 
-
+  	</div>
+  	
+  	<div class="row">
+  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  	</div>
 <% end %>

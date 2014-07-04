@@ -1,0 +1,47 @@
+<div class="container">	
+	<div class="row">
+		<div class="col-md-4">			
+			<%= form_for(@utskott,url: admin_utskott_path, method: 'post') do |f| %>
+				
+				<div class="field">
+					<%= f.label 'Nytt utskott:'%><br>
+					<%= f.label 'Namn'%><br>
+					<%= f.text_field :name%>				
+				</div>
+				<div class="field">
+					<%= f.label 'Beskrivning'%><br>
+					<%= f.text_area :string1%>
+				</div>
+				<div class="field"><br>
+					<%= f.submit 'Nytt utskott'%>
+				</div>
+			<% end %>
+		</div>
+		<div class="col-md-4">
+			<% if @utskotten != nil%>									
+				<%= form_tag admin_utskott_path, method: 'post'%>
+					<%= label_tag 'Lista av alla utskott'%><br>
+					<%= select_tag(:id, options_from_collection_for_select(@utskotten,:id,:name,@id))%><br><br>
+					<%= submit_tag 'Visa'%>
+			<% end %>
+		</div>
+		<% if (@utskottet != nil) && (@utskottet.name != nil) %>
+			Redigera kategori till bildgalleri
+			<div class="col-md-4">
+				<%= form_for(@utskottet,url: admin_utskott_path, method: 'post') do |f| %>
+				<div class="field">
+					<%= f.label 'Namn'%><br>
+					<%= f.text_field(:name)%><br>
+				</div>
+				<div class="field">
+					<%= f.label 'Beskrivning'%><br>
+					<%= f.text_field(:string1)%><br>
+				</div>
+				<div class="field"><br>
+					<%= f.submit 'Spara'%>
+				</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+</div>

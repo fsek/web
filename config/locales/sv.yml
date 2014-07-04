@@ -1,0 +1,283 @@
+en:
+  devise.registrations.signed_up: Välkommen! Du har lyckats registrera dig.
+  helpers.submit.create: Create %{model}
+  the_role.access_denied: "Åtkomst nekad"
+  devise.sessions.signed_in: Inloggning lyckades
+  devise.failure.unauthenticated: Du måste logga in eller registrera dig för att fortsätta.
+  admin.roles.sidebar.roles_list: Lista med roller
+  admin.roles.sidebar.delete_role_confirm: "Är du säker? Kan skapa errors."
+  admin.roles.sidebar.new_role: Skapa ny roll
+  admin.roles.role.role_name: 'Rollnamn:'
+  admin.roles.role.title: 'Titel:'
+  admin.roles.role.role_description: 'Beskrivning av roll:'
+  admin.roles.role.delete_section: Ta bort sektion
+  admin.roles.role.section_delete_confirm: Vill du ta bort sektionen?
+  admin.roles.role.enable: Tillåt
+  admin.roles.role.disable: Neka
+  admin.roles.role.delete_rule: Ta bort regel
+  admin.roles.role.rule_delete_confirm: Vill du ta bort regel?
+  admin.roles.role.create_section: Skapa ny sektion
+  admin.roles.role.new_section_placeholder: Namn för ny sektion
+  admin.roles.role.create_rule: Skapa ny regel
+  admin.roles.role.new_rule_placeholder: Namn för ny regel
+  the_role.role_updated: Roll uppdaterades
+  admin.roles.new.create: Skapa ny roll
+  admin.roles.new.name: Namn för roll (små bokstäver, a-z)
+  admin.roles.new.title: Titel för roll (text)
+  admin.roles.new.description: 'Beskrivning av roll(text):'
+  admin.roles.new.based_on_role: 'Ny roll kommer baseras på:'
+  the_role.role_created: Roll skapades
+  the_role.section_created: Sektion skapades
+  the_role.section_rule_created: Sektionsregel skapades
+  devise.failure.not_found_in_database: Fel användarnamn eller lösenord
+  the_role.section_rule_on: Sectionsregel är aktiv
+  pryl1: pryl1
+  prylmastare: "Har ni hårt hur bra boomboxen sprakar, hur Berit skiner och Mattehuset
+    glänser? Det är prylmästeriets förtjänst. Det är vi som smörjer de små
+    och stora kuggarna i den kärleksfulla och väldigt vackra F-sektionen. De senaste
+    veckorna har vi jobbat med att vara alla till lags. En hammare där och en spik
+    här har det ekat i källaren när uppdragen sakta men säkert\r\nfått klart
+    sina farkoster. Nu när nollningen tar slut sätter slår vi oss ner, fötterna
+    på bordet\r\noch en kaffe i handen. – Finns det kakor? säger Eric. Vad ska vi
+    göra härnäst? Det senaste projektet var att göra om alumnirummet, men vad
+    kommer efter? Kanske har du någon\r\nidé på vad som behövs förbättras eller
+    förnyas. Le, säg hej och berätta gärna!"
+  cafe1: cafe1
+  cafeordf: Edward var namnet, Cafémästare för Hilbert Café. Med min vice, Brange,
+    sköter jag caféet administrativt. Inköp, beställningar, funktionärer, och
+    bokföring är saker jag gillar att ägna mig åt,och inte sällan jobbar jag
+    ett pass eller två. Om du har frågor eller synpunkter om Hilbert Café, vill
+    beställa stort antal baguetter, eller bara vill engagera dig som nyckelpiga eller
+    jobbare, tveka inte att ta kontakt med någon av oss i Cafémästeriet.
+  styrelse1: styrelse1
+  styrelseordf: "Som ordförande har jag mest makt och respekt på sektionen. För
+    att förtjäna detta så har jag en hel del ansvar såsom att leda styrelsens
+    arbete, upprätthålla den goda kontakten med huset, se till att vi följer våra
+    uppsatta styrdokument samt en hel del annat dödstungt ansvar.\r\nTillsammans
+    med vice ordföranden, kassören och sekreteraren utgör jag kärnstyrelsen som
+    sköter en stor del av det administrativa arbetet för sektionen.\r\nHar du några
+    åsikter, grymma idéer eller bara vill bjuda på en kaka, tveka inte att haffa
+    mig i korridoren!"
+  styrelseviceordf: Hej jag heter Fabian Ågren och är vice ordförande här på
+    sektionen. Som vice ordförande bistår jag främst ordförande i dess arbete
+    men har också andra uppdrag, till exempel att se till att sektionens alla utskott
+    fungerar. Tillsammans med kärnstyrelsen (ordförande, kassör och sekreterare)
+    leder vi styrelsearbetet. Jag är också sektionens visionär vilket innebär
+    att jag har god kontakt med utskotten, medlemmarna och de andra sektionerna för
+    att ta vår sektion in i framtiden. Så har du någon idé, tanke eller projekt
+    som du skulle vilja driva genom sektionen, tveka då inte att kontakta mig.
+  styrelsekassör: Hej hej! Jag bokför alla transaktioner som sker i sektionens namn
+    och ser till så att respektive utskottsordförande har koll på utskottets ekonomi.
+    Jag sitter också med i kärnstyrelsen där vi bland annat förbereder frågor
+    som ska diskuteras på styrelsemöten. I kärnstyrelsen har vi även plays att
+    visonera och diskutera lite extra om sektionens utveckling. Har du lagt ut pengar
+    för sektionen och vill ha tillbaka dem är det mig du ska kontakta!
+  styrelsesekr: Hej! Mitt namn är Daniel Damberg och i egenskap av sektionens sekreterare
+    för jag protokoll vid styrelsens formella möten. Det åligger även mig att
+    förbereda sektionsmöten och, naturligtvis, föra protokoll på dessa. I övrigt
+    sysslar jag med allehanda administration och ser till att alla, av styrelsen tagna,
+    beslut uppföljes. Jag är även en del av kärnstyrelsen vars uppgift är att
+    underlätta den övriga styrelsens administrativa börda. Än roligare är kärnstyrelsens
+    visionära arbete med att utveckla sektionen och dess verksamhet. Om du vill prata
+    med mig i något ärende eller bara kallprata lite om formalia och annat skojigt
+    så påträffas jag oftast på SK. Välkommen att knacka på!
+  errors.messages.not_found: not found
+  errors.format: "%{attribute} %{message}"
+  devise.sessions.signed_out: Utloggning lyckades
+  studierad1: studierad1
+  studierordf: Hej! Jag heter Sara och det är jag som är Utbildningsminister. Tillsammans
+    med Studierådet är jag ansvarig för studiebevakningen på F-sektionens tre
+    program. Vi för studenternas talan mot lärare och institutioner, jobbar med
+    likabehandling och anordnar diverse roliga studierelaterade aktiviteter. Om ni
+    någonsin stöter på problem i era studier eller har åsikter om era kurser -
+    vänd er till oss så kan vi hjälpa till!
+  nfu1: nfu1
+  nfuordf: Jag är Näringslivsansvarig vid sektionen, och ser därmed till att våra
+    studenter får den viktiga företagskontakten som behövs under studietiden! Genom
+    att förbättra vår bild av sektionen gentemot arbetsmarknaden så ser vi till
+    att vi som studenter blir mer attraktiva, och lättare får jobb när vi väl
+    examinerar. Om ni har några frågor som rör näringslivet så är ni varmt välkomna
+    att prata med mig.
+  kultur1: kultur1
+  kulturordf: Hej hej! Jag heter David och är F-sektionens Kulturminister. I mitt
+    utskott jobbar vi för att du som medlem ska kunna ha så roligt som möjligt
+    när du inte sitter med näsan djupt nedgrävd i kurslitteraturen. Detta gör
+    vi genom att anordna bussresor filmkvällar idrottsaktiviteter lekar och allmänt
+    ståhej så fort vi får chansen.Har du en galen idé, vill du ha ett bollplank
+    eller tycker du något saknas på sektionen, så tveka inte att komma förbi,
+    vi vill förverkliga din dröm! Det är även Kulturministeriet som står för
+    försäljningen av allt du behöver för att sprida vår fantastiska F-kultur
+    vidare såsom overaller, tygmärken, sångböcker muggar och tröjor. Kulturministeriet
+    är ett stort utskott med många grenar, bland annat ansvarar vi för sektionens
+    medverkan i Sångarstriden, Karnevalen och Tandem. Tillsammans skulle man kunna
+    säga att vi i utskottet utgör kittet som binder ihop sektionen, och det gör
+    vi på roligast möjligast sätt!!
+  fos1: fos1
+  overfos: Jag är Överfös på sektionen och tillsammans med mina underbara cofös
+    anordnar jag världens bästa nollning - Piratnollningen 2014. Utanför sektionens
+    föseri så sitter jag med i Överföskollegiet. Där arbetar jag, tillsammans
+    med alla andra överfös från de andra sektionerna, för att de intersektionella
+    delarna av nollningen ska fungera så bra som möjligt. Jag kommer se till att
+    nollorna och alla andra som vill hjälpa till med nollningen får det så roligt
+    det bara går!!
+  sanning1: sanning1
+  sanningsordf: Hej hej! Jag heter Johanna och det är jag som är ansvarig för informationsspridandet
+    på F- sektionen. Tillsammans med funktionärerna i utskott har vi hand om bland
+    annat anslagstavlor, nyhetsbrev, arkivet och ser till så det fotas vid olika
+    events. Vill du ha hjälp med marknadsföring av ett event är det bara att säga
+    till så hjälper vi dig!!
+  sexet1: sexet1
+  sexetordf: "Jag heter Michaela och det är jag som är sexmästare här på sektionen.
+    Tillsammans med de andra mästarna och alla våra fantastiska jobbare så organiserar
+    vi alla våra sittningar samt andra event. Vi sköter alltifrån matlagningen
+    till underhållningen. Om det är något du undrar över eller om du har några
+    idéer, hör bara av dig till mig i sådana fall!\r\n"
+sv:
+  devise.failure.unauthenticated: Du måste logga in eller registrera dig för att fortsätta.
+  devise.failure.user.not_found_in_database: Användarnamn eller lösenord stämmer inte.
+  devise.sessions.signed_in: Inloggning lyckades
+  helpers.submit.create: Skapa %{model}
+  errors.format: "%{attribute} %{message}"
+  devise.registrations.signed_up: Välkommen! Du har lyckats registrera dig.
+  kontaktSpindelman: Av denna anledningen ska man kontakta Spindelmän<br>
+  kontaktStyrelse: Kontakta styrelsen av denna anledningen
+  kontaktN: kontaktN
+  kontaktOrdf: kontaktOrdf
+  kontaktSanning: kontaktSanning
+  om: om
+  faq: faq
+  kontaktViceOrdf: kontaktViceOrdf
+  fos1: fos1
+  overfos: Jag är Överfös på sektionen och tillsammans med mina underbara cofös
+    anordnar jag världens bästa nollning - Piratnollningen 2014. Utanför sektionens
+    föseri så sitter jag med i Överföskollegiet. Där arbetar jag, tillsammans
+    med alla andra överfös från de andra sektionerna, för att de intersektionella
+    delarna av nollningen ska fungera så bra som möjligt. Jag kommer se till att
+    nollorna och alla andra som vill hjälpa till med nollningen får det så roligt
+    det bara går!!
+  kultur1: kultur1
+  kulturordf: Hej hej! Jag heter David och är F-sektionens Kulturminister. I mitt
+    utskott jobbar vi för att du som medlem ska kunna ha så roligt som möjligt
+    när du inte sitter med näsan djupt nedgrävd i kurslitteraturen. Detta gör
+    vi genom att anordna bussresor filmkvällar idrottsaktiviteter lekar och allmänt
+    ståhej så fort vi får chansen.Har du en galen idé, vill du ha ett bollplank
+    eller tycker du något saknas på sektionen, så tveka inte att komma förbi,
+    vi vill förverkliga din dröm! Det är även Kulturministeriet som står för
+    försäljningen av allt du behöver för att sprida vår fantastiska F-kultur
+    vidare såsom overaller, tygmärken, sångböcker muggar och tröjor. Kulturministeriet
+    är ett stort utskott med många grenar, bland annat ansvarar vi för sektionens
+    medverkan i Sångarstriden, Karnevalen och Tandem. Tillsammans skulle man kunna
+    säga att vi i utskottet utgör kittet som binder ihop sektionen, och det gör
+    vi på roligast möjligast sätt!!
+  helpers.submit.submit: Spara %{model}
+  kontakt#{params[:till]}: kontakt#{params[:till]}
+  kontaktOrdförande: kontaktOrdförande
+  kontaktVice ordförande: kontaktVice ordförande
+  kontaktÖverfös: Detta är en jättebra anledning till att kontakta Överföset!
+  kontaktSpindelmän: kontaktSpindelmän
+  admin.roles.sidebar.roles_list: Lista med roller
+  admin.roles.sidebar.delete_role_confirm: "Är du säker? Kan skapa errors."
+  admin.roles.sidebar.new_role: Skapa ny roll
+  admin.roles.role.role_name: 'Rollnamn:'
+  admin.roles.role.title: 'Titel:'
+  admin.roles.role.role_description: 'Beskrivning av roll:'
+  admin.roles.role.delete_section: Ta bort sektion
+  admin.roles.role.section_delete_confirm: Vill du ta bort sektionen?
+  admin.roles.role.enable: Tillåt
+  admin.roles.role.disable: Neka
+  admin.roles.role.delete_rule: Ta bort regel
+  admin.roles.role.rule_delete_confirm: Vill du ta bort regel?
+  admin.roles.role.create_section: Skapa ny sektion
+  admin.roles.role.new_section_placeholder: Namn för ny sektion
+  admin.roles.role.create_rule: Skapa ny regel
+  admin.roles.role.new_rule_placeholder: Namn för ny regel
+  the_role.role_updated: Roll uppdaterades
+  admin.roles.new.create: Skapa ny roll
+  admin.roles.new.name: Namn för roll (små bokstäver, a-z)
+  admin.roles.new.title: Titel för roll (text)
+  admin.roles.new.description: 'Beskrivning av roll(text):'
+  admin.roles.new.based_on_role: 'Ny roll kommer baseras på:'
+  the_role.role_created: Roll skapades
+  the_role.section_created: Sektion skapades
+  the_role.section_rule_created: Sektionsregel skapades
+  devise.failure.not_found_in_database: Fel användarnamn eller lösenord
+  the_role.section_rule_on: Sectionsregel är aktiv
+  pryl1: pryl1
+  prylmastare: "Har ni hårt hur bra boomboxen sprakar, hur Berit skiner och Mattehuset
+    glänser? Det är prylmästeriets förtjänst. Det är vi som smörjer de små
+    och stora kuggarna i den kärleksfulla och väldigt vackra F-sektionen. De senaste
+    veckorna har vi jobbat med att vara alla till lags. En hammare där och en spik
+    här har det ekat i källaren när uppdragen sakta men säkert\r\nfått klart
+    sina farkoster. Nu när nollningen tar slut sätter slår vi oss ner, fötterna
+    på bordet\r\noch en kaffe i handen. – Finns det kakor? säger Eric. Vad ska vi
+    göra härnäst? Det senaste projektet var att göra om alumnirummet, men vad
+    kommer efter? Kanske har du någon\r\nidé på vad som behövs förbättras eller
+    förnyas. Le, säg hej och berätta gärna!"
+  cafe1: cafe1
+  cafeordf: Edward var namnet, Cafémästare för Hilbert Café. Med min vice, Brange,
+    sköter jag caféet administrativt. Inköp, beställningar, funktionärer, och
+    bokföring är saker jag gillar att ägna mig åt,och inte sällan jobbar jag
+    ett pass eller två. Om du har frågor eller synpunkter om Hilbert Café, vill
+    beställa stort antal baguetter, eller bara vill engagera dig som nyckelpiga eller
+    jobbare, tveka inte att ta kontakt med någon av oss i Cafémästeriet.
+  the_role.access_denied: "Åtkomst nekad"
+  styrelse1: styrelse1
+  styrelseordf: "Som ordförande har jag mest makt och respekt på sektionen. För
+    att förtjäna detta så har jag en hel del ansvar såsom att leda styrelsens
+    arbete, upprätthålla den goda kontakten med huset, se till att vi följer våra
+    uppsatta styrdokument samt en hel del annat dödstungt ansvar.\r\nTillsammans
+    med vice ordföranden, kassören och sekreteraren utgör jag kärnstyrelsen som
+    sköter en stor del av det administrativa arbetet för sektionen.\r\nHar du några
+    åsikter, grymma idéer eller bara vill bjuda på en kaka, tveka inte att haffa
+    mig i korridoren!"
+  styrelseviceordf: Hej jag heter Fabian Ågren och är vice ordförande här på
+    sektionen. Som vice ordförande bistår jag främst ordförande i dess arbete
+    men har också andra uppdrag, till exempel att se till att sektionens alla utskott
+    fungerar. Tillsammans med kärnstyrelsen (ordförande, kassör och sekreterare)
+    leder vi styrelsearbetet. Jag är också sektionens visionär vilket innebär
+    att jag har god kontakt med utskotten, medlemmarna och de andra sektionerna för
+    att ta vår sektion in i framtiden. Så har du någon idé, tanke eller projekt
+    som du skulle vilja driva genom sektionen, tveka då inte att kontakta mig.
+  styrelsekassör: Hej hej! Jag bokför alla transaktioner som sker i sektionens namn
+    och ser till så att respektive utskottsordförande har koll på utskottets ekonomi.
+    Jag sitter också med i kärnstyrelsen där vi bland annat förbereder frågor
+    som ska diskuteras på styrelsemöten. I kärnstyrelsen har vi även plays att
+    visonera och diskutera lite extra om sektionens utveckling. Har du lagt ut pengar
+    för sektionen och vill ha tillbaka dem är det mig du ska kontakta!
+  styrelsesekr: Hej! Mitt namn är Daniel Damberg och i egenskap av sektionens sekreterare
+    för jag protokoll vid styrelsens formella möten. Det åligger även mig att
+    förbereda sektionsmöten och, naturligtvis, föra protokoll på dessa. I övrigt
+    sysslar jag med allehanda administration och ser till att alla, av styrelsen tagna,
+    beslut uppföljes. Jag är även en del av kärnstyrelsen vars uppgift är att
+    underlätta den övriga styrelsens administrativa börda. Än roligare är kärnstyrelsens
+    visionära arbete med att utveckla sektionen och dess verksamhet. Om du vill prata
+    med mig i något ärende eller bara kallprata lite om formalia och annat skojigt
+    så påträffas jag oftast på SK. Välkommen att knacka på!
+  errors.messages.not_found: not found
+  devise.sessions.signed_out: Utloggning lyckades
+  studierad1: studierad1
+  studierordf: Hej! Jag heter Sara och det är jag som är Utbildningsminister. Tillsammans
+    med Studierådet är jag ansvarig för studiebevakningen på F-sektionens tre
+    program. Vi för studenternas talan mot lärare och institutioner, jobbar med
+    likabehandling och anordnar diverse roliga studierelaterade aktiviteter. Om ni
+    någonsin stöter på problem i era studier eller har åsikter om era kurser -
+    vänd er till oss så kan vi hjälpa till!
+  nfu1: nfu1
+  nfuordf: Jag är Näringslivsansvarig vid sektionen, och ser därmed till att våra
+    studenter får den viktiga företagskontakten som behövs under studietiden! Genom
+    att förbättra vår bild av sektionen gentemot arbetsmarknaden så ser vi till
+    att vi som studenter blir mer attraktiva, och lättare får jobb när vi väl
+    examinerar. Om ni har några frågor som rör näringslivet så är ni varmt välkomna
+    att prata med mig.
+  sanning1: sanning1
+  sanningsordf: Hej hej! Jag heter Johanna och det är jag som är ansvarig för informationsspridandet
+    på F- sektionen. Tillsammans med funktionärerna i utskott har vi hand om bland
+    annat anslagstavlor, nyhetsbrev, arkivet och ser till så det fotas vid olika
+    events. Vill du ha hjälp med marknadsföring av ett event är det bara att säga
+    till så hjälper vi dig!!
+  sexet1: sexet1
+  sexetordf: "Jag heter Michaela och det är jag som är sexmästare här på sektionen.
+    Tillsammans med de andra mästarna och alla våra fantastiska jobbare så organiserar
+    vi alla våra sittningar samt andra event. Vi sköter alltifrån matlagningen
+    till underhållningen. Om det är något du undrar över eller om du har några
+    idéer, hör bara av dig till mig i sådana fall!\r\n"
