@@ -1,3 +1,4 @@
+#encoding: utf-8 
 class AdminController < ApplicationController
     include TheRole::Controller
   before_filter :authenticate_user! 
