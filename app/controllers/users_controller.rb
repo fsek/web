@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
   
   def index    
-    @users = User.find(:all)
+    @users = User.all
   end
 
   def update_password    

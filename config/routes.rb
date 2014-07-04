@@ -73,7 +73,7 @@ Fsek::Application.routes.draw do
     
  
    
-  root 'start_page#startsida'
+  root 'start_page#index'
 
 
 end

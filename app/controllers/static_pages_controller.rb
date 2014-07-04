@@ -2,8 +2,7 @@
 class StaticPagesController < ApplicationController
   include TheRole::Controller
   
-  layout "static_page"
-  skip_before_filter :authenticate_user!  
+  skip_before_filter :authenticate_user!
   
   def cafe
   end
