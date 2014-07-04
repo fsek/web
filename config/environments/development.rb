@@ -1,3 +1,4 @@
+# encoding: UTF-8
 Fsek::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 	config.secret_key_base = 'd328a97ab11dafe94db121b97c79a3713cde6357d46c229c02bb082b9c6530f6a6c9a39b841b65d34fca35266d4684b1e4b06a0fdc018a55062f515e3ba7e6d2'

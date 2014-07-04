@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class StartPageController < ApplicationController
   include TheRole::Controller
 

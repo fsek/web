@@ -1,3 +1,4 @@
+# encoding: UTF-8
 Fsek::Application.routes.draw do
   
   # Resources on the page
