@@ -4,20 +4,23 @@
 			<%= form_for(resource, :as => resource_name, :url => update_user_registration_path(resource), :html => { :method => :patch,:class => "reg-page" }) do |f| %>
 			
 			  	<%= f.label 'Redigera användare', :class => 'reg-header'%><br>
-			  			  
+			  	<%= f.label 'Användarnamn', :class => 'reg-label'%>		  
 			  	<div class="input-group margin-bottom-20">
 					<span class="input-group-addon"><%= fa_icon('user')%></span>
-					<%= f.text_field :username, :autofocus => true, :class => 'form-control',:placeholder => 'Användarnamn'%>		
+					<%= f.text_field :username, :class => 'form-control',:placeholder => 'Användarnamn'%>		
 			  	</div>
+			  	<%= f.label 'E-post', :class => 'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
 		  	  		<span class="input-group-addon"><%= fa_icon('envelope')%></span> 	 		  	
 			  		<%= f.email_field :email, :class => 'form-control',:placeholder => 'E-postadress' %>
 			  	</div>
-			  	<%= f.label 'Fyll i nytt lösenord för att byta.', :class => 'reg-header'%>
-		  	  	<div class="input-group margin-bottom-20">		  	  		
+			  	<%= f.label 'Fyll i nytt lösenord för att byta.', :class => 'reg-header'%><br>
+			  	<%= f.label 'Nytt lösenord', :class => 'reg-label'%>
+		  	  	<div class="input-group margin-bottom-20">		  	  				  	  		
 		  	  		<span class="input-group-addon"><%= fa_icon('lock')%></span> 	 		  	
 			  		<%= f.password_field :password, :class => 'form-control',:placeholder => 'Nytt lösenord',:autocomplete => 'off' %>
 			  	</div>
+			  	<%= f.label 'Bekräfta lösenord', :class => 'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
 		  	  		<span class="input-group-addon"><%= fa_icon('lock')%></span> 	 		  	
 			  		<%= f.password_field :password_confirmation, :class => 'form-control',:placeholder => 'Bekräfta lösenord' %>
@@ -33,7 +36,7 @@
 		  	  	</div>
 	  	  		<% end %>
 		  	</div>
-	  	</div>  		
+	  	</div> <br> 		
 	  	<div class="row">
 			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 				<%= form_for(resource, :as => resource_name, :url => admin_destroy_user_path(resource), :html => { :method => :delete,:class => "reg-page" }) do |f| %>				

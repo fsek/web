@@ -3,9 +3,9 @@ require 'net/http'
 class User < ActiveRecord::Base 
   include TheRole::User
   
-  after_create :create_profile_for_user
+  has_one :profile 
 
-  has_one :profile
+  after_create :create_profile_for_user
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

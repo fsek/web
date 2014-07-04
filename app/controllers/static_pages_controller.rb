@@ -21,9 +21,9 @@ class StaticPagesController < ApplicationController
       @id = @kontakt.id
     end
     if user_signed_in?
-      @kontaktlista = List.where(category: 'kontakt')
+      @kontaktlista = List.where(category: 'kontakt').sort_by{|l| l.name}
     else
-      @kontaktlista = List.where(category: 'kontakt').where(bool1: false) + List.where(category: 'kontakt').where(bool1: nil)
+      @kontaktlista = (List.where(category: 'kontakt').where(bool1: false) + List.where(category: 'kontakt').where(bool1: nil)).sort_by{|l| l.name}
     end
     if params[:id] != nil
       @kontakt = List.find(params[:id])
@@ -57,6 +57,9 @@ class StaticPagesController < ApplicationController
   def libo  
   end 
   def kurslankar    
+  end
+  def index
+    @news = News.all
   end
   
   private 

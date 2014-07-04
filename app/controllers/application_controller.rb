@@ -38,6 +38,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
   end
   
+  
+  
   protected
     def configure_permitted_devise_parameters
       devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(:username, :password, :remember_me)}
@@ -65,5 +67,4 @@ class ApplicationController < ActionController::Base
       I18n.locale = locale
       redirect_to(:back) if params[:locale]
     end
-
 end

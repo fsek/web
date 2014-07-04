@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
    
 $(document).ready ->
-  $('#calendar').fullCalendar    
+  $('#kalender').fullCalendar    
     header:
       left: 'today',
       center: 'prev    title    next',

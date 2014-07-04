@@ -10,7 +10,7 @@ class AdminController < ApplicationController
       @kontakten = List.new
     end
     unless @kontakter       
-      @kontakter = List.where(:category => 'kontakt')
+      @kontakter = List.where(:category => 'kontakt').sort_by{|l| l.name}
     end
     if (params[:commit] == "Ny kontakt") && (params[:list][:name] != nil) 
       @kontakt.name = params[:list][:name]
@@ -43,12 +43,12 @@ class AdminController < ApplicationController
       @kategorin = List.new
     end
     unless @kategorier       
-      @kategorier = List.where(:category => 'kontakt')
+      @kategorier = List.where(:category => 'bildgalleri').sort_by{|l| l.name}
     end    
     if (params[:commit] == "Ny kontakt") && (params[:list][:name] != nil) 
       @kategori.update(name: params[:list][:name],string1: params[:list][:string1],category: 'bildgalleri')
       if @kategori.save
-        @kategoin = @kategori
+        @kategorin = @kategori
         flash.now[:notice] = 'Kategorin '+@kategorin.name+' skapades till Bildgalleriet'
       end      
     end
@@ -62,44 +62,35 @@ class AdminController < ApplicationController
       end
     end
   end
-  def collections
-    if params[:list] == "Bildkategorier"
-      @kategorier = Collections.bildkategori
-      if params[:commit] == 'Redigera'
-        @kategori = params[:change]
-      end
-      if (params[:change] != nil) && (params[:commit] == 'Ta bort')
-        Collections.bildkategoriremove(params[:change])
-      end
-      if (params[:ny] != nil) && (params[:ny] != "") && (params[:commit] == 'Lägg till')
-        Collections.bildkategoriadd(params[:ny])
-        redirect_to admin_kategorier_path
-      end
-      if (params[:text] != nil) && (params[:test] != "") && (params[:commit] == "Redigera")
-        Collections.bildkategorichange(params[:bild],params[:text]) 
-        redirect_to admin_kategorier_path(:list == params[:list])      
+  def utskott
+    unless @utskott
+      @utskott = List.new
+    end
+    unless @utskottet
+      @utskottet = List.new
+    end
+    unless @utskotten       
+      @utskotten = List.where(:category => 'utskott').sort_by{|l| l.name}
+    end    
+    if (params[:commit] == "Nytt utskott") && (params[:list][:name] != nil) 
+      @utskott.update(name: params[:list][:name],string1: params[:list][:string1],category: 'utskott')
+      if @utskott.save
+        @utskottet = @utskott
+        flash.now[:notice] = 'Utskottet '+@utskottet.name+' skapades'
+      end      
+    end
+    if (params[:id] != nil)
+      @utskottet = List.find(params[:id])
+      @id = params[:id]
+    end
+    if (params[:commit] == 'Spara') && (@utskottet != nil)      
+      @utskottet.update(name: params[:list][:name], string1: params[:list][:string1])
+      if @utskottet.save
+        flash.now[:notice] = 'Utskottet '+@utskottet.name+' uppdaterades'
       end
     end
-    
-    if params[:list] == "Kontaktlista"
-      @kategorier = Collections.kontaktlista
-      if params[:commit] == 'Redigera'
-        @kategori = params[:change]
-      end
-      if (params[:change] != nil) && (params[:commit] == 'Ta bort')
-        Collections.kontaktlistaremove(params[:change])
-      end
-      if (params[:ny] != nil) && (params[:ny] != "") && (params[:commit] == 'Lägg till')
-        Collections.kontaktlistaadd(params[:ny])
-        redirect_to admin_kategorier_path
-      end
-      if (params[:text] != nil) && (params[:test] != "") && (params[:commit] == "Redigera")
-        Collections.kontaktlistachange(params[:bild],params[:text]) 
-        redirect_to admin_kategorier_path(:list == params[:list])  
-      end
-    end
-     
-  end
+  end  
+  
   private
     def kontakt_params
         params.fetch(:kontakt,{}).permit(:name,:string1,:bool1)

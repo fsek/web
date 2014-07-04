@@ -21,7 +21,8 @@ Fsek::Application.routes.draw do
   post 'admin/kontakt'=> 'admin#kontakt', as: :admin_kontakt_path
   get 'admin/bildgalleri' => 'admin#bildgalleri', as: :admin_bildgalleri
   post 'admin/bildgalleri'=> 'admin#bildgalleri', as: :admin_bildgalleri_path
-  
+  get 'admin/utskott' => 'admin#utskott', as: :admin_utskott
+  post 'admin/utskott'=> 'admin#utskott', as: :admin_utskott_path
   
   
   get 'om' => 'static_pages#om', as: :om
@@ -73,7 +74,7 @@ Fsek::Application.routes.draw do
     
  
    
-  root 'start_page#index'
+  root 'static_pages#index'
 
 
 end

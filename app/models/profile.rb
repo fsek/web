@@ -9,8 +9,15 @@ class Profile < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/ 
   
 
-  def name
-    self.name || user.username
+  def namn
+    self.name || self.user.username
+  end
+  def to_s
+    if (self.name) && (self.first_post) && (Post.find(self.first_post))
+      self.name + ' (' + Post.find(self.first_post).title + ')'
+    elsif (self.name)
+      self.name
+    end
   end
 
 end

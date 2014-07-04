@@ -1,6 +1,5 @@
 class NewsController < ApplicationController
-  include TheRole::Controller
-  layout "static_page"
+  include TheRole::Controller  
   before_filter :authenticate_user!, only: [:new,:edit,:create,:update,:destroy]
   before_action :set_news, only: [:show, :edit, :update, :destroy,:set_author]
   before_filter :authenticate_news!, only: [:new,:edit] 
