@@ -1445,3 +1445,60 @@ ul.blog-tags a:hover i {
 .info-blocks .info-blocks-in p {
 	font-size: 12px;
 }
+/*Dropdown Submenu for BS3
+------------------------------------*/
+.dropdown-submenu { 
+   position: relative; 
+}
+
+
+
+@media (max-width: 767px) {
+  .dropdown-submenu > a:after {
+      content: " ";
+  }
+}
+
+
+.dropdown-submenu > .dropdown-menu { 
+   top: 0; 
+   left: 100%; 
+   margin-top: -5px; 
+   margin-left: 0px; 
+}
+
+.dropdown-submenu:hover > .dropdown-menu {  
+   display: block;
+}
+
+@media (max-width: 767px) {
+  .dropdown-submenu > .dropdown-menu {  
+     display: block;
+     margin-left: 15px;
+  }
+}
+
+.dropdown-submenu.pull-left {
+   float: none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu {
+   left: -100%;
+   margin-left: 10px;
+}
+
+.dropdown-menu li [class^="fa-"],
+.dropdown-menu li [class*=" fa-"] {
+  left: -3px;
+  width: 1.25em;
+  margin-right: 1px;
+  position: relative;
+  text-align: center;
+  display: inline-block;
+}
+.dropdown-menu li [class^="fa-"].fa-lg,
+.dropdown-menu li [class*=" fa-"].fa-lg {
+  /* increased font size for fa-lg */
+  width: 1.5625em;
+}
+

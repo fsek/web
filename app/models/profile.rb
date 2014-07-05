@@ -4,8 +4,8 @@ class Profile < ActiveRecord::Base
   
   has_attached_file :avatar, 
                     :styles => { original: "800x800>", medium: "300x300>", thumb:  "100x100>" },                   
-                    :path => ":rails_root/public/system/images/:attachment/:id/:style/:filename",
-                    :url => "/system/images/:attachment/:id/:style/:filename"
+                    :path => ":rails_root/public/system/images/profil/:id/:style/:filename",
+                    :url => "/system/images/profil/:id/:style/:filename"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/ 
   
 

@@ -1,28 +1,31 @@
-<%= form_for(@news) do |f| %>
-  <% if @news.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@news.errors.count, "error") %> gör att nyheten inte kan sparas:</h2>
-
-      <ul>
-      <% @news.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label 'Titel:' %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label 'Innehåll:' %><br>
-    <%= f.text_area :content %>
-  </div>
-    <div class="field">  
-  	<%= f.file_field :image %>  
-   </div>   
-  <div class="actions">
-    <%= f.submit "Spara" %>
-  </div>
+<%= form_for(@news, :html => {  :autocomplete => 'off' }) do |f| %>
+	<% if @news.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@news.errors.count, "error") %> gör att nyheten inte kan sparas:</h2>
+	
+	      <ul>
+	      <% @news.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+  	<% end %>
+  	<%= f.label 'Titel', :class => 'reg-label'%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		
+  	</div>
+  	<%= f.label 'Innehåll', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.text_area :content, :class => 'form-control',:placeholder => 'Innehåll' %>
+  	</div>
+  	<%= f.label 'Visningsbild', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	
+  		<% if @news.image != nil%>
+  			<%= image_tag(@news.image(:thumb))%>
+		<% end %>  		 	 		  	
+  		<%= f.file_field :image, :class => 'form-control' %>
+  	</div>
+  	<div class="row">
+  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  	</div>
 <% end %>

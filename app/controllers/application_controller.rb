@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_editor_events!
     flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless current_user.admin? || current_user.has_role?(:event,:edit)
+    redirect_to(:kalender) unless current_user.admin? || current_user.moderator?(:event)
     
     rescue ActionController::RedirectBackError
       redirect_to root_path

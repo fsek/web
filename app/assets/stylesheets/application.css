@@ -19,6 +19,7 @@
  *= require page_search
  *= require page_magazine
  *= require page_login_reg
+ *= require style
  *= require timeline  
  *= require default_theme
  * require_tree .

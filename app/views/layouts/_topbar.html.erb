@@ -3,7 +3,7 @@
           
           <li class="devider"></li>
           <% if user_signed_in? %>
-          <li><%= link_to fa_icon("calendar"),:calendar_index %></li>
+          <li><%= link_to fa_icon("calendar"),:kalender %></li>
           	
           <li class="devider"></li>
             <li class="dropdown">
@@ -19,45 +19,80 @@
             <% if current_user.role_id != nil && Role.find_by_id(current_user.role_id) != Role.find_by_id(2)%>            	 
             <li class="devider"></li>            
             <li class="dropdown">              
-              <%= link_to current_user.role.title, "#", class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
-              <ul class="dropdown-menu pull-right">
-              	<%if current_user.admin?%>
-              	  <li><%= link_to "Roller", :admin_roles %></li>
-                  <li><%= link_to "Hantera användare", :users%></li>
-                  <li><%= link_to "Hantera kontaktposter",:admin_kontakt%></li>
-                  <li><%= link_to "Hantera bildkategorier",:admin_bildgalleri%></li>
-                <%end%>
-                <%if current_user.has_role?(:poster,:edit)%>
-                <li><%= link_to "Hantera poster", '/poster' %></li>
-                <%end%>
-                <%if current_user.moderator?(:studierad)%>
-                <li><%= link_to "Studierådet", :studierad %></li>
-                <%end%>
-                <%if current_user.moderator?(:cafe)%>
-                <li><%= link_to "Cafémästeriet", :cafe %></li>
-                <%end%>
-                <%if current_user.moderator?(:styrelse)%>
-                <li><%= link_to "Styrelsen", :styrelse %></li>
-                <%end%>
-                <%if current_user.moderator?(:sexmasteri)%>
-                <li><%= link_to "Sexmästeriet", :sexmasteri %></li>
-                <%end%>
-                <%if current_user.moderator?(:sanningsministerie)%>
-                <li><%= link_to "Sanningsministeriet", :sanning %></li>
-                <%end%>
-                <%if current_user.moderator?(:pryl)%>
-                <li><%= link_to "Prylmästeriet", :pryl %></li>
-                <%end%>
-                <%if current_user.moderator?(:kulturministeriet)%>
-                <li><%= link_to "Kulturministeriet", :km %></li>
-                <%end%>
-                <%if current_user.moderator?(:fnu)%>
-                <li><%= link_to "Näringslivsutskottet", :fnu %></li>
-                <%end%>   
-                <%if current_user.moderator?(:utskott)%>
-                <li><%= link_to "Utskott", :utskott %></li>
-                <%end%>                    
-               </ul>               
+             	<%= link_to current_user.role.title, "#", class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
+             	<ul class="dropdown-menu">
+              		<% if current_user.admin? %>
+              		<li class="dropdown-submenu">
+          				<a href="">Admin</a>
+              			<ul class="dropdown-menu pull-right"> 
+		              	  <li><%= link_to "Roller", :admin_roles %></li>		              	  
+		                  <li><%= link_to "Hantera användare", :users%></li>
+		                  <li><%= link_to "Hantera kontaktposter",:admin_kontakt%></li>
+		                  <li><%= link_to "Hantera bildkategorier",:admin_bildgalleri%></li>		                
+               			</ul>
+               		</li>
+               		<% end %>
+              		<% if current_user.moderator?(:event) %>
+              		<li class="dropdown-submenu">
+          				<a href="">Event</a>
+              			<ul class="dropdown-menu pull-right"> 
+		              	  <li><%= link_to "Snabbvy av alla event", :events %></li>
+		                  <li><%= link_to "Nytt event", :new_event%></li>
+               			</ul>
+               		</li>
+               		<% end %>
+               		<% if current_user.moderator?(:nyheter) %>
+              		<li class="dropdown-submenu">
+          				<a href="">Nyheter</a>
+              			<ul class="dropdown-menu pull-right">		              	  
+		                  <li><%= link_to "Ny nyhet", :new_news%></li>
+               			</ul>
+               		</li>
+               		<% end %>
+               		<% if current_user.moderator?(:poster) %>
+              		<li class="dropdown-submenu">
+          				<a href="">Poster</a>
+              			<ul class="dropdown-menu pull-right">		              	  
+		                  <li><%= link_to "Lista över poster", :posts%></li>
+		                  <li><%= link_to "Ny post", :new_post%></li>
+               			</ul>
+               		</li>
+               		<% end %>
+               		<% if current_user.moderator?(:utskott) %>
+              		<li class="dropdown-submenu">
+          				<a href="">Utskott</a>
+              			<ul class="dropdown-menu pull-right">              			  		              	  
+	                  		<% if current_user.moderator?(:styrelse)%>
+		                  		<li><%= link_to 'Styrelse',:styrelse %></li>
+	                  		<%end%>
+	                  		<% if current_user.moderator?(:fos)%>
+		                  		<li><%= link_to 'Föset',:fos %></li>
+	                  		<%end%>
+	                  		<% if current_user.moderator?(:cafe)%>
+		                  		<li><%= link_to 'Cafémästeriet',:cafe %></li>
+	                  		<%end%>
+	                  		<% if current_user.moderator?(:km)%>
+		                  		<li><%= link_to 'Kulturministeriet',:km %></li>
+	                  		<%end%>
+	                  		<% if current_user.moderator?(:fnu)%>
+		                  		<li><%= link_to 'Näringslivsutskottet',:fnu %></li>
+	                  		<%end%>
+	                  		<% if current_user.moderator?(:pryl)%>
+		                  		<li><%= link_to 'Prylmästeriet',:pryl %></li>
+	                  		<%end%>
+	                  		<% if current_user.moderator?(:sexmasteri)%>
+		                  		<li><%= link_to 'Sexmästeri',:sexmasteri %></li>
+	                  		<%end%>
+	                  		<% if current_user.moderator?(:sanning)%>
+		                  		<li><%= link_to 'Sanningsministeriet',:sanning %></li>
+	                  		<%end%>
+	                  		<% if current_user.moderator?(:studierad)%>
+		                  		<li><%= link_to 'Studierådet',:studierad %></li>
+	                  		<%end%>
+               			</ul>
+               		</li>
+               		<% end %>
+           		</ul>               
             </li>        	
         	<% end %>
             

@@ -3,8 +3,8 @@ class Image < ActiveRecord::Base
   
   has_attached_file :foto, 
                     :styles => { original: "4000x4000>", large: "1500x1500>", small: "250x250>",thumb: "100x100>" },                     
-                    :path => ":rails_root/public/system/images/:attachment/:album_id/:id/:style/:filename",
-                    :url => "/system/images/:attachment/:album_id/:id/:style/:filename" 
+                    :path => ":rails_root/public/system/images/album/:album_id/:id/:style/:filename",
+                    :url => "/system/images/album/:album_id/:id/:style/:filename" 
 
                                         
   validates_attachment_content_type :foto, :content_type => /\Aimage\/.*\Z/ 
