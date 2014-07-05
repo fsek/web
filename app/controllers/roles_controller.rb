@@ -1,4 +1,3 @@
-# encoding:UTF-8
 class RolesController < Devise::RegistrationsController
 def update
     # For Rails 4

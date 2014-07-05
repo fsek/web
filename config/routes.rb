@@ -1,4 +1,4 @@
-# encoding: UTF-8
+
 Fsek::Application.routes.draw do
   
   # Resources on the page
@@ -72,7 +72,13 @@ Fsek::Application.routes.draw do
   resources :albums, path: :galleri do    
     resources :images, path: :bilder    
   end   
-    
+  
+ concern :the_role, TheRole::AdminRoutes.new
+  
+  namespace :admin do
+    concerns :the_role
+  end
+
  
    
   root 'static_pages#index'
