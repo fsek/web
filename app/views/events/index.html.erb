@@ -21,12 +21,12 @@
 <% @events.each do |event| %>
   <tr>
     <td><%= event.title %></td>
-    <td><%= event.content %></td>
+    <td><%= event.description %></td>
     <td><%= link_to User.find(event.author).profile.name, User.find(event.author).profile%></td>
     <td><%= event.category%></td>
-    <td><%= event.date %></td>
-    <td><%= event.end_date %></td>
-    <td><%if event.dayevent%>Ja <%else%>Nej<%end%></td>
+    <td><%= event.starts_at %></td>
+    <td><%= event.ends_at %></td>
+    <td><%if event.all_day%>Ja <%else%>Nej<%end%></td>
 
     <td><%= link_to 'Visa', event %></td>
     <td><%= link_to 'Redigera', edit_event_path(event) %></td>
@@ -38,5 +38,10 @@
 
 <br />
 
-<%= link_to 'Lägg till nytt event', new_event_path %>
+<% if current_user.moderator?(:news)%>
+			<div class="row">
+				<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till event"), new_event_path, class: "btn-u btn-u-small"%>
+			</div>			
+<% end %>
+
 </div>

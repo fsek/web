@@ -1,49 +1,36 @@
 <%= form_for(@profile) do |f| %>
-  <% if @profile.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@profile.errors.count, "error") %> hindar profilen från att sparas:</h2>
-
-      <ul>
-      <% @profile.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label 'Namn:' %><br>
-    <%= f.text_field :name %>
-  </div>
-   <div class="field">   
-   		<%=f.label 'Program:'%><br>
-	   <%= f.select :program, options_for_select([
+  	<%= f.label 'Namn', :class => 'reg-label'%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= f.text_field :name, :class => 'form-control',:placeholder => 'Namn'%>		
+  	</div>
+  	<%= f.label 'Program', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.select :program, options_for_select([
 	  	[" ","Oklart"],
 	  	["Teknisk Fysik"],
 	  	["Teknisk Matematik"],
 	  	["Teknisk Nanovetenskap"],
-	  	["Gäst"]],@profile.program),{}, html_options = {:class => "listBox",:selected => :program , :style=>"float:left;"} %> <br><br>
-  	</div>  	
-  <div class="field">
-    <%= f.label 'Började år:' %><br>
-    <%= f.number_field :start_year %>
-  </div>
-  <%if @profile.posts.size > 0%>
-  	<div class="field">
-  		<%= f.label 'Välj visningspost:'%>  (har du flera kan du bara visa 1 när du t.ex. skapar en nyhet.)<br>
-  		<%= f.select :first_post, options_for_select(@profile.posts.collect{ |r| [r.title, r.id] })%><br>
+	  	["Gäst"]],@profile.program),{}, html_options = {:class => "listBox form-control",:selected => :program , :style=>"float:left;"} %>
+  	</div>			  
+  	<%= f.label 'Började på programmet', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.number_field :start_year,:class => 'form-control' %>
   	</div>
-  <% end %>
-  <% if @profile.posts.count > 0%>  
-  	<div class="field">
-  		<%= f.label 'Profilbild'%>  (har du flera kan du bara visa 1 när du t.ex. skapar en nyhet.)<br>
-  		<%= f.file_field :avatar %><br>
-  		<% if @profile.avatar_file_name != nil%>
-  			<%= image_tag @profile.avatar.url(:thumb) %>
-  		<%end%>
- 	</div>
-  <% end %>
-  <div class="actions"><br>
-    <%= f.submit "Uppdatera profil"%>
-  </div>
+  	<%= f.label 'Profilbild', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	
+  		<% if @profile.avatar%>
+  			<%= image_tag(@profile.avatar(:thumb))%>
+		<% end %>  		 	 		  	
+  		<%= f.file_field :avatar, :class => 'form-control' %>
+  	</div>
+  	<% if @profile.posts.count > 0%>
+	  	<%= f.label 'Visningspost', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">		  	  		 		  	
+	  		<%= f.select :first_post, options_for_select(@profile.posts.collect{ |r| [r.title, r.id] }),:class => 'form-control'%>
+	  	</div>
+	<% end %>
+  	
+  	<div class="row">
+  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  	</div>
 <% end %>

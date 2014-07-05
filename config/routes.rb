@@ -24,7 +24,7 @@ Fsek::Application.routes.draw do
   post 'admin/bildgalleri'=> 'admin#bildgalleri', as: :admin_bildgalleri_path
   get 'admin/utskott' => 'admin#utskott', as: :admin_utskott
   post 'admin/utskott'=> 'admin#utskott', as: :admin_utskott_path
-  
+  get 'kalender' => 'calendar#index',as: :kalender
   
   get 'om' => 'static_pages#om', as: :om
   get 'faq' => 'static_pages#faq', as: :faq
@@ -62,8 +62,7 @@ Fsek::Application.routes.draw do
     patch :remove_post, on: :member
   end
   resources :events  
-  resources :news    ,path:  :nyhet
-  resources :calendar , path:  :kalender
+  resources :news    ,path:  :nyhet  
   resources :posts, path: :poster do
   patch :remove_profile, on: :member
   patch :add_profile_username, on: :member

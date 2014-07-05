@@ -1,11 +1,13 @@
-<% title("Redigera din användarprofil") %>
-
-<% if @no_profile_data %>
-  <h2>Hej och välkommen till F-sektionenens hemsida!</h2>
-  <p>Det ser ut som att du inte fyllt i några användaruppgifter om dig själv än! Om du gör det förenklar du både för oss på sektionen samt för dig själv i ditt framtida engagemangsliv på F. Galet bra, eller hur?</p>
-<% end %>
-
-<%= render 'form' %>
-
-<br>
-<%= link_to 'Tillbaka till profilen', @profile %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
+			<%= label_tag 'Redigera din användarprofil',nil, :class => 'reg-header'%>
+			<% if @no_profile_data %>
+				  <h2>Hej och välkommen till F-sektionenens hemsida!</h2>
+				  <p>Det ser ut som att du inte fyllt i några användaruppgifter om dig själv än! Om du gör det förenklar du både för oss på sektionen samt för dig själv i ditt framtida engagemangsliv på F. Galet bra, eller hur?</p>
+			<% end %>
+			<%= render 'form'%>			
+			<%= link_to 'Tillbaka till profilen', @profile %>
+		</div>
+	</div>
+</div>

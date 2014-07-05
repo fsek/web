@@ -36,7 +36,7 @@ class PostsController < ApplicationController
       else 
         @post.profiles << @profile
         respond_to do |format|
-          format.html { redirect_to :posts, notice: @profile.name.to_s + ' (' + User.find(@profile).username.to_s + ') tilldelades posten '+@post.title.to_s + '.'}
+          format.html { redirect_to :posts, notice: @profile.name.to_s + ' (' + @profile.user.username.to_s + ') tilldelades posten '+@post.title.to_s + '.'}
             if (@profile.first_post == nil)   
               @profile.update(first_post: @post.id)
             end

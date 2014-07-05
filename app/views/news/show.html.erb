@@ -1,31 +1,35 @@
-<% title("Nyheter") %>
+<div class="container content"> 	
+	<div class="row portfolio-item margin-bottom-50">
+    	<div class="col-md-offset-2 col-md-5 md-margin-bottom-40">
+            <h2><%= @news.title %></h2>            
+            <div class="row portfolio-item1">
+            	<div class="col-xs-12">
+            		<%= simple_format(@news.content)%>
+        		</div>
+        	</div>
+        	
+        	<div class="row">
+        		<div class="col-xs-12">
+        			<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Nyheter"), news_index_path, class: "btn-u btn-u-small"%>
+        			<% if current_user.has_role?(:news,:edit) %>				      	
+				        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_news_path(@news), class: "btn-u btn-u-small"%>
+				        <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @news, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
+      				<% end %>
+    		 	</div>    		 	          
+            </div>
+        </div>
+        <!-- End Content Info -->        
 
-<div class="row blog">
-  <div class="col-md-3">
-  	<%if @news.image_file_name != nil%>
-    <%= image_tag @news.image.url(:thumb) %>
-    <% end %>
-  </div>
-  
-  <div class="col-md-9">
-    <h2><%= @news.title %></h2>
-	
-    <ul class="list-unstyled blog-info">
-    	<% if @author.profile.posts.count != 0%>
-    		<li><%= fa_icon("user") %> <%= link_to @author.profile.name+' - ('+ @author.profile.posts.find(@author.profile.first_post).title+')' , @author.profile %></li>
-    	<% end %>    	
-      <li><i class="fa fa-calendar"></i> <%= @news.created_at.in_time_zone("Berlin").to_formatted_s(:db) %></li>      
-    </ul>
-	
-    <p><%= simple_format(@news.content) %></p>
-	
-    <p>
-      <% if current_user.has_role?(:news, :edit) %>
-        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_news_path(@news), class: "btn-u btn-u-small" %>
-        <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @news, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
-      <% end %>
-    </p>
-  </div>    
+        <!-- Carousel -->
+        <div class="col-md-3">
+            <div class="carousel slide carousel-v1" id="myCarousel">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <%= image_tag @news.image(:original)%>                        
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <!-- End Carousel -->
+    </div><!--/row-->
 </div>
-
-

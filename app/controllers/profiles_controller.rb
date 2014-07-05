@@ -4,7 +4,8 @@ class ProfilesController < ApplicationController
   before_filter :login_required
   before_filter :authenticate_user!  
   
-  before_action :set_profile, only: [:show, :edit, :update,:remove_post]  
+  before_action :set_profile, only: [:show, :edit, :update,:remove_post]
+  before_action :set_owner, only: [:show]  
   
   
 
@@ -21,9 +22,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-
-    if @profile.created_at == @profile.updated_at
-      
+    if @profile.created_at == @profile.updated_at      
       redirect_to edit_profile_url(@profile) 
     end
   end
@@ -60,8 +59,8 @@ class ProfilesController < ApplicationController
     def set_profile
       @profile = Profile.find(params[:id])
     end
-    def set_user
-      @user = User.find(Profile.find(params[:id]).user_id)
+    def set_owner
+      @owner = Profile.find(params[:id]).user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
