@@ -21,6 +21,6 @@ production:
   encoding: utf8
   database: fsek_production
   username: root
-  password: 
+  password: f4ever98
   host: 127.0.0.1
   socket: /tmp/mysql.sock
