@@ -1,7 +1,7 @@
 # encoding: UTF-8
 Fsek::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.secret_key_base = 'd328a97ab11dafe94db121b97c79a3713cde6357d46c229c02bb082b9c6530f6a6c9a39b841b65d34fca35266d4684b1e4b06a0fdc018a55062f515e3ba7e6d2'
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -81,7 +81,7 @@ Fsek::Application.configure do
   config.action_mailer.smtp_settings = {
   address: "127.0.0.1",
   port: 25,
-  domain: 'dev.fsektionen.se',
+  domain: 'fsektionen.se',
   authentication: "plain",
   enable_starttls_auto: false  
   }
@@ -93,5 +93,5 @@ Fsek::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.assets.precompile = ['*.js', '*.css', '*.css.erb']
   config.assets.compile = true
-  PUBLIC_URL = "fsektionen.se"
+  PUBLIC_URL = "http://fsektionen.se"
 end
