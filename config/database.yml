@@ -23,4 +23,4 @@ production:
   username: root
   password: f4ever98
   host: localhost
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
