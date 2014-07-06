@@ -22,5 +22,5 @@ production:
   database: db/fsek_production
   username: root
   password: f4ever98
-  host: 127.0.0.1
+  host: localhot
   socket: /tmp/mysql.sock
