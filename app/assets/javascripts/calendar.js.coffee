@@ -21,7 +21,7 @@ $(document).ready ->
     monthNames: ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'],
     dayNames: ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'],
     dayNamesShort: ['Sön', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör'],
-    weekNumberTitle: 'V'
+    weekNumberTitle: 'V'    
     
 
     

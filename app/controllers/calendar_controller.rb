@@ -13,7 +13,4 @@ class CalendarController < ApplicationController
         @events = Event.all
         format.ics
       end
-      
-      
-      
-      end
+end
