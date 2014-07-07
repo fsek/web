@@ -1,19 +1,23 @@
 /* unvisited link */
 a:link {
-    color: #777 !important;
+    color: #eb7125;
 }
 
 /* visited link */
 a:visited {
-    color: #777 !important;
+    color: #eb7125;
 }
 
 /* mouse over link */
 a:hover {
-    color: #eb7125 !important;
+    color: #eb7125;
 }
 
 /* selected link */
 a:active {
-    color: #eb7125 !important;
+    color: #eb7125;
 }
+.black-link a a:visited a:hover a:active {
+  color: #777 !important;
+}
+
