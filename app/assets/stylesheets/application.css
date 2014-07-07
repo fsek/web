@@ -28,6 +28,7 @@
  *= require fullcalendar
  *= require fullcalendar.print
  *= require galleria.classicmod 
+ *= require custom
  */
 
  /* Override for Bootstrap 3 font location */
