@@ -8,6 +8,7 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require custom
  *= require bootstrap
  *= require_self
  *= require style
@@ -28,7 +29,7 @@
  *= require fullcalendar
  *= require fullcalendar.print
  *= require galleria.classicmod 
- *= require custom
+ 
  */
 
  /* Override for Bootstrap 3 font location */

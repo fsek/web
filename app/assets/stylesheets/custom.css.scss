@@ -1,10 +1,19 @@
+/* unvisited link */
 a:link {
-  color: #eb7125 !important;
+    color: #777;
 }
-p, a, li { 
-   color: #777 !important;
-   line-height: 1.6; 
+
+/* visited link */
+a:visited {
+    color: #777;
 }
-a {
-  color: #777 !important;
+
+/* mouse over link */
+a:hover {
+    color: ##eb7125 ;
+}
+
+/* selected link */
+a:active {
+    color: ##eb7125 ;
 }
