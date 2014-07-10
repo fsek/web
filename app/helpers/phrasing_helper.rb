@@ -49,10 +49,11 @@ module PhrasingHelper
                               current_user.moderator?(:kontakt)
                             end
                             elsif current_page?(:controller => 'static_pages', :action => 'index')
-                              current_user.moderator?(:startsida)                  
-                            elsif controller_name == "phrasing_phrases"
-                              true
-                            end
+                              current_user.moderator?(:startsida)
+                            end                                          
+                  elsif controller_name == "phrasing_phrases"
+                    true
+                  end
     else
      false
      end
