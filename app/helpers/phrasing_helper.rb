@@ -46,8 +46,7 @@ module PhrasingHelper
                               current_user.moderator?(:faq)
                               
                             elsif current_page?(:controller => 'static_pages',:action => 'kontakt')
-                              current_user.moderator?(:kontakt)
-                            end
+                              current_user.moderator?(:kontakt)                            
                             elsif current_page?(:controller => 'static_pages', :action => 'index')
                               current_user.moderator?(:startsida)
                             end                                          
