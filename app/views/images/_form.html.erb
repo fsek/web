@@ -1,3 +1,4 @@
+<%yield :bildgalleri%>
 <%= form_for([@album, @album.images.build]) do |f| %>
   <% if @image.errors.any? %>
     <div id="error_explanation">

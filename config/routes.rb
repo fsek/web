@@ -25,6 +25,7 @@ Fsek::Application.routes.draw do
   get 'admin/utskott' => 'admin#utskott', as: :admin_utskott
   post 'admin/utskott'=> 'admin#utskott', as: :admin_utskott_path
   get 'kalender' => 'calendar#index',as: :kalender
+  get '/nollning', to: redirect('http://nollning.fsektionen.se')
   
   get 'om' => 'static_pages#om', as: :om
   get 'faq' => 'static_pages#faq', as: :faq
