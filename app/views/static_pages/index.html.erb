@@ -4,7 +4,7 @@
       <div class="item active">
         <div class="start-background">
           <div class="container">
-            <h1>Välkommen till F-sektionen!</h1>
+            <h1>Välkommen till F-sektionen!</h1>                     
             <p><%=phrase('startsida')%></p>
           </div>
         </div>
@@ -13,7 +13,23 @@
   </div>	
 <% end %>
 
+<div class="search-blocks search-blocks-top-orange">
+      <div class="row">
+      	<h1>Nyantagen?</h1>
+          <div class="col-md-8 search-img">
+          	
+            <%= image_tag "img/antagning.jpg" %>
+            </div>
+            <div class=" col-md-4">
+            <p>Så här såg det ut för några från vår kära sektion för ungefär 1 år sedan. Sitter du i denna sitsen idag? Grattis!</p>
+            <p>Läs mer om hur din resa börjar här:<br><br> <%= link_to ("Introduktion"), :nollning, class: "btn-u btn-u-small"%></p>
+            </div> 
+          </div>          
+      </div>                            
+  </div>
 
+
+<% if 1 == 0%>
 <!--Mini News-->
 <div class="col-md-4">
   <div class="search-blocks-top-orange">
@@ -81,3 +97,4 @@
       </div>                            
   </div>
 </div>
+<% end %>
