@@ -37,6 +37,7 @@ class AlbumsController < ApplicationController
   
   def create
       @album = Album.new(album_params)
+      Rails.logger.info 'funkar?'
       @album.update(author: current_user.profile)    
       respond_to do |format|
         if @album.save
