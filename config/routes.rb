@@ -70,10 +70,9 @@ Fsek::Application.routes.draw do
   end
   
   resources :albums, path: :galleri do    
-    resources :images, path: :bilder    
-    post '' => 'albums#index', as: :index,:on => :collection   
-  end   
-  
+    resources :images, path: :bilder
+  end
+  post '' => 'albums#index', as: :index_albums
  concern :the_role, TheRole::AdminRoutes.new
   
   namespace :admin do
