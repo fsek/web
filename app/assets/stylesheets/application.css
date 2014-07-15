@@ -20,6 +20,7 @@
  *= require page_search
  *= require page_magazine
  *= require page_login_reg
+ *= require portfolio-v2
  *= require style
  *= require timeline  
  *= require default_theme

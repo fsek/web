@@ -21,3 +21,144 @@ a:active {
   color: #777 !important;
 }
 
+/*Easy Block
+------------------------------------*/
+.easy-block-v1 {
+  position: relative;
+}
+
+.easy-block-v1 img {
+  width: 100%;
+}
+
+.easy-block-v1 .overflow-h h3 {
+  width: 60%; 
+  float: left;
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 5px;
+}
+
+.easy-block-v1 .easy-block-v1-badge {
+  left: 0px;
+  top: 10px;
+  z-index: 1;
+  color: #fff;
+  padding: 4px 10px;
+  position: absolute;
+}
+
+/*Easy Block v2
+------------------------------------*/
+.easy-block-v2 {
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.easy-block-v2 img {
+  width: 100%;
+}
+
+.easy-bg-v2 {
+  top: 5px;
+  color: #fff;
+  width: 100px;
+  padding: 5px;
+  right: -32px;
+  font-size: 13px;
+  position: absolute;
+  text-align: center;
+  letter-spacing: 2px;
+  transform: rotate(45deg);   
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.rgba-red { background-color: rgba(231,76,60,0.8);}
+.rgba-blue{ background-color: rgba(52,152,219,0.8);}
+.rgba-default { background-color: rgba(114,192,44,0.8);}
+.rgba-purple { background-color: rgba(155,107,204,0.8);}
+
+/*Easy Block v3
+------------------------------------*/
+.easy-block-v3 {
+  text-align: left;
+  background: #585f69;
+  margin-bottom: 10px;
+  padding: 30px 20px 20px;
+}
+
+.easy-block-v3.first { 
+  background: #696f77; 
+}
+.easy-block-v3.second { 
+  background: #707780; 
+}
+.easy-block-v3.third { 
+  background: #787f88; 
+}
+
+.easy-block-v3 i {
+  color: #fff;
+  float: left;
+  font-size: 30px;
+  min-width: 45px;
+  padding-top: 10px;
+}
+
+.easy-block-v3 .inner-faq-b {
+  overflow: hidden;
+}
+
+.easy-block-v3 .inner-faq-b h2,
+.easy-block-v3 .inner-faq-b h3 {
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.easy-block-v3 .inner-faq-b h4 {
+  color: #fff;
+  font-size: 17px;
+  margin-bottom: 2px;
+}
+
+.easy-block-v3 .inner-faq-b h2,
+.easy-block-v3 .inner-faq-b h3,
+.easy-block-v3 .inner-faq-b p {
+  color: #fff;
+}
+
+.carousel-indicators li {
+display: inline-block !important;
+width: 10px !important;
+height: 10px !important;
+margin: 1px !important;
+text-indent: -999px !important;
+border: 1px solid #fff !important;
+border-radius: 10px !important;
+cursor: pointer !important;
+background-color: #000 \9 !important;
+background-color: rgba(0,0,0,0) !important;
+}
+.carousel-indicators .active {
+width: 12px;
+height: 12px;
+margin: 0;
+background-color: #fff !important;
+}
+
+.carousel-example-generic-2 img {  
+  margin:auto;
+  max-height:200px !important;
+  width:auto !important;
+}
+.carousel-category img {  
+  margin:auto;
+  max-height:150px !important;
+  width:auto !important;
+}
+
+

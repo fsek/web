@@ -1,9 +1,10 @@
-<% title("Nytt album") %>
 <div class="container">
 	<div class="row">
-		<%= render 'form' %>		
+		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
+			<%= label_tag 'Nytt album',nil, :class => 'reg-header'%>
+			<%= render 'form'%>
+			<%= link_to 'Visa album', @album %><br>
+			<%= link_to 'Tillbaka', :back %>
+		</div>
 	</div>
 </div>
-
-
-<%= link_to 'Tillbaka', albums_path %>

@@ -71,6 +71,7 @@ Fsek::Application.routes.draw do
   
   resources :albums, path: :galleri do    
     resources :images, path: :bilder    
+    post '' => 'albums#index', as: :index,:on => :collection   
   end   
   
  concern :the_role, TheRole::AdminRoutes.new
