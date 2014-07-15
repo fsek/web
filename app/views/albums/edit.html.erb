@@ -1,20 +1,22 @@
-<% title("Album") %>
-<h2>Redigera album</h2>
 <div class="container">
-	<div class="col-md-6">
-		<%= render 'form' %>
-	</div>
-	<div class ="col-md-6">
-		<% if @album.images.count > 0 %>
-			<% @album.images.each do |p|%>
-				<td><%=image_tag p.foto.url(:thumb)%></br><%= button_to "Delete", album_image_path(@album, p), method: :delete %></td>
-			<%end%>
-		<% end %>
+	<div class="row">
+		<div class="col-md-6 reg-page">
+			<%= label_tag 'Redigera album',nil, :class => 'reg-header'%>
+			<%= render 'form'%>
+			<% if @album.title %>
+				<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till bilder"), new_album_image_path(@album)%><br>
+			<% end %>
+			<%= link_to 'Visa album', @album %><br>
+			<%= link_to 'Tillbaka', :back %>
+		</div>
+		<div class="col-md-6 reg-page">
+			<% if @album.images.count > 0 %>
+				<div class="row">
+					<% @album.images.each do |p|%>
+						<div class="col-md-3"><%=image_tag p.foto.url(:thumb)%></br><%= link_to 'Ta bort',p,class: 'btn btn-u'%></div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
 	</div>
 </div>
-<% if @album.title != nil %>
-	<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till bilder"), new_album_image_path(@album), class: "btn-u btn-u-small" %>
-<% end %>
-<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Visa album"), @album, class: "btn-u btn-u-small" %>
-<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Till bildgalleriet"), album_path, class: "btn-u btn-u-small" %>
-<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @album, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>

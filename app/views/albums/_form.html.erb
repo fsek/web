@@ -1,52 +1,33 @@
-<%= form_for @album do |f| %>
-		  <% if @album.errors.any? %>
-		    <div id="error_explanation">
-		      <h2><%= pluralize(@album.errors.count, "error") %> gör att albumet inte kan sparas:</h2>
-		      <ul>
-		      <% @album.errors.full_messages.each do |msg| %>
-		        <li><%= msg %></li>
-		      <% end %>
-		      </ul>
-		    </div>
-		  <% end %>
-	<div>
-		<%= f.label 'Titel:' %><br>
-    	<%= f.text_field :title %>    
+<%= form_for(@album, :html => {  :autocomplete => 'off' }) do |f| %>
+  	<%= f.label 'Titel', :class => 'reg-label'%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		
   	</div>
-  	<div class="field">
-   		<%=f.label 'Kategori:'%><br>
-	   <%= f.select :category, options_for_select([
-	  	[" ", nil, {:class=>"bold"}],
-	  	["Cafémästeriet"],
-	  	["Föset"],
-	  	["Sittning"],
-	  	["Nollning"],
-	  	["Prylmästeriet"],
-	  	["Sanningsministeriet"],
-	  	["Sexmästeriet"],
-	  	["Studierådet"],
-	  	["Styrelsen"], 
-	  	["Spindelmännen"]],@album.category),{}, html_options = {:class => "listBox",:selected => :category , :style=>"float:left;"} %> <br> 
-	  	</div>
-  	<div class="field">
-    	<%= f.label 'Beskrivning:' %><br>
-    	<%= f.text_area :description %>
+  	<%= f.label 'Beskrivning', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.text_area :description, :class => 'form-control',:placeholder => 'Beskrivning' %>
+  	</div>			  
+  	<%= f.label 'Plats', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.text_field :location, :class => 'form-control',:placeholder => 'Plats',:autocomplete => 'off' %>
   	</div>
-  	<div class="field">
-    	<%= f.label 'Plats:' %><br>
-    	<%= f.text_field :location %>
+  	<%= f.label 'Start', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.date_field :start_date, :class => 'form-control' %>
   	</div>
-   	<div class="field">
-   		<%=f.label 'Start:'%> <br>
-   		<%= f.datetime_select :start_date, :minute_step => 10 %>
-   	</div>
-   	<div class="field">
-  		<%=f.label 'Slut:'%><br>
-   		<%= f.datetime_select :end_date, :minute_step => 10 %>
-   	</div>
-  	<div class="actions">
-    <%= f.submit "Spara album",class: "btn-u btn-u-small" %>
-    <hr>
-	</div>
+  	<%= f.label 'Slut', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.date_field :end_date, :class => 'form-control' %>
+  	</div>
+  	<%= f.label 'Kategori', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.select :category, 
+  				     options_from_collection_for_select(@kategorier,:name,:name,@album.category),
+  				     include_blank: false, 
+  				     :class => "form-control listBox"%>	
+  	</div>
+  	<div class="row">
+  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  	</div>
 <% end %>
 <script id="template-image" type="text/x-tmpl"><div class="image">{%=o.name%}<div class="progress"><div class="progress-bar bar" style="width: 0%"></div></div></div></script>

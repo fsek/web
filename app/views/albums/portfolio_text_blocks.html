@@ -21,15 +21,16 @@
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
     <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/plugins/flexslider/flexslider.css">     
-    <link rel="stylesheet" href="assets/plugins/parallax-slider/css/parallax-slider.css">
 
+    <!-- CSS Page Style -->    
+    <link rel="stylesheet" href="assets/css/pages/portfolio-v2.css">
+    
     <!-- CSS Theme -->    
     <link rel="stylesheet" href="assets/css/themes/default.css" id="style_color">
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="assets/css/custom.css">
-</head>	
+</head> 
 
 <body>
 <!--=== Style Switcher ===-->    
@@ -107,12 +108,12 @@
                 <div class="collapse navbar-collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav">
                         <!-- Home -->
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 Home
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="index.html">Option 1: Default Page</a></li>
+                                <li><a href="index.html">Option 1: Default Page</a></li>
                                 <li><a href="page_home1.html">Option 2: Layer Slider</a></li>
                                 <li><a href="page_home2.html">Option 3: Revolution Slider</a></li>
                                 <li><a href="page_home3.html">Option 4: Amazing Content</a></li>
@@ -356,7 +357,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="feature_icon_general.html"><i class="fa fa-chevron-circle-right"></i> General Icons</a></li>
                                         <li><a href="feature_icon_fa.html"><i class="fa fa-chevron-circle-right"></i> Font Awesome Icons</a></li>
-                                        <li><a href="feature_icon_line.html"><i class="fa fa-chevron-circle-right"></i> Icons</a></li>
+                                        <li><a href="feature_icon_line.html"><i class="fa fa-chevron-circle-right"></i>  Icons</a></li>
                                         <li><a href="feature_icon_glyph.html"><i class="fa fa-chevron-circle-right"></i> Glyphicons Icons</a></li>
                                     </ul>                                
                                 </li>
@@ -474,12 +475,12 @@
                         <!-- End Features -->
 
                         <!-- Portfolio -->
-                        <li class="dropdown">
+                        <li class="dropdown active">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 Portfolio
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="portfolio_text_blocks.html">Portfolio Text Blocks</a></li>
+                                <li class="active"><a href="portfolio_text_blocks.html">Portfolio Text Blocks</a></li>
                                 <li><a href="portfolio_2_column.html">Portfolio 2 Columns</a></li>
                                 <li><a href="portfolio_3_column.html">Portfolio 3 Columns</a></li>
                                 <li><a href="portfolio_4_column.html">Portfolio 4 Columns</a></li>
@@ -540,323 +541,131 @@
         </div>            
         <!-- End Navbar -->
     </div>
-    <!--=== End Header ===-->    
+    <!--=== End Header ===-->     
 
-    <!--=== Slider ===-->
-    <div class="slider-inner">
-        <div id="da-slider" class="da-slider">
-            <div class="da-slide">
-                <h2><i>CLEAN &amp; FRESH</i> <br /> <i>FULLY RESPONSIVE</i> <br /> <i>DESIGN</i></h2>
-                <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i> <br /> <i>veniam omnis </i></p>
-                <div class="da-img"><img src="assets/plugins/parallax-slider/img/1.png" alt="" /></div>
-            </div>
-            <div class="da-slide">
-                <h2><i>RESPONSIVE VIDEO</i> <br /> <i>SUPPORT AND</i> <br /> <i>MANY MORE</i></h2>
-                <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i></p>
-                <div class="da-img">
-    				<iframe src="http://player.vimeo.com/video/47911018" width="530" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> 
-                </div>
-            </div>
-            <div class="da-slide">
-                <h2><i>USING BEST WEB</i> <br /> <i>SOLUTIONS WITH</i> <br /> <i>HTML5/CSS3</i></h2>
-                <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i> <br /> <i>veniam omnis </i></p>
-                <div class="da-img"><img src="assets/plugins/parallax-slider/img/html5andcss3.png" alt="image01" /></div>
-            </div>
-            <div class="da-arrows">
-                <span class="da-arrows-prev"></span>
-                <span class="da-arrows-next"></span>		
-            </div>
-        </div>
-    </div><!--/slider-->
-    <!--=== End Slider ===-->
-
-    <!--=== Purchase Block ===-->
-    <div class="purchase">
+    <!--=== Breadcrumbs ===-->
+    <div class="breadcrumbs">
         <div class="container">
-            <div class="row">
-                <div class="col-md-9 animated fadeInLeft">
-                    <span>Unify is a clean and fully responsive incredible Template.</span>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi  vehicula sem ut volutpat. Ut non libero magna fusce condimentum eleifend enim a feugiat corrupti quos.</p>
-                </div>            
-                <div class="col-md-3 btn-buy animated fadeInRight">
-                    <a href="#" class="btn-u btn-u-lg"><i class="fa fa-cloud-download"></i> Download Now</a>
-                </div>
-            </div>
-        </div>
-    </div><!--/row-->
-    <!-- End Purchase Block -->
+            <h1 class="pull-left">Portfolio</h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="">Portfolio</a></li>
+                <li class="active">Portfolio Text Blocks</li>
+            </ul>
+        </div><!--/container-->
+    </div><!--/breadcrumbs-->
+    <!--=== End Breadcrumbs ===-->
 
     <!--=== Content Part ===-->
-    <div class="container content">	
-    	<!-- Service Blocks -->
-    	<div class="row margin-bottom-30">
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-compress service-icon"></i>
-        			<div class="desc">
-        				<h4>Fully Responsive</h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
-        			</div>
-        		</div>	
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-cogs service-icon"></i>
-        			<div class="desc">
-        				<h4>HTML5 + CSS3</h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
-        			</div>
-        		</div>	
-        	</div>
-        	<div class="col-md-4">
-        		<div class="service">
-                    <i class="fa fa-rocket service-icon"></i>
-        			<div class="desc">
-        				<h4>Launch Ready</h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
-        			</div>
-        		</div>	
-        	</div>			    
-    	</div>
-    	<!-- End Service Blokcs -->
+    <div class="container content"> 	
+        <!-- Portfolio Sorting Blocks -->
+        <div class="sorting-block">
+            <ul class="sorting-nav sorting-nav-v1 text-center">
+                <li class="filter" data-filter="all">All</li>
+                <li class="filter" data-filter="category_1">UI Design</li>
+                <li class="filter" data-filter="category_2">Wordpress</li>
+                <li class="filter" data-filter="category_3">HTML5/CSS3</li>
+                <li class="filter" data-filter="category_4">Bootstrap 3</li>
+            </ul>
 
-    	<!-- Recent Works -->
-        <div class="headline"><h2>Recent Works</h2></div>
-        <div class="row margin-bottom-20">
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                	<div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="assets/img/main/2.jpg" alt="" />
-                        </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>					
-                    </div>
-                    <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project One</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="assets/img/main/3.jpg" alt="" />
-                        </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>                   
-                    </div>
-                    <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project Two</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="assets/img/main/9.jpg" alt="" />
-                        </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>                   
-                    </div>
-                    <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project Three</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                    <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                            <img class="img-responsive" src="assets/img/main/10.jpg" alt="" />
-                        </div>
-                        <a class="btn-more hover-effect" href="#">read more +</a>                   
-                    </div>
-                    <div class="caption">
-                        <h3><a class="hover-effect" href="#">Project Four</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    	<!-- End Recent Works -->
-
-    	<!-- Info Blokcs -->
-    	<div class="row margin-bottom-30">
-        	<!-- Welcome Block -->
-    		<div class="col-md-8 md-margin-bottom-40">
-    			<div class="headline"><h2>Welcome To Unify</h2></div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <img class="img-responsive margin-bottom-20" src="assets/img/main/6.jpg" alt="" />
-                    </div>
-                    <div class="col-sm-8">
-                        <p>Unify is an incredibly beautiful responsive Bootstrap Template for corporate and creative professionals. It works on all major web browsers, tablets and phone.</p>
-                        <ul class="list-unstyled margin-bottom-20">
-                            <li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida</li>
-                            <li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
-                            <li><i class="fa fa-check color-green"></i> Responsive Bootstrap Template</li>
-                            <li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
-                        </ul>                    
-                    </div>
-                </div>
-
-                <blockquote class="hero-unify">
-                    <p>Award winning digital agency. We bring a personal and effective approach to every project we work on, which is why. Unify is an incredibly beautiful responsive Bootstrap Template for corporate professionals.</p>
-                    <small>CEO, Jack Bour</small>
-                </blockquote>
-            </div><!--/col-md-8-->        
-
-            <!-- Latest Shots -->
-            <div class="col-md-4">
-    			<div class="headline"><h2>Latest Shots</h2></div>
-    			<div id="myCarousel" class="carousel slide carousel-v1">
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="assets/img/main/5.jpg" alt="">
-                            <div class="carousel-caption">
-                                <p>Facilisis odio, dapibus ac justo acilisis gestinas.</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="assets/img/main/4.jpg" alt="">
-                            <div class="carousel-caption">
-                                <p>Cras justo odio, dapibus ac facilisis into egestas.</p>
-                            </div>
-                            </div>
-                        <div class="item">
-                            <img src="assets/img/main/3.jpg" alt="">
-                            <div class="carousel-caption">
-                                <p>Justo cras odio apibus ac afilisis lingestas de.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="carousel-arrow">
-                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
-    			</div>
-            </div><!--/col-md-4-->
-    	</div>	
-    	<!-- End Info Blokcs -->
-
-        <!-- Our Clients -->
-        <div id="clients-flexslider" class="flexslider home clients">
-            <div class="headline"><h2>Our Clients</h2></div>    
-            <ul class="slides">
-                <li>
+            <ul class="row sorting-grid">
+                <li class="col-md-3 col-sm-6 col-xs-12 mix category_1 category_3" data-cat="1">
                     <a href="#">
-                        <img src="assets/img/clients/hp_grey.png" alt="" /> 
-                        <img src="assets/img/clients/hp.png" class="color-img" alt="" />
+                        <img class="img-responsive" src="assets/img/main/11.jpg" alt="">
+                        <span class="sorting-cover">
+                            <span>Happy New Year</span>
+                            <p>Anim pariatur cliche reprehenderit</p>
+                        </span>
                     </a>
                 </li>
-                <li>
+                <li class="col-md-3 col-sm-6 col-xs-12 mix category_3 category_1" data-cat="3">
                     <a href="#">
-                        <img src="assets/img/clients/igneus_grey.png" alt="" /> 
-                        <img src="assets/img/clients/igneus.png" class="color-img" alt="" />
+                        <img class="img-responsive" src="assets/img/main/12.jpg" alt="">
+                        <span class="sorting-cover">
+                            <span>Happy New Year</span>
+                            <p>Anim pariatur cliche reprehenderit</p>
+                        </span>
                     </a>
                 </li>
-                <li>
+                <li class="col-md-3 col-sm-6 col-xs-12 mix category_2 category_1" data-cat="2">
                     <a href="#">
-                        <img src="assets/img/clients/vadafone_grey.png" alt="" /> 
-                        <img src="assets/img/clients/vadafone.png" class="color-img" alt="" />
+                        <img class="img-responsive" src="assets/img/main/13.jpg" alt="">
+                        <span class="sorting-cover">
+                            <span>Happy New Year</span>
+                            <p>Anim pariatur cliche reprehenderit</p>
+                        </span>
                     </a>
                 </li>
-                <li>
+                <li class="col-md-3 col-sm-6 col-xs-12 mix category_3 category_4" data-cat="3">
                     <a href="#">
-                        <img src="assets/img/clients/walmart_grey.png" alt="" /> 
-                        <img src="assets/img/clients/walmart.png" class="color-img" alt="" />
+                        <img class="img-responsive" src="assets/img/main/3.jpg" alt="">
+                        <span class="sorting-cover">
+                            <span>Happy New Year</span>
+                            <p>Anim pariatur cliche reprehenderit</p>
+                        </span>
                     </a>
                 </li>
-                <li>
+                <li class="col-md-3 col-sm-6 col-xs-12 mix category_2 category_1 category_4" data-cat="2">
                     <a href="#">
-                        <img src="assets/img/clients/shell_grey.png" alt="" /> 
-                        <img src="assets/img/clients/shell.png" class="color-img" alt="" />
+                        <img class="img-responsive" src="assets/img/main/2.jpg" alt="">
+                        <span class="sorting-cover">
+                            <span>Happy New Year</span>
+                            <p>Anim pariatur cliche reprehenderit</p>
+                        </span>
                     </a>
                 </li>
-                <li>
+                <li class="col-md-3 col-sm-6 col-xs-12 mix category_4" data-cat="1">
                     <a href="#">
-                        <img src="assets/img/clients/natural_grey.png" alt="" /> 
-                        <img src="assets/img/clients/natural.png" class="color-img" alt="" />
+                        <img class="img-responsive" src="assets/img/main/6.jpg" alt="">
+                        <span class="sorting-cover">
+                            <span>Happy New Year</span>
+                            <p>Anim pariatur cliche reprehenderit</p>
+                        </span>
                     </a>
                 </li>
-                <li>
+                <li class="col-md-3 col-sm-6 col-xs-12 mix category_2 category_3  category_4" data-cat="2">
                     <a href="#">
-                        <img src="assets/img/clients/aztec_grey.png" alt="" /> 
-                        <img src="assets/img/clients/aztec.png" class="color-img" alt="" />
+                        <img class="img-responsive" src="assets/img/main/8.jpg" alt="">
+                        <span class="sorting-cover">
+                            <span>Happy New Year</span>
+                            <p>Anim pariatur cliche reprehenderit</p>
+                        </span>
                     </a>
                 </li>
-                <li>
+                <li class="col-md-3 col-sm-6 col-xs-12 mix category_1 category_2 category_3" data-cat="1">
                     <a href="#">
-                        <img src="assets/img/clients/gamescast_grey.png" alt="" /> 
-                        <img src="assets/img/clients/gamescast.png" class="color-img" alt="" />
+                        <img class="img-responsive" src="assets/img/main/1.jpg" alt="">
+                        <span class="sorting-cover">
+                            <span>Happy New Year</span>
+                            <p>Anim pariatur cliche reprehenderit</p>
+                        </span>
                     </a>
                 </li>
-                <li>
+                <li class="col-md-3 col-sm-6 col-xs-12 mix category_4 category_2" data-cat="1">
                     <a href="#">
-                        <img src="assets/img/clients/cisco_grey.png" alt="" /> 
-                        <img src="assets/img/clients/cisco.png" class="color-img" alt="" />
+                        <img class="img-responsive" src="assets/img/main/11.jpg" alt="">
+                        <span class="sorting-cover">
+                            <span>Happy New Year</span>
+                            <p>Anim pariatur cliche reprehenderit</p>
+                        </span>
                     </a>
                 </li>
-                <li>
+                <li class="col-md-3 col-sm-6 col-xs-12 mix category_3 category_2" data-cat="3">
                     <a href="#">
-                        <img src="assets/img/clients/everyday_grey.png" alt="" /> 
-                        <img src="assets/img/clients/everyday.png" class="color-img" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="assets/img/clients/cocacola_grey.png" alt="" /> 
-                        <img src="assets/img/clients/cocacola.png" class="color-img" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="assets/img/clients/spinworkx_grey.png" alt="" /> 
-                        <img src="assets/img/clients/spinworkx.png" class="color-img" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="assets/img/clients/shell_grey.png" alt="" /> 
-                        <img src="assets/img/clients/shell.png" class="color-img" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="assets/img/clients/natural_grey.png" alt="" /> 
-                        <img src="assets/img/clients/natural.png" class="color-img" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="assets/img/clients/gamescast_grey.png" alt="" /> 
-                        <img src="assets/img/clients/gamescast.png" class="color-img" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="assets/img/clients/everyday_grey.png" alt="" /> 
-                        <img src="assets/img/clients/everyday.png" class="color-img" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="assets/img/clients/spinworkx_grey.png" alt="" /> 
-                        <img src="assets/img/clients/spinworkx.png" class="color-img" alt="" />
+                        <img class="img-responsive" src="assets/img/main/12.jpg" alt="">
+                        <span class="sorting-cover">
+                            <span>Happy New Year</span>
+                            <p>Anim pariatur cliche reprehenderit</p>
+                        </span>
                     </a>
                 </li>
             </ul>
-        </div><!--/flexslider-->
-        <!-- End Our Clients -->
-    </div><!--/container-->		
-    <!-- End Content Part -->
+        
+            <div class="clearfix"></div>
+        </div>
+        <!-- End Portfolio Sorting Blocks -->
+    </div><!--/container-->	 	
+    <!--=== End Content Part ===-->
 
     <!--=== Footer ===-->
     <div class="footer">
@@ -959,23 +768,20 @@
     <!--=== End Copyright ===-->
 </div><!--/wrapper-->
 
-<!-- JS Global Compulsory -->			
+<!-- JS Global Compulsory -->           
 <script type="text/javascript" src="assets/plugins/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="assets/plugins/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+<!-- JS Implementing Plugins -->           
 <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="assets/plugins/flexslider/jquery.flexslider-min.js"></script>
-<script type="text/javascript" src="assets/plugins/parallax-slider/js/modernizr.js"></script>
-<script type="text/javascript" src="assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery.mixitup.min.js"></script>    
 <!-- JS Page Level -->           
 <script type="text/javascript" src="assets/js/app.js"></script>
-<script type="text/javascript" src="assets/js/pages/index.js"></script>
+<script type="text/javascript" src="assets/js/pages/page_portfolio.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-      	App.init();
-        App.initSliders();
-        Index.initParallaxSlider();        
+        App.init();
+        PortfolioPage.init();                             
     });
 </script>
 <!--[if lt IE 9]>
@@ -983,4 +789,4 @@
 <![endif]-->
 
 </body>
-</html>	
+</html> 

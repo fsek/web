@@ -7,22 +7,32 @@ class AlbumsController < ApplicationController
   
   def index
     @albums = Album.all
-    @kategorier = List.where(category: 'bildgalleri')
-    if params[:id]      
-      @searched = Album.find(:all, :conditions => ['category = ? AND start_date >= ?', List.find(params[:id]).name, params[:datum]]) 
-    end   
-  end
-  def edit
-    @album = Album.find(params[:id])    
-    @image = Image.new
-  end
-  def show
-    @image = Image.new
+    @kategorier = List.where(category: 'bildgalleri').all
     
+    if (params[:id] != nil) && (params[:datum] != "")     
+      @id = params[:id]
+      @datum = Date.parse(params[:datum])  
+      if @datum < Date.today
+        if @kategorier.find(@id).name == " "
+            @searched = Album.where(:start_date => @datum..Date.today).all
+        else                
+          @searched = Album.where(:category => @kategorier.find(@id).name, :start_date => @datum...Date.today).all
+        end
+      end
+    elsif (params[:id]) && (params[:datum] == "" )
+      @id = params[:id]
+      @searched = Album.where(:category => @kategorier.find(@id).name)    
+    end
+      
+  end
+  def edit    
+    @kategorier = List.where(category: 'bildgalleri')
+  end
+  def show    
   end
   def new
-    @album = Album.new
-    @image = Image.new
+    @album = Album.new    
+    @kategorier = List.where(category: 'bildgalleri')
   end
   
   def create
