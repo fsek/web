@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require custom
+ *= require app 
  *= require bootstrap
  *= require_self
  *= require style
