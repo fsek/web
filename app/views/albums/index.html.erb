@@ -23,7 +23,8 @@
 			                            <li class="rounded-x" data-target="#carousel-example-generic-2" data-slide-to="1"></li>
 			                            <li class="rounded-x" data-target="#carousel-example-generic-2" data-slide-to="2"></li>
 			                        </ol>
-			                        <div class="carousel-inner">    	            								
+			                        <div class="carousel-inner">    	            			
+			                        <%if p.images.count > 0%>					
 				                            <div class="item active carousel-example-generic-2">
 				                                <%= image_tag(p.images.sample().foto.url(:small))%>
 				                            </div>
@@ -33,6 +34,7 @@
 				                            <div class="item carousel-example-generic-2">
 				                                <%= image_tag(p.images.sample().foto.url(:small))%>
 				                            </div>
+		                            <% end %>
 			                        </div>
 			                    </div>
 			                    <div class="container">
@@ -97,7 +99,8 @@
 			                            <li class="rounded-x" data-target="#carousel-example-generic" data-slide-to="1"></li>
 			                            <li class="rounded-x" data-target="#carousel-example-generic" data-slide-to="2"></li>
 			                        </ol>
-			                        <div class="carousel-inner">    	            								
+			                        <div class="carousel-inner"> 
+			                        <%if p.images.count > 0%>   	            								
 				                            <div class="item active carousel-example-generic">
 				                                <%= image_tag(p.images.sample().foto.url(:small))%>
 				                            </div>
@@ -107,6 +110,7 @@
 				                            <div class="item carousel-example-generic">
 				                                <%= image_tag(p.images.sample().foto.url(:small))%>
 				                            </div>
+		                            <%end%>
 			                        </div>
 			                    </div>
 			                    <div class="container">
@@ -162,7 +166,8 @@
 			                            <li class="rounded-x" data-target="#carousel-<%=p.id%>" data-slide-to="1"></li>
 			                            <li class="rounded-x" data-target="#carousel-<%=p.id%>" data-slide-to="2"></li>
 			                        </ol>
-			                        <div class="carousel-inner">    	            								
+			                        <div class="carousel-inner">
+			                        <%if p.images.count > 0%>    	            								
 				                            <div class="item active carousel-category">
 				                                <%= image_tag(p.images.sample().foto.url(:small))%>
 				                            </div>
@@ -172,6 +177,7 @@
 				                            <div class="item carousel-category">
 				                                <%= image_tag(p.images.sample().foto.url(:small))%>
 				                            </div>
+		                            <%end%>
 			                        </div>
 			                    </div>
 			                    <div class="container">
@@ -206,19 +212,26 @@
   				  	
   <script>
   	var albums = $('.album');
-		albums.hide();
+		
   $('.sorting-nav').on('click','li', function(){
    $(this).addClass('active').siblings().removeClass('active');
 });
 $('.sorting-nav').on('click','li', function() {	 
     var customType = $( this ).data('filter');
 
+    if(customType > 0)
+    {
     albums
         .hide()
         .filter(function () {
             return $(this).data('cat') === customType;
         })
         .show();
+    }
+    else 
+    {
+     albums.show();
+    }
 });
 
   	jQuery(documetn).ready(function() {
@@ -233,15 +246,15 @@ $('.sorting-nav').on('click','li', function() {
 	
 	  	
 
- 	<% if 1==0 %>
+ 	
  	  <% if current_user.admin? || current_user.has_role?(:galleri,:edit) %>
 	    	<div class="headline headline-md">
 	    		<h2>Verktyg</h2>
     		</div>
 		    <ul class="list">
-		        <li><%= link_to "Skapa album", new_album %></li>
+		        <li><%= link_to "Skapa album", :new_album %></li>
 		    </ul>
 	  <% end %>
-  <% end %>
+ 
 
 
