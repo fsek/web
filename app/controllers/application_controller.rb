@@ -38,6 +38,13 @@ class ApplicationController < ActionController::Base
     rescue ActionController::RedirectBackError
       redirect_to root_path
   end
+  def authenticate_gallery!
+    flash[:error] = t('the_role.access_denied')
+    redirect_to(:back) unless current_user.moderator?(:galleri)
+    
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+  end
   
   
   

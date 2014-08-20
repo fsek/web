@@ -2,8 +2,9 @@
 class AlbumsController < ApplicationController
     
   before_filter :login_required
-  before_filter :authenticate_user! 
-  before_action :set_album, only: [:show, :edit,:destroy,:update] 
+  before_filter :authenticate_user!
+  before_filter :authenticate_gallery!, only: [:new, :create,:edit,:destroy,:update]
+  before_action :set_album, only: [:show, :edit,:destroy,:update]
   
   def index
     @albums = Album.all
