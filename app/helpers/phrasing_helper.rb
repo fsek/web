@@ -6,7 +6,7 @@ module PhrasingHelper
   #  current_user.is_admin?
   # end
 
-  def can_edit_phrases?    
+  def can_edit_phrases? 
     if user_signed_in?
               if controller_name == "static_pages"              
                             if current_page?(:controller => 'static_pages',:action => 'cafe')
@@ -50,9 +50,11 @@ module PhrasingHelper
                             elsif current_page?(:controller => 'static_pages', :action => 'index')
                               current_user.moderator?(:startsida)
                             end
-                  elsif controller_name == "councils"
+                  elsif current_page?(:controller => 'councils',:action => 'new')
+                    false         
+                  elsif current_page?(:controller => 'councils',:action => 'show')
                     @council = Council.find_by_url(params[:id])                                  
-                            if current_page?(:controller => 'councils',:action => 'show') && @council
+                            if  @council
                               current_user.moderator?(@council.url)
                             end                                     
                   elsif controller_name == "phrasing_phrases"
