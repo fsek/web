@@ -26,6 +26,10 @@
   				     include_blank: false, 
   				     :class => "form-control listBox"%>	
   	</div>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.select :subcategory_ids, 
+  				     options_from_collection_for_select(@subcategories,:id,:text,@album.subcategory_ids),{include_blank: false},{multiple: true,size: 2,:class => "form-control listBox"}%>	
+  	</div>
   	<div class="row">
   			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>

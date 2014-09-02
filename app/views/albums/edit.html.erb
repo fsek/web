@@ -13,7 +13,7 @@
 			<% if @album.images.count > 0 %>
 				<div class="row">
 					<% @album.images.each do |p|%>
-						<div class="col-md-3"><%=image_tag p.foto.url(:thumb)%></br><%= link_to 'Ta bort',p,class: 'btn btn-u'%></div>
+						<div class="col-md-3"><%=image_tag p.foto.url(:thumb)%></br><%= link_to 'Ta bort',album_image_path(@album, p), method: :delete,data: {confirm: 'Är du säker?'},class: 'btn btn-u'%></div>
 					<% end %>
 				</div>
 			<% end %>

@@ -1,6 +1,6 @@
-<%= form_for(@post) do |f| %>
+<%= form_for([@council,@post]) do |f| %>
   <% if @post.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation">ß
       <h2><%= pluralize(@post.errors.count, "error") %> hindar posten från att sparas:</h2>
 
       <ul>
@@ -9,23 +9,20 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label 'Titel:' %><br>
-    <%= f.text_field :title %>
-  </div>
-    <div class="field">
-    <%= f.label 'Hur många kan ha rollen?' %><br>
-    Lämnas tomt för att skapa en Post utan gräns.<br>
-    <%= f.number_field :limit %>
-  </div>
-   <div class="field">   
-   		<%= f.label 'Beskrivning:'%><br>
-   		<%= f.text_area :description%>
+  <% end %>  
+    <%= f.label 'Titel', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.text_field :title,:class => 'form-control' %>
   	</div>
-
-  <div class="actions">
-    <%= f.submit "Skicka"%>
-  </div>
+    <%= f.label 'Hur många kan ha posten? (lämnas tomt för obegränsad)', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.number_field :limit,:class => 'form-control' %>
+  	</div>
+  	<%= f.label 'Beskrivning:', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.text_area :description,:class => 'form-control' %>
+  	</div>
+  <div class="row">
+  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  	</div>
 <% end %>

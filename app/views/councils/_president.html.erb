@@ -1,0 +1,10 @@
+<% @post = Post.find(@council.president)%>
+<%if(@post)%>
+
+<div class="headline headline-md">
+	<h4><%=@post.title%> <br><b><%=@post.profiles.first.name%></b></h4>
+</div>
+				<%=simple_format(phrase(@post.title))%>
+				<%= image_tag @post.profiles.first.avatar(:thumb)%>
+				<hr>
+<%end%>

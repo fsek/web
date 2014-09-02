@@ -4,8 +4,7 @@
 		<div class="col-md-11">
 			<table class="table">
 			  <thead>
-			    <tr>
-			      <th>#</th>
+			    <tr>			      
 			      <th>Titel:</th>
 			      <th>Gräns:</th>
 			      <th>Beskrivning:</th>
@@ -16,15 +15,14 @@
 			
 			  <tbody>
 			    <% @posts.each do |post| %>
-			      <tr>
-			        <td><%= post.id %></td>
-			        <td><%= link_to post.title,edit_post_path(post) %></td>
+			      <tr>			        
+			        <td><%= link_to post.title,edit_council_post_path(@council,post) %></td>
 			        <td><%= post.limit %></td>
 			        <td><%= post.description %></td>
 			        <% if current_user.has_role?(:poster,:edit) %>
 			        <td>
 			         <% if post.profiles.size > 0 %>
-		        	<%= form_tag remove_profile_post_path(post), :method => :patch do%>
+		        	<%= form_tag remove_profile_council_post_path(@council,post), :method => :patch do%>
 							<%= hidden_field_tag :id, post.id%>							
 							<% profileList = [] %>
 							<% post.profiles.each do  |profile|%>
@@ -39,7 +37,7 @@
 							<% end %>
 			        <%end%>
 			        </td>
-			        <td>	<%= form_tag add_profile_username_post_path(post), :method => :patch do%>
+			        <td>	<%= form_tag add_profile_username_council_post_url(@council,post), :method => :patch do%>
 							<%= hidden_field_tag :id, post.id%>
 							<%= text_field_tag :username %>							
 							<%= submit_tag "Spara", data: { confirm: 'Dubbelkollat användarnamnet?' }%>
@@ -56,7 +54,7 @@
 		<div class="col-md-1">
 			    <div class="headline headline-md"><h2>Verktyg</h2></div>
       			<ul class="list">
-        		<li><%= link_to "Skapa post", new_post_path %></li>
+        		<li><%= link_to "Skapa post", new_council_post_url %></li>
       			</ul>
 		</div>
 		  <% end %>

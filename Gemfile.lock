@@ -83,6 +83,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_exiftool (2.4.2)
     minitest (5.3.5)
     multi_json (1.10.1)
     mysql2 (0.3.16)
@@ -185,6 +186,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   jquery-turbolinks
+  mini_exiftool
   mysql2
   paperclip (~> 4.1)
   phrasing

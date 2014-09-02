@@ -2,7 +2,7 @@
 <%= form_for([@album, @album.images.build]) do |f| %>
   <% if @image.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+      <h2><%= pluralize(@image.errors.count, "error") %> hindrar bilden från att sparas:</h2>
       <ul>
         <% @image.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -10,11 +10,20 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="actions">    
-    <%= f.file_field :image_file, multiple: true, name: 'image[foto]' %> <br />   
-    <%= f.submit %>      
-    <br />
+ 
+  <div class="actions">
+	<%= f.label 'Underkategori', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.select :subcategory_id,options_from_collection_for_select(@album.subcategories,:id,:text),{include_blank: false},{:class => "form-control listBox"}%>
+  		<%=@album.subcategories.first.text%>
+  	</div>
+	<%= f.label 'Bilder', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.file_field :foto, :class => 'form-control' %>
+  	</div>
+  	<div class="row">
+		<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  	</div>
   </div>
 <% end %>
 

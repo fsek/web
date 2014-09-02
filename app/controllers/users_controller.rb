@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def update    
     @user.update(user_params) 
     flash[:notice] = 'Användare uppdaterades.'
-    redirect_to edit_user_path @user
+    redirect_to edit_user_path @users
   end
 
   def destroy

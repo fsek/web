@@ -94,5 +94,5 @@ Fsek::Application.configure do
   config.assets.precompile = ['*.js', '*.css', '*.css.erb']
   config.assets.precompile += %w( galleria.js )  
   config.assets.compile = true
-  PUBLIC_URL = "http://fsektionen.se"
+  PUBLIC_URL = "http://fsektionen.se"  
 end

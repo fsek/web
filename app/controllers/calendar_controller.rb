@@ -2,8 +2,8 @@
 class CalendarController < ApplicationController
     include TheRole::Controller
     
-    before_filter :login_required
-    before_filter :authenticate_user!
+    before_filter :login_required,only: :index
+    before_filter :authenticate_user!, only: :index
     
       def index
       end  

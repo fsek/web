@@ -1,3 +1,10 @@
-<% title("Ny post") %>
-<%= render 'form' %>
-<%= link_to 'Tillbaka', posts_path %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
+			<%= label_tag 'Ny post',nil, :class => 'reg-header'%>			
+			<%= render 'form'%>
+			<%= link_to 'Visa utskott', @council %><br>
+			<%= link_to 'Tillbaka till startsida', root_url %>
+		</div>
+	</div>
+</div>

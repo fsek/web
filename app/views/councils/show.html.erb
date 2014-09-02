@@ -1,0 +1,185 @@
+<%= render 'phrasing/initializer'%>
+<h2><%= @council.title %></h2>
+<div class="container">
+	<div class="row">				
+            <div class="col-md-9">            
+                <!-- Our Services -->
+                <div class="headline"><h2>Our Services</h2></div>
+                <div class="row margin-bottom-20">
+                    <div class="col-md-4">
+                        <div class="servive-block servive-block-blue">
+                            <i class="icon-custom icon-color-light rounded-x icon-line icon-diamond"></i>
+                            <h2 class="heading-md">Blue Box</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus id elit mi egetine usce dapibus elit nondapibus</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="servive-block servive-block-red">
+                            <i class="icon-custom icon-color-light rounded-x icon-line icon-fire"></i>
+                            <h2 class="heading-md">Red Box</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus id elit mi egetine usce dapibus elit nondapibus</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="servive-block servive-block-sea">            
+                            <i class="icon-custom icon-color-light rounded-x icon-line icon-support"></i>
+                            <h2 class="heading-md">Turquoise Box</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus id elit mi egetine usce dapibus elit nondapibus</p>
+                        </div>
+                    </div>
+                </div><!--/welcome-block-->
+                <!-- End Our Services -->
+
+                <!-- Blockquotes -->
+                <p>Unify is an <strong class="color-green">incredibly beautiful</strong> responsive Bootstrap Template for corporate and creative professionals. It works on all major web browsers. Award winning digital agency. We bring a personal and effective approach adipiscing elit approach to <strong class="color-green">every project</strong> we work on, which is why our clients love us and why they. Lorem sequat ipsum dolor lorem sit amet, consectetur adipiscing dolor elit.</p>
+                <p>Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, conse cteturse adipiscing elit magna consectetur and effective.</p>
+                <br>
+                <blockquote class="hero-unify margin-bottom-40">
+                    <p>Award winning digital agency. We bring a personal and effective consectetur and effective approach adipiscing elit approach to every project we work on, which is why our clients love us and why they.</p>
+                    <small>CEO, Jack Baur</small>
+                </blockquote>            
+                <!-- End Blockquotes -->
+
+                <%if 1 == 0%>
+                <!-- Recent Works -->
+                <div class="headline"><h2>Recent Works</h2></div>
+                <div class="margin-bottom-40">
+                    <ul id="list" class="bxslider1 recent-work margin-bottom-40">
+                        <li>
+                            <a href="#">
+                                <em class="overflow-hidden"><img src="assets/img/main/2.jpg" alt="" /></em>
+                                <span>
+                                    <strong>Happy New Year</strong>
+                                    <i>Anim pariatur cliche reprehenderit</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <em class="overflow-hidden"><img src="assets/img/main/9.jpg" alt="" /></em>
+                                <span>
+                                    <strong>Award Winning Agency</strong>
+                                    <i>Responsive Bootstrap Template</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <em class="overflow-hidden"><img src="assets/img/main/4.jpg" alt="" /></em>
+                                <span>
+                                    <strong>Wolf Moon Officia</strong>
+                                    <i>Pariatur prehe cliche reprehrit</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <em class="overflow-hidden"><img src="assets/img/main/5.jpg" alt="" /></em>
+                                <span>
+                                    <strong>Food Truck Quinoa Nesciunt</strong>
+                                    <i>Craft labore wes anderson cred</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <em class="overflow-hidden"><img src="assets/img/main/6.jpg" alt="" /></em>
+                                <span>
+                                    <strong>Happy New Year</strong>
+                                    <i>Anim pariatur cliche reprehenderit</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <em class="overflow-hidden"><img src="assets/img/main/7.jpg" alt="" /></em>
+                                <span>
+                                    <strong>Award Winning Agency</strong>
+                                    <i>Responsive Bootstrap Template</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <em class="overflow-hidden"><img src="assets/img/main/8.jpg" alt="" /></em>
+                                <span>
+                                    <strong>Wolf Moon Officia</strong>
+                                    <i>Pariatur prehe cliche reprehrit</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <em class="overflow-hidden"><img src="assets/img/main/9.jpg" alt="" /></em>
+                                <span>
+                                    <strong>Food Truck Quinoa Nesciunt</strong>
+                                    <i>Craft labore wes anderson cred</i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>        
+                </div><!--/row-->
+                <!-- End Recent Works -->
+                <%end%>
+            </div><!--/col-md-9-->
+
+            <div class="col-md-3">
+                <!-- About Us -->
+                <div class="margin-bottom-30">
+                    <%= render 'president'%>                           
+                </div>            
+            
+                
+                <% if 1 == 0%>
+                <!-- Posts  Kan användas till album/events-->
+                <div class="posts margin-bottom-30">
+                    <div class="headline"><h2>Recent Blog Entries</h2></div>
+                    <dl class="dl-horizontal">
+                        <dt><a href="#"><img src="assets/img/sliders/elastislide/10.jpg" alt="" /></a></dt>
+                        <dd>
+                            <p><a href="#">Lorem sequat ipsum dolor lorem sunt aliqua put</a></p> 
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt><a href="#"><img src="assets/img/sliders/elastislide/11.jpg" alt="" /></a></dt>
+                        <dd>
+                            <p><a href="#">It works on all major web browsers tablets</a></p> 
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt><a href="#"><img src="assets/img/sliders/elastislide/9.jpg" alt="" /></a></dt>
+                        <dd>
+                            <p><a href="#">Brunch 3 wolf moon tempor sunt aliqua put.</a></p> 
+                        </dd>
+                    </dl>
+                </div><!--/posts-->
+                <% end %>
+
+                <!-- Contact Us -->
+                <div class="who margin-bottom-30">
+                    <div class="headline"><h2>Contact Us</h2></div>
+                    <p>Vero facilis est etenim a feugiat cupiditate non quos etrerum facilis.</p>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fa fa-home"></i>5B amus ED554, New York, US</a></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i>infp@example.com</a></li>
+                        <li><a href="#"><i class="fa fa-phone"></i>1(222) 5x86 x97x</a></li>
+                        <li><a href="#"><i class="fa fa-globe"></i>http://www.example.com</a></li>
+                    </ul>
+                </div>
+            </div><!--/col-md-3-->
+        </div><!--/row-->        
+	</div> <!-- row -->
+</div> <!-- container -->
+
+
+
+
+
+<div class="row">
+        		<div class="col-xs-6">
+        			<!-- if current_user.moderator(@council.url) -->				      	
+				        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_council_path(@council), class: "btn-u btn-u-small"%>
+				        <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @council, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
+      				<!--  end  -->
+    		 	</div>    		 	          
+            </div>

@@ -48,16 +48,7 @@
 		                  <li><%= link_to "Ny nyhet", :new_news%></li>
                			</ul>
                		</li>
-               		<% end %>
-               		<% if current_user.moderator?(:poster) %>
-              		<li class="dropdown-submenu">
-          				<a href="">Poster</a>
-              			<ul class="dropdown-menu pull-right">		              	  
-		                  <li><%= link_to "Lista över poster", :posts%></li>
-		                  <li><%= link_to "Ny post", :new_post%></li>
-               			</ul>
-               		</li>
-               		<% end %>
+               		<% end %>               		
                		<% if current_user.moderator?(:utskott) %>
               		<li class="dropdown-submenu">
           				<a href="">Utskott</a>

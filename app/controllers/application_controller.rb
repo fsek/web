@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   
   def authenticate_news!
     flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless current_user.admin? || current_user.moderator?(:nyheter)
+    redirect_to(:back) unless current_user.moderator?(:nyheter)
     
     rescue ActionController::RedirectBackError
       redirect_to root_path
