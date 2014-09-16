@@ -24,7 +24,7 @@
   	<%= f.label 'Publik?', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">
   		Innebär att även de som inte är inloggade kan <br>
-  		läsa om och kontakta utskottet.
+  		läsa om utskottet.
   		<%= f.check_box :public, :class => 'form-control'%>
   	</div>
   	<%if @council.posts.count > 0 %>
@@ -34,7 +34,10 @@
 	  	</div>
   	<%end%>  	
   	<div class="row">
-  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  			<%= f.submit "Spara",:class => 'btn-u pull-right btn-u-small' %>
+  			<%if @council.id.nil? == false%>  			  			
+  			<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @council, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
+  			<%end%>	 				
   	</div>
 <% end %>
 <%if @council.page%>
