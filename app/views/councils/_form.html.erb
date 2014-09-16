@@ -36,7 +36,7 @@
   	<div class="row">
   			<%= f.submit "Spara",:class => 'btn-u pull-right btn-u-small' %>
   			<%if @council.id.nil? == false%>  			  			
-  			<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @council, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
+  				<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @council, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
   			<%end%>	 				
   	</div>
 <% end %>

@@ -50,12 +50,7 @@ class PostsController < ApplicationController
   def index  
     @posts = @council.posts 
   end
-  # GET /news/1
-  # GET /news/1.json
   
-  def show    
-  end
-
   # GET /news/new
   def new
     @post = @council.posts.build

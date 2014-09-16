@@ -6,8 +6,7 @@ Fsek::Application.routes.draw do
   get 'cafebokning' => 'calendar#cafebokning'
   get 'kalender/export' => 'calendar#export.ics', as: :subscription
   get 'kurslankar' => 'static_pages#kurslankar'
-  get 'styrelse' => 'static_pages#styrelse', as: :styrelse
-  get 'utskott' => 'static_pages#utskott', as: :utskott
+  get 'styrelse' => 'static_pages#styrelse', as: :styrelse  
   get 'oldutskott/cafemasteri' => 'static_pages#cafe', as: :cafe 
   get 'oldutskott/fos' => 'static_pages#fos', as: :fos
   get 'oldutskott/kulturministerie' => 'static_pages#kulturministerie', as: :km
@@ -59,8 +58,8 @@ Fsek::Application.routes.draw do
   get 'anvandare' => 'users#index', as: :users
   
   scope path_names: { new: 'ny',edit: 'redigera' } do
-    resources :councils, path: :utskott, except: :index do
-      resources :posts, path: :poster do
+    resources :councils, path: :utskott do
+      resources :posts, path: :poster, except: :show do
         patch :remove_profile, on: :member
         patch :add_profile_username, on: :member
       end

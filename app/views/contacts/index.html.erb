@@ -12,7 +12,10 @@
 		                    	<div class="overflow-h">			                        
 		                       		<br> <%=simple_format(p.text)%>		                        
 		                    	</div>   
-	                    		<%= link_to 'Skicka meddelande',p,class: 'btn btn-u'%>	                    	
+	                    		<%= link_to 'Skicka meddelande',p,class: 'btn btn-u'%>
+	                    		<% if (current_user) && (current_user.moderator?(:kontakt))%>
+	                    			<br><br><%= link_to 'Redigera',edit_contact_path(p),class: 'btn btn-u'%>
+	                    		<% end %>	                    	
                     	</div>			                    
                 	</li>		                 
         		<% end %>                    
