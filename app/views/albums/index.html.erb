@@ -10,54 +10,14 @@
     		<div class="headline headline-md"><h3>Senast tillagda</h3></div>
 	        <div class="row high-rated margin-bottom-20">
 	            <!-- Easy Block -->                
-	            <% if @albums %>
-	            	<% @albums.sort_by{|album|album.created_at}.reverse.slice(0,4).each do |p| %>
-			            <div class="col-md-3 col-sm-6 md-margin-bottom-40">
-			                <div class="easy-block-v1">
-			                	<div class="overflow-h">
-			                        <h3><%=p.title%></h3>			                        		                        
-			                    </div>			                                    
-			                    <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
-			                        <ol class="carousel-indicators">
-			                            <li class="rounded-x active" data-target="#carousel-example-generic-2" data-slide-to="0"></li>
-			                            <li class="rounded-x" data-target="#carousel-example-generic-2" data-slide-to="1"></li>
-			                            <li class="rounded-x" data-target="#carousel-example-generic-2" data-slide-to="2"></li>
-			                        </ol>
-			                        <div class="carousel-inner">    	            			
-			                        <%if p.images.count > 0%>					
-				                            <div class="item active carousel-example-generic-2">
-				                                <%= image_tag(p.images.sample().foto.url(:small))%>
-				                            </div>
-				                            <div class="item carousel-example-generic-2">
-				                                <%= image_tag(p.images.sample().foto.url(:small))%>
-				                            </div>
-				                            <div class="item carousel-example-generic-2">
-				                                <%= image_tag(p.images.sample().foto.url(:small))%>
-				                            </div>
-		                            <% end %>
-			                        </div>
-			                    </div>
-			                    <div class="container">
-			                    	<div class="overflow-h">			                        
-			                       		<br> <%=simple_format(p.description)%>		                        
-			                    	</div>
-			                   	 	<ul class="list-unstyled">			                        	
-			                        	<li><span class="color-orange">Kategori:</span> <%=p.category%></li>
-			                        	<% if p.start_date.to_date < p.end_date.to_date%>
-			                        		<li><span class="color-orange"><%=fa_icon('calendar')%></span> <%= p.start_date.to_date%> till <%=p.end_date.to_date%></li>
-			                        	<% else %>
-			                        		<li><span class="color-orange"><%=fa_icon('calendar')%></span> <%= p.start_date.to_date%></li>
-			                        	<% end %>
-			                    	</ul>   
-		                    		<%= link_to 'Visa album',p,class: 'btn btn-u'%>
-		                    	</div>			                    
-			                </div>  
-			            </div>
-					
-				<% end %>	
-			<% end %>
-		</div>
-	</div>
+            	<% if @albums_latest %>
+	            	<% @albums_latest.each do |p| %>			            
+						<%@album = p%>
+						<%= render "album_preview"%>
+					<% end %>	
+				<% end %>
+			</div>
+		</div> <!-- row-->
 	<hr class="devider devider-dotted">
 
     	<div class="row">    
@@ -88,49 +48,9 @@
 	            <!-- Easy Block -->                
 	            
 	            	<% @albums.sort_by{|album|album.created_at}.reverse.slice(0,4).each do |p| %>
-			            <div class="col-md-3 col-sm-6 md-margin-bottom-40">
-			                <div class="easy-block-v1">
-			                	<div class="overflow-h">
-			                        <h3><%=p.title%></h3>			                        		                        
-			                    </div>			                                    
-			                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-			                        <ol class="carousel-indicators">
-			                            <li class="rounded-x active" data-target="#carousel-example-generic" data-slide-to="0"></li>
-			                            <li class="rounded-x" data-target="#carousel-example-generic" data-slide-to="1"></li>
-			                            <li class="rounded-x" data-target="#carousel-example-generic" data-slide-to="2"></li>
-			                        </ol>
-			                        <div class="carousel-inner"> 
-			                        <%if p.images.count > 0%>   	            								
-				                            <div class="item active carousel-example-generic">
-				                                <%= image_tag(p.images.sample().foto.url(:small))%>
-				                            </div>
-				                            <div class="item carousel-example-generic">
-				                                <%= image_tag(p.images.sample().foto.url(:small))%>
-				                            </div>
-				                            <div class="item carousel-example-generic">
-				                                <%= image_tag(p.images.sample().foto.url(:small))%>
-				                            </div>
-		                            <%end%>
-			                        </div>
-			                    </div>
-			                    <div class="container">
-			                    	<div class="overflow-h">			                        
-			                       		<br> <%=simple_format(p.description)%>		                        
-			                    	</div>
-			                   	 	<ul class="list-unstyled">			                        	
-			                        	<li><span class="color-orange">Kategori:</span> <%=p.category%></li>
-			                        	<% if p.start_date.to_date < p.end_date.to_date%>
-			                        		<li><span class="color-orange"><%=fa_icon('calendar')%></span> <%= p.start_date.to_date%> till <%=p.end_date.to_date%></li>
-			                        	<% else %>
-			                        		<li><span class="color-orange"><%=fa_icon('calendar')%></span> <%= p.start_date.to_date%></li>
-			                        	<% end %>
-			                    	</ul>   
-		                    		<%= link_to 'Visa album',p,class: 'btn btn-u'%>
-		                    	</div>			                    
-			                </div>  
-			            </div>
-					
-				<% end %>	
+			            <%@album = p%>
+						<%= render "album_preview"%>
+					<% end %>	
 			
 		</div>
 	</div>
@@ -138,13 +58,12 @@
 	<% end %>
   	</div>
   	
-  	<div class="container content">
-  		
-    		<div class="headline headline-md"><h3>Alla album</h3></div>
-	        <div class="row high-rated margin-bottom-20">
-	            <div class="sorting-block">
-		            <ul class="sorting-nav sorting-nav-v1 text-center">
-		                <li class="filter active" data-filter="0">Alla</li>
+  	<div class="container content">  		
+		<div class="headline headline-md"><h3>Alla album</h3></div>
+        <div class="row high-rated margin-bottom-20">
+        	<div class="sorting-block">
+	            <ul class="sorting-nav sorting-nav-v1 text-center">
+	                <li class="filter active" data-filter="0">Alla</li>
 		                <% @kategorier.each do |kat|%>
 		                 <% if kat.name != " "%>
 		                	<li class="filter" data-filter="<%=kat.id%>"><%=kat.name%></li>
@@ -152,65 +71,22 @@
 		                <% end %>		                
 		            </ul>
             <ul class="row sorting-grid">            	
-		                 <% @albums.sort_by{|album|album.start_date}.reverse.slice(0,100).each do |p| %>
-		                 
-		                	<li class="album col-md-3 col-sm-6 col-xs-12 " data-cat="<%=@kategorier.where(:name => p.category).first.id%>">
-		                		
-		                		<div class="easy-block-v1">
-			                	<div class="overflow-h">
-			                        <h3><%=p.title%></h3>			                        		                        
-			                    </div>			                                    
-			                    <div id="carousel-<%=p.id%>" class="carousel slide" data-ride="carousel">
-			                        <ol class="carousel-indicators">
-			                            <li class="rounded-x active" data-target="#carousel-<%=p.id%>" data-slide-to="0"></li>
-			                            <li class="rounded-x" data-target="#carousel-<%=p.id%>" data-slide-to="1"></li>
-			                            <li class="rounded-x" data-target="#carousel-<%=p.id%>" data-slide-to="2"></li>
-			                        </ol>
-			                        <div class="carousel-inner">
-			                        <%if p.images.count > 0%>    	            								
-				                            <div class="item active carousel-category">
-				                                <%= image_tag(p.images.sample().foto.url(:small))%>
-				                            </div>
-				                            <div class="item carousel-category">
-				                                <%= image_tag(p.images.sample().foto.url(:small))%>
-				                            </div>
-				                            <div class="item carousel-category">
-				                                <%= image_tag(p.images.sample().foto.url(:small))%>
-				                            </div>
-		                            <%end%>
-			                        </div>
-			                    </div>
-			                    <div class="container">
-			                    	<div class="overflow-h">			                        
-			                       		<br> <%=simple_format(p.description)%>		                        
-			                    	</div>
-			                   	 	<ul class="list-unstyled">			                        	
-			                        	<li><span class="color-orange">Kategori:</span> <%=p.category%></li>
-			                        	<% if p.start_date.to_date < p.end_date.to_date%>
-			                        		<li><span class="color-orange"><%=fa_icon('calendar')%></span> <%= p.start_date.to_date%> till <%=p.end_date.to_date%></li>
-			                        	<% else %>
-			                        		<li><span class="color-orange"><%=fa_icon('calendar')%></span> <%= p.start_date.to_date%></li>
-			                        	<% end %>
-			                    	</ul>   
-		                    		<%= link_to 'Visa album',p,class: 'btn btn-u'%>
-		                    	</div>			                    
-		                	</li>
-		                 
-                		<% end %>                    
-            </ul>
-        
-            <div class="clearfix"></div>
-			
+	                 <% @albums.sort_by{|album|album.start_date}.reverse.slice(0,100).each do |p| %>
+	                 
+	                	<li class="album" data-cat="<%=@kategorier.where(:name => p.category).first.id%>">		                		
+	                		<%@album = p%>
+							<%= render "album_preview"%>
+	                	</li>		                 
+            		<% end %>                    
+            </ul>        
+            <div class="clearfix"></div>			
 		</div>
 	</div>
-	<hr class="devider devider-dotted">
-	
-  	</div>
-  	
+	<hr class="devider devider-dotted">	
+  	</div>  	
 </div>
-
   				  	
-  <script>
+<script>
   	var albums = $('.album');
 		
   $('.sorting-nav').on('click','li', function(){
@@ -237,24 +113,17 @@ $('.sorting-nav').on('click','li', function() {
   	jQuery(documetn).ready(function() {
   		PortfolioPage.init();
   	})
-  	
-  
-  </script>                  
+</script>
 
-	
-	
-	
-	  	
-
- 	
- 	  <% if current_user.admin? || current_user.has_role?(:galleri,:edit) %>
-	    	<div class="headline headline-md">
-	    		<h2>Verktyg</h2>
-    		</div>
-		    <ul class="list">
-		        <li><%= link_to "Skapa album", :new_album %></li>
-		    </ul>
-	  <% end %>
+  <% if current_user.admin? || current_user.has_role?(:galleri,:edit) %>
+	<div class="headline headline-md">
+		<h2>Verktyg</h2>
+	</div>
+    <ul class="list">
+        <li><%= link_to "Skapa album", :new_album %></li>
+        <li><%= link_to "Inställningar för galleri", :settings_albums %></li>
+    </ul>
+  <% end %>
  
 
 

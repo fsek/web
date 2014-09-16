@@ -4,63 +4,16 @@
   		
     		<div class="headline headline-md"><h3>Albumets bilder</h3></div>
 	        <div class="row high-rated margin-bottom-20">
-	            <div class="sorting-block">
-		            <ul class="sorting-nav sorting-nav-v1 text-center">
-		                <li class="filter active" data-filter="0">Alla</li>
-		                <% @album.subcategories.each do |kat|%>		                 
-		                	<li class="filter" data-filter="<%=kat.id%>"><%=kat.text%></li>		                 
-		                <% end %>		                
-		            </ul>
-            <ul class="row sorting-grid">
-                        <%@kat_id = 0%>	
-		                 <% @album.images.sort_by{|image|image.captured}.reverse.slice(0,100).each do |p| %>
-		                 
-		                	<% if p.subcategories.nil? == false && p.subcategories.first.nil? == false %>
-		                		<%@kat_id = p.subcategories.first.id%>
-	                		<%else%>
-	                			<%@kat_id = 0%>
-	                		<% end %>
-		                	<li class="image col-md-3 col-sm-6 col-xs-12 " data-cat="<%=@kat_id%>">		                		
-		                		<%= image_tag(p.foto(:small),class: 'thumb')%>
-		                		<%= button_to "X", album_image_path(@album, p), method: :delete,data: {confirm: 'Är du säker?'} %>			                    		                    
-		                	</li>
-		                 
-                		<% end %>                    
+	             <% @images.each do |p| %>	
+	            	<div class="col-md-3 col-sm-6 col-xs-12 ">		                		
+	            		<%= image_tag(p.foto(:small),class: 'thumb')%>
+	            		<%= button_to "X", album_image_path(@album, p), method: :delete,data: {confirm: 'Är du säker?'} %><br>			                    		                    
+	            	</div>		                 
+	    		<% end %>                    
             </ul>
         
             <div class="clearfix"></div>
 			
 		</div>
 	</div>
-	</div>
-
-<script>
-  	var images = $('.image');
-		
-  $('.sorting-nav').on('click','li', function(){
-   $(this).addClass('active').siblings().removeClass('active');
-});
-$('.sorting-nav').on('click','li', function() {	 
-    var customType = $( this ).data('filter');
-
-    if(customType > -1)
-    {
-    images
-        .hide()
-        .filter(function () {
-            return $(this).data('cat') === customType;
-        })
-        .show();
-    }
-    else 
-    {
-     albums.show();
-    }
-});
-
-  	jQuery(documetn).ready(function() {
-  		PortfolioPage.init();
-  	})
-  	
-  
-  </script>
+</div>

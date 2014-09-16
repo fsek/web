@@ -24,12 +24,18 @@
   		<%= f.select :category, 
   				     options_from_collection_for_select(@kategorier,:name,:name,@album.category),
   				     include_blank: false, 
-  				     :class => "form-control listBox"%>	
-  	</div>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.select :subcategory_ids, 
-  				     options_from_collection_for_select(@subcategories,:id,:text,@album.subcategory_ids),{include_blank: false},{multiple: true,size: 2,:class => "form-control listBox"}%>	
-  	</div>
+  				     :class => "form-control listBox"%><br>
+  				     <%= link_to 'Lägg till fler kategorier?', settings_albums_path, target: "blank" %>	
+  	</div> 
+  		 	
+	<%= f.label 'Underkategorier', :class => 'reg-label'%>  		
+  		<%for @subcat in @subcategories%>
+  		<div class="input-group margin-bottom-1">
+  			<%= f.check_box(:subcategory_ids,{multiple: true},@subcat.id,nil)%><%= f.label :subcategory_id, @subcat.text, :value => false,:class => 'reg-label' %>
+		</div>		
+  		<%end%>
+  		<%= link_to 'Lägg till fler underkategorier?', settings_albums_path, target: "blank" %><br>		     	
+  	
   	<div class="row">
   			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>

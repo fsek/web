@@ -3,12 +3,13 @@ class AlbumsController < ApplicationController
     
   before_filter :login_required
   before_filter :authenticate_user!
-  before_filter :authenticate_gallery!, only: [:new, :create,:edit,:destroy,:update]
+  before_filter :authenticate_gallery!, only: [:new, :create,:edit,:destroy,:update,:settings]
   before_action :set_album, only: [:show, :edit,:destroy,:update,:category]
   
   def index
     @albums = Album.all
-    @kategorier = List.where(category: 'bildgalleri').all
+    @albums_latest = Album.unscoped.order('created_at asc LIMIT 4')
+    @kategorier = PhotoCategory.unscoped.order('name desc')
     
     if (params[:id] != nil) && (params[:datum] != "")     
       @id = params[:id]
@@ -27,27 +28,89 @@ class AlbumsController < ApplicationController
       
   end
   def edit    
-    @kategorier = List.where(category: 'bildgalleri')
+    @kategorier = PhotoCategory.all
     @subcategories = Subcategory.all
   end
+  def settings
+    unless @kategori
+      @kategori = PhotoCategory.new
+    end    
+    unless @kategorier       
+      @kategorier = PhotoCategory.all
+    end
+    
+    if (params[:commit] == "Spara ny kategori") && (params[:photo_category][:name] != nil) 
+      @kategori.update(name: params[:photo_category][:name],text: params[:photo_category][:text],visible: params[:photo_category][:visible])
+      if @kategori.save        
+        flash.now[:notice] = 'Kategorin '+@kategori.name+' skapades till Bildgalleriet'
+        @kategorier = PhotoCategory.all
+        @kategori = PhotoCategory.new
+      end      
+    end
+        
+    if (params[:commit] == 'Spara kategori') && (params[:photo_category][:id].nil? == false)
+      @kategorin = PhotoCategory.find(params[:photo_category][:id])      
+      @kategorin.update(name: params[:photo_category][:name],text: params[:photo_category][:text],visible: params[:photo_category][:visible])
+      if @kategorin.save
+        @kategorier = PhotoCategory.all
+        flash.now[:notice] = 'Kategorin '+@kategorin.name+' uppdaterades till Bildgalleriet'
+      end
+    end
+    
+    if (params[:commit] == 'Ta bort kategori')&&(params[:photo_category])    
+      @category = PhotoCategory.find(params[:photo_category][:id]).destroy
+      @kategorier = PhotoCategory.all      
+      flash.now[:notice] = 'Kategorin togs bort'
+    end
+    
+    unless @subcategory
+      @subcategory = Subcategory.new
+    end    
+    unless @subcategories       
+      @subcategories = Subcategory.all.sort_by{|l| l.text}
+    end
+    
+    if (params[:commit] == "Spara ny underkategori") && (params[:subcategory][:text] != nil) 
+      @subcategory.update(text: params[:subcategory][:text])
+      if @subcategory.save        
+        flash.now[:notice] = 'Underkategorin '+@subcategory.text+' skapades till Bildgalleriet'
+        @subcategory = Subcategory.new()
+      end      
+    end
+        
+    if (params[:commit] == 'Spara underkategori') && (params[:subcategory][:id].nil? == false)
+      @subcategory = Subcategory.find(params[:subcategory][:id].nil? == false)      
+      @subcategory.update(text: params[:subcategory][:text])
+      if @subcategory.save
+        @subcategories = Subcategory.all.sort_by{|l| l.text}
+        flash.now[:notice] = 'Underkategorin '+@subcategory.text+' uppdaterades till Bildgalleriet'
+      end
+    end
+    
+    if (params[:commit] == 'Ta bort underkategori')&&(params[:subcategory][:id].nil? == false)    
+      @category = Subcategory.find(params[:subcategory][:id]).destroy
+      @subcategories = Subcategory.all.sort_by{|l| l.text}      
+      flash.now[:notice] = 'Kategorin togs bort'
+    end
+  end 
+  
   def show    
     @sub_id = params[:subcategory_id].to_i
-    if @sub_id.nil? == false && @sub_id.to_i > -1
+    if (@sub_id.nil? == false) && (@sub_id.to_i > -1)
       @subcategory = @sub_id.to_i
     else
       @subcategory = -1
     end
-    if @sub_id > 0
-      @images = @album.images.where(subcategory_id: @subcategory).sort_by{|image|image.captured}.reverse.slice(0,100)
-    else
-      @images = @album.images.sort_by{|image|image.captured}.reverse.slice(0,100)     
-    end
-    
+    if (@sub_id > 0) && (@album.images)
+      @images = @album.images.where(subcategory_id: @subcategory).unscoped.order('foto_file_name asc')
+    elsif (@album.images)
+      @images = @album.images.unscoped.order('foto_file_name asc')    
+    end    
   end
   def new
     @album = Album.new    
-    @kategorier = List.where(category: 'bildgalleri')
-    @subcategories = Subcategory.all
+    @kategorier = PhotoCategory.unscoped.order('name asc')
+    @subcategories = Subcategory.unscoped.order('text asc')
   end
   
   def create
@@ -93,17 +156,14 @@ class AlbumsController < ApplicationController
                   end
                 }
           end                      
-        format.html { redirect_to @album, :notice => 'Albumet uppdaterades!' }
+        format.html { redirect_to edit_album_path(@album), :notice => 'Albumet uppdaterades!' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
         format.json { render :json => @album.errors, :status => :unprocessable_entity }
       end
     end
-  end
-  def random
-    @album = Album.first
-  end 
+  end  
     private
     def set_album
       @album = Album.find(params[:id])      

@@ -1,7 +1,7 @@
 # encoding:UTF-8
 class PostsController < ApplicationController
   include TheRole::Controller
-  before_filter :authenticate_user!, only: [:new,:edit,:create,:update,:destroy]
+  before_filter :authenticate_user!
   before_action :set_council
   before_action :set_post, only: [:show, :edit, :update, :destroy, :remove_profile,:add_profile_username]
   
@@ -85,7 +85,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to edit_counciL_post_path(@council,@post), notice: 'Posten uppdaterades!' }
+        format.html { redirect_to edit_council_post_path(@council,@post), notice: 'Posten uppdaterades!' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

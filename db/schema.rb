@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171362) do
+ActiveRecord::Schema.define(version: 20410822171370) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20410822171362) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category"
+    t.integer  "photo_category_id"
   end
 
   create_table "albums_images", id: false, force: true do |t|
@@ -36,6 +37,16 @@ ActiveRecord::Schema.define(version: 20410822171362) do
     t.integer "subcategory_id"
   end
 
+  create_table "contacts", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "public"
+    t.text     "text"
+    t.integer  "council_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "councils", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -44,8 +55,8 @@ ActiveRecord::Schema.define(version: 20410822171362) do
     t.text     "description"
     t.integer  "president"
     t.integer  "vicepresident"
-    t.string   "epost"
     t.boolean  "public"
+    t.integer  "contact_id"
   end
 
   create_table "events", force: true do |t|
@@ -101,7 +112,34 @@ ActiveRecord::Schema.define(version: 20410822171362) do
     t.datetime "updated_at"
   end
 
+  create_table "page_elements", force: true do |t|
+    t.integer  "displayIndex"
+    t.boolean  "sidebar"
+    t.boolean  "visible"
+    t.text     "text"
+    t.string   "headline"
+    t.boolean  "border"
+    t.string   "name"
+    t.boolean  "pictureR"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pages", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "council_id"
+  end
+
+  create_table "photo_categories", force: true do |t|
+    t.string   "name"
+    t.string   "text"
+    t.boolean  "visible"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

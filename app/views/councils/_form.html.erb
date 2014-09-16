@@ -21,9 +21,11 @@
   	<div class="input-group margin-bottom-20">
   		<%= f.text_field :url, :class => 'form-control',:placeholder => 'Url',:autocomplete => 'off' %>
   	</div>
-  	<%= f.label 'Epost', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.text_field :epost, :class => 'form-control',:placeholder => 'Epost',:autocomplete => 'off' %>
+  	<%= f.label 'Publik?', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		Innebär att även de som inte är inloggade kan <br>
+  		läsa om och kontakta utskottet.
+  		<%= f.check_box :public, :class => 'form-control'%>
   	</div>
   	<%if @council.posts.count > 0 %>
 	  	<%= f.label 'Ordförande', :class => 'reg-label'%>
@@ -35,3 +37,10 @@
   			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>
 <% end %>
+<%if @council.page%>
+	<%if @contact %>
+	<hr>
+		<%= label_tag 'Redigera kontakt',nil, :class => 'reg-header'%>
+			<%=render partial: "contacts/form",object: @contact%>
+	<%end%>
+<%end%>

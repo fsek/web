@@ -1,5 +1,5 @@
 class Council < ActiveRecord::Base
-  has_one :page
+  has_one :page, dependent: :destroy
   has_many :posts
   has_many :profiles, through: :posts
   

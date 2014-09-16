@@ -2,6 +2,7 @@
 Fsek::Application.routes.draw do
     
   # Resources on the page
+  
   get 'cafebokning' => 'calendar#cafebokning'
   get 'kalender/export' => 'calendar#export.ics', as: :subscription
   get 'kurslankar' => 'static_pages#kurslankar'
@@ -15,9 +16,7 @@ Fsek::Application.routes.draw do
   get 'oldutskott/sanningsministerie' => 'static_pages#sanningsministerie', as: :sanning  
   get 'oldutskott/sexmasteri' => 'static_pages#sexmasteri', as: :sexmasteri
   get 'oldutskott/studieradet' => 'static_pages#studierad', as: :studierad  
-  get 'libo' => 'static_pages#libo', as: :libo
-  get 'kontakt' => 'static_pages#kontakt', as: :kontakt
-  post 'kontakt' => 'static_pages#kontakt', as: :kontakt_path  
+  get 'libo' => 'static_pages#libo', as: :libo   
   get 'admin/kontakt' => 'admin#kontakt', as: :admin_kontakt
   post 'admin/kontakt'=> 'admin#kontakt', as: :admin_kontakt_path
   get 'admin/bildgalleri' => 'admin#bildgalleri', as: :admin_bildgalleri
@@ -26,6 +25,7 @@ Fsek::Application.routes.draw do
   post 'admin/utskott'=> 'admin#utskott', as: :admin_utskott_path
   get 'kalender' => 'calendar#index',as: :kalender
   get '/nollning', to: redirect('http://nollning.fsektionen.se'), as: :nollning
+  get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
   
   get 'om' => 'static_pages#om', as: :om
   get 'faq' => 'static_pages#faq', as: :faq
@@ -64,8 +64,15 @@ Fsek::Application.routes.draw do
         patch :remove_profile, on: :member
         patch :add_profile_username, on: :member
       end
+      resource :page, path: :sida do
+        resources :page_elements, path: :element, on: :member
+      end
     end
-    resources :pages, path: :sida
+    resources :contacts, path: :kontakt do
+      member do
+        post :mail
+      end
+    end    
     resources :profiles, path: :profil do
       patch :remove_post, on: :member
     end
@@ -73,9 +80,15 @@ Fsek::Application.routes.draw do
     resources :news ,path:  :nyhet  
         
     
-    resources :albums, path: :galleri, except: :index do           
-      resources :images, path: :bilder
-      post  '', on: :member, action: :show
+    resources :albums, path: :galleri do
+      get :settings, path: :installningar, on: :collection
+      post :settings, path: :installningar, on: :collection      
+      post  '', on: :member, action: :show           
+      resources :images, path: :bilder do
+        get :redigera_godtyckligt, on: :collection, action: :edit_multiple, as: :edit_multiple
+        post :edit_multiple, on: :collection
+        put :update_multiple, on: :collection
+      end                  
     end
   end
   post '' => 'albums#index', as: :index_albums

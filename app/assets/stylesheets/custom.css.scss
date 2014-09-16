@@ -241,4 +241,20 @@ background-color: #fff !important;
   background: #ecf0f1;
 }
 
+.rounded-x {
+  border-radius: 25% !important;
+  height: 80px !important;
+  width: auto;
+  position: center;
+}
 
+.grid-height {
+  height: 150px;
+}
+.border-dotted {
+ border-style: solid;
+ border-width: 1px;
+}
+.album-col {
+  height: 100% !important;
+}

@@ -4,12 +4,20 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = Page.all
+    @pages = @page.page_elements
   end
 
   # GET /pages/1
   # GET /pages/1.json
   def show
+    if (@page)
+      @mainelements = @page.page_elements.where(visible: true,sidebar: false)
+      @sidebarelements = @page.page_elements.where(visible:true,sidebar: true)
+    end
+    if(@mainelemnents) && (@mainelements.count > 1)
+      @mainelements = @mainelements.sort_by{ |x| x[:displayIndex]}
+    end
+    @poster = @council.posts  
   end
 
   # GET /pages/new
@@ -64,11 +72,12 @@ class PagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params[:id])
+      @council = Council.find_by_url(params[:council_id])
+      @page = @council.page
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params[:page]
+      params.fetch(:page).permit(:council_id)
     end
 end

@@ -14,8 +14,7 @@
   <div class="actions">
 	<%= f.label 'Underkategori', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.select :subcategory_id,options_from_collection_for_select(@album.subcategories,:id,:text),{include_blank: false},{:class => "form-control listBox"}%>
-  		<%=@album.subcategories.first.text%>
+  		<%= f.select :subcategory_id,options_from_collection_for_select(@album.subcategories,:id,:text),{include_blank: false},{:class => "form-control listBox"}%>  		
   	</div>
 	<%= f.label 'Bilder', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	

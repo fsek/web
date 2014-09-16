@@ -3,11 +3,11 @@ class ImagesController < ApplicationController
   before_filter :login_required
   before_filter :authenticate_user!  
   before_action :set_image, only: [:show, :edit, :update, :destroy]
-  before_action :set_album, only: [:index,:new,:create, :show, :edit, :update, :destroy]
+  before_action :set_album, only: [:index,:new,:create, :show, :edit, :update, :destroy,:edit_multiple,:update_multiple]
   # GET /uploads
   # GET /uploads.json
   def index
-    @images = @album.images
+    @images = @album.images.unscoped.order('foto_file_name asc')
   end
 
   # GET /uploads/1
@@ -23,13 +23,26 @@ class ImagesController < ApplicationController
   # GET /uploads/1/edit
   def edit
   end
+  
+  def edit_multiple
+    @images = @album.images.unscoped.order('foto_file_name asc')
+    @image = @images.first
+  end
+  def update_multiple
+  @images = @album.images
+  @images.each do |image|
+    image.update_attributes!(params[:image].reject { |k,v| v.blank? })
+  end
+  flash[:notice] = "Bilderna uppdaterades!"
+  redirect_to album_images_path(@album)
+end
 
   # POST /uploads
   # POST /uploads.json
   def create    
     @image = @album.images.create(image_params)
     if params[:image][:subcategories]
-      @image.subcategories << Subcategory.find(params[:image][:subcategories]);
+      @image.subcategory = Subcategory.find(params[:image][:subcategories]);
     end
     respond_to do |format|
       if @image.save
@@ -61,7 +74,7 @@ class ImagesController < ApplicationController
   def destroy
     @image.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: "Bilden togs bort." }
+      format.html { redirect_to edit_album_path(@album), notice: "Bilden togs bort." }
       format.json { head :no_content }
     end
   end

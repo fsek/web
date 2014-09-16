@@ -11,11 +11,23 @@
 		</div>
 		<div class="col-md-6 reg-page">
 			<% if @album.images.count > 0 %>
-				<div class="row">
+			<% @row = 0%>				
 					<% @album.images.each do |p|%>
-						<div class="col-md-3"><%=image_tag p.foto.url(:thumb)%></br><%= link_to 'Ta bort',album_image_path(@album, p), method: :delete,data: {confirm: 'Är du säker?'},class: 'btn btn-u'%></div>
-					<% end %>
-				</div>
+						<%if (@row == 0)%>
+							<div class="row">
+						<% end %>
+						<div class="col-md-3 grid-height tag-box border-dotted">
+							<%=image_tag p.foto.url(:thumb)%>
+							<br>
+							<%= link_to 'Ta bort',album_image_path(@album, p), method: :delete,data: {confirm: 'Är du säker?'},class: 'btn btn-u'%>
+							
+						</div>
+						<% @row = @row+1%>						
+						<%if (@row == 4)%>
+							</div>
+							<%@row = 0%>
+						<% end %>						
+					<% end %>				
 			<% end %>
 		</div>
 	</div>
