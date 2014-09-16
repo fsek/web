@@ -1,0 +1,12 @@
+<%= form_tag update_multiple_album_images_path(@album), :method => :put do %>  
+  <% for image in @images %>  
+    <%= fields_for image, image.id do |f| %>  
+      <%=image_tag image.foto.url(:thumb)%>
+	  	<%= f.radio_button :subcategory_id, Subcategory.first.id %> 
+	  	
+	  	<%= f.radio_button :subcategory_id,Subcategory.second.id %>
+	  	
+    <% end %>  
+  <% end %>  
+  <br><p><%= submit_tag "Submit" %></p>  
+<% end %>  

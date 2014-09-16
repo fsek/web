@@ -1,0 +1,44 @@
+<div class="col-md-3 md-margin-bottom-40 album-col">
+    <div class="easy-block-v1">
+    	<div class="overflow-h">
+            <h3><%=@album.title%></h3>			                        		                        
+        </div>			                                    
+        <div id="carousel-example-generic-2" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li class="rounded-x active" data-target="#carousel-example-generic-2" data-slide-to="0"></li>
+                <li class="rounded-x" data-target="#carousel-example-generic-2" data-slide-to="1"></li>
+                <li class="rounded-x" data-target="#carousel-example-generic-2" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">    	            			
+            <%if @album.images.count > 0%>					
+                    <div class="item active carousel-example-generic-2">
+                        <%= image_tag(@album.images.sample().foto.url(:small))%>
+                    </div>
+                    <div class="item carousel-example-generic-2">
+                        <%= image_tag(@album.images.sample().foto.url(:small))%>
+                    </div>
+                    <div class="item carousel-example-generic-2">
+                        <%= image_tag(@album.images.sample().foto.url(:small))%>
+                    </div>
+            <%else%>
+            	<br><br><br><br><br> <!-- fulfix -->
+            <% end %>
+            </div>
+        </div>        
+        	<div class="overflow-h">                  
+           		 <%=simple_format(@album.description)%>		                        
+        	</div>
+       	 	<ul class="list-unstyled">			                        	
+            	<li><span class="color-orange">Kategori:</span> <%=@album.category%></li>
+            	<% if (@album.start_date) || (@album.start_date && @album.end_date)%>
+	            	<% if @album.start_date.to_date < @album.end_date.to_date%>
+	            		<li><span class="color-orange"><%=fa_icon('calendar')%></span> <%= @album.start_date.to_date%> till <%=@album.end_date.to_date%></li>
+	            	<% else %>
+	            		<li><span class="color-orange"><%=fa_icon('calendar')%></span> <%= @album.start_date.to_date%></li>
+	            	<% end %>
+            	<% end %>
+        	</ul>   
+    		<%= link_to 'Visa album',@album,class: 'btn btn-u'%>
+    				                    
+    </div>  
+</div>
