@@ -50,6 +50,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.2.1)
+    fancybox2-rails (0.2.8)
+      railties (>= 3.1.0, < 5.0)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
     fullcalendar-rails (1.6.4.0)
@@ -83,7 +85,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    mini_exiftool (2.4.2)
     minitest (5.3.5)
     multi_json (1.10.1)
     mysql2 (0.3.16)
@@ -179,6 +180,7 @@ DEPENDENCIES
   breadcrumbs_on_rails
   coffee-rails (~> 4.0.0)
   devise
+  fancybox2-rails (~> 0.2.8)
   font-awesome-rails
   fullcalendar-rails
   icalendar
@@ -186,7 +188,6 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   jquery-turbolinks
-  mini_exiftool
   mysql2
   paperclip (~> 4.1)
   phrasing

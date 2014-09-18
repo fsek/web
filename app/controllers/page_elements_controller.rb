@@ -37,7 +37,7 @@ class PageElementsController < ApplicationController
   # POST /page_elements
   # POST /page_elements.json
   def create
-    @page_element = @page_element = @page.page_elements.build(page_element_params)
+    @page_element = @page.page_elements.build(page_element_params)
 
     respond_to do |format|
       if @page_element.save

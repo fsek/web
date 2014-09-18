@@ -1,30 +1,18 @@
-<%yield :bildgalleri%>
-<%= form_for([@album, @album.images.build]) do |f| %>
-  <% if @image.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@image.errors.count, "error") %> hindrar bilden från att sparas:</h2>
-      <ul>
-        <% @image.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
- 
-  <div class="actions">
-	<%= f.label 'Underkategori', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.select :subcategory_id,options_from_collection_for_select(@album.subcategories,:id,:text),{include_blank: false},{:class => "form-control listBox"}%>  		
+<%= form_for(@image, url: album_image_path(@album,@image)) do |f| %>
+  	<%= f.label 'Titel', :class => 'reg-label'%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= image_tag(@image.foto(:small),class: 'img-responsive')%>		
   	</div>
-	<%= f.label 'Bilder', :class => 'reg-label'%>
+  	<%= f.label 'Beskrivning', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.file_field :foto, :class => 'form-control' %>
-  	</div>
+  		<%= f.text_area :description, :class => 'form-control',:placeholder => 'Beskrivning' %>
+  	</div>			  
+  	<%= f.label 'Plats', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.select :subcategory_id, options_from_collection_for_select(@album.subcategories,:id,:text,@image.subcategory_id),{:class => 'form-control',include_blank: true}%>
+  	</div>  	
   	<div class="row">
-		<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>
-  </div>
 <% end %>
-
-<% # jquery image template # %>
 <script id="template-image" type="text/x-tmpl"><div class="image">{%=o.name%}<div class="progress"><div class="progress-bar bar" style="width: 0%"></div></div></div></script>

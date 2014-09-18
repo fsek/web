@@ -7,7 +7,7 @@ class ImagesController < ApplicationController
   # GET /uploads
   # GET /uploads.json
   def index
-    @images = @album.images.unscoped.order('foto_file_name asc')
+    @images = @album.images.order('foto_file_name asc')
   end
 
   # GET /uploads/1
@@ -25,7 +25,7 @@ class ImagesController < ApplicationController
   end
   
   def edit_multiple
-    @images = @album.images.unscoped.order('foto_file_name asc')
+    @images = @album.images.order('foto_file_name asc')
     @image = @images.first
   end
   def update_multiple
@@ -40,10 +40,7 @@ end
   # POST /uploads
   # POST /uploads.json
   def create    
-    @image = @album.images.create(image_params)
-    if params[:image][:subcategories]
-      @image.subcategory = Subcategory.find(params[:image][:subcategories]);
-    end
+    @image = @album.images.create(image_params)    
     respond_to do |format|
       if @image.save
         format.html { redirect_to @album, notice: 'Bilden lades till.' }
@@ -60,7 +57,7 @@ end
   def update
     respond_to do |format|
       if @image.update(image_params)
-        format.html { redirect_to @image, notice: 'Bilden uppdaterades.' }
+        format.html { redirect_to album_image_path(@image), notice: 'Bilden uppdaterades.' }
         format.json { head :no_content }
       else
         format.html { render action: 'new' }

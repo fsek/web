@@ -34,8 +34,7 @@
   			<%= f.check_box(:subcategory_ids,{multiple: true},@subcat.id,nil)%><%= f.label :subcategory_id, @subcat.text, :value => false,:class => 'reg-label' %>
 		</div>		
   		<%end%>
-  		<%= link_to 'Lägg till fler underkategorier?', settings_albums_path, target: "blank" %><br>		     	
-  	
+  		<%= link_to 'Lägg till fler underkategorier?', settings_albums_path, target: "blank" %><br>
   	<div class="row">
   			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>

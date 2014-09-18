@@ -81,13 +81,11 @@ Fsek::Application.routes.draw do
     
     resources :albums, path: :galleri do
       get :settings, path: :installningar, on: :collection
+      get :upload_images, path: :ladda_upp, on: :member
+      patch :upload_images, path: :ladda_upp, on: :member
       post :settings, path: :installningar, on: :collection      
       post  '', on: :member, action: :show           
-      resources :images, path: :bilder do
-        get :redigera_godtyckligt, on: :collection, action: :edit_multiple, as: :edit_multiple
-        post :edit_multiple, on: :collection
-        put :update_multiple, on: :collection
-      end                  
+      resources :images, path: :bilder, except: [:new]
     end
   end
   post '' => 'albums#index', as: :index_albums

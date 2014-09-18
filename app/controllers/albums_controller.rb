@@ -4,7 +4,7 @@ class AlbumsController < ApplicationController
   before_filter :login_required
   before_filter :authenticate_user!
   before_filter :authenticate_gallery!, only: [:new, :create,:edit,:destroy,:update,:settings]
-  before_action :set_album, only: [:show, :edit,:destroy,:update,:category]
+  before_action :set_album, only: [:show, :edit,:destroy,:update,:category,:upload_images]
   
   def index
     @albums = Album.all
@@ -102,9 +102,11 @@ class AlbumsController < ApplicationController
       @subcategory = -1
     end
     if (@sub_id > 0) && (@album.images)
-      @images = @album.images.where(subcategory_id: @subcategory).unscoped.order('foto_file_name asc')
+      @images = @album.images.where(subcategory_id: @subcategory).order('foto_file_name asc')
     elsif (@album.images)
-      @images = @album.images.unscoped.order('foto_file_name asc')    
+      @images = @album.images.order('foto_file_name asc')
+    else
+      @images = nil      
     end    
   end
   def new
@@ -145,6 +147,14 @@ class AlbumsController < ApplicationController
       format.html { redirect_to albums_url }
       format.json { head :no_content }
     end
+  end
+  def upload_images
+    if (params[:fotos]) && (params[:subcategory_id])
+        #===== The magic is here ;)
+          params[:fotos].each { |foto|
+            @album.images.create(foto: foto,subcategory_id: params[:subcategory_id])
+          }
+    end    
   end
   def update
     respond_to do |format|

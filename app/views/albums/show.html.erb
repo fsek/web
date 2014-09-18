@@ -1,42 +1,39 @@
 <% title("Album") %>
-<%= yield :bildgalleri%>
 <div class="row blog">  
-  <div class="col-md-12">
-  	<div class="row">
-  		<div class="col-md-6">
-		    <h2><%= @album.title %></h2>	
+  <div class="col-md-12">  	
+  	<div class="row">  		
+  		<div class="headline"><h2><%= @album.title %></h2></div>
+  		<div class="col-md-4">		   	
 		    <ul class="list-unstyled blog-info">
 		    	<li>Ansvarig: <%= fa_icon("user") %> <%= link_to (Profile.find_by(id: @album.author).name) ,Profile.find_by(id: @album.author) %></li>
 		      <li>Datum: <b>      <i class="fa fa-calendar"></i> <%= @album.start_date %></b> till <b><%=@album.end_date%></b></li>
-		    </ul>
-		    <% if current_user.has_role?(:galleri, :edit) %>
-		      	<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till bilder"), new_album_image_path(@album), class: "btn-u btn-u-small" %>
-		        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_album_path(@album), class: "btn-u btn-u-small" %>
-		        <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @album, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
-      		<% end %>
+		    </ul>		    
 	    </div>
-	    <div class="col-md-6">	
-    		<p>Beskrivning: <%= simple_format(@album.description)%></p>
-    		<div class="input-group margin-bottom-20">
-					<%= form_tag @album, method: 'post' do %>						
-						<%= select_tag :subcategory_id, options_from_collection_for_select(@album.subcategories,:id,:text,@subcategory),{:class => 'form-control',include_blank: true}%>	
-						<%= submit_tag 'Visa', name: nil,:class => 'btn-u btn-u-orange'%>
-					<%end%>
-				</div>
+	    <div class="col-md-4">	
+    		<p>Beskrivning: <%= simple_format(@album.description)%></p>    		
     	</div>
+    	<div class="col-md-3">
+    		<div class="input-group margin-bottom-20">    				
+				<%= form_tag @album, method: 'post' do %>						
+					<%= submit_tag 'Sortera efter underkategori', name: nil,:class => 'btn-u btn-u-orange btn-u-small'%><br>					
+					<%= select_tag :subcategory_id, options_from_collection_for_select(@album.subcategories,:id,:text,@subcategory),{:class => 'form-control',include_blank: true}%>					
+				<%end%>
+			</div>
+		</div>
     	</div>
 	<div id='gallerii'>
 		<h2>Om detta syns måste du ladda om sidan! :/ </h2>
          <% @images.each do |p| %>
         		<%= image_tag(p.foto(:original),class: 'thumb')%>
 		<% end %>
-	</div>            		
+	</div>
+	<%=render partial: "links"%>            		
   </div>    
 </div>
 
 
 <style>
-	#gallerii{ width:100%; height:700px; background-color:#ffffff}
+	#gallerii{ width:100%; height:700px; background-color:#ffffff, display:none}
 </style>
 <script>        
     Galleria.run('#gallerii');

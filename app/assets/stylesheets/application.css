@@ -30,7 +30,8 @@
  *= require phrasing
  *= require fullcalendar
  *= require fullcalendar.print
- *= require galleria.classicmod 
+ *= require galleria.classicmod
+ *= require fancybox 
  
  */
 

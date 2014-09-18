@@ -3,7 +3,16 @@
                 <div class="margin-bottom-30">
                     <%= render 'pages/president'%>                           
                 </div>
-                    
+                
+                <%if @sidebarelements%>
+	                <%@sidebarelements.each do |p|%>
+		                <div>
+		                	<%@main = p%>                
+		                	<%=render partial: "pages/element"%>
+		            	</div>
+		            	<br>
+	            	<%end%>                
+                <%end%>    
                 <%if 1 == 0%>
                 <!-- Posts  Kan användas till album/events-->
                 <div class="posts margin-bottom-30">

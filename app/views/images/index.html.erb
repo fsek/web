@@ -1,19 +1,46 @@
-
-
-<div class="container content">
-  		
-    		<div class="headline headline-md"><h3>Albumets bilder</h3></div>
-	        <div class="row high-rated margin-bottom-20">
-	             <% @images.each do |p| %>	
-	            	<div class="col-md-3 col-sm-6 col-xs-12 ">		                		
-	            		<%= image_tag(p.foto(:small),class: 'thumb')%>
-	            		<%= button_to "X", album_image_path(@album, p), method: :delete,data: {confirm: 'Är du säker?'} %><br>			                    		                    
-	            	</div>		                 
-	    		<% end %>                    
-            </ul>
-        
-            <div class="clearfix"></div>
-			
-		</div>
-	</div>
-</div>
+<!--=== Content Part ===-->
+    <div class="container content">				
+    	<div class="gallery-page">
+            <div class="row margin-bottom-20">
+            	<%@row = 0%>            	
+            	<% @images.each do |p| %>
+            		
+	            	<%if (@row == 0)%>	            	
+						<div class="row">
+					<% end %>
+					
+							<div class="col-md-4 col-sm-6">
+			                    <a class="thumbnail fancybox-button zoomer fancybox" data-rel="fancybox-button" title="<%=p.foto_file_name%>" href="<%=p.foto()%>">
+			                        <span class="overlay-zoom">  
+			                            <%= image_tag(p.foto(:large),class: 'img-responsive fancybox')%>
+			                            <span class="zoom-icon"></span>
+			                        </span>                                              
+			                    </a>
+		                	</div>		     
+					<% @row = @row+1%>						
+					<%if (@row == 3)%>
+						</div>
+						<%@row = 0%>
+					<% end %>
+				<%end%>
+			</div>
+            <div class="text-right">
+                <ul class="pagination">
+                    <li><a href="#">Prev</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li class="active"><a>3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </div>			
+        </div><!--/gallery-page-->
+    </div>
+    </div>
+    <!--=== End Content Part ===-->
+<script>
+$(document).ready(function() {
+  		$("a.fancybox").fancybox();
+	});
+</script>
