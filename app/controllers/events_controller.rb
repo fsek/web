@@ -2,7 +2,7 @@
 class EventsController < ApplicationController
   
     before_filter :login_required, only: [:kalender,:new,:show,:edit,:create,:update,:destroy]
-    before_filter :authenticate_user!, only: [:kalender,:new,:show,:edit,:create,:update,:destroy]
+    before_filter :authenticate_user!, only: [:calendar,:new,:show,:edit,:create,:update,:destroy]
     before_filter :authenticate_editor_events!, only: [:new,:edit,:index]
     before_action :utskott, only: [:new,:edit]
         
@@ -25,7 +25,20 @@ class EventsController < ApplicationController
       format.json { render :json => @event }
     end
   end
-
+  def calendar
+    
+  end
+  def export
+        @events = Event.all        
+        @calendar=Icalendar::Calendar.new 
+        for event in Event.all 
+          @calendar.add_event(event.ical(polymorphic_url(event, :routing_type => :url))) 
+        end
+        @calendar.publish      
+      respond_to do |format|
+        format.ics
+      end
+  end
   # GET /events/new
   # GET /events/new.json
   def new

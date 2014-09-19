@@ -3,8 +3,7 @@ Fsek::Application.routes.draw do
     
   # Resources on the page
   
-  get 'cafebokning' => 'calendar#cafebokning'
-  get 'kalender/export' => 'calendar#export.ics', as: :subscription
+  get 'cafebokning' => 'calendar#cafebokning'  
   get 'kurslankar' => 'static_pages#kurslankar'
   get 'styrelse' => 'static_pages#styrelse', as: :styrelse  
   get 'oldutskott/cafemasteri' => 'static_pages#cafe', as: :cafe 
@@ -15,20 +14,15 @@ Fsek::Application.routes.draw do
   get 'oldutskott/sanningsministerie' => 'static_pages#sanningsministerie', as: :sanning  
   get 'oldutskott/sexmasteri' => 'static_pages#sexmasteri', as: :sexmasteri
   get 'oldutskott/studieradet' => 'static_pages#studierad', as: :studierad  
-  get 'libo' => 'static_pages#libo', as: :libo   
-  get 'admin/kontakt' => 'admin#kontakt', as: :admin_kontakt
-  post 'admin/kontakt'=> 'admin#kontakt', as: :admin_kontakt_path
-  get 'admin/bildgalleri' => 'admin#bildgalleri', as: :admin_bildgalleri
-  post 'admin/bildgalleri'=> 'admin#bildgalleri', as: :admin_bildgalleri_path
+  get 'libo' => 'static_pages#libo', as: :libo
   get 'admin/utskott' => 'admin#utskott', as: :admin_utskott
   post 'admin/utskott'=> 'admin#utskott', as: :admin_utskott_path
-  get 'kalender' => 'calendar#index',as: :kalender
+  get 'kalender' => 'events#calendar',as: :kalender
   get '/nollning', to: redirect('http://nollning.fsektionen.se'), as: :nollning
   get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
   
   get 'om' => 'static_pages#om', as: :om
-  get 'faq' => 'static_pages#faq', as: :faq
-  get 'dokument' => 'static_pages#dokument', as: :dokument
+  get 'faq' => 'static_pages#faq', as: :faq  
   
   get 'engagemang' => 'static_pages#utskott', as: :engagemang
   get 'multimedia' => 'static_pages#lankar', as: :multimedia #Ev. efterfrågad av vårt kära Sanningsministerium!
@@ -68,16 +62,17 @@ Fsek::Application.routes.draw do
       end
     end
     resources :contacts, path: :kontakt do
-      member do
-        post :mail
-      end
+      post :mail, on: :member
     end    
     resources :profiles, path: :profil do
       patch :remove_post, on: :member
     end
-    resources :events  
+    resources :events do
+      get :calendar, path: :kalender
+      get :export, on: :collection
+    end  
     resources :news ,path:  :nyhet  
-        
+    resources :documents, path: :dokument    
     
     resources :albums, path: :galleri do
       get :settings, path: :installningar, on: :collection
@@ -94,9 +89,7 @@ Fsek::Application.routes.draw do
   
   namespace :admin do
     concerns :the_role
-  end
-
- 
+  end 
    
   root 'static_pages#index'
 

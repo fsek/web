@@ -28,22 +28,22 @@ class AlbumsController < ApplicationController
       
   end
   def edit    
-    @kategorier = PhotoCategory.all
-    @subcategories = Subcategory.all
+    @kategorier = PhotoCategory.unscoped.order('name desc')
+    @subcategories = Subcategory.unscoped.order('text desc')
   end
   def settings
     unless @kategori
       @kategori = PhotoCategory.new
     end    
     unless @kategorier       
-      @kategorier = PhotoCategory.all
+      @kategorier = PhotoCategory.unscoped.order('name desc')
     end
     
     if (params[:commit] == "Spara ny kategori") && (params[:photo_category][:name] != nil) 
       @kategori.update(name: params[:photo_category][:name],text: params[:photo_category][:text],visible: params[:photo_category][:visible])
       if @kategori.save        
         flash.now[:notice] = 'Kategorin '+@kategori.name+' skapades till Bildgalleriet'
-        @kategorier = PhotoCategory.all
+        @kategorier = PhotoCategory.unscoped.order('name desc')
         @kategori = PhotoCategory.new
       end      
     end
@@ -52,7 +52,7 @@ class AlbumsController < ApplicationController
       @kategorin = PhotoCategory.find(params[:photo_category][:id])      
       @kategorin.update(name: params[:photo_category][:name],text: params[:photo_category][:text],visible: params[:photo_category][:visible])
       if @kategorin.save
-        @kategorier = PhotoCategory.all
+        @kategorier = PhotoCategory.unscoped.order('name desc')
         flash.now[:notice] = 'Kategorin '+@kategorin.name+' uppdaterades till Bildgalleriet'
       end
     end
@@ -67,7 +67,7 @@ class AlbumsController < ApplicationController
       @subcategory = Subcategory.new
     end    
     unless @subcategories       
-      @subcategories = Subcategory.all.sort_by{|l| l.text}
+      @subcategories = Subcategory.unscoped.order('text desc')
     end
     
     if (params[:commit] == "Spara ny underkategori") && (params[:subcategory][:text] != nil) 
@@ -75,6 +75,7 @@ class AlbumsController < ApplicationController
       if @subcategory.save        
         flash.now[:notice] = 'Underkategorin '+@subcategory.text+' skapades till Bildgalleriet'
         @subcategory = Subcategory.new()
+        
       end      
     end
         
@@ -82,14 +83,14 @@ class AlbumsController < ApplicationController
       @subcategory = Subcategory.find(params[:subcategory][:id].nil? == false)      
       @subcategory.update(text: params[:subcategory][:text])
       if @subcategory.save
-        @subcategories = Subcategory.all.sort_by{|l| l.text}
+        @subcategories = Subcategory.unscoped.order('text desc')
         flash.now[:notice] = 'Underkategorin '+@subcategory.text+' uppdaterades till Bildgalleriet'
       end
     end
     
     if (params[:commit] == 'Ta bort underkategori')&&(params[:subcategory][:id].nil? == false)    
       @category = Subcategory.find(params[:subcategory][:id]).destroy
-      @subcategories = Subcategory.all.sort_by{|l| l.text}      
+      @subcategories = Subcategory.unscoped.order('text desc')      
       flash.now[:notice] = 'Kategorin togs bort'
     end
   end 

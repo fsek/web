@@ -1,0 +1,27 @@
+<div class="container content">  		
+	<div class="headline headline-md"><h3>Kontakt</h3></div>
+    <div class="row high-rated margin-bottom-20">
+   		<div class="sorting-block">		            
+            <ul class="row sorting-grid">            	
+            	<% for p in @documents %>		                 
+            		<li class="col-md-3 col-sm-6 col-xs-12">		                		
+                		<div class="tag-box tag-box-v2">					
+		                	<div class="overflow-h">
+			                        <h3><%=p%></h3>			                        		                        
+		                    </div>		                    
+		                    	<div class="overflow-h">			                        
+		                       		<br> 		                        
+		                    	</div>   
+	                    		<%= link_to 'Skicka meddelande',p,class: 'btn btn-u'%>
+	                    		<% if (@edit)%>
+	                    			<br><br><%= link_to 'Redigera',p,class: 'btn btn-u'%>
+	                    		<% end %>	                    	
+                    	</div>			                    
+                	</li>		                 
+        		<% end %>                    
+            </ul>        
+        	<div class="clearfix"></div>			
+		</div>
+	</div>
+	<hr class="devider devider-dotted">
+</div>

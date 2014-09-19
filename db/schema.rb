@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171370) do
+ActiveRecord::Schema.define(version: 20410822171382) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -57,6 +57,20 @@ ActiveRecord::Schema.define(version: 20410822171370) do
     t.integer  "vicepresident"
     t.boolean  "public"
     t.integer  "contact_id"
+  end
+
+  create_table "documents", force: true do |t|
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.datetime "pdf_updated_at"
+    t.boolean  "public"
+    t.boolean  "download"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "profile_id"
+    t.string   "name"
   end
 
   create_table "events", force: true do |t|

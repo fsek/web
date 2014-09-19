@@ -10,7 +10,7 @@
 		<% if current_user.admin? || current_user.has_role?(:event,:edit) %>
 		<li><%= link_to "Nytt event", new_event_path %></li>
 		<% end %>
-		<li><%= link_to 'Kalenderprenumeration', 'webcal://'+PUBLIC_URL+'/kalender/export.ics'%></li>
+		<li><%= link_to 'Kalenderprenumeration', 'webcal://'+PUBLIC_URL+'/events/export.ics'%></li>
 	</ul>	
 	<% end %>
 </div>

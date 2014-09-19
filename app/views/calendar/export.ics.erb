@@ -1,6 +1,0 @@
-<% @calendar=Icalendar::Calendar.new %>
-<% Event.all.each do |event| %>	
-	<%@calendar.add_event(event.ical(polymorphic_url(event, :routing_type => :url))) %>
-<% end %>
-<% @calendar.publish %>
-<%= @calendar.to_ical %>
