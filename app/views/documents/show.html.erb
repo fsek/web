@@ -11,9 +11,9 @@
 				<div class="col-md-12  reg-page">	
 					<div class ="kontakt-form">		
 							<%= image_tag(@dokument.pdf(:thumbnail),class: 'img-responsive')%>
-							<%= link_to "Ladda ner", @dokument.pdf.url(:original, false) %>							
-							<iframe src="https://docs.google.com/viewer?url=http://<%=PUBLIC_URL%><%= @dokument.pdf.url %>&embedded=true"width="100%" height="800" >
-							<p>Din webbläsare klarar inte iframe - jag tycker synd om dig.</p>
+							<%= link_to "Ladda ner", @dokument.pdf.url(:original, false) %>														
+							<iframe src="https://docs.google.com/viewer?url=<%=PUBLIC_URL%><%= @dokument.pdf.url(:original,false)%>&embedded=true" width="100%" height="800" >
+							<p>Din webbläsare klarar inte iframe - jag tycker synd om dig.</p>					
 							</iframe>
 					</div>
 				</div>
