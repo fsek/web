@@ -5,13 +5,14 @@
 			<% if @dokument %>
 				
 				<div class="tag-box tag-box-v2">
-					<%=@dokument.name%><br>											
+					<%=@dokument.title%><br>											
 					<%=@dokument.category%>
 				</div>
 				<div class="col-md-12  reg-page">	
-					<div class ="kontakt-form">		
-							<%= image_tag(@dokument.pdf(:thumbnail),class: 'img-responsive')%>
-							<%= link_to "Ladda ner", @dokument.pdf.url(:original, false) %>														
+					<div class ="kontakt-form">
+							<%if (@dokument) && (@dokument.download)%>
+								<%= link_to "Ladda ner", @dokument.pdf.url(:original, false) %>
+							<%end%>														
 							<iframe src="https://docs.google.com/viewer?url=<%=PUBLIC_URL%><%= @dokument.pdf.url(:original,false)%>&embedded=true" width="100%" height="800" >
 							<p>Din webbläsare klarar inte iframe - jag tycker synd om dig.</p>					
 							</iframe>

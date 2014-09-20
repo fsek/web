@@ -2,43 +2,7 @@
 	<div class="row">
 		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
 			<%= label_tag "Redigera dokument",nil, :class => 'reg-header'%>			
-			<%= form_for(@dokument, :html => {  :autocomplete => 'off' }) do |f| %>
-				<% if @dokument.errors.any? %>
-				    <div id="error_explanation">
-				      <h2><%= pluralize(@dokument.errors.count, "error") %> gör att kontakten inte kan sparas:</h2>	
-				      <ul>
-				      <% @dokument.errors.full_messages.each do |msg| %>
-				        <li><%= msg %></li>
-				      <% end %>
-				      </ul>
-				    </div>
-			  	<% end %>
-			  	  	<%= f.label 'Titel', :class => "reg-label"%>		  
-			  	<div class="input-group margin-bottom-20">					
-					<%= f.text_field :name, :class => 'form-control',:placeholder => 'Titel'%>		
-			  	</div>
-			  	<%= f.label 'Kategori', :class => 'reg-label'%>
-			  	<div class="input-group margin-bottom-20">  				  	  		 		  	
-			  		<%= f.text_field :category, :class => 'form-control'%>
-			  	</div>
-			  	<%= f.label 'PDF', :class => 'reg-label'%>
-			  	<div class="input-group margin-bottom-20">  				  	  		 		  	
-			  		<%= link_to @dokument.pdf, @dokument.pdf.url %>
-			  	</div>
-			  	<%= f.label 'Publik?', :class => 'reg-label'%>
-			  	<div class="input-group margin-bottom-20">  		
-			  		<%= f.check_box :public, :class => 'form-control'%>
-			  		Innebär att även de som inte är inloggade kan se dokument.
-			  	</div>
-			  	<%= f.label 'Går att ladda ner?', :class => 'reg-label'%>  
-			  	<div class="input-group margin-bottom-20">
-			  		Går inte riktigt att stoppa, men vi får se!  		
-			  		<%= f.check_box :download, :class => 'form-control'%>  		
-			  	</div>	
-			  	<div class="row">
-			  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
-			  	</div>
-			<% end %>
+			<%=render partial: "form"%>
 			<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @dokument, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %><br>			
 			<%= link_to 'Tillbaka till start', root_url %>
 		</div>

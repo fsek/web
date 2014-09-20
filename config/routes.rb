@@ -2,21 +2,8 @@
 Fsek::Application.routes.draw do
     
   # Resources on the page
-  
-  get 'cafebokning' => 'calendar#cafebokning'  
   get 'kurslankar' => 'static_pages#kurslankar'
-  get 'styrelse' => 'static_pages#styrelse', as: :styrelse  
-  get 'oldutskott/cafemasteri' => 'static_pages#cafe', as: :cafe 
-  get 'oldutskott/fos' => 'static_pages#fos', as: :fos
-  get 'oldutskott/kulturministerie' => 'static_pages#kulturministerie', as: :km
-  get 'oldutskott/naringslivsutskott' => 'static_pages#naringslivsutskott', as: :fnu
-  get 'oldutskott/prylmasteri' => 'static_pages#prylmasteri', as: :pryl
-  get 'oldutskott/sanningsministerie' => 'static_pages#sanningsministerie', as: :sanning  
-  get 'oldutskott/sexmasteri' => 'static_pages#sexmasteri', as: :sexmasteri
-  get 'oldutskott/studieradet' => 'static_pages#studierad', as: :studierad  
   get 'libo' => 'static_pages#libo', as: :libo
-  get 'admin/utskott' => 'admin#utskott', as: :admin_utskott
-  post 'admin/utskott'=> 'admin#utskott', as: :admin_utskott_path
   get 'kalender' => 'events#calendar',as: :kalender
   get '/nollning', to: redirect('http://nollning.fsektionen.se'), as: :nollning
   get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
