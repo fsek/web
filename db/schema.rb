@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171399) do
+ActiveRecord::Schema.define(version: 20410822171380) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -48,14 +48,18 @@ ActiveRecord::Schema.define(version: 20410822171399) do
   end
 
   create_table "councils", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "title"
     t.string   "url"
     t.text     "description"
     t.integer  "president"
     t.integer  "vicepresident"
-    t.boolean  "public"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.boolean  "public",            default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "contact_id"
   end
 
@@ -64,13 +68,13 @@ ActiveRecord::Schema.define(version: 20410822171399) do
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
+    t.string   "title"
     t.boolean  "public"
     t.boolean  "download"
     t.string   "category"
+    t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "profile_id"
-    t.string   "title"
   end
 
   create_table "events", force: true do |t|
@@ -173,8 +177,14 @@ ActiveRecord::Schema.define(version: 20410822171399) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "posts" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.integer  "limit"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "council_id"
+  end
 
   create_table "posts_profiles", id: false, force: true do |t|
     t.integer "post_id"
