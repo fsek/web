@@ -9,8 +9,9 @@ Fsek::Application.routes.draw do
   get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
   
   get 'om' => 'static_pages#om', as: :om
-  get 'faq' => 'static_pages#faq', as: :faq  
   
+  
+    
   get 'engagemang' => 'static_pages#utskott', as: :engagemang
   get 'multimedia' => 'static_pages#lankar', as: :multimedia #Ev. efterfrågad av vårt kära Sanningsministerium!
   get 'lankar' => 'static_pages#lankar', as: :lankar
@@ -48,6 +49,7 @@ Fsek::Application.routes.draw do
         resources :page_elements, path: :element, on: :member
       end
     end
+    resources :faqs, path: :faq
     resources :contacts, path: :kontakt do
       post :mail, on: :member
     end    
