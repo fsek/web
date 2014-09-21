@@ -1,0 +1,29 @@
+<%= form_for(@faq, :html => {  :autocomplete => 'off' }) do |f| %>
+	<% if @faq.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@faq.errors.count, "error") %> gör att nyheten inte kan sparas:</h2>
+	
+	      <ul>
+	      <% @faq.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+  	<% end %>
+  	<%= f.label 'Fråga', :class => 'reg-label'%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= f.text_field :question, :class => 'form-control',:placeholder => 'Fråga'%>		
+  	</div>
+  	<%if @editor%>
+  	<%= f.label 'Svar', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.text_area :answer, :class => 'form-control',:placeholder => 'Svar' %>
+  	</div>
+  	<%end%>
+  	<div class="row">
+  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>
+  			<%if !@faq.new_record?%>
+  			<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Ta bort fråga"), :faq, method: :delete, class: "btn-u btn-u-small"%>
+  			<%end%>	 				
+  	</div>
+<% end %>
