@@ -1,4 +1,5 @@
 <%= title("Bildgalleri") %>
+<%@carouselindex = 0%>
 <div class="container">
     <div class="col-md-12">
     	<div class="row">
@@ -11,9 +12,11 @@
 	        <div class="row high-rated margin-bottom-20">
 	            <!-- Easy Block -->                
             	<% if @albums_latest %>
-	            	<% @albums_latest.each do |p| %>			            
+	            	<% @albums_latest.each do |p| %>
+	            	<div class="col-md-3">		            
 						<%@album = p%>
 						<%= render "album_preview"%>
+					</div>
 					<% end %>	
 				<% end %>
 			</div>
@@ -70,15 +73,26 @@
 		                 <% end %>
 		                <% end %>		                
 		            </ul>
-            <ul class="row sorting-grid">            	
-	                 <% @albums.sort_by{|album|album.start_date}.reverse.slice(0,100).each do |p| %>
-	                 
-	                	<li class="album" data-cat="<%=@kategorier.where(:name => p.category).first.id%>">		                		
+                        	
+            	     <%@row = 0%>        	
+	                 <% @albums.each do |p| %>
+		                 <%if (@row == 0)%>	            	
+							<div class="row">
+						<% end %>	                 
+	                	<div class="col-md-3 album" data-cat="<%=@kategorier.where(:name => p.category).first.id%>">		                		
 	                		<%@album = p%>
 							<%= render "album_preview"%>
-	                	</li>		                 
-            		<% end %>                    
-            </ul>        
+	                	</div>
+	                	<% @row = @row+1%>						
+						<%if (@row == 3)%>
+							</div> <!--row-->
+							<%@row = 0%>
+						<% end %>
+					<%end%>
+					<% if @row > 0%>
+						</div> <!--row-->
+					<%end%>        		               
+                    
             <div class="clearfix"></div>			
 		</div>
 	</div>

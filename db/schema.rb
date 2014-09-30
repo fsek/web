@@ -116,7 +116,6 @@ ActiveRecord::Schema.define(version: 20410822171399) do
   create_table "news", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.string   "author"
     t.boolean  "front_page"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -124,6 +123,7 @@ ActiveRecord::Schema.define(version: 20410822171399) do
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "profile_id"
   end
 
   create_table "page_elements", force: true do |t|

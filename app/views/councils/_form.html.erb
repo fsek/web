@@ -32,6 +32,9 @@
 	  	<div class="input-group margin-bottom-20">
 	  		<%= f.select :president, options_for_select(@council.posts.collect{ |r| [r.title, r.id] },selected: @council.president),{include_blank: true},:class => 'form-control'%>
 	  	</div>
+  	<%elsif @council.new_record? == false%>
+  		Detta utskott har inga poster, lägg till en post och välj sedan här vilken post som är utskottets ordförande.
+  		<hr>  		
   	<%end%>  	
   	<div class="row">
   			<%= f.submit "Spara",:class => 'btn-u pull-right btn-u-small' %>
@@ -40,10 +43,3 @@
   			<%end%>	 				
   	</div>
 <% end %>
-<%if @council.page%>
-	<%if @contact %>
-	<hr>
-		<%= label_tag 'Redigera kontakt',nil, :class => 'reg-header'%>
-			<%=render partial: "contacts/form",object: @contact%>
-	<%end%>
-<%end%>

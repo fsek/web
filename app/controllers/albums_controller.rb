@@ -3,11 +3,11 @@ class AlbumsController < ApplicationController
     
   before_filter :login_required
   before_filter :authenticate_user!
-  before_filter :authenticate_gallery!, only: [:new, :create,:edit,:destroy,:update,:settings]
+  before_filter :authenticate_gallery!, only: [:new, :create,:edit,:destroy,:update,:settings,:destroy_images]
   before_action :set_album, only: [:show, :edit,:destroy,:update,:category,:upload_images]
   
   def index
-    @albums = Album.all
+    @albums = Album.unscoped.order('start_date asc')
     @albums_latest = Album.unscoped.order('created_at asc LIMIT 4')
     @kategorier = PhotoCategory.unscoped.order('name desc')
     
@@ -147,6 +147,15 @@ class AlbumsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to albums_url }
       format.json { head :no_content }
+    end
+  end
+  def destroy_images
+    for image in @album.images
+      image.destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to @album, notice: 'Bilderna tog borts!' }
+      format.json { render :json => @album, :location => @album }
     end
   end
   def upload_images

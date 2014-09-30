@@ -7,6 +7,7 @@ namespace :paperclip do
         unless image.foto_file_name.blank?
           filename = Rails.root.join('public', 'system', 'images','album', album.id.to_s,image.id.to_s, 'original', image.foto_file_name)   
           if File.exists? filename
+            puts "Re-saving image attachment #{image.id} - #{filename}"
             foto = File.new filename
             image.foto = foto
             image.save
