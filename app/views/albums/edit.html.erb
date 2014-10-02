@@ -5,6 +5,7 @@
 			<div class="row">
 				<% if @album.title %>									
 					<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Visa album"), @album,class: 'btn btn-u' %>
+					<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @album,method: :delete,data:{confirm:'Albumet raderas och kan inte återställas, är du säker?'},class: 'btn btn-u' %>
 				<% end %>
 				<%= link_to (content_tag(:i,nil,class: "fa fa-arrow-circle-o-left")+ 'Tillbaka'), :back,class: 'btn btn-u' %>
 			</div><br>				
