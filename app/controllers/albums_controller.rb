@@ -148,7 +148,7 @@ class AlbumsController < ApplicationController
             @album.images.create(foto: foto,subcategory_id: params[:subcategory_id])
             @count = @count+1;
           }
-          flash[:notice] =("Färdig!   Laddat upp "+@count.to_s+" bilder.")
+          flash[:notice] =("Färdig!   Laddat upp "+@total.to_s+" bilder.")
     end    
   end
   def update

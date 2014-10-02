@@ -35,7 +35,7 @@
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxLoadedContent{margin-bottom:20px;}
         #cboxTitle{position:absolute; bottom:0px; left:0; text-align:center; width:100%; color:#999;}
-        #cboxCurrent{position:absolute; bottom:0px; left:100px; color:#999;}
+        #cboxCurrent{position:absolute; bottom:0px; left:2%; color:#FF9901; bottom:-4px;}
         #cboxLoadingOverlay{background:#fff url('loading.gif') no-repeat 5px 5px;}
 
         /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
@@ -45,9 +45,9 @@
         #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
 
         #cboxSlideshow{position:absolute; bottom:0px; right:42px; color:#444;}
-        #cboxPrevious{position:absolute; bottom:0px; left:0; color:#444;}
-        #cboxNext{position:absolute; bottom:0px; left:63px; color:#444;}
-        #cboxClose{position:absolute; bottom:0; right:0; display:block; color:#444;}
+        #cboxPrevious{position:absolute; bottom:-13px; left:30%; color:#444;}
+        #cboxNext{position:absolute; bottom:-13px; left:60%; color:#444;}
+        #cboxClose{position:absolute; bottom:-13px; right:2%; display:block; color:#444;}
 
 /*
   The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
