@@ -161,4 +161,130 @@ background-color: #fff !important;
   width:auto !important;
 }
 
+/*Colored Content Boxes
+------------------------------------*/
+.servive-block {
+  padding: 20px 30px;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
+.servive-block p,
+.servive-block h2 {
+  color: #fff;
+}
+
+.servive-block h2 a:hover{
+  text-decoration: none;
+}
+
+.servive-block-light,
+.servive-block-default {
+  background: #fafafa;
+  border: solid 1px #eee; 
+}
+
+.servive-block-default:hover {
+  box-shadow: 0 0 8px #eee;
+}
+
+.servive-block-light p,
+.servive-block-light h2,
+.servive-block-default p,
+.servive-block-default h2 {
+  color: #555;
+}
+
+.servive-block-u {
+  background: #72c02c;
+}
+.servive-block-blue {
+  background: #3498db;
+}
+.servive-block-red {
+  background: #e74c3c;
+}
+.servive-block-sea {
+  background: #1abc9c;
+}
+.servive-block-grey {
+  background: #95a5a6;
+}
+.servive-block-yellow {
+  background: #f1c40f;
+}
+.servive-block-orange {
+  background: #e67e22;
+}
+.servive-block-green {
+  background: #2ecc71;
+}
+.servive-block-purple {
+  background: #9b6bcc;
+}
+.servive-block-aqua {
+  background: #27d7e7;
+}
+.servive-block-brown {
+  background: #9c8061;
+}
+.servive-block-dark-blue {
+  background: #4765a0;
+}
+.servive-block-light-green {
+  background: #79d5b3;
+}
+.servive-block-dark {
+  background: #555;
+}
+.servive-block-light {
+  background: #ecf0f1;
+}
+
+.rounded-x {
+  border-radius: 25% !important;
+  height: 80px !important;
+  width: auto;
+  position: center;
+}
+
+.grid-height {
+  height: 150px;
+}
+.border-dotted {
+ border-style: solid;
+ border-width: 1px;
+}
+.album-col {
+  height: 100% !important;
+}
+.max-height{
+  max-height:200px !important;
+  height:auto;  
+}
+.img-max-height{
+  max-height:60% !important;
+  max-width:100%;
+  width:auto;
+  height:auto;
+  display:block !important;
+  margin-left:auto !important;
+  margin-right:auto;  
+}
+
+
+.vertical-align {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.row-height{
+  height:250px !important;
+}
+.album-preview{
+  display:block;
+  max-height:100%;
+  height:auto;
+  max-width:100%;
+  width:auto;  
+}

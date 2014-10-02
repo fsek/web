@@ -1,0 +1,45 @@
+<%= form_for(@council, :html => {  :autocomplete => 'off' }) do |f| %>
+	<% if @council.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@council.errors.count, "error") %> gör att utskottet inte kan sparas:</h2>	
+	      <ul>
+	      <% @council.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+  	<% end %>
+  	  	<%= f.label 'Titel', :class => "reg-label"%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		
+  	</div>
+  	<%= f.label 'Beskrivning', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.text_area :description, :class => 'form-control',:placeholder => 'Beskrivning' %>
+  	</div>			  
+  	<%= f.label 'Url - små bokstäver, a-z, till exempel "pryl"', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.text_field :url, :class => 'form-control',:placeholder => 'Url',:autocomplete => 'off' %>
+  	</div>
+  	<%= f.label 'Publik?', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		Innebär att även de som inte är inloggade kan <br>
+  		läsa om utskottet.
+  		<%= f.check_box :public, :class => 'form-control'%>
+  	</div>
+  	<%if @council.posts.count > 0 %>
+	  	<%= f.label 'Ordförande', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.select :president, options_for_select(@council.posts.collect{ |r| [r.title, r.id] },selected: @council.president),{include_blank: true},:class => 'form-control'%>
+	  	</div>
+  	<%elsif @council.new_record? == false%>
+  		Detta utskott har inga poster, lägg till en post och välj sedan här vilken post som är utskottets ordförande.
+  		<hr>  		
+  	<%end%>  	
+  	<div class="row">
+  			<%= f.submit "Spara",:class => 'btn-u pull-right btn-u-small' %>
+  			<%if @council.id.nil? == false%>  			  			
+  				<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @council, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
+  			<%end%>	 				
+  	</div>
+<% end %>

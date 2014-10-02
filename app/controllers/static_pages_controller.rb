@@ -37,7 +37,7 @@ class StaticPagesController < ApplicationController
       ContactMailer.contact_email(@name,@email,@msg,@kontakt).deliver
       redirect_to kontakt_path     
     end
-  end
+  end  
   def kulturministerie
   end  
   def naringslivsutskott  

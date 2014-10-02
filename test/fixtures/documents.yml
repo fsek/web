@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pdf: 
+  public: false
+  download: 
+  category: MyString
+  owner: 1
+
+two:
+  pdf: 
+  public: false
+  download: 
+  category: MyString
+  owner: 1

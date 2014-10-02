@@ -15,16 +15,8 @@
 <div class="col-md-4">        <!-- Vecktorn -->
         <div class="headline"><h2>Vecktorn</h2></div> 
           <p>Prenumerera på F-sektionens veckobrev som kommer ut varje läsvecka!</p>
-          <form class="footer-subsribe">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="E-postadress"> 
-              <span class="input-group-btn">
-                <button class="btn-u" type="button">Prenumerera!</button>
-              </span>              
-            </div><!-- /input-group -->                    
-          </form> 
-          <br>
-          Vill du skicka med en notis i vecktorn? Skicka i så fall in den till <%= render partial: "static_pages/kontakt", locals: {kontakt: List.find_by(:name => 'Sanningsministeriet')}%> senast måndag kl 17.
+      		<%= link_to "Prenumerera", :vecktorn_signup, class: "btn btn-u"%>      		
+          	<p>Vill du skicka med en notis i vecktorn? Skicka i så fall in den till <%=render partial: "contacts/kontakt", locals: {name: 'Sanningsministeriet'}%> senast måndag kl 17.</p>                     
           <hr>
   		<div class="headline"><h3>Håll dig uppdaterad</h3></div>
         <ul class="social-icons">
@@ -38,7 +30,7 @@
 		<p>
 			<%= fa_icon('phone') %> 046 - 14 47 22
 			<br>
-			<%= render partial: "static_pages/kontakt", locals: {kontakt: List.find_by(:name => 'Ordförande')}%>
+			<%= render partial: "contacts/kontakt", locals: {name: 'Ordförande'}%>
 			<br>
 			<div class="row-fluid">			
 				<div class="headline"><h3>Besöksadress</h3></div>

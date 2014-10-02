@@ -1,15 +1,17 @@
 # encoding:UTF-8
 class PostsController < ApplicationController
   include TheRole::Controller
-  before_filter :authenticate_user!, only: [:new,:edit,:create,:update,:destroy]
+  before_filter :authenticate_user!
+  before_action :set_council
   before_action :set_post, only: [:show, :edit, :update, :destroy, :remove_profile,:add_profile_username]
+  
   before_filter :authenticate_editor_poster! 
 
   def remove_profile
     @profile = Profile.find_by_id(params[:profile_id])
     @post.profiles.delete(@profile)    
     respond_to do |format|
-    format.html { redirect_to '/poster', notice: @profile.name.to_s + ' har inte längre posten ' + @post.title.to_s + '.'}
+    format.html { redirect_to council_posts_path(@council), notice: @profile.name.to_s + ' har inte längre posten ' + @post.title.to_s + '.'}
     end 
   end
   def add_profile_username
@@ -19,24 +21,24 @@ class PostsController < ApplicationController
     end
       if @profile == nil
           respond_to do |format|
-         format.html { redirect_to :posts, flash: {alert: 'Hittade ingen användare med det användarnamnet.'}}
+         format.html { redirect_to council_posts_path(@council), flash: {alert: 'Hittade ingen användare med det användarnamnet.'}}
          end
       elsif @profile.name == nil || @profile.name == ""
           respond_to do |format|
-         format.html { redirect_to :posts, flash: {alert: 'Användaren :"' + @user.username.to_s + '" måste fylla i fler uppgifter i sin profil.' }}
+         format.html { redirect_to council_posts_path(@council), flash: {alert: 'Användaren :"' + @user.username.to_s + '" måste fylla i fler uppgifter i sin profil.' }}
          end
       elsif @profile.posts.include?(@post)
          respond_to do |format|
-         format.html { redirect_to :posts, flash: {alert: @profile.name.to_s + '(' + @user.username.to_s + ') har redan posten '+@post.title.to_s + '.'}}
+         format.html { redirect_to council_posts_path(@council), flash: {alert: @profile.name.to_s + '(' + @user.username.to_s + ') har redan posten '+@post.title.to_s + '.'}}
          end
       elsif @post.limit != nil && @post.profiles.size >= @post.limit
         respond_to do |format|
-         format.html { redirect_to :posts, flash: {alert: @post.title.to_s + ' har sitt maxantal.'}}
+         format.html { redirect_to council_posts_path(@council), flash: {alert: @post.title.to_s + ' har sitt maxantal.'}}
          end   
       else 
         @post.profiles << @profile
         respond_to do |format|
-          format.html { redirect_to :posts, notice: @profile.name.to_s + ' (' + @profile.user.username.to_s + ') tilldelades posten '+@post.title.to_s + '.'}
+          format.html { redirect_to council_posts_path(@council), notice: @profile.name.to_s + ' (' + @profile.user.username.to_s + ') tilldelades posten '+@post.title.to_s + '.'}
             if (@profile.first_post == nil)   
               @profile.update(first_post: @post.id)
             end
@@ -46,17 +48,12 @@ class PostsController < ApplicationController
    
   
   def index  
-    @posts = Post.all  
+    @posts = @council.posts 
   end
-  # GET /news/1
-  # GET /news/1.json
   
-  def show    
-  end
-
   # GET /news/new
   def new
-    @post = Post.new
+    @post = @council.posts.build
   end
 
   # GET /news/1/edit
@@ -66,10 +63,10 @@ class PostsController < ApplicationController
   # POST /news
   # POST /news.json
   def create
-    @post = Post.new(post_params)        
+    @post = @council.posts.build(post_params)        
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Posten skapades!' }
+      if @post.save        
+        format.html { redirect_to council_posts_path(@council), notice: 'Posten skapades!' }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
@@ -83,7 +80,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Posten uppdaterades!' }
+        format.html { redirect_to edit_council_post_path(@council,@post), notice: 'Posten uppdaterades!' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -98,7 +95,7 @@ class PostsController < ApplicationController
     @post.profiles.clear
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to :poster }
+      format.html { redirect_to council_posts_path(@council) }
       format.json { head :no_content }
     end
   end
@@ -108,10 +105,13 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     end
+    def set_council    
+     @council = Council.find_by_url(params[:council_id])     
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :limit,:description,:profile_id)
+      params.require(:post).permit(:title, :limit,:description,:profile_id,:council_id,:post_id)
     end
 end
 

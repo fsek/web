@@ -3,19 +3,8 @@
           
           <li class="devider"></li>
           <% if user_signed_in? %>
-          <li><%= link_to fa_icon("calendar"),:kalender %></li>
-          	
-          <li class="devider"></li>
-            <li class="dropdown">
-              
-              <%= link_to fa_icon("user") + (current_user.profile.name || current_user.username), current_user.profile, class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
-              <ul class="dropdown-menu pull-right">
-                <li><%= link_to "Profil", current_user.profile %></li>                
-                <li><%= link_to "Kontoinställningar", :edit_user_registration%></li>                
-                <li><%= link_to "Logga ut", :destroy_user_session, method: :delete %></li>                
-               </ul>               
-            </li>
-            
+          <li><%= link_to fa_icon("calendar"),:kalender %></li>          	
+          
             <% if current_user.role_id != nil && Role.find_by_id(current_user.role_id) != Role.find_by_id(2)%>            	 
             <li class="devider"></li>            
             <li class="dropdown">              
@@ -24,18 +13,16 @@
               		<% if current_user.admin? %>
               		<li class="dropdown-submenu">
           				<a href="">Admin</a>
-              			<ul class="dropdown-menu pull-right"> 
+              			<ul class="dropdown-menu pull-left"> 
 		              	  <li><%= link_to "Roller", :admin_roles %></li>		              	  
 		                  <li><%= link_to "Hantera användare", :users%></li>
-		                  <li><%= link_to "Hantera kontaktposter",:admin_kontakt%></li>
-		                  <li><%= link_to "Hantera bildkategorier",:admin_bildgalleri%></li>		                
                			</ul>
                		</li>
                		<% end %>
               		<% if current_user.moderator?(:event) %>
               		<li class="dropdown-submenu">
           				<a href="">Event</a>
-              			<ul class="dropdown-menu pull-right"> 
+              			<ul class="dropdown-menu pull-left"> 
 		              	  <li><%= link_to "Snabbvy av alla event", :events %></li>
 		                  <li><%= link_to "Nytt event", :new_event%></li>
                			</ul>
@@ -44,58 +31,35 @@
                		<% if current_user.moderator?(:nyheter) %>
               		<li class="dropdown-submenu">
           				<a href="">Nyheter</a>
-              			<ul class="dropdown-menu pull-right">		              	  
+              			<ul class="dropdown-menu pull-left">		              	  
 		                  <li><%= link_to "Ny nyhet", :new_news%></li>
                			</ul>
                		</li>
-               		<% end %>
-               		<% if current_user.moderator?(:poster) %>
-              		<li class="dropdown-submenu">
-          				<a href="">Poster</a>
-              			<ul class="dropdown-menu pull-right">		              	  
-		                  <li><%= link_to "Lista över poster", :posts%></li>
-		                  <li><%= link_to "Ny post", :new_post%></li>
-               			</ul>
-               		</li>
-               		<% end %>
+               		<% end %>               		
                		<% if current_user.moderator?(:utskott) %>
               		<li class="dropdown-submenu">
           				<a href="">Utskott</a>
-              			<ul class="dropdown-menu pull-right">              			  		              	  
-	                  		<% if current_user.moderator?(:styrelse)%>
-		                  		<li><%= link_to 'Styrelse',:styrelse %></li>
+              			<ul class="dropdown-menu pull-left">
+              				<%for @utskott in Council.all%>             			  		              	  
+		                  		<% if current_user.moderator?(@utskott.url)%>
+			                  		<li><%= link_to @utskott.title,edit_council_path(@utskott) %></li>
+		                  		<%end%>
 	                  		<%end%>
-	                  		<% if current_user.moderator?(:fos)%>
-		                  		<li><%= link_to 'Föset',:fos %></li>
-	                  		<%end%>
-	                  		<% if current_user.moderator?(:cafe)%>
-		                  		<li><%= link_to 'Cafémästeriet',:cafe %></li>
-	                  		<%end%>
-	                  		<% if current_user.moderator?(:km)%>
-		                  		<li><%= link_to 'Kulturministeriet',:km %></li>
-	                  		<%end%>
-	                  		<% if current_user.moderator?(:fnu)%>
-		                  		<li><%= link_to 'Näringslivsutskottet',:fnu %></li>
-	                  		<%end%>
-	                  		<% if current_user.moderator?(:pryl)%>
-		                  		<li><%= link_to 'Prylmästeriet',:pryl %></li>
-	                  		<%end%>
-	                  		<% if current_user.moderator?(:sexmasteri)%>
-		                  		<li><%= link_to 'Sexmästeri',:sexmasteri %></li>
-	                  		<%end%>
-	                  		<% if current_user.moderator?(:sanning)%>
-		                  		<li><%= link_to 'Sanningsministeriet',:sanning %></li>
-	                  		<%end%>
-	                  		<% if current_user.moderator?(:studierad)%>
-		                  		<li><%= link_to 'Studierådet',:studierad %></li>
-	                  		<%end%>
-               			</ul>
+      		   			</ul>
                		</li>
                		<% end %>
            		</ul>               
             </li>        	
         	<% end %>
-            
+        	<li class="devider"></li>
+            <li class="dropdown">              
+              <%= link_to fa_icon("user") + (current_user.profile.name || current_user.username), current_user.profile, class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
+              <ul class="dropdown-menu pull-right">
+                <li><%= link_to "Profil", current_user.profile %></li>                
+                <li><%= link_to "Kontoinställningar", :edit_user_registration%></li>                
+                <li><%= link_to "Logga ut", :destroy_user_session, method: :delete %></li>                
+               </ul>               
+            </li>
           <% else %>
             <li>
               <%= link_to fa_icon("sign-in") + ' Logga in', new_user_session_path %>

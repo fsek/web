@@ -1,38 +1,43 @@
-<% title("Album") %>
-<%= yield :bildgalleri%>
-<div class="row blog">  
-  <div class="col-md-12">
-  	<div class="row">
-  		<div class="col-md-6">
-		    <h2><%= @album.title %></h2>	
-		    <ul class="list-unstyled blog-info">
-		    	<li>Ansvarig: <%= fa_icon("user") %> <%= link_to (Profile.find_by(id: @album.author).name) ,Profile.find_by(id: @album.author) %></li>
-		      <li>Datum: <b>      <i class="fa fa-calendar"></i> <%= @album.start_date %></b> till <b><%=@album.end_date%></b></li>
-		    </ul>
-	    </div>
-	    <div class="col-md-6">	
-    		<p>Beskrivning: <%= simple_format(@album.description)%></p>
-    	</div>
-    	</div>
-	<div class="row">  
-      <% if current_user.has_role?(:galleri, :edit) %>
-      	<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till bilder"), new_album_image_path(@album), class: "btn-u btn-u-small" %>
-        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_album_path(@album), class: "btn-u btn-u-small" %>
-        <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @album, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
-      <% end %>
-  	</div>
-		<div id='gallerii'>			
-			<% @album.images.each do |i|%>
-				<td><%= image_tag i.foto.url(:large) %></td>			
-			<% end %>
+<%=javascript_include_tag "jquery.colorbox-min"%>      
+
+<div class="headline headline-md"><h3><%=@album.title%></h3></div> <%= link_to (content_tag(:i, nil, class: "fa fa-rocket") + " Tillbaka till Galleriet"),albums_path, class: "btn-u btn-u-small" %><%=render partial: "links"%>	  
+<%if @album.images.count > 0%>
+	<div class="container content">
+        <div class="row high-rated margin-bottom-20">
+        	<div class="sorting-block">
+	            <ul class="sorting-nav sorting-nav-v1 text-center">
+	                <li class="filter active" data-filter="all">Alla</li>
+	                <% @album.subcategories.each do |kat|%>
+		                 <% if kat.images.count > 0 %>
+		                	<li class="filter" data-filter="category_<%=kat.id%>"><%=kat.text%></li>
+		                 <% end %>
+	                <% end %>		                
+	            </ul>	            
+                <ul class="row sorting-grid">
+                	<% @images.each do |p| %>
+                	<li class="col-md-3 col-sm-6 col-xs-12 mix <%if p.subcategory_id%> category_<%=p.subcategory_id%>"data-cat="<%=p.subcategory_id%>"><%else%>"><%end%>
+	                            <%= image_tag(p.foto(:large),class: 'img-responsive max-height gallery', rel: "album", href: p.foto(:original), id: p.id)  %>           
+            		</li>
+            		<%end%>  
+            	</ul>
+            <div class="clearfix"></div>			
 		</div>
+	</div>
+        </div><!--/gallery-page-->
+    <%else%>
+    <div class="row margin-bottom-20">
+	    <div class="col-md-4 col-md-offset-4">
+	    	<h4>Här saknas ännu bilder!<br> Men ni kan titta på Linus så länge!</h4><br>
+	    	<%= image_tag("img/linus2.jpg")%>
+		</div>
+	</div>
+    <%end%><!-- if images-->          		
   </div>    
 </div>
-
-<script src="<%= javascript_path('galleria-1.3.5.min.js') %>"></script>
-<style>
-	#gallerii{ width:100%; height:700px; background-color:#ffffff}
-</style>
-<script>        
-        Galleria.run('#gallerii');
+<script>
+$(document).ready(function() {
+	App.init();
+	PortfolioPage.init();
+	jQuery('img.gallery').colorbox({rel: "album",maxHeight:"100%",maxWidth:"100%"});
+	});
 </script>

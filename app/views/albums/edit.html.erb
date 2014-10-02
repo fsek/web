@@ -1,21 +1,40 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 reg-page">
-			<%= label_tag 'Redigera album',nil, :class => 'reg-header'%>
+			<%= label_tag 'Redigera album',nil, :class => 'reg-header'%><br>
+			<div class="row">
+				<% if @album.title %>									
+					<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Visa album"), @album,class: 'btn btn-u' %>
+					<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @album,method: :delete,data:{confirm:'Albumet raderas och kan inte återställas, är du säker?'},class: 'btn btn-u' %>
+				<% end %>
+				<%= link_to (content_tag(:i,nil,class: "fa fa-arrow-circle-o-left")+ 'Tillbaka'), :back,class: 'btn btn-u' %>
+			</div><br>				
 			<%= render 'form'%>
-			<% if @album.title %>
-				<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till bilder"), new_album_image_path(@album)%><br>
-			<% end %>
-			<%= link_to 'Visa album', @album %><br>
-			<%= link_to 'Tillbaka', :back %>
+			
 		</div>
 		<div class="col-md-6 reg-page">
+			<% if @album.title %>
+					<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till bilder"), upload_images_album_path(@album),class: 'btn btn-u'%>
+					<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Rensa bilder"),destroy_images_album_path(@album), method: :delete,data: {confirm: 'Alla bilder tas bort - är du säker?'},class: 'btn btn-u'%><br><br>
+			<% end %>
+			
 			<% if @album.images.count > 0 %>
-				<div class="row">
+			<% @row = 0%>				
 					<% @album.images.each do |p|%>
-						<div class="col-md-3"><%=image_tag p.foto.url(:thumb)%></br><%= link_to 'Ta bort',p,class: 'btn btn-u'%></div>
-					<% end %>
-				</div>
+						<%if (@row == 0)%>
+							<div class="row">
+						<% end %>
+						<div class="col-md-3 grid-height tag-box border-dotted">
+							<%=image_tag p.foto.url(:thumb)%>
+							<br>
+							<%= link_to 'Ta bort',album_image_path(@album, p), method: :delete,data: {confirm: 'Är du säker?'},class: 'btn btn-u'%>							
+						</div>
+						<% @row = @row+1%>						
+						<%if (@row == 4)%>
+							</div>
+							<%@row = 0%>
+						<% end %>						
+					<% end %>				
 			<% end %>
 		</div>
 	</div>

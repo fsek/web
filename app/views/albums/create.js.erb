@@ -1,7 +1,0 @@
-<% if @image.new_record? %>
-  alert('Failed');
-<% else %>
-  if ($('h1') !== undefined) {
-    $('h1').append("<%=j render partial: 'photosets/image', locals: { image: @image } %>");
-  }
-<% end %>

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625155934) do
+ActiveRecord::Schema.define(version: 20410822171399) do
+
+  create_table "album_categories", force: true do |t|
+    t.string   "name"
+    t.text     "text"
+    t.boolean  "visible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "album_categories_albums", id: false, force: true do |t|
+    t.integer "album_id"
+    t.integer "album_category_id"
+  end
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -23,12 +36,52 @@ ActiveRecord::Schema.define(version: 20140625155934) do
     t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category"
   end
 
   create_table "albums_images", id: false, force: true do |t|
     t.integer "album_id"
     t.integer "image_id"
+  end
+
+  create_table "albums_subcategories", id: false, force: true do |t|
+    t.integer "album_id"
+    t.integer "subcategory_id"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "public"
+    t.text     "text"
+    t.integer  "council_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "councils", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.string   "url"
+    t.text     "description"
+    t.integer  "president"
+    t.integer  "vicepresident"
+    t.boolean  "public"
+    t.integer  "contact_id"
+  end
+
+  create_table "documents", force: true do |t|
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.datetime "pdf_updated_at"
+    t.boolean  "public"
+    t.boolean  "download"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "profile_id"
+    t.string   "title"
   end
 
   create_table "events", force: true do |t|
@@ -58,6 +111,7 @@ ActiveRecord::Schema.define(version: 20140625155934) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "captured"
+    t.integer  "subcategory_id"
   end
 
   create_table "lists", force: true do |t|
@@ -73,7 +127,6 @@ ActiveRecord::Schema.define(version: 20140625155934) do
   create_table "news", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.string   "author"
     t.boolean  "front_page"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -81,6 +134,31 @@ ActiveRecord::Schema.define(version: 20140625155934) do
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "profile_id"
+  end
+
+  create_table "page_elements", force: true do |t|
+    t.integer  "displayIndex"
+    t.boolean  "sidebar"
+    t.boolean  "visible"
+    t.text     "text"
+    t.string   "headline"
+    t.boolean  "border"
+    t.string   "name"
+    t.boolean  "pictureR"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pages", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "council_id"
   end
 
   create_table "phrasing_phrase_versions", force: true do |t|
@@ -98,13 +176,8 @@ ActiveRecord::Schema.define(version: 20140625155934) do
     t.datetime "updated_at"
   end
 
-  create_table "posts", force: true do |t|
-    t.string   "title"
-    t.integer  "limit"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "posts" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "posts_profiles", id: false, force: true do |t|
     t.integer "post_id"
@@ -134,6 +207,12 @@ ActiveRecord::Schema.define(version: 20140625155934) do
     t.datetime "updated_at"
   end
 
+  create_table "subcategories", force: true do |t|
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "username",                            null: false
     t.string   "email",                  default: "", null: false
@@ -151,7 +230,7 @@ ActiveRecord::Schema.define(version: 20140625155934) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

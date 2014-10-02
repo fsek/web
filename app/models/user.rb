@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates_uniqueness_of :username
   validate :is_f_member
+  
 
 
   def create_profile_for_user

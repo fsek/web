@@ -1,4 +1,14 @@
 <%= form_for(@event, :html => {  :autocomplete => 'off' }) do |f| %>
+	<% if @event.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@event.errors.count, "error") %> gör att eventet inte kan sparas:</h2>	
+	      <ul>
+	      <% @event.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+  	<% end %>
   	<%= f.label 'Titel', :class => 'reg-label'%>		  
   	<div class="input-group margin-bottom-20">					
 		<%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		

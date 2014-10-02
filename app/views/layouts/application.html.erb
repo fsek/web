@@ -14,9 +14,6 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <% if params[:controller] == 'albums'%>
-  	<%= javascript_include_tag "galleria"%>
-  <% end%>
   <%= favicon_link_tag '/favicon/favicon.ico' %>
   <link rel=“shortcut icon” href=“/assets/images/favicon/favicon.ico”>
   <link rel=“apple-touch-icon” sizes=“57x57” href=“/assets/images/favicon/apple-touch-icon-57x57.png”>
@@ -89,7 +86,7 @@
 <!--=== End Breadcrumbs ===-->
 
 <% if yield(:title) == 'Utskott' %>
-  <div class="container margin-bottom-30">
+  <div class="container">
     <%= render "layouts/utskottmenu" %>
   </div>
 <% end %>

@@ -15,14 +15,6 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
   end
   
-  def authenticate_news!
-    flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless current_user.admin? || current_user.moderator?(:nyheter)
-    
-    rescue ActionController::RedirectBackError
-      redirect_to root_path
-  end
-
   def authenticate_editor_events!
     flash[:error] = t('the_role.access_denied')
     redirect_to(:kalender) unless current_user.admin? || current_user.moderator?(:event)
@@ -38,15 +30,6 @@ class ApplicationController < ActionController::Base
     rescue ActionController::RedirectBackError
       redirect_to root_path
   end
-  def authenticate_gallery!
-    flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless current_user.moderator?(:galleri)
-    
-    rescue ActionController::RedirectBackError
-      redirect_to root_path
-  end
-  
-  
   
   protected
     def configure_permitted_devise_parameters

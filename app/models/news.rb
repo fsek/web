@@ -1,4 +1,6 @@
 class News < ActiveRecord::Base  
+  belongs_to :profile
+  validate :profile_id, presence: true
   has_attached_file :image, 
                     :styles => { original: "4000x4000>", large: "800x800>", small: "250x250>",thumb: "100x100>" },                     
                     :path => ":rails_root/public/system/images/news/:id/:style/:filename",

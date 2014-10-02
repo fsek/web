@@ -21,7 +21,7 @@
  *= require page_search
  *= require page_magazine
  *= require page_login_reg
- *= require portfolio-v2
+ *= require portfolio
  *= require style
  *= require timeline  
  *= require default_theme
@@ -29,8 +29,8 @@
  *= require start_page
  *= require phrasing
  *= require fullcalendar
- *= require fullcalendar.print
- *= require galleria.classicmod 
+ *= require fullcalendar.print 
+ *= require colorbox
  
  */
 
@@ -45,5 +45,5 @@
 } 
 
 .content {
-  padding-top: 40px;
+  padding-top: 20px;
 }

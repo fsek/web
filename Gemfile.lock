@@ -50,6 +50,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.2.1)
+    fancybox2-rails (0.2.8)
+      railties (>= 3.1.0, < 5.0)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
     fullcalendar-rails (1.6.4.0)
@@ -178,6 +180,7 @@ DEPENDENCIES
   breadcrumbs_on_rails
   coffee-rails (~> 4.0.0)
   devise
+  fancybox2-rails (~> 0.2.8)
   font-awesome-rails
   fullcalendar-rails
   icalendar

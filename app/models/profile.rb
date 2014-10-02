@@ -13,8 +13,11 @@ class Profile < ActiveRecord::Base
     self.name || self.user.username
   end
   def to_s
-    if (self.name) && (self.first_post) && (Post.find(self.first_post))
-      self.name + ' (' + Post.find(self.first_post).title + ')'
+    if(self.first_post)
+      post = Post.find_by_id(self.first_post)
+    end
+    if (self.name) && (post)
+      self.name + ' (' + post.title + ')'
     elsif (self.name)
       self.name
     end

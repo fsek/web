@@ -1,0 +1,8 @@
+<% title('Utskott') %>
+<div class="col-md-offset-10 col-md-2 md-margin-bottom-40">
+	<%if (current_user) && (current_user.moderator?(@council.url))%> 				      	
+	    <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_council_path(@council), class: "btn-u btn-u-small"%>	    
+	<%end%>
+</div>
+<hr>
+<%=render partial: "pages/main"%>  				

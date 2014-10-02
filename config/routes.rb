@@ -1,35 +1,15 @@
 
 Fsek::Application.routes.draw do
-  
+    
   # Resources on the page
-  get 'cafebokning' => 'calendar#cafebokning'
-  get 'kalender/export' => 'calendar#export.ics', as: :subscription
   get 'kurslankar' => 'static_pages#kurslankar'
-  get 'styrelse' => 'static_pages#styrelse', as: :styrelse
-  get 'utskott' => 'static_pages#utskott', as: :utskott
-  get 'utskott/cafemasteri' => 'static_pages#cafe', as: :cafe 
-  get 'utskott/fos' => 'static_pages#fos', as: :fos
-  get 'utskott/kulturministerie' => 'static_pages#kulturministerie', as: :km
-  get 'utskott/naringslivsutskott' => 'static_pages#naringslivsutskott', as: :fnu
-  get 'utskott/prylmasteri' => 'static_pages#prylmasteri', as: :pryl
-  get 'utskott/sanningsministerie' => 'static_pages#sanningsministerie', as: :sanning  
-  get 'utskott/sexmasteri' => 'static_pages#sexmasteri', as: :sexmasteri
-  get 'utskott/studieradet' => 'static_pages#studierad', as: :studierad  
   get 'libo' => 'static_pages#libo', as: :libo
-  get 'kontakt' => 'static_pages#kontakt', as: :kontakt
-  post 'kontakt' => 'static_pages#kontakt', as: :kontakt_path  
-  get 'admin/kontakt' => 'admin#kontakt', as: :admin_kontakt
-  post 'admin/kontakt'=> 'admin#kontakt', as: :admin_kontakt_path
-  get 'admin/bildgalleri' => 'admin#bildgalleri', as: :admin_bildgalleri
-  post 'admin/bildgalleri'=> 'admin#bildgalleri', as: :admin_bildgalleri_path
-  get 'admin/utskott' => 'admin#utskott', as: :admin_utskott
-  post 'admin/utskott'=> 'admin#utskott', as: :admin_utskott_path
-  get 'kalender' => 'calendar#index',as: :kalender
+  get 'kalender' => 'events#calendar',as: :kalender
   get '/nollning', to: redirect('http://nollning.fsektionen.se'), as: :nollning
+  get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
   
   get 'om' => 'static_pages#om', as: :om
-  get 'faq' => 'static_pages#faq', as: :faq
-  get 'dokument' => 'static_pages#dokument', as: :dokument
+  get 'faq' => 'static_pages#faq', as: :faq  
   
   get 'engagemang' => 'static_pages#utskott', as: :engagemang
   get 'multimedia' => 'static_pages#lankar', as: :multimedia #Ev. efterfrågad av vårt kära Sanningsministerium!
@@ -46,8 +26,7 @@ Fsek::Application.routes.draw do
     post    'anvandare/skapa'        => 'registrations#create', as: :user_registration 
     get     'anvandare/registrera'     => 'registrations#new',    as: :new_user_registration
     patch   'anvandare/redigera/:id'        => 'users#update_password', as: :update_user_registration 
-    get     'anvandare/redigera'   => 'registrations#edit',   as: :edit_user_registration 
-    
+    get     'anvandare/redigera'   => 'registrations#edit',   as: :edit_user_registration
     delete  'anvandare/ta_bort/:id' => 'users#destroy', :as => :admin_destroy_user
 
     #sessions
@@ -59,27 +38,46 @@ Fsek::Application.routes.draw do
   
   get 'anvandare' => 'users#index', as: :users
   
-  resources :profiles, path: :profil do
-    patch :remove_post, on: :member
-  end
-  resources :events  
-  resources :news    ,path:  :nyhet  
-  resources :posts, path: :poster do
-  patch :remove_profile, on: :member
-  patch :add_profile_username, on: :member
-  end
-  
-  resources :albums, path: :galleri do    
-    resources :images, path: :bilder
+  scope path_names: { new: 'ny',edit: 'redigera' } do
+    resources :councils, path: :utskott do
+      resources :posts, path: :poster, except: :show do
+        patch :remove_profile, on: :member
+        patch :add_profile_username, on: :member
+      end
+      resource :page, path: :sida do
+        resources :page_elements, path: :element, on: :member
+      end
+    end
+    resources :contacts, path: :kontakt do
+      post :mail, on: :member
+    end    
+    resources :profiles, path: :profil do
+      patch :remove_post, on: :member
+    end
+    resources :events do
+      get :calendar, path: :kalender
+      get :export, on: :collection
+    end  
+    resources :news ,path:  :nyheter  
+    resources :documents, path: :dokument    
+    
+    resources :albums, path: :galleri do
+      get :settings, path: :installningar, on: :collection
+      get :upload_images, path: :ladda_upp, on: :member
+      patch :upload_images, path: :ladda_upp, on: :member
+      delete :destroy_images, path: :ta_bort_bilder, on: :member
+      post :settings, path: :installningar, on: :collection      
+      post  '', on: :member, action: :show           
+      resources :images, path: :bilder, except: [:new]
+    end
   end
   post '' => 'albums#index', as: :index_albums
- concern :the_role, TheRole::AdminRoutes.new
+  
+  concern :the_role, TheRole::AdminRoutes.new
   
   namespace :admin do
     concerns :the_role
-  end
-
- 
+  end 
    
   root 'static_pages#index'
 

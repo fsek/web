@@ -1,0 +1,14 @@
+<%= link_to (@album) do%>
+<div class="album-preview">	
+	<div class="overflow-h">
+	    <h3><%=@album.title%></h3> <%if @album.to_date%><span class="color-orange"><%=fa_icon('calendar')%></span> <%= @album.to_date%><br><%else%><br><%end%>	                        
+	</div>
+	<div class="">
+	<%if @album.images.count > 0%>            
+            	<%= image_tag(@album.images.sample().foto.url(:small),class: "img-max-height")%>
+	<%else%>            	
+	    	<%= image_tag("img/linus2.jpg",class: "img-max-height")%>
+	<% end %>
+	</div>	 	
+</div>
+<%end%>

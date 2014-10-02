@@ -1,0 +1,60 @@
+<div class="headline"><h2><%= @council.title %></h2></div>
+<div class="container">
+	<div class="row">				
+            <div class="col-md-9">            	            
+                <!-- Our Services -->
+                <%if @mainelements%>
+                <%@mainelements.each do |p|%>
+	                <div>
+	                	<%@main = p%>                
+	                	<%=render partial: "pages/element"%>
+	            	</div>
+	            	<br>
+            	<%end%>                
+                <%end%>
+            </div><!--/col-md-9-->
+			<%= render partial: "pages/sidebar"%>
+            
+        </div><!--/row-->        
+	</div> <!-- row -->
+	 <!-- Tab v1 -->
+	           <%if (@poster) && (@poster.count > 0)%>      
+                <div class="tab-v1">
+                	<div class="headline"><h4>Poster</h4></div>
+                    <ul class="nav nav-tabs">
+                    	<% @first = true%>
+                    	<% @poster.each do |post|%>
+                    		<%if @first%>
+                    		<li class="active">
+                			<%else%>
+                    		<li>
+                			<%end%>
+                    			<a href="#<%=post.title%>" data-toggle="tab"><%=post.title%></a>
+                			</li>
+                			<%@first = false%>
+                    	<%end%>                        
+                    </ul>                
+                    <div class="tab-content">
+                    	<%@first = true%>
+                    	<% @poster.each do |post|%>
+                    		<%if @first%>
+                    			<div class="tab-pane fade in active" id="<%=post.title%>">	
+                    		<%else%>
+                    			<div class="tab-pane fade in" id="<%=post.title%>">
+                    		<%end%>                    		 
+                            <div class="row">                                
+                                <div class="col-md-3">                                    
+                                     <%=simple_format(post.description)%>       
+                                </div>
+                                <div class="col-md-9">
+                            		
+                            	</div>
+                            </div>
+                        </div>
+                        <%@first = false%>
+                    	<%end%>                        
+                    </div>
+                </div>
+                <!-- End Tab v1 --> 
+                <%end%>
+</div> <!-- container -->

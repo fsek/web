@@ -1,0 +1,27 @@
+<div class="container content">  		
+	<div class="headline headline-md"><h3>Kontakt</h3></div>
+    <div class="row high-rated margin-bottom-20">
+   		<div class="sorting-block">		            
+            <ul class="row sorting-grid">            	
+            	<% @contacts.each do |p| %>		                 
+            		<li class="col-md-3 col-sm-6 col-xs-12">		                		
+                		<div class="tag-box tag-box-v2">					
+		                	<div class="overflow-h">
+			                        <h3><%=p.name%></h3>			                        		                        
+		                    </div>		                    
+		                    	<div class="overflow-h">			                        
+		                       		<br> <%=simple_format(p.text)%>		                        
+		                    	</div>   
+	                    		<%= link_to 'Skicka meddelande',p,class: 'btn btn-u'%>
+	                    		<% if (current_user) && (current_user.moderator?(:kontakt))%>
+	                    			<br><br><%= link_to 'Redigera',edit_contact_path(p),class: 'btn btn-u'%>
+	                    		<% end %>	                    	
+                    	</div>			                    
+                	</li>		                 
+        		<% end %>                    
+            </ul>        
+        	<div class="clearfix"></div>			
+		</div>
+	</div>
+	<hr class="devider devider-dotted">
+</div>

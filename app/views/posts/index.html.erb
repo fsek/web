@@ -1,71 +1,64 @@
 <% title('Poster') %>
 <div class="container">
-	<div class="row">
-		<div class="col-md-11">
-			<table class="table">
-			  <thead>
-			    <tr>
-			      <th>#</th>
-			      <th>Titel:</th>
-			      <th>Gräns:</th>
-			      <th>Beskrivning:</th>
-			      <th>Ta bort:</th>
-			      <th>Lägg till: (användarnamn)</th>
-			    </tr>
-			  </thead>
-			
-			  <tbody>
-			    <% @posts.each do |post| %>
-			      <tr>
-			        <td><%= post.id %></td>
-			        <td><%= link_to post.title,edit_post_path(post) %></td>
-			        <td><%= post.limit %></td>
-			        <td><%= post.description %></td>
-			        <% if current_user.has_role?(:poster,:edit) %>
-			        <td>
-			         <% if post.profiles.size > 0 %>
-		        	<%= form_tag remove_profile_post_path(post), :method => :patch do%>
-							<%= hidden_field_tag :id, post.id%>							
-							<% profileList = [] %>
-							<% post.profiles.each do  |profile|%>
-									<% if User.find(profile).profile == profile%>
-									 	<%profileList << [profile.name.to_s + " - " + User.find(profile).username,profile.id]%>
-									<% end %>
-								<% end %>
-								<%= select_tag :profile_id, options_for_select(profileList)%>								
-							
-							
-							<%= submit_tag 'Ta bort', data: { confirm: "Den valda profilen kommer att bli av med vald post."} %>
-							<% end %>
-			        <%end%>
-			        </td>
-			        <td>	<%= form_tag add_profile_username_post_path(post), :method => :patch do%>
-							<%= hidden_field_tag :id, post.id%>
-							<%= text_field_tag :username %>							
-							<%= submit_tag "Spara", data: { confirm: 'Dubbelkollat användarnamnet?' }%>
-							<%end%>
-			        </td>
-			        <%end%>  
-			      </tr>
-			    <% end %>
-			  </tbody>
-			</table>
-		</div>
-		<% if user_signed_in? %>
- 	 	<% if current_user.has_role?(:poster,:edit)  %>
-		<div class="col-md-1">
-			    <div class="headline headline-md"><h2>Verktyg</h2></div>
-      			<ul class="list">
-        		<li><%= link_to "Skapa post", new_post_path %></li>
-      			</ul>
-		</div>
-		  <% end %>
-  		<% end %>
-	</div>
-</div>
-
- 	
-
-
-
-
+	<div class="col-md-12">
+		<div class="panel panel-orange margin-bottom-40">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Poster</h3>
+                    </div>                                                          
+                    <table class="table">
+                        <thead>
+                            <tr>                                
+                                <th>Titel:</th>
+							    <th>Gräns:</th>
+							    <th>Beskrivning:</th>
+							    <th>Ta bort:</th>
+							    <th>Lägg till: (användarnamn)</th>                           
+                            </tr>
+                        </thead>
+                        <tbody>
+                        	<% @posts.each do |post| %>	                            							
+		                            <tr>
+		                                <td><%= link_to post.title,edit_council_post_path(@council,post) %></td>
+								        <td><%= post.limit %></td>
+								        <td><%= post.description %></td>
+								        <% if current_user.has_role?(:poster,:edit) %>
+								        <td>
+								         <% if post.profiles.size > 0 %>
+							        	<%= form_tag remove_profile_council_post_path(@council,post), :method => :patch do%>
+												<%= hidden_field_tag :id, post.id%>							
+												<% profileList = [] %>
+												<% post.profiles.each do  |profile|%>
+														<% if User.find(profile).profile == profile%>
+														 	<%profileList << [profile.name.to_s + " - " + User.find(profile).username,profile.id]%>
+														<% end %>
+													<% end %>
+													<%= select_tag :profile_id, options_for_select(profileList)%>								
+												
+												
+												<%= submit_tag 'Ta bort', data: { confirm: "Den valda profilen kommer att bli av med vald post."} %>
+												<% end %>
+								        <%end%>
+								        </td>
+								        <td>	<%= form_tag add_profile_username_council_post_url(@council,post), :method => :patch do%>
+												<%= hidden_field_tag :id, post.id%>
+												<%= text_field_tag :username %>							
+												<%= submit_tag "Spara", data: { confirm: 'Dubbelkollat användarnamnet?' }%>
+												<%end%>
+								        </td>
+								        <%end%>  
+		                                	                                                          
+		                            </tr>
+	                            <%end%>                            
+                            	    <tr>
+                            	    <td><%= link_to ( "Lägg till ny post"), new_council_post_path(@council), class: "btn-u btn-u-small" %></td>
+                            	    <td></td>
+                            	    <td></td>
+                            	    <td></td>
+                            	    <td></td>
+                            	    <td></td>	
+                        	    	</tr>              
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>

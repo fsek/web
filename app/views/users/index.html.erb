@@ -32,7 +32,7 @@
 							<%= hidden_field_tag :user_id, user.id %>
 							<%= select_tag :role_id, options_for_select(Role.all.collect{ |r| [r.name, r.id] },user.role_id)%>
 							<%= submit_tag %>
-							<%end%>
+						<%end%>
 			        </td>
 			        <%end%> 
 			      </tr>
