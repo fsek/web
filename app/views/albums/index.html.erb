@@ -7,22 +7,19 @@
 	        	<h1>Bildgalleri</h1>
 	    	</div>
     	</div>
-    	<div class="row">
+    	<div class="sorting-block">
     		<div class="headline headline-md"><h3>Senast tillagda</h3></div>
-	        <div class="row high-rated margin-bottom-20">
-	            <!-- Easy Block -->                
-            	<% if @albums_latest %>
-	            	<% @albums_latest.each do |p| %>
-	            	<div class="col-md-3">		            
-						<%@album = p%>
-						<%= render "album_preview"%>
-					</div>
-					<% end %>	
-				<% end %>
-			</div>
+	        <ul class=" sorting-grid">                	
+                	<% @albums_latest.each do |p| %>
+                	<%@album = p%>
+                	<li class="row-height col-sm-3">
+                		<%= render "album_preview"%>
+            		</li>
+            		<%end%>  
+        	</ul>	            
 		</div> <!-- row-->
 	<hr class="devider devider-dotted">
-
+	<%if 1 == 0%>
     	<div class="row">    
 	    	<div class="headline headline-md"><h3>Sök efter album</h3></div>
 	    	<%= form_tag index_albums_path, :method => 'post' do %>
@@ -59,6 +56,7 @@
 	</div>
 	<hr class="devider devider-dotted">
 	<% end %>
+	<%end%>
   	</div>
   	
   	<div class="container content">  		
@@ -66,33 +64,21 @@
         <div class="row high-rated margin-bottom-20">
         	<div class="sorting-block">
 	            <ul class="sorting-nav sorting-nav-v1 text-center">
-	                <li class="filter active" data-filter="0">Alla</li>
-		                <% @kategorier.each do |kat|%>
-		                 <% if kat.name != " "%>
-		                	<li class="filter" data-filter="<%=kat.id%>"><%=kat.name%></li>
+	                <li class="filter active" data-filter="all">Alla</li>
+	                <% @kategorier.each do |kat|%>
+		                 <% if kat.albums.count > 0 %>
+		                	<li class="filter" data-filter="category_<%=kat.id%>"><%=kat.name%></li>
 		                 <% end %>
-		                <% end %>		                
-		            </ul>
-                        	
-            	     <%@row = 0%>        	
-	                 <% @albums.each do |p| %>
-		                 <%if (@row == 0)%>	            	
-							<div class="row">
-						<% end %>	                 
-	                	<div class="col-md-3 album" data-cat="<%=@kategorier.where(:name => p.category).first.id%>">		                		
-	                		<%@album = p%>
-							<%= render "album_preview"%>
-	                	</div>
-	                	<% @row = @row+1%>						
-						<%if (@row == 3)%>
-							</div> <!--row-->
-							<%@row = 0%>
-						<% end %>
-					<%end%>
-					<% if @row > 0%>
-						</div> <!--row-->
-					<%end%>        		               
-                    
+	                <% end %>		                
+	            </ul>	            
+                <ul class="sorting-grid">                	
+                	<% @albums.each do |p| %>
+                	<%@album = p%>
+                	<li class="row-height col-sm-3 mix <%for @cat in p.album_categories%>category_<%=@cat.id%> <%end%>" data-cat="<%if p.album_categories.last%> <%=p.album_categories.last%><%end%>">
+                		<%= render "album_preview"%>
+            		</li>
+            		<%end%>  
+            	</ul>
             <div class="clearfix"></div>			
 		</div>
 	</div>
@@ -101,35 +87,13 @@
 </div>
   				  	
 <script>
-  	var albums = $('.album');
-		
-  $('.sorting-nav').on('click','li', function(){
-   $(this).addClass('active').siblings().removeClass('active');
-});
-$('.sorting-nav').on('click','li', function() {	 
-    var customType = $( this ).data('filter');
-
-    if(customType > 0)
-    {
-    albums
-        .hide()
-        .filter(function () {
-            return $(this).data('cat') === customType;
-        })
-        .show();
-    }
-    else 
-    {
-     albums.show();
-    }
-});
-
-  	jQuery(documetn).ready(function() {
+  	jQuery(document).ready(function() {
+  		App.init();
   		PortfolioPage.init();
-  	})
+  	});
 </script>
 
-  <% if current_user.admin? || current_user.has_role?(:galleri,:edit) %>
+  <% if @edit %>
 	<div class="headline headline-md">
 		<h2>Verktyg</h2>
 	</div>

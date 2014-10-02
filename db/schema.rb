@@ -13,6 +13,19 @@
 
 ActiveRecord::Schema.define(version: 20410822171399) do
 
+  create_table "album_categories", force: true do |t|
+    t.string   "name"
+    t.text     "text"
+    t.boolean  "visible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "album_categories_albums", id: false, force: true do |t|
+    t.integer "album_id"
+    t.integer "album_category_id"
+  end
+
   create_table "albums", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -23,8 +36,6 @@ ActiveRecord::Schema.define(version: 20410822171399) do
     t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category"
-    t.integer  "photo_category_id"
   end
 
   create_table "albums_images", id: false, force: true do |t|
@@ -148,14 +159,6 @@ ActiveRecord::Schema.define(version: 20410822171399) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "council_id"
-  end
-
-  create_table "photo_categories", force: true do |t|
-    t.string   "name"
-    t.string   "text"
-    t.boolean  "visible"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "phrasing_phrase_versions", force: true do |t|

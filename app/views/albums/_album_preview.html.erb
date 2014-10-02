@@ -1,42 +1,14 @@
-<div class="md-margin-bottom-40 album-col">
-    <div class="easy-block-v1">
-    	<div class="overflow-h">
-            <h3><%=@album.title%></h3>			                        		                        
-        </div>
-        <%if @album.images.count > 0%>
-        <%@carouselindex = @carouselindex+1%>        			                                    
-        <div id="<%=@album.title%><%=@carouselindex%>" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li class="rounded-x active" data-target="#<%=@album.title%><%=@carouselindex%>" data-slide-to="0"></li>
-                <li class="rounded-x" data-target="#<%=@album.title%><%=@carouselindex%>" data-slide-to="1"></li>
-                <li class="rounded-x" data-target="#<%=@album.title%><%=@carouselindex%>" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                    <div class="item active <%=@album.title%><%=@carouselindex%>">
-                        <%= image_tag(@album.images.sample().foto.url(:small))%>
-                    </div>
-                    <div class="item <%=@album.title%><%=@carouselindex%>">
-                        <%= image_tag(@album.images.sample().foto.url(:small))%>
-                    </div>
-                    <div class="item <%=@album.title%><%=@carouselindex%>">
-                        <%= image_tag(@album.images.sample().foto.url(:small))%>
-                    </div>            
-            </div>
-        </div>
-        <%else%>            	
-            	<%= image_tag("img/linus2.jpg")%>
-        <% end %>
-       	 	<ul class="list-unstyled">			                        	
-            	<li><span class="color-orange">Kategori:</span> <%=@album.category%></li>
-            	<% if (@album.start_date) || (@album.start_date && @album.end_date)%>
-	            	<% if @album.start_date.to_date < @album.end_date.to_date%>
-	            		<li><span class="color-orange"><%=fa_icon('calendar')%></span> <%= @album.start_date.to_date%> till <%=@album.end_date.to_date%></li>
-	            	<% else %>
-	            		<li><span class="color-orange"><%=fa_icon('calendar')%></span> <%= @album.start_date.to_date%></li>
-	            	<% end %>
-            	<% end %>
-        	</ul>   
-    		<%= link_to 'Visa album',@album,class: 'btn btn-u'%>
-    				                    
-    </div>  
+<%= link_to (@album) do%>
+<div class="album-preview">	
+	<div class="overflow-h">
+	    <h3><%=@album.title%></h3> <%if @album.to_date%><span class="color-orange"><%=fa_icon('calendar')%></span> <%= @album.to_date%><br><%else%><br><%end%>	                        
+	</div>
+	<div class="">
+	<%if @album.images.count > 0%>            
+            	<%= image_tag(@album.images.sample().foto.url(:small),class: "img-max-height")%>
+	<%else%>            	
+	    	<%= image_tag("img/linus2.jpg",class: "img-max-height")%>
+	<% end %>
+	</div>	 	
 </div>
+<%end%>

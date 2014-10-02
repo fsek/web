@@ -2,20 +2,21 @@
 class AlbumsController < ApplicationController
     
   before_filter :login_required
-  before_filter :authenticate_user!
-  before_filter :authenticate_gallery!, only: [:new, :create,:edit,:destroy,:update,:settings,:destroy_images]
-  before_action :set_album, only: [:show, :edit,:destroy,:update,:category,:upload_images]
+  before_filter :authenticate_user!  
+  before_filter :authenticate, only: [:new, :create,:edit,:destroy,:update,:settings,:destroy_images]
+  before_action :set_edit
+  before_action :set_album, except: [:index,:new,:create,:settings]
+  before_action :categories
   
   def index
-    @albums = Album.unscoped.order('start_date asc')
-    @albums_latest = Album.unscoped.order('created_at asc LIMIT 4')
-    @kategorier = PhotoCategory.unscoped.order('name desc')
+    @albums = Album.order('start_date asc')
+    @albums_latest = Album.order('created_at desc LIMIT 4')    
     
     if (params[:id] != nil) && (params[:datum] != "")     
       @id = params[:id]
       @datum = Date.parse(params[:datum])  
       if @datum < Date.today
-        if @kategorier.find(@id).name == " "
+        if @kategorier.find_by_id(@id)
             @searched = Album.where(:start_date => @datum..Date.today).all
         else                
           @searched = Album.where(:category => @kategorier.find(@id).name, :start_date => @datum...Date.today).all
@@ -27,39 +28,39 @@ class AlbumsController < ApplicationController
     end
       
   end
-  def edit    
-    @kategorier = PhotoCategory.unscoped.order('name desc')
-    @subcategories = Subcategory.unscoped.order('text desc')
+  
+  def edit
   end
+  
   def settings
     unless @kategori
-      @kategori = PhotoCategory.new
+      @kategori = AlbumCategory.new
     end    
     unless @kategorier       
-      @kategorier = PhotoCategory.unscoped.order('name desc')
+      @kategorier = AlbumCategory.order('name desc')
     end
     
-    if (params[:commit] == "Spara ny kategori") && (params[:photo_category][:name] != nil) 
-      @kategori.update(name: params[:photo_category][:name],text: params[:photo_category][:text],visible: params[:photo_category][:visible])
+    if (params[:commit] == "Spara ny kategori") && (params[:album_category][:name] != nil) 
+      @kategori.update(name: params[:album_category][:name],text: params[:album_category][:text],visible: params[:album_category][:visible])
       if @kategori.save        
         flash.now[:notice] = 'Kategorin '+@kategori.name+' skapades till Bildgalleriet'
-        @kategorier = PhotoCategory.unscoped.order('name desc')
-        @kategori = PhotoCategory.new
+        @kategorier = AlbumCategory.order('name desc')
+        @kategori = AlbumCategory.new
       end      
     end
         
-    if (params[:commit] == 'Spara kategori') && (params[:photo_category][:id].nil? == false)
-      @kategorin = PhotoCategory.find(params[:photo_category][:id])      
-      @kategorin.update(name: params[:photo_category][:name],text: params[:photo_category][:text],visible: params[:photo_category][:visible])
+    if (params[:commit] == 'Spara kategori') && (params[:album_category][:id].nil? == false)
+      @kategorin = AlbumCategory.find(params[:album_category][:id])      
+      @kategorin.update(name: params[:album_category][:name],text: params[:album_category][:text],visible: params[:album_category][:visible])
       if @kategorin.save
-        @kategorier = PhotoCategory.unscoped.order('name desc')
+        @kategorier = AlbumCategory.unscoped.order('name desc')
         flash.now[:notice] = 'Kategorin '+@kategorin.name+' uppdaterades till Bildgalleriet'
       end
     end
     
-    if (params[:commit] == 'Ta bort kategori')&&(params[:photo_category])    
-      @category = PhotoCategory.find(params[:photo_category][:id]).destroy
-      @kategorier = PhotoCategory.all      
+    if (params[:commit] == 'Ta bort kategori')&&(params[:album_category])    
+      @category = AlbumCategory.find_by_id(params[:album_category][:id]).destroy
+      @kategorier = AlbumCategory.all      
       flash.now[:notice] = 'Kategorin togs bort'
     end
     
@@ -67,7 +68,7 @@ class AlbumsController < ApplicationController
       @subcategory = Subcategory.new
     end    
     unless @subcategories       
-      @subcategories = Subcategory.unscoped.order('text desc')
+      @subcategories = Subcategory.order('text desc')
     end
     
     if (params[:commit] == "Spara ny underkategori") && (params[:subcategory][:text] != nil) 
@@ -96,43 +97,22 @@ class AlbumsController < ApplicationController
   end 
   
   def show    
-    @sub_id = params[:subcategory_id].to_i
-    if (@sub_id.nil? == false) && (@sub_id.to_i > -1)
-      @subcategory = @sub_id.to_i
-    else
-      @subcategory = -1
-    end
-    if (@sub_id > 0) && (@album.images)
-      @images = @album.images.where(subcategory_id: @subcategory).order('foto_file_name asc')
-    elsif (@album.images)
+    if (@album.images)
       @images = @album.images.order('foto_file_name asc')
     else
       @images = nil      
     end    
   end
+  
   def new
-    @album = Album.new    
-    @kategorier = PhotoCategory.unscoped.order('name asc')
-    @subcategories = Subcategory.unscoped.order('text asc')
+    @album = Album.new
   end
   
   def create
       @album = Album.new(album_params)      
       @album.update(author: current_user.profile)    
       respond_to do |format|
-        if @album.save
-            if params[:images]
-              params[:images].each {|image| 
-                @album.images.create(image: image)
-                }
-            end
-            if params[:subcategories]
-              params[:subcategories].each {|category|              
-                if(@album.subcategory_ids.include?(category.id) == false)
-                  @album.subcategories << category
-                end
-              }
-            end
+        if @album.save                        
           format.html { redirect_to @album, notice: 'Albumet skapades!' }
           format.json { render :json => @album, :status => :created, :location => @album }
         else
@@ -161,21 +141,19 @@ class AlbumsController < ApplicationController
   def upload_images
     if (params[:fotos]) && (params[:subcategory_id])
         #===== The magic is here ;)
+        @count = 1
+        @total = params[:fotos].count
           params[:fotos].each { |foto|
+            flash[:notice] =("Laddar upp "+@count.to_s+"/"+@total.to_s)
             @album.images.create(foto: foto,subcategory_id: params[:subcategory_id])
+            @count = @count+1;
           }
+          flash[:notice] =("Färdig!   Laddat upp "+@count.to_s+" bilder.")
     end    
   end
   def update
     respond_to do |format|
-      if @album.update_attributes(album_params)
-        if params[:subcategories]
-                params[:subcateogories].each { |category|
-                  if(@album.subcategory_ids.include?(category.id) == false)
-                    @album.subcategories << category
-                  end
-                }
-          end                      
+      if @album.update_attributes(album_params)                
         format.html { redirect_to edit_album_path(@album), :notice => 'Albumet uppdaterades!' }
         format.json { head :no_content }
       else
@@ -185,13 +163,31 @@ class AlbumsController < ApplicationController
     end
   end  
     private
+    def authenticate
+      flash[:error] = t('the_role.access_denied')
+      redirect_to(:back) unless current_user.moderator?(:galleri)
+      
+      rescue ActionController::RedirectBackError
+        redirect_to root_path
+    end
+    def categories
+       @kategorier = AlbumCategory.order('name desc')
+       @subcategories = Subcategory.order('text desc')
+    end
     def set_album
       @album = Album.find(params[:id])      
+    end
+    def set_edit
+     if current_user.admin? || current_user.has_role?(:galleri,:edit)
+       @edit = true
+     else
+       @edit = false
+     end
     end
     def image_params
       params.fetch(:image,{}).permit(:album_id,:subcategory_id)
     end
     def album_params
-      params.fetch(:album,{}).permit(:title,:category,:description,:author,:location,:public,:start_date,:end_date,:subcategory_ids => [],images_parameters: [:id, :foto])
+      params.fetch(:album,{}).permit(:title,:description,:author,:location,:public,:start_date,:end_date,:album_category_ids => [],:subcategory_ids => [],images_parameters: [:id, :foto])
     end
 end

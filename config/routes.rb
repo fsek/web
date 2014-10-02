@@ -65,6 +65,7 @@ Fsek::Application.routes.draw do
       get :settings, path: :installningar, on: :collection
       get :upload_images, path: :ladda_upp, on: :member
       patch :upload_images, path: :ladda_upp, on: :member
+      delete :destroy_images, path: :ta_bort_bilder, on: :member
       post :settings, path: :installningar, on: :collection      
       post  '', on: :member, action: :show           
       resources :images, path: :bilder, except: [:new]

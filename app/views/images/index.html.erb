@@ -1,20 +1,23 @@
+<%=javascript_include_tag "jquery.colorbox-min"%>
 <!--=== Content Part ===-->
     <div class="container content">				
     	<div class="gallery-page">
             <div class="row margin-bottom-20">
+            	
             	<%@row = 0%>            	
             	<% @images.each do |p| %>
             		
 	            	<%if (@row == 0)%>	            	
-						<div class="row">
+						<div class="row max-height">
 					<% end %>					
-							<div class="col-md-4 col-sm-6">
-			                    <a class="thumbnail fancybox-button zoomer fancybox" data-rel="fancybox-button" title="<%=p.foto_file_name%>" href="<%=p.foto()%>">
+							<div class="col-md-4 col-sm-6">			                    	
 			                        <span class="overlay-zoom">  
-			                            <%= image_tag(p.foto(:large),class: 'img-responsive fancybox')%>
+			                            <%= image_tag(p.foto(:large),class: 'img-responsive gallery', rel: "album", href: p.foto(), id: p.id)  %>
 			                            <span class="zoom-icon"></span>
 			                        </span>                                              
-			                    </a>
+			                    <div class=<%p.id%>>
+			                    	
+		                    	</div>
 		                	</div>		     
 					<% @row = @row+1%>						
 					<%if (@row == 3)%>
@@ -24,7 +27,7 @@
 				<%end%>
 				<% if @row > 0%>
 					</div> <!--row-->
-				<%end%>				
+				<%end%>								
 			</div><!--row margin-bottom-20 -->
             <div class="text-right">
                 <ul class="pagination">
@@ -43,6 +46,12 @@
     <!--=== End Content Part ===-->
 <script>
 $(document).ready(function() {
-  		$("a.fancybox").fancybox();
+  		jQuery('img.gallery').colorbox({rel: "album",maxHeight:"100%",title:function(){
+  var url = $(this).attr('href');
+  return '<a href="' + url + '" class="btn btn-u">Like</a>';  
+}
+  		
+  		
+  		});
 	});
 </script>

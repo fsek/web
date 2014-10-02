@@ -1,4 +1,14 @@
 <%= form_for(@image, url: album_image_path(@album,@image)) do |f| %>
+	<% if @council.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@image.errors.count, "error") %> gör att bilden inte kan sparas:</h2>	
+	      <ul>
+	      <% @image.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+  	<% end %>
   	<%= f.label 'Titel', :class => 'reg-label'%>		  
   	<div class="input-group margin-bottom-20">					
 		<%= image_tag(@image.foto(:small),class: 'img-responsive')%>		

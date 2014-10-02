@@ -29,9 +29,8 @@
 			  	</div>
 			  </div>
 			<% end %>
-
-			<%= link_to 'Visa album', @album %><br>
-			<%= link_to 'Tillbaka', :root %>
+			<%= link_to (content_tag(:i, nil, class: "fa fa-picture-o") + " Visa album"), @album,class: 'btn btn-u'%>
+			<%= link_to (content_tag(:i, nil, class: "fa fa-cog") + " Redigera album"), edit_album_path(@album),class: 'btn btn-u'%>
 		</div>
 	</div>
 </div>
