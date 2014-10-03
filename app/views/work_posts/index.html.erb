@@ -1,0 +1,38 @@
+<% if @edit %>	
+    <ul class="list">
+        <li><%= link_to "Skapa jobbpost", :new_work_post %></li>        
+    </ul>
+  <% end %>
+<div class="container">
+	<div class="col-md-12">
+		<div class="panel-group acc-v1" id="accordion-1">
+                <%for @work_post in @work_posts%>
+                    <div class="panel panel-default">                    	
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-One">
+                                 	Läs mer   <%=@work_post.title + " "+ @work_post.company%> 
+                                 	
+                                </a>
+                                                               
+                            </h4>
+                        </div>
+                        <!-- hidden div starts-->
+                        <div id="collapse-One" class="panel-collapse collapsef">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img class="img-responsive" src="assets/img/new/img5.jpg" alt="">
+                                    </div>
+                                    <div class="col-md-8">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- here the hidden div ends-->
+                    </div> 
+                    <%end%>        
+                </div>
+            </div>
+        </div>
