@@ -47,8 +47,9 @@ gem 'fullcalendar-rails'
 gem 'icalendar'
 gem 'jquery-turbolinks'
 gem 'mysql2'
-gem 'jquery-fileupload-rails' #till galleri, ladda upp flera grejer
 gem 'fancybox2-rails', '~> 0.2.8'
+gem 'jquery-ui-rails'
+gem "wice_grid", '3.4.2'
 
 
 if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9

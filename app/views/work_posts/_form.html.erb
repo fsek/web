@@ -9,52 +9,59 @@
       <% end %>
       </ul>
     </div>
-  <% end %>  
-    <%= f.label 'Titel', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">  		
-  		<%= f.text_field :title,:class => 'form-control' %>
+  <% end %>
+  	<div class="col-md-6">  
+	    <%= f.label 'Titel', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">  		
+	  		<%= f.text_field :title,:class => 'form-control' %>
+	  	</div>
+	  	<%= f.label 'Text', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.text_area :description,:class => 'form-control', size: "60x8" %>
+	  	</div>
+	  	<%= f.label 'Företag', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">  		
+	  		<%= f.text_field :company,:class => 'form-control' %>
+	  	</div>
+	  	<%= f.label 'Område', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">  		
+	  		<%= f.text_field :category,:class => 'form-control' %>
+	  	</div>
+	  	<%= f.label 'Typ', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">  		
+	  		<%= f.text_field :kind,:class => 'form-control' %>
+	  	</div>
   	</div>
-  	<%= f.label 'Text', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.text_area :description,:class => 'form-control', size: "60x8" %>
-  	</div>
-  	<%= f.label 'Företag', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">  		
-  		<%= f.text_field :company,:class => 'form-control' %>
-  	</div>
-  	<%= f.label 'Område', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">  		
-  		<%= f.text_field :category,:class => 'form-control' %>
-  	</div>
-  	<%= f.label 'Typ', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">  		
-  		<%= f.text_field :kind,:class => 'form-control' %>
-  	</div>
-  	<%= f.label 'Målgrupp', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">  		
-  		<%= f.text_field :for,:class => 'form-control' %>
-  	</div>
-  	 <%= f.label 'Länk', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">  		
-  		<%= f.text_field :link,:class => 'form-control' %>
-  	</div>
- 	<%= f.label 'Synlig?', :class => 'reg-label'%>  	
-	<%= f.check_box :visible,:class => 'form-control' %>
-	<%= f.label 'Deadline', :class => 'reg-label'%><br>
-	Lämnas tom för ingen ansökningsdeadline.
-  	<div class="input-group margin-bottom-20">  			  	  		 		  	
-  		<%= f.date_field :deadline, :class => 'form-control' %>
-  	</div>
-  	<%= f.label 'Publicera', :class => 'reg-label'%><br>
-  	Visas först efter denna tid. Lämnas tom för direkt.	 
-  	<div class="input-group margin-bottom-20">  		 	  		 		  	
-  		<%= f.datetime_field :publish, :minute_step => 30, :class => 'form-control' %>
-  	</div>
-  	<%= f.label 'Bild', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.file_field :picture,:class => 'form-control' %>
-  	</div>  			
-  	<div class="row">
-  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  	<div class="col-md-6">
+	  	<%= f.label 'Målgrupp', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">  		
+	  		<%= f.text_field :for,:class => 'form-control' %>
+	  	</div>
+	  	 <%= f.label 'Länk', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">  		
+	  		<%= f.text_field :link,:class => 'form-control' %>
+	  	</div>
+	 	<%= f.label 'Synlig?', :class => 'reg-label'%>  	
+		<%= f.check_box :visible,:class => 'form-control' %>
+		<%= f.label 'Deadline', :class => 'reg-label'%><br>
+		Lämnas tom för ingen ansökningsdeadline.
+	  	<div class="input-group margin-bottom-20">  			  	  		 		  	
+	  		<%= f.date_field :deadline, :class => 'form-control' %>
+	  	</div>
+	  	<%= f.label 'Publicera', :class => 'reg-label'%><br>
+	  	Visas först denna dag. Lämnas tom för att visas direkt.	 
+	  	<div class="input-group margin-bottom-20">  		 	  		 		  	
+	  		<%= f.date_field :publish, :class => 'form-control' %>
+	  	</div>
+	  	<%= f.label 'Bild', :class => 'reg-label'%>
+	  	<% if @work_post.picture_file_name%>
+  			<%= image_tag(@work_post.picture(:view),class: "img-responsive")%><br>
+		<% end %>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.file_field :picture,:class => 'form-control' %>
+	  	</div>  			
+	  	<div class="row">
+	  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+	  	</div>
   	</div>
 <% end %>

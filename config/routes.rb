@@ -58,7 +58,7 @@ Fsek::Application.routes.draw do
       get :calendar, path: :kalender
       get :export, on: :collection
     end
-    resources :work_posts, path: :jobbportal, except: :show
+    resources :work_posts, path: :jobbportal, except: :show 
     resources :news ,path:  :nyheter  
     resources :documents, path: :dokument    
     

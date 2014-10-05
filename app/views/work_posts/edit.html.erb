@@ -3,7 +3,7 @@
 		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
 			<%= label_tag 'Redigera jobbpost',nil, :class => 'reg-header'%>			
 			<%= render 'form'%>
-			<%= link_to 'Radera post', work_post_path(@work_postt),method: :delete %><br>			
+			<%= link_to 'Radera post', work_post_path(@work_post),method: :delete %><br>			
 			<%= link_to 'Visa poster', work_posts_path %><br>			
 			<%= link_to 'Tillbaka till startsida', root_url %>
 		</div>

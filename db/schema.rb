@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171404) do
+ActiveRecord::Schema.define(version: 20410822171405) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -251,6 +251,7 @@ ActiveRecord::Schema.define(version: 20410822171404) do
     t.string   "category"
     t.string   "link"
     t.string   "kind"
+    t.integer  "row_order"
   end
 
 end

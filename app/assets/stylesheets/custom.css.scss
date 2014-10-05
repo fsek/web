@@ -288,3 +288,83 @@ background-color: #fff !important;
   max-width:100%;
   width:auto;  
 }
+.panel-title {
+  color: #FFF important;
+}
+/*Funny Boxes
+------------------------------------*/
+.funny-boxes {
+  overflow: hidden;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  background: #f7f7f7;
+  -webkit-transition:all 0.3s ease-in-out;
+  -moz-transition:all 0.3s ease-in-out;
+  -o-transition:all 0.3s ease-in-out;
+  transition:all 0.3s ease-in-out;
+}
+
+.funny-boxes h2  {
+  color: #555;
+}
+
+.funny-boxes   {
+  color: #72c02c;
+}
+
+.funny-boxes .funny-boxes-img li i {
+  color: #72c02c;
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.funny-boxes .funny-boxes-img img {
+  display: block;
+  margin: 5px 10px 10px 0;
+}
+
+.funny-boxes h2 {
+  margin-top: 0;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.funny-boxes ul.funny-boxes-rating li {
+  display: inline;
+}
+
+.funny-boxes ul.funny-boxes-rating li i {
+  color: #f8be2c;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.funny-boxes ul.funny-boxes-rating li i:hover {
+  color: #f8be2c;
+}
+
+/*Funny Colored Boxes*/
+.funny-boxes-colored p,
+.funny-boxes-colored h2 ,
+.funny-boxes-colored .funny-boxes-img li,
+.funny-boxes-colored .funny-boxes-img li i {
+  color: #fff;
+}
+/*Orange Left Bordered Funny Box**/
+.funny-boxes-left-orange {
+  border-left: solid 2px #e67e22;
+}
+
+.funny-boxes-left-orange:hover {
+  border-left-color: #eb7125;
+}
+
+
+/*Green Right Bordered Funny Box**/
+.funny-boxes-right-u {
+  border-right: solid 2px #eb7125;
+}
+
+.funny-boxes-right-u:hover {
+  border-right-color: #eb7125;
+}

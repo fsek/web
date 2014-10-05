@@ -8,7 +8,12 @@ class WorkPostsController < ApplicationController
 
   
   def index
-    @work_posts = WorkPost.where(visible: true).where("publish IS NULL or publish > ?", DateTime.now).order('deadline ASC, created_at ASC')
+    @work_posts = WorkPost.publish
+    @work_post_grid = initialize_grid(WorkPost.publish)
+    @not_published_grid = initialize_grid(WorkPost.unpublish)
+    if(WorkPost.unpublish.count > 0)
+      @edit_grid = true
+    end
   end
 
   
@@ -39,7 +44,7 @@ class WorkPostsController < ApplicationController
   def update
     respond_to do |format|
       if @work_post.update(work_post_params)
-        format.html { redirect_to @work_post, notice: 'Jobbposten uppdaterades, great!' }
+        format.html { redirect_to work_posts_path, notice: 'Jobbposten uppdaterades, gött' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -65,14 +70,16 @@ class WorkPostsController < ApplicationController
       redirect_to root_path
     end
     def set_edit
-      @edit = false unless current_user
-      @edit = false unless current_user.moderator?(:jobbportal)
-      @edit = true
+      if(current_user) && (current_user.moderator?(:jobbportal))
+        @edit = true
+      else
+        @edit = false
+      end
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_work_post
       @work_post = WorkPost.find_by_id(params[:id])
-      if(@work_post == null)
+      if(@work_post == nil)
         @work_post = WorkPost.new()
       end      
     end

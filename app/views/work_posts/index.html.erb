@@ -4,35 +4,82 @@
     </ul>
   <% end %>
 <div class="container">
-	<div class="col-md-12">
-		<div class="panel-group acc-v1" id="accordion-1">
-                <%for @work_post in @work_posts%>
-                    <div class="panel panel-default">                    	
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-One">
-                                 	Läs mer   <%=@work_post.title + " "+ @work_post.company%> 
-                                 	
-                                </a>
-                                                               
-                            </h4>
-                        </div>
-                        <!-- hidden div starts-->
-                        <div id="collapse-One" class="panel-collapse collapsef">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img class="img-responsive" src="assets/img/new/img5.jpg" alt="">
-                                    </div>
-                                    <div class="col-md-8">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- here the hidden div ends-->
-                    </div> 
-                    <%end%>        
-                </div>
-            </div>
+	
+	<div class="col-md-12" id="display-group">
+		<%if @edit && @edit_grid%>
+		Första tabellen visas endast för de med rättigheter att redigera.<br> Här listas de som av någon anledning inte syns för andra.
+			<%= grid(@not_published_grid) do |g|				  		    	 
+				  g.column name: "Titel",attribute: "title",filter: false  do |work_p|			    
+				    work_p.title
+				  end
+				  g.column name: "Företag",attribute: "company",filter: false do |work_p|
+				    work_p.company
+				  end
+				
+				  g.column name: "Område", attribute: "category",filter: false do |work_p|
+				    work_p.category
+				  end
+				  
+				  g.column name: "Målgrupp", attribute: "for",filter: false do |work_p|
+				    work_p.for
+				  end
+				  g.column name: "Synlig" do |work_p|
+				    work_p.visible? ? 'Ja' : 'Nej, ändras via "Redigera"'
+				  end
+				  g.column name: "Publicering" do |work_p|
+				    (work_p.publish == nil)||(work_p.publish <= DateTime.now.beginning_of_day) ? 'Redan gjort' : work_p.publish.to_date
+				  end			  
+				  g.column do |work_p|
+				    link_to('Redigera', edit_work_post_path(work_p))				
+				  end
+			end -%>
+		<%end%>
+		<%= grid(@work_post_grid) do |g|			
+			  g.column name: "Titel",attribute: "title",filter: false  do |work_p|			    
+			    link_to(work_p.title,"#mer-"+work_p.id.to_s,class: "",data: {toggle: "collapse",parent: "display-group"})
+			  end
+			  g.column name: "Företag",attribute: "company",filter: false do |work_p|
+			    work_p.company
+			  end
+			
+			  g.column name: "Område", attribute: "category",filter: false do |work_p|
+			    work_p.category
+			  end
+			  
+			  g.column name: "Målgrupp", attribute: "for",filter: false do |work_p|
+			    work_p.for
+			  end
+			  if @edit
+				  g.column do |work_p|
+				    link_to('Redigera', edit_work_post_path(work_p))
+				  end
+			  end
+		end -%>
+		<div id="display-group">              
+			<%for @work_post in @work_posts%>
+	            <div id="mer-<%=@work_post.id%>" class="collapse">
+	                <div class="funny-boxes funny-boxes-left-orange">                	
+	                	<h2><%=@work_post.title%></h2>
+	                	<div class="col-md-8">
+		                    <%if @work_post.description%><p><%=@work_post.description%></p><%end%>
+		                    <ul class="list-unstyled">
+                               <%if @work_post.company%><li><i class="fa fa-briefcase"></i> <%=@work_post.company%></li><%end%>                             
+                               <%if @work_post.deadline%><li><i class="fa fa-calendar"></i> Sista ansökningsdag: <b><%=@work_post.deadline.to_date%></b></li><%end%>                             
+                               <%if @work_post.category%><li><i class="fa fa-clock-o"></i> <%=@work_post.category%></li><%end%>
+                               <%if @work_post.for%><li><i class="fa fa-users"></i> <%=@work_post.for%></li><%end%>                                                            
+                               <%if @work_post.link%><li><i class="fa fa-map-marker"></i> <%=link_to("Till företaget",url_for(@work_post.link))%></li><%end%>
+                            </ul>
+		                    	                    
+	                    </div>
+	                    <div class="col-md-4">
+	                    	<%if @work_post.picture_file_name%>
+	                    		<%= image_tag(@work_post.picture(:view))%>
+	                    	<%end%>
+                    	</div>
+	                </div>
+	            </div>                                        
+	        <%end%>
         </div>
+                        
+    </div>
+</div>

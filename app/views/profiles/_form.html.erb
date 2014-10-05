@@ -9,8 +9,7 @@
 	  	[" ","Oklart"],
 	  	["Teknisk Fysik"],
 	  	["Teknisk Matematik"],
-	  	["Teknisk Nanovetenskap"],
-	  	["Gäst"]],@profile.program),{}, html_options = {:class => "listBox form-control",:selected => :program , :style=>"float:left;"} %>
+	  	["Teknisk Nanovetenskap"]],@profile.program),{}, html_options = {:class => "listBox form-control",:selected => :program , :style=>"float:left;"} %>
   	</div>			  
   	<%= f.label 'Började på programmet', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">
@@ -18,7 +17,7 @@
   	</div>
   	<%= f.label 'Profilbild', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	
-  		<% if @profile.avatar%>
+  		<% if @profile.avatar_file_name%>
   			<%= image_tag(@profile.avatar(:thumb))%>
 		<% end %>  		 	 		  	
   		<%= f.file_field :avatar, :class => 'form-control' %>
