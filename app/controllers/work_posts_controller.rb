@@ -1,4 +1,5 @@
-class WorkPostsController < ApplicationController
+# encoding:UTF-8
+class WorkPostsController < ApplicationController  
   
   before_filter :authenticate_user!  
   before_filter :authenticate, only: [:new, :create,:edit,:destroy,:update]
