@@ -25,7 +25,7 @@
 					  g.column name: "Antal platser",attribute: "limit",filter: false do |post|
 					    (post.limit == nil) || (post.limit == 0) ? "Ingen gräns" : post.limit
 					  end			
-					  g.column name: "Utskott", attribute: "council",filter: false do |post|
+					  g.column name: "Utskott", attribute: "council_id",filter: false do |post|
 					    post.council.title
 					  end
 				  	  if (@during)
