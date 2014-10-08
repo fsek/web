@@ -1,11 +1,11 @@
 <%= form_for(@faq, :html => {  :autocomplete => 'off' }) do |f| %>
 	<% if @faq.errors.any? %>
 	    <div id="error_explanation">
-	      <h2><%= pluralize(@faq.errors.count, "error") %> gör att nyheten inte kan sparas:</h2>
+	      <h2><%= pluralize(@faq.errors.count, "fel") %> gör att nyheten inte kan sparas:</h2>
 	
 	      <ul>
 	      <% @faq.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
+	        <li><%= msg.sub! "Question", "Fråga" %></li>
 	      <% end %>
 	      </ul>
 	    </div>
