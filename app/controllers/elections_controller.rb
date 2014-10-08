@@ -3,6 +3,7 @@ class ElectionsController < ApplicationController
   
   before_filter :authenticate_user!, except: [:index] 
   before_filter :authenticate, only: [:new, :create,:edit,:destroy,:update]
+  before_filter :no_election, only: [:nominate,:create_nomination,:candidate]
   before_action :set_edit
   before_action :set_election, except: [:index,:new,:create,:nominate,:candidate]
   before_action :set_state, only: [:index,:show,:new,:nominate,:candidate,:create_nomination]
@@ -15,6 +16,8 @@ class ElectionsController < ApplicationController
       @datum = (@valet.start > DateTime.now) ? @valet.start : @valet.end
       @poster = @valet.posts
       @election_post_grid = initialize_grid(@poster)
+    else
+      @valet = nil
     end        
   end
   
@@ -99,6 +102,11 @@ end
       flash[:error] = t('the_role.access_denied')
     redirect_to(:back) unless current_user.moderator?(:val)
     
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+    end
+    def no_election      
+    redirect_to action: :index unless Election.current.instance_of?(Election)    
     rescue ActionController::RedirectBackError
       redirect_to root_path
     end

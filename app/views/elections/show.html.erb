@@ -45,7 +45,7 @@
 			<%= render 'form'%>					
 			
 			<% if (current_user) && current_user.admin?%>
-			<%= link_to 'Radera val', election_path(@valet),method: :delete %><br>
+			<%= link_to 'Radera val', election_path(@valet),data:{confirm:'Albumet raderas och kan inte återställas, är du säker?'},method: :delete, %><br>			
 			<%end%>			
 									
 			<%= link_to 'Visa val', elections_path %><br>			
