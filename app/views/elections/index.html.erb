@@ -2,55 +2,59 @@
 <div class="container">
 		<div class="col-md-12 coming-soon">
 			<%=image_tag("layout/f.svg", class: "val-logo")%>
+		<%if @valet%>	
             <h1><%=@valet.title%></h1>
             <p><%=@valet.description%></p><br>
-            <p><%if @before%><%=@valet.text_before%><%elsif @during%><%=@valet.text_during%><%else%><%=@valet.text_after%><%end%></p><br>           
+            <p><%if @before%><%=@valet.text_before%><%elsif @during%><%=@valet.text_during%><%else%><%=@valet.text_after%><%end%></p><br>
+        <%else%>
+        	<h1>Ingen info</h1>
+        <%end%>           
         </div>
         <% if (@before) || (@during) %>
-    <div class="col-md-12">		
-		<div class="coming-soon-plugin">
-			<h2><%if @before%>Öppnar om:<%elsif @during%>Stänger om:<%end%></h2>
-        	<div id="defaultCountdown"></div>
-    	</div>
-    	<div class="col-md-8 col-md-offset-2 coming-soon">
-            <h2>Poster som går att söka</h2>
-    	<%= grid(@election_post_grid) do |g|			
-			  g.column name: "Titel",attribute: "title",filter: false  do |post|			    
-			    link_to(post.title,"#mer-"+post.id.to_s,class: "",data: {toggle: "collapse"})
-			  end
-			  g.column name: "Antal platser",attribute: "limit",filter: false do |post|
-			    (post.limit) || (post.limit == 0) ? "Ingen gräns" : post.limit
-			  end			
-			  g.column name: "Utskott", attribute: "council",filter: false do |post|
-			    post.council.title
-			  end
-		  	  if (@during)
-				  g.column name: "Kandiderade", filter: false do |post|
-				  	 post.candidates.where(election_id: @valet.id ).count
-				  end
-		  	  end
-		end -%>
-		              
-			<%for @post in @poster%>
-	            <div id="mer-<%=@post.id%>" class="collapse">
-	                <div class="funny-boxes funny-boxes-left-orange left-text-align">                	
-	                	<h2><%=@post.title%></h2>
-	                	<div class="col-md-8">
-		                    <%if @post.description%><p><%=@post.description%></p><%end%>
-		                    <ul class="list-unstyled">
-                               <%if @post.limit%><li><i class="fa fa-briefcase"></i>Gräns: <%=@post.limit%></li><%end%>                               
-                               <%if @post.council%><li><i class="fa fa-users"></i>Utskott: <%=link_to(@post.council.title,@post.council)%></li><%end%>
-                            </ul>
-		                    	                    
-	                    </div>	                    
-	                </div>
-	            </div>                                        
-	        <%end%>
-        </div>
-        <%end%>
-            
-    </div>
-</div>
+		    <div class="col-md-12">		
+				<div class="coming-soon-plugin">
+					<h2><%if @before%>Öppnar om:<%elsif @during%>Stänger om:<%end%></h2>
+		        	<div id="defaultCountdown"></div>
+		    	</div>
+		    	<div class="col-md-8 col-md-offset-2 coming-soon">
+		            <h2>Poster som går att söka</h2>
+		    	<%= grid(@election_post_grid) do |g|			
+					  g.column name: "Titel",attribute: "title",filter: false  do |post|			    
+					    link_to(post.title,"#mer-"+post.id.to_s,class: "",data: {toggle: "collapse"})
+					  end
+					  g.column name: "Antal platser",attribute: "limit",filter: false do |post|
+					    (post.limit == nil) || (post.limit == 0) ? "Ingen gräns" : post.limit
+					  end			
+					  g.column name: "Utskott", attribute: "council",filter: false do |post|
+					    post.council.title
+					  end
+				  	  if (@during)
+						  g.column name: "Kandiderade", filter: false do |post|
+						  	 post.candidates.where(election_id: @valet.id ).count
+						  end
+				  	  end
+				end -%>
+				              
+					<%for @post in @poster%>
+			            <div id="mer-<%=@post.id%>" class="collapse">
+			                <div class="funny-boxes funny-boxes-left-orange left-text-align">                	
+			                	<h2><%=@post.title%></h2>
+			                	<div class="col-md-12">
+				                    <%if @post.description%><p><%=@post.description%></p><%end%>
+				                    <ul class="list-unstyled">
+		                               <%if @post.limit%><li><i class="fa fa-briefcase"></i>Gräns: <%=@post.limit%></li><%end%>                               
+		                               <%if @post.council%><li><i class="fa fa-users"></i>Utskott: <%=link_to(@post.council.title,@post.council)%></li><%end%>
+		                            </ul>
+				                    	                    
+			                    </div>	                    
+			                </div>
+			            </div>                                        
+			        <%end%>
+		        </div>
+		        <%end%>
+		            
+		    </div>
+		</div>
 <%if @datum%>
 <script type="text/javascript" >
     $(function () {    	

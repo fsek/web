@@ -31,7 +31,9 @@
 	  	<div class="input-group margin-bottom-20">
 	  		<%= f.text_area :description,:class => 'form-control', size: "40x2" %>
 	  	</div>	  	
-	  	<%= link_to 'Lägg till fler texter', edit_election_path(@valet), class: "btn btn-u"%><br>
+	  	<%if @valet.new_record? == false%>
+	  		<%= link_to 'Lägg till fler texter', edit_election_path(@valet), class: "btn btn-u"%><br>
+	  	<%end%>
 	  	</div>
 	  	<div class="col-md-5">
   		<%= f.label 'Länk för intervjutider (Doodle)', :class => 'reg-label'%>

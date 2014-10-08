@@ -64,8 +64,8 @@
 	</div>
 <%elsif @before%>
 		<div class="coming-soon">
-		<h2><%= label_tag 'Nomineringarna öppnar samtidigt som valet',nil, :class => 'reg-header'%></h2>		
-		<%=image_tag("layout/f.svg", class: "val-logo")%>
+		<h2><%= label_tag 'Nomineringar öppnar: ' + @valet.start.to_s,nil, :class => 'reg-header'%></h2>		
+		<%= link_to image_tag("layout/f.svg", class: "val-logo"),elections_path%>
 		</div>
 <%else%>
 <div class="coming-soon">

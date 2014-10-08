@@ -10,11 +10,12 @@ class ElectionsController < ApplicationController
 
   
   def index
-    @valet = Election.current    
-    @datum = (@valet.start > DateTime.now) ? @valet.start : @valet.end
-    @poster = @valet.posts
-    @election_post_grid = initialize_grid(@poster)
-        
+    @valet = Election.current
+    if(@valet.instance_of?(Election))   
+      @datum = (@valet.start > DateTime.now) ? @valet.start : @valet.end
+      @poster = @valet.posts
+      @election_post_grid = initialize_grid(@poster)
+    end        
   end
   
   def show
@@ -109,8 +110,8 @@ end
       end
     end
     def set_state
-      @valet = Election.current
-      if(@valet)
+      @valet = Election.current      
+      if(@valet.instance_of?(Election))
         if (@valet.start > DateTime.now)
           @datum = @valet.start
           @before = true
