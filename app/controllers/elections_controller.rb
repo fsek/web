@@ -4,9 +4,9 @@ class ElectionsController < ApplicationController
   before_filter :authenticate_user!, except: [:index] 
   before_filter :authenticate, only: [:new, :create,:edit,:destroy,:update]
   before_filter :no_election, only: [:nominate,:create_nomination,:candidate]
-  before_action :set_edit
+    
   before_action :set_election, except: [:index,:new,:create,:nominate,:candidate]
-  before_action :set_state, only: [:index,:show,:new,:nominate,:candidate,:create_nomination]
+  before_action :set_state, only: [:index,:new,:nominate,:candidate,:create_nomination]
   
 
   
@@ -97,25 +97,26 @@ class ElectionsController < ApplicationController
     end
   end
 end
-  private
+
+  private  
     def authenticate
       flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless current_user.moderator?(:val)
-    
+    redirect_to(:back) unless current_user.moderator?(:val)    
     rescue ActionController::RedirectBackError
       redirect_to root_path
     end
+    
     def no_election      
     redirect_to action: :index unless Election.current.instance_of?(Election)    
     rescue ActionController::RedirectBackError
       redirect_to root_path
     end
-    def set_edit
-      if(current_user) && (current_user.moderator?(:val))
-        @edit = true
-      else
-        @edit = false
-      end
+    def set_election
+      @valet = Election.find_by_url(params[:id])
+      Rails.logger.info @valet.instance_of?(Election)      
+      if(@valet.instance_of?(Election) == false)
+        redirect_to action: :index
+      end      
     end
     def set_state
       @valet = Election.current      
@@ -132,21 +133,16 @@ end
         end
       else
         @datum = nil        
-    end
+    end    
+    
     # Use callbacks to share common setup or constraints between actions.
-    def set_election
-      @valet = Election.find_by_url(params[:id])
-      if(@valet == nil)
-        @valet = Election.find_by_id(params[:id])
-      end
-      if(@valet ==nil)
-        @valet = nil
-      end      
-    end
+    
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def election_params
       params.fetch(:election).permit(:title,:description,:start,:end,:url,:visible,:text_before,:text_during,:text_after,:nominate_mail,:candidate_mail,:post_ids => [])
     end
+    
     def nomination_params
     params.fetch('/val/nominera').permit(:name,:email,:stil_id,:phone,:motivation,:election_id,:post_id)
     end
