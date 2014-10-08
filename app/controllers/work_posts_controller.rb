@@ -57,7 +57,7 @@ class WorkPostsController < ApplicationController
   def destroy
     @work_post.destroy
     respond_to do |format|
-      format.html { redirect_to pages_url,notice: 'Jobbposten raderades.' }
+      format.html { redirect_to work_posts_path,notice: 'Jobbposten raderades.' }
       format.json { head :no_content }
     end
   end

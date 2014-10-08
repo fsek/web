@@ -1,0 +1,58 @@
+// Place all the styles related to the Elections controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.coming-soon,
+.coming-soon-plugin {
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}  
+
+.coming-soon-plugin {
+  min-height: 200px;
+}
+
+.coming-soon h1,
+.coming-soon p {
+  color: #000;
+}
+
+.coming-soon h1 {
+  font-size: 50px;
+  line-height: 50px;
+  margin-bottom: 15px;
+  text-shadow: none;
+}
+
+.coming-soon p {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.coming-soon-copyright {
+  padding: 5px 0;
+}
+
+.coming-soon-copyright p {
+  color: #fff;
+  text-align: right;
+}
+.val-logo {
+  max-height: 200px;
+  margin-bottom: 50px;
+}
+
+.wice-grid-container{  
+  margin:auto;
+}
+.left-text-align {
+  text-align:left !important;
+}
+div.center, p.center, img.center {
+    display: block;
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center;
+}
+

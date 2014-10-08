@@ -50,5 +50,5 @@ Fsek::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.serve_static_assets = true;
-  PUBLIC_URL = "http://dev.fsektionen.se"  
+  PUBLIC_URL = "dev.fsektionen.se"  
 end

@@ -1,0 +1,13 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
+			<%= label_tag 'Redigera kandidering',nil, :class => 'reg-header'%>			
+			<%= render 'form'%>
+			<% if (current_user) && current_user.profile == @candidate.profile%>
+			<%= link_to 'Radera val', election_candidate_path(@candidate),method: :delete %><br>
+			<%end%>			
+			<%= link_to 'Visa val', elections_path %><br>			
+			<%= link_to 'Tillbaka till startsida', root_url %>
+		</div>
+	</div>
+</div>

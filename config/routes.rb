@@ -39,8 +39,9 @@ Fsek::Application.routes.draw do
   get 'anvandare' => 'users#index', as: :users
   
   scope path_names: { new: 'ny',edit: 'redigera' } do
+    resources :posts
     resources :councils, path: :utskott do
-      resources :posts, path: :poster, except: :show do
+      resources :posts, path: :poster do
         patch :remove_profile, on: :member
         patch :add_profile_username, on: :member
       end
@@ -54,14 +55,19 @@ Fsek::Application.routes.draw do
     resources :profiles, path: :profil do
       patch :remove_post, on: :member
     end
-    resources :events do
-      get :calendar, path: :kalender
+    resources :events do      
       get :export, on: :collection
     end
     resources :work_posts, path: :jobbportal, except: :show 
     resources :news ,path:  :nyheter  
     resources :documents, path: :dokument    
-    
+    resources :elections, path: :val do
+      get :nominate, path: :nominera, on: :collection
+      post :nominate,action: :create_nomination,path: :nominera, on: :collection
+      get :candidate, path: :kandidera, on: :collection
+      resources :nominations, path: :nomineringar, except: [:new, :update,:create]
+      resources :candidates, path: :kandidaturer, except: [:new, :update] 
+    end
     resources :albums, path: :galleri do
       get :settings, path: :installningar, on: :collection
       get :upload_images, path: :ladda_upp, on: :member

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171405) do
+ActiveRecord::Schema.define(version: 20410822171413) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -48,6 +48,18 @@ ActiveRecord::Schema.define(version: 20410822171405) do
     t.integer "subcategory_id"
   end
 
+  create_table "candidates", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "profile_id"
+    t.integer  "election_id"
+    t.text     "motivation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "stil_id"
+    t.string   "email"
+    t.string   "phone"
+  end
+
   create_table "contacts", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -82,6 +94,27 @@ ActiveRecord::Schema.define(version: 20410822171405) do
     t.datetime "updated_at"
     t.integer  "profile_id"
     t.string   "title"
+  end
+
+  create_table "elections", force: true do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.boolean  "visible"
+    t.string   "url"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "candidate_mail"
+    t.text     "nominate_mail"
+    t.text     "text_before"
+    t.text     "text_during"
+    t.text     "text_after"
+  end
+
+  create_table "elections_posts", id: false, force: true do |t|
+    t.integer "election_id"
+    t.integer "post_id"
   end
 
   create_table "events", force: true do |t|
@@ -135,6 +168,18 @@ ActiveRecord::Schema.define(version: 20410822171405) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "profile_id"
+  end
+
+  create_table "nominations", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "election_id"
+    t.string   "name"
+    t.string   "email"
+    t.text     "motivation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "phone"
+    t.string   "stil_id"
   end
 
   create_table "page_elements", force: true do |t|
@@ -196,6 +241,9 @@ ActiveRecord::Schema.define(version: 20410822171405) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "first_post"
+    t.string   "email"
+    t.string   "stil_id"
+    t.string   "phone"
   end
 
   create_table "roles", force: true do |t|

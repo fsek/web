@@ -1,6 +1,7 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
-  has_and_belongs_to_many :posts  
+  has_and_belongs_to_many :posts
+  has_many :candidates  
   
   has_attached_file :avatar, 
                     :styles => { original: "800x800>", medium: "300x300>", thumb:  "100x100>" },                   

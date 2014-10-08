@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start: 2014-10-06 17:49:26
+  end: 2014-10-06 17:49:26
+  visible: false
+  description: MyText
+
+two:
+  start: 2014-10-06 17:49:26
+  end: 2014-10-06 17:49:26
+  visible: false
+  description: MyText

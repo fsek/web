@@ -1,0 +1,56 @@
+<% provide(:title, 'Val') %>
+<div class="container">
+	<div class="row">
+		
+		<div class="col-md-10 col-md-offset-1 col-sm-1+ col-sm-offset-1 reg-page">
+			<div class="row">
+				<h2>Nomineringar</h2>
+				<%= grid(@nominations_grid) do |g|
+					  g.column name: "Post",attribute: "post_id",filter: false do |nomination|
+					  	link_to(nomination.post.title,nomination.post)
+					  end				  		    	 
+					  g.column name: "Namn",attribute: "name",filter: false
+					  g.column name: "E-post", attribute: "email",filter: false
+					  if 1 == 0
+					  g.column name: "Stil-ID",attribute: "stil_id",filter: false
+					  g.column name: "Telefon", attribute: "phone",filter: false 
+					  end				  
+					  g.column name: "Motivering", attribute: "motivation",filter: false
+					  g.column name: "Skapad:",attribute: "created_at",filter:false do |nomination|
+					    nomination.created_at
+					  end
+				end -%>
+			</div>
+			<div class="row">
+				<h2>Kandidaturer</h2>
+				<%= grid(@candidates_grid) do |g|
+					  g.column name: "Post",attribute: "post_id",filter: false do |candidate|
+					  	link_to(candidate.post.title,candidate.post)
+					  end				  		    	 
+					  g.column name: "Namn",attribute: "profile_id",filter: false do |candidate|
+				  	  	link_to(candidate.profile,candidate.profile)
+				  	  end	
+					  g.column name: "Stil-ID",attribute: "stil_id",filter: false				
+					  g.column name: "E-post", attribute: "email",filter: false
+					  g.column name: "Telefon", attribute: "phone",filter: false 				  
+					  g.column name: "Motivering", attribute: "motivation",filter: false
+					  g.column name: "Skapad:",attribute: "created_at",filter:false do |nomination|
+					    nomination.created_at
+					  end
+				end -%>
+			</div>
+		</div>
+		<div class="col-md-10 col-md-offset-1 col-sm-1+ col-sm-offset-1 reg-page">
+			<%= label_tag 'Inställningar',nil, :class => 'reg-header'%>			
+			<%= render 'form'%>					
+			
+			<% if (current_user) && current_user.admin?%>
+			<%= link_to 'Radera val', election_path(@valet),method: :delete %><br>
+			<%end%>			
+									
+			<%= link_to 'Visa val', elections_path %><br>			
+			<%= link_to 'Tillbaka till startsida', root_url %>
+			
+		</div>
+	</div>
+</div>

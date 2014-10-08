@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
+			<%= form_for(@valet) do |f| %>
+				<%= label_tag 'Redigera val',nil, :class => 'reg-header'%><br>			
+				<%= f.label 'Text innan valet är öppet', :class => 'reg-label'%>
+			  	<div class="input-group margin-bottom-20">
+			  		<%= f.text_area :text_before,:class => 'form-control', size: "40x2" %>
+			  	</div>
+			  	<%= f.label 'Text under valet', :class => 'reg-label'%>
+			  	<div class="input-group margin-bottom-20">
+			  		<%= f.text_area :text_during,:class => 'form-control', size: "40x2" %>
+			  	</div>
+			  	<%= f.label 'Text efter valet', :class => 'reg-label'%>
+			  	<div class="input-group margin-bottom-20">
+			  		<%= f.text_area :text_after,:class => 'form-control', size: "40x2" %>
+			  	</div>	  	
+			  	<div class="row">
+	  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+	  			</div>	
+	  		<%end%>	
+			<%= link_to 'Redigera inställningar', election_path(@valet) %><br>	  				
+			<%= link_to 'Visa val', elections_path %><br>			
+			<%= link_to 'Tillbaka till startsida', root_url %>
+		</div>
+	</div>
+</div>

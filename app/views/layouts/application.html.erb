@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<!--[if !IE]><!--> <html lang="sv"> <!--<![endif]-->  
 <head>
-  <title>F-sektionen</title>
+  <title><%=full_title(yield(:title))%></title>
 
   <!-- Meta -->
   <meta charset="utf-8">
@@ -146,8 +146,7 @@
 <!-- JS Global Compulsory -->           
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        App.init();
-        App.initSliders();        	
+        App.init();              	
     });
 </script>
 <!--[if lt IE 9]>

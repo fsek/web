@@ -974,10 +974,3 @@ margin-right:auto;
 border:2px solid;
 margin-top:15px;
 }
-
-#phrasing-edit-all-phrases { /* Hide to avoid linking to /phrasing*/
-	display:none;
-}
-.galleria-info-link {
-	display:none !important;
-}

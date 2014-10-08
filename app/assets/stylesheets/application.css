@@ -12,8 +12,7 @@
  *= require app 
  *= require bootstrap
  *= require_self
- *= require style
- * require header2
+ *= require style 
  *= require header1
  *= require responsive
  *= require font-awesome
@@ -31,6 +30,9 @@
  *= require fullcalendar
  *= require fullcalendar.print 
  *= require colorbox
+ *= require countdown
+ *= require jquery.countdown 
+ *= require elections
  
  */
 

@@ -5,6 +5,6 @@ class WorkPost < ActiveRecord::Base
                     :url => "/system/jobbportal/:id/:style/:filename"  
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
   scope :visible, -> { where(visible: true) }
-  scope :publish, -> {visible.where("publish IS NULL or publish <= ?", DateTime.now.beginning_of_day)}
+  scope :publish, -> {visible.where("deadline IS NULL or deadline > ?",DateTime.now.beginning_of_day).where("publish IS NULL or publish <= ?", DateTime.now.beginning_of_day)}
   scope :unpublish, -> {where("visible is 'false' or publish > ?",DateTime.now.beginning_of_day)}
 end

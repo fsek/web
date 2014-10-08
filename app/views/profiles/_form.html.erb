@@ -13,7 +13,7 @@
   	</div>			  
   	<%= f.label 'Började på programmet', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">
-  		<%= f.number_field :start_year,:class => 'form-control' %>
+  		<%= f.select :start_year, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), class: "form-control"%>  		
   	</div>
   	<%= f.label 'Profilbild', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	
@@ -28,8 +28,22 @@
 	  		<%= f.select :first_post, options_for_select(@profile.posts.collect{ |r| [r.title, r.id] }),:class => 'form-control'%>
 	  	</div>
 	<% end %>
-  	
+  	<hr>
+  	Nedanstående fält är till för t.ex. sektionsval,<br>
+  	uppgifterna i fälten kan endast ses av dig själv,styrelsen och valberedningen.<br>
+  	<%= f.label 'STIL-id', :class => 'reg-label'%>	
+  	<div class="input-group margin-bottom-20">  		
+  		<%= f.text_field :stil_id, placeholder: "Stil-id", class: "form-control"%>  		
+  	</div>
+  	<%= f.label 'E-post', :class => 'reg-label'%>  	
+  	<div class="input-group margin-bottom-20">  		
+  		<%= f.text_field :email, placeholder: "E-post", class: "form-control"%>  		
+  	</div>
+  	<%= f.label 'Telefonnummer', :class => 'reg-label'%> 
+  	<div class="input-group margin-bottom-20">  		
+  		<%= f.text_field :phone, placeholder: "Telefonnumer", class: "form-control"%>  		
+  	</div>
   	<div class="row">
   			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>
-<% end %>
+<% end %

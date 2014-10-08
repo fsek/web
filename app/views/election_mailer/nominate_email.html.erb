@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+ </head>
+  <body>
+    <h1>Hej <%=@nomination.name %></h1>
+    <p>
+    	Du har blivit nominerad av någon på Fsektionen.se<br>
+    	till sektionsposten <%=@nomination.post.title%> med motivationen:
+    	"<%=@nomination.motivation%>".<br>
+    </p>
+    <p>
+      Skulle du vara intresserad eller bara vill läsa lite mer så hittar<br>
+      du information och instruktioner för att kandidera på <br>
+      <a href="http://fsektionen.se/val">fsektionen.se/val</a>
+    </p>    
+  </body>
+</html>

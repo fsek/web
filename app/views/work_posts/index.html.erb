@@ -49,13 +49,18 @@
 			  g.column name: "Målgrupp", attribute: "for",filter: false do |work_p|
 			    work_p.for
 			  end
+		  
+			  g.column name: "Sista ansökningsdatum", attribute: "deadline",filter: false do |work_p|
+			    (work_p.deadline) ? work_p.deadline.to_date : "Inte bestämt"
+			  end
+		  
 			  if @edit
 				  g.column do |work_p|
 				    link_to('Redigera', edit_work_post_path(work_p))
 				  end
 			  end
 		end -%>
-		<div id="display-group">              
+		<div class="col-md-12" id="display-group">              
 			<%for @work_post in @work_posts%>
 	            <div id="mer-<%=@work_post.id%>" class="collapse">
 	                <div class="funny-boxes funny-boxes-left-orange">                	

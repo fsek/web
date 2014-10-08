@@ -37,6 +37,7 @@
         <!-- End Content Info -->        
 
         <!-- Carousel -->
+        <%if @profile.avatar_file_name%>
         <div class="col-md-3">
             <div class="carousel slide carousel-v1" id="myCarousel">
                 <div class="carousel-inner">
@@ -46,6 +47,7 @@
                 </div>
             </div>
         </div>
+        <%end%>
         <!-- End Carousel -->
     </div><!--/row-->
 </div>

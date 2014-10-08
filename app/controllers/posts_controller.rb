@@ -47,8 +47,12 @@ class PostsController < ApplicationController
     end
    
   
-  def index  
-    @posts = @council.posts 
+  def index 
+    if(@council) 
+      @posts = @council.posts
+    else
+      @posts = Post.all
+    end 
   end
   
   # GET /news/new
@@ -106,7 +110,7 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
     def set_council    
-     @council = Council.find_by_url(params[:council_id])     
+     @council = Council.find_by_url(params[:council_id])        
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

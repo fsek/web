@@ -91,8 +91,7 @@ Fsek::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  config.assets.precompile = ['*.js', '*.css', '*.css.erb']
-  config.assets.precompile += %w( galleria.js )  
+  config.assets.precompile = ['*.js', '*.css', '*.css.erb']   
   config.assets.compile = true
-  PUBLIC_URL = "http://fsektionen.se"  
+  PUBLIC_URL = "fsektionen.se"  
 end
