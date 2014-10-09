@@ -1,11 +1,10 @@
 <% provide(:title, 'Val') %>
-<div class="container">
+<div class="container val-page">
 		<div class="col-md-12 coming-soon">
-			<%=image_tag("layout/f.svg", class: "val-logo")%>
 		<%if @valet%>	
             <h1><%=@valet.title%></h1>
             <p><%=@valet.description%></p><br>
-            <p><%if @before%><%=@valet.text_before%><%elsif @during%><%=@valet.text_during%><%else%><%=@valet.text_after%><%end%></p><br>
+            <p><%if @before%><%=@valet.text_before%><%elsif @during%><%=@valet.text_during%><%else%><%=@valet.text_after%><%end%></p>
         <%else%>
         	<h1>Ingen info</h1>
         <%end%>           

@@ -162,32 +162,32 @@ class AlbumsController < ApplicationController
       end
     end
   end  
-    private
-    def authenticate
-      flash[:error] = t('the_role.access_denied')
-      redirect_to(:back) unless current_user.moderator?(:galleri)
-      
-      rescue ActionController::RedirectBackError
-        redirect_to root_path
-    end
-    def categories
-       @kategorier = AlbumCategory.order('name desc')
-       @subcategories = Subcategory.order('text desc')
-    end
-    def set_album
-      @album = Album.find(params[:id])      
-    end
-    def set_edit
-     if current_user.admin? || current_user.has_role?(:galleri,:edit)
-       @edit = true
-     else
-       @edit = false
-     end
-    end
-    def image_params
-      params.fetch(:image,{}).permit(:album_id,:subcategory_id)
-    end
-    def album_params
-      params.fetch(:album,{}).permit(:title,:description,:author,:location,:public,:start_date,:end_date,:album_category_ids => [],:subcategory_ids => [],images_parameters: [:id, :foto])
-    end
+private
+  def authenticate
+    flash[:error] = t('the_role.access_denied')
+    redirect_to(:back) unless current_user.moderator?(:galleri)
+    
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+  end
+  def categories
+     @kategorier = AlbumCategory.order('name desc')
+     @subcategories = Subcategory.order('text desc')
+  end
+  def set_album
+    @album = Album.find(params[:id])      
+  end
+  def set_edit
+   if current_user.admin? || current_user.has_role?(:galleri,:edit)
+     @edit = true
+   else
+     @edit = false
+   end
+  end
+  def image_params
+    params.fetch(:image,{}).permit(:album_id,:subcategory_id)
+  end
+  def album_params
+    params.fetch(:album,{}).permit(:title,:description,:author,:location,:public,:start_date,:end_date,:album_category_ids => [],:subcategory_ids => [],images_parameters: [:id, :foto])
+  end
 end

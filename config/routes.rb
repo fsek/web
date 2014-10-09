@@ -38,8 +38,7 @@ Fsek::Application.routes.draw do
   
   get 'anvandare' => 'users#index', as: :users
   
-  scope path_names: { new: 'ny',edit: 'redigera' } do
-    resources :posts
+  scope path_names: { new: 'ny',edit: 'redigera' } do    
     resources :councils, path: :utskott do
       resources :posts, path: :poster do
         patch :remove_profile, on: :member
@@ -65,6 +64,7 @@ Fsek::Application.routes.draw do
       get :nominate, path: :nominera, on: :collection
       post :nominate,action: :create_nomination,path: :nominera, on: :collection
       get :candidate, path: :kandidera, on: :collection
+      post :candidate,action: :create_candidate,path: :kandidera, on: :collection
       resources :nominations, path: :nomineringar, except: [:new, :update,:create]
       resources :candidates, path: :kandidaturer, except: [:new, :update] 
     end

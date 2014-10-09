@@ -1,6 +1,113 @@
-<div class="container">	
-	<div class="col-md-8 col-md-offset-2">
-		    <h2>Välkommen till kandidering för:</h2>
-		    <h1><%=@valet.title%> </h1>              
-    </div>
-</div>
+<%if @during%>
+	<div class="col-md-8 col-md-offset-2 coming-soon">
+        <h2>Dina kandidaturer</h2> 
+        <p>Tryck på namnet till posten för att se mer information samt kunna redigera.</p>       
+		<%= grid(@candidates_grid) do |g|
+					  g.column name: "Post",attribute: "post_id",filter: false do |candidate|
+					  	 link_to(candidate.post.title,"#mer-"+candidate.post.id.to_s,class: "",data: {toggle: "collapse"})
+					  end				  		    	 
+					  g.column name: "Namn",attribute: "profile_id",filter: false do |candidate|
+				  	  	link_to(candidate.profile.name,candidate.profile)
+				  	  end	
+					  g.column name: "Stil-ID",attribute: "stil_id",filter: false				
+					  g.column name: "E-post", attribute: "email",filter: false
+					  g.column name: "Telefon", attribute: "phone",filter: false
+					  g.column name: "Skapad:",attribute: "created_at",filter:false do |candidate|
+					    candidate.created_at
+					  end
+		end -%>
+		<%for @cand in @profile.candidates%>
+			            <div id="mer-<%=@cand.post.id%>" class="collapse">
+			                <div class="funny-boxes funny-boxes-left-orange left-text-align">                	
+			                	<h2><%=@cand.post.title%></h2>
+			                	<div class="col-md-12">
+				                    <%if @cand.post.description%><p><%=@cand.post.description%></p><%end%>
+				                    <ul class="list-unstyled">
+		                               <%if @cand.post.limit%><li><i class="fa fa-briefcase"></i>Gräns: <%=@cand.post.limit%></li><%end%>                               
+		                               <%if @cand.post.council%><li><i class="fa fa-users"></i>Utskott: <%=link_to(@cand.post.council.title,@cand.post.council)%></li><%end%>
+		                               <%if @cand.post.candidates%> <li><i class="fa fa-users"></i>Kandiderande: <%= @cand.post.candidates.where(election_id: @valet.id ).count%></li><%end%>
+		                            </ul>
+		                            <%=form_for(@cand,url: candidate_elections_path,method: "post") do |f|%>
+		                            	<%= f.hidden_field :candidate_id,value: @cand.id%>
+		                            	<%= f.submit "Ta bort", class: "btn-u"%>
+		                            <%end%>				                    	                    
+			                    </div>	                    
+			                </div>
+			            </div>                                        
+			        <%end%>
+		
+	</div>
+	<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
+		<div class="coming-soon">
+		<h2><%= label_tag 'Kandidera!',nil, :class => 'reg-header'%></h2>
+		<% if @done %>
+			<h4>Tack för din kandidering</h4>
+			<h4>Det kanske finns en post till att söka?</h4>
+		<%elsif  (@poster) && (@poster.count > 0)%>
+			<h4>Här kan du kandidera till poster som du skulle vilja ha.</h4>
+			<h4>Du kan ändra din kandidatur fram tills valet stänger.</h4>
+		<%else%>
+			<h4>Du har redan kandiderat till alla poster. Grattis!</h4>
+		<%end%>
+		</div>
+		<% if (@poster) && (@poster.count > 0)%>
+	<div class="row">
+		<%= form_for(candidate_elections_path(@candidate)) do |f| %>
+			  <% if @candidate.errors.any? %>
+			    <div id="error_explanation" class="coming-soon">
+			      <h4>Något hindrar kandidaturen från att sparas:</h4>
+			      <ul class="" style="list-style:none;">
+			      <% @candidate.errors.full_messages.each do |msg| %>
+			        <li><%= msg %></li>
+			      <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
+	  		
+	  	 	<div class="col-md-6 col-md-offset-4 col-sm-6 col-sm-offset-3 center">
+	  	 		Uppgifter ifylls i <%= link_to('profilen',edit_profile_path(@profile))%>.<br>
+			    <%= f.label 'Namn', :class => 'reg-label'%>
+			  	<div class="margin-bottom-20">  		
+			  		<%=@profile.name%>
+			  	</div>	  	
+			  	<%= f.label 'E-post', :class => 'reg-label'%>
+			  	<div class="margin-bottom-20">  		
+			  		<%= f.text_field :email,value: @profile.email,class: 'form-control',readonly: true %>
+			  	</div>			  				  	
+			  	<%= f.label 'Stil-id', :class => 'reg-label'%>
+			  	<div class="margin-bottom-20">  		
+			  		<%= f.text_field :stil_id,:class => 'form-control',value: @profile.stil_id,readonly: true%>
+			  	</div>
+			  	<%= f.label 'Telefonnummer', :class => 'reg-label'%>
+			  	<div class="margin-bottom-20">  		
+			  		<%= f.text_field :phone,:class => 'form-control',value:@profile.phone,readonly: true %>
+			  	</div>
+			  	
+			  		<%= f.label 'Post', :class => 'reg-label'%>		
+			  	<div class="margin-bottom-20">
+		  		<%= f.select :post_id, 
+		  				     options_from_collection_for_select(@poster,:id,:title),
+		  				     include_blank: true, 
+		  				     :class => "form-control listBox"%>	
+			  	</div>
+			  	<div class="row">
+			  		<% f.hidden_field :election_id, value: @valet.id%>	  		
+			  			<%= f.submit "Kandidera",:class => 'btn-u' %>	 				
+			  	</div>
+	  		</div>  	
+	<% end %>
+	</div>
+	<%end%>
+	</div>
+<%elsif @before%>
+		<div class="coming-soon">
+		<h2><%= label_tag 'Kandideringar öppnar: ' + @valet.start.to_s,nil, :class => 'reg-header'%></h2>		
+		<%= link_to image_tag("layout/f.svg", class: "val-logo"),elections_path%>
+		</div>
+<%else%>
+<div class="coming-soon">
+		<h2><%= label_tag 'Kandideringar har stängt.',nil, :class => 'reg-header'%></h2>
+		<h4>Du kan inte längre kandidera på nya påster eller ändra dina kandidaturer.</h4>		
+		<%= link_to image_tag("layout/f.svg", class: "val-logo"),elections_path%>
+		</div>
+<%end%>
