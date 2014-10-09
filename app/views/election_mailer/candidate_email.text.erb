@@ -7,7 +7,8 @@ Vad vänlig fyll i en tid för intervju så fort som möjligt på:
 <%=@candidate.election.candidate_mail%>
 
 
-Du kan redigera dina kandidaturer på http://fsektionen.se/val/kandidera fram tills valet stänger: <%=@candidate.election.end%>.		
+Du kan redigera dina kandidaturer på <%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %> 
+fram tills att valet stänger: <%=@candidate.election.end%>.		
     	
 Mvh,
 Valberedningen

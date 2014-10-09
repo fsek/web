@@ -7,15 +7,14 @@
     <h1>Hej <%=@nomination.name %></h1>
     <p>
     	Du har blivit nominerad av någon på Fsektionen.se<br>
-    	till sektionsposten <%=@nomination.post.title%><%if @nomination.motivation.blank?%>.<%else%> med motiveringen:<br>
+    	till sektionsposten <b></b><%=@nomination.post.title%><b></b><%if @nomination.motivation.blank?%>.<%else%> med motiveringen:<br>
     	"<%=@nomination.motivation%>".<br>
     	<%end%>
     </p>
     <p>
       Skulle du vara intresserad eller bara vill läsa lite mer så hittar<br>
       du information och instruktioner för att kandidera på: <br>
-      <%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %>
-      
+      <%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %><br><br>      
       Mvh,
       Valberedningen
     </p>    

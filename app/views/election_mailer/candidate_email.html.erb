@@ -13,7 +13,8 @@
 			<%=url(@candidate.election.candidate_mail)%></p>
     	<%end%>
     	
-    	Du kan redigera dina kandidaturer <a href="http://fsektionen.se/val/kandidera">här</a> fram tills valet stänger: <%=@candidate.election.end%>.
+    	Du kan redigera dina kandidaturer <%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %><br>
+    	fram tills valet stänger: <%=@candidate.election.end%>.<br>
     	
     	Mvh,
     	Valberedningen
