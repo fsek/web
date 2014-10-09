@@ -10,7 +10,7 @@
 			
 		<%if @candidate.election.candidate_mail.blank? == false%>
 		<p>Var vänlig fyll i en tid för intervju så fort som möjligt på:<br>
-			<%=url(@candidate.election.candidate_mail)%></p>
+			<%=url_for(@candidate.election.candidate_mail)%></p>
     	<%end%>
     	
     	Du kan redigera dina kandidaturer <%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %><br>
