@@ -7,7 +7,7 @@ till sektionsposten <%=@nomination.post.title%><%if @nomination.motivation.blank
 <%end%>
 Skulle du vara intresserad eller bara vill läsa lite mer så hittar
 du information och instruktioner för att kandidera på
-<%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %>
+<%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate',post: @nomination.post.id) %>
 
 Mvh,
 Valberedningen

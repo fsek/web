@@ -61,7 +61,7 @@ class ElectionsController < ApplicationController
     for @cand in @profile.candidates
       @poster.delete(@cand.post)
     end
-    @candidate = @valet.candidates.new()    
+    @candidate = @valet.candidates.new()      
     @candidates_grid = initialize_grid(@profile.candidates)
   end
   def create_candidate

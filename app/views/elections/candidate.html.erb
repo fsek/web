@@ -89,10 +89,10 @@
 			  		<%= f.label 'Post', :class => 'reg-label'%>		
 			  	<div class="margin-bottom-20">
 		  		<%= f.select :post_id, 
-		  				     options_from_collection_for_select(@poster,:id,:title),
+		  				     options_from_collection_for_select(@poster,:id,:title,params[:post].to_i),
 		  				     include_blank: true, 
 		  				     :class => "form-control listBox"%>	
-			  	</div>
+			  	</div>			  	
 			  	<div class="row">
 			  		<% f.hidden_field :election_id, value: @valet.id%>	  		
 			  			<%= f.submit "Kandidera",:class => 'btn btn-election' %>	 				
