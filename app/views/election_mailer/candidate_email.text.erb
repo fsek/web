@@ -1,9 +1,13 @@
 Hej <%=@candidate.profile.name %>
 ===============================================
  
-Du har kandiderat till sektionsposten <%=@candidate.post.title%> 
-med motiveringen:
-"<%=@candidate.motivation%>"
+Du har kandiderat till sektionsposten <%=@candidate.post.title%>.
 
 Vad vänlig fyll i en tid för intervju så fort som möjligt på:
 <%=@candidate.election.candidate_mail%>
+
+
+Du kan redigera dina kandidaturer på http://fsektionen.se/val/kandidera fram tills valet stänger: <%=@candidate.election.end%>.		
+    	
+Mvh,
+Valberedningen

@@ -94,7 +94,8 @@ class ElectionsController < ApplicationController
       @candidates_grid = initialize_grid(@profile.candidates)
       respond_to do |format|
         if @candidate.save
-          @done = true        
+          @done = true
+          ElectionMailer.candidate_email(@candidate).deliver        
           format.html { render action: 'candidate' }
           format.json { render action: 'candidate', status: :created, location: @valet }        
         else

@@ -12,8 +12,11 @@
     </p>
     <p>
       Skulle du vara intresserad eller bara vill läsa lite mer så hittar<br>
-      du information och instruktioner för att kandidera på <br>
-      <a href="http://fsektionen.se/val">fsektionen.se/val</a>
+      du information och instruktioner för att kandidera på: <br>
+      <%= url_for(host: PUBLIC_URL, controller: 'election',action: 'candidate') %>
+      
+      Mvh,
+      Valberedningen
     </p>    
   </body>
 </html>

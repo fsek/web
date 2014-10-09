@@ -6,12 +6,16 @@
   <body>
    <h2> Hej <%=@candidate.profile.name %></h2>
 
-		<p>Du har kandiderat till sektionsposten <%=@candidate.post.title%><br>
-			med motiveringen:<br>
-			"<%=@candidate.motivation%>"</p><br>
+		<p>Du har kandiderat till sektionsposten <%=@candidate.post.title%>.<br>						
 			
-		<p>Vad vänlig fyll i en tid för intervju så fort som möjligt på:<br>
+		<%if @candidate.election.candidate_mail.blank? == false%>
+		<p>Var vänlig fyll i en tid för intervju så fort som möjligt på:<br>
 			<%=url(@candidate.election.candidate_mail)%></p>
-    
+    	<%end%>
+    	
+    	Du kan redigera dina kandidaturer <a href="http://fsektionen.se/val/kandidera">här</a> fram tills valet stänger: <%=@candidate.election.end%>.
+    	
+    	Mvh,
+    	Valberedningen
   </body>
 </html>
