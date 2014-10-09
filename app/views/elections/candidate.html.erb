@@ -1,5 +1,7 @@
+<% provide(:title, 'Val') %>
 <%if @during%>
-	<div class="col-md-8 col-md-offset-2 coming-soon">
+	<%if (@profile.candidates.count > 0)%>
+	<div class="col-md-8 col-md-offset-2 coming-soon">	
         <h2>Dina kandidaturer</h2> 
         <p>Tryck på namnet till posten för att se mer information samt kunna redigera.</p>       
 		<%= grid(@candidates_grid) do |g|
@@ -37,6 +39,7 @@
 			        <%end%>
 		
 	</div>
+	<%end%>
 	<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
 		<div class="coming-soon">
 		<h2><%= label_tag 'Kandidera!',nil, :class => 'reg-header'%></h2>
@@ -92,7 +95,7 @@
 			  	</div>
 			  	<div class="row">
 			  		<% f.hidden_field :election_id, value: @valet.id%>	  		
-			  			<%= f.submit "Kandidera",:class => 'btn-u' %>	 				
+			  			<%= f.submit "Kandidera",:class => 'btn btn-election' %>	 				
 			  	</div>
 	  		</div>  	
 	<% end %>
@@ -107,7 +110,21 @@
 <%else%>
 <div class="coming-soon">
 		<h2><%= label_tag 'Kandideringar har stängt.',nil, :class => 'reg-header'%></h2>
-		<h4>Du kan inte längre kandidera på nya påster eller ändra dina kandidaturer.</h4>		
+		<h4>Du kan inte längre kandidera på nya poster eller ändra dina kandidaturer.</h4>		
 		<%= link_to image_tag("layout/f.svg", class: "val-logo"),elections_path%>
-		</div>
+		<%= grid(@candidates_grid) do |g|
+					  g.column name: "Post",attribute: "post_id",filter: false do |candidate|
+					  	 candidate.post.title
+					  end				  		    	 
+					  g.column name: "Namn",attribute: "profile_id",filter: false do |candidate|
+				  	  	link_to(candidate.profile.name,candidate.profile)
+				  	  end	
+					  g.column name: "Stil-ID",attribute: "stil_id",filter: false				
+					  g.column name: "E-post", attribute: "email",filter: false
+					  g.column name: "Telefon", attribute: "phone",filter: false
+					  g.column name: "Skapad:",attribute: "created_at",filter:false do |candidate|
+					    candidate.created_at
+					  end
+		end -%>
+</div>		
 <%end%>

@@ -1,20 +1,26 @@
 <% provide(:title, 'Val') %>
 <div class="container val-page">
 		<div class="col-md-12 coming-soon">
+		
 		<%if @valet%>	
             <h1><%=@valet.title%></h1>
             <p><%=@valet.description%></p><br>
             <p><%if @before%><%=@valet.text_before%><%elsif @during%><%=@valet.text_during%><%else%><%=@valet.text_after%><%end%></p>
         <%else%>
         	<h1>Ingen info</h1>
-        <%end%>           
-        </div>
+        <%end%>
+        <%if @during%> 
+        	<div class="col-md-3 col-md-offset-3"><%= link_to("Nominering",nominate_elections_path,class: "btn btn-election")%></div>
+			<div class="col-md-3"><%= link_to("Kandidatur",candidate_elections_path,class: "btn btn-election")%></div>
+		<%end%>                
+        </div>        	
         <% if (@before) || (@during) %>
 		    <div class="col-md-12">		
 				<div class="coming-soon-plugin">
 					<h2><%if @before%>Öppnar om:<%elsif @during%>Stänger om:<%end%></h2>
 		        	<div id="defaultCountdown"></div>
 		    	</div>
+		    
 		    	<div class="col-md-8 col-md-offset-2 coming-soon">
 		            <h2>Poster som går att söka</h2>
 		    	<%= grid(@election_post_grid) do |g|			
@@ -50,10 +56,12 @@
 			            </div>                                        
 			        <%end%>
 		        </div>
-		        <%end%>
-		            
+		        <%end%>		           
 		    </div>
 		</div>
+	<%if (@valet) && (@edit) %>
+		<div class="col-md-2 col-md-offset-5"><%= link_to("Redigera valet!",election_path(@valet),class: "btn btn-election ")%></div>
+	<%end%>
 <%if @datum%>
 <script type="text/javascript" >
     $(function () {    	

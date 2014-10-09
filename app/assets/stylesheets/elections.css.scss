@@ -55,5 +55,18 @@ div.center, p.center, img.center {
     margin-right: auto !important;
     text-align: center;
 }
-
+.btn-election,
+a.btn-election {
+   font-size: 18px;
+   padding: 10px 25px;
+   border-color: #000;
+   border-radius: 10px !important;
+   color: #000;
+   background-color: transparent;
+}
+.btn-election:hover,
+a.btn-election:hover {   
+   color: #eb7125;
+   border-color:#eb7125;
+}
 

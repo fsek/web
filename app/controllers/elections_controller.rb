@@ -11,6 +11,9 @@ class ElectionsController < ApplicationController
 
   
   def index
+    if(current_user) && (current_user.moderator?(:val))
+      @edit = true
+    end
     @valet = Election.current
     if(@valet.instance_of?(Election))   
       @datum = (@valet.start > DateTime.now) ? @valet.start : @valet.end
