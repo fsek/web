@@ -69,6 +69,7 @@ Fsek::Application.routes.draw do
       resources :candidates, path: :kandidaturer, except: [:new, :update] 
     end
     resources :albums, path: :galleri do
+      post :edit, on: :member
       get :settings, path: :installningar, on: :collection
       get :upload_images, path: :ladda_upp, on: :member
       patch :upload_images, path: :ladda_upp, on: :member

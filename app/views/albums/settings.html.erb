@@ -55,8 +55,7 @@
                         	<%for @cat in @subcategories%>
 	                            <%= form_for(@cat,url: settings_albums_path, method: 'post') do |f| %>							
 		                            <tr>
-		                                <%= f.hidden_field(:id)%>	
-		                                
+		                                <%= f.hidden_field(:id)%>		                                
 		                                <td><%= f.text_field(:text)%></td>		                                
 		                                <td><%= f.submit 'Spara underkategori',class: 'btn btn-u'%></td>
 		                                <td><%= f.submit 'Ta bort underkategori',class: 'btn btn-u'%></td>

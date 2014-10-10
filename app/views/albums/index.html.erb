@@ -1,5 +1,4 @@
 <%= title("Bildgalleri") %>
-<%@carouselindex = 0%>
 <div class="container">
     <div class="col-md-12">
     	<div class="row">
@@ -11,55 +10,17 @@
     		<div class="headline headline-md"><h3>Senast tillagda</h3></div>
 	        <ul class=" sorting-grid">                	
                 	<% @albums_latest.each do |p| %>
-                	<%@album = p%>
-                	<li class="row-height col-sm-3">
-                		<%= render "album_preview"%>
-            		</li>
+                		<%@album = p%>
+	                	<li class="row-height col-sm-2">
+	                		<%= render "album_preview"%>
+	            		</li>
             		<%end%>  
         	</ul>	            
-		</div> <!-- row-->
-	<hr class="devider devider-dotted">
-	<%if 1 == 0%>
-    	<div class="row">    
-	    	<div class="headline headline-md"><h3>Sök efter album</h3></div>
-	    	<%= form_tag index_albums_path, :method => 'post' do %>
-			  		<div class="col-sm-4">					  			
-			  			<div class="input-group">
-			  				<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-			  				<%= date_field_tag(:datum,value = @datum, :class => 'form-control') %>
-			  			</div>
-		  			</div>
-		  			<div class="col-sm-4">
-		  				<div class="input-group">
-		  					<span class="input-group-addon"><i class="fa fa-tag"></i></span>
-		  					<%= select_tag :id, options_from_collection_for_select(@kategorier,:id,:name,@id ),:class => 'form-control', :include_blank => false%>
-		  				</div>				  				
-		  			</div>
-		  			<div class="col-sm-4">			  				
-		  					<%= submit_tag 'Visa', name: nil,:class => 'btn-u btn-block btn-u-dark'%>				  				
-		  			</div>				  			
-		  	<%end%>	  		
-	  	</div>
-	  	<hr class="devider devider-dotted">	
-	  	<% if @searched %>
-	  	<div class="row">
-    		<div class="headline headline-md"><h3>Sökresultat</h3></div>
-	        <div class="row high-rated margin-bottom-20">
-	            <!-- Easy Block -->                
-	            
-	            	<% @albums.sort_by{|album|album.created_at}.reverse.slice(0,4).each do |p| %>
-			            <%@album = p%>
-						<%= render "album_preview"%>
-					<% end %>	
-			
-		</div>
-	</div>
-	<hr class="devider devider-dotted">
-	<% end %>
-	<%end%>
+		</div> <!-- row-->	
+	<hr>
   	</div>
   	
-  	<div class="container content">  		
+  	<div class="col-md-12 content">  		
 		<div class="headline headline-md"><h3>Alla album</h3></div>
         <div class="row high-rated margin-bottom-20">
         	<div class="sorting-block">
@@ -74,7 +35,7 @@
                 <ul class="sorting-grid">                	
                 	<% @albums.each do |p| %>
                 	<%@album = p%>
-                	<li class="row-height col-sm-3 mix <%for @cat in p.album_categories%>category_<%=@cat.id%> <%end%>" data-cat="<%if p.album_categories.last%> <%=p.album_categories.last%><%end%>">
+                	<li class="row-height col-sm-2 mix <%for @cat in p.album_categories%>category_<%=@cat.id%> <%end%>" data-cat="<%if p.album_categories.last%> <%=p.album_categories.last%><%end%>">
                 		<%= render "album_preview"%>
             		</li>
             		<%end%>  
@@ -87,10 +48,13 @@
 </div>
   				  	
 <script>
-  	jQuery(document).ready(function() {
-  		App.init();
-  		PortfolioPage.init();
-  	});
+var bottom;
+   bottom = function() {   
+  	 PortfolioPage.init();
+   
+  }; 
+$(document).ready(bottom)
+$(document).on('page:load', bottom)
 </script>
 
   <% if @edit %>

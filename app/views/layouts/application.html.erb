@@ -14,7 +14,8 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <%= favicon_link_tag '/favicon/favicon.ico' %>
+  <%= favicon_link_tag '/favicon/favicon.ico' %>  
+  <!--
   <link rel=“shortcut icon” href=“/assets/images/favicon/favicon.ico”>
   <link rel=“apple-touch-icon” sizes=“57x57” href=“/assets/images/favicon/apple-touch-icon-57x57.png”>
   <link rel=“apple-touch-icon” sizes=“114x114” href=“/assets/images/favicon/apple-touch-icon-114x114.png”>
@@ -35,11 +36,10 @@
   <meta name=“msapplication-square144x144logo” content=“/assets/images/favicon/mstile-144x144.png”>
   <meta name=“msapplication-square150x150logo” content=“/assets/images/favicon/mstile-150x150.png”>
   <meta name=“msapplication-square310x310logo” content=“/assets/images/favicon/mstile-310x310.png”>
-  <meta name=“msapplication-wide310x150logo” content=“/assets/images/favicon/mstile-310x150.png”>
+  <meta name=“msapplication-wide310x150logo” content=“/assets/images/favicon/mstile-310x150.png”>-->
 </head>
 
 <body>
-
 <!--=== Top ===-->    
 <div class="top">
   <div class="container">
@@ -124,7 +124,7 @@
 <!-- End Content Part -->
 
 <!--=== Footer ===-->
-<div class="footer">
+<div class="footer navbar" id="footer">
   <div class="container">
     <div class="row">
       <%= render "layouts/footer" %>
@@ -134,7 +134,7 @@
 <!--=== End Footer ===-->
 
 <!--=== Copyright ===-->
-<div class="copyright">
+<div class="copyright" id="copyright">
   <div class="container">
     <div class="row">
       <%= render "layouts/bottombar" %>    
@@ -145,9 +145,20 @@
 
 <!-- JS Global Compulsory -->           
 <script type="text/javascript">
-    jQuery(document).ready(function() {
-        App.init();              	
-    });
+var bottom;
+   bottom = function() {
+   App.init(); 
+   var docHeight = $(window).height();
+   var footerHeight =  $('#copyright').height()
+   var footerTop = $('#copyright').position().top + footerHeight;
+
+   if (footerTop < docHeight) {
+    $('#footer').css('margin-top', 22+ (docHeight - footerTop) + 'px');
+   }
+  }; 
+
+$(document).ready(bottom)
+$(document).on('page:load', bottom)
 </script>
 <!--[if lt IE 9]>
   <script src="assets/plugins/respond.js"></script>

@@ -15,8 +15,10 @@
 	            </ul>	            
                 <ul class="row sorting-grid">
                 	<% @images.each do |p| %>
-                	<li class="col-md-3 col-sm-6 col-xs-12 mix <%if p.subcategory_id%> category_<%=p.subcategory_id%>"data-cat="<%=p.subcategory_id%>"><%else%>"><%end%>
-	                            <%= image_tag(p.foto(:large),class: 'img-responsive max-height gallery', rel: "album", href: p.foto(:original), id: p.id)  %>           
+                	<li class="col-md-3 col-sm-3 col-xs-3 mix <%if p.subcategory_id%> category_<%=p.subcategory_id%>"data-cat="<%=p.subcategory_id%>"><%else%>"><%end%>
+                		<div class="image-container">
+	                            <%= image_tag(p.foto(:large),class: 'img-max-height gallery', rel: "album", href: p.foto(:original), id: p.id)  %>
+                        </div>           
             		</li>
             		<%end%>  
             	</ul>
@@ -35,9 +37,11 @@
   </div>    
 </div>
 <script>
-$(document).ready(function() {
-	App.init();
-	PortfolioPage.init();
-	jQuery('img.gallery').colorbox({rel: "album",maxHeight:"100%",maxWidth:"100%"});
-	});
+var init;
+	init = function() {
+		PortfolioPage.init();
+		jQuery('img.gallery').colorbox({rel: "album",maxHeight:"100%",maxWidth:"100%"});
+	};
+$(document).ready(init)
+$(document).on('page:load', init)
 </script>

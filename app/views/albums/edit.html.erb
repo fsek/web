@@ -17,25 +17,25 @@
 					<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till bilder"), upload_images_album_path(@album),class: 'btn btn-u'%>
 					<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Rensa bilder"),destroy_images_album_path(@album), method: :delete,data: {confirm: 'Alla bilder tas bort - är du säker?'},class: 'btn btn-u'%><br><br>
 			<% end %>
-			
-			<% if @album.images.count > 0 %>
-			<% @row = 0%>				
-					<% @album.images.each do |p|%>
-						<%if (@row == 0)%>
-							<div class="row">
-						<% end %>
-						<div class="col-md-3 grid-height tag-box border-dotted">
-							<%=image_tag p.foto.url(:thumb)%>
-							<br>
-							<%= link_to 'Ta bort',album_image_path(@album, p), method: :delete,data: {confirm: 'Är du säker?'},class: 'btn btn-u'%>							
-						</div>
-						<% @row = @row+1%>						
-						<%if (@row == 4)%>
-							</div>
-							<%@row = 0%>
-						<% end %>						
-					<% end %>				
-			<% end %>
-		</div>
+			<%= form_tag(edit_album_path(@album)) do -%>
+		  	<%=submit_tag 'Markera alla',class: "btn btn-u"%>
+		  	<%=submit_tag 'Ta bort markerade',class: "btn btn-u"%><br><br>
+		  	<%= select_tag :image_category, 
+  				     options_from_collection_for_select(@album.subcategories,:id,:text),
+  				     include_blank: true, 
+  				     :class => " listBox"%><br><br>
+	     	<%=submit_tag 'Byt kategori',class: "btn btn-u"%><br>
+		  	<ul class="row sorting-grid">		  	
+		  		<%for @image in @album.images%>
+			  		<li class="col-md-3 col-sm-3 col-xs-3">
+	            		<div class="edit-image-container">
+	            			<label class="category-select">
+	                			<%= check_box_tag 'image_ids[]',@image.id,nil,checked: @mark%> <%= image_tag(@image.foto(:large),class: 'img-max-height gallery')  %>
+                			</label>
+	                    </div>           
+	    			</li>
+		  		<%end%>
+			</ul>
+			<%end-%>			
 	</div>
 </div>

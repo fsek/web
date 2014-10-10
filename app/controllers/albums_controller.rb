@@ -30,6 +30,30 @@ class AlbumsController < ApplicationController
   end
   
   def edit
+    if(params[:commit]) && (current_user) && (current_user.moderator?(:galleri))
+      if(params[:commit] == 'Markera alla')
+        @mark = true
+      elsif(params[:commit] == 'Ta bort markerade') && (params[:image_ids])
+        params[:image_ids].each { |img_id|
+          img = Image.find_by_id(img_id)
+          if(img)
+            img.destroy
+          end
+        }
+        flash.now[:notice] = 'De markerade bilderna togs bort.'
+      elsif(params[:commit] == 'Byt kategori') && (params[:image_ids]) && (params[:image_category])
+        params[:image_ids].each { |img_id|
+          img = Image.find_by_id(img_id)
+          if(img)
+            img.subcategory_id = params[:image_category]
+            img.save()
+          end
+        }
+        flash.now[:notice] = 'De markerade bilderna har nu kategorin: '+Subcategory.find_by_id(params[:image_category]).text
+      end
+    end
+    
+    
   end
   
   def settings
@@ -178,7 +202,7 @@ private
     @album = Album.find(params[:id])      
   end
   def set_edit
-   if current_user.admin? || current_user.has_role?(:galleri,:edit)
+   if (current_user) && (current_user.moderator?(:galleri))
      @edit = true
    else
      @edit = false

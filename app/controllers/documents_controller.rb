@@ -1,20 +1,34 @@
 class DocumentsController < ApplicationController
   
-  before_action :authenticate_editor!
+  before_filter :authenticate, only: [:update,:edit,:new,:destroy,:create]
   before_action :set_document, only: [:show,:update,:edit,:destroy]
-  before_action :set_owner
+  before_action :set_edit  
   
   def index
-    @documents = Document.where(public:  true)
+    if(current_user)
+      @logged_in = true
+      @documents = Document.all
+    else
+      @documents = Document.publik      
+    end
+    @documents_grid = initialize_grid(@documents)
   end
   
   def new
     @dokument = Document.new
   end
   
-  def show    
+  def show
+    if(!@dokument.public) && (!current_user)
+      redirect_to action: :index
+      @documents = Document.publik
+      @documents_grid = initialize_grid(@documents)
+      return
+    elsif((!@dokument.public) && (current_user)) || (@dokument.public)
+      send_file(@dokument.pdf.path, filename:@dokument.pdf_file_name, type: "application/pdf",disposition: 'inline',x_sendfile: true)
+      return
+    end
   end
-  
   def edit    
   end
   
@@ -58,18 +72,21 @@ class DocumentsController < ApplicationController
     end
   end
   private
+    def authenticate
+      flash[:error] = t('the_role.access_denied')
+      redirect_to(:back) unless (current_user) && (current_user.moderator?(:dokument))    
+      rescue ActionController::RedirectBackError
+      redirect_to root_path
+    end
     def set_document
       @dokument = Document.find_by_id(params[:id])
-    end
-    def set_owner
-      if @dokument
-        @owner = Profile.find_by_id(@dokument.profile_id)
-      end
-    end
-    def authenticate_editor!
-      @edit = false unless current_user
-      @edit = false unless current_user.moderator?(:dokument)
-      @edit = true 
+    end    
+    def set_edit
+      if(current_user) && (current_user.moderator?(:dokument))
+        @edit = true
+      else
+        @edit = false
+      end 
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params

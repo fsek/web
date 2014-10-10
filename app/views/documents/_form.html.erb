@@ -15,15 +15,14 @@
 			  	</div>
 			  	<%= f.label 'Kategori', :class => 'reg-label'%>
 			  	<div class="input-group margin-bottom-20">  				  	  		 		  	
-			  		<%= f.text_field :category, :class => 'form-control'%>
+			  		<%= f.select :category,options_for_select(["Styrdokument", "Protokoll", "Sektionsmöten", "Övrigt"],@dokument.category), :class => 'form-control'%>
 			  	</div>
 			  	<%= f.label 'PDF', :class => 'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%if @dokument.new_record?%>
+			  		<%if @dokument.pdf_file_name.blank?%>
 			  			<%= f.file_field :pdf, :class => 'form-control'%>
 			  		<%else%>  				  	  		 		  	
-			  			<%= link_to @dokument.pdf, @dokument.pdf.url %>
-			  			<%=f.hidden_field :pdf,value: @dokument.pdf%>
+			  			<%=@dokument.pdf_file_name%>
 		  			<%end%>
 			  	</div>
 			  	<%= f.label 'Publik?', :class => 'reg-label'%>
@@ -31,12 +30,6 @@
 			  		<%= f.check_box :public, :class => 'form-control'%>
 			  		Innebär att även de som inte är inloggade kan se dokument.
 			  	</div>
-			  	<%= f.label 'Går att ladda ner?', :class => 'reg-label'%>  
-			  	<div class="input-group margin-bottom-20">
-			  		Går inte riktigt att stoppa, men vi får se!  		
-			  		<%= f.check_box :download, :class => 'form-control'%>  		
-			  	</div>
-			  	
 			  	<div class="row">
 			  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
 			  	</div>

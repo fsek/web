@@ -39,7 +39,7 @@
 		  	<div class="input-group margin-bottom-20">
 		  		<%for @cat in @kategorier%>
 		  		<div class="input-group margin-bottom-1">
-		  			<%= f.check_box(:album_category_ids,{multiple: true},@cat.id,nil)%><%= f.label :subcategory_id, @cat.name, :value => false,:class => 'reg-label' %>
+		  			<%= f.check_box(:album_category_ids,{multiple: true},@cat.id,nil)%><%= f.label :album_category_id, @cat.name, :value => false,:class => 'reg-label' %>
 				</div>		
 		  		<%end%>
 		  		Just nu kan man välja flera, men bara för att man kan, så behöver man inte göra det! :) <br>
