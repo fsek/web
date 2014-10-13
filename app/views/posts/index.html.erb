@@ -10,7 +10,7 @@
 			  end
 			
 			  g.column name: "Beskrivning", attribute: "description",filter: false			  
-			  g.column name: "Utskott", attribute: "council",filter: false do |post|
+			  g.column name: "Utskott", attribute: "council_id",filter: false do |post|
 			    link_to(post.council.title,council_path(post.council))
 			  end
 		  
