@@ -267,6 +267,7 @@ ActiveRecord::Schema.define(version: 20410822171415) do
     t.integer  "first_post"
     t.string   "email"
     t.string   "stil_id"
+    t.string   "phone"
   end
 
   create_table "roles", force: true do |t|

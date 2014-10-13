@@ -3,7 +3,8 @@
 	<div class="col-md-12">
 		<%= grid(@post_grid) do |g|			
 			  g.column name: "Titel",attribute: "title",filter: false  do |post|			    
-			    link_to(post.title,edit_post_path(post))
+			    link_to(post.title,edit_council_post_path(post.council,post))
+			    link_to(post.title,"#mer-"+post.id.to_s,class: "",data: {toggle: "collapse"})
 			  end
 			  g.column name: "Gräns",attribute: "limit",filter: false do |post|
 			  	(post.limit) && (post.limit > 0) ? post.limit : "Ingen"
@@ -28,7 +29,7 @@
 			  end		  
 			  if @edit
 				  g.column do |post|
-				    link_to('Redigera', edit_council_post_path(post.council,council))
+				    link_to('Redigera', edit_council_post_path(post.council,post))
 				  end
 				  g.column do |post|				  	
 	        		form_tag remove_profile_council_post_path(post.council,post), :method => :patch do
@@ -43,60 +44,39 @@
 				  end
 			  end
 		end -%>
-		<div class="panel panel-orange margin-bottom-40">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Poster</h3>
-                    </div>                                                          
-                    <table class="table">
-                        <thead>
-                            <tr>                                
-                                <th>Titel:</th>
-							    <th>Gräns:</th>
-							    <th>Beskrivning:</th>
-							    <th>Ta bort:</th>
-							    <th>Lägg till: (användarnamn)</th>                           
-                            </tr>
-                        </thead>
-                        <tbody>
-                        	<% @posts.each do |post| %>	                            							
-		                            <tr>
-		                                <td><%= link_to post.title,edit_council_post_path(post.council,post) %></td>
-								        <td><%= post.limit %></td>
-								        <td><%= post.description %></td>
-								        <% if current_user.has_role?(:poster,:edit) %>
-								        <td>
-								         <% if post.profiles.size > 0 %>
-							        	<%= form_tag remove_profile_council_post_path(post.council,post), :method => :patch do%>
-												<%= hidden_field_tag :id, post.id%>							
-												<% profileList = [] %>
-												<% post.profiles.each do  |profile|%>														
-															<%profileList << [profile.name.to_s + " - " + profile.user.username,profile.id]%>
-													<% end %>
-													<%= select_tag :profile_id,  options_for_select(profileList)%>
-												<%= submit_tag 'Ta bort', class: "btn btn-u",data: { confirm: "Den valda profilen kommer att bli av med vald post."} %>
-												<% end %>
-								        <%end%>
-								        </td>
-								        <td>	<%= form_tag add_profile_username_council_post_url(post.council,post), :method => :patch do%>
-												<%= hidden_field_tag :id, post.id%>
-												<%= text_field_tag :username %>							
-												<%= submit_tag "Spara", class: "btn-u btn",data: { confirm: 'Dubbelkollat användarnamnet?' }%>
-												<%end%>
-								        </td>
-								        <%end%>  
-		                                	                                                          
-		                            </tr>
-	                            <%end%>                            
-                            	    <tr>
-                            	    <td><%if @council%><%= link_to ( "Lägg till ny post"), new_council_post_path(@council), class: "btn-u btn-u-small" %><%end%></td>
-                            	    <td></td>
-                            	    <td></td>
-                            	    <td></td>
-                            	    <td></td>
-                            	    <td></td>	
-                        	    	</tr>              
-                        </tbody>
-                    </table>
+	</div>
+	<div class="row">
+		<%for @post in @posts%>
+            <div id="mer-<%=@post.id%>" class="collapse">
+                <div class="funny-boxes funny-boxes-left-orange">                	
+                	<h2><%=@post.title%></h2>
+                	<div class="col-md-8">
+	                    <%if @post.description%><p><%=@post.description%></p><%end%>
+	                    <% if current_user.has_role?(:poster,:edit) %>
+					        
+					         <% if @post.profiles.size > 0 %>
+				        	<%= form_tag remove_profile_council_post_path(@post.council,@post), :method => :patch do%>
+									<%= hidden_field_tag :id, @post.id%>							
+									<% profileList = [] %>
+									<% @post.profiles.each do  |profile|%>														
+												<%profileList << [profile.name.to_s + " - " + profile.user.username,profile.id]%>
+										<% end %>
+										<%= select_tag :profile_id,  options_for_select(profileList)%>
+									<%= submit_tag 'Ta bort', class: "btn btn-u",data: { confirm: "Den valda profilen kommer att bli av med vald post."} %>
+									<% end %>
+					        <%end%>
+					        
+					        	<%= form_tag add_profile_username_council_post_url(@post.council,@post), :method => :patch do%>
+									<%= hidden_field_tag :id, @post.id%>
+									<%= text_field_tag :username %>							
+									<%= submit_tag "Spara", class: "btn-u btn",data: { confirm: 'Dubbelkollat användarnamnet?' }%>
+									<%end%>
+					        
+					        <%end%>
+	                    	                    
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>                                        
+        <%end%>
+	</div>
+</div>		
