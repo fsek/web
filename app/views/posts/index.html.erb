@@ -45,15 +45,13 @@
 			  end
 		end -%>
 	</div>
-	<div class="row">
+	<div class="col-md-12">
 		<%for @post in @posts%>
             <div id="mer-<%=@post.id%>" class="collapse">
                 <div class="funny-boxes funny-boxes-left-orange">                	
                 	<h2><%=@post.title%></h2>
-                	<div class="col-md-8">
-	                    <%if @post.description%><p><%=@post.description%></p><%end%>
-	                    <% if current_user.has_role?(:poster,:edit) %>
-					        
+                	<div class="col-md-8">	                    
+	                    <% if current_user.has_role?(:poster,:edit) %>					        
 					         <% if @post.profiles.size > 0 %>
 				        	<%= form_tag remove_profile_council_post_path(@post.council,@post), :method => :patch do%>
 									<%= hidden_field_tag :id, @post.id%>							
