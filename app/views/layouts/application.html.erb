@@ -37,6 +37,22 @@
   <meta name=“msapplication-square150x150logo” content=“/assets/images/favicon/mstile-150x150.png”>
   <meta name=“msapplication-square310x310logo” content=“/assets/images/favicon/mstile-310x310.png”>
   <meta name=“msapplication-wide310x150logo” content=“/assets/images/favicon/mstile-310x150.png”>-->
+  <!-- JS Global Compulsory -->           
+<script type="text/javascript">
+var bottom;
+   bottom = function() {
+   App.init(); 
+   var docHeight = $(window).height();
+   var footerHeight =  $('#copyright').height()
+   var footerTop = $('#copyright').position().top + footerHeight;
+
+   if (footerTop < docHeight) {
+    $('#footer').css('margin-top', 22+ (docHeight - footerTop) + 'px');
+   }
+  }; 
+
+$(document).ready(bottom)
+</script>
 </head>
 
 <body>
@@ -48,7 +64,7 @@
 </div>
 <!--=== End Top ===-->    
 
-<%= render 'phrasing/initializer'%>
+
 <!--=== Header ===-->    
 <div class="header header-start">
   <div class="navbar navbar-default" role="navigation">
@@ -143,23 +159,6 @@
 </div> 
 <!--=== End Copyright ===-->
 
-<!-- JS Global Compulsory -->           
-<script type="text/javascript">
-var bottom;
-   bottom = function() {
-   App.init(); 
-   var docHeight = $(window).height();
-   var footerHeight =  $('#copyright').height()
-   var footerTop = $('#copyright').position().top + footerHeight;
-
-   if (footerTop < docHeight) {
-    $('#footer').css('margin-top', 22+ (docHeight - footerTop) + 'px');
-   }
-  }; 
-
-$(document).ready(bottom)
-$(document).on('page:load', bottom)
-</script>
 <!--[if lt IE 9]>
   <script src="assets/plugins/respond.js"></script>
 <![endif]-->    

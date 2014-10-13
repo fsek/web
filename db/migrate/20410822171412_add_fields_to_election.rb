@@ -4,7 +4,6 @@ class AddFieldsToElection < ActiveRecord::Migration
     add_column :elections,:nominate_mail,:text
     add_column :elections,:text_before,:text
     add_column :elections,:text_during,:text
-    add_column :elections,:text_after,:text
-    add_column :profiles,:phone,:string
+    add_column :elections,:text_after,:text       
   end
 end

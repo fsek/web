@@ -41,11 +41,9 @@ class DocumentsController < ApplicationController
         @dokument.pdf = params[:document][:pdf]       
         respond_to do |format|
           if @dokument.save
-            format.html { redirect_to @dokument, :notice => 'Dokumentet skapades!.' }
-            format.json { render :json => @dokument, :status => :created, :location => @dokument }
+            format.html { redirect_to documents_path, :notice => 'Dokumentet skapades!' }            
           else
-            format.html { render :action => @dokument }
-            format.json { render :json => @dokument.errors, :status => :unprocessable_entity }
+            format.html { render action: "new" }            
           end        
         end
       end
@@ -56,7 +54,7 @@ class DocumentsController < ApplicationController
     @dokument.update_attributes(document_params)        
     respond_to do |format|
       if @dokument.save
-        format.html { redirect_to @dokument, :notice => 'Dokumentet uppdaterades.' }
+        format.html { redirect_to edit_document_path(@dokument), :notice => 'Dokumentet uppdaterades.' }
         format.json { render :json => @dokument, :status => :created, :location => @dokument }
       else
         format.html { render :action => "edit" }

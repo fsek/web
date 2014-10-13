@@ -1,3 +1,4 @@
+<% provide(:title, 'Jobbportal') %>
 <% if @edit %>	
     <ul class="list">
         <li><%= link_to "Skapa jobbpost", :new_work_post %></li>        
@@ -7,7 +8,7 @@
 	
 	<div class="col-md-12" id="display-group">
 		<%if @edit && @edit_grid%>
-		Första tabellen visas endast för de med rättigheter att redigera.<br> Här listas de som av någon anledning inte syns för andra.
+		Första tabellen visas endast för de med rättigheter att redigera.<br> Här listat för tillfället alla jobbposter.
 			<%= grid(@not_published_grid) do |g|				  		    	 
 				  g.column name: "Titel",attribute: "title",filter: false  do |work_p|			    
 				    work_p.title
@@ -33,7 +34,12 @@
 				    link_to('Redigera', edit_work_post_path(work_p))				
 				  end
 			end -%>
+			<hr>
 		<%end%>
+		<div class="headline headline-md">
+	        	<h1>Jobbportal</h1>
+	    	</div>
+	    	<p>Välkommen till Näringslivsutskottetes jobbportal. Här kommer erbjudande från företag såsom lediga jobb och liknande att läggas ut.</p>
 		<%= grid(@work_post_grid) do |g|			
 			  g.column name: "Titel",attribute: "title",filter: false  do |work_p|			    
 			    link_to(work_p.title,"#mer-"+work_p.id.to_s,class: "",data: {toggle: "collapse",parent: "display-group"})
@@ -51,7 +57,7 @@
 			  end
 		  
 			  g.column name: "Sista ansökningsdatum", attribute: "deadline",filter: false do |work_p|
-			    (work_p.deadline) ? work_p.deadline.to_date : "Inte bestämt"
+			    (work_p.deadline > Date.new(2100,03,25)) ? "Inte bestämt" : work_p.deadline.to_date 
 			  end
 		  
 			  if @edit

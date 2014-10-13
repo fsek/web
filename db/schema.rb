@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171413) do
+ActiveRecord::Schema.define(version: 20410822171415) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20410822171413) do
     t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
+    t.integer  "photo_category_id"
   end
 
   create_table "albums_images", id: false, force: true do |t|
@@ -71,14 +73,18 @@ ActiveRecord::Schema.define(version: 20410822171413) do
   end
 
   create_table "councils", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "title"
     t.string   "url"
     t.text     "description"
     t.integer  "president"
     t.integer  "vicepresident"
-    t.boolean  "public"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.boolean  "public",            default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "contact_id"
   end
 
@@ -87,13 +93,13 @@ ActiveRecord::Schema.define(version: 20410822171413) do
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
+    t.string   "title"
     t.boolean  "public"
     t.boolean  "download"
     t.string   "category"
+    t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "profile_id"
-    t.string   "title"
   end
 
   create_table "elections", force: true do |t|
@@ -110,6 +116,7 @@ ActiveRecord::Schema.define(version: 20410822171413) do
     t.text     "text_before"
     t.text     "text_during"
     t.text     "text_after"
+    t.text     "extra_text"
   end
 
   create_table "elections_posts", id: false, force: true do |t|
@@ -206,6 +213,14 @@ ActiveRecord::Schema.define(version: 20410822171413) do
     t.integer  "council_id"
   end
 
+  create_table "photo_categories", force: true do |t|
+    t.string   "name"
+    t.string   "text"
+    t.boolean  "visible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "phrasing_phrase_versions", force: true do |t|
     t.integer  "phrasing_phrase_id"
     t.text     "value"
@@ -221,8 +236,17 @@ ActiveRecord::Schema.define(version: 20410822171413) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "posts" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.integer  "limit"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "council_id"
+    t.boolean  "styrChoice"
+    t.boolean  "ht"
+    t.boolean  "extra_text"
+  end
 
   create_table "posts_profiles", id: false, force: true do |t|
     t.integer "post_id"
@@ -243,7 +267,6 @@ ActiveRecord::Schema.define(version: 20410822171413) do
     t.integer  "first_post"
     t.string   "email"
     t.string   "stil_id"
-    t.string   "phone"
   end
 
   create_table "roles", force: true do |t|
@@ -282,6 +305,7 @@ ActiveRecord::Schema.define(version: 20410822171413) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "work_posts", force: true do |t|
+    t.string   "title"
     t.text     "description"
     t.string   "company"
     t.datetime "deadline"
@@ -295,7 +319,6 @@ ActiveRecord::Schema.define(version: 20410822171413) do
     t.integer  "responsible"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "title"
     t.string   "category"
     t.string   "link"
     t.string   "kind"

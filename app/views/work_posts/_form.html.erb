@@ -44,12 +44,12 @@
 	 	<%= f.label 'Synlig?', :class => 'reg-label'%>  	
 		<%= f.check_box :visible,:class => 'form-control' %>
 		<%= f.label 'Deadline', :class => 'reg-label'%><br>
-		Lämnas tom för ingen ansökningsdeadline.
+		Fulfix: för ingen deadline, sätt ett datum efter <br><b>2100-03-25</b>
 	  	<div class="input-group margin-bottom-20">  			  	  		 		  	
 	  		<%= f.date_field :deadline, :class => 'form-control' %>
 	  	</div>
 	  	<%= f.label 'Publicera', :class => 'reg-label'%><br>
-	  	Visas först denna dag. Lämnas tom för att visas direkt.	 
+	  	Måste sättas, sätt idag för att visa direkt. 
 	  	<div class="input-group margin-bottom-20">  		 	  		 		  	
 	  		<%= f.date_field :publish, :class => 'form-control' %>
 	  	</div>

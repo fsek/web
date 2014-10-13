@@ -2,10 +2,11 @@
 class PostsController < ApplicationController
   include TheRole::Controller
   before_filter :authenticate_user!
+  before_filter :authenticate
   before_action :set_council
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :remove_profile,:add_profile_username]
+  before_action :set_edit
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :remove_profile,:add_profile_username]  
   
-  before_filter :authenticate_editor_poster! 
 
   def remove_profile
     @profile = Profile.find_by_id(params[:profile_id])
@@ -23,26 +24,18 @@ class PostsController < ApplicationController
           respond_to do |format|
          format.html { redirect_to council_posts_path(@council), flash: {alert: 'Hittade ingen användare med det användarnamnet.'}}
          end
-      elsif @profile.name == nil || @profile.name == ""
-          respond_to do |format|
-         format.html { redirect_to council_posts_path(@council), flash: {alert: 'Användaren :"' + @user.username.to_s + '" måste fylla i fler uppgifter i sin profil.' }}
-         end
+      elsif @profile.name.blank?          
+          redirect_to council_posts_path(@council), flash: {alert: 'Användaren :"' + @user.username.to_s + '" måste fylla i fler uppgifter i sin profil.'} 
       elsif @profile.posts.include?(@post)
-         respond_to do |format|
-         format.html { redirect_to council_posts_path(@council), flash: {alert: @profile.name.to_s + '(' + @user.username.to_s + ') har redan posten '+@post.title.to_s + '.'}}
-         end
-      elsif @post.limit != nil && @post.profiles.size >= @post.limit
-        respond_to do |format|
-         format.html { redirect_to council_posts_path(@council), flash: {alert: @post.title.to_s + ' har sitt maxantal.'}}
-         end   
+         redirect_to council_posts_path(@council), flash: {alert: @profile.name.to_s + '(' + @user.username.to_s + ') har redan posten '+@post.title.to_s + '.'}         
+      elsif (@post.limit != nil) && (@post.profiles.size >= @post.limit)
+         redirect_to council_posts_path(@council), flash: {alert: @post.title.to_s + ' har sitt maxantal.'}           
       else 
-        @post.profiles << @profile
-        respond_to do |format|
-          format.html { redirect_to council_posts_path(@council), notice: @profile.name.to_s + ' (' + @profile.user.username.to_s + ') tilldelades posten '+@post.title.to_s + '.'}
-            if (@profile.first_post == nil)   
-              @profile.update(first_post: @post.id)
-            end
-          end  
+        @post.profiles << @profile        
+        redirect_to council_posts_path(@council), notice: @profile.name.to_s + ' (' + @profile.user.username.to_s + ') tilldelades posten '+@post.title.to_s + '.'
+        if (@profile.first_post == nil)   
+          @profile.update(first_post: @post.id)
+        end            
       end
     end
    
@@ -52,7 +45,8 @@ class PostsController < ApplicationController
       @posts = @council.posts
     else
       @posts = Post.all
-    end 
+    end
+    @post_grid = initialize_grid(@posts) 
   end
   
   # GET /news/new
@@ -82,8 +76,15 @@ class PostsController < ApplicationController
   # PATCH/PUT /news/1
   # PATCH/PUT /news/1.json
   def update
+    
     respond_to do |format|
       if @post.update(post_params)
+        if(params[:post][:styrChoice] == "nil")
+            @post.update(styrChoice: nil)
+        end 
+        if(params[:post][:ht] == "nil")
+            @post.update(ht: nil)
+        end        
         format.html { redirect_to edit_council_post_path(@council,@post), notice: 'Posten uppdaterades!' }
         format.json { head :no_content }
       else
@@ -105,6 +106,17 @@ class PostsController < ApplicationController
   end
 
   private
+    def authenticate
+      flash[:error] = t('the_role.access_denied')
+      redirect_to(:back) unless current_user.moderator?(:poster)    
+      rescue ActionController::RedirectBackError
+        redirect_to root_path
+    end
+    def set_edit
+      if(current_user) && (current_user.moderator?(:poster))
+        @edit = true
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
@@ -115,7 +127,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :limit,:description,:profile_id,:council_id,:post_id)
+      params.require(:post).permit(:title, :limit,:description,:profile_id,:council_id,:post_id,:ht,:styrChoice,:extra_text)
     end
 end
 

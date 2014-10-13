@@ -14,14 +14,48 @@
   	<div class="input-group margin-bottom-20">
   		<%= f.text_field :title,:class => 'form-control' %>
   	</div>
-    <%= f.label 'Hur många kan ha posten? (lämnas tomt för obegränsad)', :class => 'reg-label'%>
+    <%= f.label 'Hur många kan ha posten?', :class => 'reg-label'%>
+    <p>(lämnas tomt för obegränsad)</p>
   	<div class="input-group margin-bottom-20">
   		<%= f.number_field :limit,:class => 'form-control' %>
   	</div>
   	<%= f.label 'Beskrivning:', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">
-  		<%= f.text_area :description,:class => 'form-control' %>
+  		<%= f.text_area :description,class:'form-control' %>
+  	</div>  	
+  	<%= f.label 'Väljs av?', class:'reg-label'%><br><hr>
+  	<div class="col-md-4">
+  		<%= f.label(:styrChoice_true, "Styrelse",class:'reg-label') %>
+  		<%= f.radio_button(:styrChoice, 1,checked:@post.styrChoice == true,class:'form-control') %>  		
   	</div>
+  	<div class="col-md-4">
+  		<%= f.label(:styrChoice_false, "Höstterminsmötet",class:'reg-label') %>		
+		<%= f.radio_button(:styrChoice, 0,checked: @post.styrChoice == false,class:'form-control') %><br>
+	</div>
+	<div class="col-md-4">
+		<%= f.label(:styrChoice_nil, "Oklart",class:'reg-label') %>
+		<%= f.radio_button(:styrChoice, :nil,checked: @post.styrChoice == nil,class:'form-control') %><br>
+	</div>
+  	<%= f.label 'Väljs när?', :class => 'reg-label'%><br>
+  	<hr>
+  	<div class="col-md-4">
+  		<%= f.label(:ht_true, "Hösttermin",class:'reg-label') %>
+  		<%= f.radio_button(:ht, 1,checked: @post.ht == true,class:'form-control') %>  	
+  	</div>
+  	<div class="col-md-4">
+  		<%= f.label(:ht_false, "Vårtermin",class:'reg-label') %>
+  		<%= f.radio_button(:ht, 0,checked: @post.ht == false,class:'form-control') %>  
+	</div>
+	<div class="col-md-4">
+		<%= f.label(:ht_nil, "Oklart",class:'reg-label') %>
+  		<%= f.radio_button(:ht , :nil,checked: @post.ht == nil,class: 'form-control') %>  
+	</div> 
+  	<hr>
+  	<%= f.label 'Extratext', :class => 'reg-label'%><br>
+  	<p>Visar en extratext, specificerad i valet, i nomineringsmejl för posten.</p>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.check_box :extra_text, checked: @post.extra_text %>
+  	</div>  
   <div class="row">
   			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>
