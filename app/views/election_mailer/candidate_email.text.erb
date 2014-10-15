@@ -1,14 +1,16 @@
 Hej <%=@candidate.profile.name %>
 ===============================================
- 
 Du har kandiderat till sektionsposten <%=@candidate.post.title%>.
+<%if (@candidate.election.candidate_mail) && (@candidate.post.elected_by == "Valberedning")%>
+	<%= simple_format(@valet.candidate_mail)%>
+<%end%>
+<%if (@candidate.post.styrelse) && (@candidate.election.extra_text)%>
+	<%= simple_format(@valet.extra_text)%>	
+<%end%>				
+<%=url_for(@valet.mail_link)%>
+Valet stänger <%= @valet.end%>,
+fram tills dess kan du redigera din kandidatur på:
+<%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %>
 
-Vad vänlig fyll i en tid för intervju så fort som möjligt på:
-<%=@candidate.election.candidate_mail%>
-
-
-Du kan redigera dina kandidaturer på <%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %> 
-fram tills att valet stänger: <%=@candidate.election.end%>.		
-    	
 Mvh,
 Valberedningen

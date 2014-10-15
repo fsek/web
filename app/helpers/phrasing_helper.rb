@@ -15,8 +15,6 @@ module PhrasingHelper
           current_user.moderator?(:utskott)                            
         elsif current_page?(:controller => 'static_pages',:action => 'om')
           current_user.moderator?(:sanning)                            
-        elsif current_page?(:controller => 'static_pages',:action => 'faq')
-          current_user.moderator?(:faq)                          
         elsif current_page?(:controller => 'static_pages', :action => 'index')
           current_user.moderator?(:startsida)
         end

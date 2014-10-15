@@ -33,7 +33,10 @@
  *= require countdown
  *= require jquery.countdown 
  *= require elections
- *= require gallery
+ *= require fullcalendar.print
+ *= require fancybox 
+ *= require faq
+
  
  */
 

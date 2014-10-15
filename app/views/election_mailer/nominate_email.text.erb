@@ -1,13 +1,13 @@
-Hej <%=@nomination.name %>
+Hej <%=@nomination.name%>
 ===============================================
- 
-Du har blivit nominerad av någon på Fsektionen.se
-till sektionsposten <%=@nomination.post.title%><%if @nomination.motivation.blank?%>.<%else%> med motivationen:
-"<%=@nomination.motivation%>"
+Du har blivit nominerad till sektionsposten <%= @nomination.post.title%>.
+<%if @nomination.motivation.blank? == false%>
+Med motiveringen:
+<%=simple_format(@nomination.motivation)%>
 <%end%>
+<%= simple_format(@nomination.election.nominate_mail)%>
 Skulle du vara intresserad eller bara vill läsa lite mer så hittar
-du information och instruktioner för att kandidera på
-<%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate',post: @nomination.post.id) %>
-
+du information och instruktioner för att kandidera på:
+<%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'index') %>
 Mvh,
-Valberedningen
+Valberedningen 

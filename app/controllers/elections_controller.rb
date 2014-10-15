@@ -197,7 +197,7 @@ private
     end        
   end 
   def election_params
-    params.fetch(:election).permit(:title,:description,:start,:end,:url,:visible,:text_before,:text_during,:text_after,:nominate_mail,:candidate_mail,:post_ids => [])
+    params.fetch(:election).permit(:title,:description,:start,:end,:url,:visible,:mail_link,:text_before,:text_during,:text_after,:nominate_mail,:candidate_mail,:extra_text,:candidate_mail_star,:post_ids => [])
   end
   
   def nomination_params

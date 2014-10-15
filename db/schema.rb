@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171415) do
+ActiveRecord::Schema.define(version: 20410822171419) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -117,6 +117,8 @@ ActiveRecord::Schema.define(version: 20410822171415) do
     t.text     "text_during"
     t.text     "text_after"
     t.text     "extra_text"
+    t.string   "mail_link"
+    t.text     "candidate_mail_star"
   end
 
   create_table "elections_posts", id: false, force: true do |t|
@@ -139,6 +141,14 @@ ActiveRecord::Schema.define(version: 20410822171415) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "faqs", force: true do |t|
+    t.string   "question"
+    t.text     "answer"
+    t.integer  "sorting_index"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "images", force: true do |t|
@@ -243,9 +253,11 @@ ActiveRecord::Schema.define(version: 20410822171415) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "council_id"
-    t.boolean  "styrChoice"
-    t.boolean  "ht"
     t.boolean  "extra_text"
+    t.string   "elected_by"
+    t.string   "elected_at"
+    t.text     "election_text"
+    t.boolean  "styrelse"
   end
 
   create_table "posts_profiles", id: false, force: true do |t|

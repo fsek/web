@@ -4,19 +4,19 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-   <h2> Hej <%=@candidate.profile.name %></h2>
-
-		<p>Du har kandiderat till sektionsposten <%=@candidate.post.title%>.<br>						
-			
-		<%if @candidate.election.candidate_mail.blank? == false%>
-		<p>Var vänlig fyll i en tid för intervju så fort som möjligt på:<br>
-			<%=url_for(@candidate.election.candidate_mail)%></p>
-    	<%end%>
-    	
-    	Du kan redigera dina kandidaturer <%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %><br>
-    	fram tills valet stänger: <%=@candidate.election.end%>.<br>
-    	
-    	Mvh,
-    	Valberedningen
+  	<h3> Hej <%=@candidate.profile.name %></h3>
+			<p>Du har kandiderat till sektionsposten <%=@candidate.post.title%>.</p>
+			<%if (@candidate.election.candidate_mail) && (@candidate.post.elected_by == "Valberedning")%>
+				<%= simple_format(@valet.candidate_mail)%>
+			<%end%>
+			<%if (@candidate.post.styrelse) && (@candidate.election.extra_text)%>
+				<%= simple_format(@valet.extra_text)%>	
+			<%end%>				
+			<%=url_for(@valet.mail_link)%><br>
+	    	<p>Valet stänger <%= @valet.end%>,
+	    	fram tills dess kan du redigera din kandidatur på:<br><%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %></p>
+	    	
+	    	<p>Mvh,<br>
+	    	Valberedningen</p>   
   </body>
 </html>
