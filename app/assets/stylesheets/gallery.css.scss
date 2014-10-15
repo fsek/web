@@ -6,9 +6,10 @@
   height:auto;  
 }
 .img-max-height{
-  width: 100%;
+  width: auto;
   height: auto;
-  max-height:250px 
+  max-height:250px;
+  max-width: 100px; 
 }
 .image-container{
     width: 100%;

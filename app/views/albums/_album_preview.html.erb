@@ -1,14 +1,14 @@
-<%= link_to @album,data: {no_turbolink: true} do%>	
+<%= link_to @album,data: {no_turbolink: true} do%>
+<%if 1 == 0%>	
 		<div class="overflow-h">
 		    <h3><%=@album.title%></h3> <%if @album.to_date%><span class="color-orange"><%=fa_icon('calendar')%></span> <%= @album.to_date%><br><%else%><br><%end%>	                        
-		</div>	
-	<%if @album.images.count > 0%>
-		<div class="image-preview-container">            
-	            	<%= image_tag(@album.images.sample().foto.url(:small),class: "img-max-height")%>
 		</div>
+		<%end%>	
+	<%if @album.images.count > 0%>		            
+	     <%= image_tag(@album.images.sample().foto.url(:small),class: "img-responsive")%>		
 	<%else%>
 		<div class="image-preview-container">            	
-	    	<%= image_tag("img/linus2.jpg",class: "img-max-height")%>
+	    	<%= image_tag("img/linus2.jpg",class: "img-responsive")%>
     	</div>
 	<% end %>	
 <%end%>

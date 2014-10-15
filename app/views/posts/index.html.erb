@@ -15,18 +15,9 @@
 			    link_to(post.council.title,council_path(post.council))
 			  end
 		  
-			  g.column name: "Väljs av:", attribute: "styrChoice",filter: false do |post|
-			    if(post.styrChoice == true)
-			    	"Styrelsen"
-			    elsif(post.styrChoice == false)	
-			    	"Valberedning"
-			    else
-			    	"Oklart"
-		    	end
-			  end
-			  g.column name: "HT/VT?",attribute: "ht",filter: false do |post|
-			  	(post.ht) ? "HT" : "VT"
-			  end		  
+			  g.column name: "Väljs av:", attribute: "elected_by",filter: false
+			    
+			  g.column name: "HT/VT?",attribute: "elected_at",filter: false		  
 			  if @edit
 				  g.column do |post|
 				    link_to('Redigera', edit_council_post_path(post.council,post))
