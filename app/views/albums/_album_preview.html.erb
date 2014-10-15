@@ -1,4 +1,4 @@
-<%= link_to (@album,'data-no-turbolink'=>true) do%>	
+<%= link_to @album,data: {no_turbolink: true} do%>	
 		<div class="overflow-h">
 		    <h3><%=@album.title%></h3> <%if @album.to_date%><span class="color-orange"><%=fa_icon('calendar')%></span> <%= @album.to_date%><br><%else%><br><%end%>	                        
 		</div>	

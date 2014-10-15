@@ -6,7 +6,7 @@ class Album < ActiveRecord::Base
   
   validates :start_date, presence: true  
   def to_date
-    if(self.start_date) && (self.end_date)
+    if(self.start_date) && (self.end_date) && (self.start_date.to_date != self.end_date.to_date)
       self.start_date.to_date.to_s + " till " +self.end_date.to_date.to_s
     elsif (self.start_date)
       self.start_date.to_date.to_s
