@@ -8,9 +8,9 @@ class FaqsController < ApplicationController
   
   
   def index
-    @faq = Faq.where("answer IS NOT NULL AND ANSWER IS NOT ''")
+    @faq = Faq.where.not(answer: '')
     if @editor
-      @faq_unanswered = Faq.where("answer is null or answer is ''")
+      @faq_unanswered = Faq.where(answer: '')
     end
   end
   

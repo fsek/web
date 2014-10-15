@@ -29,7 +29,7 @@
                 			<%else%>
                     		<li>
                 			<%end%>
-                    			<a href="#<%=post.title%>" data-toggle="tab"><%=post.title%></a>
+                    			<a href="#<%=post.id%>" data-toggle="tab"><%=post.title%></a>
                 			</li>
                 			<%@first = false%>
                     	<%end%>                        
@@ -38,9 +38,9 @@
                     	<%@first = true%>
                     	<% @poster.each do |post|%>
                     		<%if @first%>
-                    			<div class="tab-pane fade in active" id="<%=post.title%>">	
+                    			<div class="tab-pane fade in active" id="<%=post.id%>">	
                     		<%else%>
-                    			<div class="tab-pane fade in" id="<%=post.title%>">
+                    			<div class="tab-pane fade in" id="<%=post.id%>">
                     		<%end%>                    		 
                             <div class="row">                                
                                 <div class="col-md-12">                                    
