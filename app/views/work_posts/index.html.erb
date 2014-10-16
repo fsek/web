@@ -75,7 +75,7 @@
 		                    <%if @work_post.description%><p><%=@work_post.description%></p><%end%>
 		                    <ul class="list-unstyled">
                                <%if @work_post.company%><li><i class="fa fa-briefcase"></i> <%=@work_post.company%></li><%end%>                             
-                               <%if @work_post.deadline%><li><i class="fa fa-calendar"></i> Sista ansökningsdag: <b><%=@work_post.deadline.to_date%></b></li><%end%>                             
+                               <%if @work_post.deadline.to_date < DateTime.new(2100,03,25).to_date%><li><i class="fa fa-calendar"></i> Sista ansökningsdag: <b><%=@work_post.deadline.to_date%></b></li><%end%>                             
                                <%if @work_post.category%><li><i class="fa fa-clock-o"></i> <%=@work_post.category%></li><%end%>
                                <%if @work_post.for%><li><i class="fa fa-users"></i> <%=@work_post.for%></li><%end%>                                                            
                                <%if @work_post.link%><li><i class="fa fa-map-marker"></i> <%=link_to("Till företaget",url_for(@work_post.link))%></li><%end%>
