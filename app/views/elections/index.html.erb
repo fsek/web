@@ -69,10 +69,12 @@
 		<div class="col-md-2 col-md-offset-5"><%= link_to("Redigera valet!",election_path(@valet),class: "btn btn-election ")%></div>
 	<%end%>
 <%if @datum%>
+<%=@datum%><br>
+<%=@datum.year%> ,<%=@datum.month%>,<%=@datum.day%>,<%=@datum.hour%>,<%=@datum.min%>,<%=@datum.sec%>
 <script type="text/javascript" >
     $(function () {    	
         var austDay = new Date();
-        austDay = new Date(<%=@datum.year%> ,<%=@datum.month%>,<%=@datum.day%>,<%=@datum.hour%>,<%=@datum.min%>,<%=@datum.sec%>);        
+        austDay = new Date(<%=@datum.year%> ,<%=@datum.month%>-1,<%=@datum.day%>);                
         $('#defaultCountdown').countdown({until: austDay});
         $('#year').text(austDay.getFullYear());
     });
