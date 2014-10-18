@@ -12,7 +12,7 @@
 			<%if (@candidate.post.styrelse) && (@candidate.election.extra_text)%>
 				<%= simple_format(@valet.extra_text)%>	
 			<%end%>				
-			<%=url_for(@valet.mail_link)%><br>
+			<%if @valet.mail_styrelse_link%> <%=url_for(@valet.mail_styrelse_link)%> <%else%> <%=url_for(@valet.mail_link)%> <%end%><br>
 	    	<p>Valet stänger <%= @valet.end%>,
 	    	fram tills dess kan du redigera din kandidatur på:<br><%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %></p>
 	    	

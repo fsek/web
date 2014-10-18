@@ -36,10 +36,15 @@
 	  	<%end%>
 	  	</div>
 	  	<div class="col-md-5">
-  		<%= f.label 'Länk för intervjutider (Doodle)', :class => 'reg-label'%>
+  		<%= f.label 'Länk för intervjutider - styrelseposter', :class => 'reg-label'%>
+		  	<div class="input-group margin-bottom-20">
+		  		<%= f.text_field :mail_styrelse_link,:class => 'form-control', size: "40x2" %>
+		  	</div>
+		<%= f.label 'Länk för intervjutider - övriga', :class => 'reg-label'%><br>
+		Om ingen fylls i för styrelseposter så används denna.
 		  	<div class="input-group margin-bottom-20">
 		  		<%= f.text_field :mail_link,:class => 'form-control', size: "40x2" %>
-		  	</div>
+		  	</div>  	
 	  	<%= f.label 'Synlig?', :class => 'reg-label'%>  	
 		<%= f.check_box :visible,:class => 'form-control' %>
 		<hr>

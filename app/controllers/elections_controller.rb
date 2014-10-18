@@ -197,11 +197,11 @@ private
     end        
   end 
   def election_params
-    params.fetch(:election).permit(:title,:description,:start,:end,:url,:visible,:mail_link,:text_before,:text_during,:text_after,:nominate_mail,:candidate_mail,:extra_text,:candidate_mail_star,:post_ids => [])
+    params.fetch(:election).permit(:title,:description,:start,:end,:url,:visible,:mail_link,:mail_styrelse_link,:text_before,:text_during,:text_after,:nominate_mail,:candidate_mail,:extra_text,:candidate_mail_star,:post_ids => [])
   end
   
   def nomination_params
-    params.fetch('/val/nominera').permit(:name,:email,:stil_id,:phone,:motivation,:election_id,:post_id)
+    params.fetch('/val/nominera').permit(:name,:email,:motivation,:election_id,:post_id)
   end
   def candidate_params
     params.fetch('/val/kandidera').permit(:profile_id,:post_id,:election_id,:stil_id,:email,:phone,:motivation)

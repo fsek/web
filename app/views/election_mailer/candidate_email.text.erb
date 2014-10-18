@@ -7,7 +7,7 @@ Du har kandiderat till sektionsposten <%=@candidate.post.title%>.
 <%if (@candidate.post.styrelse) && (@candidate.election.extra_text)%>
 	<%= simple_format(@valet.extra_text)%>	
 <%end%>				
-<%=url_for(@valet.mail_link)%>
+<%if @valet.mail_styrelse_link%> <%=url_for(@valet.mail_styrelse_link)%> <%else%> <%=url_for(@valet.mail_link)%> <%end%><br>
 Valet stänger <%= @valet.end%>,
 fram tills dess kan du redigera din kandidatur på:
 <%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %>

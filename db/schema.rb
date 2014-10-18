@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171419) do
+ActiveRecord::Schema.define(version: 20410822171420) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -117,8 +117,9 @@ ActiveRecord::Schema.define(version: 20410822171419) do
     t.text     "text_during"
     t.text     "text_after"
     t.text     "extra_text"
-    t.string   "mail_link"
     t.text     "candidate_mail_star"
+    t.string   "mail_link"
+    t.string   "mail_styrelse_link"
   end
 
   create_table "elections_posts", id: false, force: true do |t|
