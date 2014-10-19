@@ -18,7 +18,7 @@ class ElectionsController < ApplicationController
     if(@valet.instance_of?(Election))   
       @datum = (@valet.start > DateTime.now) ? @valet.start : @valet.end
       @poster = @valet.posts
-      @election_post_grid = initialize_grid(@poster,order: 'posts.council_id',order_direction: 'desc')
+      @election_post_grid = initialize_grid(@poster,order: 'posts.council_id',order_direction: 'asc')
     else
       @valet = nil
     end        
