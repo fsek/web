@@ -31,7 +31,7 @@ class ElectionsController < ApplicationController
   end
   def nominate
     @valet = Election.current
-    @poster = @valet.posts
+    @poster = @valet.posts.order(:title)
     @nomination = @valet.nominations.new()    
   end
   def create_nomination
@@ -55,7 +55,7 @@ class ElectionsController < ApplicationController
     @profile = current_user.profile
     @valet = Election.current
     @poster = []       
-    for @post in @valet.posts
+    for @post in @valet.posts.order(:title)
       @poster <<@post
     end
     for @cand in @profile.candidates
