@@ -7,11 +7,9 @@
     <h3> Hej <%=@nomination.name%></h3>
     <p>Du har blivit nominerad till sektionsposten <%= @nomination.post.title%>.<%if @nomination.motivation.blank? == false%><br>
 	Med motiveringen:</p>
-    	<%=simple_format(@nomination.motivation)%>
+    	"<%=simple_format(@nomination.motivation)%>"
 	<%end%>
 	<%= simple_format(@nomination.election.nominate_mail)%>
-	<p>Skulle du vara intresserad eller bara vill läsa lite mer så hittar<br>
-	du information och instruktioner för att kandidera på: <br><%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'index') %></p>
 	
 	<p>Mvh,<br>
 	Valberedningen</p>     
