@@ -6,7 +6,7 @@
   <body>
   	<h3> Hej <%=@candidate.profile.name %></h3>
 			<p>Du har kandiderat till sektionsposten <%=@candidate.post.title%>.</p>
-			<%if (@candidate.election.candidate_mail) && (@candidate.post.elected_by == "Valberedning")%>
+			<%if (@candidate.election.candidate_mail) && (@candidate.post.elected_by == "Terminsmötet")%>
 				<%= simple_format(@candiate.election.candidate_mail)%>
 			<%end%>
 			<%if (@candidate.post.styrelse) && (@candidate.election.extra_text)%>
