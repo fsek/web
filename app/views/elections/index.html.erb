@@ -46,7 +46,7 @@
 						  end
 				  	  end
 				end -%>
-				    Orangefärgade fält innebär att posten sitter i styrelsen.
+				    <p>Orangefärgade fält innebär att posten sitter i styrelsen.</p>
 					<%for @post in @poster%>
 			            <div id="mer-<%=@post.id%>" class="collapse">
 			                <div class="funny-boxes funny-boxes-left-orange left-text-align">
@@ -61,12 +61,14 @@
 		                            </ul>
 			                </div>
 			            </div>                                        
-			        <%end%>			        
+			        <%end%>
+			        <p>Ser något konstigt ut eller blir det fel? Hör av dig till <%= render partial: "contacts/kontakt", locals: {name: 'Spindelmän'}%></p>			        
 		        </div>
+		        
 		        <%end%>		           
 		    </div>
 		</div>
-		<p>Ser något konstigt ut eller blir det fel? Hör av dig till <%= render partial: "contacts/kontakt", locals: {name: 'Spindelmän'}%>.</p>
+		
 	<%if (@valet) && (@edit) %>
 		<div class="col-md-2 col-md-offset-5"><%= link_to("Redigera valet!",election_path(@valet),class: "btn btn-election ")%></div>
 	<%end%>
