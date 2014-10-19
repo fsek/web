@@ -66,6 +66,7 @@
 		        <%end%>		           
 		    </div>
 		</div>
+		<p>Ser något konstigt ut eller blir det fel? Hör av dig till <%= render partial: "contacts/kontakt", locals: {name: 'Spindelmän'}%>.</p>
 	<%if (@valet) && (@edit) %>
 		<div class="col-md-2 col-md-offset-5"><%= link_to("Redigera valet!",election_path(@valet),class: "btn btn-election ")%></div>
 	<%end%>
