@@ -2,13 +2,13 @@ Hej <%=@candidate.profile.name %>
 ===============================================
 Du har kandiderat till sektionsposten <%=@candidate.post.title%>.
 <%if (@candidate.election.candidate_mail) && (@candidate.post.elected_by == "Valberedning")%>
-	<%= simple_format(@valet.candidate_mail)%>
+	<%= simple_format(@candidate.election.candidate_mail)%>
 <%end%>
 <%if (@candidate.post.styrelse) && (@candidate.election.extra_text)%>
-	<%= simple_format(@valet.extra_text)%>	
+	<%= simple_format(@candidate.election.extra_text)%>	
 <%end%>				
-<%if @valet.mail_styrelse_link%> <%=url_for(@valet.mail_styrelse_link)%> <%else%> <%=url_for(@valet.mail_link)%> <%end%><br>
-Valet stänger <%= @valet.end%>,
+<%if @candidate.election.mail_styrelse_link%> <%=url_for(@candidate.election.mail_styrelse_link)%> <%else%> <%=url_for(@candidate.election.mail_link)%> <%end%><br>
+Valet stänger <%= @candidate.election.end%>,
 fram tills dess kan du redigera din kandidatur på:
 <%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %>
 
