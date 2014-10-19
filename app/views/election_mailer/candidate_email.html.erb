@@ -6,13 +6,18 @@
   <body>
   	<h3> Hej <%=@candidate.profile.name %></h3>
 			<p>Du har kandiderat till sektionsposten <%=@candidate.post.title%>.</p>
-			<%if (@candidate.election.candidate_mail) && (@candidate.post.elected_by == "Terminsmötet")%>
-				<%= simple_format(@candidate.election.candidate_mail)%>
+			<%if @candidate.post.elected_by == "Terminsmötet"%>
+				<%if (@candidate.election.candidate_mail)
+					<%= simple_format(@candidate.election.candidate_mail)%>
+				<%end%>
+				<%if (@candidate.post.styrelse)%>
+					<%=url_for(@candidate.election.mail_styrelse_link)%><br><br> 
+				<%else%>
+				 	<%=url_for(@candidate.election.mail_link)%><br><br>
+				<%end%>
+			<%else%>
+				<%= simple_format(@candidate.election.candidate_mail_star)%>
 			<%end%>
-			<%if (@candidate.post.styrelse) && (@candidate.election.extra_text)%>
-				<%= simple_format(@candidate.election.extra_text)%>	
-			<%end%>				
-			<%if @candidate.election.mail_styrelse_link%> <%=url_for(@candidate.election.mail_styrelse_link)%> <%else%> <%=url_for(@candidate.election.mail_link)%> <%end%><br><br>
 	    	<p>Valet stänger <%= @candidate.election.end%>,
 	    	fram tills dess kan du redigera din kandidatur på:<br><%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %></p>
 	    	
