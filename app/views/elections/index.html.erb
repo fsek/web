@@ -45,22 +45,22 @@
 						  end
 				  	  end
 				end -%>
-				    Orangefärgade fält innebär att posten sitter i styrelsen.          
+				    Orangefärgade fält innebär att posten sitter i styrelsen.
 					<%for @post in @poster%>
 			            <div id="mer-<%=@post.id%>" class="collapse">
-			                <div class="funny-boxes funny-boxes-left-orange left-text-align">                	
+			                <div class="funny-boxes funny-boxes-left-orange left-text-align">
+			                	<%=link_to("Dölj","#mer-"+@post.id.to_s,class: "btn btn-u pull-right",data: {toggle: "collapse"})%>                	
 			                	<h2><%=@post.title%></h2>			                	
 				                    <%if @post.description%><p><%=simple_format(@post.description)%></p><%end%>
 				                    <ul class="list-unstyled">
 		                               <%if (@post.limit) || (@post.styrelse)%><li><i class="fa fa-briefcase"></i><%if @post.limit%>Gräns: <%=@post.limit%> <%end%><%if @post.styrelse%>Styrelsepost<%end%></li><%end%>                               
 		                               <%if @post.council%><li><i class="fa fa-users"></i>Utskott: <%=link_to(@post.council.title,@post.council)%></li><%end%>
 		                               <%if @post.elected_by%><li><i class="fa fa-cog"></i>Väljs av: <%=@post.elected_by%></li><%end%>	                               
-		                               <%if (current_user) && (current_user.moderator?(:poster))%><li><%=link_to("Redigera",edit_council_post_path(@post.council,@post))%></li> <%end%>
-		                            </ul>				                    	                    
-			                                      
+		                               <%if (current_user) && (current_user.moderator?(:poster))%><li><%=link_to("Redigera",edit_council_post_path(@post.council,@post))%></li> <%end%>		                               
+		                            </ul>
 			                </div>
 			            </div>                                        
-			        <%end%>
+			        <%end%>			        
 		        </div>
 		        <%end%>		           
 		    </div>
