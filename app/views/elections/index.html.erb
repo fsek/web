@@ -41,7 +41,7 @@
 					  end
 					  g.column name: "Väljs av", attribute: "elected_by",filter: false
 				  	  if (@during)
-						  g.column name: "Kandiderade", filter: false do |post|
+						  g.column name: "Kandidater", filter: false do |post|
 						  	 post.candidates.where(election_id: @valet.id ).count
 						  end
 				  	  end
