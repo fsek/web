@@ -336,3 +336,9 @@ background-color: #fff !important;
 #phrasing-edit-all-phrases { /* Hide to avoid linking to /phrasing*/
   display:none;
 }
+
+.pagination > li > a:hover {
+  background-color: #eb7125 !important;
+  border: 1px solid #fff;
+  outline: 0;
+}
