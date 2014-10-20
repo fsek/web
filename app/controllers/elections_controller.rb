@@ -102,8 +102,15 @@ class ElectionsController < ApplicationController
           format.html { render action: 'candidate' }
           format.json { render action: 'candidate', status: :created, location: @valet }        
         else
-          @valet = Election.current
-          @poster = @valet.posts        
+          @valet = Election.current        
+        @poster = []       
+        for @post in @valet.posts
+          @poster <<@post
+        end
+        for @cand in @profile.candidates
+          @poster.delete(@cand.post)
+        end
+        @candidates_grid = initialize_grid(@profile.candidates)        
           format.html { render action: 'candidate' }
           format.json { render json: @candidate.errors, status: :unprocessable_entity }
         end
