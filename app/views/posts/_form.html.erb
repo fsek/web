@@ -23,6 +23,10 @@
   	<div class="input-group margin-bottom-20">
   		<%= f.select :limit, 0..10,selected: @post.limit,class:'form-control' %>
   	</div>
+  	 <%= f.label 'Begränsad?', :class => 'reg-label'%>  	
+  	<div class="input-group margin-bottom-20">
+  		<%= f.check_box :limitBool, checked: @post.limitBool %>
+  	</div>
   	<%= f.label 'Beskrivning:', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">
   		<%= f.text_area :description,size: '60x10',class:'form-control' %>

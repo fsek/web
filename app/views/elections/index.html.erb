@@ -33,8 +33,8 @@
 					  g.column name: "Titel",attribute: "title",filter: false  do |post|			    
 					    link_to(post.title,"#mer-"+post.id.to_s,class: "",data: {toggle: "collapse"})
 					  end
-					  g.column name: "Antal platser",attribute: "limit",filter: false do |post|
-					    (post.limit == nil) || (post.limit == 0) ? "Ingen gräns" : post.limit
+					  g.column name: "Rekommenderat antal",attribute: "limit",filter: false do |post|
+					  	post.printLimit
 					  end			
 					  g.column name: "Utskott", attribute: "council_id",filter: false do |post|
 					    post.council.title
