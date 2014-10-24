@@ -1,12 +1,9 @@
 # encoding:UTF-8
 class PostsController < ApplicationController
-  include TheRole::Controller
-  before_filter :authenticate_user!
   before_filter :authenticate
   before_action :set_council
   before_action :set_edit
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :remove_profile,:add_profile_username]  
-  
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :remove_profile,:add_profile_username]
 
   def remove_profile
     @profile = Profile.find_by_id(params[:profile_id])
@@ -75,16 +72,9 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /news/1
   # PATCH/PUT /news/1.json
-  def update
-    
+  def update    
     respond_to do |format|
-      if @post.update(post_params)
-        if(params[:post][:styrChoice] == "nil")
-            @post.update(styrChoice: nil)
-        end 
-        if(params[:post][:ht] == "nil")
-            @post.update(ht: nil)
-        end        
+      if @post.update_attributes(post_parms)               
         format.html { redirect_to edit_council_post_path(@council,@post), notice: 'Posten uppdaterades!' }
         format.json { head :no_content }
       else
@@ -106,6 +96,9 @@ class PostsController < ApplicationController
   end
 
   private
+    def post_parms
+      params.require(:post).permit(:title, :limit,:recLimit,:description,:council_id,:elected_by,:elected_at,:styrelse)
+    end
     def authenticate
       flash[:error] = t('the_role.access_denied')
       redirect_to(:back) unless current_user.moderator?(:poster)    
@@ -123,11 +116,6 @@ class PostsController < ApplicationController
     end
     def set_council    
      @council = Council.find_by_url(params[:council_id])        
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:title, :limit,:description,:profile_id,:council_id,:post_id,:elected_by,:elected_at,:extra_text,:election_text,:styrelse,:limitBool)
     end
 end
 

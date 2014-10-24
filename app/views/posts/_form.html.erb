@@ -9,37 +9,37 @@
       <% end %>
       </ul>
     </div>
-  <% end %>  
-    <%= f.label 'Titel', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.text_field :title,:class => 'form-control' %>
+  <% end %>
+  	<div class="col-md-6">  
+	    <%= f.label 'Titel', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.text_field :title,:class => 'form-control' %>
+	  	</div>
+	  	<%= f.label 'Styrelsepost', :class => 'reg-label'%>  	
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.check_box :styrelse, checked: @post.styrelse %>
+	  	</div>
+	  	<%= f.label 'Väljs av?, väljs när?', class:'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.select :elected_by, options_for_select(["","Nomineringsgrupp", "Terminsmötet"],@post.elected_by),class: "form-control"%> <%= f.select :elected_at, options_for_select(["","HT", "VT"],@post.elected_at),class: "form-control"%>
+	  	</div>
+	</div>
+	<div class="col-md-6">
+	    <%= f.label 'Hur många kan ha posten?', :class => 'reg-label'%>
+	    <p>0 - 0 ger * (det gör även 7 - 0)</p>
+	    <p>5 - 5 get 5 (x)</p>
+	    <p>4 - 5 ger 4-5</p>    
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.select :recLimit, 0..10,selected: @post.recLimit,class:'form-control' %> - <%= f.select :limit, 0..10,selected: @post.limit,class:'form-control' %>
+	  	</div>	  	  
   	</div>
-  	<%= f.label 'Styrelsepost', :class => 'reg-label'%>  	
-  	<div class="input-group margin-bottom-20">
-  		<%= f.check_box :styrelse, checked: @post.styrelse %>
-  	</div>
-    <%= f.label 'Hur många kan ha posten?', :class => 'reg-label'%>
-    <p>(0 = obegränsad)</p>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.select :limit, 0..10,selected: @post.limit,class:'form-control' %>
-  	</div>
-  	 <%= f.label 'Begränsad?', :class => 'reg-label'%>  	
-  	<div class="input-group margin-bottom-20">
-  		<%= f.check_box :limitBool, checked: @post.limitBool %>
-  	</div>
-  	<%= f.label 'Beskrivning:', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.text_area :description,size: '60x10',class:'form-control' %>
-  	</div>  	
-  	<%= f.label 'Väljs av?', class:'reg-label'%><br><hr>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.select :elected_by, options_for_select(["","Nomineringsgrupp", "Terminsmötet"],@post.elected_by),class: "form-control"%>
-  	</div>
-  	<%= f.label 'Väljs när?', class:'reg-label'%><br><hr>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.select :elected_at, options_for_select(["","HT", "VT"],@post.elected_at),class: "form-control"%>
-  	</div>  	 
-  <div class="row">
-  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  	<div class="col-md-12">  	 	 
+	  	<%= f.label 'Beskrivning:', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.text_area :description,size: '80x18',class:'form-control' %>
+	  	</div>
+  	</div>	 
+  	<div class="row">
+		<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>
 <% end %>

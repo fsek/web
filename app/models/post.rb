@@ -4,14 +4,18 @@ class Post < ActiveRecord::Base
   has_many :nominations
   has_many :candidates 
   
+  validates :limit,:recLimit, :presence => {}
+  
   def printLimit
-    if(limit == nil) || (limit == 0)
+    if((recLimit == 0) && (limit == 0)) || (recLimit > limit )
       "*"
-    elsif(limitBool == false)
-      limit
-    else
-      limit.to_s + " (x)"
+    elsif(recLimit == limit) && (recLimit > 0)
+      limit.to_s + " (x)"  
+    elsif(limit > 0) && (recLimit == 0)
+      limit.to_s         
+    elsif(limit > recLimit)
+      recLimit.to_s + "-" + limit.to_s        
     end
-     
-  end  
+  end   
+    
 end

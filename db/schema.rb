@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171421) do
+ActiveRecord::Schema.define(version: 20410822171423) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -249,7 +249,7 @@ ActiveRecord::Schema.define(version: 20410822171421) do
 
   create_table "posts", force: true do |t|
     t.string   "title"
-    t.integer  "limit"
+    t.integer  "limit",         default: 0
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -259,7 +259,7 @@ ActiveRecord::Schema.define(version: 20410822171421) do
     t.string   "elected_at"
     t.text     "election_text"
     t.boolean  "styrelse"
-    t.boolean  "limitBool",     default: false
+    t.integer  "recLimit",      default: 0
   end
 
   create_table "posts_profiles", id: false, force: true do |t|

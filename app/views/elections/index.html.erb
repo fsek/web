@@ -47,21 +47,23 @@
 				  	  end
 				end -%>
 				    <p>Orangefärgade fält innebär att posten sitter i styrelsen.</p>
-					<%for @post in @poster%>
-			            <div id="mer-<%=@post.id%>" class="collapse">
-			                <div class="funny-boxes funny-boxes-left-orange left-text-align">
-			                	<%=link_to("Dölj","#mer-"+@post.id.to_s,class: "btn btn-u pull-right",data: {toggle: "collapse"})%>                	
-			                	<h2><%=@post.title%></h2>			                	
-				                    <%if @post.description%><p><%=simple_format(@post.description)%></p><%end%>
-				                    <ul class="list-unstyled">
-		                               <%if (@post.limit) || (@post.styrelse)%><li><i class="fa fa-briefcase"></i><%if @post.limit%>Gräns: <%=@post.limit%> <%end%><%if @post.styrelse%>Styrelsepost<%end%></li><%end%>                               
-		                               <%if @post.council%><li><i class="fa fa-users"></i>Utskott: <%=link_to(@post.council.title,@post.council)%></li><%end%>
-		                               <%if @post.elected_by%><li><i class="fa fa-cog"></i>Väljs av: <%=@post.elected_by%></li><%end%>	                               
-		                               <%if (current_user) && (current_user.moderator?(:poster))%><li><%=link_to("Redigera",edit_council_post_path(@post.council,@post))%></li> <%end%>		                               
-		                            </ul>
-			                </div>
-			            </div>                                        
-			        <%end%>
+				    <div class="panel" id="views">
+						<%for @post in @poster%>
+				            <div id="mer-<%=@post.id%>" class="collapse">
+				                <div class="funny-boxes funny-boxes-left-orange left-text-align">
+				                	<%=link_to("Dölj","#mer-"+@post.id.to_s,class: "btn btn-u pull-right", data: {toggle: "collapse"})%>                	
+				                	<h2><%=@post.title%></h2>			                	
+					                    <%if @post.description%><p><%=simple_format(@post.description)%></p><%end%>
+					                    <ul class="list-unstyled">
+			                               <%if (@post.limit) || (@post.styrelse)%><li><i class="fa fa-briefcase"></i><%if @post.limit%>Gräns: <%=@post.limit%> <%end%><%if @post.styrelse%>Styrelsepost<%end%></li><%end%>                               
+			                               <%if @post.council%><li><i class="fa fa-users"></i>Utskott: <%=link_to(@post.council.title,@post.council)%></li><%end%>
+			                               <%if @post.elected_by%><li><i class="fa fa-cog"></i>Väljs av: <%=@post.elected_by%></li><%end%>	                               
+			                               <%if (current_user) && (current_user.moderator?(:poster))%><li><%=link_to("Redigera",edit_council_post_path(@post.council,@post))%></li> <%end%>		                               
+			                            </ul>
+				                </div>
+				            </div>                                        
+				        <%end%>
+			        </div>
 			        <p>Ser något konstigt ut eller blir det fel? Hör av dig till <%= render partial: "contacts/kontakt", locals: {name: 'Spindelmän'}%></p>			        
 		        </div>
 		        
@@ -80,5 +82,17 @@
         $('#defaultCountdown').countdown({until: austDay});
         $('#year').text(austDay.getFullYear());
     });
+    function goToByScroll(id){          
+    $('html,body').animate({
+        scrollTop: $(id).offset().top},
+        'slow');
+}
+$(function () {
+	$('.collapse').on('shown.bs.collapse', function (e) {
+  		
+    	goToByScroll("#views"); 
+})
+});
+
 </script>
 <%end%>
