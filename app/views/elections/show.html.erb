@@ -5,20 +5,7 @@
 		<div class="col-md-10 col-md-offset-1 col-sm-1+ col-sm-offset-1 reg-page">			
 			<div class="row">
 				<h2>Kandidaturer</h2>
-				<%= grid(@candidates_grid) do |g|
-					  g.column name: "Post",attribute: "post_id",filter: false do |candidate|
-					  	candidate.post.title
-					  end				  		    	 
-					  g.column name: "Namn",attribute: "profile_id",filter: false do |candidate|
-				  	  	link_to(candidate.profile.name,candidate.profile)
-				  	  end	
-					  g.column name: "Stil-ID",attribute: "stil_id",filter: false				
-					  g.column name: "E-post", attribute: "email",filter: false
-					  g.column name: "Telefon", attribute: "phone",filter: false
-					  g.column name: "Skapad:",attribute: "created_at",filter:false do |nomination|
-					    nomination.created_at
-					  end
-				end -%>
+				<%= render "candidates_grid"%>
 			</div>
 		</div>
 		<div class="col-md-10 col-md-offset-1 col-sm-1+ col-sm-offset-1 reg-page">

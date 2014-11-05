@@ -101,7 +101,7 @@ class PostsController < ApplicationController
     end
     def authenticate
       flash[:error] = t('the_role.access_denied')
-      redirect_to(:back) unless current_user.moderator?(:poster)    
+      redirect_to(:back) unless (current_user) && (current_user.moderator?(:poster))    
       rescue ActionController::RedirectBackError
         redirect_to root_path
     end

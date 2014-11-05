@@ -31,8 +31,12 @@ class ElectionsController < ApplicationController
   
   def show
     @poster = Post.all
-    @nominations_grid = initialize_grid(@valet.nominations)
-    @candidates_grid = initialize_grid(@valet.candidates)    
+    @nominations_grid = initialize_grid(@valet.nominations,                        
+                        :name => 'g2',
+                        :enable_export_to_csv => true,
+                        :csv_file_name => 'nomineringar')
+    @candidates_grid = initialize_grid(@valet.candidates,name: "candidates",enable_export_to_csv: true, csv_file_name: 'candidates')
+    export_grid_if_requested('g2' => 'nominations_grid')    
   end
   def nominate
     @valet = Election.current    
@@ -183,7 +187,7 @@ class ElectionsController < ApplicationController
 private
   def authenticate
     flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless current_user.moderator?(:val)    
+    redirect_to(:back) unless (current_user) && (current_user.moderator?(:val))    
   rescue ActionController::RedirectBackError
     redirect_to root_path
   end
