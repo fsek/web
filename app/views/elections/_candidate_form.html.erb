@@ -1,0 +1,43 @@
+<%= form_for(candidate_elections_path(@candidate)) do |f| %>
+	<% if @candidate.errors.any? %>
+	    <div id="error_explanation" class="coming-soon">
+	      <h4>Något hindrar kandidaturen från att sparas:</h4>
+	      <ul class="" style="list-style:none;">
+	      <% @candidate.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	<% end %>	  		
+	<div class="col-md-6 col-md-offset-4 col-sm-6 col-sm-offset-3 center">
+ 		Uppgifter ifylls i <%= link_to('profilen',edit_profile_path(@profile))%>.<br>
+	    <%= f.label 'Namn', :class => 'reg-label'%>
+	  	<div class="margin-bottom-20">  		
+	  		<%=@profile.name%>
+	  	</div>	  	
+	  	<%= f.label 'E-post', :class => 'reg-label'%>
+	  	<div class="margin-bottom-20">  		
+	  		<%= f.text_field :email,value: @profile.email,class: 'form-control',readonly: true %>
+	  	</div>			  				  	
+	  	<%= f.label 'Stil-id', :class => 'reg-label'%>
+	  	<div class="margin-bottom-20">  		
+	  		<%= f.text_field :stil_id,:class => 'form-control',value: @profile.stil_id,readonly: true%>
+	  	</div>
+	  	<%= f.label 'Telefonnummer', :class => 'reg-label'%>
+	  	<div class="margin-bottom-20">  		
+	  		<%= f.text_field :phone,:class => 'form-control',value:@profile.phone,readonly: true %>
+	  	</div>
+	  	
+	  		<%= f.label 'Post', :class => 'reg-label'%>		
+	  	<div class="margin-bottom-20">
+  		<%= f.select :post_id, 
+  				     options_from_collection_for_select(@poster,:id,:title,params[:post].to_i),
+  				     include_blank: true, 
+  				     :class => "form-control listBox"%>	
+	  	</div>			  	
+	  	<div class="row">
+	  		<% f.hidden_field :election_id, value: @valet.id%>	  		
+	  			<%= f.submit "Kandidera",:class => 'btn btn-election' %>	 				
+	  	</div>
+	</div>
+<%end%>  	

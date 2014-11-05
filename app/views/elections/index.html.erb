@@ -1,86 +1,28 @@
 <% provide(:title, 'Val') %>
 <div class="container val-page">
-		<div class="col-md-12 coming-soon">
+	<% if @valet%>
+		<% if @before %>
+			<%= render "index_before"%>
+		<%elsif @during%>
+			<%= render "index_during"%>
+		<%elsif @after%>
+			<%= render "index_after"%>
+		<%end%>
 		
-		<%if @valet%>	
-            <h1><%=@valet.title%></h1>
-            <p><%=simple_format(@valet.description)%></p><br>
-            <p><%if @before%><%=simple_format(@valet.text_before)%><%elsif @during%><%=simple_format(@valet.text_during)%><%else%><%=simple_format(@valet.text_after)%><%end%></p>
-        <%else%>
-        	<h1>Just nu finns det ingen information om valet.</h1>
-        	<%= link_to image_tag("layout/f.svg", class: "val-logo"),:root%>
-        <%end%>
-        <%if @during%> 
-        	<div class="col-md-3 col-md-offset-3"><%= link_to("Nominering",nominate_elections_path,class: "btn btn-election")%></div>
-			<div class="col-md-3"><%= link_to("Kandidatur",candidate_elections_path,class: "btn btn-election")%></div>
-		<%end%>                
-        </div>        	
-        <% if (@before) || (@during) %>
-		    <div class="col-md-12">		
-				<div class="coming-soon-plugin">
-					<h2><%if @before%>Öppnar om:<%elsif @during%>Stänger om:<%end%></h2>
-		        	<div id="defaultCountdown"></div>
-		    	</div>
-		    
-		    	<div class="col-md-8 col-md-offset-2 coming-soon election">
-		            <h2>Poster som går att söka</h2>
-		    	<%= grid(@election_post_grid) do |g|
-		    		g.row_attributes do |post|
-					    if post.styrelse == true
-					      {style: 'background: rgba(252, 155, 0,0.7);'}
-					    end
-					  end			
-					  g.column name: "Titel",attribute: "title",filter: false  do |post|			    
-					    link_to(post.title,"#mer-"+post.id.to_s,class: "",data: {toggle: "collapse"})
-					  end
-					  g.column name: "Rekommenderat antal",attribute: "limit",filter: false do |post|
-					  	post.printLimit
-					  end			
-					  g.column name: "Utskott", attribute: "council_id",filter: false do |post|
-					    post.council.title
-					  end
-					  g.column name: "Väljs av", attribute: "elected_by",filter: false
-				  	  if (@during)
-						  g.column name: "Kandidater", filter: false do |post|
-						  	 post.candidates.where(election_id: @valet.id ).count
-						  end
-				  	  end
-				end -%>
-				    <p>Orangefärgade fält innebär att posten sitter i styrelsen.</p>
-				    <div class="panel" id="views">
-						<%for @post in @poster%>
-				            <div id="mer-<%=@post.id%>" class="collapse">
-				                <div class="funny-boxes funny-boxes-left-orange left-text-align">
-				                	<%=link_to("Dölj","#mer-"+@post.id.to_s,class: "btn btn-u pull-right", data: {toggle: "collapse"})%>                	
-				                	<h2><%=@post.title%></h2>			                	
-					                    <%if @post.description%><p><%=simple_format(@post.description)%></p><%end%>
-					                    <ul class="list-unstyled">
-			                               <%if (@post.limit) || (@post.styrelse)%><li><i class="fa fa-briefcase"></i><%if @post.limit%>Gräns: <%=@post.limit%> <%end%><%if @post.styrelse%>Styrelsepost<%end%></li><%end%>                               
-			                               <%if @post.council%><li><i class="fa fa-users"></i>Utskott: <%=link_to(@post.council.title,@post.council)%></li><%end%>
-			                               <%if @post.elected_by%><li><i class="fa fa-cog"></i>Väljs av: <%=@post.elected_by%></li><%end%>	                               
-			                               <%if (current_user) && (current_user.moderator?(:poster))%><li><%=link_to("Redigera",edit_council_post_path(@post.council,@post))%></li> <%end%>		                               
-			                            </ul>
-				                </div>
-				            </div>                                        
-				        <%end%>
-			        </div>
-			        <p>Ser något konstigt ut eller blir det fel? Hör av dig till <%= render partial: "contacts/kontakt", locals: {name: 'Spindelmän'}%></p>			        
-		        </div>
-		        
-		        <%end%>		           
-		    </div>
-		</div>
-		
-	<%if (@valet) && (@edit) %>
-		<div class="col-md-2 col-md-offset-5"><%= link_to("Redigera valet!",election_path(@valet),class: "btn btn-election ")%></div>
+		<%if (@valet) && (@edit) %>
+			<div class="col-md-2 col-md-offset-5"><%= link_to("Redigera valet!",election_path(@valet),class: "btn btn-election ")%></div>
+		<%end%>
+	<%else%>
+	<h1>Just nu finns det ingen information om valet.</h1>
+	<%= link_to image_tag("layout/f.svg", class: "val-logo"),:root%>
 	<%end%>
+</div>	
 <%if @datum%>
 <script type="text/javascript" >
     $(function () {    	
         var austDay = new Date();
         austDay = new Date(<%=@datum.year%> ,<%=@datum.month%>-1,<%=@datum.day%>);                
-        $('#defaultCountdown').countdown({until: austDay});
-        $('#year').text(austDay.getFullYear());
+        $('#defaultCountdown').countdown({until: austDay});        
     });
     function goToByScroll(id){          
     $('html,body').animate({

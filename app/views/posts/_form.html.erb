@@ -21,7 +21,7 @@
 	  	</div>
 	  	<%= f.label 'Väljs av?, väljs när?', class:'reg-label'%>
 	  	<div class="input-group margin-bottom-20">
-	  		<%= f.select :elected_by, options_for_select(["","Nomineringsgrupp", "Terminsmötet"],@post.elected_by),class: "form-control"%> <%= f.select :elected_at, options_for_select(["","HT", "VT"],@post.elected_at),class: "form-control"%>
+	  		<%= f.select :elected_by, options_for_select(["","Terminsmötet","Styrelsen","Studierådet"],@post.elected_by),class: "form-control"%> <%= f.select :elected_at, options_for_select(["","HT", "VT"],@post.elected_at),class: "form-control"%>
 	  	</div>
 	</div>
 	<div class="col-md-6">

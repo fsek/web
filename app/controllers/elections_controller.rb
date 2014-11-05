@@ -18,7 +18,12 @@ class ElectionsController < ApplicationController
     if(@valet.instance_of?(Election))   
       @datum = (@valet.start > DateTime.now) ? @valet.start : @valet.end
       @poster = @valet.posts
-      @election_post_grid = initialize_grid(@poster,order: 'posts.council_id',order_direction: 'asc')
+      if (@after)
+        @grid_election = initialize_grid(@poster.where(elected_by: "Terminsmötet"),order: 'posts.council_id',order_direction: 'asc', name: "election")
+        @grid_extern = initialize_grid(@poster.where.not(elected_by: "Terminsmötet"), name: "extern")
+      else  
+        @grid_election = initialize_grid(@poster.where.not(elected_by: "Studierådet"),order: 'posts.council_id',order_direction: 'asc', name: "election" )      
+      end
     else
       @valet = nil
     end        
@@ -30,8 +35,12 @@ class ElectionsController < ApplicationController
     @candidates_grid = initialize_grid(@valet.candidates)    
   end
   def nominate
-    @valet = Election.current
-    @poster = @valet.posts.order(:title)
+    @valet = Election.current    
+    if @after
+      @poster = @valet.posts.where.not(elected_by: "Terminsmötet").order(:title)
+    else
+      @poster = @valet.posts.where.not(elected_by: "Studierådet").order(:title)
+    end
     @nomination = @valet.nominations.new()    
   end
   def create_nomination
@@ -54,9 +63,15 @@ class ElectionsController < ApplicationController
   def candidate
     @profile = current_user.profile
     @valet = Election.current
-    @poster = []       
-    for @post in @valet.posts.order(:title)
-      @poster <<@post
+    @poster = []
+    if @after
+      for @post in @valet.posts.where.not(elected_by: "Terminsmötet").order(:title)
+        @poster <<@post
+      end
+    else
+      for @post in @valet.posts.where.not(elected_by: "Studierådet").order(:title)
+        @poster <<@post
+      end
     end
     for @cand in @profile.candidates
       @poster.delete(@cand.post)
@@ -192,11 +207,17 @@ private
       if (@valet.start > DateTime.now)
         @datum = @valet.start
         @before = true
+        @during = false
+        @after = false
       elsif(@valet.end > DateTime.now)
         @datum = @valet.start      
-        @during = true      
+        @before = false
+        @during = true
+        @after = false      
       else
         @datum = nil
+        @before = false
+        @during = false
         @after = true      
       end
     else

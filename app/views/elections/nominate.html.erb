@@ -1,5 +1,5 @@
 <% provide(:title, 'Val') %>
-<%if @during%>
+<%if (@during) || (@after)%>
 	<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
 		<div class="coming-soon">
 		<h2><%= label_tag 'Nominering!',nil, :class => 'reg-header'%></h2>
@@ -9,6 +9,7 @@
 		<%else%>
 		<h4>Nominera någon som du tror skulle passa bra på en post.</h4>
 		<h4>Ett mejl skickas till den nominerade personen.</h4>
+		<%if @after%><p>Det går endast att nominera till de poster som inte väljs på Terminsmötet.</p><%end%>
 		</div>
 	<div class="row">
 		<%= form_for(nominate_elections_path(@nomination)) do |f| %>
@@ -35,7 +36,7 @@
 			  		<%= f.label 'Post', :class => 'reg-label'%>		
 			  	<div class="margin-bottom-20">
 		  		<%= f.select :post_id, 
-		  				     options_from_collection_for_select(@poster,:id,:title),
+		  				     options_from_collection_for_select(@poster,:id,:title,params[:post].to_i),
 		  				     include_blank: true, 
 		  				     :class => "form-control listBox"%>	
 			  	</div>
@@ -56,13 +57,8 @@
 	<%end%>
 	</div>
 <%elsif @before%>
-		<div class="coming-soon">
-		<h2><%= label_tag 'Nomineringar öppnar: ' + @valet.start.to_s,nil, :class => 'reg-header'%></h2>		
+	<div class="coming-soon">
+		<h2><%= label_tag 'Nomineringar öppnar: ' + @valet.start.to_date.to_s,nil, :class => 'reg-header'%></h2>		
 		<%= link_to image_tag("layout/f.svg", class: "val-logo"),elections_path%>
-		</div>
-<%else%>
-<div class="coming-soon">
-		<h2><%= label_tag 'Stängt för Nomineringar',nil, :class => 'reg-header'%></h2>		
-		<%= link_to image_tag("layout/f.svg", class: "val-logo"),elections_path%>
-		</div>
+	</div>
 <%end%>

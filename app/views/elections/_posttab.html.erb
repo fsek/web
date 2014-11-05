@@ -1,0 +1,24 @@
+<%= grid(@post_grid) do |g|
+	g.row_attributes do |post|
+	    if (post.styrelse == true) && (post.elected_by != "Studierådet")
+	      {style: 'background: rgba(252, 155, 0,0.7);'}					   
+	    elsif (post.elected_by == "Studierådet") && (post.styrelse == false)
+	      {style: 'background: rgba(255, 204, 0,0.6);'}
+	    end
+	  end			
+	  g.column name: "Titel",attribute: "title",filter: false  do |post|			    
+	    link_to(post.title,"#mer-"+post.id.to_s,class: "",data: {toggle: "collapse"})
+	  end
+	  g.column name: "Rekommenderat antal",attribute: "limit",filter: false do |post|
+	  	post.printLimit
+	  end			
+	  g.column name: "Utskott", attribute: "council_id",filter: false do |post|
+	    post.council.title
+	  end
+	  g.column name: "Väljs av", attribute: "elected_by",filter: false
+  	  if (@during) || (@after)
+		  g.column name: "Kandidater", filter: false do |post|
+		  	 post.candidates.where(election_id: @valet.id ).count
+		  end
+  	  end
+end -%>

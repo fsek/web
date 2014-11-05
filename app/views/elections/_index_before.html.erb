@@ -1,0 +1,21 @@
+<div class="col-md-12 coming-soon">
+	<div class="row">
+	    <h1><%=@valet.title%></h1>
+	    <p><%=simple_format(@valet.description)%></p>
+	    <p><%=simple_format(@valet.text_before)%></p>
+    </div>
+    <%= render "countdown"%>	    
+	<div class="col-md-8 col-md-offset-2 coming-soon election">
+        <h2>Poster som går att söka</h2>
+        <%@post_grid = @grid_election%>
+		<%= render "posttab"%>
+	    <div class="panel" id="views">
+			<%for @post in @poster%>
+				<%@displayPost = @post%>
+				<%=render "post_description"%>                                                    
+	        <%end%>
+        </div>
+        <p>Ser något konstigt ut eller blir det fel? Hör av dig till <%= render partial: "contacts/kontakt", locals: {name: 'Spindelmän'}%></p>			        
+    </div>         
+</div>
+

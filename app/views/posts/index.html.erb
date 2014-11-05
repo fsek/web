@@ -20,6 +20,9 @@
 			  g.column name: "Utskott", attribute: "council_id",filter: false do |post|
 			    link_to(post.council.title,council_path(post.council))
 			  end
+			  g.column name: "Styrelsepost?", attribute: "styrelse" , filter: false do |post|
+			  	(post.styrelse) ? "Ja" : "Nej"
+			  end
 		  
 			  g.column name: "Väljs av:", attribute: "elected_by",filter: false
 			    
