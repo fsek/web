@@ -74,7 +74,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /news/1.json
   def update    
     respond_to do |format|
-      if @post.update_attributes(post_parms)               
+      if @post.update_attributes(post_params)               
         format.html { redirect_to edit_council_post_path(@council,@post), notice: 'Posten uppdaterades!' }
         format.json { head :no_content }
       else
@@ -96,7 +96,7 @@ class PostsController < ApplicationController
   end
 
   private
-    def post_parms
+    def post_params
       params.require(:post).permit(:title, :limit,:recLimit,:description,:council_id,:elected_by,:elected_at,:styrelse)
     end
     def authenticate
