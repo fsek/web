@@ -4,6 +4,9 @@
   end
   g.column name: "Styrelse", filter: false do |candidate|
   	(candidate.post.styrelse) ? "Ja" : "Nej"
+  end
+  g.column name: "Väljs av", filter: false do |candidate|
+  	candidate.post.elected_by
   end				  		    	 
   g.column name: "Namn",attribute: "profile_id",filter: false do |candidate|
   	link_to(candidate.profile.name,candidate.profile)
