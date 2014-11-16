@@ -32,7 +32,6 @@ class Event < ActiveRecord::Base
         :url => Rails.application.routes.url_helpers.event_path(id),
         #:color => "red"
       }
-
     end
 
     def self.format_date(date_time)

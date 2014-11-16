@@ -14,7 +14,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <%= favicon_link_tag '/favicon/favicon.ico' %>  
+  <%= favicon_link_tag '/favicon.ico?1' %>  
   <!--
   <link rel=“shortcut icon” href=“/assets/images/favicon/favicon.ico”>
   <link rel=“apple-touch-icon” sizes=“57x57” href=“/assets/images/favicon/apple-touch-icon-57x57.png”>
@@ -94,9 +94,9 @@ $(document).ready(bottom)
 <!--=== End Header ===-->
 
 <!--=== Breadcrumbs ===-->
-<div class="breadcrumbs" style="border-bottom: 1px solid #333;">
+<div class="breadcrumbs" style="border-bottom: 0px solid #333;">
   <div class="container">
-	<%= render "layouts/snabblankar" %>
+	
   </div>
 </div>
 <!--=== End Breadcrumbs ===-->

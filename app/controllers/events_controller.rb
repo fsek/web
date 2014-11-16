@@ -98,6 +98,13 @@ class EventsController < ApplicationController
     end
   end
   private
+      def authenticate_editor_events!
+        flash[:error] = t('the_role.access_denied')
+        redirect_to(:kalender) unless current_user && current_user.moderator?(:event)
+        
+        rescue ActionController::RedirectBackError
+          redirect_to root_path
+      end
       def set_event
         @event = Event.find(params[:id])
       end
@@ -105,6 +112,6 @@ class EventsController < ApplicationController
         params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image)
       end
       def utskott
-        @utskott = List.where(:category => 'utskott').sort_by{|l| l.name}
+        @utskott = Council.all
       end
 end

@@ -54,7 +54,9 @@ GEM
       railties (>= 3.1.0, < 5.0)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
-    fullcalendar-rails (1.6.4.0)
+    fullcalendar-rails (2.1.1.0)
+      jquery-rails (>= 3.1.1, < 5.0.0)
+      momentjs-rails (~> 2.8, >= 2.8.3)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -88,6 +90,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (5.3.5)
+    momentjs-rails (2.8.3)
+      railties (>= 3.1)
     multi_json (1.10.1)
     mysql2 (0.3.16)
     orm_adapter (0.5.0)
@@ -186,12 +190,13 @@ DEPENDENCIES
   devise
   fancybox2-rails (~> 0.2.8)
   font-awesome-rails
-  fullcalendar-rails
+  fullcalendar-rails (~> 2.1.1)
   icalendar
   jbuilder (~> 1.2)
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  momentjs-rails
   mysql2
   paperclip (~> 4.1)
   phrasing

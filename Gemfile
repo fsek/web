@@ -43,13 +43,14 @@ gem 'the_role', '~> 2.5.2'
 gem 'the_role_bootstrap3_ui'
 gem 'phrasing'
 gem "paperclip", "~> 4.1"
-gem 'fullcalendar-rails'
+gem 'fullcalendar-rails', '~>2.1.1'
 gem 'icalendar'
 gem 'jquery-turbolinks'
 gem 'mysql2'
 gem 'fancybox2-rails', '~> 0.2.8'
 gem 'jquery-ui-rails'
 gem "wice_grid", '3.4.2'
+gem 'momentjs-rails'
 
 
 if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9

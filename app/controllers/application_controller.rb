@@ -13,15 +13,8 @@ class ApplicationController < ActionController::Base
     
     rescue ActionController::RedirectBackError
       redirect_to root_path
-  end
+  end 
   
-  def authenticate_editor_events!
-    flash[:error] = t('the_role.access_denied')
-    redirect_to(:kalender) unless current_user.admin? || current_user.moderator?(:event)
-    
-    rescue ActionController::RedirectBackError
-      redirect_to root_path
-  end
   protected
     def configure_permitted_devise_parameters
       devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(:username, :password, :remember_me)}

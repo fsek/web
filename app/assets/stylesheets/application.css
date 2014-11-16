@@ -27,17 +27,14 @@
  * require_tree .
  *= require start_page
  *= require phrasing
- *= require fullcalendar
- *= require fullcalendar.print 
+ *= require fullcalendar 
  *= require colorbox
  *= require countdown
  *= require jquery.countdown 
  *= require elections 
  *= require fancybox 
  *= require faq
- *= require gallery 
-
- 
+ *= require gallery  
  */
 
  /* Override for Bootstrap 3 font location */

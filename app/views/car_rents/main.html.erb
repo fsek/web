@@ -1,0 +1,18 @@
+<%= stylesheet_link_tag "application-print", :media => "print" %>
+Välkommen till bilsidan!
+<div class="container row">
+	<div id='bilkalender'></div>
+	<hr>
+	
+	<% if user_signed_in? %>	
+	<div class="headline headline-md">
+		<h2>Verktyg</h2>
+	</div>
+	<ul class="list">
+		<% if (current_user) && current_user.moderator?(:bilen) %>
+			Bilmenyn <br>
+			Bilkalenderprenumeration		
+		<% end %>		
+	</ul>	
+	<% end %>
+</div>

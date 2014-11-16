@@ -9,7 +9,7 @@ class ContactMailer < ActionMailer::Base
      @msg = msg
      @kontakt = kontakt
      if(@name) && (@email) && (@msg) && (@kontakt)    
-      mail from: @name + ' <'+@email+'>', to: @kontakt.name
+      mail from: @name + ' <'+@email+'>', to: @kontakt.email
     end     
   end
 end
