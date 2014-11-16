@@ -1,6 +1,6 @@
 class CouncilsController < ApplicationController
   
-  before_filter :authenticate_user!, only: [:new,:edit,:create,:update,:destroy]
+  before_filter :authenticate, only: [:new,:edit,:create,:update,:destroy]
   before_action :set_council, only: [:show, :edit, :update, :destroy]
   
 
@@ -83,6 +83,12 @@ class CouncilsController < ApplicationController
     def set_council
       @council = Council.find_by_url(params[:id])
       @page = @council.page
+    end
+    def authenticate
+      flash[:error] = t('the_role.access_denied')
+      redirect_to(:back) unless (current_user) && (current_user.moderator?(:utskott))    
+      rescue ActionController::RedirectBackError
+      redirect_to root_path
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

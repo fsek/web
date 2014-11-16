@@ -1,0 +1,18 @@
+<div class="container">	
+	<div class="col-md-8 col-md-offset-2">
+		<div class="headline headline-md"><h1>Epostkonton</h1></div>
+		<%= grid(@accounts_grid) do |g|				  		    	 
+			  g.column name: "Titel",attribute: "title",filter: false
+			  g.column name: "Profil",filter: false do |account|
+			    link_to(account.profile.name,account.profile)
+			  end			
+			  g.column name: "Epost", attribute: "email",filter: false
+			  g.column name: "Aktiv", attribute: "active",filter: false do |account|
+			    (account.active) ? "Ja" : "Nej"
+			  end			  			  
+			  g.column do |account|
+			    link_to('Redigera', edit_email_account_path(account))				
+			  end
+		end -%>
+	</div>		
+</div>

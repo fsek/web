@@ -1,0 +1,32 @@
+<%= form_for(@account, :html => {  :autocomplete => 'off' }) do |f| %>
+	<% if @account.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@account.errors.count, "error") %> gör att utskottet inte kan sparas:</h2>	
+	      <ul>
+	      <% @account.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+  	<% end %>
+  	  	<%= f.label 'Titel', :class => "reg-label"%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		
+  	</div>
+  	<%= f.label 'Profil', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.text_field :profile_id, :class => 'form-control',:placeholder => 'Profil' %>
+  	</div>		  
+  	<%= f.label 'E-post', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	  		 		  	
+  		<%= f.text_field :email, :class => 'form-control',:placeholder => 'E-post' %>
+  	</div>
+  	<%= f.label 'Aktiv?', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">  		
+  		<%= f.check_box :active,checked: @account.active%>
+  	</div>  	
+  	<div class="row">
+  			<%= f.submit "Spara",:class => 'btn-u pull-right btn-u-small' %> 			  			  			
+			  			
+  	</div>
+<% end %>
