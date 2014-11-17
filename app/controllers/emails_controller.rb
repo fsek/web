@@ -23,7 +23,7 @@ class EmailsController < ApplicationController
     @email = @account.emails.new(email_params)    
     respond_to do |format|
       if (@email.save) && (EmailMailer.send_email(@account,@email).deliver)
-        format.html { redirect_to email_path(@email), notice: 'Mejlet skapades, success.' }
+        format.html { redirect_to emails_path(), notice: 'Mejlet skapades, success.' }
         format.json { render action: 'show', status: :created, location: @email }
       else
         format.html { render action: 'new' }

@@ -46,7 +46,7 @@ Fsek::Application.routes.draw do
       get 'bokningar', controller: :car_rents, action: :bokningar
       get '', controller: :car_rents, action: :main, as: :bil
     end
-    resources :emails, path: :mejl, except: :edit do
+    resources :emails, path: :mejl, except: [:edit,:show] do
       
     end
     resources :email_accounts, path: :mejlkonto  
