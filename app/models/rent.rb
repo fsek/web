@@ -1,13 +1,13 @@
 class Rent < ActiveRecord::Base
 
   has_one :profile
-  validate :rent_not_overlap
+  #validate :rent_not_overlap
   private
-    def rent_not_overlap
-      unless Rent.where(from: ).empty?
-        errors.add(:from, 'Invalid period.')
-      end
-    end
+    #def rent_not_overlap
+    #  unless Rent.where(from: ).empty?
+    #    errors.add(:from, 'Invalid period.')
+    #  end
+    #end
   
   def ical(url)
       e=Icalendar::Event.new      
