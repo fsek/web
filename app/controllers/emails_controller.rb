@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class EmailsController < ApplicationController
   
   before_filter :authenticate_user, only: [:index,:new,:create,:show]  
