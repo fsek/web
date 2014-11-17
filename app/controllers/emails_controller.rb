@@ -1,26 +1,32 @@
 class EmailsController < ApplicationController
   
-  before_filter :authenticate_user, only: [:index]
-  before_filter :authenticate_admin, only: [:new,:edit,:create,:update,:destroy]
+  before_filter :authenticate_user, only: [:index,:new,:create,:show]  
   before_action :set_account
 
-  def index
-    @message = Email.new()
+  def index    
     @old = @account.emails
   end
-  def new
-    @account = EmailAccount.new()
+  def show
+    @email = Email.find_by_id(params[:id])
+    if not(@email.email_account.profile == current_user.profile)
+      flash[:error] = t('the_role.access_denied')
+      redirect_to(:back)
+    end  
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
   end
+  def new
+    @email = @account.emails.new()
+  end  
   def create
-    @account = EmailAccount.new(account_params)
-    @account.save
+    @email = @account.emails.new(email_params)    
     respond_to do |format|
-      if @account.save
-        format.html { redirect_to email(@account), notice: 'Utskott skapades, success.' }
-        format.json { render action: 'show', status: :created, location: @account }
+      if (@email.save) && (EmailMailer.send_email(@account,@email).deliver)
+        format.html { redirect_to email(@email), notice: 'Mejlet skapades, success.' }
+        format.json { render action: 'show', status: :created, location: @email }
       else
         format.html { render action: 'new' }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
+        format.json { render json: @email.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,6 +43,6 @@ class EmailsController < ApplicationController
     end  
   end
   def email_params
-    params.require(:email).permit(:receiver, :subject, :message)
+    params.require(:email).permit(:receiver, :subject, :message,:copy)
   end
 end

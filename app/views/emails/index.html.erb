@@ -1,0 +1,45 @@
+<div class="col-md-12">
+	<div class="row">
+		<div class="col-md-8">
+			<div class="headline headline-md"><h1>Skickade e-post</h1></div>
+			<div class="panel-group acc-v1 margin-bottom-40" id="answered">                	
+                	<%@old.each do |f|%>
+	                	<div class="panel panel-default">
+	                        <div class="panel-heading">
+	                            <h4 class="panel-title">
+	                            	<div id="faq123">
+	                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#collapse<%=f.id%>" >
+	                                   	"<%=f.subject%>" skickat till: <%=f.receiver%> - <%=f.created_at.to_date%></a>
+	                                </div>
+	                            </h4>
+	                        </div>
+	                        <div id="collapse<%=f.id%>" class="panel-collapse collapse">
+	                            <div class="panel-body">
+									<%=simple_format(f.message)%>									
+	                            </div>
+	                        </div>
+	                    </div>
+					<%end%>
+                </div>
+		</div>
+		<div class="col-md-4">
+			<div class="row">
+				<div class="headline headline-md"><h1>Operationer</h1></div>
+				<%=link_to("Skicka mejl", new_email_path(),class: "btn btn-u")%>
+				<br><hr>
+			</div>
+			<div class="row">
+				<div class="headline headline-md"><h1>Inställningar</h1></div>
+				<p>Vill ni ändra något här, hör av er till Spindelmännen.</p>
+				<%if @account%>
+				<p>Profil: <br><%=link_to(@account.profile.name,@account.profile)%></p>
+				<p>Namn (som syns när du skickar mejl): <br><%=@account.title%></p>
+				<p>E-post (som syns när du skickar mejl): <br><%=@account.email%></p>
+				<p>Skapad: <br><%=@account.created_at.to_date%></p>
+				<p>Ändrad: <br><%=@account.updated_at.to_date%></p>
+				<%end%>
+			</div>
+						 
+		</div>
+	</div>
+</div>

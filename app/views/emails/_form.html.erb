@@ -1,32 +1,33 @@
-<%= form_for(@account, :html => {  :autocomplete => 'off' }) do |f| %>
-	<% if @account.errors.any? %>
+<%= form_for(@email, :html => {  :autocomplete => 'off' }) do |f| %>
+	<% if @email.errors.any? %>
 	    <div id="error_explanation">
-	      <h2><%= pluralize(@account.errors.count, "error") %> gör att utskottet inte kan sparas:</h2>	
+	      <h2><%= pluralize(@email.errors.count, "error") %> gör att meddelandet inte kan skickas:</h2>	
 	      <ul>
-	      <% @account.errors.full_messages.each do |msg| %>
+	      <% @email.errors.full_messages.each do |msg| %>
 	        <li><%= msg %></li>
 	      <% end %>
 	      </ul>
 	    </div>
   	<% end %>
-  	  	<%= f.label 'Titel', :class => "reg-label"%>		  
+  	  	<%= f.label 'Till', :class => "reg-label"%>		  
   	<div class="input-group margin-bottom-20">					
-		<%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		
+		<%= f.text_field :receiver, :class => 'form-control',:placeholder => 'Till'%>		
   	</div>
-  	<%= f.label 'Profil', :class => 'reg-label'%>
+  	<%= f.label 'Ämne', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.text_field :profile_id, :class => 'form-control',:placeholder => 'Profil' %>
+  		<%= f.text_field :subject, :class => 'form-control',:placeholder => 'Ämne' %>
   	</div>		  
-  	<%= f.label 'E-post', :class => 'reg-label'%>
+  	<%= f.label 'Meddelande', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.text_field :email, :class => 'form-control',:placeholder => 'E-post' %>
+  		<%= f.text_area :message, :class => 'form-control',:placeholder => 'Meddelande', size: "60x20" %>
   	</div>
-  	<%= f.label 'Aktiv?', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">  		
-  		<%= f.check_box :active, :class => 'form-control'%>
-  	</div>  	
+  	<%= f.label 'Kopia', :class => 'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		Skicka en kopia till din egen adress.  		
+  		<%= f.check_box :copy,checked: @email.copy%>
+  	</div>   	
   	<div class="row">
-  			<%= f.submit "Spara",:class => 'btn-u pull-right btn-u-small' %> 			  			  			
+  			<%= f.submit "Skicka",:class => 'btn-u pull-right btn-u-small' %> 			  			  			
 			  			
   	</div>
 <% end %>

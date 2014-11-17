@@ -1,7 +1,7 @@
 class EmailAccountsController < ApplicationController
   
   before_filter :authenticate
-  before_action :set_account, only: [:show, :edit, :update, :destroy]
+  before_action :set_account, except: [:index]
 
   def index
     @accounts_grid = initialize_grid(EmailAccount.all)
@@ -43,10 +43,8 @@ class EmailAccountsController < ApplicationController
       rescue ActionController::RedirectBackError
       redirect_to root_path
   end
-  def set_account
-    if(current_user) && (current_user.profile.email_account)
-      @account = current_user.profile.email_account
-    end  
+  def set_account    
+      @account = EmailAccount.find_by_id(params[:id])    
   end
   def account_params
     params.require(:email_account).permit(:title, :email, :active,:profile_id)

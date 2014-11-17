@@ -5,7 +5,7 @@ class CreateEmails < ActiveRecord::Migration
       t.string :receiver
       t.string :subject
       t.text :message
-
+      t.boolean :copy
       t.timestamps
     end
   end

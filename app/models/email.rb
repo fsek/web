@@ -1,3 +1,5 @@
 class Email < ActiveRecord::Base
-  has_one :email_account
+
+  belongs_to :email_account  
+  validates :email_account_id,:receiver,:subject, :message,:presence => {}
 end

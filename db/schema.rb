@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.string   "receiver"
     t.string   "subject"
     t.text     "message"
+    t.boolean  "copy"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
