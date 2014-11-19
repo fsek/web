@@ -1,57 +1,38 @@
-<% provide(:title, 'Bilbokning') %>
-	<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
-		<div class="coming-soon">
-		
-		</div>
-	<div class="row">
-		<%if (@rent) && (@rent.disclaimer == nil)%>
-			<%= form_for(car_rents_path(@rent)) do |f| %>
-				<%= f.check_box :disclaimer %>
-				<%= f.submit "Acceptera", class: "btn btn-u form-control", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>
-			<%end%>
-		<%end%>		
-		<% if (@rent) && (@rent.disclaimer) %>	  
-		  	<%= form_for(car_rents_path(@rent)) do |f| %>
-		  		<% if @nomination.errors.any? %>
-				    <div id="error_explanation" class="coming-soon">
-				      <h4>Något hindrar nomineringen från att sparas:</h4>
-				      <ul class="" style="list-style:none;">
-				      <% @nomination.errors.full_messages.each do |msg| %>
-				        <li><%= msg %></li>
-				      <% end %>
-				      </ul>
-				    </div>
-				  <% end %>	
-		  	 	<div class="col-md-6 col-md-offset-4 col-sm-6 col-sm-offset-3 center">
-				    <%= f.label 'Namn', :class => 'reg-label'%>
-				  	<div class="margin-bottom-20">  		
-				  		<%= f.text_field :name,:class => 'form-control' %>
-				  	</div>	  	
-				  	<%= f.label 'E-post', :class => 'reg-label'%>
-				  	<div class="margin-bottom-20">  		
-				  		<%= f.text_field :email,:class => 'form-control' %>
-				  	</div>			  	
-				  		<%= f.label 'Post', :class => 'reg-label'%>		
-				  	<div class="margin-bottom-20">
-			  		<%= f.select :post_id, 
-			  				     options_from_collection_for_select(@poster,:id,:title,params[:post].to_i),
-			  				     include_blank: true, 
-			  				     :class => "form-control listBox"%>	
-				  	</div>
-				  	
-				  	<%= f.label 'Motivering', :class => 'reg-label'%><br>
-				  	Frivillig - den nominerade kan se den i ett mejl.
-				  	<div class=" margin-bottom-20">  		
-				  		<%= f.text_area :motivation,:class => 'form-control' %>
-				  	</div>
-					
-				  	<div class="row">
-				  		<% f.hidden_field :election_id, value: @valet.id%>	  		
-				  			<%= f.submit "Spara",:class => 'btn-u' %>	 				
-				  	</div>
-		  		</div>  	
-		<% end %>
-	<%end%>
-	</div>
-	
-	</div>
+<div class="col-md-12">
+        <div class="row">
+                <div class="col-md-8">
+                        <div class="headline headline-md"><h1>Bokningar</h1></div>
+                        <div class="panel-group acc-v1 margin-bottom-40" id="answered">
+                        <%@bokningar.each do |f|%>
+                                <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <div id="faq123">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#collapse<%=f.id%>" >
+                                                <%=f.from.to_date%> till: <%=f.til%></a>
+                                        </div>
+                                    </h4>
+                                </div>
+                                <div id="collapse<%=f.id%>" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                                                        <%=simple_format(f.purpose)%>
+                                    </div>
+                                </div>
+                            </div>
+                                        <%end%>
+                </div>
+                </div>
+                <div class="col-md-4">
+                        <div class="row">
+                                <div class="headline headline-md"><h1>Operationer</h1></div>
+                                	<%=link_to("Skicka mejl", new_car_rent_path(),class: "btn btn-u")%>
+                                <br><hr>
+                        </div>
+                        <div class="row">
+                                <div class="headline headline-md"><h1>Inställningar</h1></div>
+                                
+                        </div>
+
+                </div>
+        </div>
+</div>

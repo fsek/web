@@ -1,0 +1,20 @@
+<% provide(:title, 'Bilbokning') %>
+	<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">		
+		<div class="row">
+			<%if @rent%>		
+				<%=@rent.d_from%>
+				<%=@rent.d_til%>
+				<%=@rent.name%>
+				<%=@rent.lastname%>
+				<%=@rent.email%>
+				<%=@rent.phone%>
+				<%=@rent.purpose%>
+				<%=@rent.disclaimer%>
+				<%=@rent.confirmed%>
+				<%=@rent.council_id%>
+				<%=@rent.profile_id%>
+				<%=@rent.created_at%>
+				<%=@rent.updated_at%>
+			<%end%>
+		</div>		
+	</div>

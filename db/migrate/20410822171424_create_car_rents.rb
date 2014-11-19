@@ -1,8 +1,8 @@
 class CreateCarRents < ActiveRecord::Migration
   def change
     create_table :rents do |t|
-      t.datetime "from"
-      t.datetime "til"        
+      t.datetime "d_from"
+      t.datetime "d_til"        
       t.string   "name"
       t.string   "lastname"
       t.string "email"
@@ -11,6 +11,7 @@ class CreateCarRents < ActiveRecord::Migration
       t.boolean   "disclaimer"      
       t.boolean  "confirmed"      
       t.integer "council_id" 
+      t.integer "profile_id"
       t.timestamps
     end
   end

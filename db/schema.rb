@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171424) do
+ActiveRecord::Schema.define(version: 20410822171426) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -125,6 +125,25 @@ ActiveRecord::Schema.define(version: 20410822171424) do
   create_table "elections_posts", id: false, force: true do |t|
     t.integer "election_id"
     t.integer "post_id"
+  end
+
+  create_table "email_accounts", force: true do |t|
+    t.integer  "profile_id"
+    t.string   "email"
+    t.string   "title"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "emails", force: true do |t|
+    t.integer  "email_account_id"
+    t.string   "receiver"
+    t.string   "subject"
+    t.text     "message"
+    t.boolean  "copy"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
@@ -285,8 +304,8 @@ ActiveRecord::Schema.define(version: 20410822171424) do
   end
 
   create_table "rents", force: true do |t|
-    t.datetime "from"
-    t.datetime "til"
+    t.datetime "d_from"
+    t.datetime "d_til"
     t.string   "name"
     t.string   "lastname"
     t.string   "email"
@@ -295,6 +314,7 @@ ActiveRecord::Schema.define(version: 20410822171424) do
     t.boolean  "disclaimer"
     t.boolean  "confirmed"
     t.integer  "council_id"
+    t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

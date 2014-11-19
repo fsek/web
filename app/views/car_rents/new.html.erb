@@ -40,11 +40,11 @@
 					  	</div>
 					  	<%= f.label 'Från', :class => 'reg-label'%>		
 					  	<div class="margin-bottom-20">
-				  			<%= f.datetime_select :from,:class => 'form-control' %>
+				  			<%= f.datetime_select :d_from,:class => 'form-control' %>
 					  	</div>
 					  	<%= f.label 'Till', :class => 'reg-label'%>		
 					  	<div class="margin-bottom-20">
-				  			<%= f.datetime_select :til,:class => 'form-control' %>
+				  			<%= f.datetime_select :d_til,:class => 'form-control' %>
 					  	</div>
 					  	<div class="row">					  			  		
 					  			<%= f.submit "Spara", class: "btn btn-u form-control", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>	 				
@@ -55,7 +55,11 @@
 		</div>		
 	</div>
 <script>
-	$("input[type='checkbox']#accepted_disclaimer").on('change', function(){
-  $('.after_disclaimer').toggle();
+$("input[type='checkbox']#accepted_disclaimer").on('change', function(){
+	if($("#accepted_disclaimer").is(":checked")){
+    	$('.after_disclaimer').show();
+	}else{
+    	$('.after_disclaimer').hide();
+	}	
 });
 </script>

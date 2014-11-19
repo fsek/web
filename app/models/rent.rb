@@ -1,11 +1,17 @@
 class Rent < ActiveRecord::Base
 
-  has_one :profile
-  validate :rent_not_overlap
-  private
-    def rent_not_overlap
-      unless Rent.where(from: ).empty?
-        errors.add(:from, 'Invalid period.')
+  belongs_to :profile
+  validate :rent_not_from
+  validate :rent_not_til
+  
+    def rent_not_from
+      unless Rent.where(d_from: self.d_from..self.d_til).empty?
+        errors.add('Datum från',' överlappar med en tidigare bokning.')
+      end
+    end
+    def rent_not_til
+      unless Rent.where(d_til: self.d_from..self.d_til).empty?
+        errors.add('Datum till', ' överlappar med en senare bokning.')
       end
     end
   
@@ -27,8 +33,8 @@ class Rent < ActiveRecord::Base
       {
         :id => self.id,
         :title => self.name,        
-        :start => self.from.rfc822,
-        :end => self.til.rfc822,
+        :start => self.d_from.rfc822,
+        :end => self.d_til.rfc822,
         :url => Rails.application.routes.url_helpers.car_rent_path(id),
         :color => "black",
         :backgroundColor => (self.confirmed) ?"black":"red"
