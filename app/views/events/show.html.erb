@@ -1,6 +1,10 @@
 <div class="container content"> 	
 	<div class="row portfolio-item margin-bottom-50">
+	<%if @event.image_file_name %>
     	<div class="col-md-5 md-margin-bottom-40">
+	<%else%>
+		<div class="col-md-6 col-md-offset-3 md-margin-bottom-40">
+	<%end%>
             <h2><%= @event.title%></h2>
             <%= simple_format(@event.description)%>
             <div class="row portfolio-item1">
@@ -21,13 +25,13 @@
         	<div class="row portfolio-item1">
             	<div class="col-xs-4">
                     <ul class="list-unstyled">
-                    	<li><%=fa_icon('user')%>Ansvarig:</li>
+                    	<%if @author%><li><%=fa_icon('user')%>Upplagt av:</li><%end%>
                     	<li><%=fa_icon('group')%>Utskott:</li>                    	                    	
                 	</ul>
             	</div>
             	<div class="col-xs-8">
                     <ul class="list-unstyled">
-                    	<li><%= link_to User.find(@event.author).profile ,User.find(@event.author).profile %></li>                    	
+                    	<%if @author%> <li><%= link_to @author,@author %></li> <%end%>                    	
                     	<li><%=@event.category%></li>                    	
                 	</ul>
             	</div>
@@ -43,16 +47,19 @@
         </div>
         <!-- End Content Info -->        
 
-        <!-- Carousel -->
-        <div class="col-md-7">
-            <div class="carousel slide carousel-v1" id="myCarousel">
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <%= image_tag @event.image(:medium)%>                        
-                    </div>                    
-                </div>
-            </div>
-        </div>
-        <!-- End Carousel -->
+        
+        <%if @event.image_file_name %>    	
+	        <!-- Carousel -->
+	        <div class="col-md-7">
+	            <div class="carousel slide carousel-v1" id="myCarousel">
+	                <div class="carousel-inner">
+	                    <div class="item active">
+	                        <%= image_tag @event.image(:medium)%>                        
+	                    </div>                    
+	                </div>
+	            </div>
+	        </div>
+	        <!-- End Carousel -->
+        <%end%>
     </div><!--/row-->
 </div>

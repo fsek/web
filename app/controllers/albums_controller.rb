@@ -1,8 +1,7 @@
 # encoding:UTF-8
 class AlbumsController < ApplicationController
     
-  before_filter :login_required
-  before_filter :authenticate_user!  
+  before_filter :login_required  
   before_filter :authenticate, only: [:new, :create,:edit,:destroy,:update,:settings,:destroy_images]
   before_action :set_edit
   before_action :set_album, except: [:index,:new,:create,:settings]

@@ -23,7 +23,7 @@
   	</div>
   	<%= f.label 'Visningsbild', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	
-  		<% if @event.image != nil%>
+  		<% if @event.image_file_name != nil%>
   			<%= image_tag(@event.image(:thumb))%>
 		<% end %>  		 	 		  	
   		<%= f.file_field :image, :class => 'form-control' %>
@@ -43,7 +43,7 @@
   	<%= f.label 'Ansvarigt utskott', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">
   		<%= f.select :category, 
-  				     options_from_collection_for_select(@utskott,:name,:name,@event.category),
+  				     options_from_collection_for_select(@utskott,:title,:title,@event.category),
   				     include_blank: true, 
   				     :class => "form-control listBox"%>		  	  		 		  	
 
