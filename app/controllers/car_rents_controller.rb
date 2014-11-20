@@ -1,7 +1,5 @@
 # encoding:UTF-8
-class CarRentsController < ApplicationController
-
-  
+class CarRentsController < ApplicationController  
   def main
   end
   def new

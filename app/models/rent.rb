@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class Rent < ActiveRecord::Base
 
   belongs_to :profile
