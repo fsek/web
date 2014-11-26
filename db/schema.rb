@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171426) do
+ActiveRecord::Schema.define(version: 20410822171428) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -194,6 +194,18 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.datetime "updated_at"
   end
 
+  create_table "menus", force: true do |t|
+    t.string   "location"
+    t.integer  "index"
+    t.string   "link"
+    t.string   "name"
+    t.boolean  "visible"
+    t.boolean  "turbolinks", default: true
+    t.boolean  "blank_p"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "news", force: true do |t|
     t.string   "title"
     t.text     "content"
@@ -279,6 +291,7 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.text     "election_text"
     t.boolean  "styrelse"
     t.integer  "recLimit",      default: 0
+    t.boolean  "car_rent"
   end
 
   create_table "posts_profiles", id: false, force: true do |t|
@@ -312,7 +325,8 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.string   "phone"
     t.text     "purpose"
     t.boolean  "disclaimer"
-    t.boolean  "confirmed"
+    t.boolean  "confirmed",  default: false
+    t.boolean  "active",     default: true
     t.integer  "council_id"
     t.integer  "profile_id"
     t.datetime "created_at"

@@ -21,30 +21,32 @@
 			  	<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 center">			  		
 		  			<%= f.label 'Jag accepterar villkoren för hyrning av F-bilen.', :class => 'reg-label'%><br>
 		  			<%= f.check_box :disclaimer ,id: "accepted_disclaimer"%><br><br>
-		  			<div class="after_disclaimer" style="display:none;">
-					    <%= f.label 'Namn & Efternamn', :class => 'reg-label'%>
-					  	<div class="margin-bottom-20">  		
-					  		<div class="col-md-6"><%= f.text_field :name,:class => 'form-control' %></div><div class="col-md-6"> <%= f.text_field :lastname,:class => 'form-control' %></div> 
-					  	</div>	  	
-					  	<%= f.label 'E-post', :class => 'reg-label'%>
-					  	<div class="margin-bottom-20">  		
+		  			<div class="after_disclaimer" style="display:none;">					    
+					  	<div class="margin-bottom-20">
+					  		<%= f.label 'Namn & Efternamn', :class => 'reg-label'%>
+				  		  	<div class="row">	
+					  			<div class="col-md-6"><%= f.text_field :name,:class => 'form-control' %></div><div class="col-md-6"> <%= f.text_field :lastname,:class => 'form-control' %></div>
+				  			</div> 
+					  	</div>
+					  	<%= f.label 'E-post', :class => 'reg-label'%> 
+					  	<div class="margin-bottom-20">					  		 		
 				  			<%= f.text_field :email,:class => 'form-control' %>
 					  	</div>
 					  	<%= f.label 'Telefon', :class => 'reg-label'%>
-					  	<div class="margin-bottom-20">  		
+					  	<div class="margin-bottom-20">					  		   		
 				  			<%= f.text_field :phone,:class => 'form-control' %>
-					  	</div>			  	
-				  		<%= f.label 'Syfte', :class => 'reg-label'%>		
-					  	<div class="margin-bottom-20">
+					  	</div>
+					  	<%= f.label 'Syfte', :class => 'reg-label'%>
+					  	<div class="margin-bottom-20">					  			  
 				  			<%= f.text_area :purpose, class: "form-control"%>
-					  	</div>
-					  	<%= f.label 'Från', :class => 'reg-label'%>		
-					  	<div class="margin-bottom-20">
-				  			<%= f.datetime_select :d_from,:class => 'form-control' %>
-					  	</div>
-					  	<%= f.label 'Till', :class => 'reg-label'%>		
-					  	<div class="margin-bottom-20">
-				  			<%= f.datetime_select :d_til,:class => 'form-control' %>
+					  	</div>					  		
+					  	<%= f.label 'Från', :class => 'reg-label'%>	
+					  	<div class="margin-bottom-20">					  		  
+				  			<%= f.datetime_select :d_from,minute_step: 10, class:'form-control' %>
+					  	</div>					  		
+					  	<%= f.label 'Till', :class => 'reg-label'%>	
+					  	<div class="margin-bottom-20">					  		 
+				  			<%= f.datetime_select :d_til,minute_step: 10, :class => 'form-control' %>
 					  	</div>
 					  	<div class="row">					  			  		
 					  			<%= f.submit "Spara", class: "btn btn-u form-control", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>	 				

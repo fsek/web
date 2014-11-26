@@ -1,20 +1,38 @@
 <% provide(:title, 'Bilbokning') %>
-	<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">		
-		<div class="row">
-			<%if @rent%>		
-				<%=@rent.d_from%>
-				<%=@rent.d_til%>
-				<%=@rent.name%>
-				<%=@rent.lastname%>
-				<%=@rent.email%>
-				<%=@rent.phone%>
-				<%=@rent.purpose%>
-				<%=@rent.disclaimer%>
-				<%=@rent.confirmed%>
-				<%=@rent.council_id%>
-				<%=@rent.profile_id%>
-				<%=@rent.created_at%>
-				<%=@rent.updated_at%>
-			<%end%>
-		</div>		
+<%if @rent%>
+	<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">	
+		Datum: 		<%=@rent.d_from%> till <%=@rent.d_til%><br>
+		Namn: 		<%=@rent.name%> <%=@rent.lastname%><br>
+		E-post: 	<%=@rent.email%><br>
+		Telefon: 	<%=@rent.phone%><br>
+		Syfte: 		<%=simple_format(@rent.purpose)%><br>
+		Disclaimer:	<%=(@rent.disclaimer) ? "Accepterad" : "Nekad"%> <br>
+		Bekräftad:	<%=(@rent.confirmed) ? "Bekräftad" : "Väntar på svar"%><br>
+		Aktiv:		<%=(@rent.active) ? "Tillgänglig" : "Reserverad"%><br>
+		<%if @rent.council_id%>
+			<%@council = Council.find_by_id(@rent.council_id)%>
+			Utskott:	<%=link_to(@council,council_path(@council))%><br>
+		<%end%>
+		<%if @rent.profile%>					
+			Profil:		<%=link_to(@rent.profile)%><br>
+		<%end%>				
+		Skapad:		<%=@rent.created_at%><br>
+		Ändrad:		<%=@rent.updated_at%>
 	</div>
+	<%if @edit%>
+		<%=link_to(edit_car_rent_path(@rent),class: 'btn btn-u')%>
+	<%end%>
+<%end%>
+<%if @mod%>
+	<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
+		<%= form_for([:car,@rent]) do |f| %>
+			<%= f.label 'Bekräfta', :class => 'reg-label'%>
+		  	<div class="margin-bottom-20">  		
+	  			<%= f.check_box :confirmed,class: '' %>
+		  	</div>
+		  	<div class="row">					  			  		
+	  			<%= f.submit "Uppdatera", class: "btn btn-u form-control", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>	 				
+		  	</div>		  	
+		<%end%>
+	</div>
+<%end%>

@@ -25,8 +25,7 @@
  *= require timeline  
  *= require default_theme
  * require_tree .
- *= require start_page
- *= require phrasing
+ *= require start_page 
  *= require fullcalendar 
  *= require colorbox
  *= require countdown
@@ -34,7 +33,7 @@
  *= require elections 
  *= require fancybox 
  *= require faq
- *= require gallery  
+ *= require gallery 
  */
 
  /* Override for Bootstrap 3 font location */

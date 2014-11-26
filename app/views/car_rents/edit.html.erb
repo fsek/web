@@ -12,10 +12,13 @@
 				      		<% end %>
 					      </ul>
 				    	</div>
-				  	<% end %>		  			
+				  	<% end %>
+				  	<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 center">		  			
 				    <%= f.label 'Namn & Efternamn', :class => 'reg-label'%>
-				  	<div class="margin-bottom-20">  		
-				  		<div class="col-md-6"><%= f.text_field :name,:class => 'form-control' %></div><div class="col-md-6"> <%= f.text_field :lastname,:class => 'form-control' %></div> 
+				  	<div class="margin-bottom-20">
+				  		<div class="row">  		
+				  			<div class="col-md-6"><%= f.text_field :name,:class => 'form-control' %></div><div class="col-md-6"> <%= f.text_field :lastname,:class => 'form-control' %></div>
+			  			</div> 
 				  	</div>	  	
 				  	<%= f.label 'E-post', :class => 'reg-label'%>
 				  	<div class="margin-bottom-20">  		
@@ -31,16 +34,17 @@
 				  	</div>
 				  	<%= f.label 'Från', :class => 'reg-label'%>		
 				  	<div class="margin-bottom-20">
-			  			<%= f.datetime_select :from,:class => 'form-control' %>
+			  			<%= f.datetime_select :d_from,minute_step: 10,:class => 'form-control' %>
 				  	</div>
 				  	<%= f.label 'Till', :class => 'reg-label'%>		
 				  	<div class="margin-bottom-20">
-			  			<%= f.datetime_select :til,:class => 'form-control' %>
+			  			<%= f.datetime_select :d_til,minute_step: 10,:class => 'form-control' %>
 				  	</div>
 				  	<div class="row">					  			  		
 				  			<%= f.submit "Uppdatera", class: "btn btn-u form-control", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>	 				
 				  	</div>
 				<%end%>
+				</div>
 			<%end%>
 		</div>		
 	</div>

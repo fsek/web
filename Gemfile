@@ -41,7 +41,6 @@ gem 'font-awesome-rails'
 gem 'breadcrumbs_on_rails'
 gem 'the_role', '~> 2.5.2'
 gem 'the_role_bootstrap3_ui'
-gem 'phrasing'
 gem "paperclip", "~> 4.1"
 gem 'fullcalendar-rails', '~>2.1.1'
 gem 'icalendar'

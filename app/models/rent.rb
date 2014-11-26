@@ -1,19 +1,41 @@
 # encoding:UTF-8
 class Rent < ActiveRecord::Base
 
-  belongs_to :profile
-  validate :rent_not_from
-  validate :rent_not_til
+  belongs_to :profile  
+  validates :d_from,:d_til,:name,:lastname,:email,:phone,:purpose, :presence => {}
+  #validate :rent_not_during
+  validate :rent_not_from  
+  validate :rent_not_til  
+  validate :dates
   
+    def rent_not_during
+      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til)
+      unless (@overlap.empty?) || (@overlap.first != self)
+        errors.add('Datum från',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s)
+      end      
+    end
     def rent_not_from
-      unless Rent.where(d_from: self.d_from..self.d_til).empty?
-        errors.add('Datum från',' överlappar med en tidigare bokning.')
-      end
+      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til)
+      unless (@overlap.empty?) || (@overlap.first != self)
+        errors.add('"Från"',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s)
+      end      
     end
     def rent_not_til
-      unless Rent.where(d_til: self.d_from..self.d_til).empty?
-        errors.add('Datum till', ' överlappar med en senare bokning.')
+      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til)
+      unless (@overlap.empty?) || (@overlap.first != self)
+        errors.add('"Till"', ' överlappar med en bokning som slutar: '+@overlap.first.d_til.to_s)
       end
+    end
+    def dates
+      #unless (self.d_from > DateTime.now)
+      #  errors.add('Du kan', 'endast hyra bilen i framtiden.')
+      #end        
+      unless (self.d_from < self.d_til)
+        errors.add('Du måste', 'lämna tillbaka bilen efter att du lånar den, inte innan.')
+      end
+      unless(((self.d_til-self.d_from)/3600) <= 48)
+        errors.add('Du får', 'endast hyra bilen i 48h.')
+      end 
     end
   
   def ical(url)
@@ -31,14 +53,36 @@ class Rent < ActiveRecord::Base
     end 
     
     def as_json(options = {})
-      {
-        :id => self.id,
-        :title => self.name,        
-        :start => self.d_from.rfc822,
-        :end => self.d_til.rfc822,
-        :url => Rails.application.routes.url_helpers.car_rent_path(id),
-        :color => "black",
-        :backgroundColor => (self.confirmed) ?"black":"red"
-      }
+      if(self.confirmed) && (self.active)
+        {
+          :id => self.id,
+          :title => self.name,        
+          :start => self.d_from.rfc822,
+          :end => self.d_til.rfc822,
+          :url => Rails.application.routes.url_helpers.car_rent_path(id),        
+          :backgroundColor => "green",
+          :textColor => "black"
+        }
+      elsif (self.active)
+        {
+          :id => self.id,
+          :title => self.name,        
+          :start => self.d_from.rfc822,
+          :end => self.d_til.rfc822,
+          :url => Rails.application.routes.url_helpers.car_rent_path(id),        
+          :backgroundColor => "yellow",
+          :textColor => "black"
+        }
+       else
+        {
+          :id => self.id,
+          :title => self.name,        
+          :start => self.d_from.rfc822,
+          :end => self.d_til.rfc822,
+          :url => Rails.application.routes.url_helpers.car_rent_path(id),        
+          :backgroundColor => "red",
+          :textColor => "black"
+        }
+       end
     end  
 end

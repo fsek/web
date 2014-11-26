@@ -2,7 +2,7 @@
 class UsersController < ApplicationController  
   include TheRole::Controller
   before_filter :login_required  
-  before_filter :authenticate_user!
+  before_filter :authenticate_admin!, only: [:index]
   
   before_filter :find_user,      :only   => [:edit, :update,:destroy,:update_password]
   before_filter :owner_required, :only   => [:edit, :update]
@@ -56,7 +56,12 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :current_password)
   end
-  
+   def authenticate_admin!            
+      flash[:error] = t('the_role.access_denied')
+      redirect_to(:back) unless current_user && current_user.moderator?(:users)      
+      rescue ActionController::RedirectBackError
+        redirect_to root_path
+    end
   def find_user
     @user = User.find(params[:id])
 

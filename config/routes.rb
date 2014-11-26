@@ -1,6 +1,6 @@
 
 Fsek::Application.routes.draw do
-    
+
   # Resources on the page
   get 'kurslankar' => 'static_pages#kurslankar'
   get 'libo' => 'static_pages#libo', as: :libo
@@ -45,7 +45,8 @@ Fsek::Application.routes.draw do
       resources :car_rents, path: :bokning
       get 'bokningar', controller: :car_rents, action: :bokningar
       get '', controller: :car_rents, action: :main, as: :bil
-    end    
+    end
+    resources :menus,path: :meny, except: :show    
     resources :posts,path: :poster, only: :index     
     resources :councils, path: :utskott do
       resources :posts, path: :poster do

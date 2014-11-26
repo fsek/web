@@ -9,7 +9,8 @@ class CreateCarRents < ActiveRecord::Migration
       t.string "phone"
       t.text     "purpose"
       t.boolean   "disclaimer"      
-      t.boolean  "confirmed"      
+      t.boolean  "confirmed", default: false
+      t.boolean  "active", default: true     
       t.integer "council_id" 
       t.integer "profile_id"
       t.timestamps

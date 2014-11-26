@@ -49,10 +49,12 @@ class PostsController < ApplicationController
   # GET /news/new
   def new
     @post = @council.posts.build
+    @councils = Council.order(title: :asc)
   end
 
   # GET /news/1/edit
   def edit
+    @councils = Council.order(title: :asc)
   end
 
   # POST /news
@@ -97,7 +99,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :limit,:recLimit,:description,:council_id,:elected_by,:elected_at,:styrelse)
+      params.require(:post).permit(:title, :limit,:recLimit,:description,:council,:elected_by,:elected_at,:styrelse,:car_rent)
     end
     def authenticate
       flash[:error] = t('the_role.access_denied')

@@ -14,7 +14,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <%= favicon_link_tag '/favicon.ico?1' %>  
+  <%= favicon_link_tag 'favicon.ico?' %>  
   <!--
   <link rel=“shortcut icon” href=“/assets/images/favicon/favicon.ico”>
   <link rel=“apple-touch-icon” sizes=“57x57” href=“/assets/images/favicon/apple-touch-icon-57x57.png”>
@@ -115,25 +115,21 @@ $(document).ready(bottom)
   <div class="row magazine-page">    	
     <!-- Begin Content -->
     <div class="col-md-12">
-      <% if notice %>
-		    <div class="alert alert-info">
-		      <button type="button" class="close" data-dismiss="alert">&times;</button>
-		      <%= notice %>
-		    </div> 
-      <% end %>
-
-			<% if alert %>
-				<div class="alert alert-danger fade-in">
-				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-				  <strong>Fel:</strong> <%= alert %>
-			  </div> 
-			<% end %> 
-      
-			<%= yield %>
-
-      <%= yield :role_sidebar %>
-      <%= yield :role_main %>
-
+		<% if notice %>
+			<div class="alert alert-info">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<%= notice %>
+			</div> 
+		<% end %>
+		<% if alert %>
+			<div class="alert alert-danger fade-in">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <strong>Fel:</strong> <%= alert %>
+		  </div> 
+		<% end %>
+	  	<%= yield %>      
+      	<%= yield :role_main %>
+      	<%= yield :role_sidebar %>
     </div>
   </div><!-- /row -->
 </div><!--/container-->     
