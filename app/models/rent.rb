@@ -93,7 +93,7 @@ class Rent < ActiveRecord::Base
           :backgroundColor => "green",
           :textColor => "black"
         }
-      elsif (self.active)
+      elsif (self.aktiv)
         {
           :id => self.id,
           :title => self.name,        
