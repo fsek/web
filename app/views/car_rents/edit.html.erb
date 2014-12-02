@@ -40,7 +40,7 @@
 				  	<div class="margin-bottom-20">
 			  			<%= f.datetime_select :d_til,minute_step: 10,:class => 'form-control' %>
 				  	</div>
-				  	<% if @utskott%>
+				  	<% if @utskott.empty? == false%>
 					  		<%= f.label 'Utskott', :class => 'reg-label'%>	
 						  	<div class="margin-bottom-20">					  		 
 					  			 <%= f.select :council_id, 

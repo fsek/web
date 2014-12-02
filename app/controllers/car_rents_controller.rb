@@ -113,6 +113,6 @@ class CarRentsController < ApplicationController
       end
     end
     def rent_params
-        params.require(:rent).permit(:d_from,:d_til,:name,:lastname,:email,:phone,:purpose,:disclaimer,:council_id,:confirmed)
+        params.require(:rent).permit(:d_from,:d_til,:name,:lastname,:email,:phone,:purpose,:disclaimer,:council_id,:confirmed,:aktiv)
       end
 end

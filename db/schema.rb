@@ -326,7 +326,7 @@ ActiveRecord::Schema.define(version: 20410822171428) do
     t.text     "purpose"
     t.boolean  "disclaimer"
     t.boolean  "confirmed",  default: false
-    t.boolean  "active",     default: true
+    t.boolean  "aktiv",      default: true
     t.integer  "council_id"
     t.integer  "profile_id"
     t.datetime "created_at"

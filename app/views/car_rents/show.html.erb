@@ -8,7 +8,7 @@
 		Syfte: 		<%=simple_format(@rent.purpose)%><br>
 		Disclaimer:	<%=(@rent.disclaimer) ? "Accepterad" : "Nekad"%> <br>
 		Bekräftad:	<%=(@rent.confirmed) ? "Bekräftad" : "Väntar på svar"%><br>
-		Aktiv:		<%=(@rent.active) ? "Tillgänglig" : "Reserverad"%><br>
+		Aktiv:		<%=(@rent.aktiv) ? "Tillgänglig" : "Reserverad"%><br>
 		<%if @rent.council_id%>
 			<%@council = Council.find_by_id(@rent.council_id)%>
 			Utskott:	<%=link_to(@council.title,council_path(@council))%><br>
@@ -29,6 +29,10 @@
 			<%= f.label 'Bekräfta', :class => 'reg-label'%>
 		  	<div class="margin-bottom-20">  		
 	  			<%= f.check_box :confirmed,class: '' %>
+		  	</div>
+		  	<%= f.label 'Aktiv', :class => 'reg-label'%>
+		  	<div class="margin-bottom-20">  		
+	  			<%= f.check_box :aktiv,class: '' %>
 		  	</div>
 		  	<div class="row">					  			  		
 	  			<%= f.submit "Uppdatera", class: "btn btn-u form-control", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>	 				
