@@ -83,7 +83,7 @@ class Rent < ActiveRecord::Base
     end 
     
     def as_json(options = {})
-      if(self.confirmed) && (self.active)
+      if(self.confirmed) && (self.aktiv)
         {
           :id => self.id,
           :title => self.name,        
