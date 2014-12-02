@@ -40,6 +40,16 @@
 				  	<div class="margin-bottom-20">
 			  			<%= f.datetime_select :d_til,minute_step: 10,:class => 'form-control' %>
 				  	</div>
+				  	<% if @utskott%>
+					  		<%= f.label 'Utskott', :class => 'reg-label'%>	
+						  	<div class="margin-bottom-20">					  		 
+					  			 <%= f.select :council_id, 
+			  				     options_from_collection_for_select(@utskott,:id,:title,@rent.council_id),
+			  				     include_blank: true, 
+			  				     :class => "form-control listBox"%>
+						  	</div>
+						  	En utskottsbokning får endast göras till utskottet. Kan senaste 5 dagar innan boka över bokningar som ej gjorts av ett utskott. 
+				  	<%end%>
 				  	<div class="row">					  			  		
 				  			<%= f.submit "Uppdatera", class: "btn btn-u form-control", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>	 				
 				  	</div>

@@ -5,37 +5,67 @@ class Rent < ActiveRecord::Base
   validates :d_from,:d_til,:name,:lastname,:email,:phone,:purpose, :presence => {}
   #validate :rent_not_during
   validate :rent_not_from  
-  validate :rent_not_til  
-  validate :dates
-  
+  validate :rent_not_til
+  validate :council_rent 
+     
+  validate :dates, on: :create
+    #Validerar bokningstider
     def rent_not_during
       @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til)
-      unless (@overlap.empty?) || (@overlap.first != self)
+      unless (@overlap.empty?) || (@overlap.first != self) || (self.council_id)
         errors.add('Datum från',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s)
       end      
     end
     def rent_not_from
       @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til)
-      unless (@overlap.empty?) || (@overlap.first != self)
+      unless (@overlap.empty?) || (@overlap.first == self) || (self.council_id)
         errors.add('"Från"',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s)
       end      
     end
     def rent_not_til
       @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til)
-      unless (@overlap.empty?) || (@overlap.first != self)
+      unless (@overlap.empty?) || (@overlap.first == self) || (self.council_id)
         errors.add('"Till"', ' överlappar med en bokning som slutar: '+@overlap.first.d_til.to_s)
       end
     end
+    #validerar bokningstider för utskott
+    def council_rent
+      if(self.council_id)
+        @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til)
+        if(@overlap.empty?) || (@overlap.first == self)
+        elsif(((self.d_from - DateTime.now) /3600) < 120)
+          errors.add('"Från"',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s + ' och det är mindre än 5 dagar(120h) tills den bokningen börjar.')
+        elsif(((self.d_til - DateTime.now) /3600) < 120)
+          errors.add('"Till"',' överlappar med en bokning som börjar: '+@overlap.first.d_til.to_s + ' och det är mindre än 5 dagar(120h) tills den bokningen slutar.')
+        else
+          @var = false
+          for @rent in @overlap do
+            if(@rent.council_id != nil)
+              @var = true             
+            end
+          end
+          if(@var)
+             errors.add('Du',' kan inte boka över ett utskott.')
+          else
+            for @rent in @overlap do
+              @rent.update(active: false)
+            end
+          end
+        end
+      end
+    end
+    
+    
     def dates
-      #unless (self.d_from > DateTime.now)
-      #  errors.add('Du kan', 'endast hyra bilen i framtiden.')
-      #end        
+      unless (self.d_from > DateTime.now)
+        errors.add('Du kan', 'endast hyra bilen i framtiden.')
+      end        
       unless (self.d_from < self.d_til)
         errors.add('Du måste', 'lämna tillbaka bilen efter att du lånar den, inte innan.')
       end
       unless(((self.d_til-self.d_from)/3600) <= 48)
         errors.add('Du får', 'endast hyra bilen i 48h.')
-      end 
+      end       
     end
   
   def ical(url)

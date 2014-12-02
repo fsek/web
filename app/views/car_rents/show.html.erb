@@ -11,7 +11,7 @@
 		Aktiv:		<%=(@rent.active) ? "Tillgänglig" : "Reserverad"%><br>
 		<%if @rent.council_id%>
 			<%@council = Council.find_by_id(@rent.council_id)%>
-			Utskott:	<%=link_to(@council,council_path(@council))%><br>
+			Utskott:	<%=link_to(@council.title,council_path(@council))%><br>
 		<%end%>
 		<%if @rent.profile%>					
 			Profil:		<%=link_to(@rent.profile)%><br>

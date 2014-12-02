@@ -12,11 +12,17 @@ class CarRentsController < ApplicationController
       @rent.name = @profile.name
       @rent.phone = @profile.phone
       @rent.email = @profile.email
+      @utskott = []
+      for @post in @profile.posts do
+        if @post.car_rent == true
+          @utskott << @post.council
+        end
+      end
     end    
   end
   def show
     if(@rent != nil)
-      if(current_user) && ( (current_user.profile == @rent.profile) || (current_user.moderator?(:bil)) )
+      if(current_user) && ( (current_user.profile == @rent.profile)) || (current_user.moderator?(:bil)) 
       else
         redirect_to(:bil)
       end
@@ -27,7 +33,14 @@ class CarRentsController < ApplicationController
     rescue ActionController::RedirectBackError
       redirect_to root_path           
   end
-  def edit     
+  def edit
+    @profile = @rent.profile
+    @utskott = []
+      for @post in @profile.posts do
+        if @post.car_rent == true
+          @utskott << @post.council
+        end
+      end     
   end
   def create
     @rent = Rent.new(rent_params)
