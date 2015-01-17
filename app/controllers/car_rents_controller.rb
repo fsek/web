@@ -6,6 +6,7 @@ class CarRentsController < ApplicationController
   def main
   end
   def new
+    @avtal = Document.where(title: "Bilavtal").first
     @rent = Rent.new
     if(current_user)
       @profile = current_user.profile
