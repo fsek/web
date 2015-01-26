@@ -2,28 +2,42 @@
 class Rent < ActiveRecord::Base
 
   belongs_to :profile  
-  validates :d_from,:d_til,:name,:lastname,:email,:phone,:purpose, :presence => {}
+  validates :d_from,:d_til,:name,:lastname,:email,:phone, :presence => {}
+  validate :purpose_check
   #validate :rent_not_during
   validate :rent_not_from  
   validate :rent_not_til
   validate :council_rent 
      
   validate :dates, on: :create
+  
+    def title
+      if(self.council_id != nil) && (@council = Council.find_by(id: self.council_id) != nil)
+        self.name + ' ' +self.lastname + ' - ' + @council.title
+      else
+        self.name + ' ' +self.lastname
+      end
+    end
+    def purpose_check
+      if(purpose == nil) && (self.profile_id == nil)       
+        errors.add('Syfte', ' måste fyllas i vid bokning')
+      end
+    end
     #Validerar bokningstider
     def rent_not_during
-      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til)
+      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til,aktiv: true)
       unless (@overlap.empty?) || (@overlap.first != self) || (self.council_id)
         errors.add('Datum från',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s)
       end      
     end
     def rent_not_from
-      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til)
+      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til,aktiv: true)
       unless (@overlap.empty?) || (@overlap.first == self) || (self.council_id)
         errors.add('"Från"',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s)
       end      
     end
     def rent_not_til
-      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til)
+      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til,aktiv: true)
       unless (@overlap.empty?) || (@overlap.first == self) || (self.council_id)
         errors.add('"Till"', ' överlappar med en bokning som slutar: '+@overlap.first.d_til.to_s)
       end
@@ -31,12 +45,12 @@ class Rent < ActiveRecord::Base
     #validerar bokningstider för utskott
     def council_rent
       if(self.council_id)
-        @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til)
+        @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til,aktiv: true)
         if(@overlap.empty?) || (@overlap.first == self)
         elsif(((self.d_from - DateTime.now) /3600) < 120)
-          errors.add('"Från"',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s + ' och det är mindre än 5 dagar(120h) tills den bokningen börjar.')
+          errors.add('"Från"',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s + ' och det är mindre än 5 dagar (120h) tills den bokningen börjar.')
         elsif(((self.d_til - DateTime.now) /3600) < 120)
-          errors.add('"Till"',' överlappar med en bokning som börjar: '+@overlap.first.d_til.to_s + ' och det är mindre än 5 dagar(120h) tills den bokningen slutar.')
+          errors.add('"Till"',' överlappar med en bokning som börjar: '+@overlap.first.d_til.to_s + ' och det är mindre än 5 dagar (120h) tills den bokningen slutar.')
         else
           @var = false
           for @rent in @overlap do
@@ -86,7 +100,7 @@ class Rent < ActiveRecord::Base
       if(self.confirmed) && (self.aktiv)
         {
           :id => self.id,
-          :title => self.name,        
+          :title => self.title, 
           :start => self.d_from.rfc822,
           :end => self.d_til.rfc822,
           :url => Rails.application.routes.url_helpers.car_rent_path(id),        
@@ -96,7 +110,7 @@ class Rent < ActiveRecord::Base
       elsif (self.aktiv)
         {
           :id => self.id,
-          :title => self.name,        
+          :title => self.title,
           :start => self.d_from.rfc822,
           :end => self.d_til.rfc822,
           :url => Rails.application.routes.url_helpers.car_rent_path(id),        
@@ -106,7 +120,7 @@ class Rent < ActiveRecord::Base
        else
         {
           :id => self.id,
-          :title => self.name,        
+          :title => self.title,
           :start => self.d_from.rfc822,
           :end => self.d_til.rfc822,
           :url => Rails.application.routes.url_helpers.car_rent_path(id),        

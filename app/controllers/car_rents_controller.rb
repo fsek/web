@@ -4,6 +4,7 @@ class CarRentsController < ApplicationController
   before_action :set_edit
   before_action :set_rent
   def main
+    @bokningar = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30) 
   end
   def new
     @avtal = Document.where(title: "Bilavtal").first

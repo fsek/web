@@ -6,7 +6,13 @@
         		<div class="headline headline-md"><h1>F-bilen</h1></div>
                 <div class="col-md-9">                        
                     	<div id='bilkalender'></div>
-						<hr>                
+						<hr>
+						<div class="row">
+						Kommande bokningar:<br>
+						<%for @bok in @bokningar%>
+							<%=(@bok.title  + " " + @bok.d_from.to_s + " till " + @bok.d_til.to_s)%><br>
+						<%end%>
+						</div>                
                 </div>
                 <div class="col-md-3">
                         <div class="row">
