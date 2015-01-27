@@ -78,7 +78,10 @@ class ContactsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
-      @contact = Contact.find(params[:id])
+      @contact = Contact.find_by_id(params[:id])
+      if(@contact == nil)
+        redirect_to(contacts_path,notice: 'Ingen kontakt hittades.')
+      end
     end
     def authenticate_edit
       flash[:error] = t('the_role.access_denied')
