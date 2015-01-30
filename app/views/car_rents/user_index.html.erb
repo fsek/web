@@ -9,17 +9,18 @@
                                     <h4 class="panel-title">
                                         <div id="faq123">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#collapse<%=f.id%>" >
-                                                <%=f.d_from.to_date%> till: <%=f.d_til%></a>
+                                                <%=f.printTime%></a>
                                         </div>
                                     </h4>
                                 </div>
                                 <div id="collapse<%=f.id%>" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                                                        <%=simple_format(f.purpose)%>
+                                    <%=link_to("Redigera",edit_car_rent_path(f))%>
+                                        <%=simple_format(f.purpose)%>
                                     </div>
                                 </div>
                             </div>
-                                        <%end%>
+                        <%end%>
                 </div>
                 </div>
                 <div class="col-md-4">

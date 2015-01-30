@@ -42,8 +42,8 @@ Fsek::Application.routes.draw do
   
   scope path_names: { new: 'ny',edit: 'redigera' } do
     scope :bil do
-      resources :car_rents, path: :bokning
-      get 'bokningar', controller: :car_rents, action: :bokningar
+      resources :car_rents, path: :bokning      
+      get 'forman', controller: :car_rents, action: :forman
       get '', controller: :car_rents, action: :main, as: :bil
     end
     resources :menus,path: :meny, except: :show    

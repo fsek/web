@@ -9,15 +9,23 @@ class Rent < ActiveRecord::Base
   validate :rent_not_til
   validate :council_rent 
      
-  validate :dates, on: :create
-  
-    def title
-      if(self.council_id != nil) && (@council = Council.find_by(id: self.council_id) != nil)
-        self.name + ' ' +self.lastname + ' - ' + @council.title
+  validate :dates, on: :create    
+    def title            
+      if(self.council_id != nil)
+        self.name + ' ' +self.lastname + '(U)'
       else
         self.name + ' ' +self.lastname
       end
     end
+    
+    def printTime       
+      if(self.d_from.day == self.d_til.day)
+        (self.d_from.strftime("%H:%M")) + " till " + (self.d_til.strftime("%H:%M"))  + " den " + (self.d_from.strftime("%d/%m"))
+      else
+        (self.d_from.strftime("%H:%M %d/%m")).to_s + " till " + (self.d_til.strftime("%H:%M %d/%m")).to_s
+      end     
+    end
+    
     def purpose_check
       if(purpose == nil) && (self.profile_id == nil)       
         errors.add('Syfte', ' måste fyllas i vid bokning')
@@ -25,19 +33,19 @@ class Rent < ActiveRecord::Base
     end
     #Validerar bokningstider
     def rent_not_during
-      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til,aktiv: true)
+      @overlap = Rent.where(status: "Bekräftad",d_from: self.d_from..self.d_til,aktiv: true)
       unless (@overlap.empty?) || (@overlap.first != self) || (self.council_id)
         errors.add('Datum från',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s)
       end      
     end
     def rent_not_from
-      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til,aktiv: true)
+      @overlap = Rent.where(status: "Bekräftad",d_from: self.d_from..self.d_til,aktiv: true)
       unless (@overlap.empty?) || (@overlap.first == self) || (self.council_id)
         errors.add('"Från"',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s)
       end      
     end
     def rent_not_til
-      @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til,aktiv: true)
+      @overlap = Rent.where(status: "Bekräftad",d_from: self.d_from..self.d_til,aktiv: true)
       unless (@overlap.empty?) || (@overlap.first == self) || (self.council_id)
         errors.add('"Till"', ' överlappar med en bokning som slutar: '+@overlap.first.d_til.to_s)
       end
@@ -45,7 +53,7 @@ class Rent < ActiveRecord::Base
     #validerar bokningstider för utskott
     def council_rent
       if(self.council_id)
-        @overlap = Rent.where(confirmed: true,d_from: self.d_from..self.d_til,aktiv: true)
+        @overlap = Rent.where(status: "Bekräftad",d_from: self.d_from..self.d_til,aktiv: true)
         if(@overlap.empty?) || (@overlap.first == self)
         elsif(((self.d_from - DateTime.now) /3600) < 120)
           errors.add('"Från"',' överlappar med en bokning som börjar: '+@overlap.first.d_from.to_s + ' och det är mindre än 5 dagar (120h) tills den bokningen börjar.')
@@ -63,6 +71,7 @@ class Rent < ActiveRecord::Base
           else
             for @rent in @overlap do
               @rent.update(active: false)
+              @rent.send_email_overbooked
             end
           end
         end

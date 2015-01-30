@@ -4,14 +4,20 @@ class CarRentsController < ApplicationController
   before_action :set_edit
   before_action :set_rent
   def main
-    @bokningar = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30) 
+    @bokningar = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30)
+    respond_to do |format|      
+        format.html 
+        format.json { render :json => @bokningar}
+    end 
   end
   def new
+    @rents = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30).limit(5)
     @avtal = Document.where(title: "Bilavtal").first
     @rent = Rent.new
     if(current_user)
       @profile = current_user.profile
       @rent.name = @profile.name
+      @rent.lastname = @profile.lastname
       @rent.phone = @profile.phone
       @rent.email = @profile.email
       @utskott = []
@@ -36,13 +42,15 @@ class CarRentsController < ApplicationController
       redirect_to root_path           
   end
   def edit
-    @profile = @rent.profile
-    @utskott = []
+    if @rent.profile
+      @profile = @rent.profile
+      @utskott = []
       for @post in @profile.posts do
         if @post.car_rent == true
           @utskott << @post.council
         end
-      end     
+      end
+    end
   end
   def create
     @rent = Rent.new(rent_params)
@@ -77,12 +85,9 @@ class CarRentsController < ApplicationController
       end
     end
   end
-  def bokningar    
-    @rents = Rent.all    
-    respond_to do |format|
-      format.html # bokningar.html.erb
-      format.json { render :json => @rents }
-    end  
+  def forman    
+    @rents = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30)
+    @rent_grid = initialize_grid(@rents)
   end
   def index
     if (current_user)
@@ -115,6 +120,6 @@ class CarRentsController < ApplicationController
       end
     end
     def rent_params
-        params.require(:rent).permit(:d_from,:d_til,:name,:lastname,:email,:phone,:purpose,:disclaimer,:council_id,:confirmed,:aktiv)
+        params.require(:rent).permit(:d_from,:d_til,:name,:lastname,:email,:phone,:purpose,:disclaimer,:council_id,:status,:aktiv, :comment)
       end
 end

@@ -4,7 +4,7 @@
    
 loadCalendar = ->    
   $('#bilkalender').fullCalendar
-    events: '/bil/bokningar',
+    events: '/bil',
     weekNumbers: true,    
     defaultView: 'agendaWeek'
     header: {

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+ </head>
+  <body>
+    <h3> Hej <%=@nomination.name%></h3>
+    <p>Du har blivit nominerad till sektionsposten <%= @nomination.post.title%>.<%if @nomination.motivation.blank? == false%><br>
+	Med motiveringen:</p>
+    	"<%=simple_format(@nomination.motivation)%>"
+	<%end%>
+	<%= simple_format(@nomination.election.nominate_mail)%>
+	<p>Tänk på att du måste tacka ja, dvs. kandidera, innan valet stänger, <%=@nomination.election.end%>.</p>
+	
+	<p>Mvh,<br>
+	Valberedningen</p>     
+  </body>
+</html>

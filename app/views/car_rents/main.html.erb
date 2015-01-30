@@ -96,7 +96,8 @@
 								<ul class="list">
 									<% if (current_user) && current_user.moderator?(:bilen) %>
 										<li>Bilmenyn</li> 
-										<li>Bilkalenderprenumeration</li>		
+										<li>Bilkalenderprenumeration</li>
+										<li><%=link_to("Bilförman",forman_path)%></li>	
 									<% end %>		
 								</ul>	
 							<% end %>

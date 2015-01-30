@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171428) do
+ActiveRecord::Schema.define(version: 20410822171430) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -314,6 +314,7 @@ ActiveRecord::Schema.define(version: 20410822171428) do
     t.string   "email"
     t.string   "stil_id"
     t.string   "phone"
+    t.string   "lastname"
   end
 
   create_table "rents", force: true do |t|
@@ -325,12 +326,13 @@ ActiveRecord::Schema.define(version: 20410822171428) do
     t.string   "phone"
     t.text     "purpose"
     t.boolean  "disclaimer"
-    t.boolean  "confirmed",  default: false
     t.boolean  "aktiv",      default: true
     t.integer  "council_id"
     t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "comment"
+    t.string   "status"
   end
 
   create_table "roles", force: true do |t|
