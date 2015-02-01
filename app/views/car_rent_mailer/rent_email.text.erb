@@ -6,7 +6,7 @@ Epost: 	 <%=@rent.email.to_s%>
 Telefon: <%=@rent.phone.to_s%>
 Datum:   <%=@rent.printTime%>
 <%if @rent.purpose.blank? == false %>
-Syfte:  <%=@rent.purpose)%>
+Syfte:  <%=@rent.purpose%>
 <%end%>
 <%@council = Council.find_by_id(@rent.council_id)%>
 <%if @council%>			      	
