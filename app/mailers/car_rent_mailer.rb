@@ -7,12 +7,13 @@ class CarRentMailer < ActionMailer::Base
      @rent = rent     
      if(@rent) && (@rent.email) && (@rent.email.blank? == false)
       if(@rent.name) && (@rent.lastname)
-        mail to: @rent.name + ' ' + @rent.lastname + '<'+@rent.email+'>', subject: 'Bilbokning: '+@rent.printTime + ' (fsektionen.se)'
+        email_with_name = %("#{@rent.name} #{@rent.lastname}" <#{@rent.email}>)%>        
       elsif(@rent.name)
-        mail to: @rent.name + ' <'+@rent.email+'>', subject: 'Bilbokning: '+@rent.printTime + ' (fsektionen.se)'
+        email_with_name = %("#{@rent.name}" <#{@rent.email}>)%>        
       else
-        mail to: @rent.email, subject: 'Bilbokning: '+@rent.printTime + ' (fsektionen.se)'
+        email_with_name = %(#{@rent.email})%>        
       end
+      mail to: email_with_name, subject: 'Bilbokning: '+@rent.printTime + ' (fsektionen.se)'
     end     
   end
   def status_email(rent)   
