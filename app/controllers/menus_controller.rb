@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class MenusController < ApplicationController
   before_filter :authenticate
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
