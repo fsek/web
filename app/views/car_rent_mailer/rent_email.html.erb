@@ -22,7 +22,7 @@
 			      </tr>
 			      <tr>
 			      	<td>Datum:</td>
-			      	<td><%@rent.printTime%></td>
+			      	<td><%=@rent.printTime%></td>
 			      </tr>
 			      <%if @rent.purpose.blank? == false%>			      	
 			      	<tr>
@@ -39,9 +39,9 @@
 			      <%end%>			        
 			  </tbody>
 			</table>
+	    	<br>
 	    	
-	    	
-	    	<%if @rent.status != "bekräftad"%>
+	    	<%if (@rent.status == nil)%>
 	    		<p>Din bokning måste hanteras direkt av bilförmannen och ett mejl kommer skickas ut då bokningen är beräkftad eller nekad.</p>
     		<%end%>
     		<p>Har du några frågor så svarar du enklast direkt på detta mejl.</p>

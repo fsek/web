@@ -13,7 +13,7 @@ class CarRentMailer < ActionMailer::Base
       else
         email_with_name = %(#{@rent.email})        
       end
-      subT = %(Bilbokning den #’{@rent.printTime} (fsektionen.se))
+      subT = %(Bilbokning den #{@rent.printTime} (fsektionen.se))
       mail to: email_with_name, subject: subT
     end     
   end
