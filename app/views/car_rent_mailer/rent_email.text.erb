@@ -1,16 +1,16 @@
-Hej <%=@rent.name %>
+Hej <%=@rent.name.to_s %>
 ===============================================
 Du har bokat F-sektionens bil med nedanstående uppgifter.
-Namn:   <%=@rent.name + ' ' + @rent.lastname%>
-Epost:  
-Telefon:
-Datum: 
-<%=@rent.name + ' ' + @rent.lastname%%
-Syfte:  <%=simple_format(@rent.purpose)%>
+Namn:    <%=@rent.name.to_s%> <%=@rent.lastname.to_s%>
+Epost: 	 <%=@rent.email.to_s%> 
+Telefon: <%=@rent.phone.to_s%>
+Datum:   <%=@rent.printTime%>
+<%if @rent.purpose.blank? == false %>
+Syfte:  <%=@rent.purpose)%>
 <%end%>
 <%@council = Council.find_by_id(@rent.council_id)%>
 <%if @council%>			      	
-Utskott: <%=@council.title%>
+Utskott: <%=@council.title.to_s%>
 <%end%>	
 
 
