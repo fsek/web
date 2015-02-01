@@ -17,39 +17,10 @@ class CarRentMailer < ActionMailer::Base
     end     
   end
   def status_email(rent)   
-     @rent = rent     
-     if(@rent) && (@rent.email) && (@rent.email.blank? == false)
-      if(@rent.name) && (@rent.lastname)
-        mail to: @rent.name + ' ' + @rent.lastname + '<'+@rent.email+'>', subject: 'Bilbokning: '+@rent.printTime + ' är '+@rent.status
-      elsif(@rent.name)
-        mail to: @rent.name + ' <'+@rent.email+'>', subject: 'Bilbokning: '+@rent.printTime + ' är '+@rent.status
-      else
-        mail to: @rent.email, subject: 'Bilbokning: '+@rent.printTime + ' är '+@rent.status
-      end
+    @rent = rent     
+    if(@rent) && (@rent.email) && (@rent.email.blank? == false)      
+      mail to: @rent.email, subject: 'Bilbokning: '+@rent.printTime + ' är '+@rent.status
+    
     end     
   end
-  def asodn_email(rent)   
-     @rent = rent     
-     if(@rent) && (@rent.email) && (@rent.email.blank? == false)
-      if(@rent.name) && (@rent.lastname)
-        mail to: @rent.name + ' ' + @rent.lastname + '<'+@rent.email+'>', subject: 'Bilbokning: '+@rent.printTime + ' är nekad.'
-      elsif(@rent.name)
-        mail to: @rent.name + ' <'+@rent.email+'>', subject: 'Bilbokning: '+@rent.printTime + ' är nekad.'
-      else
-        mail to: @rent.email, subject: 'Bilbokning: '+@rent.printTime + ' är nekad.'
-      end
-    end     
-  end
-  def saodaosnd_email(rent)   
-     @rent = rent     
-     if(@rent) && (@rent.email) && (@rent.email.blank? == false)
-      if(@rent.name) && (@rent.lastname)
-        mail to: @rent.name + ' ' + @rent.lastname + '<'+@rent.email+'>', subject: 'Bilbokning: '+@rent.printTime + ' (fsektionen.se)'
-      elsif(@rent.name)
-        mail to: @rent.name + ' <'+@rent.email+'>', subject: 'Bilbokning: '+@rent.printTime + ' (fsektionen.se)'
-      else
-        mail to: @rent.email, subject: 'Bilbokning: '+@rent.printTime + ' (fsektionen.se)'
-      end
-    end     
-  end  
 end
