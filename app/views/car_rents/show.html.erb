@@ -14,7 +14,7 @@
 			Utskott:	<%=link_to(@council.title,council_path(@council))%><br>
 		<%end%>
 		<%if @rent.profile%>					
-			Profil:		<%=link_to(@rent.profile)%><br>
+			Profil:		<%=link_to(@rent.profile,profile_path(@rent.profile))%><br>
 		<%end%>				
 		Skapad:		<%=@rent.created_at%><br>
 		Ändrad:		<%=@rent.updated_at%>
@@ -47,11 +47,15 @@
 	  				<%= f.check_box :aktiv,class: '' %>
 		  		</div>
 			</div>
+			<%= f.label 'Kommentar (vid nekad bokning)', :class => 'reg-label'%>
+			<div class="margin-bottom-20">  		
+	  				<%=f.text_area :comment, class: 'form-control'%>
+		  		</div>
 			<div class="row">					  			  		
 	  			<%= f.submit "Uppdatera", class: "btn btn-u form-control"%>	 				
 		  	</div>		  	
 		<%end%>
 		<hr>
-		<%= link_to('Huvudsida',car_rents_path, class: 'btn btn-u')%>
+		<%= link_to('Huvudsida',bil_path, class: 'btn btn-u')%>
 	</div>
 <%end%>

@@ -106,7 +106,7 @@ class Rent < ActiveRecord::Base
     end 
     
     def as_json(options = {})
-      if(self.confirmed) && (self.aktiv)
+      if(self.status == "Bekräftad") && (self.aktiv)
         {
           :id => self.id,
           :title => self.title, 

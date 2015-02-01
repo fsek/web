@@ -11,10 +11,10 @@
 			  	(rent.profile_id == nil) ? rent.name : link_to(rent.name, Profile.find(rent.profile_id))
 			  end
 			  g.column name: "Efternamn", attribute: "lastname",filter: false
-			  g.column name: "Bekräftad", attribute: "confirmed",filter: false
+			  g.column name: "Status", attribute: "status",filter: false
 			  g.column name: "Aktiv", attribute: "aktiv",filter: false    
 			  g.column name: "Utskott", attribute: "council_id",filter: false do |rent|
-			  	(rent.council_id == nil) ? "-" : link_to(Council.find(rent.council_id))
+			  	(rent.council_id == nil) ? "-" : link_to(Council.find(rent.council_id),council_path(rent.council_id))
 			  end
 			  g.column name: "Redigera" do |rent|
 			  	link_to("Redigera",car_rent_path(rent))

@@ -4,24 +4,47 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-  	<h3> Hej <%=@candidate.profile.name %></h3>
-			<p>Du har kandiderat till sektionsposten <%=@candidate.post.title%>.</p>
-			<%if @candidate.post.elected_by == "Terminsmötet"%>
-				<%if (@candidate.election.candidate_mail)%>
-					<%= simple_format(@candidate.election.candidate_mail)%>
-				<%end%>
-				<%if (@candidate.post.styrelse)%>
-					<%=url_for(@candidate.election.mail_styrelse_link)%><br><br> 
-				<%else%>
-				 	<%=url_for(@candidate.election.mail_link)%><br><br>
-				<%end%>
-			<%else%>
-				<%= simple_format(@candidate.election.candidate_mail_star)%>
-			<%end%>
-	    	<p>Valet stänger <%= @candidate.election.end%>,
-	    	fram tills dess kan du redigera din kandidatur på:<br><%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %></p>
+  	<h3> Hej <%=@rent.namn %></h3>
+			<p>Du har bokat F-sektionens bil med nedanstående uppgifter.</p>
+			<table class="table">
+			  <tbody>			   
+			      <tr>
+			      	<td>Namn:</td>
+			      	<td><%=@rent.name + ' ' + @rent.lastname%></td>
+			      </tr>
+			      <tr>
+			      	<td>Epost:</td>
+			      	<td><%=@rent.email%></td>
+			      </tr>
+			      <tr>
+			      	<td>Telefon:</td>
+			      	<td><%=@rent.phone%></td>
+			      </tr>
+			      <tr>
+			      	<td>Datum:</td>
+			      	<td><%@rent.printTime%></td>
+			      </tr>
+			      <%if @rent.purpose.blank? == false%>			      	
+			      	<tr>
+			      		<td>Syfte:</td>
+			      		<td><%=simple_format(@rent.purpose)%></td>
+			      	</tr>
+			      <%end%>
+			      <%@council = Council.find_by_id(@rent.council_id)%>
+			      <%if @council%>			      	
+			      	<tr>
+			      		<td>Utskott:</td>
+			      		<td><%=link_to(@council.title,council_path(@council)%></td>
+			      	</tr>
+			      <%end%>			        
+			  </tbody>
+			</table>
 	    	
+	    	
+	    	<%if @rent.status != "bekräftad"%>
+	    		<p>Din bokning måste hanteras direkt av bilförmannen och ett mejl kommer skickas ut då bokningen är beräkftad eller nekad.</p>
+	    		<p>Har du några frågor så svarar du enklast direkt på detta mejl.</p>
 	    	<p>Mvh,<br>
-	    	Valberedningen</p>   
+	    	Bilförmannen</p>   
   </body>
 </html>

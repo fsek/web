@@ -15,7 +15,7 @@ class Profile < ActiveRecord::Base
     self.name + ' ' + self.lastname
   end
   def to_s    
-    '('+self.id+')' +  ' '+self.name + ' ' + self.lastname   
+      '('+self.id.to_s+')' +  ' '+self.name + ' ' + self.lastname
   end
 
 end

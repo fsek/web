@@ -1,17 +1,17 @@
 # encoding:UTF-8
 class CarRentsController < ApplicationController  
-  before_filter :authenticate, only: [:show]
+  before_filter :authenticate, only: [:forman]
   before_action :set_edit
   before_action :set_rent
   def main
-    @bokningar = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30)
+    @bokningar = Rent.order(d_from: :asc).where.not(status: "nekad").where(d_from: Date.today..Date.today+30)
     respond_to do |format|      
         format.html 
         format.json { render :json => @bokningar}
     end 
   end
   def new
-    @rents = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30).limit(5)
+    @rents = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30).limit(10).where.not(status: "Nekad")
     @avtal = Document.where(title: "Bilavtal").first
     @rent = Rent.new
     if(current_user)
@@ -30,18 +30,21 @@ class CarRentsController < ApplicationController
   end
   def show
     if(@rent != nil)
-      if(current_user) && ( (current_user.profile == @rent.profile)) || (current_user.moderator?(:bil)) 
+      if(current_user) && (current_user.profile == @rent.profile) 
+      elsif(current_user) && (current_user.moderator?(:bil))
       else
         redirect_to(:bil)
+        flash[:notice] = 'Du har inte rättigheter för att se bokningen.'
       end
     else
-      flash[:error] = 'Hittade ingen bokning med ID ' + params[:id]+'.'
+      flash[:notice] = 'Hittade ingen bokning med ID ' + params[:id]+'.'
       redirect_to(:bil)
     end
     rescue ActionController::RedirectBackError
       redirect_to root_path           
   end
   def edit
+    @rents = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30).limit(10).where.not(status: "Nekad").where.not(id: @rent.id)
     if @rent.profile
       @profile = @rent.profile
       @utskott = []
@@ -56,10 +59,11 @@ class CarRentsController < ApplicationController
     @rent = Rent.new(rent_params)
     if (current_user)
       @rent.profile = current_user.profile
-      @rent.confirmed = true
+      @rent.status = "Bekräftad"
     end    
     respond_to do |format|
       if @rent.save
+        CarRentMailer.rent_email(@rent).deliver
         format.html { redirect_to [:car,@rent], :notice => 'Bokningen skapades!.' }
         format.json { render :json => @rent, :status => :created, :location => @rent }
       else
