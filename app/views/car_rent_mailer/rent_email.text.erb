@@ -1,21 +1,24 @@
-Hej <%=@candidate.profile.name %>
+Hej <%=@rent.namn %>
 ===============================================
-Du har kandiderat till sektionsposten <%=@candidate.post.title%>.
-<%if @candidate.post.elected_by == "Terminsmötet"%>
-				<%if (@candidate.election.candidate_mail)%>
-					<%= simple_format(@candidate.election.candidate_mail)%>
-				<%end%>
-				<%if (@candidate.post.styrelse)%>
-					<%=url_for(@candidate.election.mail_styrelse_link)%><br><br> 
-				<%else%>
-				 	<%=url_for(@candidate.election.mail_link)%><br><br>
-				<%end%>
-			<%else%>
-				<%= simple_format(@candidate.election.candidate_mail_star)%>
-			<%end%>
-Valet stänger <%= @candidate.election.end%>,
-fram tills dess kan du redigera din kandidatur på:
-<%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %>
+Du har bokat F-sektionens bil med nedanstående uppgifter.
+Namn:   <%=@rent.name + ' ' + @rent.lastname%>
+Epost:  
+Telefon:
+Datum: 
+<%=@rent.name + ' ' + @rent.lastname%%
+Syfte:  <%=simple_format(@rent.purpose)%>
+<%end%>
+<%@council = Council.find_by_id(@rent.council_id)%>
+<%if @council%>			      	
+Utskott: <%=@council.title%>
+<%end%>	
+
+
+<%if @rent.status != "bekräftad"%>
+Din bokning måste hanteras direkt av bilförmannen och ett mejl kommer skickas ut då bokningen är beräkftad eller nekad.
+<%end%>
+Har du några frågor så svarar du enklast direkt på detta mejl.
+
 
 Mvh,
-Valberedningen
+Bilförmannen

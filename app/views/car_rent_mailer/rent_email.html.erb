@@ -34,7 +34,7 @@
 			      <%if @council%>			      	
 			      	<tr>
 			      		<td>Utskott:</td>
-			      		<td><%=link_to(@council.title,council_path(@council)%></td>
+			      		<td><%=link_to(@council.title,council_path(@council))%></td>
 			      	</tr>
 			      <%end%>			        
 			  </tbody>
@@ -43,7 +43,9 @@
 	    	
 	    	<%if @rent.status != "bekräftad"%>
 	    		<p>Din bokning måste hanteras direkt av bilförmannen och ett mejl kommer skickas ut då bokningen är beräkftad eller nekad.</p>
-	    		<p>Har du några frågor så svarar du enklast direkt på detta mejl.</p>
+    		<%end%>
+    		<p>Har du några frågor så svarar du enklast direkt på detta mejl.</p>
+    		
 	    	<p>Mvh,<br>
 	    	Bilförmannen</p>   
   </body>

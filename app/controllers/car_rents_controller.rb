@@ -92,7 +92,7 @@ class CarRentsController < ApplicationController
   def destroy    
     @rent.destroy
     respond_to do |format|
-      format.html { redirect_to car_rents_path,notice: 'Bokningen raderades.' }
+      format.html { redirect_to car_rents_path,notice: 'Bokningeng raderades.' }
       format.json { head :no_content }
     end
   end
