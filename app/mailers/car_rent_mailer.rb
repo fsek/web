@@ -7,11 +7,11 @@ class CarRentMailer < ActionMailer::Base
      @rent = rent     
      if(@rent) && (@rent.email) && (@rent.email.blank? == false)
       if(@rent.name) && (@rent.lastname)
-        email_with_name = %("#{@rent.name} #{@rent.lastname}" <#{@rent.email}>)%>        
+        email_with_name = %("#{@rent.name} #{@rent.lastname}" <#{@rent.email}>)       
       elsif(@rent.name)
-        email_with_name = %("#{@rent.name}" <#{@rent.email}>)%>        
+        email_with_name = %("#{@rent.name}" <#{@rent.email}>)        
       else
-        email_with_name = %(#{@rent.email})%>        
+        email_with_name = %(#{@rent.email})        
       end
       mail to: email_with_name, subject: 'Bilbokning: '+@rent.printTime + ' (fsektionen.se)'
     end     
