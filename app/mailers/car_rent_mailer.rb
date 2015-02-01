@@ -28,7 +28,7 @@ class CarRentMailer < ActionMailer::Base
       end
     end     
   end
-  def rent_email(rent)   
+  def asodn_email(rent)   
      @rent = rent     
      if(@rent) && (@rent.email) && (@rent.email.blank? == false)
       if(@rent.name) && (@rent.lastname)
@@ -40,7 +40,7 @@ class CarRentMailer < ActionMailer::Base
       end
     end     
   end
-  def rent_email(rent)   
+  def saodaosnd_email(rent)   
      @rent = rent     
      if(@rent) && (@rent.email) && (@rent.email.blank? == false)
       if(@rent.name) && (@rent.lastname)
