@@ -89,6 +89,13 @@ class CarRentsController < ApplicationController
       end
     end
   end
+  def destroy    
+    @rent.destroy
+    respond_to do |format|
+      format.html { redirect_to car_rents_path,notice: 'Bokningen raderades.' }
+      format.json { head :no_content }
+    end
+  end
   def forman    
     @rents = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30)
     @rent_grid = initialize_grid(@rents)

@@ -6,7 +6,7 @@
 			</div>
 			<hr>
 			<div class="col-md-4 col-md-offset-4">
-				<%=link_to('Radera bokning',edit_car_rent_path(@rent),class: "btn btn-u form-control", data:{ confirm: 'Din bokning kommer nu att raderas.'})%>
+				<%=link_to('Radera bokning',car_rent_path(@rent),method: :delete,class: "btn btn-u form-control", data:{ confirm: 'Din bokning kommer nu att raderas.'})%>
 			</div>
 		<%end%>
 	</div>		
