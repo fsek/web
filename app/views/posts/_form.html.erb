@@ -29,7 +29,7 @@
 	  	</div>
 	  	<%= f.label 'Ansvarigt utskott', :class => 'reg-label'%>
 	  	<div class="input-group margin-bottom-20">
-	  		<%= f.select :council, 
+	  		<%= f.select :council_id, 
 	  				     options_from_collection_for_select(@councils,:id,:title,@post.council_id),
 	  				     include_blank: true, 
 	  				     :class => "form-control listBox"%>
