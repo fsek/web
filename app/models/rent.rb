@@ -26,7 +26,7 @@ class Rent < ActiveRecord::Base
       end     
     end
     def p_url
-      PUBLIC_URL+'/bil/bokning/'+self.id.to_s
+      'http://'+PUBLIC_URL+'/bil/bokning/'+self.id.to_s
     end
     def email_with_name
       if(self.name) && (self.lastname)
