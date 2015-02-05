@@ -8,7 +8,7 @@ class CarRentsController < ApplicationController
     @bokningar = Rent.order(d_from: :asc).where.not(status: "nekad").where(d_from: Date.today..Date.today+30)
     respond_to do |format|      
         format.html 
-        format.json { render :json => @bokningar}
+        format.json { render :json => Rent.order(d_from: :asc).where.not(status: "nekad")}
     end 
   end
   def new    
@@ -96,7 +96,7 @@ class CarRentsController < ApplicationController
     end
   end
   def forman    
-    @rents = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30)
+    @rents = Rent.order(d_from: :asc)
     @rent_grid = initialize_grid(@rents)
   end
   def index
