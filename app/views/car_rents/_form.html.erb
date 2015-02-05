@@ -49,7 +49,7 @@
 		  	<div class="margin-bottom-20">					  		 
 	  			<%= f.datetime_select :d_til,minute_step: 10, :class => 'form-control' %>
 		  	</div>
-		  	<%if(@rents.count > 0)%>
+		  	<%if(@rents)&&(@rents.count > 0)%>
 			  	Bokningar (från idag + 30 dagar):<br>			  	
 		  		<%@rents.each do |r|%>
 		  			<%=link_to(r.printTime,car_rent_path(r))%><br>				  			
@@ -94,7 +94,7 @@
 		  	<div class="margin-bottom-20">					  		 
 	  			<%= f.datetime_select :d_til,minute_step: 10, :class => 'form-control' %>
 		  	</div>
-		  	<%if(@rents.count > 0)%>
+		  	<%if(@rents)&&(@rents.count > 0)%>
 			  	Bilen är bokad(från idag + 30 dagar):<br>			  	
 		  		<%@rents.each do |r|%>
 		  			<%=link_to(r.printTime,car_rent_path(r))%><br>					  			

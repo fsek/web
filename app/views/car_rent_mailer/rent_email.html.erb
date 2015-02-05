@@ -5,7 +5,7 @@
   </head>
   <body>
   	<h3> Hej <%=@rent.name %></h3>
-			<p>Du har bokat F-sektionens bil med nedanstående uppgifter.</p>
+			<p>Du har bokat F-sektionens bil med nedanstående uppgifter (ID: <%=@rent.id%>) .</p>
 			<table class="table">
 			  <tbody>			   
 			      <tr>
@@ -39,7 +39,7 @@
 			      <%end%>
 			      <tr>
 			      	<td>Länk:</td>
-			      	<td><%=link_to('Bokning',car_rent_path(</td>
+			      	<td><%=link_to('Bokning',@rent.p_url)%></td>
 			      </tr			        
 			  </tbody>
 			</table>

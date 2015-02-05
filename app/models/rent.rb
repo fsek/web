@@ -25,7 +25,18 @@ class Rent < ActiveRecord::Base
         (self.d_from.strftime("%H:%M %d/%m")).to_s + " till " + (self.d_til.strftime("%H:%M %d/%m")).to_s
       end     
     end
-    
+    def p_url
+      PUBLIC_URL+'/bil/bokning/'+self.id.to_s
+    end
+    def email_with_name
+      if(self.name) && (self.lastname)
+        %("#{self.name} #{self.lastname}" <#{self.email}>)       
+      elsif(self.name)
+        %("#{self.name}" <#{self.email}>)        
+      else
+        %(#{self.email})        
+      end
+    end
     def purpose_check
       if(purpose == nil) && (self.profile_id == nil)       
         errors.add('Syfte', ' måste fyllas i vid bokning')
@@ -71,7 +82,7 @@ class Rent < ActiveRecord::Base
           else
             for @rent in @overlap do
               @rent.update(active: false)
-              @rent.send_email_overbooked
+              CarRentMailer.active_email(@rent).deliver              
             end
           end
         end

@@ -1,6 +1,15 @@
 Hej <%=@rent.name.to_s %>
 ===============================================
-Du har bokat F-sektionens bil med nedanstående uppgifter (ID: <%=@rent.id%>).
+Din boknings status har ändrats till <%=@rent.status%>
+<%if @rent.status == "Nekad"%>
+Kommentar:
+<%=@rent.comment%>
+
+Överklagan kan göras till styrelsen.
+<%end%>
+  			
+  			
+Uppgifter för bokningen (ID: <%=@rent.id%>).
 Namn:    	<%=@rent.name.to_s%> <%=@rent.lastname.to_s%>
 Epost: 	 	<%=@rent.email.to_s%> 
 Telefon: 	<%=@rent.phone.to_s%>
@@ -12,14 +21,10 @@ Syfte:		<%=@rent.purpose%>
 <%if @council%>			      	
 Utskott: 	<%=@council.title.to_s%>
 <%end%>
-Länk:		<%=link_to('Bokning',@rent.p_url)%>	
+Länk:		<%=@rent.p_url%>
 
 
-<%if @rent.status != "bekräftad"%>
-Din bokning måste hanteras direkt av bilförmannen och ett mejl kommer skickas ut då bokningen är beräkftad eller nekad.
-<%end%>
 Har du några frågor så svarar du enklast direkt på detta mejl.
-
 
 Mvh,
 Bilförmannen

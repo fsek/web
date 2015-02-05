@@ -6,22 +6,32 @@ class CarRentMailer < ActionMailer::Base
   def rent_email(rent)   
      @rent = rent     
      if(@rent) && (@rent.email) && (@rent.email.blank? == false)
-      if(@rent.name) && (@rent.lastname)
-        email_with_name = %("#{@rent.name} #{@rent.lastname}" <#{@rent.email}>)       
-      elsif(@rent.name)
-        email_with_name = %("#{@rent.name}" <#{@rent.email}>)        
-      else
-        email_with_name = %(#{@rent.email})        
-      end
       subT = %(Bilbokning den #{@rent.printTime} (fsektionen.se))
-      mail to: email_with_name, subject: subT
+      mail to: @rent.email_with_name, 
+      subject: subT,
+      sent_on: Time.now
     end     
   end
   def status_email(rent)   
     @rent = rent     
     if(@rent) && (@rent.email) && (@rent.email.blank? == false)      
-      mail to: @rent.email, subject: 'Bilbokning: '+@rent.printTime + ' är '+@rent.status
-    
+      subT = %(Bilbokning den #{@rent.printTime} är #{@rent.status})
+      mail to: @rent.email_with_name, 
+      subject: subT,
+      sent_on: Time.now
+    end     
+  end
+  def active_email(rent)   
+    @rent = rent
+    if(@rent) && (@rent.email) && (@rent.email.blank? == false)
+      if(@rent.aktiv)
+        subT = %(Bilbokning den #{@rent.printTime} har markerats som aktiv.)
+      else
+        subT = %(Bilbokning den #{@rent.printTime} har markerats som inaktiv.)
+      end
+      mail to: @rent.email_with_name, 
+      subject: subT,
+      sent_on: Time.now     
     end     
   end
 end

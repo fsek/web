@@ -3,6 +3,7 @@ class CarRentsController < ApplicationController
   before_filter :authenticate, only: [:forman]
   before_action :set_edit
   before_action :set_rent
+  before_action :set_rents, only: [:new,:edit,:create,:update]
   def main
     @bokningar = Rent.order(d_from: :asc).where.not(status: "nekad").where(d_from: Date.today..Date.today+30)
     respond_to do |format|      
@@ -10,8 +11,7 @@ class CarRentsController < ApplicationController
         format.json { render :json => @bokningar}
     end 
   end
-  def new
-    @rents = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30).limit(10).where.not(status: "Nekad")
+  def new    
     @avtal = Document.where(title: "Bilavtal").first
     @rent = Rent.new
     if(current_user)
@@ -43,8 +43,7 @@ class CarRentsController < ApplicationController
     rescue ActionController::RedirectBackError
       redirect_to root_path           
   end
-  def edit
-    @rents = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30).limit(10).where.not(status: "Nekad").where.not(id: @rent.id)
+  def edit   
     if @rent.profile
       @profile = @rent.profile
       @utskott = []
@@ -121,6 +120,9 @@ class CarRentsController < ApplicationController
     end
     def set_rent
       @rent = Rent.find_by_id(params[:id])
+    end
+    def set_rents
+      @rents = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30).limit(10).where.not(status: "Nekad")
     end
     def set_edit
       if(@rent) && (current_user) && (current_user.profile == @rent.profile)
