@@ -87,7 +87,7 @@ class RentsController < ApplicationController
       status = @rent.status
       aktiv = @rent.aktiv  
       if @rent.update(rent_params)
-        if(status != @rent.status) && (@rent.status == "Ej bestämd")
+        if(status != @rent.status) && (@rent.status != "Ej bestämd")
           RentMailer.status_email(@rent).deliver
         end
         if(aktiv != @rent.aktiv)
