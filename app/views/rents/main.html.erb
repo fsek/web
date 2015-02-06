@@ -1,0 +1,103 @@
+<% provide(:title, 'Bilbokning') %>
+<%= stylesheet_link_tag "fullcalendar-custom", :media => "print" %>
+<div class="col-md-12">
+        <div class="row">
+        	<div class="col-md-12">
+        		<div class="headline headline-md"><h1>F-bilen</h1></div>
+                <div class="col-md-9">                        
+                    	<div id='bilkalender'></div>						               
+                </div>
+                <div class="col-md-3">
+                        <div class="row">
+                                <div class="headline headline-md"><h2>F.A.Q.</h2></div>
+                                	<div class="panel-group acc-v1 margin-bottom-40" id="unanswered">
+                                		<div class="panel panel-default">
+		                        			<div class="panel-heading">
+		                            			<h4 class="panel-title">
+		                                			<a class="accordion-toggle" data-toggle="collapse" href="#faq-1" >Hur länge får man hyra bilen?</a>
+		                            			</h4>
+		                        			</div>	                        			
+					                        <div id="faq-1" class="panel-collapse collapse">
+					                            <div class="panel-body">
+													En vanlig bokning är max 48h, förfrågningar för längre bokningar skickas till Bilförmannen.<br> 
+													För sektionsändamål får undantag göras.	
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="panel panel-default">
+		                        			<div class="panel-heading">
+		                            			<h4 class="panel-title">
+		                                			<a class="accordion-toggle" data-toggle="collapse" href="#faq-2" >Kontakta Bilförmannen</a>
+		                            			</h4>
+		                        			</div>	                        			
+					                        <div id="faq-2" class="panel-collapse collapse">
+					                            <div class="panel-body">
+													Bilförmannen får man lättast tag på via <%= render partial: "contacts/kontakt", locals: {name: 'Bilförman'}%>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="panel panel-default">
+		                        			<div class="panel-heading">
+		                            			<h4 class="panel-title">
+		                                			<a class="accordion-toggle" data-toggle="collapse" href="#faq-3" >Vad gäller för bokningen?</a>
+		                            			</h4>
+		                        			</div>	                        			
+					                        <div id="faq-3" class="panel-collapse collapse">
+					                            <div class="panel-body">
+													För bokningen gäller vårt Bilavtal, som hittas <%=link_to('här',documents_path)%>.
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="panel panel-default">
+		                        			<div class="panel-heading">
+		                            			<h4 class="panel-title">
+		                                			<a class="accordion-toggle" data-toggle="collapse" href="#faq-4" >Vad är 6122 Å?</a>
+		                            			</h4>
+		                        			</div>	                        			
+					                        <div id="faq-4" class="panel-collapse collapse">
+					                            <div class="panel-body" style="background-color:">
+													Våglängd för en perfekt orange färg.
+													
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="panel panel-default">
+		                        			<div class="panel-heading">
+		                            			<h4 class="panel-title">
+		                                			<a class="accordion-toggle" data-toggle="collapse" href="#faq-5" >Hur länge får man boka bilen?</a>
+		                            			</h4>
+		                        			</div>	                        			
+					                        <div id="faq-5" class="panel-collapse collapse">
+					                            <div class="panel-body">
+													En vanlig bokning är max 48h, förfrågningar för längre bokningar skickas till Bilförmannen.<br> 
+													För sektionsändamål får undantag göras.													
+					                            </div>
+					                        </div>
+					                    </div>                        
+			                        </div>
+		                        </div>
+                        <div class="row">
+                                <div class="headline headline-md"><h2>Bokning?</h2></div>
+                                <%if user_signed_in? %>
+                                	<div class="input-group margin-bottom-20">
+                                		<%=link_to("Se tidigare bokningar",rents_path, class: "btn btn-u")%>
+                            		</div>
+                                <%end%>
+                                <div class="input-group margin-bottom-20">
+                                		<%=link_to("Ny bokning",new_rent_path, class: "btn btn-u")%>
+                        		</div>
+                        		<% if user_signed_in? %>	
+								<div class="headline headline-md"><h2>Verktyg</h2></div>
+								<ul class="list">
+									<% if (current_user) && current_user.moderator?(:bilen) %>										
+										<li>Bilkalenderprenumeration - kommer</li>
+										<li><%=link_to("Bilförman",forman_path)%></li>	
+									<% end %>		
+								</ul>	
+							<% end %>
+                        </div>
+
+                </div>
+            </div>
+        </div>        
+</div>

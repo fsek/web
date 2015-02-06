@@ -1,0 +1,45 @@
+<% provide(:title, 'Bilbokning') %>
+<div class="col-md-6 col-md-offset-3 reg-page">
+	<%if @rent%>
+		<%= render 'rent_show'%>
+		<%if @edit%>
+			<%=link_to(edit_car_rent_path(@rent),class: 'btn btn-u')%>
+		<%end%>
+	<%end%>
+</div>
+<%if @mod%>
+	<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
+		Ändra bokningen - en bokning måste:
+		<ul>
+			<li>Bekräftas (om bokaren inte är medlem i F-sektionen)</li>
+			<li>vara Aktiv (om bokningen bokas över blir den inaktiv)</li>
+		</ul>		
+		Ändringar skickar även mailnotifikation till de som berörs.
+		<%= form_for(@rent) do |f| %>
+			<div class="col-md-6">
+				<%= f.label 'Bekräfta', :class => 'reg-label'%>
+				<div class="margin-bottom-20">  		
+	  				<%= f.select :status, options_for_select([
+	  					["Ej bestämd"],
+					  	["Bekräftad"],
+					  	["Nekad"]],@rent.status),{}, html_options = {:class => "listBox form-control",:selected => :status , :style=>"float:left;"} %>
+		  		</div>
+			</div>
+			<div class="col-md-6">
+				<%= f.label 'Aktiv', :class => 'reg-label'%>
+				<div class="margin-bottom-20">  		
+	  				<%= f.check_box :aktiv,class: '' %>
+		  		</div>
+			</div>
+			<%= f.label 'Kommentar (vid nekad bokning)', :class => 'reg-label'%>
+			<div class="margin-bottom-20">  		
+	  				<%=f.text_area :comment, class: 'form-control'%>
+		  		</div>
+			<div class="row">					  			  		
+	  			<%= f.submit "Uppdatera", class: "btn btn-u form-control"%>	 				
+		  	</div>		  	
+		<%end%>
+		<hr>
+		<%= link_to('Huvudsida',bil_path, class: 'btn btn-u')%>
+	</div>
+<%end%>

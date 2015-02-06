@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171430) do
+ActiveRecord::Schema.define(version: 20410822171431) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -332,7 +332,8 @@ ActiveRecord::Schema.define(version: 20410822171430) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment"
-    t.string   "status"
+    t.string   "status",     default: "Ej bestämd"
+    t.boolean  "service"
   end
 
   create_table "roles", force: true do |t|

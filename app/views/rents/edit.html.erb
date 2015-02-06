@@ -1,0 +1,17 @@
+<% provide(:title, 'Bilbokning') %>
+<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
+		<%if @rent%>
+			<div class="row margin bottom-20">
+				<%if @edit == true%>		
+					<%=render 'edit_form'%>
+					<hr>
+					<%=link_to('Radera bokning',car_rent_path(@rent),method: :delete,class: "btn btn-u form-control", data:{ confirm: 'Din bokning kommer nu att raderas.'})%>
+				<%else%>
+					Redigering inte möjlig då bokningen redan varit.
+					<%=render 'rent_show'%>									
+				<%end%>					
+			</div>
+			<%=link_to("Bilbokning",bil_path,class: "btn btn-u")%>
+		<%end%>
+	</div>		
+</div>
