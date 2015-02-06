@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  size: 1
+  last_registration_date: 2015-02-05 19:27:12
+
+two:
+  size: 1
+  last_registration_date: 2015-02-05 19:27:12
