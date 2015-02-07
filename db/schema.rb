@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171426) do
+ActiveRecord::Schema.define(version: 20410822171432) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -48,6 +48,21 @@ ActiveRecord::Schema.define(version: 20410822171426) do
   create_table "albums_subcategories", id: false, force: true do |t|
     t.integer "album_id"
     t.integer "subcategory_id"
+  end
+
+  create_table "cafe_works", force: true do |t|
+    t.date     "work_day"
+    t.integer  "pass"
+    t.integer  "profile_id"
+    t.integer  "council_id"
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "phone"
+    t.string   "stil_id"
+    t.integer  "c_year"
+    t.integer  "lp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "candidates", force: true do |t|
@@ -194,6 +209,18 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.datetime "updated_at"
   end
 
+  create_table "menus", force: true do |t|
+    t.string   "location"
+    t.integer  "index"
+    t.string   "link"
+    t.string   "name"
+    t.boolean  "visible"
+    t.boolean  "turbolinks", default: true
+    t.boolean  "blank_p"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "news", force: true do |t|
     t.string   "title"
     t.text     "content"
@@ -279,6 +306,7 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.text     "election_text"
     t.boolean  "styrelse"
     t.integer  "recLimit",      default: 0
+    t.boolean  "car_rent"
   end
 
   create_table "posts_profiles", id: false, force: true do |t|
@@ -301,21 +329,26 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.string   "email"
     t.string   "stil_id"
     t.string   "phone"
+    t.string   "lastname"
   end
 
   create_table "rents", force: true do |t|
-    t.datetime "from"
-    t.datetime "til"
+    t.datetime "d_from"
+    t.datetime "d_til"
     t.string   "name"
     t.string   "lastname"
     t.string   "email"
     t.string   "phone"
     t.text     "purpose"
     t.boolean  "disclaimer"
-    t.boolean  "confirmed"
+    t.boolean  "aktiv",      default: true
     t.integer  "council_id"
+    t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "comment"
+    t.string   "status",     default: "Ej bestämd"
+    t.boolean  "service"
   end
 
   create_table "roles", force: true do |t|
