@@ -1,4 +1,4 @@
-<%= form_for([:car,@rent]) do |f| %>			
+<%= form_for(@rent) do |f| %>			
 	<% if @rent.errors.any? %>
 	    <div id="error_explanation" class="coming-soon">
 	      <h4>Något hindrar bokningen från att sparas:</h4>
@@ -42,7 +42,7 @@
 		  	<%if(@rents.count > 0)%>
 			  	Bokningar (från idag + 30 dagar):<br>			  	
 		  		<%@rents.each do |r|%>
-		  			<%=link_to(r.printTime,car_rent_path(r))%><br>				  			
+		  			<%=r.printTime%><br>				  			
 		  		<%end%>			  						
 		  	<%end%>  	
 		  	<% if (@utskott) && (@utskott.empty? == false)%>
@@ -87,12 +87,12 @@
 		  	<%if(@rents.count > 0)%>
 			  	Andra bilbokningar(från idag och 30 dagar framåt):<br>			  	
 		  		<%@rents.each do |r|%>
-		  			<%=link_to(r.printTime,car_rent_path(r))%><br>					  			
+		  			<%=r.printTime%><br>					  			
 		  		<%end%>			  	
 		  	<%end%>  	 	
 	  	<%end%>
 	  	<div class="row">					  			  		
-	  			<%= f.submit "Spara", class: "btn btn-u form-control", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>	 				
+	  			<%= f.submit "Spara", class: "btn btn-u", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>	 				
 	  	</div>  		
 	</div>
 <%end%>

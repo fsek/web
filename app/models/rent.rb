@@ -4,9 +4,9 @@ class Rent < ActiveRecord::Base
   belongs_to :profile
     
   validates :d_from,:d_til,:name,:lastname,:email,:phone, :presence => {}
-  validate :purpose_check 
+  validate :purpose_check
   validate :dates, on: :create
-  validate :date_overlap  
+  validate :date_overlap
   
     #Metod för att skriva ut titel till .json-feed    
     def title            
@@ -51,34 +51,41 @@ class Rent < ActiveRecord::Base
     #Validerar bokningstider
     def date_overlap
       if (self.status == "Nekad") || (!self.aktiv)
+        Rails.logger.info "Status != Nekad"
         return
       end   
-      @overlap = Rent.where(aktiv: true, status: "Bekräftad", d_from: self.d_from-10.days..self.d_til+10.days)      
+      @overlap = Rent.where(aktiv: true, status: "Bekräftad", d_from: self.d_from-10.days..self.d_til+10.days) - [self]     
       @change = []      
       @overbook = false      
       for @ol in @overlap        
-        if(!self.service) && ((@ol.d_from..@ol.d_til).cover?(self.d_from) || (@ol.d_from..@ol.d_til).cover?(self.d_til) || (self.d_from..self.d_til).cover?(@ol.d_from) || (self.d_from..self.d_til).cover?(@ol.d_from))                    
+        if(!self.service) && (@self != @ol) && ((@ol.d_from..@ol.d_til).cover?(self.d_from) || (@ol.d_from..@ol.d_til).cover?(self.d_til) || (self.d_from..self.d_til).cover?(@ol.d_from) || (self.d_from..self.d_til).cover?(@ol.d_from))                    
           if(self.council_id != nil)
             if(@ol.service)
-              return errors.add('Kontrollera datum',', man kan inte boka över en service')
+              Rails.logger.info "boka över service"
+              errors.add('Kontrollera datum',', man kan inte boka över en service')
+              return 
             elsif(@ol.council_id != nil)
-              return errors.add('Kontrollera datum',', man kan inte boka över en utskottsbokning')            
+              Rails.logger.info "boka över utskott"
+              errors.add('Kontrollera datum',', man kan inte boka över en utskottsbokning')
+              return             
             end
             @overbook = true
             @change << @ol
-          else            
-            return errors.add('Kontrollera datum',', överlappar med en (eller flera)  bokningar')
+          else
+            Rails.logger.info "överlappar: " + @ol.id.to_s + " " + self.id.to_s
+            errors.add('Kontrollera datum',', överlappar med en (eller flera)  bokningar')            
+            return 
           end
         end
       end
-      
       if(@overbook)         
         for @ol in @change do
           if (@ol.d_from-DateTime.now)/3600 > 120         
             @ol.update(aktiv: false)
             RentMailer.active_email(@ol).deliver
           else
-            return errors.add('Kontrollera datum',', kan endast boka över ordinarie bokningar minst 5 dagar (120h) innan.')
+            errors.add('Kontrollera datum',', kan endast boka över ordinarie bokningar minst 5 dagar (120h) innan.')
+            return 
           end              
         end
       end

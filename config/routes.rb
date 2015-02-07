@@ -42,9 +42,11 @@ Fsek::Application.routes.draw do
   
   scope path_names: { new: 'ny',edit: 'redigera' } do
     scope :bil do
-      resources :rents, path: :bokning      
+      resources :rents, path: :bokning do
+        patch :update_status, on: :member
+      end     
       get 'forman', controller: :rents, action: :forman
-      get '', controller: :rents, action: :main, as: :bil
+      get '', controller: :rents, action: :main, as: :bil      
     end
     resources :menus,path: :meny, except: :show    
     resources :posts,path: :poster, only: :index     

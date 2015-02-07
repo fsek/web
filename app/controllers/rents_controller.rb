@@ -1,10 +1,10 @@
 # encoding:UTF-8
 class RentsController < ApplicationController  
   before_filter :authenticate, only: [:forman]
-  before_action :set_edit, only: [:edit,:show]
-  before_action :set_mod
-  before_action :set_rent, except: [:main,:new,:forman,:index,:create]
   before_action :set_rents, only: [:new,:edit,:create,:update]
+  before_action :set_rent, except: [:main,:new,:forman,:index,:create]  
+  before_action :set_mod
+  before_action :set_edit, only: [:edit,:show]
   def main
     @bokningar = Rent.order(d_from: :asc).where.not(status: "Nekad").where(d_from: Date.today..Date.today+30)
     respond_to do |format|      
@@ -48,6 +48,7 @@ class RentsController < ApplicationController
     if @rent.profile
       @profile = @rent.profile
       @utskott = []
+      @rents = @rents - [@rent]
       for @post in @profile.posts do
         if @post.car_rent == true
           @utskott << @post.council
@@ -84,16 +85,8 @@ class RentsController < ApplicationController
   end
   def update
     respond_to do |format|
-      status = @rent.status
-      aktiv = @rent.aktiv  
-      if @rent.update(rent_params)
-        if(status != @rent.status) && (@rent.status != "Ej bestämd")
-          RentMailer.status_email(@rent).deliver
-        end
-        if(aktiv != @rent.aktiv)
-          RentMailer.active_email(@rent).deliver
-        end 
-        format.html { redirect_to @rent, :notice => 'Bokningen sparades.' }
+      if @rent.update(rent_params)        
+        format.html { redirect_to edit_rent_path(@rent), :notice => 'Bokningen uppdaterades.' }
         format.json { render :json => @rent, :status => :created, :location => @rent }
       else        
         format.html { render :action => "edit" }
@@ -101,10 +94,30 @@ class RentsController < ApplicationController
       end      
     end
   end
+  def update_status
+    respond_to do |format|
+      status = @rent.status
+      aktiv = @rent.aktiv
+      @rent.attributes = status_params 
+      if @rent.save(validate: false)
+        if(status != @rent.status) && (@rent.status != "Ej bestämd")
+          RentMailer.status_email(@rent).deliver
+        end
+        if(aktiv != @rent.aktiv)
+          RentMailer.active_email(@rent).deliver
+        end
+        format.html { redirect_to rent_path(@rent), :notice => 'Bokningen uppdaterades.' }
+        format.json { render :json => @rent, :status => :created, :location => @rent }
+      else        
+        format.html { redirect_to :action => "show" }
+        format.json { render :json => @rent.errors, :status => :unprocessable_entity }
+      end      
+    end
+  end
   def destroy    
     @rent.destroy
     respond_to do |format|
-      format.html { redirect_to car_rents_path,notice: 'Bokningen raderades.' }
+      format.html { redirect_to :bil,notice: 'Bokningen raderades.' }
       format.json { head :no_content }
     end
   end
@@ -145,7 +158,7 @@ class RentsController < ApplicationController
     end
     # @edit innebär att fält för att redigera en bokning kan dyka upp
     def set_edit
-      if(@rent) && (current_user) && (current_user.profile == @rent.profile) && (@rent.d_til < Date.today)
+      if(@rent) && (current_user) && (@rent.d_from > DateTime.now.end_of_day) && (current_user.profile.id == @rent.profile_id)
         @edit = true
       end      
     end
@@ -155,6 +168,9 @@ class RentsController < ApplicationController
       end
     end
     def rent_params
-        params.require(:rent).permit(:d_from,:d_til,:name,:lastname,:email,:phone,:purpose,:disclaimer,:council_id,:status,:aktiv, :comment,:service)
-      end
+      params.require(:rent).permit(:d_from,:d_til,:name,:lastname,:email,:phone,:purpose,:disclaimer,:council_id,:status,:aktiv, :comment,:service)
+    end
+    def status_params
+      params.require(:rent).permit(:status,:aktiv,:comment)
+    end
 end
