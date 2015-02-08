@@ -1,0 +1,45 @@
+<% provide(:title, 'Hilbert Café') %>
+<%= stylesheet_link_tag "fullcalendar-custom", :media => "print" %>
+<div class="col-md-12">
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="headline headline-md"><h1>Välkommen till Hilbert Café</h1></div>
+            <div class="col-md-9">                        
+                	<div id='hilbertkalender'></div>						               
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="headline headline-md"><h2>F.A.Q.</h2></div>
+                	<div class="panel-group acc-v1 margin-bottom-40" id="unanswered">
+                		<div class="panel panel-default">
+                			<div class="panel-heading">
+                    			<h4 class="panel-title">
+                        			<a class="accordion-toggle" data-toggle="collapse" href="#faq-1" >Vem är Hilbert? Och hur kan kaffet vara så billigt?</a>
+                    			</h4>
+                			</div>	                        			
+	                        <div id="faq-1" class="panel-collapse collapse">
+	                            <div class="panel-body">
+	                            	Typ													
+	                            </div>
+	                        </div>
+	                    </div>					                   
+                    </div>
+                </div>
+    			<div class="row">
+                    <div class="headline headline-md"><h2>Jobba i Hilbert Café?</h2></div>
+                    <%if user_signed_in? %>
+                    	<div class="input-group margin-bottom-20">
+                    		<%=link_to("Se tidigare jobb",cafe_works_path, class: "btn btn-u")%>
+                		</div>
+                    <%end%>                               
+        			<% if (current_user) && current_user.moderator?(:bilen) %>
+						<div class="headline headline-md"><h2>Verktyg</h2></div>
+						<ul class="list">
+							<li><%=link_to("Lägg till pass",setup_cafe_works_path)%></li>
+						</ul>	
+					<%end%>
+                </div>
+            </div>
+        </div>
+    </div>        
+</div>

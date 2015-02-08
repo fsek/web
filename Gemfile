@@ -44,7 +44,7 @@ gem 'the_role',
   tag: 'v2.6'
 gem 'the_role_bootstrap3_ui'
 gem "paperclip", "~> 4.1"
-gem 'fullcalendar-rails', '~>2.1.1'
+gem 'fullcalendar-rails', '~>2.2.5'
 gem 'icalendar'
 gem 'jquery-turbolinks'
 gem 'mysql2'

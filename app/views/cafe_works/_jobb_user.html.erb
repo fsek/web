@@ -1,0 +1,50 @@
+<%= form_for(@cwork, :html => {  :autocomplete => 'off' }) do |f| %>
+	<% if @cwork.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@cwork.errors.count, "error") %> gör att passet inte kan sparas:</h2>
+	
+	      <ul>
+	      <% @cwork.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+  	<% end %>
+  	De grå fälten tas från din profil, fyll i dem <%=link_to("här",edit_profile_path(current_user.profile))%>.					    
+  	<div class="margin-bottom-20">
+  		<%= f.label 'Namn & Efternamn', :class => 'reg-label'%>
+	  	<div class="row">	
+  			<div class="col-md-6"><%= f.text_field :name,:class => 'form-control', readonly: true%></div><div class="col-md-6"> <%= f.text_field :lastname,:class => 'form-control', readonly: true %></div>
+		</div> 
+  	</div>
+  	<%= f.label 'E-post & telefon', :class => 'reg-label'%> 
+  	<div class="margin-bottom-20">
+  		<div class="row">					  		
+  			<div class="col-md-6"><%= f.text_field :email,:class => 'form-control', readonly: true %></div><div class="col-md-6"> <%= f.text_field :phone,:class => 'form-control', readonly: true %></div>		
+		</div>
+  	</div>
+  	<%if @utskott%>  		
+		<div class="row">
+			<div class="col-md-6"> 
+				<%= f.label :utskottskamp, "Godkänn att ditt namn visas i resultatet", :value => false,:class => 'reg-label' %>
+				<%= f.check_box :utskottskamp,class: 'form-control', value: @cwork.utskottskamp%> 
+			</div>	
+			<%= f.label "Välj ett eller flera utskott att representera",:class => 'reg-label' %>				  		
+			<div class="col-md-6">
+				<%for @u in @utskott%>
+			  		<div class="input-group margin-bottom-1">
+			  			<%= f.check_box(:council_ids,{multiple: true},@u.id,nil)%><%= f.label :council_ids, @u.title, :value => false,:class => 'reg-label' %>
+					</div>		
+		  		<%end%>	
+			</div>
+		</div>			
+			
+	  	
+  	<%end%> 	  	
+  	<div class="margin-bottom-20">
+  		<%= f.hidden_field :profile_id, value: current_user.profile.id%>
+  		<%= f.submit "Spara",:class => 'btn-u pull-right' %>  		
+  		<%if @cwork.profile == current_user.profile%><%= f.submit "Lämna jobbpasset",:class => 'btn-u pull-left' %><%end%>
+  	</div>
+<% end %>
+

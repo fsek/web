@@ -46,8 +46,15 @@ Fsek::Application.routes.draw do
      # get 'bokningar', controller: :car_rents, action: :bokningar
      # get '', controller: :car_rents, action: :main, as: :bil
     #end      
+    scope :hilbertcafe do      
+      resources :cafe_works, path: :jobb do
+        get '/setup', controller: :cafe_works,action: :setup, on: :collection
+        post '/setup/skapa', controller: :cafe_works, action: :setup_create, on: :collection
+      end
+      get '', controller: :cafe_works, action: :main, as: :hilbert      
+    end
     resources :posts,path: :poster, only: :index     
-    resources :councils, path: :utskott do
+    resources :councils, path: :utskott do    
       resources :posts, path: :poster do
         patch :remove_profile, on: :member
         patch :add_profile_username, on: :member

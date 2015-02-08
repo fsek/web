@@ -12,7 +12,13 @@ class Profile < ActiveRecord::Base
   
 
   def to_s
-    self.name || self.user.username
+    if(self.name) && (self.lastname)
+      self.name + " " + self.lastname
+    elsif(self.name)
+      self.name
+    else
+      self.user.username
+    end    
   end  
   def print  
     if(self.first_post)

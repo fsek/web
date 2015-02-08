@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171432) do
+ActiveRecord::Schema.define(version: 20410822171433) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -51,18 +51,25 @@ ActiveRecord::Schema.define(version: 20410822171432) do
   end
 
   create_table "cafe_works", force: true do |t|
-    t.date     "work_day"
+    t.datetime "work_day"
     t.integer  "pass"
+    t.integer  "lp"
+    t.integer  "lv"
     t.integer  "profile_id"
     t.integer  "council_id"
     t.string   "name"
     t.string   "lastname"
     t.string   "phone"
-    t.string   "stil_id"
-    t.integer  "c_year"
-    t.integer  "lp"
+    t.string   "email"
+    t.boolean  "utskottskamp"
+    t.string   "access_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "cafe_works_councils", id: false, force: true do |t|
+    t.integer "cafe_work_id"
+    t.integer "council_id"
   end
 
   create_table "candidates", force: true do |t|

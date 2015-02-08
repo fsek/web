@@ -64,7 +64,7 @@ GEM
       railties (>= 3.1.0, < 5.0)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
-    fullcalendar-rails (2.1.1.0)
+    fullcalendar-rails (2.2.5.0)
       jquery-rails (>= 3.1.1, < 5.0.0)
       momentjs-rails (~> 2.8, >= 2.8.3)
     haml (4.0.5)
@@ -183,7 +183,7 @@ DEPENDENCIES
   devise
   fancybox2-rails (~> 0.2.8)
   font-awesome-rails
-  fullcalendar-rails (~> 2.1.1)
+  fullcalendar-rails (~> 2.2.5)
   icalendar
   jbuilder (~> 1.2)
   jquery-rails

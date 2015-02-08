@@ -1,0 +1,74 @@
+<div class="col-md-6 col-md-offset-3">
+	<div class="row">
+		<div class="headline headline-md"><h2>Cafejobb - ID <%= @cwork.id%></h2></div>
+		<table class="table">
+			<tbody>					
+				<tr>
+					<td><i class="fa fa-calendar"></i></td>
+					<td><%=@cwork.print%></td>
+				</tr>
+				<tr>
+					<td><i class="fa fa-calendar-o"></i> Pass</td>
+					<td><%= @cwork.pass%></td>
+				</tr>
+				<tr>
+					<td><i class="fa fa-calendar-o"></i> LV</td>
+					<td><%= @cwork.lv%></td>
+				</tr>
+				<tr>
+					<td><i class="fa fa-calendar-o"></i> LP</td>
+					<td><%= @cwork.lp%></td>
+				</tr>
+				<% if 1 == 0%>
+				<tr>
+					<td><i class="fa fa-user"></i></td>
+					<td><%= (@cwork.profile != nil) ? link_to(@cwork.name. + ' ' + @cwork.lastname,profile_path(@cwork.profile)) : @cwork.name + ' ' + @cwork.lastname%></td>
+				</tr>
+				<tr>
+					<td><i class="fa fa-envelope"></i></td>
+					<td><%= @cwork.email%></td>
+				</tr>
+				<tr>
+					<td><i class="fa fa-phone"></i></td>
+					<td><%= @cwork.phone%></td>
+				</tr>
+				<tr>
+					<td><i class="fa fa-phone"></i></td>
+					<td><%= @cwork.stil_id%></td>
+				</tr>				
+				
+				<% @council = Council.find_by_id(@cwork.council_id)%>
+				<%if @council%>
+				<tr>
+					<td><i class="fa fa-users"></i> Utskottkamp:</td>
+					<td><%= link_to(@council.title,council_path(@council))%></td>
+				</tr>
+				<%end%>	
+				<%end%>					
+			</tbody>
+		</table>
+	</div>
+	<div class="row">			
+		<div class="headline headline-md"><h2>Jobbare</h2></div>
+		<%if (@cwork.profile)%>
+			<%if (@mod) || ((user_signed_in?) && (@cwork.profile == current_user.profile ))%>
+				Du är uppskriven att arbeta på passet. <%=(@mod) ? "Eller är moderator ;).":""%>
+				<%= render 'jobb_user'%>	
+			<%else%>
+				Passet är redan bokat av <%=link_to(@cwork.profile,@cwork.profile)%>
+			<%end%>
+		<%elsif (!@cwork.access_code.nil?)%>
+		<%else%>
+			<%if user_signed_in? %>
+				Fyll i uppgifter och tryck på "Spara" för att skriva upp dig och arbeta på passet.
+				<%= render 'jobb_user'%>
+			<%else%>
+				<%= render 'jobb_not_user'%>
+			<%end%>
+		<%end%>
+	</div>
+	<hr>
+	<div class="row">
+		<%=link_to("Startsida för Hilbert",:hilbert,class:"btn btn-u")%>
+	</div>
+</div>
