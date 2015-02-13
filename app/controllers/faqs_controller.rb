@@ -2,15 +2,15 @@
 class FaqsController < ApplicationController
   
   before_filter :authenticate_editor, only: [:edit,:update,:destroy]
-  before_action :set_editor, only: [:new, :edit, :index]
+  before_action :set_editor, only: [:new, :show, :edit, :index]
   before_action :set_faq, only: [:show, :edit, :update, :destroy]
 
   
   
   def index
-    @faq = Faq.where.not(answer: '')
+    @faq = Faq.where.not(answer: '').where(category: 'main') 
     if @editor
-      @faq_unanswered = Faq.where(answer: '')
+      @faq_unanswered = Faq.where(answer: '').where(category: 'main') 
     end
   end
   
@@ -46,6 +46,10 @@ class FaqsController < ApplicationController
   
   def create
     @faq = Faq.new(faq_params)
+		@faq.category = 'main'
+    if @faq.answer == nil
+      @faq.answer = ''
+    end
     respond_to do |format|
       if @faq.save
         format.html { redirect_to @faq, notice: 'Frågan skapades!' }
