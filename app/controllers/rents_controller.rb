@@ -5,11 +5,10 @@ class RentsController < ApplicationController
   before_action :set_rent, except: [:main,:new,:forman,:index,:create]  
   before_action :set_mod
   before_action :set_edit, only: [:edit,:show]
-  def main
-    @bokningar = Rent.order(d_from: :asc).where.not(status: "Nekad").where(d_from: Date.today..Date.today+30)
+  def main   
     respond_to do |format|      
         format.html 
-        format.json { render :json => Rent.order(d_from: :asc).where.not(status:"Nekad")}
+        format.json { render :json => Rent.where(d_from: params[:start].to_date-10.days..params[:end].to_date+10.days).where.not(status:"Nekad")}
     end 
   end
   def new    

@@ -3,7 +3,10 @@
 <div class="col-md-12">
         <div class="row">
         	<div class="col-md-12">
-        		<div class="headline headline-md"><h1>F-bilen</h1></div>
+        		<div class="headline headline-md"><h1>F-bilen (Beta)</h1></div>
+        		<div class="margin-bottom-40">
+        			Stöter ni på problem eller om det blir fel, hör gärna av er till <%= render partial: "contacts/kontakt", locals: {name: 'Bilförman'}%> eller <%= render partial: "contacts/kontakt", locals: {name: 'Spindelmän'}%>.
+    			</div>        		
                 <div class="col-md-9">                        
                     	<div id='bilkalender'></div>						               
                 </div>
@@ -60,20 +63,7 @@
 													
 					                            </div>
 					                        </div>
-					                    </div>
-					                    <div class="panel panel-default">
-		                        			<div class="panel-heading">
-		                            			<h4 class="panel-title">
-		                                			<a class="accordion-toggle" data-toggle="collapse" href="#faq-5" >Hur länge får man boka bilen?</a>
-		                            			</h4>
-		                        			</div>	                        			
-					                        <div id="faq-5" class="panel-collapse collapse">
-					                            <div class="panel-body">
-													En vanlig bokning är max 48h, förfrågningar för längre bokningar skickas till Bilförmannen.<br> 
-													För sektionsändamål får undantag göras.													
-					                            </div>
-					                        </div>
-					                    </div>                        
+					                    </div>					                                 
 			                        </div>
 		                        </div>
                         <div class="row">
@@ -89,8 +79,7 @@
                         		<% if user_signed_in? %>	
 								<div class="headline headline-md"><h2>Verktyg</h2></div>
 								<ul class="list">
-									<% if (current_user) && current_user.moderator?(:bilen) %>										
-										<li>Bilkalenderprenumeration - kommer</li>
+									<% if (current_user) && current_user.moderator?(:bil) %>
 										<li><%=link_to("Bilförman",forman_path)%></li>	
 									<% end %>		
 								</ul>	

@@ -14,7 +14,8 @@ loadCalendar = ->
     },
     aspectRatio: 1.3,
     weekNumberTitle: "V ",
-    allDaySlot: false,    
+    allDaySlot: false,
+    width: "auto",    
     eventMouseover: (calEvent, jsEvent) ->
       tooltip = '<div class="tooltipevent" style="width:auto;height:auto;background:#eb7125;position:absolute;z-index:10001;padding:10px;paddin-top:0px;border:2px solid;">' + calEvent.title+ '<br>' + calEvent.start.format('LLL') + '<br>till<br>'+ calEvent.end.format('LLL') + '</div>'
       $('body').append tooltip
