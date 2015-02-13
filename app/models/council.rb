@@ -4,6 +4,9 @@ class Council < ActiveRecord::Base
   has_many :profiles, through: :posts
   validates :title,:url,:presence => true
   validates :url, uniqueness: true
+  def to_s
+    self.title
+  end
   def to_param
     if (self.url) 
       self.url

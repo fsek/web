@@ -1,57 +1,48 @@
 sv:
-  devise.registrations.signed_up: Välkommen! Du har lyckats registrera dig.
-  devise.failure.unauthenticated: Du måste logga in eller registrera dig för att fortsätta.
-  devise.failure.user.not_found_in_database: Användarnamn eller lösenord stämmer inte.
-  devise.sessions.signed_in: Inloggning lyckades
-  devise.sessions.signed_out: Utloggning lyckades
-  helpers.submit.create: Skapa %{model}  
-  devise.sessions.signed_in: Inloggning lyckades
-  errors.messages.not_found: not found
-  errors.format: "%{attribute} %{message}"
   the_role:
-    role_created:             Roll skapad
-    role_updated:             Roll uppdaterad
-    role_deleted:             Roll raderad
-    section_created:          Sektion skapad
-    section_not_created:      Sektion skapdes inte
-    section_rule_created:     "Sektionsregel skapades"
-    section_rule_not_created: "Sektionsregel skapades inte"
-    section_rule_on:          "Sektionsregel är aktiverad"
-    section_rule_off:         "Sektionsregel är inaktiverad"
-    state_not_changed:        "Sektionsregel ändrades inte"
-    section_deleted:          Sektion raderad
-    section_not_deleted:      Sektion raderades inte
-    section_rule_deleted:     "Sektionsregel raderad"
-    section_rule_not_deleted: "Sektionsregel inte raderad"
+    role_created:             Roll skapades
+    role_updated:             Roll uppdaterades
+    role_deleted:             Roll togs bort
+    section_created:          Sektion skapades
+    section_not_created:      Sektion skapades inte
+    section_rule_created:     "Sektionsregel skapad"
+    section_rule_not_created: "Sektionsregel ej skapad"
+    section_rule_on:          "Sektionsregel aktiverad"
+    section_rule_off:         "Sektionsregel inaktiverad"
+    state_not_changed:        "Sektionsregel ej ändraded"
+    section_deleted:          Sektion borttagen
+    section_not_deleted:      Sektion ej borttagen
+    section_rule_deleted:     "Sektionsregel borttagen"
+    section_rule_not_deleted: "Sektionsregel ej borttagen"
     access_denied: "Åtkomst nekad"
 
   admin:
     roles:
       new:
         create: Skapa ny roll
-        name: Namn för roll (a-z och understreck)
-        title: Titel för roll
-        description: Beskrivning av roll
+        name: Namn (små bokstäver)
+        title: Titel
+        description: Beskrivning
         based_on_role: "Ny roll baseras på:"
       role:
-        role_name: 'Rollnamn:'
+        role_name: 'Namn:'
         title:     'Titel:'
-        role_description: 'Beskrivning av roll:'
+        role_description: 'Beskrivning:'
         delete_section: Ta bort sektion
-        section_delete_confirm: 'Vill du radera sektionen?'
-        rule_delete_confirm: 'Vill du radera sektionsregeln?'
+        section_delete_confirm: 'Vill du ta bort sektionen?'
+        rule_delete_confirm: 'Vill du ta bort regeln?'
         enable: Aktivera
-        disable: Inaktivera
+        disable: Avaktivera
         delete_rule: Ta bort regel
         new_section_placeholder: Nytt sektionsnamn
         create_section: Skapa ny sektion
-        new_rule_placeholder: Nytt regelnamn
+        new_rule_placeholder: Nytt namn på regel
         create_rule: Skapa ny regel
         role_export: "Exportera roll"
       sidebar:
-        roles_export: "Rollexportering"
-        roles_import: "Rollimportering"
-        roles_list: Rollista
+        roles_export: "Exportera roller"
+        roles_import: "Importera roller"
+        roles_list: Lista med roller
         new_role: Skapa ny roll
-        delete_role_confirm: 'Är du säker? Det kan vara farligt.'
-        roles_import_confirm: 'Det kan ändra rättigheter, är du säker?'
+        delete_role_confirm: 'Är du säker? Det kan vara farligt!'
+        roles_import_confirm: 'Det kan ändra behörigheter i ditt system, är du säker?'

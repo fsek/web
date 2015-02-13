@@ -2,7 +2,7 @@ class Profile < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :posts
   has_many :candidates
-  has_one :email_account  
+  has_many :rents  
   
   has_attached_file :avatar, 
                     :styles => { original: "800x800>", medium: "300x300>", thumb:  "100x100>" },                   
@@ -11,9 +11,6 @@ class Profile < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/ 
   
 
-  def to_s
-    self.name || self.user.username
-  end  
   def print  
     if(self.first_post)
       post = Post.find_by_id(self.first_post)
@@ -23,6 +20,18 @@ class Profile < ActiveRecord::Base
     elsif (self.name)
       self.name
     end
+  end
+  def namn    
+    self.name + ' ' + self.lastname
+  end
+  def to_s
+     if(self.name) && (self.lastname)
+	%((#{self.id.to_s}) #{self.name} #{self.lastname})
+     elsif(self.name)
+	%((#{self.id.to_s}) #{self.name})
+     else
+	%((#{self.id.to_s}) #{self.user.to_s})
+     end    
   end
 
 end
