@@ -9,7 +9,7 @@
 	      <% end %>
 	      </ul>
 	    </div>
-  	<% end %>
+  	<% end %>  	
   	De grå fälten tas från din profil, fyll i dem <%=link_to("här",edit_profile_path(current_user.profile))%>.					    
   	<div class="margin-bottom-20">
   		<%= f.label 'Namn & Efternamn', :class => 'reg-label'%>
@@ -23,10 +23,11 @@
   			<div class="col-md-6"><%= f.text_field :email,:class => 'form-control', readonly: true %></div><div class="col-md-6"> <%= f.text_field :phone,:class => 'form-control', readonly: true %></div>		
 		</div>
   	</div>
-  	<%if @utskott%>  		
+  	<%if @utskott%> 
+  	<div class="headline headline-md"><h3>Utskottskampen</h3></div> 		
 		<div class="row">
 			<div class="col-md-6"> 
-				<%= f.label :utskottskamp, "Godkänn att ditt namn visas i resultatet", :value => false,:class => 'reg-label' %>
+				<%= f.label :utskottskamp, "Delta i cafétävlingen? Ditt namn kommer synas i resultatet", :value => false,:class => 'reg-label' %>
 				<%= f.check_box :utskottskamp,class: 'form-control', value: @cwork.utskottskamp%> 
 			</div>	
 			<%= f.label "Välj ett eller flera utskott att representera",:class => 'reg-label' %>				  		

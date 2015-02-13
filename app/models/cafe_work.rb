@@ -10,7 +10,12 @@ class CafeWork < ActiveRecord::Base
     return  self.p_date + " LV: " + self.lv.to_s + " Pass: "+ self.pass.to_s
   end
   def p_date
-    self.work_day.strftime("%a")+" " + self.work_day.strftime("%H:%M") + " till " + (self.work_day + @h.hours).strftime("%H:%M")
+    if(self.pass == 1) || (self.pass == 2)
+      @h = 2
+    else
+      @h = 3
+    end
+    self.work_day.strftime("%a %d/%m")+" " + self.work_day.strftime("%H:%M") + " till " + (self.work_day + @h.hours).strftime("%H:%M")
   end
   def p_url
       Rails.application.routes.url_helpers.cafe_work_url(id,host: PUBLIC_URL)

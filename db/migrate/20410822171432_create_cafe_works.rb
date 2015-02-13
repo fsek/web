@@ -11,7 +11,8 @@ class CreateCafeWorks < ActiveRecord::Migration
       t.string    :phone      
       t.string    :email
       t.boolean   :utskottskamp
-      t.string    :access_code      
+      t.string    :access_code
+      t.integer   :d_year      
       t.timestamps
     end
   end

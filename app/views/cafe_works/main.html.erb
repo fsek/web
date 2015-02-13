@@ -30,13 +30,19 @@
                     <%if user_signed_in? %>
                     	<div class="input-group margin-bottom-20">
                     		<%=link_to("Se tidigare jobb",cafe_works_path, class: "btn btn-u")%>
-                		</div>
-                    <%end%>                               
-        			<% if (current_user) && current_user.moderator?(:bilen) %>
-						<div class="headline headline-md"><h2>Verktyg</h2></div>
-						<ul class="list">
-							<li><%=link_to("Lägg till pass",setup_cafe_works_path)%></li>
-						</ul>	
+                		</div>                                                                       
+	        			<% if current_user.moderator?(:hilbert) %>
+							<div class="headline headline-md"><h2>Verktyg</h2></div>
+							<ul class="list">
+								<li><%=link_to("Lägg till pass",setup_cafe_works_path)%></li>
+							</ul>	
+						<%end%>
+						<% if current_user.has_role?(:hilbert,:nyckelpiga) %>
+							<div class="headline headline-md"><h2>Verktyg</h2></div>
+							<ul class="list">
+								<li><%=link_to("Nyckelpiga",:nyckelpiga)%></li>
+							</ul>	
+						<%end%>
 					<%end%>
                 </div>
             </div>

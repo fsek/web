@@ -1,6 +1,6 @@
 class CafeWorksController < ApplicationController
   before_filter :authenticate, only: [:admin]
-  before_action :set_cafe_work, only: [:edit,:show,:update]
+  before_action :set_cafe_work, only: [:edit,:show,:update,:destroy]
   before_action :set_mod  
   
   def index
@@ -8,7 +8,7 @@ class CafeWorksController < ApplicationController
       format.json {render json: CafeWork.where(work_day: params[:start]..params[:end])}
     end    
   end
-  def show
+  def show    
     if not(@cwork.profile) && (user_signed_in?)
       @profile = current_user.profile      
       @cwork.name = @profile.name
@@ -16,9 +16,9 @@ class CafeWorksController < ApplicationController
       @cwork.email = @profile.email
       @cwork.phone = @profile.phone
     end 
-    @utskott = Council.all
+    @utskott = Council.all    
     #@faddergrupper
-  end
+  end  
   def new
     @cwork = CafeWork.new
   end
@@ -37,10 +37,28 @@ class CafeWorksController < ApplicationController
     end
   end
   def update
-    if(params[:commit] == "Spara")
+    @utskott = Council.all
+    if(params[:commit] == "Auktorisera")
+      if(!@cwork.access_code.nil?) && (params[:cafe_work][:access_code] == @cwork.access_code)
+        @authenticated = true
+        flash[:notice] = "Koden var rätt, du kan nu redigera"
+        render action: :show        
+      else
+        flash[:alert] = "Ogiltlig kod, om du tror något är fel, kontakta Cafemästare eller Spindelmän"
+        render action: :show
+      end
+    elsif(params[:commit] == "Spara")
       respond_to do |format|    
-        if @cwork.update(c_w_params)
-          format.html { redirect_to cafe_work_path(@cwork), notice: 'Cafejobbet uppdaterades!'}
+        if @cwork.update(c_w_params)          
+          if(@cwork.profile_id.nil?) && (@cwork.access_code.nil?)
+            @cwork.update(access_code: (0...15).map { (65 + rand(26)).chr }.join.to_s)
+            @print = "Du är nu uppskriven för att jobba på passet, du använder koden "+ @cwork.access_code + " för att redigera din bokning, du har även fått mejl."
+            #Skicka mejl! 
+          elsif(@cwork.profile_id.nil?)
+            @print = "Dina uppgifter sparades och du är uppskriven för att arbeta på passet"
+          end
+          
+          format.html { redirect_to cafe_work_path(@cwork), notice: @print}
           format.json { head :no_content }        
         else
           format.html { render action: 'edit' }
@@ -49,7 +67,7 @@ class CafeWorksController < ApplicationController
       end
     elsif(params[:commit] == "Lämna jobbpasset")      
       respond_to do |format|    
-        if @cwork.update(name: nil, lastname: nil,profile_id: nil, phone: nil, email: nil,utskottskamp: false)
+        if @cwork.update(name: nil, lastname: nil,profile_id: nil, phone: nil, email: nil,utskottskamp: false, access_code: nil)
           @cwork.councils.clear
           format.html { redirect_to cafe_work_path(@cwork), notice: 'Du jobbar inte längre på cafepasset!'}
           format.json { head :no_content }        
@@ -59,7 +77,13 @@ class CafeWorksController < ApplicationController
         end
       end
     end
-   
+  end
+  def destroy    
+    @cwork.destroy
+    respond_to do |format|
+      format.html { redirect_to :hilbert,notice: 'Cafepasset raderades.' }
+      format.json { head :no_content }
+    end
   end
   def setup
     @cwork = CafeWork.new
@@ -71,13 +95,13 @@ class CafeWorksController < ApplicationController
       lp = params[:cafe_work][:lp]    
       (1..7).each do |week|             
         (0..4).each do        
-          @cworks << CafeWork.new(work_day: wday, lp: lp,pass: 1,lv: week)
-          @cworks << CafeWork.new(work_day: wday, lp: lp,pass: 2,lv: week)
-          @cworks << CafeWork.new(work_day: wday+2.hours, lp: lp,pass: 3, lv: week)
-          @cworks << CafeWork.new(work_day: wday+2.hours, lp: lp,pass: 4, lv: week)
+          @cworks << CafeWork.new(work_day: wday, lp: lp,pass: 1,lv: week, d_year: wday.year)
+          @cworks << CafeWork.new(work_day: wday, lp: lp,pass: 2,lv: week, d_year: wday.year)
+          @cworks << CafeWork.new(work_day: wday+2.hours, lp: lp,pass: 3, lv: week, d_year: wday.year)
+          @cworks << CafeWork.new(work_day: wday+2.hours, lp: lp,pass: 4, lv: week, d_year: wday.year)
           wday = wday + 1.days
         end
-        wday = wday + (2).days
+        wday = wday + 2.days
       end
       @cwork = CafeWork.new(c_w_params)
       render action: 'setup'
@@ -86,10 +110,10 @@ class CafeWorksController < ApplicationController
       lp = params[:cafe_work][:lp]    
       (1..7).each do |week|             
         (0..4).each do        
-          CafeWork.new(work_day: wday, lp: lp,pass: 1,lv: week).save
-          CafeWork.new(work_day: wday, lp: lp,pass: 2,lv: week).save
-          CafeWork.new(work_day: wday+2.hours, lp: lp,pass: 3, lv: week).save
-          CafeWork.new(work_day: wday+2.hours, lp: lp,pass: 4, lv: week).save
+          CafeWork.new(work_day: wday, lp: lp,pass: 1,lv: week, d_year: wday.year).save
+          CafeWork.new(work_day: wday, lp: lp,pass: 2,lv: week, d_year: wday.year).save
+          CafeWork.new(work_day: wday+2.hours, lp: lp,pass: 3, lv: week, d_year: wday.year).save
+          CafeWork.new(work_day: wday+2.hours, lp: lp,pass: 4, lv: week, d_year: wday.year).save
           wday = wday + 1.days
         end
         wday = wday + (2).days
@@ -98,6 +122,32 @@ class CafeWorksController < ApplicationController
      end      
   end
   def main
+  end
+  def nyckelpiga    
+    if(params[:date])
+      @date = Date.new(params[:date][:year].to_i,params[:date][:month].to_i,params[:date][:day].to_i)
+      @works = CafeWork.where(work_day: @date..@date+1.days).order(pass: :asc)
+    else
+      @date = Date.today
+      @works = CafeWork.where(work_day: DateTime.now.beginning_of_day..DateTime.now.end_of_day).order(pass: :asc)
+    end    
+    @work_grid = initialize_grid(@works)
+  end
+  def tavling
+    if(params[:lp])
+      @LP = params[:lp]
+    else
+      @LP = CafeWork.where(work_day: DateTime.now-10.days..DateTime.now+10.days).limit(1).first.lp
+    end    
+      @works = CafeWork.where(work_day: DateTime.now-100.days..DateTime.now, lp: @LP)
+      @profiles = {}
+      @works.each do |work|
+        if work.profile_id
+          @count = CafeWork.where(lp:3,d_year: 2015, profile_id: work.profile_id, work_day: DateTime.now-50.days..DateTime.now).count
+          @profiles[work.profile_id] == {@count}
+        end
+      end
+    
   end
   
   

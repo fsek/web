@@ -49,9 +49,11 @@ Fsek::Application.routes.draw do
     scope :hilbertcafe do      
       resources :cafe_works, path: :jobb do
         get '/setup', controller: :cafe_works,action: :setup, on: :collection
-        post '/setup/skapa', controller: :cafe_works, action: :setup_create, on: :collection
+        post '/setup/skapa', controller: :cafe_works, action: :setup_create, on: :collection        
       end
-      get '', controller: :cafe_works, action: :main, as: :hilbert      
+      get '', controller: :cafe_works, action: :main, as: :hilbert
+      get '/nyckelpiga', controller: :cafe_works, action: :nyckelpiga
+      get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling   
     end
     resources :posts,path: :poster, only: :index     
     resources :councils, path: :utskott do    
