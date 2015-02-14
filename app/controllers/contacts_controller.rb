@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class ContactsController < ApplicationController
   before_filter :authenticate_edit, only: [:new,:edit,:update,:destroy]  
   before_action :set_contact, only: [:show, :edit,:update,:destroy,:mail]

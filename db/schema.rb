@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171433) do
+ActiveRecord::Schema.define(version: 20410822171435) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -191,7 +191,10 @@ ActiveRecord::Schema.define(version: 20410822171433) do
     t.integer  "sorting_index"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
   end
+
+  add_index "faqs", ["category"], name: "index_faqs_on_category", using: :btree
 
   create_table "images", force: true do |t|
     t.string   "description"
@@ -390,8 +393,8 @@ ActiveRecord::Schema.define(version: 20410822171433) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "work_posts", force: true do |t|
     t.string   "title"

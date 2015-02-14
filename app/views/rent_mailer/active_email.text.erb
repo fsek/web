@@ -1,0 +1,29 @@
+Hej <%=@rent.name.to_s %>
+===============================================
+<%if @rent.aktiv == true%>
+Din bokning har bokats över utav ett utskott.
+Om du tror att någonting har gått fel eller om det är lätt att lösa, svara på mejlet och kontakta bilförmannen.
+<%else%>
+Din bokning har markerats som aktiv igen.  				
+<%end%>
+  			
+  			
+Uppgifter för bokningen (ID: <%=@rent.id%>).
+Namn:    	<%=@rent.name.to_s%> <%=@rent.lastname.to_s%>
+Epost: 	 	<%=@rent.email.to_s%> 
+Telefon: 	<%=@rent.phone.to_s%>
+Datum:   	<%=@rent.printTime%>
+<%if @rent.purpose.blank? == false %>
+Syfte:		<%=@rent.purpose%>
+<%end%>
+<%@council = Council.find_by_id(@rent.council_id)%>
+<%if @council%>			      	
+Utskott: 	<%=@council.title.to_s%>
+<%end%>
+Länk:		<%=@rent.p_url%>
+
+
+Har du några frågor så svarar du enklast direkt på detta mejl.
+
+Mvh,
+Bilförmannen

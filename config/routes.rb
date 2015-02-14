@@ -1,6 +1,6 @@
 
 Fsek::Application.routes.draw do
-    
+
   # Resources on the page
   get 'kurslankar' => 'static_pages#kurslankar'
   get 'libo' => 'static_pages#libo', as: :libo
@@ -40,12 +40,7 @@ Fsek::Application.routes.draw do
   get 'anvandare' => 'users#index', as: :users
   
   
-  scope path_names: { new: 'ny',edit: 'redigera' } do
-    #scope :bil do
-     # resources :car_rents, path: :bokning
-     # get 'bokningar', controller: :car_rents, action: :bokningar
-     # get '', controller: :car_rents, action: :main, as: :bil
-    #end      
+  scope path_names: { new: 'ny',edit: 'redigera' } do     
     scope :hilbertcafe do      
       resources :cafe_works, path: :jobb do
         get '/setup', controller: :cafe_works,action: :setup, on: :collection
@@ -55,6 +50,15 @@ Fsek::Application.routes.draw do
       get '/nyckelpiga', controller: :cafe_works, action: :nyckelpiga
       get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling   
     end
+
+    scope :bil do
+      resources :rents, path: :bokning do
+        patch :update_status, on: :member
+      end     
+      get 'forman', controller: :rents, action: :forman
+      get '', controller: :rents, action: :main, as: :bil      
+    end
+    resources :menus,path: :meny, except: :show
     resources :posts,path: :poster, only: :index     
     resources :councils, path: :utskott do    
       resources :posts, path: :poster do

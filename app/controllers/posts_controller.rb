@@ -49,10 +49,12 @@ class PostsController < ApplicationController
   # GET /news/new
   def new
     @post = @council.posts.build
+    @councils = Council.order(title: :asc)
   end
 
   # GET /news/1/edit
   def edit
+    @councils = Council.order(title: :asc)
   end
 
   # POST /news
@@ -74,7 +76,12 @@ class PostsController < ApplicationController
   # PATCH/PUT /news/1.json
   def update    
     respond_to do |format|
-      if @post.update_attributes(post_params)               
+      if @post.update_attributes(post_params)
+        @council2 = Council.find_by_id(params[:post][:council])
+        if(@council2) && (@council2.equal?(@council) == false)
+          @council2.posts << @post
+          @council = @council2          
+        end                        
         format.html { redirect_to edit_council_post_path(@council,@post), notice: 'Posten uppdaterades!' }
         format.json { head :no_content }
       else
@@ -97,7 +104,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :limit,:recLimit,:description,:council_id,:elected_by,:elected_at,:styrelse)
+      params.require(:post).permit(:title, :limit,:recLimit,:description,:elected_by,:elected_at,:styrelse,:car_rent,:council_id)
     end
     def authenticate
       flash[:error] = t('the_role.access_denied')

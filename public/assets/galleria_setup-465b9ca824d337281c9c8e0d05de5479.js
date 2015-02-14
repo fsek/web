@@ -1,1 +1,0 @@
-Galleria.loadTheme("/assets/galleria.classicmod.js"),Galleria.configure({debug:!1,dummy:"/assets/fallback/large_default.png",transition:"fade"});

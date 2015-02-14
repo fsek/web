@@ -1,0 +1,33 @@
+<div class="container">
+	<div class="col-md-12">
+		<div class="panel panel-orange margin-bottom-40">
+            <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-tasks"></i> Menyelement</h3> <%=link_to('Skapa ny',new_menu_path,class:'btn btn-u')%></div>                                                          
+            <table class="table">
+                <thead>
+                    <tr>                                
+                        <th>Id</th>
+                        <th>Namn</th> 
+                        <th>Position</th>
+                        <th>Synlig</th>
+                        <th>Länk</th>                         
+                        <th>Uppdaterad</th>
+                        <th>Redigera</th>                                
+                    </tr>
+                </thead>
+                <tbody>
+                	<%for @menu in @menues%>	                            							
+                        <tr>
+                            <td><%=@menu.id%></td>
+                            <td><%=@menu.name%></td>
+                            <td><%=@menu.location%></td>
+                            <td><%=@menu.visible%></td>
+                            <td><%=link_to(@menu.link,@menu.link)%></td>                            
+                            <td><%=@menu.updated_at%></td>
+                            <td><%=link_to('Redigera',edit_menu_path(@menu),class: "btn btn-u")%></td>		                                	                                                          
+                        </tr>	                            
+                    <%end%>                            	                     
+                </tbody>
+            </table>
+        </div>                        
+    </div>
+</div>

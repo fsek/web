@@ -14,10 +14,17 @@
 	                <% end %>		                
 	            </ul>	            
                 <ul class="row sorting-grid">
-                	<% @images.each do |p| %>
-                	<li class="col-lg-3 col-md-4 col-xs-6 thumb mix <%if p.subcategory_id%> category_<%=p.subcategory_id%>"data-cat="<%=p.subcategory_id%>"><%else%>"><%end%>                		
-	                            <%= image_tag(p.foto(:large),class: 'img-responsive gallery', rel: "album", href: p.foto(:original), id: p.id)  %>                                   
-            		</li>
+                	<%if false %>
+	                	<% @images.each do |p| %>
+		                	<li class="col-lg-3 col-md-4 col-xs-6 thumb mix <%if p.subcategory_id%> category_<%=p.subcategory_id%>"data-cat="<%=p.subcategory_id%>"><%else%>"><%end%>                		
+			                            <%= image_tag(p.foto(:large),class: 'img-responsive gallery', rel: "album", href: p.foto(:original), id: p.id)  %>                                   
+		            		</li>
+	            		<%end%>
+            		<%end%>
+            		<% @images.each do |p| %>
+		                	<li class="col-lg-3 col-md-4 col-xs-6 thumb">                		
+			                            <%= image_tag(p.foto(:large),class: 'img-responsive gallery', rel: "album", href: p.foto(:original), id: p.id)  %>                                   
+		            		</li>
             		<%end%>  
             	</ul>
             <div class="clearfix"></div>			

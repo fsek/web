@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class PageElementsController < ApplicationController
   before_action :set_page_element, only: [:show, :edit, :update, :destroy]
   before_action :set_council
