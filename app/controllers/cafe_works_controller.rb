@@ -173,7 +173,6 @@ private
         redirect_to(:cafe_works)        
       end      
       rescue ActionController::RedirectBackError
-      redirect_to root_path
-      
+      redirect_to root_path      
   end
 end
