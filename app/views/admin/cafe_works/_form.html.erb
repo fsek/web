@@ -1,0 +1,28 @@
+<%= form_for(@cwork, :html => {  :autocomplete => 'off' }) do |f| %>
+	<% if @cwork.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@cwork.errors.count, "error") %> gör att passet inte kan sparas:</h2>
+	
+	      <ul>
+	      <% @cwork.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+  	<% end %>
+  	<%= f.label 'Datum', :class => 'reg-label'%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= f.datetime_select :work_day, :class => 'form-control', minute_step: 60%>		
+  	</div>
+  	<%= f.label 'Pass (1 & 2, 08:00-10:00) (3 & 4, 10:00-13:00)', :class => 'reg-label'%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= f.number_field :pass, min: 1, max: 4, :class => 'form-control'%>		
+  	</div>
+  	<%= f.label 'Läsperiod', :class => 'reg-label'%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= f.number_field :lp, min: 1, max: 4, :class => 'form-control'%>		
+  	</div>  	  	
+  	<div class="row">
+  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  	</div>
+<% end %>

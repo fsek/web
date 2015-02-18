@@ -41,17 +41,24 @@ Fsek::Application.routes.draw do
   
   
   scope path_names: { new: 'ny',edit: 'redigera' } do     
-    scope :hilbertcafe do      
-      resources :cafe_works, path: :jobb do
-        get '/setup', controller: :cafe_works,action: :setup, on: :collection
-        post '/setup/skapa', controller: :cafe_works, action: :setup_create, on: :collection        
+    scope :hilbertcafe do
+      namespace :admin do
+        resources :cafe_works, path: :jobb, controller: :_cafe_works do
+          patch :jobbare, controller: :cafe_works,action: :remove_worker, on: :member
+        end
+        get '/setup', controller: :cafe_works,action: :setup, as: :setup_cafe
+        post '/setup/skapa', controller: :cafe_works, action: :setup_create, as: :setup_cafe_create
+        get '', controller: :cafe_works, action: :main, as: :hilbert        
+      end      
+      resources :cafe_works, path: :jobb, except: [:edit,:new,:create,:destroy] do
+        patch :jobbare, controller: :cafe_works,action: :remove_worker, on: :member
       end
       get '', controller: :cafe_works, action: :main, as: :hilbert
       get '/nyckelpiga', controller: :cafe_works, action: :nyckelpiga
-      get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling   
+      #get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling         
     end
 
-    scope :bil do
+    scope :bil do      
       resources :rents, path: :bokning do
         patch :update_status, on: :member
       end     

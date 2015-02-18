@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
   def kurslankar    
   end
   def index
-    @news = News.order('created_at desc LIMIT 5')    
+    @news = News.order(created_at: :desc).limit(5)    
   end
   
   private 

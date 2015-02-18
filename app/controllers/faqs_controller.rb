@@ -7,10 +7,12 @@ class FaqsController < ApplicationController
 
   
   
-  def index
-    @faq = Faq.where.not(answer: '').where(category: 'main') 
+  def index    
+    @faq = Faq.where.not(answer: '').where(category: 'main')
+    @faq_hilbert =  Faq.where.not(answer: '').where(category: 'Hilbert')
     if @editor
-      @faq_unanswered = Faq.where(answer: '').where(category: 'main') 
+      @faq_unanswered = Faq.where(answer: '',category: 'main') 
+      @hilbert_unanswered = Faq.where(answer: '', category: 'Hilbert')
     end
   end
   
@@ -19,6 +21,9 @@ class FaqsController < ApplicationController
 
   def new
     @faq = Faq.new
+    if(params[:category])
+      @faq.category = params[:category]
+    end
   end
   
   def edit
@@ -45,8 +50,7 @@ class FaqsController < ApplicationController
   end
   
   def create
-    @faq = Faq.new(faq_params)
-		@faq.category = 'main'
+    @faq = Faq.new(faq_params)		
     if @faq.answer == nil
       @faq.answer = ''
     end
@@ -83,7 +87,7 @@ class FaqsController < ApplicationController
     end
   
     def faq_params
-      params.require(:faq).permit(:question, :answer)
+      params.require(:faq).permit(:question, :answer,:category)
     end
   
 end

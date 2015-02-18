@@ -26,25 +26,25 @@
 	<div class="row">			
 		<div class="headline headline-md"><h2>Jobbare</h2></div>
 		<%if (@cwork.profile)%>
-			<%if (@mod) || ((user_signed_in?) && (@cwork.profile == current_user.profile ))%>
-				Du är uppskriven att arbeta på passet. <%=(@mod) ? "Eller är moderator ;).":""%>
-				<%= render 'jobb_user'%>	
+			<%if ((user_signed_in?) && (@cwork.profile == current_user.profile ))%>
+				Du är uppskriven att arbeta på passet.					
 			<%else%>
 				Passet är redan bokat av <%=link_to(@cwork.profile,@cwork.profile)%>
-			<%end%>
-		<%elsif (!@cwork.access_code.nil?)%>
-			<%= render 'jobb_not_user'%>
-		<%else%>
-			<%if user_signed_in? %>
+			<%end%>		
+		<%else%>			
 				Fyll i uppgifter och tryck på "Spara" för att skriva upp dig och arbeta på passet.
-				<%= render 'jobb_user'%>
-			<%else%>
-				<%= render 'jobb_not_user'%>
-			<%end%>
+		<%end%>
+		<%if user_signed_in? || @cwork.profile%>
+			<%= render 'jobb_user'%>
+		<%else%>
+			<%= render 'jobb_not_user'%>
 		<%end%>
 	</div>
 	<hr>
 	<div class="row">
+		<%if @mod%>
+			<%=link_to("Administrera passet",admin_cafe_work_path(@cwork),class:"btn btn-u")%>
+		<%end%>
 		<%=link_to("Startsida för Hilbert",:hilbert,class:"btn btn-u")%>
 	</div>
 </div>
