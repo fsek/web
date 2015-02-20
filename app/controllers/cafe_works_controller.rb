@@ -1,72 +1,53 @@
 # encoding:UTF-8
-class CafeWorksController < ApplicationController
-  before_filter :authenticate, only: [:admin]
-  before_action :set_cafe_work, only: [:show,:update,:destroy,:remove_worker]
-  before_action :set_mod  
-  
-  def index
-    respond_to do |format|
-      format.json {render json: CafeWork.where(work_day: params[:start]..params[:end])}
+class CafeWorksController < ApplicationController  
+  before_action :set_cafe_work, except: [:main,:nyckelpiga]
+  before_action :set_mod, only: [:show,:main,:nyckelpiga]
+  before_action :councils, except: [:main,:nyckelpiga,:tavling]
+  before_action :nyckelpiga_auth, only: :nyckelpiga
+    
+  def show
+    @utskott = Council.all
+    @readonly = (@cwork.work_day < DateTime.now)  
+    if user_signed_in?
+      @profile = current_user.profile
+      @cwork.load(@profile)
     end    
-  end
-  def show    
-    if not(@cwork.profile) && (user_signed_in?)
-      @profile = current_user.profile      
-      @cwork.name = @profile.name
-      @cwork.lastname = @profile.lastname
-      @cwork.email = @profile.email
-      @cwork.phone = @profile.phone
-    end
-    @readonly = (@cwork.work_day < DateTime.now)
-    Rails.logger.info @readonly
-    @utskott = Council.all    
+    @status = @cwork.status_text(current_user)
     #@faddergrupper
+  end
+  def authorize        
+    @authenticated = @cwork.authorize(worker_params[:access_code])
   end
   def update
     @utskott = Council.all
-    if(params[:commit] == "Auktorisera")
-      if(!@cwork.access_code.nil?) && (params[:cafe_work][:access_code] == @cwork.access_code)
-        @authenticated = true
-        flash[:notice] = "Koden var rätt, du kan nu redigera"
-        render action: :show        
+    respond_to do |format|
+      if !current_user.nil?
+        profile = current_user.profile
+      end
+      if @cwork.update_worker(worker_params,profile)        
+        format.html { redirect_to cafe_work_path(@cwork), notice: @cwork.status}
+        format.json { head :no_content }        
       else
-        flash[:alert] = "Ogiltlig kod, om du tror något är fel, kontakta Cafemästare eller Spindelmän"
-        render action: :show
-      end
-    elsif(params[:commit] == "Spara")
-      respond_to do |format|    
-        if @cwork.update(c_w_params)
-          print = @cwork.at_update
-          format.html { redirect_to cafe_work_path(@cwork), notice: print}
-          format.json { head :no_content }        
-        else
-          format.html { render action: 'show' }
-          format.json { render json: @cwork.errors, status: :unprocessable_entity } 
-        end
-      end
-    elsif(params[:commit] == "Lämna jobbpasset")      
-      respond_to do |format|    
-        if @cwork.update(name: nil, lastname: nil,profile_id: nil, phone: nil, email: nil,utskottskamp: false, access_code: nil)
-          @cwork.councils.clear
-          format.html { redirect_to cafe_work_path(@cwork), notice: 'Du jobbar inte längre på cafepasset!'}
-          format.json { head :no_content }        
-        else
-          format.html { render action: 'show' }
-          format.json { render json: @cwork.errors, status: :unprocessable_entity } 
-        end
+        format.html { redirect_to cafe_work_path(@cwork), alert: @cwork.status }
+        format.json { render json: @cwork.errors, status: :unprocessable_entity }
       end
     end
-  end
-  def remove_worker       
-    if !@cwork.update(name: nil, lastname: nil,profile_id: nil, phone: nil, email: nil,utskottskamp: false, access_code: nil)
-        render action: show, notice: "Lyckades inte"
-    end
-    @cwork.councils.clear
-    #skicka mejl?
   end  
-  def main
-     @faqs = Faq.where(category: :Hilbert).where.not(answer: '')
-     @lv = CafeWork.where(work_day: DateTime.now.beginning_of_day-2.days..DateTime.now.end_of_day).last.lv
+  def remove_worker       
+    profile = (current_user) ? current_user.profile : nil
+    if(profile.nil?)
+      access = worker_params[:access_code]
+    end
+    @removed = @cwork.remove_worker(profile,access)
+  end  
+  def main     
+     respond_to do |format|
+      format.html {
+        @faqs = Faq.where(category: :Hilbert).where.not(answer: '')
+        @lv = CafeWork.where(work_day: DateTime.now.beginning_of_day-2.days..DateTime.now.end_of_day).last.lv
+      }
+      format.json {render json: CafeWork.where(work_day: params[:start]..params[:end])}
+    end     
                
   end
   def nyckelpiga    
@@ -79,6 +60,7 @@ class CafeWorksController < ApplicationController
     end    
     @work_grid = initialize_grid(@works)
   end
+  # Icke-använd kod för cafetävlingen
   def tavling
     if(params[:lp])
       @LP = params[:lp]
@@ -96,14 +78,25 @@ class CafeWorksController < ApplicationController
   end
   
   
-private
+private  
   def set_mod
-    if(current_user) && (current_user.moderator?(:cafejobb))
-      @mod = true
-    end    
+    @mod = true if current_user && current_user.moderator?(:hilbert)
   end
-  def c_w_params
-    params.require(:cafe_work).permit(:work_day,:pass,:profile_id,:name,:lastname,:phone,:email,:lp,:utskottskamp,:council_ids => []) 
+  def nyckelpiga_auth    
+    if(current_user)
+      post = Post.where(title: "Nyckelpiga").includes(:profiles).where(profiles: { id: current_user.profile.id}).first
+    end
+    if(post.nil?) && !((current_user) && (current_user.moderator?(:hilbert)))
+      redirect_to(:hilbert, alert: "Du saknar behörighet")        
+    end
+    rescue ActionController::RedirectBackError
+    redirect_to root_path
+  end
+  def worker_params
+    params.require(:cafe_work).permit(:profile_id,:name,:lastname,:phone,:email,:lp,:utskottskamp, :access_code, :council_ids => []) 
+  end
+  def councils
+    @utskott = Council.all
   end  
   def set_cafe_work
     @cwork = CafeWork.find_by_id(params[:id])

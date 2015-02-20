@@ -1,7 +1,7 @@
 <%= form_for(@cwork, :html => {  :autocomplete => 'off' }) do |f| %>
 	<% if @cwork.errors.any? %>
 	    <div id="error_explanation">
-	      <h2><%= pluralize(@cwork.errors.count, "error") %> gör att passet inte kan sparas:</h2>
+	      <h4><%= pluralize(@cwork.errors.count, "error") %> gör att passet inte kan sparas:</h4>
 	
 	      <ul>
 	      <% @cwork.errors.full_messages.each do |msg| %>
@@ -9,20 +9,72 @@
 	      <% end %>
 	      </ul>
 	    </div>
-  	<% end %>
-  	<%= f.label 'Datum', :class => 'reg-label'%>		  
-  	<div class="input-group margin-bottom-20">					
-		<%= f.datetime_select :work_day, :class => 'form-control', minute_step: 60%>		
-  	</div>
-  	<%= f.label 'Pass (1 & 2, 08:00-10:00) (3 & 4, 10:00-13:00)', :class => 'reg-label'%>		  
-  	<div class="input-group margin-bottom-20">					
-		<%= f.number_field :pass, min: 1, max: 4, :class => 'form-control'%>		
-  	</div>
-  	<%= f.label 'Läsperiod', :class => 'reg-label'%>		  
-  	<div class="input-group margin-bottom-20">					
-		<%= f.number_field :lp, min: 1, max: 4, :class => 'form-control'%>		
-  	</div>  	  	
-  	<div class="row">
-  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
-  	</div>
+  	<% end %>				    
+	  	<div class="margin-bottom-20">
+	  		<%= f.label 'Namn & Efternamn', :class => 'reg-label'%>
+		  	<div class="row">	
+	  			<div class="col-md-6"><%= f.text_field :name,:class => 'form-control', placeholder: "Förnamn"%></div><div class="col-md-6"> <%= f.text_field :lastname,:class => 'form-control', placeholder: "Efternamn"%></div>
+			</div> 
+	  	</div>
+	  	<%= f.label 'E-post & telefon', :class => 'reg-label'%> 
+	  	<div class="margin-bottom-20">
+	  		<div class="row">					  		
+	  			<div class="col-md-6"><%= f.text_field :email,:class => 'form-control', placeholder: "E-post"%></div><div class="col-md-6"> <%= f.text_field :phone,:class => 'form-control', placeholder: "Telefon"%></div>		
+			</div>
+	  	</div>
+	  	<%if !@cwork.access_code.nil?%>
+	  	<%= f.label 'Kod', :class => 'reg-label'%>
+		  	<div class="margin-bottom-20">
+	  			<%= f.text_field :access_code,:class => 'form-control', placeholder: "Kod", value: nil%>
+		  	</div>
+	  	<%end%>
+	  	<%if @utskott%> 
+		  	<div class="headline headline-md"><h3>Utskottskampen</h3></div> 		
+			<div class="row">
+				<div class="col-md-6"> 
+					<%= f.label :utskottskamp, "Delta i cafétävlingen?", :value => false,:class => 'reg-label' %>
+						<p>Ditt namn kommer synas i resultatet</p>
+					<%= f.check_box :utskottskamp,class: 'form-control', value: @cwork.utskottskamp%> 
+				</div>	
+				<%= f.label "Välj ett eller flera utskott att representera",:class => 'reg-label' %>				  		
+				<div class="col-md-6">
+					<%=f.collection_check_boxes(:council_ids,@utskott,:id,:title, class:"form-control") do |b|%>
+						<span>
+							<%=b.check_box%>
+							<%=b.label%><br>
+						</span>							
+					<%end%>					
+				</div>
+			</div>			
+				
+		  	<hr>
+	  	<%end%>
+	  	<%if @readonly%>
+  			<p>Det går inte längre att skriva upp sig på passet eller redigera.</p>
+		<%else%>
+		  	<%if !@cwork.has_worker?%>
+			  	<div class="margin-bottom-20 reg-page">
+			  		<p>Genom att trycka på spara accepterar du att dina personuppgifter hanteras elektroniskt.
+			  		Dina uppgifter kan endast ses av administratörer, cafeansvariga samt nyckelpigor.</p>	  		
+			  	</div>
+		  	<%end%>	  	
+	  	<div class="margin-bottom-20">	  		
+	  		<%= f.submit "Spara",:class => 'btn-u pull-right' %>
+	  		
+	  	</div>
+	  	<%end%>
 <% end %>
+<%if @cwork.has_worker?%>
+	<%if @authenticated%>
+		<%=form_for(@cwork, url: remove_worker_cafe_work_path(@cwork), remote: true ) do |f|%>		
+		  	<%= f.label 'Kod', :class => 'reg-label', id: 'leave_status'%>
+			  	<div class="margin-bottom-20">
+		  			<%= f.text_field :access_code,:class => 'form-control', placeholder: "Kod", value: nil%>
+			  	</div>		  	
+			<%=f.submit("Hoppa av",class: "btn btn-u") %><br>
+		<%end%>
+	<%else%>
+		<%=link_to("Hoppa av",remove_worker_cafe_work_path(@cwork),class: "btn btn-u",  method: :patch,remote: true) %><br>
+	<%end%>
+<%end%>
+

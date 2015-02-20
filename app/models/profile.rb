@@ -32,5 +32,5 @@ class Profile < ActiveRecord::Base
      else
 	     %((#{self.id.to_s}) #{self.user.to_s})
      end    
-  end
+  end  
 end

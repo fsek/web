@@ -5,7 +5,7 @@ jQuery ->
   $('#date').datepicker()   
 loadCalendar = ->    
   $('#hilbertkalender').fullCalendar
-    events: '/hilbertcafe/jobb',
+    events: '/hilbertcafe',
     weekNumbers: true, 
     minTime: "08:00:00",
     maxTime: "13:00:00",

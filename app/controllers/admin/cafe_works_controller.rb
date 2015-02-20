@@ -1,10 +1,8 @@
 # encoding:UTF-8
 class Admin::CafeWorksController < ApplicationController  
   before_filter :authenticate
-  before_action :set_cafe_work, only: [:edit,:show,:update,:destroy,:remove_worker]    
+  before_action :set_cafe_work, only: [:edit,:show,:update,:destroy,:remove_worker]
   
-  def index    
-  end
   def show
   end  
   def new
@@ -25,8 +23,7 @@ class Admin::CafeWorksController < ApplicationController
     end
   end
   def update    
-    respond_to do |format|
-         
+    respond_to do |format|         
       if @cwork.update(c_w_params)        
         format.html { redirect_to cafe_work_path(@cwork), notice: "Passet uppdaterades"}
         format.json { head :no_content }        
@@ -45,11 +42,9 @@ class Admin::CafeWorksController < ApplicationController
     end
   end
   def remove_worker       
-    if !@cwork.update(name: nil, lastname: nil,profile_id: nil, phone: nil, email: nil,utskottskamp: false, access_code: nil)
+    if !@cwork.clear_worker
         render action: show, notice: "Lyckades inte"
-    end
-    @cwork.councils.clear
-    #skicka mejl?
+    end        
   end
   def setup
     @cwork = CafeWork.new    
