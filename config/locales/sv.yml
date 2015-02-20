@@ -14,7 +14,7 @@ sv:
     section_not_deleted:      Sektion ej borttagen
     section_rule_deleted:     "Sektionsregel borttagen"
     section_rule_not_deleted: "Sektionsregel ej borttagen"
-    access_denied: "Åtkomst nekad"
+    access_denied:            "Åtkomst nekad"
 
   admin:
     roles:
