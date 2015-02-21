@@ -18,6 +18,9 @@ Fsek::Application.routes.draw do
   
   get 'organisation' => 'static_pages#utskott', as: :organisation
   get 'erbjudande' => 'static_pages#om', as: :erbjudande
+
+  # Old gallery gateway
+  get '/old_gallery' => 'old_gallery#index', as: :old_gallery
   
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}

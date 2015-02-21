@@ -1,5 +1,4 @@
 var galleryHook = function() {
-  $('a#gallery_link').click(function() {
     var form = document.createElement("form");
     form.setAttribute("action", "http://foto.fsektionen.se/auth.php");
 	  form.setAttribute("method", "post");
@@ -17,7 +16,5 @@ var galleryHook = function() {
     form.appendChild(pwdField);
     document.body.appendChild(form);
     form.submit();
-  });
-}
+  };
 
-$(document).ready(galleryHook);   

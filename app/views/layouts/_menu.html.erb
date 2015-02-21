@@ -37,7 +37,7 @@
 
 		    <% # This link could be made automatically too, the important part is that it as the right id. %>
 		    <% if current_user %>
-		    <li><a id="gallery_link" href="#">Gamla bildgalleriet</a></li>
+                    <li><%= link_to 'Gamla bildgalleriet', :old_gallery %></li>
                     <% end %>
             </ul>
         </li>
