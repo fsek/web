@@ -34,11 +34,6 @@
                     <li><%= link_to 'Kalender', :kalender, 'data-no-turbolink'=> true%></li>
                     <li><%= link_to 'Jobbportal', :work_posts %></li>		                        
         		<%end%>                          
-
-		    <% # This link could be made automatically too, the important part is that it as the right id. %>
-		    <% if current_user %>
-                    <li><%= link_to 'Gamla bildgalleriet', :old_gallery %></li>
-                    <% end %>
             </ul>
         </li>
         <li class="dropdown">
