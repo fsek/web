@@ -12,7 +12,7 @@ class RentsController < ApplicationController
     end 
   end
   def new    
-    @avtal = Document.where(title: "Bilavtal").first
+    @avtal = Document.where(title: "Regler för Beerit").first
     @rent = Rent.new
     if(current_user)
       @profile = current_user.profile
