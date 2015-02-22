@@ -18,7 +18,7 @@
 	  	<%= f.label 'E-post & telefon', :class => 'reg-label'%> 
 	  	<div class="margin-bottom-20">
 	  		<div class="row">					  		
-	  			<div class="col-md-6"><%= f.text_field :email,:class => 'form-control', placeholder: "E-post"%></div><div class="col-md-6"> <%= f.text_field :phone,:class => 'form-control', placeholder: "Telefon"%></div>		
+	  			<div class="col-md-6"><%= f.email_field :email,:class => 'form-control', placeholder: "E-post"%></div><div class="col-md-6"> <%= f.phone_field :phone,:class => 'form-control', placeholder: "Telefon"%></div>		
 			</div>
 	  	</div>
 	  	<%if !@cwork.access_code.nil?%>

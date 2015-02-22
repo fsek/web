@@ -12,8 +12,8 @@
   	<hr>
   	<%= f.label 'Läsveckor', :class => 'reg-label'%>		  
   	<div class="input-group margin-bottom-20">					
-		<%= number_field_tag :lv_first,@lv_first, min: 1, max: 7, :class => 'form-control', placeholder: "Från"%>
-		<%= number_field_tag :lv_last, @lv_last,min: 1, max: 7, :class => 'form-control',placeholder: "Till"%>	
+		<%= number_field_tag :lv_first,@lv_first, min: 1, max: 37, :class => 'form-control', placeholder: "Från"%>
+		<%= number_field_tag :lv_last, @lv_last,min: 1,max:37, :class => 'form-control',placeholder: "Till"%>		
   	</div>						  	
   	<%= f.label 'Datum första passet', :class => 'reg-label'%>		  
   	<div class="input-group margin-bottom-20">					
