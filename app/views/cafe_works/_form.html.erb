@@ -1,8 +1,7 @@
 <%= form_for(@cwork, :html => {  :autocomplete => 'off' }) do |f| %>
 	<% if @cwork.errors.any? %>
 	    <div id="error_explanation">
-	      <h4><%= pluralize(@cwork.errors.count, "error") %> gör att passet inte kan sparas:</h4>
-	
+	      <p><%=%(#{@cwork.errors.count.to_s} fel hindrar sparning:)%><p>	
 	      <ul>
 	      <% @cwork.errors.full_messages.each do |msg| %>
 	        <li><%= msg %></li>

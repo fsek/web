@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171432) do
+ActiveRecord::Schema.define(version: 20410822171435) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20410822171432) do
     t.integer  "d_year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "remove_worker"
   end
 
   create_table "cafe_works_councils", id: false, force: true do |t|

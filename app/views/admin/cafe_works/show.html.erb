@@ -30,7 +30,7 @@
 			<% if !@cwork.access_code.nil?%>
 				
 			<%end%>
-				<%=link_to("Ta bort jobbare",jobbare_admin_cafe_work_path(@cwork),class: "btn btn-u", remote: true, method: :patch) %><br>
+				<%=link_to("Ta bort jobbare",remove_worker_admin_cafe_work_path(@cwork),class: "btn btn-u", remote: true, method: :patch) %><br>
 			</div>
 			
 		<%else%>

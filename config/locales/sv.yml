@@ -46,3 +46,15 @@ sv:
         new_role: Skapa ny roll
         delete_role_confirm: 'Är du säker? Det kan vara farligt!'
         roles_import_confirm: 'Det kan ändra behörigheter i ditt system, är du säker?'
+
+  errors:
+    format: "%{message}"
+    attributes:
+      email: 
+        blank: "Epost måste anges"
+      phone: 
+        blank: "Telefonnummer måste anges"
+      name: 
+        blank: "Förnamn måste anges"
+      lastname: 
+        blank: "Efternamn måste anges"

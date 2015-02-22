@@ -3,10 +3,14 @@ class CafeWork < ActiveRecord::Base
   belongs_to  :profile
   has_and_belongs_to_many :councils
   
-  #validations
+  validates :work_day,:pass,:lp,:lv, :presence => {}
+  validates :name,:lastname,:phone,:email, :presence => {}, on: :update, if: :check_remove
   
   attr_reader :status
   
+  def check_remove
+    !self.remove_worker
+  end
   ## Läs in profilegenskaper, ej spara
   def load(profile)
     if !(profile.nil?) && !has_worker?
@@ -47,26 +51,26 @@ class CafeWork < ActiveRecord::Base
   end
   #Används för att skicka tillbaka ett statusmeddelande från at_update
   def status
-    @status || ""
+    @status || self.errors.full_messages || ""
   end
   ## För att generera en random kod ifall det behövs, annars 
   def at_update(profile)
-    if(self.profile.nil?) && (self.access_code.nil?)
+    if(self.profile.nil?) && (self.access_code.nil?)      
       if(profile)
         self.profile = profile
         @status = %(Du är nu uppskriven för att jobba på passet)        
       else
         self.access_code = (0...15).map { (65 + rand(26)).chr }.join.to_s
-        @status = %(Du är nu uppskriven för att jobba på passet, du använder koden #{self.access_code} för att redigera din bokning)#, du har även fått mejl)
+        @status = %(Du är nu uppskriven för att jobba på passet, du använder koden #{self.access_code} för att redigera din bokning, du har även fått mejl)
         CafeMailer.sign_up_email(self).deliver        
-      end
-      self.save
-      return true
+      end      
+      return self.save
     else
       @status = %(Dina uppgifter uppdaterades)
       return true
     end    
   end
+  
   def update_worker(worker_params,profile)
     if self.has_worker?
       if !compare_profile(profile) && !authorize(worker_params[:access_code])
@@ -74,7 +78,7 @@ class CafeWork < ActiveRecord::Base
         return false      
       end
     end
-   
+    self.remove_worker = false
     if update(worker_params)        
         return at_update(profile)
     end        
@@ -88,14 +92,16 @@ class CafeWork < ActiveRecord::Base
     return ((!access.nil?) && (!self.access_code.nil?) && (self.access_code == access))
   end
   ## När en jobbare (eller administratör) vill ta bort jobbaren från passet.
-  def remove_worker(profile,access)
+  def worker_remove(profile,access)
     if (!compare_profile(profile) && !authorize(access))      
       return false
     end
+    self.remove_worker = true
     return clear_worker    
   end
   # Metod för att ta bort jobbaren från passet
   def clear_worker
+    self.remove_worker = true
     self.name = nil
     self.lastname = nil
     self.profile_id = nil 
@@ -104,8 +110,7 @@ class CafeWork < ActiveRecord::Base
     self.utskottskamp = false
     self.access_code = nil
     self.councils.clear
-    self.save
-    return true
+    return self.save    
   end
   def has_worker?
     !((self.profile_id.nil?) && (self.access_code.nil?))

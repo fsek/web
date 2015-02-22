@@ -28,7 +28,7 @@ class CafeWorksController < ApplicationController
         format.html { redirect_to cafe_work_path(@cwork), notice: @cwork.status}
         format.json { head :no_content }        
       else
-        format.html { redirect_to cafe_work_path(@cwork), alert: @cwork.status }
+        format.html { render :show, alert: @cwork.status }
         format.json { render json: @cwork.errors, status: :unprocessable_entity }
       end
     end
@@ -38,7 +38,7 @@ class CafeWorksController < ApplicationController
     if(profile.nil?)
       access = worker_params[:access_code]
     end
-    @removed = @cwork.remove_worker(profile,access)
+    @removed = @cwork.worker_remove(profile,access)
   end  
   def main     
      respond_to do |format|

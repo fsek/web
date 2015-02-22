@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class CafeMailer < ActionMailer::Base
   default from: '"Cafemästarna" <cafe@fsektionen.se>'
 
