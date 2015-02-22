@@ -52,7 +52,7 @@ class Admin::CafeWorksController < ApplicationController
   def setup_create
     if(params[:commit] == "Förhandsgranska")    
       @cworks = []   
-      wday = DateTime.new(params[:cafe_work]["work_day(1i)"].to_i, params[:cafe_work]["work_day(2i)"].to_i ,params[:cafe_work]["work_day(3i)"].to_i, params[:cafe_work]["work_day(4i)"].to_i-1,0)    
+      wday = Time.zone.local(params[:cafe_work]["work_day(1i)"].to_i, params[:cafe_work]["work_day(2i)"].to_i ,params[:cafe_work]["work_day(3i)"].to_i, params[:cafe_work]["work_day(4i)"].to_i,0)    
       lp = params[:cafe_work][:lp]    
       (1..7).each do |week|             
         (0..4).each do        
@@ -67,14 +67,14 @@ class Admin::CafeWorksController < ApplicationController
       @cwork = CafeWork.new(c_w_params)
       render action: 'setup'
      elsif(params[:commit] == "Skapa")
-      wday = DateTime.new(params[:cafe_work]["work_day(1i)"].to_i, params[:cafe_work]["work_day(2i)"].to_i ,params[:cafe_work]["work_day(3i)"].to_i, params[:cafe_work]["work_day(4i)"].to_i-1,0)    
+      wday = Time.zone.local(params[:cafe_work]["work_day(1i)"].to_i, params[:cafe_work]["work_day(2i)"].to_i ,params[:cafe_work]["work_day(3i)"].to_i, params[:cafe_work]["work_day(4i)"].to_i,0)    
       lp = params[:cafe_work][:lp]    
       (1..7).each do |week|             
         (0..4).each do        
-          CafeWork.new(work_day: wday, lp: lp,pass: 1,lv: week, d_year: wday.year).save
-          CafeWork.new(work_day: wday, lp: lp,pass: 2,lv: week, d_year: wday.year).save
-          CafeWork.new(work_day: wday+2.hours, lp: lp,pass: 3, lv: week, d_year: wday.year).save
-          CafeWork.new(work_day: wday+2.hours, lp: lp,pass: 4, lv: week, d_year: wday.year).save
+          CafeWork.create(work_day: wday, lp: lp,pass: 1,lv: week, d_year: wday.year)
+          CafeWork.create(work_day: wday, lp: lp,pass: 2,lv: week, d_year: wday.year)
+          CafeWork.create(work_day: wday+2.hours, lp: lp,pass: 3, lv: week, d_year: wday.year)
+          CafeWork.create(work_day: wday+2.hours, lp: lp,pass: 4, lv: week, d_year: wday.year)
           wday = wday + 1.days
         end
         wday = wday + (2).days
@@ -95,7 +95,7 @@ private
       redirect_to root_path
   end  
   def c_w_params
-    params.require(:cafe_work).permit(:work_day,:pass,:profile_id,:name,:lastname,:phone,:email,:lp,:utskottskamp,:council_ids => []) 
+    params.require(:cafe_work).permit(:work_day,:pass,:profile_id,:name,:lastname,:phone,:email,:lp,:lv,:utskottskamp,:council_ids => []) 
   end  
   def set_cafe_work
     @cwork = CafeWork.find_by_id(params[:id])

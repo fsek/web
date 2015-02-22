@@ -3,8 +3,9 @@ class CafeWork < ActiveRecord::Base
   belongs_to  :profile
   has_and_belongs_to_many :councils
   
-  validates :work_day,:pass,:lp,:lv, :presence => {}
-  validates :name,:lastname,:phone,:email, :presence => {}, on: :update, if: :check_remove
+  validates_presence_of :work_day,:pass,:lp,:lv
+  validates_presence_of :name,:lastname,:phone,:email, on: :update, if: :check_remove
+  validates_uniqueness_of :pass, scope: :work_day
   
   attr_reader :status
   

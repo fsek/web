@@ -1,4 +1,4 @@
-<%= form_for(@cwork, :html => {  :autocomplete => 'off' }) do |f| %>
+<%= form_for([:admin,@cwork], :html => {  :autocomplete => 'off' }) do |f| %>
 	<% if @cwork.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@cwork.errors.count, "error") %> gör att passet inte kan sparas:</h2>
@@ -21,7 +21,11 @@
   	<%= f.label 'Läsperiod', :class => 'reg-label'%>		  
   	<div class="input-group margin-bottom-20">					
 		<%= f.number_field :lp, min: 1, max: 4, :class => 'form-control'%>		
-  	</div>  	  	
+  	</div>
+  	<%= f.label 'Läsvecka', :class => 'reg-label'%>		  
+  	<div class="input-group margin-bottom-20">					
+		<%= f.number_field :lv, min: 1, max: 4, :class => 'form-control'%>		
+  	</div>   	  	
   	<div class="row">
   			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>
