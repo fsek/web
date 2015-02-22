@@ -121,7 +121,7 @@ class CafeWork < ActiveRecord::Base
     %(#{self.work_day.strftime("%H:%M")}-#{(self.work_day + duration.hours).strftime("%H:%M")})
   end
   def print    
-    self.p_date + " LV: " + self.lv.to_s + " Pass: "+ self.pass.to_s
+    self.print_date + " LV: " + self.lv.to_s + " Pass: "+ self.pass.to_s
   end  
   def print_date          
     %(#{self.print_time}, #{self.work_day.strftime("%A %d/%m")}) 
