@@ -23,6 +23,7 @@
 	  	</div>
 	  	<%if !@cwork.access_code.nil?%>
 	  	<%= f.label 'Kod', :class => 'reg-label'%>
+	  		<p>Koden måste fyllas i för att ändringar ska sparas</p>
 		  	<div class="margin-bottom-20">
 	  			<%= f.text_field :access_code,:class => 'form-control', placeholder: "Kod", value: nil%>
 		  	</div>
@@ -57,9 +58,8 @@
 			  		Dina uppgifter kan endast ses av administratörer, cafeansvariga samt nyckelpigor.</p>	  		
 			  	</div>
 		  	<%end%>	  	
-	  	<div class="margin-bottom-20">	  		
-	  		<%= f.submit "Spara",:class => 'btn-u pull-right' %>
-	  		
+	  	<div class="margin-bottom-40">	  		
+	  		<%= f.submit "Spara",:class => 'btn-u pull-right' %>	  		
 	  	</div>
 	  	<%end%>
 <% end %>
@@ -67,6 +67,7 @@
 	<%if @authenticated%>
 		<%=form_for(@cwork, url: remove_worker_cafe_work_path(@cwork), remote: true ) do |f|%>		
 		  	<%= f.label 'Kod', :class => 'reg-label', id: 'leave_status'%>
+		  		<p>Din kod måste fyllas i för att kunna hoppa av passet</p>
 			  	<div class="margin-bottom-20">
 		  			<%= f.text_field :access_code,:class => 'form-control', placeholder: "Kod", value: nil%>
 			  	</div>		  	
@@ -75,5 +76,6 @@
 	<%else%>
 		<%=link_to("Hoppa av",remove_worker_cafe_work_path(@cwork),class: "btn btn-u",  method: :patch,remote: true) %><br>
 	<%end%>
+
 <%end%>
 
