@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
     def set_locale
       locale = 'sv'
-      langs  = %w{ sv en }
+      langs  = %w{ sv }
 
       if params[:locale]
         lang = params[:locale]

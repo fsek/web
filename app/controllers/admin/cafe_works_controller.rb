@@ -49,12 +49,13 @@ class Admin::CafeWorksController < ApplicationController
   def setup
     @cwork = CafeWork.new    
   end
-  def setup_create
-    if(params[:commit] == "Förhandsgranska")    
-      @cworks = []   
+  def setup_preview
+    @cworks = []   
       wday = Time.zone.local(params[:cafe_work]["work_day(1i)"].to_i, params[:cafe_work]["work_day(2i)"].to_i ,params[:cafe_work]["work_day(3i)"].to_i, params[:cafe_work]["work_day(4i)"].to_i,0)    
-      lp = params[:cafe_work][:lp]    
-      (1..7).each do |week|             
+      lp = params[:cafe_work][:lp]
+      @lv_first = params[:lv_first].to_i
+      @lv_last = params[:lv_last].to_i
+      (@lv_first..@lv_last).each do |week|             
         (0..4).each do        
           @cworks << CafeWork.new(work_day: wday, lp: lp,pass: 1,lv: week, d_year: wday.year)
           @cworks << CafeWork.new(work_day: wday, lp: lp,pass: 2,lv: week, d_year: wday.year)
@@ -65,11 +66,12 @@ class Admin::CafeWorksController < ApplicationController
         wday = wday + 2.days
       end
       @cwork = CafeWork.new(c_w_params)
-      render action: 'setup'
-     elsif(params[:commit] == "Skapa")
+      render 'setup'
+  end
+  def setup_create
       wday = Time.zone.local(params[:cafe_work]["work_day(1i)"].to_i, params[:cafe_work]["work_day(2i)"].to_i ,params[:cafe_work]["work_day(3i)"].to_i, params[:cafe_work]["work_day(4i)"].to_i,0)    
       lp = params[:cafe_work][:lp]    
-      (1..7).each do |week|             
+      (params[:lv_first]..params[:lv_last]).each do |week|             
         (0..4).each do        
           CafeWork.create(work_day: wday, lp: lp,pass: 1,lv: week, d_year: wday.year)
           CafeWork.create(work_day: wday, lp: lp,pass: 2,lv: week, d_year: wday.year)
@@ -79,11 +81,12 @@ class Admin::CafeWorksController < ApplicationController
         end
         wday = wday + (2).days
       end
-      redirect_to action: 'main'
-     end      
+      redirect_to action: 'main'        
   end
   def main
+     lv = CafeWork.where(work_day: DateTime.now.beginning_of_day-2.days..DateTime.now.end_of_day).last
      @faqs = Faq.where(category: :Hilbert).where.not(answer: '')
+     @lv = (lv.nil?) ? "?" : lv.lv
      @faq_unanswered = Faq.where(category: :Hilbert, answer: '').count      
   end
   

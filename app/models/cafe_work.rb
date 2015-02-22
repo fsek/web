@@ -5,10 +5,11 @@ class CafeWork < ActiveRecord::Base
   
   validates_presence_of :work_day,:pass,:lp,:lv
   validates_presence_of :name,:lastname,:phone,:email, on: :update, if: :check_remove
-  validates_uniqueness_of :pass, scope: :work_day
+  validates_uniqueness_of :pass, scope: [:work_day,:lv,:lp,:d_year ]
   
   attr_reader :status
   
+  #returnerar false om objektet markerats med remove_worker=true, vilket det görs när man vill ta bort jobbaren
   def check_remove
     !self.remove_worker
   end
@@ -92,7 +93,7 @@ class CafeWork < ActiveRecord::Base
   def authorize(access)
     return ((!access.nil?) && (!self.access_code.nil?) && (self.access_code == access))
   end
-  ## När en jobbare (eller administratör) vill ta bort jobbaren från passet.
+  ## När en jobbare vill ta bort sig från passet.
   def worker_remove(profile,access)
     if (!compare_profile(profile) && !authorize(access))      
       return false
@@ -116,11 +117,14 @@ class CafeWork < ActiveRecord::Base
   def has_worker?
     !((self.profile_id.nil?) && (self.access_code.nil?))
   end  
+  def print_time
+    %(#{self.work_day.strftime("%H:%M")}-#{(self.work_day + duration.hours).strftime("%H:%M")})
+  end
   def print    
     self.p_date + " LV: " + self.lv.to_s + " Pass: "+ self.pass.to_s
   end  
-  def p_date          
-    self.work_day.strftime("%a %d/%m")+" " + self.work_day.strftime("%H:%M") + " till " + (self.work_day + duration.hours).strftime("%H:%M")
+  def print_date          
+    %(#{self.print_time}, #{self.work_day.strftime("%A %d/%m")}) 
   end
   
   # Printa ut url eller path

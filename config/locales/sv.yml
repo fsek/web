@@ -58,3 +58,7 @@ sv:
         blank: "Förnamn måste anges"
       lastname: 
         blank: "Efternamn måste anges"
+        
+  time:
+    formats:
+      day: "%A %d/%m"

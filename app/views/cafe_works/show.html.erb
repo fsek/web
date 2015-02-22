@@ -6,7 +6,7 @@
 			<tbody>					
 				<tr>
 					<td><i class="fa fa-calendar"></i></td>
-					<td><%=@cwork.p_date%></td>
+					<td><%=%(#{@cwork.print_time}, #{l(@cwork.work_day, format: :day)})%> </td>					
 				</tr>
 				<tr>
 					<td><i class="fa fa-calendar-o"></i> Pass</td>

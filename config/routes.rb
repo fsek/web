@@ -48,6 +48,7 @@ Fsek::Application.routes.draw do
         end
         get '/setup', controller: :cafe_works,action: :setup, as: :setup_cafe
         post '/setup/skapa', controller: :cafe_works, action: :setup_create, as: :setup_cafe_create
+        post '/setup/preview', controller: :cafe_works, action: :setup_preview, as: :setup_cafe_preview
         get '', controller: :cafe_works, action: :main, as: :hilbert        
       end      
       resources :cafe_works, path: :jobb, only: [:show,:update] do

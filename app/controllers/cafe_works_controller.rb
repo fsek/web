@@ -7,18 +7,18 @@ class CafeWorksController < ApplicationController
     
   def show
     @utskott = Council.all
-    @readonly = (@cwork.work_day < DateTime.now)  
+    @readonly = (@cwork.work_day < Time.now)  
     if user_signed_in?
       @profile = current_user.profile
       @cwork.load(@profile)
     end    
-    @status = @cwork.status_text(current_user)
-    #@faddergrupper
+    @status = @cwork.status_text(current_user)    
   end
   def authorize        
     @authenticated = @cwork.authorize(worker_params[:access_code])
   end
   def update
+    #faddergrupper!
     @utskott = Council.all
     respond_to do |format|
       if !current_user.nil?
@@ -43,8 +43,9 @@ class CafeWorksController < ApplicationController
   def main     
      respond_to do |format|
       format.html {
+        lv = CafeWork.where(work_day: DateTime.now.beginning_of_day-2.days..DateTime.now.end_of_day).last
         @faqs = Faq.where(category: :Hilbert).where.not(answer: '')
-        @lv = CafeWork.where(work_day: DateTime.now.beginning_of_day-2.days..DateTime.now.end_of_day).last.lv
+        @lv = (lv.nil?) ? "?" : lv.lv
       }
       format.json {render json: CafeWork.where(work_day: params[:start]..params[:end])}
     end     
