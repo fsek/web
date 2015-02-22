@@ -8,9 +8,10 @@
                 	<%= grid(@cwork_grid) do |g|
 						g.row_attributes do |post|
 							if (post.has_worker?)
-								{style: 'background: rgba(252, 155, 0,0.7);'}			
-							end
+								{style: 'background: rgba(252, 155, 0,0.7);', id: dom_id(post)}			
+							else
 							{id: dom_id(post)}
+							end
 						end
 						g.column name: "Datum:",attribute: "work_day"
 						g.column name: "Läsvecka",attribute: "lv"
