@@ -49,7 +49,8 @@ Fsek::Application.routes.draw do
         get '/setup', controller: :cafe_works,action: :setup, as: :setup_cafe
         post '/setup/skapa', controller: :cafe_works, action: :setup_create, as: :setup_cafe_create
         post '/setup/preview', controller: :cafe_works, action: :setup_preview, as: :setup_cafe_preview
-        get '', controller: :cafe_works, action: :main, as: :hilbert        
+        get '', controller: :cafe_works, action: :main, as: :hilbert
+        post'', controller: :cafe_works, action: :main        
       end      
       resources :cafe_works, path: :jobb, only: [:show,:update] do
         patch :remove_worker, path: :inte_jobba, on: :member

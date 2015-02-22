@@ -3,9 +3,27 @@
 <div class="col-md-12">
     <div class="row">
     	<div class="col-md-12">
-    		<div class="headline headline-md"><h1>Administration för Hilbert Café</h1></div>
+    		<div class="headline headline-md"><h1>Administration för Hilbert Café</h1></div>    		
             <div class="col-md-9">                        
-                	<div id='hilbertkalender'></div>						               
+                	<%= grid(@cwork_grid) do |g|
+						g.row_attributes do |post|
+							if (post.has_worker?)
+								{style: 'background: rgba(252, 155, 0,0.7);'}			
+							end
+							{id: dom_id(post)}
+						end
+						g.column name: "Datum:",attribute: "work_day"
+						g.column name: "Läsvecka",attribute: "lv"
+						g.column name: "Läsperiod", attribute: "lp" 
+						g.column name: "Pass", attribute: "pass"								
+						g.column name: "Visa" do |post|
+							link_to("Visa",admin_cafe_work_path(post))
+						end
+						g.column name: "Ta bort" do |post|
+							link_to("Ta bort",admin_cafe_work_path(post), remote: true, method: :delete, html: {id: dom_id(post)})
+						end
+					end -%>
+					<span id="status"></span>						               
             </div>
             <div class="col-md-3">
                 <div class="row">

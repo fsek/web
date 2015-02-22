@@ -34,11 +34,13 @@ class Admin::CafeWorksController < ApplicationController
       end
     end    
   end
-  def destroy    
+  def destroy 
+    @id = @cwork.id 
     @cwork.destroy
     respond_to do |format|
       format.html { redirect_to :hilbert,notice: 'Cafepasset raderades.' }
       format.json { head :no_content }
+      format.js
     end
   end
   def remove_worker       
@@ -83,11 +85,11 @@ class Admin::CafeWorksController < ApplicationController
       end
       redirect_to action: 'main'        
   end
-  def main
-     lv = CafeWork.where(work_day: DateTime.now.beginning_of_day-2.days..DateTime.now.end_of_day).last
-     @faqs = Faq.where(category: :Hilbert).where.not(answer: '')
-     @lv = (lv.nil?) ? "?" : lv.lv
-     @faq_unanswered = Faq.where(category: :Hilbert, answer: '').count      
+  def main            
+    @faqs = Faq.where(category: :Hilbert).where.not(answer: '')   
+    @faq_unanswered = Faq.where(category: :Hilbert, answer: '').count        
+    @cworks = CafeWork.all
+    @cwork_grid = initialize_grid(@cworks) 
   end
   
 private
@@ -99,7 +101,8 @@ private
   end  
   def c_w_params
     params.require(:cafe_work).permit(:work_day,:pass,:profile_id,:name,:lastname,:phone,:email,:lp,:lv,:utskottskamp,:council_ids => []) 
-  end  
+  end
+      
   def set_cafe_work
     @cwork = CafeWork.find_by_id(params[:id])
     if(@cwork == nil)     

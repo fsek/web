@@ -2,7 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
-  $('#date').datepicker()   
+  $('#date').datepicker()
+jQuery ->
+  $('#date2').datepicker()     
 loadCalendar = ->    
   $('#hilbertkalender').fullCalendar
     events: '/hilbertcafe',
