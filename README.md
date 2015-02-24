@@ -2,9 +2,13 @@
 
 Detta finns:
 ============
-- Simpla nyheter
-- Users med profiler och authentication
+- Användarsystem, profiler och auktorisering
+- Bilbokning
+- Dynamiska utskott som har poster
+- Kontaktformulär 
+- Nyheter
 - Layout
+- En storage-mapp där vi placerar bilder, dokument
 
 
 Generella layoutsaker:
