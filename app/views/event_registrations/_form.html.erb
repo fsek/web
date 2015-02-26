@@ -1,0 +1,61 @@
+<%= form_for([@event, @event_registration], :html => {  :autocomplete => 'off' }) do |f| %>
+	<% if @event_registration.errors.any? %>
+	<div id="error_explanation">
+	<h2><%= pluralize(@event_registration.errors.count, "error") %> gör att eventet inte kan sparas:</h2>	
+	<ul>
+	  <% @event_registration.errors.full_messages.each do |msg| %>
+	    <li><%= msg %></li>
+		<% end %>
+	</ul>
+	</div>
+	<% end %>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<td>	
+					Titel:
+				</td>	
+				<td>	
+					<%= @event.title %>
+				</td>	
+			</tr>
+			<tr>
+				<td>	
+					Starttid:
+				</td>	
+				<td>	
+					<%= @event.starts_at %>
+				</td>	
+			</tr>
+			<tr>
+				<td>	
+					Platser:
+				</td>	
+				<td>	
+					<%= @reserved %> / <%= @event.number_of_slots %> </br>
+				 	<% if @new && @reserved >= @event.number_of_slots %>
+						Eventet är fullbokat, du kommer läggas in som reserv.
+				 	<% elsif !@new && @event_registration.reserve_spot %>
+						Du ligger som reserv för eventet och kommer bli meddelad om vi får in avanmälningar.
+					<% elsif !@new && !@event_registration.reserve_spot %>
+						Du är anmäld till eventet.
+					<% end %>
+				</td>	
+			</tr>
+		</tbody>
+	</table>
+
+	<%= f.label 'Extra info', :class => 'reg-label'%>
+	<div class="input-group margin-bottom-20">		  	  		 		  	
+  	<%= f.text_area :info_text, :class => 'form-control',:placeholder => 'Beskrivning' %>
+	</div>			  
+  	<div class="row">
+  		<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  	</div>
+	<% end %>
+	<% if @event && @event_registration && @event_registration.profile_id %>
+  	<div class="row">
+  		<%= link_to (content_tag(:i, nil, class: "fa fa-remove") + " Avanmäl"), [@event_registration.event, @event_registration], method: :delete, :class => 'btn-u pull-right' %>	 				
+  	</div>
+	<% end %>

@@ -1,6 +1,7 @@
 
 Fsek::Application.routes.draw do
     
+
   # Resources on the page
   get 'kurslankar' => 'static_pages#kurslankar'
   get 'libo' => 'static_pages#libo', as: :libo
@@ -61,9 +62,12 @@ Fsek::Application.routes.draw do
       post :mail, on: :member
     end    
     resources :profiles, path: :profil do
+			get "/events", controller: :event_registrations, action: :profile_index, on: :member
       patch :remove_post, on: :member
     end
     resources :events do      
+			resources :event_registrations, only: [:index, :show, :destroy, :create, :update], path: :registrering
+			get :event_index, controller: :event_registrations, on: :member, path: :registreringar
       get :export, on: :collection
     end
     resources :work_posts, path: :jobbportal, except: :show 

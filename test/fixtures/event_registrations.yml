@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  size: 1
-  last_registration_date: 2015-02-05 19:27:12
+  profile_id: 1
+  event_id: 1
+  reserve_spot: false
+  info_text: MyText
 
 two:
-  size: 1
-  last_registration_date: 2015-02-05 19:27:12
+  profile_id: 1
+  event_id: 1
+  reserve_spot: false
+  info_text: MyText

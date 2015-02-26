@@ -1,0 +1,21 @@
+<div class="container">
+	<h1> Alla kommande event som för <%= @profile.name %>.</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Titel:</th>
+    <th>Starttid:</th>
+    
+  </tr>
+</thead>
+<tbody>
+	<% @event_registrations.each do |event_reg| %>
+  	<tr>
+    <td><%= link_to event_reg.event.title, event_event_registrations_path(event_reg.event) %></td>
+    <td><%= event_reg.event.starts_at %></td>
+  	</tr>
+	<% end %>
+	</tbody>
+</table>
+</div>

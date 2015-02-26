@@ -1,9 +1,11 @@
 class CreateEventRegistrations < ActiveRecord::Migration
   def change
     create_table :event_registrations do |t|
-      t.integer :size
-      t.datetime :last_registration_date
-			t.integer :event_id
+      t.integer :profile_id
+      t.integer :event_id
+      t.boolean :reserve_spot
+      t.text :info_text
+
       t.timestamps
     end
   end

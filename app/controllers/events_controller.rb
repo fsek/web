@@ -107,7 +107,7 @@ class EventsController < ApplicationController
         @event = Event.find_by_id(params[:id])
       end
       def event_params
-        params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image)
+        params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image,:registrable, :last_registration_date, :last_unregistration_date, :number_of_slots)
       end
       def utskott
         @utskott = Council.all

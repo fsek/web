@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171426) do
+ActiveRecord::Schema.define(version: 20410822171429) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -48,6 +48,18 @@ ActiveRecord::Schema.define(version: 20410822171426) do
   create_table "albums_subcategories", id: false, force: true do |t|
     t.integer "album_id"
     t.integer "subcategory_id"
+  end
+
+  create_table "cafe_works", force: true do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cafe_works_profiles", id: false, force: true do |t|
+    t.integer "profile_id"
+    t.integer "cafe_work_id"
   end
 
   create_table "candidates", force: true do |t|
@@ -127,21 +139,21 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.integer "post_id"
   end
 
-  create_table "email_accounts", force: true do |t|
-    t.integer  "profile_id"
-    t.string   "email"
-    t.string   "title"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "emails", force: true do |t|
     t.integer  "email_account_id"
     t.string   "receiver"
     t.string   "subject"
     t.text     "message"
     t.boolean  "copy"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_registrations", force: true do |t|
+    t.integer  "profile_id"
+    t.integer  "event_id"
+    t.boolean  "reserve_spot"
+    t.text     "info_text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -161,6 +173,10 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean  "registrable"
+    t.datetime "last_registration_date"
+    t.datetime "last_unregistration_date"
+    t.integer  "number_of_slots"
   end
 
   create_table "faqs", force: true do |t|
@@ -169,7 +185,10 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.integer  "sorting_index"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
   end
+
+  add_index "faqs", ["category"], name: "index_faqs_on_category"
 
   create_table "images", force: true do |t|
     t.string   "description"
@@ -197,6 +216,7 @@ ActiveRecord::Schema.define(version: 20410822171426) do
   create_table "news", force: true do |t|
     t.string   "title"
     t.text     "content"
+    t.string   "author"
     t.boolean  "front_page"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -204,7 +224,6 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "profile_id"
   end
 
   create_table "nominations", force: true do |t|
@@ -268,17 +287,12 @@ ActiveRecord::Schema.define(version: 20410822171426) do
 
   create_table "posts", force: true do |t|
     t.string   "title"
-    t.integer  "limit",         default: 0
+    t.integer  "limit",       default: 0
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "council_id"
-    t.boolean  "extra_text"
-    t.string   "elected_by"
-    t.string   "elected_at"
-    t.text     "election_text"
-    t.boolean  "styrelse"
-    t.integer  "recLimit",      default: 0
+    t.integer  "recLimit",    default: 0
   end
 
   create_table "posts_profiles", id: false, force: true do |t|
@@ -298,24 +312,6 @@ ActiveRecord::Schema.define(version: 20410822171426) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "first_post"
-    t.string   "email"
-    t.string   "stil_id"
-    t.string   "phone"
-  end
-
-  create_table "rents", force: true do |t|
-    t.datetime "from"
-    t.datetime "til"
-    t.string   "name"
-    t.string   "lastname"
-    t.string   "email"
-    t.string   "phone"
-    t.text     "purpose"
-    t.boolean  "disclaimer"
-    t.boolean  "confirmed"
-    t.integer  "council_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "roles", force: true do |t|

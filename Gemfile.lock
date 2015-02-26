@@ -96,7 +96,6 @@ GEM
     momentjs-rails (2.8.3)
       railties (>= 3.1)
     multi_json (1.10.1)
-    mysql2 (0.3.16)
     orm_adapter (0.5.0)
     paperclip (4.1.1)
       activemodel (>= 3.0.0)
@@ -190,7 +189,6 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   momentjs-rails
-  mysql2
   paperclip (~> 4.1)
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)
