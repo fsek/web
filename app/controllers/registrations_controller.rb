@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
 
-    # this is the modifucation
+    # this is the modification
     @civic = params[:civic]
     resource.check_f_membership(@civic)
     # end of modification

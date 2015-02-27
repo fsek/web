@@ -1,26 +1,23 @@
 
 Fsek::Application.routes.draw do
 
+  resources :notices
+
   # Resources on the page
-  get 'kurslankar' => 'static_pages#kurslankar'
+  #get 'kurslankar' => 'static_pages#kurslankar'
   get 'libo' => 'static_pages#libo', as: :libo
   get 'kalender' => 'events#calendar',as: :kalender
   get '/nollning', to: redirect('http://nollning.fsektionen.se'), as: :nollning
   get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
   
   get 'om' => 'static_pages#om', as: :om
-  
-  
     
   get 'engagemang' => 'static_pages#utskott', as: :engagemang
-  get 'multimedia' => 'static_pages#lankar', as: :multimedia #Ev. efterfrågad av vårt kära Sanningsministerium!
-  get 'lankar' => 'static_pages#lankar', as: :lankar
+  #get 'multimedia' => 'static_pages#lankar', as: :multimedia #Ev. efterfrågad av vårt kära Sanningsministerium!
+  #get 'lankar' => 'static_pages#lankar', as: :lankar
   
   get 'organisation' => 'static_pages#utskott', as: :organisation
-  get 'erbjudande' => 'static_pages#om', as: :erbjudande
-
-  # Old gallery gateway
-  get '/old_gallery' => 'old_gallery#index', as: :old_gallery
+  #get 'erbjudande' => 'static_pages#om', as: :erbjudande
   
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
@@ -42,17 +39,26 @@ Fsek::Application.routes.draw do
   
   get 'anvandare' => 'users#index', as: :users
   
-  
+  # Scope to change urls to swedish
   scope path_names: { new: 'ny',edit: 'redigera' } do
+    # A scope to put car-associated things under /bil
+    # /d.wessman
     scope :bil do
       resources :rents, path: :bokning do
         patch :update_status, on: :member
       end     
-      get 'forman', controller: :rents, action: :forman
+      get :forman, controller: :rents, action: :forman
       get '', controller: :rents, action: :main, as: :bil      
     end
-    resources :menus,path: :meny, except: :show    
-    resources :posts,path: :poster, only: :index     
+
+    resources :notices, path: :notiser do
+      post :display, path: :visa, on: :member
+      get :image, path: :bild, on: :member
+    end
+    resources :menus,path: :meny, except: :show
+
+    resources :posts,path: :poster, only: :index
+
     resources :councils, path: :utskott do
       resources :posts, path: :poster do
         patch :remove_profile, on: :member
@@ -62,27 +68,38 @@ Fsek::Application.routes.draw do
         resources :page_elements, path: :element, on: :member
       end
     end
+
     resources :faqs, path: :faq
+
     resources :contacts, path: :kontakt do
       post :mail, on: :member
-    end    
+    end
+
     resources :profiles, path: :profil do
       patch :remove_post, on: :member
+      get :avatar, on: :member
     end
+
     resources :events do      
       get :export, on: :collection
     end
-    resources :work_posts, path: :jobbportal, except: :show 
-    resources :news ,path:  :nyheter  
-    resources :documents, path: :dokument    
+
+    resources :work_posts, path: :jobbportal, except: :show
+
+    resources :news ,path:  :nyheter
+
+    resources :documents, path: :dokument
+
     resources :elections, path: :val do
       get :nominate, path: :nominera, on: :collection
       post :nominate,action: :create_nomination,path: :nominera, on: :collection
       get :candidate, path: :kandidera, on: :collection
       post :candidate,action: :create_candidate,path: :kandidera, on: :collection
+
       resources :nominations, path: :nomineringar, except: [:new, :update,:create]
       resources :candidates, path: :kandidaturer, except: [:new, :update] 
     end
+
     resources :albums, path: :galleri do
       post :edit, on: :member
       get :settings, path: :installningar, on: :collection

@@ -1,0 +1,41 @@
+n1:
+  id: 1
+  title: "Välkommen till Fsektionen.se"
+  description: "Vi är en ideell förening för studerande vid Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap."
+  public: true
+  d_publish: <%= 5.day.ago.to_s(:db) %>
+  d_remove: <%= (Time.zone.now + 5.days).to_s(:db) %>
+
+n2:
+  id: 2
+  title: "Hemsidan är under utveckling"
+  description: "Spindelmännen är bäst"
+  public: true
+  d_publish: "2015-02-15"
+  d_remove: "2015-02-30"
+
+published:
+  title: "Välkommen till Fsektionen.se"
+  description: "Jag vill vara publicerad."
+  public: true
+  d_publish: <%= 5.day.ago.to_s(:db) %>
+  d_remove: <%= (Time.zone.now + 5.days).to_s(:db) %>
+
+not_published:
+  title: "Välkommen till Fsektionen.se"
+  description: "Vi är en ideell förening för studerande vid Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap."
+  public: true
+  d_publish: <%= 5.day.ago.to_s(:db) %>
+  d_remove: <%= (Time.zone.now - 2.days).to_s(:db) %>
+
+published_not_public:
+  title: "Välkommen till Fsektionen.se"
+  description: "Jag vill vara publicerad."
+  public: false
+  d_publish: <%= 5.day.ago.to_s(:db) %>
+  d_remove: <%= (Time.zone.now + 5.days).to_s(:db) %>
+
+no_dates:
+  title: "Välkommen till Fsektionen.se"
+  description: "Jag vill vara publicerad."
+  public: true

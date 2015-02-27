@@ -5,33 +5,47 @@ class Profile < ActiveRecord::Base
   has_many :rents  
   
   has_attached_file :avatar, 
-                    :styles => { original: "800x800>", medium: "300x300>", thumb:  "100x100>" },                   
-                    :path => ":rails_root/public/system/images/profil/:id/:style/:filename",
-                    :url => "/system/images/profil/:id/:style/:filename"
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/ 
-  
+                    :styles => { medium: "300x300>", thumb:  "100x100>" },
+                    :path => ":rails_root/storage/profile/:id/:style/:filename"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  def print  
-    if(self.first_post)
-      post = Post.find_by_id(self.first_post)
-    end
-    if (self.name) && (post)
-      self.name + ' (' + post.title + ')'
+  validates_presence_of :name, :lastname, on: :update
+  validates_inclusion_of :start_year, in: 1954..(Time.zone.today.year+1)
+
+  # Check if profile has user data
+  def has_profile_data?
+    return (self.name? && self.lastname?)
+  end
+
+  # Returns true if profile is fresh
+  # /d.wessman
+  def fresh?
+    return self.created_at == self.updated_at
+  end
+
+  # Returns true if user is equal to profiles user
+  # /d.wessman
+  def owner?(user)
+    (self.user == user)
+  end
+
+  # Check if user has post, and in that case what first_post is set to
+  # /d.wessman
+  def check_posts
+      if(self.posts.count > 0) && (self.first_post?)
+        return
+      end
+      if(self.posts.count > 0)
+        self.first_post = self.posts.first.id
+        self.save
+      end
+  end
+
+  def print
+    if (self.name) && (self.lastname)
+      %(#{self.name} #{self.lastname})
     elsif (self.name)
       self.name
     end
   end
-  def namn    
-    self.name + ' ' + self.lastname
-  end
-  def to_s
-     if(self.name) && (self.lastname)
-	%((#{self.id.to_s}) #{self.name} #{self.lastname})
-     elsif(self.name)
-	%((#{self.id.to_s}) #{self.name})
-     else
-	%((#{self.id.to_s}) #{self.user.to_s})
-     end    
-  end
-
 end

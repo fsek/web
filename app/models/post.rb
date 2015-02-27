@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   has_many :nominations
   has_many :candidates 
   
-  validates :limit,:recLimit, :presence => {}
+  validates_presence_of :limit,:recLimit, :description
   
   def printLimit
     if((recLimit == 0) && (limit == 0)) || (recLimit > limit )

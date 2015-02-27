@@ -1,4 +1,26 @@
 sv:
+  success_create: har skapats
+  success_update: har uppdaterats
+  notice: Notisen
+  profile_add_information: Du behöver fylla i namn och efternamn. Fyll gärna i den andra informationen också.
+  your_profile: Din profil
+  error: fel
+  prevent_save: gör att det inte går att spara
+
+  attributes:
+    description: Beskrivning
+    title: Titel
+    public: Publik
+    d_publish: Publiceringsdatum
+    d_remove:  Datum att dölja
+    sort: Sorteringsindex
+    image: Bild
+  model:
+    notice: Notis
+
+
+
+
   the_role:
     role_created:             Roll skapades
     role_updated:             Roll uppdaterades

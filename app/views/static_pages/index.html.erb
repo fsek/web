@@ -15,45 +15,14 @@
 
 <!--Mini News-->
 <div class="col-md-5">  
-    <div class="headline">
-    	<h3>Nyheter</h3></div>  
-    <%for @new in @news%>    	
-	    <div class="row">
-	    	<div class="col-md-12">
-		    	<div class="funny-boxes funny-boxes-left-orange">    
-		            <h2><%=link_to(@new.title,@new)%></h2>                            
-		            <p><%=simple_format(@new.content)%></p>    
-		            <ul class="list-unstyled">		            	
-		               <li><i class="fa fa-user"> </i><%=link_to(@new.profile.name,@new.profile)%></li>
-		               <li><i class="fa fa-calendar"></i> <%=@new.created_at%></li>
-		            </ul>                        
-		        </div>
-	        </div> 
-	    </div>	
-    <%end%>     	
-  <div class="news-read-more">
-    <i class="fa fa-plus"></i>
-    <%= link_to 'Fler nyheter',news_index_path%>
-  </div>
-</div
-
+    <div class="headline headline-md"><h3>Nyheter</h3></div>
+    <%= render @news%>
+    <%= link_to news_index_path do%>
+        <i class="fa fa-plus"></i> Fler nyheter
+     <%end%>
+</div>
 
 <div class="col-md-7">
-  <div class="search-blocks ">
-      <div class="row">
-          <div class="col-md-4 search-img">
-            <%= image_tag "http://www.riksdagen.se/ImageVaultFiles/id_185/cf_45/Kammaren_-_riksdagens_hj-rta.jpg", class: "img-responsive", image_link: "http://www.riksdagen.se/" %>              
-            </div>
-          <div class="col-md-8">
-              <h2><a href="#">Ombyggnation pågår, bit för bit.</a></h2>
-              <p>
-                Spindelmännen sliter. Om inte annat så är det en giltlig pluggflykt!
-                Fler och fler funktioner trillar på plats, buggar fixas till och sidan blir mer dynamisk.
-                Har ni synpunkter, tankar eller idéer är ni varmt välkomna att skicka dem till oss <%= render partial: "contacts/kontakt", locals: {name: 'Spindelmän'}%>.
-              </p>
-          </div>
-          <hr>	
-      </div>                            
-  </div>  
+  <%= render @notices%>
 </div>
 
