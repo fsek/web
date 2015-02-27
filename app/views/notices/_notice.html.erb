@@ -1,0 +1,13 @@
+<div class="headline headline-md"><h3><%=notice.title%></h3></div>
+<div class="search-blocks row">
+    <% if notice.image?%>
+        <div class="col-md-5 search-img">
+          <%= image_tag image_notice_path(notice,style: "large"), class: "img-responsive"%>
+        </div>
+        <div class="col-md-7">
+    <%else%>
+        <div class="col-md-12">
+    <%end%>
+            <%=simple_format(notice.description)%>
+        </div>
+</div>

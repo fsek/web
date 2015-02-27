@@ -85,6 +85,7 @@ class PostsController < ApplicationController
         format.html { redirect_to edit_council_post_path(@council,@post), notice: 'Posten uppdaterades!' }
         format.json { head :no_content }
       else
+        @councils = Council.order(title: :asc)
         format.html { render action: 'edit' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
