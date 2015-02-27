@@ -54,7 +54,7 @@
         	<% end %>
         	<li class="devider"></li>
             <li class="dropdown">              
-              <%= link_to fa_icon("user") + (current_user.profile.name || current_user.username), current_user.profile, class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
+              <%= link_to fa_icon("user") + (current_user.profile.print), current_user.profile, class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
               <ul class="dropdown-menu pull-right">
                 <li><%= link_to "Profil", current_user.profile %></li>                
                 <li><%= link_to "Kontoinställningar", :edit_user_registration%></li>                
