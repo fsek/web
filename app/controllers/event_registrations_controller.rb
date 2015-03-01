@@ -33,7 +33,7 @@ class EventRegistrationsController < ApplicationController
 
 	def profile_index
 		@profile = Profile.find_by_id(params[:id])
-    @event_registrations = EventRegistration.where(profile_id: params[:id])
+    @event_registrations = EventRegistration.where(profile_id: params[:id]).sort_by {|er| er.event.starts_at}.reverse
     respond_to do |format|
       format.html { render :profile_index }
       format.json { render :json => @event_registrations }

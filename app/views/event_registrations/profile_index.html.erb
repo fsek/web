@@ -1,11 +1,12 @@
 <div class="container">
-	<h1> Alla kommande event som för <%= @profile.name %>.</h1>
+	<h1> Alla kommande event för <%= @profile.name %>.</h1>
 
 <table class="table">
   <thead>
   <tr>
     <th>Titel:</th>
-    <th>Starttid:</th>
+    <th>Startar:</th>
+    <th>Slutar:</th>
     
   </tr>
 </thead>
@@ -13,7 +14,18 @@
 	<% @event_registrations.each do |event_reg| %>
   	<tr>
     <td><%= link_to event_reg.event.title, event_event_registrations_path(event_reg.event) %></td>
-    <td><%= event_reg.event.starts_at %></td>
+		<% if event_reg.event.starts_at > DateTime.now %>
+			<td>
+		<% else %>
+			<td style="color:#FF0000">
+		<% end %>
+    <%= event_reg.event.starts_at %></td>
+		<% if event_reg.event.ends_at > DateTime.now %>
+			<td>
+		<% else %>
+			<td style="color:#FF0000">
+		<% end %>
+    <%= event_reg.event.starts_at %></td>
   	</tr>
 	<% end %>
 	</tbody>

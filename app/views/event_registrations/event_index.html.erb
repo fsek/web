@@ -12,7 +12,7 @@
 		<% @event_registrations.each do |event_reg| %>
   		<tr>
 
-    	<td><%= event_reg.profile %></td>
+    	<td><%= link_to event_reg.profile, event_reg.profile %></td>
     	<td>
 				<% if event_reg.reserve_spot %>
 					Ja

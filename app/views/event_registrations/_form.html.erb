@@ -14,7 +14,7 @@
 		<tbody>
 			<tr>
 				<td>	
-					Titel:
+					<%=fa_icon('paper-plane')%> Event:
 				</td>	
 				<td>	
 					<%= @event.title %>
@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>	
-					Starttid:
+					<%=fa_icon('calendar')%> Starttid:
 				</td>	
 				<td>	
 					<%= @event.starts_at %>
@@ -30,11 +30,11 @@
 			</tr>
 			<tr>
 				<td>	
-					Platser:
+					<%=fa_icon('users')%> Bokningar:
 				</td>	
 				<td>	
-					<%= @reserved %> / <%= @event.number_of_slots %> </br>
-				 	<% if @new && @reserved >= @event.number_of_slots %>
+					<%= @reserved %> / <%= @event.number_of_slots ? @event.number_of_slots : "Många" %> </br>
+				 	<% if @new && @event.number_of_slots && @reserved >= @event.number_of_slots %>
 						Eventet är fullbokat, du kommer läggas in som reserv.
 				 	<% elsif !@new && @event_registration.reserve_spot %>
 						Du ligger som reserv för eventet och kommer bli meddelad om vi får in avanmälningar.
@@ -50,11 +50,15 @@
 	<div class="input-group margin-bottom-20">		  	  		 		  	
   	<%= f.text_area :info_text, :class => 'form-control',:placeholder => 'Beskrivning' %>
 	</div>			  
+	<% if @event.last_registration_date > DateTime.now %>
   	<div class="row">
   		<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>
+	<% else %>
+		För sent för att kunna göra ändringar i din anmälan.
 	<% end %>
-	<% if @event && @event_registration && @event_registration.profile_id %>
+	<% end %>
+	<% if @event && @event_registration && @event_registration.profile_id && @event.last_unregistration_date > DateTime.now %>
   	<div class="row">
   		<%= link_to (content_tag(:i, nil, class: "fa fa-remove") + " Avanmäl"), [@event_registration.event, @event_registration], method: :delete, :class => 'btn-u pull-right' %>	 				
   	</div>

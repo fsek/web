@@ -29,7 +29,7 @@
         		<div class="col-xs-6">
         			<% if current_user == @owner %>				      	
 				        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_profile_path(@profile), class: "btn-u btn-u-small"%>				        
-				        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Registreringar"), registreringar_profile_path(@profile), class: "btn-u btn-u-small"%>				        
+				        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Registreringar"), events_profile_path(@profile), class: "btn-u btn-u-small"%>				        
       				<% end %>
     		 	</div>    		 	          
             </div>
