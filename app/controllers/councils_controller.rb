@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class CouncilsController < ApplicationController
   
   before_filter :authenticate, only: [:new,:edit,:create,:update,:destroy]
@@ -82,7 +83,19 @@ class CouncilsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_council
       @council = Council.find_by_url(params[:id])
+      if(@council == nil)
+        @council = Council.find_by_id(params[:id])
+        if(@council == nil)
+          flash[:notice] = 'Hittade inget utskott med ID/URL ' + params[:id]+'.'
+          redirect_to(:utskott)
+        else
+          flash[:notice] = 'Utskotten hittas med dess URL istället för ett ID'
+          redirect_to(council_path(@council.url))
+        end
+      end
       @page = @council.page
+      rescue ActionController::RedirectBackError
+      redirect_to root_path 
     end
     def authenticate
       flash[:error] = t('the_role.access_denied')

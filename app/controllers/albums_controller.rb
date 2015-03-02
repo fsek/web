@@ -188,7 +188,7 @@ class AlbumsController < ApplicationController
 private
   def authenticate
     flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless current_user.moderator?(:galleri)
+    redirect_to(:back) unless (current_user) && (current_user.moderator?(:galleri))
     
     rescue ActionController::RedirectBackError
       redirect_to root_path

@@ -1,6 +1,5 @@
 
 Fsek::Application.routes.draw do
-    
 
   # Resources on the page
   get 'kurslankar' => 'static_pages#kurslankar'
@@ -41,14 +40,37 @@ Fsek::Application.routes.draw do
   get 'anvandare' => 'users#index', as: :users
   
   
-  scope path_names: { new: 'ny',edit: 'redigera' } do
-    #scope :bil do
-     # resources :car_rents, path: :bokning
-     # get 'bokningar', controller: :car_rents, action: :bokningar
-     # get '', controller: :car_rents, action: :main, as: :bil
-    #end      
+  scope path_names: { new: 'ny',edit: 'redigera' } do     
+    scope :hilbertcafe do
+      namespace :admin do
+        resources :cafe_works, path: :jobb, controller: :cafe_works,except: :index do
+          patch :remove_worker, path: :jobbare, on: :member
+        end
+        get '/setup', controller: :cafe_works,action: :setup, as: :setup_cafe
+        post '/setup/skapa', controller: :cafe_works, action: :setup_create, as: :setup_cafe_create
+        post '/setup/preview', controller: :cafe_works, action: :setup_preview, as: :setup_cafe_preview
+        get '', controller: :cafe_works, action: :main, as: :hilbert
+        post'', controller: :cafe_works, action: :main        
+      end      
+      resources :cafe_works, path: :jobb, only: [:show,:update] do
+        patch :remove_worker, path: :inte_jobba, on: :member
+        patch :authorize, path: :auktorisera,  on: :member
+      end
+      get '', controller: :cafe_works, action: :main, as: :hilbert
+      get '/nyckelpiga', controller: :cafe_works, action: :nyckelpiga
+      #get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling         
+    end
+
+    scope :bil do      
+      resources :rents, path: :bokning do
+        patch :update_status, on: :member
+      end     
+      get 'forman', controller: :rents, action: :forman
+      get '', controller: :rents, action: :main, as: :bil      
+    end
+    resources :menus,path: :meny, except: :show
     resources :posts,path: :poster, only: :index     
-    resources :councils, path: :utskott do
+    resources :councils, path: :utskott do    
       resources :posts, path: :poster do
         patch :remove_profile, on: :member
         patch :add_profile_username, on: :member
@@ -94,11 +116,7 @@ Fsek::Application.routes.draw do
   end
   post '' => 'albums#index', as: :index_albums
   
-  concern :the_role, TheRole::AdminRoutes.new
-  
-  namespace :admin do
-    concerns :the_role
-  end 
+  TheRoleManagementPanel::Routes.mixin(self)
    
   root 'static_pages#index'
 

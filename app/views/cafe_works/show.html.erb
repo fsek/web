@@ -1,0 +1,51 @@
+<% provide(:title, 'Hilbert Café') %>
+<div class="col-md-6 col-md-offset-3">
+	<div class="row">
+		<div class="headline headline-md"><h2>Cafejobb - ID <%= @cwork.id%></h2></div>
+		<table class="table">
+			<tbody>					
+				<tr>
+					<td><i class="fa fa-calendar"></i></td>
+					<td><%=%(#{@cwork.print_time}, #{l(@cwork.work_day, format: :day)})%> </td>					
+				</tr>
+				<tr>
+					<td><i class="fa fa-calendar-o"></i> Pass</td>
+					<td><%= @cwork.pass%></td>
+				</tr>
+				<tr>
+					<td><i class="fa fa-calendar-o"></i> LV</td>
+					<td><%= @cwork.lv%></td>
+				</tr>
+				<tr>
+					<td><i class="fa fa-calendar-o"></i> LP</td>
+					<td><%= @cwork.lp%></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="row">			
+		<div class="headline headline-md"><h2>Jobbare</h2></div>
+		<p id="status"><%=@cwork.status_text(current_user)%></p>
+		<% case @cwork.status_view(current_user) 
+		     when 0,1 %>
+		     <div id="form_r">
+		  	<%=render 'form'%>   
+		  	</div>
+		  <% when 3 %>
+		  <div id ="authorization">
+		  	<%=render 'authorization'%>		  	
+		  </div>
+		  <div id ="after_authorization",style="display:none;">
+		  </div>
+		  <% end %>
+			
+		
+	</div>
+	<hr>
+	<div class="row">
+		<%if @mod%>
+			<%=link_to("Administrera passet",admin_cafe_work_path(@cwork),class:"btn btn-u")%>
+		<%end%>
+		<%=link_to("Startsida för Hilbert",:hilbert,class:"btn btn-u")%>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+<% provide(:title, 'Hilbert Café') %>
+	<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 reg-page">
+		<div class="coming-soon">
+			<h2><%= label_tag 'Cafebokning - nyckelpiga',nil, :class => 'reg-header'%></h2>		
+		</div>
+		<div class="row margin-bottom-20">
+			<%=form_tag(nyckelpiga_path,{method: 'get'}) do %>
+				<%= text_field_tag(:date, @date)%>
+				<%= submit_tag "Visa", class: "btn btn-u"%>
+			<%end%>
+		</div>
+		<div class="row">
+			<%if @works%>
+				<table class="table-striped table-bordered table">
+					<thead>
+						<tr>
+							<th>Pass</th>
+							<th>Förnamn</th>
+							<th>Efternamn</th>
+							<th>Telefon</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @works.each do |work|%>
+							<tr>
+								<td><%=work.pass%></td>
+								<td><%=(work.profile_id == nil) ? work.name : link_to(work.name, Profile.find_by_id(work.profile_id))%></td>
+								<td><%=work.lastname%></td>
+								<td><%=work.phone%></td>
+							</tr>
+						<%end%>		
+					</tbody>
+				</table>
+			<%end%>				
+		</div>
+		<%=link_to("Startsida för Hilbert",:hilbert,class:"btn btn-u")%>
+	</div>

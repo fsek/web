@@ -1,8 +1,9 @@
 <%= form_for(@profile) do |f| %>
-  	<%= f.label 'Namn', :class => 'reg-label'%>		  
+  	<%= f.label 'Namn och efternamn', :class => 'reg-label'%>		  
   	<div class="input-group margin-bottom-20">					
-		<%= f.text_field :name, :class => 'form-control',:placeholder => 'Namn'%>		
-  	</div>
+		<%= f.text_field :name, :class => 'form-control',:placeholder => 'Namn'%>
+		<%= f.text_field :lastname, :class => 'form-control',:placeholder => 'Efternamn'%>		
+  	</div>  	
   	<%= f.label 'Program', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">
   		<%= f.select :program, options_for_select([

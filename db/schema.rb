@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171429) do
+ActiveRecord::Schema.define(version: 20410822171435) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20410822171429) do
   end
 
   create_table "cafe_works", force: true do |t|
+<<<<<<< HEAD
     t.datetime "start"
     t.datetime "end"
     t.datetime "created_at"
@@ -60,6 +61,28 @@ ActiveRecord::Schema.define(version: 20410822171429) do
   create_table "cafe_works_profiles", id: false, force: true do |t|
     t.integer "profile_id"
     t.integer "cafe_work_id"
+=======
+    t.datetime "work_day"
+    t.integer  "pass"
+    t.integer  "lp"
+    t.integer  "lv"
+    t.integer  "profile_id"
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "phone"
+    t.string   "email"
+    t.boolean  "utskottskamp"
+    t.string   "access_code"
+    t.integer  "d_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "remove_worker"
+  end
+
+  create_table "cafe_works_councils", id: false, force: true do |t|
+    t.integer "cafe_work_id"
+    t.integer "council_id"
+>>>>>>> origin/development
   end
 
   create_table "candidates", force: true do |t|
@@ -213,6 +236,18 @@ ActiveRecord::Schema.define(version: 20410822171429) do
     t.datetime "updated_at"
   end
 
+  create_table "menus", force: true do |t|
+    t.string   "location"
+    t.integer  "index"
+    t.string   "link"
+    t.string   "name"
+    t.boolean  "visible"
+    t.boolean  "turbolinks", default: true
+    t.boolean  "blank_p"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "news", force: true do |t|
     t.string   "title"
     t.text     "content"
@@ -292,7 +327,17 @@ ActiveRecord::Schema.define(version: 20410822171429) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "council_id"
+<<<<<<< HEAD
     t.integer  "recLimit",    default: 0
+=======
+    t.boolean  "extra_text"
+    t.string   "elected_by"
+    t.string   "elected_at"
+    t.text     "election_text"
+    t.boolean  "styrelse"
+    t.integer  "recLimit",      default: 0
+    t.boolean  "car_rent"
+>>>>>>> origin/development
   end
 
   create_table "posts_profiles", id: false, force: true do |t|
@@ -312,6 +357,32 @@ ActiveRecord::Schema.define(version: 20410822171429) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "first_post"
+<<<<<<< HEAD
+=======
+    t.string   "email"
+    t.string   "stil_id"
+    t.string   "phone"
+    t.string   "lastname"
+  end
+
+  create_table "rents", force: true do |t|
+    t.datetime "d_from"
+    t.datetime "d_til"
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "purpose"
+    t.boolean  "disclaimer"
+    t.boolean  "aktiv",      default: true
+    t.integer  "council_id"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "comment"
+    t.string   "status",     default: "Ej bestämd"
+    t.boolean  "service"
+>>>>>>> origin/development
   end
 
   create_table "roles", force: true do |t|

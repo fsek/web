@@ -1,0 +1,85 @@
+<div class="funny-boxes funny-boxes-top-orange col-md-12">
+	<div class="row">
+		<div class="col-md-12 funny-boxes-img">
+			<h2>Bilbokning - ID <%= @rent.id%> 
+			<%if @rent.service%><span class="label rounded label-danger pull-right">Service</span><%end%>
+			<%if @rent.status == "Nekad"%> <span class="label rounded label-danger pull-right">Nekad</span><%end%>
+			<%if @rent.status == "Ej bestämd"%>  <span class="label rounded-2x label-warning pull-right">Ej bestämd</span><%end%>
+			<%if @rent.status == "Bekräftad"%>  <span class="label rounded-2x label-success pull-right">Bekräftad</span><%end%>
+			</h2>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><i class="fa fa-user"></i></td>
+						<td><%= (@rent.profile != nil) ? link_to(@rent.name + ' ' + @rent.lastname,profile_path(@rent.profile)) : @rent.name + ' ' + @rent.lastname%></td>
+					</tr>
+					<tr>
+						<td><i class="fa fa-calendar"></i> Start</td>
+						<td><%= @rent.d_from%></td>
+					</tr>
+					<tr>
+						<td><i class="fa fa-calendar-o"></i> Slut</td>
+						<td><%= @rent.d_til%></td>
+					</tr>
+					<tr>
+						<td><i class="fa fa-envelope"></i></td>
+						<td><%= @rent.email%></td>
+					</tr>
+					<tr>
+						<td><i class="fa fa-phone"></i></td>
+						<td><%= @rent.phone%></td>
+					</tr>
+					<tr>
+						<td><i class="fa fa-check"></i></td>
+						<td> <%if @rent.disclaimer%>
+							Avtal accepterat<br>
+						<%end%>
+						<%if @rent.aktiv%>
+							Markerad som aktiv<br>
+						<%end%>
+						<%if @rent.status == "Bekräftad"%>
+							Bekräftad
+						<%end%> </td>
+					</tr>
+					<tr>
+						<td><i class="fa fa-exclamation-circle"></i></td>
+						<td> <%if !@rent.disclaimer%>
+						Avtal ej accepterat	<br>
+						<%end%>
+						<%if !@rent.aktiv%>
+						Markerad som inaktiv <br>
+						<%end%>
+						<%if @rent.status == "Ej bestämd"%>
+						Ingen status - måste bekräftas/nekas
+						<br>
+						<%end%>
+						<%if @rent.status == "Nekad"%>
+						Nekad
+						<%end%> </td>
+					</tr>
+					<% @council = Council.find_by_id(@rent.council_id)%>
+					<%if @council%>
+					<tr>
+						<td><i class="fa fa-users"></i> Utskott:</td>
+						<td><%= link_to(@council.title,council_path(@council))%></td>
+					</tr>
+					<%end%>
+					<%if @rent.purpose.blank? == false%>
+					<tr>
+						<td><i class="fa fa-exclamation-circle"></i> Syfte</td>
+						<td><%= simple_format(@rent.purpose)%></td>
+					</tr>
+					<%end%>
+					<tr>
+						<td><i class="fa fa-calendar"></i> Skapad</td>
+						<td><%= @rent.created_at%></td>
+					</tr>
+					<tr>
+						<td><i class="fa fa-calendar"></i> Ändrad</td>
+						<td><%= @rent.updated_at%></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

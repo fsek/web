@@ -1,0 +1,31 @@
+<% provide(:title, 'Bilbokning') %>
+<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 reg-page">
+	<div class="coming-soon">
+		<h2><%= label_tag 'Bilbokning - bilförman',nil, :class => 'reg-header'%></h2>
+	</div>
+	<div class="row">
+		<%= grid(@rent_grid) do |g|
+		g.row_attributes do |post|
+			if (post.status == "Ej bestämd")
+				{style: 'background: rgba(252, 155, 0,0.7);'}			
+			end
+		end
+		g.column name: "Från:",attribute: "d_from",filter: false
+		g.column name: "Till",attribute: "d_til",filter: false
+		g.column name: "Förnamn:", attribute: "name",filter: false do |rent|
+			(rent.profile.nil?) ? rent.name : link_to(rent.name, rent.profile)
+		end
+		g.column name: "Efternamn", attribute: "lastname",filter: false
+		g.column name: "Status", attribute: "status",filter: false 		
+		g.column name: "Aktiv", attribute: "aktiv",filter: false do |rent|
+			(rent.aktiv) ? "Aktiv" : "Inaktiv"
+		end
+		g.column name: "Utskott", attribute: "council_id",filter: false do |rent|
+		(rent.council_id == nil) ? "-" : link_to(Council.find(rent.council_id),council_path(rent.council_id))
+		end
+		g.column name: "Redigera" do |rent|
+		link_to("Redigera",rent_path(rent))
+		end
+		end -%>
+	</div>
+</div>
