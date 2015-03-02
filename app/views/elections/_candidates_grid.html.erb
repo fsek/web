@@ -1,13 +1,16 @@
 <%= grid(@candidates_grid) do |g|
   g.column name: "Post",attribute: "post_id",filter: false do |candidate|
   	candidate.post.title
-  end				  		    	 
-  g.column name: "Namn",attribute: "profile_id",filter: false,in_csv: false do |candidate|
-  	link_to(candidate.profile.name,candidate.profile)
   end
-  g.column name: "Namn",attribute: "profile_id",filter: false,in_csv: false do |candidate|
+  g.column name: "Styrelse", filter: false do |candidate|
+  	(candidate.post.styrelse) ? "Ja" : "Nej"
+  end
+  g.column name: "Väljs av", filter: false do |candidate|
+  	candidate.post.elected_by
+  end				  		    	 
+  g.column name: "Namn",attribute: "profile_id",filter: false do |candidate|
   	link_to(candidate.profile.name,candidate.profile)
-  end	
+  end    
   g.column name: "Stil-ID",attribute: "stil_id",filter: false				
   g.column name: "E-post", attribute: "email",filter: false
   g.column name: "Telefon", attribute: "phone",filter: false

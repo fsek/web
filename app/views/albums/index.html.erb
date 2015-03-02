@@ -7,8 +7,9 @@
 	    	</div>
     	</div>
     	<div class="sorting-block">
-    		<div class="headline headline-md"><h3>Senast tillagda</h3></div>	                        	
-                	<% @albums_latest.each do |p| %>
+    		<div class="headline headline-md"><h3>Alla album (tillfälligt)</h3></div>
+    		<!-- <div class="headline headline-md"><h3>Senast tillagda</h3></div> -->	                        	
+                	<% @albums.each do |p| %> <!-- ändra till @albums_latest -->
                 	<div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 		<%@album = p%>	                	
 	                		<%= render "album_preview"%>
@@ -18,7 +19,7 @@
 		</div> <!-- row-->	
 	<hr>
   	</div>
-  	
+  	<% if false %> <!-- fix för det är problem -->
   	<div class="col-md-12 content">  		
 		<div class="headline headline-md"><h3>Alla album</h3></div>
         <div class="row high-rated margin-bottom-20">
@@ -45,7 +46,7 @@
 	<hr class="devider devider-dotted">	
   	</div>  	
 </div>
-  				  	
+<%end%> <!-- Fix för det är problem --> 				  	
 <script>
 var bottom;
    bottom = function() {   

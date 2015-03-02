@@ -20,3 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 en:
   Hello: Hello
+  success_create: was successfully created
+  success_update: was successfully updated
+  notice: Notice
+  your_profile: Your profile
+  profile_add_information: You have to fill out your name and surname. Please fill out the other information as well.
+  error: error
+  prevent_save: prevents the save
+

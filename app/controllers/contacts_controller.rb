@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class ContactsController < ApplicationController
   before_filter :authenticate_edit, only: [:new,:edit,:update,:destroy]  
   before_action :set_contact, only: [:show, :edit,:update,:destroy,:mail]
@@ -78,7 +79,10 @@ class ContactsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
-      @contact = Contact.find(params[:id])
+      @contact = Contact.find_by_id(params[:id])
+      if(@contact == nil)
+        redirect_to(contacts_path,notice: 'Ingen kontakt hittades.')
+      end
     end
     def authenticate_edit
       flash[:error] = t('the_role.access_denied')

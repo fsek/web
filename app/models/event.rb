@@ -30,9 +30,8 @@ class Event < ActiveRecord::Base
         :allDay => self.all_day,
         :recurring => false,
         :url => Rails.application.routes.url_helpers.event_path(id),
-        #:color => "red"
+        :textColor => "black"
       }
-
     end
 
     def self.format_date(date_time)

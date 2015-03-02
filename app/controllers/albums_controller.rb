@@ -1,8 +1,7 @@
 # encoding:UTF-8
 class AlbumsController < ApplicationController
     
-  before_filter :login_required
-  before_filter :authenticate_user!  
+  before_filter :login_required  
   before_filter :authenticate, only: [:new, :create,:edit,:destroy,:update,:settings,:destroy_images]
   before_action :set_edit
   before_action :set_album, except: [:index,:new,:create,:settings]
@@ -189,7 +188,7 @@ class AlbumsController < ApplicationController
 private
   def authenticate
     flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless current_user.moderator?(:galleri)
+    redirect_to(:back) unless (current_user) && (current_user.moderator?(:galleri))
     
     rescue ActionController::RedirectBackError
       redirect_to root_path

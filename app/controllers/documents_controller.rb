@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class DocumentsController < ApplicationController
   
   before_filter :authenticate, only: [:update,:edit,:new,:destroy,:create]
@@ -24,7 +25,7 @@ class DocumentsController < ApplicationController
       @documents = Document.publik
       @documents_grid = initialize_grid(@documents)
       return
-    elsif((!@dokument.public) && (current_user)) || (@dokument.public)
+    elsif((!@dokument.public) && (current_user) && (@dokument.pdf_file_name) || (@dokument.public))
       send_file(@dokument.pdf.path, filename:@dokument.pdf_file_name, type: "application/pdf",disposition: 'inline',x_sendfile: true)
       return
     end

@@ -1,27 +1,28 @@
 <div class="container content">  		
 	<div class="headline headline-md"><h3>Kontakt</h3></div>
-    <div class="row high-rated margin-bottom-20">
-   		<div class="sorting-block">		            
-            <ul class="row sorting-grid">            	
-            	<% @contacts.each do |p| %>		                 
-            		<li class="col-md-3 col-sm-6 col-xs-12">		                		
-                		<div class="tag-box tag-box-v2">					
-		                	<div class="overflow-h">
-			                        <h3><%=p.name%></h3>			                        		                        
-		                    </div>		                    
-		                    	<div class="overflow-h">			                        
-		                       		<br> <%=simple_format(p.text)%>		                        
-		                    	</div>   
-	                    		<%= link_to 'Skicka meddelande',p,class: 'btn btn-u'%>
-	                    		<% if (current_user) && (current_user.moderator?(:kontakt))%>
-	                    			<br><br><%= link_to 'Redigera',edit_contact_path(p),class: 'btn btn-u'%>
-	                    		<% end %>	                    	
-                    	</div>			                    
-                	</li>		                 
-        		<% end %>                    
-            </ul>        
-        	<div class="clearfix"></div>			
-		</div>
-	</div>
-	<hr class="devider devider-dotted">
+	    
+	    	<div class="panel-group acc-v1 margin-bottom-40" id="answered">
+            	<%@first=true%>
+            	<% @contacts.each do |p| %>
+                	<div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+	                        	<div id="faq123">
+	                            	<a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#collapse<%=p.id%>">
+	                                   	<%=p.name%>
+	                                </a>
+	                            </div>
+                            </h4>
+                        </div>
+                        <div id="collapse<%=p.id%>" class="panel-collapse collapse <%if @first%><%@first=false%> in<%end%>">
+                            <div class="panel-body">
+								<%=p.text%>									
+								<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Kontakta"), contact_path(p), class: "btn-u btn-u-small pull-right"%>	                        		
+                            </div>
+                        </div>
+                    </div>
+				<%end%>
+            </div>  		
+        
+	</div>	
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171423) do
+ActiveRecord::Schema.define(version: 20410822171440) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -127,6 +127,25 @@ ActiveRecord::Schema.define(version: 20410822171423) do
     t.integer "post_id"
   end
 
+  create_table "email_accounts", force: true do |t|
+    t.integer  "profile_id"
+    t.string   "email"
+    t.string   "title"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "emails", force: true do |t|
+    t.integer  "email_account_id"
+    t.string   "receiver"
+    t.string   "subject"
+    t.text     "message"
+    t.boolean  "copy"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.string   "title"
     t.string   "author"
@@ -150,7 +169,10 @@ ActiveRecord::Schema.define(version: 20410822171423) do
     t.integer  "sorting_index"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
   end
+
+  add_index "faqs", ["category"], name: "index_faqs_on_category", using: :btree
 
   create_table "images", force: true do |t|
     t.string   "description"
@@ -171,6 +193,18 @@ ActiveRecord::Schema.define(version: 20410822171423) do
     t.string   "string1"
     t.integer  "int1"
     t.boolean  "bool1"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "menus", force: true do |t|
+    t.string   "location"
+    t.integer  "index"
+    t.string   "link"
+    t.string   "name"
+    t.boolean  "visible"
+    t.boolean  "turbolinks", default: true
+    t.boolean  "blank_p"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -198,6 +232,21 @@ ActiveRecord::Schema.define(version: 20410822171423) do
     t.datetime "updated_at"
     t.string   "phone"
     t.string   "stil_id"
+  end
+
+  create_table "notices", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "public"
+    t.date     "d_publish"
+    t.date     "d_remove"
+    t.integer  "sort"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "page_elements", force: true do |t|
@@ -260,6 +309,7 @@ ActiveRecord::Schema.define(version: 20410822171423) do
     t.text     "election_text"
     t.boolean  "styrelse"
     t.integer  "recLimit",      default: 0
+    t.boolean  "car_rent"
   end
 
   create_table "posts_profiles", id: false, force: true do |t|
@@ -282,6 +332,26 @@ ActiveRecord::Schema.define(version: 20410822171423) do
     t.string   "email"
     t.string   "stil_id"
     t.string   "phone"
+    t.string   "lastname"
+  end
+
+  create_table "rents", force: true do |t|
+    t.datetime "d_from"
+    t.datetime "d_til"
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "purpose"
+    t.boolean  "disclaimer"
+    t.boolean  "aktiv",      default: true
+    t.integer  "council_id"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "comment"
+    t.string   "status",     default: "Ej bestämd"
+    t.boolean  "service"
   end
 
   create_table "roles", force: true do |t|
@@ -316,8 +386,8 @@ ActiveRecord::Schema.define(version: 20410822171423) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "work_posts", force: true do |t|
     t.string   "title"

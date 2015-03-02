@@ -1,17 +1,17 @@
 # encoding:UTF-8
 class EventsController < ApplicationController
   
-    before_filter :login_required, only: [:kalender,:new,:show,:edit,:create,:update,:destroy]
-    before_filter :authenticate_user!, only: [:calendar,:new,:show,:edit,:create,:update,:destroy]
-    before_filter :authenticate_editor_events!, only: [:new,:edit,:index]
+    before_filter :login_required, only: [:calendar,:show]
+    before_filter :authenticate, only: [:new,:edit,:create,:update,:destroy]
     before_action :utskott, only: [:new,:edit]
+    before_action :set_event, only: [:show,:edit,:update,:destroy]
         
   # GET /events
   # GET /events.json
   def index
     @events = Event.all    
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { redirect_to :kalender}
       format.json { render :json => @events }
     end
   end
@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
+    @author = Profile.find_by_id(@event.author)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @event }
@@ -29,15 +29,15 @@ class EventsController < ApplicationController
     
   end
   def export
-        @events = Event.all        
-        @calendar=Icalendar::Calendar.new 
-        for event in Event.all 
-          @calendar.add_event(event.ical(polymorphic_url(event, :routing_type => :url))) 
-        end
-        @calendar.publish      
-      respond_to do |format|
-        format.ics
-      end
+    @events = Event.all        
+    @calendar=Icalendar::Calendar.new 
+    for event in @events
+      @calendar.add_event(event.ical(polymorphic_url(event, :routing_type => :url))) 
+    end
+    @calendar.publish      
+    respond_to do |format|
+      format.ics
+    end
   end
   # GET /events/new
   # GET /events/new.json
@@ -51,17 +51,16 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
   end
 
   # POST /events
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    @event.update(author: current_user)
+    @event.update(author: current_user.profile)
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, :notice => 'Eventet skapades!.' }
+        format.html { redirect_to @event, :notice => 'Eventet skapades!' }
         format.json { render :json => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }
@@ -73,8 +72,7 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find(params[:id])
-    
+    @event = Event.find_by_id(params[:id])    
     respond_to do |format|
       if @event.update_attributes(event_params)
         format.html { redirect_to @event, :notice => 'Eventet uppdaterades!' }
@@ -98,13 +96,20 @@ class EventsController < ApplicationController
     end
   end
   private
+      def authenticate
+        flash[:error] = t('the_role.access_denied')
+        redirect_to(:back) unless current_user && current_user.moderator?(:event)
+        
+        rescue ActionController::RedirectBackError
+          redirect_to root_path
+      end
       def set_event
-        @event = Event.find(params[:id])
+        @event = Event.find_by_id(params[:id])
       end
       def event_params
         params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image)
       end
       def utskott
-        @utskott = List.where(:category => 'utskott').sort_by{|l| l.name}
+        @utskott = Council.all
       end
 end

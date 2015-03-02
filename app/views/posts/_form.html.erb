@@ -1,15 +1,5 @@
 <%= form_for([@council,@post]) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">ß
-      <h2><%= pluralize(@post.errors.count, "error") %> hindar posten från att sparas:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/form_errors', current: @post%>
   	<div class="col-md-6">  
 	    <%= f.label 'Titel', :class => 'reg-label'%>
 	  	<div class="input-group margin-bottom-20">
@@ -19,9 +9,20 @@
 	  	<div class="input-group margin-bottom-20">
 	  		<%= f.check_box :styrelse, checked: @post.styrelse %>
 	  	</div>
+	  	<%= f.label 'Får boka bilen för utskottet', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.check_box :car_rent, checked: @post.car_rent %>
+	  	</div>
 	  	<%= f.label 'Väljs av?, väljs när?', class:'reg-label'%>
 	  	<div class="input-group margin-bottom-20">
 	  		<%= f.select :elected_by, options_for_select(["","Terminsmötet","Styrelsen","Studierådet"],@post.elected_by),class: "form-control"%> <%= f.select :elected_at, options_for_select(["","HT", "VT"],@post.elected_at),class: "form-control"%>
+	  	</div>
+	  	<%= f.label 'Ansvarigt utskott', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.select :council_id, 
+	  				     options_from_collection_for_select(@councils,:id,:title,@post.council_id),
+	  				     include_blank: true, 
+	  				     :class => "form-control listBox"%>
 	  	</div>
 	</div>
 	<div class="col-md-6">
