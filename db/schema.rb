@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171429) do
+ActiveRecord::Schema.define(version: 20410822171436) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -51,10 +51,21 @@ ActiveRecord::Schema.define(version: 20410822171429) do
   end
 
   create_table "cafe_works", force: true do |t|
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "work_day"
+    t.integer  "pass"
+    t.integer  "lp"
+    t.integer  "lv"
+    t.integer  "profile_id"
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "phone"
+    t.string   "email"
+    t.boolean  "utskottskamp"
+    t.string   "access_code"
+    t.integer  "d_year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "remove_worker"
   end
 
   create_table "cafe_works_profiles", id: false, force: true do |t|
@@ -213,6 +224,18 @@ ActiveRecord::Schema.define(version: 20410822171429) do
     t.datetime "updated_at"
   end
 
+  create_table "menus", force: true do |t|
+    t.string   "location"
+    t.integer  "index"
+    t.string   "link"
+    t.string   "name"
+    t.boolean  "visible"
+    t.boolean  "turbolinks", default: true
+    t.boolean  "blank_p"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "news", force: true do |t|
     t.string   "title"
     t.text     "content"
@@ -300,19 +323,23 @@ ActiveRecord::Schema.define(version: 20410822171429) do
     t.integer "profile_id"
   end
 
-  create_table "profiles", force: true do |t|
-    t.string   "name"
-    t.string   "program"
-    t.integer  "start_year"
-    t.integer  "user_id"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "first_post"
-  end
+	create_table "profiles", force: true do |t|
+		t.string "name"
+		t.string "program"
+		t.integer "start_year"
+		t.integer "user_id"
+		t.string "avatar_file_name"
+		t.string "avatar_content_type"
+		t.integer "avatar_file_size"
+		t.datetime "avatar_updated_at"
+		t.datetime "created_at"
+		t.datetime "updated_at"
+		t.integer "first_post"
+		t.string "email"
+		t.string "stil_id"
+		t.string "phone"
+		t.string "lastname"
+	end
 
   create_table "roles", force: true do |t|
     t.string   "name",        null: false

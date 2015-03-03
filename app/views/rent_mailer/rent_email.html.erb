@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  	<h3> Hej <%=@rent.name %></h3>
+			<p>Du har bokat F-sektionens bil med nedanstående uppgifter (ID: <%=@rent.id%>) .</p>
+			<table class="table">
+			  <tbody>			   
+			      <tr>
+			      	<td>Namn:</td>
+			      	<td><%=@rent.name + ' ' + @rent.lastname%></td>
+			      </tr>
+			      <tr>
+			      	<td>Epost:</td>
+			      	<td><%=@rent.email%></td>
+			      </tr>
+			      <tr>
+			      	<td>Telefon:</td>
+			      	<td><%=@rent.phone%></td>
+			      </tr>
+			      <tr>
+			      	<td>Datum:</td>
+			      	<td><%=@rent.printTime%></td>
+			      </tr>
+			      <%if @rent.purpose.blank? == false%>			      	
+			      	<tr>
+			      		<td>Syfte:</td>
+			      		<td><%=simple_format(@rent.purpose)%></td>
+			      	</tr>
+			      <%end%>
+			      <%@council = Council.find_by_id(@rent.council_id)%>
+			      <%if @council%>			      	
+			      	<tr>
+			      		<td>Utskott:</td>
+			      		<td><%=link_to(@council.title,council_path(@council))%></td>
+			      	</tr>
+			      <%end%>
+			      <tr>
+			      	<td>Länk:</td>
+			      	<td><%=link_to(@rent.p_url,@rent.p_url)%></td>
+			      </tr>		        
+			  </tbody>
+			</table>
+	    	<br>
+	    	
+	    	<%if (@rent.status == nil)%>
+	    		<p>Din bokning måste hanteras direkt av bilförmannen och ett mejl kommer skickas ut då bokningen är beräkftad eller nekad.</p>
+    		<%end%>
+    		<p>Har du några frågor så svarar du enklast direkt på detta mejl.</p>
+    		
+	    	<p>Mvh,<br>
+	    	Bilförmannen</p>   
+  </body>
+</html>

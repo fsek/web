@@ -17,7 +17,7 @@
 					<%=fa_icon('paper-plane')%> Event:
 				</td>	
 				<td>	
-					<%= @event.title %>
+					<%= link_to @event.title, @event %>
 				</td>	
 			</tr>
 			<tr>
@@ -30,16 +30,12 @@
 			</tr>
 			<tr>
 				<td>	
-					<%=fa_icon('users')%> Bokningar:
+					<%=fa_icon('users')%> Anmälda:
 				</td>	
 				<td>	
-					<%= @reserved %> / <%= @event.number_of_slots ? @event.number_of_slots : "Många" %> </br>
+					<%= @reserved %> <%= @event.number_of_slots ? " / " + @event.number_of_slots.to_s : "" %> </br>
 				 	<% if @new && @event.number_of_slots && @reserved >= @event.number_of_slots %>
 						Eventet är fullbokat, du kommer läggas in som reserv.
-				 	<% elsif !@new && @event_registration.reserve_spot %>
-						Du ligger som reserv för eventet och kommer bli meddelad om vi får in avanmälningar.
-					<% elsif !@new && !@event_registration.reserve_spot %>
-						Du är anmäld till eventet.
 					<% end %>
 				</td>	
 			</tr>
@@ -50,16 +46,15 @@
 	<div class="input-group margin-bottom-20">		  	  		 		  	
   	<%= f.text_area :info_text, :class => 'form-control',:placeholder => 'Beskrivning' %>
 	</div>			  
-	<% if @event.last_registration_date > DateTime.now %>
-  	<div class="row">
+  <div class="row">
+		<% if @event.last_registration_date > Time.zone.now %>
   		<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
-  	</div>
-	<% else %>
-		För sent för att kunna göra ändringar i din anmälan.
-	<% end %>
+		<% else %>
+			För sent för att kunna göra ändringar i din anmälan.
+		<% end %>
 	<% end %>
 	<% if @event && @event_registration && @event_registration.profile_id && @event.last_unregistration_date > DateTime.now %>
-  	<div class="row">
-  		<%= link_to (content_tag(:i, nil, class: "fa fa-remove") + " Avanmäl"), [@event_registration.event, @event_registration], method: :delete, :class => 'btn-u pull-right' %>	 				
-  	</div>
+  	<%= link_to "Avanmäl", [@event_registration.event, @event_registration], method: :delete, :class => 'btn-u' %>	 				
 	<% end %>
+	</div>
+	</br>

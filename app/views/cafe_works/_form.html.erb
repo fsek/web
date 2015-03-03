@@ -1,0 +1,81 @@
+<%= form_for(@cwork, :html => {  :autocomplete => 'off' }) do |f| %>
+	<% if @cwork.errors.any? %>
+	    <div id="error_explanation">
+	      <p><%=%(#{@cwork.errors.count.to_s} fel hindrar sparning:)%><p>	
+	      <ul>
+	      <% @cwork.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+  	<% end %>				    
+	  	<div class="margin-bottom-20">
+	  		<%= f.label 'Namn & Efternamn', :class => 'reg-label'%>
+		  	<div class="row">	
+	  			<div class="col-md-6"><%= f.text_field :name,:class => 'form-control', placeholder: "Förnamn"%></div><div class="col-md-6"> <%= f.text_field :lastname,:class => 'form-control', placeholder: "Efternamn"%></div>
+			</div> 
+	  	</div>
+	  	<%= f.label 'E-post & telefon', :class => 'reg-label'%> 
+	  	<div class="margin-bottom-20">
+	  		<div class="row">					  		
+	  			<div class="col-md-6"><%= f.email_field :email,:class => 'form-control', placeholder: "E-post"%></div><div class="col-md-6"> <%= f.phone_field :phone,:class => 'form-control', placeholder: "Telefon"%></div>		
+			</div>
+	  	</div>
+	  	<%if !@cwork.access_code.nil?%>
+	  	<%= f.label 'Kod', :class => 'reg-label'%>
+	  		<p>Koden måste fyllas i för att ändringar ska sparas</p>
+		  	<div class="margin-bottom-20">
+	  			<%= f.text_field :access_code,:class => 'form-control', placeholder: "Kod", value: nil%>
+		  	</div>
+	  	<%end%>
+	  	<%if @utskott%> 
+		  	<div class="headline headline-md"><h3>Utskottskampen</h3></div> 		
+			<div class="row">
+				<div class="col-md-6"> 
+					<%= f.label :utskottskamp, "Delta i cafétävlingen?", :value => false,:class => 'reg-label' %>
+						<p>Ditt namn kommer synas i resultatet</p>
+					<%= f.check_box :utskottskamp,class: 'form-control', value: @cwork.utskottskamp%> 
+				</div>	
+				<%= f.label "Välj ett eller flera utskott att representera",:class => 'reg-label' %>				  		
+				<div class="col-md-6">
+					<%=f.collection_check_boxes(:council_ids,@utskott,:id,:title, class:"form-control") do |b|%>
+						<span>
+							<%=b.check_box%>
+							<%=b.label%><br>
+						</span>							
+					<%end%>					
+				</div>
+			</div>			
+				
+		  	<hr>
+	  	<%end%>
+	  	<%if @readonly%>
+  			<p>Det går inte längre att skriva upp sig på passet eller redigera.</p>
+		<%else%>
+		  	<%if !@cwork.has_worker?%>
+			  	<div class="margin-bottom-20 reg-page">
+			  		<p>Genom att trycka på spara accepterar du att dina personuppgifter hanteras elektroniskt.
+			  		Dina uppgifter kan endast ses av administratörer, cafeansvariga samt nyckelpigor.</p>	  		
+			  	</div>
+		  	<%end%>	  	
+	  	<div class="margin-bottom-40">	  		
+	  		<%= f.submit "Spara",:class => 'btn-u pull-right' %>	  		
+	  	</div>
+	  	<%end%>
+<% end %>
+<%if @cwork.has_worker?%>
+	<%if @authenticated%>
+		<%=form_for(@cwork, url: remove_worker_cafe_work_path(@cwork), remote: true ) do |f|%>		
+		  	<%= f.label 'Kod', :class => 'reg-label', id: 'leave_status'%>
+		  		<p>Din kod måste fyllas i för att kunna hoppa av passet</p>
+			  	<div class="margin-bottom-20">
+		  			<%= f.text_field :access_code,:class => 'form-control', placeholder: "Kod", value: nil%>
+			  	</div>		  	
+			<%=f.submit("Hoppa av",class: "btn btn-u") %><br>
+		<%end%>
+	<%else%>
+		<%=link_to("Hoppa av",remove_worker_cafe_work_path(@cwork),class: "btn btn-u",  method: :patch,remote: true) %><br>
+	<%end%>
+
+<%end%>
+

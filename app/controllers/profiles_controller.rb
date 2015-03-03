@@ -25,6 +25,10 @@ class ProfilesController < ApplicationController
     if @profile.created_at == @profile.updated_at      
       redirect_to edit_profile_url(@profile) 
     end
+    if( (@profile.name.blank?) || (@profile.lastname.blank?))
+      redirect_to edit_profile_path(@profile), notice: 'Du behöver fylla i namn och efternamn, lägg gärna till annan information också.'
+      
+    end
   end
 
   # GET /profiles/1/edit
@@ -34,7 +38,7 @@ class ProfilesController < ApplicationController
       if (@profile.posts.count > 0) && (@profile.first_post == nil)
         @profile.update(first_post: @profile.posts.first.id)
       end
-    @no_profile_data = @profile.created_at == @profile.updated_at
+    @no_profile_data =  (@profile.created_at == @profile.updated_at) || (@profile.name)
     end
     rescue ActionController::RedirectBackError
       redirect_to root_path
@@ -65,7 +69,7 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:name, :program, :start_year,:avatar,:first_post,:stil_id,:email,:phone)
+      params.require(:profile).permit(:name,:lastname, :program, :start_year,:avatar,:first_post,:stil_id,:email,:phone)
     end
 
 end

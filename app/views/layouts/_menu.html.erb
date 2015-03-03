@@ -1,53 +1,71 @@
-             <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav navbar-right">                	               	
-                    <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Sektionen <%= fa_icon('angle-down') %>
-                        </a>
-                        <ul class="dropdown-menu">  
-                          <li><%= link_to 'Om oss', :om %></li>   
-                          <li><%= link_to 'Utskott', :councils %></li>
-                          <li><%= link_to 'Dokument', documents_path%></li>
-                          <!--<li><%= link_to 'Nollning', :nollning%></li>-->
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            För medlemmar <%= fa_icon('angle-down') %>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><%= link_to 'Val', :elections,'data-no-turbolink'=>true %></li>
-                          <li><%= link_to 'Likabehandlingsombud', :libo %></li>
-                    	  <li><%= link_to 'Bildgalleri', :albums ,'data-no-turbolink'=> true%></li>
-                          <li><%= link_to 'Kalender', :kalender, 'data-no-turbolink'=> true%></li>
-                          <li><%= link_to 'Jobbportal', :work_posts %></li>
-                          <li><%= link_to 'Bilbokning', 'https://docs.google.com/spreadsheet/ccc?key=0AlFJsQziMBrLdFA4RFlqcmlqbHczLWNud3JnS2FxUWc&usp=drive_web#gid=0',:data => { :confirm => 'Du länkas nu till ett Google Doc för bilbokning :)'},target: '_blank' %></li>
-                          <li><%= link_to 'Jobba i Hilbert Cafe', 'https://docs.google.com/spreadsheets/d/1JlllTGmhgTB5Zynybz60lg__D8Orl2hLb3SvTjtJ3Gs',:data => { :confirm => 'Du länkas nu till ett Google Doc för att jobba i Hilbert Café :)'},target: '_blank' %></li>                      
-                          <!--<li><%= link_to 'Engagera dig', :engagemang %></li>-->
-                          <!--<li><%= link_to 'Multimedia', :multimedia %></li>-->
-                          <!--<li><%= link_to 'Länkar', :lankar %></li>-->
-                          
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                        För företag <%= fa_icon('angle-down') %>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <!--<li><%= link_to 'Vår organisation', :organisation %></li>-->
-                        <!--<li><%= link_to 'Vad vi erbjuder', :erbjudande %></li>-->
-                        <!--<li><%= link_to 'Om F-sektionen', '#' %></li>-->
-                        <!--<li><%= link_to 'Varför F-sektionen?', '#' %></li>-->
-                        <!--<li><%= link_to 'Vad vi erbjuder', '#' %></li>-->
-                        <li><%= link_to 'Kontakt', '/kontakt/4' %></li>
-                        <li><%= link_to 'Arbetsmarknadsdagar', 'http://www.farad.nu' %></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href='/kontakt' class="dropdown-toggle">
-                            Kontakt <%= fa_icon('angle-right') %>
-                        </a>
-                    </li>
-                    
-                </ul>          
-            </div>
+ <div class="collapse navbar-collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">                	               	
+        <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+                Sektionen <%= fa_icon('angle-down') %>
+            </a>
+            <ul class="dropdown-menu">
+            	<%
+            		menu = Menu.where(visible: true)
+				    @menu_sektionen = menu.where(location: "Sektionen")
+				    @menu_medlemmar = menu.where(location: "För medlemmar")
+				    @menu_foretag =   menu.where(location: "För företag")
+				    @menu_kontakt = menu.where(location: "Kontakt")  
+            	%>            	
+              	<%if @menu_sektionen %>
+                  	<%@menues = @menu_sektionen%>
+                  	<%=render 'menus/menu'%>
+        		<%else%>
+        			<li><%= link_to 'Om oss', :om %></li>   
+                	<li><%= link_to 'Utskott', :councils %></li>
+                	<li><%= link_to 'Dokument', documents_path%></li>
+                	<li><%= link_to 'Nollning', :nollning%></li>
+        		<%end%>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+                För medlemmar <%= fa_icon('angle-down') %>
+            </a>
+            <ul class="dropdown-menu">
+            	<%if @menu_medlemmar %>
+                  	<%@menues = @menu_medlemmar%>
+                  	<%=render 'menus/menu'%>
+        		<%else%>
+        			<li><%= link_to 'Val', :elections,'data-no-turbolink'=>true %></li>
+                    <li><%= link_to 'Likabehandlingsombud', :libo %></li>
+                	<li><%= link_to 'Bildgalleri', :albums ,'data-no-turbolink'=> true%></li>
+                    <li><%= link_to 'Kalender', :kalender, 'data-no-turbolink'=> true%></li>
+                    <li><%= link_to 'Jobbportal', :work_posts %></li>		                        
+        		<%end%>                          
+            </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+            För företag <%= fa_icon('angle-down') %>
+          </a>
+          <ul class="dropdown-menu">                      	
+            <%if @menu_foretag %>
+                  	<%@menues = @menu_foretag%>
+                  	<%=render 'menus/menu'%>
+        		<%else%>		                      
+                  <li><%= link_to 'Arbetsmarknadsdagar', 'http://www.farad.nu' %></li>
+            <%end%>
+          </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+                Kontakt <%= fa_icon('angle-down') %>
+            </a>
+            <ul class="dropdown-menu">
+            	<%if @menu_kontakt %>
+                  	<%@menues = @menu_kontakt%>
+                  	<%=render 'menus/menu'%>
+        		<%else%>
+                      <li><%= link_to 'Kontaktsida', contacts_path %></li>			                      
+                <%end%>	
+            </ul>
+        </li>
+        
+    </ul>          
+</div>

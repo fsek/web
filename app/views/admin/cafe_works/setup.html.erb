@@ -1,0 +1,31 @@
+<% provide(:title, 'Setup - Hilbert Café') %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
+			<div class="headline headline-md"><h1>Skapa jobbpass</h1></div>	
+			<p>Genom att fylla i datum och tid för läsperiodens första pass så genereras en förhandsvisning för hela läsperioden.</p>
+			<p>För att lägga till enskilda pass går ni in på</p><%=link_to("Enskilt pass",new_admin_cafe_work_path, class: "btn btn-u")%>
+			<% if (@cworks.nil?) || (@cworks.count == 0)%>
+				<%= render 'setup_preview'%>
+			<%else%>
+				<%= render 'setup_form'%>								
+			<%end%>	
+				<hr>				
+				<% if (@cworks) && (@cworks.count > 0)%>
+					<%@lv = @cwork.lv%>
+					<%@cworks.each do |w|%>						
+						<%if @lv != w.lv%>
+							<div class="headline headline-md"><h3>Läsvecka <%=w.lv%></h3></div>
+							<%@lv = w.lv%>
+						<%end%>						
+						<div class="row">							
+							<%=w.print%> 
+							<hr>
+						</div>					
+					<%end%>
+				<%end%>				
+				<%= link_to 'Tillbaka till cafebokning', :admin_hilbert, class: "btn btn-u" %>
+		</div>
+		
+	</div>
+</div>

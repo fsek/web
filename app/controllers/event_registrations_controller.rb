@@ -4,17 +4,24 @@ class EventRegistrationsController < ApplicationController
     before_action :login_required
 		before_action :is_registrable, only: [:new, :create]
 		before_action :authenticate_admin, only: :event_index
-    before_action :authenticate, only: [:edit,:update,:show, :destroy, :profile_index]
+    before_action :authenticate, only: [:edit,:update,:show,:destroy]
+		before_action :authenticate_user, only: :profile_index
     before_action :set_event_registration, only: [:show,:edit,:update,:destroy]
     before_action :set_event, only: [:destroy, :new,:create, :edit, :index, :update]
 
 	def index
+		@text = ""
 		@reserved = EventRegistration.where(event_id: params[:event_id]).count
 		@new = nil
 		@event_registration = EventRegistration.where(profile_id: current_user.profile.id, event_id: params[:event_id]).first
 		if @event_registration.nil?
 			@new = 1
 			@event_registration = EventRegistration.new
+		end
+		if !@new && @event_registration.reserve_spot
+			@text =	"- Du ligger som reserv för eventet."
+		elsif !@new && !@event_registration.reserve_spot 
+			@text =	"- Du är anmäld till eventet."
 		end
     respond_to do |format|
       format.html { render }
@@ -33,7 +40,7 @@ class EventRegistrationsController < ApplicationController
 
 	def profile_index
 		@profile = Profile.find_by_id(params[:id])
-    @event_registrations = EventRegistration.where(profile_id: params[:id]).sort_by {|er| er.event.starts_at}.reverse
+    @event = @profile.events.where('starts_at > ?', Time.zone.now.beginning_of_day).order(starts_at: :desc)
     respond_to do |format|
       format.html { render :profile_index }
       format.json { render :json => @event_registrations }
@@ -62,7 +69,7 @@ class EventRegistrationsController < ApplicationController
     @event_registration = EventRegistration.new(event_registration_params)
 		@event_registration.profile_id = current_user.profile.id
 		@event_registration.event_id = @event.id
-		@event_registration.reserve_spot = EventRegistration.where(event_id: params[:event_id]).count >= @event.number_of_slots 
+		@event_registration.reserve_spot = @event.number_of_slots.present? && @event.event_registrations.count >= @event.number_of_slots 
     respond_to do |format|
       if @event_registration.save
         format.html { redirect_to event_event_registrations_path(@event), :notice => 'Du är nu anmäld till eventet!' }
@@ -126,5 +133,12 @@ class EventRegistrationsController < ApplicationController
       end
 			def set_event
 				@event = Event.find_by_id(params[:event_id])
+			end
+			def authenticate_user
+        flash[:error] = t('the_role.access_denied')
+      	redirect_to(:back) unless (current_user && current_user.profile.id.to_s == params[:id])
+        
+        rescue ActionController::RedirectBackError
+          redirect_to root_path
 			end
 end

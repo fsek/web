@@ -1,33 +1,25 @@
 <div class="container">
-	<h1> Alla kommande event för <%= @profile.name %>.</h1>
-
-<table class="table">
-  <thead>
-  <tr>
-    <th>Titel:</th>
-    <th>Startar:</th>
-    <th>Slutar:</th>
-    
-  </tr>
-</thead>
-<tbody>
-	<% @event_registrations.each do |event_reg| %>
-  	<tr>
-    <td><%= link_to event_reg.event.title, event_event_registrations_path(event_reg.event) %></td>
-		<% if event_reg.event.starts_at > DateTime.now %>
-			<td>
-		<% else %>
-			<td style="color:#FF0000">
-		<% end %>
-    <%= event_reg.event.starts_at %></td>
-		<% if event_reg.event.ends_at > DateTime.now %>
-			<td>
-		<% else %>
-			<td style="color:#FF0000">
-		<% end %>
-    <%= event_reg.event.starts_at %></td>
-  	</tr>
+	<% if @event.empty? %>
+		<h1> <%= @profile.name %> har inga aktuella registreringar.</h1>
+	<% else %>
+		<h1> Alla kommande event för <%= @profile.name %>.</h1>
+		<table class="table">
+  		<thead>
+  			<tr>
+    			<th>Titel:</th>
+    			<th>Startar:</th>
+    			<th>Slutar:</th>
+  			</tr>
+			</thead>
+			<tbody>
+			<% @event.each do |event| %>
+  			<tr>
+    			<td><%= link_to event.title, event_event_registrations_path(event) %></td>
+					<td> <%= event.starts_at %></td>
+					<td> <%= event.starts_at %></td>
+  			</tr>
+			<% end %>
+			</tbody>
+		</table>
 	<% end %>
-	</tbody>
-</table>
 </div>

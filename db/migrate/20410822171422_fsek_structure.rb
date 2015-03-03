@@ -270,6 +270,7 @@ class FsekStructure < ActiveRecord::Migration
         t.text     "election_text"
         t.boolean  "styrelse"
         t.boolean  "limitBool",     default: false
+        t.boolean  "car_rent"
       end
     end
     unless table_exists? :posts_profiles
@@ -281,6 +282,7 @@ class FsekStructure < ActiveRecord::Migration
     unless table_exists? :profiles
       create_table "profiles" do |t|
         t.string   "name"
+        t.string   "lastname"
         t.string   "program"
         t.integer  "start_year"
         t.integer  "user_id"
@@ -296,6 +298,25 @@ class FsekStructure < ActiveRecord::Migration
         t.string   "phone"
       end
     end
+    unless table_exists? :rents
+      create_table :rents do |t|
+        t.datetime "d_from"
+        t.datetime "d_til"        
+        t.string   "name"
+        t.string   "lastname"
+        t.string   "email"
+        t.string   "phone"
+        t.text     "purpose"
+        t.boolean  "disclaimer"      
+        t.string   "status", default: "Ej bestämd"
+        t.boolean  "aktiv", default: true     
+        t.integer  "council_id" 
+        t.integer  "profile_id"
+        t.boolean  "service"
+        t.text     "comment"
+        t.timestamps
+      end
+    end
     unless table_exists? :roles
       create_table "roles" do |t|
         t.string   "name",        null: false
@@ -305,7 +326,7 @@ class FsekStructure < ActiveRecord::Migration
         t.datetime "created_at"
         t.datetime "updated_at"
       end
-    end
+    end    
     unless table_exists? :subcategories
       create_table "subcategories" do |t|
         t.string   "text"

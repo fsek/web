@@ -1,0 +1,47 @@
+<% provide(:title, 'Administratör Hilbert Café') %>
+<div class="col-md-6 col-md-offset-3">
+	<div class="row">
+		<div class="headline headline-md"><h2>Cafejobb - ID <%= @cwork.id%> Admin</h2></div>
+		<%= render 'form'%>		
+		<div class="headline headline-md"><h2>Jobbare</h2></div>		
+		<%if @cwork.profile || !@cwork.access_code.nil?%>
+			<span id="status"></span>
+			<div id="jobbare">		
+				<table class="table">
+					<tbody>
+						<tr>
+								<td><i class="fa fa-user"></i></td>
+								<td><%= (@cwork.profile != nil) ? link_to(@cwork.profile,profile_path(@cwork.profile)) : @cwork.name + ' ' + @cwork.lastname%></td>
+							</tr>					
+							<tr>
+								<td><i class="fa fa-envelope"></i></td>
+								<td><%= @cwork.email%></td>
+							</tr>
+							<tr>
+								<td><i class="fa fa-phone"></i></td>
+								<td><%= @cwork.phone%></td>
+							</tr>
+							<tr>
+								<td><i class="fa fa-users"> Cafetävling</i></td>
+								<td><%= (@cwork.utskottskamp)? "Ja" : "Nej" %></td>
+							</tr>																			
+					</tbody>			
+				</table>				
+			<% if !@cwork.access_code.nil?%>
+				
+			<%end%>
+				<%=link_to("Ta bort jobbare",remove_worker_admin_cafe_work_path(@cwork),class: "btn btn-u", remote: true, method: :patch) %><br>
+			</div>
+			
+		<%else%>
+			<p>Jobbare saknas</p>	
+		<%end%>	
+	</div>
+	<div class="row">
+		<%=link_to("Visa passet (vanlig vy)",cafe_work_path(@cwork),class:"btn btn-u")%> <%=link_to("Ta bort passet",:admin_cafe_work, method: :delete,class:"btn btn-u")%>
+	</div>	
+	<hr>
+	<div class="row">
+		<%=link_to("Startsida för Hilbert",:hilbert,class:"btn btn-u")%>
+	</div>
+</div>

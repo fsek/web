@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_permitted_devise_parameters, if: :devise_controller?
   before_filter :set_locale
+  after_filter :menues  
 
   
   def access_denied
@@ -14,7 +15,13 @@ class ApplicationController < ActionController::Base
     rescue ActionController::RedirectBackError
       redirect_to root_path
   end 
-  
+  def menues
+    menu = Menu.where(visible: true)
+    @menu_sektionen = menu.where(location: "Sektionen")
+    @menu_medlemmar = menu.where(location: "För medlemmar")
+    @menu_foretag =   menu.where(location: "För företag")
+    @menu_kontakt = menu.where(location: "Kontakt")
+  end  
   protected
     def configure_permitted_devise_parameters
       devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(:username, :password, :remember_me)}
@@ -24,7 +31,7 @@ class ApplicationController < ActionController::Base
 
     def set_locale
       locale = 'sv'
-      langs  = %w{ sv en }
+      langs  = %w{ sv }
 
       if params[:locale]
         lang = params[:locale]

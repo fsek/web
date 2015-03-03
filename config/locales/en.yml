@@ -19,4 +19,6 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 en:
-  Hello: Hello
+  time:
+    formats:
+        day: "%A %d/%m"
