@@ -1,6 +1,6 @@
 
 Fsek::Application.routes.draw do
-    
+
   # Resources on the page
   get 'kurslankar' => 'static_pages#kurslankar'
   get 'libo' => 'static_pages#libo', as: :libo

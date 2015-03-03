@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 20410822171436) do
   end
 
   create_table "cafe_works", force: true do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cafe_works_profiles", id: false, force: true do |t|
+    t.integer "profile_id"
+    t.integer "cafe_work_id"
     t.datetime "work_day"
     t.integer  "pass"
     t.integer  "lp"
@@ -68,9 +77,9 @@ ActiveRecord::Schema.define(version: 20410822171436) do
     t.boolean  "remove_worker"
   end
 
-  create_table "cafe_works_profiles", id: false, force: true do |t|
-    t.integer "profile_id"
+  create_table "cafe_works_councils", id: false, force: true do |t|
     t.integer "cafe_work_id"
+    t.integer "council_id"
   end
 
   create_table "candidates", force: true do |t|
@@ -316,6 +325,13 @@ ActiveRecord::Schema.define(version: 20410822171436) do
     t.datetime "updated_at"
     t.integer  "council_id"
     t.integer  "recLimit",    default: 0
+    t.boolean  "extra_text"
+    t.string   "elected_by"
+    t.string   "elected_at"
+    t.text     "election_text"
+    t.boolean  "styrelse"
+    t.integer  "recLimit",      default: 0
+    t.boolean  "car_rent"
   end
 
   create_table "posts_profiles", id: false, force: true do |t|
@@ -340,6 +356,25 @@ ActiveRecord::Schema.define(version: 20410822171436) do
 		t.string "phone"
 		t.string "lastname"
 	end
+
+  create_table "rents", force: true do |t|
+    t.datetime "d_from"
+    t.datetime "d_til"
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "purpose"
+    t.boolean  "disclaimer"
+    t.boolean  "aktiv",      default: true
+    t.integer  "council_id"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "comment"
+    t.string   "status",     default: "Ej bestämd"
+    t.boolean  "service"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name",        null: false
