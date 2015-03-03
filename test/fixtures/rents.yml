@@ -1,0 +1,95 @@
+david_d1_h12:
+  d_from: <%=(Time.zone.now + 10.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 10.day +  12.hours).to_s(:db)%>
+  name: "David"
+  lastname: "Wessman"
+  email: "davidwessman@live.se"
+  phone: "0705607889"
+  disclaimer: true
+  aktiv: true
+  council: prylm
+  profile: david
+  status: "Bekräftad"
+david_d10_h12_no_council:
+  d_from: <%=(Time.zone.now + 10.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 10.day +  12.hours).to_s(:db)%>
+  name: "David"
+  lastname: "Wessman"
+  email: "davidwessman@live.se"
+  phone: "0705607889"
+  disclaimer: true
+  aktiv: true
+  service: false
+  profile: david
+  status: "Bekräftad"
+david_d20_h12_council:
+  d_from: <%=(Time.zone.now + 20.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 20.day +  12.hours).to_s(:db)%>
+  name: "David"
+  lastname: "Wessman"
+  email: "davidwessman@live.se"
+  phone: "0705607889"
+  disclaimer: true
+  aktiv: true
+  service: false
+  profile: david
+  status: "Bekräftad"
+  council: prylm
+david_d4_h12_no_council:
+  d_from: <%=(Time.zone.now + 4.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 4.day +  12.hours).to_s(:db)%>
+  name: "David"
+  lastname: "Wessman"
+  email: "davidwessman@live.se"
+  phone: "0705607889"
+  disclaimer: true
+  aktiv: true
+  service: false
+  profile: david
+  status: "Bekräftad"
+
+david_no_disclaimer:
+  d_from: <%=(Time.zone.now + 1.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 1.day +  12.hours).to_s(:db)%>
+  name: "David"
+  lastname: "Wessman"
+  email: "davidwessman@live.se"
+  phone: "0705607889"
+  disclaimer: false
+  aktiv: true
+  council: prylm
+  profile: david
+  status: "Bekräftad"
+no_council:
+  d_from: <%=(Time.zone.now + 1.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 1.day +  12.hours).to_s(:db)%>
+  name: "David"
+  lastname: "Wessman"
+  email: "davidwessman@live.se"
+  phone: "0705607889"
+  disclaimer: true
+  aktiv: true
+  profile: david
+  status: "Bekräftad"
+council:
+  d_from: <%=(Time.zone.now + 1.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 1.day +  12.hours).to_s(:db)%>
+  name: "David"
+  lastname: "Wessman"
+  email: "davidwessman@live.se"
+  phone: "0705607889"
+  disclaimer: true
+  aktiv: true
+  profile: david
+  status: "Bekräftad"
+  council: prylm
+no_profile:
+  d_from: <%=(Time.zone.now + 1.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 1.day +  12.hours).to_s(:db)%>
+  name: "David"
+  lastname: "Wessman"
+  email: "davidwessman@live.se"
+  phone: "0705607889"
+  disclaimer: false
+  aktiv: true
+  status: "Bekräftad"

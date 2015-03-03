@@ -2,10 +2,10 @@
 class RentsController < ApplicationController  
   before_filter :authenticate, only: [:forman]
   before_action :set_rents, only: [:new,:edit,:create,:update]
-  before_action :set_rent, except: [:main,:new,:forman,:index,:create]  
-  before_action :set_mod
-  before_action :set_edit, only: [:edit,:show]
-  def main   
+  before_action :set_rent, except: [:main,:new,:forman,:index,:create]
+ # before_action :set_edit, only: [:edit,:show]
+  def main
+    @faqs =  Faq.where.not(answer: '').where(category: 'Bil')
     respond_to do |format|      
         format.html 
         format.json { render :json => Rent.where(d_from: params[:start].to_date-10.days..params[:end].to_date+10.days).where.not(status:"Nekad")}
@@ -15,38 +15,18 @@ class RentsController < ApplicationController
     @avtal = Document.where(title: "Regler för Beerit").first
     @rent = Rent.new
     if(current_user)
-      @profile = current_user.profile
-      @rent.name = @profile.name
-      @rent.lastname = @profile.lastname
-      @rent.phone = @profile.phone
-      @rent.email = @profile.email
-      @utskott = []
-      for @post in @profile.posts do
-        if @post.car_rent == true
-          @utskott << @post.council
-        end
-      end
+      @rent.prepare(current_user.profile)
+      @utskott = @profile.car_councils
     end    
   end
+
   def show
-    if(@rent != nil)
-      if(current_user) && (current_user.profile == @rent.profile) 
-      elsif(current_user) && (current_user.moderator?(:bil))
-      else
-        redirect_to(:bil)
-        flash[:notice] = 'Du har inte rättigheter för att se bokningen.'
-      end
-    else
-      flash[:notice] = 'Hittade ingen bokning med ID ' + params[:id]+'.'
-      redirect_to(:bil)
-    end
-    rescue ActionController::RedirectBackError
-      redirect_to root_path           
   end
+
   def edit   
     if @rent.profile
       @profile = @rent.profile
-      @utskott = []
+      @utskott = @rent.profile.car_councils
       @rents = @rents - [@rent]
       for @post in @profile.posts do
         if @post.car_rent == true
@@ -120,10 +100,8 @@ class RentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  def forman    
-    @rents = Rent.order(d_from: :asc)
-    @rent_grid = initialize_grid(@rents)
-  end
+
+
   # Varje användares sida om 
   def index
     if (current_user)
@@ -137,9 +115,7 @@ class RentsController < ApplicationController
   private
     #Till för att se om någon är admin.
     def authenticate
-      redirect_to(:bil, alert: t('the_role.access_denied')) unless current_user && current_user.moderator?(:bil)      
-      rescue ActionController::RedirectBackError
-        redirect_to root_path
+      redirect_to(:bil, alert: t('the_role.access_denied')) unless current_user && current_user.moderator?(:bil)
     end
     #Ser till att ett Rent-objekt hittas för det ID som kommer i parametern, annars gör den redirect.
     def set_rent
@@ -147,24 +123,12 @@ class RentsController < ApplicationController
       if(@rent == nil)        
         flash[:notice] = 'Hittade ingen bilbokning med det ID:t.'
         redirect_to(:bil)        
-      end      
-      rescue ActionController::RedirectBackError
-      redirect_to root_path
+      end
     end
     #@rents används t.ex. för att visa andra bokningar när man själv gör sin bokning
     def set_rents
-      @rents = Rent.order(d_from: :asc).where(d_from: Date.today..Date.today+30).limit(10).where.not(status: "Nekad")
-    end
-    # @edit innebär att fält för att redigera en bokning kan dyka upp
-    def set_edit
-      if(@rent) && (current_user) && (@rent.d_from > DateTime.now.end_of_day) && (current_user.profile.id == @rent.profile_id)
-        @edit = true
-      end      
-    end
-    def set_mod
-      if(current_user) && (current_user.moderator?(:bil))
-          @mod = true
-      end
+      id = params[:id] || nil
+      @rents = Rent.active.date_overlap(Time.zone.now,Time.zone.now+30.days,id).limit(10).ascending
     end
     def rent_params
       params.require(:rent).permit(:d_from,:d_til,:name,:lastname,:email,:phone,:purpose,:disclaimer,:council_id,:status,:aktiv, :comment,:service)

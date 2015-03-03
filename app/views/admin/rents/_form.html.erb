@@ -22,25 +22,26 @@
 		<%= f.label 'Jag accepterar villkoren för hyrning av F-bilen.', :class => 'reg-label'%><br>
 		<%= f.check_box :disclaimer ,id: "accepted_disclaimer"%><br><br>
 		<div class="after_disclaimer" style="display:none;">
+			<% if @mod %>
+				<%= f.label 'Service', :class => 'reg-label'%><br>		  			  		
+	  			<%= f.check_box :service%>
+	  		<%end%>
+		<%if @profile %>
 			<div class="headline headline-md"><h2>Uppgifter</h2></div>
-			<% if current_user%>Informationen tas från din profil, fyll gärna i dem <%=link_to("här",edit_profile_path(current_user.profile))%>.<%end%>
+			De grå fälten tas från din profil, fyll i dem <%=link_to("här",edit_profile_path(@profile))%>.					    
 		  	<div class="margin-bottom-20">
 		  		<%= f.label 'Namn & Efternamn', :class => 'reg-label'%>
 	  		  	<div class="row">	
-		  			<div class="col-md-6"><%= f.text_field :name,:class => 'form-control'%></div><div class="col-md-6"> <%= f.text_field :lastname,:class => 'form-control' %></div>
+		  			<div class="col-md-6"><%= f.text_field :name,:class => 'form-control', readonly: true%></div><div class="col-md-6"> <%= f.text_field :lastname,:class => 'form-control', readonly: true %></div>
 	  			</div> 
 		  	</div>
 		  	<%= f.label 'E-post & telefon', :class => 'reg-label'%> 
 		  	<div class="margin-bottom-20">
 		  		<div class="row">					  		
-		  			<div class="col-md-6"><%= f.text_field :email,:class => 'form-control' %></div><div class="col-md-6"> <%= f.text_field :phone,:class => 'form-control' %></div>
+		  			<div class="col-md-6"><%= f.text_field :email,:class => 'form-control', readonly: true %></div><div class="col-md-6"> <%= f.text_field :phone,:class => 'form-control', readonly: true %></div>		
 	  			</div>
-		  	</div>
-            <% if current_user %>
-                <%= f.label 'Syfte (behövs ej)', :class => 'reg-label'%>
-            <%else%>
-                <%= f.label 'Syfte', :class => 'reg-label'%>
-            <%end%>
+		  	</div>		  	
+		  	<%= f.label 'Syfte (behövs ej)', :class => 'reg-label'%>
 		  	<div class="margin-bottom-20">					  			  
 	  			<%= f.text_area :purpose, class: "form-control"%>
 		  	</div>					  		
@@ -58,7 +59,7 @@
 		  			<p><%=r.printTime%></p>		  			
 		  		<%end%>			  						
 		  	<%end%>  	
-		  	<% if (@utskott) && (!@utskott.empty?)%>
+		  	<% if (@utskott) && (@utskott.empty? == false)%>
 		  		<%= f.label 'Utskott', :class => 'reg-label'%>	
 			  	<div class="margin-bottom-20">					  		 
 		  			 <%= f.select :council_id, 
@@ -68,6 +69,43 @@
 			  	</div>
 			  	En utskottsbokning får endast göras till utskottet. <br> kan (senast 5 dagar innan) boka över bokningar som ej gjorts av ett utskott. 
 		  	<%end%>
+	  	<%else%>
+	  		<div class="headline headline-md"><h2>Uppgifter</h2></div>
+	  		Alla fält måste fyllas i.					    
+		  	<div class="margin-bottom-20">
+		  		<%= f.label 'Namn & Efternamn', :class => 'reg-label'%>
+	  		  	<div class="row">	
+		  			<div class="col-md-6"><%= f.text_field :name,:class => 'form-control',placeholder:"Förnamn"%></div><div class="col-md-6"> <%= f.text_field :lastname,:class => 'form-control',placeholder:"Efternamn" %></div>
+	  			</div> 
+		  	</div>
+		  	<%= f.label 'E-post', :class => 'reg-label'%> 
+		  	<div class="margin-bottom-20">					  		 		
+	  			<%= f.text_field :email,:class => 'form-control',placeholder:"E-post"%>
+		  	</div>
+		  	<%= f.label 'Telefon', :class => 'reg-label'%>
+		  	<div class="margin-bottom-20">					  		   		
+	  			<%= f.text_field :phone,:class => 'form-control' ,placeholder:"Telefon"%>
+		  	</div>
+		  	<%= f.label 'Syfte', :class => 'reg-label'%>
+		  	<div class="margin-bottom-20">					  			  
+	  			<%= f.text_area :purpose, class: "form-control",placeholder:"Syfte"%>
+		  	</div>					  		
+		  	<%= f.label 'Från', :class => 'reg-label'%>	
+		  	<div class="margin-bottom-20">					  		  
+	  			<%= f.datetime_select :d_from,minute_step: 10, class:'form-control' %>
+		  	</div>					  		
+		  	<%= f.label 'Till', :class => 'reg-label'%>	
+		  	<div class="margin-bottom-20">					  		 
+	  			<%= f.datetime_select :d_til,minute_step: 10, :class => 'form-control' %>
+		  	</div>
+		  	<%if(@rents)&&(@rents.count > 0)%>
+			  	Bilen är bokad(från idag + 30 dagar):<br>			  	
+		  		<%@rents.each do |r|%>
+		  			<p><%=r.printTime%></p>					  			
+		  		<%end%>
+		  		<br>			  	
+		  	<%end%>  	 	
+	  	<%end%>
 		  	<div class="row">					  			  		
 		  			<%= f.submit "Spara", class: "btn btn-u form-control", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>	 				
 		  	</div>

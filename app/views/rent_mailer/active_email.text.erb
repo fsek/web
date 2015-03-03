@@ -1,6 +1,6 @@
 Hej <%=@rent.name.to_s %>
 ===============================================
-<%if @rent.aktiv == true%>
+<%if !@rent.aktiv%>
 Din bokning har bokats över utav ett utskott.
 Om du tror att någonting har gått fel eller om det är lätt att lösa, svara på mejlet och kontakta bilförmannen.
 <%else%>

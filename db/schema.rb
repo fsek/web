@@ -11,20 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171440) do
-
-  create_table "album_categories", force: true do |t|
-    t.string   "name"
-    t.text     "text"
-    t.boolean  "visible"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "album_categories_albums", id: false, force: true do |t|
-    t.integer "album_id"
-    t.integer "album_category_id"
-  end
+ActiveRecord::Schema.define(version: 20410822171441) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -40,14 +27,40 @@ ActiveRecord::Schema.define(version: 20410822171440) do
     t.integer  "photo_category_id"
   end
 
+  create_table "albums_categories", id: false, force: true do |t|
+    t.integer "album_id"
+    t.integer "category_id"
+  end
+
+  add_index "albums_categories", ["album_id", "category_id"], name: "index_albums_categories_on_album_id_and_category_id", unique: true
+  add_index "albums_categories", ["category_id"], name: "index_albums_categories_on_category_id"
+
   create_table "albums_images", id: false, force: true do |t|
     t.integer "album_id"
     t.integer "image_id"
   end
 
-  create_table "albums_subcategories", id: false, force: true do |t|
-    t.integer "album_id"
-    t.integer "subcategory_id"
+  create_table "cafe_works", force: true do |t|
+    t.datetime "work_day"
+    t.integer  "pass"
+    t.integer  "lp"
+    t.integer  "lv"
+    t.integer  "profile_id"
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "phone"
+    t.string   "email"
+    t.boolean  "utskottskamp"
+    t.string   "access_code"
+    t.integer  "d_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "remove_worker"
+  end
+
+  create_table "cafe_works_councils", id: false, force: true do |t|
+    t.integer "cafe_work_id"
+    t.integer "council_id"
   end
 
   create_table "candidates", force: true do |t|
@@ -60,6 +73,15 @@ ActiveRecord::Schema.define(version: 20410822171440) do
     t.string   "stil_id"
     t.string   "email"
     t.string   "phone"
+  end
+
+  create_table "categories", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "typ"
+    t.boolean  "sub",         default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "contacts", force: true do |t|
@@ -172,7 +194,7 @@ ActiveRecord::Schema.define(version: 20410822171440) do
     t.string   "category"
   end
 
-  add_index "faqs", ["category"], name: "index_faqs_on_category", using: :btree
+  add_index "faqs", ["category"], name: "index_faqs_on_category"
 
   create_table "images", force: true do |t|
     t.string   "description"
@@ -342,29 +364,27 @@ ActiveRecord::Schema.define(version: 20410822171440) do
     t.string   "lastname"
     t.string   "email"
     t.string   "phone"
-    t.text     "purpose"
-    t.boolean  "disclaimer"
-    t.boolean  "aktiv",      default: true
+    t.text     "purpose",     default: ""
+    t.boolean  "disclaimer",  default: false
+    t.boolean  "aktiv",       default: true
     t.integer  "council_id"
     t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment"
-    t.string   "status",     default: "Ej bestämd"
-    t.boolean  "service"
+    t.string   "status",      default: "Ej bestämd"
+    t.boolean  "service",     default: false
+    t.string   "access_code"
   end
+
+  add_index "rents", ["d_from"], name: "index_rents_on_d_from"
+  add_index "rents", ["d_til"], name: "index_rents_on_d_til"
 
   create_table "roles", force: true do |t|
     t.string   "name",        null: false
     t.string   "title",       null: false
     t.text     "description", null: false
     t.text     "the_role",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "subcategories", force: true do |t|
-    t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -386,8 +406,8 @@ ActiveRecord::Schema.define(version: 20410822171440) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "work_posts", force: true do |t|
     t.string   "title"

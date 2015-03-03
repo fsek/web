@@ -44,10 +44,13 @@ Fsek::Application.routes.draw do
     # A scope to put car-associated things under /bil
     # /d.wessman
     scope :bil do
-      resources :rents, path: :bokning do
-        patch :update_status, on: :member
-      end     
-      get :forman, controller: :rents, action: :forman
+      namespace :admin do
+        resources :rents, path: :bokningar do
+          patch :update_status, on: :member
+        end
+        get '', controller: :rents, action: :main, as: :car
+      end
+      resources :rents, path: :bokningar
       get '', controller: :rents, action: :main, as: :bil      
     end
 

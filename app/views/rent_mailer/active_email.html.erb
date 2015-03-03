@@ -5,7 +5,7 @@
   </head>
   <body>
   	<h3> Hej <%=@rent.name %></h3>  			
-  			<%if @rent.aktiv == true%>
+  			<%if !@rent.aktiv%>
   				<p>Din bokning har bokats över utav ett utskott.</p>
   				<p>Om du tror att någonting har gått fel eller om det är lätt att lösa, svara på mejlet och kontakta bilförmannen.</p>
   			<%else%>
