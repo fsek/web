@@ -8,7 +8,6 @@ class Election::CandidatesController < ApplicationController
   def index
     @candidates = current_user.profile.candidates.where(election: @election)
     @candidates_grid = initialize_grid(@candidates)
-    @posts = @election.current_posts
   end
   def new
     @candidate = @election.candidates.new

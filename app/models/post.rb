@@ -7,10 +7,9 @@ class Post < ActiveRecord::Base
   has_many :candidates 
 
   # Scopes
-  scope :studierad, -> {where(elected_by: "Studierådet")}
-  scope :extern, -> {where.not(elected_by: "Terminsmötet").order(council_id: :asc)}
+  scope :studierad, -> {where(elected_by: "Studierådet").order(council_id: :asc)}
   scope :termins, -> {where(elected_by: "Terminsmötet").order(council_id: :asc)}
-
+  scope :not_termins, -> {where.not(elected_by: "Terminsmötet").order(council_id: :asc)}
 
   # Validations
   validates_presence_of :limit,:recLimit, :description

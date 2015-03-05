@@ -49,9 +49,9 @@ class Election < ActiveRecord::Base
   # /d.wessman
   def current_posts
     if view_status != 3
-      posts.termins
+      posts
     else
-      posts.studierad
+      posts.not_termins
     end
   end
 
