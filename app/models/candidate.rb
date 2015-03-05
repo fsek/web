@@ -8,6 +8,12 @@ class Candidate < ActiveRecord::Base
   validates :name,:lastname,:stil_id,:email,:phone, :post,:profile,:election, presence: true, on: :create
   validates :name,:lastname,:stil_id,:email,:phone, :profile,:election, presence: true, on: :update
 
+  after_create :send_email
+  after_update :send_email
+
+  def send_email
+    ElectionMailer.candidate_email(self).deliver
+  end
 
   def prepare(user)
     if (user.present?) && (user.profile.present?)
