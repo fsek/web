@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Admin::ElectionsController < ApplicationController
   before_action :login_required
   before_action :authenticate

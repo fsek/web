@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Election::CandidatesController < ApplicationController
   before_action :login_required
   before_action :set_election
