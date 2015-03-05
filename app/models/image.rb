@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Image < ActiveRecord::Base
   belongs_to :album  
   has_one :subcategory

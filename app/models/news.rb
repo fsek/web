@@ -1,4 +1,5 @@
-class News < ActiveRecord::Base  
+# encoding: UTF-8
+class News < ActiveRecord::Base
   belongs_to :profile
 
   has_attached_file :image, 

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Cafetimmar < ActiveRecord::Base
   
      def ical

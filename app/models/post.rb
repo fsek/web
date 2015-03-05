@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Post < ActiveRecord::Base
   # Associations
   belongs_to :council
