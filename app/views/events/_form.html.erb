@@ -73,6 +73,9 @@
   	</div>
 <% end %>
 <script>
+	<% if @event && @event.registrable %>
+		$('.registrable').toggle();
+	<% end %>
 	$("input[type='checkbox']#registrable").on('change', function(){
   $('.registrable').toggle();
 });

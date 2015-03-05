@@ -54,7 +54,7 @@
 		<% end %>
 	<% end %>
 	<% if @event && @event_registration && @event_registration.profile_id && @event.last_unregistration_date > DateTime.now %>
-  	<%= link_to "Avanmäl", [@event_registration.event, @event_registration], method: :delete, :class => 'btn-u' %>	 				
+  	<%= link_to (fa_icon('remove') + "Avanmäl"), [@event_registration.event, @event_registration], method: :delete, :class => 'btn-u' %>	 				
 	<% end %>
 	</div>
 	</br>

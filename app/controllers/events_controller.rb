@@ -73,6 +73,9 @@ class EventsController < ApplicationController
   # PUT /events/1.json
   def update
     @event = Event.find_by_id(params[:id])    
+		if !@event.registrable
+			@event.event_registrations.destroy_all
+		end
     respond_to do |format|
       if @event.update_attributes(event_params)
         format.html { redirect_to @event, :notice => 'Eventet uppdaterades!' }
