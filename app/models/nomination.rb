@@ -8,6 +8,6 @@ class Nomination < ActiveRecord::Base
   after_create :send_email
 
   def send_email
-    ElectionMailer.nomination_email(self).deliver
+    ElectionMailer.nominate_email(self).deliver
   end
 end
