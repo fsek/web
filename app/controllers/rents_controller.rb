@@ -16,7 +16,7 @@ class RentsController < ApplicationController
     @rent = Rent.new
     if(current_user)
       @rent.prepare(current_user.profile)
-      @utskott = @profile.car_councils
+      @utskott = current_user.profile.car_councils
     end    
   end
 
@@ -73,26 +73,7 @@ class RentsController < ApplicationController
       end      
     end
   end
-  def update_status
-    respond_to do |format|
-      status = @rent.status
-      aktiv = @rent.aktiv
-      @rent.attributes = status_params 
-      if @rent.save(validate: false)
-        if(status != @rent.status) && (@rent.status != "Ej bestämd")
-          RentMailer.status_email(@rent).deliver
-        end
-        if(aktiv != @rent.aktiv)
-          RentMailer.active_email(@rent).deliver
-        end
-        format.html { redirect_to rent_path(@rent), :notice => 'Bokningen uppdaterades.' }
-        format.json { render :json => @rent, :status => :created, :location => @rent }
-      else        
-        format.html { redirect_to :action => "show" }
-        format.json { render :json => @rent.errors, :status => :unprocessable_entity }
-      end      
-    end
-  end
+
   def destroy    
     @rent.destroy
     respond_to do |format|
@@ -106,7 +87,7 @@ class RentsController < ApplicationController
   def index
     if (current_user)
       @bokningar = current_user.profile.rents.order('d_from desc')
-      render :action => 'user_index'
+      render :action => 'index'
     else
       redirect_to(action: 'main')
     end

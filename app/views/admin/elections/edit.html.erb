@@ -1,55 +1,56 @@
-<% provide(:title, 'Val') %>
+<% provide(:title, 'Val - Administration') %>
 <div class="container">
 	<div class="row">
-		<div class="col-md-5 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
-			<%= form_for(@valet) do |f| %>
+		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 reg-page">
+			<%= form_for([:admin,@election]) do |f| %>
 				<%= label_tag 'Redigera val',nil, :class => 'reg-header'%><br>
 				<%= f.label 'Huvudtext i nomineringsmejl', :class => 'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :nominate_mail,:class => 'form-control', size: "40x2" %>
+			  		<%= f.text_area :nominate_mail,:class => 'form-control', size: "180x4" %>
 			  	</div>
 			  	<%= f.label 'Huvudtext i valberedningens kandidaturmejl', :class => 'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :candidate_mail,:class => 'form-control', size: "40x2" %>
+			  		<%= f.text_area :candidate_mail,:class => 'form-control', size: "180x4" %>
 			  	</div>
 			  	<%= f.label 'Huvudtext i kandidaturmejl för stjärnposter', :class => 'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :candidate_mail_star,:class => 'form-control', size: "40x2" %>
+			  		<%= f.text_area :candidate_mail_star,:class => 'form-control', size: "180x4" %>
 			  	</div>
 			  	<%= f.label 'Extratext i styrelsemejl', :class => 'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :extra_text,:class => 'form-control', size: "40x2" %>
+			  		<%= f.text_area :extra_text,:class => 'form-control', size: "180x4" %>
 			  	</div>			  				
 				<%= f.label 'Text innan valet är öppet', :class => 'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :text_before,:class => 'form-control', size: "40x2" %>
+			  		<%= f.text_area :text_before,:class => 'form-control', size: "180x4" %>
 			  	</div>
 			  	<%= f.label 'Text under valet', :class => 'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :text_during,:class => 'form-control', size: "40x2" %>
+			  		<%= f.text_area :text_during,:class => 'form-control', size: "180x4" %>
 			  	</div>
 			  	<%= f.label 'Text efter valet', :class => 'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :text_after,:class => 'form-control', size: "40x2" %>
+			  		<%= f.text_area :text_after,:class => 'form-control', size: "180x4" %>
 			  	</div>	  	
 			  	<div class="row">
 	  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
 	  			</div>	
 	  		<%end%>	
-			<%= link_to 'Redigera inställningar', election_path(@valet) %><br>	  				
-			<%= link_to 'Visa val', elections_path %><br>			
+			<%= link_to 'Redigera inställningar', admin_election_path(@election) %><br>
+			<%= link_to 'Visa administration för val', admin_elections_path %><br>
+            <%= link_to 'Visa aktuellt val', elections_path %><br>
 			<%= link_to 'Tillbaka till startsida', root_url %>
 		</div>
 		<div class="col-md-5 col-md-offset-3 reg-page">
 			<p>Mejl vid kandidatur av styrelsepost som väljs av valberedning</p>
 			<h3> Hej Namn</h3>
 			<p>Du har kandiderat till sektionsposten Exempelpost.</p>
-			<%= simple_format(@valet.candidate_mail)%>	
-			
-			<%= simple_format(@valet.extra_text)%>	
-			<%if @valet.mail_styrelse_link%> <%=url_for(@valet.mail_styrelse_link)%> <%else%> <%=url_for(@valet.mail_link)%> <%end%><br>
-	    	<p>Valet stänger <%= @valet.end%>,
-	    	fram tills dess kan du redigera din kandidatur på:<br><%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %></p>
+			<%= simple_format(@election.candidate_mail)%>
+
+			<%= simple_format(@election.extra_text)%>
+			<%if @election.mail_styrelse_link%> <%=url_for(@election.mail_styrelse_link)%> <%else%> <%=url_for(@election.mail_link)%> <%end%><br>
+	    	<p>Valet stänger <%= @election.end%>,
+	    	fram tills dess kan du redigera din kandidatur på:<br></p>
 	    	
 	    	<p>Mvh,<br>
 	    	Valberedningen</p>
@@ -58,10 +59,10 @@
 			<p>Mejl vid kandidatur av vanlig post som väljs av valberedning</p>    		
 			<h3> Hej Namn</h3>
 			<p>Du har kandiderat till sektionsposten Exempelpost.</p>
-			<%= simple_format(@valet.candidate_mail)%>
-			<%=url_for(@valet.mail_link)%><br>
-			<p>Valet stänger <%= @valet.end%>,
-	    	fram tills dess kan du redigera din kandidatur på:<br><%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %></p>
+			<%= simple_format(@election.candidate_mail)%>
+			<%=url_for(@election.mail_link)%><br>
+			<p>Valet stänger <%= @election.end%>,
+	    	fram tills dess kan du redigera din kandidatur på:<br></p>
 	    	
 	    	<p>Mvh,<br>
 	    	Valberedningen</p>	
@@ -70,9 +71,9 @@
     		<p>Mejl vid kandidatur av post som väljs av nomineringsgrupp</p>    		
 			<h3> Hej Namn</h3>
 			<p>Du har kandiderat till sektionsposten Exempelpost.</p>
-			<%= simple_format(@valet.candidate_mail_star)%>
-			<p>Valet stänger <%= @valet.end%>,
-	    	fram tills dess kan du redigera din kandidatur på:<br><%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %></p>
+			<%= simple_format(@election.candidate_mail_star)%>
+			<p>Valet stänger <%= @election.end%>,
+	    	fram tills dess kan du redigera din kandidatur på:<br></p>
 	    	
 	    	<p>Mvh,<br>
 	    	Valberedningen</p>
@@ -85,9 +86,9 @@
 				med motiveringen:<br>
     				"motivering".<br>    			
 			</p>
-			<%= simple_format(@valet.nominate_mail)%>
+			<%= simple_format(@election.nominate_mail)%>
 			<p>Skulle du vara intresserad eller bara vill läsa lite mer så hittar<br>
-      		du information och instruktioner för att kandidera på: <br><%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'index') %></p>
+      		du information och instruktioner för att kandidera på: <br></p>
 	    	
 	    	<p>Mvh,<br>
 	    	Valberedningen</p>

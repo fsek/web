@@ -1,5 +1,2 @@
-goToByScroll = (id) ->
-  $('html,body').animate { scrollTop: $(id).offset().top }, 'slow'
-
-$('.collapse').on 'shown.bs.collapse', (e) ->
-  goToByScroll '#views'
+$('.collapsing').on 'shown.bs.collapse', ->
+  $('html,body').animate { scrollTop: $('#views').offset().top }, 'slow'

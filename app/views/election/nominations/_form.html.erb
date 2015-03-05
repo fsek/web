@@ -1,0 +1,27 @@
+<%= form_for([:election,nomination], remote: true) do |f| %>
+    <%= render 'shared/form_errors', current: @nomination %>
+    <%= f.label 'Namn', :class => 'reg-label' %>
+    <div class="margin-bottom-20">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= f.label 'E-post', :class => 'reg-label' %>
+    <div class="margin-bottom-20">
+      <%= f.email_field :email, :class => 'form-control' %>
+    </div>
+    <div class="margin-bottom-20 center">
+      <%= f.label 'Post', :class => 'reg-label' %><br>
+      <%= f.select :post_id,
+                   options_from_collection_for_select(election.current_posts, :id, :title, params[:post].to_i),
+                   include_blank: true,
+                   :class => "form-control listBox" %>
+    </div>
+    <%= f.label 'Motivering', :class => 'reg-label' %><br>
+    Frivillig - den nominerade kan se den i ett mejl.
+    <div class=" margin-bottom-20">
+      <%= f.text_area :motivation, :class => 'form-control' %>
+    </div>
+
+    <div class="margin-bottom-20 center">
+      <%= f.submit "Spara", :class => 'btn-u' %>
+    </div>
+<% end %>

@@ -1,7 +1,7 @@
 <div class="funny-boxes funny-boxes-top-orange col-md-12">
 	<div class="row">
 		<div class="col-md-12 funny-boxes-img">
-			<h2>Bilbokning - ID <%= @rent.id%> 
+			<h2>Bilbokning - ID <%= rent.id%>
 			<%if rent.service%><span class="label rounded label-danger pull-right">Service</span><%end%>
 			<%if rent.status == "Nekad"%> <span class="label rounded label-danger pull-right">Nekad</span><%end%>
 			<%if rent.status == "Ej bestämd"%>  <span class="label rounded-2x label-warning pull-right">Ej bestämd</span><%end%>

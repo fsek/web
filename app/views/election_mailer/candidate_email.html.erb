@@ -11,15 +11,15 @@
 					<%= simple_format(@candidate.election.candidate_mail)%>
 				<%end%>
 				<%if (@candidate.post.styrelse)%>
-					<%=url_for(@candidate.election.mail_styrelse_link)%><br><br> 
+					<%=link_to(@candidate.election.mail_styrelse_link,@candidate.election.mail_styrelse_link)%><br><br>
 				<%else%>
-				 	<%=url_for(@candidate.election.mail_link)%><br><br>
+				 	<%=link_to(@candidate.election.mail_link,@candidate.election.mail_link)%><br><br>
 				<%end%>
 			<%else%>
 				<%= simple_format(@candidate.election.candidate_mail_star)%>
 			<%end%>
 	    	<p>Valet stänger <%= @candidate.election.end%>,
-	    	fram tills dess kan du redigera din kandidatur på:<br><%= url_for(host: PUBLIC_URL, controller: 'elections',action: 'candidate') %></p>
+	    	fram tills dess kan du redigera din kandidatur på:<br><%=link_to(@candidate.p_url,@candidate.p_url)%></p>
 	    	
 	    	<p>Mvh,<br>
 	    	Valberedningen</p>   

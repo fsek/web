@@ -3,7 +3,8 @@
   <div class="row">
     <%= render 'form' %>
   </div>
+  <hr>
   <div class="row">
-    <%= link_to("Startsida för Bilbokning", :bil, class: "btn btn-u") %>
+    <%= link_to("Startsida för Bilbokning", :bil, data: {no_turbolink: true}, class: "btn btn-u") %>
   </div>
 </div>

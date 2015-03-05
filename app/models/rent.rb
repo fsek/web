@@ -46,6 +46,8 @@ class Rent < ActiveRecord::Base
   # /d.wessman
   scope :from_date, ->(from) {where('d_from >= ?',from )}
 
+  after_create :send_email
+
   # Custom validations
 
   # The most important one, check for overlapping and handle in case they exist. Should be localized.
@@ -109,6 +111,19 @@ class Rent < ActiveRecord::Base
   end
 
   # Methods
+
+  # Sends email
+  # /d.wessman
+  def send_email
+    #RentMailer.rent_email(self).deliver
+  end
+  def send_active_email
+    #RentMailer.active_email(self).deliver
+  end
+  def send_status_email
+    #RentMailer.status_email(self).deliver
+  end
+
   # Returns true if user is owner
   # /d.wessman
   def owner?(user)
@@ -170,7 +185,7 @@ class Rent < ActiveRecord::Base
   def overbook
     self.aktiv = false
     self.save(validate: false)
-    #RentMailer.active_email(self).deliver
+    send_active_email
   end
 
   # Methods for printing

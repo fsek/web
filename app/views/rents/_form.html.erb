@@ -1,29 +1,20 @@
 <%= form_for(@rent) do |f| %>			
-	<% if @rent.errors.any? %>
-	    <div id="error_explanation" class="coming-soon">
-	      <h4>Något hindrar bokningen från att sparas:</h4>
-	      <ul class="" style="list-style:none;">
-	      	<% @rent.errors.full_messages.each do |msg| %>
-	        	<li><%= msg %></li>
-      		<% end %>
-	      </ul>
-    	</div>
-  	<% end %>
+	<%= render 'shared/form_errors',current: @rent%>
   	<div class="center">
   		<h1>Bilbokning</h1>
   		<div class="headline headline-md"><h2>Avtal</h2></div>
   		<%if @avtal %> 
-  			<iframe src="<%=document_path(@avtal)%>" style="width:100%; height:500px;" frameborder="5"></iframe>
+  			<iframe src="<%=document_path(@avtal)%>" class="iframe-document" frameborder="5"></iframe>
   		<%else%>
   			Syns inget här finnes avtalet <%=link_to('här',documents_path)%>.
   		<%end%>
   		</div>
   	<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 center">			  		
-		<%= f.label 'Jag accepterar villkoren för hyrning av F-bilen.', :class => 'reg-label'%><br>
-		<%= f.check_box :disclaimer ,id: "accepted_disclaimer"%><br><br>
+		<%= f.label :disclaimer,'Jag accepterar villkoren för hyrning av F-bilen.', :class => 'reg-label' %><br>
+		        <%= f.check_box :disclaimer%><br><br>
 		<div class="after_disclaimer" style="display:none;">
 			<div class="headline headline-md"><h2>Uppgifter</h2></div>
-			<% if current_user%>Informationen tas från din profil, fyll gärna i dem <%=link_to("här",edit_profile_path(current_user.profile))%>.<%end%>
+			<% if current_user%>Informationen tas från din profil, håll det gärna uppdaterad <%=link_to("här",edit_profile_path(current_user.profile))%>.<%end%>
 		  	<div class="margin-bottom-20">
 		  		<%= f.label 'Namn & Efternamn', :class => 'reg-label'%>
 	  		  	<div class="row">	
@@ -66,10 +57,19 @@
   				     include_blank: true, 
   				     :class => "form-control listBox"%>
 			  	</div>
-			  	En utskottsbokning får endast göras till utskottet. <br> kan (senast 5 dagar innan) boka över bokningar som ej gjorts av ett utskott. 
+			  	<strong>Utskottsbokning:</strong>
+              <ul class="list">
+                <li>får <strong>endast</strong> göras åt utskottet</li>
+                <li>kan boka över en bokning, som börjar minst 5 dagar fram i tiden.</li>
+              </ul>
 		  	<%end%>
+            <% if current_user.nil? %>
+                <p><strong>Viktigt:</strong> <br>när du bokar som ej inloggad blir bokningen endast en förfrågan som måste hanteras av Bilförmannen.<br>
+                  Om ni är medlem i sektionen är det bäst om ni <%=link_to('loggar in',new_user_session_path)%>.
+                </p>
+            <%end%>
 		  	<div class="row">					  			  		
-		  			<%= f.submit "Spara", class: "btn btn-u form-control", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>	 				
+		  			<%= f.submit "Spara", class: "btn btn-u", data:{ confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'}%>
 		  	</div>
   		</div>
 	</div>

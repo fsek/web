@@ -1,0 +1,28 @@
+<div class="col-md-12 reg-page">
+  <div class="row">
+    <h2>Kandidaturer</h2>
+    <%= grid(@candidates_grid) do |g|
+      g.column name: "Post",attribute: "post_id", filter: false do |candidate|
+        candidate.post.title
+      end
+
+      g.column name: "Namn",attribute: "profile_id",filter: false do |candidate|
+        link_to(%(#{candidate.name} #{candidate.lastname}),candidate.profile)
+      end
+      g.column name: "Stil-ID",attribute: "stil_id",filter: false
+      g.column name: "E-post", attribute: "email",filter: false
+      g.column name: "Telefon", attribute: "phone",filter: false
+      g.column name: "Skapad:",attribute: "created_at",filter:false
+      g.column name: "Styrelse", filter: false do |candidate|
+        link_to(candidate.post.council.title,candidate.post.council)
+      end
+      g.column name: "Styrelse", filter: false do |candidate|
+        (candidate.post.styrelse) ? "Ja" : "Nej"
+      end
+      g.column name: "Väljs av", filter: false do |candidate|
+        candidate.post.elected_by
+      end
+    end -%>
+  </div>
+  <%=link_to('Tillbaka till valet',admin_election_path(@election), class:'btn btn-u')%>
+</div>

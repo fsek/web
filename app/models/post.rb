@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Post < ActiveRecord::Base
   # Associations
   belongs_to :council
@@ -5,6 +6,10 @@ class Post < ActiveRecord::Base
   has_many :nominations
   has_many :candidates 
 
+  # Scopes
+  scope :studierad, -> {where(elected_by: "Studierådet")}
+  scope :extern, -> {where.not(elected_by: "Terminsmötet").order(council_id: :asc)}
+  scope :termins, -> {where(elected_by: "Terminsmötet").order(council_id: :asc)}
 
   # Validations
   validates_presence_of :limit,:recLimit, :description
