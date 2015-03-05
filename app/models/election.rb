@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Election < ActiveRecord::Base
   has_many :nominations, dependent: :destroy
   has_many :candidates, dependent: :destroy

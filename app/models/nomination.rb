@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Nomination < ActiveRecord::Base
   belongs_to :election
   belongs_to :post
