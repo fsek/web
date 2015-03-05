@@ -24,10 +24,10 @@
         <p>Orangefärgade fält innebär att posten sitter i styrelsen.</p>
     <% elsif @election.view_status == 3%>
         <h2>Poster som går att söka</h2>
-        <%= render "posttab", grid: @grid_extern %>
+        <%= render "posttab", grid: @grid_election %>
         <p>Grönfärgade fält innebär att posten väljs av studierådet.</p>
         <h2>Poster som inte går att söka längre</h2>
-        <%= render "posttab", grid: @grid_election %>
+        <%= render "posttab", grid: @grid_termins %>
         <p>Orangefärgade fält innebär att posten sitter i styrelsen.</p>
     <%end%>
     <div class="panel collapsing" id="views">
