@@ -8,9 +8,9 @@ class Profile < ActiveRecord::Base
                     :styles => { medium: "300x300>", thumb:  "100x100>" },
                     :path => ":rails_root/storage/profile/:id/:style/:filename"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-
+  # Only on update!
   validates_presence_of :name, :lastname, on: :update
-  validates_inclusion_of :start_year, in: 1954..(Time.zone.today.year+1)
+  validates_inclusion_of :start_year, in: 1954..(Time.zone.today.year+1), on: :update
 
   # Check if profile has user data
   def has_profile_data?

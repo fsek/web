@@ -60,6 +60,7 @@ class PostsController < ApplicationController
   # POST /news
   # POST /news.json
   def create
+    @councils = Council.order(title: :asc)
     @post = @council.posts.build(post_params)        
     respond_to do |format|
       if @post.save        

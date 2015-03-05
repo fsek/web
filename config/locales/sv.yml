@@ -15,8 +15,33 @@ sv:
     d_remove:  Datum att dölja
     sort: Sorteringsindex
     image: Bild
-  model:
+    profile: Profil
+    profile_id: Profilen
+    email: E-post
+    phone: Telefon
+    name: Namn
+    lastname: Efternamn
+    stil_id: Stil-ID
+
+  models:
     notice: Notis
+    candidate:
+      one: Kandidatur
+      other: Kandidaturer
+    profile:
+      one: Profil
+      other: Profiler
+
+  activerecord:
+    models:
+      candidate:
+        one: Kandidatur
+        other: Kandidaturer
+      profile:
+        one: Profil
+        other: Profiler
+
+
 
 
 

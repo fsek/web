@@ -90,14 +90,20 @@ Fsek::Application.routes.draw do
 
     resources :documents, path: :dokument
 
-    resources :elections, path: :val do
-      get :nominate, path: :nominera, on: :collection
-      post :nominate,action: :create_nomination,path: :nominera, on: :collection
-      get :candidate, path: :kandidera, on: :collection
-      post :candidate,action: :create_candidate,path: :kandidera, on: :collection
 
-      resources :nominations, path: :nomineringar, except: [:new, :update,:create]
-      resources :candidates, path: :kandidaturer, except: [:new, :update] 
+    namespace :admin do
+      resources :elections,path: :val do
+        get :nominations, path: :nomineringar, on: :member
+        get :candidates, path: :kandideringar, on: :member
+      end
+    end
+    resources :elections, path: :val, only: :index
+    namespace :election, path: :val do
+      resources :nominations, path: :nominera, only: [:create] do
+        get '', action: :new, on: :collection, as: :new
+      end
+      resources :candidates, path: :kandidera, except: [:edit]
+
     end
 
     resources :albums, path: :galleri do
