@@ -2,7 +2,7 @@
 class EventRegistrationsController < ApplicationController
   
     before_action :login_required
-		before_action :is_registrable, only: [:new, :create]
+		before_action :is_registrable, only: [:index, :new, :create]
 		before_action :authenticate_admin, only: :event_index
     before_action :authenticate, only: [:edit,:update,:show,:destroy]
 		before_action :authenticate_user, only: :profile_index
@@ -50,14 +50,6 @@ class EventRegistrationsController < ApplicationController
   def show
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @event_registration }
-    end
-  end
-
-  def new
-    @event_registration = EventRegistration.new
-    respond_to do |format|
-      format.html # new.html.erb
       format.json { render :json => @event_registration }
     end
   end
