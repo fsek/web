@@ -22,6 +22,7 @@ david_d10_h12_no_council:
   service: false
   profile: david
   status: "Bekräftad"
+
 david_d20_h12_council:
   d_from: <%=(Time.zone.now + 20.day).to_s(:db)%>
   d_til:  <%=(Time.zone.now + 20.day +  12.hours).to_s(:db)%>
@@ -49,8 +50,8 @@ david_d4_h12_no_council:
   status: "Bekräftad"
 
 david_no_disclaimer:
-  d_from: <%=(Time.zone.now + 1.day).to_s(:db)%>
-  d_til:  <%=(Time.zone.now + 1.day +  12.hours).to_s(:db)%>
+  d_from: <%=(Time.zone.now + 60.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 60.day +  12.hours).to_s(:db)%>
   name: "David"
   lastname: "Wessman"
   email: "davidwessman@live.se"
@@ -61,8 +62,8 @@ david_no_disclaimer:
   profile: david
   status: "Bekräftad"
 no_council:
-  d_from: <%=(Time.zone.now + 1.day).to_s(:db)%>
-  d_til:  <%=(Time.zone.now + 1.day +  12.hours).to_s(:db)%>
+  d_from: <%=(Time.zone.now + 100.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 100.day +  12.hours).to_s(:db)%>
   name: "David"
   lastname: "Wessman"
   email: "davidwessman@live.se"
@@ -72,8 +73,8 @@ no_council:
   profile: david
   status: "Bekräftad"
 council:
-  d_from: <%=(Time.zone.now + 1.day).to_s(:db)%>
-  d_til:  <%=(Time.zone.now + 1.day +  12.hours).to_s(:db)%>
+  d_from: <%=(Time.zone.now + 90.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 90.day +  12.hours).to_s(:db)%>
   name: "David"
   lastname: "Wessman"
   email: "davidwessman@live.se"
@@ -84,8 +85,8 @@ council:
   status: "Bekräftad"
   council: prylm
 no_profile:
-  d_from: <%=(Time.zone.now + 1.day).to_s(:db)%>
-  d_til:  <%=(Time.zone.now + 1.day +  12.hours).to_s(:db)%>
+  d_from: <%=(Time.zone.now + 35.day).to_s(:db)%>
+  d_til:  <%=(Time.zone.now + 35.day +  12.hours).to_s(:db)%>
   name: "David"
   lastname: "Wessman"
   email: "davidwessman@live.se"

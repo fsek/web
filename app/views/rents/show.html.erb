@@ -3,7 +3,7 @@
     <%if @rent%>
         <%= render @rent%>
         <div class="row">
-          <%if @rent.owner?(current_user)%>
+          <%if @rent.owner?(current_user) || @rent.no_profile?%>
               <%=link_to('Redigera',edit_rent_path(@rent),class: 'btn btn-u')%>
               <hr>
           <%end%>

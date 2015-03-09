@@ -1,15 +1,9 @@
-<% provide(:title, 'Bilbokning') %>
-	<div class="col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 reg-page">		
-		<div class="row">		
-			<%=render 'form'%>
-		</div>		
-	</div>
-<script>
-$("input[type='checkbox']#accepted_disclaimer").on('change', function(){
-	if($("#accepted_disclaimer").is(":checked")){
-    	$('.after_disclaimer').show();
-	}else{
-    	$('.after_disclaimer').hide();
-	}	
-});
-</script>
+<% provide(:title, 'Admin - Bilbokning') %>
+<div class="col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 reg-page">
+  <div class="row">
+    <%= render 'form' %>
+  </div>
+  <div class="row">
+    <%= link_to("Admin - Bilbokning", :admin_car, data: {no_turbolink: true}, class: "btn btn-u") %>
+  </div>
+</div>

@@ -45,12 +45,12 @@ Fsek::Application.routes.draw do
     # /d.wessman
     scope :bil do
       namespace :admin do
-        resources :rents, path: :bokningar do
-          patch :update_status, on: :member
-        end
+        resources :rents, path: :bokningar, except: [:index]
         get '', controller: :rents, action: :main, as: :car
       end
-      resources :rents, path: :bokningar
+      resources :rents, path: :bokningar do
+        patch :authorize, on: :member, path: :auktorisera
+      end
       get '', controller: :rents, action: :main, as: :bil      
     end
 

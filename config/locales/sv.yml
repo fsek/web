@@ -22,6 +22,13 @@ sv:
     name: Namn
     lastname: Efternamn
     stil_id: Stil-ID
+    d_from: Startdatum
+    d_til: Slutdatum
+    purpose: Syfte
+    disclaimer: Användaravtal
+    council: Utskott
+    comment: Kommentar
+    access_code: Kod
 
   models:
     notice: Notis

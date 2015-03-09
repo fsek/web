@@ -1,21 +1,11 @@
-Hej <%=@rent.name.to_s %>
+Hej <%=@rent.p_name %>
 ===============================================
-Du har bokat F-sektionens bil med nedanstående uppgifter (ID: <%=@rent.id%>).
-Namn:    	<%=@rent.name.to_s%> <%=@rent.lastname.to_s%>
-Epost: 	 	<%=@rent.email.to_s%> 
-Telefon: 	<%=@rent.phone.to_s%>
-Datum:   	<%=@rent.printTime%>
-<%if @rent.purpose.blank? == false %>
-Syfte:		<%=@rent.purpose%>
-<%end%>
-<%@council = Council.find_by_id(@rent.council_id)%>
-<%if @council%>			      	
-Utskott: 	<%=@council.title.to_s%>
-<%end%>
-Länk:		<%=@rent.p_url%>	
+Du har bokat F-sektionens bil.
+
+<%= render 'attributes_text', rent: @rent%>
 
 
-<%if @rent.status != "bekräftad"%>
+<%if @rent.status != "Bekräftad"%>
 Din bokning måste hanteras direkt av bilförmannen och ett mejl kommer skickas ut då bokningen är beräkftad eller nekad.
 <%end%>
 Har du några frågor så svarar du enklast direkt på detta mejl.

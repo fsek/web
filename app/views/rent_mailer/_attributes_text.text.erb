@@ -1,0 +1,15 @@
+Uppgifter för bokningen (ID: <%= rent.id %>).
+Namn:       <%= rent.p_name %>
+Epost:      <%= rent.email.to_s %>
+Telefon:    <%= rent.phone.to_s %>
+Datum:      <%= rent.p_time %>
+<% if rent.purpose.present? %>
+Syfte:      <%= rent.purpose %>
+<% end %>
+<% if rent.council.present? %>
+Utskott:    <%= rent.council.title.to_s %>
+<% end %>
+Länk:       <%= rent.p_url %>
+<% if rent.access_code.present? %>
+Kod:        <%= rent.access_code %>
+<% end %>
