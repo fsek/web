@@ -5,7 +5,6 @@ class Admin::RentsController < ApplicationController
   before_action :set_rents, only: [:edit, :new]
   before_action :set_councils, only: [:new, :edit]
 
-
   def main
     @rents = Rent.ascending.from_date(Time.zone.now.beginning_of_day)
     @rent_grid = initialize_grid(@rents)
@@ -24,8 +23,9 @@ class Admin::RentsController < ApplicationController
     @rent = Rent.new_with_status(rent_params, nil)
     respond_to do |format|
       if @rent.save(validate: false)
-        format.html { redirect_to admin_rent(@rent),
-                                  notice: 'Bokningen skapades, mejl har skickats till angiven epostadress!' }
+        format.html {
+          redirect_to admin_rent(@rent), notice: 'Bokningen skapades, mejl har skickats till angiven epostadress!'
+        }
         format.json { render json: @rent, status: :created, location: @rent }
       else
         format.html { render action: "new" }
