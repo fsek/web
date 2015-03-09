@@ -13,7 +13,7 @@ loadCalendar = ->
     allDaySlot: false,
     width: "auto",
     eventMouseover: (calEvent, jsEvent) ->
-      tooltip = '<div class="tooltipevent" style="width:auto;height:auto;background:#eb7125;position:absolute;z-index:10001;padding:10px;paddin-top:0px;border:2px solid;">' + calEvent.title+ '<br>' + calEvent.start.format('LLL') + '<br>till<br>'+ calEvent.end.format('LLL') + '</div>'
+      tooltip = '<div class="tooltipevent" style="width:auto;height:auto;background:#eb7125;position:absolute;z-index:10001;padding:10px;paddin-top:0px;border:2px solid;">' + calEvent.title + '<br>' + calEvent.start.format('LLL') + '<br>till<br>' + calEvent.end.format('LLL') + '</div>'
       $('body').append tooltip
       $(this).mouseover((e) ->
         $(this).css 'z-index', 10000
@@ -31,7 +31,7 @@ $('document').ready ->
   $('input[type=\'checkbox\']#rent_disclaimer').on 'change', ->
     if $('#rent_disclaimer').is(':checked')
       $('.after_disclaimer').show()
-      #$('html, body').animate { scrollTop: $('.after_disclaimer').offset().top }, 1000
+      $('html, body').animate { scrollTop: $('.after_disclaimer').offset().top }, 1000
     else
       $('.after_disclaimer').hide()
   if $('#rent_disclaimer').is(':checked')

@@ -1,10 +1,9 @@
 class Admin::RentsController < ApplicationController
   before_action :login_required
   before_action :authenticate
-  before_action :set_rent, only: [:show, :update,:edit]
-  before_action :set_rents, only: [:edit,:new]
-  before_action :set_councils, only: [:new,:edit]
-
+  before_action :set_rent, only: [:show, :update, :edit]
+  before_action :set_rents, only: [:edit, :new]
+  before_action :set_councils, only: [:new, :edit]
 
 
   def main
@@ -22,10 +21,11 @@ class Admin::RentsController < ApplicationController
   end
 
   def create
-    @rent = Rent.new_with_status(rent_params,nil)
+    @rent = Rent.new_with_status(rent_params, nil)
     respond_to do |format|
       if @rent.save(validate: false)
-        format.html { redirect_to admin_rent(@rent), notice: 'Bokningen skapades, mejl har skickats till angiven epostadress!' }
+        format.html { redirect_to admin_rent(@rent),
+                                  notice: 'Bokningen skapades, mejl har skickats till angiven epostadress!' }
         format.json { render json: @rent, status: :created, location: @rent }
       else
         format.html { render action: "new" }
@@ -44,28 +44,7 @@ class Admin::RentsController < ApplicationController
         format.html { redirect_to edit_admin_rent_path(@rent), notice: 'Bokningen uppdaterades.' }
         format.json { render json: @rent, status: :created, location: @rent }
       else
-        format.html { render action:"edit" }
-        format.json { render json: @rent.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update_status
-    respond_to do |format|
-      status = @rent.status
-      aktiv = @rent.aktiv
-      @rent.attributes = status_params
-      if @rent.save(validate: false)
-        if (status != @rent.status) && (@rent.status != "Ej bestämd")
-          RentMailer.status_email(@rent).deliver
-        end
-        if (aktiv != @rent.aktiv)
-          RentMailer.active_email(@rent).deliver
-        end
-        format.html { redirect_to rent_path(@rent), notice: 'Bokningen uppdaterades.' }
-        format.json { render json: @rent, status: :created, location: @rent }
-      else
-        format.html { redirect_to action: "show" }
+        format.html { render action: "edit" }
         format.json { render json: @rent.errors, status: :unprocessable_entity }
       end
     end
