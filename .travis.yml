@@ -8,4 +8,4 @@ script:
   - bundle exec rake db:test:prepare
   - bundle exec rake
 before_script:
- - chmod +x grailsw
+ - chmod +x config/database.yml
