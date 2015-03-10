@@ -1,19 +1,28 @@
 #encoding: UTF-8
 class CafeWork < ActiveRecord::Base
+
+  # Associations
   belongs_to  :profile
   has_and_belongs_to_many :councils
-  
+
+
+  # Validations
   validates_presence_of :work_day,:pass,:lp,:lv
   validates_presence_of :name,:lastname,:phone,:email, on: :update, if: :check_remove
   validates_uniqueness_of :pass, scope: [:work_day,:lv,:lp,:d_year ]
-  
+
+
+  # Scopes
   scope :with_worker, -> {where('profile_id IS NOT null OR access_code IS NOT null')}
   
-  #returnerar false om objektet markerats med remove_worker=true, vilket det görs när man vill ta bort jobbaren
+  # Checks if current work has been marked to remove worker
+  # /d.wessman
   def check_remove
     !self.remove_worker
   end
-  ## Läs in profilegenskaper, ej spara
+
+  # Prepares work for a user to sign up, without saving
+  # /d.wessman
   def load(profile)
     if !(profile.nil?) && !has_worker?
       self.name = profile.name
@@ -22,7 +31,9 @@ class CafeWork < ActiveRecord::Base
       self.phone = profile.phone
     end  
   end
-  #
+
+  # Shows different status texts depending on the user.
+  # /d.wessman
   def status_text(user)
     view = status_view(user)
     if(view == 0)
@@ -35,11 +46,13 @@ class CafeWork < ActiveRecord::Base
       return "Passet är bokat, fyll i koden som gavs vid anmälan för att redigera."
     end
   end
-  #Status för hur vyn ser ut: 
-  #0 = alla kan skriva upp sig, 
-  #1 = bokningen kan redigeras (inloggad eller auktoriserad), 
-  #2 = visar inget formulär, 
-  #3 = visar formulär för auktorisering
+
+  # Gives different statuses for the view
+  # 0 = everyone can sign up
+  # 1 = can be edited, either logged in or authorized
+  # 2 = shows no form
+  # 3 = shows form for authorization
+  # /d.wessman
   def status_view(user)
     if (profile.nil?) && (access_code.nil?)
       return 0
@@ -51,11 +64,15 @@ class CafeWork < ActiveRecord::Base
       return 3
     end
   end
-  #Används för att skicka tillbaka ett statusmeddelande från at_update
+
+  # Used to get current status-message after an update
+  # /d.wessman
   def status
     @status || self.errors.full_messages || ""
   end
-  ## För att generera en random kod ifall det behövs, annars 
+
+  # Will generate new random code on update, if necessary
+  # /d.wessman
   def at_update(profile)
     if(self.profile.nil?) && (self.access_code.nil?)      
       if(profile)
@@ -72,7 +89,9 @@ class CafeWork < ActiveRecord::Base
       return true
     end    
   end
-  
+
+  # User to update worker, checks for edit-access and triggers at_update
+  # /d.wessman
   def update_worker(worker_params,profile)
     if self.has_worker?
       if !compare_profile(profile) && !authorize(worker_params[:access_code])
@@ -85,15 +104,21 @@ class CafeWork < ActiveRecord::Base
         return at_update(profile)
     end        
   end
-  # Returnerar true om profilerna är lika och nil-skiljda
+
+  # Returns true if the profiles are similar and not nil
+  # /d.wessman
   def compare_profile(profile)
     return ((!profile.nil?) && (!self.profile.nil?) && (profile == self.profile))
   end
-  #Returnerar true om access stämmer in med access_code
+
+  # Returns true only if hte access_code is correct
+  # /d.wessman
   def authorize(access)
     return ((!access.nil?) && (!self.access_code.nil?) && (self.access_code == access))
   end
-  ## När en jobbare vill ta bort sig från passet.
+
+  # Remove-function used by the worker
+  # /d.wessman
   def worker_remove(profile,access)
     if (!compare_profile(profile) && !authorize(access))      
       return false
@@ -101,7 +126,9 @@ class CafeWork < ActiveRecord::Base
     self.remove_worker = true
     return clear_worker    
   end
-  # Metod för att ta bort jobbaren från passet
+
+  # Method to remove the worker from curent work.
+  # /d.wessman
   def clear_worker
     self.remove_worker = true
     self.name = nil
@@ -114,20 +141,29 @@ class CafeWork < ActiveRecord::Base
     self.councils.clear
     return self.save    
   end
+
+  # Returns true if there is a worker
+  # /d.wessman
   def has_worker?
     !((self.profile_id.nil?) && (self.access_code.nil?))
-  end  
+  end
+
+  # Used to print date in a usable format.
+  # /d.wessman
   def print_time
     %(#{self.work_day.strftime("%H:%M")}-#{(self.work_day + duration.hours).strftime("%H:%M")})
   end
-  def print    
+
+  # Used to print out date, reading week and work number
+  # /d.wessman
+  def print
     self.print_date + " LV: " + self.lv.to_s + " Pass: "+ self.pass.to_s
   end  
   def print_date          
     %(#{self.print_time}, #{self.work_day.strftime("%A %d/%m")}) 
   end
   
-  # Printa ut url eller path
+  # Prints the url or path for the current object
   def p_url
     Rails.application.routes.url_helpers.cafe_work_url(id,host: PUBLIC_URL)
   end
