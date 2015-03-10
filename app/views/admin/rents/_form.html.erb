@@ -1,0 +1,66 @@
+<%= form_for([:admin, @rent]) do |f| %>
+    <%= render 'shared/form_errors', current: @rent %>
+    <div class="center">
+      <h2>Bilbokning - <%= (@rent.service) ? "Service" : @rent.status %>
+        - <%= (@rent.aktiv) ? "Aktiv" : "Inaktiv" %></h2>
+
+      <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 center">
+        <div class="row margin-bottom-20">
+          <%= f.label 'Disclaimer', class: 'reg-label' %>
+          <%= f.check_box :disclaimer, id: "accepted_disclaimer" %>
+          <%= f.label 'Service', class: 'reg-label' %>
+          <%= f.check_box :service %>
+        </div>
+        <div class="margin-bottom-20">
+          <%= f.label 'Namn & Efternamn', class: 'reg-label' %>
+          <div class="row">
+            <div class="col-md-6"><%= f.text_field :name, class: 'form-control', placeholder: "Namn" %></div>
+            <div class="col-md-6"> <%= f.text_field :lastname, class: 'form-control', placeholder: "Efternamn" %></div>
+          </div>
+        </div>
+        <%= f.label 'E-post & telefon', class: 'reg-label' %>
+        <div class="margin-bottom-20">
+          <div class="row">
+            <div class="col-md-6"><%= f.text_field :email, class: 'form-control', placeholder: "Epost" %></div>
+            <div class="col-md-6"> <%= f.text_field :phone, class: 'form-control', placeholder: "Telefon" %></div>
+          </div>
+        </div>
+        <%= f.label 'Syfte', class: 'reg-label' %>
+        <div class="margin-bottom-20">
+          <%= f.text_area :purpose, class: "form-control" %>
+        </div>
+        <%= f.label 'Från', class: 'reg-label' %>
+        <div class="margin-bottom-20">
+          <%= f.datetime_select :d_from, minute_step: 10, class: 'form-control' %>
+        </div>
+        <%= f.label 'Till', class: 'reg-label' %>
+        <div class="margin-bottom-20">
+          <%= f.datetime_select :d_til, minute_step: 10, class: 'form-control' %>
+        </div>
+        <% if (@rents)&&(@rents.count > 0) %>
+            <div class="margin-bottom-20">
+              <strong>Bokningar (från idag + 30 dagar):</strong>
+              <% @rents.each do |r| %>
+                  <p><%= r.p_time %></p>
+              <% end %>
+            </div>
+        <% end %>
+        <%= f.label 'Utskott', class: 'reg-label' %>
+        <div class="margin-bottom-20">
+          <%= f.select :council_id,
+                       options_from_collection_for_select(@councils, :id, :title, @rent.council_id),
+                       include_blank: true,
+                       class: "form-control listBox" %>
+        </div>
+        <strong>Utskottsbokning:</strong>
+        <ul class="list">
+          <li>får <strong>endast</strong> göras åt utskottet</li>
+          <li>kan boka över en bokning, som börjar minst 5 dagar fram i tiden.</li>
+        </ul>
+      </div>
+
+      <div class="row">
+        <%= f.submit "Spara", class: "btn btn-u", data: {confirm: 'Som administratör bokar man över vad som helst (utan att påverka bokningen), ingenting valideras.'} %>
+      </div>
+    </div>
+<% end %>

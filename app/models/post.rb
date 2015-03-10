@@ -9,10 +9,14 @@ class Post < ActiveRecord::Base
   # Scopes
   scope :studierad, -> {where(elected_by: "Studierådet").order(council_id: :asc)}
   scope :termins, -> {where(elected_by: "Terminsmötet").order(council_id: :asc)}
+
   scope :not_termins, -> {where.not(elected_by: "Terminsmötet").order(council_id: :asc)}
 
   # Validations
   validates_presence_of :limit,:recLimit, :description
+
+  # Scopes
+  scope :renters, -> {where(car_rent:true)}
   
   def printLimit
     if((recLimit == 0) && (limit == 0)) || (recLimit > limit )

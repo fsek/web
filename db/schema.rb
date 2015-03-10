@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20410822171442) do
 
+
   create_table "albums", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -79,6 +80,15 @@ ActiveRecord::Schema.define(version: 20410822171442) do
 
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id"
   add_index "candidates", ["profile_id"], name: "index_candidates_on_profile_id"
+
+  create_table "categories", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "typ"
+    t.boolean  "sub",         default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "title"
