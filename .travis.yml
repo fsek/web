@@ -1,9 +1,11 @@
 language: ruby
 rvm:
   - 2.1.0
-  - jruby-18mode
-  - jruby-19mode
-  - rbx-2
-  - ruby-head
-  - jruby-head
-  - ree
+env:
+  - DB=sqlite
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
+before_script:
+  - cp config/database.travis.yml config/database.yml
