@@ -1,7 +1,6 @@
 
 Fsek::Application.routes.draw do
 
-  resources :notices
 
   # Resources on the page
   #get 'kurslankar' => 'static_pages#kurslankar'
@@ -41,6 +40,9 @@ Fsek::Application.routes.draw do
   
   # Scope to change urls to swedish
   scope path_names: { new: 'ny',edit: 'redigera' } do
+
+    resources :notices
+
     # A scope to put car-associated things under /bil
     # /d.wessman
     scope :bil do
