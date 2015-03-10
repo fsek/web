@@ -4,6 +4,8 @@ rvm:
 env:
   - DB=sqlite
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - RAILS_ENV=test
   - bundle exec rake db:test:prepare
   - bundle exec rake
+before_script:
+ - chmod +x grailsw
