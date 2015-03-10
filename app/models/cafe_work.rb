@@ -7,7 +7,7 @@ class CafeWork < ActiveRecord::Base
   validates_presence_of :name,:lastname,:phone,:email, on: :update, if: :check_remove
   validates_uniqueness_of :pass, scope: [:work_day,:lv,:lp,:d_year ]
   
-  attr_reader :status
+  scope :with_worker, -> {where('profile_id IS NOT null OR access_code IS NOT null')}
   
   #returnerar false om objektet markerats med remove_worker=true, vilket det görs när man vill ta bort jobbaren
   def check_remove
