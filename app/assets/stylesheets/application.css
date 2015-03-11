@@ -51,3 +51,7 @@
 .content {
   padding-top: 20px;
 }
+
+.console {
+  font-family: monospace;
+}
