@@ -6,9 +6,9 @@ class GithookController < ApplicationController
     ref = params[:ref]
     success = false
     if ref == "refs/heads/master"
-    	success, _ = pull_master()
+      success, _ = pull_master
     elsif ref == "refs/heads/dev"
-      success, _ = pull_dev()
+      success, _ = pull_dev
     end
     if success
       render :nothing => true, :status => 200
@@ -16,29 +16,29 @@ class GithookController < ApplicationController
       render :nothing => true, :status => 400
     end
   end
+
   def dev
-    @success, @output = pull_dev()
+    @success, @output = pull_dev
     render :index
   end
 
   def master
-    @success, @output = pull_master()
+    @success, @output = pull_master
     render :index
   end
 
   def pull_dev
-    out = %x('/var/www/scripts/updatewrapper-dev')
+    out = `/var/www/scripts/updatewrapper-dev`
     return $?.exitstatus, out
   end
 
   def pull_master
-    out = %x('/var/www/scripts/updatewrapper')
+    out = `/var/www/scripts/updatewrapper`
     return $?.exitstatus, out
   end
 
-
   def authenticate
-    flash[:error] = t('the_role.access_denied')
+    flash[:error] = t("the_role.access_denied")
     redirect_to(:back) unless (current_user) && (current_user.moderator?(:val))
   rescue ActionController::RedirectBackError
     redirect_to root_path
