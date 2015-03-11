@@ -1,6 +1,6 @@
 <div class="container content"> 	
 	<div class="row portfolio-item margin-bottom-50">
-	<%if @event.image_file_name %>
+	<%if @event.image? %>
     	<div class="col-md-5 md-margin-bottom-40">
 	<%else%>
 		<div class="col-md-6 col-md-offset-3 md-margin-bottom-40">
@@ -31,7 +31,7 @@
             	</div>
             	<div class="col-xs-8">
                     <ul class="list-unstyled">
-                    	<%if @author%> <li><%= link_to @author,@author %></li> <%end%>                    	
+                    	<%if @author%> <li><%= link_to @author.print,@author %></li> <%end%>
                     	<li><%=@event.category%></li>                    	
                 	</ul>
             	</div>

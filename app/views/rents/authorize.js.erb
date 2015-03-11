@@ -1,0 +1,8 @@
+<% if @authenticated%>
+$('#authorization').hide();
+$('#after_authorization').append("<%= escape_javascript( render partial: 'edit_form')%>").show();
+$('#status').text("Korrekt kod, du kan nu redigera bokningen.").effect("bounce",3000);
+$('.after_disclaimer').show()
+<%else%>
+$('#status').text("Felaktig kod").effect("bounce",3000);
+<%end%>

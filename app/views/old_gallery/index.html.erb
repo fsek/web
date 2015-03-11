@@ -1,0 +1,10 @@
+<% if signed_in? # This script is needed for the old gallery hack. /Erik Henriksson %>
+  <%= javascript_tag do %>
+    gallery_username = '<%= j current_user.username %>';
+    gallery_secret = '<%= j current_user.encrypted_password %>';
+    
+    $(document).ready(function() {
+      galleryHook();
+    });
+  <% end %>
+<% end %>

@@ -1,40 +1,12 @@
 <% provide(:title, 'Val') %>
 <div class="container val-page">
-	<% if @valet%>
-		<% if @before %>
-			<%= render "index_before"%>
-		<%elsif @during%>
-			<%= render "index_during"%>
-		<%elsif @after%>
-			<%= render "index_after"%>
-		<%end%>
-		
-		<%if (@valet) && (@edit) %>
-			<div class="col-md-2 col-md-offset-5"><%= link_to("Redigera valet!",election_path(@valet),class: "btn btn-election ")%></div>
-		<%end%>
-	<%else%>
-	<h1>Just nu finns det ingen information om valet.</h1>
-	<%= link_to image_tag("layout/f.svg", class: "val-logo"),:root%>
-	<%end%>
-</div>	
-<%if @datum%>
-<script type="text/javascript" >
-    $(function () {    	
-        var austDay = new Date();
-        austDay = new Date(<%=@datum.year%> ,<%=@datum.month%>-1,<%=@datum.day%>);                
-        $('#defaultCountdown').countdown({until: austDay});        
-    });
-    function goToByScroll(id){          
-    $('html,body').animate({
-        scrollTop: $(id).offset().top},
-        'slow');
-}
-$(function () {
-	$('.collapse').on('shown.bs.collapse', function (e) {
-  		
-    	goToByScroll("#views"); 
-})
-});
-
-</script>
-<%end%>
+  <% if @election %>
+      <%= render 'index' %>
+      <% if (current_user) && (current_user.moderator?(:val)) %>
+          <div class="col-md-2 col-md-offset-5"><%= link_to("Redigera valet!", admin_election_path(@election), class: "btn btn-election ") %></div>
+      <% end %>
+  <% else %>
+      <h1>Just nu finns det ingen information om valet.</h1>
+      <%= link_to image_tag("layout/f.svg", class: "val-logo"), :root %>
+  <% end %>
+</div>

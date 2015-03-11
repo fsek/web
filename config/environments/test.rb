@@ -34,4 +34,5 @@ Fsek::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  PUBLIC_URL = "dev.fsektionen.se"
 end

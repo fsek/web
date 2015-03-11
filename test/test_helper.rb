@@ -12,4 +12,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def db_date(time)
+    time.to_s(:db)
+  end
 end

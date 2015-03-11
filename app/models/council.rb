@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Council < ActiveRecord::Base
   has_one :page, dependent: :destroy
   has_many :posts

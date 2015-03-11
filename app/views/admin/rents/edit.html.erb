@@ -1,0 +1,9 @@
+<% provide(:title, 'Admin - Bilbokning') %>
+<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
+  <%= render 'links'%>
+  <hr>
+  <%= render 'form' %>
+  <hr>
+  <%= link_to('Radera bokning', admin_rent_path(@rent), method: :delete, class: "btn btn-u", data: {confirm: 'Bokning kommer nu att raderas.'}) %>
+</div>
+</div>

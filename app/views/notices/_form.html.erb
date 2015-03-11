@@ -1,0 +1,43 @@
+<%= form_for(@notice) do |f| %>
+    <%=render 'shared/form_errors', current: @notice%>
+
+    <%= f.label :title, class: 'reg-label'%>
+    <div class="input-group margin-bottom-20">
+      <%= f.text_field :title,class: 'form-control' %>
+    </div>
+
+    <%= f.label :description, class: 'reg-label'%>
+    <div class="input-group margin-bottom-20">
+      <%= f.text_area :description,class: 'form-control',size:"120x10" %>
+    </div>
+
+    <%= f.label :public, class: 'reg-label'%>
+    <div class="input-group margin-bottom-20">
+      <%= f.check_box :public %>
+    </div>
+
+    <%= f.label :d_publish, class: 'reg-label'%>
+    <div class="input-group margin-bottom-20">
+      <%= f.date_field :d_publish, class: "form-control", id: 'datepicker1' %>
+    </div>
+
+    <%= f.label :d_remove, class: 'reg-label'%>
+    <div class="input-group margin-bottom-20">
+      <%= f.date_field :d_remove, class: "form-control", id: 'datepicker2' %>
+    </div>
+
+    <%= f.label :sort, class: 'reg-label'%>
+    <div class="input-group margin-bottom-20">
+      <%= f.number_field :sort ,class: 'form-control'%>
+    </div>
+    <%= f.label :image, :class => 'reg-label'%>
+    <div class="input-group margin-bottom-20">
+      <% if @notice.image?%>
+          <%= image_tag(image_notice_path(@notice, style: 'small'))%><br>
+      <% end %>
+      <%= f.file_field :image, :class => 'form-control' %>
+    </div>
+    <div class="actions margin-bottom-20">
+      <%= f.submit class:"btn btn-u" %>
+    </div>
+<% end %>

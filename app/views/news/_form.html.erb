@@ -1,22 +1,12 @@
 <%= form_for(@news, :html => {  :autocomplete => 'off' }) do |f| %>
-	<% if @news.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@news.errors.count, "error") %> gör att nyheten inte kan sparas:</h2>
-	
-	      <ul>
-	      <% @news.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	      </ul>
-	    </div>
-  	<% end %>
+	<%= render 'shared/form_errors',current: @news%>
   	<%= f.label 'Titel', :class => 'reg-label'%>		  
   	<div class="input-group margin-bottom-20">					
 		<%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		
   	</div>
   	<%= f.label 'Innehåll', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.text_area :content, :class => 'form-control',:placeholder => 'Innehåll' %>
+  		<%= f.text_area :content, :class => 'form-control',:placeholder => 'Innehåll', size: "120x15" %>
   	</div>
   	<%= f.label 'Visningsbild', :class => 'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	

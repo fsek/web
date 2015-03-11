@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class PageElement < ActiveRecord::Base
    belongs_to :page
    has_attached_file :picture, 

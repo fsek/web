@@ -14,7 +14,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <%= favicon_link_tag 'favicon.ico?' %> 
+  <%= favicon_link_tag 'favicon.ico' %>
 
   <% if current_user # This script is needed for the old gallery hack. /Erik Henriksson %>
   <%= javascript_tag do %>
@@ -82,7 +82,7 @@ $(document).ready(bottom)
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs" style="border-bottom: 0px solid #333;">
   <div class="container">
-	
+
   </div>
 </div>
 <!--=== End Breadcrumbs ===-->
