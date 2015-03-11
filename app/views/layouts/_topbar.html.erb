@@ -1,7 +1,6 @@
 <ul class="loginbar pull-right">
   <%if user_signed_in? && current_user.admin?%>
-    <% commit = `git rev-parse HEAD`[0,6] %>
-    <li><%=link_to commit, "https://github.com/fsek/web/commit/%s" % commit %></li>
+    <li><%=link_to @commit, @commit_url %></li>
     <li class="devider"></li>
   <%end%>
 
