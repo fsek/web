@@ -8,9 +8,9 @@ class GithookController < ApplicationController
     verify_signature(payload_body)
     ref = params[:ref]
     success = false
-    if ref == "refs/heads/master"
+    if ref == 'refs/heads/master'
       success, _ = pull_master
-    elsif ref == "refs/heads/dev"
+    elsif ref == 'refs/heads/dev'
       success, _ = pull_dev
     end
     if success
@@ -30,6 +30,7 @@ class GithookController < ApplicationController
     render :index
   end
 
+private
   def pull_dev
     out = `/var/www/scripts/updatewrapper-dev`
     return $?.exitstatus, out
@@ -41,8 +42,8 @@ class GithookController < ApplicationController
   end
 
   def authenticate
-    flash[:error] = t("the_role.access_denied")
-    redirect_to(:back) unless (current_user) && (current_user.moderator?(:val))
+    flash[:error] = t('the_role.access_denied')
+    redirect_to(:back) unless user_signed_in? && current_user.admin?
   rescue ActionController::RedirectBackError
     redirect_to root_path
   end
