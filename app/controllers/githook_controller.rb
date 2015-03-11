@@ -1,6 +1,6 @@
 class GithookController < ApplicationController
-  before_action :login_required
-  before_action :authenticate
+  before_action :login_required, :only => [:dev, :master]
+  before_action :authenticate, :only => [:dev, :master]
 
   def index
     ref = params[:ref]
