@@ -1,4 +1,10 @@
-        <ul class="loginbar pull-right">
+<ul class="loginbar pull-right">
+  <%if user_signed_in? && current_user.admin?%>
+    <li><%=link_to @commit, @commit_url %></li>
+    <li class="devider"></li>
+  <%end%>
+
+
           <li><a href="/"><%= fa_icon("home") %></a></li>
           
           <li class="devider"></li>
