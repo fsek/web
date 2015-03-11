@@ -3,6 +3,8 @@ Fsek::Application.routes.draw do
 
 
   post 'githook' => 'githook#index'
+  get 'githook/dev' => 'githook#dev'
+  get 'githook/master' => 'githook#master'
 
   # Resources on the page
   #get 'kurslankar' => 'static_pages#kurslankar'
