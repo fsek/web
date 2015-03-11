@@ -3,6 +3,9 @@ class GithookController < ApplicationController
   before_action :authenticate, :only => [:dev, :master]
 
   def index
+    request.body.rewind
+    payload_body = request.body.read
+    verify_signature(payload_body)
     ref = params[:ref]
     success = false
     if ref == "refs/heads/master"
@@ -42,5 +45,10 @@ class GithookController < ApplicationController
     redirect_to(:back) unless (current_user) && (current_user.moderator?(:val))
   rescue ActionController::RedirectBackError
     redirect_to root_path
+  end
+
+  def verify_signature(payload_body)
+      signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV['SECRET_TOKEN'], payload_body)
+      return halt 500, "Signatures didn't match!" unless Rack::Utils.secure_compare(signature, request.env['HTTP_X_HUB_SIGNATURE'])
   end
 end
