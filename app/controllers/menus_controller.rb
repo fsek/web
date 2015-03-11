@@ -7,8 +7,6 @@ class MenusController < ApplicationController
   # GET /menus.json
   def index
     @menues = Menu.all
-    @commit = `git rev-parse HEAD`[0,6]
-    @commit_url = "https://github.com/fsek/web/commit/%s" % @commit
   end
 
   # GET /menus/new
