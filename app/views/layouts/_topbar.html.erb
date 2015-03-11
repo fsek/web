@@ -1,4 +1,11 @@
-        <ul class="loginbar pull-right">
+<ul class="loginbar pull-right">
+  <%if user_signed_in? && current_user.admin?%>
+    <% commit = `git rev-parse HEAD`[0,6] %>
+    <li><%=link_to commit, "https://github.com/fsek/web/commit/%s" % commit %></li>
+    <li class="devider"></li>
+  <%end%>
+
+
           <li><a href="/"><%= fa_icon("home") %></a></li>
           
           <li class="devider"></li>
