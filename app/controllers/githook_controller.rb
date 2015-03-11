@@ -10,6 +10,8 @@ class GithookController < ApplicationController
       success, _ = pull_master
     elsif ref == 'refs/heads/dev'
       success, _ = pull_dev
+    else
+      success = true
     end
     render nothing: true, status: success ? 200 : 400
   end
