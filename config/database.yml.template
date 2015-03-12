@@ -20,7 +20,7 @@ production:
   adapter: mysql2
   encoding: utf8
   database: db/fsek_production
-  username: fsek
-  password: replace_this
+  username: root
+  password: 
   host: localhost
   socket: /var/run/mysqld/mysqld.sock
