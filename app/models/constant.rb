@@ -1,6 +1,6 @@
 class Constant < ActiveRecord::Base
-  validates_presence_of :name, :value
-  validates_uniqueness_of :name
+  validates :name, presence: true, uniqueness: true
+  validates :value, presence: true
 
   def self.get(name)
     c = Constant.where(name: name).first
