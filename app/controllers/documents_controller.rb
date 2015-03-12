@@ -1,14 +1,15 @@
-# encoding:UTF-8
 class DocumentsController < ApplicationController
   before_filter :authenticate, only: [:update, :edit, :new, :destroy, :create]
   before_action :set_document, only: [:show, :update, :edit, :destroy]
   before_action :set_edit
 
   def steering
-    @bylaws = Document.joins(document_group: :document_group_type).where("document_groups_types.name" => "stadga")
-    @regulations = Document.joins(document_group: :document_group_type).where("document_group_types.name" => "reglemente")
-    @policys = Document.joins(document_group: :document_group_type).where("document_group_types.name" => "policy")
-    @rules = Document.joins(document_group: :document_group_type).where("document_group_types.name" => "regler")
+    @document_group = DocumentGroup.joins(:document_group_type).where('document_group_types.name' => 'styrdokument').first
+    documents = Document.joins(:tags, document_group: :document_group_type).where('document_group_types.name' => 'styrdokument')
+    @bylaws       = documents.where('tags.name' => 'stadga').order('revision_date ASC')
+    @regulations  = documents.where('tags.name' => 'reglemente').order('revision_date ASC')
+    @policys      = documents.where('tags.name' => 'policy').order('title ASC')
+    @rules        = documents.where('tags.name' => 'regel').order('title ASC')
   end
 
   def protocols
@@ -67,12 +68,10 @@ class DocumentsController < ApplicationController
       end        
     end
   end
-  def destroy    
-    @document.destroy
-    respond_to do |format|
-      format.html { redirect_to documents_url }
-      format.json { head :no_content }
-    end
+  def destroy
+    dg = @document.document_group
+    @document.destroy!
+    redirect_to dg
   end
   private
     def authenticate

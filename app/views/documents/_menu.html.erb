@@ -4,4 +4,18 @@
     <li class="list-group-item side-menu-item"><%= link_to "Handlingar och protokoll", protocols_documents_path %></li>
     <li class="list-group-item side-menu-item"><%= link_to "Övriga dokument", other_documents_path %></li>
   </ul>
+
+  <% if current_user && current_user.moderator?(:documents) %>
+    <header class="headline headline-md"><h3>Adminverktyg</h3></header>
+    <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
+
+      <% if type = :steering %>
+        <% if @document_group.blank? %>
+          <li class="list-group-item"><%= link_to 'Skapa styrdokumentsamling', new_document_group_path() %></li>
+        <% else %>
+          <li class="list-group-item"><%= link_to 'Redigera styrdokument', edit_document_group_path(@document_group) %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
