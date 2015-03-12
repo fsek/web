@@ -27,9 +27,9 @@ class Rent < ActiveRecord::Base
   # /d.wessman
   scope :councils, -> { where.not(council_id: nil) }
 
-  # To scope up the ones not marked as service or inactive
+  # To scope up the ones not marked as inactive
   # /d.wessman
-  scope :active, -> { where(aktiv: true, service: false).where.not(status:'Nekad')}
+  scope :active, -> { where(aktiv: true).where.not(status:'Nekad')}
 
   # To scope all rents between two dates
   # /d.wessman
