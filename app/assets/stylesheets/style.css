@@ -30,13 +30,13 @@ body.header-fixed-space {
 
 p, 
 li,
-li a,
+/*li a,*/
 label { 
    color: #555;
 }
 
 a {
-   color: #72c02c;
+   color: #eb7125;
    text-decoration: none;  
 }
 
