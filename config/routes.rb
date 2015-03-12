@@ -2,6 +2,8 @@
 Fsek::Application.routes.draw do
 
 
+  resources :constants
+
   post "githook" => "githook#index"
   get "githook/dev" => "githook#dev"
   get "githook/master" => "githook#master"

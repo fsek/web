@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171442) do
+ActiveRecord::Schema.define(version: 20410822171443) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -66,6 +66,13 @@ ActiveRecord::Schema.define(version: 20410822171442) do
 
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id"
   add_index "candidates", ["profile_id"], name: "index_candidates_on_profile_id"
+
+  create_table "constants", force: true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contacts", force: true do |t|
     t.string   "name"
