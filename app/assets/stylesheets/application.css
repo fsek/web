@@ -40,6 +40,7 @@
  *= require custom-sky-forms
  *= require sky-forms-f
  *= require f-sidemenu
+ *= require rent
  */
 
  /* Override for Bootstrap 3 font location */
@@ -54,4 +55,8 @@
 
 .content {
   padding-top: 20px;
+}
+
+.console {
+  font-family: monospace;
 }

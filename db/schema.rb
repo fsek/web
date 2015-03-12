@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171449) do
+ActiveRecord::Schema.define(version: 20410822171450) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -327,17 +327,21 @@ ActiveRecord::Schema.define(version: 20410822171449) do
     t.string   "lastname"
     t.string   "email"
     t.string   "phone"
-    t.text     "purpose"
-    t.boolean  "disclaimer"
-    t.string   "status",     default: "Ej bestämd"
-    t.boolean  "aktiv",      default: true
+    t.text     "purpose",     default: ""
+    t.boolean  "disclaimer",  default: false
+    t.string   "status",      default: "Ej bestämd"
+    t.boolean  "aktiv",       default: true
     t.integer  "council_id"
     t.integer  "profile_id"
     t.text     "comment"
-    t.boolean  "service"
+    t.boolean  "service",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "access_code"
   end
+
+  add_index "rents", ["d_from"], name: "index_rents_on_d_from"
+  add_index "rents", ["d_til"], name: "index_rents_on_d_til"
 
   create_table "roles", force: true do |t|
     t.string   "name",        null: false

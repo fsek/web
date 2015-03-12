@@ -1,0 +1,13 @@
+prylmastare:
+  title: "Prylmästare"
+  council: prylm
+fixare:
+  title: "Fixare"
+  council: prylm
+sexmastare:
+  title: "Sexmästare"
+  council: sexm
+server:
+  title: "Server"
+  council: sexm
+

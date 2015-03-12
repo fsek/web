@@ -1,7 +1,12 @@
 
 Fsek::Application.routes.draw do
 
-  resources :notices
+
+  resources :constants
+
+  post "githook" => "githook#index"
+  get "githook/dev" => "githook#dev"
+  get "githook/master" => "githook#master"
 
   # Resources on the page
   #get 'kurslankar' => 'static_pages#kurslankar'
@@ -41,13 +46,19 @@ Fsek::Application.routes.draw do
   
   # Scope to change urls to swedish
   scope path_names: { new: 'ny',edit: 'redigera' } do
+
+    resources :notices
+
     # A scope to put car-associated things under /bil
     # /d.wessman
     scope :bil do
-      resources :rents, path: :bokning do
-        patch :update_status, on: :member
-      end     
-      get :forman, controller: :rents, action: :forman
+      namespace :admin do
+        resources :rents, path: :bokningar, except: [:index]
+        get '', controller: :rents, action: :main, as: :car
+      end
+      resources :rents, path: :bokningar do
+        patch :authorize, on: :member, path: :auktorisera
+      end
       get '', controller: :rents, action: :main, as: :bil      
     end
 

@@ -5,33 +5,31 @@ class RentMailer < ActionMailer::Base
   
   def rent_email(rent)   
      @rent = rent     
-     if(@rent) && (@rent.email) && (@rent.email.blank? == false)
-      subT = %(Bilbokning den #{@rent.printTime} (fsektionen.se))
-      mail to: @rent.email_with_name, 
-      subject: subT,
-      sent_on: Time.now
+     if(@rent.present?) && (@rent.email.present?)
+      mail to: @rent.p_email,
+      subject: %(Bilbokning #{@rent.p_time} (fsektionen.se)),
+      sent_on: Time.zone.now
     end     
   end
   def status_email(rent)   
     @rent = rent     
-    if(@rent) && (@rent.email) && (@rent.email.blank? == false)      
-      subT = %(Bilbokning den #{@rent.printTime} är #{@rent.status})
-      mail to: @rent.email_with_name, 
-      subject: subT,
-      sent_on: Time.now
+    if(@rent.present?) && (@rent.email.present?)
+      mail to: @rent.p_email,
+      subject: %(Bilbokning #{@rent.p_time} är #{@rent.status}),
+      sent_on: Time.zone.now
     end     
   end
   def active_email(rent)   
     @rent = rent
-    if(@rent) && (@rent.email) && (@rent.email.blank? == false)
+    if(@rent.present?) && (@rent.email.present?)
       if(@rent.aktiv)
-        subT = %(Bilbokning den #{@rent.printTime} har markerats som aktiv.)
+        subT = %(Bilbokning #{@rent.p_time} har markerats som aktiv.)
       else
-        subT = %(Bilbokning den #{@rent.printTime} har markerats som inaktiv.)
+        subT = %(Bilbokning #{@rent.p_time} har markerats som inaktiv.)
       end
-      mail to: @rent.email_with_name, 
+      mail to: @rent.p_email,
       subject: subT,
-      sent_on: Time.now     
+      sent_on: Time.zone.now
     end     
   end
 end
