@@ -13,3 +13,8 @@
 .sidebar-nav-v1 li a {
   padding-left: 25px;
 }
+
+.document-tag {
+  font-size: 11px;
+  padding: 1px 8px !important;
+}
