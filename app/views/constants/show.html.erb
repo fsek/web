@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @constant.name %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @constant.value %>
+</p>
+
+<%= link_to 'Edit', edit_constant_path(@constant) %> |
+<%= link_to 'Back', constants_path %>

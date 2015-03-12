@@ -50,4 +50,9 @@ class ApplicationController < ActionController::Base
         @commit_url = "https://github.com/fsek/web/commit/%s" % @commit
       end
     end
+
+    def verify_admin
+      flash[:error] = t('the_role.access_denied')
+      redirect_to(:root) unless (current_user) && (current_user.admin?)
+    end
 end
