@@ -1,0 +1,2 @@
+module DocumentGroupsHelper
+end

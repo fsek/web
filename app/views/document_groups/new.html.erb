@@ -1,0 +1,52 @@
+<%= content_for :breadcrumbs do %>
+  <h1 class="pull-left">Skapa ny dokumentsamling</h1>
+  <ul class="pull-right breadcrumb">
+    <li><a href="index.html">Hem</a></li>
+    <li><a href="">Administration</a></li>
+    <li><a href="">Dokumentsamlingar</a></li>
+    <li class="active">Ny</li>
+  </ul>
+<% end %>
+
+
+
+<div class="col-md-6">
+  <%= form_for @document_group, html: { class: 'sky-form' } do |f| %>
+
+    <% if @document_group.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@document_group.errors.count, "fel") %> gör att dokumentet inte kan sparas:</h2>	
+        <ul>
+        <% @document_group.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+      
+    <fieldset>
+      <label class="input">
+        <%= f.text_field :name, placeholder: 'Namn' %>
+      </label>
+      <% if @document_group.errors[:name] %>
+        <div class="note note-error">
+          <ul>
+            <% @document_group.errors.full_messages_for(:name).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <label class="select">
+        <% opts = DocumentGroupType.all.map {|t| [t.name, t.id]} %>
+        <% blank = 'Välj typ av dokumentsamling' %>
+        <%= f.select(:document_group_type_id, options_for_select([blank] + opts, selected: blank, disabled: blank)) %>
+        <i></i>
+      </label>
+   
+      <%= f.submit 'Skapa' , class: 'btn btn-u' %>
+    </fieldset>
+  <% end %>
+</div>
+
