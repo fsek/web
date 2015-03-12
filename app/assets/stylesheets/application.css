@@ -21,7 +21,7 @@
  *= require page_magazine
  *= require page_login_reg
  *= require portfolio
- *= require style
+ * require style
  *= require timeline  
  *= require default_theme
  * require_tree .

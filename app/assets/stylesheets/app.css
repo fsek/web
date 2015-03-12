@@ -9,9 +9,8 @@
 
 /* Temporarily disable breadcrumb */
 .breadcrumb {
-	/* 
-  border-bottom: 0px solid #333;
-  display: none; */
+	 
+  /*display: none; */
 }
 
 .breadcrumbs ul > li {
@@ -26,7 +25,8 @@
 }
 
 .breadcrumbs {
-  padding: 10px 0;
+  padding: 10px 0 6px;
+  border-bottom: 1px solid #eee;
 }
 
 .navbar-brand-text {
