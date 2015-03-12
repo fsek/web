@@ -1,4 +1,4 @@
-<%= grid(@post_grid) do |g|
+<%= grid(grid) do |g|
 	g.row_attributes do |post|
 	    if (post.styrelse == true) && (post.elected_by != "Studierådet")
 	      {style: 'background: rgba(252, 155, 0,0.7);'}					   
@@ -7,7 +7,7 @@
 	    end
 	  end			
 	  g.column name: "Titel",attribute: "title",filter: false  do |post|			    
-	    link_to(post.title,"#mer-"+post.id.to_s,class: "",data: {toggle: "collapse"})
+	    link_to(post.title,%(##{dom_id(post)}),data: {toggle: "collapse", target: ""})
 	  end
 	  g.column name: "Rekommenderat antal",attribute: "limit",filter: false do |post|
 	  	post.printLimit
@@ -16,9 +16,9 @@
 	    post.council.title
 	  end
 	  g.column name: "Väljs av", attribute: "elected_by",filter: false
-  	  if (@during) || (@after)
+  	  if (@election.view_status != 1)
 		  g.column name: "Kandidater", filter: false do |post|
-		  	 post.candidates.where(election_id: @valet.id ).count
+		  	 @election.candidate_count(post)
 		  end
   	  end
 end -%>

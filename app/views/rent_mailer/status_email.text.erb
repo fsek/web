@@ -13,7 +13,7 @@ Uppgifter för bokningen (ID: <%=@rent.id%>).
 Namn:    	<%=@rent.name.to_s%> <%=@rent.lastname.to_s%>
 Epost: 	 	<%=@rent.email.to_s%> 
 Telefon: 	<%=@rent.phone.to_s%>
-Datum:   	<%=@rent.printTime%>
+Datum:   	<%=@rent.p_time%>
 <%if @rent.purpose.blank? == false %>
 Syfte:		<%=@rent.purpose%>
 <%end%>

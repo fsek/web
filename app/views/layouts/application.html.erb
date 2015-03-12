@@ -14,8 +14,15 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <%= favicon_link_tag 'favicon.ico?' %> 
- 
+  <%= favicon_link_tag 'favicon.ico' %>
+
+  <% if current_user # This script is needed for the old gallery hack. /Erik Henriksson %>
+  <%= javascript_tag do %>
+    gallery_username = '<%= j current_user.username %>';
+    gallery_secret = '<%= j current_user.encrypted_password %>';
+  <% end %>
+  <% end %>
+
   <!-- JS Global Compulsory -->           
 <script type="text/javascript">
 
@@ -63,7 +70,7 @@
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs" style="border-bottom: 0px solid #333;">
   <div class="container">
-	
+
   </div>
 </div>
 <!--=== End Breadcrumbs ===-->

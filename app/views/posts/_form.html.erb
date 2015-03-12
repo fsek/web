@@ -1,15 +1,5 @@
 <%= form_for([@council,@post]) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">ß
-      <h2><%= pluralize(@post.errors.count, "error") %> hindar posten från att sparas:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/form_errors', current: @post%>
   	<div class="col-md-6">  
 	    <%= f.label 'Titel', :class => 'reg-label'%>
 	  	<div class="input-group margin-bottom-20">

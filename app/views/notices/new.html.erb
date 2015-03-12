@@ -1,0 +1,12 @@
+<% provide(:title, 'Notiser') %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 reg-page">
+      <%= label_tag 'Ny notis',nil, :class => 'reg-header'%>
+      <%= render 'form'%>
+      <hr>
+      <%= link_to('Visa alla notiser',notices_path, class: "btn btn-u")%>
+      <%= link_to('Tillbaka till startsida', root_url, class: "btn btn-u")%>
+    </div>
+  </div>
+</div>

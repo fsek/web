@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Document < ActiveRecord::Base
   belongs_to :profile
   has_attached_file :pdf,:path => ":rails_root/storage/documents/:filename",:url => "/storage/documents/:filename"

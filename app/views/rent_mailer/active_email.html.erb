@@ -1,58 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-  	<h3> Hej <%=@rent.name %></h3>  			
-  			<%if @rent.aktiv == true%>
-  				<p>Din bokning har bokats över utav ett utskott.</p>
-  				<p>Om du tror att någonting har gått fel eller om det är lätt att lösa, svara på mejlet och kontakta bilförmannen.</p>
-  			<%else%>
-  				<p>Din bokning har markerats som aktiv igen.</p>  				
-  			<%end%>
-  			<br>
-			<p>Bokningens uppgifter (ID: <%=@rent.id%>).</p>
-			<table class="table">
-			  <tbody>			   
-			      <tr>
-			      	<td>Namn:</td>
-			      	<td><%=@rent.name + ' ' + @rent.lastname%></td>
-			      </tr>
-			      <tr>
-			      	<td>Epost:</td>
-			      	<td><%=@rent.email%></td>
-			      </tr>
-			      <tr>
-			      	<td>Telefon:</td>
-			      	<td><%=@rent.phone%></td>
-			      </tr>
-			      <tr>
-			      	<td>Datum:</td>
-			      	<td><%=@rent.printTime%></td>
-			      </tr>
-			      <%if @rent.purpose.blank? == false%>			      	
-			      	<tr>
-			      		<td>Syfte:</td>
-			      		<td><%=simple_format(@rent.purpose)%></td>
-			      	</tr>
-			      <%end%>
-			      <%@council = Council.find_by_id(@rent.council_id)%>
-			      <%if @council%>			      	
-			      	<tr>
-			      		<td>Utskott:</td>
-			      		<td><%=link_to(@council.title,council_path(@council))%></td>
-			      	</tr>
-			      <%end%>
-			      <tr>
-			      	<td>Länk:</td>
-			      	<td><%=link_to('Bokning',@rent.p_url)%></td>
-			      </tr			        
-			  </tbody>
-			</table>
-	    	<br>    		
-    		
-	    	<p>Mvh,<br>
-	    	Bilförmannen</p>   
-  </body>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+</head>
+<body>
+<h3> Hej <%= @rent.p_name %></h3>
+<% if !@rent.aktiv %>
+    <p>Din bokning har bokats över utav ett utskott.</p>
+    <p>Om du tror att någonting har gått fel eller om det är lätt att lösa, svara på mejlet och kontakta
+      bilförmannen.</p>
+<% else %>
+    <p>Din bokning har markerats som aktiv igen.</p>
+<% end %>
+<br>
+
+<p>Bokningens uppgifter (ID: <%= @rent.id %>).</p>
+<table class="table">
+  <tbody>
+  <tr>
+    <td>Namn:</td>
+    <td><%= @rent.p_name %></td>
+  </tr>
+  <tr>
+    <td>Epost:</td>
+    <td><%= @rent.email %></td>
+  </tr>
+  <tr>
+    <td>Telefon:</td>
+    <td><%= @rent.phone %></td>
+  </tr>
+  <tr>
+    <td>Datum:</td>
+    <td><%= @rent.p_time %></td>
+  </tr>
+  <% if @rent.purpose.present? %>
+      <tr>
+        <td>Syfte:</td>
+        <td><%= simple_format(@rent.purpose) %></td>
+      </tr>
+  <% end %>
+  <% @council = Council.find_by_id(@rent.council_id) %>
+  <% if @council %>
+      <tr>
+        <td>Utskott:</td>
+        <td><%= link_to(@council.title, council_path(@council)) %></td>
+      </tr>
+  <% end %>
+  <tr>
+    <td>Länk:</td>
+    <td><%= link_to('Bokning', @rent.p_url) %></td>
+  </tr>
+  <% if @rent.access_code.present? %>
+      <tr>
+        <td>Kod:</td>
+        <td><%= @rent.access_code %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<br>
+
+<p>Mvh,<br>
+  Bilförmannen</p>
+</body>
 </html>

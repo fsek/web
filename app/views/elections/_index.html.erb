@@ -1,0 +1,40 @@
+<div class="col-md-12 coming-soon">
+  <h1><%= @election.title %></h1>
+
+  <p><%= simple_format(@election.description) %></p><br>
+
+  <p><%= simple_format(@election.status_text) %></p>
+  <%= render "countdown" %>
+
+  <div class="col-md-3 col-md-offset-3">
+    <%= link_to("Nominering", election_nominations_path, class: "btn btn-election") %>
+  </div>
+  <div class="col-md-3">
+    <%= link_to("Kandidatur", election_candidates_path, class: "btn btn-election") %>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2 coming-soon election">
+    <% if @election.view_status == 1%>
+        <h2>Poster som kommer kunna sökas</h2>
+        <%= render "posttab", grid: @grid_election %>
+        <p>Orangefärgade fält innebär att posten sitter i styrelsen.</p>
+    <% elsif @election.view_status == 2%>
+        <h2>Poster som kan sökas</h2>
+        <%= render "posttab", grid: @grid_election %>
+        <p>Orangefärgade fält innebär att posten sitter i styrelsen.</p>
+    <% elsif @election.view_status == 3%>
+        <h2>Poster som går att söka</h2>
+        <%= render "posttab", grid: @grid_election %>
+        <p>Grönfärgade fält innebär att posten väljs av studierådet.</p>
+        <h2>Poster som inte går att söka längre</h2>
+        <%= render "posttab", grid: @grid_termins %>
+        <p>Orangefärgade fält innebär att posten sitter i styrelsen.</p>
+    <%end%>
+    <div class="panel collapsing" id="views">
+      <%= render @election.posts %>
+    </div>
+
+    <p>Ser något konstigt ut eller blir det fel? Hör av dig
+      till <%= render partial: "contacts/kontakt", locals: {name: 'Spindelmän'} %></p>
+  </div>
+</div>

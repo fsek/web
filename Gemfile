@@ -18,7 +18,16 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 group :production do
 	gem 'therubyracer', platforms: :ruby
-end 
+end
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'mailcatcher'
+end
+group :test do
+  gem 'shoulda-matchers', require: false
+  gem 'database_cleaner'
+end
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -38,8 +47,11 @@ end
 gem 'devise'
 #gem 'font-awesome-sass'
 gem 'font-awesome-rails'
-gem 'breadcrumbs_on_rails'
+
+#gem 'breadcrumbs_on_rails'
 gem 'the_role', '~> 3.0.0'
+
+#gem 'breadcrumbs_on_rails'
 gem "paperclip", "~> 4.1"
 gem 'fullcalendar-rails', '~>2.2.5'
 gem 'icalendar'
@@ -49,6 +61,7 @@ gem 'fancybox2-rails', '~> 0.2.8'
 gem 'jquery-ui-rails'
 gem "wice_grid", '3.4.2'
 gem 'momentjs-rails'
+#gem 'cancancan'
 
 
 if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9

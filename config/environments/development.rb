@@ -27,11 +27,8 @@ Fsek::Application.configure do
   config.action_mailer.default :charset => "utf-8"
   
   config.action_mailer.smtp_settings = {
-  address: "127.0.0.1",
-  port: 25,
-  domain: 'dev.fsektionen.se',  
-  enable_starttls_auto: false,
-  :openssl_verify_mode => 'none'    
+  address: "localhost",
+  port: 1025
   }
 
   # Print deprecation notices to the Rails logger.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171435) do
+ActiveRecord::Schema.define(version: 20410822171442) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -83,7 +83,12 @@ ActiveRecord::Schema.define(version: 20410822171435) do
     t.string   "stil_id"
     t.string   "email"
     t.string   "phone"
+    t.string   "name"
+    t.string   "lastname"
   end
+
+  add_index "candidates", ["post_id"], name: "index_candidates_on_post_id"
+  add_index "candidates", ["profile_id"], name: "index_candidates_on_profile_id"
 
   create_table "contacts", force: true do |t|
     t.string   "name"
@@ -257,6 +262,61 @@ ActiveRecord::Schema.define(version: 20410822171435) do
     t.string   "stil_id"
   end
 
+  create_table "notices", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "public"
+    t.date     "d_publish"
+    t.date     "d_remove"
+    t.integer  "sort"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "oauth_access_grants", force: true do |t|
+    t.integer  "resource_owner_id", null: false
+    t.integer  "application_id",    null: false
+    t.string   "token",             null: false
+    t.integer  "expires_in",        null: false
+    t.text     "redirect_uri",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "revoked_at"
+    t.string   "scopes"
+  end
+
+  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true
+
+  create_table "oauth_access_tokens", force: true do |t|
+    t.integer  "resource_owner_id"
+    t.integer  "application_id"
+    t.string   "token",             null: false
+    t.string   "refresh_token"
+    t.integer  "expires_in"
+    t.datetime "revoked_at"
+    t.datetime "created_at",        null: false
+    t.string   "scopes"
+  end
+
+  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
+  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
+  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true
+
+  create_table "oauth_applications", force: true do |t|
+    t.string   "name",                      null: false
+    t.string   "uid",                       null: false
+    t.string   "secret",                    null: false
+    t.text     "redirect_uri",              null: false
+    t.string   "scopes",       default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true
+
   create_table "page_elements", force: true do |t|
     t.integer  "displayIndex"
     t.boolean  "sidebar"
@@ -350,17 +410,21 @@ ActiveRecord::Schema.define(version: 20410822171435) do
     t.string   "lastname"
     t.string   "email"
     t.string   "phone"
-    t.text     "purpose"
-    t.boolean  "disclaimer"
-    t.boolean  "aktiv",      default: true
+    t.text     "purpose",     default: ""
+    t.boolean  "disclaimer",  default: false
+    t.boolean  "aktiv",       default: true
     t.integer  "council_id"
     t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment"
-    t.string   "status",     default: "Ej bestämd"
-    t.boolean  "service"
+    t.string   "status",      default: "Ej bestämd"
+    t.boolean  "service",     default: false
+    t.string   "access_code"
   end
+
+  add_index "rents", ["d_from"], name: "index_rents_on_d_from"
+  add_index "rents", ["d_til"], name: "index_rents_on_d_til"
 
   create_table "roles", force: true do |t|
     t.string   "name",        null: false

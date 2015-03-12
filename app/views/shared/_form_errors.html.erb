@@ -1,0 +1,10 @@
+<% if current.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= %(#{pluralize(current.errors.count, t(:error))} #{t(:prevent_save)}:)%> </h3>
+      <ul class="list">
+        <% current.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

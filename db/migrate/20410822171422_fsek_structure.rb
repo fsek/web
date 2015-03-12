@@ -150,6 +150,7 @@ class FsekStructure < ActiveRecord::Migration
         t.integer  "sorting_index"
         t.datetime "created_at"
         t.datetime "updated_at"
+        t.string   "category", index: true
       end
     end
     unless table_exists? :images
@@ -175,6 +176,18 @@ class FsekStructure < ActiveRecord::Migration
         t.boolean  "bool1"
         t.datetime "created_at"
         t.datetime "updated_at"
+      end
+    end
+    unless table exists? :menus
+      create_table :menus do |t|
+        t.string "location"
+        t.integer "index"
+        t.string "link"
+        t.string "name"
+        t.boolean "visible"
+        t.boolean "turbolinks", default: true
+        t.boolean "blank_p"
+        t.timestamps
       end
     end
     unless table_exists? :news
@@ -239,23 +252,6 @@ class FsekStructure < ActiveRecord::Migration
         t.datetime "updated_at"
       end
     end
-    unless table_exists? :phrasing_phrase_versions
-      create_table "phrasing_phrase_versions" do |t|
-        t.integer  "phrasing_phrase_id"
-        t.text     "value"
-        t.datetime "created_at"
-        t.datetime "updated_at"
-      end
-    end
-    unless table_exists? :phrasing_phrases
-      create_table "phrasing_phrases" do |t|
-        t.string   "locale"
-        t.string   "key"
-        t.text     "value"
-        t.datetime "created_at"
-        t.datetime "updated_at"
-      end
-    end
     unless table_exists? :posts
       create_table "posts" do |t|
         t.string   "title"
@@ -269,7 +265,8 @@ class FsekStructure < ActiveRecord::Migration
         t.string   "elected_at"
         t.text     "election_text"
         t.boolean  "styrelse"
-        t.boolean  "limitBool",     default: false
+        t.integer  "limit", default: 0
+        t.integer  "recLimit", default: 0
         t.boolean  "car_rent"
       end
     end
@@ -301,7 +298,7 @@ class FsekStructure < ActiveRecord::Migration
     unless table_exists? :rents
       create_table :rents do |t|
         t.datetime "d_from"
-        t.datetime "d_til"        
+        t.datetime "d_til"
         t.string   "name"
         t.string   "lastname"
         t.string   "email"
