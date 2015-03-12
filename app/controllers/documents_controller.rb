@@ -1,32 +1,36 @@
 # encoding:UTF-8
 class DocumentsController < ApplicationController
-  
-  before_filter :authenticate, only: [:update,:edit,:new,:destroy,:create]
-  before_action :set_document, only: [:show,:update,:edit,:destroy]
-  before_action :set_edit  
-  
-  def index
-    if(current_user)
-      @logged_in = true
-      @documents = Document.all
-    else
-      @documents = Document.publik      
-    end
-    @documents_grid = initialize_grid(@documents)
+  before_filter :authenticate, only: [:update, :edit, :new, :destroy, :create]
+  before_action :set_document, only: [:show, :update, :edit, :destroy]
+  before_action :set_edit
+
+  def steering
+    @bylaws = Document.joins(document_group: :document_group_type).where("document_groups_types.name" => "stadga")
+    @regulations = Document.joins(document_group: :document_group_type).where("document_group_types.name" => "reglemente")
+    @policys = Document.joins(document_group: :document_group_type).where("document_group_types.name" => "policy")
+    @rules = Document.joins(document_group: :document_group_type).where("document_group_types.name" => "regler")
+  end
+
+  def protocols
+    
+  end
+
+  def other
+
   end
   
   def new
-    @dokument = Document.new
+    @document = Document.new
   end
   
   def show
-    if(!@dokument.public) && (!current_user)
+    if(!@document.public) && (!current_user)
       redirect_to action: :index
-      @documents = Document.publik
+      @documents = Document.public_records
       @documents_grid = initialize_grid(@documents)
       return
-    elsif((!@dokument.public) && (current_user) && (@dokument.pdf_file_name) || (@dokument.public))
-      send_file(@dokument.pdf.path, filename:@dokument.pdf_file_name, type: "application/pdf",disposition: 'inline',x_sendfile: true)
+    elsif((!@document.public) && (current_user) && (@document.pdf_file_name) || (@document.public))
+      send_file(@document.pdf.path, filename:@document.pdf_file_name, type: "application/pdf",disposition: 'inline',x_sendfile: true)
       return
     end
   end
@@ -37,11 +41,11 @@ class DocumentsController < ApplicationController
     @user = current_user
     if(@user)
       if(@user.profile)
-        @dokument = Document.new(document_params) 
-        @dokument.update(profile_id: @user.profile.id)
-        @dokument.pdf = params[:document][:pdf]       
+        @document = Document.new(document_params) 
+        @document.update(profile_id: @user.profile.id)
+        @document.pdf = params[:document][:pdf]       
         respond_to do |format|
-          if @dokument.save
+          if @document.save
             format.html { redirect_to documents_path, :notice => 'Dokumentet skapades!' }            
           else
             format.html { render action: "new" }            
@@ -52,19 +56,19 @@ class DocumentsController < ApplicationController
   end
   
   def update  
-    @dokument.update_attributes(document_params)        
+    @document.update_attributes(document_params)        
     respond_to do |format|
-      if @dokument.save
-        format.html { redirect_to edit_document_path(@dokument), :notice => 'Dokumentet uppdaterades.' }
-        format.json { render :json => @dokument, :status => :created, :location => @dokument }
+      if @document.save
+        format.html { redirect_to edit_document_path(@document), :notice => 'Dokumentet uppdaterades.' }
+        format.json { render :json => @document, :status => :created, :location => @document }
       else
         format.html { render :action => "edit" }
-        format.json { render :json => @dokument.errors, :status => :unprocessable_entity }
+        format.json { render :json => @document.errors, :status => :unprocessable_entity }
       end        
     end
   end
   def destroy    
-    @dokument.destroy
+    @document.destroy
     respond_to do |format|
       format.html { redirect_to documents_url }
       format.json { head :no_content }
@@ -78,7 +82,7 @@ class DocumentsController < ApplicationController
       redirect_to root_path
     end
     def set_document
-      @dokument = Document.find_by_id(params[:id])
+      @document = Document.find_by_id(params[:id])
     end    
     def set_edit
       if(current_user) && (current_user.moderator?(:dokument))

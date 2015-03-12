@@ -88,7 +88,13 @@ Fsek::Application.routes.draw do
 
     resources :news ,path:  :nyheter
 
-    resources :documents, path: :dokument
+    resources :documents, path: :dokument, except: [:index] do
+      collection do
+        get :styrdokument,  as: :steering,  to: :steering
+        get :handlingar,    as: :protocols, to: :protocols
+        get :allmana,       as: :other,     to: :other
+      end
+    end
 
 
     namespace :admin do

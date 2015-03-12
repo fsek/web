@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171442) do
+ActiveRecord::Schema.define(version: 20410822171449) do
 
   create_table "album_categories", force: true do |t|
     t.string   "name"
@@ -93,6 +93,20 @@ ActiveRecord::Schema.define(version: 20410822171442) do
     t.integer  "contact_id"
   end
 
+  create_table "document_group_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "document_groups", force: true do |t|
+    t.string   "name"
+    t.date     "production_date"
+    t.integer  "document_group_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "documents", force: true do |t|
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
@@ -100,12 +114,14 @@ ActiveRecord::Schema.define(version: 20410822171442) do
     t.datetime "pdf_updated_at"
     t.string   "title"
     t.boolean  "public"
-    t.boolean  "download"
-    t.string   "category"
-    t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "document_group_id"
+    t.date     "production_date"
+    t.date     "revision_date"
   end
+
+  add_index "documents", ["document_group_id"], name: "index_documents_on_document_group_id"
 
   create_table "elections", force: true do |t|
     t.datetime "start"
@@ -334,6 +350,22 @@ ActiveRecord::Schema.define(version: 20410822171442) do
 
   create_table "subcategories", force: true do |t|
     t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "taggings", force: true do |t|
+    t.integer  "document_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "taggings", ["document_id"], name: "index_taggings_on_document_id"
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

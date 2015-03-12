@@ -1,0 +1,11 @@
+.sky-form .toggle i:after {
+  content: 'NEJ' !important;
+}
+
+.sky-form .toggle input:checked + i:after {
+  content: 'JA' !important;
+}
+
+.sky-form .button {
+  background-color: #eb7125;
+}

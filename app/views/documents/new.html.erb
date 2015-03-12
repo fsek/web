@@ -1,9 +1,59 @@
 <div class="container">
-	<div class="row">
+  <div class="row">
+     <div class="col-md-12">
+        <form action="#" id="sky-form" class="sky-form">
+          <header>Ladda upp nytt dokument</header>
+            
+          <fieldset>                  
+            <div class="row">
+              <section class="col col-6">
+                <label class="input">
+                  <i class="icon-append fa fa-file-o"></i>
+                  <input type="text" name="fname" placeholder="Visat filnamn">
+                </label>
+
+                <label class="select">
+                  <select name="month">
+                    <option value="0" selected disabled>Kategori</option>
+                    <option value="1">Stadga</option>
+                    <option value="1">Reglemente</option>
+                    <option value="3">Policy</option>
+                    <option value="4">Regeldokument</option>
+                    <option value="5">Styrelsemöten</option>
+                    <option value="5">Årsmöte</option>
+                    <option value="5">Övrigt</option>
+                  </select>
+                  <i></i>
+                </label>
+              
+                <label for="file" class="input input-file">
+                  <div class="button bg-color-orange">
+                    <input type="file" name="file" onchange="this.parentNode.nextSibling.value = this.value;">
+                    Välj fil
+                  </div>
+                  <input type="text" placeholder="Dokument att ladda upp (endast pdf)" readonly>
+                </label>
+
+                <label class="toggle">
+                  <input type="checkbox" name="checkbox-toggle-1" checked>
+                  <i></i>Publikt dokument (syns för icke-medlemmar)?
+                </label>
+
+              </section>
+
+            </div>
+           
+        </fieldset>
+                 
+      <footer>
+        <button type="submit" class="btn-u">Ladda upp</button>
+      </footer>
+    </form>         
+
 		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag 'Nytt dokument',nil, :class => 'reg-header'%>			
-			<%=render partial: "form"%>
-			<%= link_to 'Tillbaka till start', root_url %>
+			<%#= label_tag 'Nytt dokument',nil, :class => 'reg-header'%>			
+			<%#=render partial: "form"%>
+			<%#= link_to 'Tillbaka till start', root_url %>
 		</div>
 	</div>
 </div>

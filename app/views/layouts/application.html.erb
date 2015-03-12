@@ -80,9 +80,9 @@ $(document).ready(bottom)
 <!--=== End Header ===-->
 
 <!--=== Breadcrumbs ===-->
-<div class="breadcrumbs" style="border-bottom: 0px solid #333;">
+<div class="breadcrumbs">
   <div class="container">
-	
+    <%= yield :breadcrumbs %> 	
   </div>
 </div>
 <!--=== End Breadcrumbs ===-->
@@ -98,9 +98,8 @@ $(document).ready(bottom)
 <%= yield :pre_content %>
 
 <div class="container content">
-  <div class="row magazine-page">    	
+  <div class="row">    	
     <!-- Begin Content -->
-    <div class="col-md-12">
 		<% if notice %>
 			<div class="alert alert-info">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -113,10 +112,9 @@ $(document).ready(bottom)
 			  <strong>Fel:</strong> <%= alert %>
 		  </div> 
 		<% end %>		
-	  	<%= yield %>      
-      	<%= yield :role_main %>
-      	<%= yield :role_sidebar %>
-    </div>
+	 	<%= yield %>      
+   	<%= yield :role_main %>
+   	<%= yield :role_sidebar %>
   </div><!-- /row -->
 </div><!--/container-->     
 <!-- End Content Part -->
