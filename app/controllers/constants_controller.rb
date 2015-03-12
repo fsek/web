@@ -64,13 +64,14 @@ class ConstantsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_constant
-      @constant = Constant.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def constant_params
-      params.require(:constant).permit(:name, :value)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_constant
+    @constant = Constant.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def constant_params
+    params.require(:constant).permit(:name, :value)
+  end
 end
