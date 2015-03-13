@@ -55,7 +55,7 @@ class GithookController < ApplicationController
     signature = 'sha1=' + OpenSSL::HMAC.hexdigest(
       OpenSSL::Digest.new('sha1'),
       Constant.get('github_secret_token'), payload_body)
-    return halt 500, "Signatures didn't match!" unless
+    render nothing: true, status: 500 unless
       Rack::Utils.secure_compare(signature, request.env['HTTP_X_HUB_SIGNATURE'])
   end
 end

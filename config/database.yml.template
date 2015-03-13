@@ -21,6 +21,6 @@ production:
   encoding: utf8
   database: db/fsek_production
   username: root
-  password: f4ever98
+  password: 
   host: localhost
   socket: /var/run/mysqld/mysqld.sock
