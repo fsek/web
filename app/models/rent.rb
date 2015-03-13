@@ -29,7 +29,7 @@ class Rent < ActiveRecord::Base
 
   # To scope up the ones not marked as inactive
   # /d.wessman
-  scope :active, -> { where(aktiv: true).where.not(status:'Nekad')}
+  scope :active, -> { where(aktiv: true).where.not(status: "Nekad") }
 
   # To scope all rents between two dates
   # /d.wessman
@@ -92,7 +92,7 @@ class Rent < ActiveRecord::Base
 
   # Update only if authorized
   # /d.wessman
-  def update_with_authorization(params,user)
+  def update_with_authorization(params, user)
     if (user.present? && user.profile == self.profile) || (authorize(params[:access_code]))
       return update(params)
     else
@@ -107,10 +107,10 @@ class Rent < ActiveRecord::Base
     st = self.status
     self.attributes = params;
     self.save(validation: false)
-    if(ak == true && !self.aktiv)
+    if (ak == true && !self.aktiv)
       self.send_active_email
     end
-    if(st != self.status)
+    if (st != self.status)
       self.send_status_email
     end
     return true
@@ -121,9 +121,11 @@ class Rent < ActiveRecord::Base
   def send_email
     RentMailer.rent_email(self).deliver
   end
+
   def send_active_email
     RentMailer.active_email(self).deliver
   end
+
   def send_status_email
     RentMailer.status_email(self).deliver
   end
@@ -198,9 +200,9 @@ class Rent < ActiveRecord::Base
 
   # Prepares a new rent with user set if it exists
   # /d.wessman
-  def self.new_with_status(rent_params,user)
+  def self.new_with_status(rent_params, user)
     r = Rent.new(rent_params)
-    if(user.present?)
+    if (user.present?)
       r.profile = user.profile
       r.status = "Bekräftad"
     else
@@ -214,7 +216,7 @@ class Rent < ActiveRecord::Base
   # Print name
   # /d.wessman
   def p_name
-      %(#{self.name} #{self.lastname})
+    %(#{self.name} #{self.lastname})
   end
 
   # Prints the date of the rent in a readable way, should be localized
@@ -232,6 +234,7 @@ class Rent < ActiveRecord::Base
   def p_url
     Rails.application.routes.url_helpers.rent_url(id, host: PUBLIC_URL)
   end
+
   def p_path
     Rails.application.routes.url_helpers.rent_path(id)
   end
