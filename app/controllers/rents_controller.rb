@@ -87,5 +87,4 @@ class RentsController < ApplicationController
     params.require(:rent).permit(:d_from, :d_til, :name, :lastname, :email, :phone,
                                  :purpose, :disclaimer, :council_id, :comment, :access_code)
   end
-
 end
