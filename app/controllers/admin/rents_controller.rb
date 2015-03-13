@@ -60,7 +60,9 @@ class Admin::RentsController < ApplicationController
   end
 
   def rent_params
-    params.require(:rent).permit(:d_from, :d_til, :name, :lastname, :email, :phone, :purpose, :disclaimer,
-                                 :council_id, :comment, :access_code, :status, :aktiv, :comment, :service)
+    params.require(:rent).permit(:d_from, :d_til, :name, :lastname, :email,
+                                 :phone, :purpose, :disclaimer, :council_id,
+                                 :comment, :access_code, :status, :aktiv,
+                                 :service)
   end
 end

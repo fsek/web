@@ -106,7 +106,7 @@ class Rent < ActiveRecord::Base
   def update_without_validation(params)
     ak = aktiv
     st = status
-    attributes = params
+    self.attributes = params
     save(validate: false)
     if ak == !aktiv
       send_active_email
