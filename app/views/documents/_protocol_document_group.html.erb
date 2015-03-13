@@ -1,5 +1,5 @@
 <tr>
-  <td><%= document_group.name %></td>
+  <td><%= link_to document_group.name, document_group %></td>
   <td><%= document_group.production_date || '-' %></td>
   <td><%= render partial: 'protocol_document', collection: document_group.find_documents_tagged_with('handling'), as: :document, spacer_template: 'shared/comma' %></td>
   <td><%= render partial: 'protocol_document', collection: document_group.find_documents_tagged_with('protokoll'), as: :document, spacer_template: 'shared/comma' %></td>
