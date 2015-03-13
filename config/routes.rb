@@ -98,6 +98,7 @@ Fsek::Application.routes.draw do
 
     # Documents page
     resources :tags, only: [:show]
+    resources :document_group_types
     resources :document_groups, except: [:index, :edit]
     resources :documents, path: :dokument, except: [:index] do
       collection do

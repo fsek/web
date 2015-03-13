@@ -2,7 +2,7 @@
   <td><%= document_group.type_name %></td>
   <td><%= link_to document_group.name, document_group %></td>
   <td><%= document_group.production_date || '-' %></td>
-  <td><%= render partial: 'protocol_document', collection: document_group.documents, as: :document, spacer_template: 'shared/comma' %></td>
+  <td><%= render partial: 'documents/protocol_document', collection: document_group.documents, as: :document, spacer_template: 'shared/comma' %></td>
   <td><%= document_group.updated_at %></td>
 </tr>
 

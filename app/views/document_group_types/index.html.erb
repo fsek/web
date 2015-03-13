@@ -1,0 +1,28 @@
+<%= content_for :breadcrumbs do %>
+  <h1 class="pull-left">Typer av dokumentsamlingar</h1>
+  <ul class="pull-right breadcrumb">
+    <li><a href="index.html">Hem</a></li>
+    <li><a href="">Administration</a></li>
+    <li class="active">Typer av dokumentsamlingar</li>
+  </ul>
+<% end %>
+
+<div class="col-md-12">
+  <section>
+    <header class="headline headline-md"><h3>Typer av dokumentsamlingar</h3></header>
+    <p>
+      Nedan finner du alla dokumentsamlingstyper som är möjliga att använda vid skapandet av dokumentsamlingar.
+    </p>
+    <p>
+      <%= render(partial: 'type', collection: @document_group_types, as: :type, spacer_template: 'shared/comma') || 'Inga typer inladga i systemet' %>
+    </p>
+  </section>
+
+  <section>
+    <p>
+      <%= link_to 'Skapa ny typ av dokumentsamling', new_document_group_type_path, class: 'btn btn-u' %>
+    </p>
+  </section>
+</div>
+
+

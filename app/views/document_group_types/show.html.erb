@@ -1,0 +1,31 @@
+<%= content_for :breadcrumbs do %>
+  <h1 class="pull-left">Dokumentsamlingstypen <i><%= @document_group_type.name %></i></h1>
+  <ul class="pull-right breadcrumb">
+    <li><a href="index.html">Hem</a></li>
+    <li><a href="">Administration</a></li>
+    <li><a href="">Typer av dokumentsamlingar</a></li>
+    <li class="active"><%= @document_group_type.name %></li>
+  </ul>
+<% end %>
+
+<div class="col-md-12">
+  <section>
+    <header class="headline headline-md"><h3>Dokumentsamlng av denna typ</h3></header>
+    <p>
+      Nedan finner du alla dokumentsamlingar med typen <%= @document_group_type.name %>.
+    </p>
+    <p>
+      <%= render_other_table(@document_group_type.document_groups) %>
+    </p>
+  </section>
+
+  <section>
+    <p>
+      <%= link_to 'Redigera dokumentsamlingstyp', edit_document_group_type_path(@document_group_type), class: 'btn btn-u' %>
+      <%= link_to 'Tag bort dokumentsamlingstyp', @document_group_type, method: :delete, data: { confirm: 'Är du säker?' }, class: 'btn btn-u' %>
+      <%= link_to 'Tillbaka', :back, class: 'btn btn-u' %>
+    </p>
+  </section>
+</div>
+
+
