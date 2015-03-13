@@ -27,9 +27,9 @@ class Rent < ActiveRecord::Base
   # /d.wessman
   scope :councils, -> { where.not(council_id: nil) }
 
-  # To scope up the ones not marked as service or inactive
+  # To scope up the ones not marked as inactive
   # /d.wessman
-  scope :active, -> { where(aktiv: true, service: false).where.not(status:'Nekad')}
+  scope :active, -> { where(aktiv: true).where.not(status: 'Nekad') }
 
   # To scope all rents between two dates
   # /d.wessman
@@ -92,7 +92,7 @@ class Rent < ActiveRecord::Base
 
   # Update only if authorized
   # /d.wessman
-  def update_with_authorization(params,user)
+  def update_with_authorization(params, user)
     if (user.present? && user.profile == self.profile) || (authorize(params[:access_code]))
       return update(params)
     else
@@ -107,10 +107,10 @@ class Rent < ActiveRecord::Base
     st = self.status
     self.attributes = params;
     self.save(validation: false)
-    if(ak == true && !self.aktiv)
+    if ak == !aktiv
       self.send_active_email
     end
-    if(st != self.status)
+    if st != status
       self.send_status_email
     end
     return true
@@ -121,9 +121,11 @@ class Rent < ActiveRecord::Base
   def send_email
     RentMailer.rent_email(self).deliver
   end
+
   def send_active_email
     RentMailer.active_email(self).deliver
   end
+
   def send_status_email
     RentMailer.status_email(self).deliver
   end
@@ -138,10 +140,8 @@ class Rent < ActiveRecord::Base
   # /d.wessman
   def authorize(access)
     if ((access.present?) && (self.access_code.present?) && (self.access_code == access))
-      puts 'access true'
       return true
     else
-      puts 'access fails'
       errors.add('Auktorisering', 'misslyckades, kontrollera ev. kod.')
       return false
     end
@@ -198,9 +198,9 @@ class Rent < ActiveRecord::Base
 
   # Prepares a new rent with user set if it exists
   # /d.wessman
-  def self.new_with_status(rent_params,user)
+  def self.new_with_status(rent_params, user)
     r = Rent.new(rent_params)
-    if(user.present?)
+    if user.present?
       r.profile = user.profile
       r.status = "Bekräftad"
     else
@@ -214,16 +214,16 @@ class Rent < ActiveRecord::Base
   # Print name
   # /d.wessman
   def p_name
-      %(#{self.name} #{self.lastname})
+    %(#{name} #{lastname})
   end
 
   # Prints the date of the rent in a readable way, should be localized
   # /d.wessman
   def p_time
-    if (self.d_from.day == self.d_til.day)
-      %(#{self.d_from.strftime("%H:%M")} till #{self.d_til.strftime("%H:%M")} den #{self.d_from.strftime("%d/%m")})
+    if (d_from.day == d_til.day)
+      %(#{d_from.strftime('%H:%M')} till #{d_til.strftime('%H:%M')} den #{d_from.strftime('%d/%m')})
     else
-      %(#{self.d_from.strftime("%H:%M %d/%m")} till #{self.d_til.strftime("%H:%M %d/%m")})
+      %(#{d_from.strftime('%H:%M %d/%m')} till #{d_til.strftime('%H:%M %d/%m')})
     end
   end
 
@@ -232,6 +232,7 @@ class Rent < ActiveRecord::Base
   def p_url
     Rails.application.routes.url_helpers.rent_url(id, host: PUBLIC_URL)
   end
+
   def p_path
     Rails.application.routes.url_helpers.rent_path(id)
   end
@@ -239,17 +240,17 @@ class Rent < ActiveRecord::Base
   # Prints email together with name, can be used as 'to' in an email
   # /d.wessman
   def p_email
-    if self.p_name.present?
-      %("#{self.p_name}" <#{self.email}>)
+    if p_name.present?
+      %("#{p_name}" <#{email}>)
     else
-      self.email
+      email
     end
   end
 
   # Custom json method used for FullCalendar
   # /d.wessman
   def as_json(options = {})
-    if (self.service)
+    if service
       {
           :id => self.id,
           :title => "Service",
