@@ -21,7 +21,11 @@ class DocumentsController < ApplicationController
   end
   
   def new
-    @document = Document.new document_group: DocumentGroup.find(params[:document_group]), hidden: false, public: true
+    @document = Document.new
+    @document.document_group = DocumentGroup.find(params[:document_group]) 
+    @document.hidden = false
+    @document.public = true
+    @document.all_tags = params[:tag] if params[:tag].present?
   end
   
   def show

@@ -10,7 +10,7 @@
     <% if doc_type == :steering %>
       <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
         <% if @document_group.blank? %>
-          <li class="list-group-item"><%= link_to 'Skapa styrdokumentsamling', new_document_group_path %></li>
+          <li class="list-group-item"><%= link_to 'Skapa styrdokumentsamling', new_document_group_path(type: 'styrdokument') %></li>
         <% else %>
           <li class="list-group-item"><%= link_to 'Redigera styrdokument', @document_group %></li>
         <% end %>
@@ -40,7 +40,8 @@
 
     <% if doc_type == :protocols %>
       <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
-        <li class="list-group-item"><%= link_to 'Skapa ny dokumentsamling (möte)', new_document_group_path %></li>
+        <li class="list-group-item"><%= link_to 'Skapa nytt sektionsmöte', new_document_group_path(type: 'sektionsmöte') %></li>
+        <li class="list-group-item"><%= link_to 'Skapa nytt styrelsemöte', new_document_group_path(type: 'styrelsemöte') %></li>
       </ul>
 
       <ul>
@@ -76,7 +77,6 @@
         </li>
       </ul>
     <% end %>
-
     
   <% end %>
 </div>

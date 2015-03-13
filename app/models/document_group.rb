@@ -2,6 +2,8 @@ class DocumentGroup < ActiveRecord::Base
   has_many :documents
   belongs_to :document_group_type
 
+  delegate :name, to: :document_group_type, prefix: :type
+
   validates :name, presence: true, uniqueness: true
   validates :document_group_type, presence: true
   validate :only_one_steering_docs
