@@ -17,6 +17,7 @@ gem 'mysql2'
 gem 'paperclip', "~> 4.1"
 gem 'sass-rails', '~> 4.0.3'
 gem 'sqlite3'
+
 gem 'the_role', '~> 3.0.0'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
@@ -35,6 +36,7 @@ end
 group :test do
   gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
+  gem 'codeclimate-test-reporter', require: false
 end
 
 if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9

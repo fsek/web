@@ -8,16 +8,17 @@ class ApplicationController < ActionController::Base
   after_action :get_commit
   after_action :menues
 
-
   def access_denied
     flash[:error] = t('the_role.access_denied')
     redirect_to(:back)
 
   rescue ActionController::RedirectBackError
     redirect_to root_path
+
   end
 
   protected
+
   def configure_permitted_devise_parameters
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:username, :password, :remember_me) }
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation) }
@@ -40,7 +41,6 @@ class ApplicationController < ActionController::Base
         locale = lang if langs.include? lang
       end
     end
-
     I18n.locale = locale
     redirect_to(:back) if params[:locale]
   end
@@ -52,11 +52,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   def menues
     menu = Menu.where(visible: true)
     @menu_sektionen = menu.where(location: "Sektionen")
     @menu_medlemmar = menu.where(location: "För medlemmar")
     @menu_foretag = menu.where(location: "För företag")
     @menu_kontakt = menu.where(location: "Kontakt")
+  end
+
+  def verify_admin
+    flash[:error] = t('the_role.access_denied')
+    redirect_to(:root) unless (current_user) && (current_user.admin?)
   end
 end

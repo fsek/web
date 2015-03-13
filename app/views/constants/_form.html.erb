@@ -1,0 +1,25 @@
+<%= form_for(@constant) do |f| %>
+  <% if @constant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@constant.errors.count, "error") %> prohibited this constant from being saved:</h2>
+
+      <ul>
+      <% @constant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.text_field :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

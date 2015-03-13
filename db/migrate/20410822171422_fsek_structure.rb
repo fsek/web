@@ -178,7 +178,7 @@ class FsekStructure < ActiveRecord::Migration
         t.datetime "updated_at"
       end
     end
-    unless table exists? :menus
+    unless table_exists? :menus
       create_table :menus do |t|
         t.string "location"
         t.integer "index"
