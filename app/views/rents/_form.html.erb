@@ -16,7 +16,7 @@
       <div class="after_disclaimer" style="display:none;">
         <div class="headline headline-md"><h2>Uppgifter</h2></div>
         <%= render 'shared/form_errors', current: @rent %>
-        <% if current_user %>Informationen tas från din profil, håll det gärna
+        <% if current_user %>Informationen tas från din profil, håll den gärna
             uppdaterad <%= link_to("här", edit_profile_path(current_user.profile)) %>.
         <% end %>
         <div class="margin-bottom-20">

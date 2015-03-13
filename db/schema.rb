@@ -13,19 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20410822171443) do
 
-  create_table "album_categories", force: true do |t|
-    t.string   "name"
-    t.text     "text"
-    t.boolean  "visible"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "album_categories_albums", id: false, force: true do |t|
-    t.integer "album_id"
-    t.integer "album_category_id"
-  end
-
   create_table "albums", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -40,14 +27,40 @@ ActiveRecord::Schema.define(version: 20410822171443) do
     t.integer  "photo_category_id"
   end
 
+  create_table "albums_categories", id: false, force: true do |t|
+    t.integer "album_id"
+    t.integer "category_id"
+  end
+
+  add_index "albums_categories", ["album_id", "category_id"], name: "index_albums_categories_on_album_id_and_category_id", unique: true
+  add_index "albums_categories", ["category_id"], name: "index_albums_categories_on_category_id"
+
   create_table "albums_images", id: false, force: true do |t|
     t.integer "album_id"
     t.integer "image_id"
   end
 
-  create_table "albums_subcategories", id: false, force: true do |t|
-    t.integer "album_id"
-    t.integer "subcategory_id"
+  create_table "cafe_works", force: true do |t|
+    t.datetime "work_day"
+    t.integer  "pass"
+    t.integer  "lp"
+    t.integer  "lv"
+    t.integer  "profile_id"
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "phone"
+    t.string   "email"
+    t.boolean  "utskottskamp"
+    t.string   "access_code"
+    t.integer  "d_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "remove_worker"
+  end
+
+  create_table "cafe_works_councils", id: false, force: true do |t|
+    t.integer "cafe_work_id"
+    t.integer "council_id"
   end
 
   create_table "candidates", force: true do |t|
@@ -66,6 +79,15 @@ ActiveRecord::Schema.define(version: 20410822171443) do
 
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id"
   add_index "candidates", ["profile_id"], name: "index_candidates_on_profile_id"
+
+  create_table "categories", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "typ"
+    t.boolean  "sub",         default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "constants", force: true do |t|
     t.string   "name"
@@ -261,46 +283,6 @@ ActiveRecord::Schema.define(version: 20410822171443) do
     t.datetime "updated_at"
   end
 
-  create_table "oauth_access_grants", force: true do |t|
-    t.integer  "resource_owner_id", null: false
-    t.integer  "application_id",    null: false
-    t.string   "token",             null: false
-    t.integer  "expires_in",        null: false
-    t.text     "redirect_uri",      null: false
-    t.datetime "created_at",        null: false
-    t.datetime "revoked_at"
-    t.string   "scopes"
-  end
-
-  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true
-
-  create_table "oauth_access_tokens", force: true do |t|
-    t.integer  "resource_owner_id"
-    t.integer  "application_id"
-    t.string   "token",             null: false
-    t.string   "refresh_token"
-    t.integer  "expires_in"
-    t.datetime "revoked_at"
-    t.datetime "created_at",        null: false
-    t.string   "scopes"
-  end
-
-  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
-  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
-  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true
-
-  create_table "oauth_applications", force: true do |t|
-    t.string   "name",                      null: false
-    t.string   "uid",                       null: false
-    t.string   "secret",                    null: false
-    t.text     "redirect_uri",              null: false
-    t.string   "scopes",       default: "", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true
-
   create_table "page_elements", force: true do |t|
     t.integer  "displayIndex"
     t.boolean  "sidebar"
@@ -415,12 +397,6 @@ ActiveRecord::Schema.define(version: 20410822171443) do
     t.string   "title",       null: false
     t.text     "description", null: false
     t.text     "the_role",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "subcategories", force: true do |t|
-    t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -96,6 +96,7 @@ class Rent < ActiveRecord::Base
     if (user.present? && user.profile == self.profile) || (authorize(params[:access_code]))
       return update(params)
     else
+      errors.add('Auktorisering', 'misslyckades, du har inte rättighet eller ev. fel kod.')
       return false
     end
   end
@@ -103,15 +104,15 @@ class Rent < ActiveRecord::Base
   # Update without validation
   # /d.wessman
   def update_without_validation(params)
-    ak = self.aktiv
-    st = self.status
-    self.attributes = params;
-    self.save(validation: false)
+    ak = aktiv
+    st = status
+    self.attributes = params
+    save(validate: false)
     if ak == !aktiv
-      self.send_active_email
+      send_active_email
     end
     if st != status
-      self.send_status_email
+      send_status_email
     end
     return true
   end
@@ -142,7 +143,6 @@ class Rent < ActiveRecord::Base
     if ((access.present?) && (self.access_code.present?) && (self.access_code == access))
       return true
     else
-      errors.add('Auktorisering', 'misslyckades, kontrollera ev. kod.')
       return false
     end
   end

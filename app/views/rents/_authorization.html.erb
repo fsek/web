@@ -1,12 +1,11 @@
-<%=form_for(@rent, url:  authorize_rent_path(@rent), remote: true ) do |f|%>
-    <%= render 'shared/form_errors', current: @rent%>
-
-    <%= f.label 'Kod', class: 'reg-label'%><br>
+<%= form_for(@rent, url: authorize_rent_path(@rent), remote: true) do |f| %>
+    <%= render 'shared/form_errors', current: @rent %>
+    <%= f.label 'Kod', class: 'reg-label' %><br>
     <span id="status"></span>
     <div class="margin-bottom-20">
-      <%= f.text_field :access_code, value: nil,class: 'form-control'%>
+      <%= f.text_field :access_code, value: nil, class: 'form-control' %>
     </div>
     <div class="margin-bottom-20">
-      <%= f.submit "Auktorisera",class: 'btn-u pull-right' %>
+      <%= f.submit "Auktorisera", class: 'btn-u pull-right' %>
     </div>
-<%end%>
+<% end %>

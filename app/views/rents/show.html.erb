@@ -1,16 +1,16 @@
 <% provide(:title, 'Bilbokning') %>
-<div class="col-md-6 col-md-offset-3 reg-page">
-    <%if @rent%>
-        <%= render @rent%>
-        <div class="row">
-          <%if @rent.owner?(current_user) || @rent.no_profile?%>
-              <%=link_to('Redigera',edit_rent_path(@rent),class: 'btn btn-u')%>
-              <hr>
-          <%end%>
-          <%=link_to("Startsida för Bilbokning",:bil,class:"btn btn-u")%>
-          <% if current_user && current_user.moderator?(:bil) %>
-              <%= link_to('Administrera', admin_rent_path(@rent), class: 'btn btn-u') %>
-          <% end %>
-        </div>
-	<%end%>
+<div class="col-md-8 col-md-offset-2 reg-page">
+  <% if @rent %>
+      <%= render @rent %>
+      <div class="row">
+        <% if @rent.owner?(current_user) || @rent.no_profile? %>
+            <%= link_to('Redigera', edit_rent_path(@rent), class: 'btn btn-u') %>
+            <hr>
+        <% end %>
+        <%= link_to("Startsida för Bilbokning", :bil, class: "btn btn-u") %>
+        <% if current_user && current_user.moderator?(:bil) %>
+            <%= link_to('Administrera', admin_rent_path(@rent), class: 'btn btn-u') %>
+        <% end %>
+      </div>
+  <% end %>
 </div>

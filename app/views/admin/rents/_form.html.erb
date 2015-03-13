@@ -1,7 +1,7 @@
 <%= form_for([:admin, @rent]) do |f| %>
     <%= render 'shared/form_errors', current: @rent %>
     <div class="center">
-      <h2>Bilbokning - <%= (@rent.service) ? "Service" : @rent.status %>
+      <h2><%= (@rent.service) ? "Service" : @rent.status %>
         - <%= (@rent.aktiv) ? "Aktiv" : "Inaktiv" %></h2>
 
       <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 center">
@@ -37,14 +37,6 @@
         <div class="margin-bottom-20">
           <%= f.datetime_select :d_til, minute_step: 10, class: 'form-control' %>
         </div>
-        <% if (@rents)&&(@rents.count > 0) %>
-            <div class="margin-bottom-20">
-              <strong>Bokningar (från idag + 30 dagar):</strong>
-              <% @rents.each do |r| %>
-                  <p><%= r.p_time %></p>
-              <% end %>
-            </div>
-        <% end %>
         <%= f.label 'Utskott', class: 'reg-label' %>
         <div class="margin-bottom-20">
           <%= f.select :council_id,
@@ -52,15 +44,26 @@
                        include_blank: true,
                        class: "form-control listBox" %>
         </div>
-        <strong>Utskottsbokning:</strong>
-        <ul class="list">
-          <li>får <strong>endast</strong> göras åt utskottet</li>
-          <li>kan boka över en bokning, som börjar minst 5 dagar fram i tiden.</li>
-        </ul>
-      </div>
-
-      <div class="row">
-        <%= f.submit "Spara", class: "btn btn-u", data: {confirm: 'Som administratör bokar man över vad som helst (utan att påverka bokningen), ingenting valideras.'} %>
+        <div class="col-md-6">
+          <%= f.label :status, class: 'reg-label' %>
+          <div class="margin-bottom-20">
+            <%= f.select :status, options_for_select([["Ej bestämd"], ["Bekräftad"], ["Nekad"]],
+                                                     @rent.status), {}, class: "listBox form-control" %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <%= f.label 'Aktiv', class: 'reg-label' %>
+          <div class="margin-bottom-20">
+            <%= f.check_box :aktiv %>
+          </div>
+        </div>
+        <div class="margin-bottom-20">
+          <%= f.label 'Kommentar (vid nekad bokning)', class: 'reg-label' %><br>
+          <%= f.text_area :comment, class: 'form-control' %>
+        </div>
+        <div class="row">
+          <%= f.submit "Spara", class: "btn btn-u", data: {confirm: 'Som administratör bokar man över vad som helst (utan att påverka bokningen), ingenting valideras.'} %>
+        </div>
       </div>
     </div>
 <% end %>
