@@ -7,15 +7,76 @@
 
   <% if current_user && current_user.moderator?(:documents) %>
     <header class="headline headline-md"><h3>Adminverktyg</h3></header>
-    <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
-
-      <% if type = :steering %>
+    <% if doc_type == :steering %>
+      <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
         <% if @document_group.blank? %>
-          <li class="list-group-item"><%= link_to 'Skapa styrdokumentsamling', new_document_group_path() %></li>
+          <li class="list-group-item"><%= link_to 'Skapa styrdokumentsamling', new_document_group_path %></li>
         <% else %>
-          <li class="list-group-item"><%= link_to 'Redigera styrdokument', edit_document_group_path(@document_group) %></li>
+          <li class="list-group-item"><%= link_to 'Redigera styrdokument', @document_group %></li>
         <% end %>
-      <% end %>
-    </ul>
+      </ul>
+
+      <ul>
+        <li>
+          För att kunna ladda upp dokument här behöver det finnas en dokumentsamling av typen <strong>styrdokument</strong>.
+        </li>
+        <li>
+          Endast dokument som laddas upp till den dokumentsamlingen kommer att visas här.
+        </li>
+        <li>
+          Under rubriken <strong>stagda</strong> visas dokument med taggen <%= link_to 'stadga', nil, class: 'document-tag btn btn-u' %>
+        </li>
+        <li>
+          Under rubriken <strong>reglemente</strong> visas dokument med taggen <%= link_to 'reglemente', nil, class: 'document-tag btn btn-u' %>
+        </li>
+        <li>
+          Under rubriken <strong>policys</strong> visas dokument med taggen <%= link_to 'policy', nil, class: 'document-tag btn btn-u' %>
+        </li>
+        <li>
+          Under rubriken <strong>regeldokument</strong> visas dokument med taggen <%= link_to 'regel', nil, class: 'document-tag btn btn-u' %>
+        </li>
+      </ul>
+    <% end %>
+
+    <% if doc_type == :protocols %>
+      <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
+        <li class="list-group-item"><%= link_to 'Skapa ny dokumentsamling (möte)', new_document_group_path %></li>
+      </ul>
+
+      <ul>
+        <li>
+          Endast dokumentsamlingar av typen <strong>sektionsmöte</strong> eller <strong>styrelsemöte</strong> kommer att visas här.
+        </li>
+        <li>
+          Under kolumnen <strong>Mötesdatum</strong> visas det skapelsedatum som väljs i <strong>dokumentsamlingen</strong>.
+        </li>
+        <li>
+          Under kolumnen <strong>Handlingar</strong> visas de dokument i 
+          dokumentsamlingen med taggen <%= link_to 'handling', nil, class: 'document-tag btn btn-u' %>
+        </li>
+        <li>
+          Under kolumnen <strong>Protokoll</strong> visas de dokument i 
+          dokumentsamlingen med taggen <%= link_to 'protokoll', nil, class: 'document-tag btn btn-u' %>
+        </li>
+      </ul>
+    <% end %>
+
+    <% if doc_type == :other %>
+      <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
+        <li class="list-group-item"><%= link_to 'Skapa ny dokumentsamling', new_document_group_path %></li>
+      </ul>
+
+      <ul>
+        <li>
+          Här visas dokumentsamlingar som inte är av typerna <strong>styrdokument</strong>, 
+          <strong>sektionsmöte</strong> eller <strong>styrelsemöte</strong>.
+        </li>
+        <li>
+          Under kolumnen <strong>Dokument</strong> visas alla dokument kopplade till dokumentsamlingen.
+        </li>
+      </ul>
+    <% end %>
+
+    
   <% end %>
 </div>

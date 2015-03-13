@@ -7,15 +7,20 @@
   </ul>
 <% end %>
 
+<div class="col-md-6">
+  <header class="headline headline-md"><h3>Uppdatera dokumentsamlingen</h3></header>
+  <%= render partial: 'form' %>
+</div>
+
 <div class="col-md-12">
   <section>
     <header class="headline headline-md"><h3>Dokument i dokumentsamlingen</h3></header>
-    <%= render(partial: 'document', collection: @document_group.documents, layout: 'documents') || no_docs('Inga dokument i dokumentsamlingen.') %>
+    <%= render(partial: 'documents') %>
   </section>
 
   <section>
     <%= link_to 'Ladda upp nytt dokument', new_document_path(document_group: @document_group.id), class: 'btn btn-u' %>
-    <%= link_to 'Tag bort dokumentsamling', document_group_path(@document_group), method: :delete, class: 'btn btn-u' %>
-    <%= link_to 'Tillbaka till dokument', steering_documents_path, class: 'btn btn-u' %>
+    <%= link_to 'Tag bort dokumentsamling', @document_group, method: :delete, data: { confirm: 'Är du helt säker på att du vill göra detta?' }, class: 'btn btn-u' %>
+    <%= link_to 'Tillbaka till styrdokument', steering_documents_path, class: 'btn btn-u' %>
   </section>
 </div>

@@ -1,0 +1,22 @@
+<%= content_for :breadcrumbs do %>
+  <h1 class="pull-left">Övriga dokumentsamlingar</h1>
+  <ul class="pull-right breadcrumb">
+    <li><a href="index.html">Hem</a></li>
+    <li><a href="">Sektionen</a></li>
+    <li><a href="">Dokument</a></li>
+    <li class="active">Övriga dokument</li>
+  </ul>
+<% end %>
+
+<div class="col-md-9">
+  <section>
+    <header class="headline headline-md"><h3>Övriga dokumentsamlingar</h3></header>
+    <p>
+      Nedan finner du övriga dokumentsamling, t.ex. projekt och rapporter.
+    </p>
+    <%= render_other_table(@document_groups) %>
+  </section>
+</div>
+
+<%= render partial: 'menu', locals: { doc_type: :other } %>
+

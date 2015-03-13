@@ -1,10 +1,17 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag "Redigera dokument",nil, :class => 'reg-header'%>			
-			<%=render partial: "form"%>
-			<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @document, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %><br>			
-			<%= link_to 'Tillbaka till start', root_url %>
-		</div>
-	</div>
+<%= content_for :breadcrumbs do %>
+  <h1 class="pull-left">Redigera dokumentet <%= @document.title %></h1>
+  <ul class="pull-right breadcrumb">
+    <li><a href="index.html">Hem</a></li>
+    <li><a href="">Administration</a></li>
+    <li><a href="">Dokument</a></li>
+    <li><a href=""><%= @document.title %></a></li>
+    <li class="active">Redigera dokument</li>
+  </ul>
+<% end %>
+
+<div class="col-md-6">
+  <%= render partial: 'form' %>
+
+  <%= link_to 'Tag bort dokument', @document, method: :delete, data: { confirm: 'Är du säker?' }, class: 'btn btn-u' %>
+	<%= link_to 'Tillbaka till dokumentsamlingen', @document.document_group, class: 'btn btn-u' %>
 </div>

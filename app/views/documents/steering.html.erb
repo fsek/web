@@ -18,7 +18,7 @@
     <p>
       I stadgan regleras F-sektionens definition, dess medlemmar och dess beslutande organ. Det inkluderar bland annat hur ett sektionsmöte ska gå till, vad som gäller för sektionens styrdokument, vad styrelsen får och inte får göra m.m. Ändring av stadgan görs på ett sektionsmöte. För att ändringen skall godkännas måste den röstas igenom på två olika sektionsmöten.
     </p>
-    <%= render(partial: 'document', collection: @bylaws, layout: 'steering_documents') || no_docs('Det finns ingen uppladdad stadga.') %>
+    <%= render_steering_table @bylaws  %>
   </section>
 
   <section>
@@ -26,7 +26,7 @@
     <p>
       I reglementet definieras alla utskott och dess poster samt vad de har för uppgift i organisationen. Det är en utvidgning av stadgan som kan ändras lite lättare och beskriver den mer operativa verksamheten. Ändringar av reglementet för på ett sektionsmöte. För att ändringen skall godkännas behöver den endast röstas igenom på ett sektionsmöte med 2/3 majoritet.
     </p>
-    <%= render(partial: 'document', collection: @regulations, layout: 'steering_documents') || no_docs('Det finns inget uppladdat reglemente.') %>
+    <%= render_steering_table @regulations %>
   </section>
 
   <section>
@@ -34,7 +34,7 @@
     <p>
       Policys är en utvidgning av reglementet. Här tas vissa områden upp i mer detalj än vad de göras i stadgan och reglementet. De kan t.ex. beskriva hur någonting ska tolkas. Policys instiftas och revideras på sektionsmöten.
     </p>
-    <%= render(partial: 'document', collection: @policys, layout: 'steering_documents') || no_docs('Det finns inga uppladdade policys.') %>
+    <%= render_steering_table @policys %>
   </section>
   
   <section>
@@ -42,9 +42,9 @@
     <p>
       Regeldokument instiftas och revideras av styrelsen. De beskriver oftast väldigt operativa delar av verksamheten som kan ändras från år till år och där det är onödigt att beslutet tas av sektionsmötet.
     </p>
-    <%= render(partial: 'document', collection: @rules, layout: 'steering_documents') || no_docs('Det finns inga uppladdade regeldokument.') %>
+    <%= render_steering_table @rules %>
   </section>
 
 </div>
 
-<%= render "menu", locals: {type: :steering} %>
+<%= render partial: 'menu', locals: {doc_type: :steering} %>

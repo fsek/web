@@ -1,7 +1,8 @@
 <tr>
   <td><%= link_to document.title, document %></td>
-  <td><%= render partial: 'tag', collection: document.tags, spacer_template: 'shared/comma' %></td>
+  <td><%= render(partial: 'tag', collection: document.tags) || '-' %></td>
   <td><%= document.public ? 'Ja' : 'Nej' %></td>
+  <td><%= document.hidden ? 'Ja' : 'Nej' %></td>
   <td><%= document.production_date || '-' %></td>
   <td><%= document.revision_date || '-' %></td>
   <td><%= document.updated_at %></td>

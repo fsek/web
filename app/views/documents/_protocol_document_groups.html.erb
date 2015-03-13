@@ -1,0 +1,14 @@
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th width="25%">Möte</th>
+      <th width="10%">Mötesdatum</th>
+      <th width="35%">Handlingar</th>
+      <th width="15%">Protokoll</th>
+      <th width="15%">Uppdaterat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'protocol_document_group', collection: document_groups, as: :document_group %>
+  </tbody>
+</table>

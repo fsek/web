@@ -14,64 +14,7 @@
     <p>
       Nedan finner du handlingar och protokoll till sektionsmöten.
     </p>
-
-    <table class="table table-striped table-condensed">
-      <thead>
-        <tr>
-          <th width="25%">Möte</th>
-          <th width="10%">Mötesdatum</th>
-          <th width="40%">Handlingar</th>
-          <th width="15%">Protokoll</th>
-          <th width="10%">Uppdaterat</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>F07-VT15</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-        <tr>
-          <td>F06-VT15</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-        <tr>
-          <td>F05-VT15</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-        <tr>
-          <td>F04-VT13</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-        <tr>
-          <td>F02-VT13</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-        <tr>
-          <td>F01-VT13</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-             
-      </tbody>
-    </table>
-
+    <%= render_protocols_table(@general_meetings) %>
   </section>
 
   <section>
@@ -79,67 +22,10 @@
     <p>
       Nedan finner du handlingar och protokoll till sektionsmöten.
     </p>
-
-    <table class="table table-striped table-condensed">
-      <thead>
-        <tr>
-          <th width="25%">Möte</th>
-          <th width="10%">Mötesdatum</th>
-          <th width="40%">Handlingar</th>
-          <th width="15%">Protokoll</th>
-          <th width="10%">Uppdaterat</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Hösterminsmöte 2014</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-        <tr>
-          <td>Vårterminsmöte 2014</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-        <tr>
-          <td>Extrainsatt årsmöte 2014</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-        <tr>
-          <td>Hösterminsmöte 2013</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-        <tr>
-          <td>Hösterminsmöte 2012</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-        <tr>
-          <td>Hösterminsmöte 2010</td>
-          <td>2015-02-01</td>
-          <td><a>Handlingar</a></td>
-          <td><a>Protokoll</a></td>
-          <td>2015-02-01</td>
-        </tr>
-             
-      </tbody>
-    </table>
-
+    <%= render_protocols_table(@board_meetings) %>
   </section>
  
 </div>
 
-<%= render "menu" %>
+<%= render partial: 'menu', locals: { doc_type: :protocols } %>
 

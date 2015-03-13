@@ -4,6 +4,7 @@
       <th>Dokument</th>
       <th>Taggar</th>
       <th>Publikt?</th>
+      <th>Dolt?</th>
       <th>Antagen</th>
       <th>Reviderad</th>
       <th>Uppladdad</th>
@@ -12,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <%= yield %>
+    <%= render(partial: 'document', collection: @document_group.documents.includes(:tags)) || no_docs('Inga dokument finns i den här dokumentsamlingen.') %>
   </tbody>
 </table>
 

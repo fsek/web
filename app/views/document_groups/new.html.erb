@@ -8,45 +8,7 @@
   </ul>
 <% end %>
 
-
-
 <div class="col-md-6">
-  <%= form_for @document_group, html: { class: 'sky-form' } do |f| %>
-
-    <% if @document_group.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@document_group.errors.count, "fel") %> gör att dokumentet inte kan sparas:</h2>	
-        <ul>
-        <% @document_group.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-      
-    <fieldset>
-      <label class="input">
-        <%= f.text_field :name, placeholder: 'Namn' %>
-      </label>
-      <% if @document_group.errors[:name] %>
-        <div class="note note-error">
-          <ul>
-            <% @document_group.errors.full_messages_for(:name).each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <label class="select">
-        <% opts = DocumentGroupType.all.map {|t| [t.name, t.id]} %>
-        <% blank = 'Välj typ av dokumentsamling' %>
-        <%= f.select(:document_group_type_id, options_for_select([blank] + opts, selected: blank, disabled: blank)) %>
-        <i></i>
-      </label>
-   
-      <%= f.submit 'Skapa' , class: 'btn btn-u' %>
-    </fieldset>
-  <% end %>
+  <%= render partial: 'form' %>
 </div>
 

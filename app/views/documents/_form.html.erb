@@ -1,41 +1,32 @@
-<%= form_for(@document, html: { :autocomplete => 'off' }) do |f| %>
-  <% if @document.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@document.errors.count, "fel") %> gör att dokumentet inte kan sparas:</h2>	
-      <ul>
-      <% @document.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= standard_form_for @document do |f| %>
+  <fieldset>
+    <%= f.hidden_field :document_group_id %>
 
-  <%= f.label 'Titel', :class => "reg-label"%>
-  <div class="input-group margin-bottom-20">				
-    <%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		
-  </div>
+    <%= f.text_field :title, placeholder: 'Visat filnamn' %>
+    
+    <%= f.date_field :production_date %>
+    <%= f.date_field :revision_date %>
 
-  <%= f.label 'Kategori', :class => 'reg-label'%>
-  <div class="input-group margin-bottom-20">  				  	  		 		  	
-    <%= f.select :category, options_for_select(["Styrdokument", "Protokoll", "Sektionsmöten", "Övrigt"],@document.category), :class => 'form-control'%>
-  </div>
+    <%= f.check_box :public, label: 'Publik dokument (syns för icke-medlemmar)?' %>
+    <%= f.check_box :hidden, label: 'Dolt dokument (syns endast för användare med rättigheter)?' %>
 
-  <%= f.label 'PDF', :class => 'reg-label'%>
-  <div class="input-group margin-bottom-20">
-    <%if @document.pdf_file_name.blank?%>
-      <%= f.file_field :pdf, :class => 'form-control'%>
-    <%else%>  				  	  		 		  	
-      <%=@document.pdf_file_name%>
-    <%end%>
-  </div>
+    <% if @document.pdf_file_name.present? %>
+      <%= f.label :pdf %>
+      <p> 
+        Du kan inte ändra själva filen efter att du laddat upp den. 
+        I så fall får du skapa en <%= link_to 'ny fil', new_document_path(document_group: @document.document_group), style: 'color: #eb7125;' %>.
+        Den nuvarande filden är <%= link_to @document.pdf_file_name, @document, style: 'color: #eb7125;' %>
+      </p>
+    <% else %>
+      <%= f.file_field :pdf %>
+    <% end %>
 
-  <%= f.label 'Publik?', :class => 'reg-label'%>
-  <div class="input-group margin-bottom-20">  		
-    <%= f.check_box :public, :class => 'form-control'%>
-    Innebär att även de som inte är inloggade kan se dokument.
-  </div>
+    <%= f.text_field :all_tags, placeholder: 'Tags separated by commas' %>
+    
+    <section>
+      <%= f.submit 'Spara' , class: 'btn btn-u' %>
+      <%= link_to 'Avbryt', :back, class: 'btn btn-u' %>
+    </section>
 
-  <div class="row">
-    <%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
-  </div>
+  </fieldset>
 <% end %>

@@ -1,58 +1,51 @@
 class DocumentsController < ApplicationController
-  before_filter :authenticate, only: [:update, :edit, :new, :destroy, :create]
+  before_filter :authenticate, except: [:steering, :protocols, :other, :show]
   before_action :set_document, only: [:show, :update, :edit, :destroy]
-  before_action :set_edit
 
   def steering
-    @document_group = DocumentGroup.joins(:document_group_type).where('document_group_types.name' => 'styrdokument').first
-    documents = Document.joins(:tags, document_group: :document_group_type).where('document_group_types.name' => 'styrdokument')
-    @bylaws       = documents.where('tags.name' => 'stadga').order('revision_date ASC')
-    @regulations  = documents.where('tags.name' => 'reglemente').order('revision_date ASC')
-    @policys      = documents.where('tags.name' => 'policy').order('title ASC')
-    @rules        = documents.where('tags.name' => 'regel').order('title ASC')
+    @document_group = DocumentGroup.find_by_type('styrdokument').first
+
+    @bylaws       = Document.public_records.find_by_group_and_tag('styrdokument', 'stadga').order('revision_date DESC')
+    @regulations  = Document.public_records.find_by_group_and_tag('styrdokument', 'reglemente').order('revision_date DESC')
+    @policys      = Document.public_records.find_by_group_and_tag('styrdokument', 'policy').order('title ASC')
+    @rules        = Document.public_records.find_by_group_and_tag('styrdokument', 'regel').order('title ASC')
   end
 
   def protocols
-    
+    @general_meetings = DocumentGroup.find_by_type('sektionsmöte')
+    @board_meetings = DocumentGroup.find_by_type('styrelsemöte')
   end
 
   def other
-
+    @document_groups = DocumentGroup.find_without_type(['styrdokument', 'sektionsmöte', 'styrelsemöte'])
   end
   
   def new
-    @document = Document.new
+    @document = Document.new document_group: DocumentGroup.find(params[:document_group]), hidden: false, public: true
   end
   
   def show
-    if(!@document.public) && (!current_user)
-      redirect_to action: :index
-      @documents = Document.public_records
-      @documents_grid = initialize_grid(@documents)
-      return
-    elsif((!@document.public) && (current_user) && (@document.pdf_file_name) || (@document.public))
-      send_file(@document.pdf.path, filename:@document.pdf_file_name, type: "application/pdf",disposition: 'inline',x_sendfile: true)
-      return
+    if (!@document.hidden && @document.public) ||
+       (!@document.hidden && current_user) ||
+       (current_user && current_user.moderator?(:documents))
+
+      send_file(@document.pdf.path, filename: @document.pdf_file_name, type: 'application/pdf', disposition: 'inline', x_sendfile: true)
+    else
+      redirect_to :back, alert: 'Du får inte göra så.'
     end
   end
+
   def edit    
   end
   
   def create
-    @user = current_user
-    if(@user)
-      if(@user.profile)
-        @document = Document.new(document_params) 
-        @document.update(profile_id: @user.profile.id)
-        @document.pdf = params[:document][:pdf]       
-        respond_to do |format|
-          if @document.save
-            format.html { redirect_to documents_path, :notice => 'Dokumentet skapades!' }            
-          else
-            format.html { render action: "new" }            
-          end        
-        end
-      end
+    @document = Document.new(document_params)
+    respond_to do |format|
+      if @document.save
+        format.html { redirect_to @document.document_group, notice: 'Dokumentet skapades!' }            
+      else
+        format.html { render action: 'new' }            
+      end        
     end
   end
   
@@ -60,38 +53,29 @@ class DocumentsController < ApplicationController
     @document.update_attributes(document_params)        
     respond_to do |format|
       if @document.save
-        format.html { redirect_to edit_document_path(@document), :notice => 'Dokumentet uppdaterades.' }
-        format.json { render :json => @document, :status => :created, :location => @document }
+        format.html { redirect_to @document.document_group, notice: 'Dokumentet uppdaterades!' }
       else
-        format.html { render :action => "edit" }
-        format.json { render :json => @document.errors, :status => :unprocessable_entity }
+        format.html { render action: 'edit' }            
       end        
     end
   end
+
   def destroy
     dg = @document.document_group
     @document.destroy!
     redirect_to dg
   end
+  
   private
     def authenticate
-      flash[:error] = t('the_role.access_denied')
-      redirect_to(:back) unless (current_user) && (current_user.moderator?(:dokument))    
-      rescue ActionController::RedirectBackError
-      redirect_to root_path
+      redirect_to :back, alert: 'Du får inte göra så.' unless current_user && current_user.moderator?(:documents)
     end
+
     def set_document
-      @document = Document.find_by_id(params[:id])
+      @document = Document.find(params[:id])
     end    
-    def set_edit
-      if(current_user) && (current_user.moderator?(:dokument))
-        @edit = true
-      else
-        @edit = false
-      end 
-    end
-    # Never trust parameters from the scary internet, only allow the white list through.
+
     def document_params
-      params.require(:document).permit(:title, :public,:download,:category)
+      params.require(:document).permit(:title, :production_date, :revision_date, :public, :hidden, :document_group_id, :pdf, :all_tags)
     end
 end
