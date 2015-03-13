@@ -142,7 +142,7 @@ class Rent < ActiveRecord::Base
     if ((access.present?) && (self.access_code.present?) && (self.access_code == access))
       return true
     else
-      errors.add("Auktorisering", "misslyckades, kontrollera ev. kod.")
+      errors.add('Auktorisering', 'misslyckades, kontrollera ev. kod.')
       return false
     end
   end
@@ -221,9 +221,9 @@ class Rent < ActiveRecord::Base
   # /d.wessman
   def p_time
     if (d_from.day == d_til.day)
-      %(#{d_from.strftime("%H:%M")} till #{d_til.strftime("%H:%M")} den #{d_from.strftime("%d/%m")})
+      %(#{d_from.strftime('%H:%M')} till #{d_til.strftime('%H:%M')} den #{d_from.strftime('%d/%m')})
     else
-      %(#{d_from.strftime("%H:%M %d/%m")} till #{d_til.strftime("%H:%M %d/%m")})
+      %(#{d_from.strftime('%H:%M %d/%m')} till #{d_til.strftime('%H:%M %d/%m')})
     end
   end
 
