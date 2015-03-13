@@ -53,7 +53,9 @@ Fsek::Application.routes.draw do
     # /d.wessman
     scope :bil do
       namespace :admin do
-        resources :rents, path: :bokningar, except: [:index]
+        resources :rents, path: :bokningar, except: [:index,:edit] do
+          get :preview,  path: :visa, on: :member
+        end
         get '', controller: :rents, action: :main, as: :car
       end
       resources :rents, path: :bokningar do

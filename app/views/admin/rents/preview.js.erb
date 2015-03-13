@@ -1,0 +1,6 @@
+$('#preview-rent').html("")
+$('#preview-profile').html("")
+$('#preview-rent').html("<%= escape_javascript( render @rent)%>")
+<%if @rent.profile.present? %>
+$('#preview-profile').html("<%= escape_javascript( render '/profiles/profile',profile: @rent.profile)%>")
+<%end%>

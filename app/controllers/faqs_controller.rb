@@ -66,7 +66,6 @@ class FaqsController < ApplicationController
   end
 
   private
-
   def set_faq
     @faq = Faq.find(params[:id])
   end
