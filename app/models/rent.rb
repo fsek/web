@@ -104,8 +104,8 @@ class Rent < ActiveRecord::Base
   # Update without validation
   # /d.wessman
   def update_without_validation(params)
-    ak = self.aktiv
-    st = self.status
+    ak = aktiv
+    st = status
     self.attributes = params
     self.save(validate: false)
     if ak == !aktiv

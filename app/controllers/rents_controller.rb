@@ -33,7 +33,7 @@ class RentsController < ApplicationController
 
   def create
     @rent = Rent.new_with_status(rent_params, current_user)
-    flash[:notice] = "Bokningen skapades, skickat mailbekräftelse." if @rent.save
+    flash[:notice] = 'Bokningen skapades, skickat mailbekräftelse.' if @rent.save
     respond_with @rent
   end
 
@@ -48,11 +48,11 @@ class RentsController < ApplicationController
 
   def destroy
     @rent.destroy
-    flash[:notice] = "Bokningen raderades"
+    flash[:notice] = 'Bokningen raderades'
     redirect_to :bil
   end
 
-# Index page available to logged in users.
+  # Index page available to logged in users.
   def index
     if (current_user)
       @rents = current_user.profile.rents.order('d_from desc')
@@ -62,13 +62,13 @@ class RentsController < ApplicationController
     end
   end
 
-# Renders with .js and show the form if access is allowed
+  # Renders with .js and show the form if access is allowed
   def authorize
     @authenticated = @rent.authorize(rent_params[:access_code])
   end
 
   private
-# Set the @rent to the current object and redirects back to car if it is not found
+  # Set the @rent to the current object and redirects back to car if it is not found
   def set_rent
     @rent = Rent.find_by_id(params[:id])
     if (@rent == nil)
@@ -77,7 +77,7 @@ class RentsController < ApplicationController
     end
   end
 
-# @rents: used to show rents under the form when creating new.
+  # @rents: used to show rents under the form when creating new.
   def set_rents
     id = params[:id] || nil
     @rents = Rent.active.date_overlap(Time.zone.now, Time.zone.now+30.days, id).limit(10).ascending
