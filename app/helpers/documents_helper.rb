@@ -19,14 +19,6 @@ module DocumentsHelper
     end
   end
 
-  def render_other_table(docs)
-    if docs.any?
-      render partial: 'documents/other_document_groups', locals: {document_groups: docs }
-    else
-      no_docs('Inga övriga dokumentsamlingar finns uppladdade.')
-    end
-  end
-
   def render_documents_table(docs)
     if docs.any?
       render partial: 'documents/documents', locals: {documents: docs }

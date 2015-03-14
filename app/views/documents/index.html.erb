@@ -1,0 +1,19 @@
+<%= content_for :breadcrumbs do %>
+  <h1 class="pull-left">Alla dokument</h1>
+  <ul class="pull-right breadcrumb">
+    <li><a href="index.html">Hem</a></li>
+    <li><a href="">Administration</a></li>
+    <li><a href="">Dokument</a></li>
+    <li class="active">Alla dokument</li>
+  </ul>
+<% end %>
+
+<div class="col-md-12">
+  <section>
+    <header class="headline headline-md"><h3>Alla dokument</h3></header>
+    <p>
+      Nedan finner du alla dokument som ligger i systemet
+    </p>
+    <%= render_documents_table(@documents) %>
+  </section>
+</div>

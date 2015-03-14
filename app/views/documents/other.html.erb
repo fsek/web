@@ -14,9 +14,8 @@
     <p>
       Nedan finner du övriga dokumentsamling, t.ex. projekt och rapporter.
     </p>
-    <%= render_other_table(@document_groups) %>
+    <%= render_document_group_table(@document_groups) %>
   </section>
 </div>
 
 <%= render partial: 'menu', locals: { doc_type: :other } %>
-

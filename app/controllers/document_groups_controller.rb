@@ -2,6 +2,13 @@ class DocumentGroupsController < ApplicationController
   before_action :authenticate
   before_action :set_document_group, only: [:show, :update, :destroy]
 
+  def index
+    @document_groups = DocumentGroup.all.order('name ASC')
+  end
+
+  def show
+  end
+
   def new
     type = DocumentGroupType.find_by_name(params[:type])
     @document_group = DocumentGroup.new document_group_type: type
@@ -9,9 +16,6 @@ class DocumentGroupsController < ApplicationController
     if params[:type].present? && type.blank?
       flash[:alert] = 'Du ville skapa en dokumentsamlning av typen "' + params[:type] + '" men den typen av dokumentsamling finns inte.'
     end
-  end
-
-  def show
   end
 
   def create

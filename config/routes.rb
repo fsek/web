@@ -99,8 +99,8 @@ Fsek::Application.routes.draw do
     # Documents page
     resources :tags
     resources :document_group_types
-    resources :document_groups, except: [:index, :edit]
-    resources :documents, path: :dokument, except: [:index] do
+    resources :document_groups, except: [:edit]
+    resources :documents, path: :dokument do
       collection do
         get :styrdokument,  as: :steering,  to: :steering
         get :handlingar,    as: :protocols, to: :protocols

@@ -2,6 +2,10 @@ class DocumentsController < ApplicationController
   before_filter :authenticate, except: [:steering, :protocols, :other, :show]
   before_action :set_document, only: [:show, :update, :edit, :destroy]
 
+  def index
+    @documents = Document.all.order('title ASC')
+  end
+
   def steering
     @document_group = DocumentGroup.find_by_type('styrdokument').first
 
