@@ -45,7 +45,7 @@ class DocumentGroupsController < ApplicationController
 
   private
     def authenticate
-      redirect_to :back, alert: 'Du får inte göra så.' unless current_user && current_user.moderator?(:document_groups)
+      redirect_to root_url, alert: 'Du får inte göra så.' unless current_user && current_user.moderator?(:document_groups)
     end
 
     def set_document_group

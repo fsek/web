@@ -72,7 +72,7 @@ class DocumentsController < ApplicationController
   
   private
     def authenticate
-      redirect_to :back, alert: 'Du får inte göra så.' unless current_user && current_user.moderator?(:documents)
+      redirect_to root_url, alert: 'Du får inte göra så.' unless current_user && current_user.moderator?(:documents)
     end
 
     def set_document

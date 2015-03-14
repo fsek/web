@@ -45,7 +45,7 @@ class DocumentGroupTypesController < ApplicationController
 
   private
     def authenticate
-      redirect_to :back, alert: 'Du får inte göra så.' unless current_user && current_user.moderator?(:document_group_types)
+      redirect_to root_url, alert: 'Du får inte göra så.' unless current_user && current_user.moderator?(:document_group_types)
     end
 
     def set_document_group_type
