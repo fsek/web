@@ -6,13 +6,13 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'fancybox2-rails', '~> 0.2.8'
 gem 'font-awesome-rails'
-gem 'fullcalendar-rails', '~>2.1.1'
+gem 'fullcalendar-rails', '~>2.3.1'
 gem 'icalendar'
 gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
-gem 'momentjs-rails'
+gem 'momentjs-rails', '~>2.8.4'
 gem 'mysql2'
 gem 'paperclip', "~> 4.1"
 gem 'sass-rails', '~> 4.0.3'
@@ -24,7 +24,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'wice_grid', '3.4.2'
 
 group :production do
-	gem 'therubyracer', platforms: :ruby
+  gem 'therubyracer', platforms: :ruby
 end
 
 group :development, :test do
