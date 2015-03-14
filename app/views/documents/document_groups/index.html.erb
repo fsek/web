@@ -8,7 +8,7 @@
   </ul>
 <% end %>
 
-<div class="col-md-12">
+<div class="col-md-9">
   <section>
     <header class="headline headline-md"><h3>Alla dokumentsamlingar</h3></header>
     <p>
@@ -16,4 +16,8 @@
     </p>
     <%= render_document_group_table(@document_groups) %>
   </section>
+</div>
+
+<div class="col-md-3">
+  <%= render partial: 'documents/shared/common_admin_menu' %>
 </div>

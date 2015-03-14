@@ -12,7 +12,7 @@
   <%= render partial: 'form' %>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-9">
   <section>
     <header class="headline headline-md"><h3>Dokument i dokumentsamlingen</h3></header>
     <%= render(partial: 'documents') %>
@@ -39,4 +39,8 @@
       <%= link_to 'Tag bort dokumentsamling', @document_group, method: :delete, data: { confirm: 'Är du helt säker på att du vill göra detta?' }, class: 'btn btn-u' %>
     </p>
   </section>
+</div>
+
+<div class="col-md-3">
+  <%= render partial: 'documents/shared/common_admin_menu' %>
 </div>

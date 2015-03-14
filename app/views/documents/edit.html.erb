@@ -15,3 +15,8 @@
   <%= link_to 'Tag bort dokument', @document, method: :delete, data: { confirm: 'Är du säker?' }, class: 'btn btn-u' %>
 	<%= link_to 'Tillbaka till dokumentsamlingen', @document.document_group, class: 'btn btn-u' %>
 </div>
+
+<div class="col-md-3"></div>
+<div class="col-md-3">
+  <%= render partial: 'documents/shared/common_admin_menu' %>
+</div>
