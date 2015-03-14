@@ -1,4 +1,4 @@
-class TagsController < ApplicationController
+class Documents::TagsController < ApplicationController
   before_action :authenticate
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
 

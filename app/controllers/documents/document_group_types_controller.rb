@@ -1,4 +1,4 @@
-class DocumentGroupTypesController < ApplicationController
+class Documents::DocumentGroupTypesController < ApplicationController
   before_action :authenticate
   before_action :set_document_group_type, only: [:show, :edit, :update, :destroy]
 

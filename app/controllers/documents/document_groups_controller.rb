@@ -1,4 +1,4 @@
-class DocumentGroupsController < ApplicationController
+class Documents::DocumentGroupsController < ApplicationController
   before_action :authenticate
   before_action :set_document_group, only: [:show, :update, :destroy]
 
@@ -14,7 +14,7 @@ class DocumentGroupsController < ApplicationController
     @document_group = DocumentGroup.new document_group_type: type
 
     if params[:type].present? && type.blank?
-      flash[:alert] = 'Du ville skapa en dokumentsamlning av typen "' + params[:type] + '" men den typen av dokumentsamling finns inte.'
+      flash.now[:alert] = 'Du ville skapa en dokumentsamlning av typen "' + params[:type] + '" men den typen av dokumentsamling finns inte.'
     end
   end
 
@@ -23,8 +23,7 @@ class DocumentGroupsController < ApplicationController
 
     respond_to do |format|
       if @document_group.save
-        flash[:notice] = 'Dokumentsamling skapad.'
-        format.html { redirect_to @document_group }
+        format.html { redirect_to @document_group, notice: 'Dokumensamling skapad!' }
       else
         format.html { render action: 'new' }
       end
