@@ -2,8 +2,8 @@ class StandardFormBuilder < ActionView::Helpers::FormBuilder
   def self.default_fields(method_name)
     define_method(method_name) do |attribute, *args|
       options = args.detect{ |a| a.is_a?(Hash) } || {}
-      content = @template.content_tag(:label, super(attribute, options), class: 'input')
-      content << errors(attribute)
+      tag = @template.content_tag(:label, super(attribute, options), class: 'input')
+      wrap(heading_label(options) + tag + help_text(attribute, options), options)
     end
   end
 
@@ -14,34 +14,38 @@ class StandardFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def select(attribute, choices = nil, options={}, html_options={})
-    content = @template.content_tag(:label, class: 'select') do
+    sel = @template.content_tag(:label, class: 'select') do
       @template.select(@object_name, attribute, choices, objectify_options(options), @default_options.merge(html_options)) +
       @template.content_tag(:i)
     end
-    content << errors(attribute) 
+    wrap(heading_label(options) + sel + help_text(attribute, options), options)
   end
 
   def check_box(attribute, options={}, checked = '1', unchecked = '0')
-    content = @template.content_tag(:label, class: 'toggle') do
+    box = @template.content_tag(:label, class: 'toggle') do
       super(attribute, options, checked, unchecked) +
       @template.content_tag(:i) + 
-      options[:label]
+      options[:placeholder]
     end
-    content << errors(attribute) 
+    wrap(heading_label(options) + box + help_text(attribute, options), options)
   end
 
   def file_field(attribute, options={})
     options[:onchange] = 'this.parentNode.nextSibling.value = this.value'
-    content = @template.content_tag(:label, for: 'file', class: 'input input-file') do
+    file = @template.content_tag(:label, for: 'file', class: 'input input-file') do
       @template.content_tag(:div, super(attribute, options) + 'Välj fil', class: 'button bg-color-orange') +
       @template.content_tag(:input, '', placeholder: 'Dokument att ladda upp (endast pdf)', readonly: true)
     end
-    content << errors(attribute) 
+    wrap(heading_label(options) + file + help_text(attribute, options), options)
   end
 
   private 
+    def root_method(method)
+      method.to_s.gsub('_id', '').to_sym
+    end
+
     def errors(attribute)
-      attribute = attribute[0..-4].to_sym if attribute.to_s.ends_with? '_id'
+      attribute = root_method(attribute)
 
       if @object.errors[attribute].any?
         @template.content_tag(:div, class: 'note note-error') do
@@ -57,6 +61,24 @@ class StandardFormBuilder < ActionView::Helpers::FormBuilder
     def heading_label(options)
       if options[:label].present?
         @template.content_tag(:label, options[:label], class: 'label')
+      else
+        ''.html_safe
+      end
+    end
+
+    def help_text(attribute, options)
+      if options[:help].present?
+        @template.content_tag(:div, options[:help], class: 'note') + errors(attribute)
+      else
+        errors(attribute)
+      end
+    end
+
+    def wrap(content, options)
+      unless options[:section] == false
+        @template.content_tag(:section, content)
+      else
+        content
       end
     end
 

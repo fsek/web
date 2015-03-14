@@ -1,35 +1,34 @@
 <%= standard_form_for @document do |f| %>
-  <fieldset>
-    <% blank = 'Välj dokumentsamling' %>
-    <% opts = [blank] + DocumentGroup.all.map {|t| [t.name, t.id]} %>
-    <% selected = @document.document_group_id || blank %>
-    <%= f.select(:document_group_id, options_for_select(opts, selected: selected, disabled: blank)) %>
 
-    <%= f.text_field :title, placeholder: 'Visat filnamn' %>
-    
-    <%= f.date_field :production_date %>
-    <%= f.date_field :revision_date %>
+  <% blank = 'Välj dokumentsamling' %>
+  <% opts = [blank] + DocumentGroup.all.map {|t| [t.name, t.id]} %>
+  <% selected = @document.document_group_id || blank %>
+  <%= f.select(:document_group_id, options_for_select(opts, selected: selected, disabled: blank), label: 'Dokumentsamling') %>
 
-    <%= f.check_box :public, label: 'Publik dokument (syns för icke-medlemmar)?' %>
-    <%= f.check_box :hidden, label: 'Dolt dokument (syns endast för användare med rättigheter)?' %>
+  <%= f.text_field :title, placeholder: 'Visat filnamn', label: 'Visat filnamn', help: 'Det du vill att andra ska se när filen länkas.' %>
+  
+  <%= f.date_field :production_date, label: 'Skapat datum', help: 'Exempelvis datum då dokumentet antogs av ett möte.' %>
+  <%= f.date_field :revision_date, label: 'Reviderat datum', help: 'Exempelvis datum då dokumentet reviderades av ett möte.' %>
 
-    <% if @document.pdf_file_name.present? %>
-      <%= f.label :pdf %>
-      <p> 
-        Du kan inte ändra själva filen efter att du laddat upp den. 
-        I så fall får du skapa en <%= link_to 'ny fil', new_document_path(document_group: @document.document_group), style: 'color: #eb7125;' %>.
-        Den nuvarande filden är <%= link_to @document.pdf_file_name, @document, style: 'color: #eb7125;' %>
-      </p>
-    <% else %>
-      <%= f.file_field :pdf %>
-    <% end %>
+  <%= f.check_box :public, placeholder: 'Publik dokument (syns för icke-medlemmar)?', section: false%>
+  <%= f.check_box :hidden, placeholder: 'Dolt dokument (syns endast för användare med rättigheter)?' %>
 
-    <%= f.text_field :all_tags, placeholder: 'Tags separated by commas' %>
-    
-    <section>
-      <%= f.submit 'Spara' , class: 'btn btn-u' %>
-      <%= link_to 'Avbryt', :back, class: 'btn btn-u' %>
-    </section>
+  <% if @document.pdf_file_name.present? %>
+    <%= f.label :pdf %>
+    <p> 
+      Du kan inte ändra själva filen efter att du laddat upp den. 
+      I så fall får du skapa en <%= link_to 'ny fil', new_document_path(document_group: @document.document_group), style: 'color: #eb7125;' %>.
+      Den nuvarande filden är <%= link_to @document.pdf_file_name, @document, style: 'color: #eb7125;' %>
+    </p>
+  <% else %>
+    <%= f.file_field :pdf, label: 'PDF' %>
+  <% end %>
 
-  </fieldset>
+  <%= f.text_field :all_tags, placeholder: 'Inga taggar', label: 'Taggar', help: 'Separera taggar med kommatecken.' %>
+  
+  <section>
+    <%= f.submit 'Spara' , class: 'btn btn-u' %>
+    <%= link_to 'Avbryt', :back, class: 'btn btn-u' %>
+  </section>
+
 <% end %>
