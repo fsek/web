@@ -7,6 +7,7 @@ class CafeWorksController < ApplicationController
   def show
     # Move to view
     @readonly = (@cwork.work_day < Time.zone.now)
+
     @cwork.load(current_user)
     # Move to view
     @status = @cwork.status_text(current_user)
@@ -22,7 +23,7 @@ class CafeWorksController < ApplicationController
   end
 
   def add_worker
-    @added = @cwork.add_worker(worker_params,current_user)
+    @added = @cwork.add_worker(worker_params, current_user)
   end
 
   def remove_worker

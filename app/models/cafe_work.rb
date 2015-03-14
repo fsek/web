@@ -201,13 +201,13 @@ class CafeWork < ActiveRecord::Base
   def as_json(options = {})
     {
         :id => self.id,
-        :title => "Cafepass " + self.pass.to_s,
-        :start => self.work_day.rfc822,
-        :end => (self.work_day+self.duration.hours).rfc822,
-        :status => self.print,
-        :url => self.p_path,
+        :title => "Cafepass " + pass.to_s,
+        :start => work_day.iso8601,
+        :end => (work_day+duration.hours).iso8601,
+        :status => print,
+        :url => p_path,
         :color => "black",
-        :backgroundColor => self.b_color,
+        :backgroundColor => b_color,
         :textColor => "black"
     }
   end
