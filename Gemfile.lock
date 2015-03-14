@@ -71,9 +71,9 @@ GEM
       railties (>= 3.1.0, < 5.0)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
-    fullcalendar-rails (2.1.1.0)
+    fullcalendar-rails (2.3.1.0)
       jquery-rails (>= 3.1.1, < 5.0.0)
-      momentjs-rails (~> 2.8, >= 2.8.3)
+      momentjs-rails (~> 2.8, >= 2.8.4)
     haml (4.0.6)
       tilt
     hike (1.2.3)
@@ -108,7 +108,7 @@ GEM
       thin (~> 1.5.0)
     mime-types (1.25.1)
     minitest (5.3.5)
-    momentjs-rails (2.8.3)
+    momentjs-rails (2.8.4)
       railties (>= 3.1)
     multi_json (1.10.1)
     mysql2 (0.3.16)
@@ -249,14 +249,14 @@ DEPENDENCIES
   factory_girl_rails
   fancybox2-rails (~> 0.2.8)
   font-awesome-rails
-  fullcalendar-rails (~> 2.1.1)
+  fullcalendar-rails (~> 2.3.1)
   icalendar
   jbuilder (~> 1.2)
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
   mailcatcher
-  momentjs-rails
+  momentjs-rails (~> 2.8.4)
   mysql2
   paperclip (~> 4.1)
   rails (= 4.1.1)
