@@ -7,6 +7,7 @@ feature 'admin tries to create rent' do
 
   before do
     council
+    rent.user
   end
 
   Steps 'Create rent' do
@@ -19,24 +20,17 @@ feature 'admin tries to create rent' do
       find('h1').text.should include('F-bilen')
       find(:linkhref, new_admin_rent_path).click
     end
-
-    And 'Fill out rent form' do
-      fill_in 'rent_name', with: rent.name
-      fill_in 'rent_lastname', with: rent.lastname
-      fill_in 'rent_email', with: rent.email
-      fill_in 'rent_phone', with: rent.phone
+    And 'Fill out information' do
+      select(rent.user.to_s, from: 'rent_user_id')
       fill_in 'rent_d_from', with: rent.d_from.to_s
       fill_in 'rent_d_til', with: rent.d_til.to_s
-      select(rent.council, from: 'rent_council_id')
-      select('Bekräftad', from: 'rent_status')
+      select(rent.council.to_s, from: 'rent_council_id')
+      select(I18n.t('rent.confirmed'), from: 'rent_status')
       find('#rent-submit').click
     end
 
-    And 'Assure rent is created' do
-      # Need a way to assure - doesn't work with popup
-      # page.should have_css('div.alert.alert-info')
-      # find('div.alert.alert-info').text.should
-      # include(%(#{I18n.t(:rent)} #{I18n.t(:success_create)}))
+    Then 'I should see greeting' do
+      #TODO Some way to assure it is created - or not.
     end
   end
 end

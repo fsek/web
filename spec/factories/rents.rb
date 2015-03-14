@@ -7,6 +7,7 @@ FactoryGirl.define do
     purpose 'Handla möbler på IKEA'
     d_from { Time.zone.now + 10.day }
     d_til { Time.zone.now + 10.day + 12.hours }
+    aktiv true
 
     # Override after_create callbacks.
     after(:build) { |rent| rent.class.skip_callback(:create, :after, :send_email, :overbook_all) }
@@ -27,7 +28,7 @@ FactoryGirl.define do
   end
 
   trait :confirmed do
-    status 'Bekräftad'
+    status :confirmed
   end
 
   trait :over_48 do
@@ -48,10 +49,5 @@ FactoryGirl.define do
 
   trait :comment do
     comment 'Du har uppebarligen inget körkort'
-  end
-
-  trait :good do
-    user
-    aktiv true
   end
 end

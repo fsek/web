@@ -21,3 +21,17 @@ sv:
         status: Status
         service: Service
         access_code: Kod
+  rent:
+    validation:
+      future: måste vara i framtiden.
+      ascending: måste vara efter startdatumet.
+      duration: får inte vara längre än 48 h.
+      overlap: överlappar med en annan bokning.
+      overlap_council: överlappar med en annan utskottsbokning.
+      overlap_overbook: överlappar med en bokning som det är mindre än 5 dagar till.
+    denied_comment: Orsak vid nekad bokning
+    confirmed: Bekräftad
+    unconfirmed: Ej bekräftad
+    denied: Nekad
+    active: Aktiv
+    inactive: Inaktiv

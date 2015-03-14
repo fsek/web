@@ -52,4 +52,24 @@ class Post < ActiveRecord::Base
     end
     save!
   end
+
+  protected
+
+  def check_user(user)
+    if user.nil?
+      errors.add(:user, I18n.t('errors.messages.not_found'))
+      return false
+    end
+
+    if users.include?(user)
+      errors.add(:user, I18n.t('posts.already_have_post'))
+      return false
+    end
+
+    if limited?
+      errors.add(:limit, I18n.t('posts.limited'))
+      return false
+    end
+    true
+  end
 end
