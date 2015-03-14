@@ -1,6 +1,9 @@
 <%= standard_form_for @document do |f| %>
   <fieldset>
-    <%= f.hidden_field :document_group_id %>
+    <% blank = 'Välj dokumentsamling' %>
+    <% opts = [blank] + DocumentGroup.all.map {|t| [t.name, t.id]} %>
+    <% selected = @document.document_group_id || blank %>
+    <%= f.select(:document_group_id, options_for_select(opts, selected: selected, disabled: blank)) %>
 
     <%= f.text_field :title, placeholder: 'Visat filnamn' %>
     
