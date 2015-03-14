@@ -24,16 +24,16 @@
           Endast dokument som laddas upp till den dokumentsamlingen kommer att visas här.
         </li>
         <li>
-          Under rubriken <strong>stagda</strong> visas dokument med taggen <%= link_to 'stadga', nil, class: 'document-tag btn btn-u' %>
+          Under rubriken <strong>stagda</strong> visas dokument med taggen <%= link_to 'stadga', Tag.where(name: 'stadga').first_or_create!, class: 'document-tag btn btn-u' %>
         </li>
         <li>
-          Under rubriken <strong>reglemente</strong> visas dokument med taggen <%= link_to 'reglemente', nil, class: 'document-tag btn btn-u' %>
+          Under rubriken <strong>reglemente</strong> visas dokument med taggen <%= link_to 'reglemente', Tag.where(name: 'reglemente').first_or_create!, class: 'document-tag btn btn-u' %>
         </li>
         <li>
-          Under rubriken <strong>policys</strong> visas dokument med taggen <%= link_to 'policy', nil, class: 'document-tag btn btn-u' %>
+          Under rubriken <strong>policys</strong> visas dokument med taggen <%= link_to 'policy', Tag.where(name: 'policy').first_or_create!, class: 'document-tag btn btn-u' %>
         </li>
         <li>
-          Under rubriken <strong>regeldokument</strong> visas dokument med taggen <%= link_to 'regel', nil, class: 'document-tag btn btn-u' %>
+          Under rubriken <strong>regeldokument</strong> visas dokument med taggen <%= link_to 'regel', Tag.where(name: 'regel').first_or_create!, class: 'document-tag btn btn-u' %>
         </li>
       </ul>
     <% end %>
@@ -53,11 +53,11 @@
         </li>
         <li>
           Under kolumnen <strong>Handlingar</strong> visas de dokument i 
-          dokumentsamlingen med taggen <%= link_to 'handling', nil, class: 'document-tag btn btn-u' %>
+          dokumentsamlingen med taggen <%= link_to 'handling', Tag.where(name: 'handling').first_or_create!, class: 'document-tag btn btn-u' %>
         </li>
         <li>
           Under kolumnen <strong>Protokoll</strong> visas de dokument i 
-          dokumentsamlingen med taggen <%= link_to 'protokoll', nil, class: 'document-tag btn btn-u' %>
+          dokumentsamlingen med taggen <%= link_to 'protokoll', Tag.where(name: 'protokoll').first_or_create!, class: 'document-tag btn btn-u' %>
         </li>
       </ul>
     <% end %>
@@ -77,6 +77,13 @@
         </li>
       </ul>
     <% end %>
+
+    <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
+      <li class="list-group-item"><%= link_to 'Visa samtliga dokument', Document %></li>
+      <li class="list-group-item"><%= link_to 'Visa samtliga dokumentsamlingar', DocumentGroup %></li>
+      <li class="list-group-item"><%= link_to 'Visa samtliga dokumentsamlinstyper', DocumentGroupType %></li>
+      <li class="list-group-item"><%= link_to 'Visa samtliga taggar', Tag %></li>
+    </ul>
     
   <% end %>
 </div>
