@@ -9,6 +9,8 @@ class Document < ActiveRecord::Base
   validates_attachment_presence :pdf  
   validates_attachment_content_type :pdf, content_type: "application/pdf" 
   validates :title, presence: true
+  validates :production_date, date: { on_or_before: :revision_date }
+  validates :revision_date,   date: { on_or_after: :production_date }
 
   # scopes 
   scope :public_records, -> { where(public: true).where(hidden: false) }
