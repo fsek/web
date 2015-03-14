@@ -1,12 +1,14 @@
 <% provide(:title, 'Bilbokning') %>
-<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
+<div class="col-md-8 col-md-offset-2 reg-page">
   <% if @rent %>
       <div class="row margin-bottom-20">
         <% if @rent.edit?(current_user) %>
             <%= render 'form' %>
             <hr>
-            <%= link_to('Radera bokning', rent_path(@rent), method: :delete, class: "btn btn-u", data: {confirm: 'Din bokning kommer nu att raderas.'}) %> <%= link_to("Bilbokning", bil_path, class: "btn btn-u") %>
-        <% elsif current_user.nil? && @rent.no_profile? %>
+            <%= link_to('Radera bokning', rent_path(@rent), method: :delete, class: "btn btn-u",
+                        data: {confirm: 'Din bokning kommer nu att raderas.'}) %>
+            <%= link_to("Bilbokning", bil_path, class: "btn btn-u") %>
+        <% elsif @rent.no_profile? %>
             <%= render @rent %>
             <div id="authorization">
               <%= render 'authorization' %>

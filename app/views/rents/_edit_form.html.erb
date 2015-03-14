@@ -56,14 +56,15 @@
               <p><%= r.p_time %></p>
           <% end %>
       <% end %>
-          <p><strong>Viktigt:</strong> <br>när du bokar som ej inloggad blir bokningen endast en förfrågan som måste
-            hanteras av Bilförmannen.<br>
-            Om ni är medlem i sektionen är det bäst om ni <%= link_to('loggar in', new_user_session_path) %>.
-          </p>
-      <%= f.label 'Bekräfta med kod', class: 'reg-label'%>
+      <p><strong>Viktigt:</strong> <br>när du bokar som ej inloggad blir bokningen endast en förfrågan som måste
+        hanteras av Bilförmannen.<br>
+        Om ni är medlem i sektionen är det bäst om ni <%= link_to('loggar in', new_user_session_path) %>.
+      </p>
+      <%= f.label 'Bekräfta med kod', class: 'reg-label' %>
       <span id="code"></span>
+
       <div class="margin-bottom-20">
-        <%= f.text_field :access_code, value: nil,class: 'form-control'%>
+        <%= f.text_field :access_code, value: nil, class: 'form-control' %>
       </div>
       <div class="row">
         <%= f.submit "Spara", class: "btn btn-u", data: {confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'} %>

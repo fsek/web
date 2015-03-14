@@ -1,52 +1,30 @@
-<div class="container content"> 	
-	<div class="row portfolio-item margin-bottom-50">
-    	<div class="col-md-offset-2 col-md-5 md-margin-bottom-40">
-            <h2><%= @profile.print %></h2>
-            <div class="row portfolio-item1">
-            	<div class="col-xs-4">
-                    <ul class="list-unstyled">
-                    	<li><%=fa_icon('space-shuttle')%>Började år:</li>
-                    	<li><%=fa_icon('rocket')%>Program:</li>  
-        				<%if @profile.posts.size == 1%>
-        					<li><%= fa_icon('mortar-board')%>Post:</li>
-        				<% elsif @profile.posts.size > 1%>
-        					<li><%= fa_icon('mortar-board')%>Poster:</li>	
-        				<% end %>
-                	</ul>
-            	</div>
-            	<div class="col-xs-8">
-                    <ul class="list-unstyled">
-                    	<li><%=@profile.start_year%></li>
-                    	<li><%=@profile.program%></li>
-                    	<%@profile.posts.each do |p|%>
-							<li><%=Post.find(p).title%></li>
-						<% end %>                    	
-                	</ul>
-            	</div>
-        	</div>
-        	
-        	<div class="row">
-        		<div class="col-xs-6">
-        			<% if @profile.owner?(current_user) %>
-				        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_profile_path(@profile), class: "btn-u btn-u-small"%>				        
-      				<% end %>
-    		 	</div>    		 	          
-            </div>
+<div class="container content">
+  <div class="row portfolio-item margin-bottom-50">
+    <div class="col-md-offset-2 col-md-5 md-margin-bottom-40">
+      <%= render @profile %>
+      <div class="row">
+        <div class="col-xs-6">
+          <% if @profile.owner?(current_user) %>
+              <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_profile_path(@profile), class: "btn-u btn-u-small" %>
+          <% end %>
         </div>
-        <!-- End Content Info -->        
+      </div>
+    </div>
+    <!-- End Content Info -->
 
-        <!-- Carousel -->
-        <%if @profile.avatar?%>
+    <!-- Carousel -->
+    <% if @profile.avatar? %>
         <div class="col-md-3">
-            <div class="carousel slide carousel-v1" id="myCarousel">
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <%= image_tag avatar_profile_path(@profile, style: "original")%>
-                    </div>                    
-                </div>
+          <div class="carousel slide carousel-v1" id="myCarousel">
+            <div class="carousel-inner">
+              <div class="item active">
+                <%= image_tag avatar_profile_path(@profile, style: "original") %>
+              </div>
             </div>
+          </div>
         </div>
-        <%end%>
-        <!-- End Carousel -->
-    </div><!--/row-->
+    <% end %>
+    <!-- End Carousel -->
+  </div>
+  <!--/row-->
 </div>
