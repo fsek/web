@@ -1,14 +1,17 @@
 <table class="table table-condensed table-striped">
   <thead>
     <tr>
-      <th width="40%"></th>
-      <th width="20%">Antagen</th>
-      <th width="20%">Reviderad</th>
-      <th width="20%">Uppladdad</th>
+      <th>Dokumentsamling</th>
+      <th>Dokument</th>
+      <th>Publikt?</th>
+      <th>Dolt?</th>
+      <th>Antagen</th>
+      <th>Reviderad</th>
+      <th>Uppladdad</th>
     </tr>
   </thead>
   <tbody>
-    <%= yield %>
+    <%= render(partial: 'documents/document', collection: documents, as: :document) %>
   </tbody>
 </table>
 

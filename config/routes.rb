@@ -97,7 +97,7 @@ Fsek::Application.routes.draw do
     resources :news ,path:  :nyheter
 
     # Documents page
-    resources :tags, only: [:show]
+    resources :tags
     resources :document_group_types
     resources :document_groups, except: [:index, :edit]
     resources :documents, path: :dokument, except: [:index] do

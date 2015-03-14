@@ -1,0 +1,28 @@
+<%= content_for :breadcrumbs do %>
+  <h1 class="pull-left">Taggar</h1>
+  <ul class="pull-right breadcrumb">
+    <li><a href="index.html">Hem</a></li>
+    <li><a href="">Administration</a></li>
+    <li class="active">Taggar</li>
+  </ul>
+<% end %>
+
+<div class="col-md-12">
+  <section>
+    <header class="headline headline-md"><h3>Taggar</h3></header>
+    <p>
+      Nedan finner du alla taggar som är inlagda i systemet.
+    </p>
+    <p>
+      <%= render(partial: 'tag', collection: @tags, as: :tag, spacer_template: 'shared/comma') || 'Inga taggar inladga i systemet' %>
+    </p>
+  </section>
+
+  <section>
+    <p>
+      <%= link_to 'Skapa ny tag', new_tag_path, class: 'btn btn-u' %>
+    </p>
+  </section>
+</div>
+
+

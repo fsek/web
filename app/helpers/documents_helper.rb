@@ -27,4 +27,12 @@ module DocumentsHelper
     end
   end
 
+  def render_documents_table(docs)
+    if docs.any?
+      render partial: 'documents/documents', locals: {documents: docs }
+    else
+      no_docs('Inga dokument finns uppladdade.')
+    end
+  end
+
 end
