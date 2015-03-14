@@ -9,4 +9,5 @@
     <%= f.select(:document_group_type_id, options_for_select(opts, selected: selected, disabled: blank)) %>
  
     <%= f.submit 'Spara' , class: 'btn btn-u' %>
+    <%= link_to 'Avbryt', :back, class: 'btn btn-u' %>
 <% end %>
