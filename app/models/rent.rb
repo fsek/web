@@ -153,7 +153,7 @@ class Rent < ActiveRecord::Base
     if d_til < Time.zone.now
       return false
     end
-    return owner?(user)
+    owner?(user)
   end
 
   # Returns the length of the booking in hours, as an virtual attribute
@@ -226,24 +226,24 @@ class Rent < ActiveRecord::Base
   def as_json(options = {})
     if service
       {
-         id: id,
-         title: 'Service',
-         start: d_from.iso8601,
-         end: d_til.iso8601,
-         status: comment,
-         backgroundColor: 'black',
-         textColor: 'white'
+          id: id,
+          title: 'Service',
+          start: d_from.iso8601,
+          end: d_til.iso8601,
+          status: comment,
+          backgroundColor: 'black',
+          textColor: 'white'
       }
     else
       {
-         id: id,
-         title: p_name,
-         start: d_from.iso8601,
-         end: d_til.iso8601,
-         url: p_path,
-         status: status,
-         backgroundColor: backgroundColor(status, aktiv),
-         textColor: 'black'
+          id: id,
+          title: p_name,
+          start: d_from.iso8601,
+          end: d_til.iso8601,
+          url: p_path,
+          status: status,
+          backgroundColor: backgroundColor(status, aktiv),
+          textColor: 'black'
       }
     end
   end
