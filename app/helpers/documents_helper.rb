@@ -11,9 +11,9 @@ module DocumentsHelper
     end
   end
 
-  def render_protocols_table(docs)
+  def render_protocols_table(docs, year_spacer=true)
     if docs.any?
-      render partial: 'protocol_document_groups', locals: {document_groups: docs }
+      render partial: 'protocol_document_groups', locals: {document_groups: docs, year_spacer: year_spacer }
     else
       no_docs('Inga möten av den här typen finns uppladdade.')
     end
