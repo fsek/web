@@ -328,6 +328,6 @@ class Rent < ActiveRecord::Base
   # Will overbook all rents that are overlapping, should only be used as after_create
   # /d.wessman
   def overbook_all
-    Rent.active.date_overlap(d_from, d_til, id).each { |rent| rent.overbook }
+    Rent.active.date_overlap(d_from, d_til, id).each(&overbook)
   end
 end
