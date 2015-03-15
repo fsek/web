@@ -13,7 +13,7 @@
   <%= f.check_box :public, placeholder: 'Publik dokument (syns för icke-medlemmar)?', section: false%>
   <%= f.check_box :hidden, placeholder: 'Dolt dokument (syns endast för användare med rättigheter)?' %>
 
-  <% if @document.pdf_file_name.present? %>
+  <% if @document.pdf_file_name.present? && !@document.new_record? %>
     <%= f.label :pdf %>
     <p> 
       Du kan inte ändra själva filen efter att du laddat upp den. 
