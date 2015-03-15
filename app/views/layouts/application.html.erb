@@ -17,10 +17,10 @@
   <%= favicon_link_tag 'favicon.ico' %>
 
   <% if current_user # This script is needed for the old gallery hack. /Erik Henriksson %>
-  <%= javascript_tag do %>
-    gallery_username = '<%= j current_user.username %>';
-    gallery_secret = '<%= j current_user.encrypted_password %>';
-  <% end %>
+    <%= javascript_tag do %>
+      gallery_username = '<%= j current_user.username %>';
+      gallery_secret = '<%= j current_user.encrypted_password %>';
+    <% end %>
   <% end %>
 
   <!-- JS Global Compulsory -->           
@@ -80,11 +80,9 @@ $(document).ready(bottom)
 <!--=== End Header ===-->
 
 <!--=== Breadcrumbs ===-->
-<div class="breadcrumbs">
-  <div class="container">
-    <%= yield :breadcrumbs %> 	
-  </div>
-</div>
+<% if content_for? :breadcrumb_bar %>
+  <%= render 'layouts/breadcrumb_bar' %>
+<% end %>
 <!--=== End Breadcrumbs ===-->
 
 <% if yield(:title) == 'Utskott' %>

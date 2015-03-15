@@ -1,12 +1,5 @@
-<%= content_for :breadcrumbs do %>
-  <h1 class="pull-left">Redigera dokumentet <%= @document.title %></h1>
-  <ul class="pull-right breadcrumb">
-    <li><a href="index.html">Hem</a></li>
-    <li><a href="">Administration</a></li>
-    <li><a href="">Dokument</a></li>
-    <li><a href=""><%= @document.title %></a></li>
-    <li class="active">Redigera dokument</li>
-  </ul>
+<% breadcrumb_bar :edit_document, @document do %>
+  Redigera dokumentet <i><%= @document.title %></i>
 <% end %>
 
 <div class="col-md-6">

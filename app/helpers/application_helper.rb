@@ -16,6 +16,16 @@ module ApplicationHelper
     end
   end
 
+  def breadcrumb_bar(*args, &block)
+    if block_given?
+      content_for(:breadcrumb_bar, &block)
+    else
+      content_for(:breadcrumb_bar) { args.shift }
+    end
+
+    breadcrumb *args
+  end
+
   def standard_form_for(object, &block)
     form_for object, builder: StandardFormBuilder, html: { class: 'sky-form' }, &block
   end

@@ -1,12 +1,7 @@
-<%= content_for :breadcrumbs do %>
-  <h1 class="pull-left">Skapa nytt dokument <%= ('i samlingen ' + @document.document_group.name) if @document.document_group.present? %></h1>
-  <ul class="pull-right breadcrumb">
-    <li><a href="index.html">Hem</a></li>
-    <li><a href="">Administration</a></li>
-    <li><a href="">Dokumentsamlingar</a></li>
-    <li><a href=""><%= @document.document_group.try(:name) %></a></li>
-    <li class="active">Lägg till dokument</li>
-  </ul>
+<% breadcrumb_bar :new_document do %>
+  <% if @document.document_group %>
+    i dokumentsamlingen <i><%= @document.document_group.name %></i>
+  <% end %>
 <% end %>
 
 <div class="col-md-6">

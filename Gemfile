@@ -22,6 +22,7 @@ gem 'the_role_bootstrap3_ui'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'wice_grid', '3.4.2'
+gem 'gretel' # Used for breadcrumbs
 
 group :production do
 	gem 'therubyracer', platforms: :ruby

@@ -1,11 +1,5 @@
-<%= content_for :breadcrumbs do %>
-  <h1 class="pull-left">Redigera <i><%= @tag.name %></i></h1>
-  <ul class="pull-right breadcrumb">
-    <li><a href="index.html">Hem</a></li>
-    <li><a href="">Administration</a></li>
-    <li><a href="">Taggar</a></li>
-    <li class="active">Redigera</li>
-  </ul>
+<% breadcrumb_bar :edit_tag, @tag do %>
+  Redigera taggen <i><%= @tag.name %></i>
 <% end %>
 
 <div class="col-md-6">

@@ -1,9 +1,13 @@
 class DocumentsController < ApplicationController
-  before_filter :authenticate, except: [:steering, :protocols, :other, :show]
+  before_filter :authenticate, except: [:index, :steering, :protocols, :other, :show]
   before_action :set_document, only: [:show, :update, :edit, :destroy]
 
   def index
-    @documents = Document.all.order('title ASC')
+    if can_moderate
+      @documents = Document.all.order('title ASC')
+    else
+      redirect_to steering_documents_path
+    end
   end
 
   def steering
@@ -76,7 +80,11 @@ class DocumentsController < ApplicationController
   
   private
     def authenticate
-      redirect_to root_url, alert: 'Du får inte göra så.' unless current_user && current_user.moderator?(:documents)
+      redirect_to root_url, alert: 'Du får inte göra så.' unless can_moderate
+    end
+
+    def can_moderate
+      current_user && current_user.moderator?(:documents)
     end
 
     def set_document

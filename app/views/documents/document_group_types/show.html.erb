@@ -1,11 +1,5 @@
-<%= content_for :breadcrumbs do %>
-  <h1 class="pull-left">Dokumentsamlingstypen <i><%= @document_group_type.name %></i></h1>
-  <ul class="pull-right breadcrumb">
-    <li><a href="index.html">Hem</a></li>
-    <li><a href="">Administration</a></li>
-    <li><a href="">Typer av dokumentsamlingar</a></li>
-    <li class="active"><%= @document_group_type.name %></li>
-  </ul>
+<% breadcrumb_bar :show_document_group_type, @document_group_type do %>
+  Visar dokumentsamlingstypen <i><%= @document_group_type.name %></i>
 <% end %>
 
 <div class="col-md-9">

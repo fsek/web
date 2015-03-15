@@ -1,11 +1,5 @@
-<%= content_for :breadcrumbs do %>
-  <h1 class="pull-left">Tag <i><%= @tag.name %></i></h1>
-  <ul class="pull-right breadcrumb">
-    <li><a href="index.html">Hem</a></li>
-    <li><a href="">Administration</a></li>
-    <li><a href="">Taggar</a></li>
-    <li class="active"><%= @tag.name %></li>
-  </ul>
+<% breadcrumb_bar :show_tag, @tag do %>
+  Visar taggen <i><%= @tag.name %></i>
 <% end %>
 
 <div class="col-md-9">

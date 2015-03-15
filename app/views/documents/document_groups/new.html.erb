@@ -1,12 +1,4 @@
-<%= content_for :breadcrumbs do %>
-  <h1 class="pull-left">Skapa ny dokumentsamling</h1>
-  <ul class="pull-right breadcrumb">
-    <li><a href="index.html">Hem</a></li>
-    <li><a href="">Administration</a></li>
-    <li><a href="">Dokumentsamlingar</a></li>
-    <li class="active">Ny</li>
-  </ul>
-<% end %>
+<% breadcrumb_bar 'Skapa ny dokumentsamling', :new_document_group %>
 
 <div class="col-md-6">
   <%= render partial: 'form' %>
