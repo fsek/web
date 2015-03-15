@@ -13,19 +13,19 @@ class DocumentsController < ApplicationController
   def steering
     @document_group = DocumentGroup.find_by_type('styrdokument').first
 
-    @bylaws       = Document.public_records.find_by_group_and_tag('styrdokument', 'stadga').order('revision_date DESC')
-    @regulations  = Document.public_records.find_by_group_and_tag('styrdokument', 'reglemente').order('revision_date DESC')
-    @policys      = Document.public_records.find_by_group_and_tag('styrdokument', 'policy').order('title ASC')
-    @rules        = Document.public_records.find_by_group_and_tag('styrdokument', 'regel').order('title ASC')
+    @bylaws       = Document.filter_access(current_user.present?).find_by_group_and_tag('styrdokument', 'stadga').order('revision_date DESC')
+    @regulations  = Document.filter_access(current_user.present?).find_by_group_and_tag('styrdokument', 'reglemente').order('revision_date DESC')
+    @policys      = Document.filter_access(current_user.present?).find_by_group_and_tag('styrdokument', 'policy').order('title ASC')
+    @rules        = Document.filter_access(current_user.present?).find_by_group_and_tag('styrdokument', 'regel').order('title ASC')
   end
 
   def protocols
     @general_meetings = DocumentGroup.find_by_type('sektionsmöte')
-    @board_meetings = DocumentGroup.find_by_type('styrelsemöte')
+    @board_meetings   = DocumentGroup.find_by_type('styrelsemöte')
   end
 
   def other
-    @document_groups = DocumentGroup.find_without_type(['styrdokument', 'sektionsmöte', 'styrelsemöte'])
+    @document_groups  = DocumentGroup.find_without_type(['styrdokument', 'sektionsmöte', 'styrelsemöte'])
   end
   
   def new
@@ -39,7 +39,7 @@ class DocumentsController < ApplicationController
   def show
     if (!@document.hidden && @document.public) ||
        (!@document.hidden && current_user) ||
-       (current_user && current_user.moderator?(:documents))
+       (can_moderate?(:documents))
 
       send_file(@document.pdf.path, filename: @document.pdf_file_name, type: 'application/pdf', disposition: 'inline', x_sendfile: true)
     else

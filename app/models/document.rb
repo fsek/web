@@ -13,6 +13,7 @@ class Document < ActiveRecord::Base
   validates :revision_date,   date: { on_or_after: :production_date }
 
   # scopes 
+  scope :filter_access, -> (is_member) { is_member ? member_records : public_records }
   scope :public_records, -> { where(public: true).where(hidden: false) }
   scope :member_records, -> { where(hidden: false) }
   scope :find_by_group_and_tag, ->(group, tag_name) do
