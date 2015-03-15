@@ -29,6 +29,7 @@ class DateValidator < ActiveModel::EachValidator
   def compute_options(record)
     result = {}
     options.each do |key, val|
+      print key, val
       next unless checks.include?(key.to_s)
       if val.respond_to?(:lambda?) and val.lambda?
         val = val.call
@@ -39,7 +40,7 @@ class DateValidator < ActiveModel::EachValidator
           val = record.class.send(val)
         end
       end
-      result[key] = val.to_date
+      result[key] = val.to_date if !val.blank?
     end
     self.computed_options = result
   end

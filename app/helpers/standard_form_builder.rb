@@ -2,7 +2,7 @@ class StandardFormBuilder < ActionView::Helpers::FormBuilder
   def self.default_fields(method_name)
     define_method(method_name) do |attribute, *args|
       options = args.detect{ |a| a.is_a?(Hash) } || {}
-      tag = @template.content_tag(:label, super(attribute, options), class: 'input')
+      tag = @template.content_tag(:label, super(attribute, options.except(:help, :label)), class: 'input')
       wrap(heading_label(options) + tag + help_text(attribute, options), options)
     end
   end
@@ -11,6 +11,17 @@ class StandardFormBuilder < ActionView::Helpers::FormBuilder
   # Doens't cover some of the field types - like select, collection select etc.
   field_helpers.each do |field|
     default_fields(field)
+  end
+
+  def date_field(attribute, options={})
+    options[:class] ||= ''
+    options[:class] += ' date_field'
+    field = @template.content_tag(:label, class: 'input') do
+      @template.content_tag(:i, nil, class: 'icon-append fa fa-calendar') +
+      @template.text_field(@object_name, attribute, options.except(:help, :label))
+    end
+    
+    wrap(heading_label(options) + field + help_text(attribute, options), options)
   end
 
   def select(attribute, choices = nil, options={}, html_options={})
