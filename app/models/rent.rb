@@ -106,7 +106,7 @@ class Rent < ActiveRecord::Base
   # Returns true if user is owner
   # /d.wessman
   def owner?(user)
-    user.present? && user.profile.present? && self.profile == user.profile
+    user.present? && user.profile.present? && profile == user.profile
   end
 
   # Returns true if provided access equals access_code
@@ -153,18 +153,14 @@ class Rent < ActiveRecord::Base
     if d_til < Time.zone.now
       return false
     end
-    if profile.present? && user.present? && profile == user.profile
-      return true
-    else
-      return false
-    end
+    return owner?(user)
   end
 
   # Returns the length of the booking in hours, as an virtual attribute
   # /d.wessman
   def duration
     if d_from.present? && d_til.present?
-      h = (d_til-d_from)/3600
+      h = (d_til - d_from) / 3600
       if h < 0
         return 0
       end
@@ -230,24 +226,24 @@ class Rent < ActiveRecord::Base
   def as_json(options = {})
     if service
       {
-          id: id,
-          title: 'Service',
-          start: d_from.iso8601,
-          end: d_til.iso8601,
-          status: comment,
-          backgroundColor: 'black',
-          textColor: "white"
+         id: id,
+         title: 'Service',
+         start: d_from.iso8601,
+         end: d_til.iso8601,
+         status: comment,
+         backgroundColor: 'black',
+         textColor: 'white'
       }
     else
       {
-          id: id,
-          title: p_name,
-          start: d_from.iso8601,
-          end: d_til.iso8601,
-          url: p_path,
-          status: status,
-          backgroundColor: backgroundColor(status, aktiv),
-          textColor: "black"
+         id: id,
+         title: p_name,
+         start: d_from.iso8601,
+         end: d_til.iso8601,
+         url: p_path,
+         status: status,
+         backgroundColor: backgroundColor(status, aktiv),
+         textColor: 'black'
       }
     end
   end
@@ -318,10 +314,8 @@ class Rent < ActiveRecord::Base
 
   def overlap_overbook
     overlap = Rent.active.date_overlap(d_from, d_til, id).ascending.first
-    if overlap.present? && overlap.d_from < Time.zone.now+5.days
+    if @overbook = (overlap.present? && overlap.d_from < Time.zone.now + 5.days)
       errors.add(:d_from, 'överlappar med en bokning som det är mindre än 5 dagar till')
-    else
-      @overbook = true
     end
   end
 
@@ -334,9 +328,6 @@ class Rent < ActiveRecord::Base
   # Will overbook all rents that are overlapping, should only be used as after_create
   # /d.wessman
   def overbook_all
-    Rent.active.date_overlap(d_from, d_til, id).each do |rent|
-      rent.overbook
-    end
+    Rent.active.date_overlap(d_from, d_til, id).each { |rent| rent.overbook }
   end
-
 end
