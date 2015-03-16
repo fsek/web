@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.9'
 
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
@@ -13,7 +13,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
-gem 'momentjs-rails', "~> 2.8.4"
+gem 'momentjs-rails', "~> 2.9.0"
 gem 'mysql2'
 gem 'paperclip', "~> 4.1"
 gem 'sass-rails', '~> 4.0.3'
