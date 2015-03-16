@@ -18,7 +18,7 @@ RSpec.describe CafeWork, type: :model do
       it { should validate_presence_of(:lv) }
       it { should validate_uniqueness_of(:pass).scoped_to(:work_day, :lv,:lp,:d_year) }
       context "if has_worker on update" do
-        before { allow(saved).to receive(:validate_worker?).and_return(true) }
+        before { allow(saved).to receive(:has_worker?).and_return(true) }
         it { should validate_presence_of(:name) }
         it { should validate_presence_of(:lastname) }
         it { should validate_presence_of(:phone) }
