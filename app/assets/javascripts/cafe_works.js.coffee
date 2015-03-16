@@ -1,11 +1,10 @@
-#Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+jQuery ->
+  $('.datetimepicker').datetimepicker()
 jQuery ->
   $('#date').datepicker()
 jQuery ->
-  $('#date2').datepicker()     
-loadCalendar = ->    
+  $('#date2').datepicker()
+loadCalendar = ->
   $('#hilbertkalender').fullCalendar
     events: '/hilbertcafe',
     weekNumbers: true,
@@ -23,7 +22,10 @@ loadCalendar = ->
     allDaySlot: false,
     slotEventOverlap: false,
     eventMouseover: (calEvent, jsEvent) ->
-      tooltip = '<div class="tooltipevent" style="width:auto;height:auto;background:#eb7125;position:absolute;z-index:10001;padding:10px;paddin-top:0px;border:2px solid;">' + calEvent.title+ '<br>' + calEvent.start.format('LLL') + '<br>till<br>'+ calEvent.end.format('LLL') + '</div>'
+      style = 'width:auto;height:auto;background:#eb7125;position:absolute;z-index:10001;padding:10px;border:2px solid;'
+      tooltip = '<div class="tooltipevent" style="' + style + '">' + calEvent.title
+      tooltip = tooltip + '<br>' + calEvent.start.format('LLL')
+      tooltip = tooltip + '<br>till<br>' + calEvent.end.format('LLL') + '</div>'
       $('body').append tooltip
       $(this).mouseover((e) ->
         $(this).css 'z-index', 10000
@@ -36,4 +38,3 @@ loadCalendar = ->
       $(this).css 'z-index', 8
       $('.tooltipevent').remove()
 $(document).ready(loadCalendar)
-

@@ -55,12 +55,13 @@ Fsek::Application.routes.draw do
           patch :remove_worker, path: :jobbare, on: :member
         end
         get '/setup', controller: :cafe_works, action: :setup, as: :setup_cafe
-        post '/setup/skapa', controller: :cafe_works, action: :setup_create, as: :setup_cafe_create
-        post '/setup/preview', controller: :cafe_works, action: :setup_preview, as: :setup_cafe_preview
+        post '/setup', controller: :cafe_works, action: :setup_create, as: :setup_cafe_create
         get '', controller: :cafe_works, action: :main, as: :hilbert
         post '', controller: :cafe_works, action: :main
       end
-      resources :cafe_works, path: :jobb, only: [:show, :update] do
+      resources :cafe_works, path: :jobb, only: [:show] do
+        patch :add_worker, path: :jobba, on: :member
+        patch :update_worker, path: :uppdatera, on: :member
         patch :remove_worker, path: :inte_jobba, on: :member
         patch :authorize, path: :auktorisera, on: :member
       end

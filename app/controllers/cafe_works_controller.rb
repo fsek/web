@@ -9,25 +9,32 @@ class CafeWorksController < ApplicationController
     @readonly = (@cwork.work_day < Time.zone.now)
 
     @cwork.load(current_user)
+    @path = (@cwork.has_worker?) ? :update_worker : :add_worker
     # Move to view
     @status = @cwork.status_text(current_user)
   end
 
   def authorize
     @authenticated = @cwork.authorize(worker_params[:access_code])
+    @path = :update_worker
   end
 
-  def update
-    flash[:notice] = "Bokningen uppdaterades" if @cwork.update_worker(worker_params, current_user)
+  def update_worker
+    if @cwork.update_worker(worker_params, current_user)
+    flash[:notice] = "Bokningen uppdaterades"
     redirect_to @cwork
+    else
+      render action: :show
+    end
   end
 
   def add_worker
-    @added = @cwork.add_worker(worker_params, current_user)
+    flash[:notice] = "Jobbare lades till" if @cwork.add_worker(worker_params, current_user)
+    redirect_to @cwork
   end
 
   def remove_worker
-    @removed = @cwork.worker_remove(profile, worker_params[:access_code])
+    @removed = @cwork.worker_remove(current_user,params[:access_code])
   end
 
   def main
@@ -43,7 +50,7 @@ class CafeWorksController < ApplicationController
   end
 
   def nyckelpiga
-    @date = (params[:data].present?) ? Date.parse(params[:date]) : Time.zone.now
+    @date = (params[:data].present?) ? Time.zone.parse(params[:date]) : Time.zone.now
     @works = CafeWork.between(@date.beginning_of_day, @date.end_of_day).ascending
     @work_grid = initialize_grid(@works)
   end

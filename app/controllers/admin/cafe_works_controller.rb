@@ -29,7 +29,7 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def destroy
-    # id?
+    # Id used to hide element
     @id = @cwork.id
     @cwork.destroy
     respond_to do |format|
@@ -48,40 +48,16 @@ class Admin::CafeWorksController < ApplicationController
     @cwork = CafeWork.new
   end
 
-  def setup_preview
-    @cworks = []
-    wday = Time.zone.local(params[:cafe_work]["work_day(1i)"].to_i, params[:cafe_work]["work_day(2i)"].to_i, params[:cafe_work]["work_day(3i)"].to_i, params[:cafe_work]["work_day(4i)"].to_i, 0)
-    lp = params[:cafe_work][:lp]
-    @lv_first = params[:lv_first].to_i
-    @lv_last = params[:lv_last].to_i
-    (@lv_first..@lv_last).each do |week|
-      (0..4).each do
-        @cworks << CafeWork.new(work_day: wday, lp: lp, pass: 1, lv: week, d_year: wday.year)
-        @cworks << CafeWork.new(work_day: wday, lp: lp, pass: 2, lv: week, d_year: wday.year)
-        @cworks << CafeWork.new(work_day: wday+2.hours, lp: lp, pass: 3, lv: week, d_year: wday.year)
-        @cworks << CafeWork.new(work_day: wday+2.hours, lp: lp, pass: 4, lv: week, d_year: wday.year)
-        wday = wday + 1.days
-      end
-      wday = wday + 2.days
-    end
-    @cwork = CafeWork.new(c_w_params)
-    render 'setup'
-  end
-
   def setup_create
-    wday = Time.zone.local(params[:cafe_work]["work_day(1i)"].to_i, params[:cafe_work]["work_day(2i)"].to_i, params[:cafe_work]["work_day(3i)"].to_i, params[:cafe_work]["work_day(4i)"].to_i, 0)
-    lp = params[:cafe_work][:lp]
-    (params[:lv_first]..params[:lv_last]).each do |week|
-      (0..4).each do
-        CafeWork.create(work_day: wday, lp: lp, pass: 1, lv: week, d_year: wday.year)
-        CafeWork.create(work_day: wday, lp: lp, pass: 2, lv: week, d_year: wday.year)
-        CafeWork.create(work_day: wday+2.hours, lp: lp, pass: 3, lv: week, d_year: wday.year)
-        CafeWork.create(work_day: wday+2.hours, lp: lp, pass: 4, lv: week, d_year: wday.year)
-        wday = wday + 1.days
-      end
-      wday = wday + (2).days
+    r = CafeSetupWeek.new(Time.zone.parse(params[:cafe_work][:work_day]), params[:cafe_work][:lp])
+    @cwork = CafeWork.new(c_w_params)
+    if preview?
+      @cworks = r.preview(@lv_first = params[:lv_first].to_i, @lv_last = params[:lv_last].to_i)
+    elsif save?
+      r.setup(params[:lv_first].to_i, params[:lv_last].to_i)
+      flash[:notice] = "Skapades"
     end
-    redirect_to action: 'main'
+    render 'setup'
   end
 
   def main
@@ -92,16 +68,16 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   private
-  # For authenticating admin for page
-  # /d.wessman
+# For authenticating admin for page
+# /d.wessman
   def authenticate
     redirect_to(:hilbert, alert: t('the_role.access_denied')) unless current_user && current_user.moderator?(:cafejobb)
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
   end
 
   def c_w_params
-    params.require(:cafe_work).permit(:work_day, :pass, :profile_id, :name, :lastname, :phone, :email, :lp, :lv, :utskottskamp, :council_ids => [])
+    params.require(:cafe_work).permit(:work_day, :pass, :profile_id,
+                                      :name, :lastname, :phone, :email, :lp, :lv,
+                                      :utskottskamp, :council_ids => [])
   end
 
   def set_cafe_work
@@ -110,7 +86,14 @@ class Admin::CafeWorksController < ApplicationController
       flash[:notice] = 'Hittade inget Cafejobb med det ID:t.'
       redirect_to(:admin_cafe_works)
     end
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
   end
+
+  def preview?
+    params[:commit] == 'Förhandsgranska'
+  end
+
+  def save?
+    params[:commit] == 'Spara'
+  end
+
 end

@@ -4,6 +4,7 @@ gem 'rails', '4.1.1'
 
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'fancybox2-rails', '~> 0.2.8'
 gem 'font-awesome-rails'
 gem 'fullcalendar-rails', '~>2.3.1'

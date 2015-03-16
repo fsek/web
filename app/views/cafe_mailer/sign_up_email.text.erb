@@ -4,7 +4,7 @@ Du har skrivit upp dig för att arbeta i Hilbert Café med följande uppgifter (
 Namn:    	<%=@cafe_work.name.to_s%> <%=@cafe_work.lastname.to_s%>
 Epost: 	 	<%=@cafe_work.email.to_s%> 
 Telefon: 	<%=@cafe_work.phone.to_s%>
-Datum:   	<%=@cafe_work.p_date%>
+Datum:   	<%=@cafe_work.print_date%>
 Länk:		<%=@cafe_work.p_url%>
 <%if !@cafe_work.access_code.nil?%>
 Kod:		<%=@cafe_work.access_code%>

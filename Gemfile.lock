@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: e41ba7f805d1eca19153ff91b27423a4aff5e4b6
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.3.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -245,6 +253,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
   database_cleaner
+  datetimepicker-rails!
   devise
   factory_girl_rails
   fancybox2-rails (~> 0.2.8)

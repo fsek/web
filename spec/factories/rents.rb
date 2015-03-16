@@ -41,7 +41,7 @@ FactoryGirl.define do
     purpose "Handla möbler på IKEA"
   end
 
-  trait :service do
+  trait :services do
     service true
   end
 

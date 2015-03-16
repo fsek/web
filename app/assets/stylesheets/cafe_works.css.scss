@@ -1,0 +1,35 @@
+// Place all the styles related to the Admin::CafeWorks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.calendar-tooltip {
+  width: auto;
+  height: auto;
+  background: #eb7125;
+  position: absolute;
+  z-index: 10001;
+  padding: 10px;
+  padding-top: 0px;
+  border: 2px solid;
+}
+
+.cafe-date {
+  width: 100px;
+  height: 85px;
+  color: #fff;
+  float: center;
+  text-align: center;
+  background: #eb7125;
+  margin: 7px 13px 0 0;
+  padding: 7px 10px 4px;
+  border: 2px;
+  border-color: black;
+  border-radius: 10px !important;
+  vertical-align: middle;
+}
+
+.cafe-date span {
+  display: block;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 25px;
+}
