@@ -41,7 +41,7 @@
         </div>
         <hr>
     <% end %>
-    <% if @readonly %>
+    <% if !@cwork.edit?(current_user) %>
         <p>Det går inte längre att skriva upp sig på passet eller redigera.</p>
     <% else %>
         <% if !@cwork.has_worker? %>

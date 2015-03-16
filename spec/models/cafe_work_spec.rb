@@ -26,4 +26,21 @@ RSpec.describe CafeWork, type: :model do
       end
     end
   end
+
+  describe :Worker do
+    it 'do not have worker if profile and access_code is nil' do
+      r = saved
+      r.clear_worker
+      expect(r.has_worker?).to be_falsey
+    end
+    it 'do have worker if profile is not nil' do
+      r = FactoryGirl.create(:cafe_work,:with_profile)
+      expect(r.has_worker?).to be_truthy
+    end
+    it 'do have worker if access_code is not nil' do
+      r = FactoryGirl.create(:cafe_work,:with_access_code)
+      expect(r.has_worker?).to be_truthy
+    end
+  end
+
 end

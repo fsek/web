@@ -1,6 +1,9 @@
 Hej <%=@cafe_work.name.to_s %>
+
 ===============================================
+
 Du har skrivit upp dig för att arbeta i Hilbert Café med följande uppgifter (ID: <%=@cafe_work.id%>).
+
 Namn:    	<%=@cafe_work.name.to_s%> <%=@cafe_work.lastname.to_s%>
 Epost: 	 	<%=@cafe_work.email.to_s%> 
 Telefon: 	<%=@cafe_work.phone.to_s%>
@@ -9,6 +12,7 @@ Länk:		<%=@cafe_work.p_url%>
 <%if !@cafe_work.access_code.nil?%>
 Kod:		<%=@cafe_work.access_code%>
 <%end%>
+
 För att redigera dina uppgifter eller hoppa av så följer du länken.
 Har du några frågor så svarar du enklast direkt på detta mejl.
 

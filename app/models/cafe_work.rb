@@ -120,6 +120,12 @@ class CafeWork < ActiveRecord::Base
     user.present? && user.profile.present? && profile.present? && user.profile == profile
   end
 
+  # Returns true if the user can edit the object
+  # /d.wessman
+  def edit?(user)
+    d_from > Time.zone.now && owner?(user)
+  end
+
   # Returns true only if hte access_code is correct
   # /d.wessman
   def authorize(access)
