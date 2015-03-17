@@ -120,15 +120,15 @@ class Rent < ActiveRecord::Base
   # Sends email
   # /d.wessman
   def send_email
-    RentMailer.rent_email(self).deliver
+    RentMailer.rent_email(self).deliver_now
   end
 
   def send_active_email
-    RentMailer.active_email(self).deliver
+    RentMailer.active_email(self).deliver_now
   end
 
   def send_status_email
-    RentMailer.status_email(self).deliver
+    RentMailer.status_email(self).deliver_now
   end
 
   # Returns true if user is owner

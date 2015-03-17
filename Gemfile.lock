@@ -272,7 +272,7 @@ DEPENDENCIES
   momentjs-rails
   mysql2
   paperclip
-  rails (= 4.2.0)
+  rails (~> 4.2.0)
   rspec-rails
   sass-rails
   shoulda-matchers
