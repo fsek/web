@@ -1,7 +1,8 @@
 # encoding:UTF-8
 class Admin::CafeWorksController < ApplicationController
-  before_filter :authenticate
+  before_action :authenticate
   before_action :set_cafe_work, only: [:edit, :show, :update, :destroy, :remove_worker]
+  before_action :set_cafe_setup, only: [:setup_create]
 
   def show
   end
@@ -49,8 +50,6 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def setup_create
-    r = CafeSetupWeek.new(Time.zone.parse(params[:cafe_work][:work_day]), params[:cafe_work][:lp])
-    @cwork = CafeWork.new(c_w_params)
     if preview?
       @cworks = r.preview(@lv_first = params[:lv_first].to_i, @lv_last = params[:lv_last].to_i)
     elsif save?
@@ -68,10 +67,10 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   private
-# For authenticating admin for page
-# /d.wessman
+
   def authenticate
-    redirect_to(:hilbert, alert: t('the_role.access_denied')) unless current_user && current_user.moderator?(:cafejobb)
+    redirect_to(:hilbert, alert: t('the_role.access_denied')) unless
+        current_user && current_user.moderator?(:cafejobb)
   end
 
   def c_w_params
@@ -85,6 +84,13 @@ class Admin::CafeWorksController < ApplicationController
     if (@cwork == nil)
       flash[:notice] = 'Hittade inget Cafejobb med det ID:t.'
       redirect_to(:admin_cafe_works)
+    end
+  end
+
+  def set_cafe_setup
+    @cwork = CafeWork.new(c_w_params)
+    if c_w_params[:work_day].present? && c_w_params[:lp].present?
+      @r = CafeSetupWeek.new(Time.zone.parse(c_w_params[:work_day]), c_w_params[:lp])
     end
   end
 
