@@ -5,6 +5,7 @@ RSpec.describe CafeWork, type: :model do
   subject(:cafe_work) { FactoryGirl.build(:cafe_work) }
   subject(:saved) { FactoryGirl.create(:cafe_work) }
 
+
   describe :Associations do
     it { should belong_to(:profile) }
     # Should validate has_and_belongs_to_many
@@ -28,6 +29,7 @@ RSpec.describe CafeWork, type: :model do
   end
 
   describe :Worker do
+    subject(:user) { FactoryGirl.build(:user)}
     it 'do not have worker if profile and access_code is nil' do
       r = saved
       r.clear_worker
@@ -41,6 +43,27 @@ RSpec.describe CafeWork, type: :model do
       r = FactoryGirl.create(:cafe_work,:with_access_code)
       expect(r.has_worker?).to be_truthy
     end
+    it 'add worker with params and no user' do
+      r = FactoryGirl.create(:cafe_work)
+      r.add_worker(FactoryGirl.attributes_for(:cafe_work),nil)
+      expect(r.has_worker?).to be_truthy
+    end
+    it 'add worker with params and no user, has access_code' do
+      r = FactoryGirl.create(:cafe_work)
+      r.add_worker(FactoryGirl.attributes_for(:cafe_work),nil)
+      expect(r.access_code).to_not be_nil
+    end
+    it 'add worker with params and with user' do
+      r = FactoryGirl.create(:cafe_work)
+      r.add_worker(FactoryGirl.attributes_for(:cafe_work),user)
+      expect(r.has_worker?).to be_truthy
+    end
+    it 'add worker with params and user, have profile' do
+      r = FactoryGirl.create(:cafe_work)
+      r.add_worker(FactoryGirl.attributes_for(:cafe_work),user)
+      expect(r.profile).to_not be_nil
+    end
+
   end
 
 end

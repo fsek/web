@@ -23,6 +23,7 @@ class CafeWork < ActiveRecord::Base
   # Sends email to worker
   # /d.wessman
   def send_email
+    # Change to deliver_now in 4.2.0
     CafeMailer.sign_up_email(self).deliver
   end
 
@@ -67,12 +68,6 @@ class CafeWork < ActiveRecord::Base
       return (user.present? && user.profile == profile) ? 1 : 2
     end
     return 0
-  end
-
-  # Used to get current status-message after an update
-  # /d.wessman
-  def status
-    @status || self.errors.full_messages || ""
   end
 
   # User to update worker, checks for edit-access and triggers at_update

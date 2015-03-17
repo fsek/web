@@ -63,29 +63,6 @@ ActiveRecord::Schema.define(version: 20410822171443) do
     t.integer "council_id"
   end
 
-  create_table "cafe_works", force: true do |t|
-    t.datetime "work_day"
-    t.integer  "pass"
-    t.integer  "lp"
-    t.integer  "lv"
-    t.integer  "profile_id"
-    t.string   "name"
-    t.string   "lastname"
-    t.string   "phone"
-    t.string   "email"
-    t.boolean  "utskottskamp"
-    t.string   "access_code"
-    t.integer  "d_year"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "remove_worker"
-  end
-
-  create_table "cafe_works_councils", id: false, force: true do |t|
-    t.integer "cafe_work_id"
-    t.integer "council_id"
-  end
-
   create_table "candidates", force: true do |t|
     t.integer  "post_id"
     t.integer  "profile_id"

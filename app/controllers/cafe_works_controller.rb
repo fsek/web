@@ -5,13 +5,8 @@ class CafeWorksController < ApplicationController
   before_action :nyckelpiga_auth, only: :nyckelpiga
 
   def show
-    # Move to view
-    @readonly = (@cwork.work_day < Time.zone.now)
-
     @cwork.load(current_user)
     @path = (@cwork.has_worker?) ? :update_worker : :add_worker
-    # Move to view
-    @status = @cwork.status_text(current_user)
   end
 
   def authorize
@@ -70,7 +65,7 @@ class CafeWorksController < ApplicationController
 
   def worker_params
     params.require(:cafe_work).permit(:profile_id, :name, :lastname, :phone, :email,
-                                      :lp, :utskottskamp, :access_code, :council_ids => [])
+                                      :utskottskamp, :access_code, :council_ids => [])
   end
 
   def councils

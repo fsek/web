@@ -21,14 +21,6 @@ FactoryGirl.define do
     status "Bekräftad"
   end
 
-  trait :with_council do
-    council
-  end
-
-  trait :with_profile do
-    profile
-  end
-
   trait :over_48 do
     d_til { d_from + 49.hours }
   end
