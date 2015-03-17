@@ -63,7 +63,11 @@ RSpec.describe CafeWork, type: :model do
       r.add_worker(FactoryGirl.attributes_for(:cafe_work),user)
       expect(r.profile).to_not be_nil
     end
-
+    it 'update worker with user' do
+      r = FactoryGirl.create(:cafe_work)
+      r.add_worker(FactoryGirl.attributes_for(:cafe_work),user)
+      expect(r.profile).to_not be_nil
+    end
   end
 
 end

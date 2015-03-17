@@ -3,5 +3,6 @@ FactoryGirl.define do
   factory :profile do
     name
     lastname
+    user
   end
 end

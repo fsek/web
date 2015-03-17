@@ -145,7 +145,7 @@ class CafeWork < ActiveRecord::Base
   # Returns true if there is a worker
   # /d.wessman
   def has_worker?
-    (profile_id.present? || access_code.present?)
+    profile_id.present? || access_code.present?
   end
 
   # Used to print date in a usable format.
