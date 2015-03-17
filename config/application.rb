@@ -28,5 +28,6 @@ module Fsek
     config.i18n.default_locale = :sv
     config.assets.precompile += ['application-print.css']
     config.filter_parameters += [:password,:password_confirmation,:civic]
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

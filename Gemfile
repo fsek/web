@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.2.0'
 
 gem 'coffee-rails'
+# Set to 1.8 due to https://github.com/jashkenas/coffeescript/issues/3829
+gem 'coffee-script-source', '1.8.0'
 gem 'devise'
 gem 'fancybox2-rails'
 gem 'font-awesome-rails'
@@ -32,6 +34,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'mailcatcher'
   gem 'capybara'
+  gem 'poltergeist'
 end
 
 group :test do

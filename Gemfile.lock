@@ -57,6 +57,7 @@ GEM
       xpath (~> 2.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
+    cliver (0.3.2)
     cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
     codeclimate-test-reporter (0.4.7)
@@ -67,7 +68,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1)
+    coffee-script-source (1.8.0)
     daemons (1.2.1)
     database_cleaner (1.4.1)
     devise (3.4.1)
@@ -145,6 +146,11 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    poltergeist (1.6.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
@@ -253,6 +259,9 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
+    websocket-driver (0.5.3)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
     wice_grid (3.4.14)
       coffee-rails
       kaminari (>= 0.13.0)
@@ -266,6 +275,7 @@ DEPENDENCIES
   capybara
   codeclimate-test-reporter
   coffee-rails
+  coffee-script-source (= 1.8.0)
   database_cleaner
   devise
   factory_girl_rails
@@ -281,6 +291,7 @@ DEPENDENCIES
   momentjs-rails
   mysql2
   paperclip
+  poltergeist
   rails (~> 4.2.0)
   rspec-rails
   sass-rails
