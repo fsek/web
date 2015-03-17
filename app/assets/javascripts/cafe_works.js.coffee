@@ -22,7 +22,8 @@ loadCalendar = ->
     allDaySlot: false,
     slotEventOverlap: false,
     eventMouseover: (calEvent, jsEvent) ->
-      style = 'width:auto;height:auto;background:#eb7125;position:absolute;z-index:10001;padding:10px;border:2px solid;'
+      style = 'width:auto;height:auto;background:#eb7125;'
+      style = style + 'position:absolute;z-index:10001;padding:10px;border:2px solid;'
       tooltip = '<div class="tooltipevent" style="' + style + '">' + calEvent.title
       tooltip = tooltip + '<br>' + calEvent.start.format('LLL')
       tooltip = tooltip + '<br>till<br>' + calEvent.end.format('LLL') + '</div>'

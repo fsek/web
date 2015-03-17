@@ -28,7 +28,7 @@ class ContactsController < ApplicationController
       @name = params[:name]
       @email = params[:email]
       @msg = params[:msg]
-      ContactMailer.contact_email(@name,@email,@msg,@contact).deliver
+      ContactMailer.contact_email(@name,@email,@msg,@contact).deliver_now
       respond_to do |format|
         format.html { redirect_to @contact, notice: 'Meddelandet skickades.' }
         format.json { render action: 'show', status: :created, location: @contact }

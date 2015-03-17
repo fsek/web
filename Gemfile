@@ -13,7 +13,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
-gem 'momentjs-rails', "~> 2.9.0"
+gem 'momentjs-rails', "~> 2.9.0bun"
 gem 'mysql2'
 gem 'paperclip', "~> 4.1"
 gem 'sass-rails', '~> 4.0.3'
@@ -36,6 +36,7 @@ end
 
 group :test do
   gem 'shoulda-matchers', require: false
+  gem 'shoulda-callback-matchers'
   gem 'database_cleaner'
   gem 'codeclimate-test-reporter', require: false
 end

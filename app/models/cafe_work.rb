@@ -23,8 +23,7 @@ class CafeWork < ActiveRecord::Base
   # Sends email to worker
   # /d.wessman
   def send_email
-    # Change to deliver_now in 4.2.0
-    CafeMailer.sign_up_email(self).deliver
+    CafeMailer.sign_up_email(self).deliver_now
   end
 
   # Prepares work for a user to sign up, without saving
@@ -109,6 +108,21 @@ class CafeWork < ActiveRecord::Base
     clear_worker
   end
 
+  # Method to remove the worker from current work.
+  # /d.wessman
+  def clear_worker
+    self.remove_worker = true
+    self.name = ""
+    self.lastname = ""
+    self.profile_id = ""
+    self.phone = ""
+    self.email = ""
+    self.utskottskamp = false
+    self.access_code = ""
+    self.councils.clear
+    return self.save(validate: false)
+  end
+
   # Returns true if the profiles are similar and not nil
   # /d.wessman
   def owner?(user)
@@ -125,21 +139,6 @@ class CafeWork < ActiveRecord::Base
   # /d.wessman
   def authorize(access)
     access.present? && access_code.present? && access_code == access
-  end
-
-  # Method to remove the worker from current work.
-  # /d.wessman
-  def clear_worker
-    self.remove_worker = true
-    self.name = ""
-    self.lastname = ""
-    self.profile_id = ""
-    self.phone = ""
-    self.email = ""
-    self.utskottskamp = false
-    self.access_code = ""
-    self.councils.clear
-    return self.save(validate: false)
   end
 
   # Returns true if there is a worker
