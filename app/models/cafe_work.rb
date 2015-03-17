@@ -99,7 +99,7 @@ class CafeWork < ActiveRecord::Base
 
   # Remove-function used by the worker
   # /d.wessman
-  def worker_remove(user, access)
+  def remove_worker(user, access)
     if (!owner?(user) && !authorize(access))
       errors.add('Auktorisering', 'misslyckades, du har inte rättighet att ta bort eller skrev fel kod.')
       return false
@@ -111,7 +111,6 @@ class CafeWork < ActiveRecord::Base
   # Method to remove the worker from current work.
   # /d.wessman
   def clear_worker
-    self.remove_worker = true
     self.name = ""
     self.lastname = ""
     self.profile_id = ""
