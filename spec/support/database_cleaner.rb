@@ -1,6 +1,10 @@
 #encoding: UTF-8
 RSpec.configure do |config|
   config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+  config.before(:suite) do
     DatabaseCleaner.clean_with(:deletion)
   end
 
