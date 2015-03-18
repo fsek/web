@@ -3,6 +3,7 @@ class CafeWorksController < ApplicationController
   before_action :set_cafe_work, except: [:main, :nyckelpiga]
   before_action :councils, except: [:main, :nyckelpiga]
   before_action :nyckelpiga_auth, only: :nyckelpiga
+  before_action :set_faqs, only: :main
 
   def show
     @cwork.load(current_user)
@@ -16,8 +17,8 @@ class CafeWorksController < ApplicationController
 
   def update_worker
     if @cwork.update_worker(worker_params, current_user)
-    flash[:notice] = "Bokningen uppdaterades"
-    redirect_to @cwork
+      flash[:notice] = "Bokningen uppdaterades"
+      redirect_to @cwork
     else
       render action: :show
     end
@@ -29,14 +30,13 @@ class CafeWorksController < ApplicationController
   end
 
   def remove_worker
-    @removed = @cwork.remove_worker(current_user,worker_params[:access_code])
+    @removed = @cwork.remove_worker(current_user, worker_params[:access_code])
   end
 
   def main
     respond_to do |format|
       format.html {
         lv = CafeWork.between(Time.zone.now.beginning_of_day-2.days, Time.zone.now.end_of_day).last
-        @faqs = Faq.category(:Hilbert).answered
         @lv = (lv.nil?) ? "?" : lv.lv
       }
       format.json { render json: CafeWork.between(params[:start], params[:end]) }
@@ -59,8 +59,6 @@ class CafeWorksController < ApplicationController
     if (post.nil?) && !((current_user) && (current_user.moderator?(:hilbert)))
       redirect_to(:hilbert, alert: "Du saknar behörighet")
     end
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
   end
 
   def worker_params
@@ -80,4 +78,9 @@ class CafeWorksController < ApplicationController
   rescue ActionController::RedirectBackError
     redirect_to root_path
   end
+
+  def set_faqs
+    @faqs = Faq.category(:Hilbert).answered
+  end
+
 end

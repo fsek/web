@@ -53,10 +53,10 @@ class ApplicationController < ActionController::Base
 
   def menues
     menu = Menu.where(visible: true)
-    @menu_sektionen = menu.where(location: "Sektionen")
-    @menu_medlemmar = menu.where(location: "För medlemmar")
-    @menu_foretag = menu.where(location: "För företag")
-    @menu_kontakt = menu.where(location: "Kontakt")
+    @menu_sektionen = menu.where(location: 'Sektionen')
+    @menu_medlemmar = menu.where(location: 'För medlemmar')
+    @menu_foretag = menu.where(location: 'För företag')
+    @menu_kontakt = menu.where(location: 'Kontakt')
   end
 
   def verify_admin
