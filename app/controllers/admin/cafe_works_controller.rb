@@ -2,7 +2,7 @@
 class Admin::CafeWorksController < ApplicationController
   before_action :authenticate
   before_action :set_cafe_work, only: [:edit, :show, :update, :destroy, :remove_worker]
-  before_action :new_cafe_work, only: [:new, :setup, :setup_create,:create]
+  before_action :new_cafe_work, only: [:new, :setup, :setup_create, :create]
   before_action :set_lv, only: [:setup_create]
   before_action :set_cafe_setup, only: [:setup_create]
 
@@ -50,9 +50,9 @@ class Admin::CafeWorksController < ApplicationController
 
   def setup_create
     if preview?
-      @cworks = @r.preview(@lv_first,@lv_last)
+      @cworks = @r.preview(@lv_first, @lv_last)
     elsif save?
-      @r.setup(@lv_first,@lv_last)
+      @r.setup(@lv_first, @lv_last)
       flash[:notice] = "Skapades"
     end
     render 'setup'
@@ -68,13 +68,14 @@ class Admin::CafeWorksController < ApplicationController
   private
 
   def authenticate
-    redirect_to(:hilbert, alert: t('the_role.access_denied')) unless current_user && current_user.moderator?(:cafejobb)
+    redirect_to(:hilbert, alert: t('the_role.access_denied')) unless
+        current_user && current_user.moderator?(:cafejobb)
   end
 
   def c_w_params
     params.require(:cafe_work).permit(:work_day, :pass, :profile_id,
                                       :name, :lastname, :phone, :email, :lp, :lv,
-                                      :utskottskamp, :council_ids => [])
+                                      :utskottskamp, council_ids: [])
   end
 
   def set_cafe_work

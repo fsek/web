@@ -101,7 +101,6 @@ class CafeWork < ActiveRecord::Base
   # /d.wessman
   def remove_worker(user, access)
     if (!owner?(user) && !authorize(access))
-      Rails.logger.info "Vad?"
       errors.add('Auktorisering', 'misslyckades, du har inte rättighet att ta bort eller skrev fel kod.')
       return false
     end
@@ -143,7 +142,6 @@ class CafeWork < ActiveRecord::Base
   # Returns true only if hte access_code is correct
   # /d.wessman
   def authorize(access)
-    Rails.logger.info access
     access.present? && access_code.present? && access_code == access
   end
 
