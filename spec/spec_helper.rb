@@ -22,9 +22,8 @@ CodeClimate::TestReporter.start
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/all'
 require 'rspec/rails'
-# Add this to load Capybara integration:
-require 'capybara/rspec'
-require 'capybara/rails'
+
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -39,6 +38,7 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => 'be bigger than 2'
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+    expectations.syntax = [ :should, :expect ]
   end
 
   # rspec-mocks config goes here. You can use an alternate test double
@@ -95,3 +95,12 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+def build *args
+  FactoryGirl.build *args
+end
+
+def create *args
+  FactoryGirl.create *args
+end
+
