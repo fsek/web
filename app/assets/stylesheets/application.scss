@@ -12,6 +12,7 @@
  *= require app 
  *= require bootstrap
  *= require_self
+ *= require colors
  *= require style 
  *= require header1
  *= require responsive
@@ -37,10 +38,14 @@
  *= require jquery-ui/datepicker
  *= require rent
  *= require bootstrap-datetimepicker
- *= require cafe_works
  */
 
  /* Override for Bootstrap 3 font location */
+
+// We should eventually import all files like this
+@import "colors";
+@import "cafe_works";
+
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('../assets/glyphicons-halflings-regular.eot');
