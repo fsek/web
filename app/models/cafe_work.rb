@@ -198,6 +198,11 @@ class CafeWork < ActiveRecord::Base
     (work_day + duration.hours).strftime('%H:%M')
   end
 
+  def self.get_lv
+    check = CafeWork.between(Time.zone.now.beginning_of_day-2.days, Time.zone.now.end_of_day).last
+    (check.present?) ? check.lv.to_s : '?'
+  end
+
   protected
   def build_access_code
     (0...15).map { (65 + rand(26)).chr }.join.to_s

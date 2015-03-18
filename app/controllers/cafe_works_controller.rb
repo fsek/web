@@ -35,10 +35,7 @@ class CafeWorksController < ApplicationController
 
   def main
     respond_to do |format|
-      format.html {
-        lv = CafeWork.between(Time.zone.now.beginning_of_day-2.days, Time.zone.now.end_of_day).last
-        @lv = (lv.nil?) ? "?" : lv.lv
-      }
+      format.html { @lv = CafeWork.get_lv }
       format.json { render json: CafeWork.between(params[:start], params[:end]) }
     end
 
@@ -50,14 +47,15 @@ class CafeWorksController < ApplicationController
     @work_grid = initialize_grid(@works)
   end
 
-
   private
+
   def nyckelpiga_auth
     if current_user
-      post = Post.where(title: "Nyckelpiga").includes(:profiles).where(profiles: {id: current_user.profile.id}).first
+      post = Post.where(title: 'Nyckelpiga').includes(:profiles)
+                 .where(profiles: {id: current_user.profile.id}).first
     end
     if (post.nil?) && !((current_user) && (current_user.moderator?(:hilbert)))
-      redirect_to(:hilbert, alert: "Du saknar behörighet")
+      redirect_to(:hilbert, alert: 'Du saknar behörighet')
     end
   end
 
