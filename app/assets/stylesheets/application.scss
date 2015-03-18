@@ -42,8 +42,9 @@
 
  /* Override for Bootstrap 3 font location */
 
-@import 'colors';
-@import 'cafe_works';
+// We should eventually import all files like this
+@import "colors";
+@import "cafe_works";
 
 @font-face {
   font-family: 'Glyphicons Halflings';
