@@ -9,7 +9,7 @@ class News < ActiveRecord::Base
 
   # Validations
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-  validate :profile_id, presence: true
+  validates_presence_of :profile_id
 
   # Scopes
   scope :d_published, -> {where('d_publish <= ?',Time.zone.today)}

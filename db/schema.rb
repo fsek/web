@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171451) do
+ActiveRecord::Schema.define(version: 20410822171452) do
 
-  create_table "album_categories", force: true do |t|
+  create_table "album_categories", force: :cascade do |t|
     t.string   "name"
     t.text     "text"
     t.boolean  "visible"
@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.datetime "updated_at"
   end
 
-  create_table "album_categories_albums", id: false, force: true do |t|
+  create_table "album_categories_albums", id: false, force: :cascade do |t|
     t.integer "album_id"
     t.integer "album_category_id"
   end
 
-  create_table "albums", force: true do |t|
+  create_table "albums", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "author"
@@ -40,17 +40,17 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.integer  "photo_category_id"
   end
 
-  create_table "albums_images", id: false, force: true do |t|
+  create_table "albums_images", id: false, force: :cascade do |t|
     t.integer "album_id"
     t.integer "image_id"
   end
 
-  create_table "albums_subcategories", id: false, force: true do |t|
+  create_table "albums_subcategories", id: false, force: :cascade do |t|
     t.integer "album_id"
     t.integer "subcategory_id"
   end
 
-  create_table "candidates", force: true do |t|
+  create_table "candidates", force: :cascade do |t|
     t.integer  "post_id"
     t.integer  "profile_id"
     t.integer  "election_id"
@@ -67,14 +67,14 @@ ActiveRecord::Schema.define(version: 20410822171451) do
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id"
   add_index "candidates", ["profile_id"], name: "index_candidates_on_profile_id"
 
-  create_table "constants", force: true do |t|
+  create_table "constants", force: :cascade do |t|
     t.string   "name"
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "contacts", force: true do |t|
+  create_table "contacts", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.boolean  "public"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.datetime "updated_at"
   end
 
-  create_table "councils", force: true do |t|
+  create_table "councils", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
     t.text     "description"
@@ -100,13 +100,13 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.integer  "contact_id"
   end
 
-  create_table "document_group_types", force: true do |t|
+  create_table "document_group_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "document_groups", force: true do |t|
+  create_table "document_groups", force: :cascade do |t|
     t.string   "name"
     t.date     "production_date"
     t.integer  "document_group_type_id"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.datetime "updated_at"
   end
 
-  create_table "documents", force: true do |t|
+  create_table "documents", force: :cascade do |t|
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
 
   add_index "documents", ["document_group_id"], name: "index_documents_on_document_group_id"
 
-  create_table "elections", force: true do |t|
+  create_table "elections", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
     t.boolean  "visible"
@@ -151,12 +151,12 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.string   "mail_styrelse_link"
   end
 
-  create_table "elections_posts", id: false, force: true do |t|
+  create_table "elections_posts", id: false, force: :cascade do |t|
     t.integer "election_id"
     t.integer "post_id"
   end
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.string   "title"
     t.string   "author"
     t.text     "description"
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.datetime "image_updated_at"
   end
 
-  create_table "faqs", force: true do |t|
+  create_table "faqs", force: :cascade do |t|
     t.string   "question"
     t.text     "answer"
     t.integer  "sorting_index"
@@ -182,7 +182,9 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.string   "category"
   end
 
-  create_table "images", force: true do |t|
+  add_index "faqs", ["category"], name: "index_faqs_on_category"
+
+  create_table "images", force: :cascade do |t|
     t.string   "description"
     t.integer  "album_id"
     t.string   "foto_file_name"
@@ -195,7 +197,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.integer  "subcategory_id"
   end
 
-  create_table "lists", force: true do |t|
+  create_table "lists", force: :cascade do |t|
     t.string   "category"
     t.string   "name"
     t.string   "string1"
@@ -205,7 +207,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.datetime "updated_at"
   end
 
-  create_table "menus", force: true do |t|
+  create_table "menus", force: :cascade do |t|
     t.string   "location"
     t.integer  "index"
     t.string   "link"
@@ -217,7 +219,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.datetime "updated_at"
   end
 
-  create_table "news", force: true do |t|
+  create_table "news", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.boolean  "front_page"
@@ -230,7 +232,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.integer  "profile_id"
   end
 
-  create_table "nominations", force: true do |t|
+  create_table "nominations", force: :cascade do |t|
     t.integer  "post_id"
     t.integer  "election_id"
     t.string   "name"
@@ -242,7 +244,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.string   "stil_id"
   end
 
-  create_table "notices", force: true do |t|
+  create_table "notices", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.boolean  "public"
@@ -257,7 +259,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.datetime "updated_at"
   end
 
-  create_table "page_elements", force: true do |t|
+  create_table "page_elements", force: :cascade do |t|
     t.integer  "displayIndex"
     t.boolean  "sidebar"
     t.boolean  "visible"
@@ -275,13 +277,13 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.datetime "updated_at"
   end
 
-  create_table "pages", force: true do |t|
+  create_table "pages", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "council_id"
   end
 
-  create_table "photo_categories", force: true do |t|
+  create_table "photo_categories", force: :cascade do |t|
     t.string   "name"
     t.string   "text"
     t.boolean  "visible"
@@ -289,7 +291,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.datetime "updated_at"
   end
 
-  create_table "posts", force: true do |t|
+  create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.integer  "limit",         default: 0
     t.text     "description"
@@ -305,12 +307,12 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.boolean  "car_rent"
   end
 
-  create_table "posts_profiles", id: false, force: true do |t|
+  create_table "posts_profiles", id: false, force: :cascade do |t|
     t.integer "post_id"
     t.integer "profile_id"
   end
 
-  create_table "profiles", force: true do |t|
+  create_table "profiles", force: :cascade do |t|
     t.string   "name"
     t.string   "lastname"
     t.string   "program"
@@ -328,14 +330,14 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.string   "phone"
   end
 
-  create_table "rents", force: true do |t|
+  create_table "rents", force: :cascade do |t|
     t.datetime "d_from"
     t.datetime "d_til"
     t.string   "name"
     t.string   "lastname"
     t.string   "email"
     t.string   "phone"
-    t.text     "purpose",     default: ""
+    t.text     "purpose"
     t.boolean  "disclaimer",  default: false
     t.string   "status",      default: "Ej bestämd"
     t.boolean  "aktiv",       default: true
@@ -351,7 +353,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
   add_index "rents", ["d_from"], name: "index_rents_on_d_from"
   add_index "rents", ["d_til"], name: "index_rents_on_d_til"
 
-  create_table "roles", force: true do |t|
+  create_table "roles", force: :cascade do |t|
     t.string   "name",        null: false
     t.string   "title",       null: false
     t.text     "description", null: false
@@ -360,13 +362,13 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.datetime "updated_at"
   end
 
-  create_table "subcategories", force: true do |t|
+  create_table "subcategories", force: :cascade do |t|
     t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "taggings", force: true do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer  "document_id"
     t.integer  "tag_id"
     t.datetime "created_at"
@@ -376,13 +378,13 @@ ActiveRecord::Schema.define(version: 20410822171451) do
   add_index "taggings", ["document_id"], name: "index_taggings_on_document_id"
   add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "username",                            null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -399,7 +401,7 @@ ActiveRecord::Schema.define(version: 20410822171451) do
     t.datetime "updated_at"
   end
 
-  create_table "work_posts", force: true do |t|
+  create_table "work_posts", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "company"
