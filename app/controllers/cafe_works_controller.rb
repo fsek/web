@@ -45,7 +45,7 @@ class CafeWorksController < ApplicationController
   end
 
   def nyckelpiga
-    @date = (params[:data].present?) ? Time.zone.parse(params[:date]) : Time.zone.now
+    @date = (params[:date].present?) ? Time.zone.parse(params[:date]) : Time.zone.now
     @works = CafeWork.between(@date.beginning_of_day, @date.end_of_day).ascending
     @work_grid = initialize_grid(@works)
   end
