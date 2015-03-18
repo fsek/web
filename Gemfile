@@ -17,6 +17,7 @@ gem 'jquery-ui-rails'
 gem 'momentjs-rails'
 gem 'mysql2'
 gem 'paperclip'
+gem 'responders', '~> 2.0'
 gem 'sass-rails'
 gem 'sqlite3'
 gem 'the_role', github: 'TheRole/TheRoleApi', tag: 'v2.6'
@@ -35,6 +36,7 @@ group :development, :test do
   gem 'mailcatcher'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'web-console', '~> 2.0'
 end
 
 group :test do
