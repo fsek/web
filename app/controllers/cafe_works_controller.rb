@@ -17,7 +17,7 @@ class CafeWorksController < ApplicationController
 
   def update_worker
     if @cwork.update_worker(worker_params, current_user)
-      flash[:notice] = "Bokningen uppdaterades"
+      flash[:notice] = 'Bokningen uppdaterades'
       redirect_to @cwork
     else
       render action: :show
@@ -25,7 +25,7 @@ class CafeWorksController < ApplicationController
   end
 
   def add_worker
-    flash[:notice] = "Jobbare lades till" if @cwork.add_worker(worker_params, current_user)
+    flash[:notice] = 'Jobbare lades till' if @cwork.add_worker(worker_params, current_user)
     redirect_to @cwork
   end
 
@@ -38,7 +38,6 @@ class CafeWorksController < ApplicationController
       format.html { @lv = CafeWork.get_lv }
       format.json { render json: CafeWork.between(params[:start], params[:end]) }
     end
-
   end
 
   def nyckelpiga
@@ -73,12 +72,9 @@ class CafeWorksController < ApplicationController
     if @cwork.nil?
       redirect_to(:hilbert, notice: 'Hittade inget Cafejobb med det ID:t.')
     end
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
   end
 
   def set_faqs
     @faqs = Faq.category(:Hilbert).answered
   end
-
 end
