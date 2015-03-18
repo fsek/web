@@ -169,6 +169,8 @@ GEM
     pry-byebug (2.0.0)
       byebug (~> 3.4)
       pry (~> 0.10)
+    pry-rails (0.3.3)
+      pry (>= 0.9.10)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
@@ -316,8 +318,8 @@ DEPENDENCIES
   mysql2
   paperclip
   poltergeist
-  pry
   pry-byebug (= 2.0.0)
+  pry-rails
   rails (~> 4.2.0)
   responders (~> 2.0)
   rspec-rails
