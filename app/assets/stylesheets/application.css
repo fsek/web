@@ -12,6 +12,7 @@
  *= require app 
  *= require bootstrap
  *= require_self
+ *= require colors
  *= require style 
  *= require header1
  *= require responsive
