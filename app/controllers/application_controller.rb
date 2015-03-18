@@ -20,9 +20,15 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_devise_parameters
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:username, :password, :remember_me) }
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:password, :password_confirmation, :current_password) }
+    devise_parameter_sanitizer.for(:sign_in) {
+        |u| u.permit(:username, :password, :remember_me)
+    }
+    devise_parameter_sanitizer.for(:sign_up) {
+        |u| u.permit(:username, :email, :password, :password_confirmation)
+    }
+    devise_parameter_sanitizer.for(:account_update) {
+        |u| u.permit(:password, :password_confirmation, :current_password)
+    }
   end
 
   def set_locale
@@ -51,7 +57,6 @@ class ApplicationController < ActionController::Base
       @commit_url = "https://github.com/fsek/web/commit/%s" % @commit
     end
   end
-
 
   def menues
     menu = Menu.where(visible: true)

@@ -111,4 +111,5 @@ class Admin::CafeWorksController < ApplicationController
   def save?
     params[:commit] == 'Spara'
   end
+
 end
