@@ -1,6 +1,7 @@
 <% provide(:title, 'Hilbert Café - Setup') %>
 <div class="container">
   <div class="row">
+    <%= render 'links' %>
     <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
       <div class="headline headline-md"><h1>Skapa jobbpass</h1></div>
       <p>Genom att fylla i datum och tid för läsperiodens första pass
@@ -35,7 +36,6 @@
             <% end %>
           </div>
       <% end %>
-      <%= link_to 'Tillbaka till cafebokning', :admin_hilbert, class: "btn btn-u" %>
     </div>
   </div>
 </div>

@@ -29,7 +29,7 @@ class CafeWorksController < ApplicationController
   end
 
   def remove_worker
-    @removed = @cwork.worker_remove(current_user,params[:access_code])
+    @removed = @cwork.remove_worker(current_user,worker_params[:access_code])
   end
 
   def main

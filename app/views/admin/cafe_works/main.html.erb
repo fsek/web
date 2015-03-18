@@ -1,73 +1,73 @@
 <% provide(:title, 'Hilbert Café') %>
 <%= stylesheet_link_tag "fullcalendar-custom", :media => "print" %>
 <div class="col-md-12">
-    <div class="row">
-    	<div class="col-md-12">
-    		<div class="headline headline-md"><h1>Administration för Hilbert Café</h1></div>    		
-            <div class="col-md-9">                        
-                	<%= grid(@cwork_grid) do |g|
-						g.row_attributes do |post|
-							if (post.has_worker?)
-								{style: 'background: rgba(252, 155, 0,0.7);', id: dom_id(post)}			
-							else
-							{id: dom_id(post)}
-							end
-						end
-						g.column name: "Datum:",attribute: "work_day"
-						g.column name: "Läsvecka",attribute: "lv"
-						g.column name: "Läsperiod", attribute: "lp" 
-						g.column name: "Pass", attribute: "pass"								
-						g.column name: "Visa" do |post|
-							link_to("Visa",admin_cafe_work_path(post))
-						end
-						g.column name: "Ta bort" do |post|
-							link_to("Ta bort",admin_cafe_work_path(post), remote: true, method: :delete, html: {id: dom_id(post)})
-						end
-					end -%>
-					<span id="status"></span>						               
-            </div>
-            <div class="col-md-3">
-                <div class="row">
-                    <div class="headline headline-md"><h2>F.A.Q.</h2></div>
-                    <div class="panel-group acc-v1" id="answered">				  	
-				  	<%@faqs.each do |f|%>
-				  		<div class="panel panel-default">
-				  		<div class="panel-heading">
-				  			<h4 class="panel-title">
-				  				<div id="faq123">
-				  					<a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#collapse<%=f.id%>" >
-				  						<%=f.question%>
-				  					</a>
-				  				</div>
-				  			</h4>
-				  		</div>
-				  		<div id="collapse<%=f.id%>" class="panel-collapse collapse">
-				  			<div class="panel-body">
-				  				<%=simple_format(f.answer)%>				  				
-			  					<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera fråga"), edit_faq_path(f), class: "btn-u btn-u-small pull-right"%>					  		
-					    	</div>
-					    </div>
-					  </div>
-					<%end%>
-					<ul class="list">
-							<li><%=link_to("Ställ ny fråga",new_faq_path(category: "Hilbert"))%></li>
-							<%if @faq_unanswered > 0%>
-								<li><%=link_to("Det finns " + pluralize(@faq_unanswered,"obesvarad FAQ"),faqs_path())%></li>
-							<%end%>	
-						</ul>
-					
-									
-					</div> 					               	
-                </div>                
-    			<div class="row">
-					<div class="headline headline-md"><h2>Verktyg</h2></div>
-					<ul class="list">
-						<li><%=link_to("Skapa pass för Läsperiod",admin_setup_cafe_path)%></li>
-						<li><%=link_to("Skapa enskilt pass",new_admin_cafe_work_path)%></li>
-						<li><%=link_to("Nyckelpiga",:nyckelpiga)%></li>
-					</ul>		
-                </div>                
-            </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="headline headline-md"><h1>Administration för Hilbert Café</h1></div>
+      <div class="col-md-9">
+        <%= grid(@cwork_grid) do |g|
+          g.row_attributes do |post|
+            if (post.has_worker?)
+              {style: 'background: rgba(252, 155, 0,0.7);', id: dom_id(post)}
+            else
+              {id: dom_id(post)}
+            end
+          end
+          g.column name: "Datum:", attribute: "work_day"
+          g.column name: "Läsvecka", attribute: "lv"
+          g.column name: "Läsperiod", attribute: "lp"
+          g.column name: "Pass", attribute: "pass"
+          g.column name: "Visa" do |post|
+            link_to("Visa", admin_cafe_work_path(post))
+          end
+          g.column name: "Ta bort" do |post|
+            link_to("Ta bort", admin_cafe_work_path(post), remote: true, method: :delete, html: {id: dom_id(post)})
+          end
+        end -%>
+        <span id="status"></span>
+      </div>
+      <div class="col-md-3">
+        <div class="row">
+          <div class="headline headline-md"><h2>F.A.Q.</h2></div>
+          <div class="panel-group acc-v1" id="answered">
+            <% @faqs.each do |f| %>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <div id="faq123">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#collapse<%= f.id %>">
+                          <%= f.question %>
+                        </a>
+                      </div>
+                    </h4>
+                  </div>
+                  <div id="collapse<%= f.id %>" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <%= simple_format(f.answer) %>
+                      <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera fråga"), edit_faq_path(f), class: "btn-u btn-u-small pull-right" %>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+            <ul class="list">
+              <li><%= link_to("Ställ ny fråga", new_faq_path(category: "Hilbert")) %></li>
+              <% if @faq_unanswered > 0 %>
+                  <li><%= link_to("Det finns " + pluralize(@faq_unanswered, "obesvarad FAQ"), faqs_path()) %></li>
+              <% end %>
+            </ul>
+
+
+          </div>
         </div>
-    </div>        
+        <div class="row">
+          <div class="headline headline-md"><h2>Verktyg</h2></div>
+          <ul class="list">
+            <li><%= link_to("Skapa pass för Läsperiod", admin_setup_cafe_path) %></li>
+            <li><%= link_to("Skapa enskilt pass", new_admin_cafe_work_path) %></li>
+            <li><%= link_to("Nyckelpiga", :nyckelpiga) %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -2,20 +2,20 @@
 class Admin::CafeWorksController < ApplicationController
   before_action :authenticate
   before_action :set_cafe_work, only: [:edit, :show, :update, :destroy, :remove_worker]
+  before_action :new_cafe_work, only: [:new, :setup, :setup_create,:create]
+  before_action :set_lv, only: [:setup_create]
   before_action :set_cafe_setup, only: [:setup_create]
 
   def show
   end
 
   def new
-    @cwork = CafeWork.new
   end
 
   def edit
   end
 
   def create
-    @cwork = CafeWork.new(c_w_params)
     flash[:notice] = 'Cafejobbet skapades, success.' if @cwork.save
     respond_with @cwork
   end
@@ -46,14 +46,13 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def setup
-    @cwork = CafeWork.new
   end
 
   def setup_create
     if preview?
-      @cworks = r.preview(@lv_first = params[:lv_first].to_i, @lv_last = params[:lv_last].to_i)
+      @cworks = @r.preview(@lv_first,@lv_last)
     elsif save?
-      r.setup(params[:lv_first].to_i, params[:lv_last].to_i)
+      @r.setup(@lv_first,@lv_last)
       flash[:notice] = "Skapades"
     end
     render 'setup'
@@ -69,8 +68,7 @@ class Admin::CafeWorksController < ApplicationController
   private
 
   def authenticate
-    redirect_to(:hilbert, alert: t('the_role.access_denied')) unless
-        current_user && current_user.moderator?(:cafejobb)
+    redirect_to(:hilbert, alert: t('the_role.access_denied')) unless current_user && current_user.moderator?(:cafejobb)
   end
 
   def c_w_params
@@ -88,10 +86,22 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def set_cafe_setup
-    @cwork = CafeWork.new(c_w_params)
     if c_w_params[:work_day].present? && c_w_params[:lp].present?
       @r = CafeSetupWeek.new(Time.zone.parse(c_w_params[:work_day]), c_w_params[:lp])
     end
+  end
+
+  def new_cafe_work
+    if params.present? && params[:cafe_work].present?
+      @cwork = CafeWork.new(c_w_params)
+    else
+      @cwork = CafeWork.new
+    end
+  end
+
+  def set_lv
+    @lv_first = (params[:lv_first].present?) ? params[:lv_first].to_i : 0
+    @lv_last = (params[:lv_last].present?) ? params[:lv_last].to_i : 0
   end
 
   def preview?
@@ -101,5 +111,4 @@ class Admin::CafeWorksController < ApplicationController
   def save?
     params[:commit] == 'Spara'
   end
-
 end

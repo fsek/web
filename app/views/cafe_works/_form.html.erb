@@ -1,4 +1,4 @@
-<%= form_for(@cwork,url:{ action: @path}) do |f| %>
+<%= form_for(@cwork, url: {action: @path}) do |f| %>
     <%= render 'shared/form_errors', current: @cwork %>
     <div class="margin-bottom-20">
       <%= f.label 'Namn & Efternamn', class: 'reg-label' %>
@@ -41,9 +41,7 @@
         </div>
         <hr>
     <% end %>
-    <% if !@cwork.edit?(current_user) %>
-        <p>Det går inte längre att skriva upp sig på passet eller redigera.</p>
-    <% else %>
+    <% if @cwork.editable? %>
         <% if !@cwork.has_worker? %>
             <div class="margin-bottom-20 reg-page">
               <p>Genom att trycka på spara accepterar du att dina personuppgifter hanteras elektroniskt.
@@ -53,12 +51,14 @@
         <div class="margin-bottom-40">
           <%= f.submit "Spara", class: 'btn-u pull-right' %>
         </div>
+    <% else %>
+        <p>Det går inte längre att skriva upp sig på passet eller redigera.</p>
     <% end %>
 <% end %>
 <% if @cwork.has_worker? %>
     <% if @authenticated %>
         <%= form_for(@cwork, url: remove_worker_cafe_work_path(@cwork), remote: true) do |f| %>
-            <%= f.label 'Kod', class: 'reg-label', id: 'leave_status' %>
+            <%= f.label 'Hoppa av', class: 'reg-label', id: 'leave_status' %>
             <p>Din kod måste fyllas i för att kunna hoppa av passet</p>
             <div class="margin-bottom-20">
               <%= f.text_field :access_code, class: 'form-control', placeholder: "Kod", value: nil %>

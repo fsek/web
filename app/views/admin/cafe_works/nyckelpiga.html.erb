@@ -1,7 +1,7 @@
 <% provide(:title, 'Hilbert Café') %>
 	<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 reg-page">
 		<div class="coming-soon">
-			<h2><%= label_tag 'Cafebokning - nyckelpiga',nil, :class => 'reg-header'%></h2>		
+			<h2><%= label_tag 'Cafebokning - nyckelpiga',nil, class: 'reg-header'%></h2>
 		</div>
 		<div class="row margin-bottom-20">
 			<%=form_tag(nyckelpiga_path,{method: 'get'}) do %>
@@ -24,7 +24,7 @@
 						<% @works.each do |work|%>
 							<tr>
 								<td><%=work.pass%></td>
-								<td><%=(work.profile_id == nil) ? work.name : link_to(work.name, Profile.find_by_id(work.profile_id))%></td>
+								<td><%=(work.profile.present?) ? work.name : link_to(work.name, work.profile)%></td>
 								<td><%=work.lastname%></td>
 								<td><%=work.phone%></td>
 							</tr>
