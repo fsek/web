@@ -1,4 +1,4 @@
-initDatepickers = ->    
+initDatepickers = ->
   $('.date_field').datepicker
     dateFormat: 'dd-mm-yy',
     prevText: '<i class="icon-chevron-left"></i>',

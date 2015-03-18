@@ -18,23 +18,19 @@ class Documents::DocumentGroupTypesController < ApplicationController
 
   def create
     @document_group_type = DocumentGroupType.new(document_group_type_params)
-    respond_to do |format|
-      if @document_group_type.save
-        format.html { redirect_to DocumentGroupType, notice: 'Dokumentsamlingstypen skapades!' }            
-      else
-        format.html { render action: 'new' }            
-      end        
+    if @document_group_type.save
+      redirect_to DocumentGroupType, notice: 'Dokumentsamlingstypen skapades!'
+    else
+      render action: 'new'
     end
   end
 
-  def update  
-    @document_group_type.update_attributes(document_group_type_params)        
-    respond_to do |format|
-      if @document_group_type.save
-        format.html { redirect_to DocumentGroupType, notice: 'Dokumentsamlingstypen uppdaterades!' }
-      else
-        format.html { render action: 'edit' }            
-      end        
+  def update
+    @document_group_type.update_attributes(document_group_type_params)
+    if @document_group_type.save
+      redirect_to DocumentGroupType, notice: 'Dokumentsamlingstypen uppdaterades!'
+    else
+      render action: 'edit'
     end
   end
 
@@ -44,8 +40,11 @@ class Documents::DocumentGroupTypesController < ApplicationController
   end
 
   private
+
     def authenticate
-      redirect_to root_url, alert: 'Du får inte göra så.' unless current_user && current_user.moderator?(:document_group_types)
+      unless current_user && current_user.moderator?(:document_group_types)
+        redirect_to root_url, alert: 'Du får inte göra så.'
+      end
     end
 
     def set_document_group_type

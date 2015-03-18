@@ -14,30 +14,26 @@ class Documents::DocumentGroupsController < ApplicationController
     @document_group = DocumentGroup.new document_group_type: type
 
     if params[:type].present? && type.blank?
-      flash.now[:alert] = 'Du ville skapa en dokumentsamlning av typen "' + params[:type] + '" men den typen av dokumentsamling finns inte.'
+      flash.now[:alert] = "Du ville skapa en dokumentsamlning av typen '#{params[:type]}' men den"\
+                          "typen av dokumentsamling finns inte."
     end
   end
 
   def create
     @document_group = DocumentGroup.new(document_group_params)
-
-    respond_to do |format|
-      if @document_group.save
-        format.html { redirect_to @document_group, notice: 'Dokumensamling skapad!' }
-      else
-        format.html { render action: 'new' }
-      end
+    if @document_group.save
+      redirect_to @document_group, notice: 'Dokumensamling skapad!'
+    else
+      render action: 'new'
     end
   end
 
-  def update  
-    @document_group.update_attributes(document_group_params)        
-    respond_to do |format|
-      if @document_group.save
-        format.html { redirect_to @document_group, notice: 'Dokumentet uppdaterades!' }
-      else
-        format.html { render action: 'show' }            
-      end        
+  def update
+    @document_group.update_attributes(document_group_params)
+    if @document_group.save
+      redirect_to @document_group, notice: 'Dokumentet uppdaterades!'
+    else
+      render action: 'show'
     end
   end
 
@@ -47,8 +43,11 @@ class Documents::DocumentGroupsController < ApplicationController
   end
 
   private
+
     def authenticate
-      redirect_to root_url, alert: 'Du får inte göra så.' unless current_user && current_user.moderator?(:document_groups)
+      unless current_user && current_user.moderator?(:document_groups)
+        redirect_to root_url, alert: 'Du får inte göra så.'
+      end
     end
 
     def set_document_group
@@ -58,4 +57,5 @@ class Documents::DocumentGroupsController < ApplicationController
     def document_group_params
       params.require(:document_group).permit(:name, :production_date, :document_group_type_id)
     end
+
 end

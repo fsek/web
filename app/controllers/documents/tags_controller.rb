@@ -18,23 +18,19 @@ class Documents::TagsController < ApplicationController
 
   def create
     @tag = Tag.new(tag_params)
-    respond_to do |format|
-      if @tag.save
-        format.html { redirect_to Tag, notice: 'Dokumentsamlingstypen skapades!' }            
-      else
-        format.html { render action: 'new' }            
-      end        
+    if @tag.save
+      redirect_to Tag, notice: 'Dokumentsamlingstypen skapades!'
+    else
+      render action: 'new'
     end
   end
 
-  def update  
-    @tag.update_attributes(tag_params)        
-    respond_to do |format|
-      if @tag.save
-        format.html { redirect_to Tag, notice: 'Dokumentsamlingstypen uppdaterades!' }
-      else
-        format.html { render action: 'edit' }
-      end        
+  def update
+    @tag.update_attributes(tag_params)
+    if @tag.save
+      redirect_to Tag, notice: 'Dokumentsamlingstypen uppdaterades!'
+    else
+      render action: 'edit'
     end
   end
 
@@ -45,7 +41,9 @@ class Documents::TagsController < ApplicationController
 
   private
     def authenticate
-      redirect_to root_url, alert: 'Du får inte göra så.' unless current_user && current_user.moderator?(:tags)
+      unless current_user && current_user.moderator?(:tags)
+        redirect_to root_url, alert: 'Du får inte göra så.'
+      end
     end
 
     def set_tag

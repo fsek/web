@@ -27,7 +27,7 @@ class DocumentsController < ApplicationController
   def other
     @document_groups  = DocumentGroup.find_without_type(['styrdokument', 'sektionsmöte', 'styrelsemöte'])
   end
-  
+
   def new
     @document = Document.new
     @document.document_group = DocumentGroup.find_by_id(params[:document_group])
@@ -35,7 +35,7 @@ class DocumentsController < ApplicationController
     @document.public = true
     @document.all_tags = params[:tag] if params[:tag].present?
   end
-  
+
   def show
     if (!@document.hidden && @document.public) ||
        (!@document.hidden && current_user) ||
@@ -47,28 +47,24 @@ class DocumentsController < ApplicationController
     end
   end
 
-  def edit    
+  def edit
   end
-  
+
   def create
     @document = Document.new(document_params)
-    respond_to do |format|
-      if @document.save
-        format.html { redirect_to @document.document_group, notice: 'Dokumentet skapades!' }            
-      else
-        format.html { render action: 'new' }            
-      end        
+    if @document.save
+      redirect_to @document.document_group, notice: 'Dokumentet skapades!'
+    else
+      render action: 'new'
     end
   end
-  
-  def update  
-    @document.update_attributes(document_params)        
-    respond_to do |format|
-      if @document.save
-        format.html { redirect_to @document.document_group, notice: 'Dokumentet uppdaterades!' }
-      else
-        format.html { render action: 'edit' }            
-      end        
+
+  def update
+    @document.update_attributes(document_params)
+    if @document.save
+      redirect_to @document.document_group, notice: 'Dokumentet uppdaterades!'
+    else
+      render action: 'edit'
     end
   end
 
@@ -77,7 +73,7 @@ class DocumentsController < ApplicationController
     @document.destroy!
     redirect_to dg
   end
-  
+
   private
     def authenticate
       redirect_to root_url, alert: 'Du får inte göra så.' unless can_moderate
@@ -89,7 +85,7 @@ class DocumentsController < ApplicationController
 
     def set_document
       @document = Document.find(params[:id])
-    end    
+    end
 
     def document_params
       params.require(:document).permit(:title, :production_date, :revision_date, :public, :hidden, :document_group_id, :pdf, :all_tags)
