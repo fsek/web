@@ -41,7 +41,7 @@ class Admin::CafeWorksController < ApplicationController
 
   def remove_worker
     if !@cwork.clear_worker
-      render action: show, notice: "Lyckades inte"
+      render action: show, notice: 'Lyckades inte'
     end
   end
 
@@ -53,7 +53,7 @@ class Admin::CafeWorksController < ApplicationController
       @cworks = @r.preview(@lv_first, @lv_last)
     elsif save?
       @r.setup(@lv_first, @lv_last)
-      flash[:notice] = "Skapades"
+      flash[:notice] = 'Skapades'
     end
     render 'setup'
   end
@@ -80,9 +80,8 @@ class Admin::CafeWorksController < ApplicationController
 
   def set_cafe_work
     @cwork = CafeWork.find_by_id(params[:id])
-    if (@cwork == nil)
-      flash[:notice] = 'Hittade inget Cafejobb med det ID:t.'
-      redirect_to(:admin_cafe_works)
+    if (@cwork.present?)
+        redirect_to(:admin_cafe_works, notice: 'Hittade inget Cafejobb med det ID:t.')
     end
   end
 
