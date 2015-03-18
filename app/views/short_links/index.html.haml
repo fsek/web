@@ -1,0 +1,21 @@
+- title = ShortLink.model_name.human :count => 2
+- title title
+
+%h1= title
+
+= render 'form'
+
+%table.table
+  %thead
+    %tr
+      %th= ShortLink.human_attribute_name :link
+      %th= ShortLink.human_attribute_name :target
+      %th
+
+  %tbody
+    - @short_links.each do |sl|
+      %tr
+        %td= sl.link
+        %td= link_to sl.target
+        %td= link_to 'Ta bort', sl, :method => :delete
+

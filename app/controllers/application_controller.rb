@@ -5,16 +5,24 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_devise_parameters, if: :devise_controller?
   before_filter :set_locale
-  before_filter :get_commit
+
+  # This fails all my controller tests. Is is necessary? /jforberg
+  #before_filter :get_commit
 
 
   def access_denied
     flash[:error] = t('the_role.access_denied')
     redirect_to(:back)
+  end
 
-  rescue ActionController::RedirectBackError
+  rescue_from ActionController::RedirectBackError do
     redirect_to root_path
   end 
+
+  rescue_from ActiveRecord::RecordNotFound do
+    # translate record not found -> HTTP 404
+    fail ActionController::RoutingError.new 'not found'
+  end
 
   protected
 
@@ -46,7 +54,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_commit
-    if user_signed_in? && current_user.admin?
+    if user_signed_in? && current_user && current_user.admin?
       @commit = `git rev-parse HEAD`[0, 6]
       @commit_url = "https://github.com/fsek/web/commit/%s" % @commit
     end

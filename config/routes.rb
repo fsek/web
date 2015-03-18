@@ -137,7 +137,16 @@ Fsek::Application.routes.draw do
     concerns :the_role
   end
 
+  resources :short_links, :except => [ :show, :update, :edit ] do
+    collection do
+      get 'go' => 'short_links#go'
+      get 'check' => 'short_links#check'
+    end
+  end
+
   root 'static_pages#index'
 
-
+  # Catch-all for short links.
+  # This must be at the bottom!
+  get '*link' => 'short_links#go'
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171444) do
+ActiveRecord::Schema.define(version: 20410822171445) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -344,6 +344,13 @@ ActiveRecord::Schema.define(version: 20410822171444) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "short_links", force: :cascade do |t|
+    t.string "link",   limit: 255,   null: false
+    t.text   "target", limit: 65535, null: false
+  end
+
+  add_index "short_links", ["link"], name: "index_short_links_on_link", using: :btree
 
   create_table "subcategories", force: :cascade do |t|
     t.string   "text",       limit: 255
