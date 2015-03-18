@@ -99,7 +99,7 @@ Fsek::Application.routes.draw do
     resources :news, path: :nyheter
 
     # Documents page
-    namespace :documents, as: '' do
+    namespace :documents, as: nil do
       resources :tags
       resources :document_group_types
       resources :document_groups, except: [:edit]
