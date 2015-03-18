@@ -18,7 +18,7 @@ class FaqsController < ApplicationController
 
   def new
     @faq = Faq.new
-    if (params[:category])
+    if params[:category].present?
       @faq.category = params[:category]
     end
   end
