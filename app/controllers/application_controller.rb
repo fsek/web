@@ -6,8 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_devise_parameters, if: :devise_controller?
   before_filter :set_locale
 
-  # This fails all my controller tests. Is is necessary? /jforberg
-  #before_filter :get_commit
+  before_filter :get_commit
 
 
   def access_denied
