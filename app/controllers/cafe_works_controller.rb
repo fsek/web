@@ -65,7 +65,7 @@ class CafeWorksController < ApplicationController
 
   def worker_params
     params.require(:cafe_work).permit(:profile_id, :name, :lastname, :phone, :email,
-                                      :utskottskamp, :access_code, :council_ids => [])
+                                      :utskottskamp, :access_code, council_ids: [])
   end
 
   def councils
@@ -74,9 +74,8 @@ class CafeWorksController < ApplicationController
 
   def set_cafe_work
     @cwork = CafeWork.find_by_id(params[:id])
-    if (@cwork == nil)
-      flash[:notice] = 'Hittade inget Cafejobb med det ID:t.'
-      redirect_to(:hilbert)
+    if @cwork.nil?
+      redirect_to(:hilbert, notice: 'Hittade inget Cafejobb med det ID:t.')
     end
   rescue ActionController::RedirectBackError
     redirect_to root_path

@@ -80,7 +80,7 @@ class Admin::CafeWorksController < ApplicationController
 
   def set_cafe_work
     @cwork = CafeWork.find_by_id(params[:id])
-    if (@cwork.present?)
+    if @cwork.present?
         redirect_to(:admin_cafe_works, notice: 'Hittade inget Cafejobb med det ID:t.')
     end
   end
