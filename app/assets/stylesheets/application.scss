@@ -38,10 +38,13 @@
  *= require jquery-ui/datepicker
  *= require rent
  *= require bootstrap-datetimepicker
- *= require cafe_works
  */
 
  /* Override for Bootstrap 3 font location */
+
+@import 'colors';
+@import 'cafe_works';
+
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('../assets/glyphicons-halflings-regular.eot');
