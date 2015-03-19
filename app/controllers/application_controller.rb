@@ -1,6 +1,5 @@
 # encoding:UTF-8
 class ApplicationController < ActionController::Base
-  include TheRole::Controller
   protect_from_forgery
 
   before_filter :configure_permitted_devise_parameters, if: :devise_controller?

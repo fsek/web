@@ -2,7 +2,6 @@
 require 'net/http'
 
 class User < ActiveRecord::Base 
-  include TheRole::User
   
   has_one :profile 
 
