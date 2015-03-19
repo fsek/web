@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
 
+gem 'cancancan'
 gem 'coffee-rails'
 # Set to 1.8 due to https://github.com/jashkenas/coffeescript/issues/3829
 gem 'coffee-script-source', '1.8.0'
@@ -20,8 +21,6 @@ gem 'paperclip'
 gem 'responders', '~> 2.0'
 gem 'sass-rails'
 gem 'sqlite3'
-gem 'the_role', github: 'TheRole/TheRoleApi', tag: 'v2.6'
-gem 'the_role_bootstrap3_ui'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'wice_grid'
