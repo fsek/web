@@ -5,11 +5,16 @@
                 Sektionen <%= fa_icon('angle-down') %>
             </a>
             <ul class="dropdown-menu">
-            	<%@menues = Menu.index%>
-              	<%if @menues.where(location: "Sektionen").first%>
-                  	<%for @menu in @menues.where(location: "Sektionen")%>
-                		<%= render 'menus/menu'%>
-            		<%end%>
+            	<%
+            		menu = Menu.where(visible: true)
+				    @menu_sektionen = menu.where(location: "Sektionen")
+				    @menu_medlemmar = menu.where(location: "För medlemmar")
+				    @menu_foretag =   menu.where(location: "För företag")
+				    @menu_kontakt = menu.where(location: "Kontakt")  
+            	%>            	
+              	<%if @menu_sektionen %>
+                  	<%@menues = @menu_sektionen%>
+                  	<%=render 'menus/menu'%>
         		<%else%>
         			<li><%= link_to 'Om oss', :om %></li>   
                 	<li><%= link_to 'Utskott', :councils %></li>
@@ -23,10 +28,9 @@
                 För medlemmar <%= fa_icon('angle-down') %>
             </a>
             <ul class="dropdown-menu">
-            	<%if @menues.where(location: "För medlemmar").first%>
-                  	<%for @menu in @menues.where(location: "För medlemmar")%>
-                		<%= render 'menus/menu'%>
-            		<%end%>
+            	<%if @menu_medlemmar %>
+                  	<%@menues = @menu_medlemmar%>
+                  	<%=render 'menus/menu'%>
         		<%else%>
         			<li><%= link_to 'Val', :elections,'data-no-turbolink'=>true %></li>
                     <li><%= link_to 'Likabehandlingsombud', :libo %></li>
@@ -46,11 +50,10 @@
             För företag <%= fa_icon('angle-down') %>
           </a>
           <ul class="dropdown-menu">                      	
-            <%if @menues.where(location: "För företag").first%>
-                  	<%for @menu in @menues.where(location: "För företag")%>
-                		<%= render 'menus/menu'%>
-            		<%end%>
-    		<%else%>		                      
+            <%if @menu_foretag %>
+                  	<%@menues = @menu_foretag%>
+                  	<%=render 'menus/menu'%>
+        		<%else%>		                      
                   <li><%= link_to 'Arbetsmarknadsdagar', 'http://www.farad.nu' %></li>
             <%end%>
           </ul>
@@ -60,10 +63,9 @@
                 Kontakt <%= fa_icon('angle-down') %>
             </a>
             <ul class="dropdown-menu">
-            	<%if @menues.where(location: "Kontakt").first%>
-                  	<%for @menu in @menues.where(location: "Kontakt")%>
-                		<%= render 'menus/menu'%>
-            		<%end%>
+            	<%if @menu_kontakt %>
+                  	<%@menues = @menu_kontakt%>
+                  	<%=render 'menus/menu'%>
         		<%else%>
                       <li><%= link_to 'Kontaktsida', contacts_path %></li>			                      
                 <%end%>	

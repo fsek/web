@@ -1,0 +1,5 @@
+<div class="row margin-bottom-20 center">
+  <%= link_to("Admin - start", admin_hilbert_path, class: "btn btn-u") %> <%= link_to("Hilbert - start", hilbert_path, class: "btn btn-u") %>
+  <% if @cwork.present? && !@cwork.new_record? %> <%= link_to("Jobb - vanlig vy", cafe_work_path(@cwork), class: "btn btn-u") %>
+  <% end %>
+</div>
