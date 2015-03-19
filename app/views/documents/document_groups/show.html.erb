@@ -1,0 +1,47 @@
+<% breadcrumb_bar :show_document_group, @document_group do %>
+  Visar dokumentsamlingen <i><%= @document_group.name %></i>
+<% end %>
+
+<div class="col-md-9">
+  <div class="row">
+    <div class="col-md-6">
+      <header class="headline headline-md"><h3>Uppdatera dokumentsamlingen</h3></header>
+      <%= render partial: 'form' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <section>
+        <header class="headline headline-md"><h3>Dokument i dokumentsamlingen</h3></header>
+        <%= render(partial: 'documents') %>
+      </section>
+
+      <section>
+        <p>
+          <% if @document_group.type_name == 'styrdokument' %>
+            <%= link_to 'Ladda upp ny stadga', new_document_path(document_group: @document_group.id, tag: 'stadga'), class: 'btn btn-u' %>
+            <%= link_to 'Ladda upp nytt reglemente', new_document_path(document_group: @document_group.id, tag: 'reglemente'), class: 'btn btn-u' %>
+            <%= link_to 'Ladda upp ny policy', new_document_path(document_group: @document_group.id, tag: 'policy'), class: 'btn btn-u' %>
+            <%= link_to 'Ladda upp nytt regeldokument', new_document_path(document_group: @document_group.id, tag: 'regel'), class: 'btn btn-u' %>
+          <% elsif @document_group.type_name == 'sektionsmöte' %>
+            <%= link_to 'Ladda upp ny handling', new_document_path(document_group: @document_group.id, tag: 'handling'), class: 'btn btn-u' %>
+            <%= link_to 'Ladda upp nytt protokoll', new_document_path(document_group: @document_group.id, tag: 'protokoll'), class: 'btn btn-u' %>
+          <% elsif @document_group.type_name == 'styrelsemöte' %>
+            <%= link_to 'Ladda upp ny handling', new_document_path(document_group: @document_group.id, tag: 'handling'), class: 'btn btn-u' %>
+            <%= link_to 'Ladda upp nytt protokoll', new_document_path(document_group: @document_group.id, tag: 'protokoll'), class: 'btn btn-u' %>
+          <% else %>
+            <%= link_to 'Ladda upp nytt dokument', new_document_path(document_group: @document_group.id), class: 'btn btn-u' %>
+          <% end %>
+        </p>
+        <p>
+          <%= link_to 'Tag bort dokumentsamling', @document_group, method: :delete, data: { confirm: 'Är du helt säker på att du vill göra detta?' }, class: 'btn btn-u' %>
+        </p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-3">
+  <%= render partial: 'documents/shared/common_admin_menu' %>
+</div>

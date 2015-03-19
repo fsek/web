@@ -1,0 +1,27 @@
+<% breadcrumb_bar :show_tag, @tag do %>
+  Visar taggen <i><%= @tag.name %></i>
+<% end %>
+
+<div class="col-md-9">
+  <section>
+    <header class="headline headline-md"><h3>Document med denna ta</h3></header>
+    <p>
+      Nedan finner du alla dokument med taggen <%= @tag.name %>.
+    </p>
+    <p>
+      <%= render_documents_table(@tag.documents) %>
+    </p>
+  </section>
+
+  <section>
+    <p>
+      <%= link_to 'Redigera tag', edit_tag_path(@tag), class: 'btn btn-u' %>
+      <%= link_to 'Tag bort tag', @tag, method: :delete, data: { confirm: 'Är du säker?' }, class: 'btn btn-u' %>
+      <%= link_to 'Tillbaka', :back, class: 'btn btn-u' %>
+    </p>
+  </section>
+</div>
+
+<div class="col-md-3">
+  <%= render partial: 'documents/shared/common_admin_menu' %>
+</div>

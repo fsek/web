@@ -1,0 +1,20 @@
+.sidebar-nav-v1 .side-menu-item:after {
+  top: 7px;
+  left: 10px;
+  color: #777;
+  font-size: 14px;
+  content: "\f104";
+  position: absolute;
+  font-weight: normal;
+  display: inline-block;
+  font-family: FontAwesome;
+}
+
+.sidebar-nav-v1 li a {
+  padding-left: 12px;
+}
+
+.document-tag {
+  font-size: 11px;
+  padding: 1px 8px !important;
+}

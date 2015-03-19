@@ -10,7 +10,6 @@ sv:
   attributes:
     description: Beskrivning
     title: Titel
-    public: Publik
     d_publish: Publiceringsdatum
     d_remove:  Datum att dölja
     sort: Sorteringsindex
@@ -29,6 +28,10 @@ sv:
     council: Utskott
     comment: Kommentar
     access_code: Kod
+    document_group_type: Typ av dokumentsamling
+    pdf: PDF
+    public: Publik åtkomst
+    hidden: Dolt dokument
 
   models:
     notice: Notis

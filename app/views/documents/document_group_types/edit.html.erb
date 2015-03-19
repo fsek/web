@@ -1,0 +1,11 @@
+<% breadcrumb_bar :edit_document_group_type, @document_group_type do %>
+  Redigera <i><%= @document_group_type.name %></i>
+<% end %>
+
+<div class="col-md-6">
+  <%= render 'form' %>
+</div>
+<div class="col-md-3"></div>
+<div class="col-md-3">
+  <%= render partial: 'documents/shared/common_admin_menu' %>
+</div>

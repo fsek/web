@@ -1,0 +1,42 @@
+<% breadcrumb_bar 'Styrdokument', :steering_documents, %>
+
+<div class="col-md-9">
+  <section>
+    <p>För att säkerställa att F-sektions verksamhet sköts på rätt sätt regleras vad medlemmar och funktionärer får lov att göra genom ett antal styrdokument. Det finns fyra olika typer och du finner dem nedan.</p>
+  </section>
+
+  <section>
+    <header class="headline headline-md"><h3>Stadga</h3></header>
+    <p>
+      I stadgan regleras F-sektionens definition, dess medlemmar och dess beslutande organ. Det inkluderar bland annat hur ett sektionsmöte ska gå till, vad som gäller för sektionens styrdokument, vad styrelsen får och inte får göra m.m. Ändring av stadgan görs på ett sektionsmöte. För att ändringen skall godkännas måste den röstas igenom på två olika sektionsmöten.
+    </p>
+    <%= render_steering_table @bylaws  %>
+  </section>
+
+  <section>
+    <header class="headline headline-md"><h3>Reglemente</h3></header>
+    <p>
+      I reglementet definieras alla utskott och dess poster samt vad de har för uppgift i organisationen. Det är en utvidgning av stadgan som kan ändras lite lättare och beskriver den mer operativa verksamheten. Ändringar av reglementet för på ett sektionsmöte. För att ändringen skall godkännas behöver den endast röstas igenom på ett sektionsmöte med 2/3 majoritet.
+    </p>
+    <%= render_steering_table @regulations %>
+  </section>
+
+  <section>
+    <header class="headline headline-md"><h3>Policys</h3></header>
+    <p>
+      Policys är en utvidgning av reglementet. Här tas vissa områden upp i mer detalj än vad de göras i stadgan och reglementet. De kan t.ex. beskriva hur någonting ska tolkas. Policys instiftas och revideras på sektionsmöten.
+    </p>
+    <%= render_steering_table @policys %>
+  </section>
+  
+  <section>
+    <header class="headline headline-md"><h3>Regeldokument</h3></header>
+    <p>
+      Regeldokument instiftas och revideras av styrelsen. De beskriver oftast väldigt operativa delar av verksamheten som kan ändras från år till år och där det är onödigt att beslutet tas av sektionsmötet.
+    </p>
+    <%= render_steering_table @rules %>
+  </section>
+
+</div>
+
+<%= render partial: 'menu', locals: {doc_type: :steering} %>

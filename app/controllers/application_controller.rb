@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   before_filter :get_commit
 
-
   def access_denied
     flash[:error] = t('the_role.access_denied')
     redirect_to(:back)

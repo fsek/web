@@ -1,21 +1,22 @@
-<div class="container content">  		
-	<div class="headline headline-md"><h3>Dokument</h3></div>
-    <div class="col-md-10 col-md-offset-1">
-		<%= grid(@documents_grid) do |g|			
-		  g.column name: "Titel",attribute: "title",filter: false do |post|
-		  	link_to(post.title,document_path(post),target: "blank")
-	  	  end  
-		  g.column name: "Kategori",attribute: "category",filter: false do |post|
-	  		post.category
-		  end
-		  g.column name: "Skapad", attribute: "created_at",filter: false do |post|
-		  	post.created_at.to_date
-	  	  end
-		  if @edit
-		  	g.column name: "Redigera",filter: false do |post|
-		  		link_to(post.title,edit_document_path(post))
-		  	end	
-		  end		  	  
-		end -%>		
-	</div>	
+<% breadcrumb_bar 'Alla dokument', :documents, true %>
+
+<div class="col-md-9">
+  <section>
+    <header class="headline headline-md"><h3>Alla dokument</h3></header>
+    <p>
+      Nedan finner du alla dokument som ligger i systemet
+    </p>
+    <%= render_documents_table(@documents) %>
+  </section>
+
+  <section>
+    <p>
+      <%= link_to 'Skapa nytt dokument', new_document_path, class: 'btn btn-u' %>
+    </p>
+  </section>
+
+</div>
+
+<div class="col-md-3">
+  <%= render partial: 'documents/shared/common_admin_menu' %>
 </div>

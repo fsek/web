@@ -1,9 +1,15 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag 'Nytt dokument',nil, :class => 'reg-header'%>			
-			<%=render partial: "form"%>
-			<%= link_to 'Tillbaka till start', root_url %>
-		</div>
-	</div>
+<% breadcrumb_bar :new_document do %>
+  Skapa nytt dokument
+  <% if @document.document_group %>
+    i dokumentsamlingen <i><%= @document.document_group.name %></i>
+  <% end %>
+<% end %>
+
+<div class="col-md-6">
+  <%= render partial: 'form' %>
+</div>
+
+<div class="col-md-3"></div>
+<div class="col-md-3">
+  <%= render partial: 'documents/shared/common_admin_menu' %>
 </div>

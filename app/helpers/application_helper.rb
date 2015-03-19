@@ -6,6 +6,7 @@ module ApplicationHelper
   def title(page_title)
     content_for(:title) { page_title }
   end
+
   def full_title(page_title)
     base_title = "F-sektionen"
     if page_title.empty?
@@ -13,5 +14,19 @@ module ApplicationHelper
     else
       "#{base_title} | #{page_title}"
     end
+  end
+
+  def breadcrumb_bar(*args, &block)
+    if block_given?
+      content_for(:breadcrumb_bar, &block)
+    else
+      content_for(:breadcrumb_bar) { args.shift }
+    end
+
+    breadcrumb *args
+  end
+
+  def standard_form_for(object, &block)
+    form_for object, builder: StandardFormBuilder, html: { class: 'sky-form' }, &block
   end
 end

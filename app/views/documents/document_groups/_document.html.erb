@@ -1,0 +1,12 @@
+<tr>
+  <td><%= link_to document.title, document %></td>
+  <td><%= render(partial: 'tag', collection: document.tags) || '-' %></td>
+  <td><%= document.public ? 'Ja' : 'Nej' %></td>
+  <td><%= document.hidden ? 'Ja' : 'Nej' %></td>
+  <td><%= document.production_date || '-' %></td>
+  <td><%= document.revision_date || '-' %></td>
+  <td><%= document.updated_at %></td>
+  <td><%= link_to 'Redigera dokument', edit_document_path(document), class: 'btn btn-u document-tag' %></td>
+  <td><%= link_to 'Tag bort dokument', document_path(document), method: :delete, class: 'btn btn-u document-tag' %></td>
+</tr>
+

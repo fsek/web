@@ -1,0 +1,23 @@
+<% breadcrumb_bar 'Handlingar och Protokoll', :protocol_documents %>
+
+<div class="col-md-9">
+  <section>
+    <header class="headline headline-md"><h3>Sektionsmöten</h3></header>
+    <p>
+      Nedan finner du handlingar och protokoll till sektionsmöten.
+    </p>
+    <%= render_protocols_table(@general_meetings, false) %>
+  </section>
+
+  <section>
+    <header class="headline headline-md"><h3>Styrelsemöten</h3></header>
+    <p>
+      Nedan finner du handlingar och protokoll till sektionsmöten.
+    </p>
+    <%= render_protocols_table(@board_meetings) %>
+  </section>
+ 
+</div>
+
+<%= render partial: 'menu', locals: { doc_type: :protocols } %>
+

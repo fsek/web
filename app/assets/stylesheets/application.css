@@ -8,8 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require custom
  *= require app 
+ *= require custom
  *= require bootstrap
  *= require_self
  *= require style 
@@ -21,7 +21,7 @@
  *= require page_magazine
  *= require page_login_reg
  *= require portfolio
- *= require style
+ * require style
  *= require timeline  
  *= require default_theme
  * require_tree .
@@ -35,6 +35,11 @@
  *= require faq
  *= require gallery
  *= require jquery-ui/datepicker
+ *= require sky-forms
+ *= require sky-forms-ie8
+ *= require custom-sky-forms
+ *= require sky-forms-f
+ *= require f-sidemenu
  *= require rent
  */
 

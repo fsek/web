@@ -23,6 +23,7 @@ gem 'sqlite3'
 gem 'the_role', github: 'TheRole/TheRoleApi', tag: 'v2.6'
 gem 'the_role_bootstrap3_ui'
 gem 'turbolinks'
+gem 'gretel' # Used for breadcrumbs
 gem 'uglifier'
 gem 'wice_grid'
 
@@ -34,6 +35,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'mailcatcher'
+  gem 'quiet_assets'
   gem 'capybara'
   gem 'poltergeist'
   gem 'web-console', '~> 2.0'

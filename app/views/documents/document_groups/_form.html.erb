@@ -1,0 +1,13 @@
+<%= standard_form_for @document_group do |f| %>
+  <%= f.text_field :name, placeholder: 'Namn', label: 'Namn' %>
+
+  <%= f.date_field :production_date, label: 'Datum', help: 'Kan exempelvis vara mötesdatum eller datum då projektt startade.' %>
+ 
+  <% blank = 'Välj typ av dokumentsamling' %>
+  <% opts = [blank] + DocumentGroupType.all.map {|t| [t.name, t.id]} %>
+  <% selected = @document_group.document_group_type_id || blank %>
+  <%= f.select(:document_group_type_id, options_for_select(opts, selected: selected, disabled: blank), label: 'Dokumentsamlingstyp') %>
+
+  <%= f.submit 'Spara' , class: 'btn btn-u' %>
+  <%= link_to 'Avbryt', :back, class: 'btn btn-u' %>
+<% end %>

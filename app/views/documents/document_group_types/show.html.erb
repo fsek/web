@@ -1,0 +1,27 @@
+<% breadcrumb_bar :show_document_group_type, @document_group_type do %>
+  Visar dokumentsamlingstypen <i><%= @document_group_type.name %></i>
+<% end %>
+
+<div class="col-md-9">
+  <section>
+    <header class="headline headline-md"><h3>Dokumentsamlng av denna typ</h3></header>
+    <p>
+      Nedan finner du alla dokumentsamlingar med typen <%= @document_group_type.name %>.
+    </p>
+    <p>
+      <%= render_document_group_table(@document_group_type.document_groups) %>
+    </p>
+  </section>
+
+  <section>
+    <p>
+      <%= link_to 'Redigera dokumentsamlingstyp', edit_document_group_type_path(@document_group_type), class: 'btn btn-u' %>
+      <%= link_to 'Tag bort dokumentsamlingstyp', @document_group_type, method: :delete, data: { confirm: 'Är du säker?' }, class: 'btn btn-u' %>
+      <%= link_to 'Tillbaka', :back, class: 'btn btn-u' %>
+    </p>
+  </section>
+</div>
+
+<div class="col-md-3">
+  <%= render partial: 'documents/shared/common_admin_menu' %>
+</div>

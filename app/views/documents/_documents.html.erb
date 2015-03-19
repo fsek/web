@@ -1,0 +1,17 @@
+<table class="table table-condensed table-striped">
+  <thead>
+    <tr>
+      <th>Dokumentsamling</th>
+      <th>Dokument</th>
+      <th>Publikt?</th>
+      <th>Dolt?</th>
+      <th>Antagen</th>
+      <th>Reviderad</th>
+      <th>Uppladdad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render(partial: 'documents/document', collection: documents, as: :document) %>
+  </tbody>
+</table>
+

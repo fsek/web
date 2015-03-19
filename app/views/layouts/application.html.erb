@@ -17,10 +17,10 @@
   <%= favicon_link_tag 'favicon.ico' %>
 
   <% if current_user # This script is needed for the old gallery hack. /Erik Henriksson %>
-  <%= javascript_tag do %>
-    gallery_username = '<%= j current_user.username %>';
-    gallery_secret = '<%= j current_user.encrypted_password %>';
-  <% end %>
+    <%= javascript_tag do %>
+      gallery_username = '<%= j current_user.username %>';
+      gallery_secret = '<%= j current_user.encrypted_password %>';
+    <% end %>
   <% end %>
 
   <!-- JS Global Compulsory -->           
@@ -80,11 +80,9 @@ $(document).ready(bottom)
 <!--=== End Header ===-->
 
 <!--=== Breadcrumbs ===-->
-<div class="breadcrumbs" style="border-bottom: 0px solid #333;">
-  <div class="container">
-
-  </div>
-</div>
+<% if content_for? :breadcrumb_bar %>
+  <%= render 'layouts/breadcrumb_bar' %>
+<% end %>
 <!--=== End Breadcrumbs ===-->
 
 <% if yield(:title) == 'Utskott' %>
@@ -98,9 +96,8 @@ $(document).ready(bottom)
 <%= yield :pre_content %>
 
 <div class="container content">
-  <div class="row magazine-page">    	
+  <div class="row">    	
     <!-- Begin Content -->
-    <div class="col-md-12">
 		<% if notice %>
 			<div class="alert alert-info">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -113,10 +110,9 @@ $(document).ready(bottom)
 			  <strong>Fel:</strong> <%= alert %>
 		  </div> 
 		<% end %>		
-	  	<%= yield %>      
-      	<%= yield :role_main %>
-      	<%= yield :role_sidebar %>
-    </div>
+	 	<%= yield %>      
+   	<%= yield :role_main %>
+   	<%= yield :role_sidebar %>
   </div><!-- /row -->
 </div><!--/container-->     
 <!-- End Content Part -->

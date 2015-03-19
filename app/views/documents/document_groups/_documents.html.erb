@@ -1,0 +1,19 @@
+<table class="table table-condensed table-striped">
+  <thead>
+    <tr>
+      <th>Dokument</th>
+      <th>Taggar</th>
+      <th>Publikt?</th>
+      <th>Dolt?</th>
+      <th>Antagen</th>
+      <th>Reviderad</th>
+      <th>Uppladdad</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render(partial: 'document', collection: @document_group.documents.includes(:tags)) || no_docs('Inga dokument finns i den här dokumentsamlingen.') %>
+  </tbody>
+</table>
+

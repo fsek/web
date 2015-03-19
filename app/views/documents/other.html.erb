@@ -1,0 +1,13 @@
+<% breadcrumb_bar 'Övriga dokument', :other_documents %>
+
+<div class="col-md-9">
+  <section>
+    <header class="headline headline-md"><h3>Övriga dokumentsamlingar</h3></header>
+    <p>
+      Nedan finner du övriga dokumentsamling, t.ex. projekt och rapporter.
+    </p>
+    <%= render_document_group_table(@document_groups) %>
+  </section>
+</div>
+
+<%= render partial: 'menu', locals: { doc_type: :other } %>

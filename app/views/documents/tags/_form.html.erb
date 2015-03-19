@@ -1,0 +1,10 @@
+<%= standard_form_for @tag do |f| %>
+
+  <%= f.text_field :name, placeholder: 'Namn', label: 'Namn' %>
+  
+  <section>
+    <%= f.submit 'Spara' , class: 'btn btn-u' %>
+    <%= link_to 'Avbryt', :back, class: 'btn btn-u' %>
+  </section>
+
+<% end %>

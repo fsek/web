@@ -9,11 +9,11 @@
 
 /* Temporarily disable breadcrumb */
 .breadcrumb {
-	display: none;
+	 
+  /*display: none; */
 }
 
 .breadcrumbs ul > li {
-	padding-right: 10px;
 }
 
 .breadcrumbs ul > li > a {
@@ -22,6 +22,11 @@
 
 .breadcrumbs ul > li > a:hover {
 	text-decoration: none;
+}
+
+.breadcrumbs {
+  padding: 10px 0 6px;
+  border-bottom: 1px solid #eee;
 }
 
 .navbar-brand-text {
@@ -100,6 +105,7 @@ a:focus,
 a:hover, 
 a:active {
    outline: 0 !important;
+   color: #eb7125;
 }
 a:hover {
    color: #eb7125;

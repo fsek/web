@@ -1,0 +1,22 @@
+<% breadcrumb_bar 'Alla dokumentsamlingar', :document_groups %>
+
+<div class="col-md-9">
+  <section>
+    <header class="headline headline-md"><h3>Alla dokumentsamlingar</h3></header>
+    <p>
+      Nedan finner du alla dokumentsamlingar som ligger i systemet.
+    </p>
+    <%= render_document_group_table(@document_groups) %>
+  </section>
+
+  <section>
+    <p>
+      <%= link_to 'Skapa ny dokumentsamling', new_document_group_path, class: 'btn btn-u' %>
+    </p>
+  </section>
+
+</div>
+
+<div class="col-md-3">
+  <%= render partial: 'documents/shared/common_admin_menu' %>
+</div>

@@ -1,10 +1,15 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag "Redigera dokument",nil, :class => 'reg-header'%>			
-			<%=render partial: "form"%>
-			<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @dokument, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %><br>			
-			<%= link_to 'Tillbaka till start', root_url %>
-		</div>
-	</div>
+<% breadcrumb_bar :edit_document, @document do %>
+  Redigera dokumentet <i><%= @document.title %></i>
+<% end %>
+
+<div class="col-md-6">
+  <%= render partial: 'form' %>
+
+  <%= link_to 'Tag bort dokument', @document, method: :delete, data: { confirm: 'Är du säker?' }, class: 'btn btn-u' %>
+	<%= link_to 'Tillbaka till dokumentsamlingen', @document.document_group, class: 'btn btn-u' %>
+</div>
+
+<div class="col-md-3"></div>
+<div class="col-md-3">
+  <%= render partial: 'documents/shared/common_admin_menu' %>
 </div>

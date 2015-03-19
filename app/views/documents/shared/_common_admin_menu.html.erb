@@ -1,0 +1,18 @@
+<% if current_user && current_user.moderator?(:documents) %>
+  <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
+    <li class="list-group-item side-menu-item"><%= link_to "Styrdokument", steering_documents_path %></li>
+    <li class="list-group-item side-menu-item"><%= link_to "Handlingar och protokoll", protocols_documents_path %></li>
+    <li class="list-group-item side-menu-item"><%= link_to "Övriga dokument", other_documents_path %></li>
+
+    <li class="list-group-item"><%= link_to 'Skapa nytt dokument', new_document_path %></li>
+    <li class="list-group-item"><%= link_to 'Skapa ny dokumentsamling', new_document_group_path %></li>
+    <li class="list-group-item"><%= link_to 'Skapa ny dokumentsamlingstyp', new_document_group_type_path %></li>
+    <li class="list-group-item"><%= link_to 'Skapa ny tag', new_tag_path %></li>
+    
+    <li class="list-group-item"><%= link_to 'Visa samtliga dokument', Document %></li>
+    <li class="list-group-item"><%= link_to 'Visa samtliga dokumentsamlingar', DocumentGroup %></li>
+    <li class="list-group-item"><%= link_to 'Visa samtliga dokumentsamlinstyper', DocumentGroupType %></li>
+    <li class="list-group-item"><%= link_to 'Visa samtliga taggar', Tag %></li>
+    
+  </ul>
+<% end %>

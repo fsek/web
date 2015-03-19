@@ -1,6 +1,4 @@
 Fsek::Application.routes.draw do
-
-
   resources :constants
 
   post "githook" => "githook#index"
@@ -100,8 +98,19 @@ Fsek::Application.routes.draw do
 
     resources :news, path: :nyheter
 
-    resources :documents, path: :dokument
-
+    # Documents page
+    namespace :documents, as: nil do
+      resources :tags
+      resources :document_group_types
+      resources :document_groups, except: [:edit]
+    end
+    resources :documents do
+      collection do
+        get :styrdokument,  as: :steering,  to: :steering
+        get :handlingar,    as: :protocols, to: :protocols
+        get :allmana,       as: :other,     to: :other
+      end
+    end
 
     namespace :admin do
       resources :elections, path: :val do

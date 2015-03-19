@@ -71,7 +71,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    daemons (1.2.1)
+    daemons (1.2.2)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
     devise (3.4.1)
@@ -100,6 +100,8 @@ GEM
       momentjs-rails (~> 2.8, >= 2.8.4)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    gretel (3.0.8)
+      rails (>= 3.2.0)
     haml (4.0.6)
       tilt
     hike (1.2.3)
@@ -154,6 +156,8 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
@@ -290,6 +294,7 @@ DEPENDENCIES
   fancybox2-rails
   font-awesome-rails
   fullcalendar-rails
+  gretel
   icalendar
   jbuilder
   jquery-rails
@@ -300,6 +305,7 @@ DEPENDENCIES
   mysql2
   paperclip
   poltergeist
+  quiet_assets
   rails (~> 4.2.0)
   responders (~> 2.0)
   rspec-rails
