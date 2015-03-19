@@ -1,40 +1,38 @@
 require 'rails_helper'
 
-
-def sign_in(user = double('user'))
-  if user.nil?
-    allow(request.env['warden']).to receive(:authenticate!).and_throw(:warden, {:scope => :user})
-    allow(controller).to receive(:current_user).and_return(nil)
-  else
-    allow(request.env['warden']).to receive(:authenticate!).and_return(user)
-    allow(controller).to receive(:current_user).and_return(user)
-  end
-end
-
 RSpec.describe ConstantsController, type: :controller do
+  include Devise::TestHelpers
   before(:each) do
     allow_any_instance_of(ApplicationController).to receive(:get_commit).and_return(true)
   end
+  context 'when not signed in' do
+    describe 'index' do
+      it 'redirects' do
+        get :index
 
-  describe 'index' do
-    it 'redirects when not signed in' do
-      sign_in nil
-      get :index
-
-      response.should be_redirect
+        response.should be_redirect
+      end
     end
+  end
 
-    it 'redirects when not admin' do
-      sign_in
-      get :index
+  context 'when signed in as user' do
+    login_user
+    describe 'index' do
+      it 'diplays an error flash' do
+        get :index
 
-      response.should be_redirect
+        flash[:error].should eq('Åtkomst nekad')
+      end
     end
+  end
+  context 'when signed in as admin' do
+    login_admin
+    describe 'index' do
+      it 'succeeds' do
+        get :index
 
-    it 'does not redirect when admin' do
-      get :index
-
-      response.should be_success
+        response.should be_success
+      end
     end
   end
 end
