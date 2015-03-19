@@ -44,31 +44,9 @@ Fsek::Application.routes.draw do
   get 'anvandare' => 'users#index', as: :users
 
   # Scope to change urls to swedish
-  scope path_names: {new: 'ny', edit: 'redigera'} do
+  scope path_names: { new: 'ny', edit: 'redigera' } do
 
     resources :notices
-
-
-    scope :hilbertcafe do
-      namespace :admin do
-        resources :cafe_works, path: :jobb, controller: :cafe_works, except: :index do
-          patch :remove_worker, path: :jobbare, on: :member
-        end
-        get '/setup', controller: :cafe_works, action: :setup, as: :setup_cafe
-        post '/setup', controller: :cafe_works, action: :setup_create, as: :setup_cafe_create
-        get '', controller: :cafe_works, action: :main, as: :hilbert
-        post '', controller: :cafe_works, action: :main
-      end
-      resources :cafe_works, path: :jobb, only: [:show] do
-        patch :add_worker, path: :jobba, on: :member
-        patch :update_worker, path: :uppdatera, on: :member
-        patch :remove_worker, path: :inte_jobba, on: :member
-        patch :authorize, path: :auktorisera, on: :member
-      end
-      get '', controller: :cafe_works, action: :main, as: :hilbert
-      get '/nyckelpiga', controller: :cafe_works, action: :nyckelpiga
-      #get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling         
-    end
 
     # A scope to put car-associated things under /bil
     # /d.wessman
@@ -89,7 +67,6 @@ Fsek::Application.routes.draw do
       post :display, path: :visa, on: :member
       get :image, path: :bild, on: :member
     end
-
     resources :menus, path: :meny, except: :show
 
     resources :posts, path: :poster, only: :index
@@ -154,7 +131,13 @@ Fsek::Application.routes.draw do
   end
   post '' => 'albums#index', as: :index_albums
 
-  TheRoleManagementPanel::Routes.mixin(self)
+  concern :the_role, TheRole::AdminRoutes.new
+
+  namespace :admin do
+    concerns :the_role
+  end
 
   root 'static_pages#index'
+
+
 end

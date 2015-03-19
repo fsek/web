@@ -2,7 +2,7 @@
 require 'net/http'
 
 class User < ActiveRecord::Base 
-  include TheRole::Api::User
+  include TheRole::User
   
   has_one :profile 
 
