@@ -23,9 +23,6 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  private
-  def set_page
-  end
 end
 
   
