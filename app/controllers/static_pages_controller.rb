@@ -15,14 +15,7 @@ class StaticPagesController < ApplicationController
 
   def index
     @news = News.order(created_at: :desc).limit(5)
-
-    if current_user.nil?
-      @notices = Notice.published
-    else
-      @notices = Notice.public_published
-    end
+    @notices = (current_user.present?) ? Notice.published : Notice.public_published
   end
 
 end
-
-  

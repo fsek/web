@@ -61,8 +61,7 @@ class Admin::CafeWorksController < ApplicationController
   def main
     @faqs = Faq.category(:Hilbert).answered
     @faq_unanswered = Faq.category(:Hilbert).where(answer: '').count
-    @cworks = CafeWork.all
-    @cwork_grid = initialize_grid(@cworks)
+    @cwork_grid = initialize_grid(CafeWork.all)
   end
 
   private
