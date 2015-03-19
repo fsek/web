@@ -304,13 +304,13 @@ class FsekStructure < ActiveRecord::Migration
         t.string   "email"
         t.string   "phone"
         t.text     "purpose"
-        t.boolean  "disclaimer"      
+        t.boolean  "disclaimer"
         t.string   "status", default: "Ej bestämd"
-        t.boolean  "aktiv", default: true     
-        t.integer  "council_id" 
+        t.boolean  "aktiv", default: true
+        t.integer  "council_id"
         t.integer  "profile_id"
-        t.boolean  "service"
         t.text     "comment"
+        t.boolean  "service"
         t.timestamps
       end
     end
@@ -323,7 +323,7 @@ class FsekStructure < ActiveRecord::Migration
         t.datetime "created_at"
         t.datetime "updated_at"
       end
-    end    
+    end
     unless table_exists? :subcategories
       create_table "subcategories" do |t|
         t.string   "text"

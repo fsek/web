@@ -26,7 +26,7 @@
   <% if rent.council.present? %>
       <tr>
         <td>Utskott:</td>
-        <td><%= link_to(rent.council.title, rent.council.p_url) %></td>
+        <td><%= link_to(rent.council.title, council_path(rent.council)) %></td>
       </tr>
   <% end %>
   <tr>
