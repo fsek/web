@@ -1,12 +1,10 @@
 GIT
-  remote: git://github.com/TheRole/TheRoleApi.git
-  revision: 3f2a247bd922e3280ae0233b8ea439a6e5e79ca4
-  tag: v2.6
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: e41ba7f805d1eca19153ff91b27423a4aff5e4b6
+  branch: master
+  submodules: true
   specs:
-    the_role (2.6)
-      multi_json
-      rails (>= 3, < 5)
-      the_string_to_slug (~> 1.2)
+    datetimepicker-rails (4.3.5)
 
 GEM
   remote: https://rubygems.org/
@@ -47,9 +45,15 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.0)
+    autoprefixer-rails (5.1.7.1)
+      execjs
+      json
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.4.1)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -228,6 +232,9 @@ GEM
     skinny (0.2.3)
       eventmachine (~> 1.0.0)
       thin (~> 1.5.0)
+    slim (3.0.3)
+      temple (~> 0.7.3)
+      tilt (>= 1.3.3, < 2.1)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -238,9 +245,23 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.10)
-    the_role_bootstrap3_ui (1.1)
+    temple (0.7.5)
+    the_notification (0.5.1)
+      slim
+    the_role (3.0.2)
+      the_role_api (~> 3.0.3)
+      the_role_management_panel (~> 3.0.2)
+    the_role_api (3.0.3)
+      multi_json
+      rails (>= 3.2, < 5)
+      the_string_to_slug (~> 1.2)
+    the_role_management_panel (3.0.2)
+      bootstrap-sass (~> 3.3, >= 3.3.1)
+      coffee-rails
       haml
       rails (>= 3, < 5)
+      sass-rails
+      the_notification (~> 0.5.1)
     the_string_to_slug (1.2)
       rails-i18n (~> 4.0.0.pre)
     therubyracer (0.12.1)
@@ -285,6 +306,7 @@ DEPENDENCIES
   coffee-rails
   coffee-script-source (= 1.8.0)
   database_cleaner
+  datetimepicker-rails!
   devise
   factory_girl_rails
   fancybox2-rails
@@ -296,7 +318,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   mailcatcher
-  momentjs-rails
+  momentjs-rails (~> 2.9.0bun)
   mysql2
   paperclip
   poltergeist
@@ -306,8 +328,7 @@ DEPENDENCIES
   sass-rails
   shoulda-matchers
   sqlite3
-  the_role!
-  the_role_bootstrap3_ui
+  the_role (~> 3.0.0)
   therubyracer
   turbolinks
   uglifier

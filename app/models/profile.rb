@@ -10,8 +10,8 @@ class Profile < ActiveRecord::Base
 
   # Attachment
   has_attached_file :avatar, 
-                    :styles => { medium: "300x300>", thumb:  "100x100>" },
-                    :path => ":rails_root/storage/profile/:id/:style/:filename"
+                    styles: { medium: "300x300>", thumb:  "100x100>" },
+                    path: ":rails_root/storage/profile/:id/:style/:filename"
 
 
   # Validations

@@ -6,6 +6,7 @@ gem 'coffee-rails'
 # Set to 1.8 due to https://github.com/jashkenas/coffeescript/issues/3829
 gem 'coffee-script-source', '1.8.0'
 gem 'devise'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'fancybox2-rails'
 gem 'font-awesome-rails'
 gem 'fullcalendar-rails'
@@ -14,20 +15,20 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
-gem 'momentjs-rails'
+gem 'momentjs-rails', "~> 2.9.0bun"
 gem 'mysql2'
 gem 'paperclip'
 gem 'responders', '~> 2.0'
 gem 'sass-rails'
 gem 'sqlite3'
-gem 'the_role', github: 'TheRole/TheRoleApi', tag: 'v2.6'
-gem 'the_role_bootstrap3_ui'
+
+gem 'the_role', '~> 3.0.0'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'wice_grid'
 
 group :production do
-	gem 'therubyracer', platforms: :ruby
+  gem 'therubyracer', platforms: :ruby
 end
 
 group :development, :test do
@@ -49,4 +50,3 @@ if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9
   Encoding.default_external = Encoding::UTF_8
   Encoding.default_internal = Encoding::UTF_8
 end
-

@@ -1,9 +1,11 @@
-<%if (@menu.turbolinks) && (@menu.blank_p) %>
-	<li><%= link_to(@menu.name,@menu.link, target: 'blank')%></li>
-<%elsif @menu.turbolinks%>
-	<li><%= link_to(@menu.name,@menu.link)%></li>
-<%elsif @menu.blank_p%>
-	<li><%= link_to(@menu.name,@menu.link,'data-no-turbolink'=>true, target: 'blank')%></li>
-<%else%>
-	<li><%= link_to(@menu.name,@menu.link,'data-no-turbolink'=>true)%></li>
+<%for menu in @menues%>
+	<%if (menu.turbolinks) && (menu.blank_p) %>
+		<li><%= link_to(menu.name,menu.link, target: 'blank')%></li>
+	<%elsif menu.turbolinks%>
+		<li><%= link_to(menu.name,menu.link)%></li>
+	<%elsif menu.blank_p%>
+		<li><%= link_to(menu.name,menu.link,'data-no-turbolink'=>true, target: 'blank')%></li>
+	<%else%>
+		<li><%= link_to(menu.name,menu.link,'data-no-turbolink'=>true)%></li>
+	<%end%>
 <%end%>
