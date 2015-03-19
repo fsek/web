@@ -15,5 +15,4 @@ FactoryGirl.define do
     association :role, factory: :admin_role
     before(:create) { |user| user.as_f_member }
   end
-
 end

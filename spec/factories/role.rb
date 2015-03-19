@@ -1,4 +1,3 @@
-#encoding: UTF-8
 FactoryGirl.define do
   factory :role do
     initialize_with { Role.where(title: 'role').first_or_create }
