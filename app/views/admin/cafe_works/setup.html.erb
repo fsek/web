@@ -1,0 +1,41 @@
+<% provide(:title, 'Hilbert Café - Setup') %>
+<div class="container">
+  <div class="row">
+    <%= render 'links' %>
+    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
+      <div class="headline headline-md"><h1>Skapa jobbpass</h1></div>
+      <p>Genom att fylla i datum och tid för läsperiodens första pass
+        så genereras en förhandsvisning för hela läsperioden.</p>
+
+      <p>För att lägga till enskilda pass går ni in på</p>
+      <%= link_to("Enskilt pass", new_admin_cafe_work_path, class: "btn btn-u") %>
+      <%= render 'setup_form' %>
+      <hr>
+
+      <% if (@cworks) && (@cworks.count > 0) %>
+          <% @lv = @cwork.lv %>
+          <div class="panel-group acc-v1 margin-bottom-40">
+            <% @cworks.group_by(&:lv).each do |week, work| %>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= week %>">
+                      <div class="headline headline-md panel-title"><h3>Läsvecka <%= week %></h3></div>
+                    </a></h4>
+                  </div>
+                  <div id="collapse<%= week %>" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <% work.each do |w| %>
+                          <div class="margin-bottom-20">
+                            <%= w.print %>
+                            <hr>
+                          </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
