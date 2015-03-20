@@ -15,9 +15,11 @@ FactoryGirl.define do
   trait :with_profile do
     profile
   end
+
   trait :with_council do
     council
   end
+
   # Used in Cafebokning and Bilbokning
   trait :with_access_code do
     access_code
