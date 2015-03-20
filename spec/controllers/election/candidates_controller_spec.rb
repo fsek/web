@@ -15,8 +15,9 @@ RSpec.describe Election::CandidatesController, type: :controller do
   let(:user) { create(:user) }
   let(:search_post) { create(:post) }
   let(:not_owner) { create(:user) }
-  let(:candidate) { create(:candidate, profile: user.profile,
-                           election: election, post: search_post) }
+  let(:candidate) do
+    create(:candidate, profile: user.profile, election: election, post: search_post)
+  end
 
 
   context 'when not signed in' do
@@ -69,14 +70,14 @@ RSpec.describe Election::CandidatesController, type: :controller do
       end
     end
     describe 'POST #create' do
-      before { search_post  }
+      before { search_post }
       it 'creates a new candidate' do
-        expect {
-          post :create, {candidate: attributes_for(:candidate, post_id: search_post.id)}
-        }.to change(Candidate, :count).by(1)
+        expect do
+          post :create, candidate: attributes_for(:candidate, post_id: search_post.id)
+        end.to change(Candidate, :count).by(1)
       end
       it 'creates candidate and redirects to candidate' do
-        post :create, {candidate: attributes_for(:candidate, post_id: search_post.id)}
+        post :create, candidate: attributes_for(:candidate, post_id: search_post.id)
         expect(response).to redirect_to([:election, Candidate.last])
       end
     end
@@ -86,31 +87,32 @@ RSpec.describe Election::CandidatesController, type: :controller do
       let(:change_attributes) { {name: "David", lastname: "Ny", stil_id: "Nytt"} }
       context "with valid params" do
         it "updates the requested candidate" do
-          patch :update, {id: candidate.to_param, candidate: change_attributes}
+          patch :update, id: candidate.to_param, candidate: change_attributes
+
           candidate.reload
           expect(candidate.name == change_attributes[:name] &&
                      candidate.lastname == change_attributes[:lastname]).to be_truthy
         end
 
         it "assigns the requested candidate as @candidate" do
-          patch :update, {id: candidate.to_param, candidate: change_attributes}
+          patch :update, id: candidate.to_param, candidate: change_attributes
           expect(assigns(:candidate)).to eq(candidate)
         end
 
         it "redirects to the candidate" do
-          patch :update, {id: candidate.to_param, candidate: change_attributes}
+          patch :update, id: candidate.to_param, candidate: change_attributes
           expect(response).to redirect_to([:election, candidate])
         end
       end
 
       context "with invalid params" do
         it "assigns the candidate as @candidate" do
-          patch :update, {id: candidate.to_param, candidate: {profile_id: nil}}
+          patch :update, id: candidate.to_param, candidate: {profile_id: nil}
           expect(assigns(:candidate)).to eq(candidate)
         end
 
         it "re-renders the 'edit' template" do
-          patch :update, {id: candidate.to_param, candidate: {profile_id: nil}}
+          patch :update, id: candidate.to_param, candidate: {profile_id: nil}
           expect(response).to render_template(:show)
         end
       end
@@ -120,9 +122,9 @@ RSpec.describe Election::CandidatesController, type: :controller do
     describe "DELETE #destroy" do
       before { candidate }
       it "destroys the requested candidate" do
-        expect {
+        expect do
           delete :destroy, {id: candidate.to_param}
-        }.to change(Candidate, :count).by(-1)
+        end.to change(Candidate, :count).by(-1)
       end
 
       it "redirects to the candidates list" do
