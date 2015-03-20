@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Candidate, type: :model do
-
   it "has a valid factory" do
     expect(build(:candidate)).to be_valid
   end
@@ -13,10 +12,11 @@ RSpec.describe Candidate, type: :model do
   describe "ActiveModel validations" do
     # Basic validations
     it do
-      expect(cand).to validate_uniqueness_of(:profile_id).
-                        scoped_to(:post_id, :election_id).
-                        with_message('har redan en likadan kandidatur').
-                        on(:create)
+      val = validate_uniqueness_of(:profile_id).
+        scoped_to(:post_id, :election_id).
+        with_message('har redan en likadan kandidatur').
+        on(:create)
+      expect(cand).to val
     end
   end
 

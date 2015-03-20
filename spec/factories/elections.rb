@@ -6,5 +6,4 @@ FactoryGirl.define do
     election.end { Time.zone.now + 5.days }
     visible true
   end
-
 end

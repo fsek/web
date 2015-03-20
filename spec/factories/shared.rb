@@ -22,5 +22,4 @@ FactoryGirl.define do
   trait :with_access_code do
     access_code
   end
-
 end
