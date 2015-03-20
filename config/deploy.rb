@@ -11,9 +11,7 @@ set :tests, []
 # Setup rbenv
 set :rbenv_type, :user
 set :rbenv_ruby, '2.2.0'
-set :rbenv_prefix, 'RBENV_ROOT=#{fetch(:rbenv_path)} '\
-                   'RBENV_VERSION=#{fetch(:rbenv_ruby)} '\
-                   '#{fetch(:rbenv_path)}/bin/rbenv exec'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
 # Default branch is :master
@@ -41,13 +39,13 @@ set :linked_files, %w{config/database.yml}
 set :linked_dirs, %w{storage}
 
 # Default value for default_env is {}
-# set :default_env, { path: '/opt/ruby/bin:$PATH' }
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
 namespace :deploy do
-  # before :deploy, 'deploy:check_revision'
+  # before :deploy, "deploy:check_revision"
   before :deploy, 'deploy:run_tests'
 
   desc 'Restart application'
@@ -67,4 +65,5 @@ namespace :deploy do
       # end
     end
   end
+
 end
