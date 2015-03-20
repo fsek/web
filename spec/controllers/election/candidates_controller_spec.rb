@@ -1,16 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Election::CandidatesController, type: :controller do
-
   # Override get_commit
   before(:each) do
     allow_any_instance_of(ApplicationController).to receive(:get_commit).and_return(true)
   end
+
   # Build an election
   let(:election) { create(:election) }
   before(:each) do
     allow(Election).to receive(:current).and_return(election)
   end
+
   # Testing objects
   let(:user) { create(:user) }
   let(:search_post) { create(:post) }
@@ -18,7 +19,6 @@ RSpec.describe Election::CandidatesController, type: :controller do
   let(:candidate) do
     create(:candidate, profile: user.profile, election: election, post: search_post)
   end
-
 
   context 'when not signed in' do
     describe 'GET #index' do
@@ -35,9 +35,11 @@ RSpec.describe Election::CandidatesController, type: :controller do
       sign_in user
       search_post
     end
+
     it "should have a current_user" do
       expect(subject.current_user).to_not be_nil
     end
+
     describe 'GET #index' do
       it 'succeeds' do
         get :index
@@ -50,6 +52,7 @@ RSpec.describe Election::CandidatesController, type: :controller do
         expect(assigns(:candidates)).to eq(user.profile.candidates.where(election: election))
       end
     end
+
     describe 'GET #new' do
       it 'succeeds' do
         get :new
@@ -62,6 +65,7 @@ RSpec.describe Election::CandidatesController, type: :controller do
         expect(assigns(:candidate).name).to eq(user.profile.name)
       end
     end
+
     describe 'GET #show' do
       it 'do not diplay an error flash' do
         get :show, id: candidate.id
@@ -69,6 +73,7 @@ RSpec.describe Election::CandidatesController, type: :controller do
         expect(flash[:error]).to_not eq('Du har inte rättigheter för att se kandidaturen.')
       end
     end
+
     describe 'POST #create' do
       before { search_post }
       it 'creates a new candidate' do
@@ -107,12 +112,12 @@ RSpec.describe Election::CandidatesController, type: :controller do
 
       context "with invalid params" do
         it "assigns the candidate as @candidate" do
-          patch :update, id: candidate.to_param, candidate: {profile_id: nil}
+          patch :update, id: candidate.to_param, candidate: { profile_id: nil }
           expect(assigns(:candidate)).to eq(candidate)
         end
 
         it "re-renders the 'edit' template" do
-          patch :update, id: candidate.to_param, candidate: {profile_id: nil}
+          patch :update, id: candidate.to_param, candidate: { profile_id: nil }
           expect(response).to render_template(:show)
         end
       end
@@ -123,13 +128,13 @@ RSpec.describe Election::CandidatesController, type: :controller do
       before { candidate }
       it "destroys the requested candidate" do
         expect do
-          delete :destroy, {id: candidate.to_param}
+          delete :destroy, id: candidate.to_param
         end.to change(Candidate, :count).by(-1)
       end
 
       it "redirects to the candidates list" do
-        delete :destroy, {id: candidate.to_param}
-        expect(response).to redirect_to(election_candidates_path())
+        delete :destroy, id: candidate.to_param
+        expect(response).to redirect_to(election_candidates_path)
       end
     end
   end
