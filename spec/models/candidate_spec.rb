@@ -13,9 +13,9 @@ RSpec.describe Candidate, type: :model do
     # Basic validations
     it do
       val = validate_uniqueness_of(:profile_id).
-        scoped_to(:post_id, :election_id).
-        with_message('har redan en likadan kandidatur').
-        on(:create)
+            scoped_to(:post_id, :election_id).
+            with_message('har redan en likadan kandidatur').
+            on(:create)
       expect(cand).to val
     end
   end
