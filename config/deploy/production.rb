@@ -5,6 +5,8 @@
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
 
+set :stage, :production
+set :branch, 'master'
 set :deploy_to, '/home/deploy/production'
 role :app, %w{fsektionen.se}
 
