@@ -36,7 +36,7 @@ RSpec.describe Election::CandidatesController, type: :controller do
       search_post
     end
 
-    it "should have a current_user" do
+    it 'should have a current_user' do
       expect(subject.current_user).to_not be_nil
     end
 
@@ -87,11 +87,11 @@ RSpec.describe Election::CandidatesController, type: :controller do
       end
     end
 
-    describe "PATCH #update" do
+    describe 'PATCH #update' do
       before { candidate }
-      let(:change_attributes) { {name: "David", lastname: "Ny", stil_id: "Nytt"} }
-      context "with valid params" do
-        it "updates the requested candidate" do
+      let(:change_attributes) { { name: 'David', lastname: 'Ny', stil_id: 'Nytt' } }
+      context 'with valid params' do
+        it 'updates the requested candidate' do
           patch :update, id: candidate.to_param, candidate: change_attributes
 
           candidate.reload
@@ -99,40 +99,39 @@ RSpec.describe Election::CandidatesController, type: :controller do
                      candidate.lastname == change_attributes[:lastname]).to be_truthy
         end
 
-        it "assigns the requested candidate as @candidate" do
+        it 'assigns the requested candidate as @candidate' do
           patch :update, id: candidate.to_param, candidate: change_attributes
           expect(assigns(:candidate)).to eq(candidate)
         end
 
-        it "redirects to the candidate" do
+        it 'redirects to the candidate' do
           patch :update, id: candidate.to_param, candidate: change_attributes
           expect(response).to redirect_to([:election, candidate])
         end
       end
 
-      context "with invalid params" do
-        it "assigns the candidate as @candidate" do
+      context 'with invalid params' do
+        it 'assigns the candidate as @candidate' do
           patch :update, id: candidate.to_param, candidate: { profile_id: nil }
           expect(assigns(:candidate)).to eq(candidate)
         end
 
-        it "re-renders the 'edit' template" do
+        it 're-renders the show-template' do
           patch :update, id: candidate.to_param, candidate: { profile_id: nil }
           expect(response).to render_template(:show)
         end
       end
     end
 
-
-    describe "DELETE #destroy" do
+    describe 'DELETE #destroy' do
       before { candidate }
-      it "destroys the requested candidate" do
+      it 'destroys the requested candidate' do
         expect do
           delete :destroy, id: candidate.to_param
         end.to change(Candidate, :count).by(-1)
       end
 
-      it "redirects to the candidates list" do
+      it 'redirects to the candidates list' do
         delete :destroy, id: candidate.to_param
         expect(response).to redirect_to(election_candidates_path)
       end
