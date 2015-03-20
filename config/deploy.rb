@@ -4,6 +4,10 @@ lock '3.1.0'
 set :application, 'fsek'
 set :repo_url, 'git@github.com:fsek/web.git'
 
+# what specs should be run before deployment is allowed to
+# continue, see lib/capistrano/tasks/run_tests.cap
+set :tests, []
+
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
@@ -35,6 +39,8 @@ set :repo_url, 'git@github.com:fsek/web.git'
 # set :keep_releases, 5
 
 namespace :deploy do
+  before :deploy, "deploy:check_revision"
+  before :deploy, "deploy:run_tests"
 
   desc 'Restart application'
   task :restart do
