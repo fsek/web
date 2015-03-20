@@ -5,9 +5,8 @@ class Candidate < ActiveRecord::Base
   belongs_to :post
 
   validates :profile_id, uniqueness: {
-                           scope: [:post_id, :election_id],
-                           message: "har redan en likadan kandidatur"
-                       }, on: :create
+    scope: [:post_id, :election_id], message: 'har redan en likadan kandidatur'
+  }, on: :create
   validates :name, :lastname, :stil_id, :email,
             :phone, :post, :profile, :election, presence: true
 
@@ -34,10 +33,10 @@ class Candidate < ActiveRecord::Base
   end
 
   def editable?
-    election.view_status == 2 || post.elected_by == "Studierådet"
+    election.view_status == 2 || post.elected_by == 'Studierådet'
   end
 
   def p_url
-    Rails.application.routes.url_helpers.election_candidate_url(self.id, host: PUBLIC_URL)
+    Rails.application.routes.url_helpers.election_candidate_url(id, host: PUBLIC_URL)
   end
 end
