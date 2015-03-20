@@ -15,7 +15,8 @@ RSpec.describe Election::CandidatesController, type: :controller do
   let(:user) { create(:user) }
   let(:search_post) { create(:post) }
   let(:not_owner) { create(:user) }
-  let(:candidate) { create(:candidate, profile: user.profile, election: election, post: search_post) }
+  let(:candidate) { create(:candidate, profile: user.profile,
+                           election: election, post: search_post) }
 
 
   context 'when not signed in' do
@@ -29,10 +30,10 @@ RSpec.describe Election::CandidatesController, type: :controller do
   end
 
   context 'when signed in as user' do
-    before {
+    before do
       sign_in user
       search_post
-    }
+    end
     it "should have a current_user" do
       expect(subject.current_user).to_not be_nil
     end
@@ -68,9 +69,7 @@ RSpec.describe Election::CandidatesController, type: :controller do
       end
     end
     describe 'POST #create' do
-      before {
-        search_post
-      }
+      before { search_post  }
       it 'creates a new candidate' do
         expect {
           post :create, {candidate: attributes_for(:candidate, post_id: search_post.id)}
@@ -89,7 +88,8 @@ RSpec.describe Election::CandidatesController, type: :controller do
         it "updates the requested candidate" do
           patch :update, {id: candidate.to_param, candidate: change_attributes}
           candidate.reload
-          expect(candidate.name == change_attributes[:name] && candidate.lastname == change_attributes[:lastname]).to be_truthy
+          expect(candidate.name == change_attributes[:name] &&
+                     candidate.lastname == change_attributes[:lastname]).to be_truthy
         end
 
         it "assigns the requested candidate as @candidate" do

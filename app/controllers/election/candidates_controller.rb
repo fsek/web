@@ -62,7 +62,8 @@ class Election::CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:profile_id, :post_id, :stil_id, :email, :phone, :name, :lastname)
+    params.require(:candidate).permit(:profile_id, :post_id, :stil_id,
+                                      :email, :phone, :name, :lastname)
   end
 
 end
