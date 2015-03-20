@@ -46,7 +46,7 @@ set :linked_files, %w{config/database.yml}
 
 namespace :deploy do
   # before :deploy, "deploy:check_revision"
-  before :deploy, "deploy:run_tests"
+  before :deploy, 'deploy:run_tests'
 
   desc 'Restart application'
   task :restart do
@@ -56,7 +56,6 @@ namespace :deploy do
       execute :touch, release_path.join('tmp/restart.txt')
     end
   end
-
   after :publishing, :restart
 
   after :restart, :clear_cache do
