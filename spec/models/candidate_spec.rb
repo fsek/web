@@ -12,18 +12,22 @@ RSpec.describe Candidate, type: :model do
 
   describe "ActiveModel validations" do
     # Basic validations
-    it { expect(cand).to validate_uniqueness_of(:profile_id).scoped_to(:post_id,:election_id)
-                             .with_message('har redan en likadan kandidatur')
-                             .on(:create) }
-    it { expect(cand).to validate_presence_of(:name) }
-    it { expect(cand).to validate_presence_of(:lastname) }
-    it { expect(cand).to validate_presence_of(:stil_id) }
-    it { expect(cand).to validate_presence_of(:email) }
-    it { expect(cand).to validate_presence_of(:phone) }
-    it { expect(cand).to validate_presence_of(:election) }
-    it { expect(cand).to validate_presence_of(:profile) }
-    it { expect(cand).to validate_presence_of(:post).on(:create) }
+    it do
+      expect(cand).to validate_uniqueness_of(:profile_id).
+                        scoped_to(:post_id, :election_id).
+                        with_message('har redan en likadan kandidatur').
+                        on(:create)
+    end
   end
+
+  it { expect(cand).to validate_presence_of(:name) }
+  it { expect(cand).to validate_presence_of(:lastname) }
+  it { expect(cand).to validate_presence_of(:stil_id) }
+  it { expect(cand).to validate_presence_of(:email) }
+  it { expect(cand).to validate_presence_of(:phone) }
+  it { expect(cand).to validate_presence_of(:election) }
+  it { expect(cand).to validate_presence_of(:profile) }
+  it { expect(cand).to validate_presence_of(:post).on(:create) }
 
   describe "ActiveRecord associations" do
     # Associations
@@ -40,10 +44,6 @@ RSpec.describe Candidate, type: :model do
         it { expect(saved).to respond_to(:editable?) }
         it { expect(saved).to respond_to(:p_url) }
         it { expect(saved).to respond_to(:owner?) }
-      end
-      context "owner?" do
-
-
       end
     end
   end
