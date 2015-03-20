@@ -8,6 +8,9 @@
 set :stage, :production
 set :branch, 'master'
 set :deploy_to, '/home/deploy/production'
+set :rails_env,      "production"
+set :migrate_target, :latest
+
 role :app, %w{fsektionen.se}
 
 # Extended Server Syntax
@@ -16,7 +19,7 @@ role :app, %w{fsektionen.se}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'fsektionen.se', user: 'deploy', roles: %w{app}
+server 'fsektionen.se', user: 'deploy', roles: %w{web app db}
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

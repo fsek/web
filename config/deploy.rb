@@ -36,7 +36,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{storage}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -46,17 +46,15 @@ set :linked_files, %w{config/database.yml}
 
 namespace :deploy do
   # before :deploy, "deploy:check_revision"
-  before :deploy, "deploy:run_tests"
+  before :deploy, 'deploy:run_tests'
 
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
-      execute :mkdir, release_path.join('tmp')
       execute :touch, release_path.join('tmp/restart.txt')
     end
   end
-
   after :publishing, :restart
 
   after :restart, :clear_cache do
