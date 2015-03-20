@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Candidate, type: :model do
-  it "has a valid factory" do
+  it 'has a valid factory' do
     expect(build(:candidate)).to be_valid
   end
 
@@ -9,7 +9,7 @@ RSpec.describe Candidate, type: :model do
   let(:cand) { build(:candidate) }
   let(:saved) { create(:candidate) }
 
-  describe "ActiveModel validations" do
+  describe 'ActiveModel validations' do
     # Basic validations
     it do
       val = validate_uniqueness_of(:profile_id).
@@ -29,16 +29,16 @@ RSpec.describe Candidate, type: :model do
   it { expect(cand).to validate_presence_of(:profile) }
   it { expect(cand).to validate_presence_of(:post).on(:create) }
 
-  describe "ActiveRecord associations" do
+  describe 'ActiveRecord associations' do
     # Associations
     it { expect(cand).to belong_to(:election) }
     it { expect(cand).to belong_to(:post) }
     it { expect(cand).to belong_to(:profile) }
   end
 
-  context "callbacks" do
-    describe "public instance methods" do
-      context "responds to its methods" do
+  context 'callbacks' do
+    describe 'public instance methods' do
+      context 'responds to its methods' do
         it { expect(saved).to respond_to(:send_email) }
         it { expect(saved).to respond_to(:prepare) }
         it { expect(saved).to respond_to(:editable?) }
