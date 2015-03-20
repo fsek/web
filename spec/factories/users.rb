@@ -1,9 +1,8 @@
-#encoding: UTF-8
 FactoryGirl.define do
   factory :user do
-    username 'FooBar'
+    username
     password '12345678'
-    email 'foo@bar.com'
+    email
     role
     before(:create) { |user| user.as_f_member }
   end

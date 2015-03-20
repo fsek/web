@@ -16,9 +16,7 @@ Fsek::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.  
-  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-#<<<<<<< HEAD
+  # Don't care if the mailer can't send.
   config.active_support.deprecation = :notify
   config.action_mailer.default_url_options = { :host => 'dev.fsektionen.se' }
   config.action_mailer.delivery_method = :smtp
@@ -32,11 +30,6 @@ Fsek::Application.configure do
   }
 
   # Print deprecation notices to the Rails logger.
-#=======
-
-
-  # # Print deprecation notices to the Rails logger.
-#>>>>>>> 01efa7d59ce92a8c7234ecc78a3c60fd999eb7ea
   config.active_support.deprecation = :log
 
   # Raise an error on page load if there are pending migrations
@@ -46,6 +39,6 @@ Fsek::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-  config.serve_static_assets = true;
+  config.serve_static_files = true;
   PUBLIC_URL = "dev.fsektionen.se"  
 end

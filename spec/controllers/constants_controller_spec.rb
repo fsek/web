@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe ConstantsController, type: :controller do
-  include Devise::TestHelpers
   before(:each) do
     allow_any_instance_of(ApplicationController).to receive(:get_commit).and_return(true)
   end
   context 'when not signed in' do
+    # login-required is on every action, so only one test
     describe 'index' do
       it 'redirects' do
         get :index
 
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end
@@ -21,7 +21,7 @@ RSpec.describe ConstantsController, type: :controller do
       it 'diplays an error flash' do
         get :index
 
-        flash[:error].should eq('Åtkomst nekad')
+        expect(flash[:error]).to eq('Åtkomst nekad')
       end
     end
   end
@@ -31,7 +31,7 @@ RSpec.describe ConstantsController, type: :controller do
       it 'succeeds' do
         get :index
 
-        response.should be_success
+        expect(response).to be_success
       end
     end
   end

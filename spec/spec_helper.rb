@@ -26,6 +26,8 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
 
+# I had to include this, /d.wessman 2015-03-20
+require 'database_cleaner'
 # Devise helpers
 require 'devise'
 
