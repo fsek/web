@@ -131,14 +131,7 @@ Fsek::Application.routes.draw do
   end
   post '' => 'albums#index', as: :index_albums
 
-<<<<<<< HEAD
   root 'static_pages#index'
-=======
-  concern :the_role, TheRole::AdminRoutes.new
-
-  namespace :admin do
-    concerns :the_role
-  end
 
   resources :short_links, :except => [ :show, :update, :edit ] do
     collection do
@@ -146,9 +139,6 @@ Fsek::Application.routes.draw do
       get 'check' => 'short_links#check'
     end
   end
->>>>>>> shortlink
-
-  root 'static_pages#index'
 
   # Catch-all for short links.
   # This must be at the bottom!
