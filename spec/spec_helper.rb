@@ -26,16 +26,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
 
-# I had to include this, /d.wessman 2015-03-20
-require 'database_cleaner'
-# Devise helpers
-require 'devise'
-
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-
 RSpec.configure do |config|
-  config.include Devise::TestHelpers, type: 'controller'
-  config.extend ControllerMacros, type: 'controller'
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
