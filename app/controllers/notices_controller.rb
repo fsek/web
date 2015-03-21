@@ -77,7 +77,7 @@ class NoticesController < ApplicationController
 
   private
     def authenticate
-      redirect_to(root_path, alert: t('the_role.access_denied')) unless current_user &&  (current_user.moderator?(:notiser))
+      redirect_to root_path unless current_user &&  (current_user.moderator?(:notiser))
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_notice

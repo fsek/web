@@ -25,7 +25,7 @@
           <td><%= fa_icon('calendar-o') %> Slut</td>
           <td><%= rent.d_til %></td>
         </tr>
-        <% if (current_user) && (rent.owner?(current_user) || current_user.moderator?(:bil)) %>
+        <% if can? :manage, rent %>
             <tr>
               <td><%= fa_icon('envelope') %></td>
               <td><%= rent.email %></td>

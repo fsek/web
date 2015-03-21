@@ -109,7 +109,7 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :limit,:recLimit,:description,:elected_by,:elected_at,:styrelse,:car_rent,:council_id)
     end
     def authenticate
-      flash[:error] = t('the_role.access_denied')
+      
       redirect_to(:back) unless (current_user) && (current_user.moderator?(:poster))    
       rescue ActionController::RedirectBackError
         redirect_to root_path

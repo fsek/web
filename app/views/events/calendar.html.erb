@@ -7,7 +7,7 @@
 		<h2>Verktyg</h2>
 	</div>
 	<ul class="list">
-		<% if (current_user) && current_user.moderator?(:event) %>
+		<% if can? :create, Event %>
 		<li><%= link_to "Nytt event", new_event_path %></li>
 		<% end %>
 		<li><%= link_to 'Kalenderprenumeration', 'webcal://'+PUBLIC_URL+'/events/export.ics'%></li>

@@ -85,7 +85,7 @@ class ContactsController < ApplicationController
       end
     end
     def authenticate_edit
-      flash[:error] = t('the_role.access_denied')
+      
       redirect_to(:back) unless current_user.moderator?(:kontakt)
     
     rescue ActionController::RedirectBackError

@@ -32,7 +32,7 @@
           <div class="input-group margin-bottom-20">
             <%= link_to("Ny bokning", new_rent_path, class: "btn btn-u") %>
           </div>
-          <% if (current_user) && current_user.moderator?(:bil) %>
+          <% if can? :manage, Rent %>
               <div class="headline headline-md"><h2>Verktyg</h2></div>
               <ul class="list">
                 <li><%= link_to("Administration", admin_car_path) %></li>

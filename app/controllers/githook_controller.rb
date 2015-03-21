@@ -39,7 +39,7 @@ class GithookController < ApplicationController
   end
 
   def authenticate
-    flash[:error] = t('the_role.access_denied')
+    
     redirect_to(:back) unless user_signed_in? && current_user.admin?
   rescue ActionController::RedirectBackError
     redirect_to root_path

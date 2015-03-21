@@ -3,12 +3,12 @@
   <% if @rent %>
       <%= render @rent %>
       <div class="row">
-        <% if @rent.owner?(current_user) || @rent.no_profile? %>
+        <% if can? :edit, @rent %>
             <%= link_to('Redigera', edit_rent_path(@rent), class: 'btn btn-u') %>
             <hr>
         <% end %>
         <%= link_to("Startsida för Bilbokning", :bil, class: "btn btn-u") %>
-        <% if current_user && current_user.moderator?(:bil) %>
+        <% if can? :manage, Rent %>
             <%= link_to('Administrera', admin_rent_path(@rent), class: 'btn btn-u') %>
         <% end %>
       </div>

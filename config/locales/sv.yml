@@ -47,11 +47,13 @@ sv:
       profile:
         one: Profil
         other: Profiler
-
-
-
-
-
+      short_link:
+        one: Snabblänk
+        other: Snabblänkar
+    attributes:
+      short_link:
+        link: Länknamn
+        target: Måladress
 
   the_role:
     role_created:             Roll skapades
@@ -100,3 +102,6 @@ sv:
         new_role: Skapa ny roll
         delete_role_confirm: 'Är du säker? Det kan vara farligt!'
         roles_import_confirm: 'Det kan ändra behörigheter i ditt system, är du säker?'
+
+  errors:
+    invalid-url: Inte en giltig webadress

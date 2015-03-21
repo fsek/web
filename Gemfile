@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
 
+gem 'cancancan'
+
 # Capistrano stuff
 gem 'capistrano', '~> 3.1.0'
 gem 'capistrano-bundler', '~> 1.1.2'
@@ -26,8 +28,6 @@ gem 'paperclip'
 gem 'responders', '~> 2.0'
 gem 'sass-rails'
 gem 'sqlite3'
-gem 'the_role', github: 'TheRole/TheRoleApi', tag: 'v2.6'
-gem 'the_role_bootstrap3_ui'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'wice_grid'
@@ -43,6 +43,8 @@ group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'web-console', '~> 2.0'
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :test do
