@@ -61,7 +61,7 @@ class Admin::ElectionsController < ApplicationController
   end
   private
   def authenticate
-    flash[:error] = t('the_role.access_denied')
+    
     redirect_to(:back) unless (current_user) && (current_user.moderator?(:val))
   rescue ActionController::RedirectBackError
     redirect_to root_path

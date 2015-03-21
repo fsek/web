@@ -58,7 +58,7 @@ class ProfilesController < ApplicationController
 
   private
     def authenticate
-        redirect_to(root_path, alert: t('the_role.access_denied')) unless current_user &&  (current_user == @profile.user)
+        redirect_to root_path unless current_user &&  (current_user == @profile.user)
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_profile

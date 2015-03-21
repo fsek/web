@@ -64,7 +64,7 @@ class NewsController < ApplicationController
 
   private
     def authenticate_news
-    flash[:error] = t('the_role.access_denied')
+    
     redirect_to(:back) unless current_user.moderator?(:nyheter)
     
     rescue ActionController::RedirectBackError
