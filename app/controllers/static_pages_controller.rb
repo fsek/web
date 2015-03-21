@@ -1,8 +1,5 @@
 # encoding:UTF-8
 class StaticPagesController < ApplicationController
-  include TheRole::Controller
-  
-  skip_before_filter :authenticate_user!
   def faq
   end
   def libo  
