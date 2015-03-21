@@ -1,2 +1,12 @@
+# rubocop
 ruby:
   config_file: .ruby-style.yml
+# CoffeLint
+coffee_script:
+  config_file: .coffeescript-style.json
+# JSHint
+java_script:
+  config_file: .javascript-style.json
+# SCSS-Lint
+scss:
+  config_file: .scss-style.yml
