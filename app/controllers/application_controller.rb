@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_devise_parameters, if: :devise_controller?
   before_filter :set_locale
 
-  before_filter :get_commit
-
 
   def access_denied
     flash[:error] = t('the_role.access_denied')
@@ -52,6 +50,7 @@ class ApplicationController < ActionController::Base
     redirect_to(:back) if params[:locale]
   end
 
+<<<<<<< HEAD
   def get_commit
     if user_signed_in? && current_user && current_user.admin?
       @commit = `git rev-parse HEAD`[0, 6]
@@ -59,6 +58,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+=======
+>>>>>>> master
   def verify_admin
     flash[:error] = t('the_role.access_denied')
     redirect_to(:root) unless (current_user) && (current_user.admin?)
