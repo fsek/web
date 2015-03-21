@@ -50,16 +50,6 @@ class ApplicationController < ActionController::Base
     redirect_to(:back) if params[:locale]
   end
 
-<<<<<<< HEAD
-  def get_commit
-    if user_signed_in? && current_user && current_user.admin?
-      @commit = `git rev-parse HEAD`[0, 6]
-      @commit_url = "https://github.com/fsek/web/commit/%s" % @commit
-    end
-  end
-
-=======
->>>>>>> master
   def verify_admin
     flash[:error] = t('the_role.access_denied')
     redirect_to(:root) unless (current_user) && (current_user.admin?)
