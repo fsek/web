@@ -13,6 +13,7 @@ class Ability
     end
 
     # Add abilities gained from posts
+=begin no such thing as a permission
     user.posts.each do |post|
       post.permissions.each do |permission|
         if permission.subject_class == 'all'
@@ -22,5 +23,6 @@ class Ability
         end
       end
     end
+=end
   end
 end

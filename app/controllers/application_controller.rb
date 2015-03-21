@@ -25,13 +25,6 @@ class ApplicationController < ActionController::Base
     fail ActionController::RoutingError.new 'not found'
   end
 
-  protected
-  def configure_permitted_devise_parameters
-    devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(:username, :password, :remember_me)}
-    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:username, :email, :password, :password_confirmation) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:password, :password_confirmation, :current_password) }
-  end
-
   def set_locale
     locale = 'sv'
     langs  = %w{ sv en }
@@ -55,5 +48,12 @@ class ApplicationController < ActionController::Base
 
   def referring_action
     Rails.application.routes.recognize_path(request.referer)[:action]
+  end
+
+  protected
+  def configure_permitted_devise_parameters
+    devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(:username, :password, :remember_me)}
+    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:username, :email, :password, :password_confirmation) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:password, :password_confirmation, :current_password) }
   end
 end

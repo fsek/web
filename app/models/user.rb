@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def is? role_name
-    role.present? && role.name.to_s == role_name.to_s
+    role.present? && role.title.to_s == role_name.to_s
   end
 
   # Used in testing
