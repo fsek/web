@@ -1,11 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Election::CandidatesController, type: :controller do
-  # Override get_commit
-  before(:each) do
-    allow_any_instance_of(ApplicationController).to receive(:get_commit).and_return(true)
-  end
-
   # Build an election
   let(:election) { create(:election) }
   before(:each) do

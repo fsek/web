@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ConstantsController, type: :controller do
-  before(:each) do
-    allow_any_instance_of(ApplicationController).to receive(:get_commit).and_return(true)
-  end
   context 'when not signed in' do
     # login-required is on every action, so only one test
     describe 'index' do

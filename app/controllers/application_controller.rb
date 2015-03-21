@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_devise_parameters, if: :devise_controller?
   before_filter :set_locale
-  before_filter :get_commit
 
 
   def access_denied
@@ -43,13 +42,6 @@ class ApplicationController < ActionController::Base
 
     I18n.locale = locale
     redirect_to(:back) if params[:locale]
-  end
-
-  def get_commit
-    if user_signed_in? && current_user.admin?
-      @commit = `git rev-parse HEAD`[0, 6]
-      @commit_url = "https://github.com/fsek/web/commit/%s" % @commit
-    end
   end
 
   def verify_admin
