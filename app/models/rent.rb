@@ -1,6 +1,5 @@
 # encoding:UTF-8
 class Rent < ActiveRecord::Base
-
   # Associations
   belongs_to :profile
   belongs_to :council
@@ -51,21 +50,20 @@ class Rent < ActiveRecord::Base
   after_create :send_email
   after_create :overbook_all, if: :overbook_all?
 
-
   # Custom validations
 
   # The most important one, check for overlapping and handle in case they exist. Should be localized.
   # /d.wessman
   def overlap
     if self.no_council?
-      if Rent.active.date_overlap(self.d_from, self.d_til, self.id).count > 0
+      if Rent.active.date_overlap(d_from, d_til, id).count > 0
         errors.add(:d_from, 'överlappar med annan bokning')
         return false
       else
         return true
       end
     else
-      @rents = Rent.active.date_overlap(self.d_from, self.d_til, self.id)
+      @rents = Rent.active.date_overlap(d_from, d_til, id)
       if @rents.councils.count > 0
         errors.add(:d_from, 'överlappar med annan utskottsbokning')
         return false
@@ -84,8 +82,8 @@ class Rent < ActiveRecord::Base
   # /d.wessman
   def overbook
     self.aktiv = false
-    self.save(validate: false)
-    self.send_active_email
+    save(validate: false)
+    send_active_email
   end
 
   # Methods
@@ -93,7 +91,7 @@ class Rent < ActiveRecord::Base
   # Update only if authorized
   # /d.wessman
   def update_with_authorization(params, user)
-    if (user.present? && user.profile == self.profile) || (authorize(params[:access_code]))
+    if (user.present? && user.profile == profile) || (authorize(params[:access_code]))
       return update(params)
     else
       errors.add('Auktorisering', 'misslyckades, du har inte rättighet eller ev. fel kod.')
@@ -114,7 +112,7 @@ class Rent < ActiveRecord::Base
     if st != status
       send_status_email
     end
-    return true
+    true
   end
 
   # Sends email
@@ -134,13 +132,13 @@ class Rent < ActiveRecord::Base
   # Returns true if user is owner
   # /d.wessman
   def owner?(user)
-    user.present? && user.profile.present? && self.profile == user.profile
+    user.present? && user.profile.present? && profile == user.profile
   end
 
   # Returns true if provided access equals access_code
   # /d.wessman
   def authorize(access)
-    if ((access.present?) && (self.access_code.present?) && (self.access_code == access))
+    if (access.present?) && (access_code.present?) && (access_code == access)
       return true
     else
       return false
@@ -160,22 +158,22 @@ class Rent < ActiveRecord::Base
   # Returns false if profile is present, used in validations
   # /d.wessman
   def no_profile?
-    self.profile.nil?
+    profile.nil?
   end
 
   # Returns true if the rent has no council associated
   # /d.wessman
   def no_council?
-    self.council.nil?
+    council.nil?
   end
 
   # Returns true if the rent is editable (not for admins)
   # /d.wessman
   def edit?(user)
-    if self.d_til < Time.zone.now
+    if d_til < Time.zone.now
       return false
     end
-    if self.profile.present? && user.present? && self.profile == user.profile
+    if profile.present? && user.present? && profile == user.profile
       return true
     else
       return false
@@ -185,8 +183,8 @@ class Rent < ActiveRecord::Base
   # Returns the length of the booking in hours, as an virtual attribute
   # /d.wessman
   def duration
-    if self.d_from.present? && self.d_til.present?
-      h = (self.d_til-self.d_from)/3600
+    if d_from.present? && d_til.present?
+      h = (d_til - d_from) / 3600
       if h < 0
         return 0
       end
@@ -202,11 +200,11 @@ class Rent < ActiveRecord::Base
     r = Rent.new(rent_params)
     if user.present?
       r.profile = user.profile
-      r.status = "Bekräftad"
+      r.status = 'Bekräftad'
     else
       r.access_code = (0...15).map { (65 + rand(26)).chr }.join.to_s
     end
-    return r
+    r
   end
 
   # Methods for printing
@@ -249,45 +247,46 @@ class Rent < ActiveRecord::Base
 
   # Custom json method used for FullCalendar
   # /d.wessman
-  def as_json(options = {})
+  def as_json(_options = {})
     if service
       {
-          :id => self.id,
-          :title => "Service",
-          :start => self.d_from.rfc822,
-          :end => self.d_til.rfc822,
-          :status => self.comment,
-          :backgroundColor => "black",
-          :textColor => "white"
+        id: id,
+        title: 'Service',
+        start: d_from.rfc822,
+        end: d_til.rfc822,
+        status: comment,
+        backgroundColor: 'black',
+        textColor: 'white'
       }
     else
       {
-          :id => self.id,
-          :title => self.p_name,
-          :start => self.d_from.rfc822,
-          :end => self.d_til.rfc822,
-          :url => self.p_path,
-          :status => self.status,
-          :backgroundColor => backgroundColor(self.status, self.aktiv),
-          :textColor => "black"
+        id: id,
+        title: p_name,
+        start: d_from.rfc822,
+        end: d_til.rfc822,
+        url: p_path,
+        status: status,
+        backgroundColor: backgroundColor(status, aktiv),
+        textColor: 'black'
       }
     end
   end
 
   private
+
   # Too decide the backgroundColor of an event
   # /d.wessman
   def backgroundColor(status, aktiv)
     if aktiv
-      if status == "Bekräftad"
-        return "green"
-      elsif status == "Ej bestämd"
-        return "yellow"
+      if status == 'Bekräftad'
+        return 'green'
+      elsif status == 'Ej bestämd'
+        return 'yellow'
       else
-        return "red"
+        return 'red'
       end
     else
-      return "red"
+      return 'red'
     end
   end
 
@@ -296,25 +295,25 @@ class Rent < ActiveRecord::Base
   def check_overbook?(rents)
     @overbook = true
     rents.each do |rent|
-      if (rent.d_from < Time.zone.now+5.days)
+      if rent.d_from < Time.zone.now + 5.days
         @overbook = false
       end
     end
-    return @overbook
+    @overbook
   end
 
   # To make sure that dates are in the future and that d_from < d_til
   # /d.wessman
   def date_future
-    if self.d_from.present? && self.d_til.present?
-      if (self.d_from > Time.zone.now-10.minutes) && (self.d_til > self.d_from)
+    if d_from.present? && d_til.present?
+      if (d_from > Time.zone.now - 10.minutes) && (d_til > d_from)
         return true
       end
 
-      if (self.d_from < Time.zone.now)
+      if d_from < Time.zone.now
         errors.add(:d_from, 'måste vara i framtiden.')
       end
-      if (self.d_til < self.d_from)
+      if d_til < d_from
         errors.add(:d_til, 'måste vara efter startdatumet.')
       end
       return false
@@ -340,8 +339,6 @@ class Rent < ActiveRecord::Base
   # Will overbook all rents that are overlapping, should only be used as after_create
   # /d.wessman
   def overbook_all
-    Rent.active.date_overlap(self.d_from, self.d_til, self.id).each do |rent|
-      rent.overbook
-    end
+    Rent.active.date_overlap(d_from, d_til, id).each(&:overbook)
   end
 end

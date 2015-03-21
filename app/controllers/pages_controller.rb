@@ -11,14 +11,14 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-    if (@page)
-      @mainelements = @page.page_elements.where(visible: true,sidebar: false)
-      @sidebarelements = @page.page_elements.where(visible:true,sidebar: true)
+    if @page
+      @mainelements = @page.page_elements.where(visible: true, sidebar: false)
+      @sidebarelements = @page.page_elements.where(visible: true, sidebar: true)
     end
-    if(@mainelemnents) && (@mainelements.count > 1)
-      @mainelements = @mainelements.sort_by{ |x| x[:displayIndex]}
+    if (@mainelemnents) && (@mainelements.count > 1)
+      @mainelements = @mainelements.sort_by { |x| x[:displayIndex] }
     end
-    @poster = @council.posts  
+    @poster = @council.posts
   end
 
   # GET /pages/new
@@ -71,14 +71,15 @@ class PagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_page
-      @council = Council.find_by_url(params[:council_id])
-      @page = @council.page
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def page_params
-      params.fetch(:page).permit(:council_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_page
+    @council = Council.find_by_url(params[:council_id])
+    @page = @council.page
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def page_params
+    params.fetch(:page).permit(:council_id)
+  end
 end

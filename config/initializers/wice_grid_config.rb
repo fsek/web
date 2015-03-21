@@ -35,7 +35,6 @@ if defined?(Wice::Defaults)
 
   Wice::Defaults::PAGE_METHOD_NAME = :page
 
-
   # The strategy when to show the filter.
   # * <tt>:when_filtered</tt> - when the table is the result of filtering
   # * <tt>:always</tt>        - show the filter always
@@ -45,11 +44,9 @@ if defined?(Wice::Defaults)
   # A boolean value specifying if a change in a filter triggers reloading of the grid.
   Wice::Defaults::AUTO_RELOAD = false
 
-
   # SQL operator used for matching strings in string filters.
   Wice::Defaults::STRING_MATCHING_OPERATOR = 'LIKE'
   # STRING_MATCHING_OPERATOR = 'ILIKE' # Use this for Postgresql case-insensitive matching.
-
 
   # Defining one string matching operator globally for the whole application turns is not enough
   # when you connect to two databases one of which is MySQL and the other is Postgresql.
@@ -59,15 +56,11 @@ if defined?(Wice::Defaults)
     'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter' => 'ILIKE'
   }
 
-
-
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   #                              Advanced Filters                             #
 
   # Switch of the negation checkbox in all text filters
   Wice::Defaults::NEGATION_IN_STRING_FILTERS = false
-
-
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   #                              Showing All Queries                          #
@@ -78,14 +71,12 @@ if defined?(Wice::Defaults)
   # If number of all queries is more than this value, the user will be given a warning message
   Wice::Defaults::START_SHOWING_WARNING_FROM = 100
 
-
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   #                               Saving Queries                              #
 
   # ActiveRecord model to store queries. Read the documentation for details
   # QUERY_STORE_MODEL = 'WiceGridSerializedQuery'
   Wice::Defaults::QUERY_STORE_MODEL = 'WiceGridSerializedQuery'
-
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   #            Here go settings related to the calendar helpers               #
@@ -97,22 +88,21 @@ if defined?(Wice::Defaults)
 
   # Format of the datetime displayed.
   # If you change the format, make sure to check if +DATETIME_PARSER+ can still parse this string.
-  Wice::Defaults::DATETIME_FORMAT = "%Y-%m-%d %H:%M"
+  Wice::Defaults::DATETIME_FORMAT = '%Y-%m-%d %H:%M'
 
   # Format of the date displayed.
   # If you change the format, make sure to check if +DATE_PARSER+ can still parse this string.
-  Wice::Defaults::DATE_FORMAT     =  "%Y-%m-%d"
+  Wice::Defaults::DATE_FORMAT = '%Y-%m-%d'
 
   # Format of the date displayed in jQuery's Datepicker
   # If you change the format, make sure to check if +DATE_PARSER+ can still parse this string.
-  Wice::Defaults::DATE_FORMAT_JQUERY     =  "yy-mm-dd"
-
+  Wice::Defaults::DATE_FORMAT_JQUERY = 'yy-mm-dd'
 
   # With Calendar helpers enabled the parameter sent is the string displayed. This lambda will be given a date string in the
   # format defined by +DATETIME_FORMAT+ and must generate a DateTime object.
   # In many cases <tt>Time.zone.parse</tt> is enough, for instance,  <tt>%Y-%m-%d</tt>. If you change the format, make sure to check this code
   # and modify it if needed.
-  Wice::Defaults::DATETIME_PARSER = lambda{|datetime_string|
+  Wice::Defaults::DATETIME_PARSER = lambda do|datetime_string|
     if datetime_string.blank?
       nil
     elsif Time.zone
@@ -120,28 +110,27 @@ if defined?(Wice::Defaults)
     else
       Time.parse(datetime_string)
     end
-  }
+  end
 
   # The range of years to display in jQuery Datepicker.
   # It can always be changed dynamically with the following javascript:
   #  $( ".hasDatepicker" ).datepicker( "option", "yearRange", "2000:2042" );
   Wice::Defaults::DATEPICKER_YEAR_RANGE = (from = Date.current.year - 10).to_s + ':' + (from + 15).to_s
 
-
   # With Calendar helpers enabled the parameter sent is the string displayed. This lambda will be given a date string in the
   # format defined by +DATETIME+ and must generate a Date object.
   # In many cases <tt>Date.parse</tt> is enough, for instance,  <tt>%Y-%m-%d</tt>. If you change the format, make sure to check this code
   # and modify it if needed.
-  Wice::Defaults::DATE_PARSER = lambda{|date_string|
+  Wice::Defaults::DATE_PARSER = lambda do|date_string|
     if date_string.blank?
       nil
     else
       Date.parse(date_string)
     end
-  }
+  end
 
   # Icon to popup the calendar.
-  Wice::Defaults::CALENDAR_ICON = "/assets/icons/grid/calendar_view_month.png"
+  Wice::Defaults::CALENDAR_ICON = '/assets/icons/grid/calendar_view_month.png'
 
   # popup calendar will be shown relative to the popup trigger element or to the mouse pointer
   Wice::Defaults::POPUP_PLACEMENT_STRATEGY = :trigger # :pointer

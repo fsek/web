@@ -1,4 +1,4 @@
-#encoding: UTF-8
+# encoding: UTF-8
 RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean_with(:deletion)
@@ -8,7 +8,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
   end
 
-  config.before(:each, :js => true) do
+  config.before(:each, js: true) do
     DatabaseCleaner.strategy = :deletion
   end
 

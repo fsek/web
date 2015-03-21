@@ -1,6 +1,5 @@
 # encoding: UTF-8
 FactoryGirl.define do
-
   factory :rent do
     name
     lastname
@@ -32,7 +31,7 @@ FactoryGirl.define do
   end
 
   trait :confirmed do
-    status "Bekräftad"
+    status 'Bekräftad'
   end
 
   trait :over_48 do
@@ -44,7 +43,7 @@ FactoryGirl.define do
   end
 
   trait :purpose do
-    purpose "Handla möbler på IKEA"
+    purpose 'Handla möbler på IKEA'
   end
 
   trait :service do
@@ -52,7 +51,7 @@ FactoryGirl.define do
   end
 
   trait :comment do
-    comment "Du har uppebarligen inget körkort"
+    comment 'Du har uppebarligen inget körkort'
   end
 
   factory :good_rent, parent: :rent, traits: [:with_profile, :disclaimer, :active, :purpose]

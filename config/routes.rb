@@ -1,14 +1,12 @@
 Fsek::Application.routes.draw do
-
-
   resources :constants
 
-  post "githook" => "githook#index"
-  get "githook/dev" => "githook#dev"
-  get "githook/master" => "githook#master"
+  post 'githook' => 'githook#index'
+  get 'githook/dev' => 'githook#dev'
+  get 'githook/master' => 'githook#master'
 
   # Resources on the page
-  #get 'kurslankar' => 'static_pages#kurslankar'
+  # get 'kurslankar' => 'static_pages#kurslankar'
   get 'libo' => 'static_pages#libo', as: :libo
   get 'kalender' => 'events#calendar', as: :kalender
   get '/nollning', to: redirect('http://nollning.fsektionen.se'), as: :nollning
@@ -17,16 +15,16 @@ Fsek::Application.routes.draw do
   get 'om' => 'static_pages#om', as: :om
 
   get 'engagemang' => 'static_pages#utskott', as: :engagemang
-  #get 'multimedia' => 'static_pages#lankar', as: :multimedia #Ev. efterfrågad av vårt kära Sanningsministerium!
-  #get 'lankar' => 'static_pages#lankar', as: :lankar
+  # get 'multimedia' => 'static_pages#lankar', as: :multimedia #Ev. efterfrågad av vårt kära Sanningsministerium!
+  # get 'lankar' => 'static_pages#lankar', as: :lankar
 
   get 'organisation' => 'static_pages#utskott', as: :organisation
-  #get 'erbjudande' => 'static_pages#om', as: :erbjudande
+  # get 'erbjudande' => 'static_pages#om', as: :erbjudande
 
   # User-related routes
-  devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
+  devise_for :users, skip: [:sessions, :registrations], controllers: { registrations: 'registrations' }
   devise_scope :user do
-    #registration
+    # registration
     get 'avbryt_reg' => 'registrations#cancel', as: :cancel_user_registration
     post 'anvandare/skapa' => 'registrations#create', as: :user_registration
     get 'anvandare/registrera' => 'registrations#new', as: :new_user_registration
@@ -34,7 +32,7 @@ Fsek::Application.routes.draw do
     get 'anvandare/redigera' => 'registrations#edit', as: :edit_user_registration
     delete 'anvandare/ta_bort/:id' => 'users#destroy', :as => :admin_destroy_user
 
-    #sessions
+    # sessions
     get 'logga_in' => 'devise/sessions#new', as: :new_user_session
     post 'logga_in' => 'devise/sessions#create', as: :user_session
     delete 'logga_ut' => 'devise/sessions#destroy', as: :destroy_user_session
@@ -45,7 +43,6 @@ Fsek::Application.routes.draw do
 
   # Scope to change urls to swedish
   scope path_names: { new: 'ny', edit: 'redigera' } do
-
     resources :notices
 
     # A scope to put car-associated things under /bil
@@ -102,7 +99,6 @@ Fsek::Application.routes.draw do
 
     resources :documents, path: :dokument
 
-
     namespace :admin do
       resources :elections, path: :val do
         get :nominations, path: :nomineringar, on: :member
@@ -115,7 +111,6 @@ Fsek::Application.routes.draw do
         get '', action: :new, on: :collection, as: :new
       end
       resources :candidates, path: :kandidera, except: [:edit]
-
     end
 
     resources :albums, path: :galleri do
@@ -138,6 +133,4 @@ Fsek::Application.routes.draw do
   end
 
   root 'static_pages#index'
-
-
 end

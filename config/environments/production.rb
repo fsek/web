@@ -12,7 +12,7 @@ Fsek::Application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
@@ -74,18 +74,18 @@ Fsek::Application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
-  config.action_mailer.default_url_options = { :host => 'fsektionen.se' }
+  config.action_mailer.default_url_options = { host: 'fsektionen.se' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default :charset => "utf-8"
-  
+  config.action_mailer.default charset: 'utf-8'
+
   config.action_mailer.smtp_settings = {
-  address: "127.0.0.1",
-  port: 25,
-  domain: 'fsektionen.se',
-  authentication: "plain",
-  enable_starttls_auto: false  
+    address: '127.0.0.1',
+    port: 25,
+    domain: 'fsektionen.se',
+    authentication: 'plain',
+    enable_starttls_auto: false
   }
 
   # Disable automatic flushing of the log to improve performance.
@@ -93,7 +93,7 @@ Fsek::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  config.assets.precompile = ['*.js', '*.css', '*.css.erb']   
+  config.assets.precompile = ['*.js', '*.css', '*.css.erb']
   config.assets.compile = true
-  PUBLIC_URL = "fsektionen.se"  
+  PUBLIC_URL = 'fsektionen.se'
 end

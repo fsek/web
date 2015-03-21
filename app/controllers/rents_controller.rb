@@ -13,9 +13,9 @@ class RentsController < ApplicationController
   end
 
   def new
-    @TOA = Document.where(title: "Regler för Beerit").first
+    @TOA = Document.where(title: 'Regler för Beerit').first
     @rent = Rent.new
-    if (current_user)
+    if current_user
       @rent.prepare(current_user.profile)
       @utskott = current_user.profile.car_councils
     end
@@ -54,7 +54,7 @@ class RentsController < ApplicationController
 
   # Index page available to logged in users.
   def index
-    if (current_user)
+    if current_user
       @rents = current_user.profile.rents.order('d_from desc')
       render action: 'index'
     else
@@ -68,6 +68,7 @@ class RentsController < ApplicationController
   end
 
   private
+
   # Set the @rent to the current object and redirects back to car if it is not found
   def set_rent
     @rent = Rent.find_by_id(params[:id])
@@ -80,7 +81,7 @@ class RentsController < ApplicationController
   # @rents: used to show rents under the form when creating new.
   def set_rents
     id = params[:id] || nil
-    @rents = Rent.active.date_overlap(Time.zone.now, Time.zone.now+30.days, id).limit(10).ascending
+    @rents = Rent.active.date_overlap(Time.zone.now, Time.zone.now + 30.days, id).limit(10).ascending
   end
 
   def rent_params

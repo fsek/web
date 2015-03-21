@@ -59,18 +59,20 @@ class MenusController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_menu
-      @menu = Menu.find(params[:id])
-    end
-    def authenticate
-      flash[:error] = t('the_role.access_denied')
-      redirect_to(:back) unless (current_user) && (current_user.moderator?(:meny))    
-      rescue ActionController::RedirectBackError
-        redirect_to root_path
-    end
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def menu_params
-      params.require(:menu).permit(:location, :index,:link,:name,:visible,:turbolinks,:blank_p)
-    end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_menu
+    @menu = Menu.find(params[:id])
+  end
+
+  def authenticate
+    flash[:error] = t('the_role.access_denied')
+    redirect_to(:back) unless (current_user) && (current_user.moderator?(:meny))
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+  end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def menu_params
+    params.require(:menu).permit(:location, :index, :link, :name, :visible, :turbolinks, :blank_p)
+  end
 end

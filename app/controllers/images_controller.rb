@@ -1,9 +1,9 @@
 # encoding:UTF-8
 class ImagesController < ApplicationController
   before_filter :login_required
-  before_filter :authenticate_user!  
+  before_filter :authenticate_user!
   before_action :set_image, only: [:show, :edit, :update, :destroy]
-  before_action :set_album, only: [:index,:new,:create, :show, :edit, :update, :destroy,:edit_multiple,:update_multiple]
+  before_action :set_album, only: [:index, :new, :create, :show, :edit, :update, :destroy, :edit_multiple, :update_multiple]
   # GET /uploads
   # GET /uploads.json
   def index
@@ -17,30 +17,31 @@ class ImagesController < ApplicationController
 
   # GET /uploads/new
   def new
-    @image = Image.new     
+    @image = Image.new
   end
 
   # GET /uploads/1/edit
   def edit
   end
-  
+
   def edit_multiple
     @images = @album.images.order('foto_file_name asc')
     @image = @images.first
   end
+
   def update_multiple
-  @images = @album.images
-  @images.each do |image|
-    image.update_attributes!(params[:image].reject { |k,v| v.blank? })
-  end
-  flash[:notice] = "Bilderna uppdaterades!"
-  redirect_to album_images_path(@album)
+    @images = @album.images
+    @images.each do |image|
+      image.update_attributes!(params[:image].reject { |_k, v| v.blank? })
+    end
+    flash[:notice] = 'Bilderna uppdaterades!'
+    redirect_to album_images_path(@album)
 end
 
   # POST /uploads
   # POST /uploads.json
-  def create    
-    @image = @album.images.create(image_params)    
+  def create
+    @image = @album.images.create(image_params)
     respond_to do |format|
       if @image.save
         format.html { redirect_to @album, notice: 'Bilden lades till.' }
@@ -71,23 +72,24 @@ end
   def destroy
     @image.destroy
     respond_to do |format|
-      format.html { redirect_to edit_album_path(@album), notice: "Bilden togs bort." }
+      format.html { redirect_to edit_album_path(@album), notice: 'Bilden togs bort.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_image
-      @image = Image.find(params[:id])
-    end
-    
-    def set_album
-      @album = Album.find(params[:album_id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def image_params
-      params.fetch(:image).permit(:foto,:album_id,:subcategory_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_image
+    @image = Image.find(params[:id])
+  end
+
+  def set_album
+    @album = Album.find(params[:album_id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def image_params
+    params.fetch(:image).permit(:foto, :album_id, :subcategory_id)
+  end
 end
