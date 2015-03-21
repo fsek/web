@@ -11,6 +11,12 @@ class ApplicationController < ActionController::Base
     render :text => '', :layout => true, :status => :forbidden
   end
 
+  rescue_from ActiveRecord::RecordInvalid do |ex|
+    flash[:error] = 
+      "Fel i formulär:  #{ex.record.errors.full_messages.join '; '}"
+    render referring_action, :status => :unprocessable_entity
+  end
+
   protected
   def configure_permitted_devise_parameters
     devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(:username, :password, :remember_me)}
@@ -40,9 +46,13 @@ class ApplicationController < ActionController::Base
   end
 
   def get_commit
-    if user_signed_in? && current_user.admin?
+    if user_signed_in? && current_user.is?(:admin)
       @commit = `git rev-parse HEAD`[0, 6]
       @commit_url = "https://github.com/fsek/web/commit/%s" % @commit
     end
+  end
+
+  def referring_action
+    Rails.application.routes.recognize_path(request.referer)[:action]
   end
 end

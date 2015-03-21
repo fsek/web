@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_self
-//= require the_role_editinplace
 //= require jquery-ui/datepicker
 //= require moment
 //= require fullcalendar
