@@ -6,17 +6,12 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   before_filter :get_commit
 
-
-  def access_denied
-    flash[:error] = t('the_role.access_denied')
-    redirect_to(:back)
-
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
-  end 
+  rescue_from CanCan::AccessDenied do |ex|
+    flash[:error] = ex.message
+    render :text => '', :layout => true, :status => :forbidden
+  end
 
   protected
-
   def configure_permitted_devise_parameters
     devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(:username, :password, :remember_me)}
     devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:username, :email, :password, :password_confirmation) }
@@ -49,10 +44,5 @@ class ApplicationController < ActionController::Base
       @commit = `git rev-parse HEAD`[0, 6]
       @commit_url = "https://github.com/fsek/web/commit/%s" % @commit
     end
-  end
-
-  def verify_admin
-    flash[:error] = t('the_role.access_denied')
-    redirect_to(:root) unless (current_user) && (current_user.admin?)
   end
 end
