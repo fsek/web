@@ -1,10 +1,10 @@
-# encoding: UTF-8
+#encoding: UTF-8
 FactoryGirl.define do
+  sequence(:name) { |n| "David#{n}" }
+  sequence(:lastname) { |n| "Wessman#{n}" }
+
   factory :profile do
     name
     lastname
-    email
-    phone
-    stil_id
   end
 end
