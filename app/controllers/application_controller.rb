@@ -16,6 +16,15 @@ class ApplicationController < ActionController::Base
     render referring_action, :status => :unprocessable_entity
   end
 
+  rescue_from ActionController::RedirectBackError do
+    redirect_to root_path
+  end 
+
+  rescue_from ActiveRecord::RecordNotFound do
+    # translate record not found -> HTTP 404
+    fail ActionController::RoutingError.new 'not found'
+  end
+
   protected
   def configure_permitted_devise_parameters
     devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(:username, :password, :remember_me)}
