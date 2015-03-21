@@ -7,12 +7,12 @@ class PageElementsController < ApplicationController
   # GET /page_elements.json
   def index
     @page_elements = @page.page_elements
-    if (@page)
-      @mainelements = @page.page_elements.where(visible: true,sidebar: false)
-      @sidebarelements = @page.page_elements.where(visible:true,sidebar: true)
+    if @page
+      @mainelements = @page.page_elements.where(visible: true, sidebar: false)
+      @sidebarelements = @page.page_elements.where(visible: true, sidebar: true)
     end
-    if(@mainelemnents) && (@mainelements.count > 1)
-      @mainelements = @mainelements.sort_by{ |x| x[:displayIndex]}
+    if (@mainelemnents) && (@mainelements.count > 1)
+      @mainelements = @mainelements.sort_by { |x| x[:displayIndex] }
     end
     @poster = @council.posts
     @rest = @page.page_elements.where(visible: false)
@@ -25,14 +25,13 @@ class PageElementsController < ApplicationController
 
   # GET /page_elements/new
   def new
-    @page_element = PageElement.new()
+    @page_element = PageElement.new
     @path = council_page_page_elements_path(@council)
   end
 
   # GET /page_elements/1/edit
   def edit
-    
-    @path = council_page_page_element_path(@council,@page_element)
+    @path = council_page_page_element_path(@council, @page_element)
   end
 
   # POST /page_elements
@@ -76,17 +75,19 @@ class PageElementsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_page_element
-      @page_element = PageElement.find(params[:id])      
-    end    
-    def set_council
-      @council = Council.find_by_url(params[:council_id])
-      @page = @council.page
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def page_element_params      
-      params.fetch(:page_element).permit(:page_id,:displayIndex, :sidebar, :visible,:text, :headline, :border, :name, :pictureR,:picture)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_page_element
+    @page_element = PageElement.find(params[:id])
+  end
+
+  def set_council
+    @council = Council.find_by_url(params[:council_id])
+    @page = @council.page
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def page_element_params
+    params.fetch(:page_element).permit(:page_id, :displayIndex, :sidebar, :visible, :text, :headline, :border, :name, :pictureR, :picture)
+  end
 end

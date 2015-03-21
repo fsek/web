@@ -1,6 +1,6 @@
 class NoticesController < ApplicationController
   before_action :authenticate, except: [:image]
-  before_action :set_notice, only: [:show, :edit, :update, :destroy,:hide,:display,:image]
+  before_action :set_notice, only: [:show, :edit, :update, :destroy, :hide, :display, :image]
 
   def index
     @notices = Notice.all
@@ -8,7 +8,6 @@ class NoticesController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -16,14 +15,13 @@ class NoticesController < ApplicationController
   end
 
   def edit
-
   end
 
   def create
     @notice = Notice.new(notice_params)
     respond_to do |format|
       if @notice.save
-        format.html { redirect_to @notice, notice: %(#{t(:notice)} #{t(:success_create)}.)}
+        format.html { redirect_to @notice, notice: %(#{t(:notice)} #{t(:success_create)}.) }
         format.json { render action: 'show', status: :created, location: @notice }
       else
         format.html { render action: 'new' }
@@ -67,26 +65,26 @@ class NoticesController < ApplicationController
   # Action to show profile picture only already authenticated
   def image
     if @notice.image?
-      if(params[:style] == "original" || params[:style] == "large" || params[:style] == "small")
-        send_file(@notice.image.path(params[:style]), filename:@notice.image_file_name, type: "image/jpg",disposition: 'inline',x_sendfile: true)
+      if params[:style] == 'original' || params[:style] == 'large' || params[:style] == 'small'
+        send_file(@notice.image.path(params[:style]), filename: @notice.image_file_name, type: 'image/jpg', disposition: 'inline', x_sendfile: true)
       else
-        send_file(@notice.image.path(:large), filename:@notice.image_file_name, type: "image/jpg",disposition: 'inline',x_sendfile: true)
+        send_file(@notice.image.path(:large), filename: @notice.image_file_name, type: 'image/jpg', disposition: 'inline', x_sendfile: true)
       end
     end
   end
 
   private
-    def authenticate
-      redirect_to(root_path, alert: t('the_role.access_denied')) unless current_user &&  (current_user.moderator?(:notiser))
-    end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_notice
-      @notice = Notice.find_by_id(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def notice_params
-      params.require(:notice).permit(:title, :description, :public, :d_publish, :d_remove, :sort,:image)
-    end
+  def authenticate
+    redirect_to(root_path, alert: t('the_role.access_denied')) unless current_user && (current_user.moderator?(:notiser))
+  end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_notice
+    @notice = Notice.find_by_id(params[:id])
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def notice_params
+    params.require(:notice).permit(:title, :description, :public, :d_publish, :d_remove, :sort, :image)
+  end
 end

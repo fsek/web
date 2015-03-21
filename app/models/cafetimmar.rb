@@ -1,17 +1,16 @@
 # encoding: UTF-8
 class Cafetimmar < ActiveRecord::Base
-  
-     def ical
-      e=Icalendar::Event.new
-      e.uid=self.id    
-      e.dtstart=DateTime.civil(self.date.year, self.date.month, self.date.day, self.date.hour, self.date.min)    
-      e.dtend=DateTime.civil(self.end_date.year, self.end_date.month, self.end_date.day, self.end_date.hour, self.end_date.min)
-      e.location = self.location    
-      e.summary=self.title
-      e.description = self.content    
-      e.created=self.created_at    
-      e.url= "#{PUBLIC_URL}/events/#{self.id}"      
-      e.last_modified=self.updated_at    
-      e   
-    end 
+  def ical
+    e = Icalendar::Event.new
+    e.uid = id
+    e.dtstart = DateTime.civil(date.year, date.month, date.day, date.hour, date.min)
+    e.dtend = DateTime.civil(end_date.year, end_date.month, end_date.day, end_date.hour, end_date.min)
+    e.location = location
+    e.summary = title
+    e.description = content
+    e.created = created_at
+    e.url = "#{PUBLIC_URL}/events/#{id}"
+    e.last_modified = updated_at
+    e
+ end
 end

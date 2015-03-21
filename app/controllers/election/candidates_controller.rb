@@ -5,7 +5,6 @@ class Election::CandidatesController < ApplicationController
   before_action :set_candidate, only: [:show, :update, :destroy]
   respond_to :html
 
-
   def index
     @candidates = current_user.profile.candidates.where(election: @election)
     @candidates_grid = initialize_grid(@candidates)
@@ -49,6 +48,7 @@ class Election::CandidatesController < ApplicationController
   end
 
   private
+
   def set_candidate
     @candidate = Candidate.find_by_id(params[:id])
     if !@candidate.owner?(current_user)
@@ -65,5 +65,4 @@ class Election::CandidatesController < ApplicationController
     params.require(:candidate).permit(:profile_id, :post_id, :stil_id,
                                       :email, :phone, :name, :lastname)
   end
-
 end

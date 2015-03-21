@@ -8,7 +8,7 @@
 set :stage, :production
 set :branch, 'master'
 set :deploy_to, '/home/deploy/production'
-set :rails_env,      "production"
+set :rails_env, 'production'
 set :migrate_target, :latest
 
 role :app, %w{fsektionen.se}

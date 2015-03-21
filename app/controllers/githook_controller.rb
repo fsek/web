@@ -27,15 +27,15 @@ class GithookController < ApplicationController
   end
 
   private
- 
+
   def pull_dev
     out = `/var/www/scripts/updatewrapper-dev`
-    return $?.exitstatus, out
+    [$?.exitstatus, out]
   end
 
   def pull_master
     out = `/var/www/scripts/updatewrapper`
-    return $?.exitstatus, out
+    [$?.exitstatus, out]
   end
 
   def authenticate

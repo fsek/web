@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
   # This is a subclass of the devise registrations controller,
   # hence there is very little code here :)
 
-  #overridden
+  # overridden
   def create
     build_resource(sign_up_params)
 
@@ -31,11 +31,10 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-
   protected
-    #overridden
-    def after_sign_up_path_for(resource)      
-      edit_profile_path(resource.profile)
-    end
-    
+
+  # overridden
+  def after_sign_up_path_for(resource)
+    edit_profile_path(resource.profile)
+  end
 end

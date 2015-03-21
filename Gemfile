@@ -6,7 +6,7 @@ gem 'rails', '~> 4.2.0'
 gem 'capistrano', '~> 3.1.0'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
-gem 'capistrano-rbenv', "~> 2.0" 
+gem 'capistrano-rbenv', '~> 2.0'
 
 gem 'coffee-rails'
 # Set to 1.8 due to https://github.com/jashkenas/coffeescript/issues/3829
@@ -33,7 +33,7 @@ gem 'uglifier'
 gem 'wice_grid'
 
 group :production do
-	gem 'therubyracer', platforms: :ruby
+  gem 'therubyracer', platforms: :ruby
 end
 
 group :development, :test do
@@ -55,4 +55,3 @@ if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9
   Encoding.default_external = Encoding::UTF_8
   Encoding.default_internal = Encoding::UTF_8
 end
-

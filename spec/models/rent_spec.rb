@@ -1,4 +1,4 @@
-#encoding: UTF-8
+# encoding: UTF-8
 require 'rails_helper'
 
 RSpec.describe Rent, type: :model do
@@ -41,12 +41,12 @@ RSpec.describe Rent, type: :model do
         it 'add error if duration is over 48' do
           rent = FactoryGirl.build(:rent, :over_48)
           rent.valid?
-          expect(rent.errors.get(:d_from)).to include(", får inte vara längre än 48 h")
+          expect(rent.errors.get(:d_from)).to include(', får inte vara längre än 48 h')
         end
         it 'do not add error if duration is under 48' do
           rent = FactoryGirl.build(:rent, :under_48)
           rent.valid?
-          expect(rent.errors.get(:d_from)).to be_nil or not_include(", får inte vara längre än 48 h")
+          expect(rent.errors.get(:d_from)).to(be_nil) || not_include(', får inte vara längre än 48 h')
         end
         it 'valid when duration is under 48' do
           rent = FactoryGirl.build(:good_rent, :under_48)
@@ -57,12 +57,12 @@ RSpec.describe Rent, type: :model do
         it 'do not add error if duration is over 48' do
           rent = FactoryGirl.build(:rent, :over_48, :with_council)
           rent.valid?
-          expect(rent.errors.get(:d_from)).to be_nil or not_include(", får inte vara längre än 48 h")
+          expect(rent.errors.get(:d_from)).to(be_nil) || not_include(', får inte vara längre än 48 h')
         end
         it 'do not add error if duration is under 48' do
           rent = FactoryGirl.build(:rent, :under_48, :with_council)
           rent.valid?
-          expect(rent.errors.get(:d_from)).to be_nil or not_include(", får inte vara längre än 48 h")
+          expect(rent.errors.get(:d_from)).to(be_nil) || not_include(', får inte vara längre än 48 h')
         end
         it 'valid for any duration' do
           rent = FactoryGirl.build(:good_rent, :over_48, :with_council)
@@ -79,12 +79,12 @@ RSpec.describe Rent, type: :model do
           rent = FactoryGirl.build(:rent)
           rent.d_from = rent.d_til + 1.hour
           rent.valid?
-          expect(rent.errors.get(:d_til)).to include("måste vara efter startdatumet.")
+          expect(rent.errors.get(:d_til)).to include('måste vara efter startdatumet.')
         end
         it 'do not add error if d_from < d_til ' do
           rent = FactoryGirl.build(:rent)
           rent.valid?
-          expect(rent.errors.get(:d_til)).to be_nil or not_include("måste vara efter startdatumet.")
+          expect(rent.errors.get(:d_til)).to(be_nil) || not_include('måste vara efter startdatumet.')
         end
         it 'no other validation failing' do
           rent = FactoryGirl.build(:good_rent)
@@ -97,26 +97,24 @@ RSpec.describe Rent, type: :model do
           rent.d_til = Time.zone.now - 10.hours
           rent.d_from = rent.d_til + 5.hours
           rent.valid?
-          expect(rent.errors.get(:d_til)).to include("måste vara efter startdatumet.")
+          expect(rent.errors.get(:d_til)).to include('måste vara efter startdatumet.')
         end
         it 'add error if d_from > d_til' do
           rent = FactoryGirl.build(:rent)
           rent.d_til = Time.zone.now - 10.hours
           rent.d_from = rent.d_til + 5.hours
           rent.valid?
-          expect(rent.errors.get(:d_from)).to include("måste vara i framtiden.")
+          expect(rent.errors.get(:d_from)).to include('måste vara i framtiden.')
         end
         it 'add error if d_from < d_til' do
           rent = FactoryGirl.build(:rent)
           rent.d_from = Time.zone.now - 10.hours
           rent.d_til = rent.d_from + 5.hours
           rent.valid?
-          expect(rent.errors.get(:d_from)).to include("måste vara i framtiden.")
+          expect(rent.errors.get(:d_from)).to include('måste vara i framtiden.')
         end
       end
     end
-
-
 
     # Validate if overlap
     # /d.wessman
@@ -142,7 +140,7 @@ RSpec.describe Rent, type: :model do
           rent.d_from = overlap.d_from + 5.hours
           rent.d_til = overlap.d_til - 5.hours
           rent.valid?
-          expect(rent.errors.get(:d_from)).to include("överlappar med annan bokning")
+          expect(rent.errors.get(:d_from)).to include('överlappar med annan bokning')
         end
         it 'invalid when d_from is within saved rent' do
           overlap = FactoryGirl.create(:good_rent)
@@ -157,7 +155,7 @@ RSpec.describe Rent, type: :model do
           rent.d_from = overlap.d_til - 5.hours
           rent.d_til = overlap.d_til + 5.hours
           rent.valid?
-          expect(rent.errors.get(:d_from)).to include("överlappar med annan bokning")
+          expect(rent.errors.get(:d_from)).to include('överlappar med annan bokning')
         end
 
         it 'valid when d_from and d_til is outside saved rent' do
@@ -173,111 +171,111 @@ RSpec.describe Rent, type: :model do
           rent.d_from = overlap.d_til + 5.hours
           rent.d_til = rent.d_from + 5.hours
           rent.valid?
-          expect(rent.errors.get(:d_from)).to be_nil or not_include("överlappar med annan bokning")
+          expect(rent.errors.get(:d_from)).to(be_nil) || not_include('överlappar med annan bokning')
         end
       end
       context :when_first_council_second_not do
-         it 'invalid when d_til is within good rent' do
-           overlap = FactoryGirl.create(:good_rent,:with_council)
-           rent = FactoryGirl.build(:good_rent)
-           rent.d_from = overlap.d_from - 5.hours
-           rent.d_til = overlap.d_til - 5.hours
-           expect(rent).to_not be_valid
-         end
-         it 'add error if d_til within saved' do
-           overlap = FactoryGirl.create(:good_rent,:with_council)
-           rent = FactoryGirl.build(:good_rent)
-           rent.d_from = overlap.d_from - 5.hours
-           rent.d_til = overlap.d_til - 5.hours
-           rent.valid?
-           expect(rent.errors.get(:d_from)).to include("överlappar med annan bokning")
-         end
-         it 'invalid when d_from and d_til is within saved' do
-           overlap = FactoryGirl.create(:good_rent,:with_council)
-           rent = FactoryGirl.build(:good_rent)
-           rent.d_from = overlap.d_from + 5.hours
-           rent.d_til = overlap.d_til - 5.hours
-           expect(rent).to_not be_valid
-         end
-         it 'invalid when d_from is within saved rent' do
-           overlap = FactoryGirl.create(:good_rent,:with_council)
-           rent = FactoryGirl.build(:good_rent)
-           rent.d_from = overlap.d_til - 5.hours
-           rent.d_til = overlap.d_til + 5.hours
-           expect(rent).to_not be_valid
-         end
-         it 'valid when d_from and d_til is outside saved rent' do
-           overlap = FactoryGirl.create(:good_rent,:with_council)
-           rent = FactoryGirl.build(:good_rent)
-           rent.d_from = overlap.d_til + 5.hours
-           rent.d_til = rent.d_from + 5.hours
-           expect(rent).to be_valid
-         end
+        it 'invalid when d_til is within good rent' do
+          overlap = FactoryGirl.create(:good_rent, :with_council)
+          rent = FactoryGirl.build(:good_rent)
+          rent.d_from = overlap.d_from - 5.hours
+          rent.d_til = overlap.d_til - 5.hours
+          expect(rent).to_not be_valid
+        end
+        it 'add error if d_til within saved' do
+          overlap = FactoryGirl.create(:good_rent, :with_council)
+          rent = FactoryGirl.build(:good_rent)
+          rent.d_from = overlap.d_from - 5.hours
+          rent.d_til = overlap.d_til - 5.hours
+          rent.valid?
+          expect(rent.errors.get(:d_from)).to include('överlappar med annan bokning')
+        end
+        it 'invalid when d_from and d_til is within saved' do
+          overlap = FactoryGirl.create(:good_rent, :with_council)
+          rent = FactoryGirl.build(:good_rent)
+          rent.d_from = overlap.d_from + 5.hours
+          rent.d_til = overlap.d_til - 5.hours
+          expect(rent).to_not be_valid
+        end
+        it 'invalid when d_from is within saved rent' do
+          overlap = FactoryGirl.create(:good_rent, :with_council)
+          rent = FactoryGirl.build(:good_rent)
+          rent.d_from = overlap.d_til - 5.hours
+          rent.d_til = overlap.d_til + 5.hours
+          expect(rent).to_not be_valid
+        end
+        it 'valid when d_from and d_til is outside saved rent' do
+          overlap = FactoryGirl.create(:good_rent, :with_council)
+          rent = FactoryGirl.build(:good_rent)
+          rent.d_from = overlap.d_til + 5.hours
+          rent.d_til = rent.d_from + 5.hours
+          expect(rent).to be_valid
+        end
       end
 
       context :when_second_council_first_not do
-         it 'valid when d_til is within good rent' do
-           overlap = FactoryGirl.create(:good_rent)
-           rent = FactoryGirl.build(:good_rent,:with_council)
-           rent.d_from = overlap.d_from - 5.hours
-           rent.d_til = overlap.d_til - 5.hours
-           expect(rent).to be_valid
-         end
-         it 'valid when d_from and d_til is within good rent' do
-           overlap = FactoryGirl.create(:good_rent)
-           rent = FactoryGirl.build(:good_rent,:with_council)
-           rent.d_from = overlap.d_from + 5.hours
-           rent.d_til = overlap.d_til - 5.hours
-           expect(rent).to be_valid
-         end
-         it 'valid when d_from is within good rent' do
-           overlap = FactoryGirl.create(:good_rent)
-           rent = FactoryGirl.build(:good_rent,:with_council)
-           rent.d_from = overlap.d_til - 5.hours
-           rent.d_til = overlap.d_til + 5.hours
-           expect(rent).to be_valid
-         end
-         it 'valid when d_from and d_til is outside good rent' do
-           overlap = FactoryGirl.create(:good_rent)
-           rent = FactoryGirl.build(:good_rent,:with_council)
-           rent.d_from = overlap.d_til + 5.hours
-           rent.d_til = rent.d_from + 5.hours
-           expect(rent).to be_valid
-         end
+        it 'valid when d_til is within good rent' do
+          overlap = FactoryGirl.create(:good_rent)
+          rent = FactoryGirl.build(:good_rent, :with_council)
+          rent.d_from = overlap.d_from - 5.hours
+          rent.d_til = overlap.d_til - 5.hours
+          expect(rent).to be_valid
+        end
+        it 'valid when d_from and d_til is within good rent' do
+          overlap = FactoryGirl.create(:good_rent)
+          rent = FactoryGirl.build(:good_rent, :with_council)
+          rent.d_from = overlap.d_from + 5.hours
+          rent.d_til = overlap.d_til - 5.hours
+          expect(rent).to be_valid
+        end
+        it 'valid when d_from is within good rent' do
+          overlap = FactoryGirl.create(:good_rent)
+          rent = FactoryGirl.build(:good_rent, :with_council)
+          rent.d_from = overlap.d_til - 5.hours
+          rent.d_til = overlap.d_til + 5.hours
+          expect(rent).to be_valid
+        end
+        it 'valid when d_from and d_til is outside good rent' do
+          overlap = FactoryGirl.create(:good_rent)
+          rent = FactoryGirl.build(:good_rent, :with_council)
+          rent.d_from = overlap.d_til + 5.hours
+          rent.d_til = rent.d_from + 5.hours
+          expect(rent).to be_valid
+        end
       end
       context :when_two_councils do
         it 'invalid when d_til is within good rent' do
-          overlap = FactoryGirl.create(:good_rent,:with_council)
-          rent = FactoryGirl.build(:good_rent,:with_council)
+          overlap = FactoryGirl.create(:good_rent, :with_council)
+          rent = FactoryGirl.build(:good_rent, :with_council)
           rent.d_from = overlap.d_from - 5.hours
           rent.d_til = overlap.d_til - 5.hours
           expect(rent).to_not be_valid
         end
         it 'do add error if d_til within saved' do
-          overlap = FactoryGirl.create(:good_rent,:with_council)
-          rent = FactoryGirl.build(:good_rent,:with_council)
+          overlap = FactoryGirl.create(:good_rent, :with_council)
+          rent = FactoryGirl.build(:good_rent, :with_council)
           rent.d_from = overlap.d_from - 5.hours
           rent.d_til = overlap.d_til + 5.hours
           rent.valid?
-          expect(rent.errors.get(:d_from)).to include("överlappar med annan utskottsbokning")
+          expect(rent.errors.get(:d_from)).to include('överlappar med annan utskottsbokning')
         end
         it 'invalid when d_from and d_til is within good rent' do
-          overlap = FactoryGirl.create(:good_rent,:with_council)
-          rent = FactoryGirl.build(:good_rent,:with_council)
+          overlap = FactoryGirl.create(:good_rent, :with_council)
+          rent = FactoryGirl.build(:good_rent, :with_council)
           rent.d_from = overlap.d_from + 5.hours
           rent.d_til = overlap.d_til - 5.hours
           expect(rent).to_not be_valid
         end
         it 'invalid when d_from is within good rent' do
-          overlap = FactoryGirl.create(:good_rent,:with_council)
-          rent = FactoryGirl.build(:good_rent,:with_council)
+          overlap = FactoryGirl.create(:good_rent, :with_council)
+          rent = FactoryGirl.build(:good_rent, :with_council)
           rent.d_from = overlap.d_til - 5.hours
           rent.d_til = overlap.d_til + 5.hours
           expect(rent).to_not be_valid
         end
         it 'valid when d_from and d_til is outside good rent' do
-          overlap = FactoryGirl.create(:good_rent,:with_council)
-          rent = FactoryGirl.build(:good_rent,:with_council)
+          overlap = FactoryGirl.create(:good_rent, :with_council)
+          rent = FactoryGirl.build(:good_rent, :with_council)
           rent.d_from = overlap.d_til + 5.hours
           rent.d_til = rent.d_from + 5.hours
           expect(rent).to be_valid

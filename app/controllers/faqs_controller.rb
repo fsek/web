@@ -1,17 +1,14 @@
 # encoding:UTF-8
 class FaqsController < ApplicationController
-
-  before_filter :authenticate_editor, only: [:edit,:update,:destroy]
+  before_filter :authenticate_editor, only: [:edit, :update, :destroy]
   before_action :set_editor, only: [:new, :show, :edit, :index]
   before_action :set_faq, only: [:show, :edit, :update, :destroy]
 
-
-
   def index
     @faq = Faq.where.not(answer: '').where(category: 'main')
-    @faq_hilbert =  Faq.where.not(answer: '').where(category: 'Hilbert')
+    @faq_hilbert = Faq.where.not(answer: '').where(category: 'Hilbert')
     if @editor
-      @faq_unanswered = Faq.where(answer: '',category: 'main')
+      @faq_unanswered = Faq.where(answer: '', category: 'main')
       @hilbert_unanswered = Faq.where(answer: '', category: 'Hilbert')
     end
   end
@@ -21,7 +18,7 @@ class FaqsController < ApplicationController
 
   def new
     @faq = Faq.new
-    if(params[:category])
+    if params[:category]
       @faq.category = params[:category]
     end
   end
@@ -30,7 +27,7 @@ class FaqsController < ApplicationController
   end
 
   def destroy
-    @faq.destroy()
+    @faq.destroy
     respond_to do |format|
       format.html { redirect_to :faqs }
       format.json { head :no_content }
@@ -66,13 +63,14 @@ class FaqsController < ApplicationController
   end
 
   private
+
   def set_faq
     @faq = Faq.find(params[:id])
   end
 
   def authenticate_editor
     if !(current_user) || !(current_user.moderator?(:faq))
-      flash[:error] = "Funkar inte"
+      flash[:error] = 'Funkar inte'
       redirect_to :faq
     end
   end
@@ -86,7 +84,6 @@ class FaqsController < ApplicationController
   end
 
   def faq_params
-    params.require(:faq).permit(:question, :answer,:category)
+    params.require(:faq).permit(:question, :answer, :category)
   end
-
 end
