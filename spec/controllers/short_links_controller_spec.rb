@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe ShortLinksController, :type => :controller do
-  USER_WITH_ACCESS = User.new 
-  USER_WITHOUT_ACCESS = User.new
-
   before(:each) do
     allow_any_instance_of(ApplicationController).to receive(:get_commit).and_return(true)
   end
