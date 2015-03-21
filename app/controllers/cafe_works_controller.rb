@@ -11,7 +11,6 @@ class CafeWorksController < ApplicationController
 
   def authorize
     @authenticated = @cwork.authorize(worker_params[:access_code])
-    @path = :update_worker
   end
 
   def update_worker

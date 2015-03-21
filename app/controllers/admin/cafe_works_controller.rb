@@ -53,7 +53,7 @@ class Admin::CafeWorksController < ApplicationController
       @cworks = @r.preview(@lv_first, @lv_last)
     elsif save?
       @r.setup(@lv_first, @lv_last)
-      flash[:notice] = 'Skapades'
+      flash[:notice] = 'Cafejobben skapades'
     end
     render 'setup'
   end
@@ -67,8 +67,9 @@ class Admin::CafeWorksController < ApplicationController
   private
 
   def authenticate
-    redirect_to(:hilbert, alert: t('the_role.access_denied')) unless
-        current_user && current_user.moderator?(:cafejobb)
+    if current_user.nil? || !current_user.moderator?(:cafejobb)
+      redirect_to(:hilbert, alert: t('the_role.access_denied'))
+    end
   end
 
   def c_w_params
@@ -80,7 +81,7 @@ class Admin::CafeWorksController < ApplicationController
   def set_cafe_work
     @cwork = CafeWork.find_by_id(params[:id])
     if @cwork.present?
-        redirect_to(:admin_cafe_works, notice: 'Hittade inget Cafejobb med det ID:t.')
+      redirect_to(:admin_cafe_works, notice: 'Hittade inget Cafejobb med det ID:t.')
     end
   end
 

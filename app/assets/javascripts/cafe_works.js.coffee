@@ -23,8 +23,9 @@ loadCalendar = ->
     slotEventOverlap: false,
     eventMouseover: (calEvent, jsEvent) ->
       style = 'width:auto;height:auto;background:#eb7125;'
-      style = style + 'position:absolute;z-index:10001;padding:10px;border:2px solid;'
-      tooltip = '<div class="tooltipevent" style="' + style + '">' + calEvent.title
+      style = style + 'position:absolute;z-index:10001;padding:10px;'
+      tooltip = '<div class="tooltipevent" style="' + style + '">'
+      tooltip = tooltip + calEvent.title
       tooltip = tooltip + '<br>' + calEvent.start.format('LLL')
       tooltip = tooltip + '<br>till<br>' + calEvent.end.format('LLL') + '</div>'
       $('body').append tooltip

@@ -169,7 +169,7 @@ class CafeWork < ActiveRecord::Base
   # Used to print out date, reading week and work number
   # /d.wessman
   def print
-    %(#{print_date} LV: #{lv.to_s} Pass: #{pass.to_s})
+    %(#{print_date} LV: #{lv} Pass: #{pass})
   end
 
   def print_date
