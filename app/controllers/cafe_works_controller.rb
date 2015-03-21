@@ -7,7 +7,6 @@ class CafeWorksController < ApplicationController
 
   def show
     @cwork.load(current_user)
-    @path = (@cwork.has_worker?) ? :update_worker : :add_worker
   end
 
   def authorize
@@ -16,7 +15,7 @@ class CafeWorksController < ApplicationController
   end
 
   def update_worker
-    if @cwork.update_worker(worker_params, current_user)
+    if @cwork.add_or_update(worker_params, current_user)
       flash[:notice] = 'Bokningen uppdaterades'
       redirect_to @cwork
     else
@@ -24,13 +23,14 @@ class CafeWorksController < ApplicationController
     end
   end
 
-  def add_worker
-    flash[:notice] = 'Jobbare lades till' if @cwork.add_worker(worker_params, current_user)
-    redirect_to @cwork
-  end
-
   def remove_worker
-    @removed = @cwork.remove_worker(current_user, worker_params[:access_code])
+    access = (params[:cafe_work].present?) ? worker_params[:access_code] : nil
+    if @cwork.remove_worker(current_user, access)
+      flash[:notice] = 'Du arbetar inte längre på passet'
+      redirect_to @cwork
+    else
+      render :show
+    end
   end
 
   def main
@@ -51,7 +51,7 @@ class CafeWorksController < ApplicationController
   def nyckelpiga_auth
     if current_user
       post = Post.where(title: 'Nyckelpiga').includes(:profiles).
-          where(profiles: { id: current_user.profile.id }).first
+          where(profiles: {id: current_user.profile.id}).first
     end
     if (post.nil?) && !((current_user) && (current_user.moderator?(:hilbert)))
       redirect_to(:hilbert, alert: 'Du saknar behörighet')

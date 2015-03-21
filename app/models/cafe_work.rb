@@ -1,4 +1,4 @@
-#encoding: UTF-8
+# encoding: UTF-8
 class CafeWork < ActiveRecord::Base
 
   # Associations
@@ -24,6 +24,8 @@ class CafeWork < ActiveRecord::Base
   # /d.wessman
   def send_email
     CafeMailer.sign_up_email(self).deliver_now
+  rescue
+    Rails.logger.info 'Mailer could not connect, rescued here'
   end
 
   # Prepares work for a user to sign up, without saving
@@ -42,13 +44,13 @@ class CafeWork < ActiveRecord::Base
   def status_text(user)
     case status_view(user)
       when 0
-        return "Fyll i uppgifter och tryck på 'Spara' för att skriva upp dig och arbeta på passet."
+        return 'Fyll i uppgifter och tryck på Spara för att skriva upp dig och arbeta på passet.'
       when 1
-        return "Du är uppskriven för att arbeta på passet."
+        return 'Du är uppskriven för att arbeta på passet.'
       when 2
-        return "Passet är redan bokat."
+        return 'Passet är redan bokat.'
       when 3
-        return "Passet är bokat, fyll i koden som gavs vid anmälan för att redigera."
+        return 'Passet är bokat, fyll i koden som gavs vid anmälan för att redigera.'
     end
   end
 
@@ -69,6 +71,14 @@ class CafeWork < ActiveRecord::Base
     return 0
   end
 
+
+  def add_or_update(worker_params,user)
+    if has_worker?
+      update_worker(worker_params,user)
+    else
+      add_worker(worker_params,user)
+    end
+  end
   # User to update worker, checks for edit-access and triggers at_update
   # /d.wessman
   def add_worker(worker_params, user)
@@ -111,13 +121,13 @@ class CafeWork < ActiveRecord::Base
   # Method to remove the worker from current work.
   # /d.wessman
   def clear_worker
-    self.name = ""
-    self.lastname = ""
-    self.profile_id = ""
-    self.phone = ""
-    self.email = ""
+    self.name = ''
+    self.lastname = ''
+    self.profile_id = ''
+    self.phone = ''
+    self.email = ''
     self.utskottskamp = false
-    self.access_code = ""
+    self.access_code = ''
     self.councils.clear
     return self.save(validate: false)
   end
