@@ -36,6 +36,8 @@ group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'web-console', '~> 2.0'
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :test do
