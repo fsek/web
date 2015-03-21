@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_devise_parameters, if: :devise_controller?
   before_filter :set_locale
-  before_filter :get_commit
 
   rescue_from CanCan::AccessDenied do |ex|
     flash[:error] = ex.message
@@ -43,13 +42,6 @@ class ApplicationController < ActionController::Base
 
     I18n.locale = locale
     redirect_to(:back) if params[:locale]
-  end
-
-  def get_commit
-    if user_signed_in? && current_user.is?(:admin)
-      @commit = `git rev-parse HEAD`[0, 6]
-      @commit_url = "https://github.com/fsek/web/commit/%s" % @commit
-    end
   end
 
   def referring_action
