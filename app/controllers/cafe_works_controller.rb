@@ -51,7 +51,7 @@ class CafeWorksController < ApplicationController
   def nyckelpiga_auth
     if current_user
       post = Post.where(title: 'Nyckelpiga').includes(:profiles).
-          where(profiles: {id: current_user.profile.id}).first
+             where(profiles: { id: current_user.profile.id }).first
     end
     if (post.nil?) && !((current_user) && (current_user.moderator?(:hilbert)))
       redirect_to(:hilbert, alert: 'Du saknar behörighet')

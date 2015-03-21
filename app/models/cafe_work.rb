@@ -71,14 +71,14 @@ class CafeWork < ActiveRecord::Base
     return 0
   end
 
-
-  def add_or_update(worker_params,user)
+  def add_or_update(worker_params, user)
     if has_worker?
-      update_worker(worker_params,user)
+      update_worker(worker_params, user)
     else
-      add_worker(worker_params,user)
+      add_worker(worker_params, user)
     end
   end
+
   # User to update worker, checks for edit-access and triggers at_update
   # /d.wessman
   def add_worker(worker_params, user)
@@ -143,7 +143,6 @@ class CafeWork < ActiveRecord::Base
   def edit?(user)
     editable? && (!has_worker? || owner?(user))
   end
-
 
   def editable?
     work_day > Time.zone.now
