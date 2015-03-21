@@ -23,7 +23,7 @@
             </ul>
           </li>
         <% end %>
-        <% if current_user.moderator?(:event) %>
+        <% if can? :manage, Event %>
           <li class="dropdown-submenu">
             <a href="">Event</a>
             <ul class="dropdown-menu pull-left"> 
@@ -32,7 +32,7 @@
             </ul>
           </li>
         <% end %>
-        <% if current_user.moderator?(:nyheter) %>
+        <% if can? :manage, News %>
           <li class="dropdown-submenu">
             <a href="">Nyheter</a>
             <ul class="dropdown-menu pull-left">		              	  
@@ -40,12 +40,12 @@
             </ul>
           </li>
         <% end %>               		
-        <% if current_user.moderator?(:utskott) %>
+        <% if can? :manage, Council %>
           <li class="dropdown-submenu">
             <a href="">Utskott</a>
             <ul class="dropdown-menu pull-left">
               <%for @utskott in Council.all%>             			  		              	  
-                <% if current_user.moderator?(@utskott.url)%>
+                <% if can? :manage, @utskott %>
                   <li><%= link_to @utskott.title,edit_council_path(@utskott) %></li>
                 <%end%>
               <%end%>

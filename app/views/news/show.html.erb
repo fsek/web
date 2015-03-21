@@ -11,7 +11,7 @@
         	<div class="row">
         		<div class="col-xs-12">
         			<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Nyheter"), news_index_path, class: "btn-u btn-u-small"%>
-        			<% if (current_user) && (current_user.moderator?(:news)) %>				      	
+        			<% if can? :manage, News %>				      	
 				        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_news_path(@news), class: "btn-u btn-u-small"%>
 				        <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @news, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
       				<% end %>

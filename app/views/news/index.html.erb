@@ -1,7 +1,7 @@
 <% title("Nyheter") %>
 <div class="container">	
 	<div class="col-md-12">
-		<% if current_user.moderator?(:news)%>
+		<% if can? :manage, News %>
 			<div class="row">
 				<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till nyhet"), new_news_path, class: "btn-u btn-u-small"%>
 			</div>
