@@ -3,6 +3,7 @@ FactoryGirl.define do
     name 'A role'
     title 'role'
     description 'A role description'
+    the_role '{}'
   end
 
   factory :admin_role, class: Role do
