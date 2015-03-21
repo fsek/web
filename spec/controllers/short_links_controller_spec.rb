@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe ShortLinksController, :type => :controller do
-  before(:each) do
-    allow_any_instance_of(ApplicationController).to receive(:get_commit).and_return(true)
-  end
-
   describe '#go' do
     it 'redirects to the link when present' do
       link = 'hej'
