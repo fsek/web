@@ -1,4 +1,5 @@
-# encoding: UTF-8
+# encoding: utf-8
+
 class Role < ActiveRecord::Base
-  include TheRole::Role  
+  has_many :users
 end

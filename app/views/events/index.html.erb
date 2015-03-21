@@ -38,7 +38,7 @@
 
 <br />
 
-<% if current_user.moderator?(:news)%>
+<% if can? :manage, News %>
 			<div class="row">
 				<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till event"), new_event_path, class: "btn-u btn-u-small"%>
 			</div>			

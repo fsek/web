@@ -1,34 +1,34 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe ConstantsController, type: :controller do
   context 'when not signed in' do
     # login-required is on every action, so only one test
     describe 'index' do
-      it 'redirects' do
+      it 'fails' do
         get :index
 
-        expect(response).to be_redirect
+        response.status.should == 403
       end
     end
   end
 
   context 'when signed in as user' do
-    login_user
+    before { fake_sign_in build(:user) }
     describe 'index' do
       it 'diplays an error flash' do
         get :index
 
-        expect(flash[:error]).to eq('Åtkomst nekad')
+        response.status.should == 403
       end
     end
   end
   context 'when signed in as admin' do
-    login_admin
+    before { fake_sign_in build(:admin) }
     describe 'index' do
       it 'succeeds' do
         get :index
 
-        expect(response).to be_success
+        response.status.should == 200
       end
     end
   end
