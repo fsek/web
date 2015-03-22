@@ -1,4 +1,4 @@
-#encoding: UTF-8
+# encoding: UTF-8
 FactoryGirl.define do
   factory :cafe_work do
     pass { rand(1..4) }

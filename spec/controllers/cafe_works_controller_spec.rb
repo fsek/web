@@ -24,21 +24,50 @@ RSpec.describe CafeWorksController, type: :controller do
 
   describe "POST #authorize" do
     it "authorizes with right code" do
-      xhr :post, :authorize, {id: cwork_access.to_param, cafe_work: { access_code: cwork_access.access_code}}
+      xhr :post, :authorize, {id: cwork_access.to_param, cafe_work: {access_code: cwork_access.access_code}}
       expect(assigns(:cwork)).to eq(cwork_access)
       expect(assigns(:authenticated)).to be_truthy
     end
     it "authorizes with wrong code" do
-      xhr :post, :authorize, {id: cwork_access.to_param, cafe_work: { access_code: 'wrong code'}}
+      xhr :post, :authorize, {id: cwork_access.to_param, cafe_work: {access_code: 'wrong code'}}
       expect(assigns(:authenticated)).to be_falsey
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested cafe_work as @cafe_work" do
-      cafe_work = CafeWork.create! valid_attributes
-      get :edit, {:id => cafe_work.to_param}, valid_session
-      expect(assigns(:cafe_work)).to eq(cafe_work)
+  describe "PATCH #update_worker" do
+    context "with valid params" do
+      before { sign_in user }
+      it "updates the worker for cafe_work" do
+        put :update, {id: cwork_profile.to_param, cafe_work: attributes_for(:test_work)}
+        cafe_work.reload
+        skip("Add assertions for updated state")
+      end
+
+      it "assigns the requested cafe_work as @cafe_work" do
+        cafe_work = CafeWork.create! valid_attributes
+        put :update, {:id => cafe_work.to_param, :cafe_work => valid_attributes}, valid_session
+        expect(assigns(:cafe_work)).to eq(cafe_work)
+      end
+
+      it "redirects to the cafe_work" do
+        cafe_work = CafeWork.create! valid_attributes
+        put :update, {:id => cafe_work.to_param, :cafe_work => valid_attributes}, valid_session
+        expect(response).to redirect_to(cafe_work)
+      end
+    end
+
+    context "with invalid params" do
+      it "assigns the cafe_work as @cafe_work" do
+        cafe_work = CafeWork.create! valid_attributes
+        put :update, {:id => cafe_work.to_param, :cafe_work => invalid_attributes}, valid_session
+        expect(assigns(:cafe_work)).to eq(cafe_work)
+      end
+
+      it "re-renders the 'edit' template" do
+        cafe_work = CafeWork.create! valid_attributes
+        put :update, {:id => cafe_work.to_param, :cafe_work => invalid_attributes}, valid_session
+        expect(response).to render_template("edit")
+      end
     end
   end
 

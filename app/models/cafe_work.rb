@@ -20,6 +20,11 @@ class CafeWork < ActiveRecord::Base
 
   after_update :send_email, if: :has_worker?
 
+  # A custom class for the worker
+  def worker
+    @worker || Assignee.setup(worker_attributes,nil)
+  end
+
   # Sends email to worker
   # /d.wessman
   def send_email
@@ -87,12 +92,7 @@ class CafeWork < ActiveRecord::Base
       return false
     end
 
-    if (user.present?) && (user.profile.present?)
-      self.profile = user.profile
-    else
-      self.access_code = build_access_code
-    end
-    update(worker_params)
+    update!(Assignee.setup(worker_params, user).attributes)
   end
 
   # User to update worker, checks for edit-access
@@ -104,7 +104,7 @@ class CafeWork < ActiveRecord::Base
       return false
     end
 
-    update(worker_params)
+    update!(Assignee.setup(worker_params, user).attributes)
   end
 
   # Remove-function used by the worker
@@ -121,15 +121,11 @@ class CafeWork < ActiveRecord::Base
   # Method to remove the worker from current work.
   # /d.wessman
   def clear_worker
-    self.name = ''
-    self.lastname = ''
-    self.profile_id = ''
-    self.phone = ''
-    self.email = ''
+    self.attributes = worker.clear_attributes
     self.utskottskamp = false
-    self.access_code = ''
     self.councils.clear
-    return self.save(validate: false)
+    @worker = nil
+    return self.save!(validate: false)
   end
 
   # Returns true if the profiles are similar and not nil
@@ -157,7 +153,7 @@ class CafeWork < ActiveRecord::Base
   # Returns true if there is a worker
   # /d.wessman
   def has_worker?
-    profile_id.present? || access_code.present?
+    worker.is_present?
   end
 
   # Used to print date in a usable format.
@@ -213,18 +209,18 @@ class CafeWork < ActiveRecord::Base
   end
 
   protected
-  def build_access_code
-    (0...15).map { (65 + rand(26)).chr }.join.to_s
+
+  def worker_attributes
+    { name: name, lastname: lastname, email: email, phone: phone, profile: profile, access_code: access_code }
   end
 
   # Background color for the event
   def b_color
-    (has_worker?) ? "orange" : "white"
+    (has_worker?) ? 'orange' : 'white'
   end
 
   # Duration of work
   def duration
     ((pass == 1) || (pass == 2)) ? 2 : 3
   end
-
 end

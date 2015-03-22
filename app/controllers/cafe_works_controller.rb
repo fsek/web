@@ -15,7 +15,7 @@ class CafeWorksController < ApplicationController
 
   def update_worker
     if @cwork.add_or_update(worker_params, current_user)
-      flash[:notice] = 'Bokningen uppdaterades'
+      flash[:notice] = 'Bokningen uppdaterades - du arbetar!'
       redirect_to @cwork
     else
       render action: :show

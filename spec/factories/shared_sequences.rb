@@ -10,7 +10,6 @@ FactoryGirl.define do
   sequence(:value) { |n| "david#{n}" }
   sequence(:access_code) { (0...15).map { (65 + rand(26)).chr }.join.to_s }
 
-
   # Used in Bilbokning
   trait :with_profile do
     profile
