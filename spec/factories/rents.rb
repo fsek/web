@@ -6,6 +6,8 @@ FactoryGirl.define do
     lastname
     email
     phone
+    disclaimer true
+    purpose "Handla möbler på IKEA"
     d_from { Time.zone.now + 10.day }
     d_til { Time.zone.now + 10.day + 12.hours }
 
@@ -27,10 +29,6 @@ FactoryGirl.define do
     aktiv true
   end
 
-  trait :disclaimer do
-    disclaimer true
-  end
-
   trait :confirmed do
     status "Bekräftad"
   end
@@ -43,10 +41,6 @@ FactoryGirl.define do
     d_til { d_from + 47.hours }
   end
 
-  trait :purpose do
-    purpose "Handla möbler på IKEA"
-  end
-
   trait :service do
     service true
   end
@@ -54,6 +48,9 @@ FactoryGirl.define do
   trait :comment do
     comment "Du har uppebarligen inget körkort"
   end
+  trait :good do
+    profile
+    aktiv true
+  end
 
-  factory :good_rent, parent: :rent, traits: [:with_profile, :disclaimer, :active, :purpose]
 end
