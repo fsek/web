@@ -254,8 +254,8 @@ class Rent < ActiveRecord::Base
       {
           :id => self.id,
           :title => "Service",
-          :start => self.d_from.rfc822,
-          :end => self.d_til.rfc822,
+          :start => self.d_from.iso8601,
+          :end => self.d_til.iso8601,
           :status => self.comment,
           :backgroundColor => "black",
           :textColor => "white"
@@ -264,8 +264,8 @@ class Rent < ActiveRecord::Base
       {
           :id => self.id,
           :title => self.p_name,
-          :start => self.d_from.rfc822,
-          :end => self.d_til.rfc822,
+          :start => self.d_from.iso8601,
+          :end => self.d_til.iso8601,
           :url => self.p_path,
           :status => self.status,
           :backgroundColor => backgroundColor(self.status, self.aktiv),
