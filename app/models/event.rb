@@ -4,34 +4,34 @@ class Event < ActiveRecord::Base
                     styles: {original: "800x800>", medium: "300x300>", thumb: "100x100>"},
                     path: ":rails_root/public/system/images/event/:id/:style/:filename",
                     url: "/system/images/event/:id/:style/:filename"
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
 
-  def ical(url)
-    e=Icalendar::Event.new
+  def ical
+    e = Icalendar::Event.new
     e.uid = id.to_json
-    e.dtstart=DateTime.civil(starts_at.year, starts_at.month, starts_at.day, starts_at.hour, starts_at.min)
-    e.dtend=DateTime.civil(ends_at.year, ends_at.month, ends_at.day, ends_at.hour, ends_at.min)
+    e.dtstart = starts_at
+    e.dtend = ends_at
     e.location = location
-    e.summary=title
-    e.description = category + "\n"+description
-    e.created=DateTime.civil(created_at.year, created_at.month, created_at.day, created_at.hour, created_at.min)
-    e.url = url
-    e.last_modified=DateTime.civil(updated_at.year, updated_at.month, updated_at.day, updated_at.hour, updated_at.min)
+    e.summary = title
+    e.description = %(#{category}  \n #{description})
+    e.created = created_at
+    e.url = Rails.application.routes.url_helpers.event_url(id, host: PUBLIC_URL)
+    e.last_modified = updated_at
     e
   end
 
-  def as_json(options = {})
+  def as_json()
     {
         id: id,
         title: title,
-        description: description || "",
+        description: description || '',
         start: starts_at.iso8601,
         end: ends_at.iso8601,
         allDay: all_day,
         recurring: false,
         url: Rails.application.routes.url_helpers.event_path(id),
-        textColor: "black"
+        textColor: 'black'
     }
   end
 
