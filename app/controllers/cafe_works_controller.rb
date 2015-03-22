@@ -28,7 +28,7 @@ class CafeWorksController < ApplicationController
       flash[:notice] = 'Du arbetar inte längre på passet'
       redirect_to @cwork
     else
-      render :show
+      render action: :show
     end
   end
 

@@ -7,7 +7,7 @@ class CafeWork < ActiveRecord::Base
 
   # Validations
   validates_presence_of :work_day, :pass, :lp, :lv
-  validates_presence_of :name, :lastname, :phone, :email, on: :update, if: :has_worker?
+  validates_presence_of :name, :lastname, :phone, :email, if: :has_worker?
   validates_uniqueness_of :pass, scope: [:work_day, :lv, :lp, :d_year]
 
   # Scopes
@@ -22,7 +22,7 @@ class CafeWork < ActiveRecord::Base
 
   # A custom class for the worker
   def worker
-    @worker || Assignee.setup(worker_attributes,nil)
+    @worker || Assignee.new(worker_attributes)
   end
 
   # Sends email to worker
@@ -92,7 +92,11 @@ class CafeWork < ActiveRecord::Base
       return false
     end
 
-    update!(Assignee.setup(worker_params, user).attributes)
+    # Should be done with a bang when the error handling works
+    # Ref: https://github.com/fsek/web/issues/93
+    # /d.wessman
+    #update!(Assignee.setup(worker_params, user).attributes)
+    update(Assignee.setup(worker_params, user).attributes)
   end
 
   # User to update worker, checks for edit-access
@@ -104,7 +108,11 @@ class CafeWork < ActiveRecord::Base
       return false
     end
 
-    update!(Assignee.setup(worker_params, user).attributes)
+    # Should be done with a bang when the error handling works
+    # Ref: https://github.com/fsek/web/issues/93
+    # /d.wessman
+    #update!(Assignee.setup(worker_params, user).attributes)
+    update(Assignee.setup(worker_params, user).attributes)
   end
 
   # Remove-function used by the worker
@@ -124,7 +132,6 @@ class CafeWork < ActiveRecord::Base
     self.attributes = worker.clear_attributes
     self.utskottskamp = false
     self.councils.clear
-    @worker = nil
     return self.save!(validate: false)
   end
 

@@ -7,157 +7,200 @@ RSpec.describe CafeWorksController, type: :controller do
   let(:cwork_access) { create(:cafe_work, :access) }
   let(:cwork) { create(:cafe_work) }
 
-  describe "GET #index" do
-    before { sign_in user }
-    it "assigns all cafe_works as @cafe_works" do
-      #get :index
-      #expect(assigns(:cafe_works)).to eq([cafe_work])
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested cafe_work as @cwork" do
+  describe 'GET #show' do
+    it 'assigns the requested cafe_work as @cwork' do
       get :show, {id: cwork.to_param}
-      expect(assigns(:cwork)).to eq(cwork)
+      assigns(:cwork).should eq(cwork)
     end
   end
 
-  describe "POST #authorize" do
-    it "authorizes with right code" do
+  describe 'POST #authorize' do
+    it 'authorizes with right code' do
       xhr :post, :authorize, {id: cwork_access.to_param, cafe_work: {access_code: cwork_access.access_code}}
-      expect(assigns(:cwork)).to eq(cwork_access)
-      expect(assigns(:authenticated)).to be_truthy
+
+      assigns(:cwork).should eq(cwork_access)
+      assigns(:authenticated).should be_truthy
     end
-    it "authorizes with wrong code" do
+
+    it 'authorizes with wrong code' do
       xhr :post, :authorize, {id: cwork_access.to_param, cafe_work: {access_code: 'wrong code'}}
-      expect(assigns(:authenticated)).to be_falsey
+
+      assigns(:authenticated).should be_falsey
     end
   end
 
-  describe "PATCH #update_worker" do
-    context "with valid params" do
-      before { sign_in user }
-      it "updates the worker for cafe_work" do
-        put :update, {id: cwork_profile.to_param, cafe_work: attributes_for(:test_work)}
-        cafe_work.reload
-        skip("Add assertions for updated state")
+  describe 'PATCH #update_worker' do
+    context 'with valid params' do
+      context 'with valid user' do
+        before { sign_in user }
+
+        it 'add worker' do
+          patch :update_worker, {id: cwork.to_param, cafe_work: attributes_for(:assignee)}
+          cwork.reload
+
+          cwork.has_worker?.should be_truthy
+        end
+
+        it 'update worker' do
+          patch :update_worker, {id: cwork_profile.to_param, cafe_work: attributes_for(:assignee, :test)}
+          cwork_profile.reload
+
+          cwork_profile.worker.attributes.should include(attributes_for(:assignee, :test))
+        end
+
+        it 'assigns the requested cafe_work as @cafe_work' do
+          patch :update_worker, {id: cwork.to_param, cafe_work: attributes_for(:assignee)}
+
+          assigns(:cwork).should eq(cwork)
+        end
+
+        it 'redirects to the cafe_work' do
+          patch :update_worker, {id: cwork.to_param, cafe_work: attributes_for(:assignee)}
+
+          response.should redirect_to(cwork)
+        end
       end
 
-      it "assigns the requested cafe_work as @cafe_work" do
-        cafe_work = CafeWork.create! valid_attributes
-        put :update, {:id => cafe_work.to_param, :cafe_work => valid_attributes}, valid_session
-        expect(assigns(:cafe_work)).to eq(cafe_work)
+      context 'with invalid user' do
+        before { sign_in not_owner }
+
+        it 'update worker' do
+          patch :update_worker, {id: cwork_profile.to_param, cafe_work: attributes_for(:assignee, :test)}
+          cwork_profile.reload
+
+          cwork_profile.worker.attributes.should_not include(attributes_for(:assignee, :test))
+        end
+
+        it 'redirects to the cafe_work' do
+          patch :update_worker, {id: cwork_profile.to_param, cafe_work: attributes_for(:assignee)}
+
+          response.should render_template('show')
+        end
       end
 
-      it "redirects to the cafe_work" do
-        cafe_work = CafeWork.create! valid_attributes
-        put :update, {:id => cafe_work.to_param, :cafe_work => valid_attributes}, valid_session
-        expect(response).to redirect_to(cafe_work)
-      end
-    end
+      context 'with no user' do
+        it 'update worker' do
+          patch :update_worker,
+                {
+                    id: cwork_access.to_param,
+                    cafe_work: attributes_for(:assignee, :test, access_code: cwork_access.access_code)
+                }
+          cwork_access.reload
 
-    context "with invalid params" do
-      it "assigns the cafe_work as @cafe_work" do
-        cafe_work = CafeWork.create! valid_attributes
-        put :update, {:id => cafe_work.to_param, :cafe_work => invalid_attributes}, valid_session
-        expect(assigns(:cafe_work)).to eq(cafe_work)
-      end
+          cwork_access.worker.attributes.should include(attributes_for(:assignee, :test))
+        end
 
-      it "re-renders the 'edit' template" do
-        cafe_work = CafeWork.create! valid_attributes
-        put :update, {:id => cafe_work.to_param, :cafe_work => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
-    end
-  end
+        it 'redirects to the cafe_work' do
+          patch :update_worker,
+                {
+                    id: cwork_access.to_param,
+                    cafe_work: attributes_for(:assignee, access_code: cwork_access.access_code)
+                }
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new CafeWork" do
-        expect {
-          post :create, {:cafe_work => valid_attributes}, valid_session
-        }.to change(CafeWork, :count).by(1)
-      end
-
-      it "assigns a newly created cafe_work as @cafe_work" do
-        post :create, {:cafe_work => valid_attributes}, valid_session
-        expect(assigns(:cafe_work)).to be_a(CafeWork)
-        expect(assigns(:cafe_work)).to be_persisted
-      end
-
-      it "redirects to the created cafe_work" do
-        post :create, {:cafe_work => valid_attributes}, valid_session
-        expect(response).to redirect_to(CafeWork.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved cafe_work as @cafe_work" do
-        post :create, {:cafe_work => invalid_attributes}, valid_session
-        expect(assigns(:cafe_work)).to be_a_new(CafeWork)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, {:cafe_work => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested cafe_work" do
-        cafe_work = CafeWork.create! valid_attributes
-        put :update, {:id => cafe_work.to_param, :cafe_work => new_attributes}, valid_session
-        cafe_work.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested cafe_work as @cafe_work" do
-        cafe_work = CafeWork.create! valid_attributes
-        put :update, {:id => cafe_work.to_param, :cafe_work => valid_attributes}, valid_session
-        expect(assigns(:cafe_work)).to eq(cafe_work)
-      end
-
-      it "redirects to the cafe_work" do
-        cafe_work = CafeWork.create! valid_attributes
-        put :update, {:id => cafe_work.to_param, :cafe_work => valid_attributes}, valid_session
-        expect(response).to redirect_to(cafe_work)
+          response.should redirect_to(cwork_access)
+        end
       end
     end
 
-    context "with invalid params" do
-      it "assigns the cafe_work as @cafe_work" do
-        cafe_work = CafeWork.create! valid_attributes
-        put :update, {:id => cafe_work.to_param, :cafe_work => invalid_attributes}, valid_session
-        expect(assigns(:cafe_work)).to eq(cafe_work)
+    context 'with invalid params' do
+      it 'assigns the cafe_work as @cafe_work' do
+        patch :update_worker, {id: cwork.to_param, cafe_work: attributes_for(:assignee, :invalid)}
+        assigns(:cwork).should eq(cwork)
       end
 
-      it "re-renders the 'edit' template" do
-        cafe_work = CafeWork.create! valid_attributes
-        put :update, {:id => cafe_work.to_param, :cafe_work => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+      it 're-renders the show template' do
+        patch :update_worker, {id: cwork.to_param, cafe_work: attributes_for(:assignee, :invalid)}
+        response.should render_template('show')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested cafe_work" do
-      cafe_work = CafeWork.create! valid_attributes
-      expect {
-        delete :destroy, {:id => cafe_work.to_param}, valid_session
-      }.to change(CafeWork, :count).by(-1)
-    end
+  describe 'PATCH #remove_worker' do
+    context 'with valid params' do
+      context 'with valid user' do
+        before { sign_in user }
 
-    it "redirects to the cafe_works list" do
-      cafe_work = CafeWork.create! valid_attributes
-      delete :destroy, {:id => cafe_work.to_param}, valid_session
-      expect(response).to redirect_to(cafe_works_url)
+        it 'remove worker with profile' do
+          patch :remove_worker, {id: cwork_profile.to_param}
+          cwork_profile.reload
+
+          cwork_profile.has_worker?.should be_falsey
+        end
+
+        it 'remove worker with profile and redirect' do
+          patch :remove_worker, {id: cwork_profile.to_param}
+          cwork_profile.reload
+
+          response.should redirect_to(cwork_profile)
+        end
+
+        it 'assigns the requested cafe_work as @cafe_work' do
+          patch :remove_worker, {id: cwork_profile.to_param}
+
+          assigns(:cwork).should eq(cwork_profile)
+        end
+      end
+
+      context 'with invalid user' do
+        before { sign_in not_owner }
+
+        it 'remove worker' do
+          patch :remove_worker, {id: cwork_profile.to_param}
+          cwork_profile.reload
+
+          cwork_profile.worker.is_present?.should be_truthy
+        end
+
+        it 'redirects to the cafe_work' do
+          patch :remove_worker, {id: cwork_profile.to_param}
+
+          response.should render_template('show')
+        end
+      end
+
+      context 'with no user' do
+        it 'remove worker' do
+          patch :remove_worker,
+                {
+                    id: cwork_access.to_param,
+                    cafe_work: {access_code: cwork_access.access_code}
+                }
+          cwork_access.reload
+
+          cwork_access.worker.is_present?.should be_falsey
+        end
+
+        it 'redirects to the cafe_work' do
+          patch :remove_worker,
+                {
+                    id: cwork_access.to_param,
+                    cafe_work: {access_code: cwork_access.access_code}
+                }
+
+          response.should redirect_to(cwork_access)
+        end
+      end
     end
   end
 
+  describe 'GET #main' do
+    it 'assigns CafeWork.lv as @lv' do
+      get :main
+      assigns(:lv).should eq(CafeWork.get_lv)
+    end
+    before {
+      cwork
+      cwork_profile
+    }
+    it 'responds with JSON' do
+      get :main, {start: cwork.work_day - 2.days, end: cwork.work_day + 2.days, format: :json}
+      response.body.should eq([cwork.as_json,cwork_profile.as_json].to_json)
+    end
+  end
+
+  describe 'GET #nyckelpiga' do
+    it 'works' do
+      skip('Implement when Cancancan is implemented')
+    end
+  end
 end

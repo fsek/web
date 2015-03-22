@@ -17,7 +17,7 @@ class Admin::CafeWorksController < ApplicationController
 
   def create
     flash[:notice] = 'Cafejobbet skapades, success.' if @cwork.save
-    respond_with @cwork
+    redirect_to [:admin,@cwork]
   end
 
   def update
@@ -34,7 +34,7 @@ class Admin::CafeWorksController < ApplicationController
     @id = @cwork.id
     @cwork.destroy
     respond_to do |format|
-      format.html { redirect_to :hilbert, notice: 'Cafepasset raderades.' }
+      format.html { redirect_to :admin_hilbert, notice: 'Cafepasset raderades.' }
       format.js
     end
   end
@@ -80,7 +80,7 @@ class Admin::CafeWorksController < ApplicationController
 
   def set_cafe_work
     @cwork = CafeWork.find_by_id(params[:id])
-    if @cwork.present?
+    if !@cwork.present?
       redirect_to(:admin_cafe_works, notice: 'Hittade inget Cafejobb med det ID:t.')
     end
   end

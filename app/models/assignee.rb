@@ -1,8 +1,9 @@
 class Assignee
   include ActiveModel::Model
 
-  attr_accessor :name, :lastname, :phone, :email, :profile_id, :access_code,:profile
+  attr_accessor :name, :lastname, :phone, :email, :profile_id, :access_code, :profile
 
+  # Method used to setup new Assignee with a user > profile/access_code
   def self.setup(assignee_params, user)
     new(assignee_params).prepare(user)
   end
@@ -20,14 +21,15 @@ class Assignee
   end
 
   def clear_attributes
-    self.name, self.lastname, self.phone, self.email, self.profile_id, self.access_code = ''
+    self.name, self.lastname, self.phone = nil, nil, nil
+    self.email, self.profile_id, self.access_code = nil, nil, nil
     attributes
   end
 
   def attributes
     {
-        name: name, lastname: lastname, phone: phone,
-        email: email, profile_id: profile_id, access_code: access_code
+        name: name, lastname: lastname, email: email,
+        phone: phone, profile_id: profile_id, access_code: access_code
     }
   end
 
@@ -36,7 +38,7 @@ class Assignee
   end
 
   def has_profile?
-    profile_id.present?
+    profile.present?
   end
 
   def has_access_code?
