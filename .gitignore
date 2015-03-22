@@ -22,7 +22,8 @@ config/secrets.yml
 /.bundle
 /vendor/bundle
 .idea/
-/bin
+/bin/*
+!/bin/cap
 
 # these should all be checked in to normalise the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset

@@ -1,8 +1,9 @@
-#encoding: UTF-8
+# encoding: UTF-8
 require 'rails_helper'
 
 RSpec.describe Rent, type: :model do
   subject(:rent) { FactoryGirl.build(:rent) }
+  let(:rental) { create(:good_rent)}
 
   describe :Associations do
     it { should belong_to(:profile) }
@@ -282,6 +283,16 @@ RSpec.describe Rent, type: :model do
           rent.d_til = rent.d_from + 5.hours
           expect(rent).to be_valid
         end
+      end
+    end
+    # This tests makes sure that dates are formatted into ISO8601 for
+    # Fullcalendars json-feed
+    # Ref.: https://github.com/fsek/web/issues/99
+    # /d.wessman
+    describe :Json do
+      it 'check date format is iso8601' do
+        (rental.as_json.to_json).should include(rental.d_from.iso8601.to_json)
+        (rental.as_json.to_json).should include(rental.d_til.iso8601.to_json)
       end
     end
   end
