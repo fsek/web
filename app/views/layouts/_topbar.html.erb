@@ -23,6 +23,7 @@
               <li><%= link_to "Hantera användare", :users%></li>
               <li><%= link_to "Menyer", :menus%></li>
               <li><%= link_to "Konstanter", :constants%></li>
+              <li><%= link_to ShortLink.model_name.human(:count => 2), :short_links %></li>
             </ul>
           </li>
         <% end %>
