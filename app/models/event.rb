@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
     e
   end
 
-  def as_json
+  def as_json(options = {})
     {
         id: id,
         title: title,
