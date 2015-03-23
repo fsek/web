@@ -10,6 +10,7 @@ FactoryGirl.define do
   sequence(:url) { |n| "url#{n}" }
   sequence(:username) { |n| "davidwessman#{n}" }
   sequence(:value) { |n| "david#{n}" }
+  sequence(:location) { ['MH:A','Hilbert','Kårhuset','Ön-ön','Sjönsjön','Bastun'].sample }
 
   # Used in Bilbokning
   trait :with_profile do
