@@ -23,7 +23,7 @@ class Admin::CafeWorksController < ApplicationController
   def update
     if @cwork.update(c_w_params)
       flash[:notice] = 'Cafejobbet uppdaterades'
-      redirect_to @cwork
+      redirect_to [:admin,@cwork]
     else
       render action: :edit
     end

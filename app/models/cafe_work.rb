@@ -6,8 +6,10 @@ class CafeWork < ActiveRecord::Base
   has_and_belongs_to_many :councils
 
   # Validations
-  validates_presence_of :work_day, :pass, :lp, :lv
-  validates_presence_of :name, :lastname, :phone, :email, if: :has_worker?
+  validates :work_day, :pass, :lp, :lv, presence: true
+  validates :pass,:lp, inclusion: { in: 1..4 }
+  validates :lv, inclusion: { in: 1..7 }
+  validates :name, :lastname, :phone, :email, presence: true, if: :has_worker?
   validates_uniqueness_of :pass, scope: [:work_day, :lv, :lp, :d_year]
 
   # Scopes
@@ -21,6 +23,8 @@ class CafeWork < ActiveRecord::Base
   after_update :send_email, if: :has_worker?
 
   # A custom class for the worker
+  # For more information see Assignee model or
+  # read comments above methods
   def worker
     @worker || Assignee.new(worker_attributes)
   end
@@ -34,14 +38,11 @@ class CafeWork < ActiveRecord::Base
   end
 
   # Prepares work for a user to sign up, without saving
+  # Will only change attributes if there is no worker and
+  # user is present.
   # /d.wessman
   def load(user)
-    if (user.present?) && !has_worker?
-      self.name = user.profile.name
-      self.lastname = user.profile.lastname
-      self.email = user.profile.email
-      self.phone = user.profile.phone
-    end
+    self.attributes = worker.load_profile(user)
   end
 
   # Shows different status texts depending on the user.
@@ -101,7 +102,6 @@ class CafeWork < ActiveRecord::Base
 
   # User to update worker, checks for edit-access
   # /d.wessman
-
   def update_worker(worker_params, user)
     if (!owner?(user) && !authorize(worker_params[:access_code]))
       errors.add('Auktorisering', 'misslyckades, du har inte rättighet att redigera eller skrev fel kod.')
@@ -132,7 +132,7 @@ class CafeWork < ActiveRecord::Base
     self.attributes = worker.clear_attributes
     self.utskottskamp = false
     self.councils.clear
-    return self.save!(validate: false)
+    self.save!(validate: false)
   end
 
   # Returns true if the profiles are similar and not nil
@@ -166,7 +166,7 @@ class CafeWork < ActiveRecord::Base
   # Used to print date in a usable format.
   # /d.wessman
   def print_time
-    %(#{work_day.strftime("%H:%M")}-#{(work_day + duration.hours).strftime("%H:%M")})
+    %(#{start.strftime("%H:%M")}-#{stop.strftime("%H:%M")})
   end
 
   # Used to print out date, reading week and work number
@@ -176,7 +176,7 @@ class CafeWork < ActiveRecord::Base
   end
 
   def print_date
-    %(#{print_time}, #{work_day.strftime("%A %d/%m")})
+    %(#{print_time}, #{start.strftime("%A %d/%m")})
   end
 
   # Prints the url or path for the current object
@@ -191,24 +191,36 @@ class CafeWork < ActiveRecord::Base
   def as_json(options = {})
     {
         id: id,
-        title: %(Cafepass #{pass.to_s}),
-        start: work_day.iso8601,
-        end: (work_day+duration.hours).iso8601,
+        title: %(Cafepass #{pass}),
+        start: start.iso8601,
+        end: stop.iso8601,
         status: print,
         url: p_path,
-        color: "black",
+        color: 'black',
         backgroundColor: b_color,
-        textColor: "black"
+        textColor: 'black'
     }
   end
 
-  def start
-    work_day.strftime('%H:%M')
+  # To print start time
+  def t_start
+    start.strftime('%H:%M')
   end
 
-  def end
-    (work_day + duration.hours).strftime('%H:%M')
+  # To print end time
+  def t_end
+    stop.strftime('%H:%M')
   end
+
+  def start
+    work_day
+  end
+
+  # End would be a better name, doesn't fit into code.
+  def stop
+    work_day + duration.hours
+  end
+
 
   def self.get_lv
     check = CafeWork.between(Time.zone.now.beginning_of_day-2.days, Time.zone.now.end_of_day).last

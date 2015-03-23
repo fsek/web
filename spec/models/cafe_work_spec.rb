@@ -18,9 +18,12 @@ RSpec.describe CafeWork, type: :model do
     it { should validate_presence_of(:pass) }
     it { should validate_presence_of(:lp) }
     it { should validate_presence_of(:lv) }
+    it { should validate_inclusion_of(:pass).in_range(1..4) }
+    it { should validate_inclusion_of(:lp).in_range(1..4) }
+    it { should validate_inclusion_of(:lv).in_range(1..7) }
 
     context 'if has_worker' do
-      before{ allow(subject).to receive(:has_worker?).and_return(true) }
+      before { allow(subject).to receive(:has_worker?).and_return(true) }
       it { subject.should validate_presence_of(:name) }
       it { subject.should validate_presence_of(:lastname) }
       it { subject.should validate_presence_of(:phone) }
@@ -33,7 +36,6 @@ RSpec.describe CafeWork, type: :model do
     # Associations
     it { should belong_to(:profile) }
     it { should have_and_belong_to_many(:councils) }
-
   end
 
   describe "public instance methods" do
@@ -58,7 +60,7 @@ RSpec.describe CafeWork, type: :model do
       it { should respond_to(:p_path) }
       it { should respond_to(:as_json) }
       it { should respond_to(:start) }
-      it { should respond_to(:end) }
+      it { should respond_to(:stop) }
     end
 
     context "executes methods correctly" do
@@ -114,7 +116,7 @@ RSpec.describe CafeWork, type: :model do
           (cwork_access.has_worker?).should be_truthy
         end
       end
-      context "update_worker" do
+      context 'update_worker' do
         it 'update worker with user' do
           cwork_profile.profile = user.profile
           cwork_profile.update_worker(attributes_for(:assignee, lastname: 'Wessman'), user)
@@ -122,6 +124,15 @@ RSpec.describe CafeWork, type: :model do
         end
       end
     end
-
+    # This tests makes sure that dates are formatted into ISO8601 for
+    # Fullcalendars json-feed
+    # Ref.: https://github.com/fsek/web/issues/99
+    # /d.wessman
+    describe :Json do
+      it 'check date format is iso8601' do
+        (cwork_profile.as_json.to_json).should include(cwork_profile.start.iso8601.to_json)
+        (cwork_profile.as_json.to_json).should include(cwork_profile.stop.iso8601.to_json)
+      end
+    end
   end
 end

@@ -7,6 +7,18 @@ FactoryGirl.define do
     d_year { Time.zone.now.year }
     work_day { Time.zone.now + 10.day }
 
+    trait :tester do
+      pass 1
+      lv 7
+      lp 4
+    end
+
+    trait :invalid do
+      pass -5
+      lv 1337
+      lp 6122
+    end
+
     trait :test_work do
       name 'Test'
       lastname 'Testet'

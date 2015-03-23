@@ -194,7 +194,7 @@ RSpec.describe CafeWorksController, type: :controller do
     }
     it 'responds with JSON' do
       get :main, {start: cwork.work_day - 2.days, end: cwork.work_day + 2.days, format: :json}
-      response.body.should eq([cwork.as_json,cwork_profile.as_json].to_json)
+      response.body.should eq([cwork.as_json, cwork_profile.as_json].to_json)
     end
   end
 

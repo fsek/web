@@ -7,10 +7,14 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   let(:cwork_access) { create(:cafe_work, :access) }
   let(:cwork) { create(:cafe_work) }
 
+  # Hack to become admin
+  # Should be changed when Cancancan is implemented
+  # /d.wessman
   before(:each) do
-      sign_in user
-      allow(controller).to receive(:current_user) { user }
-      allow(user).to receive(:moderator?) { true }
+    sign_in user
+    allow(controller).to receive(:current_user) { user }
+    allow(user).to receive(:moderator?) { true }
+    allow(user).to receive(:admin?) { true }
   end
 
   describe 'GET #show' do
@@ -25,7 +29,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'GET #new' do
-    it 'succeeds' do
+    it :succeeds do
       get :new
 
       response.should be_success
@@ -53,78 +57,84 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
 
   describe 'POST #create' do
     it 'creates a new cafe work' do
-      lambda {post :create, cafe_work: attributes_for(:cafe_work)}.should change(CafeWork, :count).by(1)
-
+      lambda { post :create, cafe_work: attributes_for(:cafe_work) }.should change(CafeWork, :count).by(1)
 
       response.should redirect_to([:admin, CafeWork.last])
     end
   end
 
-  describe 'PATCH #remove_worker' do
+  describe 'PATCH #update' do
     context 'with valid params' do
-      context 'with valid user' do
-        before { sign_in user }
-
-        it 'remove worker with profile' do
-          patch :remove_worker, {id: cwork_profile.to_param}
-          cwork_profile.reload
-
-          cwork_profile.has_worker?.should be_falsey
-        end
-
-        it 'remove worker with profile and redirect' do
-          patch :remove_worker, {id: cwork_profile.to_param}
-          cwork_profile.reload
-
-          response.should redirect_to(cwork_profile)
-        end
-
-        it 'assigns the requested cafe_work as @cafe_work' do
-          patch :remove_worker, {id: cwork_profile.to_param}
-
-          assigns(:cwork).should eq(cwork_profile)
-        end
+      let(:attr) { attributes_for(:cafe_work, :tester) }
+      it 'updates the requested cafe work' do
+        patch :update, id: cwork.to_param, cafe_work: attr
+        cwork.reload
+        (cwork.pass == attr[:pass] &&
+            cwork.lv == attr[:lv] &&
+            cwork.lp == attr[:lp]).should be_truthy
       end
 
-      context 'with invalid user' do
-        before { sign_in not_owner }
+      it 'assigns the requested cwork and redirects ' do
+        patch :update, id: cwork.to_param, cafe_work: attr
 
-        it 'remove worker' do
-          patch :remove_worker, {id: cwork_profile.to_param}
-          cwork_profile.reload
+        assigns(:cwork).should eq(cwork)
+        response.should redirect_to([:admin,cwork])
+      end
+    end
 
-          cwork_profile.worker.is_present?.should be_truthy
-        end
+    context 'with invalid params' do
+      let(:attr) { attributes_for(:cafe_work, :invalid) }
+      it 'assigns the candidate as @candidate' do
+        patch :update, id: cwork.to_param, cafe_work: attr
 
-        it 'redirects to the cafe_work' do
-          patch :remove_worker, {id: cwork_profile.to_param}
-
-          response.should render_template('show')
-        end
+        assigns(:cwork).should eq(cwork)
       end
 
-      context 'with no user' do
-        it 'remove worker' do
-          patch :remove_worker,
-                {
-                    id: cwork_access.to_param,
-                    cafe_work: {access_code: cwork_access.access_code}
-                }
-          cwork_access.reload
+      it 're-renders the edit-template' do
+        patch :update, id: cwork.to_param, cafe_work: attr
 
-          cwork_access.worker.is_present?.should be_falsey
-        end
-
-        it 'redirects to the cafe_work' do
-          patch :remove_worker,
-                {
-                    id: cwork_access.to_param,
-                    cafe_work: {access_code: cwork_access.access_code}
-                }
-
-          response.should redirect_to(cwork_access)
-        end
+        response.should render_template(:edit)
       end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'destroys the requested cwork' do
+      lambda { delete :destroy, id: cwork.to_param, format: :html }.should change(CafeWork, :count).by(-1)
+    end
+
+    it 'redirects to the candidates list' do
+      delete :destroy, id: cwork.to_param
+      response.should redirect_to(:admin_hilbert)
+    end
+
+    it 'assigns the requested id' do
+      xhr :delete, :destroy, id: cwork.to_param
+
+      assigns(:id).should eq(cwork.id)
+    end
+  end
+
+
+  describe 'PATCH #remove_worker' do
+    it 'remove worker with profile' do
+      patch :remove_worker, {id: cwork_profile.to_param}
+      cwork_profile.reload
+
+      cwork_profile.has_worker?.should be_falsey
+    end
+
+    it 'remove worker with profile and redirect' do
+      patch :remove_worker, {id: cwork_profile.to_param}
+      cwork_profile.reload
+
+      response.should redirect_to(cwork_profile)
+    end
+
+    it 'assigns the requested cafe_work as @cafe_work' do
+      patch :remove_worker, {id: cwork_profile.to_param}
+
+      assigns(:cwork).should eq(cwork_profile)
     end
   end
 
@@ -139,7 +149,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
     }
     it 'responds with JSON' do
       get :main, {start: cwork.work_day - 2.days, end: cwork.work_day + 2.days, format: :json}
-      response.body.should eq([cwork.as_json,cwork_profile.as_json].to_json)
+      response.body.should eq([cwork.as_json, cwork_profile.as_json].to_json)
     end
   end
 
