@@ -13,7 +13,7 @@ class Ability
     end
 
     # Add abilities gained from posts
-    user.posts.each do |post|
+    user.profile.posts.each do |post|
       post.permissions.each do |permission|
         if permission.subject_class == 'all'
           can permission.action.to_sym, permission.subject_class.to_sym

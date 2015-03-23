@@ -4,6 +4,7 @@ require 'net/http'
 class User < ActiveRecord::Base 
   has_one :profile 
   belongs_to :role
+  has_many :posts, through: 'profiles'
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
