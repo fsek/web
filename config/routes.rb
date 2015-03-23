@@ -1,6 +1,8 @@
 Fsek::Application.routes.draw do
 
 
+  get 'console' => 'console#index'
+
   resources :constants
 
   post "githook" => "githook#index"
