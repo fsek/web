@@ -7,7 +7,7 @@ class Election::CandidatesController < ApplicationController
 
 
   def index
-    @candidates = current_user.profile.candidates.where(election: @election)
+    @candidates = current_user.candidates.where(election: @election)
     @candidates_grid = initialize_grid(@candidates)
   end
 
@@ -24,7 +24,7 @@ class Election::CandidatesController < ApplicationController
 
   def create
     @candidate = @election.candidates.build(candidate_params)
-    @candidate.profile = current_user.profile
+    @candidate.user = current_user
     if @candidate.save
       flash[:notice] = 'Kandidaturen skapades.'
       redirect_to [:election, @candidate]
@@ -62,7 +62,7 @@ class Election::CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:profile_id, :post_id, :stil_id,
+    params.require(:candidate).permit(:user_id, :post_id, :stil_id,
                                       :email, :phone, :name, :lastname)
   end
 

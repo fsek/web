@@ -30,7 +30,7 @@ class WorkPostsController < ApplicationController
   
   def create
     @work_post = WorkPost.new(work_post_params)    
-    @work_post.responsible = current_user.profile.id
+    @work_post.responsible = current_user.id
     respond_to do |format|
       if @work_post.save
         format.html { redirect_to work_posts_path, notice: 'Jobbposten skapades, success!.' }

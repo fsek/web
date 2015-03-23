@@ -73,8 +73,8 @@ Fsek::Application.routes.draw do
 
     resources :councils, path: :utskott do
       resources :posts, path: :poster do
-        patch :remove_profile, on: :member
-        patch :add_profile_username, on: :member
+        patch :remove_user, on: :member
+        patch :add_user, on: :member
       end
       resource :page, path: :sida do
         resources :page_elements, path: :element, on: :member

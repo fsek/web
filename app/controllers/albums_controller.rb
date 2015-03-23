@@ -133,7 +133,7 @@ class AlbumsController < ApplicationController
   
   def create
       @album = Album.new(album_params)      
-      @album.update(author: current_user.profile)    
+      @album.update(author: current_user)
       respond_to do |format|
         if @album.save                        
           format.html { redirect_to @album, notice: 'Albumet skapades!' }

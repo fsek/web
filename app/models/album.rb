@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Album < ActiveRecord::Base
   has_many :images, dependent: :destroy
-  belongs_to :profile
+  belongs_to :user
   has_and_belongs_to_many :album_categories
   has_and_belongs_to_many :subcategories
   

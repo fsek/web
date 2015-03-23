@@ -1,14 +1,14 @@
 # encoding: UTF-8
 class Candidate < ActiveRecord::Base
   belongs_to :election
-  belongs_to :profile
+  belongs_to :user
   belongs_to :post
 
-  validates :profile_id, uniqueness: {
-    scope: [:post_id, :election_id], message: 'har redan en likadan kandidatur'
-  }, on: :create
+  validates :user_id, uniqueness: {
+                        scope: [:post_id, :election_id], message: 'har redan en likadan kandidatur'
+                    }, on: :create
   validates :name, :lastname, :stil_id, :email,
-            :phone, :post, :profile, :election, presence: true
+            :phone, :post, :user, :election, presence: true
 
   after_create :send_email
   after_update :send_email
@@ -18,18 +18,18 @@ class Candidate < ActiveRecord::Base
   end
 
   def prepare(user)
-    if (user.present?) && (user.profile.present?)
-      self.profile = user.profile
-      self.name = user.profile.name
-      self.lastname = user.profile.lastname
-      self.email = user.profile.email
-      self.phone = user.profile.phone
-      self.stil_id = user.profile.stil_id
+    if user.present?
+      self.user = user
+      self.name = user.name
+      self.lastname = user.lastname
+      self.email = user.email
+      self.phone = user.phone
+      self.stil_id = user.stil_id
     end
   end
 
   def owner?(user)
-    user.present? && user.profile == profile
+    user.present? && user == self.user
   end
 
   def editable?

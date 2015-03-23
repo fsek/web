@@ -5,16 +5,16 @@ class Notice < ActiveRecord::Base
   # Paperclip attachment
   # The storage folder require the use of Sendfile.
   has_attached_file :image,
-                    :styles => {large: "400x400>",small: "250x250>"},
-                    :path => ":rails_root/storage/notices/:id/:style-:filename"
+                    styles: {large: '400x400>', small: '250x250>'},
+                    path: ':rails_root/storage/notices/:id/:style-:filename'
   # Validations
-  validates_presence_of :title,:description,:sort
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  validates_presence_of :title, :description, :sort
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   # Scopes
-  scope :d_published, -> {where('d_publish <= ?',Time.zone.today)}
-  scope :not_removed, -> {where('d_remove > ?',Time.zone.today)}
-  scope :public_n, -> {where(public: true)}
+  scope :d_published, -> { where('d_publish <= ?', Time.zone.today) }
+  scope :not_removed, -> { where('d_remove > ?', Time.zone.today) }
+  scope :public_n, -> { where(public: true) }
 
   # Assures dates are set for queries
   # /d.wessman
@@ -43,8 +43,9 @@ class Notice < ActiveRecord::Base
       self.d_publish = Time.zone.today - 2.days
       self.d_remove = "2094-03-25"
       self.save
-    else bool == false
-      self.d_remove  = Time.zone.today - 2.days
+    else
+      bool == false
+      self.d_remove = Time.zone.today - 2.days
       self.save
     end
   end
@@ -58,12 +59,12 @@ class Notice < ActiveRecord::Base
   # Also my 100th birthday!
   # /d. wessman
   def check_dates
-    if(self.d_publish.nil?) && (self.d_remove.nil?)
+    if (self.d_publish.nil?) && (self.d_remove.nil?)
       self.d_remove = "2094-03-25"
       self.d_publish = Time.zone.today
-    elsif(self.d_publish?)
+    elsif (self.d_publish?)
       self.d_remove = "2094-03-25"
-    elsif(self.d_remove?)
+    elsif (self.d_remove?)
       self.d_publish = Time.zone.today
     end
   end

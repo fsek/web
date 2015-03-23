@@ -16,8 +16,8 @@ class RentsController < ApplicationController
     @TOA = Document.where(title: "Regler för Beerit").first
     @rent = Rent.new
     if (current_user)
-      @rent.prepare(current_user.profile)
-      @utskott = current_user.profile.car_councils
+      @rent.prepare(current_user)
+      @utskott = current_user.car_councils
     end
   end
 
@@ -25,9 +25,9 @@ class RentsController < ApplicationController
   end
 
   def edit
-    if @rent.profile
-      @profile = @rent.profile
-      @utskott = @rent.profile.car_councils
+    if @rent.user
+      @user = @rent.user
+      @utskott = @rent.user.car_councils
     end
   end
 
@@ -54,8 +54,8 @@ class RentsController < ApplicationController
 
   # Index page available to logged in users.
   def index
-    if (current_user)
-      @rents = current_user.profile.rents.order('d_from desc')
+    if current_user.present?
+      @rents = current_user.rents.order('d_from desc')
       render action: 'index'
     else
       redirect_to(action: 'main')

@@ -2,7 +2,7 @@
 class Rent < ActiveRecord::Base
 
   # Associations
-  belongs_to :profile
+  belongs_to :user
   belongs_to :council
 
   # Validations
@@ -11,7 +11,7 @@ class Rent < ActiveRecord::Base
   # Presence of mandatory attributes
   validates :d_from, :d_til, :name, :lastname, :email, :phone, presence: true
   # Purpose not required for members of F-guild
-  validates :purpose, presence: true, if: :no_profile?
+  validates :purpose, presence: true, if: :no_user?
   # Duration is only allowed to be 48h, unless it is for a council
   validate :duration?
   # Dates need to be in the future
@@ -93,7 +93,7 @@ class Rent < ActiveRecord::Base
   # Update only if authorized
   # /d.wessman
   def update_with_authorization(params, user)
-    if (user.present? && user.profile == self.profile) || (authorize(params[:access_code]))
+    if owner?(user) || (authorize(params[:access_code]))
       return update(params)
     else
       errors.add('Auktorisering', 'misslyckades, du har inte rättighet eller ev. fel kod.')
@@ -134,7 +134,7 @@ class Rent < ActiveRecord::Base
   # Returns true if user is owner
   # /d.wessman
   def owner?(user)
-    user.present? && user.profile.present? && profile == user.profile
+    user.present? && self.user == user
   end
 
   # Returns true if provided access equals access_code
@@ -147,20 +147,20 @@ class Rent < ActiveRecord::Base
     end
   end
 
-  # Loads profile info into new Rent, not saving
+  # Loads user info into new Rent, not saving
   # /d.wessman
-  def prepare(profile)
-    self.profile = profile
-    self.name = profile.name
-    self.lastname = profile.lastname
-    self.phone = profile.phone
-    self.email = profile.email
+  def prepare(user)
+    self.user = user
+    self.name = user.name
+    self.lastname = user.lastname
+    self.phone = user.phone
+    self.email = user.email
   end
 
-  # Returns false if profile is present, used in validations
+  # Returns false if user is present, used in validations
   # /d.wessman
-  def no_profile?
-    profile.nil?
+  def no_user?
+    user.nil?
   end
 
   # Returns true if the rent has no council associated
@@ -172,14 +172,7 @@ class Rent < ActiveRecord::Base
   # Returns true if the rent is editable (not for admins)
   # /d.wessman
   def edit?(user)
-    if d_til < Time.zone.now
-      return false
-    end
-    if profile.present? && user.present? && profile == user.profile
-      return true
-    else
-      return false
-    end
+    d_til > Time.zone.now && owner?(user)
   end
 
   # Returns the length of the booking in hours, as an virtual attribute
@@ -201,7 +194,7 @@ class Rent < ActiveRecord::Base
   def self.new_with_status(rent_params, user)
     r = Rent.new(rent_params)
     if user.present?
-      r.profile = user.profile
+      r.user = user
       r.status = "Bekräftad"
     else
       r.access_code = (0...15).map { (65 + rand(26)).chr }.join.to_s
