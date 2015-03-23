@@ -1,10 +1,11 @@
 <ul class="loginbar pull-right">
-<%if user_signed_in? && current_user.admin?%>
-  <li><%=link_to image_tag('http://samson.fsektionen.se/projects/web/stages/production.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d'),
-                 'http://samson.fsektionen.se/projects/web/stages/production' %></li>
-  <li><%=link_to image_tag('http://samson.fsektionen.se/projects/web/stages/dev.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d'),
-                 'http://samson.fsektionen.se/projects/web/stages/dev' %></li>
-  <li class="devider"></li>
+  <%if user_signed_in? && current_user.admin?%>
+    <li><%=link_to image_tag('http://samson.fsektionen.se/projects/web/stages/production.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d'),
+                   'http://samson.fsektionen.se/projects/web/stages/production' %></li>
+    <li><%=link_to image_tag('http://samson.fsektionen.se/projects/web/stages/dev.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d'),
+                   'http://samson.fsektionen.se/projects/web/stages/dev' %></li>
+    <li class="devider"></li>
+  <% end%>
   <% if user_signed_in? %>
     <li><%= link_to fa_icon("calendar"),:kalender %></li>          	
     <% if current_user.role_id != nil && Role.find_by_id(current_user.role_id) != Role.find_by_id(2)%>            	 
