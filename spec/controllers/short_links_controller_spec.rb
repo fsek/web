@@ -58,7 +58,7 @@ describe ShortLinksController, :type => :controller do
       fake_sign_in build(:admin)
 
       old_sl = create :short_link
-      new_sl = build :short_link, :target => 'new_url.com'
+      new_sl = build :short_link, :target => 'newurl.com'
 
       post :create, :short_link => new_sl.attributes
 
