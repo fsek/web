@@ -249,7 +249,7 @@ class Rent < ActiveRecord::Base
 
   # Custom json method used for FullCalendar
   # /d.wessman
-  def as_json(options = {})
+  def as_json(*)
     if service
       {
           id: id,
