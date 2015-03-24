@@ -4,18 +4,18 @@ class StaticPagesController < ApplicationController
 
   skip_before_filter :authenticate_user!
 
-  def faq
+  def company_offer
   end
 
-  def libo
-  end
-
-  def kurslankar
+  def company_about
   end
 
   def index
-    @news = News.order(created_at: :desc).limit(5)
-    @notices = (current_user.present?) ? Notice.published : Notice.public_published
+    @news = News.order('created_at desc LIMIT 5')
+    if current_user.nil?
+      @notices = Notice.published
+    else
+      @notices = Notice.public_published
+    end
   end
-
 end

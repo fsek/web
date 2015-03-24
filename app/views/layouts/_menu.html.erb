@@ -19,7 +19,7 @@
         			<li><%= link_to 'Om oss', :om %></li>   
                 	<li><%= link_to 'Utskott', :councils %></li>
                 	<li><%= link_to 'Dokument', documents_path%></li>
-                	<li><%= link_to 'Nollning', :nollning%></li>
+
         		<%end%>
             </ul>
         </li>
@@ -33,7 +33,6 @@
                   	<%=render 'menus/menu'%>
         		<%else%>
         			<li><%= link_to 'Val', :elections,'data-no-turbolink'=>true %></li>
-                    <li><%= link_to 'Likabehandlingsombud', :libo %></li>
                 	<li><%= link_to 'Bildgalleri', :albums ,'data-no-turbolink'=> true%></li>
                     <li><%= link_to 'Kalender', :kalender, 'data-no-turbolink'=> true%></li>
                     <li><%= link_to 'Jobbportal', :work_posts %></li>		                        
