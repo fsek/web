@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_devise_parameters, if: :devise_controller?
   before_filter :set_locale
 
-
   def access_denied
     flash[:error] = t('the_role.access_denied')
     redirect_to(:back)

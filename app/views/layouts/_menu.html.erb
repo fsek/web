@@ -1,73 +1,73 @@
- <div class="collapse navbar-collapse navbar-responsive-collapse">
-    <ul class="nav navbar-nav navbar-right">                	               	
-        <li class="dropdown active">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                Sektionen <%= fa_icon('angle-down') %>
-            </a>
-            <ul class="dropdown-menu">
-            	<%@menues = Menu.index%>
-              	<%if @menues.where(location: "Sektionen").first%>
-                  	<%for @menu in @menues.where(location: "Sektionen")%>
-                		<%= render 'menus/menu'%>
-            		<%end%>
-        		<%else%>
-        			<li><%= link_to 'Om oss', :om %></li>   
-                	<li><%= link_to 'Utskott', :councils %></li>
-                	<li><%= link_to 'Dokument', documents_path%></li>
+<% menus_by_location = Menu.index.group_by &:location %>
 
-        		<%end%>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                För medlemmar <%= fa_icon('angle-down') %>
-            </a>
-            <ul class="dropdown-menu">
-            	<%if @menues.where(location: "För medlemmar").first%>
-                  	<%for @menu in @menues.where(location: "För medlemmar")%>
-                		<%= render 'menus/menu'%>
-            		<%end%>
-        		<%else%>
-        			<li><%= link_to 'Val', :elections,'data-no-turbolink'=>true %></li>
-                	<li><%= link_to 'Bildgalleri', :albums ,'data-no-turbolink'=> true%></li>
-                    <li><%= link_to 'Kalender', :kalender, 'data-no-turbolink'=> true%></li>
-                    <li><%= link_to 'Jobbportal', :work_posts %></li>		                        
-        		<%end%>                          
+<div class="collapse navbar-collapse navbar-responsive-collapse">
+  <ul class="nav navbar-nav navbar-right">                	               	
+    <li class="dropdown active">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+        Sektionen <%= fa_icon('angle-down') %>
+    </a>
+    <ul class="dropdown-menu">
+      <% if (sekt_menus = menus_by_location['Sektionen']).present? %>
+        <% sekt_menus.each do |m| %>
+          <%= render 'menus/menu', :menu => m %>
+        <% end %>
+      <% else %>
+        <li><%= link_to 'Om oss', :om %></li>   
+        <li><%= link_to 'Utskott', :councils %></li>
+        <li><%= link_to 'Dokument', documents_path%></li>
+      <% end %>
+    </ul>
+    </li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+        För medlemmar <%= fa_icon('angle-down') %>
+    </a>
+    <ul class="dropdown-menu">
+      <% if (medlem_menus = menus_by_location['För medlemmar']).present? %>
+        <% medlem_menus.each do |m| %>
+          <%= render 'menus/menu', :menu => m %>
+        <% end %>
+      <% else %>
+        <li><%= link_to 'Val', :elections,'data-no-turbolink'=>true %></li>
+        <li><%= link_to 'Bildgalleri', :albums ,'data-no-turbolink'=> true%></li>
+        <li><%= link_to 'Kalender', :kalender, 'data-no-turbolink'=> true%></li>
+        <li><%= link_to 'Jobbportal', :work_posts %></li>		                        
+      <% end %>                          
 
-		    <% # This link could be made automatically too, the important part is that it as the right id. %>
-		    <% if current_user %>
-		    <li><a id="gallery_link" href="#">Gamla bildgalleriet</a></li>
-                    <% end %>
-            </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-            För företag <%= fa_icon('angle-down') %>
-          </a>
-          <ul class="dropdown-menu">                      	
-            <%if @menues.where(location: "För företag").first%>
-                  	<%for @menu in @menues.where(location: "För företag")%>
-                		<%= render 'menus/menu'%>
-            		<%end%>
-    		<%else%>		                      
-                  <li><%= link_to 'Arbetsmarknadsdagar', 'http://www.farad.nu' %></li>
-            <%end%>
-          </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                Kontakt <%= fa_icon('angle-down') %>
-            </a>
-            <ul class="dropdown-menu">
-            	<%if @menues.where(location: "Kontakt").first%>
-                  	<%for @menu in @menues.where(location: "Kontakt")%>
-                		<%= render 'menus/menu'%>
-            		<%end%>
-        		<%else%>
-                      <li><%= link_to 'Kontaktsida', contacts_path %></li>			                      
-                <%end%>	
-            </ul>
-        </li>
-        
-    </ul>          
+      <% # This link could be made automatically too, the important part is that it as the right id. %>
+      <% if current_user %>
+        <li><a id="gallery_link" href="#">Gamla bildgalleriet</a></li>
+      <% end %>
+    </ul>
+    </li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+        För företag <%= fa_icon('angle-down') %>
+    </a>
+    <ul class="dropdown-menu">                      	
+      <% if (company_menus = menus_by_location['För företag']).present? %>
+        <% company_menus.each do |m| %>
+          <%= render 'menus/menu', :menu => m %>
+        <% end %>
+      <% else %>		                      
+        <li><%= link_to 'Arbetsmarknadsdagar', 'http://www.farad.nu' %></li>
+      <% end %>
+    </ul>
+    </li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+        Kontakt <%= fa_icon('angle-down') %>
+    </a>
+    <ul class="dropdown-menu">
+      <% if (contact_menus = menus_by_location['Kontakt']).present? %>
+        <% contact_menus.each do |m| %>
+          <%= render 'menus/menu', :menu => m %>
+        <% end %>
+      <% else %>
+        <li><%= link_to 'Kontaktsida', contacts_path %></li>			                      
+      <%end %>	
+    </ul>
+    </li>
+
+  </ul>          
 </div>

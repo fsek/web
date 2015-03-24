@@ -48,11 +48,11 @@
           <li class="dropdown-submenu">
             <a href="">Utskott</a>
             <ul class="dropdown-menu pull-left">
-              <%for @utskott in Council.all%>             			  		              	  
-                <% if current_user.moderator?(@utskott.url)%>
-                  <li><%= link_to @utskott.title,edit_council_path(@utskott) %></li>
-                <%end%>
-              <%end%>
+              <% Council.all.each do |c| %>
+                <% if current_user.moderator?(c.url)%>
+                  <li><%= link_to c.title,edit_council_path(c) %></li>
+                <% end %>
+              <% end %>
             </ul>
           </li>
         <% end %>

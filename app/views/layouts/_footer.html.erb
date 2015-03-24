@@ -1,45 +1,49 @@
-		<div class="col-md-5">
-		        <div class="headline"><h2>Kort om sektionen</h2></div>  
-			        <p class="margin-bottom-25 md-margin-bottom-40">
-			        	F-sektionen är en ideell förening för studenter som läser vid något av programmen
-				        <ul class="list">
-				        	<li>Teknisk Fysik</li> 
-				        	<li>Teknisk Matematik</li>
-				        	<li>Teknisk Nanovetenskap</li>
-				    	</ul> 
-				    	<br>
-			    		och har till ändamål att främja kamratskap bland medlemmarna och tillvarata medlemmarnas gemensamma intressen.
-			    	</p>
-		</div> <!-- Kort om sektionen--> 
-   
+<div class="col-md-5">
+  <div class="headline"><h2>Kort om sektionen</h2></div>  
+  <p class="margin-bottom-25 md-margin-bottom-40">
+  F-sektionen är en ideell förening för studenter som läser vid något av programmen
+  <ul class="list">
+    <li>Teknisk Fysik</li> 
+    <li>Teknisk Matematik</li>
+    <li>Teknisk Nanovetenskap</li>
+  </ul> 
+  <br>
+  och har till ändamål att främja kamratskap bland medlemmarna och tillvarata medlemmarnas gemensamma intressen.
+  </p>
+</div> <!-- Kort om sektionen--> 
+
 <div class="col-md-4">        <!-- Vecktorn -->
-        <div class="headline"><h2>Vecktorn</h2></div> 
-          <p>Prenumerera på F-sektionens veckobrev som kommer ut varje läsvecka!</p>
-      		<%= link_to "Prenumerera", :vecktorn_signup, class: "btn btn-u"%>      		
-          	<p>Vill du skicka med en notis i vecktorn? Skicka i så fall in den till <%=render partial: "contacts/kontakt", locals: {name: 'Sanningsministeriet'}%> senast måndag kl 17.</p>                     
-          <hr>
-  		<div class="headline"><h3>Håll dig uppdaterad</h3></div>
-        <ul class="social-icons">
-          <li><a href="https://www.facebook.com/Fsektionen" data-original-title="Facebook" class="social_facebook"></a></li>
-          <li><a href="https://twitter.com/Fsektionen" data-original-title="Twitter" class="social_twitter"></a></li>
-          <li><a href="https://www.youtube.com/user/fsektionen" data-original-title="Youtube" class="social_youtube"></a></li>
-        </ul>  	                       
+  <div class="headline"><h2>Vecktorn</h2></div> 
+  <p>Prenumerera på F-sektionens veckobrev som kommer ut varje läsvecka!</p>
+  <%= link_to "Prenumerera", :vecktorn_signup, class: 'btn btn-u'%>      		
+  <p>
+    Vill du skicka med en notis i vecktorn? Skicka i så fall in den till 
+    <%=render 'contacts/kontakt', name: 'Sanningsministeriet' %> 
+    senast måndag kl 17.
+  </p>
+  <hr>
+  <div class="headline"><h3>Håll dig uppdaterad</h3></div>
+  <ul class="social-icons">
+    <li><a href="https://www.facebook.com/Fsektionen" data-original-title="Facebook" class="social_facebook"></a></li>
+    <li><a href="https://twitter.com/Fsektionen" data-original-title="Twitter" class="social_twitter"></a></li>
+    <li><a href="https://www.youtube.com/user/fsektionen" data-original-title="Youtube" class="social_youtube"></a></li>
+  </ul>  	                       
 </div> <!-- Vecktorn-->
 <div class="col-md-3">    
-	<div class ="headline"><h2>Kontakta oss</h2></div>
-		<p>
-			<%= fa_icon('phone') %> 046 - 14 47 22
-			<br>
-			<%= render partial: "contacts/kontakt", locals: {name: 'Ordförande'}%>
-			<br>
-			<div class="row-fluid">			
-				<div class="headline"><h3>Besöksadress</h3></div>
-				<adress class="md-margin-bottom-40">
-          			C/o Hilbert Älg <br>
-					Matematikhuset <br>
-					Sölvegatan 18, <br>
-					22362 Lund <br><br><br>
-				</adress>
-			</div>
-		</p>
+  <div class ="headline"><h2>Kontakta oss</h2></div>
+  <p>
+  <%= fa_icon 'phone' %> 046 - 14 47 22
+  <br>
+  <%= render 'contacts/kontakt', name: 'Ordförande' %>
+  <br>
+  <div class="row-fluid">			
+    <div class="headline"><h3>Besöksadress</h3></div>
+    <address class="md-margin-bottom-40">
+    C/o Hilbert Älg <br>
+    Matematikhuset <br>
+    Sölvegatan 18, <br>
+    22362 Lund <br><br><br>
+    </address>
+  </div>
+  </p>
 </div>
