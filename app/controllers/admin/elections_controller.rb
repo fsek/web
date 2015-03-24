@@ -21,11 +21,9 @@ class Admin::ElectionsController < ApplicationController
     @election = Election.new(election_params)
     respond_to do |format|
       if @election.save
-        format.html { redirect_to @election, :notice => 'Eventet skapades!' }
-        format.json { render :json => @election, :status => :created, :location => @election }
+        format.html { redirect_to [:admin,@election], notice: 'Valet skapades!' }
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @election.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
       end
     end
   end

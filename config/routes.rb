@@ -69,7 +69,10 @@ Fsek::Application.routes.draw do
     end
     resources :menus, path: :meny, except: :show
 
-    resources :posts, path: :poster, only: :index
+    resources :posts, path: :poster, only: :index do
+      get :display, on: :member
+      get :collapse, on: :collection
+    end
 
     resources :councils, path: :utskott do
       resources :posts, path: :poster do
