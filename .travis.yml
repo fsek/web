@@ -10,3 +10,7 @@ script:
 before_script:
  - cp config/database.yml.template config/database.yml
  - chmod +x config/database.yml
+notifications:
+  webhooks:
+    urls:
+      - http://samson.fsektionen.se/integrations/travis/17f87d9a378f1dd581c52d9da708cce5

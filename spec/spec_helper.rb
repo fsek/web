@@ -19,7 +19,23 @@ CodeClimate::TestReporter.start
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+require File.expand_path('../../config/environment', __FILE__)
+require 'rails/all'
+require 'rspec/rails'
+require 'capybara/rspec'
+
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+
+# I had to include this, /d.wessman 2015-03-20
+require 'database_cleaner'
+# Devise helpers
+require 'devise'
+
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 RSpec.configure do |config|
+  config.include Devise::TestHelpers, type: 'controller'
+  config.extend ControllerMacros, type: 'controller'
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -28,10 +44,11 @@ RSpec.configure do |config|
     # and `failure_message` of custom matchers include text for helper methods
     # defined using `chain`, e.g.:
     #     be_bigger_than(2).and_smaller_than(4).description
-    #     # => "be bigger than 2 and smaller than 4"
+    #     # => 'be bigger than 2 and smaller than 4'
     # ...rather than:
-    #     # => "be bigger than 2"
+    #     # => 'be bigger than 2'
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+    expectations.syntax = [ :should, :expect ]
   end
 
   # rspec-mocks config goes here. You can use an alternate test double
@@ -88,3 +105,24 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+def build *args
+  FactoryGirl.build *args
+end
+
+def create *args
+  FactoryGirl.create *args
+end
+
+def fake_sign_in user = User.new
+  if defined?(request) && request
+    request.env['warden'].stub :authenticate! => user
+  end
+  if defined?(controller) && controller
+    controller.stub(:current_user) { user }
+  end
+  if defined?(helper) && helper
+    helper.stub(:can?) { |*args| Ability.new(user).can?(*args) }
+  end
+end
+

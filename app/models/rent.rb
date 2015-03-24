@@ -92,15 +92,15 @@ class Rent < ActiveRecord::Base
   # Sends email
   # /d.wessman
   def send_email
-    RentMailer.rent_email(self).deliver
+    RentMailer.rent_email(self).deliver_now
   end
 
   def send_active_email
-    RentMailer.active_email(self).deliver
+    RentMailer.active_email(self).deliver_now
   end
 
   def send_status_email
-    RentMailer.status_email(self).deliver
+    RentMailer.status_email(self).deliver_now
   end
 
   # Returns true if user is owner
@@ -112,7 +112,7 @@ class Rent < ActiveRecord::Base
   # Returns true if provided access equals access_code
   # /d.wessman
   def authorize(access)
-    if ((access.present?) && (self.access_code.present?) && (self.access_code == access))
+    if ((access.present?) && (access_code.present?) && (access_code == access))
       return true
     else
       return false
@@ -153,6 +153,7 @@ class Rent < ActiveRecord::Base
     if d_til < Time.zone.now
       return false
     end
+
     owner?(user)
   end
 
@@ -214,54 +215,51 @@ class Rent < ActiveRecord::Base
   # Prints email together with name, can be used as 'to' in an email
   # /d.wessman
   def p_email
-    if p_name.present?
-      %("#{p_name}" <#{email}>)
-    else
-      email
-    end
+    p_name.present? ? %("#{p_name}" <#{email}>) : email
   end
 
   # Custom json method used for FullCalendar
   # /d.wessman
-  def as_json(options = {})
+  def as_json(*)
     if service
       {
-          id: id,
-          title: 'Service',
-          start: d_from.iso8601,
-          end: d_til.iso8601,
-          status: comment,
-          backgroundColor: 'black',
-          textColor: 'white'
+        id: id,
+        title: 'Service',
+        start: d_from.iso8601,
+        end: d_til.iso8601,
+        status: comment,
+        backgroundColor: 'black',
+        textColor: 'white'
       }
     else
       {
-          id: id,
-          title: p_name,
-          start: d_from.iso8601,
-          end: d_til.iso8601,
-          url: p_path,
-          status: status,
-          backgroundColor: backgroundColor(status, aktiv),
-          textColor: 'black'
+        id: id,
+        title: p_name,
+        start: d_from.iso8601,
+        end: d_til.iso8601,
+        url: p_path,
+        status: status,
+        backgroundColor: backgroundColor(status, aktiv),
+        textColor: 'black'
       }
     end
   end
 
   private
+
   # Too decide the backgroundColor of an event
   # /d.wessman
   def backgroundColor(status, aktiv)
     if aktiv
-      if status == "Bekräftad"
-        return "green"
-      elsif status == "Ej bestämd"
-        return "yellow"
+      if status == 'Bekräftad'
+        return 'green'
+      elsif status == 'Ej bestämd'
+        return 'yellow'
       else
-        return "red"
+        return 'red'
       end
     else
-      return "red"
+      'red'
     end
   end
 
@@ -274,7 +272,7 @@ class Rent < ActiveRecord::Base
         @overbook = false
       end
     end
-    return @overbook
+    @overbook
   end
 
   # Validates d_from is in the future

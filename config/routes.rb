@@ -8,20 +8,16 @@ Fsek::Application.routes.draw do
   get "githook/master" => "githook#master"
 
   # Resources on the page
-  #get 'kurslankar' => 'static_pages#kurslankar'
-  get 'libo' => 'static_pages#libo', as: :libo
   get 'kalender' => 'events#calendar', as: :kalender
-  get '/nollning', to: redirect('http://nollning.fsektionen.se'), as: :nollning
   get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
 
   get 'om' => 'static_pages#om', as: :om
+  get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about
+  get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
 
-  get 'engagemang' => 'static_pages#utskott', as: :engagemang
-  #get 'multimedia' => 'static_pages#lankar', as: :multimedia #Ev. efterfrågad av vårt kära Sanningsministerium!
-  #get 'lankar' => 'static_pages#lankar', as: :lankar
 
-  get 'organisation' => 'static_pages#utskott', as: :organisation
-  #get 'erbjudande' => 'static_pages#om', as: :erbjudande
+
+
 
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
@@ -69,7 +65,10 @@ Fsek::Application.routes.draw do
     end
     resources :menus, path: :meny, except: :show
 
-    resources :posts, path: :poster, only: :index
+    resources :posts, path: :poster, only: :index do
+      get :display, on: :member
+      get :collapse, on: :collection
+    end
 
     resources :councils, path: :utskott do
       resources :posts, path: :poster do
@@ -137,7 +136,16 @@ Fsek::Application.routes.draw do
     concerns :the_role
   end
 
+  resources :short_links, :except => [ :show, :update, :edit ] do
+    collection do
+      get 'go' => 'short_links#go'
+      get 'check' => 'short_links#check'
+    end
+  end
+
   root 'static_pages#index'
 
-
+  # Catch-all for short links.
+  # This must be at the bottom!
+  get '*link' => 'short_links#go'
 end
