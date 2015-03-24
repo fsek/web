@@ -133,24 +133,15 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'POST #setup_create' do
+    # Should use a more precise method
     it 'preview post' do
-      post :setup_create, {commit: "Förhandsvisning", cafe_work: attributes_for(:cwork), lv_first: 1, lv_last: 5}
-      assigns(:cworks).should eq(CafeSetupWeek.new(cwork.work_day, cwork.lp).preview(1,5))
+      post :setup_create, {commit: 'Förhandsgranska', cafe_work: attributes_for(:cafe_work), lv_first: 1, lv_last: 1}
+      assigns(:cworks).count.should eq(CafeSetupWeek.new(cwork.work_day, cwork.lp).preview(1, 1).count)
     end
-  end
-
-  describe 'GET #main' do
-    it 'assigns CafeWork.lv as @lv' do
-      get :main
-      assigns(:lv).should eq(CafeWork.get_lv)
-    end
-    before {
-      cwork
-      cwork_profile
-    }
-    it 'responds with JSON' do
-      get :main, {start: cwork.work_day - 2.days, end: cwork.work_day + 2.days, format: :json}
-      response.body.should eq([cwork.as_json, cwork_profile.as_json].to_json)
+    it 'create post' do
+      lambda {
+        post :setup_create, {commit: 'Spara', cafe_work: attributes_for(:cafe_work), lv_first: 1, lv_last: 1}
+      }.should change(CafeWork, :count).by(20)
     end
   end
 end
