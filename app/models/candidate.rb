@@ -5,14 +5,12 @@ class Candidate < ActiveRecord::Base
   belongs_to :profile
   belongs_to :post
 
-
   # Validations
   validates :profile_id, uniqueness: {
-                           scope: [:post_id, :election_id], message: 'har redan en likadan kandidatur'
-                       }, on: :create
+    scope: [:post_id, :election_id], message: 'har redan en likadan kandidatur'
+  }, on: :create
   validates :name, :lastname, :stil_id, :email,
             :phone, :post, :profile, :election, presence: true
-
 
   after_create :send_email
   after_update :send_email
@@ -33,7 +31,7 @@ class Candidate < ActiveRecord::Base
   end
 
   def editable?
-    self.election.view_status == 2 || post.elected_by == "Studierådet"
+    election.view_status == 2 || post.elected_by == 'Studierådet'
   end
 
   def p_url

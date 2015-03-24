@@ -9,7 +9,7 @@ class CafeWork < ActiveRecord::Base
   validates :pass, :lp, inclusion: { in: 1..4 }
   validates :lv, inclusion: { in: 1..7 }
   validates :name, :lastname, :phone, :email, presence: true, if: :has_worker?
-  validates_uniqueness_of :pass, scope: [:work_day, :lv, :lp, :d_year]
+  validates :pass, uniqueness: true, scope: [:work_day, :lv, :lp, :d_year]
 
   # Scopes
   scope :with_worker, -> { where('profile_id IS NOT null OR access_code IS NOT null') }
