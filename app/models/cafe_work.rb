@@ -49,14 +49,14 @@ class CafeWork < ActiveRecord::Base
   # /d.wessman
   def status_text(user)
     case status_view(user)
-      when 0
-        return 'Fyll i uppgifter och tryck på Spara för att skriva upp dig och arbeta på passet.'
-      when 1
-        return 'Du är uppskriven för att arbeta på passet.'
-      when 2
-        return 'Passet är redan bokat.'
-      when 3
-        return 'Passet är bokat, fyll i koden som gavs vid anmälan för att redigera.'
+    when 0
+      return 'Fyll i uppgifter och tryck på Spara för att skriva upp dig och arbeta på passet.'
+    when 1
+      return 'Du är uppskriven för att arbeta på passet.'
+    when 2
+      return 'Passet är redan bokat.'
+    when 3
+      return 'Passet är bokat, fyll i koden som gavs vid anmälan för att redigera.'
     end
   end
 
@@ -95,7 +95,7 @@ class CafeWork < ActiveRecord::Base
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
     self.attributes = worker_params
-    self.attributes = Assignee.setup(worker_attributes,user).attributes
+    self.attributes = Assignee.setup(worker_attributes, user).attributes
     save
   end
 
@@ -103,7 +103,8 @@ class CafeWork < ActiveRecord::Base
   # /d.wessman
   def update_worker(worker_params, user)
     if (!owner?(user) && !authorize(worker_params[:access_code]))
-      errors.add('Auktorisering', 'misslyckades, du har inte rättighet att redigera eller skrev fel kod.')
+      errors.add('Auktorisering',
+                 'misslyckades, du har inte rättighet att redigera eller skrev fel kod.')
       return false
     end
 
@@ -111,7 +112,7 @@ class CafeWork < ActiveRecord::Base
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
     self.attributes = worker_params
-    self.attributes = Assignee.setup(worker_attributes,user).attributes
+    self.attributes = Assignee.setup(worker_attributes, user).attributes
     save
   end
 
@@ -119,7 +120,8 @@ class CafeWork < ActiveRecord::Base
   # /d.wessman
   def remove_worker(user, access)
     if (!owner?(user) && !authorize(access))
-      errors.add('Auktorisering', 'misslyckades, du har inte rättighet att ta bort eller skrev fel kod.')
+      errors.add('Auktorisering',
+                 'misslyckades, du har inte rättighet att ta bort eller skrev fel kod.')
       return false
     end
 
@@ -229,15 +231,9 @@ class CafeWork < ActiveRecord::Base
 
   protected
 
-  def u_attributes(params)
-    {
-
-    }
-  end
-
   def worker_attributes
     {name: name, lastname: lastname, email: email,
-     phone: phone, profile: profile, profile_id: profile_id,access_code: access_code}
+     phone: phone, profile: profile, profile_id: profile_id, access_code: access_code}
   end
 
   # Background color for the event

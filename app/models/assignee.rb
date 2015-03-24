@@ -89,7 +89,7 @@ class Assignee
   def prepare(user)
     set_profile(user)
     set_access_code
-    return self
+    self
   end
 
   protected
