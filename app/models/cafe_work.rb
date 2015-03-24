@@ -7,8 +7,8 @@ class CafeWork < ActiveRecord::Base
 
   # Validations
   validates :work_day, :pass, :lp, :lv, presence: true
-  validates :pass,:lp, inclusion: { in: 1..4 }
-  validates :lv, inclusion: { in: 1..7 }
+  validates :pass, :lp, inclusion: {in: 1..4}
+  validates :lv, inclusion: {in: 1..7}
   validates :name, :lastname, :phone, :email, presence: true, if: :has_worker?
   validates_uniqueness_of :pass, scope: [:work_day, :lv, :lp, :d_year]
 
@@ -188,7 +188,7 @@ class CafeWork < ActiveRecord::Base
     Rails.application.routes.url_helpers.cafe_work_path(id)
   end
 
-  def as_json(options = {})
+  def as_json(*)
     {
         id: id,
         title: %(Cafepass #{pass}),
@@ -230,7 +230,7 @@ class CafeWork < ActiveRecord::Base
   protected
 
   def worker_attributes
-    { name: name, lastname: lastname, email: email, phone: phone, profile: profile, access_code: access_code }
+    {name: name, lastname: lastname, email: email, phone: phone, profile: profile, access_code: access_code}
   end
 
   # Background color for the event

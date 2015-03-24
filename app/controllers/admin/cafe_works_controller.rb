@@ -17,13 +17,13 @@ class Admin::CafeWorksController < ApplicationController
 
   def create
     flash[:notice] = 'Cafejobbet skapades, success.' if @cwork.save
-    redirect_to [:admin,@cwork]
+    redirect_to [:admin, @cwork]
   end
 
   def update
     if @cwork.update(c_w_params)
       flash[:notice] = 'Cafejobbet uppdaterades'
-      redirect_to [:admin,@cwork]
+      redirect_to [:admin, @cwork]
     else
       render action: :edit
     end

@@ -45,7 +45,6 @@ class Assignee
     attributes
   end
 
-
   def load_profile(user)
     if (user.present?) && !has_worker?
       self.name = user.profile.name
@@ -59,8 +58,8 @@ class Assignee
   # Returns a hash of the current attributes
   def attributes
     {
-        name: name, lastname: lastname, email: email,
-        phone: phone, profile_id: profile_id, access_code: access_code
+      name: name, lastname: lastname, email: email,
+      phone: phone, profile_id: profile_id, access_code: access_code
     }
   end
 
@@ -80,9 +79,9 @@ class Assignee
 
   def equals?(assignee)
     name == assignee.name &&
-        lastname == assignee.lastname &&
-        email == assignee.email &&
-        phone == assignee.phone
+      lastname == assignee.lastname &&
+      email == assignee.email &&
+      phone == assignee.phone
   end
 
   # For custom creation action where parameters is set and

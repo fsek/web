@@ -15,9 +15,9 @@
         </div>
     <% end %>
     <div class="row">
-      <%= f.submit "Skicka", :class: 'btn-u pull-right' %>
+      <%= f.submit "Skicka", class: 'btn-u pull-right' %>
       <% if !@faq.new_record? %>
-          <%= link_to (fa_icon('edit') + " Ta bort fråga", :faq, method: :delete, class: "btn-u btn-u-small") %>
+          <%= link_to(%(#{fa_icon('edit')} Ta bort fråga), faq_path(@faq), method: :delete, class: "btn-u btn-u-small") %>
       <% end %>
     </div>
 <% end %>
