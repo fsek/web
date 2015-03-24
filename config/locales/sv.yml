@@ -47,11 +47,13 @@ sv:
       profile:
         one: Profil
         other: Profiler
-
-
-
-
-
+      short_link:
+        one: Snabblänk
+        other: Snabblänkar
+    attributes:
+      short_link:
+        link: Länknamn
+        target: Måladress
 
   the_role:
     role_created:             Roll skapades
@@ -116,3 +118,4 @@ sv:
   time:
     formats:
       day: "%A %d/%m"
+    invalid-url: Inte en giltig webadress

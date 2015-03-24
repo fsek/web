@@ -1,8 +1,10 @@
-#encoding: UTF-8
+# encoding: UTF-8
 FactoryGirl.define do
-  factory :profile do |p|
+  factory :profile do
     name
     lastname
-    user
+    email
+    phone
+    stil_id
   end
 end

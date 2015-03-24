@@ -1,5 +1,8 @@
 [![Code Climate](https://codeclimate.com/github/fsek/web/badges/gpa.svg)](https://codeclimate.com/github/fsek/web) [![Test Coverage](https://codeclimate.com/github/fsek/web/badges/coverage.svg)](https://codeclimate.com/github/fsek/web) [![Build Status](https://travis-ci.org/fsek/web.svg?branch=master)](https://travis-ci.org/fsek/web) [![Dependency Status](https://gemnasium.com/fsek/web.svg)](https://gemnasium.com/fsek/web) [![security](https://hakiri.io/github/fsek/web/master.svg)](https://hakiri.io/github/fsek/web/master)
 
+Server versions:
+[![Production](http://samson.fsektionen.se/projects/web/stages/production.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d)](http://samson.fsektionen.se/projects/web/stages/production)
+[![Dev](http://samson.fsektionen.se/projects/web/stages/dev.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d)](http://samson.fsektionen.se/projects/web/stages/dev)
 
 Skriva kod:
 ==========
@@ -20,9 +23,22 @@ __Vad man inte ska göra:__
 - Force-pusha till master eller dev branchen.
 - Commita direkt på master-branchen.
 
-
 Om det inte funkar:
 - Synka most github manuellt (kräver att du är admin): [master](http://fsektionen.se/githook/master) [dev](http://fsektionen.se/githook/dev)
+
+Branscher
+========
+
+* master: motsvarar den version av koden som körs i produktion. 
+  * Deployas automatiskt till fsektionen.se mha. gitkrokar. 
+  * Buggfixar i liveversionen händer på master, men ingen nyutveckling.
+* stage: motsvarar det som kommer att finnas i nästa release av appen. 
+  * Här samlas kod som är på väg till master för integration.
+  * Nya features utgår från stage.
+* dev: en throw away-bransch för testning. 
+  * Denna branschen är ok att trasha om det behövs
+  * Deployas automatiskt till dev.fsektionen.se mha. gitkrokar
+* Övriga branscher skapas efter behov och kan användas lite hur som
 
 Detta finns:
 ============

@@ -1,4 +1,4 @@
-#encoding: UTF-8
+# encoding: UTF-8
 FactoryGirl.define do
   factory :council do
     title

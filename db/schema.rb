@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171444) do
-
+ActiveRecord::Schema.define(version: 20410822171445) do
 
   create_table "albums", force: :cascade do |t|
     t.string "title", limit: 255
@@ -20,7 +19,6 @@ ActiveRecord::Schema.define(version: 20410822171444) do
     t.string "author", limit: 255
     t.string "location", limit: 255
     t.boolean "public"
-
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "created_at"
@@ -38,13 +36,8 @@ ActiveRecord::Schema.define(version: 20410822171444) do
   add_index "albums_categories", ["category_id"], name: "index_albums_categories_on_category_id"
 
   create_table "albums_images", id: false, force: :cascade do |t|
-    t.integer "album_id", limit: 4
-    t.integer "image_id", limit: 4
-  end
-
-  create_table "albums_subcategories", id: false, force: :cascade do |t|
-    t.integer "album_id", limit: 4
-    t.integer "subcategory_id", limit: 4
+    t.integer "album_id"
+    t.integer "image_id"
   end
 
   create_table "cafe_works", force: :cascade do |t|
@@ -83,8 +76,17 @@ ActiveRecord::Schema.define(version: 20410822171444) do
     t.string "lastname", limit: 255
   end
 
-  add_index "candidates", ["post_id"], name: "index_candidates_on_post_id", using: :btree
-  add_index "candidates", ["profile_id"], name: "index_candidates_on_profile_id", using: :btree
+  add_index "candidates", ["post_id"], name: "index_candidates_on_post_id"
+  add_index "candidates", ["profile_id"], name: "index_candidates_on_profile_id"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title", limit: 255
+    t.text "description"
+    t.string "typ", limit: 255
+    t.boolean "sub", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "title", limit: 255
@@ -125,7 +127,7 @@ ActiveRecord::Schema.define(version: 20410822171444) do
     t.boolean "public", default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "contact_id", limit: 4
+    t.integer "contact_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -189,17 +191,17 @@ ActiveRecord::Schema.define(version: 20410822171444) do
   create_table "events", force: :cascade do |t|
     t.string "title", limit: 255
     t.string "author", limit: 255
-    t.text "description", limit: 65535
+    t.text "description"
     t.string "location", limit: 255
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.boolean "all_day", limit: 1
+    t.boolean "all_day"
     t.string "category", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "image_file_name", limit: 255
     t.string "image_content_type", limit: 255
-    t.integer "image_file_size", limit: 4
+    t.integer "image_file_size"
     t.datetime "image_updated_at"
   end
 
@@ -212,7 +214,7 @@ ActiveRecord::Schema.define(version: 20410822171444) do
     t.string "category", limit: 255
   end
 
-  add_index "faqs", ["category"], name: "index_faqs_on_category", using: :btree
+  add_index "faqs", ["category"], name: "index_faqs_on_category"
 
   create_table "images", force: :cascade do |t|
     t.string "description", limit: 255
@@ -395,8 +397,8 @@ ActiveRecord::Schema.define(version: 20410822171444) do
     t.string "access_code", limit: 255
   end
 
-  add_index "rents", ["d_from"], name: "index_rents_on_d_from", using: :btree
-  add_index "rents", ["d_til"], name: "index_rents_on_d_til", using: :btree
+  add_index "rents", ["d_from"], name: "index_rents_on_d_from"
+  add_index "rents", ["d_til"], name: "index_rents_on_d_til"
 
   create_table "roles", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -406,6 +408,13 @@ ActiveRecord::Schema.define(version: 20410822171444) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "short_links", force: :cascade do |t|
+    t.string "link", limit: 255, null: false
+    t.text "target", limit: 65535, null: false
+  end
+
+  add_index "short_links", ["link"], name: "index_short_links_on_link", using: :btree
 
   create_table "subcategories", force: :cascade do |t|
     t.string "text", limit: 255

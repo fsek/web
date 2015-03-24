@@ -5,10 +5,14 @@ class Candidate < ActiveRecord::Base
   belongs_to :profile
   belongs_to :post
 
+
   # Validations
-  validates :profile_id, uniqueness: {scope: [:post_id, :election_id], message: "har redan en likadan kandidatur"}, on: :create
-  validates :name, :lastname, :stil_id, :email, :phone, :post, :profile, :election, presence: true, on: :create
-  validates :name, :lastname, :stil_id, :email, :phone, :profile, :election, presence: true, on: :update
+  validates :profile_id, uniqueness: {
+                           scope: [:post_id, :election_id], message: 'har redan en likadan kandidatur'
+                       }, on: :create
+  validates :name, :lastname, :stil_id, :email,
+            :phone, :post, :profile, :election, presence: true
+
 
   after_create :send_email
   after_update :send_email
@@ -29,14 +33,26 @@ class Candidate < ActiveRecord::Base
   end
 
   def editable?
-    self.election.view_status == 2 || self.post.elected_by == "Studierådet"
+    self.election.view_status == 2 || post.elected_by == "Studierådet"
   end
 
   def p_url
-    Rails.application.routes.url_helpers.election_candidate_url(self.id, host: PUBLIC_URL)
+    Rails.application.routes.url_helpers.election_candidate_url(id, host: PUBLIC_URL)
   end
 
   def p_path
-    Rails.application.routes.url_helpers.election_candidate_path(self.id)
+    Rails.application.routes.url_helpers.election_candidate_path(id)
+  end
+
+  def owner?(user)
+    user.present? && user.profile == profile
+  end
+
+  def editable?
+    election.view_status == 2 || post.elected_by == 'Studierådet'
+  end
+
+  def p_url
+    Rails.application.routes.url_helpers.election_candidate_url(id, host: PUBLIC_URL)
   end
 end

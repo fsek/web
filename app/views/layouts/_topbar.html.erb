@@ -1,6 +1,9 @@
 <ul class="loginbar pull-right">
 <%if user_signed_in? && current_user.admin?%>
-  <li><%=link_to @commit, @commit_url %></li>
+  <li><%=link_to image_tag('http://samson.fsektionen.se/projects/web/stages/production.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d'),
+                 'http://samson.fsektionen.se/projects/web/stages/production' %></li>
+  <li><%=link_to image_tag('http://samson.fsektionen.se/projects/web/stages/dev.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d'),
+                 'http://samson.fsektionen.se/projects/web/stages/dev' %></li>
   <li class="devider"></li>
 <%end%>
 <li><a href="/"><%= fa_icon("home") %></a></li>
@@ -20,6 +23,7 @@
               <li><%= link_to "Hantera användare", :users%></li>
               <li><%= link_to "Menyer", :menus%></li>
               <li><%= link_to "Konstanter", :constants%></li>
+              <li><%= link_to ShortLink.model_name.human(:count => 2), :short_links %></li>
             </ul>
           </li>
         <% end %>

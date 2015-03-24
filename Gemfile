@@ -2,6 +2,12 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
 
+# Capistrano stuff
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rbenv', "~> 2.0" 
+
 gem 'coffee-rails'
 # Set to 1.8 due to https://github.com/jashkenas/coffeescript/issues/3829
 gem 'coffee-script-source', '1.8.0'
@@ -38,6 +44,8 @@ group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'web-console', '~> 2.0'
+  gem 'pry-rails'
+  gem 'pry-byebug', '2.0.0'
 end
 
 group :test do

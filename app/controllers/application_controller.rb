@@ -5,15 +5,20 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_devise_parameters, if: :devise_controller?
   before_action :set_locale
-  after_action :get_commit
   after_action :menues
 
   def access_denied
     flash[:error] = t('the_role.access_denied')
     redirect_to(:back)
+  end
 
-  rescue ActionController::RedirectBackError
+  rescue_from ActionController::RedirectBackError do
     redirect_to root_path
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do
+    # translate record not found -> HTTP 404
+    fail ActionController::RoutingError.new 'not found'
   end
 
   protected
@@ -48,13 +53,6 @@ class ApplicationController < ActionController::Base
     end
     I18n.locale = locale
     redirect_to(:back) if params[:locale]
-  end
-
-  def get_commit
-    if user_signed_in? && current_user.admin?
-      @commit = `git rev-parse HEAD`[0, 6]
-      @commit_url = "https://github.com/fsek/web/commit/%s" % @commit
-    end
   end
 
   def menues

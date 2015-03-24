@@ -92,7 +92,10 @@ Fsek::Application.routes.draw do
 
     resources :menus, path: :meny, except: :show
 
-    resources :posts, path: :poster, only: :index
+    resources :posts, path: :poster, only: :index do
+      get :display, on: :member
+      get :collapse, on: :collection
+    end
 
     resources :councils, path: :utskott do
       resources :posts, path: :poster do
@@ -156,5 +159,16 @@ Fsek::Application.routes.draw do
 
   TheRoleManagementPanel::Routes.mixin(self)
 
+  resources :short_links, :except => [:show, :update, :edit] do
+    collection do
+      get 'go' => 'short_links#go'
+      get 'check' => 'short_links#check'
+    end
+  end
+
   root 'static_pages#index'
+
+  # Catch-all for short links.
+  # This must be at the bottom!
+  get '*link' => 'short_links#go'
 end
