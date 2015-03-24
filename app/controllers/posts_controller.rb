@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_filter :authenticate
   before_action :set_council
   before_action :set_edit
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :remove_profile,:add_profile_username]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :remove_profile,:add_profile_username, :display]
 
   def remove_profile
     @profile = Profile.find_by_id(params[:profile_id])
@@ -102,6 +102,12 @@ class PostsController < ApplicationController
       format.html { redirect_to council_posts_path(@council) }
       format.json { head :no_content }
     end
+  end
+
+  def display
+  end
+
+  def collapse
   end
 
   private

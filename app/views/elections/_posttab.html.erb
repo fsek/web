@@ -7,7 +7,7 @@
 	    end
 	  end			
 	  g.column name: "Titel",attribute: "title",filter: false  do |post|			    
-	    link_to(post.title,%(##{dom_id(post)}),data: {toggle: "collapse", target: ""})
+	    link_to(post.title,display_post_path(post),remote: true)
 	  end
 	  g.column name: "Rekommenderat antal",attribute: "limit",filter: false do |post|
 	  	post.printLimit

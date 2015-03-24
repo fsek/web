@@ -30,9 +30,7 @@
         <%= render "posttab", grid: @grid_termins %>
         <p>Orangefärgade fält innebär att posten sitter i styrelsen.</p>
     <%end%>
-    <div class="panel collapsing" id="views">
-      <%= render @election.posts %>
-    </div>
+    <div class="display-post" id="views"></div>
 
     <p>Ser något konstigt ut eller blir det fel? Hör av dig
       till <%= render partial: "contacts/kontakt", locals: {name: 'Spindelmän'} %></p>

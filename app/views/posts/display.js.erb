@@ -1,0 +1,7 @@
+<% if @post.present? %>
+$('.display-post').hide();
+$('.display-post').html("<%= escape_javascript( render @post)%>").show();
+$('html, body').animate({
+    scrollTop: $('.display-post').offset().top
+}, 1000);
+<%end%>
