@@ -1,0 +1,16 @@
+<div class="col-md-10 col-md-offset-1 col-sm-1+ col-sm-offset-1 reg-page">
+  <div class="row">
+    <h2>Nomineringar</h2>
+    <%= grid(@nominations_grid) do |g|
+      g.column name: "Post", attribute: "post_id", filter: false do |nomination|
+        nomination.post.title
+      end
+      g.column name: "Namn", attribute: "name", filter: false
+      g.column name: "E-post", attribute: "email", filter: false
+      g.column name: "Skapad:", attribute: "created_at", filter: false do |nomination|
+        nomination.created_at
+      end
+    end -%>
+  </div>
+  <%=link_to('Tillbaka till valet',admin_election_path(@election), class:'btn btn-u')%>
+</div>

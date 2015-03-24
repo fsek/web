@@ -1,0 +1,20 @@
+<% provide(:title, 'Notiser') %>
+<div class="col-md-12 reg-page">
+    <div class="row">
+        <h2>Kandidaturer</h2>
+          <%= grid(@notice_grid) do |g|
+            g.row_attributes do |post|
+              if (post.public == true)
+                {style: 'background: rgba(252, 155, 0,0.7);'}
+              end
+            end
+            g.column name: "Titel",attribute: "title" do |post|
+              link_to(post.title,post)
+            end
+            g.column name: "Publik",attribute: "public"
+            g.column name: "Publiceringsdatum", attribute: "d_publish"
+            g.column name: "Tas bort", attribute: "d_remove"
+            g.column name: "Sorteringsindex", attribute: 'sort'
+         end -%>
+    </div>
+</div>

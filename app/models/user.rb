@@ -2,7 +2,7 @@
 require 'net/http'
 
 class User < ActiveRecord::Base 
-  include TheRole::Api::User
+  include TheRole::User
   
   has_one :profile 
 
@@ -31,5 +31,11 @@ class User < ActiveRecord::Base
     }
 
     @f_member = res.body.include? "<img src=\"http://www.tlth.se/img/guilds/F.gif\"/>"
+  end
+
+  # Used in testing
+  def as_f_member
+    @f_member = true
+    self
   end
 end

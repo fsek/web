@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <div id="faq123">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#collapse<%=dom_id(faq)%>" >
+          <%=faq.question%>
+        </a>
+      </div>
+    </h4>
+  </div>
+  <div id="collapse<%=dom_id(faq)%>" class="panel-collapse collapse">
+    <div class="panel-body">
+      <%=simple_format(faq.answer)%>
+    </div>
+  </div>
+</div>

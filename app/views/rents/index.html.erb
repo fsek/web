@@ -1,0 +1,38 @@
+<% provide(:title, 'Bilbokning') %>
+<div class="col-md-12">
+  <div class="row">
+    <div class="headline headline-md"><h1>Bilbokning</h1></div>
+    <div class="col-md-8">
+      <div class="headline headline-md"><h2>Dina bokningar</h2></div>
+      <div class="panel-group acc-v1 margin-bottom-40" id="answered">
+        <% @rents.each do |f| %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <div id="faq123">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#collapse<%= dom_id(f) %>">
+                      <%= f.p_time %></a>
+                  </div>
+                </h4>
+              </div>
+              <div id="collapse<%= dom_id(f) %>" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <%= link_to("Redigera", edit_rent_path(f)) %>
+                  <%= render f %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="headline headline-md"><h2>Länkar</h2></div>
+      <div class="row">
+        <%= link_to("Boka bil", new_rent_path(), class: "btn btn-u margin-bottom-10 center") %><br>
+        <%= link_to("Startsida - Bilbokning", bil_path(), class: "btn btn-u margin-bottom-10") %><br>
+        <%= link_to("Kontakta bilförman", contacts_path, class: "btn btn-u margin-bottom-10") %><br>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>

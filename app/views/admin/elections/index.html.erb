@@ -1,0 +1,7 @@
+<div class="col-md-10 col-md-offset-1 col-sm-1+ col-sm-offset-1 reg-page">
+  <ul class="list"></ul>
+    <% @elections.each do |elec|%>
+        <li><%=link_to(elec.title,admin_election_path(elec))%></li>
+    <%end%>
+  </ul>
+</div>

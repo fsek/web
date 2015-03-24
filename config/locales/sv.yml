@@ -1,4 +1,60 @@
 sv:
+  success_create: har skapats
+  success_update: har uppdaterats
+  notice: Notisen
+  profile_add_information: Du behöver fylla i namn och efternamn. Fyll gärna i den andra informationen också.
+  your_profile: Din profil
+  error: fel
+  prevent_save: gör att det inte går att spara
+
+  attributes:
+    description: Beskrivning
+    title: Titel
+    public: Publik
+    d_publish: Publiceringsdatum
+    d_remove:  Datum att dölja
+    sort: Sorteringsindex
+    image: Bild
+    profile: Profil
+    profile_id: Profilen
+    email: E-post
+    phone: Telefon
+    name: Namn
+    lastname: Efternamn
+    stil_id: Stil-ID
+    d_from: Startdatum
+    d_til: Slutdatum
+    purpose: Syfte
+    disclaimer: Användaravtal
+    council: Utskott
+    comment: Kommentar
+    access_code: Kod
+
+  models:
+    notice: Notis
+    candidate:
+      one: Kandidatur
+      other: Kandidaturer
+    profile:
+      one: Profil
+      other: Profiler
+
+  activerecord:
+    models:
+      candidate:
+        one: Kandidatur
+        other: Kandidaturer
+      profile:
+        one: Profil
+        other: Profiler
+      short_link:
+        one: Snabblänk
+        other: Snabblänkar
+    attributes:
+      short_link:
+        link: Länknamn
+        target: Måladress
+
   the_role:
     role_created:             Roll skapades
     role_updated:             Roll uppdaterades
@@ -14,7 +70,7 @@ sv:
     section_not_deleted:      Sektion ej borttagen
     section_rule_deleted:     "Sektionsregel borttagen"
     section_rule_not_deleted: "Sektionsregel ej borttagen"
-    access_denied:            "Åtkomst nekad"
+    access_denied: "Åtkomst nekad"
 
   admin:
     roles:
@@ -48,17 +104,4 @@ sv:
         roles_import_confirm: 'Det kan ändra behörigheter i ditt system, är du säker?'
 
   errors:
-    format: "%{message}"
-    attributes:
-      email: 
-        blank: "Epost måste anges"
-      phone: 
-        blank: "Telefonnummer måste anges"
-      name: 
-        blank: "Förnamn måste anges"
-      lastname: 
-        blank: "Efternamn måste anges"
-        
-  time:
-    formats:
-      day: "%A %d/%m"
+    invalid-url: Inte en giltig webadress

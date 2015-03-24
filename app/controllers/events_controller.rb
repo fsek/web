@@ -1,18 +1,18 @@
 # encoding:UTF-8
 class EventsController < ApplicationController
-  
-    before_filter :login_required, only: [:calendar,:show]
-    before_filter :authenticate, only: [:new,:edit,:create,:update,:destroy]
-    before_action :utskott, only: [:new,:edit]
-    before_action :set_event, only: [:show,:edit,:update,:destroy]
-        
+
+  before_filter :login_required, only: [:calendar, :show]
+  before_filter :authenticate, only: [:new, :edit, :create, :update, :destroy]
+  before_action :utskott, only: [:new, :edit]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all    
+    @events = Event.all
     respond_to do |format|
-      format.html { redirect_to :kalender}
-      format.json { render :json => @events }
+      format.html { redirect_to :kalender }
+      format.json { render json: @events }
     end
   end
 
@@ -25,20 +25,23 @@ class EventsController < ApplicationController
       format.json { render :json => @event }
     end
   end
+
   def calendar
-    
+
   end
+
   def export
-    @events = Event.all        
-    @calendar=Icalendar::Calendar.new 
+    @events = Event.all
+    @calendar=Icalendar::Calendar.new
     for event in @events
-      @calendar.add_event(event.ical(polymorphic_url(event, :routing_type => :url))) 
+      @calendar.add_event(event.ical)
     end
-    @calendar.publish      
+    @calendar.publish
     respond_to do |format|
       format.ics
     end
   end
+
   # GET /events/new
   # GET /events/new.json
   def new
@@ -98,21 +101,23 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   private
-      def authenticate
-        flash[:error] = t('the_role.access_denied')
-        redirect_to(:back) unless current_user && current_user.moderator?(:event)
-        
-        rescue ActionController::RedirectBackError
-          redirect_to root_path
-      end
-      def set_event
-        @event = Event.find_by_id(params[:id])
-      end
-      def event_params
-        params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image,:registrable, :last_registration_date, :last_unregistration_date, :number_of_slots)
-      end
-      def utskott
-        @utskott = Council.all
-      end
+
+  def authenticate
+    flash[:error] = t('the_role.access_denied')
+    redirect_to(:back) unless current_user && current_user.moderator?(:event)
+
+  rescue ActionController::RedirectBackError
+    redirect_to root_path
+  end
+  def set_event
+    @event = Event.find_by_id(params[:id])
+  end
+  def event_params
+    params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image,:registrable, :last_registration_date, :last_unregistration_date, :number_of_slots)
+  end
+  def utskott
+    @utskott = Council.all
+  end
 end

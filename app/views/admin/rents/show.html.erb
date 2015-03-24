@@ -1,0 +1,16 @@
+<% provide(:title, 'Admin - Bilbokning') %>
+<div class="col-md-8 col-md-offset-2  reg-page">
+  <%= render 'links' %>
+  <%= render 'form'%>
+  <div class="row">
+   <%= link_to('Radera bokning', admin_rent_path(@rent), method: :delete, class: "btn btn-u", data: {confirm: 'Din bokning kommer nu att raderas.'}) %>
+  </div>
+  <div class="row center">
+    <ul class="list">
+      <li><strong>Status</strong> beskriver om bokningen är bekräftad eller inte</li>
+      <li><strong>Aktiv</strong> sätts till falsk om bokningen t.ex. bokas över</li>
+      <li><strong>Kommentar</strong> skickas med i mail om en bokning ändras till 'Nekad'</li>
+      <li>En bokning är inaktiverad om status är 'Nekad' eller aktiv är satt till falsk</li>
+    </ul>
+  </div>
+</div>
