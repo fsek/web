@@ -6,8 +6,8 @@ class CafeWork < ActiveRecord::Base
 
   # Validations
   validates :work_day, :pass, :lp, :lv, presence: true
-  validates :pass, :lp, inclusion: {in: 1..4}
-  validates :lv, inclusion: {in: 1..7}
+  validates :pass, :lp, inclusion: { in: 1..4 }
+  validates :lv, inclusion: { in: 1..7 }
   validates :name, :lastname, :phone, :email, presence: true, if: :has_worker?
   validates_uniqueness_of :pass, scope: [:work_day, :lv, :lp, :d_year]
 
@@ -167,7 +167,7 @@ class CafeWork < ActiveRecord::Base
   # Used to print date in a usable format.
   # /d.wessman
   def print_time
-    %(#{start.strftime("%H:%M")}-#{stop.strftime("%H:%M")})
+    %(#{start.strftime('%H:%M')}-#{stop.strftime('%H:%M')})
   end
 
   # Used to print out date, reading week and work number
@@ -177,7 +177,7 @@ class CafeWork < ActiveRecord::Base
   end
 
   def print_date
-    %(#{print_time}, #{start.strftime("%A %d/%m")})
+    %(#{print_time}, #{start.strftime('%A %d/%m')})
   end
 
   # Prints the url or path for the current object
@@ -223,15 +223,17 @@ class CafeWork < ActiveRecord::Base
   end
 
   def self.get_lv
-    check = CafeWork.between(Time.zone.now.beginning_of_day-2.days, Time.zone.now.end_of_day).last
+    check = CafeWork.between(Time.zone.now.beginning_of_day - 2.days, Time.zone.now.end_of_day).last
     (check.present?) ? check.lv.to_s : '?'
   end
 
   protected
 
   def worker_attributes
-    {name: name, lastname: lastname, email: email,
-     phone: phone, profile: profile, profile_id: profile_id, access_code: access_code}
+    {
+      name: name, lastname: lastname, email: email,
+      phone: phone, profile: profile, profile_id: profile_id, access_code: access_code
+    }
   end
 
   # Background color for the event
