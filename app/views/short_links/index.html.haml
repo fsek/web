@@ -16,6 +16,6 @@
     - @short_links.each do |sl|
       %tr
         %td= sl.link
-        %td= link_to sl.target
+        %td= link_to sl.target, sl.target
         %td= link_to 'Ta bort', sl, :method => :delete
 
