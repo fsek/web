@@ -78,7 +78,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
         patch :update, id: cwork.to_param, cafe_work: attr
 
         assigns(:cwork).should eq(cwork)
-        response.should redirect_to([:admin,cwork])
+        response.should redirect_to([:admin, cwork])
       end
     end
 
@@ -99,6 +99,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    before { cwork }
     it 'destroys the requested cwork' do
       lambda { delete :destroy, id: cwork.to_param, format: :html }.should change(CafeWork, :count).by(-1)
     end
@@ -115,26 +116,26 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
     end
   end
 
-
   describe 'PATCH #remove_worker' do
     it 'remove worker with profile' do
-      patch :remove_worker, {id: cwork_profile.to_param}
+      xhr :patch, :remove_worker, {id: cwork_profile.to_param}
       cwork_profile.reload
 
       cwork_profile.has_worker?.should be_falsey
     end
+  end
 
-    it 'remove worker with profile and redirect' do
-      patch :remove_worker, {id: cwork_profile.to_param}
-      cwork_profile.reload
-
-      response.should redirect_to(cwork_profile)
+  describe 'GET #setup' do
+    it 'assigns @cwork as new record' do
+      get :setup
+      (assigns(:cwork).new_record?).should be_truthy
     end
+  end
 
-    it 'assigns the requested cafe_work as @cafe_work' do
-      patch :remove_worker, {id: cwork_profile.to_param}
-
-      assigns(:cwork).should eq(cwork_profile)
+  describe 'POST #setup_create' do
+    it 'preview post' do
+      post :setup_create, {commit: "Förhandsvisning", cafe_work: attributes_for(:cwork), lv_first: 1, lv_last: 5}
+      assigns(:cworks).should eq(CafeSetupWeek.new(cwork.work_day, cwork.lp).preview(1,5))
     end
   end
 
@@ -150,12 +151,6 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
     it 'responds with JSON' do
       get :main, {start: cwork.work_day - 2.days, end: cwork.work_day + 2.days, format: :json}
       response.body.should eq([cwork.as_json, cwork_profile.as_json].to_json)
-    end
-  end
-
-  describe 'GET #nyckelpiga' do
-    it 'works' do
-      skip('Implement when Cancancan is implemented')
     end
   end
 end
