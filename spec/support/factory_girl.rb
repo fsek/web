@@ -1,14 +1,11 @@
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
-  factories_to_lint = FactoryGirl.factories.reject do |factory|
-    factory.name =~ /rent|assignee/
-  end
 
   config.before(:suite) do
     # Do not lint rent because it fails
     # See https://github.com/fsek/web/issues/72
     factories_to_lint = FactoryGirl.factories.reject do |factory|
-      factory.name =~ /^rent/
+      factory.name =~ /rent|assignee/
     end
     begin
       DatabaseCleaner.start

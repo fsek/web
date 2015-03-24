@@ -5,9 +5,9 @@ RSpec.describe CafeWork, type: :model do
     (build(:cafe_work)).should be_valid
   end
 
-  # Lazily loaded to ensure it's only used when it's needed
-  # RSpec tip: Try to avoid @instance_variables if possible. They're slow.
-  let(:cwork_profile) { create(:cafe_work, :w_profile) }
+  let(:user) { create(:user)}
+  let(:not_owner) { create(:user)}
+  let(:cwork_profile) { create(:cafe_work, :w_profile, profile: user.profile) }
   let(:cwork_access) { create(:cafe_work, :access) }
   let(:cwork_no_worker) { create(:cafe_work) }
   subject(:cwork) { build(:cafe_work) }
@@ -77,6 +77,7 @@ RSpec.describe CafeWork, type: :model do
           (cwork_access.has_worker?).should be_truthy
         end
       end
+
       context "add_worker" do
         it 'add worker with params and no user' do
           cwork_no_worker.add_worker(attributes_for(:assignee), nil)
@@ -95,14 +96,14 @@ RSpec.describe CafeWork, type: :model do
           (cwork_no_worker.profile).should eq(user.profile)
         end
       end
+
       context "remove_worker" do
         it 'with the right user' do
-          cwork_profile.profile = user.profile
           cwork_profile.remove_worker(user, nil)
           (cwork_no_worker.worker.profile).should be_nil
         end
         it 'with the wrong user' do
-          cwork_profile.remove_worker(user, nil)
+          cwork_profile.remove_worker(not_owner, nil)
           (cwork_profile.worker.profile).should_not be_nil
         end
         it 'with right access_code' do
@@ -116,11 +117,27 @@ RSpec.describe CafeWork, type: :model do
           (cwork_access.has_worker?).should be_truthy
         end
       end
+
       context 'update_worker' do
         it 'update worker with user' do
           cwork_profile.profile = user.profile
           cwork_profile.update_worker(attributes_for(:assignee, lastname: 'Wessman'), user)
           (cwork_profile.lastname).should eq('Wessman')
+        end
+      end
+
+      context 'status_view' do
+        it 'should return 0 for cwork' do
+          cwork_no_worker.status_view(nil).should eq(0)
+        end
+        it 'should return 1 for cwork_profile' do
+          cwork_profile.status_view(user).should eq(1)
+        end
+        it 'should return 1 for cwork_profile' do
+          cwork_access.status_view(user).should eq(3)
+        end
+        it 'should return 1 for cwork_profile' do
+          cwork_profile.status_view(not_owner).should eq(2)
         end
       end
     end
@@ -132,6 +149,9 @@ RSpec.describe CafeWork, type: :model do
       it 'check date format is iso8601' do
         (cwork_profile.as_json.to_json).should include(cwork_profile.start.iso8601.to_json)
         (cwork_profile.as_json.to_json).should include(cwork_profile.stop.iso8601.to_json)
+      end
+      it 'as_json request is processed with parameters' do
+        (cwork_profile.as_json('params').to_json).should include(cwork_profile.start.iso8601.to_json)
       end
     end
   end

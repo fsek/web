@@ -13,7 +13,7 @@
             <tbody>
             <tr>
               <td><i class="fa fa-user"></i></td>
-              <td><%= (@cwork.profile.present?) ? link_to(@cwork.profile, profile_path(@cwork.profile)) : @cwork.name + ' ' + @cwork.lastname %></td>
+              <td><%= (@cwork.profile.present?) ? link_to(@cwork.worker.p_name, profile_path(@cwork.profile)) : @cwork.worker.p_name %></td>
             </tr>
             <tr>
               <td><i class="fa fa-envelope"></i></td>
@@ -42,7 +42,7 @@
 
     <% else %>
         <p>Jobbare saknas</p>
-        <%= link_to("Ta bort pass", cafe_work_path(@cwork), method: :delete, class: "btn btn-u") %>
+        <%= link_to("Ta bort pass", admin_cafe_work_path(@cwork), method: :delete, class: "btn btn-u") %>
     <% end %>
   </div>
 </div>

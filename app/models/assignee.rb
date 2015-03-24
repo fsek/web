@@ -21,7 +21,7 @@ class Assignee
   end
 
   # To define if the Assignee is set and present.
-  def is_present?
+  def present?
     has_profile? || has_access_code?
   end
 
@@ -46,7 +46,7 @@ class Assignee
   end
 
   def load_profile(user)
-    if (user.present?) && !has_worker?
+    if (user.present?) && !has_profile?
       self.name = user.profile.name
       self.lastname = user.profile.lastname
       self.email = user.profile.email

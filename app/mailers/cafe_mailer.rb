@@ -13,6 +13,7 @@ class CafeMailer < ActionMailer::Base
   end
 
   private
+
   def load_hilbert
     attachments.inline['hilbert.jpg'] = File.read(Rails.root.join('app/assets/images/hilbert.jpg'))
   end

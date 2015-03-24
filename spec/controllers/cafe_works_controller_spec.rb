@@ -148,7 +148,7 @@ RSpec.describe CafeWorksController, type: :controller do
           patch :remove_worker, {id: cwork_profile.to_param}
           cwork_profile.reload
 
-          cwork_profile.worker.is_present?.should be_truthy
+          cwork_profile.worker.present?.should be_truthy
         end
 
         it 'redirects to the cafe_work' do
@@ -167,7 +167,7 @@ RSpec.describe CafeWorksController, type: :controller do
                 }
           cwork_access.reload
 
-          cwork_access.worker.is_present?.should be_falsey
+          cwork_access.worker.present?.should be_falsey
         end
 
         it 'redirects to the cafe_work' do

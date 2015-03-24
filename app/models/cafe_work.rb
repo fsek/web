@@ -67,14 +67,12 @@ class CafeWork < ActiveRecord::Base
   # 3 = shows form for authorization
   # /d.wessman
   def status_view(user)
-    if !has_worker?
-      return 0
-    elsif (access_code.present?)
+    if access_code.present?
       return 3
-    elsif (profile.present?)
-      return (user.present? && user.profile == profile) ? 1 : 2
+    elsif has_worker?
+      return (owner?(user) ? 1 : 2)
     end
-    return 0
+    0
   end
 
   def add_or_update(worker_params, user)
@@ -96,8 +94,9 @@ class CafeWork < ActiveRecord::Base
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
-    #update!(Assignee.setup(worker_params, user).attributes)
-    update(Assignee.setup(worker_params, user).attributes)
+    self.attributes = worker_params
+    self.attributes = Assignee.setup(worker_attributes,user).attributes
+    save
   end
 
   # User to update worker, checks for edit-access
@@ -111,8 +110,9 @@ class CafeWork < ActiveRecord::Base
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
-    #update!(Assignee.setup(worker_params, user).attributes)
-    update(Assignee.setup(worker_params, user).attributes)
+    self.attributes = worker_params
+    self.attributes = Assignee.setup(worker_attributes,user).attributes
+    save
   end
 
   # Remove-function used by the worker
@@ -160,7 +160,7 @@ class CafeWork < ActiveRecord::Base
   # Returns true if there is a worker
   # /d.wessman
   def has_worker?
-    worker.is_present?
+    worker.present?
   end
 
   # Used to print date in a usable format.
@@ -229,8 +229,15 @@ class CafeWork < ActiveRecord::Base
 
   protected
 
+  def u_attributes(params)
+    {
+
+    }
+  end
+
   def worker_attributes
-    {name: name, lastname: lastname, email: email, phone: phone, profile: profile, access_code: access_code}
+    {name: name, lastname: lastname, email: email,
+     phone: phone, profile: profile, profile_id: profile_id,access_code: access_code}
   end
 
   # Background color for the event
