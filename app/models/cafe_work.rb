@@ -9,7 +9,7 @@ class CafeWork < ActiveRecord::Base
   validates :pass, :lp, inclusion: { in: 1..4 }
   validates :lv, inclusion: { in: 1..7 }
   validates :name, :lastname, :phone, :email, presence: true, if: :has_worker?
-  validates :pass, uniqueness: true, scope: [:work_day, :lv, :lp, :d_year]
+  validates :pass, uniqueness: { scope: [:work_day, :lv, :lp, :d_year] }
 
   # Scopes
   scope :with_worker, -> { where('profile_id IS NOT null OR access_code IS NOT null') }
@@ -48,14 +48,14 @@ class CafeWork < ActiveRecord::Base
   # /d.wessman
   def status_text(user)
     case status_view(user)
-    when 0
-      return 'Fyll i uppgifter och tryck på Spara för att skriva upp dig och arbeta på passet.'
-    when 1
-      return 'Du är uppskriven för att arbeta på passet.'
-    when 2
-      return 'Passet är redan bokat.'
-    when 3
-      return 'Passet är bokat, fyll i koden som gavs vid anmälan för att redigera.'
+      when 0
+        return 'Fyll i uppgifter och tryck på Spara för att skriva upp dig och arbeta på passet.'
+      when 1
+        return 'Du är uppskriven för att arbeta på passet.'
+      when 2
+        return 'Passet är redan bokat.'
+      when 3
+        return 'Passet är bokat, fyll i koden som gavs vid anmälan för att redigera.'
     end
   end
 
@@ -191,15 +191,15 @@ class CafeWork < ActiveRecord::Base
 
   def as_json(*)
     {
-      id: id,
-      title: %(Cafepass #{pass}),
-      start: start.iso8601,
-      end: stop.iso8601,
-      status: print,
-      url: p_path,
-      color: 'black',
-      backgroundColor: b_color,
-      textColor: 'black'
+        id: id,
+        title: %(Cafepass #{pass}),
+        start: start.iso8601,
+        end: stop.iso8601,
+        status: print,
+        url: p_path,
+        color: 'black',
+        backgroundColor: b_color,
+        textColor: 'black'
     }
   end
 
@@ -231,8 +231,8 @@ class CafeWork < ActiveRecord::Base
 
   def worker_attributes
     {
-      name: name, lastname: lastname, email: email,
-      phone: phone, profile: profile, profile_id: profile_id, access_code: access_code
+        name: name, lastname: lastname, email: email,
+        phone: phone, profile: profile, profile_id: profile_id, access_code: access_code
     }
   end
 
