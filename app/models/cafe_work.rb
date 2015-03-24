@@ -1,6 +1,5 @@
 # encoding: UTF-8
 class CafeWork < ActiveRecord::Base
-
   # Associations
   belongs_to :profile
   has_and_belongs_to_many :councils
@@ -102,7 +101,7 @@ class CafeWork < ActiveRecord::Base
   # User to update worker, checks for edit-access
   # /d.wessman
   def update_worker(worker_params, user)
-    if (!owner?(user) && !authorize(worker_params[:access_code]))
+    if !owner?(user) && !authorize(worker_params[:access_code])
       errors.add('Auktorisering',
                  'misslyckades, du har inte rättighet att redigera eller skrev fel kod.')
       return false
@@ -119,7 +118,7 @@ class CafeWork < ActiveRecord::Base
   # Remove-function used by the worker
   # /d.wessman
   def remove_worker(user, access)
-    if (!owner?(user) && !authorize(access))
+    if !owner?(user) && !authorize(access)
       errors.add('Auktorisering',
                  'misslyckades, du har inte rättighet att ta bort eller skrev fel kod.')
       return false
@@ -133,7 +132,7 @@ class CafeWork < ActiveRecord::Base
   def clear_worker
     self.attributes = worker.clear_attributes
     self.utskottskamp = false
-    self.councils.clear
+    councils.clear
     self.save!(validate: false)
   end
 
@@ -153,7 +152,7 @@ class CafeWork < ActiveRecord::Base
     work_day > Time.zone.now
   end
 
-  # Returns true only if hte access_code is correct
+  # Returns true only if the access_code is correct
   # /d.wessman
   def authorize(access)
     access.present? && access_code.present? && access_code == access
@@ -192,15 +191,15 @@ class CafeWork < ActiveRecord::Base
 
   def as_json(*)
     {
-        id: id,
-        title: %(Cafepass #{pass}),
-        start: start.iso8601,
-        end: stop.iso8601,
-        status: print,
-        url: p_path,
-        color: 'black',
-        backgroundColor: b_color,
-        textColor: 'black'
+      id: id,
+      title: %(Cafepass #{pass}),
+      start: start.iso8601,
+      end: stop.iso8601,
+      status: print,
+      url: p_path,
+      color: 'black',
+      backgroundColor: b_color,
+      textColor: 'black'
     }
   end
 
@@ -222,7 +221,6 @@ class CafeWork < ActiveRecord::Base
   def stop
     work_day + duration.hours
   end
-
 
   def self.get_lv
     check = CafeWork.between(Time.zone.now.beginning_of_day-2.days, Time.zone.now.end_of_day).last
