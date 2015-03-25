@@ -5,6 +5,10 @@ class Profile < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :posts
   has_many :candidates
+
+	has_many :event_registrations, :dependent => :destroy
+	has_many :events, through: :event_registrations
+  
   has_many :rents
   has_many :councils, through: :posts
 

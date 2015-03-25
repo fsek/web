@@ -11,6 +11,7 @@
 		<li><%= link_to "Nytt event", new_event_path %></li>
 		<% end %>
 		<li><%= link_to 'Kalenderprenumeration', 'webcal://'+PUBLIC_URL+'/events/export.ics'%></li>
+		<li><%= link_to 'Visa dina registreringar', events_profile_path(current_user)%></li>				        
 	</ul>	
 	<% end %>
 </div>

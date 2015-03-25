@@ -1,5 +1,7 @@
 # encoding: UTF-8
 class Event < ActiveRecord::Base
+	has_many :event_registrations, :dependent => :destroy
+	has_many :profiles, through: :event_registrations
   has_attached_file :image,
                     styles: {original: "800x800>", medium: "300x300>", thumb: "100x100>"},
                     path: ":rails_root/public/system/images/event/:id/:style/:filename",

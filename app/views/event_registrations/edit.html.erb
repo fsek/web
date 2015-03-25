@@ -1,8 +1,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag 'Lägg till event',nil, :class => 'reg-header'%>
+			<%= label_tag 'Redigera event',nil, :class => 'reg-header'%>
 			<%= render 'form'%>
+			<%= link_to 'Visa registrering', [@event, @event_registration] %><br>
 			<%= link_to 'Tillbaka', :back %>
 		</div>
 	</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profile_id: 1
+  event_id: 1
+  reserve_spot: false
+  info_text: MyText
+
+two:
+  profile_id: 1
+  event_id: 1
+  reserve_spot: false
+  info_text: MyText

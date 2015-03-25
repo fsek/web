@@ -1,0 +1,29 @@
+<div class="container">
+	<h1> Alla anmälningar för eventet <%= @event.title %> </h1>
+	<table class="table">
+  	<thead>
+  		<tr>
+    		<th>Namn:</th>
+    		<th>Reserv:</th>
+
+  		</tr>
+		</thead>
+		<tbody>
+		<% @event_registrations.each do |event_reg| %>
+  		<tr>
+
+    	<td><%= link_to event_reg.profile, event_reg.profile %></td>
+    	<td>
+				<% if event_reg.reserve_spot %>
+					Ja
+			<% else %>
+					Nej
+			<% end %>
+			</td>
+
+	  </tr>
+	<% end %>
+		</tbody>
+	</table>
+	<%= link_to 'Tillbaka', @event %>
+</div>

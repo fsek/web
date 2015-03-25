@@ -75,7 +75,10 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find_by_id(params[:id])
+    @event = Event.find_by_id(params[:id])    
+		if !@event.registrable
+			@event.event_registrations.destroy_all
+		end
     respond_to do |format|
       if @event.update_attributes(event_params)
         format.html { redirect_to @event, :notice => 'Eventet uppdaterades!' }
@@ -100,6 +103,7 @@ class EventsController < ApplicationController
   end
 
   private
+
   def authenticate
     flash[:error] = t('the_role.access_denied')
     redirect_to(:back) unless current_user && current_user.moderator?(:event)
@@ -107,15 +111,12 @@ class EventsController < ApplicationController
   rescue ActionController::RedirectBackError
     redirect_to root_path
   end
-
   def set_event
     @event = Event.find_by_id(params[:id])
   end
-
   def event_params
-    params.require(:event).permit(:title, :author, :description, :location, :starts_at, :ends_at, :all_day, :category, :image)
+    params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image,:registrable, :last_registration_date, :last_unregistration_date, :number_of_slots)
   end
-
   def utskott
     @utskott = Council.all
   end

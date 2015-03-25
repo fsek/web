@@ -1,0 +1,25 @@
+<div class="container">
+	<% if @event.empty? %>
+		<h1> <%= @profile.name %> har inga aktuella registreringar.</h1>
+	<% else %>
+		<h1> Alla kommande event för <%= @profile.name %>.</h1>
+		<table class="table">
+  		<thead>
+  			<tr>
+    			<th>Titel:</th>
+    			<th>Startar:</th>
+    			<th>Slutar:</th>
+  			</tr>
+			</thead>
+			<tbody>
+			<% @event.each do |event| %>
+  			<tr>
+    			<td><%= link_to event.title, event_event_registrations_path(event) %></td>
+					<td> <%= event.starts_at %></td>
+					<td> <%= event.starts_at %></td>
+  			</tr>
+			<% end %>
+			</tbody>
+		</table>
+	<% end %>
+</div>

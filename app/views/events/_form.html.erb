@@ -48,8 +48,35 @@
   				     :class => "form-control listBox"%>		  	  		 		  	
 
   	</div>
-  	
+
+		
+  	<%= f.label 'Ska man kunna amnäla sig till eventet?', :class => 'reg-label'%><br>
+		<%= f.check_box :registrable ,id: "registrable"%>
+  	<%= f.label 'Ja', :class => 'reg-label'%><br><br>
+		<div class="registrable" style="display:none;">
+  		<%= f.label 'Sista anmälningsdag', :class => 'reg-label'%>
+  		<div class="input-group margin-bottom-20">		  	  		 		  	
+  			<%= f.datetime_select :last_registration_date, :minute_step => 10, :class => 'form-control' %>
+  		</div>
+  		<%= f.label 'Sista avbokningsdag', :class => 'reg-label'%>
+  		<div class="input-group margin-bottom-20">		  	  		 		  	
+  			<%= f.datetime_select :last_unregistration_date, :minute_step => 10, :class => 'form-control' %>
+  		</div>
+  		<%= f.label 'Antal platser', :class => 'reg-label'%>
+  		<div class="input-group margin-bottom-20">
+  			<%= f.number_field :number_of_slots, :class => "form-control", :value => @event.number_of_slots, :min => 0%>		  	  		 		  	
+  		</div>
+		</div>
+
   	<div class="row">
   			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>
 <% end %>
+<script>
+	<% if @event && @event.registrable %>
+		$('.registrable').toggle();
+	<% end %>
+	$("input[type='checkbox']#registrable").on('change', function(){
+  $('.registrable').toggle();
+});
+</script>

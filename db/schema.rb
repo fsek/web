@@ -179,6 +179,15 @@ ActiveRecord::Schema.define(version: 20410822171445) do
     t.datetime "updated_at"
   end
 
+  create_table "event_registrations", force: true do |t|
+    t.integer  "profile_id"
+    t.integer  "event_id"
+    t.boolean  "reserve_spot"
+    t.text     "info_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.string   "author",             limit: 255
@@ -194,6 +203,10 @@ ActiveRecord::Schema.define(version: 20410822171445) do
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean  "registrable"
+    t.datetime "last_registration_date"
+    t.datetime "last_unregistration_date"
+    t.integer  "number_of_slots"
   end
 
   create_table "faqs", force: :cascade do |t|
@@ -245,6 +258,7 @@ ActiveRecord::Schema.define(version: 20410822171445) do
   create_table "news", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.text     "content"
+    t.string   "author"
     t.boolean  "front_page"
     t.string   "image_file_name",    limit: 255
     t.string   "image_content_type", limit: 255
@@ -252,7 +266,6 @@ ActiveRecord::Schema.define(version: 20410822171445) do
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "profile_id"
   end
 
   create_table "nominations", force: :cascade do |t|
@@ -336,6 +349,7 @@ ActiveRecord::Schema.define(version: 20410822171445) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "council_id"
+    t.integer  "recLimit",    default: 0
     t.boolean  "extra_text"
     t.string   "elected_by",    limit: 255
     t.string   "elected_at",    limit: 255
