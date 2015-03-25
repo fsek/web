@@ -1,8 +1,8 @@
 # encoding: UTF-8
 class Council < ActiveRecord::Base
   has_one :page, dependent: :destroy
-  has_one :president, :foreign_key => :president
-  has_one :vice_president, :foreign_key => :president
+  belongs_to :president, foreign_key: :president, class_name: :Post
+  belongs_to :vice_president, foreign_key: :vice_president, class_name: :Post
   has_many :posts
   has_many :profiles, through: :posts
 
