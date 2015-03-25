@@ -38,6 +38,9 @@
       <% if current_user %>
         <li><a id="gallery_link" href="#">Gamla bildgalleriet</a></li>
       <% end %>
+
+      <% # Always show these links %>
+        <li><%= link_to 'Motionsmaskin', proposals_form_path %></li>		                        
     </ul>
     </li>
     <li class="dropdown">
