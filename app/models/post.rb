@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
   has_and_belongs_to_many :profiles
   has_many :nominations
   has_many :candidates 
+  has_many :permission_posts
+  has_many :permissions, through: 'permission_posts'
 
   # Scopes
   scope :studierad, -> {where(elected_by: "Studierådet").order(council_id: :asc)}
@@ -29,5 +31,11 @@ class Post < ActiveRecord::Base
       recLimit.to_s + "-" + limit.to_s        
     end
   end   
-    
+  def set_permissions(permissions)
+    permissions.each do |id|
+      #find the main permission assigned from the UI
+      permission = Permission.find(id)
+      self.permissions << permission
+    end
+  end
 end

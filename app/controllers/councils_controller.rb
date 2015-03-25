@@ -1,9 +1,7 @@
 # encoding:UTF-8
 class CouncilsController < ApplicationController
-  
-  before_filter :authenticate, only: [:new,:edit,:create,:update,:destroy]
+  load_permissions_and_authorize_resource
   before_action :set_council, only: [:show, :edit, :update, :destroy]
-  
 
   # GET /councils
   # GET /councils.json
@@ -94,14 +92,6 @@ class CouncilsController < ApplicationController
         end
       end
       @page = @council.page
-      rescue ActionController::RedirectBackError
-      redirect_to root_path 
-    end
-    def authenticate
-      flash[:error] = t('the_role.access_denied')
-      redirect_to(:back) unless (current_user) && (current_user.moderator?(:utskott))    
-      rescue ActionController::RedirectBackError
-      redirect_to root_path
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

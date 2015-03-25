@@ -1,7 +1,6 @@
 # encoding:UTF-8
 class ElectionsController < ApplicationController
-  
-  before_filter :login_required, except: [:index]
+  load_permissions_and_authorize_resource
   before_filter :no_election, only: [:nominate,:create_nomination,:candidate]
   
   def index

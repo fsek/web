@@ -1,6 +1,5 @@
 class Admin::RentsController < ApplicationController
-  before_action :login_required
-  before_action :authenticate
+  load_permissions_and_authorize_resource
   before_action :set_rent, only: [:show, :update, :destroy, :preview]
   before_action :set_councils, only: [:new, :show]
 

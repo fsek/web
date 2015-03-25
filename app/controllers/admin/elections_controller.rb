@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Admin::ElectionsController < ApplicationController
-  before_action :login_required
-  before_action :authenticate
+  load_permissions_and_authorize_resource
+
   before_action :set_election, only: [:show,:edit,:update,:destroy,:candidates,:nominations]
 
   def new

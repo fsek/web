@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     role.present? && role.name.to_s == role_name.to_s
   end
 
+  def admin?
+    is? :admin
+  end
+
   # Used in testing
   def as_f_member
     @f_member = true

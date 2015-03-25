@@ -1,6 +1,5 @@
 class GithookController < ApplicationController
-  before_action :login_required, only: ['dev', 'master']
-  before_action :authenticate, only: ['dev', 'master']
+  load_permissions_and_authorize_resource
   before_action :verify_request_is_from_github, only: 'index'
 
   def index

@@ -23,6 +23,32 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:password, :password_confirmation, :current_password) }
   end
 
+  def self.permission
+    self.name.gsub('Controller','').singularize.split('::').last.constantize.name rescue nil
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_user)
+  end
+
+  #load the permissions for the current user so that UI can be manipulated
+  def load_permissions(*args)
+    @current_permissions = current_user.profile.posts.each do |post|
+      post.permissions.collect{|i| [i.subject_class, i.action]}
+    end
+  end
+
+  # Enables authentication and 
+  def self.load_permissions_and_authorize_resource(*args)
+    load_and_authorize_resource(*args)
+    before_filter(:load_permissions, *args)
+  end
+
+  def self.skip_authorization(*args)
+    skip_authorization_check(*args)
+    skip_before_filter(:load_permissions, *args)
+  end
+
   def set_locale
     locale = 'sv'
     langs  = %w{ sv en }

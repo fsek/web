@@ -1,11 +1,10 @@
 # encoding:UTF-8
 class EventsController < ApplicationController
-  
-    before_filter :login_required, only: [:calendar,:show]
-    before_filter :authenticate, only: [:new,:edit,:create,:update,:destroy]
-    before_action :utskott, only: [:new,:edit]
-    before_action :set_event, only: [:show,:edit,:update,:destroy]
-        
+  load_permissions_and_authorize_resource
+
+  before_action :utskott, only: [:new,:edit]
+  before_action :set_event, only: [:show,:edit,:update,:destroy]
+
   # GET /events
   # GET /events.json
   def index
@@ -26,7 +25,7 @@ class EventsController < ApplicationController
     end
   end
   def calendar
-    
+
   end
   def export
     @events = Event.all        
@@ -96,20 +95,20 @@ class EventsController < ApplicationController
     end
   end
   private
-      def authenticate
-        
-        redirect_to(:back) unless current_user && current_user.moderator?(:event)
-        
-        rescue ActionController::RedirectBackError
-          redirect_to root_path
-      end
-      def set_event
-        @event = Event.find_by_id(params[:id])
-      end
-      def event_params
-        params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image)
-      end
-      def utskott
-        @utskott = Council.all
-      end
+  def authenticate
+
+    redirect_to(:back) unless current_user && current_user.moderator?(:event)
+
+  rescue ActionController::RedirectBackError
+    redirect_to root_path
+  end
+  def set_event
+    @event = Event.find_by_id(params[:id])
+  end
+  def event_params
+    params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image)
+  end
+  def utskott
+    @utskott = Council.all
+  end
 end

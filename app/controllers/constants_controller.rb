@@ -1,6 +1,6 @@
 class ConstantsController < ApplicationController
-  before_action :login_required
-  before_action :verify_admin
+  load_permissions_and_authorize_resource
+
   before_action :set_constant, only: [:show, :edit, :update, :destroy]
 
   # GET /constants
