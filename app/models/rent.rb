@@ -7,9 +7,8 @@ class Rent < ActiveRecord::Base
 
   # Validations
   # Everyone has to accept the disclaimer
-  validates :disclaimer, presence: true
   # Presence of mandatory attributes
-  validates :d_from, :d_til, :name, :lastname, :email, :phone, presence: true
+  validates disclaimer, :d_from, :d_til, :name, :lastname, :email, :phone, presence: true
   # Purpose not required for members of F-guild
   validates :purpose, presence: true, if: :no_profile?
   # Duration is only allowed to be 48h, unless it is for a council
@@ -53,12 +52,17 @@ class Rent < ActiveRecord::Base
   after_create :send_email
   after_create :overbook_all, if: :overbook_all?
 
+
+  def renter
+    @renter || Assignee.new(renter_attributes)
+  end
+
   # Set as overbooked, announce via email that it is overbooked, should be made as background job.
   # /d.wessman
   def overbook
     self.aktiv = false
     self.save(validate: false)
-    self.send_active_email
+    send_active_email
   end
 
   # Methods
@@ -66,27 +70,28 @@ class Rent < ActiveRecord::Base
   # Update only if authorized
   # /d.wessman
   def update_with_authorization(params, user)
-    if (user.present? && user.profile == self.profile) || (authorize(params[:access_code]))
-      return update(params)
-    else
+    if !owner?(user) && !authorize(params[:access_code])
       errors.add('Auktorisering', 'misslyckades, du har inte rättighet eller ev. fel kod.')
     end
+
+    # Should be done with a bang when the error handling works
+    # Ref: https://github.com/fsek/web/issues/93
+    # /d.wessman
+    self.attributes = params
+    self.attributes = Assignee.setup(renter_attributes, user).attributes
+    save
   end
 
   # Update without validation
   # /d.wessman
   def update_without_validation(params)
-    ak = aktiv
-    st = status
     self.attributes = params
+
+    send_active_email if aktiv_changed?
+
+    send_status_email if status_changed?
+
     save(validate: false)
-    if ak == !aktiv
-      send_active_email
-    end
-    if st != status
-      send_status_email
-    end
-    return true
   end
 
   # Sends email
@@ -112,27 +117,19 @@ class Rent < ActiveRecord::Base
   # Returns true if provided access equals access_code
   # /d.wessman
   def authorize(access)
-    if ((access.present?) && (access_code.present?) && (access_code == access))
-      return true
-    else
-      return false
-    end
+    access.present? && access_code.present? && access_code == access
   end
 
   # Loads profile info into new Rent, not saving
   # /d.wessman
-  def prepare(profile)
-    self.profile = profile
-    self.name = profile.name
-    self.lastname = profile.lastname
-    self.phone = profile.phone
-    self.email = profile.email
+  def prepare(user)
+    self.attributes = renter.load_profile(user)
   end
 
   # Returns false if profile is present, used in validations
   # /d.wessman
   def no_profile?
-    profile.nil?
+    !renter.has_profile?
   end
 
   # Returns true if the rent has an council associated
@@ -162,13 +159,9 @@ class Rent < ActiveRecord::Base
   def duration
     if d_from.present? && d_til.present?
       h = (d_til - d_from) / 3600
-      if h < 0
-        return 0
-      end
-      return h
-    else
-      return 0
+      h < 0 ? 0 : h
     end
+    0
   end
 
   # Prepares a new rent with user set if it exists
@@ -185,12 +178,6 @@ class Rent < ActiveRecord::Base
   end
 
   # Methods for printing
-
-  # Print name
-  # /d.wessman
-  def p_name
-    %(#{name} #{lastname})
-  end
 
   # Prints the date of the rent in a readable way, should be localized
   # /d.wessman
@@ -212,40 +199,41 @@ class Rent < ActiveRecord::Base
     Rails.application.routes.url_helpers.rent_path(id)
   end
 
-  # Prints email together with name, can be used as 'to' in an email
-  # /d.wessman
-  def p_email
-    p_name.present? ? %("#{p_name}" <#{email}>) : email
-  end
-
   # Custom json method used for FullCalendar
   # /d.wessman
   def as_json(*)
     if service
       {
-        id: id,
-        title: 'Service',
-        start: d_from.iso8601,
-        end: d_til.iso8601,
-        status: comment,
-        backgroundColor: 'black',
-        textColor: 'white'
+          id: id,
+          title: 'Service',
+          start: d_from.iso8601,
+          end: d_til.iso8601,
+          status: comment,
+          backgroundColor: 'black',
+          textColor: 'white'
       }
     else
       {
-        id: id,
-        title: p_name,
-        start: d_from.iso8601,
-        end: d_til.iso8601,
-        url: p_path,
-        status: status,
-        backgroundColor: backgroundColor(status, aktiv),
-        textColor: 'black'
+          id: id,
+          title: p_name,
+          start: d_from.iso8601,
+          end: d_til.iso8601,
+          url: p_path,
+          status: status,
+          backgroundColor: backgroundColor(status, aktiv),
+          textColor: 'black'
       }
     end
   end
 
   private
+
+  def renter_attributes
+    {
+        name: name, lastname: lastname, email: email,
+        phone: phone, profile: profile, profile_id: profile_id, access_code: access_code
+    }
+  end
 
   # Too decide the backgroundColor of an event
   # /d.wessman
@@ -268,7 +256,7 @@ class Rent < ActiveRecord::Base
   def check_overbook?(rents)
     @overbook = true
     rents.each do |rent|
-      if (rent.d_from < Time.zone.now+5.days)
+      if (rent.d_from < Time.zone.now + 5.days)
         @overbook = false
       end
     end

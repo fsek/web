@@ -15,8 +15,8 @@ class RentsController < ApplicationController
   def new
     @TOA = Document.where(title: "Regler för Beerit").first
     @rent = Rent.new
+    @rent.prepare(current_user)
     if (current_user)
-      @rent.prepare(current_user.profile)
       @utskott = current_user.profile.car_councils
     end
   end
