@@ -23,10 +23,6 @@ config/secrets.yml
 /.bundle
 /vendor/bundle
 .idea/
-# To load capybara faster without storing local bins
-# /d.wessman
-bin/*
-!bin/cap
 
 # these should all be checked in to normalise the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
