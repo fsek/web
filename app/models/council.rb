@@ -2,6 +2,8 @@
 class Council < ActiveRecord::Base
   # Associations
   has_one :page, dependent: :destroy
+  has_one :president, foreign_key: :president
+  has_one :vice_president, foreign_key: :president
   has_many :posts
   has_many :profiles, through: :posts
   has_and_belongs_to_many :cafe_works

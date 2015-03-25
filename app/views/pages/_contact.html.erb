@@ -1,14 +1,10 @@
-<% if @council.president%>
-	<% @post = Post.find(@council.president)%>
-<%end%>
-<%if(@post)%>
-
-<div class="headline"><h2>Kontakta oss</h2></div>
-                    <p>Vero facilis est etenim a feugiat cupiditate non quos etrerum facilis.</p>
-                    <ul class="list-unstyled">
-                        <li><a href="#"><i class="fa fa-home"></i>5B amus ED554, New York, US</a></li>
-                        <li><a href="#"><i class="fa fa-envelope"></i>infp@example.com</a></li>
-                        <li><a href="#"><i class="fa fa-phone"></i>1(222) 5x86 x97x</a></li>
-                        <li><a href="#"><i class="fa fa-globe"></i>http://www.example.com</a></li>
-                    </ul>
-<%end%>
+<% if @council.president %>
+  <div class="headline"><h2>Kontakta oss</h2></div>
+  <p>Vero facilis est etenim a feugiat cupiditate non quos etrerum facilis.</p>
+  <ul class="list-unstyled">
+    <li><a href="#"><i class="fa fa-home"></i>5B amus ED554, New York, US</a></li>
+    <li><a href="#"><i class="fa fa-envelope"></i>infp@example.com</a></li>
+    <li><a href="#"><i class="fa fa-phone"></i>1(222) 5x86 x97x</a></li>
+    <li><a href="#"><i class="fa fa-globe"></i>http://www.example.com</a></li>
+  </ul>
+<% end %>

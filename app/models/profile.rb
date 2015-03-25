@@ -20,7 +20,9 @@ class Profile < ActiveRecord::Base
   validates_presence_of :name, :lastname, on: :update
   validates_inclusion_of :start_year, in: 1954..(Time.zone.today.year+1), on: :update
 
-  # Scopes
+  def full_name
+    "#{name} #{lastname}".strip
+  end
 
   # Returns all councils the profile belongs to with a Post who is
   # allowed to rent the car

@@ -1,75 +1,66 @@
- <div class="collapse navbar-collapse navbar-responsive-collapse">
-    <ul class="nav navbar-nav navbar-right">                	               	
-        <li class="dropdown active">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                Sektionen <%= fa_icon('angle-down') %>
-            </a>
-            <ul class="dropdown-menu">
-            	<%
-            		menu = Menu.where(visible: true)
-				    @menu_sektionen = menu.where(location: "Sektionen")
-				    @menu_medlemmar = menu.where(location: "För medlemmar")
-				    @menu_foretag =   menu.where(location: "För företag")
-				    @menu_kontakt = menu.where(location: "Kontakt")  
-            	%>            	
-              	<%if @menu_sektionen %>
-                  	<%@menues = @menu_sektionen%>
-                  	<%=render 'menus/menu'%>
-        		<%else%>
-        			<li><%= link_to 'Om oss', :om %></li>   
-                	<li><%= link_to 'Utskott', :councils %></li>
-                	<li><%= link_to 'Dokument', documents_path%></li>
+<% menus_by_location = Menu.index.group_by &:location %>
+<div class="collapse navbar-collapse navbar-responsive-collapse">
+  <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown active">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+        Sektionen <%= fa_icon('angle-down') %>
+      </a>
+      <ul class="dropdown-menu">
+        <% if (sekt_menus = menus_by_location['Sektionen']).present? %>
+            <%= render sekt_menus %>
+        <% else %>
+            <li><%= link_to 'Om oss', :om %></li>
+            <li><%= link_to 'Utskott', :councils %></li>
+            <li><%= link_to 'Dokument', documents_path %></li>
+        <% end %>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+        För medlemmar <%= fa_icon('angle-down') %>
+      </a>
+      <ul class="dropdown-menu">
+        <% if (medlem_menus = menus_by_location['För medlemmar']).present? %>
+            <%= render medlem_menus %>
+        <% else %>
+            <li><%= link_to 'Val', :elections, 'data-no-turbolink' => true %></li>
+            <li><%= link_to 'Bildgalleri', :albums, 'data-no-turbolink' => true %></li>
+            <li><%= link_to 'Kalender', :kalender, 'data-no-turbolink' => true %></li>
+            <li><%= link_to 'Jobbportal', :work_posts %></li>
+        <% end %>
 
-        		<%end%>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                För medlemmar <%= fa_icon('angle-down') %>
-            </a>
-            <ul class="dropdown-menu">
-            	<%if @menu_medlemmar %>
-                  	<%@menues = @menu_medlemmar%>
-                  	<%=render 'menus/menu'%>
-        		<%else%>
-        			<li><%= link_to 'Val', :elections,'data-no-turbolink'=>true %></li>
-                	<li><%= link_to 'Bildgalleri', :albums ,'data-no-turbolink'=> true%></li>
-                    <li><%= link_to 'Kalender', :kalender, 'data-no-turbolink'=> true%></li>
-                    <li><%= link_to 'Jobbportal', :work_posts %></li>		                        
-        		<%end%>                          
+        <% # This link could be made automatically too, the important part is that it as the right id.   %>
+        <% if current_user %>
+            <li><a id="gallery_link" href="#">Gamla bildgalleriet</a></li>
+        <% end %>
 
-		    <% # This link could be made automatically too, the important part is that it as the right id. %>
-		    <% if current_user %>
-		    <li><a id="gallery_link" href="#">Gamla bildgalleriet</a></li>
-                    <% end %>
-            </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-            För företag <%= fa_icon('angle-down') %>
-          </a>
-          <ul class="dropdown-menu">                      	
-            <%if @menu_foretag %>
-                  	<%@menues = @menu_foretag%>
-                  	<%=render 'menus/menu'%>
-        		<%else%>		                      
-                  <li><%= link_to 'Arbetsmarknadsdagar', 'http://www.farad.nu' %></li>
-            <%end%>
-          </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                Kontakt <%= fa_icon('angle-down') %>
-            </a>
-            <ul class="dropdown-menu">
-            	<%if @menu_kontakt %>
-                  	<%@menues = @menu_kontakt%>
-                  	<%=render 'menus/menu'%>
-        		<%else%>
-                      <li><%= link_to 'Kontaktsida', contacts_path %></li>			                      
-                <%end%>	
-            </ul>
-        </li>
-        
-    </ul>          
+        <% # Always show these links   %>
+        <li><%= link_to 'Motionsmaskin', proposals_form_path %></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+        För företag <%= fa_icon('angle-down') %>
+      </a>
+      <ul class="dropdown-menu">
+        <% if (company_menus = menus_by_location['För företag']).present? %>
+            <%= render company_menus %>
+        <% else %>
+            <li><%= link_to 'Arbetsmarknadsdagar', 'http://www.farad.nu' %></li>
+        <% end %>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+        Kontakt <%= fa_icon('angle-down') %>
+      </a>
+      <ul class="dropdown-menu">
+        <% if (contact_menus = menus_by_location['Kontakt']).present? %>
+            <%= render contact_menus %>
+        <% else %>
+            <li><%= link_to 'Kontaktsida', contacts_path %></li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
 </div>
