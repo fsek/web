@@ -143,6 +143,9 @@ Fsek::Application.routes.draw do
     end
   end
 
+  get 'proposals/form' => 'proposals#form'
+  post 'proposals/generate' => 'proposals#generate'
+
   root 'static_pages#index'
 
   # Catch-all for short links.

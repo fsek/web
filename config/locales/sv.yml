@@ -55,6 +55,13 @@ sv:
         link: Länknamn
         target: Måladress
 
+  activemodel:
+    attributes:
+      proposal:
+        title: Rubrik
+        sign_name: Ditt namn
+        sign_title: Din titel (valfritt)
+
   the_role:
     role_created:             Roll skapades
     role_updated:             Roll uppdaterades
