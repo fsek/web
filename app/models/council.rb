@@ -6,7 +6,8 @@ class Council < ActiveRecord::Base
   has_one :vice_president, foreign_key: :president
   has_many :posts
   has_many :profiles, through: :posts
-  has_and_belongs_to_many :cafe_works
+  has_many :cafe_work_councils
+  has_many :cafe_works, through: :cafe_work_councils
 
   # Validation
   validates :title, :url, presence: true

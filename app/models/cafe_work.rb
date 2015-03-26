@@ -2,7 +2,8 @@
 class CafeWork < ActiveRecord::Base
   # Associations
   belongs_to :profile
-  has_and_belongs_to_many :councils
+  has_many :councils, through: :cafe_work_councils
+  has_many :cafe_work_councils
 
   # Validations
   validates :work_day, :pass, :lp, :lv, presence: true
@@ -48,13 +49,13 @@ class CafeWork < ActiveRecord::Base
   # /d.wessman
   def status_text(user)
     case status_view(user)
-    when 0
+    when :sign_up
       return 'Fyll i uppgifter och tryck på Spara för att skriva upp dig och arbeta på passet.'
-    when 1
+    when :edit
       return 'Du är uppskriven för att arbeta på passet.'
-    when 2
+    when :assigned
       return 'Passet är redan bokat.'
-    when 3
+    when :authorize
       return 'Passet är bokat, fyll i koden som gavs vid anmälan för att redigera.'
     end
   end
@@ -67,11 +68,11 @@ class CafeWork < ActiveRecord::Base
   # /d.wessman
   def status_view(user)
     if access_code.present?
-      return 3
+      return :authorize
     elsif has_worker?
-      return (owner?(user) ? 1 : 2)
+      return (owner?(user) ? :edit : :assigned)
     end
-    0
+    :sign_up
   end
 
   def add_or_update(worker_params, user)

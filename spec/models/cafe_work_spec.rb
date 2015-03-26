@@ -35,7 +35,8 @@ RSpec.describe CafeWork, type: :model do
   describe "ActiveRecord associations" do
     # Associations
     it { should belong_to(:profile) }
-    it { should have_and_belong_to_many(:councils) }
+    it { should have_many(:cafe_work_councils) }
+    it { should have_many(:councils) }
   end
 
   describe "public instance methods" do
@@ -127,17 +128,17 @@ RSpec.describe CafeWork, type: :model do
       end
 
       context 'status_view' do
-        it 'should return 0 for cwork' do
-          cwork_no_worker.status_view(nil).should eq(0)
+        it 'should return :sign_up for cwork' do
+          cwork_no_worker.status_view(nil).should eq(:sign_up)
         end
-        it 'should return 1 for cwork_profile' do
-          cwork_profile.status_view(user).should eq(1)
+        it 'should return :edit for cwork_profile' do
+          cwork_profile.status_view(user).should eq(:edit)
         end
-        it 'should return 1 for cwork_profile' do
-          cwork_access.status_view(user).should eq(3)
+        it 'should return :authorize for cwork_profile' do
+          cwork_access.status_view(user).should eq(:authorize)
         end
-        it 'should return 1 for cwork_profile' do
-          cwork_profile.status_view(not_owner).should eq(2)
+        it 'should return :assigned for cwork_profile' do
+          cwork_profile.status_view(not_owner).should eq(:assigned)
         end
       end
     end
