@@ -11,7 +11,17 @@ class Ability
     can :read, Council
     can :read, Election
 
-    # Note: Root access is given by having a post with permissions :manage, :all
+    # Abilities all signed in users get
+    if user.id
+      can :read, Post
+      can :read, Document
+      can :read, :old_gallery
+      can :read, Event
+      # We really need to move calendar to its own controller
+      can :calendar, Event
+    end
+
+    # Note: Root access is given dynamically by having a post with permissions :manage, :all
 
     # Add abilities gained from posts
     user.profile.posts.each do |post|
