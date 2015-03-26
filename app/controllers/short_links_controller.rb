@@ -1,6 +1,6 @@
 class ShortLinksController < ApplicationController
-  before_filter :verify_admin, :except => [ :go, :check ]
-  
+  load_permissions_and_authorize_resource :except => [ :go, :check ]
+
   def go
     redirect_to ShortLink.lookup(params[:link]).target, :status => 301
   end

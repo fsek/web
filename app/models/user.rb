@@ -2,21 +2,20 @@
 require 'net/http'
 
 class User < ActiveRecord::Base 
-  include TheRole::User
-  
   has_one :profile 
+  belongs_to :role
+  has_many :posts, through: 'profiles'
 
-  after_create :create_profile_for_user
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   validates_uniqueness_of :username
   validate :is_f_member
-  
 
+  after_create :create_profile_for_user
 
   def create_profile_for_user
-    Profile.create(user: self)
+    Profile.create!(user: self)
   end
 
   def is_f_member
@@ -31,6 +30,17 @@ class User < ActiveRecord::Base
     }
 
     @f_member = res.body.include? "<img src=\"http://www.tlth.se/img/guilds/F.gif\"/>"
+  end
+
+  def is? role_name
+    profile.posts.each do |post|
+      return true if post.title == role_name
+    end
+    false
+  end
+
+  def admin?
+    is? :admin
   end
 
   # Used in testing

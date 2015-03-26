@@ -130,12 +130,6 @@ Fsek::Application.routes.draw do
   end
   post '' => 'albums#index', as: :index_albums
 
-  concern :the_role, TheRole::AdminRoutes.new
-
-  namespace :admin do
-    concerns :the_role
-  end
-
   resources :short_links, :except => [ :show, :update, :edit ] do
     collection do
       get 'go' => 'short_links#go'

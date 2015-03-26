@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171445) do
+ActiveRecord::Schema.define(version: 20410822171447) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",             limit: 255
@@ -306,6 +306,21 @@ ActiveRecord::Schema.define(version: 20410822171445) do
     t.integer  "council_id"
   end
 
+  create_table "permission_posts", force: :cascade do |t|
+    t.integer  "permission_id"
+    t.integer  "post_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "subject_class"
+    t.string   "action"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "photo_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "text",       limit: 255
@@ -392,26 +407,20 @@ ActiveRecord::Schema.define(version: 20410822171445) do
   add_index "rents", ["d_til"], name: "index_rents_on_d_til"
 
   create_table "roles", force: :cascade do |t|
-    t.string   "name",        limit: 255,   null: false
-    t.string   "title",       limit: 255,   null: false
-    t.text     "description", limit: 65535, null: false
-    t.text     "the_role",    limit: 65535, null: false
+    t.string   "name",        limit: 255, null: false
+    t.string   "title",       limit: 255, null: false
+    t.text     "description",             null: false
+    t.text     "the_role",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "short_links", force: :cascade do |t|
-    t.string "link",   limit: 255,   null: false
-    t.text   "target", limit: 65535, null: false
+    t.string "link",   limit: 255, null: false
+    t.text   "target",             null: false
   end
 
-  add_index "short_links", ["link"], name: "index_short_links_on_link", using: :btree
-
-  create_table "subcategories", force: :cascade do |t|
-    t.string   "text",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "short_links", ["link"], name: "index_short_links_on_link"
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               limit: 255,              null: false

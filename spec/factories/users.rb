@@ -3,15 +3,16 @@ FactoryGirl.define do
     username
     password '12345678'
     email
-    role
+    profile
     before(:create) { |user| user.as_f_member }
+    after(:create) { |user| create(:profile, user: user) }
   end
 
-  factory :admin, class: User do
-    username 'MrAdmin'
+  factory :admin, class: 'User' do
+    username
     password '12345678'
-    email 'admin@foobar.com'
-    association :role, factory: :admin_role
+    email
     before(:create) { |user| user.as_f_member }
+    after(:create) { |user| create(:profile, :with_admin_post, user: user) }
   end
 end

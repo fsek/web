@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Admin::ElectionsController < ApplicationController
-  before_action :login_required
-  before_action :authenticate
+  load_permissions_and_authorize_resource
+
   before_action :set_election, only: [:show,:edit,:update,:destroy,:candidates,:nominations]
 
   def new
@@ -59,7 +59,7 @@ class Admin::ElectionsController < ApplicationController
   end
   private
   def authenticate
-    flash[:error] = t('the_role.access_denied')
+    
     redirect_to(:back) unless (current_user) && (current_user.moderator?(:val))
   rescue ActionController::RedirectBackError
     redirect_to root_path
