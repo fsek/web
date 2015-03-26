@@ -99,25 +99,6 @@ class EventsController < ApplicationController
   end
 
   private
-  def authenticate
-<<<<<<< HEAD
-
-=======
-    flash[:error] = t('the_role.access_denied')
->>>>>>> origin/master
-    redirect_to(:back) unless current_user && current_user.moderator?(:event)
-
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
-  end
-<<<<<<< HEAD
-  def set_event
-    @event = Event.find_by_id(params[:id])
-  end
-  def event_params
-    params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image)
-  end
-=======
 
   def set_event
     @event = Event.find_by_id(params[:id])
@@ -127,7 +108,6 @@ class EventsController < ApplicationController
     params.require(:event).permit(:title, :author, :description, :location, :starts_at, :ends_at, :all_day, :category, :image)
   end
 
->>>>>>> origin/master
   def utskott
     @utskott = Council.all
   end
