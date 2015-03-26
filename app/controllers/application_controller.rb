@@ -39,6 +39,7 @@ class ApplicationController < ActionController::Base
 
   # load the permissions for the current user so that UI can be manipulated
   def load_permissions
+    return unless current_user
     @current_permissions = current_user.profile.posts.each do |post|
       post.permissions.map { |i| [i.subject_class, i.action] }
     end

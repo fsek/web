@@ -8,6 +8,8 @@ class Ability
 
     # Abilities that everyone get.
     can :read, News
+    can :read, Council
+    can :read, Election
 
     # Note: Root access is given by having a post with permissions :manage, :all
 

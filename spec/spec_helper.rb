@@ -37,6 +37,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: 'controller'
   config.extend ControllerMacros, type: 'controller'
   config.expect_with :rspec do |expectations|
+    # Uncomment when all tests uses should
     #expectations.syntax = :should
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
     expectations.syntax = [ :should, :expect ]
@@ -55,7 +56,7 @@ RSpec.configure do |config|
     config.default_formatter = 'doc'
   end
 
-  config.profile_examples = 10
+  #config.profile_examples = 10
 
   config.order = :random
 
@@ -70,15 +71,4 @@ def create *args
   FactoryGirl.create *args
 end
 
-def fake_sign_in user = User.new
-  if defined?(request) && request
-    request.env['warden'].stub :authenticate! => user
-  end
-  if defined?(controller) && controller
-    controller.stub(:current_user) { user }
-  end
-  if defined?(helper) && helper
-    helper.stub(:can?) { |*args| Ability.new(user).can?(*args) }
-  end
-end
 
