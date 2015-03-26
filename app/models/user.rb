@@ -33,7 +33,10 @@ class User < ActiveRecord::Base
   end
 
   def is? role_name
-    role.present? && role.name.to_s == role_name.to_s
+    profile.posts.each do |post|
+      return true if post.name == role_name
+    end
+    false
   end
 
   def admin?

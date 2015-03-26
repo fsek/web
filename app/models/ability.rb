@@ -3,14 +3,13 @@ class Ability
 
   def initialize(user)
     user ||= User.new
+    # This is soo hacky, hope we get rid of profiles soon
+    user.profile ||= Profile.new
 
     # Abilities that everyone get.
     can :read, News
 
-    # The mythical root access
-    if user.is? :admin
-      can :manage, :all
-    end
+    # Note: Root access is given by having a post with permissions :manage, :all
 
     # Add abilities gained from posts
     user.profile.posts.each do |post|

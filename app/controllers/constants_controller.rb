@@ -4,13 +4,11 @@ class ConstantsController < ApplicationController
   before_action :set_constant, only: [:show, :edit, :update, :destroy]
 
   # GET /constants
-  # GET /constants.json
   def index
     @constants = Constant.all
   end
 
   # GET /constants/1
-  # GET /constants/1.json
   def show
   end
 
@@ -24,43 +22,28 @@ class ConstantsController < ApplicationController
   end
 
   # POST /constants
-  # POST /constants.json
   def create
     @constant = Constant.new(constant_params)
-
-    respond_to do |format|
-      if @constant.save
-        format.html { redirect_to @constant, notice: 'Constant was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @constant }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @constant.errors, status: :unprocessable_entity }
-      end
+    if @constant.save
+      redirect_to @constant, notice: 'Constant was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   # PATCH/PUT /constants/1
-  # PATCH/PUT /constants/1.json
   def update
-    respond_to do |format|
-      if @constant.update(constant_params)
-        format.html { redirect_to @constant, notice: 'Constant was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @constant.errors, status: :unprocessable_entity }
-      end
+    if @constant.update(constant_params)
+      redirect_to @constant, notice: 'Constant was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
   # DELETE /constants/1
-  # DELETE /constants/1.json
   def destroy
     @constant.destroy
-    respond_to do |format|
-      format.html { redirect_to constants_url }
-      format.json { head :no_content }
-    end
+    redirect_to constants_url
   end
 
   private

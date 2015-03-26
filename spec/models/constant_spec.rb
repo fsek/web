@@ -1,16 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Constant, type: :model do
-  it 'fails validation with no name' do
-    c = Constant.new(value: 'foo')
-    c.valid?
-    expect(c.errors[:name]).to include('måste anges')
-  end
-  it 'fails validation with no value' do
-    c = Constant.new(name: 'foo')
-    c.valid?
-    expect(c.errors[:value]).to include('måste anges')
-  end
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:name) }
   it 'is valid with a name and a value' do
     c = Constant.new(name: 'foo', value: 'bar')
     expect(c).to be_valid
