@@ -12,11 +12,4 @@ class Council < ActiveRecord::Base
   def to_s
     self.title
   end
-  def to_param
-    if (self.url) 
-      self.url
-    else
-      self.id
-    end
-  end
 end
