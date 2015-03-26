@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   def is? role_name
     profile.posts.each do |post|
-      return true if post.name == role_name
+      return true if post.title == role_name
     end
     false
   end

@@ -2,22 +2,22 @@
 class CouncilsController < ApplicationController
   load_permissions_and_authorize_resource
   before_action :set_council, only: [:show, :edit, :update, :destroy]
+  before_action :set_councils
 
   # GET /councils
   # GET /councils.json
   def index
-    @councils = Council.all
   end
 
   # GET /councils/1
   # GET /councils/1.json
   def show
-    if (@page)
+    if @page
       @mainelements = @page.page_elements.where(visible: true,sidebar: false)
       @sidebarelements = @page.page_elements.where(visible:true,sidebar: true)
-    end
-    if(@mainelemnents) && (@mainelements.count > 1)
-      @mainelements = @mainelements.sort_by{ |x| x[:displayIndex]}
+      if @mainelements.count > 1
+        @mainelements = @mainelements.sort_by{ |x| x[:displayIndex]}
+      end
     end
     @poster = @council.posts
   end
@@ -80,18 +80,12 @@ class CouncilsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_council
-      @council = Council.find_by_url(params[:id])
-      if(@council == nil)
-        @council = Council.find_by_id(params[:id])
-        if(@council == nil)
-          flash[:notice] = 'Hittade inget utskott med ID/URL ' + params[:id]+'.'
-          redirect_to(:utskott)
-        else
-          flash[:notice] = 'Utskotten hittas med dess URL istället för ett ID'
-          redirect_to(council_path(@council.url))
-        end
-      end
+      @council = Council.find_by_id(params[:id])
       @page = @council.page
+    end
+
+    def set_councils
+      @councils = Council.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -27,7 +27,7 @@
 			  g.column name: "Väljs av:", attribute: "elected_by",filter: false
 			    
 			  g.column name: "HT/VT?",attribute: "elected_at",filter: false		  
-			  if @edit
+			  if can? :edit, @post
 				  g.column do |post|
 				    link_to('Redigera', edit_council_post_path(post.council,post))
 				  end
@@ -41,6 +41,7 @@
                 	<h2><%=@post.title%></h2>
                 	<div class="col-md-12">	                    
 	                    <% if can? :edit, @post %>					        
+                  <%= link_to 'Ändra posten', edit_council_post_path(@post.council, @post) %>
 					         <% if @post.profiles.size > 0 %>
 					         <p>Ta bort någon från posten.</p>
 				        	<%= form_tag remove_profile_council_post_path(@post.council,@post), :method => :patch do%>

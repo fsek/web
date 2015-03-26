@@ -123,7 +123,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
   def set_council    
-    @council = Council.find_by_url(params[:council_id])        
+    @council = Council.find_by_id(params[:council_id])
   end
 end
 
