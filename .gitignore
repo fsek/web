@@ -22,10 +22,11 @@ config/secrets.yml
 /.bundle
 /vendor/bundle
 .idea/
-/bin
 
 # these should all be checked in to normalise the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
+.ruby-version
+.ruby-gemset

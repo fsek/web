@@ -22,9 +22,9 @@ CodeClimate::TestReporter.start
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/all'
 require 'rspec/rails'
-# Add this to load Capybara integration:
 require 'capybara/rspec'
-require 'capybara/rails'
+
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 # I had to include this, /d.wessman 2015-03-20
 require 'database_cleaner'
@@ -39,6 +39,7 @@ RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     #expectations.syntax = :should
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+    expectations.syntax = [ :should, :expect ]
   end
 
   config.mock_with :rspec do |mocks|
@@ -60,3 +61,24 @@ RSpec.configure do |config|
 
   Kernel.srand config.seed
 end
+
+def build *args
+  FactoryGirl.build *args
+end
+
+def create *args
+  FactoryGirl.create *args
+end
+
+def fake_sign_in user = User.new
+  if defined?(request) && request
+    request.env['warden'].stub :authenticate! => user
+  end
+  if defined?(controller) && controller
+    controller.stub(:current_user) { user }
+  end
+  if defined?(helper) && helper
+    helper.stub(:can?) { |*args| Ability.new(user).can?(*args) }
+  end
+end
+

@@ -2,16 +2,16 @@
 class EventsController < ApplicationController
   load_permissions_and_authorize_resource
 
-  before_action :utskott, only: [:new,:edit]
-  before_action :set_event, only: [:show,:edit,:update,:destroy]
+  before_action :utskott, only: [:new, :edit]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all    
+    @events = Event.all
     respond_to do |format|
-      format.html { redirect_to :kalender}
-      format.json { render :json => @events }
+      format.html { redirect_to :kalender }
+      format.json { render json: @events }
     end
   end
 
@@ -24,20 +24,23 @@ class EventsController < ApplicationController
       format.json { render :json => @event }
     end
   end
+
   def calendar
 
   end
+
   def export
-    @events = Event.all        
-    @calendar=Icalendar::Calendar.new 
+    @events = Event.all
+    @calendar=Icalendar::Calendar.new
     for event in @events
-      @calendar.add_event(event.ical(polymorphic_url(event, :routing_type => :url))) 
+      @calendar.add_event(event.ical)
     end
-    @calendar.publish      
+    @calendar.publish
     respond_to do |format|
       format.ics
     end
   end
+
   # GET /events/new
   # GET /events/new.json
   def new
@@ -71,7 +74,7 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find_by_id(params[:id])    
+    @event = Event.find_by_id(params[:id])
     respond_to do |format|
       if @event.update_attributes(event_params)
         format.html { redirect_to @event, :notice => 'Eventet uppdaterades!' }
@@ -94,20 +97,37 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   private
   def authenticate
+<<<<<<< HEAD
 
+=======
+    flash[:error] = t('the_role.access_denied')
+>>>>>>> origin/master
     redirect_to(:back) unless current_user && current_user.moderator?(:event)
 
   rescue ActionController::RedirectBackError
     redirect_to root_path
   end
+<<<<<<< HEAD
   def set_event
     @event = Event.find_by_id(params[:id])
   end
   def event_params
     params.require(:event).permit(:title,:author,:description,:location,:starts_at,:ends_at,:all_day,:category,:image)
   end
+=======
+
+  def set_event
+    @event = Event.find_by_id(params[:id])
+  end
+
+  def event_params
+    params.require(:event).permit(:title, :author, :description, :location, :starts_at, :ends_at, :all_day, :category, :image)
+  end
+
+>>>>>>> origin/master
   def utskott
     @utskott = Council.all
   end

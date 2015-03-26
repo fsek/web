@@ -1,80 +1,80 @@
 <ul class="loginbar pull-right">
   <%if user_signed_in? && can?(:manage, :all) %>
     <li><%=link_to image_tag('http://samson.fsektionen.se/projects/web/stages/production.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d'),
-                   'http://samson.fsektionen.se/projects/web/stages/production' %></li>
-    <li><%=link_to image_tag('http://samson.fsektionen.se/projects/web/stages/dev.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d'),
-                   'http://samson.fsektionen.se/projects/web/stages/dev' %></li>
-    <li class="devider"></li>
-  <% end%>
-  <% if user_signed_in? %>
-    <li><%= link_to fa_icon("calendar"),:kalender %></li>          	
-    <% if current_user.role_id != nil && Role.find_by_id(current_user.role_id) != Role.find_by_id(2)%>            	 
-      <li class="devider"></li>            
-      <li class="dropdown">              
+      'http://samson.fsektionen.se/projects/web/stages/production' %></li>
+      <li><%=link_to image_tag('http://samson.fsektionen.se/projects/web/stages/dev.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d'),
+        'http://samson.fsektionen.se/projects/web/stages/dev' %></li>
+        <li class="devider"></li>
+      <% end%>
+        <% if user_signed_in? %>
+          <li><%= link_to fa_icon("calendar"),:kalender %></li>          	
+        <% if current_user.role_id != nil && Role.find_by_id(current_user.role_id) != Role.find_by_id(2)%>            	 
+          <li class="devider"></li>            
+        <li class="dropdown">              
         <%= link_to current_user.role.title, "#", class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
         <ul class="dropdown-menu">
           <% if can? :modify, User %>
             <li class="dropdown-submenu">
-              <a href="">Admin</a>
-              <ul class="dropdown-menu pull-left"> 
-                <% if false # yolo %>
-                  <li><%= link_to "Roller", :admin_roles %></li>		              	  
-                <% end %>
-                <li><%= link_to "Hantera användare", :users%></li>
-                <li><%= link_to "Menyer", :menus%></li>
-                <li><%= link_to "Konstanter", :constants%></li>
-              </ul>
-            </li>
+          <a href="">Admin</a>
+          <ul class="dropdown-menu pull-left"> 
+            <% if false # yolo %>
+              <li><%= link_to "Roller", :admin_roles %></li>		              	  
           <% end %>
+            <li><%= link_to "Hantera användare", :users%></li>
+            <li><%= link_to "Menyer", :menus%></li>
+            <li><%= link_to "Konstanter", :constants%></li>
+          </ul>
+          </li>
+        <% end %>
           <% if can? :modify, Event %>
             <li class="dropdown-submenu">
-              <a href="">Event</a>
-              <ul class="dropdown-menu pull-left"> 
-                <li><%= link_to "Snabbvy av alla event", :events %></li>
-                <li><%= link_to "Nytt event", :new_event%></li>
-              </ul>
-            </li>
-          <% end %>
+          <a href="">Event</a>
+          <ul class="dropdown-menu pull-left"> 
+            <li><%= link_to "Snabbvy av alla event", :events %></li>
+            <li><%= link_to "Nytt event", :new_event%></li>
+          </ul>
+          </li>
+        <% end %>
           <% if can? :modify, News %>
             <li class="dropdown-submenu">
-              <a href="">Nyheter</a>
-              <ul class="dropdown-menu pull-left">		              	  
-                <li><%= link_to "Ny nyhet", :new_news%></li>
-              </ul>
-            </li>
-          <% end %>               		
+          <a href="">Nyheter</a>
+          <ul class="dropdown-menu pull-left">		              	  
+            <li><%= link_to "Ny nyhet", :new_news%></li>
+          </ul>
+          </li>
+        <% end %>               		
           <% if can? :modify, Council %>
             <li class="dropdown-submenu">
-              <a href="">Utskott</a>
-              <ul class="dropdown-menu pull-left">
-                <%for @utskott in Council.all%>             			  		              	  
-                  <% if can? :manage, @utskott %>
-                    <li><%= link_to @utskott.title,edit_council_path(@utskott) %></li>
-                  <%end%>
-                <%end%>
-              </ul>
-            </li>
-          <% end %>
+          <a href="">Utskott</a>
+          <ul class="dropdown-menu pull-left">
+            <%for @utskott in Council.all%>             			  		              	  
+              <% if can? :manage, @utskott %>
+              <li><%= link_to @utskott.title,edit_council_path(@utskott) %></li>
+          <%end%>
+          <%end%>
+          </ul>
+          </li>
+        <% end %>
         </ul>               
-      </li>        	
-    <% end %>
-    <li class="devider"></li>
-    <li class="dropdown">              
-      <%= link_to fa_icon("user") + (current_user.profile.print), current_user.profile, class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
-      <ul class="dropdown-menu pull-right">
-        <li><%= link_to "Profil", current_user.profile %></li>                
-        <li><%= link_to "Kontoinställningar", :edit_user_registration%></li>                
-        <li><%= link_to "Logga ut", :destroy_user_session, method: :delete %></li>                
-      </ul>               
-    </li>
-  <% else %>
-    <li>
-      <%= link_to fa_icon("sign-in") + ' Logga in', new_user_session_path %>
-    </li>
-    <li class="devider"></li>
-    <li>
-      <%= link_to fa_icon("plus") + ' Ny användare', new_user_registration_path %>
-    </li>
-  <% end %>
-</ul>
+        </li>        	
+      <% end %>
+        <li class="devider"></li>
+        <li class="dropdown">              
+        <%= link_to fa_icon("user") + (current_user.profile.print), current_user.profile, class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0", :'close-others' => "false"}%>
+        <ul class="dropdown-menu pull-right">
+          <li><%= link_to "Profil", current_user.profile %></li>                
+          <li><%= link_to "Kontoinställningar", :edit_user_registration%></li>                
+          <li><%= link_to "Logga ut", :destroy_user_session, method: :delete %></li>                
+        </ul>               
+        </li>
+      <% else %>
+          <li>
+        <%= link_to fa_icon("sign-in") + ' Logga in', new_user_session_path %>
+        </li>
+        <li class="devider"></li>
+        <li>
+        <%= link_to fa_icon("plus") + ' Ny användare', new_user_registration_path %>
+        </li>
+      <% end %>
+      </ul>
 

@@ -1,17 +1,17 @@
-<div id="<%=dom_id(post)%>" class="collapsed">
+<div id="<%= dom_id(post) %>" class="collapsed">
   <div class="funny-boxes funny-boxes-left-orange left-text-align">
-    <%=link_to("Dölj",%(##{dom_id(post)}),class: "btn btn-u pull-right margin-left-20", data: {toggle: "collapse"})%>
+    <%= link_to("Dölj", collapse_posts_path, remote: true, class: "btn btn-u pull-right margin-left-20") %>
     <% if @election && @election.can_candidate?(post) %>
-        <%=link_to("Kandidera",new_election_candidate_path(post: post.id.to_s),class: "btn btn-u pull-right margin-left-20")%>
-        <%=link_to("Nominera",new_election_nominations_path(post: post.id.to_s),class: "btn btn-u pull-right")%>
-    <%end%>
-    <h2><%=post.title%></h2>
-    <%if post.description%><p><%=simple_format(post.description)%></p><%end%>
+        <%= link_to("Kandidera", new_election_candidate_path(post: post.id.to_s), class: "btn btn-u pull-right margin-left-20") %>
+        <%= link_to("Nominera", new_election_nominations_path(post: post.id.to_s), class: "btn btn-u pull-right") %>
+    <% end %>
+    <h2><%= post.title %></h2>
+    <% if post.description %><p><%= simple_format(post.description) %></p>
+    <% end %>
     <ul class="list-unstyled">
       <%if (post.limit) || (post.styrelse)%><li><i class="fa fa-briefcase"></i><%if post.limit%>Antal: <%=post.printLimit%> <%end%><%if post.styrelse%>, styrelsepost<%end%></li><%end%>
       <%if post.council%><li><i class="fa fa-users"></i>Utskott: <%=link_to(post.council.title,post.council)%></li><%end%>
       <%if post.elected_by%><li><i class="fa fa-cog"></i>Väljs av: <%=post.elected_by%></li><%end%>
-      <%if can? :manage, Post %><li><%=link_to("Redigera",edit_council_post_path(post.council,post))%></li> <%end%>
     </ul>
   </div>
 </div>

@@ -1,11 +1,11 @@
 # encoding:UTF-8
 class StaticPagesController < ApplicationController
-  def faq
+  def company_offer
   end
-  def libo  
-  end 
-  def kurslankar    
+
+  def company_about
   end
+
   def index
     @news = News.order('created_at desc LIMIT 5')
     if current_user.nil?
@@ -13,10 +13,6 @@ class StaticPagesController < ApplicationController
     else
       @notices = Notice.public_published
     end
-  end
-  
-  private 
-  def set_page
   end
 end
 

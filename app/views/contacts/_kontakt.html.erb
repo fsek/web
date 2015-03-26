@@ -1,6 +1,6 @@
 <%@kontakt = Contact.find_by(name: name)%>
-<%if @kontakt%>
-	<%= link_to fa_icon('envelope')+ " "+ @kontakt.name,contact_path(@kontakt) %>
+<% if @kontakt %>
+  <%= link_to fa_icon('envelope')+ " "+ @kontakt.name,contact_path(@kontakt) %>
 <% else %>
-<%=name%>
+  <%=name%>
 <% end %>

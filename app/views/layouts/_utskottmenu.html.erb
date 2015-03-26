@@ -1,4 +1,4 @@
-<%@utskott = Council.all%>
+<%utskott = Council.all%>
 <ul class="list-inline list-unstyled black-link" style="margin-top: 10px; text-align: left">	
 	<% @utskott.each do |u|%>
 	<li><%= link_to u.title,council_path(u) %></li>
