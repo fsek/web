@@ -44,8 +44,6 @@
 // We should eventually import all files like this
 @import "colors";
 @import "cafe_works";
-// import bootstrap-sprockets before bootstrap if using bootstrap >= 3.2
-@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-datetimepicker";
 

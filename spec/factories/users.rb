@@ -4,7 +4,6 @@ FactoryGirl.define do
     username
     email
     password '12345678'
-    role
     before(:create) { |user| user.as_f_member }
 
     # Overrides the :create_profile_for_user method
@@ -16,19 +15,19 @@ FactoryGirl.define do
     end
 
     # Can be called to create a user with the :create_profile_for_user method
-    factory :user_with_create_profile do
+    trait :user_with_create_profile do
       after(:create) { |user| user.send(:create_profile_for_user) }
     end
 
     # Needed because users cannot be created without f_validate being okay.
     to_create { |instance| instance.save!(validate: false) }
+  end
 
-    factory :admin, class: User do
-      username 'MrAdmin'
-      password '12345678'
-      email 'admin@foobar.com'
-      association :role, factory: :admin_role
-      before(:create) { |user| user.as_f_member }
-    end
+  factory :admin, class: 'User' do
+    username
+    password '12345678'
+    email
+    before(:create) { |user| user.as_f_member }
+    after(:create) { |user| create(:profile, :with_admin_post, user: user) }
   end
 end

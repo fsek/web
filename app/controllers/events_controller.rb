@@ -1,8 +1,7 @@
 # encoding:UTF-8
 class EventsController < ApplicationController
+  load_permissions_and_authorize_resource
 
-  before_filter :login_required, only: [:calendar, :show]
-  before_filter :authenticate, only: [:new, :edit, :create, :update, :destroy]
   before_action :utskott, only: [:new, :edit]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -100,13 +99,6 @@ class EventsController < ApplicationController
   end
 
   private
-  def authenticate
-    flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless current_user && current_user.moderator?(:event)
-
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
-  end
 
   def set_event
     @event = Event.find_by_id(params[:id])

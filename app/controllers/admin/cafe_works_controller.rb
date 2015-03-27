@@ -1,6 +1,6 @@
 # encoding:UTF-8
 class Admin::CafeWorksController < ApplicationController
-  before_action :authenticate
+  load_permissions_and_authorize_resource
   before_action :set_cafe_work, only: [:edit, :show, :update, :destroy, :remove_worker]
   before_action :new_cafe_work, only: [:new, :setup, :setup_create, :create]
   before_action :set_lv, only: [:setup_create]
@@ -65,12 +65,6 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   private
-
-  def authenticate
-    if current_user.nil? || !current_user.moderator?(:cafejobb)
-      redirect_to(:hilbert, alert: t('the_role.access_denied'))
-    end
-  end
 
   def c_w_params
     params.require(:cafe_work).permit(:work_day, :pass, :profile_id,

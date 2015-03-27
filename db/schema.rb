@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171446) do
+ActiveRecord::Schema.define(version: 20410822171448) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -293,6 +293,21 @@ ActiveRecord::Schema.define(version: 20410822171446) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "council_id", limit: 4
+  end
+
+  create_table "permission_posts", force: :cascade do |t|
+    t.integer  "permission_id", limit: 4
+    t.integer  "post_id",       limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "subject_class", limit: 255
+    t.string   "action",        limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "photo_categories", force: :cascade do |t|

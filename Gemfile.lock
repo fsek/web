@@ -37,22 +37,19 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.0)
-    autoprefixer-rails (5.1.7.1)
-      execjs
-      json
     bcrypt (3.1.10)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.3.4.1)
-      autoprefixer-rails (>= 5.0.0.1)
-      sass (>= 3.2.19)
     bootstrap3-datetimepicker-rails (4.7.14)
       momentjs-rails (>= 2.8.1)
     builder (3.2.2)
-    byebug (3.5.1)
-      columnize (~> 0.8)
-      debugger-linecache (~> 1.2)
-      slop (~> 3.6)
+    byebug (4.0.3)
+      columnize (= 0.9.0)
+    cancancan (1.10.1)
     capistrano (3.1.0)
       i18n
       rake (>= 10.0.0)
@@ -89,10 +86,9 @@ GEM
     coffee-script-source (1.8.0)
     colorize (0.7.5)
     columnize (0.9.0)
-    daemons (1.2.1)
+    daemons (1.2.2)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
-    debugger-linecache (1.2.0)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -190,8 +186,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-byebug (2.0.0)
-      byebug (~> 3.4)
+    pry-byebug (3.1.0)
+      byebug (~> 4.0)
       pry (~> 0.10)
     pry-rails (0.3.3)
       pry (>= 0.9.10)
@@ -219,9 +215,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
-    rails-i18n (4.0.4)
-      i18n (~> 0.6)
-      railties (~> 4.0)
     railties (4.2.1)
       actionpack (= 4.2.1)
       activesupport (= 4.2.1)
@@ -262,16 +255,13 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.9.0)
     simplecov-html (0.9.0)
-    sinatra (1.4.5)
+    sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
-      tilt (~> 1.3, >= 1.3.4)
+      tilt (>= 1.3, < 3)
     skinny (0.2.3)
       eventmachine (~> 1.0.0)
       thin (~> 1.5.0)
-    slim (3.0.3)
-      temple (~> 0.7.3)
-      tilt (>= 1.3.3, < 2.1)
     slop (3.6.0)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -287,21 +277,6 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    temple (0.7.5)
-    the_notification (0.5.1)
-      slim
-    the_role (3.0.2)
-      the_role_api (~> 3.0.3)
-      the_role_management_panel (~> 3.0.2)
-    the_role_api (3.0.3)
-      multi_json
-      rails (>= 3.2, < 5)
-      the_string_to_slug (~> 1.2)
-    the_role_management_panel (3.0.2)
-      bootstrap-sass (~> 3.3, >= 3.3.1)
-      coffee-rails
-    the_string_to_slug (1.2)
-      rails-i18n (~> 4.0.0.pre)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -340,7 +315,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
   bootstrap3-datetimepicker-rails (~> 4.7.14)
+  cancancan
   capistrano (~> 3.1.0)
   capistrano-bundler (~> 1.1.2)
   capistrano-rails (~> 1.1.1)
@@ -367,7 +344,7 @@ DEPENDENCIES
   paperclip
   poltergeist
   prawn-rails
-  pry-byebug (= 2.0.0)
+  pry-byebug
   pry-rails
   rails (~> 4.2.0)
   responders (~> 2.0)
@@ -375,8 +352,6 @@ DEPENDENCIES
   sass-rails
   shoulda-matchers
   sqlite3
-  the_notification
-  the_role (~> 3.0.0)
   therubyracer
   turbolinks
   uglifier

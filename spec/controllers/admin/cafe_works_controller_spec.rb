@@ -12,12 +12,10 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   # /d.wessman
   before(:each) do
     sign_in user
-    allow(controller).to receive(:current_user) { user }
-    allow(user).to receive(:moderator?) { true }
-    allow(user).to receive(:admin?) { true }
   end
 
   describe 'GET #show' do
+    allow_user_to :manage, CafeWork
     it 'assigns the requested cafe_work as @cwork' do
       get :show, {id: cwork.to_param}
       assigns(:cwork).should eq(cwork)
@@ -29,6 +27,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'GET #new' do
+    allow_user_to :manage, CafeWork
     it :succeeds do
       get :new
 
@@ -43,6 +42,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'GET #edit' do
+    allow_user_to :manage, CafeWork
     it 'assigns the requested cafe_work as @cwork' do
       get :edit, {id: cwork.to_param}
 
@@ -56,6 +56,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'POST #create' do
+    allow_user_to :manage, CafeWork
     it 'creates a new cafe work' do
       lambda { post :create, cafe_work: attributes_for(:cafe_work) }.should change(CafeWork, :count).by(1)
 
@@ -64,6 +65,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'PATCH #update' do
+    allow_user_to :manage, CafeWork
     context 'with valid params' do
       let(:attr) { attributes_for(:cafe_work, :tester) }
       it 'updates the requested cafe work' do
@@ -100,6 +102,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
 
   describe 'DELETE #destroy' do
     before { cwork }
+    allow_user_to :manage, CafeWork
     it 'destroys the requested cwork' do
       lambda { delete :destroy, id: cwork.to_param, format: :html }.should change(CafeWork, :count).by(-1)
     end
@@ -117,6 +120,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'PATCH #remove_worker' do
+    allow_user_to :manage, CafeWork
     it 'remove worker with profile' do
       xhr :patch, :remove_worker, {id: cwork_profile.to_param}
       cwork_profile.reload
@@ -126,6 +130,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'GET #setup' do
+    allow_user_to :manage, CafeWork
     it 'assigns @cwork as new record' do
       get :setup
       (assigns(:cwork).new_record?).should be_truthy
@@ -133,6 +138,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'POST #setup_create' do
+    allow_user_to :manage, CafeWork
     # Should use a more precise method
     it 'preview post' do
       post :setup_create, {commit: 'Förhandsgranska', cafe_work: attributes_for(:cafe_work), lv_first: 1, lv_last: 1}

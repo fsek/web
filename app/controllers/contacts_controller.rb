@@ -3,24 +3,18 @@ class ContactsController < ApplicationController
   before_filter :authenticate_edit, only: [:new, :edit, :update, :destroy]
   before_action :set_contact, only: [:show, :edit, :update, :destroy, :mail]
 
-  # GET /councils
-  # GET /councils.json
   def index
     @contacts = Contact.all
   end
 
-  # GET /councils/1
-  # GET /councils/1.json
   def show
     @sent = false
   end
 
-  # GET /councils/new
   def new
     @contact = Contact.new
   end
 
-  # GET /councils/1/edit
   def edit
   end
 
@@ -38,8 +32,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  # POST /councils
-  # POST /councils.json
   def create
     @contact = Contact.new(contact_params)
     respond_to do |format|
@@ -53,8 +45,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /councils/1
-  # PATCH/PUT /councils/1.json
   def update
     respond_to do |format|
       if @contact.update(contact_params)
@@ -67,8 +57,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  # DELETE /councils/1
-  # DELETE /councils/1.json
   def destroy
     @contact.destroy
     respond_to do |format|
@@ -84,14 +72,6 @@ class ContactsController < ApplicationController
     if (@contact == nil)
       redirect_to(contacts_path, notice: 'Ingen kontakt hittades.')
     end
-  end
-
-  def authenticate_edit
-    flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless current_user.moderator?(:kontakt)
-
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

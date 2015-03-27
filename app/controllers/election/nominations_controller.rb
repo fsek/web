@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Election::NominationsController < ApplicationController
-  before_action :login_required
+  load_permissions_and_authorize_resource
   before_action :set_election
 
   def new

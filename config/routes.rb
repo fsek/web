@@ -1,6 +1,5 @@
 Fsek::Application.routes.draw do
 
-
   resources :constants
 
   post "githook" => "githook#index"
@@ -14,10 +13,6 @@ Fsek::Application.routes.draw do
   get 'om' => 'static_pages#om', as: :om
   get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about
   get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
-
-
-
-
 
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
@@ -153,9 +148,7 @@ Fsek::Application.routes.draw do
   end
   post '' => 'albums#index', as: :index_albums
 
-  TheRoleManagementPanel::Routes.mixin(self)
-
-  resources :short_links, :except => [:show, :update, :edit] do
+  resources :short_links, except: [ :show, :update, :edit ] do
     collection do
       get 'go' => 'short_links#go'
       get 'check' => 'short_links#check'

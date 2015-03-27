@@ -1,5 +1,6 @@
 # encoding:UTF-8
 class CafeWorksController < ApplicationController
+  #load_permissions_and_authorize_resource
   before_action :set_cafe_work, except: [:main, :nyckelpiga]
   before_action :councils, except: [:main, :nyckelpiga]
   before_action :nyckelpiga_auth, only: :nyckelpiga

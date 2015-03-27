@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Election::CandidatesController < ApplicationController
-  before_action :login_required
+  load_permissions_and_authorize_resource
   before_action :set_election
   before_action :set_candidate, only: [:show, :update, :destroy]
   respond_to :html

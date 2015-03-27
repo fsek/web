@@ -1,22 +1,22 @@
 # encoding:UTF-8
 class ApplicationController < ActionController::Base
-  include TheRole::Controller
   protect_from_forgery
 
   before_action :configure_permitted_devise_parameters, if: :devise_controller?
   before_action :set_locale
-  after_action :menues
 
-  def access_denied
-    flash[:error] = t('the_role.access_denied')
-    redirect_to(:back)
+  rescue_from CanCan::AccessDenied do |ex|
+    flash[:error] = ex.message
+    render text: '', layout: true, status: :forbidden
   end
 
-  rescue_from ActionController::RedirectBackError do
-    redirect_to root_path
+  rescue_from ActiveRecord::RecordInvalid do |ex|
+    flash[:error] =
+        "Fel i formulär:  #{ex.record.errors.full_messages.join '; '}"
+    render referring_action, status: :unprocessable_entity
   end
 
-  rescue_from ActiveRecord::RecordNotFound do
+  rescue_from ActiveRecord::RecordNotFound do |ex|
     # translate record not found -> HTTP 404
     fail ActionController::RoutingError.new 'not found'
   end
@@ -33,6 +33,33 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) do |u|
       u.permit(:password, :password_confirmation, :current_password)
     end
+  end
+
+  def self.permission
+    name.gsub('Controller', '').singularize.split('::').last.constantize.name rescue nil
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_user)
+  end
+
+  # load the permissions for the current user so that UI can be manipulated
+  def load_permissions
+    return unless current_user
+    @current_permissions = current_user.profile.posts.each do |post|
+      post.permissions.map { |i| [i.subject_class, i.action] }
+    end
+  end
+
+  # Enables authentication and
+  def self.load_permissions_and_authorize_resource(*args)
+    load_and_authorize_resource(*args)
+    before_filter(:load_permissions, *args)
+  end
+
+  def self.skip_authorization(*args)
+    skip_authorization_check(*args)
+    skip_before_filter(:load_permissions, *args)
   end
 
   def set_locale
@@ -55,15 +82,7 @@ class ApplicationController < ActionController::Base
     redirect_to(:back) if params[:locale]
   end
 
-  def menues
-    menu = Menu.where(visible: true)
-    @menu_sektionen = menu.where(location: 'Sektionen')
-    @menu_medlemmar = menu.where(location: 'För medlemmar')
-    @menu_foretag = menu.where(location: 'För företag')
-    @menu_kontakt = menu.where(location: 'Kontakt')
-  end
-
-  def verify_admin
-    access_denied unless (current_user) && (current_user.admin?)
+  def referring_action
+    Rails.application.routes.recognize_path(request.referer)[:action]
   end
 end

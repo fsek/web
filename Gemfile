@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
 
+gem 'cancancan'
+
 # Capistrano stuff
 gem 'capistrano', '~> 3.1.0'
 gem 'capistrano-bundler', '~> 1.1.2'
@@ -16,6 +18,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem 'fancybox2-rails'
 gem 'font-awesome-rails'
 gem 'fullcalendar-rails'
+gem 'haml'
 gem 'icalendar'
 gem 'jbuilder'
 gem 'jquery-rails'
@@ -28,13 +31,6 @@ gem 'prawn-rails'
 gem 'responders', '~> 2.0'
 gem 'sass-rails'
 gem 'sqlite3'
-
-gem 'the_role', '~> 3.0.0'
-# Testing to add this /d.wessman 2015-03-24
-# Need to keep this until the_role is properly removed.
-gem 'the_notification'
-gem 'haml'
-
 gem 'turbolinks'
 gem 'uglifier'
 gem 'wice_grid'
@@ -48,10 +44,11 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'mailcatcher'
   gem 'poltergeist'
-  gem 'pry-byebug', '2.0.0'
-  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'web-console', '~> 2.0'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'better_errors'
 end
 
 group :test do

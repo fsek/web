@@ -1,16 +1,15 @@
 module ControllerMacros
-  def login_admin
-    before(:each) do
-      @request.env['devise.mapping'] = Devise.mappings[:admin]
-      sign_in FactoryGirl.create(:admin)
+  RSpec.configure do |config|
+    config.before :each, type: :controller do
+      @ability = Object.new
+      @ability.extend(CanCan::Ability)
+      allow(controller).to receive(:current_ability).and_return(@ability)
+      allow(controller).to receive(:load_permissions).and_return(nil)
     end
   end
-
-  def login_user
+  def allow_user_to *args
     before(:each) do
-      @request.env['devise.mapping'] = Devise.mappings[:user]
-      user = FactoryGirl.create(:user)
-      sign_in user
+      @ability.can(*args)
     end
   end
 end

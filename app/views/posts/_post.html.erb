@@ -9,22 +9,9 @@
     <% if post.description %><p><%= simple_format(post.description) %></p>
     <% end %>
     <ul class="list-unstyled">
-      <% if (post.limit) || (post.styrelse) %>
-          <li><i class="fa fa-briefcase"></i>
-            <% if post.limit %>Antal: <%= post.printLimit %>
-            <% end %>
-            <% if post.styrelse %>, styrelsepost
-            <% end %></li>
-      <% end %>
-      <% if post.council %>
-          <li><i class="fa fa-users"></i>Utskott: <%= link_to(post.council.title, post.council) %></li>
-      <% end %>
-      <% if post.elected_by %>
-          <li><i class="fa fa-cog"></i>Väljs av: <%= post.elected_by %></li>
-      <% end %>
-      <% if (current_user) && (current_user.moderator?(:poster)) %>
-          <li><%= link_to("Redigera", edit_council_post_path(post.council, post)) %></li>
-      <% end %>
+      <%if (post.limit) || (post.styrelse)%><li><i class="fa fa-briefcase"></i><%if post.limit%>Antal: <%=post.printLimit%> <%end%><%if post.styrelse%>, styrelsepost<%end%></li><%end%>
+      <%if post.council%><li><i class="fa fa-users"></i>Utskott: <%=link_to(post.council.title,post.council)%></li><%end%>
+      <%if post.elected_by%><li><i class="fa fa-cog"></i>Väljs av: <%=post.elected_by%></li><%end%>
     </ul>
   </div>
 </div>
