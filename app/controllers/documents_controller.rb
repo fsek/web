@@ -69,7 +69,8 @@ class DocumentsController < ApplicationController
     end
   end
 
-  oprivate
+  private
+
     def set_document
       @dokument = Document.find_by_id(params[:id])
     end    
