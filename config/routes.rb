@@ -144,5 +144,5 @@ Fsek::Application.routes.draw do
 
   # Catch-all for short links.
   # This must be at the bottom!
-  get '*link' => 'short_links#go'
+  get '/l/*link' => 'short_links#go'
 end
