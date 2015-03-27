@@ -1,4 +1,9 @@
 Fsek::Application.routes.draw do
+  get 'permissions' => 'posts#show_permissions'
+  get 'permissions/:id' => 'posts#edit_permissions'
+  post 'permissions/:id' => 'posts#update_permissions'
+
+  resources :constants
 
   post "githook" => "githook#index"
   get "githook/dev" => "githook#dev"
@@ -87,6 +92,9 @@ Fsek::Application.routes.draw do
       get :collapse, on: :collection
       patch :add_profile, on: :collection
       patch :remove_profile, on: :collection
+      collection do
+        get :show_permissions
+      end
     end
 
     resources :councils, path: :utskott do
