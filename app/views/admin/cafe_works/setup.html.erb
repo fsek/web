@@ -12,10 +12,10 @@
       <%= render 'setup_form' %>
       <hr>
 
-      <% if (@cworks) && (@cworks.count > 0) %>
-          <% @lv = @cwork.lv %>
+      <% if !@cafe_works.empty? %>
+          <% @lv = @cafe_work.lv %>
           <div class="panel-group acc-v1 margin-bottom-40">
-            <% @cworks.group_by(&:lv).each do |week, work| %>
+            <% @cafe_works.group_by(&:lv).each do |week, work| %>
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= week %>">

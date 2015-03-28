@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |ex|
     flash[:error] = ex.message
+    #redirect_to root_url
     render text: '', layout: true, status: :forbidden
   end
 
@@ -16,7 +17,7 @@ class ApplicationController < ActionController::Base
     render referring_action, status: :unprocessable_entity
   end
 
-  rescue_from ActiveRecord::RecordNotFound do |ex|
+  rescue_from ActiveRecord::RecordNotFound do
     # translate record not found -> HTTP 404
     fail ActionController::RoutingError.new 'not found'
   end
@@ -54,7 +55,7 @@ class ApplicationController < ActionController::Base
   # Enables authentication and
   def self.load_permissions_and_authorize_resource(*args)
     load_and_authorize_resource(*args)
-    before_filter(:load_permissions, *args)
+    before_action(:load_permissions, *args)
   end
 
   def self.skip_authorization(*args)

@@ -47,8 +47,8 @@ Fsek::Application.routes.draw do
         end
         get '/setup', controller: :cafe_works, action: :setup, as: :setup_cafe
         post '/setup', controller: :cafe_works, action: :setup_create, as: :setup_cafe_create
-        get '', controller: :cafe_works, action: :main, as: :hilbert
-        post '', controller: :cafe_works, action: :main
+        get '', controller: :cafe_works, action: :index, as: :hilbert
+        post '', controller: :cafe_works, action: :index
       end
       resources :cafe_works, path: :jobb, only: [:show] do
         patch :add_worker, path: :jobba, on: :member
@@ -56,7 +56,7 @@ Fsek::Application.routes.draw do
         patch :remove_worker, path: :inte_jobba, on: :member
         patch :authorize, path: :auktorisera, on: :member
       end
-      get '', controller: :cafe_works, action: :main, as: :hilbert
+      get '', controller: :cafe_works, action: :index, as: :hilbert
       get '/nyckelpiga', controller: :cafe_works, action: :nyckelpiga
       #get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling         
     end

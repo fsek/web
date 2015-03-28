@@ -13,21 +13,22 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   before(:each) do
     sign_in user
   end
+  allow_user_to :manage, CafeWork
 
   describe 'GET #show' do
-    allow_user_to :manage, CafeWork
+    #allow_user_to :manage, CafeWork
     it 'assigns the requested cafe_work as @cwork' do
       get :show, {id: cwork.to_param}
-      assigns(:cwork).should eq(cwork)
+      assigns(:cafe_work).should eq(cwork)
     end
-    it 'redirects if cafe_work is not found' do
-      get :show, {id: 99997777}
-      response.should redirect_to(admin_cafe_works_path)
+    it 'error cafe_work is not found' do
+      lambda do
+        get :show, {id: 99997777}
+        end.should raise_error(ActionController::RoutingError)
     end
   end
 
   describe 'GET #new' do
-    allow_user_to :manage, CafeWork
     it :succeeds do
       get :new
 
@@ -36,17 +37,16 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
     it 'sets new cwork' do
       get :new
 
-      assigns(:cwork).should be_an_instance_of(CafeWork)
-      assigns(:cwork).new_record?.should be_truthy
+      assigns(:cafe_work).should be_an_instance_of(CafeWork)
+      assigns(:cafe_work).new_record?.should be_truthy
     end
   end
 
   describe 'GET #edit' do
-    allow_user_to :manage, CafeWork
     it 'assigns the requested cafe_work as @cwork' do
       get :edit, {id: cwork.to_param}
 
-      assigns(:cwork).should eq(cwork)
+      assigns(:cafe_work).should eq(cwork)
     end
     it 'succeeds' do
       get :edit, {id: cwork.to_param}
@@ -56,16 +56,14 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'POST #create' do
-    allow_user_to :manage, CafeWork
-    it 'creates a new cafe work' do
-      lambda { post :create, cafe_work: attributes_for(:cafe_work) }.should change(CafeWork, :count).by(1)
+    it 'new cafe work' do
+      lambda { post :create, cafe_work: {lv: 1, lp: 1, work_day: Time.zone.now, pass: 1, controller: ''} }.should change(CafeWork, :count).by(1)
 
       response.should redirect_to([:admin, CafeWork.last])
     end
   end
 
   describe 'PATCH #update' do
-    allow_user_to :manage, CafeWork
     context 'with valid params' do
       let(:attr) { attributes_for(:cafe_work, :tester) }
       it 'updates the requested cafe work' do
@@ -79,7 +77,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
       it 'assigns the requested cwork and redirects ' do
         patch :update, id: cwork.to_param, cafe_work: attr
 
-        assigns(:cwork).should eq(cwork)
+        assigns(:cafe_work).should eq(cwork)
         response.should redirect_to([:admin, cwork])
       end
     end
@@ -89,7 +87,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
       it 'assigns the candidate as @candidate' do
         patch :update, id: cwork.to_param, cafe_work: attr
 
-        assigns(:cwork).should eq(cwork)
+        assigns(:cafe_work).should eq(cwork)
       end
 
       it 're-renders the edit-template' do
@@ -133,7 +131,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
     allow_user_to :manage, CafeWork
     it 'assigns @cwork as new record' do
       get :setup
-      (assigns(:cwork).new_record?).should be_truthy
+      (assigns(:cafe_work).new_record?).should be_truthy
     end
   end
 
@@ -142,7 +140,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
     # Should use a more precise method
     it 'preview post' do
       post :setup_create, {commit: 'Förhandsgranska', cafe_work: attributes_for(:cafe_work), lv_first: 1, lv_last: 1}
-      assigns(:cworks).count.should eq(CafeSetupWeek.new(cwork.work_day, cwork.lp).preview(1, 1).count)
+      assigns(:cafe_works).count.should eq(CafeSetupWeek.new(cwork.work_day, cwork.lp).preview(1, 1).count)
     end
     it 'create post' do
       lambda {

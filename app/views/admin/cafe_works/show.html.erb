@@ -2,10 +2,10 @@
 <div class="col-md-6 col-md-offset-3">
   <div class="row">
     <%= render 'links' %>
-    <div class="headline headline-md"><h2>Cafejobb - ID <%= @cwork.id %> Admin</h2></div>
+    <div class="headline headline-md"><h2>Cafejobb - ID <%= @cafe_work.id %> Admin</h2></div>
     <%= render 'form' %>
     <div class="headline headline-md"><h2>Jobbare</h2></div>
-    <% if @cwork.has_worker? %>
+    <% if @cafe_work.has_worker? %>
         <span id="status"></span>
 
         <div id="jobbare">
@@ -13,36 +13,45 @@
             <tbody>
             <tr>
               <td><i class="fa fa-user"></i></td>
-              <td><%= (@cwork.profile.present?) ? link_to(@cwork.worker.p_name, profile_path(@cwork.profile)) : @cwork.worker.p_name %></td>
+              <td>
+                <% if @cafe_work.profile.present? %>
+                    <%= link_to(@cafe_work.worker.p_name, profile_path(@cafe_work.profile)) %>
+                <% else %>
+                    <%= @cafe_work.worker.p_name %>
+                <% end %>
+              </td>
             </tr>
             <tr>
               <td><i class="fa fa-envelope"></i></td>
-              <td><%= @cwork.email %></td>
+              <td><%= @cafe_work.email %></td>
             </tr>
             <tr>
               <td><i class="fa fa-phone"></i></td>
-              <td><%= @cwork.phone %></td>
+              <td><%= @cafe_work.phone %></td>
             </tr>
             <tr>
               <td><i class="fa fa-users"> Cafetävling</i></td>
-              <td><%= (@cwork.utskottskamp) ? "Ja" : "Nej" %></td>
+              <td><%= (@cafe_work.utskottskamp) ? "Ja" : "Nej" %></td>
             </tr>
-            <% if @cwork.access_code.present? %>
+            <% if @cafe_work.access_code.present? %>
                 <tr>
                   <td><i class="fa fa-lock"> Kod:</i></td>
-                  <td><%= @cwork.access_code %></td>
+                  <td><%= @cafe_work.access_code %></td>
                 </tr>
             <% end %>
             </tbody>
           </table>
           <div class="margin-bottom-20">
-            <%= link_to("Ta bort jobbare", remove_worker_admin_cafe_work_path(@cwork), class: "btn btn-u", remote: true, method: :patch) %>
+            <%= link_to("Ta bort jobbare",
+                        remove_worker_admin_cafe_work_path(@cafe_work), class: "btn btn-u",
+                        remote: true, method: :patch) %>
           </div>
         </div>
 
     <% else %>
         <p>Jobbare saknas</p>
-        <%= link_to("Ta bort pass", admin_cafe_work_path(@cwork), method: :delete, class: "btn btn-u") %>
+        <%= link_to("Ta bort pass", admin_cafe_work_path(@cafe_work),
+                    method: :delete, class: "btn btn-u") %>
     <% end %>
   </div>
 </div>

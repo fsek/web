@@ -1,10 +1,9 @@
 # encoding: UTF-8
 class Election::CandidatesController < ApplicationController
-  load_permissions_and_authorize_resource
   before_action :set_election
-  before_action :set_candidate, only: [:show, :update, :destroy]
+  load_permissions_and_authorize_resource
+  #before_action :set_candidate, only: [:show, :update, :destroy]
   respond_to :html
-
 
   def index
     @candidates = current_user.profile.candidates.where(election: @election)

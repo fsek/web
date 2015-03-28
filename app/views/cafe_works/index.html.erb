@@ -39,13 +39,13 @@
         </div>
         <% if user_signed_in? %>
             <div class="row">
-              <% if current_user.moderator?(:hilbert) %>
+              <% if can? :manage, CafeWork %>
                   <div class="headline headline-md"><h2>Verktyg</h2></div>
                   <ul class="list">
                     <li><%= link_to("Gå till administrationssida", :admin_hilbert) %></li>
                   </ul>
               <% end %>
-              <% if current_user.has_role?(:hilbert, :nyckelpiga) %>
+              <% if can? :nyckelpiga, CafeWork %>
                   <ul class="list">
                     <li><%= link_to("Nyckelpiga", :nyckelpiga) %></li>
                   </ul>

@@ -4,10 +4,11 @@ class Election < ActiveRecord::Base
   has_many :candidates, dependent: :destroy
   has_and_belongs_to_many :posts
   
-  validates_presence_of :url
-  validates_uniqueness_of :url
-  
-  scope :current, -> { order(start: :asc).where(visible: true).take }
+  validates :url, presence: true, uniqueness: true
+
+  def self.current
+    self.order(start: :asc).where(visible: true).first || nil
+  end
 
   # Returns a number to load different views
   # 1: before the election opens

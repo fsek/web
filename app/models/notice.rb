@@ -4,7 +4,7 @@ class Notice < ActiveRecord::Base
   # Paperclip attachment
   # The storage folder require the use of Sendfile.
   has_attached_file :image,
-                    styles: {large: '400x400>', small: '250x250>'},
+                    styles: { large: '400x400>', small: '250x250>' },
                     path: ':rails_root/storage/notices/:id/:style-:filename'
   # Validations
   validates :title, :description, :sort, presence: true
@@ -32,9 +32,9 @@ class Notice < ActiveRecord::Base
   # /d.wessman
   def display(bool)
     if bool == true
-      self.update(d_publish: Time.zone.today - 2.days, d_remove: '2094-03-25')
+      update(d_publish: Time.zone.today - 2.days, d_remove: '2094-03-25')
     else
-      self.update(d_remove: Time.zone.today - 2.days)
+      update(d_remove: Time.zone.today - 2.days)
     end
   end
 

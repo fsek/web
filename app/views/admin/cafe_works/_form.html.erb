@@ -1,5 +1,5 @@
-<%= form_for([:admin, @cwork]) do |form| %>
-    <%= render 'shared/form_errors', current: @cwork %>
+<%= form_for([:admin, @cafe_work]) do |form| %>
+    <%= render 'shared/form_errors', current: @cafe_work %>
     <%= form.label 'Datum', class: 'reg-label' %>
     <div class="input-group margin-bottom-20">
       <%= form.text_field :work_day, class: 'form-control datetimepicker' %>

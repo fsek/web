@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Election::NominationsController < ApplicationController
-  load_permissions_and_authorize_resource
   before_action :set_election
+  load_permissions_and_authorize_resource
 
   def new
     @nomination = @election.nominations.new()
@@ -12,14 +12,15 @@ class Election::NominationsController < ApplicationController
 
   def create
     @nomination = @election.nominations.build(nomination_params)
-    if @nomination.save
-      @saved = true
-    end
+    @saved = @nomination.save
   end
 
   private
   def set_election
     @election = Election.current
+    if @election.nil?
+      redirect_to elections_path
+    end
   end
 
   def nomination_params

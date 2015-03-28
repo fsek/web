@@ -1,5 +1,5 @@
 jQuery ->
-  $('.datetimepicker').datetimepicker()
+  $('.datetimepicker').datetimepicker locale: 'sv', format: 'DD/MM/YYYY hh:mm'
 jQuery ->
   $('#date').datepicker()
 jQuery ->

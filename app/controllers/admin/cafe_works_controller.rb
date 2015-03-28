@@ -1,9 +1,9 @@
 # encoding:UTF-8
 class Admin::CafeWorksController < ApplicationController
   load_permissions_and_authorize_resource
-  before_action :set_cafe_work, only: [:edit, :show, :update, :destroy, :remove_worker]
-  before_action :new_cafe_work, only: [:new, :setup, :setup_create, :create]
+  before_action :authorize
   before_action :set_lv, only: [:setup_create]
+  before_action :set_new_cafe_work, only: [:setup, :setup_create]
   before_action :set_cafe_setup, only: [:setup_create]
 
   def show
@@ -16,14 +16,14 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def create
-    flash[:notice] = 'Cafejobbet skapades, success.' if @cwork.save
-    redirect_to [:admin, @cwork]
+    flash[:notice] = 'Cafejobbet skapades, success.' if @cafe_work.save
+    redirect_to [:admin, @cafe_work]
   end
 
   def update
-    if @cwork.update(c_w_params)
+    if @cafe_work.update(cafe_work_params)
       flash[:notice] = 'Cafejobbet uppdaterades'
-      redirect_to [:admin, @cwork]
+      redirect_to [:admin, @cafe_work]
     else
       render action: :edit
     end
@@ -31,8 +31,8 @@ class Admin::CafeWorksController < ApplicationController
 
   def destroy
     # Id used to hide element
-    @id = @cwork.id
-    @cwork.destroy
+    @id = @cafe_work.id
+    @cafe_work.destroy
     respond_to do |format|
       format.html { redirect_to :admin_hilbert, notice: 'Cafepasset raderades.' }
       format.js
@@ -40,7 +40,7 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def remove_worker
-    if !@cwork.clear_worker
+    if !@cafe_work.clear_worker
       render action: show, notice: 'Lyckades inte'
     end
   end
@@ -50,15 +50,15 @@ class Admin::CafeWorksController < ApplicationController
 
   def setup_create
     if preview?
-      @cworks = @r.preview(@lv_first, @lv_last)
+      @cafe_works = @r.preview(@lv_first, @lv_last)
     elsif save?
       @r.setup(@lv_first, @lv_last)
       flash[:notice] = 'Cafejobben skapades'
     end
-    render 'setup'
+    render :setup
   end
 
-  def main
+  def index
     @faqs = Faq.category(:Hilbert).answered
     @faq_unanswered = Faq.category(:Hilbert).where(answer: '').count
     @cwork_grid = initialize_grid(CafeWork.all)
@@ -66,30 +66,25 @@ class Admin::CafeWorksController < ApplicationController
 
   private
 
-  def c_w_params
-    params.require(:cafe_work).permit(:work_day, :pass, :profile_id,
-                                      :name, :lastname, :phone, :email, :lp, :lv,
-                                      :utskottskamp, council_ids: [])
+  def authorize
+    authorize! :manage, CafeWork
   end
 
-  def set_cafe_work
-    @cwork = CafeWork.find_by_id(params[:id])
-    if !@cwork.present?
-      redirect_to(:admin_cafe_works, notice: 'Hittade inget Cafejobb med det ID:t.')
+  def cafe_work_params
+    params.require(:cafe_work).permit(:work_day, :pass, :lp, :lv)
+  end
+
+  def set_new_cafe_work
+    if params[:cafe_work].present?
+      @cafe_work = CafeWork.new(cafe_work_params)
+    else
+      @cafe_work = CafeWork.new
     end
   end
 
   def set_cafe_setup
-    if c_w_params[:work_day].present? && c_w_params[:lp].present?
-      @r = CafeSetupWeek.new(Time.zone.parse(c_w_params[:work_day]), c_w_params[:lp])
-    end
-  end
-
-  def new_cafe_work
-    if params.present? && params[:cafe_work].present?
-      @cwork = CafeWork.new(c_w_params)
-    else
-      @cwork = CafeWork.new
+    if cafe_work_params[:work_day].present? && cafe_work_params[:lp].present?
+      @r = CafeSetupWeek.new(Time.zone.parse(cafe_work_params[:work_day]), cafe_work_params[:lp])
     end
   end
 

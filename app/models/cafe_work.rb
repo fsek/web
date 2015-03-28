@@ -56,7 +56,7 @@ class CafeWork < ActiveRecord::Base
     when :assigned
       return 'Passet är redan bokat.'
     when :authorize
-      return 'Passet är bokat, fyll i koden som gavs vid anmälan för att redigera.'
+      return 'Passet är bokat, fyll i koden som mailades ut vid anmälan för att redigera.'
     end
   end
 
@@ -70,7 +70,7 @@ class CafeWork < ActiveRecord::Base
     if access_code.present?
       return :authorize
     elsif has_worker?
-      return (owner?(user) ? :edit : :assigned)
+      return owner?(user) ? :edit : :assigned
     end
     :sign_up
   end
