@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |ex|
     flash[:error] = ex.message
-    #redirect_to root_url
     render text: '', layout: true, status: :forbidden
   end
 

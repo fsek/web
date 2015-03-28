@@ -10,8 +10,10 @@ class CouncilsController < ApplicationController
 
   def show
     if @page
-      @mainelements = @page.page_elements.where(visible: true, sidebar: false).order(:displayIndex,:asc)
-      @sidebarelements = @page.page_elements.where(visible: true, sidebar: true).order(:displayIndex,:asc)
+      @mainelements = @page.page_elements.where(visible: true,
+                                                sidebar: false).order(:displayIndex, :asc)
+      @sidebarelements = @page.page_elements.where(visible: true,
+                                                   sidebar: true).order(:displayIndex, :asc)
     end
     @poster = @council.posts
   end
