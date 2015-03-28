@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-paths = %w( / /om /utskott /dokument /val /bil /proposals/form /foretag/om /kontakt /logga_in /anvandare/registrera )
+paths = %w( / /om /utskott /val /bil /proposals/form /foretag/om /kontakt /logga_in /anvandare/registrera )
 
 feature 'GET' do
   paths.each do |path|

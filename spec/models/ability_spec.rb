@@ -2,13 +2,14 @@ require 'spec_helper'
 require 'cancan/matchers'
 
 describe Ability do
-  subject(:ability){ Ability.new(user) }
+  subject(:ability) { Ability.new(user) }
   context 'no user' do
-    let(:user){ nil }
+    let(:user) { nil }
     it { should be_able_to :read, News.new }
     it { should be_able_to :read, Council.new }
     it { should be_able_to :read, CafeWork.new }
   end
+
   context 'default user' do
     let(:user) { create(:user) }
 
