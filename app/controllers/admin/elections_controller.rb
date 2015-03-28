@@ -46,8 +46,10 @@ class Admin::ElectionsController < ApplicationController
   end
 
   def candidates
-    @candidates_grid = initialize_grid(@election.candidates, name: 'candidates',
-                                       enable_export_to_csv: true, csv_file_name: 'candidates')
+    @candidates_grid = initialize_grid(@election.candidates,
+                                       name: 'candidates',
+                                       enable_export_to_csv: true,
+                                       csv_file_name: 'candidates')
     export_grid_if_requested('g2' => 'nominations_grid')
   end
 

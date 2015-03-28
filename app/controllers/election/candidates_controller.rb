@@ -2,7 +2,6 @@
 class Election::CandidatesController < ApplicationController
   before_action :set_election
   load_permissions_and_authorize_resource
-  #before_action :set_candidate, only: [:show, :update, :destroy]
   respond_to :html
 
   def index
