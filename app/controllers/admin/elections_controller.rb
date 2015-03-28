@@ -1,7 +1,8 @@
 # encoding: UTF-8
 class Admin::ElectionsController < ApplicationController
-  load_permissions_and_authorize_resource
-
+  # Quick fix because Cancancan doesn't load when we use URL as param.
+  # /d.wessman https://github.com/fsek/web/issues/134
+  before_action :authorize
   before_action :set_election, only: [:show,:edit,:update,:destroy,:candidates,:nominations]
 
   def new
@@ -58,11 +59,8 @@ class Admin::ElectionsController < ApplicationController
     export_grid_if_requested('g2' => 'nominations_grid')
   end
   private
-  def authenticate
-    
-    redirect_to(:back) unless (current_user) && (current_user.moderator?(:val))
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
+  def authorize
+    authorize! :manage, @election
   end
 
   def election_params
