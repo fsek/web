@@ -19,7 +19,7 @@ class Admin::ElectionsController < ApplicationController
 
   def create
     if @election.save
-      redirect_to [:admin,@election], notice: 'Valet skapades'
+      redirect_to [:admin, @election], notice: 'Valet skapades'
     else
       render action: :new
     end
@@ -27,7 +27,7 @@ class Admin::ElectionsController < ApplicationController
 
   def update
     if @election.update(election_params)
-      redirect_to [:admin,@election], notice: 'Valet uppdaterades, gött'
+      redirect_to [:admin, @election], notice: 'Valet uppdaterades, gött'
     else
       render action: :edit
     end
