@@ -44,8 +44,6 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap3-datetimepicker-rails (4.7.14)
-      momentjs-rails (>= 2.8.1)
     builder (3.2.2)
     byebug (4.0.3)
       columnize (= 0.9.0)
@@ -316,7 +314,6 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
-  bootstrap3-datetimepicker-rails (~> 4.7.14)
   cancancan
   capistrano (~> 3.1.0)
   capistrano-bundler (~> 1.1.2)
@@ -339,7 +336,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   mailcatcher
-  momentjs-rails (~> 2.9.0)
+  momentjs-rails
   mysql2
   paperclip
   poltergeist

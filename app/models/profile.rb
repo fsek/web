@@ -1,5 +1,6 @@
 # encoding: UTF-8
 class Profile < ActiveRecord::Base
+
   # Associations
   belongs_to :user
   has_and_belongs_to_many :posts
@@ -8,15 +9,16 @@ class Profile < ActiveRecord::Base
   has_many :councils, through: :posts
 
   # Attachment
-  has_attached_file :avatar,
-                    styles: {medium: '300x300>', thumb: '100x100>'},
-                    path: ':rails_root/storage/profile/:id/:style/:filename'
+  has_attached_file :avatar, 
+                    :styles => { medium: "300x300>", thumb:  "100x100>" },
+                    :path => ":rails_root/storage/profile/:id/:style/:filename"
+
 
   # Validations
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   # Only on update!
-  validates :name, :lastname, presence: true, on: :update
-  validates :start_year, inclusion: { in: 1954..(Time.zone.today.year + 1) }, on: :update
+  validates_presence_of :name, :lastname, on: :update
+  validates_inclusion_of :start_year, in: 1954..(Time.zone.today.year+1), on: :update
 
   def full_name
     "#{name} #{lastname}".strip
@@ -32,30 +34,38 @@ class Profile < ActiveRecord::Base
   # Check if profile has user data (name and lastname)
   # /d.wessman
   def has_profile_data?
-    name.present? && lastname.present?
+    return (self.name? && self.lastname?)
   end
 
   # Returns true if profile is fresh
   # /d.wessman
   def fresh?
-    created_at == updated_at
+    return self.created_at == self.updated_at
   end
 
   # Returns true if user is equal to profiles user
   # /d.wessman
   def owner?(user)
-    self.user == user
+    (self.user == user)
   end
 
   # Check if user has post, and in that case what first_post is set to
   # /d.wessman
   def check_posts
-    if posts.count > 0 && first_post == false
-      update(first_post: posts.first.id)
-    end
+      if(self.posts.count > 0) && (self.first_post?)
+        return
+      end
+      if(self.posts.count > 0)
+        self.first_post = self.posts.first.id
+        self.save
+      end
   end
 
   def print
-    %(#{name} #{lastname})
+    if (self.name) && (self.lastname)
+      %(#{self.name} #{self.lastname})
+    elsif (self.name)
+      self.name
+    end
   end
 end

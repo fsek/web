@@ -13,12 +13,10 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require jquery-ui/effect.all
 //= require bootstrap
 //= require_self
 //= require jquery-ui/datepicker
 //= require moment
-//= require moment/sv
 //= require fullcalendar
 //= require fullcalendar/lang/sv.js
 //= require fancybox
@@ -27,18 +25,3 @@
 //= require turbolinks
 //= require gallery_hook.js
 //= require jquery.countdown
-//= require bootstrap-datetimepicker
-//= require pickers
-
-var bottom;
-bottom = function () {
-    var docHeight = $(window).height();
-    var footerHeight = $('#copyright').height()
-    var footerTop = $('#copyright').position().top + footerHeight;
-
-    if (footerTop < docHeight) {
-        $('#footer').css('margin-top', 22 + (docHeight - footerTop) + 'px');
-    }
-};
-
-$(document).ready(bottom)
