@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
-<!--[if !IE]><!--> <html lang="sv"> <!--<![endif]-->  
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="sv"> <!--<![endif]-->
 <head>
-  <title><%=full_title(yield(:title))%></title>
+  <title><%= full_title(yield(:title)) %></title>
 
   <!-- Meta -->
   <meta charset="utf-8">
@@ -11,136 +14,119 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
 
-  <% if current_user # This script is needed for the old gallery hack. /Erik Henriksson %>
-    <%= javascript_tag do %>
-      gallery_username = '<%= j current_user.username %>';
-      gallery_secret = '<%= j current_user.encrypted_password %>';
-    <% end %>
+  <% if current_user # This script is needed for the old gallery hack. /Erik Henriksson    %>
+      <%= javascript_tag do %>
+          gallery_username = '<%= j current_user.username %>';
+          gallery_secret = '<%= j current_user.encrypted_password %>';
+      <% end %>
   <% end %>
-
-  <!-- JS Global Compulsory -->           
-  <script type="text/javascript">
-    $(function () {
-        App.init(); 
-
-        var docHeight = $(window).height()
-          , footerHeight = $('#copyright').height()
-          , footerTop = $('#copyright').position().top + footerHeight
-        ;
-
-        if (footerTop < docHeight)
-            $('#footer').css('margin-top', 22 + (docHeight - footerTop) + 'px');
-    }); 
-  </script>
 </head>
 
 <body>
-  <!--=== Top ===-->    
-  <div class="top">
-    <div class="container">
-      <%= render "layouts/topbar" %>
-    </div>
+<!--=== Top ===-->
+<div class="top">
+  <div class="container">
+    <%= render 'layouts/topbar' %>
   </div>
-  <!--=== End Top ===-->    
+</div>
+<!--=== End Top ===-->
 
 
-  <!--=== Header ===-->    
-  <div class="header header-start">
-    <div class="navbar navbar-default" role="navigation">
-      <div class="container">
-        <!-- Logo and toggle-menu button for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to root_path do %>
+<!--=== Header ===-->
+<div class="header header-start">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <!-- Logo and toggle-menu button for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to root_path do %>
             <div class="navbar-brand">
               <%= image_tag("layout/f.svg", id: "logo-header", height: "60") %>
             </div>
             <div class="navbar-brand-text pull-left">
-              <span>&mdash;</span>TEKNOLOGSEKTIONEN<br />INOM TLTH
+              <span>&mdash;</span>TEKNOLOGSEKTIONEN<br/>INOM TLTH
             </div>
-          <% end %>
-        </div>
-
-        <%= render "layouts/menu" %>
-      </div>    
-    </div>    
-  </div><!--/header-->
-  <!--=== End Header ===-->
-
-  <!--=== Breadcrumbs ===-->
-  <div class="breadcrumbs" style="border-bottom: 0px solid #333;">
-    <div class="container">
-
+        <% end %>
+      </div>
+      <%= render "layouts/menu" %>
     </div>
   </div>
-  <!--=== End Breadcrumbs ===-->
+</div>
+<!--/header-->
+<!--=== End Header ===-->
 
-  <% if yield(:title) == 'Utskott' %>
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs" style="border-bottom: 0px solid #333;">
+  <div class="container">
+
+  </div>
+</div>
+<!--=== End Breadcrumbs ===-->
+
+<% if yield(:title) == 'Utskott' %>
     <div class="container">
       <%= render "layouts/utskottmenu" %>
     </div>
-  <% end %>
+<% end %>
 
 
-  <!--=== Content Part ===-->
-  <%= yield :pre_content %>
+<!--=== Content Part ===-->
+<%= yield :pre_content %>
 
-  <div class="container content">
-    <div class="row magazine-page">    	
-      <!-- Begin Content -->
-      <div class="col-md-12">
-        <% if notice %>
+<div class="container content">
+  <div class="row magazine-page">
+    <!-- Begin Content -->
+    <div class="col-md-12">
+      <% if notice %>
           <div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <%= notice %>
-          </div> 
-        <% end %>
-        <% if alert %>
+          </div>
+      <% end %>
+      <% if alert %>
           <div class="alert alert-danger fade-in">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Fel:</strong> <%= alert %>
-        </div> 
-      <% end %>		
-      <%= yield %>      
+          </div>
+      <% end %>
+      <%= yield %>
       <%= yield :role_main %>
       <%= yield :role_sidebar %>
-      </div>
-    </div><!-- /row -->
-  </div><!--/container-->     
-  <!-- End Content Part -->
-
-  <!--=== Footer ===-->
-  <div class="footer navbar" id="footer">
-    <div class="container">
-      <div class="row">
-        <%= render "layouts/footer" %>
-      </div> 
     </div>
-  </div>   
-  <!--=== End Footer ===-->
+  </div>
+  <!-- /row -->
+</div>
+<!--/container-->
+<!-- End Content Part -->
 
-  <!--=== Copyright ===-->
-  <div class="copyright" id="copyright">
-    <div class="container">
-      <div class="row">
-        <%= render "layouts/bottombar" %>    
-      </div>
-    </div> 
-  </div> 
-  <!--=== End Copyright ===-->
+<!--=== Footer ===-->
+<div class="footer navbar" id="footer">
+  <div class="container">
+    <div class="row">
+      <%= render "layouts/footer" %>
+    </div>
+  </div>
+</div>
+<!--=== End Footer ===-->
 
-  <!--[if lt IE 9]>
-    <script src="assets/plugins/respond.js"></script>
-    <![endif]-->    
+<!--=== Copyright ===-->
+<div class="copyright" id="copyright">
+  <div class="container">
+    <div class="row">
+      <%= render "layouts/bottombar" %>
+    </div>
+  </div>
+</div>
+<!--=== End Copyright ===-->
 </body>
 </html> 

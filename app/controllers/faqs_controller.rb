@@ -1,18 +1,15 @@
 # encoding:UTF-8
 class FaqsController < ApplicationController
 
-  before_filter :authenticate_editor, only: [:edit,:update,:destroy]
+  before_action :authenticate_editor, only: [:edit, :update, :destroy]
   before_action :set_editor, only: [:new, :show, :edit, :index]
   before_action :set_faq, only: [:show, :edit, :update, :destroy]
 
 
-
   def index
     @faq = Faq.where.not(answer: '').where(category: 'main')
-    @faq_hilbert =  Faq.where.not(answer: '').where(category: 'Hilbert')
     if @editor
-      @faq_unanswered = Faq.where(answer: '',category: 'main')
-      @hilbert_unanswered = Faq.where(answer: '', category: 'Hilbert')
+      @faq_unanswered = Faq.where(answer: '', category: 'main')
     end
   end
 
@@ -21,7 +18,7 @@ class FaqsController < ApplicationController
 
   def new
     @faq = Faq.new
-    if(params[:category])
+    if params[:category].present?
       @faq.category = params[:category]
     end
   end
@@ -86,7 +83,7 @@ class FaqsController < ApplicationController
   end
 
   def faq_params
-    params.require(:faq).permit(:question, :answer,:category)
+    params.require(:faq).permit(:question, :answer, :category)
   end
 
 end

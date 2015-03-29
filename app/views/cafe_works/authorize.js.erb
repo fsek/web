@@ -1,0 +1,7 @@
+<% if @authenticated%>
+	$('#authorization').hide();
+	$('#after_authorization').append("<%= escape_javascript( render partial: 'form')%>").show();
+	$('#status').text("Korrekt kod, du kan nu redigera passet.").effect("bounce",3000);
+<%else%>
+	$('#status').text("Felaktig kod").effect("bounce",3000);
+<%end%>
