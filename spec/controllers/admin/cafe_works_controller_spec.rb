@@ -7,11 +7,8 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   let(:cwork_access) { create(:cafe_work, :access) }
   let(:cwork) { create(:cafe_work) }
 
-  # Hack to become admin
-  # Should be changed when Cancancan is implemented
-  # /d.wessman
   before(:each) do
-    sign_in user
+    allow(controller).to receive(:current_user).and_return(user)
   end
   allow_user_to :manage, CafeWork
 
