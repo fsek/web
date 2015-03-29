@@ -1,9 +1,9 @@
 <% provide(:title, 'Val') %>
 <div class="col-md-10 col-md-offset-1 col-sm-1+ col-sm-offset-1 reg-page">
-  <%= label_tag 'Inställningar', nil, class: 'reg-header' %>
+  <%= label_tag 'Inställningar', nil, :class => 'reg-header' %>
   <%= render 'form' %>
   <hr>
-  <% if can? :manage,:all %>
+  <% if (current_user) && current_user.admin? %>
       <%= link_to 'Radera val', admin_election_path(@election), class: 'btn btn-u',data: {confirm: 'Valet raderas och kan inte återställas, är du säker?'}, method: :delete %>
   <% end %>
 

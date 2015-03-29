@@ -1,6 +1,8 @@
 # encoding:UTF-8
 class ProfilesController < ApplicationController
-  load_permissions_and_authorize_resource
+  #load_permissions_and_authorize_resource
+
+  before_action :set_profile, only: [:show, :edit, :update,:remove_post, :avatar]
 
   def show
     if (@profile.owner?(current_user)) && (@profile.fresh?)

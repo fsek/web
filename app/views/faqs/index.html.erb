@@ -1,67 +1,61 @@
-<div class="container content">
-  <div class="row">
-    <div class="col-md-9">
-      <% if (@editor) && (@faq_unanswered.count > 0) %>
-          <div class="headline"><h2>Obesvarade frågor</h2></div>
-          <div class="panel-group acc-v1 margin-bottom-40" id="unanswered">
-            <% @faq_unanswered.each do |f| %>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <div id="faq123">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#unanswered" href="#collapse<%= f.id %>">
-                          <%= f.question %>
-                        </a>
-                      </div>
-                    </h4>
-                  </div>
-                  <div id="collapse<%= f.id %>" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Svara på fråga"), edit_faq_path(f), class: "btn-u btn-u-small" %>
-                      <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Ta bort fråga"), f, method: :delete, class: "btn-u btn-u-small" %>
-                    </div>
-                  </div>
-                </div>
-            <% end %>
-          </div>
-      <% end %>
+<div class="container content">		
+	<div class="row">            
+		<div class="col-md-9">
+			<%if (@editor) && (@faq_unanswered.count > 0)%>
+				<div class="headline"><h2>Obesvarade frågor</h2></div>
+				<div class="panel-group acc-v1 margin-bottom-40" id="unanswered">
+				<%@faq_unanswered.each do |f|%>
+					<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+		  				<div id="faq123">
+		  					<a class="accordion-toggle" data-toggle="collapse" data-parent="#unanswered" href="#collapse<%=f.id%>" >
+		  						<%=f.question%>
+		  					</a>
+		  				</div>
+						</h4>
+					</div>
+					<div id="collapse<%=f.id%>" class="panel-collapse collapse">
+						<div class="panel-body">
+							<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Svara på fråga"), edit_faq_path(f), class: "btn-u btn-u-small"%>
+							<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Ta bort fråga"), f, method: :delete, class: "btn-u btn-u-small"%>
+						</div>
+		  		</div>
+		  	</div>
+		  <%end%>
+		  </div>
+		<%end%>
 
-      <!-- General Questions -->
-      <div class="headline"><h2>FAQ</h2></div>
-      <div class="panel-group acc-v1 margin-bottom-40" id="answered">
-        <% @first=true %>
-        <% @faq.each do |f| %>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <div id="faq123">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#collapse<%= f.id %>">
-                      <%= f.question %>
-                    </a>
-                  </div>
-                </h4>
-              </div>
-              <div id="collapse<%= f.id %>" class="panel-collapse collapse
-                <% if @first %>
-                    <% @first=false %> in
-                <% end %>">
-                <div class="panel-body">
-                  <%= f.answer %>
-                  <% if @editor %>
-                      <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera fråga"), edit_faq_path(f), class: "btn-u btn-u-small pull-right" %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-        <% end %>
-      </div>
-    </div>
-    <!--/col-md-9-->
+		  <!-- General Questions -->
+		  <div class="headline"><h2>FAQ</h2></div>
+		  <div class="panel-group acc-v1 margin-bottom-40" id="answered">
+		  	<%@first=true%>
+		  	<%@faq.each do |f|%>
+		  		<div class="panel panel-default">
+		  		<div class="panel-heading">
+		  			<h4 class="panel-title">
+		  				<div id="faq123">
+		  					<a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#collapse<%=f.id%>" >
+		  						<%=f.question%>
+		  					</a>
+		  				</div>
+		  			</h4>
+		  		</div>
+		  		<div id="collapse<%=f.id%>" class="panel-collapse collapse <%if @first%><%@first=false%> in<%end%>">
+		  			<div class="panel-body">
+		  				<%=f.answer%>
+		  				<%if @editor%>
+		  					<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera fråga"), edit_faq_path(f), class: "btn-u btn-u-small pull-right"%>
+			  		<%end%>
+			    	</div>
+			    </div>
+			  </div>
+			<%end%>
+			</div>
+		</div><!--/col-md-9-->
 
-    <div class="col-md-3">
-      <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Ställ fråga"), new_faq_path, class: "btn-u btn-u-small" %>
-      <br>
-    </div>
-  </div>
-  <!--/row-->
+		<div class="col-md-3">
+			<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Ställ fråga"), new_faq_path, class: "btn-u btn-u-small"%> <br>
+		</div>
+	</div><!--/row-->
 </div><!--/container-->

@@ -6,7 +6,49 @@
 <body>
 <h3> Hej <%= @rent.p_name %></h3>
 
-<%= render 'attributes_html', rent: @rent%>
+<p>Du har bokat F-sektionens bil med nedanstående uppgifter (ID: <%= @rent.id %>) .</p>
+<table class="table">
+  <tbody>
+  <tr>
+    <td>Namn:</td>
+    <td><%= @rent.p_name %></td>
+  </tr>
+  <tr>
+    <td>Epost:</td>
+    <td><%= @rent.email %></td>
+  </tr>
+  <tr>
+    <td>Telefon:</td>
+    <td><%= @rent.phone %></td>
+  </tr>
+  <tr>
+    <td>Datum:</td>
+    <td><%= @rent.p_time %></td>
+  </tr>
+  <% if @rent.purpose.blank? == false %>
+      <tr>
+        <td>Syfte:</td>
+        <td><%= simple_format(@rent.purpose) %></td>
+      </tr>
+  <% end %>
+  <% if @rent.council.present? %>
+      <tr>
+        <td>Utskott:</td>
+        <td><%= link_to(@rent.council.title, council_path(@rent.council)) %></td>
+      </tr>
+  <% end %>
+  <tr>
+    <td>Länk:</td>
+    <td><%= link_to(@rent.p_url, @rent.p_url) %></td>
+  </tr>
+  <% if @rent.access_code.present? %>
+      <tr>
+        <td>Kod:</td>
+        <td><%= @rent.access_code %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
 <br>
 
 <% if (@rent.status != "Bekräftad") %>

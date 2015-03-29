@@ -1,49 +1,45 @@
-<%= form_for([@council, @post]) do |f| %>
-    <%= render 'shared/form_errors', current: @post %>
-    <div class="col-md-6">
-      <%= f.label 'Titel', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.text_field :title, class: 'form-control' %>
-      </div>
-      <%= f.label 'Styrelsepost', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.check_box :styrelse, checked: @post.styrelse %>
-      </div>
-      <%= f.label 'Får boka bilen för utskottet', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.check_box :car_rent, checked: @post.car_rent %>
-      </div>
-      <%= f.label 'Väljs av?, väljs när?', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.select :elected_by, options_for_select(["", "Terminsmötet", "Styrelsen", "Studierådet"], @post.elected_by), class: "form-control" %> <%= f.select :elected_at, options_for_select(["", "HT", "VT"], @post.elected_at), class: "form-control" %>
-      </div>
-      <%= f.label 'Ansvarigt utskott', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.select :council_id,
-                     options_from_collection_for_select(@councils, :id, :title, @post.council_id),
-                     include_blank: true,
-                     class: "form-control listBox" %>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <%= f.label 'Hur många kan ha posten?', class: 'reg-label' %>
-      <p>0 - 0 ger * (det gör även 7 - 0)</p>
-
-      <p>5 - 5 get 5 (x)</p>
-
-      <p>4 - 5 ger 4-5</p>
-
-      <div class="input-group margin-bottom-20">
-        <%= f.select :recLimit, 0..10, selected: @post.recLimit, class: 'form-control' %> -
-        <%= f.select :limit, 0..10, selected: @post.limit, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <%= f.label 'Beskrivning:', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.text_area :description, size: '80x18', class: 'form-control' %>
-      </div>
-    </div>
+<%= form_for(council_post_path(@council,@post), method: :patch) do |f| %>
+  <%= render 'shared/form_errors', current: @post%>
+  	<div class="col-md-6">  
+	    <%= f.label 'Titel', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.text_field :title,:class => 'form-control' %>
+	  	</div>
+	  	<%= f.label 'Styrelsepost', :class => 'reg-label'%>  	
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.check_box :styrelse, checked: @post.styrelse %>
+	  	</div>
+	  	<%= f.label 'Får boka bilen för utskottet', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.check_box :car_rent, checked: @post.car_rent %>
+	  	</div>
+	  	<%= f.label 'Väljs av?, väljs när?', class:'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.select :elected_by, options_for_select(["","Terminsmötet","Styrelsen","Studierådet"],@post.elected_by),class: "form-control"%> <%= f.select :elected_at, options_for_select(["","HT", "VT"],@post.elected_at),class: "form-control"%>
+	  	</div>
+	  	<%= f.label 'Ansvarigt utskott', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.select :council_id, 
+	  				     options_from_collection_for_select(@councils,:id,:title,@post.council_id),
+	  				     include_blank: true, 
+	  				     :class => "form-control listBox"%>
+	  	</div>
+	</div>
+	<div class="col-md-6">
+	    <%= f.label 'Hur många kan ha posten?', :class => 'reg-label'%>
+	    <p>0 - 0 ger * (det gör även 7 - 0)</p>
+	    <p>5 - 5 get 5 (x)</p>
+	    <p>4 - 5 ger 4-5</p>    
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.select :recLimit, 0..10,selected: @post.recLimit,class:'form-control' %> - <%= f.select :limit, 0..10,selected: @post.limit,class:'form-control' %>
+	  	</div>	  	  
+  	</div>
+  	<div class="col-md-12">  	 	 
+	  	<%= f.label 'Beskrivning:', :class => 'reg-label'%>
+	  	<div class="input-group margin-bottom-20">
+	  		<%= f.text_area :description,size: '80x18',class:'form-control' %>
+	  	</div>
+  	</div>	 
     <div class="input-group margin-bottom-20">
       Permissions
       <table>
@@ -53,17 +49,15 @@
           <th><%= check_box_tag 'main', 0, false %></th>
         </tr>
         <% @permissions.each do |permission| %>
-            <tr>
-              <td><%= permission.subject_class %></td>
-              <td><%= permission.action %></td>
-              <td><%= check_box_tag 'permissions[]', permission.id,
-                                    @post_permissions.include?(permission.id),
-                                    {array: true, class: "check_box"} %></td>
-            </tr>
+          <tr>
+            <td><%= permission.subject_class %></td>
+            <td><%= permission.action %></td>
+            <td><%= check_box_tag 'permissions[]', permission.id, @post_permissions.include?(permission.id), {array: true, class: "check_box"}%></td>
+          </tr>
         <% end %>
       </table>
     </div>
-    <div class="row">
-      <%= f.submit "Spara", class: 'btn-u pull-right' %>
-    </div>
+  	<div class="row">
+		<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  	</div>
 <% end %>

@@ -1,11 +1,9 @@
 # encoding: UTF-8
 class Candidate < ActiveRecord::Base
-  # Associations
   belongs_to :election
   belongs_to :profile
   belongs_to :post
 
-  # Validations
   validates :profile_id, uniqueness: {
     scope: [:post_id, :election_id], message: 'har redan en likadan kandidatur'
   }, on: :create
@@ -28,18 +26,6 @@ class Candidate < ActiveRecord::Base
       self.phone = user.profile.phone
       self.stil_id = user.profile.stil_id
     end
-  end
-
-  def editable?
-    election.view_status == 2 || post.elected_by == 'Studierådet'
-  end
-
-  def p_url
-    Rails.application.routes.url_helpers.election_candidate_url(id, host: PUBLIC_URL)
-  end
-
-  def p_path
-    Rails.application.routes.url_helpers.election_candidate_path(id)
   end
 
   def owner?(user)

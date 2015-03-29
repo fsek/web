@@ -14,7 +14,6 @@ gem 'coffee-rails'
 # Set to 1.8 due to https://github.com/jashkenas/coffeescript/issues/3829
 gem 'coffee-script-source', '1.8.0'
 gem 'devise'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem 'fancybox2-rails'
 gem 'font-awesome-rails'
 gem 'fullcalendar-rails'
@@ -24,7 +23,7 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
-gem 'momentjs-rails', "~> 2.9.0"
+gem 'momentjs-rails'
 gem 'mysql2'
 gem 'paperclip'
 gem 'prawn-rails'
@@ -56,3 +55,4 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
 end
+
