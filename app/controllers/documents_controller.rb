@@ -1,10 +1,8 @@
 # encoding:UTF-8
 class DocumentsController < ApplicationController
-  
-  before_filter :authenticate, only: [:update,:edit,:new,:destroy,:create]
+  load_permissions_and_authorize_resource
   before_action :set_document, only: [:show,:update,:edit,:destroy]
-  before_action :set_edit  
-  
+
   def index
     if(current_user)
       @logged_in = true
@@ -70,23 +68,12 @@ class DocumentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   private
-    def authenticate
-      flash[:error] = t('the_role.access_denied')
-      redirect_to(:back) unless (current_user) && (current_user.moderator?(:dokument))    
-      rescue ActionController::RedirectBackError
-      redirect_to root_path
-    end
+
     def set_document
       @dokument = Document.find_by_id(params[:id])
     end    
-    def set_edit
-      if(current_user) && (current_user.moderator?(:dokument))
-        @edit = true
-      else
-        @edit = false
-      end 
-    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
       params.require(:document).permit(:title, :public,:download,:category)

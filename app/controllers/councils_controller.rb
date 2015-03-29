@@ -13,10 +13,10 @@ class CouncilsController < ApplicationController
   # GET /councils/1.json
   def show
     if @page
-      @mainelements = @page.page_elements.where(visible: true,sidebar: false)
-      @sidebarelements = @page.page_elements.where(visible:true,sidebar: true)
+      @mainelements = @page.page_elements.where(visible: true, sidebar: false)
+      @sidebarelements = @page.page_elements.where(visible: true, sidebar: true)
       if @mainelements.count > 1
-        @mainelements = @mainelements.sort_by{ |x| x[:displayIndex]}
+        @mainelements = @mainelements.sort_by { |x| x[:displayIndex] }
       end
     end
     @poster = @council.posts
@@ -31,25 +31,20 @@ class CouncilsController < ApplicationController
   def edit
     @contact = Contact.all.where(council_id: @council.id).first
     if not @contact
-      @contact = Contact.new()
+      @contact = Contact.new
       @contact.council_id = @council.id
       @contact.save
-    end      
+    end
   end
 
   # POST /councils
-  # POST /councils.json
   def create
     @council = Council.new(council_params)
     @council.build_page(council_id: @council.id)
-    respond_to do |format|
-      if @council.save
-        format.html { redirect_to edit_council_path(@council), notice: 'Utskott skapades, success.' }
-        format.json { render action: 'edit', status: :created, location: @council }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @council.errors, status: :unprocessable_entity }
-      end
+    if @council.save
+      redirect_to edit_council_path(@council), notice: 'Utskott skapades, success.'
+    else
+      render action: 'new'
     end
   end
 
@@ -78,18 +73,19 @@ class CouncilsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_council
-      @council = Council.find_by_id(params[:id])
-      @page = @council.page
-    end
 
-    def set_councils
-      @councils = Council.all
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_council
+    @council = Council.find_by_id(params[:id])
+    @page = @council.page
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def council_params
-      params.require(:council).permit(:title,:url,:description,:president,:vicepresident,:public)
-    end
+  def set_councils
+    @councils = Council.all
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def council_params
+    params.require(:council).permit(:title, :url, :description, :president, :vicepresident, :public)
+  end
 end
