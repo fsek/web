@@ -1,0 +1,22 @@
+<%= form_for([:admin, @cafe_work]) do |form| %>
+    <%= render 'shared/form_errors', current: @cafe_work %>
+    <%= form.label 'Datum', class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= form.text_field :work_day, class: 'form-control datetimepicker' %>
+    </div>
+    <%= form.label 'Pass (1 & 2, 08:00-10:00) (3 & 4, 10:00-13:00)', class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= form.number_field :pass, min: 1, max: 4, class: 'form-control' %>
+    </div>
+    <%= form.label 'Läsperiod', class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= form.number_field :lp, min: 1, max: 4, class: 'form-control' %>
+    </div>
+    <%= form.label 'Läsvecka', class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= form.number_field :lv, min: 1, max: 7, class: 'form-control' %>
+    </div>
+    <div class="row">
+      <%= form.submit "Spara", class: 'btn-u pull-right' %>
+    </div>
+<% end %>
