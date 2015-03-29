@@ -14,7 +14,7 @@ class Ability
 
     # TODO Should be removed when everyone is required to log in.
     # /d.wessman 2015-03-28
-    can [:read, :index, :update_worker, :remove_worker, :authorize], CafeWork
+    can [:read, :update_worker, :remove_worker, :authorize], CafeWork
     can [:read, :main], Rent
 
     # Abilities all signed in users get

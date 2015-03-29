@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Admin::ElectionsController < ApplicationController
-  load_resource find_by: :url # will use find_by_url!(params[:id])
+  load_permissions_and_authorize_resource find_by: :url
   before_action :authorize
   before_action :set_posts, only: [:new, :show, :edit]
 
@@ -19,7 +19,7 @@ class Admin::ElectionsController < ApplicationController
 
   def create
     if @election.save
-      redirect_to @election, notice: 'Valet skapades'
+      redirect_to [:admin,@election], notice: 'Valet skapades'
     else
       render action: :new
     end
@@ -27,7 +27,7 @@ class Admin::ElectionsController < ApplicationController
 
   def update
     if @election.update(election_params)
-      redirect_to admin_election_path(@election), notice: 'Valet uppdaterades, gött'
+      redirect_to [:admin,@election], notice: 'Valet uppdaterades, gött'
     else
       render action: :edit
     end
@@ -35,7 +35,7 @@ class Admin::ElectionsController < ApplicationController
 
   def destroy
     @election.destroy
-    redirect_to elections_path, notice: 'Valet raderades, hoppas att det var meningen!.'
+    redirect_to admin_elections_path, notice: 'Valet raderades, hoppas att det var meningen!.'
   end
 
   def nominations

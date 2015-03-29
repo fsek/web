@@ -12,6 +12,8 @@ describe Ability do
 
   context 'default user' do
     let(:user) { create(:user) }
+    let(:ability) { create(:user) }
+    subject(:ability) { Ability.new(user) }
 
     # Stuff everyone can do
     it { should be_able_to :read, Event.new }

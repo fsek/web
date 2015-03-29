@@ -1,7 +1,6 @@
 # encoding:UTF-8
 class CouncilsController < ApplicationController
-  load_resource find_by: :url # will use find_by_url!(params[:id])
-  authorize_resource
+  load_permissions_and_authorize_resource find_by: :url
   before_action :set_page, only: :show
   before_action :set_councils
 
@@ -19,7 +18,6 @@ class CouncilsController < ApplicationController
   end
 
   def new
-    @council = Council.new
   end
 
   def edit
@@ -27,7 +25,6 @@ class CouncilsController < ApplicationController
   end
 
   def create
-    @council = Council.new(council_params)
     if @council.save
       @council.build_page!(council_id: @council.id)
       redirect_to edit_council_path(@council), notice: 'Utskott skapades, success.'
@@ -60,6 +57,7 @@ class CouncilsController < ApplicationController
   end
 
   def council_params
-    params.require(:council).permit(:title, :url, :description, :president, :vicepresident, :public)
+    params.require(:council).permit(:title, :url, :description,
+                                    :president, :vicepresident, :public)
   end
 end
