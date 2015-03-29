@@ -1,9 +1,6 @@
 # encoding:UTF-8
 class ProfilesController < ApplicationController
-  
-  before_action :login_required
-  before_action :set_profile, only: [:show, :edit, :update,:remove_post, :avatar]
-  before_action :authenticate, except: [:show,:avatar]
+  load_permissions_and_authorize_resource
 
   def show
     if (@profile.owner?(current_user)) && (@profile.fresh?)
@@ -58,7 +55,7 @@ class ProfilesController < ApplicationController
 
   private
     def authenticate
-        redirect_to(root_path, alert: t('the_role.access_denied')) unless current_user &&  (current_user == @profile.user)
+        redirect_to root_path unless current_user &&  (current_user == @profile.user)
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_profile

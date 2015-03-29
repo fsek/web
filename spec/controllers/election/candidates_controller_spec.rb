@@ -15,24 +15,28 @@ RSpec.describe Election::CandidatesController, type: :controller do
     create(:candidate, profile: user.profile, election: election, post: search_post)
   end
 
-  context 'when not signed in' do
+  context 'when not allowed to' do
     describe 'GET #index' do
-      it 'redirects' do
+      it 'returns http forbidden' do
         get :index
 
-        expect(response).to be_redirect
+        response.should have_http_status(:forbidden)
+      end
+    end
+    describe 'GET #show' do
+      it 'diplays an error flash' do
+        get :show, id: candidate.id
+
+        flash[:error].should_not be_empty
       end
     end
   end
 
-  context 'when signed in as user' do
-    before do
-      sign_in user
+  context 'when allowed to manage candidate' do
+    allow_user_to :manage, Candidate
+    before :each do
       search_post
-    end
-
-    it 'should have a current_user' do
-      expect(subject.current_user).to_not be_nil
+      allow(controller).to receive(:current_user).and_return(user)
     end
 
     describe 'GET #index' do
@@ -129,28 +133,6 @@ RSpec.describe Election::CandidatesController, type: :controller do
       it 'redirects to the candidates list' do
         delete :destroy, id: candidate.to_param
         expect(response).to redirect_to(election_candidates_path)
-      end
-    end
-  end
-
-  context 'when signed in as user, not owner' do
-    before { sign_in not_owner }
-    describe 'GET #show' do
-      it 'diplays an error flash' do
-        get :show, id: candidate.id
-
-        expect(flash[:error]).to eq('Du har inte rättigheter för att se kandidaturen.')
-      end
-    end
-  end
-
-  context 'when signed in as admin' do
-    login_admin
-    describe 'index' do
-      it 'succeeds' do
-        get :index
-
-        expect(response).to be_success
       end
     end
   end

@@ -1,4 +1,4 @@
-<%= form_for([@council,@post]) do |f| %>
+<%= form_for(council_post_path(@council,@post), method: :patch) do |f| %>
   <%= render 'shared/form_errors', current: @post%>
   	<div class="col-md-6">  
 	    <%= f.label 'Titel', :class => 'reg-label'%>
@@ -40,6 +40,23 @@
 	  		<%= f.text_area :description,size: '80x18',class:'form-control' %>
 	  	</div>
   	</div>	 
+    <div class="input-group margin-bottom-20">
+      Permissions
+      <table>
+        <tr>
+          <th>Class</th>
+          <th>Action</th>
+          <th><%= check_box_tag 'main', 0, false %></th>
+        </tr>
+        <% @permissions.each do |permission| %>
+          <tr>
+            <td><%= permission.subject_class %></td>
+            <td><%= permission.action %></td>
+            <td><%= check_box_tag 'permissions[]', permission.id, @post_permissions.include?(permission.id), {array: true, class: "check_box"}%></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   	<div class="row">
 		<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
   	</div>

@@ -1,9 +1,5 @@
 # encoding:UTF-8
 class StaticPagesController < ApplicationController
-  include TheRole::Controller
-  
-  skip_before_filter :authenticate_user!
-
   def company_offer
   end
 
@@ -19,5 +15,3 @@ class StaticPagesController < ApplicationController
     end
   end
 end
-
-  

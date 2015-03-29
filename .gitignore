@@ -18,6 +18,7 @@ config/database.yml
 config/initializers/secret_token.rb
 config/secrets.yml
 /storage/
+
 ## Environment normalisation:
 /.bundle
 /vendor/bundle
@@ -28,3 +29,5 @@ config/secrets.yml
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
+.ruby-version
+.ruby-gemset

@@ -55,6 +55,13 @@ sv:
         link: Länknamn
         target: Måladress
 
+  activemodel:
+    attributes:
+      proposal:
+        title: Rubrik
+        sign_name: Ditt namn
+        sign_title: Din titel (valfritt)
+
   the_role:
     role_created:             Roll skapades
     role_updated:             Roll uppdaterades
@@ -104,4 +111,18 @@ sv:
         roles_import_confirm: 'Det kan ändra behörigheter i ditt system, är du säker?'
 
   errors:
+    format: "%{message}"
+    attributes:
+      email: 
+        blank: "Epost måste anges"
+      phone: 
+        blank: "Telefonnummer måste anges"
+      name: 
+        blank: "Förnamn måste anges"
+      lastname: 
+        blank: "Efternamn måste anges"
+        
+  time:
+    formats:
+      day: "%A %d/%m"
     invalid-url: Inte en giltig webadress

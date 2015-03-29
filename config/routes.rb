@@ -1,6 +1,5 @@
 Fsek::Application.routes.draw do
 
-
   resources :constants
 
   post "githook" => "githook#index"
@@ -14,10 +13,6 @@ Fsek::Application.routes.draw do
   get 'om' => 'static_pages#om', as: :om
   get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about
   get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
-
-
-
-
 
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
@@ -40,9 +35,31 @@ Fsek::Application.routes.draw do
   get 'anvandare' => 'users#index', as: :users
 
   # Scope to change urls to swedish
-  scope path_names: { new: 'ny', edit: 'redigera' } do
+  scope path_names: {new: 'ny', edit: 'redigera'} do
 
     resources :notices
+
+
+    scope :hilbertcafe do
+      namespace :admin do
+        resources :cafe_works, path: :jobb, controller: :cafe_works, except: :index do
+          patch :remove_worker, path: :jobbare, on: :member
+        end
+        get '/setup', controller: :cafe_works, action: :setup, as: :setup_cafe
+        post '/setup', controller: :cafe_works, action: :setup_create, as: :setup_cafe_create
+        get '', controller: :cafe_works, action: :index, as: :hilbert
+        post '', controller: :cafe_works, action: :index
+      end
+      resources :cafe_works, path: :jobb, only: [:show] do
+        patch :add_worker, path: :jobba, on: :member
+        patch :update_worker, path: :uppdatera, on: :member
+        patch :remove_worker, path: :inte_jobba, on: :member
+        patch :authorize, path: :auktorisera, on: :member
+      end
+      get '', controller: :cafe_works, action: :index, as: :hilbert
+      get '/nyckelpiga', controller: :cafe_works, action: :nyckelpiga
+      #get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling         
+    end
 
     # A scope to put car-associated things under /bil
     # /d.wessman
@@ -63,6 +80,7 @@ Fsek::Application.routes.draw do
       post :display, path: :visa, on: :member
       get :image, path: :bild, on: :member
     end
+
     resources :menus, path: :meny, except: :show
 
     resources :posts, path: :poster, only: :index do
@@ -130,18 +148,15 @@ Fsek::Application.routes.draw do
   end
   post '' => 'albums#index', as: :index_albums
 
-  concern :the_role, TheRole::AdminRoutes.new
-
-  namespace :admin do
-    concerns :the_role
-  end
-
-  resources :short_links, :except => [ :show, :update, :edit ] do
+  resources :short_links, except: [ :show, :update, :edit ] do
     collection do
       get 'go' => 'short_links#go'
       get 'check' => 'short_links#check'
     end
   end
+
+  get 'proposals/form' => 'proposals#form'
+  post 'proposals/generate' => 'proposals#generate'
 
   root 'static_pages#index'
 

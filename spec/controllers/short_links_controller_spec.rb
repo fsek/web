@@ -40,8 +40,8 @@ describe ShortLinksController, :type => :controller do
   end
 
   describe '#create' do
+    allow_user_to :manage, ShortLink
     it 'creates new shortlink for new link' do
-      fake_sign_in build(:admin)
 
       sl = build :short_link
 
@@ -55,7 +55,6 @@ describe ShortLinksController, :type => :controller do
     end
 
     it 'updates old shortlink for old link' do
-      fake_sign_in build(:admin)
 
       old_sl = create :short_link
       new_sl = build :short_link, :target => 'newurl.com'

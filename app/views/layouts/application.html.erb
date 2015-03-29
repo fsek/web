@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
-<!--[if !IE]><!--> <html lang="sv"> <!--<![endif]-->  
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="sv"> <!--<![endif]-->
 <head>
-  <title><%=full_title(yield(:title))%></title>
+  <title><%= full_title(yield(:title)) %></title>
 
   <!-- Meta -->
   <meta charset="utf-8">
@@ -11,47 +14,30 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
 
-  <% if current_user # This script is needed for the old gallery hack. /Erik Henriksson %>
-  <%= javascript_tag do %>
-    gallery_username = '<%= j current_user.username %>';
-    gallery_secret = '<%= j current_user.encrypted_password %>';
+  <% if current_user # This script is needed for the old gallery hack. /Erik Henriksson    %>
+      <%= javascript_tag do %>
+          gallery_username = '<%= j current_user.username %>';
+          gallery_secret = '<%= j current_user.encrypted_password %>';
+      <% end %>
   <% end %>
-  <% end %>
-
-  <!-- JS Global Compulsory -->           
-<script type="text/javascript">
-var bottom;
-   bottom = function() {
-   App.init(); 
-   var docHeight = $(window).height();
-   var footerHeight =  $('#copyright').height()
-   var footerTop = $('#copyright').position().top + footerHeight;
-
-   if (footerTop < docHeight) {
-    $('#footer').css('margin-top', 22+ (docHeight - footerTop) + 'px');
-   }
-  }; 
-
-$(document).ready(bottom)
-</script>
 </head>
 
 <body>
-<!--=== Top ===-->    
+<!--=== Top ===-->
 <div class="top">
   <div class="container">
-    <%= render "layouts/topbar" %>
+    <%= render 'layouts/topbar' %>
   </div>
 </div>
-<!--=== End Top ===-->    
+<!--=== End Top ===-->
 
 
-<!--=== Header ===-->    
+<!--=== Header ===-->
 <div class="header header-start">
   <div class="navbar navbar-default" role="navigation">
     <div class="container">
@@ -64,19 +50,19 @@ $(document).ready(bottom)
           <span class="icon-bar"></span>
         </button>
         <%= link_to root_path do %>
-          <div class="navbar-brand">
-            <%= image_tag("layout/f.svg", id: "logo-header", height: "60") %>
-          </div>
-          <div class="navbar-brand-text pull-left">
-            <span>&mdash;</span>TEKNOLOGSEKTIONEN<br />INOM TLTH
-          </div>
+            <div class="navbar-brand">
+              <%= image_tag("layout/f.svg", id: "logo-header", height: "60") %>
+            </div>
+            <div class="navbar-brand-text pull-left">
+              <span>&mdash;</span>TEKNOLOGSEKTIONEN<br/>INOM TLTH
+            </div>
         <% end %>
       </div>
-    
       <%= render "layouts/menu" %>
-    </div>    
-  </div>    
-</div><!--/header-->
+    </div>
+  </div>
+</div>
+<!--/header-->
 <!--=== End Header ===-->
 
 <!--=== Breadcrumbs ===-->
@@ -88,9 +74,9 @@ $(document).ready(bottom)
 <!--=== End Breadcrumbs ===-->
 
 <% if yield(:title) == 'Utskott' %>
-  <div class="container">
-    <%= render "layouts/utskottmenu" %>
-  </div>
+    <div class="container">
+      <%= render "layouts/utskottmenu" %>
+    </div>
 <% end %>
 
 
@@ -98,27 +84,29 @@ $(document).ready(bottom)
 <%= yield :pre_content %>
 
 <div class="container content">
-  <div class="row magazine-page">    	
+  <div class="row magazine-page">
     <!-- Begin Content -->
     <div class="col-md-12">
-		<% if notice %>
-			<div class="alert alert-info">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<%= notice %>
-			</div> 
-		<% end %>
-		<% if alert %>
-			<div class="alert alert-danger fade-in">
-			  <button type="button" class="close" data-dismiss="alert">&times;</button>
-			  <strong>Fel:</strong> <%= alert %>
-		  </div> 
-		<% end %>		
-	  	<%= yield %>      
-      	<%= yield :role_main %>
-      	<%= yield :role_sidebar %>
+      <% if notice %>
+          <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= notice %>
+          </div>
+      <% end %>
+      <% if alert %>
+          <div class="alert alert-danger fade-in">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Fel:</strong> <%= alert %>
+          </div>
+      <% end %>
+      <%= yield %>
+      <%= yield :role_main %>
+      <%= yield :role_sidebar %>
     </div>
-  </div><!-- /row -->
-</div><!--/container-->     
+  </div>
+  <!-- /row -->
+</div>
+<!--/container-->
 <!-- End Content Part -->
 
 <!--=== Footer ===-->
@@ -126,23 +114,19 @@ $(document).ready(bottom)
   <div class="container">
     <div class="row">
       <%= render "layouts/footer" %>
-    </div> 
+    </div>
   </div>
-</div>   
+</div>
 <!--=== End Footer ===-->
 
 <!--=== Copyright ===-->
 <div class="copyright" id="copyright">
   <div class="container">
     <div class="row">
-      <%= render "layouts/bottombar" %>    
+      <%= render "layouts/bottombar" %>
     </div>
-  </div> 
-</div> 
+  </div>
+</div>
 <!--=== End Copyright ===-->
-
-<!--[if lt IE 9]>
-  <script src="assets/plugins/respond.js"></script>
-<![endif]-->    
 </body>
 </html> 

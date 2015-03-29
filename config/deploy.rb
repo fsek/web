@@ -4,10 +4,6 @@ lock '3.1.0'
 set :application, 'fsek'
 set :repo_url, 'git@github.com:fsek/web.git'
 
-# what specs should be run before deployment is allowed to
-# continue, see lib/capistrano/tasks/run_tests.cap
-set :tests, []
-
 # Setup rbenv
 set :rbenv_type, :user
 set :rbenv_ruby, '2.2.0'

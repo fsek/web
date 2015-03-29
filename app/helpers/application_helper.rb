@@ -14,4 +14,16 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
+
+  def form_group &block
+    html = Nokogiri::HTML.fragment capture_haml &block
+    html.xpath('input|textarea').each do |e|
+      if e['class']
+        e['class'] += ' form-control '
+      else
+        e['class'] = 'form-control '
+      end
+    end
+    content_tag :div, raw(html.to_html), :class => 'form-group'
+  end
 end

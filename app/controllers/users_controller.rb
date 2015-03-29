@@ -1,8 +1,6 @@
 # encoding:UTF-8
 class UsersController < ApplicationController  
-  include TheRole::Controller
-  before_filter :login_required  
-  before_filter :authenticate_admin!, only: [:index]
+  load_permissions_and_authorize_resource
   before_filter :find_user,      :only   => [:edit, :update,:destroy,:update_password]
   before_filter :owner_required, :only   => [:edit, :update]
   
