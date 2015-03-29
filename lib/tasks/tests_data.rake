@@ -68,5 +68,20 @@ namespace :load_database do
         p.posts << sexmast
       end
     end
+
+    # Menues
+    Menu.find_or_create_by!(location: 'Sektionen', name: 'Om oss',
+                            link: '/om', index: 10, visible: true, turbolinks: true)
+    Menu.find_or_create_by!(location: 'Sektionen', name: 'Utskott',
+                            link: '/utskott', index: 20, visible: true, turbolinks: true)
+    Menu.find_or_create_by!(location: 'Sektionen', name: 'Dokument',
+                            link: '/dokument', index: 30, visible: true, turbolinks: true)
+
+    Menu.find_or_create_by!(location: 'För medlemmar', name: 'Val',
+                            link: '/val', index: 10, visible: true, turbolinks: true)
+    Menu.find_or_create_by!(location: 'För medlemmar', name: 'Bilbokning',
+                            link: '/bil', index: 20, visible: true, turbolinks: false)
+    Menu.find_or_create_by!(location: 'För medlemmar', name: 'Hilbertcafé',
+                            link: '/hilbertcafe', index: 30, visible: true, turbolinks: false)
   end
 end
