@@ -7,7 +7,7 @@
       </a>
       <ul class="dropdown-menu">
         <% if (sekt_menus = menus_by_location['Sektionen']).present? %>
-            <%= render sekt_menus %>
+            <%= render partial: 'menus/menu', collection: sekt_menus %>
         <% else %>
             <li><%= link_to 'Om oss', :om %></li>
             <li><%= link_to 'Utskott', :councils %></li>
@@ -21,7 +21,7 @@
       </a>
       <ul class="dropdown-menu">
         <% if (medlem_menus = menus_by_location['För medlemmar']).present? %>
-            <%= render medlem_menus %>
+            <%= render partial: 'menus/menu', collection: medlem_menus %>
         <% else %>
             <li><%= link_to 'Val', :elections, 'data-no-turbolink' => true %></li>
             <li><%= link_to 'Bildgalleri', :albums, 'data-no-turbolink' => true %></li>
@@ -44,7 +44,7 @@
       </a>
       <ul class="dropdown-menu">
         <% if (company_menus = menus_by_location['För företag']).present? %>
-            <%= render company_menus %>
+            <%= render partial: 'menus/menu', collection: company_menus %>
         <% else %>
             <li><%= link_to 'Arbetsmarknadsdagar', 'http://www.farad.nu' %></li>
         <% end %>
@@ -56,7 +56,7 @@
       </a>
       <ul class="dropdown-menu">
         <% if (contact_menus = menus_by_location['Kontakt']).present? %>
-            <%= render contact_menus %>
+            <%= render partial: 'menus/menu', collection: contact_menus %>
         <% else %>
             <li><%= link_to 'Kontaktsida', contacts_path %></li>
         <% end %>
