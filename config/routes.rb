@@ -39,7 +39,6 @@ Fsek::Application.routes.draw do
 
     resources :notices
 
-
     scope :hilbertcafe do
       namespace :admin do
         resources :cafe_works, path: :jobb, controller: :cafe_works, except: :index do
@@ -83,6 +82,10 @@ Fsek::Application.routes.draw do
 
     resources :menus, path: :meny, except: :show
 
+    resources :pages, path: :sida do
+      resources :page_elements, path: :element, on: :member, except: :show
+    end
+
     resources :posts, path: :poster, only: :index do
       get :display, on: :member
       get :collapse, on: :collection
@@ -92,9 +95,6 @@ Fsek::Application.routes.draw do
       resources :posts, path: :poster do
         patch :remove_profile, on: :member
         patch :add_profile_username, on: :member
-      end
-      resource :page, path: :sida do
-        resources :page_elements, path: :element, on: :member
       end
     end
 
@@ -148,7 +148,7 @@ Fsek::Application.routes.draw do
   end
   post '' => 'albums#index', as: :index_albums
 
-  resources :short_links, except: [ :show, :update, :edit ] do
+  resources :short_links, except: [:show, :update, :edit] do
     collection do
       get 'go' => 'short_links#go'
       get 'check' => 'short_links#check'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171448) do
+ActiveRecord::Schema.define(version: 20410822171450) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -117,8 +117,6 @@ ActiveRecord::Schema.define(version: 20410822171448) do
     t.string   "title",             limit: 255
     t.string   "url",               limit: 255
     t.text     "description",       limit: 65535
-    t.integer  "president",         limit: 4
-    t.integer  "vicepresident",     limit: 4
     t.string   "logo_file_name",    limit: 255
     t.string   "logo_content_type", limit: 255
     t.integer  "logo_file_size",    limit: 4
@@ -127,6 +125,8 @@ ActiveRecord::Schema.define(version: 20410822171448) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contact_id",        limit: 4
+    t.integer  "president_id",      limit: 4
+    t.integer  "vicepresident_id",  limit: 4
   end
 
   create_table "documents", force: :cascade do |t|
@@ -293,7 +293,13 @@ ActiveRecord::Schema.define(version: 20410822171448) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "council_id", limit: 4
+    t.string   "url",        limit: 255
+    t.boolean  "visible",    limit: 1
+    t.string   "title",      limit: 255
   end
+
+  add_index "pages", ["council_id"], name: "index_pages_on_council_id", using: :btree
+  add_index "pages", ["url"], name: "index_pages_on_url", using: :btree
 
   create_table "permission_posts", force: :cascade do |t|
     t.integer  "permission_id", limit: 4

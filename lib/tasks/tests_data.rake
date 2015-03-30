@@ -4,6 +4,7 @@ namespace :load_database do
     # Councils
     pryl = Council.find_or_create_by!(title: 'Prylmästeriet',
                                       url: 'pryl', description: 'Detta är Prylmästeriet', public: true)
+
     sexm = Council.find_or_create_by!(title: 'Sexmästeriet',
                                       url: 'sex', description: 'Detta är Sexmästeriet', public: true)
     cafem = Council.find_or_create_by!(title: 'Cafemästeriet',

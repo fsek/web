@@ -4,5 +4,11 @@
 	    <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_council_path(@council), class: "btn-u btn-u-small"%>	    
 	<%end%>
 </div>
-<hr>
-<%=render partial: "pages/main"%>  				
+<div class="container">
+  <% if @page.present? %>
+      <%=render @page%>
+  <%end%>
+  <% if @council.posts.present? %>
+      <%= render 'posts/table', collection: @council.posts %>
+  <%end%>
+</div>

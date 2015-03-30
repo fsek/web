@@ -24,6 +24,6 @@ module ApplicationHelper
         e['class'] = 'form-control '
       end
     end
-    content_tag :div, raw(html.to_html), :class => 'form-group'
+    content_tag :div, raw(html.to_html), class:  'form-group'
   end
 end

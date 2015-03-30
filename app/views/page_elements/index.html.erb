@@ -1,26 +1,30 @@
-<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Visa sida"), council_page_path(@council), class: "btn-u btn-u-small"%>
-<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Visa alla element"), council_page_page_elements_path(@council), class: "btn-u btn-u-small"%> 
+<%= link_to(fa_icon('edit') +' Redigera sida' ,
+    page_path(@page), class: "btn-u btn-u-small")%>
+<%= link_to(fa_icon('edit') + ' Lägg till nytt element',
+            new_page_page_element_path(@page,@page_element),
+            class: "btn-u btn-u-small")%>
 <hr>
-<div class="container content">  		
-	<div class="headline headline-md"><h3>Sida</h3></div>
-    <div class="row high-rated margin-bottom-20">
-   		<div class="sorting-block">		            
-            <ul class="row sorting-grid">            	            	            	
-            	<% @page_elements.each do |p| %>		                 
-            		<li class="col-md-3 col-sm-6 col-xs-12">		                		
-                		<div class="tag-box tag-box-v2">					
-		                	<div class="overflow-h">
-			                        <h3><%=p.name%></h3>			                        		                        
-		                    </div>		                    
-		                    	<div class="overflow-h">			                        
-		                       		<br> <%=simple_format(p.text)%>
-		                       		<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_council_page_page_element_path(@council,p), class: "btn-u btn-u-small"%>		                        
-		                    	</div>                  	
-                    	</div>			                    
-                	</li>		                 
-        		<% end %>                    
-            </ul>        
-        	<div class="clearfix"></div>			
-		</div>
-	</div>	
+<div class="container content">
+  <div class="headline headline-md"><h3>Sida</h3></div>
+  <div class="row high-rated margin-bottom-20">
+    <div class="sorting-block">
+      <ul class="row sorting-grid">
+        <% @page_elements.each do |p| %>
+            <li class="col-md-3 col-sm-6 col-xs-12">
+              <div class="tag-box tag-box-v2">
+                <div class="overflow-h">
+                  <h3><%= p.name %></h3>
+                </div>
+                <div class="overflow-h">
+                  <br> <%= simple_format(p.text) %>
+                  <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"),
+                              edit_page_page_element_path(@page, p), class: "btn-u btn-u-small" %>
+                </div>
+              </div>
+            </li>
+        <% end %>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+  </div>
 </div>

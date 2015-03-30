@@ -30,12 +30,12 @@
     <div class="input-group margin-bottom-20">
       <%= f.number_field :sort ,class: 'form-control'%>
     </div>
-    <%= f.label :image, :class => 'reg-label'%>
+    <%= f.label :image, class:  'reg-label'%>
     <div class="input-group margin-bottom-20">
       <% if @notice.image?%>
           <%= image_tag(image_notice_path(@notice, style: 'small'))%><br>
       <% end %>
-      <%= f.file_field :image, :class => 'form-control' %>
+      <%= f.file_field :image, class:  'form-control' %>
     </div>
     <div class="actions margin-bottom-20">
       <%= f.submit class:"btn btn-u" %>

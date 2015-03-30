@@ -3,37 +3,37 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 reg-page">
 			<%= form_for([:admin,@election]) do |f| %>
-				<%= label_tag 'Redigera val',nil, :class => 'reg-header'%><br>
-				<%= f.label 'Huvudtext i nomineringsmejl', :class => 'reg-label'%>
+				<%= label_tag 'Redigera val',nil, class:  'reg-header'%><br>
+				<%= f.label 'Huvudtext i nomineringsmejl', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :nominate_mail,:class => 'form-control', size: "180x4" %>
+			  		<%= f.text_area :nominate_mail,class:  'form-control', size: "180x4" %>
 			  	</div>
-			  	<%= f.label 'Huvudtext i valberedningens kandidaturmejl', :class => 'reg-label'%>
+			  	<%= f.label 'Huvudtext i valberedningens kandidaturmejl', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :candidate_mail,:class => 'form-control', size: "180x4" %>
+			  		<%= f.text_area :candidate_mail,class:  'form-control', size: "180x4" %>
 			  	</div>
-			  	<%= f.label 'Huvudtext i kandidaturmejl för stjärnposter', :class => 'reg-label'%>
+			  	<%= f.label 'Huvudtext i kandidaturmejl för stjärnposter', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :candidate_mail_star,:class => 'form-control', size: "180x4" %>
+			  		<%= f.text_area :candidate_mail_star,class:  'form-control', size: "180x4" %>
 			  	</div>
-			  	<%= f.label 'Extratext i styrelsemejl', :class => 'reg-label'%>
+			  	<%= f.label 'Extratext i styrelsemejl', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :extra_text,:class => 'form-control', size: "180x4" %>
+			  		<%= f.text_area :extra_text,class:  'form-control', size: "180x4" %>
 			  	</div>			  				
-				<%= f.label 'Text innan valet är öppet', :class => 'reg-label'%>
+				<%= f.label 'Text innan valet är öppet', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :text_before,:class => 'form-control', size: "180x4" %>
+			  		<%= f.text_area :text_before,class:  'form-control', size: "180x4" %>
 			  	</div>
-			  	<%= f.label 'Text under valet', :class => 'reg-label'%>
+			  	<%= f.label 'Text under valet', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :text_during,:class => 'form-control', size: "180x4" %>
+			  		<%= f.text_area :text_during,class:  'form-control', size: "180x4" %>
 			  	</div>
-			  	<%= f.label 'Text efter valet', :class => 'reg-label'%>
+			  	<%= f.label 'Text efter valet', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
-			  		<%= f.text_area :text_after,:class => 'form-control', size: "180x4" %>
+			  		<%= f.text_area :text_after,class:  'form-control', size: "180x4" %>
 			  	</div>	  	
 			  	<div class="row">
-	  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+	  			<%= f.submit "Spara",class:  'btn-u pull-right' %>
 	  			</div>	
 	  		<%end%>	
 			<%= link_to 'Redigera inställningar', admin_election_path(@election) %><br>

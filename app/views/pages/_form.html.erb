@@ -1,16 +1,24 @@
-<%= form_for(@page, :html => {  :autocomplete => 'off' }) do |f| %>
-	<% if @page.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@page.errors.count, "error") %> gör att sidan inte kan sparas:</h2>
-	
-	      <ul>
-	      <% @page.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	      </ul>
-	    </div>
-  	<% end %>  	
-  	<div class="row">
-  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
-  	</div>
+<%= form_for(@page) do |f| %>
+    <%= render 'shared/form_errors', current: @page %>
+    <%= f.label :title, class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= f.text_field :title, class: 'form-control', placeholder: 'Titel' %>
+    </div>
+    <% if @page.council.present? %>
+        <%= f.label 'Sida', class: 'reg-label' %>
+        <div class="input-group margin-bottom-20">
+          <%= link_to(@page.council, @page.council) %>
+        </div>
+    <% end %>
+    <%= f.label :url, class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= f.text_field :url, class: 'form-control', placeholder: 'Url' %>
+    </div>
+    <%= f.label :visible, class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= f.check_box :visible, checked: @page.visible %>
+    </div>
+    <div class="row">
+      <%= f.submit "Spara", class: 'btn-u pull-right' %>
+    </div>
 <% end %>

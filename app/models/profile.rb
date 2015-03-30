@@ -6,6 +6,8 @@ class Profile < ActiveRecord::Base
   has_many :candidates
   has_many :rents
   has_many :councils, through: :posts
+  # TODO Change the first_post field to first_post_id
+  #belongs_to :first_post, foreign_key: first_post_id, class: Post
 
   # Attachment
   has_attached_file :avatar,
@@ -26,7 +28,7 @@ class Profile < ActiveRecord::Base
   # allowed to rent the car
   # /d.wessman
   def car_councils
-    self.councils.merge(Post.renters)
+    councils.merge(Post.renters)
   end
 
   # Check if profile has user data (name and lastname)

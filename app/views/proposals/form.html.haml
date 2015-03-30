@@ -13,7 +13,7 @@
       skulle råka ladda om sidan.
 
     = form_for @proposal, :url => proposals_generate_path(:format => :pdf), 
-      :html => { :class => 'proposal-form' }do |f|
+      :html => { class:  'proposal-form' }do |f|
       %fieldset
         %legend Grundläggande information
 
@@ -50,5 +50,5 @@
           Yrka mindre!
       %hr
 
-      = f.submit 'Skapa motion!', :class => 'btn btn-default'
+      = f.submit 'Skapa motion!', class:  'btn btn-default'
 
