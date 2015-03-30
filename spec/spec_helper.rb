@@ -23,16 +23,14 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/all'
 require 'rspec/rails'
 require 'capybara/rspec'
-
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+require 'capybara/rails'
 
 # I had to include this, /d.wessman 2015-03-20
 require 'database_cleaner'
 # Devise helpers
 require 'devise'
 
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: 'controller'
   config.extend ControllerMacros, type: 'controller'
@@ -40,7 +38,7 @@ RSpec.configure do |config|
     # Uncomment when all tests uses should
     #expectations.syntax = :should
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-    expectations.syntax = [ :should, :expect ]
+    expectations.syntax = [:should, :expect]
   end
 
   config.mock_with :rspec do |mocks|

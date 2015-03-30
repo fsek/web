@@ -3,7 +3,7 @@ class AddAccessCodeToRents < ActiveRecord::Migration
     add_column :rents, :access_code, :string
     change_column :rents, :service,:boolean, default: false
     change_column :rents, :disclaimer,:boolean, default: false
-    change_column :rents, :purpose,:text, default: ""
+    change_column :rents, :purpose,:text
 
     add_index :rents,:d_from
     add_index :rents,:d_til

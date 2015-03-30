@@ -2,8 +2,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :configure_permitted_devise_parameters, if: :devise_controller?
-  before_filter :set_locale
+  before_action :configure_permitted_devise_parameters, if: :devise_controller?
+  before_action :set_locale
 
   rescue_from CanCan::AccessDenied do |ex|
     flash[:error] = ex.message
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordInvalid do |ex|
     flash[:error] =
-      "Fel i formulär:  #{ex.record.errors.full_messages.join '; '}"
+        "Fel i formulär:  #{ex.record.errors.full_messages.join '; '}"
     render referring_action, status: :unprocessable_entity
   end
 
@@ -24,9 +24,15 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_devise_parameters
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:username, :password, :remember_me) }
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:password, :password_confirmation, :current_password) }
+    devise_parameter_sanitizer.for(:sign_in) do |u|
+      u.permit(:username, :password, :remember_me)
+    end
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:username, :email, :password, :password_confirmation)
+    end
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:password, :password_confirmation, :current_password)
+    end
   end
 
   def self.permission
@@ -48,7 +54,7 @@ class ApplicationController < ActionController::Base
   # Enables authentication and
   def self.load_permissions_and_authorize_resource(*args)
     load_and_authorize_resource(*args)
-    before_filter(:load_permissions, *args)
+    before_action(:load_permissions, *args)
   end
 
   def self.skip_authorization(*args)
@@ -72,7 +78,6 @@ class ApplicationController < ActionController::Base
         locale = lang if langs.include? lang
       end
     end
-
     I18n.locale = locale
     redirect_to(:back) if params[:locale]
   end
