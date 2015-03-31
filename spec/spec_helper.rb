@@ -25,6 +25,9 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
 
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+
 # I had to include this, /d.wessman 2015-03-20
 require 'database_cleaner'
 # Devise helpers
