@@ -33,7 +33,6 @@ class AlbumsController < ApplicationController
     else
       render action: "new"
     end
-
   end
 
   def destroy
@@ -53,11 +52,11 @@ class AlbumsController < ApplicationController
       #===== The magic is here ;)
       @count = 1
       @total = params[:fotos].count
-      params[:fotos].each { |foto|
+      params[:fotos].each do |foto|
         flash[:notice] = %(Laddar upp #{@count}/#{@total})
         @album.images.create(foto: foto, subcategory_id: params[:subcategory_id])
         @count = @count+1;
-      }
+      end
       flash[:notice] = %(Färdig! Laddat upp #{@total} bilder.)
     end
   end
@@ -82,8 +81,8 @@ class AlbumsController < ApplicationController
   end
 
   def album_params
-    params.fetch(:album, {}).permit(:title, :description, :author, :location,
-                                    :public, :start_date, :end_date, album_category_ids: [],
-                                    subcategory_ids: [], images_parameters: [:id, :foto])
+    params.require(:album).permit(:title, :description, :author, :location,
+                                  :public, :start_date, :end_date, album_category_ids: [],
+                                  subcategory_ids: [], images_parameters: [:id, :foto])
   end
 end

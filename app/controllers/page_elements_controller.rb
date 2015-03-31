@@ -18,7 +18,7 @@ class PageElementsController < ApplicationController
 
   def create
     if @page_element.save
-      redirect_to edit_page_page_element_path[@page, @page_element], notice: 'Elementet skapades'
+      redirect_to edit_page_page_element_path(@page, @page_element), notice: 'Elementet skapades'
     else
       render action: :new
     end
