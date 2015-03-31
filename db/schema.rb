@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171448) do
+ActiveRecord::Schema.define(version: 0) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20410822171448) do
     t.string   "category",          limit: 255
     t.integer  "photo_category_id", limit: 4
   end
+
+  create_table "albums_categories", id: false, force: :cascade do |t|
+    t.integer "album_id",    limit: 4
+    t.integer "category_id", limit: 4
+  end
+
+  add_index "albums_categories", ["album_id", "category_id"], name: "index_albums_categories_on_album_id_and_category_id", unique: true, using: :btree
+  add_index "albums_categories", ["category_id"], name: "index_albums_categories_on_category_id", using: :btree
 
   create_table "albums_images", id: false, force: :cascade do |t|
     t.integer "album_id", limit: 4
@@ -95,6 +103,15 @@ ActiveRecord::Schema.define(version: 20410822171448) do
 
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id", using: :btree
   add_index "candidates", ["profile_id"], name: "index_candidates_on_profile_id", using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+    t.string   "typ",         limit: 255
+    t.boolean  "sub",         limit: 1,     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "constants", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -166,6 +183,25 @@ ActiveRecord::Schema.define(version: 20410822171448) do
   create_table "elections_posts", id: false, force: :cascade do |t|
     t.integer "election_id", limit: 4
     t.integer "post_id",     limit: 4
+  end
+
+  create_table "email_accounts", force: :cascade do |t|
+    t.integer  "profile_id", limit: 4
+    t.string   "email",      limit: 255
+    t.string   "title",      limit: 255
+    t.boolean  "active",     limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "emails", force: :cascade do |t|
+    t.integer  "email_account_id", limit: 4
+    t.string   "receiver",         limit: 255
+    t.string   "subject",          limit: 255
+    t.text     "message",          limit: 65535
+    t.boolean  "copy",             limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", force: :cascade do |t|
@@ -318,6 +354,21 @@ ActiveRecord::Schema.define(version: 20410822171448) do
     t.datetime "updated_at"
   end
 
+  create_table "phrasing_phrase_versions", force: :cascade do |t|
+    t.integer  "phrasing_phrase_id", limit: 4
+    t.text     "value",              limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "phrasing_phrases", force: :cascade do |t|
+    t.string   "locale",     limit: 255
+    t.string   "key",        limit: 255
+    t.text     "value",      limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string   "title",         limit: 255
     t.integer  "limit",         limit: 4,     default: 0
@@ -341,7 +392,6 @@ ActiveRecord::Schema.define(version: 20410822171448) do
 
   create_table "profiles", force: :cascade do |t|
     t.string   "name",                limit: 255
-    t.string   "lastname",            limit: 255
     t.string   "program",             limit: 255
     t.integer  "start_year",          limit: 4
     t.integer  "user_id",             limit: 4
@@ -355,6 +405,7 @@ ActiveRecord::Schema.define(version: 20410822171448) do
     t.string   "email",               limit: 255
     t.string   "stil_id",             limit: 255
     t.string   "phone",               limit: 255
+    t.string   "lastname",            limit: 255
   end
 
   create_table "rents", force: :cascade do |t|
@@ -366,14 +417,14 @@ ActiveRecord::Schema.define(version: 20410822171448) do
     t.string   "phone",       limit: 255
     t.text     "purpose",     limit: 65535
     t.boolean  "disclaimer",  limit: 1,     default: false
-    t.string   "status",      limit: 255,   default: "Ej bestämd"
     t.boolean  "aktiv",       limit: 1,     default: true
     t.integer  "council_id",  limit: 4
     t.integer  "profile_id",  limit: 4
-    t.boolean  "service",     limit: 1,     default: false
-    t.text     "comment",     limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "comment",     limit: 65535
+    t.string   "status",      limit: 255,   default: "Ej bestämd"
+    t.boolean  "service",     limit: 1,     default: false
     t.string   "access_code", limit: 255
   end
 
@@ -418,6 +469,9 @@ ActiveRecord::Schema.define(version: 20410822171448) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "work_posts", force: :cascade do |t|
     t.string   "title",                limit: 255
