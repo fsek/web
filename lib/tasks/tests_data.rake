@@ -84,5 +84,9 @@ namespace :load_database do
                             link: '/bil', index: 20, visible: true, turbolinks: false)
     Menu.find_or_create_by!(location: 'För medlemmar', name: 'Hilbertcafé',
                             link: '/hilbertcafe', index: 30, visible: true, turbolinks: false)
+
+    # Notice
+    Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
+    Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
   end
 end
