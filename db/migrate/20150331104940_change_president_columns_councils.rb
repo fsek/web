@@ -1,4 +1,4 @@
-class ChangePresidentColumnCouncils < ActiveRecord::Migration
+class ChangePresidentColumnsCouncils < ActiveRecord::Migration
   def change
     remove_column :councils, :president, :integer
     remove_column :councils, :vicepresident, :integer

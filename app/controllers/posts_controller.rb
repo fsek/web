@@ -1,7 +1,11 @@
 # encoding:UTF-8
 class PostsController < ApplicationController
   load_permissions_and_authorize_resource
-  load_resource :council, find_by: :url
+  load_and_authorize_resource :council, parent: true, find_by: :url
+
+
+  before_action :set_permissions
+  before_action :set_councils, only: [:new, :edit, :update, :create]
 
   def remove_profile
     profile = Profile.find_by_id(params[:profile_id])
@@ -13,14 +17,18 @@ class PostsController < ApplicationController
   def add_profile_username
     @user = User.find_by(username: params[:username])
     if @post.add_profile(@user)
-      redirect_to council_posts_path(@council), flash: {alert: 'Hittade ingen användare med det användarnamnet.'}
+      redirect_to council_posts_path(@council),
+                  flash: {alert: 'Hittade ingen användare med det användarnamnet.'}
     elsif @profile.posts.include?(@post)
-      redirect_to council_posts_path(@council), flash: {alert: @profile.name.to_s + '(' + @user.username.to_s + ') har redan posten '+@post.title.to_s + '.'}
+      redirect_to council_posts_path(@council),
+                  alert: %(#{@profile.name} ( #{@user.username}) har redan posten #{@post.title} .)
     elsif (@post.limit != nil) && (@post.profiles.size >= @post.limit)
-      redirect_to council_posts_path(@council), flash: {alert: @post.title.to_s + ' har sitt maxantal.'}
+      redirect_to council_posts_path(@council),
+                  alert: %(#{@post.title} har sitt maxantal.)
     else
       @post.profiles << @profile
-      redirect_to council_posts_path(@council), notice: @profile.name.to_s + ' (' + @profile.user.username.to_s + ') tilldelades posten '+@post.title.to_s + '.'
+      redirect_to council_posts_path(@council),
+                  notice: %(#{@profile.name} ( #{@profile.user.username}) tilldelades posten #{@post.title}.)
     end
   end
 
@@ -31,17 +39,14 @@ class PostsController < ApplicationController
 
   def new
     @post = @council.posts.build
-    @councils = Council.order(title: :asc)
+    @post_permissions = @post.permissions.collect! { |p| p.id }
   end
 
   def edit
     @post_permissions = @post.permissions.collect! { |p| p.id }
-    @councils = Council.order(title: :asc)
-    @permissions = Permission.all
   end
 
   def create
-    @councils = Council.order(title: :asc)
     @post = @council.posts.build(post_params)
     if @post.save
       redirect_to council_posts_path(@council), notice: 'Posten skapades!'
@@ -78,5 +83,13 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :limit, :recLimit,
                                  :description, :elected_by, :elected_at,
                                  :styrelse, :car_rent, :council_id, :permissions)
+  end
+
+  def set_councils
+    @councils = Council.order(title: :asc)
+  end
+
+  def set_permissions
+    @permissions = Permission.all
   end
 end

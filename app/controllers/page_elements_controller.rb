@@ -18,7 +18,8 @@ class PageElementsController < ApplicationController
 
   def create
     if @page_element.save
-      redirect_to edit_page_page_element_path(@page, @page_element), notice: 'Elementet skapades'
+      redirect_to edit_page_page_element_path(@page, @page_element),
+                  notice: 'Elementet skapades'
     else
       render action: :new
     end
@@ -26,7 +27,8 @@ class PageElementsController < ApplicationController
 
   def update
     if @page_element.update(page_element_params)
-      redirect_to edit_page_page_element_path(@page, @page_element), notice: 'Elementet uppdaterades.'
+      redirect_to edit_page_page_element_path(@page, @page_element),
+                  notice: 'Elementet uppdaterades.'
     else
       render action: :edit
     end
@@ -40,6 +42,8 @@ class PageElementsController < ApplicationController
   private
 
   def page_element_params
-    params.fetch(:page_element).permit(:page_id, :displayIndex, :sidebar, :visible, :text, :headline, :border, :name, :pictureR, :picture)
+    params.fetch(:page_element).permit(:page_id, :displayIndex, :sidebar,
+                                       :visible, :text, :headline, :border,
+                                       :name, :pictureR, :picture)
   end
 end

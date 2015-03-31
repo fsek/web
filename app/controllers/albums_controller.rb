@@ -31,7 +31,7 @@ class AlbumsController < ApplicationController
     if @album.save
       redirect_to @album, notice: 'Albumet skapades!'
     else
-      render action: "new"
+      render action: :new
     end
   end
 
@@ -55,7 +55,7 @@ class AlbumsController < ApplicationController
       params[:fotos].each do |foto|
         flash[:notice] = %(Laddar upp #{@count}/#{@total})
         @album.images.create(foto: foto, subcategory_id: params[:subcategory_id])
-        @count = @count+1;
+        @count = @count + 1
       end
       flash[:notice] = %(Färdig! Laddat upp #{@total} bilder.)
     end
@@ -65,7 +65,7 @@ class AlbumsController < ApplicationController
     if @album.update(album_params)
       redirect_to edit_album_path(@album), notice: 'Albumet uppdaterades!'
     else
-      render action: "edit"
+      render action: :edit
     end
   end
 

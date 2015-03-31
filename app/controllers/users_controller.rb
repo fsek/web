@@ -26,16 +26,19 @@ class UsersController < ApplicationController
     if @user.update_with_password(user_params)
       @user.profile.posts.clear
       if @user.destroy
-        redirect_to root_url, notice: 'Användare togs bort..'
+        redirect_to root_url, notice: 'Användare togs bort.'
       end
     else
-      redirect_to :edit_user_registration, notice: 'Lösenord måste fyllas i för att radera användare.'
+      redirect_to :edit_user_registration,
+                  notice: 'Lösenord måste fyllas i för att radera användare.'
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:username, :email,
+                                 :password, :password_confirmation,
+                                 :current_password)
   end
 end
