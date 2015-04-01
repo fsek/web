@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Election::CandidatesController, type: :controller do
+RSpec.describe Elections::CandidatesController, type: :controller do
   # Build an election
   let(:election) { create(:election) }
   before(:each) do
@@ -20,14 +20,16 @@ RSpec.describe Election::CandidatesController, type: :controller do
       it 'returns http forbidden' do
         get :index
 
-        response.should have_http_status(:forbidden)
+        # Changed the AccessDenied action to redirect
+        #response.should have_http_status(:forbidden)
+        response.should redirect_to(:new_user_session)
       end
     end
     describe 'GET #show' do
       it 'diplays an error flash' do
         get :show, id: candidate.id
 
-        flash[:error].should_not be_empty
+        flash[:alert].should_not be_empty
       end
     end
   end
@@ -82,7 +84,7 @@ RSpec.describe Election::CandidatesController, type: :controller do
       end
       it 'creates candidate and redirects to candidate' do
         post :create, candidate: attributes_for(:candidate, post_id: search_post.id)
-        expect(response).to redirect_to([:election, Candidate.last])
+        expect(response).to redirect_to(Candidate.last)
       end
     end
 
@@ -100,12 +102,12 @@ RSpec.describe Election::CandidatesController, type: :controller do
 
         it 'assigns the requested candidate as @candidate' do
           patch :update, id: candidate.to_param, candidate: change_attributes
-          expect(assigns(:candidate)).to eq(candidate)
+          assigns(:candidate).should eq(candidate)
         end
 
         it 'redirects to the candidate' do
           patch :update, id: candidate.to_param, candidate: change_attributes
-          expect(response).to redirect_to([:election, candidate])
+          response.should redirect_to(candidate)
         end
       end
 
@@ -132,7 +134,7 @@ RSpec.describe Election::CandidatesController, type: :controller do
 
       it 'redirects to the candidates list' do
         delete :destroy, id: candidate.to_param
-        expect(response).to redirect_to(election_candidates_path)
+        expect(response).to redirect_to(candidates_path)
       end
     end
   end

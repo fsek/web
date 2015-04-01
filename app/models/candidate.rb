@@ -7,7 +7,7 @@ class Candidate < ActiveRecord::Base
 
   # Validations
   validates :profile_id, uniqueness: {
-    scope: [:post_id, :election_id], message: 'har redan en likadan kandidatur'
+    scope: [:post_id, :election_id], message: I18n.t('candidates.similar_candidate')
   }, on: :create
   validates :name, :lastname, :stil_id, :email,
             :phone, :post, :profile, :election, presence: true
@@ -31,26 +31,18 @@ class Candidate < ActiveRecord::Base
   end
 
   def editable?
-    election.view_status == 2 || post.elected_by == 'Studierådet'
+    election.view_status == :during || post.elected_by == 'Studierådet'
   end
 
   def p_url
-    Rails.application.routes.url_helpers.election_candidate_url(id, host: PUBLIC_URL)
+    Rails.application.routes.url_helpers.candidate_url(id, host: PUBLIC_URL)
   end
 
   def p_path
-    Rails.application.routes.url_helpers.election_candidate_path(id)
+    Rails.application.routes.url_helpers.candidate_path(id)
   end
 
   def owner?(user)
     user.present? && user.profile == profile
-  end
-
-  def editable?
-    election.view_status == 2 || post.elected_by == 'Studierådet'
-  end
-
-  def p_url
-    Rails.application.routes.url_helpers.election_candidate_url(id, host: PUBLIC_URL)
   end
 end

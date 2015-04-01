@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class Election::NominationsController < ApplicationController
+class Elections::NominationsController < ApplicationController
   before_action :set_election
   load_permissions_and_authorize_resource
 

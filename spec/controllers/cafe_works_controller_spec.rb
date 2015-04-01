@@ -192,7 +192,10 @@ RSpec.describe CafeWorksController, type: :controller do
     context 'not allowed' do
       it 'does not work' do
         get :nyckelpiga
-        response.should have_http_status(:forbidden)
+
+        # Changed the response to AccessDenied
+        #response.should have_http_status(:forbidden)
+        response.should redirect_to :new_user_session
       end
     end
     context 'allowed' do

@@ -105,6 +105,9 @@ sv:
       short_link:
         link: Länknamn
         target: Måladress
+    errors:
+      messages:
+        record_invalid: Ogiltlig objekt
 
 
   activemodel:
@@ -162,5 +165,24 @@ sv:
         create: "Skapa %{model}"
         submit: "Spara %{model}"
         update: "Uppdatera %{model}"
+        nomination:
+          create: Skicka %{model}
+  actions:
+    back: Tillbaka
 
+  elections:
+    orange_posts: Orangefärgade fält innebär att posten sitter i styrelsen.
+    green_posts: Grönfärgade fält innebär att posten väljs av studierådet.
+    x_posts: Poster med antal markerat med (x) anger exakt antal.
+    star_posts: Poster med antal * har ingen bestämd gräns.
+    posts_before: Poster som kommer att kunna sökas
+    posts_during: Poster som kan sökas
+    posts_after: Poster som inte längre kan sökas
+    get_in_touch: Ser något konstigt ut eller blir det fel? Hör av dig till
 
+  nominations:
+    thank_you: Tack för din Nominering.
+    status_after: Det går endast att nominera till poster som inte väljs på Terminsmötet.
+
+  candidates:
+    similar_candidate: har redan en likadan kandidatur.

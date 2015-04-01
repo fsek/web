@@ -35,6 +35,7 @@ class Post < ActiveRecord::Base
   def limited?
 
   end
+
   def add_profile(profile)
     if limited?
 

@@ -123,13 +123,13 @@ Fsek::Application.routes.draw do
         get :candidates, path: :kandideringar, on: :member
       end
     end
-    resources :elections, path: :val, only: :index
-    namespace :election, path: :val do
-      resources :nominations, path: :nominera, only: [:create] do
-        get '', action: :new, on: :collection, as: :new
+    resources :elections, path: :val, only: :index do
+      collection do
+        resources :nominations, controller: 'elections/nominations', path: :nominera, only: [:create] do
+          get '', action: :new, on: :collection, as: :new
+        end
+        resources :candidates, controller: 'elections/candidates', path: :kandidera, except: [:edit]
       end
-      resources :candidates, path: :kandidera, except: [:edit]
-
     end
 
     resources :albums, path: :galleri do

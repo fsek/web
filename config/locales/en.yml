@@ -52,11 +52,28 @@ en:
 
   attributes:
     civic: Civic - 10 letters
+  helpers:
+    submit:
+      nomination:
+        create: Send %{model}
 
   actions:
-      save: Spara
-      update: Uppdatera
-      send: Skicka
-      remove: Ta bort
-      create: Skapa
-      new: Ny
+    back: Back
+
+  elections:
+    orange_posts: Orange color marks the post is part of the board
+    green_posts: Green color marks the post as elected by Studierådet
+    x_posts: Posts marked with (x) have a fixed limit.
+    star_posts: Posts where limit is marked with * does not have a set limit.
+    posts_before: Posts which will be able to candidate to
+    posts_during: Posts which you can candidate to
+    posts_after: Posts which you can no longer candidate to
+    get_in_touch: Does anything look strange or do you get stuck? Contact
+
+  nominations:
+    thank_you: Thanks for your Nomination.
+    status_after: You can only nominate people to posts not elected at the Vårterminsmöte
+
+  candidates:
+    similar_candidate: already have a similar candidate
+

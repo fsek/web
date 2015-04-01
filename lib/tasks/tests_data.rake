@@ -90,10 +90,13 @@ namespace :db do
     Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
 
     # Election
-    election = Election.find_or_create_by!(FactoryGirl.attributes_for(:election))
+    election = Election.find_or_initialize_by(title: 'Vårterminsmöte',
+                                           url: 'vt-15', visible: true )
+    election.update(start: Time.zone.now - 2.days,
+                    end: Time.zone.now + 5.days)
     Post.all do |p|
       election.posts << p
     end
-
+    election.save
   end
 end
