@@ -6,8 +6,11 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   rescue_from CanCan::AccessDenied do |ex|
-    flash[:error] = ex.message
-    render text: '', layout: true, status: :forbidden
+    if current_user.nil?
+      redirect_to :new_user_session, alert: ex.message
+    else
+      redirect_to :root, alert: ex.message + " Should you be? Contact webmaster."
+    end
   end
 
   rescue_from ActiveRecord::RecordInvalid do |ex|

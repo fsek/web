@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'admin tries to login' do
+feature 'not logged in' do
   let(:user) { create(:user) }
   let(:council) { create(:council, :with_page, public: true) }
   scenario 'they get alert with text "Loggade in"' do

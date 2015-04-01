@@ -31,3 +31,32 @@ en:
   profile_add_information: You have to fill out your name and surname. Please fill out the other information as well.
   error: error
   prevent_save: prevents the save
+  try_login: try to login.
+
+  administrate: Administration
+
+  devise:
+      remember_me: Remember me?
+      sign_in: Sign in
+      sign_out: Sign out
+      sign_up: Sign up
+      password_forgotten: Forgotten password?
+      sign_in_with: Sign in with
+      not_receive_unlock: Did not receive email about unlocking?
+      not_receive_confirm: Did not receive confirmation email?
+
+  user:
+      settings: Account settings
+  registation:
+      civic_check: To control memebership in the Guild, will not be saved.
+
+  attributes:
+    civic: Civic - 10 letters
+
+  actions:
+      save: Spara
+      update: Uppdatera
+      send: Skicka
+      remove: Ta bort
+      create: Skapa
+      new: Ny

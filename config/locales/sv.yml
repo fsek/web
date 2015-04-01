@@ -1,11 +1,13 @@
 sv:
   success_create: har skapats
   success_update: har uppdaterats
-  notice: Notisen
   profile_add_information: Du behöver fylla i namn och efternamn. Fyll gärna i den andra informationen också.
   your_profile: Din profil
   error: fel
   prevent_save: gör att det inte går att spara
+  try_login: prova att logga in.
+
+  administrate: Administrera
 
   attributes:
     description: Beskrivning
@@ -29,31 +31,81 @@ sv:
     council: Utskott
     comment: Kommentar
     access_code: Kod
-
-  models:
-    notice: Notis
-    candidate:
-      one: Kandidatur
-      other: Kandidaturer
-    profile:
-      one: Profil
-      other: Profiler
+    password: Lösenord
+    username: Användarnamn
+    password_confirmation: Bekräfta lösenord
+    civic: Personnummer (10 siffror i följd)
 
   activerecord:
     models:
+      album: Album
+      cafe_work: Cafejobb
       candidate:
         one: Kandidatur
         other: Kandidaturer
+      constant:
+        one: Konstant
+        other: Konstanter
+        attributes:
+          value: Värde
+      contact: Kontakt
+      council: Utskott
+      document: Dokument
+      election: Val
+      event: Event
+      faq: Faq
+      image:
+        one: Bild
+        other: Bilder
+      menu:
+        one: Meny
+        other: Menyer
+      news:
+        one: Nyhet
+        other: Nyheter
+      nomination:
+        one: Nominering
+        other: Nomineringar
+      notice:
+        one: Notise
+        other: Notiser
+      page:
+        one: Sida
+        other: Sidor
+      page_element: Sidelement
+      permission:
+        one: Rättighet
+        other: Rättigheter
+      post:
+        one: Post
+        other: Poster
       profile:
         one: Profil
         other: Profiler
+      rent:
+        one: Bilbokning
+        other: Bilbokningar
+      role:
+        one: Roll
+        other: Roller
       short_link:
         one: Snabblänk
         other: Snabblänkar
+      user: Användare
+      work_post:
+        one: Jobbpost
+        other: Jobbposter
     attributes:
+      cafe_work:
+        work_day: Arbetsdag
+        d_year: År
+        pass: Pass
+        lp: Läsperiod
+        lv: Läsvecka
       short_link:
         link: Länknamn
         target: Måladress
+
 
   activemodel:
     attributes:
@@ -61,54 +113,6 @@ sv:
         title: Rubrik
         sign_name: Ditt namn
         sign_title: Din titel (valfritt)
-
-  the_role:
-    role_created:             Roll skapades
-    role_updated:             Roll uppdaterades
-    role_deleted:             Roll togs bort
-    section_created:          Sektion skapades
-    section_not_created:      Sektion skapades inte
-    section_rule_created:     "Sektionsregel skapad"
-    section_rule_not_created: "Sektionsregel ej skapad"
-    section_rule_on:          "Sektionsregel aktiverad"
-    section_rule_off:         "Sektionsregel inaktiverad"
-    state_not_changed:        "Sektionsregel ej ändraded"
-    section_deleted:          Sektion borttagen
-    section_not_deleted:      Sektion ej borttagen
-    section_rule_deleted:     "Sektionsregel borttagen"
-    section_rule_not_deleted: "Sektionsregel ej borttagen"
-    access_denied:            "Åtkomst nekad"
-
-  admin:
-    roles:
-      new:
-        create: Skapa ny roll
-        name: Namn (små bokstäver)
-        title: Titel
-        description: Beskrivning
-        based_on_role: "Ny roll baseras på:"
-      role:
-        role_name: 'Namn:'
-        title:     'Titel:'
-        role_description: 'Beskrivning:'
-        delete_section: Ta bort sektion
-        section_delete_confirm: 'Vill du ta bort sektionen?'
-        rule_delete_confirm: 'Vill du ta bort regeln?'
-        enable: Aktivera
-        disable: Avaktivera
-        delete_rule: Ta bort regel
-        new_section_placeholder: Nytt sektionsnamn
-        create_section: Skapa ny sektion
-        new_rule_placeholder: Nytt namn på regel
-        create_rule: Skapa ny regel
-        role_export: "Exportera roll"
-      sidebar:
-        roles_export: "Exportera roller"
-        roles_import: "Importera roller"
-        roles_list: Lista med roller
-        new_role: Skapa ny roll
-        delete_role_confirm: 'Är du säker? Det kan vara farligt!'
-        roles_import_confirm: 'Det kan ändra behörigheter i ditt system, är du säker?'
 
   errors:
     format: "%{message}"
@@ -126,3 +130,37 @@ sv:
     formats:
       day: "%A %d/%m"
     invalid-url: Inte en giltig webadress
+
+  unauthorized:
+      default: Någonting blev fel (rättigheter)
+      manage:
+        all: Inte auktoriserad för att %{action} %{subject}.
+        user: "Inte auktoriserad för att hantera användarkonton."
+      update:
+        project: "Inte tillåten att uppdatera projektet."
+      new:
+        nomination: Du måste logga in för att kunna nominera.
+
+  devise:
+    remember_me: Kom ihåg mig?
+    sign_in: Logga in
+    sign_out: Logga ut
+    sign_up: Ny användare
+    password_forgotten: Glömt lösenord?
+    sign_in_with: Logga in med
+    not_receive_unlock: Fick inget upplåsningsmail?
+    not_receive_confirm: Fick inget bekräftelsemail?
+
+  user:
+    settings: Kontoinställningar
+
+  registation:
+    civic_check: För att kontrollera medlemskap i sektionen, sparas inte.
+
+  helpers:
+      submit:
+        create: "Skapa %{model}"
+        submit: "Spara %{model}"
+        update: "Uppdatera %{model}"
+
+

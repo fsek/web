@@ -5,9 +5,11 @@
         <%= image_tag image_notice_path(notice, style: "large"), class: "img-responsive" %>
       </div>
       <div class="col-md-7">
+        <%= simple_format(notice.description) %>
+      </div>
   <% else %>
       <div class="col-md-12">
+        <%= simple_format(notice.description) %>
+      </div>
   <% end %>
-  <%= simple_format(notice.description) %>
-  </div>
-  </div>
+</div>

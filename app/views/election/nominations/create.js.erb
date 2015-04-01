@@ -1,6 +1,6 @@
 <% if @saved == true %>
 $('#nomination-form').fadeOut('slow');
-$('#status').hide().html("<h4>Tack för din nominering!</h4>").fadeIn('slow');
+$('#status').hide().html("<h4><%=I18n.t('nomination.thank_you')</h4>").fadeIn('slow');
 <%else%>
-$('#status').hide().html("<p>Namn och e-post måste fyllas i och en post måste väljas.</p>").fadeIn('slow');
+$('#status').hide().html("<p><%=@nomination.errors%></p>").fadeIn('slow');
 <%end%>
