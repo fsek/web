@@ -21,7 +21,7 @@ namespace 'permissions' do
       #only that controller which represents a model
       if controller.permission
         #create a universal permission for that model. eg 'manage User' will allow all actions on User model.
-        write_permission(controller.permission, 'manage', 'manage') #add permission to do CRUD for every model.
+        write_permission(controller.permission, 'manage') #add permission to do CRUD for every model.
         controller.action_methods.each do |method|
           if method =~ /^([A-Za-z\d*]+)+([\w]*)+([A-Za-z\d*]+)$/ #add_user, add_user_info, Add_user, add_User
             _, cancan_action = eval_cancan_action(method)
