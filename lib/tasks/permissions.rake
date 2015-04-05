@@ -24,8 +24,8 @@ namespace 'permissions' do
         write_permission(controller.permission, 'manage', 'manage') #add permission to do CRUD for every model.
         controller.action_methods.each do |method|
           if method =~ /^([A-Za-z\d*]+)+([\w]*)+([A-Za-z\d*]+)$/ #add_user, add_user_info, Add_user, add_User
-            name, cancan_action = eval_cancan_action(method)
-            write_permission(controller.permission, cancan_action, name)
+            _, cancan_action = eval_cancan_action(method)
+            write_permission(controller.permission, cancan_action)
           end
         end
       end
@@ -65,6 +65,6 @@ def eval_cancan_action(action)
 end
 
 #check if the permission is present else add a new one.
-def write_permission(model, cancan_action, name)
-  Permission.find_or_create_by(name: name, subject_class: model, action: cancan_action)
+def write_permission(model, cancan_action)
+  Permission.find_or_create_by(subject_class: model, action: cancan_action)
 end
