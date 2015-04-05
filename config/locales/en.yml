@@ -26,7 +26,6 @@ en:
   Hello: Hello
   success_create: was successfully created
   success_update: was successfully updated
-  notice: Notice
   your_profile: Your profile
   profile_add_information: You have to fill out your name and surname. Please fill out the other information as well.
   error: error
@@ -36,14 +35,7 @@ en:
   administrate: Administration
 
   devise:
-      remember_me: Remember me?
-      sign_in: Sign in
-      sign_out: Sign out
-      sign_up: Sign up
-      password_forgotten: Forgotten password?
-      sign_in_with: Sign in with
-      not_receive_unlock: Did not receive email about unlocking?
-      not_receive_confirm: Did not receive confirmation email?
+
 
   user:
       settings: Account settings
@@ -77,3 +69,6 @@ en:
   candidates:
     similar_candidate: already have a similar candidate
 
+  posts:
+      already_have_post: already have the post
+      limited: the post reached its limit.

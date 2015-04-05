@@ -66,5 +66,5 @@ end
 
 #check if the permission is present else add a new one.
 def write_permission(model, cancan_action, name)
-  Permission.find_or_create_by(name: name, subject_class: model, action: cancan_action)
+  Permission.find_or_create_by!(name: name, subject_class: model, action: cancan_action)
 end

@@ -36,87 +36,6 @@ sv:
     password_confirmation: Bekräfta lösenord
     civic: Personnummer (10 siffror i följd)
 
-  activerecord:
-    models:
-      album: Album
-      cafe_work: Cafejobb
-      candidate:
-        one: Kandidatur
-        other: Kandidaturer
-      constant:
-        one: Konstant
-        other: Konstanter
-        attributes:
-          value: Värde
-      contact: Kontakt
-      council: Utskott
-      document: Dokument
-      election: Val
-      event: Event
-      faq: Faq
-      image:
-        one: Bild
-        other: Bilder
-      menu:
-        one: Meny
-        other: Menyer
-      news:
-        one: Nyhet
-        other: Nyheter
-      nomination:
-        one: Nominering
-        other: Nomineringar
-      notice:
-        one: Notise
-        other: Notiser
-      page:
-        one: Sida
-        other: Sidor
-      page_element: Sidelement
-      permission:
-        one: Rättighet
-        other: Rättigheter
-      post:
-        one: Post
-        other: Poster
-      profile:
-        one: Profil
-        other: Profiler
-      rent:
-        one: Bilbokning
-        other: Bilbokningar
-      role:
-        one: Roll
-        other: Roller
-      short_link:
-        one: Snabblänk
-        other: Snabblänkar
-      user: Användare
-      work_post:
-        one: Jobbpost
-        other: Jobbposter
-    attributes:
-      cafe_work:
-        work_day: Arbetsdag
-        d_year: År
-        pass: Pass
-        lp: Läsperiod
-        lv: Läsvecka
-      short_link:
-        link: Länknamn
-        target: Måladress
-    errors:
-      messages:
-        record_invalid: Ogiltlig objekt
-
-
-  activemodel:
-    attributes:
-      proposal:
-        title: Rubrik
-        sign_name: Ditt namn
-        sign_title: Din titel (valfritt)
-
   errors:
     format: "%{message}"
     attributes:
@@ -143,16 +62,6 @@ sv:
         project: "Inte tillåten att uppdatera projektet."
       new:
         nomination: Du måste logga in för att kunna nominera.
-
-  devise:
-    remember_me: Kom ihåg mig?
-    sign_in: Logga in
-    sign_out: Logga ut
-    sign_up: Ny användare
-    password_forgotten: Glömt lösenord?
-    sign_in_with: Logga in med
-    not_receive_unlock: Fick inget upplåsningsmail?
-    not_receive_confirm: Fick inget bekräftelsemail?
 
   user:
     settings: Kontoinställningar
@@ -186,3 +95,7 @@ sv:
 
   candidates:
     similar_candidate: har redan en likadan kandidatur.
+
+  posts:
+    already_have_post: har redan posten.
+    limited: för många har posten.

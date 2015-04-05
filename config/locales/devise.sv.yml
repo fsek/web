@@ -10,6 +10,15 @@ sv:
         other: "%{count} fel hindrade denna %{resource} från att sparas:"
  
   devise:
+    remember_me: Kom ihåg mig?
+    sign_in: Logga in
+    sign_out: Logga ut
+    sign_up: Ny användare
+    password_forgotten: Glömt lösenord?
+    sign_in_with: Logga in med
+    not_receive_unlock: Fick inget upplåsningsmail?
+    not_receive_confirm: Fick inget bekräftelsemail?
+
     failure:
       already_authenticated: 'Du har redan loggat in.'
       unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'

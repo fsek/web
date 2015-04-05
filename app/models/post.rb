@@ -33,13 +33,27 @@ class Post < ActiveRecord::Base
   end
 
   def limited?
-
+    limit > 0 && profiles.count >= limit
   end
 
   def add_profile(profile)
-    if limited?
-
+    if profile.nil?
+      errors.add(profile, I18n.t('errors.messages.not_found'))
+      return false
     end
+
+    if profiles.include(profile)
+      errors.add(profile, I18n.t('posts.already_have_post'))
+      return false
+    end
+
+    if limited?
+      errors.add(:limit, I18n.t('posts.limited'))
+      return false
+    end
+
+    profiles << profile
+    return true
   end
 
   def remove_profile(profile)

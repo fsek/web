@@ -1,0 +1,81 @@
+sv:
+  activerecord:
+      models:
+        album: Album
+        cafe_work: Cafejobb
+        candidate:
+          one: Kandidatur
+          other: Kandidaturer
+        constant:
+          one: Konstant
+          other: Konstanter
+          attributes:
+            value: Värde
+        contact: Kontakt
+        council: Utskott
+        document: Dokument
+        election: Val
+        event: Event
+        faq: Faq
+        image:
+          one: Bild
+          other: Bilder
+        menu:
+          one: Meny
+          other: Menyer
+        news:
+          one: Nyhet
+          other: Nyheter
+        nomination:
+          one: Nominering
+          other: Nomineringar
+        notice:
+          one: Notise
+          other: Notiser
+        page:
+          one: Sida
+          other: Sidor
+        page_element: Sidelement
+        permission:
+          one: Rättighet
+          other: Rättigheter
+        post:
+          one: Post
+          other: Poster
+        profile:
+          one: Profil
+          other: Profiler
+        rent:
+          one: Bilbokning
+          other: Bilbokningar
+        role:
+          one: Roll
+          other: Roller
+        short_link:
+          one: Snabblänk
+          other: Snabblänkar
+        user: Användare
+        work_post:
+          one: Jobbpost
+          other: Jobbposter
+      attributes:
+        cafe_work:
+          work_day: Arbetsdag
+          d_year: År
+          pass: Pass
+          lp: Läsperiod
+          lv: Läsvecka
+        short_link:
+          link: Länknamn
+          target: Måladress
+      errors:
+        messages:
+          record_invalid: Ogiltlig objekt
+
+
+    activemodel:
+      attributes:
+        proposal:
+          title: Rubrik
+          sign_name: Ditt namn
+          sign_title: Din titel (valfritt)

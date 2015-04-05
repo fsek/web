@@ -17,18 +17,9 @@ class PostsController < ApplicationController
   def add_profile_username
     @user = User.find_by(username: params[:username])
     if @post.add_profile(@user)
-      redirect_to council_posts_path(@council),
-                  flash: {alert: 'Hittade ingen användare med det användarnamnet.'}
-    elsif @profile.posts.include?(@post)
-      redirect_to council_posts_path(@council),
-                  alert: %(#{@profile.name} ( #{@user.username}) har redan posten #{@post.title} .)
-    elsif (@post.limit != nil) && (@post.profiles.size >= @post.limit)
-      redirect_to council_posts_path(@council),
-                  alert: %(#{@post.title} har sitt maxantal.)
+      redirect_to council_posts_path(@council)
     else
-      @post.profiles << @profile
-      redirect_to council_posts_path(@council),
-                  notice: %(#{@profile.name} ( #{@profile.user.username}) tilldelades posten #{@post.title}.)
+      redirect_to council_posts_path(@council)
     end
   end
 
