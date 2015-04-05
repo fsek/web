@@ -43,6 +43,7 @@ set :linked_dirs, %w{storage}
 namespace :deploy do
   # before :deploy, "deploy:check_revision"
   before :deploy, 'deploy:run_tests'
+  after :deploy, 'permissions:load'
 
   desc 'Restart application'
   task :restart do

@@ -1,8 +1,20 @@
 <% title('Utskott') %>
 <div class="col-md-offset-10 col-md-2 md-margin-bottom-40">
-	<%if can? :edit, @council %> 				      	
-	    <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_council_path(@council), class: "btn-u btn-u-small"%>	    
-	<%end%>
+  <% if can? :edit, @council %>
+      <%= link_to(fa_icon('edit') + ' Redigera', edit_council_path(@council), class: "btn-u btn-u-small") %>
+  <% end %>
 </div>
-<hr>
-<%=render partial: "pages/main"%>  				
+<div class="container">
+  <div class="col-md-12">
+    <% if @page.present? %>
+        <div class="row">
+          <%= render @page %>
+        </div>
+    <% end %>
+    <% if @council.posts.present? %>
+        <div class="row">
+          <%= render 'posts/table', collection: @council.posts %>
+        </div>
+    <% end %>
+  </div>
+</div>

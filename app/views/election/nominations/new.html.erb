@@ -22,7 +22,7 @@
     </div>
 <% else %>
     <div class="coming-soon">
-      <h2><%= label_tag 'Nomineringar:', nil, :class => 'reg-header' %></h2>
+      <h2><%= label_tag 'Nomineringar:', nil, class:  'reg-header' %></h2>
       <%= render 'elections/countdown' %>
       <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
     </div>

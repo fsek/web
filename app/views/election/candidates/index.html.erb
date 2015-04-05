@@ -12,12 +12,12 @@
     </div>
 <% elsif @election.view_status == 1 %>
     <div class="coming-soon">
-      <h2><%= label_tag 'Kandideringar öppnar: ' + @election.start.to_date.to_s, nil, :class => 'reg-header' %></h2>
+      <h2><%= label_tag 'Kandideringar öppnar: ' + @election.start.to_date.to_s, nil, class:  'reg-header' %></h2>
       <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
     </div>
 <% elsif @election.view_status == 3 %>
     <div class="coming-soon">
-      <h2><%= label_tag 'Kandideringar har stängt.', nil, :class => 'reg-header' %></h2>
+      <h2><%= label_tag 'Kandideringar har stängt.', nil, class:  'reg-header' %></h2>
       <h4>Du kan inte längre kandidera på nya poster eller ändra dina kandidaturer.</h4>
       <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
       <%= grid(@candidates_grid) do |g|

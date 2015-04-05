@@ -1,19 +1,14 @@
 # encoding:UTF-8
 class CouncilsController < ApplicationController
   load_permissions_and_authorize_resource find_by: :url
-  before_action :set_page, only: :show
+  load_and_authorize_resource :post, through: :council
+  before_action :set_page, only: [:show, :edit]
   before_action :set_councils
 
   def index
   end
 
   def show
-    if @page
-      @mainelements = @page.page_elements.where(visible: true,
-                                                sidebar: false).order(:displayIndex, :asc)
-      @sidebarelements = @page.page_elements.where(visible: true,
-                                                   sidebar: true).order(:displayIndex, :asc)
-    end
     @poster = @council.posts
   end
 
@@ -26,7 +21,6 @@ class CouncilsController < ApplicationController
 
   def create
     if @council.save
-      @council.build_page!(council_id: @council.id)
       redirect_to edit_council_path(@council), notice: 'Utskott skapades, success.'
     else
       render action: 'new'

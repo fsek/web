@@ -1,0 +1,11 @@
+namespace :deploy do
+  namespace :permissions do
+    desc 'Reload permissions table'
+    task :load do
+      on roles(:all) do
+        execute "cd #{deploy_to}/current && #{fetch(:rbenv_prefix)} bundle exec "\
+                "rake permissions:load RAILS_ENV=#{fetch(:rails_env)}"
+      end
+    end
+  end
+end

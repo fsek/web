@@ -29,16 +29,12 @@ Fsek::Application.routes.draw do
     get 'logga_in' => 'devise/sessions#new', as: :new_user_session
     post 'logga_in' => 'devise/sessions#create', as: :user_session
     delete 'logga_ut' => 'devise/sessions#destroy', as: :destroy_user_session
-    patch 'anvandare/redigera' => 'users#change_role', as: :change_role
   end
 
   get 'anvandare' => 'users#index', as: :users
 
   # Scope to change urls to swedish
   scope path_names: {new: 'ny', edit: 'redigera'} do
-
-    resources :notices
-
 
     scope :hilbertcafe do
       namespace :admin do
@@ -83,6 +79,10 @@ Fsek::Application.routes.draw do
 
     resources :menus, path: :meny, except: :show
 
+    resources :pages, path: :sida do
+      resources :page_elements, path: :element, on: :member, except: :show
+    end
+
     resources :posts, path: :poster, only: :index do
       get :display, on: :member
       get :collapse, on: :collection
@@ -92,9 +92,6 @@ Fsek::Application.routes.draw do
       resources :posts, path: :poster do
         patch :remove_profile, on: :member
         patch :add_profile_username, on: :member
-      end
-      resource :page, path: :sida do
-        resources :page_elements, path: :element, on: :member
       end
     end
 
@@ -136,19 +133,18 @@ Fsek::Application.routes.draw do
     end
 
     resources :albums, path: :galleri do
-      post :edit, on: :member
-      get :settings, path: :installningar, on: :collection
+      #post :edit, on: :member
+      #get :settings, path: :installningar, on: :collection
       get :upload_images, path: :ladda_upp, on: :member
       patch :upload_images, path: :ladda_upp, on: :member
-      delete :destroy_images, path: :ta_bort_bilder, on: :member
-      post :settings, path: :installningar, on: :collection
-      post '', on: :member, action: :show
+      #delete :destroy_images, path: :ta_bort_bilder, on: :member
+      #post :settings, path: :installningar, on: :collection
+      #post '', on: :member, action: :show
       resources :images, path: :bilder, except: [:new]
     end
   end
-  post '' => 'albums#index', as: :index_albums
 
-  resources :short_links, except: [ :show, :update, :edit ] do
+  resources :short_links, except: [:show, :update, :edit] do
     collection do
       get 'go' => 'short_links#go'
       get 'check' => 'short_links#check'

@@ -7,10 +7,9 @@ class Ability
     user.profile ||= Profile.new
 
     # Abilities that everyone get.
-    can :read, News
-    can :read, Council
-    can :read, Election
+    can :read, [News, Council, Post, Page, Election]
     can :read, Document, public: true
+    can :image, Notice
 
     # TODO Should be removed when everyone is required to log in.
     # /d.wessman 2015-03-28
@@ -19,6 +18,7 @@ class Ability
 
     # Abilities all signed in users get
     if user.id
+      can :manage, User, id: user.id
       can :nominate, Election
       can :candidate, Election
       can :manage, Candidate, profile_id: user.profile.id
