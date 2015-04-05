@@ -5,7 +5,8 @@ RSpec.describe ConstantsController, type: :controller do
     it 'returns http forbidden' do
       get :index
 
-      response.should have_http_status(:forbidden)
+      #response.should have_http_status(:forbidden)
+      response.should redirect_to :new_user_session
     end
   end
 

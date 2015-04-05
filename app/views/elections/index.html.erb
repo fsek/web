@@ -1,8 +1,8 @@
 <% provide(:title, 'Val') %>
 <div class="container val-page">
-  <% if @election %>
-      <%= render 'index' %>
-      <% if can? :edit, @election %>
+  <% if @election.present? %>
+      <%= render @election, election: @election %>
+      <% if can? :manage, @election %>
           <div class="col-md-2 col-md-offset-5"><%= link_to("Redigera valet!", admin_election_path(@election), class: "btn btn-election ") %></div>
       <% end %>
   <% else %>

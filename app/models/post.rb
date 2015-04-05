@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   has_many :nominations
   has_many :candidates
   has_many :permission_posts
-  has_many :permissions, through: 'permission_posts'
+  has_many :permissions, through: :permission_posts
 
   # Scopes
   scope :studierad, -> { where(elected_by: "Studierådet").order(council_id: :asc) }
@@ -35,6 +35,7 @@ class Post < ActiveRecord::Base
   def limited?
 
   end
+
   def add_profile(profile)
     if limited?
 

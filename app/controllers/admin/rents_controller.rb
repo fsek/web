@@ -17,11 +17,10 @@ class Admin::RentsController < ApplicationController
   def create
     @rent = Rent.new_with_status(rent_params, nil)
     flash[:notice] = 'Bokningen skapades' if @rent.save(validate: false)
-    respond_with @rent
+    redirect_to @rent
   end
 
   def new
-    @rent = Rent.new
   end
 
   def update
@@ -35,14 +34,6 @@ class Admin::RentsController < ApplicationController
   end
 
   private
-
-  def set_rent
-    @rent = Rent.find_by_id(params[:id])
-    if (@rent == nil)
-      flash[:notice] = 'Hittade ingen bilbokning med det ID:t.'
-      redirect_to(:admin_car)
-    end
-  end
 
   # To set the councils
   def set_councils

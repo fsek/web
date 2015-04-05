@@ -7,9 +7,9 @@
       <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 center">
         <div class="row margin-bottom-20">
           <%= f.label 'Disclaimer', class: 'reg-label' %>
-          <%= f.check_box :disclaimer, id: "accepted_disclaimer" %>
+          <%= f.check_box :disclaimer, id: "accepted_disclaimer", checked: true %>
           <%= f.label 'Service', class: 'reg-label' %>
-          <%= f.check_box :services %>
+          <%= f.check_box :service %>
         </div>
         <div class="margin-bottom-20">
           <%= f.label 'Namn & Efternamn', class: 'reg-label' %>
@@ -21,8 +21,8 @@
         <%= f.label 'E-post & telefon', class: 'reg-label' %>
         <div class="margin-bottom-20">
           <div class="row">
-            <div class="col-md-6"><%= f.text_field :email, class: 'form-control', placeholder: "Epost" %></div>
-            <div class="col-md-6"> <%= f.text_field :phone, class: 'form-control', placeholder: "Telefon" %></div>
+            <div class="col-md-6"><%= f.email_field :email, class: 'form-control', placeholder: "Epost" %></div>
+            <div class="col-md-6"> <%= f.phone_field :phone, class: 'form-control', placeholder: "Telefon" %></div>
           </div>
         </div>
         <%= f.label 'Syfte', class: 'reg-label' %>
@@ -31,18 +31,17 @@
         </div>
         <%= f.label 'Från', class: 'reg-label' %>
         <div class="margin-bottom-20">
-          <%= f.datetime_select :d_from, minute_step: 10, class: 'form-control' %>
+          <%= f.text_field :d_from, class: 'form-control datetimepicker1' %>
         </div>
         <%= f.label 'Till', class: 'reg-label' %>
         <div class="margin-bottom-20">
-          <%= f.datetime_select :d_til, minute_step: 10, class: 'form-control' %>
+          <%= f.text_field :d_til, class: 'datetimepicker2'%>
         </div>
         <%= f.label 'Utskott', class: 'reg-label' %>
         <div class="margin-bottom-20">
-          <%= f.select :council_id,
-                       options_from_collection_for_select(@councils, :id, :title, @rent.council_id),
-                       include_blank: true,
-                       class: "form-control listBox" %>
+          <%= f.collection_select(:council, Council.all, :id,:title,
+                                  include_blank: true, class: 'form-control listBox')%>
+
         </div>
         <div class="col-md-6">
           <%= f.label :status, class: 'reg-label' %>
@@ -62,7 +61,8 @@
           <%= f.text_area :comment, class: 'form-control' %>
         </div>
         <div class="row">
-          <%= f.submit "Spara", class: "btn btn-u", data: {confirm: 'Som administratör bokar man över vad som helst (utan att påverka bokningen), ingenting valideras.'} %>
+          <%= f.submit "Spara", id: 'rent-submit', class: "btn btn-u",
+                       data: {confirm: 'Som administratör bokar man över vad som helst (utan att påverka bokningen), ingenting valideras.'} %>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class Election::CandidatesController < ApplicationController
+class Elections::CandidatesController < ApplicationController
   before_action :set_election
   load_permissions_and_authorize_resource
   respond_to :html
@@ -25,7 +25,7 @@ class Election::CandidatesController < ApplicationController
     @candidate.profile = current_user.profile
     if @candidate.save
       flash[:notice] = 'Kandidaturen skapades.'
-      redirect_to [:election, @candidate]
+      redirect_to @candidate
     else
       render action: :new
     end
@@ -34,7 +34,7 @@ class Election::CandidatesController < ApplicationController
   def update
     if @candidate.update(candidate_params)
       flash[:notice] = 'Kandidaturen uppdaterades'
-      redirect_to [:election, @candidate]
+      redirect_to @candidate
     else
       render action: :show
     end
@@ -43,17 +43,10 @@ class Election::CandidatesController < ApplicationController
   def destroy
     @candidate.destroy
     flash[:notice] = 'Kandidaturen raderades'
-    redirect_to election_candidates_path
+    redirect_to candidates_path
   end
 
   private
-  def set_candidate
-    @candidate = Candidate.find_by_id(params[:id])
-    if !@candidate.owner?(current_user)
-      flash[:error] = 'Du har inte rättigheter för att se kandidaturen.'
-      redirect_to(elections_path)
-    end
-  end
 
   def set_election
     @election = Election.current

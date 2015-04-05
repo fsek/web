@@ -9,27 +9,26 @@ class Ability
     # Abilities that everyone get.
     can :read, [News, Council, Post, Page, Election]
     can :read, Document, public: true
-    can :image, Notice
+    can [:display,:image], Notice
+    can [:collapse, :display], Post
 
     # TODO Should be removed when everyone is required to log in.
     # /d.wessman 2015-03-28
     can [:read, :update_worker, :remove_worker, :authorize], CafeWork
-    can [:read, :main], Rent
+    can [:read, :main, :new, :edit, :create, :update, :destroy, :authorize], Rent
 
     # Abilities all signed in users get
     if user.id
       can :manage, User, id: user.id
-      can :nominate, Election
-      can :candidate, Election
+      can [:nominate, :candidate], Election
       can :manage, Candidate, profile_id: user.profile.id
+      can :manage, Nomination
       can :manage, Profile, user_id: user.id
-      can :read, Post
+      can [:read, :display, :hide], Post
       can :read, Document
       can :read, :old_gallery
-      can :read, Event
-
       # TODO We really need to move calendar to its own controller
-      can :calendar, Event
+      can [:read, :calendar], Event
     end
 
     # Note: Root access is given dynamically by having a post with permissions :manage, :all

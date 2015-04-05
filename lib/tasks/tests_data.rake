@@ -1,6 +1,6 @@
-namespace :load_database do
+namespace :db do
   desc 'Loads some stuff into the database for local testing'
-  task(populate: :environment) do
+  task(populate_test: :environment) do
     # Councils
     pryl = Council.find_or_create_by!(title: 'Prylmästeriet',
                                       url: 'pryl', description: 'Detta är Prylmästeriet', public: true)
@@ -88,5 +88,15 @@ namespace :load_database do
     # Notice
     Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
     Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
+
+    # Election
+    election = Election.find_or_initialize_by(title: 'Vårterminsmöte',
+                                           url: 'vt-15', visible: true )
+    election.update(start: Time.zone.now - 2.days,
+                    end: Time.zone.now + 5.days)
+    Post.all do |p|
+      election.posts << p
+    end
+    election.save
   end
 end

@@ -1,5 +1,5 @@
 <% provide(:title, 'Val') %>
-<% if @election.view_status != 1 %>
+<% if @election.view_status != :after %>
     <div class="container">
       <div class="row">
         <div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
@@ -16,13 +16,13 @@
               <%= render 'form', election: @election, nomination: @nomination%>
             </div>
           </div>
-          <%= link_to 'Tillbaka', elections_path, class: "btn-u btn-u-small" %>
+          <%= link_to t('actions.back'), elections_path, class: "btn-u btn-u-small" %>
         </div>
       </div>
     </div>
 <% else %>
     <div class="coming-soon">
-      <h2><%= label_tag 'Nomineringar:', nil, class:  'reg-header' %></h2>
+      <h2><%= label_tag models_name(Nomination), nil, class:  'reg-header' %></h2>
       <%= render 'elections/countdown' %>
       <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
     </div>

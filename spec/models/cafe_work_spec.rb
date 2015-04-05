@@ -20,7 +20,7 @@ RSpec.describe CafeWork, type: :model do
     it { should validate_presence_of(:lv) }
     it { should validate_inclusion_of(:pass).in_range(1..4) }
     it { should validate_inclusion_of(:lp).in_range(1..4) }
-    it { should validate_inclusion_of(:lv).in_range(1..7) }
+    it { should validate_inclusion_of(:lv).in_range(1..20) }
 
     context 'if has_worker' do
       before { allow(subject).to receive(:has_worker?).and_return(true) }
