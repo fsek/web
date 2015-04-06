@@ -2,8 +2,6 @@
 class PostsController < ApplicationController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :council, parent: true, find_by: :url
-
-
   before_action :set_permissions
   before_action :set_councils, only: [:new, :edit, :update, :create]
 

@@ -23,7 +23,6 @@ class Council < ActiveRecord::Base
     elsif page.url.nil?
         page.update!(url: url, visible: true, title: title)
     end
-
   end
 
   def to_s

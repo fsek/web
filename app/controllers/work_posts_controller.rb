@@ -7,7 +7,7 @@ class WorkPostsController < ApplicationController
     @work_posts = WorkPost.publish
     @work_post_grid = initialize_grid(WorkPost.publish)
     @not_published_grid = initialize_grid(WorkPost.unpublish)
-    if (WorkPost.unpublish.count > 0)
+    if WorkPost.unpublish.count > 0
       @edit_grid = true
     end
   end
@@ -50,6 +50,7 @@ class WorkPostsController < ApplicationController
   end
 
   def work_post_params
-    params.fetch(:work_post).permit(:title, :description, :company, :deadline, :kind, :for, :visible, :publish, :picture, :category, :link)
+    params.fetch(:work_post).permit(:title, :description, :company, :deadline,
+                                    :kind, :for, :visible, :publish, :picture, :category, :link)
   end
 end

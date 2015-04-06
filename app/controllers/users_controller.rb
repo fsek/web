@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'Användare uppdaterades.'
       redirect_to edit_user_path @user
     else
-
+      redirect_to :edit_user_registration
     end
   end
 

@@ -9,7 +9,7 @@ class Ability
     # Abilities that everyone get.
     can :read, [News, Council, Post, Page, Election]
     can :read, Document, public: true
-    can [:display,:image], Notice
+    can [:display, :image], Notice
     can [:collapse, :display], Post
 
     # For calendar-subscription

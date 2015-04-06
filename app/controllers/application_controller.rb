@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     if current_user.nil?
       redirect_to :new_user_session, alert: ex.message
     else
-      redirect_to :root, alert: ex.message + " Should you be? Contact webmaster."
+      redirect_to :root, alert: ex.message
     end
   end
 
