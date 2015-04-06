@@ -12,6 +12,9 @@ class Ability
     can [:display,:image], Notice
     can [:collapse, :display], Post
 
+    # For calendar-subscription
+    can :export, Event
+
     # TODO Should be removed when everyone is required to log in.
     # /d.wessman 2015-03-28
     can [:read, :update_worker, :remove_worker, :authorize], CafeWork

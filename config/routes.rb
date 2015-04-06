@@ -86,12 +86,14 @@ Fsek::Application.routes.draw do
     resources :posts, path: :poster, only: :index do
       get :display, on: :member
       get :collapse, on: :collection
+      patch :add_profile, on: :collection
+      patch :remove_profile, on: :collection
     end
 
     resources :councils, path: :utskott do
       resources :posts, path: :poster do
         patch :remove_profile, on: :member
-        patch :add_profile_username, on: :member
+        patch :add_profile, on: :collection
       end
     end
 
@@ -102,6 +104,7 @@ Fsek::Application.routes.draw do
     end
 
     resources :profiles, path: :profil do
+      post :search, on: :collection
       patch :remove_post, on: :member
       get :avatar, on: :member
     end

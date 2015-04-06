@@ -15,8 +15,8 @@ class PostsController < ApplicationController
   end
 
   def add_profile_username
-    @user = User.find_by(username: params[:username])
-    if @post.add_profile(@user)
+    user = User.find_by(username: params[:username])
+    if @post.add_profile(user)
       redirect_to council_posts_path(@council)
     else
       redirect_to council_posts_path(@council)

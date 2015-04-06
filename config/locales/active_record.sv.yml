@@ -30,7 +30,7 @@ sv:
           one: Nominering
           other: Nomineringar
         notice:
-          one: Notise
+          one: Notis
           other: Notiser
         page:
           one: Sida
@@ -73,9 +73,9 @@ sv:
           record_invalid: Ogiltlig objekt
 
 
-    activemodel:
-      attributes:
-        proposal:
-          title: Rubrik
-          sign_name: Ditt namn
-          sign_title: Din titel (valfritt)
+  activemodel:
+    attributes:
+      proposal:
+        title: Rubrik
+        sign_name: Ditt namn
+        sign_title: Din titel (valfritt)

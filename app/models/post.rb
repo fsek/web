@@ -20,6 +20,10 @@ class Post < ActiveRecord::Base
   # Scopes
   scope :renters, -> { where(car_rent: true) }
 
+  def to_s
+    title
+  end
+
   def printLimit
     if recLimit == 0 && limit == 0 || recLimit > limit
       "*"

@@ -20,6 +20,8 @@ class Profile < ActiveRecord::Base
   validates :name, :lastname, presence: true, on: :update
   validates :start_year, inclusion: { in: 1954..(Time.zone.today.year + 1) }, on: :update
 
+  scope :search_names, ->(name,lastname) { where('name LIKE ? AND lastname LIKE ?',"%#{name}%","%#{lastname}%")}
+
   def full_name
     "#{name} #{lastname}".strip
   end
