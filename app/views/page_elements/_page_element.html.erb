@@ -1,0 +1,26 @@
+<% if @edit %>
+    <div class="reg-page">
+<% end %>
+<% if page_element.headline.present? %>
+    <div class="headline"><h2><%= page_element.headline %></h2></div>
+<% end %>
+<% if page_element.text.present? %>
+    <%= simple_format(page_element.text) %>
+<% end %>
+
+<% if @edit %>
+    <hr>
+    <ul class="list-inline list-unstyled black-link" style="margin-top: 10px; text-align: left">
+      <li>Namn: <%= page_element.name %></li>
+      <li>Visningsindex: <%= page_element.displayIndex %></li>
+      <li>
+        <% if page_element.visible %>Synlig
+        <% else %>Ej synlig
+        <% end %>
+      <li><%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_page_page_element_path(@page, page_element), class: "btn-u btn-u-small" %></li>
+    </ul>
+<% end %>
+<% if @edit %>
+    </div>
+<% end %>
+

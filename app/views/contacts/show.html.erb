@@ -17,14 +17,14 @@
 							</div>						
 							<div class="input-group margin-bottom-20">
 								<%= label_tag "E-post"%></br>
-								<%= text_field_tag :email, nil, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}',:class => 'form-control' %></br>					
+								<%= text_field_tag :email, nil, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}',class:  'form-control' %></br>
 							</div>
 							<div class="input-group margin-bottom-20">
 								<%= label_tag "Meddelande"%></br>
-								<%= text_area_tag :msg,nil, :required => true , :class => 'form-control', :size => '100x10'%></br>						
+								<%= text_area_tag :msg,nil, :required => true , class:  'form-control', :size => '100x10'%></br>
 							</div>					
 							<div class="input-group">																							
-								<%= submit_tag "Skicka", :class => 'form-control btn-u btn-u-orange'%>
+								<%= submit_tag "Skicka", class:  'form-control btn-u btn-u-orange'%>
 							</div>						
 					</div>
 				</div>

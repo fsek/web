@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag 'Lägg till bilder i '+@album.title,nil, :class => 'reg-header'%>
+			<%= label_tag 'Lägg till bilder i '+@album.title,nil, class:  'reg-header'%>
 			<%= form_for(@album,url: upload_images_album_path(@album), html: {multipart: true}) do |f| %>
 			  <% if @album.errors.any? %>
 			    <div id="error_explanation">
@@ -15,17 +15,17 @@
 			  <% end %>
 			 
 			  <div class="actions">
-				<%= f.label 'Underkategori', :class => 'reg-label'%>
+				<%= f.label 'Underkategori', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">		  	  		 		  	
 			  		
-			  		<%= select_tag :subcategory_id, options_from_collection_for_select(@album.subcategories,:id,:text,@subcategory),{:class => 'form-control',include_blank: true}%>  		
+			  		<%= select_tag :subcategory_id, options_from_collection_for_select(@album.subcategories,:id,:text,@subcategory),{class:  'form-control',include_blank: true}%>
 			  	</div>
-				<%= f.label 'Bilder', :class => 'reg-label'%>
+				<%= f.label 'Bilder', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
 			  		<%= file_field_tag "fotos[]", type: :file, multiple: true %>
 			  	</div>
 			  	<div class="row">
-					<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+					<%= f.submit "Spara",class:  'btn-u pull-right' %>
 			  	</div>
 			  </div>
 			<% end %>

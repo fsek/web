@@ -1,7 +1,7 @@
 <% provide(:title, 'Notiser') %>
 <div class="col-md-12 reg-page">
     <div class="row">
-        <h2>Kandidaturer</h2>
+        <h2 id="notice-headline">Notiser</h2>
           <%= grid(@notice_grid) do |g|
             g.row_attributes do |post|
               if (post.public == true)
@@ -17,4 +17,5 @@
             g.column name: "Sorteringsindex", attribute: 'sort'
          end -%>
     </div>
+    <%=link_to('Skapa ny', new_notice_path, class: 'btn btn-u')%>
 </div>

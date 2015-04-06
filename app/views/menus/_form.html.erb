@@ -1,46 +1,37 @@
-<%= form_for(@menu, :html => {  :autocomplete => 'off' }) do |f| %>
-	<% if @menu.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@menu.errors.count, "error") %> gör att menyn inte kan sparas:</h2>	
-	      <ul>
-	      <% @menu.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	      </ul>
-	    </div>
-  	<% end %>
-  	<%= f.label 'Meny', :class => 'reg-label'%>		  
-  	<div class="input-group margin-bottom-20">					
-		<%= f.select :location, 
-  				     options_for_select(["Sektionen","För medlemmar","För företag","Kontakt"],@menu.location),
-  				     include_blank: true, 
-  				     :class => "form-control listBox"%>		
-  	</div>
-  	<%= f.label 'Sorteringsindex', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.number_field :index,:class => 'form-control' %>
-  	</div>
-  	<%= f.label 'Text', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.text_field :name, :class => 'form-control',:placeholder => 'Text',:autocomplete => 'off' %>
-  	</div>  			  
-  	<%= f.label 'Länk', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.text_field :link, :class => 'form-control',:placeholder => 'Länk',:autocomplete => 'off' %>
-  	</div>  	
-  	<%= f.label 'Synlig', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.check_box :visible, checked: @menu.visible %>
-  	</div> 	
-  	<%= f.label 'Turbolinks', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.check_box :turbolinks, checked: @menu.turbolinks %>
-  	</div>
-  	<%= f.label 'Öppna i ny tab', :class => 'reg-label'%>
-  	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.check_box :blank_p, checked: @menu.blank_p %>
-  	</div>  	
-  	<div class="row">
-  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
-  	</div>
+<%= form_for(@menu) do |f| %>
+    <%= render 'shared/form_errors', current: @menu %>
+    <%= f.label 'Meny', class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= f.select :location,
+                   options_for_select(["Sektionen", "För medlemmar", "För företag", "Kontakt"], @menu.location),
+                   include_blank: true,
+                   class: "form-control listBox" %>
+    </div>
+    <%= f.label 'Sorteringsindex', class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= f.number_field :index, class: 'form-control' %>
+    </div>
+    <%= f.label 'Text', class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Text', autocomplete: 'off' %>
+    </div>
+    <%= f.label 'Länk', class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= f.text_field :link, class: 'form-control', placeholder: 'Länk', autocomplete: 'off' %>
+    </div>
+    <%= f.label 'Synlig', class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= f.check_box :visible, checked: @menu.visible %>
+    </div>
+    <%= f.label 'Turbolinks', class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= f.check_box :turbolinks, checked: @menu.turbolinks %>
+    </div>
+    <%= f.label 'Öppna i ny tab', class: 'reg-label' %>
+    <div class="input-group margin-bottom-20">
+      <%= f.check_box :blank_p, checked: @menu.blank_p %>
+    </div>
+    <div class="row">
+      <%= f.submit "Spara", class: 'btn-u pull-right' %>
+    </div>
 <% end %>

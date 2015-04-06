@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150331104940) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -39,14 +39,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "category",          limit: 255
     t.integer  "photo_category_id", limit: 4
   end
-
-  create_table "albums_categories", id: false, force: :cascade do |t|
-    t.integer "album_id",    limit: 4
-    t.integer "category_id", limit: 4
-  end
-
-  add_index "albums_categories", ["album_id", "category_id"], name: "index_albums_categories_on_album_id_and_category_id", unique: true, using: :btree
-  add_index "albums_categories", ["category_id"], name: "index_albums_categories_on_category_id", using: :btree
 
   create_table "albums_images", id: false, force: :cascade do |t|
     t.integer "album_id", limit: 4
@@ -82,11 +74,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at"
   end
 
-  create_table "cafe_works_councils", id: false, force: :cascade do |t|
-    t.integer "cafe_work_id", limit: 4
-    t.integer "council_id",   limit: 4
-  end
-
   create_table "candidates", force: :cascade do |t|
     t.integer  "post_id",     limit: 4
     t.integer  "profile_id",  limit: 4
@@ -103,15 +90,6 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id", using: :btree
   add_index "candidates", ["profile_id"], name: "index_candidates_on_profile_id", using: :btree
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.string   "typ",         limit: 255
-    t.boolean  "sub",         limit: 1,     default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "constants", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -134,8 +112,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "title",             limit: 255
     t.string   "url",               limit: 255
     t.text     "description",       limit: 65535
-    t.integer  "president",         limit: 4
-    t.integer  "vicepresident",     limit: 4
     t.string   "logo_file_name",    limit: 255
     t.string   "logo_content_type", limit: 255
     t.integer  "logo_file_size",    limit: 4
@@ -144,6 +120,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contact_id",        limit: 4
+    t.integer  "president_id",      limit: 4
+    t.integer  "vicepresident_id",  limit: 4
   end
 
   create_table "documents", force: :cascade do |t|
@@ -185,25 +163,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "post_id",     limit: 4
   end
 
-  create_table "email_accounts", force: :cascade do |t|
-    t.integer  "profile_id", limit: 4
-    t.string   "email",      limit: 255
-    t.string   "title",      limit: 255
-    t.boolean  "active",     limit: 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "emails", force: :cascade do |t|
-    t.integer  "email_account_id", limit: 4
-    t.string   "receiver",         limit: 255
-    t.string   "subject",          limit: 255
-    t.text     "message",          limit: 65535
-    t.boolean  "copy",             limit: 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "events", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.string   "author",             limit: 255
@@ -243,16 +202,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at"
     t.datetime "captured"
     t.integer  "subcategory_id",    limit: 4
-  end
-
-  create_table "lists", force: :cascade do |t|
-    t.string   "category",   limit: 255
-    t.string   "name",       limit: 255
-    t.string   "string1",    limit: 255
-    t.integer  "int1",       limit: 4
-    t.boolean  "bool1",      limit: 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "menus", force: :cascade do |t|
@@ -329,7 +278,13 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "council_id", limit: 4
+    t.string   "url",        limit: 255
+    t.boolean  "visible",    limit: 1
+    t.string   "title",      limit: 255
   end
+
+  add_index "pages", ["council_id"], name: "index_pages_on_council_id", using: :btree
+  add_index "pages", ["url"], name: "index_pages_on_url", using: :btree
 
   create_table "permission_posts", force: :cascade do |t|
     t.integer  "permission_id", limit: 4
@@ -350,21 +305,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "name",       limit: 255
     t.string   "text",       limit: 255
     t.boolean  "visible",    limit: 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "phrasing_phrase_versions", force: :cascade do |t|
-    t.integer  "phrasing_phrase_id", limit: 4
-    t.text     "value",              limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "phrasing_phrases", force: :cascade do |t|
-    t.string   "locale",     limit: 255
-    t.string   "key",        limit: 255
-    t.text     "value",      limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -423,13 +363,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment",     limit: 65535
-    t.string   "status",      limit: 255,   default: "Ej bestämd"
+    t.string   "status",      limit: 255,   default: "Ej bestÃƒÂ¤md"
     t.boolean  "service",     limit: 1,     default: false
     t.string   "access_code", limit: 255
   end
-
-  add_index "rents", ["d_from"], name: "index_rents_on_d_from", using: :btree
-  add_index "rents", ["d_til"], name: "index_rents_on_d_til", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",        limit: 255,   null: false

@@ -1,9 +1,10 @@
-namespace :load_database do
+namespace :db do
   desc 'Loads some stuff into the database for local testing'
-  task(populate: :environment) do
+  task(populate_test: :environment) do
     # Councils
     pryl = Council.find_or_create_by!(title: 'Prylmästeriet',
                                       url: 'pryl', description: 'Detta är Prylmästeriet', public: true)
+
     sexm = Council.find_or_create_by!(title: 'Sexmästeriet',
                                       url: 'sex', description: 'Detta är Sexmästeriet', public: true)
     cafem = Council.find_or_create_by!(title: 'Cafemästeriet',
@@ -44,7 +45,7 @@ namespace :load_database do
     # Permissions
     Rake::Task['permissions:load'].invoke
     perm_admin = Permission.find_or_create_by!(subject_class: :all, action: :manage)
-    perm_nyckelpiga = Permission.find_or_create_by!(subject_class: :cafe_work, action: :nyckelpiga)
+    perm_nyckelpiga = Permission.find_or_create_by!(subject_class: 'CafeWork', action: :nyckelpiga)
     # Give spindelman admin
     PermissionPost.find_or_create_by!(permission: perm_admin, post: spindel)
     PermissionPost.find_or_create_by!(permission: perm_nyckelpiga, post: nyckelpiga)
@@ -83,5 +84,19 @@ namespace :load_database do
                             link: '/bil', index: 20, visible: true, turbolinks: false)
     Menu.find_or_create_by!(location: 'För medlemmar', name: 'Hilbertcafé',
                             link: '/hilbertcafe', index: 30, visible: true, turbolinks: false)
+
+    # Notice
+    Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
+    Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
+
+    # Election
+    election = Election.find_or_initialize_by(title: 'Vårterminsmöte',
+                                           url: 'vt-15', visible: true )
+    election.update(start: Time.zone.now - 2.days,
+                    end: Time.zone.now + 5.days)
+    Post.all do |p|
+      election.posts << p
+    end
+    election.save
   end
 end

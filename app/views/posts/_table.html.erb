@@ -1,0 +1,35 @@
+<div class="tab-v1">
+  <div class="headline"><h4>Poster</h4></div>
+  <ul class="nav nav-tabs">
+    <% first = true%>
+    <% collection.each do |post| %>
+        <li class="<%=(first) ? 'active' : ''%>">
+          <%= link_to(post.title, %(##{dom_id(post)}), data: {toggle: 'tab'}) %>
+        </li>
+        <% first = false%>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <% first = true %>
+    <% collection.each do |post| %>
+        <div id="<%= dom_id(post) %>" class="tab-pane fade in <%= (first) ? 'active' : '' %>">
+          <div class="row">
+            <div class="col-md-8">
+              Beskrivning: <%= simple_format(post.description) %>
+            </div>
+            <div class="col-md-4">
+              Vem har posten just nu?
+              <ul class="list">
+                <% post.profiles.each do |profile|%>
+                    <li><%=profile.full_name%></li>
+                <%end%>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+        <% first = false %>
+    <% end %>
+  </div>
+</div>
+

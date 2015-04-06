@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag 'Redigera post',nil, :class => 'reg-header'%>			
+			<%= label_tag 'Redigera post',nil, class:  'reg-header'%>
 			<%= render 'form'%>
 			<%= link_to 'Radera post', council_post_path(@council,@post),method: :delete %><br>			
 			<%= link_to 'Visa utskottets poster', council_posts_path(@council) %><br>

@@ -6,6 +6,8 @@ class Profile < ActiveRecord::Base
   has_many :candidates
   has_many :rents
   has_many :councils, through: :posts
+  # TODO Change the first_post field to first_post_id
+  # belongs_to :first_post, foreign_key: first_post_id, class: Post
 
   # Attachment
   has_attached_file :avatar,
@@ -16,17 +18,25 @@ class Profile < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   # Only on update!
   validates :name, :lastname, presence: true, on: :update
-  validates :start_year, inclusion: { in: 1954..(Time.zone.today.year + 1) }, on: :update
+  validates :start_year, inclusion: {in: 1954..(Time.zone.today.year + 1)}, on: :update
+
+  scope :search_names, ->(name, lastname) {
+    where('name LIKE ? AND lastname LIKE ?', "%#{name}%", "%#{lastname}%")
+  }
 
   def full_name
     "#{name} #{lastname}".strip
+  end
+
+  def full_print
+    "#{full_name} ( User: #{user_id})".strip
   end
 
   # Returns all councils the profile belongs to with a Post who is
   # allowed to rent the car
   # /d.wessman
   def car_councils
-    self.councils.merge(Post.renters)
+    councils.merge(Post.renters)
   end
 
   # Check if profile has user data (name and lastname)

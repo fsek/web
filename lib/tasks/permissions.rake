@@ -36,30 +36,30 @@ end
 #this method returns the cancan action for the action passed.
 def eval_cancan_action(action)
   case action.to_s
-  when 'index'
-    name = 'list'
-    cancan_action = 'index' #<strong>let the cancan action be the actual method name</strong>
-    action_desc = I18n.t(:list)
-  when 'new', 'create'
-    name = 'create and update'
-    cancan_action = 'create'
-    action_desc = I18n.t :create
-  when 'show'
-    name = 'view'
-    cancan_action = 'view'
-    action_desc = I18n.t :view
-  when 'edit', 'update'
-    name = 'create and update'
-    cancan_action = 'update'
-    action_desc = I18n.t :update
-  when 'delete', 'destroy'
-    name = 'delete'
-    cancan_action = 'destroy'
-    action_desc = I18n.t :destroy
-  else
-    name = action.to_s
-    cancan_action = action.to_s
-    action_desc = 'Other: ' < cancan_action
+    when 'index'
+      name = 'list'
+      cancan_action = 'index' #<strong>let the cancan action be the actual method name</strong>
+      action_desc = I18n.t(:list)
+    when 'new', 'create'
+      name = 'create and update'
+      cancan_action = 'create'
+      action_desc = I18n.t :create
+    when 'show'
+      name = 'view'
+      cancan_action = 'view'
+      action_desc = I18n.t :view
+    when 'edit', 'update'
+      name = 'create and update'
+      cancan_action = 'update'
+      action_desc = I18n.t :update
+    when 'delete', 'destroy'
+      name = 'delete'
+      cancan_action = 'destroy'
+      action_desc = I18n.t :destroy
+    else
+      name = action.to_s
+      cancan_action = action.to_s
+      action_desc = 'Other: ' < cancan_action
   end
   return name, cancan_action
 end

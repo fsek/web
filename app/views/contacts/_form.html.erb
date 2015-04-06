@@ -9,25 +9,25 @@
 	      </ul>
 	    </div>
   	<% end %>
-  	  	<%= f.label 'Titel', :class => "reg-label"%>		  
+  	  	<%= f.label 'Titel', class:  "reg-label"%>
   	<div class="input-group margin-bottom-20">					
-		<%= f.text_field :name, :class => 'form-control',:placeholder => 'Titel'%>		
+		<%= f.text_field :name, class:  'form-control',:placeholder => 'Titel'%>
   	</div>
-  	<%= f.label 'Beskrivning', :class => 'reg-label'%>
+  	<%= f.label 'Beskrivning', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">  				  	  		 		  	
-  		<%= f.text_area :text, :class => 'form-control',:placeholder => 'Varför ska man kontakta er?',:size => "45x4" %>
+  		<%= f.text_area :text, class:  'form-control',:placeholder => 'Varför ska man kontakta er?',:size => "45x4" %>
   	</div>			  
-  	<%= f.label 'E-post', :class => 'reg-label'%>
+  	<%= f.label 'E-post', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">
   		Delas inte ut till någon.
-  		<%= f.text_field :email, :class => 'form-control',:placeholder => 'Epost',:autocomplete => 'off' %>
+  		<%= f.text_field :email, class:  'form-control',:placeholder => 'Epost',:autocomplete => 'off' %>
   	</div>
-  	<%= f.label 'Publik?', :class => 'reg-label'%>
+  	<%= f.label 'Publik?', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">  		
-  		<%= f.check_box :public, :class => 'form-control'%>
+  		<%= f.check_box :public, class:  'form-control'%>
   		Innebär att även de som inte är inloggade kan kontakta.
   	</div>  	
   	<div class="row">
-  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  			<%= f.submit "Spara",class:  'btn-u pull-right' %>
   	</div>
 <% end %>
