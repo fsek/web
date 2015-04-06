@@ -9,10 +9,10 @@ class Post < ActiveRecord::Base
   has_many :permissions, through: :permission_posts
 
   # Scopes
-  scope :studierad, -> { where(elected_by: "Studierådet").order(council_id: :asc) }
-  scope :termins, -> { where(elected_by: "Terminsmötet").order(council_id: :asc) }
+  scope :studierad, -> { where(elected_by: 'Studierådet').order(council_id: :asc) }
+  scope :termins, -> { where(elected_by: 'Terminsmötet').order(council_id: :asc) }
 
-  scope :not_termins, -> { where.not(elected_by: "Terminsmötet").order(council_id: :asc) }
+  scope :not_termins, -> { where.not(elected_by: 'Terminsmötet').order(council_id: :asc) }
 
   # Validations
   validates :limit, :recLimit, :description, presence: true
@@ -57,7 +57,7 @@ class Post < ActiveRecord::Base
     end
 
     profiles << profile
-    return true
+    true
   end
 
   def remove_profile(profile)

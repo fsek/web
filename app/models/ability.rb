@@ -26,7 +26,7 @@ class Ability
       can [:nominate, :candidate], Election
       can :manage, Candidate, profile_id: user.profile.id
       can :manage, Nomination
-      can [:show,:avatar], Profile
+      can [:show, :avatar], Profile
       can :manage, Profile, user_id: user.id
       can [:read, :display, :hide], Post
       can :read, Document
