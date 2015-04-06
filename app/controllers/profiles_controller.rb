@@ -36,7 +36,7 @@ class ProfilesController < ApplicationController
   # Action to show profile picture only already authenticated
   def avatar
     if @profile.avatar?
-      if (params[:style] == 'original' || params[:style] == 'medium' || params[:style] == 'thumb')
+      if params[:style] == 'original' || params[:style] == 'medium' || params[:style] == 'thumb'
         send_file(@profile.avatar.path(params[:style]), filename: @profile.avatar_file_name,
                   type: 'image/jpg', disposition: 'inline', x_sendfile: true)
       else
@@ -56,5 +56,4 @@ class ProfilesController < ApplicationController
     params.require(:profile).permit(:name, :lastname, :program, :start_year,
                                     :avatar, :first_post, :stil_id, :email, :phone)
   end
-
 end
