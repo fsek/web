@@ -37,12 +37,12 @@ class Election < ActiveRecord::Base
   # /d.wessman
   def status_text
     case view_status
-      when :before
-        text_before
-      when :during
-        text_during
-      when :after
-        text_after
+    when :before
+      text_before
+    when :during
+      text_during
+    when :after
+      text_after
     end
   end
 
