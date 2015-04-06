@@ -68,10 +68,10 @@ class Election < ActiveRecord::Base
   # /d.wessman
   def countdown
     case view_status
-      when :before
-        start
-      when :during
-        self.end
+    when :before
+      start
+    when :during
+      self.end
     end
   end
 
