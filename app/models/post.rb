@@ -42,12 +42,12 @@ class Post < ActiveRecord::Base
 
   def add_profile(profile)
     if profile.nil?
-      errors.add(profile, I18n.t('errors.messages.not_found'))
+      errors.add(:profile, I18n.t('errors.messages.not_found'))
       return false
     end
 
-    if profiles.include(profile)
-      errors.add(profile, I18n.t('posts.already_have_post'))
+    if profiles.include?(profile)
+      errors.add(:profile, I18n.t('posts.already_have_post'))
       return false
     end
 

@@ -1,7 +1,5 @@
 Fsek::Application.routes.draw do
 
-  resources :constants
-
   post "githook" => "githook#index"
   get "githook/dev" => "githook#dev"
   get "githook/master" => "githook#master"
@@ -35,6 +33,7 @@ Fsek::Application.routes.draw do
 
   # Scope to change urls to swedish
   scope path_names: {new: 'ny', edit: 'redigera'} do
+    resources :constants
 
     scope :hilbertcafe do
       namespace :admin do
@@ -104,7 +103,7 @@ Fsek::Application.routes.draw do
     end
 
     resources :profiles, path: :profil do
-      post :search, on: :collection
+      patch :search, on: :collection
       patch :remove_post, on: :member
       get :avatar, on: :member
     end

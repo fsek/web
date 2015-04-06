@@ -8,17 +8,21 @@
       </div>
   <% end %>
   <div class="col-md-12">
-    <%= form_tag(Profile, url: search_profiles_path, action: :search, method: :post, remote: true) do %>
-        <%= text_field_tag :name, nil, placeholder: :name %>
-        <%= text_field_tag :lastname, nil, placeholder: :lastname %>
-        <%= submit_tag %>
-    <% end %>
-    <%= form_tag(Post, url: add_profile_posts_path, method: :patch) do %>
-        <%= select_tag :profile_id, @search_profiles %>
-        <%= select_tag :post_id, options_from_collection_for_select(@posts, 'id', 'title') %>
-        <%= submit_tag %>
-    <% end %>
-
+    <div class="margin-bottom-20">
+      <p>Sök på ett namn, räcker med en bokstav.</p>
+      <%= form_tag(search_profiles_path, method: :patch, remote: true) do %>
+          <%= text_field_tag :name, nil, placeholder: :name %>
+          <%= text_field_tag :lastname, nil, placeholder: :lastname %>
+          <%= submit_tag 'Sök', class: 'btn-u btn-u-small' %>
+      <% end %>
+    </div>
+    <div class="margin-bottom-20">
+      <%= form_tag(add_profile_posts_path, method: :patch) do %>
+          <%= select_tag :profile_id, @search_profiles %>
+          <%= select_tag :post_id, options_from_collection_for_select(@posts, 'id', 'title') %>
+          <%= submit_tag 'Spara', class: 'btn-u-small btn-u' %>
+      <% end %>
+    </div>
   </div>
   <div class="col-md-12">
     <%= grid(@post_grid) do |g|

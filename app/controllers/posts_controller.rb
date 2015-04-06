@@ -4,21 +4,21 @@ class PostsController < ApplicationController
   load_and_authorize_resource :council, parent: true, find_by: :url
   before_action :set_permissions
   before_action :set_councils, only: [:new, :edit, :update, :create]
+  before_action :set_profile, only: [:remove_profile, :add_profile]
 
   def remove_profile
-    profile = Profile.find_by_id(params[:profile_id])
-    @post.remove_profile(profile)
-    redirect_to council_posts_path(@council),
-                notice: %(#{profile.full_name} har inte längre posten #{@post.title}.)
+    @post.remove_profile(@profile)
+    redirect_to back,
+                notice: %(#{@profile.full_name} har inte längre posten #{@post.title}.)
   end
 
-  def add_profile_username
-    user = User.find_by(username: params[:username])
-    if @post.add_profile(user)
-      redirect_to council_posts_path(@council)
+  def add_profile
+    if @post.add_profile(@profile)
+      flash[:notice] = %(#{@profile.full_print} tilldelades #{@post})
     else
-      redirect_to council_posts_path(@council)
+      flash[:alert] = %(Tilldelningen gick inte: #{@post.errors.full_messages})
     end
+    redirect_to back
   end
 
   def index
@@ -80,5 +80,16 @@ class PostsController < ApplicationController
 
   def set_permissions
     @permissions = Permission.all
+  end
+
+  def set_profile
+    if @post.nil?
+      @post = Post.find_by_id(params[:post_id])
+    end
+    @profile = Profile.find_by_id(params[:profile_id])
+  end
+
+  def back
+    @council.present? ? council_posts_path(@council) : posts_path
   end
 end

@@ -7,7 +7,7 @@ class Ability
     user.profile ||= Profile.new
 
     # Abilities that everyone get.
-    can :read, [News, Council, Post, Page, Election]
+    can :read, [News, Council, Page, Election]
     can :read, Document, public: true
     can [:display, :image], Notice
     can [:collapse, :display], Post
@@ -26,6 +26,7 @@ class Ability
       can [:nominate, :candidate], Election
       can :manage, Candidate, profile_id: user.profile.id
       can :manage, Nomination
+      can [:show,:avatar], Profile
       can :manage, Profile, user_id: user.id
       can [:read, :display, :hide], Post
       can :read, Document

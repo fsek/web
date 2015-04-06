@@ -45,7 +45,7 @@ namespace :db do
     # Permissions
     Rake::Task['permissions:load'].invoke
     perm_admin = Permission.find_or_create_by!(subject_class: :all, action: :manage)
-    perm_nyckelpiga = Permission.find_or_create_by!(subject_class: :cafe_work, action: :nyckelpiga)
+    perm_nyckelpiga = Permission.find_or_create_by!(subject_class: 'CafeWork', action: :nyckelpiga)
     # Give spindelman admin
     PermissionPost.find_or_create_by!(permission: perm_admin, post: spindel)
     PermissionPost.find_or_create_by!(permission: perm_nyckelpiga, post: nyckelpiga)

@@ -26,6 +26,10 @@ class Profile < ActiveRecord::Base
     "#{name} #{lastname}".strip
   end
 
+  def full_print
+    "#{full_name} ( User: #{user_id})".strip
+  end
+
   # Returns all councils the profile belongs to with a Post who is
   # allowed to rent the car
   # /d.wessman
