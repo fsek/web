@@ -7,7 +7,7 @@ class Profile < ActiveRecord::Base
   has_many :rents
   has_many :councils, through: :posts
   # TODO Change the first_post field to first_post_id
-  #belongs_to :first_post, foreign_key: first_post_id, class: Post
+  # belongs_to :first_post, foreign_key: first_post_id, class: Post
 
   # Attachment
   has_attached_file :avatar,
@@ -18,9 +18,11 @@ class Profile < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   # Only on update!
   validates :name, :lastname, presence: true, on: :update
-  validates :start_year, inclusion: { in: 1954..(Time.zone.today.year + 1) }, on: :update
+  validates :start_year, inclusion: {in: 1954..(Time.zone.today.year + 1)}, on: :update
 
-  scope :search_names, ->(name,lastname) { where('name LIKE ? AND lastname LIKE ?',"%#{name}%","%#{lastname}%")}
+  scope :search_names, ->(name, lastname) {
+    where('name LIKE ? AND lastname LIKE ?', "%#{name}%", "%#{lastname}%")
+  }
 
   def full_name
     "#{name} #{lastname}".strip
