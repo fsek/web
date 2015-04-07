@@ -15,6 +15,7 @@ gem 'coffee-rails'
 gem 'coffee-script-source', '1.8.0'
 gem 'devise'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
+gem 'factory_girl_rails'
 gem 'fancybox2-rails'
 gem 'font-awesome-rails'
 gem 'fullcalendar-rails'
@@ -41,7 +42,6 @@ end
 
 group :development, :test do
   gem 'capybara'
-  gem 'factory_girl_rails'
   gem 'mailcatcher'
   gem 'poltergeist'
   gem 'rspec-rails'
