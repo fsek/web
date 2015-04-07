@@ -102,6 +102,14 @@ class PostsController < ApplicationController
     authorize! :manage, PermissionPost
   end
 
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def set_council
+    @council = Council.find_by_id(params[:council_id])
+  end
+
   def set_councils
     @councils = Council.order(title: :asc)
   end
