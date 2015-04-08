@@ -2,13 +2,13 @@
 class PostsController < ApplicationController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :council, parent: true, find_by: :url
-  before_action :can_manage_permissions, only:\
-    [ :edit_permissions, :update_permissions ]
+  before_action :can_manage_permissions, only: \
+    [:edit_permissions, :update_permissions]
   before_action :set_permissions
   before_action :set_councils, only: [:new, :edit, :update, :create]
   before_action :set_profile, only: [:remove_profile, :add_profile]
-  before_action :set_council, except: [ :show_permissions ]
-  before_action :set_post, except: [ :show_permissions ]
+  before_action :set_council, except: [:show_permissions]
+  before_action :set_post, except: [:show_permissions]
 
   def remove_profile
     @post.remove_profile(@profile)
@@ -67,7 +67,7 @@ class PostsController < ApplicationController
 
   def edit_permissions
     @permissions = Permission.all
-    @post_permissions = @post.permissions.collect!{|p| p.id}
+    @post_permissions = @post.permissions.map &:id
   end
 
   def update_permissions
