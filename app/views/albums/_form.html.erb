@@ -11,35 +11,35 @@
   	<% end %>
 	<div class="row">
 	  	<div class="col-md-6">
-		  	<%= f.label 'Titel', :class => 'reg-label'%>		  
+		  	<%= f.label 'Titel', class:  'reg-label'%>
 		  	<div class="input-group margin-bottom-20">					
-				<%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		
+				<%= f.text_field :title, class:  'form-control',:placeholder => 'Titel'%>
 		  	</div>
-		  	<%= f.label 'Beskrivning', :class => 'reg-label'%>
+		  	<%= f.label 'Beskrivning', class:  'reg-label'%>
 		  	<div class="input-group margin-bottom-20">		  	  		 		  	
-		  		<%= f.text_area :description, :class => 'form-control',:placeholder => 'Beskrivning',size: "40x5" %>
+		  		<%= f.text_area :description, class:  'form-control',:placeholder => 'Beskrivning',size: "40x5" %>
 		  	</div>			  
-		  	<%= f.label 'Plats', :class => 'reg-label'%>
+		  	<%= f.label 'Plats', class:  'reg-label'%>
 		  	<div class="input-group margin-bottom-20">
-		  		<%= f.text_field :location, :class => 'form-control',:placeholder => 'Plats',:autocomplete => 'off' %>
+		  		<%= f.text_field :location, class:  'form-control',:placeholder => 'Plats',:autocomplete => 'off' %>
 		  	</div>
 		  	</div>
 	  	<div class="col-md-6">
-		  	<%= f.label 'Start', :class => 'reg-label'%>
+		  	<%= f.label 'Start', class:  'reg-label'%>
 		  	<div class="input-group margin-bottom-20">		  	  		 		  	
-		  		<%= f.date_field :start_date, :class => 'form-control' %>
+		  		<%= f.date_field :start_date, class:  'form-control' %>
 		  	</div>
-		  	<%= f.label 'Slut', :class => 'reg-label'%>
+		  	<%= f.label 'Slut', class:  'reg-label'%>
 		  	<div class="input-group margin-bottom-20">		  	  		 		  	
-		  		<%= f.date_field :end_date, :class => 'form-control' %>
+		  		<%= f.date_field :end_date, class:  'form-control' %>
 		  	</div>
 	  	
-		  	<%= f.label 'Kategori', :class => 'reg-label'%>
+		  	<%= f.label 'Kategori', class:  'reg-label'%>
 		  	<%if @kategorier%>
 		  	<div class="input-group margin-bottom-20">
 		  		<%for @cat in @kategorier%>
 		  		<div class="input-group margin-bottom-1">
-		  			<%= f.check_box(:album_category_ids,{multiple: true},@cat.id,nil)%><%= f.label :album_category_id, @cat.name, :value => false,:class => 'reg-label' %>
+		  			<%= f.check_box(:album_category_ids,{multiple: true},@cat.id,nil)%><%= f.label :album_category_id, @cat.name, :value => false,class:  'reg-label' %>
 				</div>		
 		  		<%end%>
 		  		Just nu kan man välja flera, men bara för att man kan, så behöver man inte göra det! :) <br>
@@ -47,16 +47,16 @@
 		  	</div>
 		  	<%end%>
 		  	<%if @subcategories%>		  		 	
-			<%= f.label 'Underkategorier', :class => 'reg-label'%>  		
+			<%= f.label 'Underkategorier', class:  'reg-label'%>
 		  		<%for @subcat in @subcategories%>
 		  		<div class="input-group margin-bottom-1">
-		  			<%= f.check_box(:subcategory_ids,{multiple: true},@subcat.id,nil)%><%= f.label :subcategory_id, @subcat.text, :value => false,:class => 'reg-label' %>
+		  			<%= f.check_box(:subcategory_ids,{multiple: true},@subcat.id,nil)%><%= f.label :subcategory_id, @subcat.text, :value => false,class:  'reg-label' %>
 				</div>		
 		  		<%end%>
 		  		<%= link_to 'Lägg till fler underkategorier?', settings_albums_path, target: "blank" %><br>
 	  		<%end%>
 		  	<div class="row">
-		  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+		  			<%= f.submit "Spara",class:  'btn-u pull-right' %>
 		  	</div>
 		</div>
 	</div>

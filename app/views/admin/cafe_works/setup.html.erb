@@ -13,7 +13,6 @@
       <hr>
 
       <% if !@cafe_works.empty? %>
-          <% @lv = @cafe_work.lv %>
           <div class="panel-group acc-v1 margin-bottom-40">
             <% @cafe_works.group_by(&:lv).each do |week, work| %>
                 <div class="panel panel-default">

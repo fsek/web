@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 reg-page">
-			<%= label_tag 'Redigera album',nil, :class => 'reg-header'%><br>
+			<%= label_tag 'Redigera album',nil, class:  'reg-header'%><br>
 			<div class="row">
 				<% if @album.title %>									
 					<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Visa album"), @album,class: 'btn btn-u' %>
@@ -23,7 +23,7 @@
 		  	<%= select_tag :image_category, 
   				     options_from_collection_for_select(@album.subcategories,:id,:text),
   				     include_blank: true, 
-  				     :class => " listBox"%><br><br>
+  				     class:  " listBox"%><br><br>
 	     	<%=submit_tag 'Byt kategori',class: "btn btn-u"%><br>
 		  	<ul class="row sorting-grid">		  	
 		  		<%for @image in @album.images%>

@@ -3,8 +3,8 @@ class Council < ActiveRecord::Base
   # Associations
   has_one :page, dependent: :destroy
 
-  belongs_to :president, foreign_key: :president, class_name: :Post
-  belongs_to :vice_president, foreign_key: :vice_president, class_name: :Post
+  belongs_to :president, foreign_key: :president_id, class_name: :Post
+  belongs_to :vice_president, foreign_key: :vicepresident_id, class_name: :Post
 
   has_many :posts
   has_many :profiles, through: :posts
@@ -14,6 +14,16 @@ class Council < ActiveRecord::Base
   # Validation
   validates :title, :url, presence: true
   validates :url, uniqueness: true
+
+  after_update :check_page
+
+  def check_page
+    if page.nil?
+      build_page(url: url, visible: true, title: title).save!
+    elsif page.url.nil?
+      page.update!(url: url, visible: true, title: title)
+    end
+  end
 
   def to_s
     title

@@ -1,7 +1,7 @@
 # encoding:UTF-8
 class ElectionsController < ApplicationController
   before_action :set_election
-  authorize_resource
+  load_permissions_and_authorize_resource
 
   def index
     if @election.instance_of?(Election)

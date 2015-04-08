@@ -4,33 +4,66 @@ class Post < ActiveRecord::Base
   belongs_to :council
   has_and_belongs_to_many :profiles
   has_many :nominations
-  has_many :candidates 
+  has_many :candidates
   has_many :permission_posts
-  has_many :permissions, through: 'permission_posts'
+  has_many :permissions, through: :permission_posts
 
   # Scopes
-  scope :studierad, -> {where(elected_by: "Studierådet").order(council_id: :asc)}
-  scope :termins, -> {where(elected_by: "Terminsmötet").order(council_id: :asc)}
+  scope :studierad, -> { where(elected_by: 'Studierådet').order(council_id: :asc) }
+  scope :termins, -> { where(elected_by: 'Terminsmötet').order(council_id: :asc) }
 
-  scope :not_termins, -> {where.not(elected_by: "Terminsmötet").order(council_id: :asc)}
+  scope :not_termins, -> { where.not(elected_by: 'Terminsmötet').order(council_id: :asc) }
 
   # Validations
-  validates_presence_of :limit,:recLimit, :description
+  validates :limit, :recLimit, :description, presence: true
 
   # Scopes
-  scope :renters, -> {where(car_rent:true)}
-  
+  scope :renters, -> { where(car_rent: true) }
+
+  def to_s
+    title
+  end
+
   def printLimit
-    if((recLimit == 0) && (limit == 0)) || (recLimit > limit )
+    if recLimit == 0 && limit == 0 || recLimit > limit
       "*"
-    elsif(recLimit == limit) && (recLimit > 0)
-      limit.to_s + " (x)"  
-    elsif(limit > 0) && (recLimit == 0)
-      limit.to_s         
-    elsif(limit > recLimit)
-      recLimit.to_s + "-" + limit.to_s        
+    elsif recLimit == limit && recLimit > 0
+      %(#{limit}  (x))
+    elsif limit > 0 && recLimit == 0
+      limit
+    elsif limit > recLimit
+      %(#{recLimit}- #{limit})
     end
-  end   
+  end
+
+  def limited?
+    limit > 0 && profiles.count >= limit
+  end
+
+  def add_profile(profile)
+    if profile.nil?
+      errors.add(:profile, I18n.t('errors.messages.not_found'))
+      return false
+    end
+
+    if profiles.include?(profile)
+      errors.add(:profile, I18n.t('posts.already_have_post'))
+      return false
+    end
+
+    if limited?
+      errors.add(:limit, I18n.t('posts.limited'))
+      return false
+    end
+
+    profiles << profile
+    true
+  end
+
+  def remove_profile(profile)
+    profiles.delete(profile)
+  end
+
   def set_permissions(permissions)
     permissions.each do |id|
       #find the main permission assigned from the UI

@@ -7,16 +7,12 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   let(:cwork_access) { create(:cafe_work, :access) }
   let(:cwork) { create(:cafe_work) }
 
-  # Hack to become admin
-  # Should be changed when Cancancan is implemented
-  # /d.wessman
   before(:each) do
-    sign_in user
+    allow(controller).to receive(:current_user).and_return(user)
   end
   allow_user_to :manage, CafeWork
 
   describe 'GET #show' do
-    #allow_user_to :manage, CafeWork
     it 'assigns the requested cafe_work as @cwork' do
       get :show, {id: cwork.to_param}
       assigns(:cafe_work).should eq(cwork)
@@ -100,7 +96,6 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
 
   describe 'DELETE #destroy' do
     before { cwork }
-    allow_user_to :manage, CafeWork
     it 'destroys the requested cwork' do
       lambda { delete :destroy, id: cwork.to_param, format: :html }.should change(CafeWork, :count).by(-1)
     end
@@ -118,7 +113,6 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'PATCH #remove_worker' do
-    allow_user_to :manage, CafeWork
     it 'remove worker with profile' do
       xhr :patch, :remove_worker, {id: cwork_profile.to_param}
       cwork_profile.reload
@@ -128,15 +122,13 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'GET #setup' do
-    allow_user_to :manage, CafeWork
-    it 'assigns @cwork as new record' do
+    it 'assigns @cafe_work as new record' do
       get :setup
-      (assigns(:cafe_work).new_record?).should be_truthy
+      assigns(:cafe_work).new_record?.should be_truthy
     end
   end
 
   describe 'POST #setup_create' do
-    allow_user_to :manage, CafeWork
     # Should use a more precise method
     it 'preview post' do
       post :setup_create, {commit: 'Förhandsgranska', cafe_work: attributes_for(:cafe_work), lv_first: 1, lv_last: 1}

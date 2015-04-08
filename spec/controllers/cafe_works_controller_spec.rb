@@ -4,9 +4,10 @@ RSpec.describe CafeWorksController, type: :controller do
   let(:user) { create(:user) }
   let(:not_owner) { create(:user) }
   let(:cwork_profile) { create(:cafe_work, :w_profile, profile: user.profile) }
-  subject(:ability) { Ability.new(user) }
   let(:cwork_access) { create(:cafe_work, :access) }
   let(:cwork) { create(:cafe_work) }
+
+  allow_user_to [:show, :index, :update_worker, :remove_worker, :authorize], CafeWork
 
   describe 'GET #show' do
     it 'assigns the requested cafe_work as @cwork' do
@@ -16,7 +17,6 @@ RSpec.describe CafeWorksController, type: :controller do
   end
 
   describe 'POST #authorize' do
-    before { allow(controller).to receive(:current_ability).and_return(Ability.new(nil)) }
     it 'authorizes with right code' do
       xhr :post, :authorize, {id: cwork_access.to_param, cafe_work: {access_code: cwork_access.access_code}}
 
@@ -34,11 +34,7 @@ RSpec.describe CafeWorksController, type: :controller do
   describe 'PATCH #update_worker' do
     context 'with valid params' do
       context 'valid user' do
-        before do
-          sign_in user
-          allow(controller).to receive(:current_ability).and_return(Ability.new(user))
-        end
-
+        before { allow(controller).to receive(:current_user).and_return(user) }
         it 'add worker' do
           patch :update_worker, {id: cwork.to_param, cafe_work: attributes_for(:assignee)}
           cwork.reload
@@ -68,8 +64,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
       context 'invalid user' do
         before do
-          sign_in not_owner
-          allow(controller).to receive(:current_ability).and_return(Ability.new(not_owner))
+          allow(controller).to receive(:current_user).and_return(not_owner)
         end
 
         it 'update worker' do
@@ -87,7 +82,6 @@ RSpec.describe CafeWorksController, type: :controller do
       end
 
       context 'with no user' do
-        before { allow(controller).to receive(:current_ability).and_return(Ability.new(nil)) }
         it 'update worker' do
           patch :update_worker,
                 {
@@ -112,14 +106,9 @@ RSpec.describe CafeWorksController, type: :controller do
     end
 
     context 'with invalid params' do
-      before { allow(controller).to receive(:current_ability).and_return(Ability.new(nil)) }
       it 'assigns the cafe_work as @cafe_work' do
         patch :update_worker, {id: cwork.to_param, cafe_work: attributes_for(:assignee, :invalid)}
         assigns(:cafe_work).should eq(cwork)
-      end
-
-      it 're-renders the show template' do
-        patch :update_worker, {id: cwork.to_param, cafe_work: attributes_for(:assignee, :invalid)}
         response.should render_template('show')
       end
     end
@@ -128,8 +117,7 @@ RSpec.describe CafeWorksController, type: :controller do
   describe 'PATCH #remove_worker' do
     context 'with valid user' do
       before do
-        sign_in user
-        allow(controller).to receive(:current_ability).and_return(Ability.new(user))
+        allow(controller).to receive(:current_user).and_return(user)
       end
       it 'remove worker with profile' do
         patch :remove_worker, {id: cwork_profile.to_param}
@@ -154,8 +142,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
     context 'with invalid user' do
       before do
-        sign_in not_owner
-        allow(controller).to receive(:current_ability).and_return(Ability.new(not_owner))
+        allow(controller).to receive(:current_user).and_return(not_owner)
       end
 
       it 'remove worker' do
@@ -163,17 +150,11 @@ RSpec.describe CafeWorksController, type: :controller do
         cwork_profile.reload
 
         cwork_profile.worker.present?.should be_truthy
-      end
-
-      it 'redirects to the cafe_work' do
-        patch :remove_worker, {id: cwork_profile.to_param}
-
-        response.should render_template('show')
+        response.should render_template(:show)
       end
     end
 
     context 'with no user' do
-      before { allow(controller).to receive(:current_ability).and_return(Ability.new(nil)) }
       it 'remove worker' do
         patch :remove_worker,
               {
@@ -183,22 +164,12 @@ RSpec.describe CafeWorksController, type: :controller do
         cwork_access.reload
 
         cwork_access.worker.present?.should be_falsey
-      end
-
-      it 'redirects to the cafe_work' do
-        patch :remove_worker,
-              {
-                  id: cwork_access.to_param,
-                  cafe_work: {access_code: cwork_access.access_code}
-              }
-
         response.should redirect_to(cwork_access)
       end
     end
   end
 
   describe 'GET #index' do
-    before { allow(controller).to receive(:current_ability).and_return(Ability.new(nil)) }
     it 'renders #index' do
       get :index
       response.should render_template(:index)
@@ -218,14 +189,25 @@ RSpec.describe CafeWorksController, type: :controller do
   end
 
   describe 'GET #nyckelpiga' do
-    before do
-      ability = Ability.new(user)
-      ability.can :nyckelpiga, CafeWork
-      allow(controller).to receive(:current_ability).and_return(ability)
+    context 'not allowed' do
+      it 'does not work' do
+        get :nyckelpiga
+
+        # Changed the response to AccessDenied
+        #response.should have_http_status(:forbidden)
+        response.should redirect_to :new_user_session
+      end
     end
-    it 'works' do
-      get :nyckelpiga
-      response.should render_template('nyckelpiga')
+    context 'allowed' do
+      before do
+        ability = Ability.new(user)
+        ability.can :nyckelpiga, CafeWork
+        allow(controller).to receive(:current_ability).and_return(ability)
+      end
+      it 'works' do
+        get :nyckelpiga
+        response.should be_success
+      end
     end
   end
 end

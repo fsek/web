@@ -2,6 +2,15 @@
 
 en:
   devise:
+    remember_me: Remember me?
+    sign_in: Sign in
+    sign_out: Sign out
+    sign_up: Sign up
+    password_forgotten: Forgotten password?
+    sign_in_with: Sign in with
+    not_receive_unlock: Did not receive email about unlocking?
+    not_receive_confirm: Did not receive confirmation email?
+
     confirmations:
       confirmed: "Your account was successfully confirmed."
       send_instructions: "You will receive an email with instructions about how to confirm your account in a few minutes."

@@ -1,6 +1,5 @@
 class Admin::RentsController < ApplicationController
   load_permissions_and_authorize_resource
-  before_action :set_rent, only: [:show, :update, :destroy, :preview]
   before_action :set_councils, only: [:new, :show]
 
   def main
@@ -18,11 +17,10 @@ class Admin::RentsController < ApplicationController
   def create
     @rent = Rent.new_with_status(rent_params, nil)
     flash[:notice] = 'Bokningen skapades' if @rent.save(validate: false)
-    respond_with @rent
+    redirect_to @rent
   end
 
   def new
-    @rent = Rent.new
   end
 
   def update
@@ -36,22 +34,6 @@ class Admin::RentsController < ApplicationController
   end
 
   private
-
-  def authenticate
-    flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless (current_user) && (current_user.moderator?(:bil))
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
-  end
-
-  # Makes sure that a rent is found, otherwise redirects to admin page
-  def set_rent
-    @rent = Rent.find_by_id(params[:id])
-    if (@rent == nil)
-      flash[:notice] = 'Hittade ingen bilbokning med det ID:t.'
-      redirect_to(:admin_car)
-    end
-  end
 
   # To set the councils
   def set_councils

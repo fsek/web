@@ -8,7 +8,7 @@ class CafeWork < ActiveRecord::Base
   # Validations
   validates :work_day, :pass, :lp, :lv, presence: true
   validates :pass, :lp, inclusion: { in: 1..4 }
-  validates :lv, inclusion: { in: 1..7 }
+  validates :lv, inclusion: { in: 1..20 }
   validates :name, :lastname, :phone, :email, presence: true, if: :has_worker?
   validates :pass, uniqueness: { scope: [:work_day, :lv, :lp, :d_year] }
 

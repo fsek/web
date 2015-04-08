@@ -1,0 +1,51 @@
+<% provide(:title, 'Val') %>
+<% if (@after) || (@during) %>
+    <div class="col-md-8 col-md-offset-2 coming-soon">
+      <h2>Dina kandidaturer</h2>
+
+      <p>Tryck på namnet till posten för att se mer information samt kunna redigera.</p>
+
+      <p>Poster valda på Terminsmötet går ej att redigera efter: <%= @valet.end.to_date.to_s %></p>
+      <%= render "candidate_table" %>
+    </div>
+    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
+      <div class="coming-soon">
+        <h2><%= label_tag 'Kandidera!', nil, class:  'reg-header' %></h2>
+        <% if @done %>
+            <h4>Tack för din kandidering</h4>
+            <h4>Det kanske finns en post till att söka?</h4>
+        <% elsif (@poster) && (@poster.count > 0) %>
+            <h4>Här kan du kandidera till poster som du skulle vilja ha.</h4>
+            <h4>Du kan ändra din kandidatur för poster valda på Terminsmötet fram tills valet stänger.</h4>
+        <% else %>
+            <h4>Du har redan kandiderat till alla poster. Grattis!</h4>
+        <% end %>
+      </div>
+
+    </div>
+<% elsif @before %>
+    <div class="coming-soon">
+      <h2><%= label_tag 'Kandideringar öppnar: ' + @valet.start.to_date.to_s, nil, class:  'reg-header' %></h2>
+      <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
+    </div>
+<% else %>
+    <div class="coming-soon">
+      <h2><%= label_tag 'Kandideringar har stängt.', nil, class:  'reg-header' %></h2>
+      <h4>Du kan inte längre kandidera på nya poster eller ändra dina kandidaturer.</h4>
+      <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
+      <%= grid(@candidates_grid) do |g|
+        g.column name: "Post", attribute: "post_id", filter: false do |candidate|
+          candidate.post.title
+        end
+        g.column name: "Namn", attribute: "profile_id", filter: false do |candidate|
+          link_to(candidate.profile.name, candidate.profile)
+        end
+        g.column name: "Stil-ID", attribute: "stil_id", filter: false
+        g.column name: "E-post", attribute: "email", filter: false
+        g.column name: "Telefon", attribute: "phone", filter: false
+        g.column name: "Skapad:", attribute: "created_at", filter: false do |candidate|
+          candidate.created_at
+        end
+      end -%>
+    </div>
+<% end %>

@@ -1,22 +1,18 @@
 <div class="container">
-	<div class="row">
-		<div class="col-md-6 reg-page">
-			<%= label_tag 'Redigera utskott',nil, :class => 'reg-header'%>			
-			<%= render 'form'%>
-			<hr>
-			<%= link_to 'Lägg till post', new_council_post_path(@council),class:"btn-u" %>	<%= link_to 'Visa poster', council_posts_path(@council),class:"btn-u" %>
-			<%= link_to 'Redigera sida', council_page_path(@council),class:"btn-u" %>
-			<hr>						
-			<%= link_to 'Visa utskott', @council,class:"btn-u" %>			
-		</div>		
-		<%if @council.page%>
-			<div class="col-md-6 reg-page">
-			<%if @contact %>			
-				<%= label_tag 'Redigera kontakt',nil, :class => 'reg-header'%>
-					<%=render partial: "contacts/form",object: @contact%>
-			<%end%>
-			</div>
-		<%end%>
-		</div>		
-	</div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 reg-page">
+      <%= label_tag 'Redigera utskott', nil, class: 'reg-header' %>
+      <%= render 'form' %>
+      <hr>
+      <%= link_to 'Lägg till post', new_council_post_path(@council), class: "btn-u" %>
+      <%= link_to 'Visa poster', council_posts_path(@council), class: "btn-u" %>
+      <% if @council.page.present?%>
+          <%= link_to 'Redigera sida', page_path(@page), class: "btn-u" %>
+      <% end %>
+      <hr>
+      <%= link_to 'Visa utskott', @council, class: "btn-u" %>
+    </div>
+
+  </div>
+</div>
 </div>

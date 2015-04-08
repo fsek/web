@@ -47,10 +47,8 @@ class Assignee
 
   def load_profile(user)
     if (user.present?) && !has_profile?
-      self.name = user.profile.name
-      self.lastname = user.profile.lastname
-      self.email = user.profile.email
-      self.phone = user.profile.phone
+      self.name, self.lastname = user.profile.name, user.profile.lastname
+      self.email,self.phone = user.profile.email, user.profile.phone
     end
     attributes
   end

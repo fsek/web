@@ -13,12 +13,12 @@
 	  	post.printLimit
 	  end			
 	  g.column name: "Utskott", attribute: "council_id",filter: false do |post|
-	    post.council.title
+	    post.council
 	  end
 	  g.column name: "Väljs av", attribute: "elected_by",filter: false
-  	  if (@election.view_status != 1)
+  	  if (election.view_status != 1)
 		  g.column name: "Kandidater", filter: false do |post|
-		  	 @election.candidate_count(post)
+		  	 election.candidate_count(post)
 		  end
   	  end
 end -%>

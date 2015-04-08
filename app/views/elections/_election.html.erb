@@ -1,0 +1,36 @@
+<div class="col-md-12 coming-soon">
+  <h1 id="election-title"><%= election.title %></h1>
+
+  <p><%= simple_format(election.description) %></p><br>
+
+  <p><%= simple_format(election.status_text) %></p>
+  <%= render "countdown" %>
+
+  <div class="col-md-3 col-md-offset-3">
+    <%= link_to(model_name(Nomination), new_nominations_path, class: "btn btn-election") %>
+  </div>
+  <div class="col-md-3">
+    <%= link_to(model_name(Candidate), candidates_path, class: "btn btn-election") %>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2 coming-soon election">
+    <h3><%= election.view_status == :before ? t('elections.posts_before') : t('elections.posts_during') %></h3>
+    <%= render "posttab", grid: @grid_election, election: election %>
+    <ul class="list">
+      <li><%= t('elections.x_posts') %></li>
+      <li><%= t('elections.star_posts') %></li>
+      <li><%= t('elections.orange_posts') %></li>
+      <% if election.view_status == :after %>
+          <li><%= t('elections.green_posts') %></li>
+      <% end %>
+         </ul>
+    <% if election.view_status == :after  %>
+      <h3><%= t('elections.posts_after') %></h3>
+      <%= render "posttab", grid: @grid_termins, election: election %>
+      <% end %>
+      <div class="display-post" id="views"></div>
+
+      <p> <%= t('elections.get_in_touch') %>
+        <%= render partial: "contacts/kontakt", locals: {name: 'Spindelmän'} %></p>
+  </div>
+</div>

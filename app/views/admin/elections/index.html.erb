@@ -1,7 +1,39 @@
-<div class="col-md-10 col-md-offset-1 col-sm-1+ col-sm-offset-1 reg-page">
-  <ul class="list"></ul>
-    <% @elections.each do |elec|%>
-        <li><%=link_to(elec.title,admin_election_path(elec))%></li>
-    <%end%>
-  </ul>
+<div class="container">
+  <div class="col-md-12">
+    <div class="panel panel-orange margin-bottom-40">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <i class="fa fa-tasks"></i> Sektionsval</h3>
+        <%=link_to('Nytt val',new_admin_election_path, class: 'btn btn-u')%>
+      </div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Titel</th>
+          <th>Url</th>
+          <th>Synlig</th>
+          <th>Öppnar</th>
+          <th>Stänger</th>
+          <th>Aktuellt val?</th>
+          <th>Uppdaterad</th>
+          <th>Redigera</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @elections.each do |election| %>
+            <tr>
+              <td><%= election.title %></td>
+              <td><%= election.url %></td>
+              <td><%= election.visible %></td>
+              <td><%= election.start%></td>
+              <td><%= election.end%></td>
+              <td><%= (election == Election.current) ? 'Sant': 'Falskt'%></td>
+              <td><%= election.updated_at %></td>
+              <td><%= link_to('Redigera', admin_election_path(election), class: "btn btn-u") %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
