@@ -43,11 +43,11 @@ class ProfilesController < ApplicationController
         send_file(@profile.avatar.path(:medium), filename: @profile.avatar_file_name,
                   type: 'image/jpg', disposition: 'inline', x_sendfile: true)
       end
-    end
-  end
+  	end
+	end
 
   def search
-    @search_profiles = Profile.search_names(params[:firstname], params[:lastname])
+    @search_profiles = Profile.search_name(params[:name],params[:lastname]) 
   end
 
   private

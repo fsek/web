@@ -7,13 +7,11 @@ class PostsController < ApplicationController
   before_action :set_permissions
   before_action :set_councils, only: [:new, :edit, :update, :create]
   before_action :set_profile, only: [:remove_profile, :add_profile]
-  before_action :set_council, except: [:show_permissions]
-  before_action :set_post, except: [:show_permissions]
 
   def remove_profile
     @post.remove_profile(@profile)
     redirect_to back,
-                notice: %(#{@profile.full_name} har inte längre posten #{@post.title}.)
+      notice: %(#{@profile.full_name} har inte längre posten #{@post.title}.)
   end
 
   def add_profile
@@ -68,15 +66,20 @@ class PostsController < ApplicationController
   def edit_permissions
     @permissions = Permission.all
     @post_permissions = @post.permissions.map &:id
+		render 'permissions'
   end
 
   def update_permissions
-    @post.permissions = []
-    @post.set_permissions(permission_params[:permissions]) if permission_params[:permissions]
+		if permission_params[:permission_ids]
+			# TODO This approch is kind of scary if the set_permissions fails silently.
+			# /davidwessman 2015-04-09
+    	@post.permissions = []
+    	@post.set_permissions(permission_params[:permission_ids])
+		end
     if @post.save
-      redirect_to '/permissions', notice: 'Posten uppdaterades!'
+      redirect_to permissions_path , notice: 'Posten uppdaterades!'
     else
-      render action: 'edit'
+      render action: :edit
     end
   end
 
@@ -95,19 +98,11 @@ class PostsController < ApplicationController
   end
 
   def permission_params
-    params.permit(:utf8, :authenticity_token, :commit, :id, permissions: [])
+		params.require(:post).permit(permission_ids: [])
   end
 
   def can_manage_permissions
     authorize! :manage, PermissionPost
-  end
-
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
-  def set_council
-    @council = Council.find_by_id(params[:council_id])
   end
 
   def set_councils

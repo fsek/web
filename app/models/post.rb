@@ -66,9 +66,11 @@ class Post < ActiveRecord::Base
 
   def set_permissions(permissions)
     permissions.each do |id|
-      #find the main permission assigned from the UI
-      permission = Permission.find(id)
-      self.permissions << permission
+			if id.present?
+      	#find the main permission assigned from the UI
+      	permission = Permission.find(id)
+      	self.permissions << permission
+			end
     end
   end
 end

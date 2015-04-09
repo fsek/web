@@ -1,9 +1,7 @@
 Fsek::Application.routes.draw do
   get 'permissions' => 'posts#show_permissions'
-  get 'permissions/:id' => 'posts#edit_permissions'
-  post 'permissions/:id' => 'posts#update_permissions'
-
-  resources :constants
+  get 'permission/:id' => 'posts#edit_permissions', as: :permission
+  patch 'permission/:id' => 'posts#update_permissions' 
 
   post "githook" => "githook#index"
   get "githook/dev" => "githook#dev"

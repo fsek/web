@@ -11,8 +11,8 @@ class Profile < ActiveRecord::Base
 
   # Attachment
   has_attached_file :avatar,
-                    styles: {medium: '300x300>', thumb: '100x100>'},
-                    path: ':rails_root/storage/profile/:id/:style/:filename'
+    styles: {medium: '300x300>', thumb: '100x100>'},
+    path: ':rails_root/storage/profile/:id/:style/:filename'
 
   # Validations
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
@@ -20,8 +20,9 @@ class Profile < ActiveRecord::Base
   validates :name, :lastname, presence: true, on: :update
   validates :start_year, inclusion: {in: 1954..(Time.zone.today.year + 1)}, on: :update
 
-  scope :search_names, ->(name, lastname) {
-    where('name LIKE ? AND lastname LIKE ?', "%#{name}%", "%#{lastname}%")
+
+  scope :search_name, ->(name,lastname) {
+    where('name LIKE ? AND lastname LIKE ?', "%#{name}%","%#{lastname}%")
   }
 
   def full_name

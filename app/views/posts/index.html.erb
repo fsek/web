@@ -1,34 +1,33 @@
 <% title('Poster') %>
 <div class="container">
   <% if @council %>
-      <div class="row margin-bottom-20">
-        <%= link_to "Lägg till post", new_council_post_path(@council), class: "btn btn-u" %>
-        <%= link_to "Visa utskott", council_path(@council), class: "btn btn-u" %>
-        <%= link_to "Redigera utskott", edit_council_path(@council), class: "btn btn-u" %>
-      </div>
+    <div class="row margin-bottom-20">
+      <%= link_to "Lägg till post", new_council_post_path(@council), class: "btn btn-u" %>
+      <%= link_to "Visa utskott", council_path(@council), class: "btn btn-u" %>
+      <%= link_to "Redigera utskott", edit_council_path(@council), class: "btn btn-u" %>
+    </div>
   <% end %>
   <div class="col-md-12">
     <div class="margin-bottom-20">
       <p>Sök på ett namn, räcker med en bokstav.</p>
       <%= form_tag(search_profiles_path, method: :patch, remote: true) do %>
-          <%= text_field_tag :name, nil, placeholder: :name %>
-          <%= text_field_tag :lastname, nil, placeholder: :lastname %>
-          <%= submit_tag 'Sök', class: 'btn-u btn-u-small' %>
+        <%= text_field_tag :name, nil, placeholder: :name %>
+        <%= text_field_tag :lastname, nil, placeholder: :lastname %>
+        <%= submit_tag 'Sök', class: 'btn-u btn-u-small' %>
       <% end %>
     </div>
     <div class="margin-bottom-20">
       <%= form_tag(add_profile_posts_path, method: :patch) do %>
-          <%= select_tag :profile_id, @search_profiles %>
-          <%= select_tag :post_id, options_from_collection_for_select(@posts, 'id', 'title') %>
-          <%= submit_tag 'Spara', class: 'btn-u-small btn-u' %>
+        <%= select_tag :profile_id, @search_profiles %>
+        <%= select_tag :post_id, options_from_collection_for_select(@posts, 'id', 'title') %>
+        <%= submit_tag 'Spara', class: 'btn-u-small btn-u' %>
       <% end %>
     </div>
   </div>
   <div class="col-md-12">
     <%= grid(@post_grid) do |g|
       g.column name: "Titel", attribute: "title", filter: false do |post|
-        link_to(post.title, edit_council_post_path(post.council, post))
-        link_to(post.title, "#mer-"+post.id.to_s, class: "", data: {toggle: "collapse"})
+        link_to(post.title, %(##{dom_id(post)}), class: "", data: {toggle: "collapse"})
       end
       g.column name: "Gräns", attribute: "limit", filter: false do |post|
         (post.limit) && (post.limit > 0) ? post.limit : "Ingen"
@@ -50,37 +49,33 @@
         end
       end
     end -%>
-  </div>
-  <div class="col-md-12">
-    <% for @post in @posts %>
-        <div id="mer-<%= @post.id %>" class="collapse">
-          <div class="funny-boxes funny-boxes-left-orange">
-            <h2><%= @post.title %></h2>
+</div>
+<div class="col-md-12">
+  <% for @post in @posts %>
+    <div id="<%= dom_id(@post) %>" class="collapse">
+      <div class="funny-boxes funny-boxes-left-orange">
+        <h2><%= @post.title %></h2>
 
-            <div class="col-md-12">
-              <% if can? :edit, @post %>
-                  <%= link_to 'Ändra posten', edit_council_post_path(@post.council, @post) %>
-                  <% if @post.profiles.size > 0 %>
-                      <p>Ta bort någon från posten.</p>
-                      <%= form_tag remove_profile_council_post_path(@post.council, @post), method: :patch do %>
-                          <%= hidden_field_tag :id, @post.id %>
-                          <% profileList = [] %>
-                          <% @post.profiles.each do |profile| %>
-                              <% profileList << [profile.name.to_s + " - " + profile.user.username, profile.id] %>
-                          <% end %>
-                          <%= select_tag :profile_id, options_for_select(profileList) %>
-                          <%= submit_tag 'Ta bort', class: "btn btn-u", data: {confirm: "Den valda profilen kommer att bli av med vald post."} %>
-                      <% end %><br>
-                  <% end %>
-              <% end %>
-              <p>Beskrivning:</p>
-              <% if @post.description %>
-                  <%= simple_format(@post.description) %>
-              <% end %>
+        <div class="col-md-12">
+          <% if can? :edit, @post %>
+            <%= link_to 'Ändra posten', edit_council_post_path(@post.council, @post) %>
+            <% if @post.profiles.size > 0 %>
+              <p>Ta bort någon från posten.</p>
+              <%= form_tag remove_profile_council_post_path(@post.council, @post), method: :patch do %>
+                <%= hidden_field_tag :id, @post.id %>
+                <%= select_tag :profile_id, options_from_collection_for_select(@post.profiles,'id','full_print') %>
+                <%= submit_tag 'Ta bort', class: "btn btn-u", data: {confirm: "Den valda profilen kommer att bli av med vald post."} %>
+              <% end %><br>
+            <% end %>
+          <% end %>
+          <p>Beskrivning:</p>
+          <% if @post.description %>
+            <%= simple_format(@post.description) %>
+          <% end %>
 
-            </div>
-          </div>
         </div>
-    <% end %>
-  </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 </div>		
