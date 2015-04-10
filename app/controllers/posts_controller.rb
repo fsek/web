@@ -39,18 +39,17 @@ class PostsController < ApplicationController
   def create
     @post = @council.posts.build(post_params)
     if @post.save
-      redirect_to council_posts_path(@council), notice: 'Posten skapades!'
-    else
-      render action: 'new'
-    end
+      redirect_to council_posts_path(@council), notice: alert_create_resource(Post)   
+ 	 	else
+      render action: :new   
+ 	 	end
   end
 
   def update
-    @post.attributes = post_params
-    if @post.save
-      redirect_to edit_council_post_path(@post.council, @post), notice: 'Posten uppdaterades!'
+    if @post.update(post_params)
+      redirect_to edit_council_post_path(@post.council, @post), notice: alert_update_resource(Post) 
     else
-      render action: 'edit'
+      render action: :edit 
     end
   end
 
@@ -66,20 +65,14 @@ class PostsController < ApplicationController
   def edit_permissions
     @permissions = Permission.all
     @post_permissions = @post.permissions.map &:id
-		render 'permissions'
+		render :permissions 
   end
 
   def update_permissions
-		if permission_params[:permission_ids]
-			# TODO This approch is kind of scary if the set_permissions fails silently.
-			# /davidwessman 2015-04-09
-    	@post.permissions = []
-    	@post.set_permissions(permission_params[:permission_ids])
-		end
-    if @post.save
-      redirect_to permissions_path , notice: 'Posten uppdaterades!'
+   	if  @post.set_permissions(permission_params)
+      redirect_to permissions_path, notice: alert_update_resource(Post) 
     else
-      render action: :edit
+      render action: permission_path(@post) 
     end
   end
 

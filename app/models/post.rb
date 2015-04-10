@@ -64,13 +64,13 @@ class Post < ActiveRecord::Base
     profiles.delete(profile)
   end
 
-  def set_permissions(permissions)
-    permissions.each do |id|
+	def set_permissions(params)
+		self.permissions = []
+		params[:permission_ids].each do |id|
 			if id.present?
-      	#find the main permission assigned from the UI
-      	permission = Permission.find(id)
-      	self.permissions << permission
+				self.permissions << Permission.find(id)
 			end
-    end
-  end
+		end
+		save!
+	end
 end
