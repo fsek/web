@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Candidate, type: :model do
   it 'has a valid factory' do
-    expect(build(:candidate)).to be_valid
+    build(:candidate).should be_valid
   end
 
   # Lazily loaded to ensure it's only used when it's needed

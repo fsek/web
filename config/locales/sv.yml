@@ -40,28 +40,30 @@ sv:
     format: "%{message}"
     attributes:
       email: 
-        blank: "Epost måste anges"
+      blank: "Epost måste anges"
       phone: 
-        blank: "Telefonnummer måste anges"
+      blank: "Telefonnummer måste anges"
       name: 
-        blank: "Förnamn måste anges"
+      blank: "Förnamn måste anges"
       lastname: 
-        blank: "Efternamn måste anges"
-        
+      blank: "Efternamn måste anges"
+      post_id:
+        blank: En post måste anges    
+
   time:
     formats:
       day: "%A %d/%m"
     invalid-url: Inte en giltig webadress
 
   unauthorized:
-      default: Någonting blev fel (rättigheter)
-      manage:
-        all: Inte auktoriserad för att %{action} %{subject}.
-        user: "Inte auktoriserad för att hantera användarkonton."
-      update:
-        project: "Inte tillåten att uppdatera projektet."
-      new:
-        nomination: Du måste logga in för att kunna nominera.
+    default: Någonting blev fel (rättigheter)
+    manage:
+      all: Inte auktoriserad för att %{action} %{subject}.
+      user: "Inte auktoriserad för att hantera användarkonton."
+    update:
+      project: "Inte tillåten att uppdatera projektet."
+    new:
+      nomination: Du måste logga in för att kunna nominera.
 
   user:
     settings: Kontoinställningar
@@ -70,12 +72,12 @@ sv:
     civic_check: För att kontrollera medlemskap i sektionen, sparas inte.
 
   helpers:
-      submit:
-        create: "Skapa %{model}"
-        submit: "Spara %{model}"
-        update: "Uppdatera %{model}"
-        nomination:
-          create: Skicka %{model}
+    submit:
+      create: "Skapa %{model}"
+      submit: "Spara %{model}"
+      update: "Uppdatera %{model}"
+      nomination:
+        create: Skicka %{model}
   actions:
     back: Tillbaka
 
