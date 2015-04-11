@@ -1,13 +1,11 @@
 # encoding:UTF-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
-  before_action :configure_permitted_devise_parameters, if: :devise_controller?
+ 	before_action :configure_permitted_devise_parameters, if: :devise_controller?
   before_action :set_locale
 
 	helper_method :success_update
 	helper_method :success_create
-
 
   rescue_from CanCan::AccessDenied do |ex|
     if current_user.nil?
