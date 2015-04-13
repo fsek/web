@@ -45,7 +45,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       it 'succeeds' do
         get :index
 
-       response.should be_success
+        response.should be_success
       end
       it 'assigns users candidates' do
         get :index
@@ -84,7 +84,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       end
       it 'creates candidate and redirects to candidate' do
         post :create, candidate: attributes_for(:candidate, post_id: search_post.id)
-       response.should redirect_to(Candidate.last)
+        response.should redirect_to(Candidate.last)
       end
     end
 
@@ -97,7 +97,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
 
           candidate.reload
           (candidate.name == change_attributes[:name] &&
-                     candidate.lastname == change_attributes[:lastname]).should be_truthy
+           candidate.lastname == change_attributes[:lastname]).should be_truthy
         end
 
         it 'assigns the requested candidate as @candidate' do

@@ -1,7 +1,7 @@
 Fsek::Application.routes.draw do
   get 'permissions' => 'posts#show_permissions'
   get 'permission/:id' => 'posts#edit_permissions', as: :permission
-  patch 'permission/:id' => 'posts#update_permissions' 
+  patch 'permission/:id' => 'posts#update_permissions'
 
   post "githook" => "githook#index"
   get "githook/dev" => "githook#dev"
@@ -56,7 +56,7 @@ Fsek::Application.routes.draw do
       end
       get '', controller: :cafe_works, action: :index, as: :hilbert
       get '/nyckelpiga', controller: :cafe_works, action: :nyckelpiga
-      #get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling         
+      #get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling
     end
 
     # A scope to put car-associated things under /bil
@@ -134,11 +134,11 @@ Fsek::Application.routes.draw do
     resources :elections, path: :val, only: :index do
       collection do
         resources :nominations, controller: 'elections/nominations',
-                  path: :nominera, only: [:create] do
+          path: :nominera, only: [:create] do
           get '', action: :new, on: :collection, as: :new
         end
         resources :candidates, controller: 'elections/candidates',
-                  path: :kandidera, except: [:edit]
+          path: :kandidera, except: [:edit]
       end
     end
 

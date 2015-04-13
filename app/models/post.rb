@@ -69,7 +69,7 @@ class Post < ActiveRecord::Base
     self.permissions = []
     params[:permission_ids].each do |id|
       if id.present?
-        self.permissions << Permission.find(id)
+        permissions << Permission.find(id)
       end
     end
     save!
