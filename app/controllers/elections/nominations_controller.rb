@@ -25,6 +25,6 @@ class Elections::NominationsController < ApplicationController
   end
 
   def nomination_params
-    params.require(:nomination).permit(:name, :email, :motivation,:post_id) 
+    params.require(:nomination).permit(:name, :email, :motivation, :post_id)
   end
 end

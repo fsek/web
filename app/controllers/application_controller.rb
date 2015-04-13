@@ -34,18 +34,18 @@ class ApplicationController < ActionController::Base
     if model.instance_of?(Class)
       if multiple
         model.model_name.human(count: 2)
-      else  
+      else
         model.model_name.human
       end
     end
   end
 
   def alert_update_resource(resource)
-    %(#{model_name(resource,false)} #{I18n.t('success_update')}.)
+    %(#{model_name(resource, false)} #{I18n.t('success_update')}.)
   end
 
   def alert_create_resource(resource)
-    %(#{model_name(resource,false)} #{I18n.t('success_create')}.)
+    %(#{model_name(resource, false)} #{I18n.t('success_create')}.)
   end
 
   protected

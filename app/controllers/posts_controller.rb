@@ -39,17 +39,17 @@ class PostsController < ApplicationController
   def create
     @post = @council.posts.build(post_params)
     if @post.save
-      redirect_to council_posts_path(@council), notice: alert_create_resource(Post)   
+      redirect_to council_posts_path(@council), notice: alert_create_resource(Post)
     else
-      render action: :new   
+      render action: :new
     end
   end
 
   def update
     if @post.update(post_params)
-      redirect_to edit_council_post_path(@post.council, @post), notice: alert_update_resource(Post) 
+      redirect_to edit_council_post_path(@post.council, @post), notice: alert_update_resource(Post)
     else
-      render action: :edit 
+      render action: :edit
     end
   end
 
@@ -65,14 +65,14 @@ class PostsController < ApplicationController
   def edit_permissions
     @permissions = Permission.all
     @post_permissions = @post.permissions.map &:id
-    render :permissions 
+    render :permissions
   end
 
   def update_permissions
-    if  @post.set_permissions(permission_params)
-      redirect_to permissions_path, notice: alert_update_resource(Post) 
+    if @post.set_permissions(permission_params)
+      redirect_to permissions_path, notice: alert_update_resource(Post)
     else
-      render action: permission_path(@post) 
+      render action: permission_path(@post)
     end
   end
 
