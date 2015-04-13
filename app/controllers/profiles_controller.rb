@@ -8,7 +8,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-
   def edit
     # Calls method to set the first_post attribute if not set
     # /d.wessman
@@ -16,7 +15,6 @@ class ProfilesController < ApplicationController
   rescue ActionController::RedirectBackError
     redirect_to root_path
   end
-
 
   def update
     if @profile.update(profile_params)
@@ -43,11 +41,11 @@ class ProfilesController < ApplicationController
         send_file(@profile.avatar.path(:medium), filename: @profile.avatar_file_name,
                   type: 'image/jpg', disposition: 'inline', x_sendfile: true)
       end
-  	end
-	end
+    end
+  end
 
   def search
-    @search_profiles = Profile.search_name(params[:name],params[:lastname]) 
+    @search_profiles = Profile.search_name(params[:name], params[:lastname])
   end
 
   private

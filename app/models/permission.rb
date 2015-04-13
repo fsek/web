@@ -3,7 +3,7 @@ class Permission < ActiveRecord::Base
   has_many :permission_posts
   validates :subject_class, :action, presence: true
 
-	def to_s
-		%(#{action}#{subject_class})
-	end
+  def to_s
+    %(#{action}#{subject_class})
+  end
 end
