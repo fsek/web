@@ -237,6 +237,8 @@ GEM
       railties (>= 4.2.0, < 5)
     rspec-core (3.2.2)
       rspec-support (~> 3.2.0)
+    rspec-example_steps (3.0.2)
+      rspec-core (>= 3.0.0)
     rspec-expectations (3.2.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
@@ -363,6 +365,7 @@ DEPENDENCIES
   pry-rails
   rails (~> 4.2.0)
   responders (~> 2.0)
+  rspec-example_steps
   rspec-rails
   sass-rails
   shoulda-matchers

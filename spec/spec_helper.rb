@@ -24,7 +24,7 @@ require 'rails/all'
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
-
+require 'rspec/example_steps'
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 
