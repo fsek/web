@@ -40,9 +40,9 @@ class PostsController < ApplicationController
     @post = @council.posts.build(post_params)
     if @post.save
       redirect_to council_posts_path(@council), notice: alert_create_resource(Post)   
- 	 	else
+    else
       render action: :new   
- 	 	end
+    end
   end
 
   def update
@@ -65,11 +65,11 @@ class PostsController < ApplicationController
   def edit_permissions
     @permissions = Permission.all
     @post_permissions = @post.permissions.map &:id
-		render :permissions 
+    render :permissions 
   end
 
   def update_permissions
-   	if  @post.set_permissions(permission_params)
+    if  @post.set_permissions(permission_params)
       redirect_to permissions_path, notice: alert_update_resource(Post) 
     else
       render action: permission_path(@post) 
@@ -91,7 +91,7 @@ class PostsController < ApplicationController
   end
 
   def permission_params
-		params.require(:post).permit(permission_ids: [])
+    params.require(:post).permit(permission_ids: [])
   end
 
   def can_manage_permissions
