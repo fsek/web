@@ -1,0 +1,8 @@
+sv:
+  activerecord:
+    models:
+      user: Användare
+    attributes:
+      user:
+        username: Användarnamn
+        email: E-post

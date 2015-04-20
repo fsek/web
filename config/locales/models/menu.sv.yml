@@ -1,0 +1,15 @@
+sv:
+  activerecord:
+    models:
+      menu:
+        one: Meny
+        other: Menyer
+    attributes:
+      menu:
+        location: Plats
+        index: Sorteringsindex
+        link: Länk
+        name: Namn
+        visible: Synlig
+        turbolinks: Turbolink
+        blank_p: Öppna i ny flik

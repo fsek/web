@@ -51,6 +51,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'better_errors'
+  gem 'i18n-tasks'
 end
 
 group :test do

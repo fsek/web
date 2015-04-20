@@ -1,0 +1,10 @@
+sv:
+  elections:
+    orange_posts: Orangefärgade fält innebär att posten sitter i styrelsen.
+    green_posts: Grönfärgade fält innebär att posten väljs av studierådet.
+    x_posts: Poster med antal markerat med (x) anger exakt antal.
+    star_posts: Poster med antal * har ingen bestämd gräns.
+    posts_before: Poster som kommer att kunna sökas
+    posts_during: Poster som kan sökas
+    posts_after: Poster som inte längre kan sökas
+    get_in_touch: Ser något konstigt ut eller blir det fel? Hör av dig till

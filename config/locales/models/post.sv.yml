@@ -1,0 +1,17 @@
+sv:
+  activerecord:
+    models:
+      post:
+        one: Post
+        other: Poster
+    attributes:
+      post:
+        title: Titel
+        limit: Gräns
+        description: Beskrivning
+        council_id: Utskott
+        elected_by: Väljs av
+        elected_at: Väljs på
+        styrelse: Styrelse
+        recLimit: Rekommenderad gräns
+        car_rent: Får hyra bil

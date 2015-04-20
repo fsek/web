@@ -5,8 +5,8 @@ RSpec.describe Post, type: :model do
     (build(:post)).should be_valid
   end
 
-  let(:council) { create(:council)}
-  let(:user) { create(:user)}
+  let(:council) { create(:council) }
+  let(:user) { create(:user) }
   let(:post) { create(:post, council: council) }
   let(:permission) { create(:permission) }
   subject { build(:post, council: council) }

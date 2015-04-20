@@ -1,0 +1,13 @@
+sv:
+  activerecord:
+    models:
+      council: Utskott
+    attributes:
+      council:
+        title: Titel
+        url: Url
+        description: Beskrivning
+        logo: Logga
+        public: Publik
+        contact_id: Kontakt
+        president_id: Ordförande

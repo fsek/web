@@ -37,4 +37,8 @@ Fsek::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
   PUBLIC_URL = "dev.fsektionen.se"
+
+  Rails.application.configure do |config|
+      config.action_view.raise_on_missing_translations = true
+  end
 end
