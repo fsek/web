@@ -9,7 +9,7 @@ RSpec.describe Post, type: :model do
   let(:user) { create(:user)}
   let(:post) { create(:post, council: council) }
   let(:permission) { create(:permission) }
-  subject() { build(:post, council: council) }
+  subject { build(:post, council: council) }
 
   describe 'ActiveModel validations' do
     # Basic validations
