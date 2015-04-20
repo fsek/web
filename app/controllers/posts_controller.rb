@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def remove_profile
     @post.remove_profile(@profile)
     redirect_to back,
-      notice: %(#{@profile.full_name} har inte längre posten #{@post.title}.)
+                notice: %(#{@profile.full_name} har inte längre posten #{@post.title}.)
   end
 
   def add_profile

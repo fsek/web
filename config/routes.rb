@@ -134,11 +134,11 @@ Fsek::Application.routes.draw do
     resources :elections, path: :val, only: :index do
       collection do
         resources :nominations, controller: 'elections/nominations',
-          path: :nominera, only: [:create] do
+                                path: :nominera, only: [:create] do
           get '', action: :new, on: :collection, as: :new
         end
         resources :candidates, controller: 'elections/candidates',
-          path: :kandidera, except: [:edit]
+                               path: :kandidera, except: :edit
       end
     end
 
