@@ -38,7 +38,5 @@ Fsek::Application.configure do
   config.active_support.deprecation = :stderr
   PUBLIC_URL = "dev.fsektionen.se"
 
-  Rails.application.configure do |config|
-      config.action_view.raise_on_missing_translations = true
-  end
+  config.action_view.raise_on_missing_translations = true
 end
