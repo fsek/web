@@ -84,23 +84,23 @@ RSpec.describe CafeWorksController, type: :controller do
       context 'with no user' do
         it 'update worker' do
           patch :update_worker,
-                {
-                    id: cwork_access.to_param,
-                    cafe_work: attributes_for(:assignee, :test, access_code: cwork_access.access_code)
-                }
-          cwork_access.reload
+            {
+            id: cwork_access.to_param,
+            cafe_work: attributes_for(:assignee, :test, access_code: cwork_access.access_code)
+          }
+            cwork_access.reload
 
-          cwork_access.worker.attributes.should include(attributes_for(:assignee, :test))
+            cwork_access.worker.attributes.should include(attributes_for(:assignee, :test))
         end
 
         it 'redirects to the cafe_work' do
           patch :update_worker,
-                {
-                    id: cwork_access.to_param,
-                    cafe_work: attributes_for(:assignee, access_code: cwork_access.access_code)
-                }
+            {
+            id: cwork_access.to_param,
+            cafe_work: attributes_for(:assignee, access_code: cwork_access.access_code)
+          }
 
-          response.should redirect_to(cwork_access)
+            response.should redirect_to(cwork_access)
         end
       end
     end
@@ -157,14 +157,14 @@ RSpec.describe CafeWorksController, type: :controller do
     context 'with no user' do
       it 'remove worker' do
         patch :remove_worker,
-              {
-                  id: cwork_access.to_param,
-                  cafe_work: {access_code: cwork_access.access_code}
-              }
-        cwork_access.reload
+          {
+          id: cwork_access.to_param,
+          cafe_work: {access_code: cwork_access.access_code}
+        }
+          cwork_access.reload
 
-        cwork_access.worker.present?.should be_falsey
-        response.should redirect_to(cwork_access)
+          cwork_access.worker.present?.should be_falsey
+          response.should redirect_to(cwork_access)
       end
     end
   end

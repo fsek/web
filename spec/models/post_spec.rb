@@ -7,8 +7,8 @@ RSpec.describe Post, type: :model do
 
   let(:council) { create(:council)}
   let(:user) { create(:user)}
-	let(:post) { create(:post, council: council) }
-	let(:permission) { create(:permission) }
+  let(:post) { create(:post, council: council) }
+  let(:permission) { create(:permission) }
   subject() { build(:post, council: council) }
 
   describe 'ActiveModel validations' do
@@ -40,37 +40,37 @@ RSpec.describe Post, type: :model do
     end
 
     context 'executes methods correctly' do
-			context 'valid parameters' do
-			  it 'add_profile' do
-					post.add_profile(user.profile).should be_truthy
+      context 'valid parameters' do
+        it 'add_profile' do
+          post.add_profile(user.profile).should be_truthy
 
-					post.errors[:profile].should be_empty
-					post.profiles.should include(user.profile)
-				end
+          post.errors[:profile].should be_empty
+          post.profiles.should include(user.profile)
+        end
 
-				it 'remove_profile' do
-					post.profiles << user.profile
+        it 'remove_profile' do
+          post.profiles << user.profile
 
-					post.remove_profile(user.profile).should be_truthy
-					post.profiles.should_not include(user.profile)
-				end
+          post.remove_profile(user.profile).should be_truthy
+          post.profiles.should_not include(user.profile)
+        end
 
-				it 'set_permissions' do
+        it 'set_permissions' do
           post.set_permissions(permission_ids: [permission.id])
 
-					post.permissions.should include(permission)
-				end
-    	end
-			context 'invalid parameters' do
+          post.permissions.should include(permission)
+        end
+      end
+      context 'invalid parameters' do
         it 'add_profile' do
-					post.add_profile(nil).should be_falsey
-					post.errors[:profile].should_not be_empty
+          post.add_profile(nil).should be_falsey
+          post.errors[:profile].should_not be_empty
 
-				  post.profiles << user.profile	
-					post.add_profile(user.profile).should be_falsey
-					post.errors[:profile].should_not be_empty
-				end
-			end
-  	end
-	end
+          post.profiles << user.profile
+          post.add_profile(user.profile).should be_falsey
+          post.errors[:profile].should_not be_empty
+        end
+      end
+    end
+  end
 end

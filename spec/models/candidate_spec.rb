@@ -13,9 +13,9 @@ RSpec.describe Candidate, type: :model do
     # Basic validations
     it do
       cand.should validate_uniqueness_of(:profile_id).
-                      scoped_to(:post_id, :election_id).
-                      with_message(I18n.t('candidates.similar_candidate')).
-                      on(:create)
+        scoped_to(:post_id, :election_id).
+        with_message(I18n.t('candidates.similar_candidate')).
+        on(:create)
     end
   end
 

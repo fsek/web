@@ -20,7 +20,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
     it 'error cafe_work is not found' do
       lambda do
         get :show, {id: 99997777}
-        end.should raise_error(ActionController::RoutingError)
+      end.should raise_error(ActionController::RoutingError)
     end
   end
 
@@ -66,8 +66,8 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
         patch :update, id: cwork.to_param, cafe_work: attr
         cwork.reload
         (cwork.pass == attr[:pass] &&
-            cwork.lv == attr[:lv] &&
-            cwork.lp == attr[:lp]).should be_truthy
+         cwork.lv == attr[:lv] &&
+         cwork.lp == attr[:lp]).should be_truthy
       end
 
       it 'assigns the requested cwork and redirects ' do
