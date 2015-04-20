@@ -54,7 +54,7 @@ feature 'Visit Election' do
     And 'I submit form' do
       find('#nomination-submit').click
     end
-    Then 'I see status updated', pending: true  do
+    Then 'I see status updated', pending: true do
       # I cannot get this to work, the js shit.
       # David W, 2015-04-11
       page.should have_css('div#status')

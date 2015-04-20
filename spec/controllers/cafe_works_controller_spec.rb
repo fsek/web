@@ -69,7 +69,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
         it 'update worker' do
           patch :update_worker, {
-            id: cwork_profile.to_param, 
+            id: cwork_profile.to_param,
             cafe_work: attributes_for(:assignee, :test)
           }
           cwork_profile.reload
@@ -90,9 +90,9 @@ RSpec.describe CafeWorksController, type: :controller do
             id: cwork_access.to_param,
             cafe_work: attributes_for(:assignee, :test, access_code: cwork_access.access_code)
           }
-            cwork_access.reload
+          cwork_access.reload
 
-            cwork_access.worker.attributes.should include(attributes_for(:assignee, :test))
+          cwork_access.worker.attributes.should include(attributes_for(:assignee, :test))
         end
 
         it 'redirects to the cafe_work' do
@@ -101,7 +101,7 @@ RSpec.describe CafeWorksController, type: :controller do
             cafe_work: attributes_for(:assignee, access_code: cwork_access.access_code)
           }
 
-            response.should redirect_to(cwork_access)
+          response.should redirect_to(cwork_access)
         end
       end
     end
