@@ -1,5 +1,5 @@
 require 'rails_helper'
-#feature 'Visit Election', js: true do
+# feature 'Visit Election', js: true do
 feature 'Visit Election' do
   let(:user) { create(:user) }
   let(:election) { create(:election) }
@@ -48,7 +48,7 @@ feature 'Visit Election' do
       fill_in 'nomination_name', with: 'David Wessman'
       fill_in 'nomination_email', with: 'd.wessman@fsektionen.se'
       # This is driving me crazy.
-      #select(post.id, from: 'nomination_post_id')
+      # select(post.id, from: 'nomination_post_id')
       fill_in 'nomination_motivation', with: 'Foo'
     end
     And 'I submit form' do
@@ -58,7 +58,7 @@ feature 'Visit Election' do
       # I cannot get this to work, the js shit.
       # David W, 2015-04-11
       page.should have_css('div#status')
-      find('div#status').text.should include()
+      find('div#status').text.should include('What')
     end
   end
 end

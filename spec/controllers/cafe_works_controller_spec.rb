@@ -68,7 +68,10 @@ RSpec.describe CafeWorksController, type: :controller do
         end
 
         it 'update worker' do
-          patch :update_worker, {id: cwork_profile.to_param, cafe_work: attributes_for(:assignee, :test)}
+          patch :update_worker, {
+            id: cwork_profile.to_param, 
+            cafe_work: attributes_for(:assignee, :test)
+          }
           cwork_profile.reload
 
           cwork_profile.worker.attributes.should_not include(attributes_for(:assignee, :test))
@@ -83,8 +86,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
       context 'with no user' do
         it 'update worker' do
-          patch :update_worker,
-            {
+          patch :update_worker, {
             id: cwork_access.to_param,
             cafe_work: attributes_for(:assignee, :test, access_code: cwork_access.access_code)
           }
@@ -94,8 +96,7 @@ RSpec.describe CafeWorksController, type: :controller do
         end
 
         it 'redirects to the cafe_work' do
-          patch :update_worker,
-            {
+          patch :update_worker, {
             id: cwork_access.to_param,
             cafe_work: attributes_for(:assignee, access_code: cwork_access.access_code)
           }
@@ -156,15 +157,14 @@ RSpec.describe CafeWorksController, type: :controller do
 
     context 'with no user' do
       it 'remove worker' do
-        patch :remove_worker,
-          {
+        patch :remove_worker, {
           id: cwork_access.to_param,
           cafe_work: {access_code: cwork_access.access_code}
         }
-          cwork_access.reload
+        cwork_access.reload
 
-          cwork_access.worker.present?.should be_falsey
-          response.should redirect_to(cwork_access)
+        cwork_access.worker.present?.should be_falsey
+        response.should redirect_to(cwork_access)
       end
     end
   end
@@ -194,7 +194,7 @@ RSpec.describe CafeWorksController, type: :controller do
         get :nyckelpiga
 
         # Changed the response to AccessDenied
-        #response.should have_http_status(:forbidden)
+        # response.should have_http_status(:forbidden)
         response.should redirect_to :new_user_session
       end
     end
