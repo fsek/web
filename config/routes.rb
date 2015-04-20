@@ -56,7 +56,7 @@ Fsek::Application.routes.draw do
       end
       get '', controller: :cafe_works, action: :index, as: :hilbert
       get '/nyckelpiga', controller: :cafe_works, action: :nyckelpiga
-      #get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling
+      # get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling
     end
 
     # A scope to put car-associated things under /bil
