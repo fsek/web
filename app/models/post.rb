@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   # Associations
   belongs_to :council
   has_and_belongs_to_many :profiles
+  has_and_belongs_to_many :elections
   has_many :nominations
   has_many :candidates
   has_many :permission_posts
@@ -64,11 +65,13 @@ class Post < ActiveRecord::Base
     profiles.delete(profile)
   end
 
-  def set_permissions(permissions)
-    permissions.each do |id|
-      #find the main permission assigned from the UI
-      permission = Permission.find(id)
-      self.permissions << permission
+  def set_permissions(params)
+    self.permissions = []
+    params[:permission_ids].each do |id|
+      if id.present?
+        permissions << Permission.find(id)
+      end
     end
+    save!
   end
 end

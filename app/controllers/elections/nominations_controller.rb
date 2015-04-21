@@ -4,7 +4,7 @@ class Elections::NominationsController < ApplicationController
   load_permissions_and_authorize_resource
 
   def new
-    @nomination = @election.nominations.new()
+    @nomination = @election.nominations.new
     if params[:post].present?
       @nomination.post == Post.find_by_id(params[:post])
     end
@@ -16,6 +16,7 @@ class Elections::NominationsController < ApplicationController
   end
 
   private
+
   def set_election
     @election = Election.current
     if @election.nil?

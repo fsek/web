@@ -46,13 +46,13 @@ describe ShortLink do
 
   describe '#target=' do
     it 'tacks on http when scheme is missing' do
-      build(:short_link, :target => 'google.com')
-        .target.should == 'http://google.com'
+      build(:short_link, target: 'google.com').
+        target.should == 'http://google.com'
     end
 
     it 'does not mess with existing scheme' do
-      build(:short_link, :target => 'gopher://google.com')
-        .target.should == 'gopher://google.com'
+      build(:short_link, target: 'gopher://google.com').
+        target.should == 'gopher://google.com'
     end
   end
 end

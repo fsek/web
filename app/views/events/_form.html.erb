@@ -34,11 +34,11 @@
   	</div>
   	<%= f.label 'Startar', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.datetime_select :starts_at, :minute_step => 15, class:  'form-control' %>
+  		<%= f.text_field :starts_at, class:  'form-control datetimepicker' %>
   	</div>
   	<%= f.label 'Slutar', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.datetime_select :ends_at, :minute_step => 15, class:  'form-control' %>
+  		<%= f.text_field :ends_at, :minute_step => 15, class:  'form-control datetimepicker' %>
   	</div>
   	<%= f.label 'Ansvarigt utskott', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">

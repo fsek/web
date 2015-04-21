@@ -1,0 +1,13 @@
+sv:
+  activerecord:
+    models:
+      contact:
+        one: Kontakt
+        other: Kontakter
+    attributes:
+      constant:
+        name: Namn
+        email: E-post
+        public: Publik
+        text: Beskrivning
+        council_id: Utskott

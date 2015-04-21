@@ -1,0 +1,12 @@
+sv:
+  activerecord:
+    models:
+      album: Album
+    attributes:
+      album:
+        description: Beskrivning
+        author: Upplagd av
+        location: Plats
+        public: Publik
+        start_date: Startdatum
+        end_date: Slutdatum

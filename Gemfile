@@ -43,6 +43,7 @@ end
 
 group :development, :test do
   gem 'capybara'
+	gem 'rspec-example_steps'
   gem 'mailcatcher'
   gem 'poltergeist'
   gem 'rspec-rails'
@@ -50,6 +51,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'better_errors'
+  gem 'i18n-tasks'
 end
 
 group :test do

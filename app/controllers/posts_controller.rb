@@ -7,8 +7,6 @@ class PostsController < ApplicationController
   before_action :set_permissions
   before_action :set_councils, only: [:new, :edit, :update, :create]
   before_action :set_profile, only: [:remove_profile, :add_profile]
-  before_action :set_council, except: [:show_permissions]
-  before_action :set_post, except: [:show_permissions]
 
   def remove_profile
     @post.remove_profile(@profile)
@@ -41,18 +39,17 @@ class PostsController < ApplicationController
   def create
     @post = @council.posts.build(post_params)
     if @post.save
-      redirect_to council_posts_path(@council), notice: 'Posten skapades!'
+      redirect_to council_posts_path(@council), notice: alert_create_resource(Post)
     else
-      render action: 'new'
+      render action: :new
     end
   end
 
   def update
-    @post.attributes = post_params
-    if @post.save
-      redirect_to edit_council_post_path(@post.council, @post), notice: 'Posten uppdaterades!'
+    if @post.update(post_params)
+      redirect_to edit_council_post_path(@post.council, @post), notice: alert_update_resource(Post)
     else
-      render action: 'edit'
+      render action: :edit
     end
   end
 
@@ -68,15 +65,14 @@ class PostsController < ApplicationController
   def edit_permissions
     @permissions = Permission.all
     @post_permissions = @post.permissions.map &:id
+    render :permissions
   end
 
   def update_permissions
-    @post.permissions = []
-    @post.set_permissions(permission_params[:permissions]) if permission_params[:permissions]
-    if @post.save
-      redirect_to '/permissions', notice: 'Posten uppdaterades!'
+    if @post.set_permissions(permission_params)
+      redirect_to permissions_path, notice: alert_update_resource(Post)
     else
-      render action: 'edit'
+      render action: permission_path(@post)
     end
   end
 
@@ -95,19 +91,11 @@ class PostsController < ApplicationController
   end
 
   def permission_params
-    params.permit(:utf8, :authenticity_token, :commit, :id, permissions: [])
+    params.require(:post).permit(permission_ids: [])
   end
 
   def can_manage_permissions
     authorize! :manage, PermissionPost
-  end
-
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
-  def set_council
-    @council = Council.find_by_id(params[:council_id])
   end
 
   def set_councils

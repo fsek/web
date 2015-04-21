@@ -1,0 +1,11 @@
+sv:
+  activerecord:
+    models:
+      permission:
+        one: Rättighet
+        other: Rättigheter
+    attributes:
+      permission:
+        name: Namn
+        subject_class: Tillhörande klass
+        action: Åtgärd

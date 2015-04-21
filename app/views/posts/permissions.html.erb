@@ -1,0 +1,22 @@
+<div class="col-md-8 col-md-offset-2">
+	<div class="headline">Permissions för <%=@post%></div>
+	<%= form_for(@post,url: permission_path(@post), method: :patch) do |f|%>
+    <% @permissions.group_by(&:subject_class).each do |subject, action| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= subject %>">
+            <div class="headline headline-md panel-title"><h3>Permissions: <%= subject %></h3></div>
+          </a></h4>
+        </div>
+        <div id="collapse<%= subject %>" class="panel-collapse collapse">
+          <div class="panel-body">
+						<%= f.collection_check_boxes(:permission_ids,action,:id, :to_s) do |b|%>
+						 	<%= b.label { b.check_box + ' ' + b.text } %><br>
+						<%end%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+		<%= f.submit %>
+	<%end%>
+</div>

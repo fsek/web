@@ -43,11 +43,11 @@
         </div>
         <%= f.label 'Från', class: 'reg-label' %>
         <div class="margin-bottom-20">
-          <%= f.datetime_select :d_from, minute_step: 10, class: 'form-control' %>
+          <%= f.text_field :d_from, class: 'form-control datetimepicker' %>
         </div>
         <%= f.label 'Till', class: 'reg-label' %>
         <div class="margin-bottom-20">
-          <%= f.datetime_select :d_til, minute_step: 10, class: 'form-control' %>
+          <%= f.text_field :d_til, class: 'form-control datetimepicker' %>
         </div>
         <% if (@rents)&&(@rents.count > 0) %>
             Bokningar (från idag + 30 dagar):<br>
@@ -62,7 +62,7 @@
                   <%= f.select :council_id,
                                options_from_collection_for_select(current_user.profile.car_councils, :id, :title, @rent.council_id),
                                include_blank: true,
-                               class: "form-control listBox" %>
+                               class: 'form-control listBox' %>
                 </div>
                 <strong>Utskottsbokning:</strong>
                 <ul class="list">

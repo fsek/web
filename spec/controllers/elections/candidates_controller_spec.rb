@@ -45,12 +45,12 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       it 'succeeds' do
         get :index
 
-        expect(response).to be_success
+        response.should be_success
       end
       it 'assigns users candidates' do
         get :index
 
-        expect(assigns(:candidates)).to eq(user.profile.candidates.where(election: election))
+        assigns(:candidates).should eq(user.profile.candidates.where(election: election))
       end
     end
 
@@ -58,12 +58,12 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       it 'succeeds' do
         get :new
 
-        expect(response).to be_success
+        response.should be_success
       end
       it 'prepares new candidate with user' do
         get :new
 
-        expect(assigns(:candidate).name).to eq(user.profile.name)
+        assigns(:candidate).name.should eq(user.profile.name)
       end
     end
 
@@ -71,20 +71,20 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       it 'do not diplay an error flash' do
         get :show, id: candidate.id
 
-        expect(flash[:error]).to_not eq('Du har inte rättigheter för att se kandidaturen.')
+        flash[:error].should_not eq('Du har inte rättigheter för att se kandidaturen.')
       end
     end
 
     describe 'POST #create' do
       before { search_post }
       it 'creates a new candidate' do
-        expect do
+        lambda do
           post :create, candidate: attributes_for(:candidate, post_id: search_post.id)
-        end.to change(Candidate, :count).by(1)
+        end.should change(Candidate, :count).by(1)
       end
       it 'creates candidate and redirects to candidate' do
         post :create, candidate: attributes_for(:candidate, post_id: search_post.id)
-        expect(response).to redirect_to(Candidate.last)
+        response.should redirect_to(Candidate.last)
       end
     end
 
@@ -96,8 +96,8 @@ RSpec.describe Elections::CandidatesController, type: :controller do
           patch :update, id: candidate.to_param, candidate: change_attributes
 
           candidate.reload
-          expect(candidate.name == change_attributes[:name] &&
-                     candidate.lastname == change_attributes[:lastname]).to be_truthy
+          (candidate.name == change_attributes[:name] &&
+           candidate.lastname == change_attributes[:lastname]).should be_truthy
         end
 
         it 'assigns the requested candidate as @candidate' do
@@ -114,12 +114,12 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       context 'with invalid params' do
         it 'assigns the candidate as @candidate' do
           patch :update, id: candidate.to_param, candidate: { profile_id: nil }
-          expect(assigns(:candidate)).to eq(candidate)
+          assigns(:candidate).should eq(candidate)
         end
 
         it 're-renders the show-template' do
           patch :update, id: candidate.to_param, candidate: { profile_id: nil }
-          expect(response).to render_template(:show)
+          response.should render_template(:show)
         end
       end
     end
@@ -127,14 +127,14 @@ RSpec.describe Elections::CandidatesController, type: :controller do
     describe 'DELETE #destroy' do
       before { candidate }
       it 'destroys the requested candidate' do
-        expect do
+        lambda do
           delete :destroy, id: candidate.to_param
-        end.to change(Candidate, :count).by(-1)
+        end.should change(Candidate, :count).by(-1)
       end
 
       it 'redirects to the candidates list' do
         delete :destroy, id: candidate.to_param
-        expect(response).to redirect_to(candidates_path)
+        response.should redirect_to(candidates_path)
       end
     end
   end

@@ -19,8 +19,8 @@ namespace :db do
                                        description: 'Prylmästarn', council: pryl, elected_by: 'Terminsmötet',
                                        styrelse: true, elected_at: 'VT', car_rent: true)
     # Sexmästeriet
-    Post.find_or_create_by!(title: 'Server', limit: 0, recLimit: 10, description: 'En serverare',
-                            council: sexm, elected_by: 'Styrelsen', elected_at: 'HT')
+		server =  Post.find_or_create_by!(title: 'Server', limit: 0, recLimit: 10, description: 'En serverare',
+                            					council: sexm, elected_by: 'Styrelsen', elected_at: 'HT')
 
     sexmast = Post.find_or_create_by!(title: 'Sexmästare', limit: 1, recLimit: 1,
                                       description: 'Sexmästaren', council: sexm, elected_by: 'Terminsmötet',
@@ -50,12 +50,12 @@ namespace :db do
     PermissionPost.find_or_create_by!(permission: perm_admin, post: spindel)
     PermissionPost.find_or_create_by!(permission: perm_nyckelpiga, post: nyckelpiga)
 
-    u = User.find_or_initialize_by(username: 'user', email: 'david@da.vid')
+    u = User.find_or_initialize_by(username: 'admin', email: 'admin@da.vid')
     u.password = 'passpass'
     u.as_f_member.save!
     if u.present?
       p = u.profile
-      p.update!(name: 'David', lastname: 'Wessman', program: 'Teknisk Fysik', start_year: 2013)
+      p.update!(name: 'David-Admin', lastname: 'Wessman', program: 'Teknisk Fysik', start_year: 2013)
       if !p.posts.include?(spindel)
         p.posts << spindel
       end
@@ -70,6 +70,16 @@ namespace :db do
       end
     end
 
+    a = User.find_or_initialize_by(username: 'user', email: 'david@da.vid')
+    a.password = 'passpass'
+    a.as_f_member.save!
+    if a.present?
+      p = a.profile
+      p.update!(name: 'David', lastname: 'Wessman', program: 'Teknisk Fysik', start_year: 2013)
+      if !p.posts.include?(server)
+        p.posts << server 
+      end
+    end
     # Menues
     Menu.find_or_create_by!(location: 'Sektionen', name: 'Om oss',
                             link: '/om', index: 10, visible: true, turbolinks: true)
@@ -91,12 +101,12 @@ namespace :db do
 
     # Election
     election = Election.find_or_initialize_by(title: 'Vårterminsmöte',
-                                           url: 'vt-15', visible: true )
-    election.update(start: Time.zone.now - 2.days,
+                                           		url: 'vt-15', visible: true )
+    election.update!(start: Time.zone.now - 2.days,
                     end: Time.zone.now + 5.days)
-    Post.all do |p|
-      election.posts << p
+    Post.all do |posten|
+      election.posts << posten
     end
-    election.save
+    election.save!
   end
 end

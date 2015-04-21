@@ -1,0 +1,12 @@
+sv:
+  activerecord:
+    models:
+      page:
+        one: Sida
+        other: Sidor
+    attributes:
+      page:
+        council_id: Utskott
+        url: Url
+        visible: Synlig
+        title: Titel

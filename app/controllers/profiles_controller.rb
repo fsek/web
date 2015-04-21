@@ -8,7 +8,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-
   def edit
     # Calls method to set the first_post attribute if not set
     # /d.wessman
@@ -16,7 +15,6 @@ class ProfilesController < ApplicationController
   rescue ActionController::RedirectBackError
     redirect_to root_path
   end
-
 
   def update
     if @profile.update(profile_params)
@@ -47,7 +45,7 @@ class ProfilesController < ApplicationController
   end
 
   def search
-    @search_profiles = Profile.search_names(params[:firstname], params[:lastname])
+    @search_profiles = Profile.search_name(params[:name], params[:lastname])
   end
 
   private

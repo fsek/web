@@ -1,0 +1,21 @@
+sv:
+  activerecord:
+    models:
+      election: Val
+    attributes:
+      election:
+        start: Startdatum
+        end: Slutdatum
+        visible: Synlig
+        url: Url
+        title: Titel
+        description: Beskrivning
+        candidate_mail: Text till kandideringsmail
+        nominate_mail: Text till nomineringsmail
+        text_before: Text före valet
+        text_during: Text under valet
+        text_after: Text efter valet
+        extra_text: Extra text
+        candidate_mail_star: Text till kandideringsmail för stjärnpost
+        mail_link: Länk i kandideringsmail
+        mail_styrelse_link: Länk i kandideringsmail för styrelsepost

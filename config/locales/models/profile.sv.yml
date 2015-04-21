@@ -1,0 +1,18 @@
+sv:
+  activerecord:
+    models:
+      profile:
+        one: Profil
+        other: Profiler
+    attributes:
+      profile:
+        name: Namn
+        program: Program
+        start_year: Började år
+        user_id: Användare
+        avatar: Profilbild
+        first_post: Visningspost
+        email: E-post
+        stil_id: Stil-id
+        phone: Telefon
+        lastname: Efternamn

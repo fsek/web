@@ -1,0 +1,11 @@
+sv:
+  activerecord:
+    models:
+      role:
+        one: Roll
+        other: Roller
+    attributes:
+      role:
+        name: Namn
+        title: Titel
+        description: Beskrivning

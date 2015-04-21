@@ -1,0 +1,15 @@
+sv:
+  activerecord:
+    models:
+      event: Event
+    attributes:
+      event:
+        title: Titel
+        author: Upplagd av
+        description: Beskrivning
+        location: Plats
+        starts_at: Startar
+        ends_at: Slutar
+        all_day: Heldag
+        category: Kategori
+        image: Bild
