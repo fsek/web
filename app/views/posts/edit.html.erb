@@ -4,7 +4,7 @@
 			<%= label_tag 'Redigera post',nil, class:  'reg-header'%>
 			<%= render 'form'%>
 			<%= link_to 'Radera post', council_post_path(@council,@post),method: :delete %><br>			
-			<% if can? :modify, PostPermission %>
+			<% if can? :modify, PermissionPost %>
 				<%= link_to 'Redigera Permissions', permission_path(@post) %><br>
 			<% end %>
 			<%= link_to 'Visa utskottets poster', council_posts_path(@council) %><br>
