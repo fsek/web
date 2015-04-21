@@ -11,22 +11,22 @@ RSpec.describe CafeWorksController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested cafe_work as @cwork' do
-      get :show, {id: cwork.to_param}
+      get(:show, {id: cwork.to_param})
       assigns(:cafe_work).should eq(cwork)
     end
   end
 
   describe 'POST #authorize' do
     it 'authorizes with right code' do
-      xhr :post, :authorize, id: cwork_access.to_param,
-        cafe_work: { access_code: cwork_access.access_code }
+      xhr(:post, :authorize, id: cwork_access.to_param,
+          cafe_work: { access_code: cwork_access.access_code })
 
       assigns(:cafe_work).should eq(cwork_access)
       assigns(:authenticated).should be_truthy
     end
 
     it 'authorizes with wrong code' do
-      xhr :post, :authorize, id: cwork_access.to_param, cafe_work: { access_code: 'wrong code' }
+      xhr(:post, :authorize, id: cwork_access.to_param, cafe_work: { access_code: 'wrong code' })
 
       assigns(:authenticated).should be_falsey
     end
@@ -37,28 +37,28 @@ RSpec.describe CafeWorksController, type: :controller do
       context 'valid user' do
         before { allow(controller).to receive(:current_user).and_return(user) }
         it 'add worker' do
-          patch :update_worker, id: cwork.to_param, cafe_work: attributes_for(:assignee)
+          patch(:update_worker, id: cwork.to_param, cafe_work: attributes_for(:assignee))
           cwork.reload
 
           cwork.has_worker?.should be_truthy
         end
 
         it 'update worker' do
-          patch :update_worker, id: cwork_profile.to_param,
-            cafe_work: attributes_for(:assignee, :test)
+          patch(:update_worker, id: cwork_profile.to_param,
+                cafe_work: attributes_for(:assignee, :test))
           cwork_profile.reload
 
           cwork_profile.worker.attributes.should include(attributes_for(:assignee, :test))
         end
 
         it 'assigns the requested cafe_work as @cafe_work' do
-          patch :update_worker, id: cwork.to_param, cafe_work: attributes_for(:assignee)
+          patch(:update_worker, id: cwork.to_param, cafe_work: attributes_for(:assignee))
 
           assigns(:cafe_work).should eq(cwork)
         end
 
         it 'redirects to the cafe_work' do
-          patch :update_worker, id: cwork.to_param, cafe_work: attributes_for(:assignee)
+          patch(:update_worker, id: cwork.to_param, cafe_work: attributes_for(:assignee))
 
           response.should redirect_to(cwork)
         end
@@ -70,15 +70,15 @@ RSpec.describe CafeWorksController, type: :controller do
         end
 
         it 'update worker' do
-          patch :update_worker, id: cwork_profile.to_param,
-            cafe_work: attributes_for(:assignee, :test)
+          patch(:update_worker, id: cwork_profile.to_param,
+                cafe_work: attributes_for(:assignee, :test))
           cwork_profile.reload
 
           cwork_profile.worker.attributes.should_not include(attributes_for(:assignee, :test))
         end
 
         it 'redirects to the cafe_work' do
-          patch :update_worker, id: cwork_profile.to_param, cafe_work: attributes_for(:assignee)
+          patch(:update_worker, id: cwork_profile.to_param, cafe_work: attributes_for(:assignee))
 
           response.should render_template('show')
         end
@@ -86,28 +86,28 @@ RSpec.describe CafeWorksController, type: :controller do
 
       context 'with no user' do
         it 'update worker' do
-          patch :update_worker,  id: cwork_access.to_param,
-            cafe_work: attributes_for(:assignee, :test,
-                                      access_code: cwork_access.access_code)
+          patch(:update_worker, id: cwork_access.to_param,
+                cafe_work: attributes_for(:assignee, :test,
+                                          access_code: cwork_access.access_code))
 
-            cwork_access.reload
+          cwork_access.reload
 
-            cwork_access.worker.attributes.should include(attributes_for(:assignee, :test))
+          cwork_access.worker.attributes.should include(attributes_for(:assignee, :test))
         end
 
         it 'redirects to the cafe_work' do
-          patch :update_worker, id: cwork_access.to_param,
-            cafe_work: attributes_for(:assignee,
-                                      access_code: cwork_access.access_code)
+          patch(:update_worker, id: cwork_access.to_param,
+                cafe_work: attributes_for(:assignee,
+                                          access_code: cwork_access.access_code))
 
-            response.should redirect_to(cwork_access)
+          response.should redirect_to(cwork_access)
         end
       end
     end
 
     context 'with invalid params' do
       it 'assigns the cafe_work as @cafe_work' do
-        patch :update_worker, id: cwork.to_param, cafe_work: attributes_for(:assignee, :invalid)
+        patch(:update_worker, id: cwork.to_param, cafe_work: attributes_for(:assignee, :invalid))
         assigns(:cafe_work).should eq(cwork)
         response.should render_template('show')
       end
@@ -120,21 +120,21 @@ RSpec.describe CafeWorksController, type: :controller do
         allow(controller).to receive(:current_user).and_return(user)
       end
       it 'remove worker with profile' do
-        patch :remove_worker, id: cwork_profile.to_param
+        patch(:remove_worker, id: cwork_profile.to_param)
         cwork_profile.reload
 
         cwork_profile.has_worker?.should be_falsey
       end
 
       it 'remove worker with profile and redirect' do
-        patch :remove_worker, id: cwork_profile.to_param
+        patch(:remove_worker, id: cwork_profile.to_param)
         cwork_profile.reload
 
         response.should redirect_to(cwork_profile)
       end
 
       it 'assigns the requested cafe_work as @cafe_work' do
-        patch :remove_worker, id: cwork_profile.to_param
+        patch(:remove_worker, id: cwork_profile.to_param)
 
         assigns(:cafe_work).should eq(cwork_profile)
       end
@@ -146,7 +146,7 @@ RSpec.describe CafeWorksController, type: :controller do
       end
 
       it 'remove worker' do
-        patch :remove_worker, id: cwork_profile.to_param
+        patch(:remove_worker, id: cwork_profile.to_param)
         cwork_profile.reload
 
         cwork_profile.worker.present?.should be_truthy
@@ -156,8 +156,8 @@ RSpec.describe CafeWorksController, type: :controller do
 
     context 'with no user' do
       it 'remove worker' do
-        patch :remove_worker, id: cwork_access.to_param,
-          cafe_work: { access_code: cwork_access.access_code }
+        patch(:remove_worker, id: cwork_access.to_param,
+              cafe_work: { access_code: cwork_access.access_code })
         cwork_access.reload
 
         cwork_access.worker.present?.should be_falsey
@@ -168,11 +168,11 @@ RSpec.describe CafeWorksController, type: :controller do
 
   describe 'GET #index' do
     it 'renders #index' do
-      get :index
+      get(:index)
       response.should render_template(:index)
     end
     it 'assigns CafeWork.lv as @lv' do
-      get :index
+      get(:index)
       assigns(:lv).should eq(CafeWork.get_lv)
     end
     before {
@@ -180,7 +180,7 @@ RSpec.describe CafeWorksController, type: :controller do
       cwork_profile
     }
     it 'responds with JSON' do
-      get :index, start: cwork.work_day - 2.days, end: cwork.work_day + 2.days, format: :json
+      get(:index, start: cwork.work_day - 2.days, end: cwork.work_day + 2.days, format: :json)
       response.body.should eq([cwork.as_json, cwork_profile.as_json].to_json)
     end
   end
@@ -188,7 +188,7 @@ RSpec.describe CafeWorksController, type: :controller do
   describe 'GET #nyckelpiga' do
     context 'not allowed' do
       it 'does not work' do
-        get :nyckelpiga
+        get(:nyckelpiga)
 
         # Changed the response to AccessDenied
         # response.should have_http_status(:forbidden)
@@ -202,7 +202,7 @@ RSpec.describe CafeWorksController, type: :controller do
         allow(controller).to receive(:current_ability).and_return(ability)
       end
       it 'works' do
-        get :nyckelpiga
+        get(:nyckelpiga)
         response.should be_success
       end
     end
