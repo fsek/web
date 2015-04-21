@@ -35,7 +35,7 @@ feature 'Admin Visit Posts' do
       page.status_code.should == 200
     end
     And 'I edit a post' do
-      first(:linkhref, edit_council_post_path(council,post)).click
+      first(:linkhref, edit_council_post_path(council, post)).click
     end
     Then 'I see edit post page' do
       page.status_code.should == 200
