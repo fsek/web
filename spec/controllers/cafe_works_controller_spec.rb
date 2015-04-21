@@ -11,7 +11,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested cafe_work as @cwork' do
-      get(:show, {id: cwork.to_param})
+      get(:show, id: cwork.to_param)
       assigns(:cafe_work).should eq(cwork)
     end
   end
@@ -19,7 +19,7 @@ RSpec.describe CafeWorksController, type: :controller do
   describe 'POST #authorize' do
     it 'authorizes with right code' do
       xhr(:post, :authorize, id: cwork_access.to_param,
-          cafe_work: { access_code: cwork_access.access_code })
+                 cafe_work: { access_code: cwork_access.access_code })
 
       assigns(:cafe_work).should eq(cwork_access)
       assigns(:authenticated).should be_truthy
@@ -45,7 +45,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
         it 'update worker' do
           patch(:update_worker, id: cwork_profile.to_param,
-                cafe_work: attributes_for(:assignee, :test))
+                                cafe_work: attributes_for(:assignee, :test))
           cwork_profile.reload
 
           cwork_profile.worker.attributes.should include(attributes_for(:assignee, :test))
@@ -71,7 +71,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
         it 'update worker' do
           patch(:update_worker, id: cwork_profile.to_param,
-                cafe_work: attributes_for(:assignee, :test))
+                                cafe_work: attributes_for(:assignee, :test))
           cwork_profile.reload
 
           cwork_profile.worker.attributes.should_not include(attributes_for(:assignee, :test))
@@ -87,8 +87,9 @@ RSpec.describe CafeWorksController, type: :controller do
       context 'with no user' do
         it 'update worker' do
           patch(:update_worker, id: cwork_access.to_param,
-                cafe_work: attributes_for(:assignee, :test,
-                                          access_code: cwork_access.access_code))
+                                cafe_work: attributes_for(:assignee,
+                                                          :test,
+                                                          access_code: cwork_access.access_code))
 
           cwork_access.reload
 
@@ -97,8 +98,8 @@ RSpec.describe CafeWorksController, type: :controller do
 
         it 'redirects to the cafe_work' do
           patch(:update_worker, id: cwork_access.to_param,
-                cafe_work: attributes_for(:assignee,
-                                          access_code: cwork_access.access_code))
+                                cafe_work: attributes_for(:assignee,
+                                                          access_code: cwork_access.access_code))
 
           response.should redirect_to(cwork_access)
         end
@@ -157,7 +158,7 @@ RSpec.describe CafeWorksController, type: :controller do
     context 'with no user' do
       it 'remove worker' do
         patch(:remove_worker, id: cwork_access.to_param,
-              cafe_work: { access_code: cwork_access.access_code })
+                              cafe_work: { access_code: cwork_access.access_code })
         cwork_access.reload
 
         cwork_access.worker.present?.should be_falsey
