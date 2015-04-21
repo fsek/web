@@ -4,7 +4,7 @@ require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
-
+require 'rspec/example_steps'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -36,11 +36,10 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.include FactoryGirl::Syntax::Methods
 
-  # Uncomment this line when all tests are rewritten with should-syntax
-  # Ref: https://github.com/fsek/web/issues/68
-  # Right now it is failing many tests because they have expect-syntax
-  # /d.wessman
-  #config.expect_with(:rspec) { |c| c.syntax = :should }
+  config.expect_with(:rspec) { |c| c.syntax = :should }
+
+  # Allow for I18n in tests
+  config.include AbstractController::Translation
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -58,15 +57,4 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include Devise::TestHelpers, type: :controller
-
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
-  end
 end

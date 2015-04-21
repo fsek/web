@@ -1,0 +1,15 @@
+sv:
+  activerecord:
+    models:
+      page_element: Sidelement
+    attributes:
+      page_element:
+        displayIndex: Visningsindex
+        sidebar: Sidofält
+        visible: Synlig
+        text: Text
+        headlin: Rubrik
+        border: Ram
+        name: Namn
+        picture: Bild
+        page_id: Sida

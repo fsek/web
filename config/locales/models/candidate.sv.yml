@@ -1,0 +1,17 @@
+sv:
+  activerecord:
+    models:
+      candidate: 
+        one: Kandidatur
+        other: Kandidaturer
+    attributes:
+      candidate:
+        post_id: Post
+        profile_id: Profil
+        election_id: Val
+        motivation: Motivering
+        stil_id: Stil-id
+        name: Förnamn
+        lastname: Efternamn
+        phone: Telefon
+        email: E-post

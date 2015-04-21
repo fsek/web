@@ -1,6 +1,6 @@
 <% if @saved == true %>
-$('#nomination-form').fadeOut('slow');
-$('#status').hide().html("<h4><%=I18n.t('nomination.thank_you')%></h4>").fadeIn('slow');
+	$('#nomination-form').fadeOut('slow');
+	$('#status').hide().html("<h4><%=I18n.t('nominations.thank_you')%></h4>").fadeIn('slow');
 <%else%>
-$('#status').hide().html("<p><%=@nomination.errors%></p>").fadeIn('slow');
+	$('#status').hide().html("<%=j render 'shared/form_errors',current: @nomination%>").fadeIn('slow');
 <%end%>

@@ -1,0 +1,15 @@
+sv:
+  activerecord:
+    models:
+      nomination:
+        one: Nominering
+        other: Nomineringar
+    attributes:
+      nomination:
+        post_id: Post
+        election_id: Val
+        name: Namn
+        email: E-post
+        motivation: Motivering
+        phone: Telefon
+        stil_id: Stil-id

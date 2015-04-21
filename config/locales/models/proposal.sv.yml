@@ -1,0 +1,11 @@
+sv:
+  activemodel:
+    models:
+      proposal:
+        one: Proposition
+        other: Propositioner
+    attributes:
+      proposal:
+        title: Rubrik
+        sign_name: Ditt namn
+        sign_title: Din titel (valfritt)

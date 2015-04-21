@@ -1,0 +1,21 @@
+sv:
+  activerecord:
+    models:
+      work_post:
+        one: Jobbpost
+        other: Jobbposter
+    attributes:
+      work_post:
+        title: Titel
+        description: Beskrivning
+        company: Företag
+        deadline: Deadline
+        for: För
+        visible: Synlig
+        publish: Publiceringsdatum
+        picture: Bild
+        responsible: Ansvarig
+        category: Kategori
+        link: Länk
+        kind: Sort
+        row_order: Radordning

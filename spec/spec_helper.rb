@@ -39,7 +39,6 @@ RSpec.configure do |config|
   config.extend ControllerMacros, type: 'controller'
   config.expect_with :rspec do |expectations|
     # Uncomment when all tests uses should
-    #expectations.syntax = :should
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
     expectations.syntax = [:should, :expect]
   end

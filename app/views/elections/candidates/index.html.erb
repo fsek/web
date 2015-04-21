@@ -1,38 +1,37 @@
-<% provide(:title, 'Val') %>
-<% if @election.view_status != 1 %>
-    <div class="col-md-8 col-md-offset-2 coming-soon">
-      <h2>Dina kandidaturer</h2>
-
-      <p>Tryck på namnet till posten för att se mer information samt kunna redigera.</p>
-
-      <p>Poster valda på Terminsmötet går ej att redigera efter: <%= @election.end.to_date.to_s %></p>
-      <%= render "candidate_table" %>
-      <hr>
-      <%=link_to('Ny kandidatur',new_election_candidate_path, class: "btn-u btn-u-small")%> <%=link_to('Tillbaka till valet',elections_path, class: "btn-u btn-u-small")%>
-    </div>
-<% elsif @election.view_status == 1 %>
-    <div class="coming-soon">
-      <h2><%= label_tag 'Kandideringar öppnar: ' + @election.start.to_date.to_s, nil, class:  'reg-header' %></h2>
-      <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
-    </div>
-<% elsif @election.view_status == 3 %>
-    <div class="coming-soon">
-      <h2><%= label_tag 'Kandideringar har stängt.', nil, class:  'reg-header' %></h2>
-      <h4>Du kan inte längre kandidera på nya poster eller ändra dina kandidaturer.</h4>
-      <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
-      <%= grid(@candidates_grid) do |g|
-        g.column name: "Post", attribute: "post_id", filter: false do |candidate|
-          candidate.post.title
-        end
-        g.column name: "Namn", attribute: "profile_id", filter: false do |candidate|
-          link_to(candidate.profile.name, candidate.profile)
-        end
-        g.column name: "Stil-ID", attribute: "stil_id", filter: false
-        g.column name: "E-post", attribute: "email", filter: false
-        g.column name: "Telefon", attribute: "phone", filter: false
-        g.column name: "Skapad:", attribute: "created_at", filter: false do |candidate|
-          candidate.created_at
-        end
-      end -%>
-    </div>
+<% provide(:title, model_name(Election)) %>
+<% if @election.view_status != :before %>
+  <div class="col-md-8 col-md-offset-2 coming-soon">
+    <h2><%=t('candidates.title')%></h2>
+    <p><%=t('candidates.display_post')%></p>
+    <p><%= %(#{t('candidates.post_terminmeeting')} #{@election.end.to_date})%></p>
+    <%= render "candidate_table" %>
+    <hr>
+    <%=link_to('Ny kandidatur',new_candidate_path, class: 'btn-u btn-u-small')%>
+    <%=link_to('Tillbaka till valet',elections_path, class: "btn-u btn-u-small")%>
+  </div>
+<% elsif @election.view_status == :before %>
+  <div class="coming-soon">
+    <h2><%= label_tag %(#{t('candidates.opens')} #{@election.start.to_date}), nil, class:  'reg-header' %></h2>
+    <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
+  </div>
+<% elsif @election.view_status == :closed %>
+  <div class="coming-soon">
+    <h2><%= label_tag t('candidates.closed'), nil, class:  'reg-header' %></h2>
+    <h4><%= t('candidates.cannot_edit')%></h4>
+    <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
+    <%= grid(@candidates_grid) do |g|
+      g.column name: "Post", attribute: "post_id", filter: false do |candidate|
+        candidate.post.title
+      end
+      g.column name: "Namn", attribute: "profile_id", filter: false do |candidate|
+        link_to(candidate.profile.name, candidate.profile)
+      end
+      g.column name: "Stil-ID", attribute: "stil_id", filter: false
+      g.column name: "E-post", attribute: "email", filter: false
+      g.column name: "Telefon", attribute: "phone", filter: false
+      g.column name: "Skapad:", attribute: "created_at", filter: false do |candidate|
+        candidate.created_at
+      end
+    end -%>
+</div>
 <% end %>

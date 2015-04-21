@@ -10,7 +10,7 @@
     </div>
     <div class="margin-bottom-20 center">
       <%= f.label model_name(Post), class:  'reg-label' %><br>
-      <%= f.select :post,
+      <%= f.select :post_id,
                    options_from_collection_for_select(election.current_posts, :id, :title, params[:post].to_i),
                    include_blank: true,
                    class:  "form-control listBox" %>

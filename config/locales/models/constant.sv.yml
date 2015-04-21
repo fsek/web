@@ -1,0 +1,10 @@
+sv:
+  activerecord:
+    models:
+      constant:
+        one: Konstant
+        other: Konstanter
+    attributes:
+      constant:
+        name: Namn
+        value: Värde

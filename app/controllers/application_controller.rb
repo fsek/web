@@ -1,9 +1,11 @@
 # encoding:UTF-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
   before_action :configure_permitted_devise_parameters, if: :devise_controller?
   before_action :set_locale
+
+  helper_method :success_update
+  helper_method :success_create
 
   rescue_from CanCan::AccessDenied do |ex|
     if current_user.nil?
@@ -15,13 +17,35 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordInvalid do |ex|
     flash[:error] =
-        "Fel i formulär:  #{ex.record.errors.full_messages.join '; '}"
+      "Fel i formulär:  #{ex.record.errors.full_messages.join '; '}"
     render referring_action, status: :unprocessable_entity
   end
 
   rescue_from ActiveRecord::RecordNotFound do
     # translate record not found -> HTTP 404
     fail ActionController::RoutingError.new 'not found'
+  end
+
+  rescue_from ActionController::RedirectBackError do
+    redirect_to :root
+  end
+
+  def model_name(model, multiple)
+    if model.instance_of?(Class)
+      if multiple
+        model.model_name.human(count: 2)
+      else
+        model.model_name.human
+      end
+    end
+  end
+
+  def alert_update_resource(resource)
+    %(#{model_name(resource, false)} #{I18n.t('success_update')}.)
+  end
+
+  def alert_create_resource(resource)
+    %(#{model_name(resource, false)} #{I18n.t('success_create')}.)
   end
 
   protected

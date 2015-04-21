@@ -1,0 +1,85 @@
+sv:
+  success_create: har skapats
+  success_update: har uppdaterats
+  profile_add_information: Du behöver fylla i namn och efternamn. Fyll gärna i den andra informationen också.
+  your_profile: Din profil
+  error: fel
+  prevent_save: gör att det inte går att spara
+  try_login: prova att logga in.
+
+  administrate: Administrera
+
+  attributes:
+    description: Beskrivning
+    title: Titel
+    public: Publik
+    d_publish: Publiceringsdatum
+    d_remove:  Datum att dölja
+    d_from: Startdatum
+    d_til: Slutdatum
+    sort: Sorteringsindex
+    image: Bild
+    profile: Profil
+    profile_id: Profilen
+    email: E-post
+    phone: Telefon
+    name: Namn
+    lastname: Efternamn
+    stil_id: Stil-ID
+    d_from: Startdatum
+    d_til: Slutdatum
+    purpose: Syfte
+    disclaimer: Användaravtal
+    council: Utskott
+    comment: Kommentar
+    access_code: Kod
+    password: Lösenord
+    username: Användarnamn
+    password_confirmation: Bekräfta lösenord
+    civic: Personnummer (10 siffror i följd)
+    purpose: Syfte
+
+  errors:
+    format: "%{message}"
+    attributes:
+      email:
+        blank: Epost måste anges
+      phone:
+        blank: Telefonnummer måste anges
+      name:
+        blank: Förnamn måste anges
+      lastname:
+        blank: Efternamn måste anges
+      post_id:
+        blank: En post måste anges
+
+  time:
+    formats:
+      day: "%A %d/%m"
+    invalid-url: Inte en giltig webadress
+
+  unauthorized:
+    default: Någonting blev fel (rättigheter)
+    manage:
+      all: Inte auktoriserad för att %{action} %{subject}.
+      user: "Inte auktoriserad för att hantera användarkonton."
+    update:
+      project: "Inte tillåten att uppdatera projektet."
+    new:
+      nomination: Du måste logga in för att kunna nominera.
+      candidate: Du måste logga in för att kunna kandidera.
+  user:
+    settings: Kontoinställningar
+
+  registation:
+    civic_check: För att kontrollera medlemskap i sektionen, sparas inte.
+
+  helpers:
+    submit:
+      create: "Skapa %{model}"
+      submit: "Spara %{model}"
+      update: "Uppdatera %{model}"
+      nomination:
+        create: Skicka %{model}
+  actions:
+    back: Tillbaka

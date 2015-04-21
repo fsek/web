@@ -40,4 +40,6 @@ Fsek::Application.configure do
   config.assets.debug = true
   config.serve_static_files = true
   PUBLIC_URL = 'dev.fsektionen.se'
+
+  config.action_view.raise_on_missing_translations = true
 end

@@ -1,0 +1,13 @@
+sv:
+  activerecord:
+    models:
+      news:
+        one: Nyhet
+        other: Nyheter
+    attributes:
+      news:
+        title: Titel
+        content: Text
+        front_page: Startsida
+        image: Bild
+        profile_id: Upplagd av
