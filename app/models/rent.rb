@@ -228,10 +228,10 @@ class Rent < ActiveRecord::Base
   def backgroundColor(status, aktiv)
     if aktiv
       case status
-        when 'Bekräftad'
-          'green'
-        when 'Ej bestämd'
-          'yellow'
+      when 'Bekräftad'
+        'green'
+      when 'Ej bestämd'
+        'yellow'
       end
     end
     'red'
