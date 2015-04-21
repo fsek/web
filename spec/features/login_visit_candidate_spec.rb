@@ -1,9 +1,11 @@
 require 'rails_helper'
 feature 'Visit Election' do
   let(:user) { create(:user) }
-  let(:election) { create(:election,
-                          start: Time.zone.now - 5.days,
-                          end: Time.zone.now - 2.days) }
+  let(:election) do
+    create(:election,
+           start: Time.zone.now - 5.days,
+           end: Time.zone.now - 2.days)
+  end
   let(:council) { create(:council) }
   let(:post) { create(:post, council: council, elected_by: 'Terminsmötet') }
   background do
