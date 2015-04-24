@@ -9,47 +9,47 @@
 	      </ul>
 	    </div>
   	<% end %>
-  	<%= f.label 'Titel', :class => 'reg-label'%>		  
+  	<%= f.label 'Titel', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">					
-		<%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		
+		<%= f.text_field :title, class:  'form-control',:placeholder => 'Titel'%>
   	</div>
-  	<%= f.label 'Beskrivning', :class => 'reg-label'%>
+  	<%= f.label 'Beskrivning', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.text_area :description, :class => 'form-control',:placeholder => 'Beskrivning' %>
+  		<%= f.text_area :description, class:  'form-control',:placeholder => 'Beskrivning' %>
   	</div>			  
-  	<%= f.label 'Plats', :class => 'reg-label'%>
+  	<%= f.label 'Plats', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">
-  		<%= f.text_field :location, :class => 'form-control',:placeholder => 'Plats',:autocomplete => 'off' %>
+  		<%= f.text_field :location, class:  'form-control',:placeholder => 'Plats',:autocomplete => 'off' %>
   	</div>
-  	<%= f.label 'Visningsbild', :class => 'reg-label'%>
+  	<%= f.label 'Visningsbild', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	
   		<% if @event.image_file_name != nil%>
   			<%= image_tag(@event.image(:thumb))%>
 		<% end %>  		 	 		  	
-  		<%= f.file_field :image, :class => 'form-control' %>
+  		<%= f.file_field :image, class:  'form-control' %>
   	</div>
-  	<%= f.label 'Heldagsevent', :class => 'reg-label'%>
+  	<%= f.label 'Heldagsevent', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.check_box :all_day, :class => '' %>
+  		<%= f.check_box :all_day, class:  '' %>
   	</div>
-  	<%= f.label 'Startar', :class => 'reg-label'%>
+  	<%= f.label 'Startar', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.datetime_select :starts_at, :minute_step => 15, :class => 'form-control' %>
+  		<%= f.text_field :starts_at, class:  'form-control datetimepicker' %>
   	</div>
-  	<%= f.label 'Slutar', :class => 'reg-label'%>
+  	<%= f.label 'Slutar', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.datetime_select :ends_at, :minute_step => 15, :class => 'form-control' %>
+  		<%= f.text_field :ends_at, :minute_step => 15, class:  'form-control datetimepicker' %>
   	</div>
-  	<%= f.label 'Ansvarigt utskott', :class => 'reg-label'%>
+  	<%= f.label 'Ansvarigt utskott', class:  'reg-label'%>
   	<div class="input-group margin-bottom-20">
   		<%= f.select :category, 
   				     options_from_collection_for_select(@utskott,:title,:title,@event.category),
   				     include_blank: true, 
-  				     :class => "form-control listBox"%>		  	  		 		  	
+  				     class:  "form-control listBox"%>
 
   	</div>
   	
   	<div class="row">
-  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+  			<%= f.submit "Spara",class:  'btn-u pull-right' %>
   	</div>
 <% end %>

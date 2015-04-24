@@ -1,17 +1,35 @@
-%h1 Listing pages
-
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @pages.each do |page|
-    %tr
-      %td= link_to 'Show', page
-      %td= link_to 'Edit', edit_page_path(page)
-      %td= link_to 'Destroy', page, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Page', new_page_path
+<div class="container">
+  <div class="col-md-12">
+    <div class="panel panel-orange margin-bottom-40">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <i class="fa fa-tasks"></i> Sidor</h3>
+        <%= link_to('Skapa ny', new_page_path, class: 'btn btn-u') %>
+      </div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Url</th>
+          <th>Synlig</th>
+          <th>Utskott</th>
+          <th>Uppdaterad</th>
+          <th>Redigera</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @pages.each do |page| %>
+            <tr>
+              <td><%= page.id %></td>
+              <td><%= page.url %></td>
+              <td><%= page.visible %></td>
+              <td><%= (page.council.nil?) ? link_to(page.council, page.council) : 'Inget' %></td>
+              <td><%= page.updated_at %></td>
+              <td><%= link_to('Redigera', edit_page_path(page), class: "btn btn-u") %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

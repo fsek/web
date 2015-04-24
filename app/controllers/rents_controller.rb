@@ -1,5 +1,6 @@
 # encoding:UTF-8
 class RentsController < ApplicationController
+  load_permissions_and_authorize_resource
   before_action :set_rents, only: [:new, :edit, :create, :update, :authorize]
   before_action :set_rent, only: [:show, :edit, :update, :authorize]
   respond_to :html, :json

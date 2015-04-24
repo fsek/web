@@ -1,0 +1,67 @@
+en:
+  time:
+    formats:
+        day: "%A %d/%m"
+
+  Hello: Hello
+  success_create: was successfully created
+  success_update: was successfully updated
+  your_profile: Your profile
+  profile_add_information: You have to fill out your name and surname. Please fill out the other information as well.
+  error: error
+  prevent_save: prevents the save
+  try_login: try to login.
+
+  administrate: Administration
+
+  unauthorized:
+    default: There was an authorization error.
+    manage:
+      all: Not authorized to %{action} %{subject}.
+      user: Not authorized to handle user accounts.
+    new:
+      nomination: You need to sign in to be able to nominate.
+      candidate: You need to sign in to be able to candidate.
+
+  user:
+      settings: Account settings
+  registation:
+      civic_check: To control memebership in the Guild, will not be saved.
+
+  attributes:
+    civic: Civic - 10 letters
+  helpers:
+    submit:
+      nomination:
+        create: Send %{model}
+
+  actions:
+    back: Back
+
+  elections:
+    orange_posts: Orange color marks the post is part of the board
+    green_posts: Green color marks the post as elected by Studierådet
+    x_posts: Posts marked with (x) have a fixed limit.
+    star_posts: Posts where limit is marked with * does not have a set limit.
+    posts_before: Posts which will be able to candidate to
+    posts_during: Posts which you can candidate to
+    posts_after: Posts which you can no longer candidate to
+    get_in_touch: Does anything look strange or do you get stuck? Contact
+
+  nominations:
+    thank_you: Thanks for your Nomination.
+    status_after: You can only nominate people to posts not elected at the Vårterminsmöte
+
+  candidates:
+    similar_candidate: already have a similar candidate
+    display_post: Press the title of the post to show more information and be able to manage your candidature.
+    post_terminmeeting: Posts elected at the  Poster valda på Terminsmötet kan ej redigeras efter
+    cannot_edit: You can no longer create new candidatures or edit your old
+      ones.
+    opens: You will be able to candidate for posts in
+    closed: Closed for new candidatures.
+    title: Your Candidatures
+
+  posts:
+    already_have_post: already have the post
+    limited: the post reached its limit.

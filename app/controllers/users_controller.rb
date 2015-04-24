@@ -1,20 +1,8 @@
 # encoding:UTF-8
 class UsersController < ApplicationController
-  include TheRole::Controller
-  before_filter :login_required
-  before_filter :authenticate_admin!, only: [:index]
-  before_filter :find_user, only: [:edit, :update, :destroy, :update_password,:remove_post, :avatar]
-  before_filter :owner_required, only: [:edit, :update]
-
-  def change_role
-    @user = User.find params[:user_id]
-    @role = Role.find params[:role_id]
-    @user.update_attribute(:role, @role)
-    redirect_to users_path
-  end
+  load_permissions_and_authorize_resource
 
   def index
-    @users = User.all
   end
 
   def update_password
@@ -23,28 +11,26 @@ class UsersController < ApplicationController
     else
       redirect_to :edit_user_registration, notice: 'Lösenord måste fyllas i för att ändra uppgifter.'
     end
-
   end
 
   def update
-    @user.update(user_params)
-    flash[:notice] = 'Användare uppdaterades.'
-    redirect_to edit_user_path @users
+    if @user.update(user_params)
+      flash[:notice] = 'Användare uppdaterades.'
+      redirect_to edit_user_path @user
+    else
+      redirect_to :edit_user_registration
+    end
   end
 
   def destroy
-    respond_to do |format|
-      if @user.update_with_password(user_params)
-        @user.posts.clear
-        if @user.destroy
-
-          format.html { redirect_to root_url, notice: 'Användare togs bort..' }
-          format.json { head :no_content }
-        end
-      else
-        format.html { redirect_to :edit_user_registration, notice: 'Lösenord måste fyllas i för att radera användare.' }
-        format.json { head :no_content }
+    if @user.update_with_password(user_params)
+      @user.profile.posts.clear
+      if @user.destroy
+        redirect_to root_url, notice: 'Användare togs bort.'
       end
+    else
+      redirect_to :edit_user_registration,
+                  notice: 'Lösenord måste fyllas i för att radera användare.'
     end
   end
 
@@ -76,21 +62,4 @@ class UsersController < ApplicationController
                                  :firstname, :lastname, :program, :start_year,
                                  :avatar, :first_post, :stil_id, :email, :phone)
   end
-
-  def authenticate_admin!
-    flash[:error] = t('the_role.access_denied')
-    redirect_to(:back) unless current_user && current_user.moderator?(:users)
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
-  end
-
-  def find_user
-    @user = User.find(params[:id])
-
-    # TheRole: You should define OWNER CHECK OBJECT
-    # When editable object was found
-
-    @owner_check_object = @user
-  end
-
 end

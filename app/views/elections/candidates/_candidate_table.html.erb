@@ -1,0 +1,38 @@
+<%if (@candidates.count > 0)%>
+  <%= grid(@candidates_grid) do |g|
+    g.column name: "Post",attribute: "post_id",filter: false do |candidate|
+      link_to(candidate.post.title,"#mer-"+candidate.post.id.to_s,class: "",data: {toggle: "collapse"})
+    end
+    g.column name: "Namn",attribute: "profile_id",filter: false do |candidate|
+      link_to(%(#{candidate.name} #{candidate.lastname}),candidate.profile)
+    end
+    g.column name: "Stil-ID",attribute: "stil_id",filter: false
+    g.column name: "E-post", attribute: "email",filter: false
+    g.column name: "Telefon", attribute: "phone",filter: false
+    g.column name: "Skapad:",attribute: "created_at",filter:false do |candidate|
+      candidate.created_at
+    end
+  end -%>
+<%for @cand in @candidates%>
+  <div id="mer-<%=@cand.post.id%>" class="collapse">
+    <div class="funny-boxes funny-boxes-left-orange left-text-align">
+      <%=link_to("Dölj","#mer-"+@cand.post.id.to_s,class: "btn btn-u pull-right", data: {toggle: "collapse"})%>
+      <h2><%=@cand.post.title%></h2>
+      <div class="col-md-12">
+        <%if @cand.post.description%><p><%=@cand.post.description%></p><%end%>
+        <ul class="list-unstyled">
+          <%if @cand.post.limit%><li><i class="fa fa-briefcase"></i>Gräns: <%=@cand.post.limit%></li><%end%>
+          <%if @cand.post.council.present? %><li><i class="fa fa-users"></i>Utskott: <%=link_to(@cand.post.council.title,@cand.post.council)%></li><%end%>
+          <%if @cand.post.candidates%> <li><i class="fa fa-users"></i>Kandiderande: <%= @election.candidate_count(@cand.post)%></li><%end%>
+        </ul>
+        <% if @cand.editable? %>
+          <%=link_to('Redigera',candidate_path(@cand), class: "btn-u btn-u-small")%>
+          <%=link_to('Ta bort',candidate_path(@cand), method: :delete, class: "btn-u btn-u-small")%>
+        <% else%>
+          Kan inte redigeras längre.
+        <%end%>
+      </div>
+    </div>
+  </div>
+<%end%>
+<%end%>

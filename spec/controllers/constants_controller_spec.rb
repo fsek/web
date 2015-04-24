@@ -1,35 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe ConstantsController, type: :controller do
-  context 'when not signed in' do
-    # login-required is on every action, so only one test
-    describe 'index' do
-      it 'redirects' do
-        get :index
+  describe 'GET #index when not allowed' do
+    it 'returns http forbidden' do
+      get :index
 
-        expect(response).to be_redirect
-      end
+      #response.should have_http_status(:forbidden)
+      response.should redirect_to :new_user_session
     end
   end
 
-  context 'when signed in as user' do
-    login_user
-    describe 'index' do
-      it 'diplays an error flash' do
-        get :index
+  describe 'GET #index when allowed' do
+    allow_user_to :read, Constant
+    it 'succeeds' do
+      get :index
 
-        expect(flash[:error]).to eq('Åtkomst nekad')
-      end
-    end
-  end
-  context 'when signed in as admin' do
-    login_admin
-    describe 'index' do
-      it 'succeeds' do
-        get :index
-
-        expect(response).to be_success
-      end
+      response.should be_success
     end
   end
 end

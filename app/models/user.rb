@@ -1,15 +1,13 @@
 # encoding:UTF-8
 require 'net/http'
-
 class User < ActiveRecord::Base
-  include TheRole::User
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates_uniqueness_of :username
+  validates :username, uniqueness: true
   validate :is_f_member
 
+  after_create :create_profile_for_user
 
   # Associations
   has_and_belongs_to_many :posts
@@ -33,40 +31,39 @@ class User < ActiveRecord::Base
   # allowed to rent the car
   # /d.wessman
   def car_councils
-    self.councils.merge(Post.renters)
+    councils.merge(Post.renters)
   end
 
   # Check if user has post, and in that case what first_post is set to
   # /d.wessman
   def check_posts
-    if (self.posts.count > 0) && (self.first_post?)
+    if posts.count > 0 && first_post?
       return
     end
-    if (self.posts.count > 0)
-      self.first_post = self.posts.first.id
-      self.save
+    if posts.count > 0
+      self.first_post = posts.first.id
+      save
     end
   end
 
   # Check if user has user data (name and lastname)
   # /d.wessman
   def has_name_data?
-    return (self.name? && self.lastname?)
+    name.present? && lastname.present?
   end
 
   def print
-    if name.present? && lastname.present?
+    if has_name_data?
       %(#{name} #{lastname})
     elsif name.present?
       name
     else
       username
     end
-
   end
 
   def is_f_member
-    errors.add :f_member, "är inte medlem i F-sektionen" unless @f_member || self.persisted?
+    errors.add :f_member, 'är inte medlem i F-sektionen' unless @f_member || self.persisted?
   end
 
   def check_f_membership(civic)
@@ -77,6 +74,17 @@ class User < ActiveRecord::Base
     }
 
     @f_member = res.body.include? "<img src=\"http://www.tlth.se/img/guilds/F.gif\"/>"
+  end
+
+  def is? role_name
+    profile.posts.each do |post|
+      return true if post.title == role_name
+    end
+    false
+  end
+
+  def admin?
+    is? :admin
   end
 
   # Used in testing

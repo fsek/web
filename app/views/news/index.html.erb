@@ -1,46 +1,47 @@
 <% title("Nyheter") %>
+
 <div class="container">	
-	<div class="col-md-12">
-		<% if current_user.moderator?(:news)%>
-			<div class="row">
-				<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till nyhet"), new_news_path, class: "btn-u btn-u-small"%>
-			</div>
-		<% end %>
-		<div class="row">
-			<ul class="timeline-v2">
-				<% @news.each do |news| %>
-					<li>					
-						<time class="cbp_tmtime"><span><%= link_to fa_icon("user") + (news.profile) ,news.profile %> </span>
-						<span><%= news.created_at.to_s %></span></time>
-						<i class="cbp_tmicon"></i>
-						<div class="cbp_tmlabel">
-							<h2><%= link_to news.title, news%></h2>
-							<div class="row">
-								<%if !news.image_file_name.nil?%>
-								<div class="col-md-4">
-									<%= image_tag news.image.url(:small)%>
-									<div class="md-margin-bottom-20"></div>
-								</div>
-								<%end%>
-								<div class="col-md-8">
-									<%= simple_format(news.content)%>
-								</div>
-							</div>
-						</div>
-					</li>								
-				<% end %>
-		
-			</ul>
-		</div>
-	</div>
+  <div class="col-md-12">
+    <% if can? :modify, News %>
+      <div class="row">
+        <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till nyhet"), new_news_path, class: "btn-u btn-u-small"%>
+      </div>
+    <% end %>
+    <div class="row">
+      <ul class="timeline-v2">
+        <% @news.each do |news| %>
+          <li>					
+            <time class="cbp_tmtime"><span><%= link_to fa_icon("user") + (news.profile) ,news.profile %> </span>
+              <span><%= news.created_at.to_s %></span></time>
+            <i class="cbp_tmicon"></i>
+            <div class="cbp_tmlabel">
+              <h2><%= link_to news.title, news%></h2>
+              <div class="row">
+                <%if !news.image_file_name.nil?%>
+                  <div class="col-md-4">
+                    <%= image_tag news.image.url(:small)%>
+                    <div class="md-margin-bottom-20"></div>
+                  </div>
+                <%end%>
+                <div class="col-md-8">
+                  <%= simple_format(news.content)%>
+                </div>
+              </div>
+            </div>
+          </li>								
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
 </div>
 <% content_for(:sidebar) do %>
- 	<% if user_signed_in? %>
- 	 <% if current_user.admin? || current_user.has_role?(:news,:edit) %>
-    <div class="headline headline-md"><h2>Verktyg</h2></div>
+  <% if user_signed_in? %>
+    <% if can? :create, News %>
+      <div class="headline headline-md"><h2>Verktyg</h2></div>
       <ul class="list">
         <li><%= link_to "Skapa nyhet", new_news_path %></li>
       </ul>
-  <% end %>
+    <% end %>
   <%end%>
 <% end %>

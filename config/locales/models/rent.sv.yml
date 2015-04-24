@@ -1,0 +1,23 @@
+sv:
+  activerecord:
+    models:
+      rent:
+        one: Bilbokning
+        other: Bilbokningar
+    attributes:
+      rent:
+        d_from: Startdatum
+        d_til: Slutdatum
+        name: Förnamn
+        lastname: Efternamn
+        email: E-post
+        phone: Telefon
+        purpose: Syfte
+        disclaimer: Användarvillkor
+        aktiv: Aktiv
+        council_id: Utskott
+        profile_id: Profil
+        comment: Kommentar
+        status: Status
+        service: Service
+        access_code: Kod

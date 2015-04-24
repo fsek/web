@@ -1,0 +1,10 @@
+sv:
+  activerecord:
+    models:
+      short_link:
+        one: Snabblänk
+        other: Snabblänkar
+    attributes:
+      short_link:
+        link: Länk
+        target: Mål

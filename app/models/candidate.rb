@@ -1,14 +1,16 @@
 # encoding: UTF-8
 class Candidate < ActiveRecord::Base
+  # Associations
   belongs_to :election
   belongs_to :user
   belongs_to :post
 
-  validates :user_id, uniqueness: {
-                        scope: [:post_id, :election_id], message: 'har redan en likadan kandidatur'
-                    }, on: :create
+  # Validations
+  validates :profile_id, uniqueness: {
+    scope: [:post_id, :election_id], message: I18n.t('candidates.similar_candidate')
+  }, on: :create
   validates :name, :lastname, :stil_id, :email,
-            :phone, :post, :user, :election, presence: true
+    :phone, :post, :user, :election, presence: true
 
   after_create :send_email
   after_update :send_email
@@ -33,10 +35,14 @@ class Candidate < ActiveRecord::Base
   end
 
   def editable?
-    election.view_status == 2 || post.elected_by == 'Studierådet'
+    election.view_status == :during || post.elected_by == 'Studierådet'
   end
 
   def p_url
-    Rails.application.routes.url_helpers.election_candidate_url(id, host: PUBLIC_URL)
+    Rails.application.routes.url_helpers.candidate_url(id, host: PUBLIC_URL)
+  end
+
+  def p_path
+    Rails.application.routes.url_helpers.candidate_path(id)
   end
 end

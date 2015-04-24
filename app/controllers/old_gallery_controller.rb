@@ -1,6 +1,5 @@
 class OldGalleryController < ApplicationController
-   before_filter :login_required
-
+  authorize_resource class: false
   def index
   end
 end

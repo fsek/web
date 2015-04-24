@@ -1,0 +1,15 @@
+sv:
+  activerecord:
+    models:
+      notice:
+        one: Notis
+        other: Notiser
+    attributes:
+      notice:
+        title: Titel
+        description: Text
+        public: Publik
+        d_publish: Publiceringsdatum
+        d_remove: Datum för borttagning
+        sort: Sorteringsindex
+        image: Bild

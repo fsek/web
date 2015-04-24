@@ -1,69 +1,71 @@
 # encoding: UTF-8
 class Profile < ActiveRecord::Base
-
   # Associations
   belongs_to :user
   has_and_belongs_to_many :posts
   has_many :candidates
   has_many :rents
   has_many :councils, through: :posts
+  # TODO Change the first_post field to first_post_id
+  # belongs_to :first_post, foreign_key: first_post_id, class: Post
 
   # Attachment
-  has_attached_file :avatar, 
-                    :styles => { medium: "300x300>", thumb:  "100x100>" },
-                    :path => ":rails_root/storage/profile/:id/:style/:filename"
-
+  has_attached_file :avatar,
+    styles: { medium: '300x300>', thumb: '100x100>' },
+    path: ':rails_root/storage/profile/:id/:style/:filename'
 
   # Validations
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   # Only on update!
-  validates_presence_of :name, :lastname, on: :update
-  validates_inclusion_of :start_year, in: 1954..(Time.zone.today.year+1), on: :update
+  validates :name, :lastname, presence: true, on: :update
+  validates :start_year, inclusion: {in: 1954..(Time.zone.today.year + 1)}, on: :update
 
-  # Scopes
+  scope :search_name, ->(name, lastname) {
+    where('name LIKE ? AND lastname LIKE ?', "%#{name}%", "%#{lastname}%")
+  }
+
+  def full_name
+    "#{name} #{lastname}".strip
+  end
+
+  def full_print
+    "#{full_name} ( User: #{user_id})".strip
+  end
 
   # Returns all councils the profile belongs to with a Post who is
   # allowed to rent the car
   # /d.wessman
   def car_councils
-    self.councils.merge(Post.renters)
+    councils.merge(Post.renters)
   end
 
   # Check if profile has user data (name and lastname)
   # /d.wessman
   def has_profile_data?
-    return (self.name? && self.lastname?)
+    name.present? && lastname.present?
   end
 
   # Returns true if profile is fresh
   # /d.wessman
   def fresh?
-    return self.created_at == self.updated_at
+    created_at == updated_at
   end
 
   # Returns true if user is equal to profiles user
   # /d.wessman
   def owner?(user)
-    (self.user == user)
+    self.user == user
   end
 
   # Check if user has post, and in that case what first_post is set to
   # /d.wessman
   def check_posts
-      if(self.posts.count > 0) && (self.first_post?)
-        return
-      end
-      if(self.posts.count > 0)
-        self.first_post = self.posts.first.id
-        self.save
-      end
+    if posts.count > 0 && first_post == false
+      update(first_post: posts.first.id)
+    end
   end
 
   def print
-    if (self.name) && (self.lastname)
-      %(#{self.name} #{self.lastname})
-    elsif (self.name)
-      self.name
-    end
+    %(#{name} #{lastname})
   end
 end

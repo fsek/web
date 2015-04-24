@@ -1,0 +1,17 @@
+sv:
+  activerecord:
+    models:
+      cafe_work: Cafejobb
+    attributes:
+      cafe_work:
+        work_day: Arbetsdag
+        pass: Pass
+        lp: Läsperiod
+        lv: Läsvecka
+        name: Förnamn
+        lastname: Efternamn
+        phone: Telefon
+        email: E-post
+        utskottskamp: Utskottskamp
+        access_code: Kod
+        d_year: År

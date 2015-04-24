@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20410822171446) do
+ActiveRecord::Schema.define(version: 20150331104940) do
+
+  create_table "album_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.text     "text",       limit: 65535
+    t.boolean  "visible",    limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "album_categories_albums", id: false, force: :cascade do |t|
+    t.integer "album_id",          limit: 4
+    t.integer "album_category_id", limit: 4
+  end
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",             limit: 255
@@ -40,6 +53,18 @@ ActiveRecord::Schema.define(version: 20410822171446) do
     t.integer "image_id", limit: 4
   end
 
+  create_table "albums_subcategories", id: false, force: :cascade do |t|
+    t.integer "album_id",       limit: 4
+    t.integer "subcategory_id", limit: 4
+  end
+
+  create_table "cafe_work_councils", force: :cascade do |t|
+    t.integer  "cafe_work_id", limit: 4
+    t.integer  "council_id",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "cafe_works", force: :cascade do |t|
     t.datetime "work_day"
     t.integer  "pass",         limit: 4
@@ -57,10 +82,6 @@ ActiveRecord::Schema.define(version: 20410822171446) do
     t.datetime "updated_at"
   end
 
-  create_table "cafe_works_councils", id: false, force: :cascade do |t|
-    t.integer "cafe_work_id", limit: 4
-    t.integer "council_id",   limit: 4
-  end
 
   create_table "candidates", force: :cascade do |t|
     t.integer  "post_id",     limit: 4
@@ -109,8 +130,6 @@ ActiveRecord::Schema.define(version: 20410822171446) do
     t.string   "title",             limit: 255
     t.string   "url",               limit: 255
     t.text     "description",       limit: 65535
-    t.integer  "president",         limit: 4
-    t.integer  "vicepresident",     limit: 4
     t.string   "logo_file_name",    limit: 255
     t.string   "logo_content_type", limit: 255
     t.integer  "logo_file_size",    limit: 4
@@ -119,6 +138,8 @@ ActiveRecord::Schema.define(version: 20410822171446) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contact_id",        limit: 4
+    t.integer  "president_id",      limit: 4
+    t.integer  "vicepresident_id",  limit: 4
   end
 
   create_table "documents", force: :cascade do |t|
@@ -304,6 +325,27 @@ ActiveRecord::Schema.define(version: 20410822171446) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "council_id", limit: 4
+    t.string   "url",        limit: 255
+    t.boolean  "visible",    limit: 1
+    t.string   "title",      limit: 255
+  end
+
+  add_index "pages", ["council_id"], name: "index_pages_on_council_id", using: :btree
+  add_index "pages", ["url"], name: "index_pages_on_url", using: :btree
+
+  create_table "permission_posts", force: :cascade do |t|
+    t.integer  "permission_id", limit: 4
+    t.integer  "post_id",       limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "subject_class", limit: 255
+    t.string   "action",        limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "photo_categories", force: :cascade do |t|

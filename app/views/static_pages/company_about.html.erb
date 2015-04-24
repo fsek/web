@@ -1,0 +1,115 @@
+<% provide(:title, 'Företag - Om') %>
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="row">
+      <div class="headline"><h2>Om F-sektionen</h2></div>
+      <p>I dagsläget har vi ungefär 950 medlemmar. Medlemmarna är talangfulla civilingenjörsstudenter från de högt
+        ansedda
+        civilingenjörutbildningarna Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap.</p>
+
+      <p>Våra studenter utbildar sig främst inom generell, teknisk problemlösning med en bred och varierande bas i en
+        eller
+        ett par av områdena fysik, matematik, elektroteknik, medicin, materialteknik samt system- och datavetenskap.
+        Detta ger
+        dem ett stort försprång i att sätta sig in i nya problem, något som är väldigt värdefullt för mångsidiga
+        organisationer
+        och företag som värderar ombytliga medarbetare.</p>
+
+      <p>F-sektionen jobbar kontinuerligt för att skapa kontakt mellan våra medlemmar och näringslivet, detta för att ge
+        studenterna de bäst tänkbara möjligheterna både under och efter studietiden.
+        Vi vill att Ni som företag får chansen att möta våra blivande civilingenjörer med högklassiga analytiska och
+        problemlösande kompetenser.</p>
+
+      <p>Ett möte med oss är en perfekt möjlighet för Er som företag, att handplocka just de studenterna som passar in
+        på Ert
+        företags profil.</p>
+    </div>
+    <div class="row">
+      <p>Är Ni intresserade av att få mer information om utbildingarna , F-sektionen och våra medlemmar, ser vi med
+        glädje fram emot att Ni <%= link_to('kontaktar oss!', '/kontakt/4') %></p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="tab-v1">
+      <div class="headline"><h3>Program</h3></div>
+      <ul class="nav nav-tabs">
+        <li class="active"><%= link_to('Teknisk Fysik', '#fysik', data: {toggle: 'tab'}) %></li>
+        <li><%= link_to('Teknisk Matematik', '#matte', data: {toggle: 'tab'}) %></li>
+        <li><%= link_to('Teknisk Nanovetenskap', '#nano', data: {toggle: 'tab'}) %></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="fysik">
+          <div class="col-md-12">
+            <p><strong>Teknisk fysik</strong> är den första civilingenjörsutbildningen som startades på Lunds Tekniska
+              Högskola. Studenterna
+              genomgår traditionellt bred utbildning och får djupa teoretiska och experimentella kunskaper inom
+              matematik, fysik
+              och tekniska ämnen såsom mekanik, reglerteknik och elektronik.</p>
+            <strong>Specialiseringar:</strong>
+            <ul class="list">
+              <li>Acceleratorer - fysik och teknik</li>
+              <li>Beräkning och simulering</li>
+              <li>Beräkningsmekanik</li>
+              <li>Bilder och grafik</li>
+              <li>Biologisk och medicinsk modellering</li>
+              <li>Energisystem</li>
+              <li>Finansiell modellering</li>
+              <li>Fotonik</li>
+              <li>Högfrekvens- och nanoelektronik</li>
+              <li>Medicinsk teknik</li>
+              <li>Nanofysik</li>
+              <li>Programvara</li>
+              <li>Signaler och sensorer</li>
+              <li>Teoretisk fysik</li>
+              <li>Reglersystem</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-pane fade in" id="matte">
+          <div class="col-md-12">
+            <p><strong>Teknisk matematik</strong> är utbildningen där studenterna läser mer matematik än på något
+              annat
+              civilingenjörsprogram.
+              Programmet är unikt i Sverige och präglas av mottot ”Matematik som teknologi”. Den starka matematiska
+              grunden
+              kombinerad med data- och systemvetenskapligt kunnande gör att studenterna på Teknisk matematik får en
+              otrolig
+              spetskompetens inom valda specialiseringar.</p>
+            <strong>Specialiseringar:</strong>
+            <ul class="list">
+              <li>Beräkning och simulering</li>
+              <li>Beräkningsmekanik</li>
+              <li>Bilder och grafik</li>
+              <li>Biologisk, ekologisk och medicinsk modellering</li>
+              <li>Finansiell modellering</li>
+              <li>Miljö, risk och klimat</li>
+              <li>System, signaler och reglering</li>
+              <li>Programvara</li>
+            </ul>
+          </div>
+        </div>
+        <div class='tab-pane fade in' id='nano'>
+          <div class="col-md-12">
+            <p>Nanoteknologin är ett nyckelområde för den svenska industrins framtid och studenterna som läser
+              <strong>Teknisk Nanovetenskap</strong> får gränsöverskridande kunskaper i områden som medicin, biologi,
+              fysik, kemi,
+              materialvetenskap och
+              elektronik. Genom den tvärvetenskapliga grunden kan nanoteknologen koppla samman personer med helt olika
+              vetenskaplig eller teknisk kompetens.</p>
+            <strong>Specialiseringar:</strong>
+            <ul class="list">
+              <li>Högfrekvens- och nanoelektronik</li>
+              <li>Material</li>
+              <li>Nanobiomedicin</li>
+              <li>Nanofysik</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Tab v1 -->
+</div>

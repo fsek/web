@@ -9,28 +9,28 @@
 				      </ul>
 				    </div>
 			  	<% end %>
-			  	  	<%= f.label 'Titel', :class => "reg-label"%>		  
+			  	  	<%= f.label 'Titel', class:  "reg-label"%>
 			  	<div class="input-group margin-bottom-20">					
-					<%= f.text_field :title, :class => 'form-control',:placeholder => 'Titel'%>		
+					<%= f.text_field :title, class:  'form-control',:placeholder => 'Titel'%>
 			  	</div>
-			  	<%= f.label 'Kategori', :class => 'reg-label'%>
+			  	<%= f.label 'Kategori', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">  				  	  		 		  	
-			  		<%= f.select :category,options_for_select(["Styrdokument", "Protokoll", "Sektionsmöten", "Övrigt"],@dokument.category), :class => 'form-control'%>
+			  		<%= f.select :category,options_for_select(["Styrdokument", "Protokoll", "Sektionsmöten", "Övrigt"],@dokument.category), class:  'form-control'%>
 			  	</div>
-			  	<%= f.label 'PDF', :class => 'reg-label'%>
+			  	<%= f.label 'PDF', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">
 			  		<%if @dokument.pdf_file_name.blank?%>
-			  			<%= f.file_field :pdf, :class => 'form-control'%>
+			  			<%= f.file_field :pdf, class:  'form-control'%>
 			  		<%else%>  				  	  		 		  	
 			  			<%=@dokument.pdf_file_name%>
 		  			<%end%>
 			  	</div>
-			  	<%= f.label 'Publik?', :class => 'reg-label'%>
+			  	<%= f.label 'Publik?', class:  'reg-label'%>
 			  	<div class="input-group margin-bottom-20">  		
-			  		<%= f.check_box :public, :class => 'form-control'%>
+			  		<%= f.check_box :public, class:  'form-control'%>
 			  		Innebär att även de som inte är inloggade kan se dokument.
 			  	</div>
 			  	<div class="row">
-			  			<%= f.submit "Spara",:class => 'btn-u pull-right' %>	 				
+			  			<%= f.submit "Spara",class:  'btn-u pull-right' %>
 			  	</div>
 			<% end %>

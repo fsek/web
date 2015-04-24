@@ -7,4 +7,8 @@ FactoryGirl.define do
     phone
     stil_id
   end
+
+  trait :with_admin_post do
+    posts {[create(:post, :with_admin_permissions)]}
+  end
 end

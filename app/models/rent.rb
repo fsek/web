@@ -31,6 +31,7 @@ class Rent < ActiveRecord::Base
   # /d.wessman
   scope :active, -> { where(aktiv: true).where.not(status: 'Nekad') }
 
+
   # To scope all rents between two dates
   # /d.wessman
   scope :between, ->(from, to) { where('? >= d_from AND ? <= d_til', to, from) }
@@ -242,7 +243,7 @@ class Rent < ActiveRecord::Base
 
   # Custom json method used for FullCalendar
   # /d.wessman
-  def as_json(options = {})
+  def as_json(*)
     if service
       {
           id: id,

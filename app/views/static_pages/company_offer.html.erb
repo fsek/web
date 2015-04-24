@@ -1,0 +1,98 @@
+<% provide(:title, 'Företag - Vi erbjuder') %>
+<div class="container">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="row">
+      <div class="headline"><h2>Vad vi erbjuder er</h2></div>
+      <p>Hur kan Ni få våra studenter att söka sig till just ert företag i framtiden? Det är en fråga vi vill hjälpa
+        till att besvara. Det finns en rad olika lösningar och möjligheter att komma i kontakt med våra studenter och
+        här under finns en samling förslag som har använts med goda resultat tidigare. Det finns alltid möjlighet att gå
+        utanför ramen för dessa erbjudanden, ta kontakt med oss så kommer vi tillsammans fram till den bästa lösningen
+        för er.</p>
+
+      <p>Vårt mål är att Ni som företag ska få lära känna våra studenter, få maximal exponering och samtidigt ge Er
+        möjligenten att få våra studenter att söka sig till just Ert företag i framtiden.</p>
+
+      <p>Vill Ni boka, få mer information eller har Ni egna spännande idéer?
+        Vänligen <%= link_to('kontakta oss', '/kontakt/4') %> så kommer vi
+        tillsammans fram till den bästa lösningen för just Er!</p>
+    </div>
+    <div class="row">
+      <div class="tab-v1">
+        <div class="headline"><p>Nedan finns en samling förslag som har använts med goda resultat tidigare.</p></div>
+        <ul class="nav nav-tabs">
+          <li class="active"><%= link_to('Kvällsevenemang', '#kvall', data: {toggle: 'tab'}) %></li>
+          <li><%= link_to('Lunchföredrag', '#lunch', data: {toggle: 'tab'}) %></li>
+          <li><%= link_to('Marknadsföring', '#marknad', data: {toggle: 'tab'}) %></li>
+          <li><%= link_to('Studiebesök', '#studie', data: {toggle: 'tab'}) %></li>
+          <li><%= link_to('Nollningsaktivitet', '#nollning', data: {toggle: 'tab'}) %></li>
+          <li><%= link_to('Sponsring eller Give-aways', '#spons', data: {toggle: 'tab'}) %></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane  fade in active" id="kvall">
+            <div class="col-md-12">
+              <p>Under en helkväll får ni tillfälle att, i en lugn och avslappnad atmosfär, träffa våra studenter. Här
+                finns möjlighet att ge studenterna en helhetsbild av företaget och skapa en mer personlig kontakt med
+                studenterna. </p>
+
+              <p>Kvällen kan till exempel innehålla något av följande:</p>
+              <ul class="list">
+                <li>Caselösning eller Workshop</li>
+                <li>Pub</li>
+                <li>Sittning</li>
+                <li>Sportevent</li>
+                <li>Föreläsning</li>
+              </ul>
+              <p>Förslagsvis inleder ni med att presentera ert företag och därefter drar kvällens event igång. Någon
+                gång serveras mat till alla studenter och företagsrepresentanter. Kvällen kan till exempel avslutas med
+                prisutdelning, vilket företaget i så fall får anordna. Kvällen är väldigt flexibel och vi är öppna för
+                alla lösningar och idéer.
+              </p>
+            </div>
+          </div>
+          <div class="tab-pane fade in" id="lunch">
+            <div class="col-md-12">
+              <p>Med ett föredrag under lunchtimmen når ert företag effektivt ut till studenterna och ni har möjlighet
+                att ge en inblick i hur just ert företag är. Vi ordnar med mat till samtliga deltagare, såväl studenter
+                som företagsrepresentanter samt annonserar i förväg om ert föredrag med affischer, annons i sektionens
+                veckoblad och på sektionens hemsida. På tidigare lunchföredrag har oftast mellan 70 och 100 studenter
+                deltagit.
+              </p>
+            </div>
+          </div>
+          <div class='tab-pane fade in' id='marknad'>
+            <div class="col-md-12">
+              <p>Vill ni nå ut med konkret information till alla sektionens medlemmar snabbt och enkelt så erbjuder vi
+                också grafisk marknadsföring. På så sätt får ert varumärke garanterat uppmärksamhet så länge ni helst
+                önskar. De olika alternativen är affischering på välbesökta platser i våra lokaler, plats på TV-monitor
+                i
+                vårt café, mailutskick samt information på vår hemsida och facebook.</p>
+            </div>
+          </div>
+          <div class='tab-pane fade in' id='studie'>
+            <div class="col-md-12">
+              <p>Tycker ni som företag att det hade varit kul att få visa upp er arbetsplats? Har ni något som gör er
+                unika och som kan locka till er de bästa studenterna? Då kan ett studiebesök vara något för er. Vi
+                ordnar logistik och studenterna.
+              </p>
+            </div>
+          </div>
+          <div class='tab-pane fade in' id='nollning'>
+            <div class="col-md-12">
+              <p>Under introduktionen är möjligheterna för er att synas mot de ca 200 nyantagna studenterna annorlunda
+                mot resten av året. Det speglar att detta är en mycket speciell period för alla studenter.
+              </p>
+            </div>
+          </div>
+          <div class='tab-pane fade in' id='spons'>
+            <div class="col-md-12">
+              <p>Det finns naturligtvis alltid möjlighet att gå utanför ramen för dessa förslag, enbart fantasin sätter
+                gränserna.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Tab v1 -->
+</div>

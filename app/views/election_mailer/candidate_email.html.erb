@@ -10,9 +10,9 @@
 				<%if (@candidate.election.candidate_mail)%>
 					<%= simple_format(@candidate.election.candidate_mail)%>
 				<%end%>
-				<%if (@candidate.post.styrelse)%>
+				<%if @candidate.post.styrelse && @candidate.election.mail_styrelse_link.present?%>
 					<%=link_to(@candidate.election.mail_styrelse_link,@candidate.election.mail_styrelse_link)%><br><br>
-				<%else%>
+				<%elsif @candidate.election.mail_link.present?%>
 				 	<%=link_to(@candidate.election.mail_link,@candidate.election.mail_link)%><br><br>
 				<%end%>
 			<%else%>

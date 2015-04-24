@@ -1,0 +1,11 @@
+sv:
+  activerecord:
+    models:
+      image:
+        one: Bild
+        other: Bilder
+    attributes:
+      image:
+        description: Beskrivning
+        album_id: Album
+        foto: Bild

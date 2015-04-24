@@ -1,0 +1,9 @@
+sv:
+  candidates:
+    similar_candidate: har redan en likadan kandidatur.
+    display_post: Tryck på postens namn för att visa mer information samt kunna redigera.
+    post_terminmeeting: Poster valda på Terminsmötet kan ej redigeras efter
+    cannot_edit: Du kan inte längre kandidera på nya poster eller ändra din kandidatur.
+    opens: Kandideringar öppnar
+    closed: Det är stängt för nya kandideringar
+    title: Dina Kandidaturer

@@ -7,18 +7,18 @@
 	    end
 	  end			
 	  g.column name: "Titel",attribute: "title",filter: false  do |post|			    
-	    link_to(post.title,%(##{dom_id(post)}),data: {toggle: "collapse", target: ""})
+	    link_to(post.title,display_post_path(post),remote: true)
 	  end
 	  g.column name: "Rekommenderat antal",attribute: "limit",filter: false do |post|
 	  	post.printLimit
 	  end			
 	  g.column name: "Utskott", attribute: "council_id",filter: false do |post|
-	    post.council.title
+	    post.council
 	  end
 	  g.column name: "Väljs av", attribute: "elected_by",filter: false
-  	  if (@election.view_status != 1)
+  	  if (election.view_status != 1)
 		  g.column name: "Kandidater", filter: false do |post|
-		  	 @election.candidate_count(post)
+		  	 election.candidate_count(post)
 		  end
   	  end
 end -%>

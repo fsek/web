@@ -1,5 +1,6 @@
 # encoding:UTF-8
 class PostsController < ApplicationController
+<<<<<<< HEAD
   before_action :authenticate
   before_action :set_council
   before_action :set_councils
@@ -32,15 +33,44 @@ class PostsController < ApplicationController
   def index
     if (@council)
       @posts = @council.posts
+=======
+  load_permissions_and_authorize_resource
+  load_and_authorize_resource :council, parent: true, find_by: :url
+  before_action :can_manage_permissions, only: \
+    [:edit_permissions, :update_permissions]
+  before_action :set_permissions
+  before_action :set_councils, only: [:new, :edit, :update, :create]
+  before_action :set_profile, only: [:remove_profile, :add_profile]
+
+  def remove_profile
+    @post.remove_profile(@profile)
+    redirect_to back,
+                notice: %(#{@profile.full_name} har inte längre posten #{@post.title}.)
+  end
+
+  def add_profile
+    if @post.add_profile(@profile)
+      flash[:notice] = %(#{@profile.full_print} tilldelades #{@post})
+>>>>>>> 699d7174360268a9fd59e6c5e822da01cde30e0e
     else
-      @posts = Post.all
+      flash[:alert] = %(Tilldelningen gick inte: #{@post.errors.full_messages})
     end
+<<<<<<< HEAD
     @post_grid = initialize_grid(@posts)
   end
 
+=======
+    redirect_to back
+  end
+
+  def index
+    @posts = (@council.present?) ? @council.posts : Post.all
+    @post_grid = initialize_grid(@posts)
+  end
+
+>>>>>>> 699d7174360268a9fd59e6c5e822da01cde30e0e
   def new
     @post = @council.posts.build
-    @councils = Council.order(title: :asc)
   end
 
   def edit
@@ -48,6 +78,7 @@ class PostsController < ApplicationController
   end
 
   def create
+<<<<<<< HEAD
     @councils = Council.order(title: :asc)
     @post = @council.posts.build(post_params)
     respond_to do |format|
@@ -58,10 +89,18 @@ class PostsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @posts.errors, status: :unprocessable_entity }
       end
+=======
+    @post = @council.posts.build(post_params)
+    if @post.save
+      redirect_to council_posts_path(@council), notice: alert_create_resource(Post)
+    else
+      render action: :new
+>>>>>>> 699d7174360268a9fd59e6c5e822da01cde30e0e
     end
   end
 
   def update
+<<<<<<< HEAD
     respond_to do |format|
       if @post.update(post_params)
         @council2 = Council.find_by_id(params[:post][:council])
@@ -76,19 +115,55 @@ class PostsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
+=======
+    if @post.update(post_params)
+      redirect_to edit_council_post_path(@post.council, @post), notice: alert_update_resource(Post)
+    else
+      render action: :edit
+>>>>>>> 699d7174360268a9fd59e6c5e822da01cde30e0e
     end
   end
 
   def destroy
+<<<<<<< HEAD
     @post.users.clear
     @post.destroy
     redirect_to council_posts_path(@council)
+=======
+    @post.destroy
+    redirect_to council_posts_path(@council)
+  end
+
+  def show_permissions
+    @posts = Post.all
+  end
+
+  def edit_permissions
+    @permissions = Permission.all
+    @post_permissions = @post.permissions.map &:id
+    render :permissions
+  end
+
+  def update_permissions
+    if @post.set_permissions(permission_params)
+      redirect_to permissions_path, notice: alert_update_resource(Post)
+    else
+      render action: permission_path(@post)
+    end
+>>>>>>> 699d7174360268a9fd59e6c5e822da01cde30e0e
+  end
+
+  def display
+  end
+
+  def collapse
   end
 
   private
 
   def post_params
     params.require(:post).permit(:title, :limit, :recLimit,
+<<<<<<< HEAD
                                  :description, :elected_by, :elected_at, :styrelse,
                                  :car_rent, :council_id)
   end
@@ -116,5 +191,36 @@ class PostsController < ApplicationController
 
   def set_councils
     @councils = Council.order(title: :asc)
+=======
+                                 :description, :elected_by, :elected_at,
+                                 :styrelse, :car_rent, :council_id)
+  end
+
+  def permission_params
+    params.require(:post).permit(permission_ids: [])
+  end
+
+  def can_manage_permissions
+    authorize! :manage, PermissionPost
+  end
+
+  def set_councils
+    @councils = Council.order(title: :asc)
+  end
+
+  def set_permissions
+    @permissions = Permission.all
+  end
+
+  def set_profile
+    if @post.nil?
+      @post = Post.find_by_id(params[:post_id])
+    end
+    @profile = Profile.find_by_id(params[:profile_id])
+  end
+
+  def back
+    @council.present? ? council_posts_path(@council) : posts_path
+>>>>>>> 699d7174360268a9fd59e6c5e822da01cde30e0e
   end
 end

@@ -14,50 +14,7 @@
 <% end %>
 <br>
 
-<p>Bokningens uppgifter (ID: <%= @rent.id %>).</p>
-<table class="table">
-  <tbody>
-  <tr>
-    <td>Namn:</td>
-    <td><%= @rent.p_name %></td>
-  </tr>
-  <tr>
-    <td>Epost:</td>
-    <td><%= @rent.email %></td>
-  </tr>
-  <tr>
-    <td>Telefon:</td>
-    <td><%= @rent.phone %></td>
-  </tr>
-  <tr>
-    <td>Datum:</td>
-    <td><%= @rent.p_time %></td>
-  </tr>
-  <% if @rent.purpose.present? %>
-      <tr>
-        <td>Syfte:</td>
-        <td><%= simple_format(@rent.purpose) %></td>
-      </tr>
-  <% end %>
-  <% @council = Council.find_by_id(@rent.council_id) %>
-  <% if @council %>
-      <tr>
-        <td>Utskott:</td>
-        <td><%= link_to(@council.title, council_path(@council)) %></td>
-      </tr>
-  <% end %>
-  <tr>
-    <td>Länk:</td>
-    <td><%= link_to('Bokning', @rent.p_url) %></td>
-  </tr>
-  <% if @rent.access_code.present? %>
-      <tr>
-        <td>Kod:</td>
-        <td><%= @rent.access_code %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= render 'attributes_html', rent: @rent%>
 <br>
 
 <p>Mvh,<br>

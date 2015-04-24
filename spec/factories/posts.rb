@@ -3,9 +3,9 @@ FactoryGirl.define do
   factory :post do
     title
     description
+    elected_by { ['Studierådet','Terminsmötet'].sample}
     limit { rand(1..3) }
     recLimit { rand(3..7) }
-    council
   end
 
   trait :board_member do
@@ -14,5 +14,11 @@ FactoryGirl.define do
 
   trait :allowed_rental do
     car_rent true
+  end
+
+  trait :with_admin_permissions do
+    after(:create) do |post|
+      create(:permission_post, post: post, permission: create(:admin_permission))
+    end
   end
 end

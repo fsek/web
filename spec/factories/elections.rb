@@ -5,5 +5,9 @@ FactoryGirl.define do
     start { Time.zone.now - 2.days }
     election.end { Time.zone.now + 5.days }
     visible true
+    description
+    candidate_mail_star { generate(:email) }
+    mail_link { generate(:email) }
+    mail_styrelse_link { generate(:email) }
   end
 end
