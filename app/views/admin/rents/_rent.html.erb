@@ -15,7 +15,7 @@
         <tbody>
         <tr>
           <td><%= fa_icon('user') %></i></td>
-          <td><%= (rent.profile.present?) ? link_to(rent.p_name, profile_path(rent.profile)) : rent.p_name %></td>
+          <td><%= link_to(rent.p_name, rent.user) %></td>
         </tr>
         <tr>
           <td><%= fa_icon('calendar') %> Start</td>

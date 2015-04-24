@@ -11,7 +11,6 @@
     <th>Börjar:</th>
     <th>Slutar:</th>
     <th>Heldag?</th>
-    
     <th></th>
     <th></th>
     <th></th>
@@ -22,7 +21,7 @@
   <tr>
     <td><%= event.title %></td>
     <td><%= event.description %></td>
-    <td><%= link_to User.find(event.author).profile.name, User.find(event.author).profile%></td>
+    <td><%= link_to event.author, event.author%></td>
     <td><%= event.category%></td>
     <td><%= event.starts_at %></td>
     <td><%= event.ends_at %></td>

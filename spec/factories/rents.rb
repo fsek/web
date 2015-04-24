@@ -54,7 +54,7 @@ FactoryGirl.define do
   end
 
   trait :good do
-    profile
+    user
     aktiv true
   end
 end

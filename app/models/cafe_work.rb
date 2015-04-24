@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class CafeWork < ActiveRecord::Base
   # Associations
-  belongs_to :profile
+  belongs_to :user
   has_many :councils, through: :cafe_work_councils
   has_many :cafe_work_councils
 
@@ -13,7 +13,7 @@ class CafeWork < ActiveRecord::Base
   validates :pass, uniqueness: { scope: [:work_day, :lv, :lp, :d_year] }
 
   # Scopes
-  scope :with_worker, -> { where('profile_id IS NOT null OR access_code IS NOT null') }
+  scope :with_worker, -> { where.not(user: nil) }
   scope :between, ->(from, to) { where(work_day: from..to) }
   scope :ascending, -> { order(pass: :asc) }
   scope :week, ->(week) { where(lv: week) }
@@ -42,7 +42,7 @@ class CafeWork < ActiveRecord::Base
   # user is present.
   # /d.wessman
   def load(user)
-    self.attributes = worker.load_profile(user)
+    self.attributes = worker.load_user(user)
   end
 
   # Shows different status texts depending on the user.
@@ -61,10 +61,6 @@ class CafeWork < ActiveRecord::Base
   end
 
   # Gives different statuses for the view
-  # 0 = everyone can sign up
-  # 1 = can be edited, either logged in or authorized
-  # 2 = shows no form
-  # 3 = shows form for authorization
   # /d.wessman
   def status_view(user)
     if access_code.present?
@@ -137,10 +133,8 @@ class CafeWork < ActiveRecord::Base
     self.save!(validate: false)
   end
 
-  # Returns true if the profiles are similar and not nil
-  # /d.wessman
   def owner?(user)
-    user.present? && user.profile.present? && profile.present? && user.profile == profile
+    self.user == user
   end
 
   # Returns true if the user can edit the object
@@ -151,12 +145,6 @@ class CafeWork < ActiveRecord::Base
 
   def editable?
     work_day > Time.zone.now
-  end
-
-  # Returns true only if the access_code is correct
-  # /d.wessman
-  def authorize(access)
-    access.present? && access_code.present? && access_code == access
   end
 
   # Returns true if there is a worker
@@ -233,7 +221,7 @@ class CafeWork < ActiveRecord::Base
   def worker_attributes
     {
       name: name, lastname: lastname, email: email,
-      phone: phone, profile: profile, profile_id: profile_id, access_code: access_code
+      phone: phone, user: user, user_id: user_id
     }
   end
 

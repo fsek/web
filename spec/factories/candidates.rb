@@ -6,7 +6,7 @@ FactoryGirl.define do
     name
     phone
     c.post
-    profile
+    user
     stil_id
 
     # Override after_create callbacks.

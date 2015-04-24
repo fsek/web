@@ -1,6 +1,6 @@
 <%= form_for(@candidate) do |f| %>
   <%= render 'shared/form_errors',current: @candidate %>
-  Uppgifter ifylls i <%= link_to('profilen', edit_profile_path(current_user.profile)) %>.<br>
+  Uppgifter ifylls i <%= link_to('användarprofilen', edit_user_path(current_user)) %>.<br>
   <div class="margin-bottom-20">
     <%= f.label :name, class:  'reg-label' %> & <%= f.label :lastname, class:  'reg-label' %>
     <div class="row">

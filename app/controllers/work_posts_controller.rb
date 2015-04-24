@@ -22,7 +22,7 @@ class WorkPostsController < ApplicationController
   end
 
   def create
-    @work_post.responsible = current_user.profile.id
+    @work_post.responsible = current_user.id
     if @work_post.save
       redirect_to work_posts_path, notice: 'Jobbposten skapades, success!.'
     else

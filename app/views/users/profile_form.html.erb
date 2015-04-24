@@ -1,0 +1,51 @@
+<%= form_for(@user) do |f| %>
+    <%= render 'shared/form_errors', current: @user%>
+  	<%= f.label 'Namn och efternamn', class:  'reg-label'%>
+  	<div class="input-group margin-bottom-20">					
+		<%= f.text_field :name, class:  'form-control',:placeholder => 'Namn'%>
+		<%= f.text_field :lastname, class:  'form-control',:placeholder => 'Efternamn'%>
+  	</div>  	
+  	<%= f.label 'Program', class:  'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.select :program, options_for_select([
+	  	[" ","Oklart"],
+	  	["Teknisk Fysik"],
+	  	["Teknisk Matematik"],
+	  	["Teknisk Nanovetenskap"]],@user.program),{}, html_options = {class:  "listBox form-control",selected: :program , style: "float:left;"} %>
+  	</div>			
+  	<%= f.label 'Började på programmet', class:  'reg-label'%>
+  	<div class="input-group margin-bottom-20">
+  		<%= f.select( :start_year, (1954..(Time.zone.now.year+1)).to_a.reverse!, class: "form-control")%>
+  	</div>
+  	<%= f.label 'Profilbild', class:  'reg-label'%>
+  	<div class="input-group margin-bottom-20">		  	
+  		<% if @user.avatar?%>
+  			<%= image_tag(@user.avatar(:thumb))%>
+		<% end %>  		 	 		  	
+  		<%= f.file_field :avatar, class:  'form-control' %>
+  	</div>
+  	<% if @user.posts.count > 0%>
+	  	<%= f.label 'Visningspost', class:  'reg-label'%>
+	  	<div class="input-group margin-bottom-20">		  	  		 		  	
+	  		<%= f.select :first_post, options_for_select(@user.posts.collect{ |r| [r.title, r.id] }),class:  'form-control'%>
+	  	</div>
+	<% end %>
+  	<hr>
+  	Nedanstående fält är till för t.ex. sektionsval,<br>
+  	uppgifterna i fälten kan endast ses av dig själv,styrelsen och valberedningen.<br>
+  	<%= f.label 'STIL-id', class:  'reg-label'%>
+  	<div class="input-group margin-bottom-20">  		
+  		<%= f.text_field :stil_id, placeholder: "Stil-id", class: "form-control"%>  		
+  	</div>
+  	<%= f.label 'E-post', class:  'reg-label'%>
+  	<div class="input-group margin-bottom-20">  		
+  		<%= f.text_field :email, placeholder: "E-post", class: "form-control"%>  		
+  	</div>
+  	<%= f.label 'Telefonnummer', class:  'reg-label'%>
+  	<div class="input-group margin-bottom-20">  		
+  		<%= f.text_field :phone, placeholder: "Telefonnumer", class: "form-control"%>  		
+  	</div>
+  	<div class="row">
+  			<%= f.submit "Spara",class:  'btn-u pull-right' %>
+  	</div>
+<% end %>

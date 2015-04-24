@@ -8,7 +8,7 @@
             <%= link_to('Radera bokning', rent_path(@rent), method: :delete, class: "btn btn-u",
                         data: {confirm: 'Din bokning kommer nu att raderas.'}) %>
             <%= link_to("Bilbokning", bil_path, class: "btn btn-u") %>
-        <% elsif @rent.no_profile? %>
+        <% elsif 1 == 0  %>
             <%= render @rent %>
             <div id="authorization">
               <%= render 'authorization' %>

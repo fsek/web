@@ -20,8 +20,8 @@
             <div class="col-md-4">
               Vem har posten just nu?
               <ul class="list">
-                <% post.profiles.each do |profile|%>
-                    <li><%=profile.full_name%></li>
+                <% post.users.each do |user|%>
+                    <li><%=user.full_name%></li>
                 <%end%>
               </ul>
 

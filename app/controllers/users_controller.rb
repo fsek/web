@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.update_with_password(user_params)
-      @user.profile.posts.clear
+      @user.posts.clear
       if @user.destroy
         redirect_to root_url, notice: 'Användare togs bort.'
       end

@@ -33,16 +33,9 @@ FactoryGirl.define do
       phone
     end
 
-    trait :w_profile do
+    trait :w_user do
       worker
-      profile
-      access_code nil
-    end
-
-    trait :access do
-      worker
-      profile nil
-      access_code
+      user
     end
   end
 

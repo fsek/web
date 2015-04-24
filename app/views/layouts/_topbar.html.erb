@@ -3,7 +3,7 @@
       <li class="devider"></li>
   <% end %>
   <% if user_signed_in? %>
-      <% if current_user.profile.posts.count > 0 %>
+      <% if current_user.posts.count > 0 %>
           <%= render 'layouts/admin_dropdown' %>
           <li class="devider"></li>
       <% end %>
@@ -11,11 +11,11 @@
       <li class="devider"></li>
 
       <li class="dropdown">
-        <%= link_to(fa_icon("user") + ' ' + current_user.profile.print, current_user.profile,
+        <%= link_to(fa_icon("user") + ' ' + current_user, current_user,
                     class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0",
                                                      'close-others' => "false"}) %>
         <ul class="dropdown-menu pull-right">
-          <li><%= link_to Profile.model_name.human, current_user.profile %></li>
+          <li><%= link_to User.model_name.human, current_user %></li>
           <li><%= link_to t('user.settings'), :edit_user_registration %></li>
           <li><%= link_to t('devise.sign_out'), :destroy_user_session, method: :delete %></li>
         </ul>

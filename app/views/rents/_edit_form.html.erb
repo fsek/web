@@ -17,8 +17,8 @@
 
       <div class="headline headline-md"><h2>Uppgifter</h2></div>
       <%= render 'shared/form_errors', current: @rent %>
-      <% if current_user %>Informationen tas från din profil, håll det gärna
-          uppdaterad <%= link_to("här", edit_profile_path(current_user.profile)) %>.
+      <% if current_user %>Informationen tas från din användarprofil, håll det gärna
+          uppdaterad <%= link_to("här", edit_user_path(current_user)) %>.
       <% end %>
       <div class="margin-bottom-20">
         <%= f.label 'Namn & Efternamn', class: 'reg-label' %>

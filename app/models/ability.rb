@@ -3,8 +3,6 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    # This is soo hacky, hope we get rid of profiles soon
-    user.profile ||= Profile.new
 
     # Abilities that everyone get.
     can :read, [News, Council, Page, Election]
@@ -24,10 +22,9 @@ class Ability
     if user.id
       can :manage, User, id: user.id
       can [:nominate, :candidate], Election
-      can :manage, Candidate, profile_id: user.profile.id
+      can :manage, Candidate, user_id: user.id
       can :manage, Nomination
-      can [:show, :avatar], Profile
-      can :manage, Profile, user_id: user.id
+      can [:show, :avatar], User
       can [:read, :display, :hide], Post
       can :read, Document
       can :read, :old_gallery

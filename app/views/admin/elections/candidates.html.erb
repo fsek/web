@@ -6,8 +6,8 @@
         candidate.post.title
       end
 
-      g.column name: "Namn",attribute: "profile_id",filter: false do |candidate|
-        link_to(%(#{candidate.name} #{candidate.lastname}),candidate.profile)
+      g.column name: "Namn",attribute: "user_id",filter: false do |candidate|
+        link_to(candidate.person,candidate.user)
       end
       g.column name: "Stil-ID",attribute: "stil_id",filter: false
       g.column name: "E-post", attribute: "email",filter: false

@@ -16,8 +16,8 @@
       <div class="after_disclaimer" style="display:none;">
         <div class="headline headline-md"><h2>Uppgifter</h2></div>
         <%= render 'shared/form_errors', current: @rent %>
-        <% if current_user %>Informationen tas från din profil, håll den gärna
-            uppdaterad <%= link_to("här", edit_profile_path(current_user.profile)) %>.
+        <% if current_user %>Informationen tas från din användarprofil, håll den gärna
+            uppdaterad <%= link_to("här", edit_user_path(current_user)) %>.
         <% end %>
         <div class="margin-bottom-20">
           <%= f.label 'Namn & Efternamn', class: 'reg-label' %>
@@ -56,11 +56,11 @@
             <% end %>
         <% end %>
         <% if current_user.present? %>
-            <% if (current_user.profile.car_councils.count > 0) %>
+            <% if (current_user.car_councils.count > 0) %>
                 <%= f.label 'Utskott', class: 'reg-label' %>
                 <div class="margin-bottom-20">
                   <%= f.select :council_id,
-                               options_from_collection_for_select(current_user.profile.car_councils, :id, :title, @rent.council_id),
+                               options_from_collection_for_select(current_user..car_councils, :id, :title, @rent.council_id),
                                include_blank: true,
                                class: 'form-control listBox' %>
                 </div>

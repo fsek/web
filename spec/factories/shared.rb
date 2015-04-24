@@ -13,16 +13,11 @@ FactoryGirl.define do
   sequence(:location) { ['MH:A','Hilbert','Kårhuset','Ön-ön','Sjönsjön','Bastun'].sample }
 
   # Used in Bilbokning
-  trait :with_profile do
-    profile
+  trait :with_user do
+    user
   end
 
   trait :with_council do
     council
-  end
-
-  # Used in Cafebokning and Bilbokning
-  trait :with_access_code do
-    access_code
   end
 end

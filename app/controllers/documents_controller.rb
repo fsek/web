@@ -11,8 +11,9 @@ class DocumentsController < ApplicationController
   end
 
   def show
-      send_file(@document.pdf.path, filename: @document.pdf_file_name, 
-                type: 'application/pdf', disposition: 'inline', x_sendfile: true)
+    send_file(@document.pdf.path, filename: @document.pdf_file_name,
+                                  type: 'application/pdf', 
+                                  disposition: 'inline', x_sendfile: true)
   end
 
   def edit
@@ -42,7 +43,7 @@ class DocumentsController < ApplicationController
   private
 
   def set_documents
-    @documents = (current_user) ? Document.all : Document.public 
+    @documents = (current_user) ? Document.all : Document.public
   end
 
   def document_params

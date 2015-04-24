@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   validate :is_f_member
 
-  after_create :create_profile_for_user
-
   # Associations
   has_and_belongs_to_many :posts
   has_many :candidates
@@ -77,7 +75,7 @@ class User < ActiveRecord::Base
   end
 
   def is? role_name
-    profile.posts.each do |post|
+    posts.each do |post|
       return true if post.title == role_name
     end
     false

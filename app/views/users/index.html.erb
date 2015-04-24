@@ -1,46 +1,34 @@
 <% title('Användare') %>
 <div class ="container">
-	<div class="row">
-		<div class="col-md-12">
-			<table class="table">
-			  <thead>
-			    <tr>
-			      <th>#</th>
-			      <th>Namn</th>
-			      <th>Användarnamn</th>
-			      <th>Email</th>
-			      <th>Program</th>
-			      <th>År</th>
-			       <% if current_user.admin? %>
-			       <th>Roll</th>
-					<% end %>
-			    </tr>
-			  </thead>
-			
-			  <tbody>
-			    <% @users.each do |user| %>
-			      <tr>
-			        <td><%= user.id %></td>
-			        <td><%= user.profile.name %></td>
-			        <td><%= user.username %></td>
-			        <td><%= user.email %></td>
-			        <td><%= user.profile.program %></td>
-			        <td><%= user.profile.start_year %></td>
-			        <% if current_user.admin? %>
-			        <td>
-						<%= form_tag change_role_path, :method => :patch do%>
-							<%= hidden_field_tag :user_id, user.id %>
-							<%= select_tag :role_id, options_for_select(Role.all.collect{ |r| [r.name, r.id] },user.role_id)%>
-							<%= submit_tag %>
-						<%end%>
-			        </td>
-			        <%end%> 
-			      </tr>
-			    <% end %>
-			  </tbody>
-			</table>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Namn</th>
+            <th>Användarnamn</th>
+            <th>Email</th>
+            <th>Program</th>
+            <th>År</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= user %></td>
+              <td><%= user.username %></td>
+              <td><%= user.email %></td>
+              <td><%= user.program %></td>
+              <td><%= user.start_year %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 
