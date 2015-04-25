@@ -51,7 +51,7 @@ namespace :db do
     PermissionPost.find_or_create_by!(permission: perm_nyckelpiga, post: nyckelpiga)
 
     u = User.find_or_initialize_by(username: 'admin', email: 'admin@da.vid',
-                                   name: 'David-Admin', lastname: 'Wessman',
+                                   firstname: 'David-Admin', lastname: 'Wessman',
                                    program: 'Teknisk Fysik', start_year: 2013)
     u.password = 'passpass'
     u.as_f_member.save!
@@ -72,7 +72,7 @@ namespace :db do
     end
 
     a = User.find_or_initialize_by(username: 'user', email: 'david@da.vid',
-                                   name: 'David', lastname: 'Wessman',
+                                   firstname: 'David', lastname: 'Wessman',
                                    program: 'Teknisk Fysik', start_year: 2013)
     a.password = 'passpass'
     a.as_f_member.save!

@@ -20,14 +20,14 @@ FactoryGirl.define do
     end
 
     trait :test_work do
-      name 'Test'
+      firstname 'Test'
       lastname 'Testet'
       email 'test@test.se'
       phone '0705507889'
     end
 
     trait :worker do
-      name
+      firstname
       lastname
       email
       phone
@@ -38,6 +38,4 @@ FactoryGirl.define do
       user
     end
   end
-
-
 end

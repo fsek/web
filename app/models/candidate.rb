@@ -9,7 +9,7 @@ class Candidate < ActiveRecord::Base
   validates :user_id, uniqueness: {
     scope: [:post_id, :election_id], message: I18n.t('candidates.similar_candidate')
   }, on: :create
-  validates :name, :lastname, :stil_id, :email,
+  validates :firstname, :lastname, :stil_id, :email,
     :phone, :post, :user, :election, presence: true
 
   after_create :send_email
@@ -53,7 +53,7 @@ class Candidate < ActiveRecord::Base
 
   def person_attributes
     {
-      name: name, lastname: lastname, email: email,
+      firstname: firstname, lastname: lastname, email: email,
       phone: phone, user: user, user_id: user_id
     }
   end

@@ -2,7 +2,7 @@
 FactoryGirl.define do
 
   factory :rent do
-    name
+    firstname
     lastname
     email
     phone

@@ -9,7 +9,7 @@ class Rent < ActiveRecord::Base
   # Everyone has to accept the disclaimer
   validates :disclaimer, presence: true
   # Presence of mandatory attributes
-  validates :d_from, :d_til, :name, :lastname, :email, :phone, presence: true
+  validates :d_from, :d_til, :firstname, :lastname, :email, :phone, presence: true
   # Purpose not required for members of F-guild
   validates :purpose, presence: true, if: :no_user?
   # Duration is only allowed to be 48h, unless it is for a council

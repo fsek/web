@@ -12,27 +12,27 @@ RSpec.describe Candidate, type: :model do
   describe 'ActiveModel validations' do
     # Basic validations
     it do
-      cand.should validate_uniqueness_of(:profile_id).
+      cand.should validate_uniqueness_of(:user_id).
         scoped_to(:post_id, :election_id).
         with_message(I18n.t('candidates.similar_candidate')).
         on(:create)
     end
   end
 
-  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:firstname) }
   it { should validate_presence_of(:lastname) }
   it { should validate_presence_of(:stil_id) }
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:phone) }
   it { should validate_presence_of(:election) }
-  it { should validate_presence_of(:profile) }
+  it { should validate_presence_of(:user) }
   it { should validate_presence_of(:post).on(:create) }
 
   describe 'ActiveRecord associations' do
     # Associations
     it { should belong_to(:election) }
     it { should belong_to(:post) }
-    it { should belong_to(:profile) }
+    it { should belong_to(:user) }
   end
 
   context 'callbacks' do

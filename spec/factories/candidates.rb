@@ -3,7 +3,7 @@ FactoryGirl.define do
     election
     email
     lastname
-    name
+    firstname
     phone
     c.post
     user

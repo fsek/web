@@ -9,7 +9,7 @@ class CafeWork < ActiveRecord::Base
   validates :work_day, :pass, :lp, :lv, presence: true
   validates :pass, :lp, inclusion: { in: 1..4 }
   validates :lv, inclusion: { in: 1..20 }
-  validates :name, :lastname, :phone, :email, presence: true, if: :has_worker?
+  validates :firstname, :lastname, :phone, :email, presence: true, if: :has_worker?
   validates :pass, uniqueness: { scope: [:work_day, :lv, :lp, :d_year] }
 
   # Scopes
@@ -55,17 +55,13 @@ class CafeWork < ActiveRecord::Base
       return 'Du är uppskriven för att arbeta på passet.'
     when :assigned
       return 'Passet är redan bokat.'
-    when :authorize
-      return 'Passet är bokat, fyll i koden som mailades ut vid anmälan för att redigera.'
     end
   end
 
   # Gives different statuses for the view
   # /d.wessman
   def status_view(user)
-    if access_code.present?
-      return :authorize
-    elsif has_worker?
+    if has_worker?
       return owner?(user) ? :edit : :assigned
     end
     :sign_up
@@ -90,34 +86,32 @@ class CafeWork < ActiveRecord::Base
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
-    self.attributes = worker_params
-    self.attributes = Assignee.setup(worker_attributes, user).attributes
-    save
+    # self.attributes = Assignee.setup(worker_params, user).attributes
+    # save
+    update(Assignee.setup(worker_params,user).attributes)
   end
 
   # User to update worker, checks for edit-access
   # /d.wessman
   def update_worker(worker_params, user)
-    if !owner?(user) && !authorize(worker_params[:access_code])
+    if !owner?(user)
       errors.add('Auktorisering',
-                 'misslyckades, du har inte rättighet att redigera eller skrev fel kod.')
+                 'misslyckades, du har inte rättighet att redigera.')
       return false
     end
 
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
-    self.attributes = worker_params
-    self.attributes = Assignee.setup(worker_attributes, user).attributes
-    save
+    update(Assignee.setup(worker_params, user).attributes)
   end
 
   # Remove-function used by the worker
   # /d.wessman
-  def remove_worker(user, access)
-    if !owner?(user) && !authorize(access)
+  def remove_worker(user)
+    if !owner?(user)
       errors.add('Auktorisering',
-                 'misslyckades, du har inte rättighet att ta bort eller skrev fel kod.')
+                 'misslyckades, du har inte rättighet att ta bort.')
       return false
     end
 
@@ -220,7 +214,7 @@ class CafeWork < ActiveRecord::Base
 
   def worker_attributes
     {
-      name: name, lastname: lastname, email: email,
+      firstname: firstname, lastname: lastname, email: email,
       phone: phone, user: user, user_id: user_id
     }
   end

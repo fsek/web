@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe Admin::CafeWorksController, type: :controller do
   let(:user) { create(:user) }
   let(:not_owner) { create(:user) }
-  let(:cwork_profile) { create(:cafe_work, :w_profile, profile: user.profile) }
-  let(:cwork_access) { create(:cafe_work, :access) }
+  let(:cwork_worker) { create(:cafe_work, :w_user, user: user) }
   let(:cwork) { create(:cafe_work) }
 
   before(:each) do
@@ -113,11 +112,11 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   end
 
   describe 'PATCH #remove_worker' do
-    it 'remove worker with profile' do
-      xhr :patch, :remove_worker, {id: cwork_profile.to_param}
-      cwork_profile.reload
+    it 'remove worker' do
+      xhr :patch, :remove_worker, {id: cwork_worker.to_param}
+      cwork_worker.reload
 
-      cwork_profile.has_worker?.should be_falsey
+      cwork_worker.has_worker?.should be_falsey
     end
   end
 

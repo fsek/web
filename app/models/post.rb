@@ -2,7 +2,8 @@
 class Post < ActiveRecord::Base
   # Associations
   belongs_to :council
-  has_and_belongs_to_many :users
+  has_many :post_users
+  has_many :users, through: :post_users
   has_and_belongs_to_many :elections
   has_many :nominations
   has_many :candidates

@@ -2,26 +2,28 @@
 FactoryGirl.define do
   factory :user do
     username
-    email
     password '12345678'
-    before(:create) { |user| user.as_f_member }
-
-    # Overrides the :create_profile_for_user method
-    after(:build) { |user| user.class.skip_callback(:create, :after, :create_profile_for_user) }
-
-    # Needed because users cannot be created without f_validate being okay.
-    to_create { |instance| instance.save!(validate: false) }
+    firstname
+    lastname
+    email
+    phone
+    stil_id
   end
 
-  factory :admin, class: 'User' do
+  factory :admin, class: 'User' do |user|
     username
     password '12345678'
+    firstname
+    lastname
     email
-    before(:create) { |user| user.as_f_member }
+    phone
+    stil_id
     with_admin_post
   end
 
   trait :with_admin_post do
-    posts {[create(:post, :with_admin_permissions)]}
+    after(:create) do |user|
+      create(:post_user, post: create(:post, :with_admin_permissions), user: user)
+    end
   end
 end

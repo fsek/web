@@ -4,6 +4,7 @@ FactoryGirl.define do
   sequence(:email) { |n| "d.wessman#{n}@fsektionen.se" }
   sequence(:lastname) { |n| "Wessman#{n}" }
   sequence(:name) { |n| "David#{n}" }
+  sequence(:firstname) { |n| "David#{n}" }
   sequence(:phone) { |n| "070#{n}606122" }
   sequence(:stil_id) { |n| "tfy54dw#{n}" }
   sequence(:title) { |n| "Titel#{n}" }

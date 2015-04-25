@@ -2,28 +2,29 @@
 require 'net/http'
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable
 
   validates :username, uniqueness: true
-  validate :is_f_member
-
+  # validate :is_f_member
+  # Should not validate for this, should change it to allow all to sign up
   # Associations
-  has_and_belongs_to_many :posts
+  has_many :post_users
+  has_many :posts, through: :post_users
   has_many :candidates
   has_many :rents
   has_many :councils, through: :posts
 
   # Attachment
   has_attached_file :avatar,
-                    styles: {medium: '300x300>', thumb: '100x100>'},
-                    path: ':rails_root/storage/user/:id/:style/:filename'
+    styles: {medium: '300x300>', thumb: '100x100>'},
+    path: ':rails_root/storage/user/:id/:style/:filename'
 
 
   # Validations
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   # Only on update!
-  validates :name, :lastname, presence: true, on: :update
-  validates_inclusion_of :start_year, in: 1954..(Time.zone.today.year+1), on: :update
+  validates :firstname, :lastname, presence: true, on: :update
+  #validates_inclusion_of :start_year, in: 1954..(Time.zone.today.year+1), on: :update
 
   # Returns all councils the user belongs to with a Post who is
   # allowed to rent the car
@@ -47,14 +48,14 @@ class User < ActiveRecord::Base
   # Check if user has user data (name and lastname)
   # /d.wessman
   def has_name_data?
-    name.present? && lastname.present?
+    firstname.present? && lastname.present?
   end
 
   def print
     if has_name_data?
-      %(#{name} #{lastname})
-    elsif name.present?
-      name
+      %(#{firstname} #{lastname})
+    elsif firstname.present?
+      firstname
     else
       username
     end
@@ -89,5 +90,10 @@ class User < ActiveRecord::Base
   def as_f_member
     @f_member = true
     self
+  end
+
+  def assignee
+    Assignee.new(firstname: firstname, lastname: lastname,
+                 email: email, phone: phone, user: self)
   end
 end

@@ -11,9 +11,8 @@ class Assignee
   include ActiveModel::Model
 
   # Attributes that can be set and be read.
-  attr_accessor :name, :lastname, :phone, :email, :user_id, :access_code, :user
+  attr_accessor :firstname, :lastname, :phone, :email, :user_id, :user
 
-  # User present > Set to User
   def self.setup(assignee_params, user)
     new(assignee_params).prepare(user)
   end
@@ -29,12 +28,12 @@ class Assignee
 
   # Printing methods
   def p_name
-    %(#{name} #{lastname})
+    %(#{firstname} #{lastname})
   end
 
   # Can be used in mailer, will generate proper tag.
   def p_email
-    %("#{name} #{lastname}" <#{email}>)
+    %("#{firstname} #{lastname}" <#{email}>)
   end
 
   # A way to clear all the attributes of the Assignee
@@ -42,15 +41,15 @@ class Assignee
   # Model.attributes = assignee.clear_attributes
   # Which saves a lot of rows and declarations.
   def clear_attributes
-    self.name, self.lastname, self.phone = nil, nil, nil
+    self.firstname, self.lastname, self.phone = nil, nil, nil
     self.email, self.user_id = nil, nil
     attributes
   end
 
-  def load_user(user)
-    if user.present?
-      self.name, self.lastname = user.name, user.lastname
-      self.email,self.phone = user.email, user.phone
+  def load_user(p_user)
+    if p_user.present?
+      self.firstname, self.lastname = p_user.firstname, p_user.lastname
+      self.email,self.phone = p_user.email, p_user.phone
     end
     attributes
   end
@@ -58,7 +57,7 @@ class Assignee
   # Returns a hash of the current attributes
   def attributes
     {
-      name: name, lastname: lastname, email: email,
+      firstname: firstname, lastname: lastname, email: email,
       phone: phone, user_id: user_id
     }
   end
@@ -70,7 +69,7 @@ class Assignee
   end
 
   def equals?(assignee)
-    name == assignee.name &&
+    firstname == assignee.firstname &&
       lastname == assignee.lastname &&
       email == assignee.email &&
       phone == assignee.phone
@@ -83,11 +82,11 @@ class Assignee
     self
   end
 
-  protected
+  private
 
   def set_user(new)
     if !user.present? && new.present?
-      self.user_id = (@user = user).id
+      self.user_id = (@user = new).id
     end
   end
 end
