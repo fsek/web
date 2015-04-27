@@ -10,7 +10,7 @@ class Candidate < ActiveRecord::Base
     scope: [:post_id, :election_id], message: I18n.t('candidates.similar_candidate')
   }, on: :create
   validates :name, :lastname, :stil_id, :email,
-    :phone, :post, :profile, :election, presence: true
+            :phone, :post, :profile, :election, presence: true
 
   validate :check_edit
   after_create :send_email
@@ -35,7 +35,7 @@ class Candidate < ActiveRecord::Base
     v = election.try(:view_status)
     if v == :during
       return true
-    elsif ['Studierådet','Styrelsen'].include?(post.elected_by) && v == :after
+    elsif ['Studierådet', 'Styrelsen'].include?(post.elected_by) && v == :after
       return true
     else
       return false
