@@ -313,6 +313,16 @@ ActiveRecord::Schema.define(version: 20150425064439) do
     t.datetime "updated_at"
   end
 
+  create_table "post_users", force: :cascade do |t|
+    t.integer  "post_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_users", ["post_id"], name: "index_post_users_on_post_id", using: :btree
+  add_index "post_users", ["user_id"], name: "index_post_users_on_user_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.string   "title",         limit: 255
     t.integer  "limit",         limit: 4,     default: 0
@@ -330,11 +340,6 @@ ActiveRecord::Schema.define(version: 20150425064439) do
   end
 
   create_table "posts_profiles", id: false, force: :cascade do |t|
-    t.integer "post_id",    limit: 4
-    t.integer "profile_id", limit: 4
-  end
-
-  create_table "posts_users", id: false, force: :cascade do |t|
     t.integer "post_id",    limit: 4
     t.integer "profile_id", limit: 4
   end
@@ -372,7 +377,7 @@ ActiveRecord::Schema.define(version: 20150425064439) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment",     limit: 65535
-    t.string   "status",      limit: 255,   default: "Ej bestämd"
+    t.string   "status",      limit: 255,   default: "Ej bestÃƒÂ¤md"
     t.boolean  "service",     limit: 1,     default: false
     t.string   "access_code", limit: 255
     t.integer  "user_id",     limit: 4
@@ -416,15 +421,16 @@ ActiveRecord::Schema.define(version: 20150425064439) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "firstname",              limit: 255
-    t.integer  "start_year",             limit: 4
+    t.string   "lastname",               limit: 255
+    t.string   "phone",                  limit: 255
+    t.string   "stil_id",                limit: 255
+    t.integer  "first_post_id",          limit: 4
     t.string   "avatar_file_name",       limit: 255
     t.string   "avatar_content_type",    limit: 255
     t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
-    t.integer  "first_post",             limit: 4
-    t.string   "stil_id",                limit: 255
-    t.string   "phone",                  limit: 255
-    t.string   "lastname",               limit: 255
+    t.integer  "start_year",             limit: 4
+    t.string   "program",                limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
