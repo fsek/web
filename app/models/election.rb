@@ -28,8 +28,10 @@ class Election < ActiveRecord::Base
       return :before
     elsif start <= Time.zone.now && self.end > Time.zone.now
       return :during
-    else
+    elsif closing > Time.zone.now
       return :after
+    else
+      return :closed
     end
   end
 
@@ -41,7 +43,7 @@ class Election < ActiveRecord::Base
       text_before
     when :during
       text_during
-    when :after
+    when :after, :closed
       text_after
     end
   end
@@ -72,6 +74,8 @@ class Election < ActiveRecord::Base
       start
     when :during
       self.end
+    when :after
+      closing || nil
     end
   end
 

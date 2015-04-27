@@ -4,6 +4,7 @@ FactoryGirl.define do
     url
     start { Time.zone.now - 2.days }
     election.end { Time.zone.now + 5.days }
+    closing { Time.zone.now + 7.days }
     visible true
     description
     candidate_mail_star { generate(:email) }

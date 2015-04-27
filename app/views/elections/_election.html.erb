@@ -20,7 +20,7 @@
       <li><%= t('elections.x_posts') %></li>
       <li><%= t('elections.star_posts') %></li>
       <li><%= t('elections.orange_posts') %></li>
-      <% if election.view_status == :after %>
+      <% if [:after, :closed].include?(election.view_status)%>
           <li><%= t('elections.green_posts') %></li>
       <% end %>
          </ul>
