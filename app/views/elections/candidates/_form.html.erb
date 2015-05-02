@@ -2,10 +2,10 @@
   <%= render 'shared/form_errors',current: @candidate %>
   Uppgifter ifylls i <%= link_to('användarprofilen', edit_user_path(current_user)) %>.<br>
   <div class="margin-bottom-20">
-    <%= f.label :name, class:  'reg-label' %> & <%= f.label :lastname, class:  'reg-label' %>
+    <%= f.label :firstname, class:  'reg-label' %> & <%= f.label :lastname, class:  'reg-label' %>
     <div class="row">
       <div class="col-md-6">
-        <%= f.text_field :name, class:  'form-control', placeholder: 'Förnamn' %>
+        <%= f.text_field :firstname, class:  'form-control', placeholder: 'Förnamn' %>
       </div>
       <div class="col-md-6">
         <%= f.text_field :lastname, class:  'form-control', placeholder: 'Efternamn' %>

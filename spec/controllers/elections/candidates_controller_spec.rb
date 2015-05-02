@@ -76,12 +76,14 @@ RSpec.describe Elections::CandidatesController, type: :controller do
     end
 
     describe 'POST #create' do
+      allow_user_to :manage, Candidate
       before { search_post }
       it 'creates a new candidate' do
         lambda do
           post :create, candidate: attributes_for(:candidate, post_id: search_post.id)
         end.should change(Candidate, :count).by(1)
       end
+
       it 'creates candidate and redirects to candidate' do
         post :create, candidate: attributes_for(:candidate, post_id: search_post.id)
         response.should redirect_to(Candidate.last)

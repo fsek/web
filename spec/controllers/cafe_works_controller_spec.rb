@@ -71,7 +71,6 @@ RSpec.describe CafeWorksController, type: :controller do
         it 'assigns the cafe_work as @cafe_work' do
           patch(:update_worker, id: cwork.to_param, cafe_work: attributes_for(:assignee, :invalid))
           assigns(:cafe_work).should eq(cwork)
-          response.should render_template('show')
         end
       end
     end
@@ -147,11 +146,7 @@ RSpec.describe CafeWorksController, type: :controller do
       end
     end
     context 'allowed' do
-      before do
-        ability = Ability.new(user)
-        ability.can :nyckelpiga, cwork
-        allow(controller).to receive(:current_ability).and_return(ability)
-      end
+      allow_user_to :nyckelpiga, CafeWork
       it 'works' do
         get(:nyckelpiga)
         response.should be_success

@@ -43,7 +43,7 @@ class CafeWorksController < ApplicationController
   private
 
   def worker_params
-    params.require(:cafe_work).permit(:user_id, :name, :lastname, :phone, :email,
+    params.require(:cafe_work).permit(:user_id, :firstname, :lastname, :phone, :email,
                                       :utskottskamp, council_ids: [])
   end
 

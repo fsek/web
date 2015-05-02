@@ -88,7 +88,8 @@ class CafeWork < ActiveRecord::Base
     # /d.wessman
     # self.attributes = Assignee.setup(worker_params, user).attributes
     # save
-    update(Assignee.setup(worker_params,user).attributes)
+    self.user = user
+    update(worker_params)
   end
 
   # User to update worker, checks for edit-access
@@ -103,7 +104,7 @@ class CafeWork < ActiveRecord::Base
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
-    update(Assignee.setup(worker_params, user).attributes)
+    update(worker_params)
   end
 
   # Remove-function used by the worker
