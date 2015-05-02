@@ -40,8 +40,25 @@ RSpec.describe Election, type: :model do
 
     describe 'check that methods are correct' do
       context 'view_status' do
-        e = create(:election, :before)
-        e.view_status.should equal(:before)
+        it :before do
+          e = create(:election, :before)
+          e.view_status.should equal(:before)
+        end
+
+        it :during do
+          e = create(:election, :during)
+          e.view_status.should equal(:during)
+        end
+
+        it :after do
+          e = create(:election, :after)
+          e.view_status.should equal(:after)
+        end
+
+        it :closed do
+          e = create(:election, :closed)
+          e.view_status.should equal(:closed)
+        end
       end
     end
   end

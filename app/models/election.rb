@@ -5,6 +5,7 @@ class Election < ActiveRecord::Base
   has_and_belongs_to_many :posts
 
   validates :url, presence: true, uniqueness: true
+  validates :start, :end, presence: true
 
   def self.current
     self.order(start: :asc).where(visible: true).first || nil
