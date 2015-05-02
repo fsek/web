@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425180000) do
+ActiveRecord::Schema.define(version: 20150425150000) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150425180000) do
   create_table "albums", force: :cascade do |t|
     t.string   "title",             limit: 255
     t.text     "description",       limit: 65535
+    t.string   "author",            limit: 255
     t.string   "location",          limit: 255
     t.boolean  "public",            limit: 1
     t.datetime "start_date"
@@ -37,7 +38,6 @@ ActiveRecord::Schema.define(version: 20150425180000) do
     t.datetime "updated_at"
     t.string   "category",          limit: 255
     t.integer  "photo_category_id", limit: 4
-    t.integer  "author_id",         limit: 4
   end
 
   create_table "albums_images", id: false, force: :cascade do |t|
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20150425180000) do
     t.integer  "pass",         limit: 4
     t.integer  "lp",           limit: 4
     t.integer  "lv",           limit: 4
+    t.integer  "profile_id",   limit: 4
+    t.string   "name",         limit: 255
     t.string   "lastname",     limit: 255
     t.string   "phone",        limit: 255
     t.string   "email",        limit: 255
@@ -71,11 +73,11 @@ ActiveRecord::Schema.define(version: 20150425180000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",      limit: 4
-    t.string   "firstname",    limit: 255
   end
 
   create_table "candidates", force: :cascade do |t|
     t.integer  "post_id",     limit: 4
+    t.integer  "profile_id",  limit: 4
     t.integer  "election_id", limit: 4
     t.text     "motivation",  limit: 65535
     t.datetime "created_at"
@@ -83,13 +85,13 @@ ActiveRecord::Schema.define(version: 20150425180000) do
     t.string   "stil_id",     limit: 255
     t.string   "email",       limit: 255
     t.string   "phone",       limit: 255
+    t.string   "name",        limit: 255
     t.string   "lastname",    limit: 255
     t.integer  "user_id",     limit: 4
-    t.string   "firstname",   limit: 255
   end
 
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id", using: :btree
-  add_index "candidates", ["user_id"], name: "index_candidates_on_user_id", using: :btree
+  add_index "candidates", ["profile_id"], name: "index_candidates_on_profile_id", using: :btree
 
   create_table "constants", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -133,6 +135,7 @@ ActiveRecord::Schema.define(version: 20150425180000) do
     t.boolean  "public",           limit: 1
     t.boolean  "download",         limit: 1
     t.string   "category",         limit: 255
+    t.integer  "profile_id",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",          limit: 4
@@ -226,6 +229,7 @@ ActiveRecord::Schema.define(version: 20150425180000) do
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "profile_id",         limit: 4
     t.integer  "user_id",            limit: 4
   end
 
@@ -377,7 +381,6 @@ ActiveRecord::Schema.define(version: 20150425180000) do
     t.boolean  "service",     limit: 1,     default: false
     t.string   "access_code", limit: 255
     t.integer  "user_id",     limit: 4
-    t.string   "firstname",   limit: 255
   end
 
   create_table "roles", force: :cascade do |t|
@@ -421,12 +424,12 @@ ActiveRecord::Schema.define(version: 20150425180000) do
     t.string   "lastname",               limit: 255
     t.string   "phone",                  limit: 255
     t.string   "stil_id",                limit: 255
-    t.string   "first_post_id",          limit: 255
+    t.integer  "first_post_id",          limit: 4
     t.string   "avatar_file_name",       limit: 255
     t.string   "avatar_content_type",    limit: 255
     t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
-    t.string   "start_year",             limit: 255
+    t.integer  "start_year",             limit: 4
     t.string   "program",                limit: 255
   end
 
