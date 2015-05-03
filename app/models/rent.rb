@@ -7,15 +7,17 @@ class Rent < ActiveRecord::Base
 
   # Validations
   # Everyone has to accept the disclaimer
-  validates :disclaimer, presence: true
-  # Presence of mandatory attributes
-  validates :d_from, :d_til, :firstname, :lastname, :email, :phone, presence: true
+  validates :d_from, :d_til, :user, :disclaimer, presence: true
+
   # Purpose not required for members of F-guild
-  validates :purpose, presence: true, if: :no_user?
+  validates :purpose, presence: true, if: :not_member?
+
   # Duration is only allowed to be 48h, unless it is for a council
   validate :duration?
+
   # Dates need to be in the future
   validate :date_future, on: :create
+
   # Validate that there is no overlap
   # Council booking, overlapping is present => call overbook on the overlapped
   # Normal booking, overlapping is present => will add error
@@ -30,7 +32,6 @@ class Rent < ActiveRecord::Base
   # To scope up the ones not marked as inactive
   # /d.wessman
   scope :active, -> { where(aktiv: true).where.not(status: 'Nekad') }
-
 
   # To scope all rents between two dates
   # /d.wessman
@@ -94,10 +95,10 @@ class Rent < ActiveRecord::Base
   # Update only if authorized
   # /d.wessman
   def update_with_authorization(params, user)
-    if owner?(user) || (authorize(params[:access_code]))
+    if owner?(user)
       return update(params)
     else
-      errors.add('Auktorisering', 'misslyckades, du har inte rättighet eller ev. fel kod.')
+      errors.add('Auktorisering', 'misslyckades, du har inte rättighet.')
       return false
     end
   end
@@ -138,30 +139,10 @@ class Rent < ActiveRecord::Base
     user.present? && self.user == user
   end
 
-  # Returns true if provided access equals access_code
-  # /d.wessman
-  def authorize(access)
-    if ((access.present?) && (access_code.present?) && (access_code == access))
-      return true
-    else
-      return false
-    end
-  end
-
-  # Loads user info into new Rent, not saving
-  # /d.wessman
-  def prepare(user)
-    self.user = user
-    self.name = user.name
-    self.lastname = user.lastname
-    self.phone = user.phone
-    self.email = user.email
-  end
-
   # Returns false if user is present, used in validations
   # /d.wessman
-  def no_user?
-    user.nil?
+  def not_member?
+    user.nil? || !user.member?
   end
 
   # Returns true if the rent has no council associated
@@ -194,22 +175,12 @@ class Rent < ActiveRecord::Base
   # /d.wessman
   def self.new_with_status(rent_params, user)
     r = Rent.new(rent_params)
-    if user.present?
-      r.user = user
-      r.status = "Bekräftad"
-    else
-      r.access_code = (0...15).map { (65 + rand(26)).chr }.join.to_s
-    end
-    return r
+    r.user = user
+    r.status = user.member? ? 'Bekräftad' : 'Ej bestämd'
+    r
   end
 
   # Methods for printing
-
-  # Print name
-  # /d.wessman
-  def p_name
-    %(#{name} #{lastname})
-  end
 
   # Prints the date of the rent in a readable way, should be localized
   # /d.wessman
@@ -231,16 +202,6 @@ class Rent < ActiveRecord::Base
     Rails.application.routes.url_helpers.rent_path(id)
   end
 
-  # Prints email together with name, can be used as 'to' in an email
-  # /d.wessman
-  def p_email
-    if p_name.present?
-      %("#{p_name}" <#{email}>)
-    else
-      email
-    end
-  end
-
   # Custom json method used for FullCalendar
   # /d.wessman
   def as_json(*)
@@ -257,12 +218,12 @@ class Rent < ActiveRecord::Base
     else
       {
           id: id,
-          title: p_name,
+          title: user,
           start: d_from.iso8601,
           end: d_til.iso8601,
           url: p_path,
           status: status,
-          backgroundColor: backgroundColor(status, aktiv),
+          backgroundColor: bg_color,
           textColor: 'black'
       }
     end
@@ -271,7 +232,7 @@ class Rent < ActiveRecord::Base
   private
   # Too decide the backgroundColor of an event
   # /d.wessman
-  def backgroundColor(status, aktiv)
+  def bg_color
     if aktiv
       if status == 'Bekräftad'
         return 'green'

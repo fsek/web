@@ -63,7 +63,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       it 'prepares new candidate with user' do
         get :new
 
-        assigns(:candidate).firstname.should eq(user.firstname)
+        assigns(:candidate).user.should eq(user)
       end
     end
 
@@ -87,42 +87,6 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       it 'creates candidate and redirects to candidate' do
         post :create, candidate: attributes_for(:candidate, post_id: search_post.id)
         response.should redirect_to(Candidate.last)
-      end
-    end
-
-    describe 'PATCH #update' do
-      before { candidate }
-      let(:change_attributes) { { firstname: 'David', lastname: 'Ny', stil_id: 'Nytt' } }
-      context 'with valid params' do
-        it 'updates the requested candidate' do
-          patch :update, id: candidate.to_param, candidate: change_attributes
-
-          candidate.reload
-          (candidate.firstname == change_attributes[:firstname] &&
-           candidate.lastname == change_attributes[:lastname]).should be_truthy
-        end
-
-        it 'assigns the requested candidate as @candidate' do
-          patch :update, id: candidate.to_param, candidate: change_attributes
-          assigns(:candidate).should eq(candidate)
-        end
-
-        it 'redirects to the candidate' do
-          patch :update, id: candidate.to_param, candidate: change_attributes
-          response.should redirect_to(candidate)
-        end
-      end
-
-      context 'with invalid params' do
-        it 'assigns the candidate as @candidate' do
-          patch :update, id: candidate.to_param, candidate: { user_id: nil }
-          assigns(:candidate).should eq(candidate)
-        end
-
-        it 're-renders the show-template' do
-          patch :update, id: candidate.to_param, candidate: { user_id: nil }
-          response.should render_template(:show)
-        end
       end
     end
 

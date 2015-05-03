@@ -2,7 +2,6 @@
 class Elections::CandidatesController < ApplicationController
   before_action :set_election
   load_permissions_and_authorize_resource
-  respond_to :html
 
   def index
     @candidates = current_user.candidates.where(election: @election)
@@ -11,7 +10,7 @@ class Elections::CandidatesController < ApplicationController
 
   def new
     @candidate = @election.candidates.new
-    @candidate.prepare(current_user)
+    @candidate.user = current_user
     if params[:post].present?
       @candidate.post = Post.find_by_id(params[:post])
     end
@@ -53,8 +52,6 @@ class Elections::CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:user_id, :post_id, :stil_id,
-                                      :email, :phone, :firstname, :lastname)
+    params.require(:candidate).permit(:post_id)
   end
-
 end

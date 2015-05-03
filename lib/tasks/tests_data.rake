@@ -58,19 +58,10 @@ namespace :db do
     u.member_at = Time.zone.now
     u.as_f_member.save!
     if u.present?
-      if !u.posts.include?(spindel)
-        u.posts << spindel
-      end
-      if !u.posts.include?(prylmast)
-        u.posts << prylmast
-      end
-      if !u.posts.include?(cafemast)
-        u.posts << cafemast
-      end
-      if !u.posts.include?(sexmast)
-        u.posts << sexmast
-      end
-      u.save!
+      PostUser.find_or_create_by(post: spindel, user: u)
+      PostUser.find_or_create_by(post: prylmast, user: u)
+      PostUser.find_or_create_by(post: cafemast, user: u)
+      PostUser.find_or_create_by(post: sexmast, user: u)
     end
 
     a = User.find_or_initialize_by(username: 'user', email: 'david@da.vid',
@@ -81,11 +72,9 @@ namespace :db do
     a.password = 'passpass'
     a.as_f_member.save!
     if a.present?
-      if !a.posts.include?(server)
-        a.posts << server
-      end
-      a.save!
+      PostUser.find_or_create_by(post: prylmast, user: a)
     end
+
     # Menues
     Menu.find_or_create_by!(location: 'Sektionen', name: 'Om oss',
                             link: '/om', index: 10, visible: true, turbolinks: true)

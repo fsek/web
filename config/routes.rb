@@ -18,13 +18,12 @@ Fsek::Application.routes.draw do
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
   devise_scope :user do
-    #registration
     get 'avbryt_reg' => 'registrations#cancel', as: :cancel_user_registration
     post 'anvandare/skapa' => 'registrations#create', as: :user_registration
     get 'anvandare/registrera' => 'registrations#new', as: :new_user_registration
-    patch 'anvandare/redigera/:id' => 'users#update_password', as: :update_user_registration
-    get 'anvandare/redigera' => 'registrations#edit', as: :edit_user_registration
-    delete 'anvandare/ta_bort/:id' => 'users#destroy', :as => :admin_destroy_user
+    #patch 'anvandare/redigera/:id' => 'users#update_password', as: :update_user_registration
+    #get 'anvandare/redigera' => 'registrations#edit', as: :edit_user_registration
+    #delete 'anvandare/ta_bort/:id' => 'users#destroy', :as => :admin_destroy_user
 
     #sessions
     get 'logga_in' => 'devise/sessions#new', as: :new_user_session
@@ -32,11 +31,17 @@ Fsek::Application.routes.draw do
     delete 'logga_ut' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  get 'anvandare' => 'users#index', as: :users
-  get 'anvandarkonto' => 'users#user'
   # Scope to change urls to swedish
   scope path_names: {new: 'ny', edit: 'redigera'} do
-    resources :users, path: :anvandare
+    namespace :admin do
+      resources :users, path: :anvandare, only: [:index]
+    end
+
+    resources :users, path: :anvandare, only: [:show]
+
+    resource :user, path: :anvandare, only: [:edit, :update] do
+      get '', action: :show, as: :own_user
+    end
     resources :constants
 
     scope :hilbertcafe do
@@ -138,11 +143,11 @@ Fsek::Application.routes.draw do
     resources :elections, path: :val, only: :index do
       collection do
         resources :nominations, controller: 'elections/nominations',
-                                path: :nominera, only: [:create] do
+          path: :nominera, only: [:create] do
           get '', action: :new, on: :collection, as: :new
         end
         resources :candidates, controller: 'elections/candidates',
-                               path: :kandidera, except: :edit
+          path: :kandidera, except: :edit
       end
     end
 

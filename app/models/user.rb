@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     councils.merge(Post.renters)
   end
 
+  def member?
+    member_at.present? && Time.zone.now > member_at
+  end
+
   # Check if user has post, and in that case what first_post is set to
   # /d.wessman
   def check_posts

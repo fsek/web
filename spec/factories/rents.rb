@@ -2,10 +2,7 @@
 FactoryGirl.define do
 
   factory :rent do
-    firstname
-    lastname
-    email
-    phone
+    user
     disclaimer true
     purpose 'Handla möbler på IKEA'
     d_from { Time.zone.now + 10.day }

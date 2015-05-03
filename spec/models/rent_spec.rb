@@ -2,8 +2,9 @@
 require 'rails_helper'
 
 RSpec.describe Rent, type: :model do
-  subject(:rent) { build(:rent) }
+  subject(:rent) { build(:rent, user: create(:user, member_at: nil)) }
   let(:saved) { create(:rent, :good) }
+
   describe 'has valid factory' do
     it { should be_valid }
   end
@@ -20,13 +21,11 @@ RSpec.describe Rent, type: :model do
     describe :RequiredAttributes do
       it { should validate_presence_of(:d_from) }
       it { should validate_presence_of(:d_til) }
-      it { should validate_presence_of(:firstname) }
-      it { should validate_presence_of(:lastname) }
-      it { should validate_presence_of(:phone) }
-      it { should validate_presence_of(:email) }
+      it { should validate_presence_of(:user) }
     end
 
     describe :Purpose do
+      #TODO Must be fixed with new member thingy.
       context 'validate purpose when not a member' do
         it { should validate_presence_of(:purpose) }
       end

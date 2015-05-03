@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    if params[:id].nil?
+      @user = current_user
+    end
   end
 
   def edit

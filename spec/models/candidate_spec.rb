@@ -19,14 +19,9 @@ RSpec.describe Candidate, type: :model do
     end
   end
 
-  it { should validate_presence_of(:firstname) }
-  it { should validate_presence_of(:lastname) }
-  it { should validate_presence_of(:stil_id) }
-  it { should validate_presence_of(:email) }
-  it { should validate_presence_of(:phone) }
   it { should validate_presence_of(:election) }
   it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:post).on(:create) }
+  it { should validate_presence_of(:post) }
 
   describe 'ActiveRecord associations' do
     # Associations
@@ -39,7 +34,6 @@ RSpec.describe Candidate, type: :model do
     describe 'public instance methods' do
       context 'responds to its methods' do
         it { saved.should respond_to(:send_email) }
-        it { saved.should respond_to(:prepare) }
         it { saved.should respond_to(:editable?) }
         it { saved.should respond_to(:p_url) }
         it { saved.should respond_to(:owner?) }

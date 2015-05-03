@@ -9,21 +9,14 @@ class Candidate < ActiveRecord::Base
   validates :user_id, uniqueness: {
     scope: [:post_id, :election_id], message: I18n.t('candidates.similar_candidate')
   }, on: :create
-  validates :firstname, :lastname, :stil_id, :email,
-    :phone, :post, :user, :election, presence: true
+  validates :post, :user, :election, presence: true
+  validate :user_attributes
 
   after_create :send_email
   after_update :send_email
 
   def send_email
     ElectionMailer.candidate_email(self).deliver_now
-  end
-
-  # A custom class for the person candidating
-  # For more information see Assignee model or
-  # read comments above methods
-  def person
-    @person || Assignee.new(person_attributes)
   end
 
   def prepare(user)
@@ -51,10 +44,14 @@ class Candidate < ActiveRecord::Base
 
   protected
 
-  def person_attributes
-    {
-      firstname: firstname, lastname: lastname, email: email,
-      phone: phone, user: user, user_id: user_id
-    }
+  def user_attributes
+    if user.present? && user.firstname.present? &&
+      user.lastname.present? && user.email.present? &&
+      user.phone.present? && user.stil_id.present?
+      return true
+    end
+
+    errors.add(:user,'Du måste fylla i dina användaruppgifter')
+    false
   end
 end

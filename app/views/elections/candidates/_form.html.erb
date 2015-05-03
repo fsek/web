@@ -1,46 +1,43 @@
 <%= form_for(@candidate) do |f| %>
   <%= render 'shared/form_errors',current: @candidate %>
-  Uppgifter ifylls i <%= link_to('användarprofilen', edit_user_path(current_user)) %>.<br>
-  <div class="margin-bottom-20">
-    <%= f.label :firstname, class:  'reg-label' %> & <%= f.label :lastname, class:  'reg-label' %>
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.text_field :firstname, class:  'form-control', placeholder: 'Förnamn' %>
-      </div>
-      <div class="col-md-6">
-        <%= f.text_field :lastname, class:  'form-control', placeholder: 'Efternamn' %>
-      </div>
-    </div>
+  <div class="margin-bottom-20 center">
+    <h4>Post</h4>
+    <% if @candidate.new_record?%>
+      <%= f.select :post_id,
+        options_from_collection_for_select(@election.current_posts, :id, :title, @candidate.post_id),
+        include_blank: true,
+        class:  "form-control listBox" %>
+    <%else%>
+      <h4><%= @candidate.post.title%></h4>
+      <p>Det går inte att byta post, har du valt fel får du ta bort kandidaturen och skapa en ny.</p>
+    <%end%>
   </div>
-  <%= f.label :email, class:  'reg-label' %> & <%= f.label :phone, class:  'reg-label' %>
-  <div class="margin-bottom-20">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.email_field :email, class:  'form-control', placeholder: "E-post" %>
-      </div>
-      <div class="col-md-6">
-        <%= f.phone_field :phone, class:  'form-control', placeholder: "Telefon" %>
-      </div>
-    </div>
-    <%= f.label :stil_id, class:  'reg-label' %>
-    <div class="margin-bottom-20">
-      <%= f.text_field :stil_id, class: 'form-control',placeholder: 'Stil-ID' %>
-    </div>
-    <div class="margin-bottom-20 center">
-      <%= f.label 'Post', class:  'reg-label' %><br>
-      <% if @candidate.new_record?%>
-
-        <%= f.select :post_id,
-          options_from_collection_for_select(@election.current_posts, :id, :title, @candidate.post_id),
-          include_blank: true,
-          class:  "form-control listBox" %>
-      <%else%>
-        <h4><%= @candidate.post.title%></h4>
-        <p>Det går inte att byta post, har du valt fel får du ta bort denna kandidaturen och skapa en ny.</p>
-      <%end%>
-    </div>
-    <div class="row center">
+  <div class="row center margin-bottom-20">
+    <% if @candidate.new_record? %>
       <%= f.submit class:  'btn btn-u' %>
-    </div>
+    <% end %>
   </div>
 <% end %>
+<p>Se till att dina uppgifter är uppdaterade, annars kan din nominering inte antas.</p>
+<p>Dina uppgifter uppdaterar du <%=link_to('här', edit_user_path(current_user)) %>.</p>
+<% user = @candidate.new_record? ? current_user : @candidate.user %>
+<table class="table">
+  <tbody>
+    <tr>
+      <td><%= fa_icon('user') %></i></td>
+      <td><%= user %></td>
+    </tr>
+    <tr>
+      <td><%= fa_icon('envelope') %> E-post</td>
+      <td><%= user.email %></td>
+    </tr>
+    <tr>
+      <td><%= fa_icon('phone') %> Telefon</td>
+      <td><%= user.phone %></td>
+    </tr>
+    <tr>
+      <td><%= fa_icon('tag') %> Stil-id</td>
+      <td><%= user.stil_id %></td>
+    </tr>
+  </tbody>
+</table>
