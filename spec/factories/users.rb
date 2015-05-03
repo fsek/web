@@ -8,6 +8,13 @@ FactoryGirl.define do
     email
     phone
     stil_id
+    confirmed_at { Time.zone.now }
+    member_at { Time.zone.now }
+
+    trait :admin do
+      password '12345678'
+      with_admin_post
+    end
   end
 
   factory :admin, class: 'User' do |user|
@@ -18,6 +25,8 @@ FactoryGirl.define do
     email
     phone
     stil_id
+    confirmed_at { Time.zone.now }
+    member_at { Time.zone.now }
     with_admin_post
   end
 

@@ -54,6 +54,8 @@ namespace :db do
                                    firstname: 'David-Admin', lastname: 'Wessman',
                                    program: 'Teknisk Fysik', start_year: 2013)
     u.password = 'passpass'
+    u.confirmed_at = Time.zone.now
+    u.member_at = Time.zone.now
     u.as_f_member.save!
     if u.present?
       if !u.posts.include?(spindel)
@@ -74,6 +76,8 @@ namespace :db do
     a = User.find_or_initialize_by(username: 'user', email: 'david@da.vid',
                                    firstname: 'David', lastname: 'Wessman',
                                    program: 'Teknisk Fysik', start_year: 2013)
+    a.confirmed_at = Time.zone.now
+    a.member_at = Time.zone.now
     a.password = 'passpass'
     a.as_f_member.save!
     if a.present?

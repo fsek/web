@@ -33,9 +33,10 @@ Fsek::Application.routes.draw do
   end
 
   get 'anvandare' => 'users#index', as: :users
-
+  get 'anvandarkonto' => 'users#user'
   # Scope to change urls to swedish
   scope path_names: {new: 'ny', edit: 'redigera'} do
+    resources :users, path: :anvandare
     resources :constants
 
     scope :hilbertcafe do

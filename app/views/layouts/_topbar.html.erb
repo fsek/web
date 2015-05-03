@@ -3,7 +3,7 @@
       <li class="devider"></li>
   <% end %>
   <% if user_signed_in? %>
-      <% if current_user.posts.count > 0 %>
+      <% if current_user.permissions.count > 0 %>
           <%= render 'layouts/admin_dropdown' %>
           <li class="devider"></li>
       <% end %>

@@ -5,13 +5,19 @@ class UsersController < ApplicationController
   def index
   end
 
-  def update_password
-    if @user.update_with_password(user_params)
-      redirect_to :edit_user_registration, notice: 'Användaruppgifter uppdaterades.'
-    else
-      redirect_to :edit_user_registration, notice: 'Lösenord måste fyllas i för att ändra uppgifter.'
-    end
+  def show
   end
+
+  def edit
+  end
+
+  #def update_password
+  # if @user.update_with_password(user_params)
+  #   redirect_to :edit_user_registration, notice: 'Användaruppgifter uppdaterades.'
+  # else
+  #   redirect_to :edit_user_registration, notice: 'Lösenord måste fyllas i för att ändra uppgifter.'
+  # end
+  #nd
 
   def update
     if @user.update(user_params)
@@ -22,17 +28,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    if @user.update_with_password(user_params)
-      @user.posts.clear
-      if @user.destroy
-        redirect_to root_url, notice: 'Användare togs bort.'
-      end
-    else
-      redirect_to :edit_user_registration,
-                  notice: 'Lösenord måste fyllas i för att radera användare.'
-    end
-  end
+  #def destroy
+  #  if @user.update_with_password(user_params)
+  #    @user.posts.clear
+  #    if @user.destroy
+  #      redirect_to root_url, notice: 'Användare togs bort.'
+  #    end
+  #  else
+  #    redirect_to :edit_user_registration,
+  #      notice: 'Lösenord måste fyllas i för att radera användare.'
+  #  end
+  #end
 
   def remove_post
     @post = Post.find_by_id(params[:post_id])
@@ -46,11 +52,11 @@ class UsersController < ApplicationController
   # Action to show avatar picture only for authenticated
   def avatar
     if @user.avatar?
-      if(params[:style] == "original" || params[:style] == "medium" || params[:style] == "thumb")
-        send_file(@user.avatar.path(params[:style]), filename:@user.avatar_file_name, type: "image/jpg",disposition: 'inline',x_sendfile: true)
-      else
-        send_file(@user.avatar.path(:medium), filename:@user.avatar_file_name, type: "image/jpg",disposition: 'inline',x_sendfile: true)
-      end
+      style = [:original, :medium, :thumb].include?(params[:style]) ? params[:style] : :medium
+      send_file(@user.avatar.path(style), filename:@user.avatar_file_name,
+                                          type: 'image/jpg',
+                                          disposition: 'inline',
+                                          x_sendfile: true)
     end
   end
 

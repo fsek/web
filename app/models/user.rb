@@ -2,7 +2,8 @@
 require 'net/http'
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable,
+    :confirmable
 
   validates :username, uniqueness: true
   # validate :is_f_member
@@ -10,6 +11,7 @@ class User < ActiveRecord::Base
   # Associations
   has_many :post_users
   has_many :posts, through: :post_users
+  has_many :permissions, through: :posts
   has_many :candidates
   has_many :rents
   has_many :councils, through: :posts
@@ -49,6 +51,10 @@ class User < ActiveRecord::Base
   # /d.wessman
   def has_name_data?
     firstname.present? && lastname.present?
+  end
+
+  def to_s
+    print
   end
 
   def print
