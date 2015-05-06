@@ -6,6 +6,8 @@ Server versions:
 
 Skriva kod:
 ==========
+
+[![Join the chat at https://gitter.im/fsek/web](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fsek/web?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 1. Skapa en ny branch med `git checkout -b my-branch`
 2. Gör dina ändringar som vanligt och commita dem
 3. Pusha din branch med `git push --set-upstream origin manual-refresh`
