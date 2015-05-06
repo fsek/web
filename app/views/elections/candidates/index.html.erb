@@ -1,5 +1,5 @@
 <% provide(:title, model_name(Election)) %>
-<% if [:during, :after].include?(@election.view_status) %>
+<% if @election.view_status != :before %>
   <div class="col-md-8 col-md-offset-2 coming-soon">
     <h2><%=t('candidates.title')%></h2>
     <p><%=t('candidates.display_post')%></p>

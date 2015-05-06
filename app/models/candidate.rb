@@ -12,7 +12,6 @@ class Candidate < ActiveRecord::Base
   validates :name, :lastname, :stil_id, :email,
             :phone, :post, :profile, :election, presence: true
 
-  validate :check_edit
   after_create :send_email
   after_update :send_email
 
@@ -32,22 +31,7 @@ class Candidate < ActiveRecord::Base
   end
 
   def editable?
-    v = election.try(:view_status)
-    if v == :during
-      return true
-    elsif ['Studierådet', 'Styrelsen'].include?(post.elected_by) && v == :after
-      return true
-    else
-      return false
-    end
-  end
-
-  def check_edit
-    if !editable?
-      errors.add(:election, I18n.t('candidate.time_error'))
-      return false
-    end
-    true
+    election.view_status == :during || post.elected_by == 'Studierådet'
   end
 
   def p_url

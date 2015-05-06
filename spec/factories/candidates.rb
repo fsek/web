@@ -11,7 +11,7 @@ FactoryGirl.define do
 
     # Override after_create callbacks.
     after(:build) do |candidate|
-      candidate.class.skip_callback(:create, :after, :send_email)
+      candidate.class.skip_callback(:create, :after, :send_email, :overbook_all)
     end
 
     # Trait to use while testing send_email after_create callback

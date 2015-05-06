@@ -40,11 +40,7 @@
       <%end%>
     </div>
     <div class="row center">
-      <% if can?(:modify, @candidate) && @candidate.editable? %>
-        <%= f.submit class:  'btn btn-u' %>
-      <%else%>
-        <p>Kan inte redigeras.</p>
-      <% end%>
+      <%= f.submit class:  'btn btn-u' %>
     </div>
   </div>
 <% end %>
