@@ -1,35 +1,29 @@
 <% provide(:title, 'Val') %>
-<% if [:after,:during].include?(@election.view_status) %>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-        <div class="headline headline-md"><h1>Nominering till<br><%=@election.title %></h1></div>
-        <div id="status">
-        </div>
-        <div id="nomination-form">
-          <div class="margin-bottom-20">
-            <h4>Nominera någon som du tror skulle passa bra på en post.</h4>
-            <h4>Ett mejl skickas till den nominerade personen.</h4>
-            <%= simple_format(@election.nomination_status) %>
+<% if @election.view_status != :before %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
+          <div class="headline headline-md"><h1>Nominering till<br><%=@election.title %></h1></div>
+          <div id="status">
           </div>
-          <div class="margin-bottom-20">
-            <%= render 'form', election: @election, nomination: @nomination%>
+          <div id="nomination-form">
+            <div class="margin-bottom-20">
+              <h4>Nominera någon som du tror skulle passa bra på en post.</h4>
+              <h4>Ett mejl skickas till den nominerade personen.</h4>
+              <%= simple_format(@election.nomination_status) %>
+            </div>
+            <div class="margin-bottom-20">
+              <%= render 'form', election: @election, nomination: @nomination%>
+            </div>
           </div>
+          <%= link_to t('actions.back'), elections_path, class: "btn-u btn-u-small" %>
         </div>
-        <%= link_to t('actions.back'), elections_path, class: "btn-u btn-u-small" %>
       </div>
     </div>
-  </div>
 <% else %>
-  <div class="coming-soon">
-    <h2><%= label_tag models_name(Nomination), nil, class:  'reg-header' %></h2>
-    <% if @election.view_status == :before %>
-      <%= t('nominations.before') %><br>
+    <div class="coming-soon">
+      <h2><%= label_tag models_name(Nomination), nil, class:  'reg-header' %></h2>
       <%= render 'elections/countdown' %>
-    <% else %>
-      <%= t('nominations.closed')%><br>
-    <%end%>
-    <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %><br>
-    <%= link_to t('actions.back'), elections_path, class: "btn-u btn-u-small" %>
-  </div>
+      <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
+    </div>
 <% end %>

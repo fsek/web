@@ -24,7 +24,7 @@ class Elections::CandidatesController < ApplicationController
     @candidate = @election.candidates.build(candidate_params)
     @candidate.profile = current_user.profile
     if @candidate.save
-      flash[:notice] = %(#{model_name(Candidate, 1)} #{t(:success_create)}.)
+      flash[:notice] = 'Kandidaturen skapades.'
       redirect_to @candidate
     else
       render action: :new
@@ -33,7 +33,7 @@ class Elections::CandidatesController < ApplicationController
 
   def update
     if @candidate.update(candidate_params)
-      flash[:notice] = %(#{model_name(Candidate, 1)} #{t(:success_update)}.)
+      flash[:notice] = 'Kandidaturen uppdaterades'
       redirect_to @candidate
     else
       render action: :show
@@ -41,12 +41,8 @@ class Elections::CandidatesController < ApplicationController
   end
 
   def destroy
-    if @candidate.editable?
-      @candidate.destroy
-      flash[:notice] = %(#{model_name(Candidate, 1)} #{t(:success_destroy)}.)
-    else
-      flash[:notice] = %(#{model_name(Candidate, 1)} #{t(:not_allowed_destroy)}.)
-    end
+    @candidate.destroy
+    flash[:notice] = 'Kandidaturen raderades'
     redirect_to candidates_path
   end
 
@@ -60,4 +56,5 @@ class Elections::CandidatesController < ApplicationController
     params.require(:candidate).permit(:profile_id, :post_id, :stil_id,
                                       :email, :phone, :name, :lastname)
   end
+
 end

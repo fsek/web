@@ -1,6 +1,4 @@
 sv:
-  candidate:
-    time_error: tillåter inte att kandidaturer redigeras för tillfället.
   activerecord:
     models:
       candidate: 

@@ -5,7 +5,6 @@ class Election < ActiveRecord::Base
   has_and_belongs_to_many :posts
 
   validates :url, presence: true, uniqueness: true
-  validates :start, :end, presence: true
 
   def self.current
     self.order(start: :asc).where(visible: true).first || nil
@@ -29,10 +28,8 @@ class Election < ActiveRecord::Base
       return :before
     elsif start <= Time.zone.now && self.end > Time.zone.now
       return :during
-    elsif closing > Time.zone.now
-      return :after
     else
-      return :closed
+      return :after
     end
   end
 
@@ -44,7 +41,7 @@ class Election < ActiveRecord::Base
       text_before
     when :during
       text_during
-    when :after, :closed
+    when :after
       text_after
     end
   end
@@ -75,8 +72,6 @@ class Election < ActiveRecord::Base
       start
     when :during
       self.end
-    when :after
-      closing || nil
     end
   end
 

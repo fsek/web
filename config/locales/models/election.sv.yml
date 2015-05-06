@@ -1,6 +1,4 @@
 sv:
-  election:
-
   activerecord:
     models:
       election: Val

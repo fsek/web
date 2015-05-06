@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427090915) do
+ActiveRecord::Schema.define(version: 20150425064439) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -159,7 +159,6 @@ ActiveRecord::Schema.define(version: 20150427090915) do
     t.text     "candidate_mail_star", limit: 65535
     t.string   "mail_link",           limit: 255
     t.string   "mail_styrelse_link",  limit: 255
-    t.datetime "closing"
   end
 
   create_table "elections_posts", id: false, force: :cascade do |t|

@@ -60,7 +60,7 @@ class Admin::ElectionsController < ApplicationController
   end
 
   def election_params
-    params.fetch(:election).permit(:title, :description, :start, :end, :closing, :url,
+    params.fetch(:election).permit(:title, :description, :start, :end, :url,
                                    :visible, :mail_link, :mail_styrelse_link, :text_before,
                                    :text_during, :text_after, :nominate_mail, :candidate_mail,
                                    :extra_text, :candidate_mail_star, post_ids: [])
