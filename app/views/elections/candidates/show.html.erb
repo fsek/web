@@ -3,8 +3,10 @@
     <div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
       <%= label_tag 'Redigera kandidatur',nil, class:  'reg-header'%>
       <%= render 'form'%>
-      <%= link_to 'Tillbaka', candidates_path,class: "btn-u btn-u-small" %> 
-      <%= link_to 'Ta bort', candidate_path(@candidate), method: :delete, class: "btn-u btn-u-small" %>
+      <%= link_to 'Tillbaka', candidates_path,class: "btn-u btn-u-small" %>
+      <% if can?(:modify, @candidate) && @candidate.editable? %>
+        <%= link_to 'Ta bort', candidate_path(@candidate), method: :delete, class: "btn-u btn-u-small" %>
+      <% end%>
     </div>
   </div>
 </div>
