@@ -1,84 +1,44 @@
-<%= form_for(@rent) do |f| %>
-    <div class="center">
-      <h1>Bilbokning</h1>
+<%= simple_form_for(@rent, html: { class: 'reg-page'}) do |f| %>
+  <div class="center">
+    <h1>Bilbokning</h1>
 
-      <div class="headline headline-md"><h2>Avtal</h2></div>
-      <% if @TOA.present? %>
-          <iframe src="<%= document_path(@TOA) %>" class="iframe-document" frameborder="5"></iframe>
-      <% else %>
-          Syns inget här finnes avtalet <%= link_to('här', documents_path) %>.
-      <% end %>
-    </div>
-    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 center">
-      <%= f.label :disclaimer, 'Jag accepterar villkoren för hyrning av F-bilen.', class: 'reg-label' %><br>
-      <%= f.check_box :disclaimer %><br><br>
-
-      <div class="after_disclaimer" style="display:none;">
-        <div class="headline headline-md"><h2>Uppgifter</h2></div>
-        <%= render 'shared/form_errors', current: @rent %>
-        <% if current_user %>Informationen tas från din användarprofil, håll den gärna
-            uppdaterad <%= link_to("här", edit_user_path(current_user)) %>.
-        <% end %>
-        <div class="margin-bottom-20">
-          <%= f.label 'Namn & Efternamn', class: 'reg-label' %>
-          <div class="row">
-            <div class="col-md-6"><%= f.text_field :name, class: 'form-control', placeholder: "Namn" %></div>
-            <div class="col-md-6"> <%= f.text_field :lastname, class: 'form-control', placeholder: "Efternamn" %></div>
-          </div>
-        </div>
-        <%= f.label 'E-post & telefon', class: 'reg-label' %>
-        <div class="margin-bottom-20">
-          <div class="row">
-            <div class="col-md-6"><%= f.text_field :email, class: 'form-control', placeholder: "Epost" %></div>
-            <div class="col-md-6"> <%= f.text_field :phone, class: 'form-control', placeholder: "Telefon" %></div>
-          </div>
-        </div>
-        <% if current_user %>
-            <%= f.label 'Syfte (behövs ej)', class: 'reg-label' %>
-        <% else %>
-            <%= f.label 'Syfte', class: 'reg-label' %>
-        <% end %>
-        <div class="margin-bottom-20">
-          <%= f.text_area :purpose, class: "form-control" %>
-        </div>
-        <%= f.label 'Från', class: 'reg-label' %>
-        <div class="margin-bottom-20">
-          <%= f.text_field :d_from, class: 'form-control datetimepicker' %>
-        </div>
-        <%= f.label 'Till', class: 'reg-label' %>
-        <div class="margin-bottom-20">
-          <%= f.text_field :d_til, class: 'form-control datetimepicker' %>
-        </div>
-        <% if (@rents)&&(@rents.count > 0) %>
-            Bokningar (från idag + 30 dagar):<br>
-            <% @rents.each do |r| %>
-                <p><%= r.p_time %></p>
-            <% end %>
-        <% end %>
-        <% if current_user.present? %>
-            <% if (current_user.car_councils.count > 0) %>
-                <%= f.label 'Utskott', class: 'reg-label' %>
-                <div class="margin-bottom-20">
-                  <%= f.select :council_id,
-                               options_from_collection_for_select(current_user..car_councils, :id, :title, @rent.council_id),
-                               include_blank: true,
-                               class: 'form-control listBox' %>
-                </div>
-                <strong>Utskottsbokning:</strong>
-                <ul class="list">
-                  <li>får <strong>endast</strong> göras åt utskottet</li>
-                  <li>kan boka över en bokning, som börjar minst 5 dagar fram i tiden.</li>
-                </ul>
-            <% end %>
-        <% else %>
-            <p><strong>Viktigt:</strong> <br>när du bokar som ej inloggad blir bokningen endast en förfrågan som måste
-              hanteras av Bilförmannen.<br>
-              Om ni är medlem i sektionen är det bäst om ni <%= link_to('loggar in', new_user_session_path) %>.
-            </p>
-        <% end %>
-        <div class="row">
-          <%= f.submit "Spara", class: "btn btn-u", data: {confirm: 'Du accepterar nu F-sektionens avtal vid hyrning av F-bilen.'} %>
-        </div>
-      </div>
-    </div>
+    <div class="headline headline-md"><h2>Avtal</h2></div>
+    <% if @TOA.present? %>
+      <iframe src="<%= document_path(@TOA) %>" class="iframe-document" frameborder="5"></iframe>
+    <% else %>
+      Syns inget här finnes avtalet <%= link_to('här', documents_path) %>.
+    <% end %>
+    <%= f.input :disclaimer, as: :boolean %>
+  </div>
+  <div class="form-inputs">
+    <%= f.input :d_from, as: :datetime_picker %>
+    <%= f.input :d_til, as: :datetime_picker %>
+    <% if current_user.member? %>
+      <%= f.input :purpose, as: :text %>
+    <% else %>
+      <%= f.input :purpose, as: :text, required: true %>
+    <% end %>
+    <% if (current_user.car_councils.count > 0) %>
+      <strong>Utskottsbokning:</strong>
+      <ul class="list">
+        <li>får <strong>endast</strong> göras åt utskottet</li>
+        <li>kan boka över en bokning, som börjar minst 5 dagar fram i tiden.</li>
+      </ul>
+      <%= f.association :council, collection: current_user.car_councils %>
+    <% end %>
+  </div>
+  <% if @rents.count > 0 %>
+    Bokningar (från idag + 30 dagar):<br>
+    <% @rents.each do |r| %>
+      <p><%= r.p_time %></p>
+    <% end %>
+  <% end %>
+  <p><strong>Viktigt:</strong></p>
+  <p>När du bokar utan att vara medlem blir bokningen endast en förfrågan som måste
+  hanteras av Bilförmannen.</p>
+  <p>Om ni är medlem i sektionen är det bäst om ni bekräftar ert <%= link_to('konto', edit_user_path) %>.
+  </p>
+  <div class="form-group">
+    <%= f.button :submit, class: 'btn btn-u' %>
+  </div>
 <% end %>

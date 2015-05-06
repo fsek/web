@@ -103,5 +103,10 @@ namespace :db do
       election.posts << posten
     end
     election.save!
+
+    # Contact
+    Contact.find_or_create_by(name: 'Spindelman - David', email: 'spindelman@fsektionen.se',
+                              public: true, text: 'Detta är en linte spindelman',
+                              council_id: Council.first.try(:id))
   end
 end

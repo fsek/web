@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_devise_parameters, if: :devise_controller?
   before_action :set_locale
 
-  helper_method :success_update
-  helper_method :success_create
+  helper_method :alert_update, :alert_create, :alert_destroy
 
   rescue_from CanCan::AccessDenied do |ex|
     if current_user.nil?
@@ -40,12 +39,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def alert_update_resource(resource)
-    %(#{model_name(resource, false)} #{I18n.t('success_update')}.)
+  def alert_update(resource)
+    %(#{model_name(resource, false)} #{I18n.t(:success_update)}.)
   end
 
-  def alert_create_resource(resource)
-    %(#{model_name(resource, false)} #{I18n.t('success_create')}.)
+  def alert_create(resource)
+    %(#{model_name(resource, false)} #{I18n.t(:success_create)}.)
+  end
+
+  def alert_destroy(resource)
+    %(#{model_name(resource, false)} #{I18n.t(:success_destroy)}.)
   end
 
   protected

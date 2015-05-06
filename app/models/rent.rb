@@ -218,7 +218,7 @@ class Rent < ActiveRecord::Base
     else
       {
           id: id,
-          title: user,
+          title: user.to_s,
           start: d_from.iso8601,
           end: d_til.iso8601,
           url: p_path,

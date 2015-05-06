@@ -1,9 +1,7 @@
 # encoding:UTF-8
 class RentsController < ApplicationController
   load_permissions_and_authorize_resource
-  before_action :set_rents, only: [:new, :edit, :create, :update, :authorize]
-  before_action :set_rent, only: [:show, :edit, :update, :authorize]
-  respond_to :html, :json
+  before_action :set_rents, except: [:main, :index]
 
   def main
     @faqs = Faq.answered.category('Bil')
@@ -14,33 +12,27 @@ class RentsController < ApplicationController
   end
 
   def new
-    @TOA = Document.where(title: "Regler för Beerit").first
-    @rent = Rent.new
-    if (current_user)
-      @rent.prepare(current_user)
-      @utskott = current_user.car_councils
-    end
+    @TOA = Document.find_by(title: "Regler för Beerit")
   end
 
   def show
   end
 
   def edit
-    if @rent.user
-      @user = @rent.user
-      @utskott = @rent.user.car_councils
-    end
   end
 
   def create
     @rent = Rent.new_with_status(rent_params, current_user)
-    flash[:notice] = 'Bokningen skapades, skickat mailbekräftelse.' if @rent.save
-    respond_with @rent
+    if @rent.save
+      redirect_to @rent, notice: alert_create(Rent)
+    else
+      render action: :new
+    end
   end
 
   def update
     if @rent.update_with_authorization(rent_params, current_user)
-      flash[:notice] = 'Bokningen uppdaterades'
+      flash[:notice] = alert_update(Rent)
       redirect_to edit_rent_path(@rent)
     else
       render action: :edit
@@ -49,8 +41,7 @@ class RentsController < ApplicationController
 
   def destroy
     @rent.destroy
-    flash[:notice] = 'Bokningen raderades'
-    redirect_to :bil
+    redirect_to :bil, notice: alert_destroy(@rent)
   end
 
   # Index page available to logged in users.
@@ -63,20 +54,8 @@ class RentsController < ApplicationController
     end
   end
 
-  # Renders with .js and show the form if access is allowed
-  def authorize
-    @authenticated = @rent.authorize(rent_params[:access_code])
-  end
 
   private
-  # Set the @rent to the current object and redirects back to car if it is not found
-  def set_rent
-    @rent = Rent.find_by_id(params[:id])
-    if (@rent == nil)
-      flash[:notice] = 'Hittade ingen bilbokning med det ID:t.'
-      redirect_to(:bil)
-    end
-  end
 
   # @rents: used to show rents under the form when creating new.
   def set_rents
@@ -85,7 +64,6 @@ class RentsController < ApplicationController
   end
 
   def rent_params
-    params.require(:rent).permit(:d_from, :d_til, :name, :lastname, :email, :phone,
-                                 :purpose, :disclaimer, :council_id, :comment, :access_code)
+    params.require(:rent).permit(:d_from, :d_til, :purpose, :disclaimer, :council_id)
   end
 end

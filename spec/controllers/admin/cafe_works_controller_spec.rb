@@ -135,7 +135,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
     end
     it 'create post' do
       lambda {
-        post :setup_create, {commit: 'Spara', cafe_work: attributes_for(:cafe_work), lv_first: 1, lv_last: 1}
+        post :setup_create, {commit: 'Spara', cafe_work: attributes_for(:cafe_work, lv_first: 1, lv_last: 1)}
       }.should change(CafeWork, :count).by(20)
     end
   end
