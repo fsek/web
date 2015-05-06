@@ -6,10 +6,9 @@ RSpec.describe Election, type: :model do
   end
 
   # Lazily loaded to ensure it's only used when it's needed
-  subject() { build(:election) }
+  subject { build(:election) }
   let(:election) { create(:election) }
 
-  statuses = %w(:before :during :after :closed)
   describe 'ActiveModel validations' do
     it { should validate_presence_of(:url) }
     it { should validate_presence_of(:start) }
