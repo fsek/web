@@ -15,18 +15,25 @@ class User < ActiveRecord::Base
   has_many :candidates
   has_many :rents
   has_many :councils, through: :posts
+  belongs_to :first_post, class: Post, foreign_key: :first_post_id
 
   # Attachment
   has_attached_file :avatar,
-    styles: {medium: '300x300>', thumb: '100x100>'},
+    styles: { medium: '300x300>', thumb: '100x100>' },
     path: ':rails_root/storage/user/:id/:style/:filename'
 
 
   # Validations
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
   # Only on update!
   validates :firstname, :lastname, presence: true, on: :update
   #validates_inclusion_of :start_year, in: 1954..(Time.zone.today.year+1), on: :update
+
+
+
+  attr_accessor :remove_avatar
+  before_save :delete_avatar, if: -> { remove_avatar == '1' && !avatar_updated_at_changed? }
 
   # Returns all councils the user belongs to with a Post who is
   # allowed to rent the car
@@ -46,7 +53,7 @@ class User < ActiveRecord::Base
       return
     end
     if posts.count > 0
-      self.first_post = posts.first.id
+      self.first_post = posts.first
       save
     end
   end
@@ -86,14 +93,7 @@ class User < ActiveRecord::Base
   end
 
   def is? role_name
-    posts.each do |post|
-      return true if post.title == role_name
-    end
-    false
-  end
-
-  def admin?
-    is? :admin
+    posts.find_by(title: role_name).present?
   end
 
   # Used in testing
@@ -102,8 +102,9 @@ class User < ActiveRecord::Base
     self
   end
 
-  def assignee
-    Assignee.new(firstname: firstname, lastname: lastname,
-                 email: email, phone: phone, user: self)
+  private
+
+  def delete_avatar
+    self.avatar = nil
   end
 end

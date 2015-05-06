@@ -21,7 +21,7 @@ class Ability
     # Abilities all signed in users get
     if user.id
      # can :manage, User, id: user.id
-      can [:edit, :update, :show], User, id: user.id
+      can [:edit, :update, :show, :update_password, :update_account], User, id: user.id
       can [:nominate, :candidate], Election
       can :manage, Candidate, user_id: user.id
       can :manage, Nomination

@@ -37,11 +37,18 @@ Fsek::Application.routes.draw do
       resources :users, path: :anvandare, only: [:index]
     end
 
-    resources :users, path: :anvandare, only: [:show]
-
     resource :user, path: :anvandare, only: [:edit, :update] do
       get '', action: :show, as: :own_user
+      patch :password, path: :losenord, action: :update_password
+      patch :account, path: :konto, action: :update_account
     end
+
+    resources :users, path: :anvandare, only: [:show] do
+      patch :search, on: :collection
+      patch :remove_post, on: :member
+      get :avatar, on: :member
+    end
+
     resources :constants
 
     scope :hilbertcafe do
@@ -115,12 +122,6 @@ Fsek::Application.routes.draw do
 
     resources :contacts, path: :kontakt do
       post :mail, on: :member
-    end
-
-    resources :users, path: :anvandare do
-      patch :search, on: :collection
-      patch :remove_post, on: :member
-      get :avatar, on: :member
     end
 
     resources :events do

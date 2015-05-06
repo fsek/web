@@ -1,34 +1,46 @@
 # encoding:UTF-8
 class UsersController < ApplicationController
   load_permissions_and_authorize_resource
-
+  before_action :set_user
   def index
   end
 
   def show
-    if params[:id].nil?
-      @user = current_user
-    end
   end
 
   def edit
+    if @tab.nil?
+      @tab = :profile
+    end
   end
 
-  #def update_password
-  # if @user.update_with_password(user_params)
-  #   redirect_to :edit_user_registration, notice: 'Användaruppgifter uppdaterades.'
-  # else
-  #   redirect_to :edit_user_registration, notice: 'Lösenord måste fyllas i för att ändra uppgifter.'
-  # end
-  #nd
+  def update_account
+    @tab = :account
+    if @user.update_with_password(account_params)
+      redirect_to :edit_user, notice: 'Kontoinställningar uppdaterades.', tab: :account
+      sign_in @user, :bypass => true
+    else
+      @tab = :account
+      render action: :edit, notice: 'Lösenord måste fyllas i för att ändra uppgifter.'
+    end
+  end
+
+  def update_password
+    @tab = :password
+    if @user.update_with_password(password_params)
+      redirect_to :edit_user, notice: 'Lösenordet uppdaterades.'
+      sign_in @user, :bypass => true
+    else
+      render action: :edit, notice: 'Nuvarande lösenord måste fyllas i för att byta lösenord.'
+    end
+  end
 
   def update
     if @user.update(user_params)
       flash[:notice] = 'Användare uppdaterades.'
-      redirect_to edit_user_path @user
-    else
-      redirect_to :edit_user_registration
     end
+    @tab = :profile
+    render action: :edit
   end
 
   #def destroy
@@ -57,18 +69,30 @@ class UsersController < ApplicationController
     if @user.avatar?
       style = [:original, :medium, :thumb].include?(params[:style]) ? params[:style] : :medium
       send_file(@user.avatar.path(style), filename:@user.avatar_file_name,
-                                          type: 'image/jpg',
-                                          disposition: 'inline',
-                                          x_sendfile: true)
+                type: 'image/jpg',
+                disposition: 'inline',
+                x_sendfile: true)
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password,
-                                 :password_confirmation, :current_password,
-                                 :firstname, :lastname, :program, :start_year,
-                                 :avatar, :first_post, :stil_id, :email, :phone)
+    params.require(:user).permit(:firstname, :lastname, :program, :start_year,
+                                 :avatar, :first_post_id, :stil_id, :phone,
+                                 :remove_avatar)
+  end
+
+  def account_params
+    params.require(:user).permit(:username, :email, :current_password)
+  end
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation, :current_password)
+  end
+  def set_user
+    if params[:id].nil?
+      @user = current_user
+    end
   end
 end

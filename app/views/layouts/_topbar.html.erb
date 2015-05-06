@@ -15,8 +15,7 @@
                     class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0",
                                                      'close-others' => "false"}) %>
         <ul class="dropdown-menu pull-right">
-          <li><%= link_to User.model_name.human, current_user %></li>
-          <li><%= link_to t('user.settings'), :edit_user_registration %></li>
+          <li><%= link_to t('user.settings'), :edit_user %></li>
           <li><%= link_to t('devise.sign_out'), :destroy_user_session, method: :delete %></li>
         </ul>
       </li>

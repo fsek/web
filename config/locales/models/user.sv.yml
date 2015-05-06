@@ -6,3 +6,16 @@ sv:
       user:
         username: Användarnamn
         email: E-post
+        firstname: Namn
+        program: Program
+        start_year: Började år
+        avatar: Profilbild
+        first_post: Visningspost
+        email: E-post
+        stil_id: Stil-id
+        phone: Telefon
+        lastname: Efternamn
+        remove_avatar: Ta bort profilbild
+        current_password: Nuvarande lösenord
+        password_confirmation: Bekräfta lösenord
+        password: Lösenord

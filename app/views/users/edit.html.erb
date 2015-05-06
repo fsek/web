@@ -1,9 +1,30 @@
 <div class="container">
-	<div class="row">
-		<div class="col-md-7 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag 'Redigera din användarprofil',nil, class:  'reg-header'%>
-			<%= render 'form'%>			
-			<%= link_to 'Tillbaka till profilen', @profile %>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-md-7 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
+      <!--Profile Body-->
+      <div class="profile-body margin-bottom-20">
+        <div class="tab-v1">
+          <ul class="nav nav-justified nav-tabs">
+           <li class="<%=@tab == :profile ? 'active' : ''%>"><a data-toggle="tab" href="#profile">Användare</a></li>
+            <li class="<%=@tab == :account ? 'active' : ''%>"><a data-toggle="tab" href="#account">Konto</a></li>
+            <li class="<%=@tab == :password ? 'active' : ''%>"><a data-toggle="tab" href="#passwordTab">Lösenord</a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="profile" class="profile-edit tab-pane fade in <%=@tab == :profile ? 'active' : ''%>">
+              <%= render 'simple_form', user: current_user %>
+            </div>
+
+            <div id="account" class="profile-edit tab-pane fade in <%=@tab == :account ? 'active' : ''%>">
+              <%= render 'devise/registrations/edit_form', user: current_user %>
+            </div>
+
+            <div id="passwordTab" class="profile-edit tab-pane fade in <%=@tab == :password ? 'active' : ''%>">
+              <%= render 'devise/registrations/password_form', user: current_user %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= link_to 'Tillbaka till startsidan', :root %>
+    </div>
+  </div>
 </div>

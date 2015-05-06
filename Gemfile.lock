@@ -279,6 +279,9 @@ GEM
     sexp_processor (4.5.0)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
+    simple_form (3.1.0)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     simplecov (0.9.2)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -388,6 +391,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails
   shoulda-matchers
+  simple_form
   sqlite3
   therubyracer
   turbolinks
