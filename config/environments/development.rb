@@ -42,4 +42,8 @@ Fsek::Application.configure do
   PUBLIC_URL = 'dev.fsektionen.se'
 
   config.action_view.raise_on_missing_translations = true
+
+  # Don't log partials etc. in development.
+  config.quiet_assets = true
+  config.action_view.logger = nil
 end
