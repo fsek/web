@@ -36,6 +36,7 @@ gem 'sqlite3'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'wice_grid'
+gem 'quiet_assets'
 
 group :production do
   gem 'therubyracer', platforms: :ruby
