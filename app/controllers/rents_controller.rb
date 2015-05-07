@@ -12,7 +12,7 @@ class RentsController < ApplicationController
   end
 
   def new
-    @TOA = Document.find_by(title: "Regler för Beerit")
+    @TOA = Document.find_by(title: 'Regler för Beerit')
   end
 
   def show

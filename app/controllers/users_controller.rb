@@ -69,9 +69,9 @@ class UsersController < ApplicationController
     if @user.avatar?
       style = [:original, :medium, :thumb].include?(params[:style]) ? params[:style] : :medium
       send_file(@user.avatar.path(style), filename:@user.avatar_file_name,
-                type: 'image/jpg',
-                disposition: 'inline',
-                x_sendfile: true)
+                                          type: 'image/jpg',
+                                          disposition: 'inline',
+                                          x_sendfile: true)
     end
   end
 
@@ -90,6 +90,7 @@ class UsersController < ApplicationController
   def password_params
     params.require(:user).permit(:password, :password_confirmation, :current_password)
   end
+
   def set_user
     if params[:id].nil?
       @user = current_user

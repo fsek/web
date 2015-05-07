@@ -11,7 +11,8 @@ class PostsController < ApplicationController
   def remove_user
     user = User.find_by_id(params[:user_id])
     @post.users.delete(user)
-    redirect_to council_posts_path(@council), notice: %(#{user.name} har inte längre posten #{@post.title}.)
+    redirect_to council_posts_path(@council),
+      notice: %(#{user.name} har inte längre posten #{@post.title}.)
   end
 
   def add_user
