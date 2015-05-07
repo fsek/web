@@ -7,7 +7,6 @@ class ShortLinksController < ApplicationController
 
   def index
     @short_link = ShortLink.new
-    @short_links = ShortLink.order 'link asc'
   end
 
   def check
