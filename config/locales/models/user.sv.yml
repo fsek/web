@@ -19,3 +19,5 @@ sv:
         current_password: Nuvarande lösenord
         password_confirmation: Bekräfta lösenord
         password: Lösenord
+        confirmed_at: E-post bekräftades
+        member_at: Medlemskap bekräftades

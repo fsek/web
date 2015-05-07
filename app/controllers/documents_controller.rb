@@ -21,7 +21,7 @@ class DocumentsController < ApplicationController
 
   def create
     if @document.save
-      redirect_to documents_path, notice: 'Dokumentet skapades!'
+      redirect_to documents_path, notice: alert_create(Document)
     else
       render action: :new
     end
@@ -29,7 +29,7 @@ class DocumentsController < ApplicationController
 
   def update
     if @document.update(document_params)
-      redirect_to edit_document_path(@document), notice: 'Dokumentet uppdaterades.'
+      redirect_to edit_document_path(@document), notice: alert_update(Document)
     else
       render action: :edit
     end
@@ -37,7 +37,7 @@ class DocumentsController < ApplicationController
 
   def destroy
     @document.destroy
-    redirect_to documents_url
+    redirect_to documents_url, notice: alert_destroy(Document)
   end
 
   private

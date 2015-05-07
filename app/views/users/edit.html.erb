@@ -1,30 +1,31 @@
-<div class="container">
-  <div class="row">
     <div class="col-md-7 col-md-offset-3 col-sm-6 col-sm-offset-3 reg-page">
       <!--Profile Body-->
       <div class="profile-body margin-bottom-20">
         <div class="tab-v1">
           <ul class="nav nav-justified nav-tabs">
-           <li class="<%=@tab == :profile ? 'active' : ''%>"><a data-toggle="tab" href="#profile">Användare</a></li>
-            <li class="<%=@tab == :account ? 'active' : ''%>"><a data-toggle="tab" href="#account">Konto</a></li>
-            <li class="<%=@tab == :password ? 'active' : ''%>"><a data-toggle="tab" href="#passwordTab">Lösenord</a></li>
+            <li class="<%=@tab == :profile ? 'active' : ''%>"><a data-toggle="tab" href="#profile"><%= t('user.profile') %></a></li>
+            <li class="<%=@tab == :confirm ? 'active' : ''%>"><a data-toggle="tab" href="#confirm"><%= t('user.confirm') %></a></li>
+            <li class="<%=@tab == :account ? 'active' : ''%>"><a data-toggle="tab" href="#account"><%= t('user.account') %></a></li>
+            <li class="<%=@tab == :password ? 'active' : ''%>"><a data-toggle="tab" href="#password"><%= t('user.password') %></a></li>
           </ul>
           <div class="tab-content">
             <div id="profile" class="profile-edit tab-pane fade in <%=@tab == :profile ? 'active' : ''%>">
-              <%= render 'simple_form', user: current_user %>
+              <%= render 'form', user: current_user %>
+            </div>
+
+            <div id="confirm" class="profile-edit tab-pane fade in <%=@tab == :confirm ? 'active' : ''%>">
+              <%= render 'confirm_form', user: current_user %>
             </div>
 
             <div id="account" class="profile-edit tab-pane fade in <%=@tab == :account ? 'active' : ''%>">
-              <%= render 'devise/registrations/edit_form', user: current_user %>
+              <%= render 'account_form', user: current_user %>
             </div>
 
-            <div id="passwordTab" class="profile-edit tab-pane fade in <%=@tab == :password ? 'active' : ''%>">
-              <%= render 'devise/registrations/password_form', user: current_user %>
+            <div id="password" class="profile-edit tab-pane fade in <%=@tab == :password ? 'active' : ''%>">
+              <%= render 'password_form', user: current_user %>
             </div>
           </div>
         </div>
       </div>
       <%= link_to 'Tillbaka till startsidan', :root %>
     </div>
-  </div>
-</div>

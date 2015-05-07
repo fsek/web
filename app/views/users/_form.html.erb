@@ -1,49 +1,24 @@
-<%= form_for(user, url: user_path) do |f| %>
-  <%= render 'shared/form_errors', current: user%>
-  <%= f.label 'Namn och efternamn', class:  'reg-label'%>
-  <div class="input-group margin-bottom-20">
-    <%= f.text_field :firstname, class: 'form-control', placeholder: 'Namn' %>
-    <%= f.text_field :lastname, class: 'form-control', placeholder: 'Efternamn' %>
+<%= simple_form_for(user, url: user_path, html: { class: 'reg-page'}) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :firstname %>
+    <%= f.input :lastname %>
+    <%= f.input :program, collection: ['Oklart', 'Teknisk Fysik', 'Teknisk Matematik', 'Teknisk Nanovetenskap'] %>
+    <%= f.input :start_year, collection: (1954..(Time.zone.now.year+1)).to_a.reverse! %>
+    <div class="input-group margin-bottom-20">
+      <% if user.avatar?%>
+        <%= image_tag(avatar_user_path(user))%><br>
+        <%= f.input :remove_avatar, as: :boolean %>
+      <% end %>
+    </div>
+    <%= f.input :avatar, as: :file %>
+    <%= f.association :first_post, collection: user.posts %>
+    <p>Nedanstående fält är endast till för sektionsval, bokning av bilen samt arbete i Hilbert Café.</p>
+    <p>Fälten kan endast se av styrelse, administratörer samt ansvarig för val, bokning eller Caféet.</p>
+    <%= f.input :stil_id %>
+    <%= f.input :phone %>
   </div>
-  <%= f.label 'Program', class:  'reg-label'%>
-  <div class="input-group margin-bottom-20">
-    <%= f.select :program, options_for_select([
-      [" ","Oklart"],
-      ["Teknisk Fysik"],
-      ["Teknisk Matematik"],
-      ["Teknisk Nanovetenskap"]],user.program), {}, class: 'listBox form-control', selected: :program %>
-</div>
-<%= f.label 'Började på programmet', class: 'reg-label'%>
-<div class="input-group margin-bottom-20">
-  <%= f.select( :start_year, (1954..(Time.zone.now.year + 1)).to_a.reverse!, {}, class: 'listBox form-control')%>
-</div>
-<%= f.label 'Profilbild', class:  'reg-label' %>
-<div class="input-group margin-bottom-20">
-  <% if user.avatar?%>
-    <%= image_tag(avatar_user_path(user))%><br>
-    <%= f.label :remove_avatar %>
-    <%= f.check_box :remove_avatar %>
-  <% end %>
-  <%= f.file_field :avatar, class:  'form-control' %>
-</div>
-<% if user.posts.count > 0%>
-  <%= f.label 'Visningspost', class:  'reg-label'%>
-  <div class="input-group margin-bottom-20">
-    <%= f.collection_select(:first_post_id,user.posts, :id, :title, {}, class:  'listBox form-control')%>
+  <div class="form-group">
+      <%= f.button :submit, class: 'btn btn-u' %>
   </div>
 <% end %>
-<hr>
-<p>Nedanstående fält är endast till för sektionsval, bokning av bilen samt arbete i Hilbert Café.</p>
-<p>Fälten kan endast se av styrelse, administratörer samt ansvarig för val, bokning eller Caféet.</p>
-<%= f.label 'STIL-id', class:  'reg-label'%>
-<div class="input-group margin-bottom-20">
-  <%= f.text_field :stil_id, placeholder: "Stil-id", class: "form-control"%>
-</div>
-<%= f.label 'Telefonnummer', class:  'reg-label'%>
-<div class="input-group margin-bottom-20">
-  <%= f.text_field :phone, placeholder: "Telefonnumer", class: "form-control"%>
-</div>
-<div class="row">
-  <%= f.submit "Spara",class:  'btn-u pull-right' %>
-</div>
-<% end %>
+

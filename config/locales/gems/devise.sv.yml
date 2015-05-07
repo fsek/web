@@ -8,7 +8,7 @@ sv:
       not_saved:
         one: "1 fel hindrade denna %{resource} från att sparas:"
         other: "%{count} fel hindrade denna %{resource} från att sparas:"
- 
+
   devise:
     remember_me: Kom ihåg mig?
     sign_in: Logga in
@@ -42,6 +42,7 @@ sv:
       send_paranoid_instructions: 'Om din email är i vår databas, kommer du att få ett mail med instruktioner om hur du ska aktivera ditt konto inom några minuter.'
       confirmed: 'Ditt konto har bekräftats. Du är nu inloggad.'
     registrations:
+      signed_up_but_unconfirmed: 'Ett nytt konto har skapats, du har fått instruktioner via e-post om hur din e-postadress bekräftas.'
       signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats till din epost.'
       inactive_signed_up: 'Ett nytt konto har skapats. Du kunde inte logga in, för ditt konto är %{reason}.'
       updated: 'Ditt konto har uppdaterats.'

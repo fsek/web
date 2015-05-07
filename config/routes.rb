@@ -21,8 +21,6 @@ Fsek::Application.routes.draw do
     get 'avbryt_reg' => 'registrations#cancel', as: :cancel_user_registration
     post 'anvandare/skapa' => 'registrations#create', as: :user_registration
     get 'anvandare/registrera' => 'registrations#new', as: :new_user_registration
-    #patch 'anvandare/redigera/:id' => 'users#update_password', as: :update_user_registration
-    #get 'anvandare/redigera' => 'registrations#edit', as: :edit_user_registration
     #delete 'anvandare/ta_bort/:id' => 'users#destroy', :as => :admin_destroy_user
 
     #sessions

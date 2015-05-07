@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable,
     :confirmable
 
-  validates :username, uniqueness: true
-  # validate :is_f_member
-  # Should not validate for this, should change it to allow all to sign up
+  validates :email, :username, uniqueness: true
+  validates :email, format: { with: Devise::email_regexp }
+
   # Associations
   has_many :post_users
   has_many :posts, through: :post_users
@@ -28,9 +28,6 @@ class User < ActiveRecord::Base
 
   # Only on update!
   validates :firstname, :lastname, presence: true, on: :update
-  #validates_inclusion_of :start_year, in: 1954..(Time.zone.today.year+1), on: :update
-
-
 
   attr_accessor :remove_avatar
   before_save :delete_avatar, if: -> { remove_avatar == '1' && !avatar_updated_at_changed? }
@@ -78,19 +75,19 @@ class User < ActiveRecord::Base
     end
   end
 
-  def is_f_member
-    errors.add :f_member, 'är inte medlem i F-sektionen' unless @f_member || self.persisted?
-  end
+ #def is_f_member
+ #  errors.add :f_member, 'är inte medlem i F-sektionen' unless @f_member || self.persisted?
+ #end
 
-  def check_f_membership(civic)
-    url = URI.parse("http://medcheck.tlth.se/?ssid=#{civic.gsub(/[^0-9]/i, "")}")
-    req = Net::HTTP::Get.new(url.to_s)
-    res = Net::HTTP.start(url.host, url.port) { |http|
-      http.request(req)
-    }
+ #def check_f_membership(civic)
+ #  url = URI.parse("http://medcheck.tlth.se/?ssid=#{civic.gsub(/[^0-9]/i, "")}")
+ #  req = Net::HTTP::Get.new(url.to_s)
+ #  res = Net::HTTP.start(url.host, url.port) { |http|
+ #    http.request(req)
+ #  }
 
-    @f_member = res.body.include? "<img src=\"http://www.tlth.se/img/guilds/F.gif\"/>"
-  end
+ #  @f_member = res.body.include? "<img src=\"http://www.tlth.se/img/guilds/F.gif\"/>"
+ #end
 
   def is? role_name
     posts.find_by(title: role_name).present?
