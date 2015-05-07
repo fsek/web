@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @tab = :account
     if @user.update_with_password(account_params)
       redirect_to :edit_user, notice: 'Kontoinställningar uppdaterades.', tab: :account
-      sign_in @user, :bypass => true
+      sign_in @user, bypass: true
     else
       @tab = :account
       render action: :edit, notice: 'Lösenord måste fyllas i för att ändra uppgifter.'
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @tab = :password
     if @user.update_with_password(password_params)
       redirect_to :edit_user, notice: 'Lösenordet uppdaterades.'
-      sign_in @user, :bypass => true
+      sign_in @user, bypass: true
     else
       render action: :edit, notice: 'Nuvarande lösenord måste fyllas i för att byta lösenord.'
     end
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     render action: :edit
   end
 
-  #def destroy
+  # def destroy
   #  if @user.update_with_password(user_params)
   #    @user.posts.clear
   #    if @user.destroy
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   #    redirect_to :edit_user_registration,
   #      notice: 'Lösenord måste fyllas i för att radera användare.'
   #  end
-  #end
+  # end
 
   def remove_post
     @post = Post.find_by_id(params[:post_id])
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   def avatar
     if @user.avatar?
       style = [:original, :medium, :thumb].include?(params[:style]) ? params[:style] : :medium
-      send_file(@user.avatar.path(style), filename:@user.avatar_file_name,
+      send_file(@user.avatar.path(style), filename: @user.avatar_file_name,
                                           type: 'image/jpg',
                                           disposition: 'inline',
                                           x_sendfile: true)

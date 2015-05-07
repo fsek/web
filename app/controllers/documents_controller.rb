@@ -12,8 +12,9 @@ class DocumentsController < ApplicationController
 
   def show
     send_file(@document.pdf.path, filename: @document.pdf_file_name,
-              type: 'application/pdf',
-              disposition: 'inline', x_sendfile: true)
+                                  type: 'application/pdf',
+                                  disposition: 'inline', 
+                                  x_sendfile: true)
   end
 
   def edit

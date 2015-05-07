@@ -58,7 +58,7 @@ class DatePickerInput < SimpleForm::Inputs::StringInput
   end
 
   def date_options
-    date_options_base.merge!({dayViewHeaderFormat: date_view_header_format})
+    date_options_base.merge!( dayViewHeaderFormat: date_view_header_format )
   end
 
 end
