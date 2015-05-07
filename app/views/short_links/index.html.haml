@@ -13,7 +13,7 @@
       %th
 
   %tbody
-    - @short_links.each do |sl|
+    - ShortLink.order('link asc').each do |sl|
       %tr
         %td= sl.link
         %td= link_to sl.target, sl.target

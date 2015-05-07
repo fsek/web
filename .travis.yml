@@ -14,3 +14,4 @@ notifications:
   webhooks:
     urls:
       - http://samson.fsektionen.se/integrations/travis/17f87d9a378f1dd581c52d9da708cce5
+      - https://webhooks.gitter.im/e/48801aad6f679014cfd3

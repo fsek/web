@@ -5,8 +5,10 @@
             <h1>Redigera Kandidatur</h1>
       </div>
       <%= render 'form'%>
-      <%= link_to 'Tillbaka', candidates_path,class: "btn-u btn-u-small" %> 
-      <%= link_to 'Ta bort', candidate_path(@candidate), method: :delete, class: "btn-u btn-u-small" %>
+      <%= link_to 'Tillbaka', candidates_path,class: "btn-u btn-u-small" %>
+      <% if can?(:modify, @candidate) && @candidate.editable? %>
+        <%= link_to 'Ta bort', candidate_path(@candidate), method: :delete, class: "btn-u btn-u-small" %>
+      <% end%>
     </div>
   </div>
 </div>

@@ -4,6 +4,8 @@ Server versions:
 [![Production](http://samson.fsektionen.se/projects/web/stages/production.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d)](http://samson.fsektionen.se/projects/web/stages/production)
 [![Dev](http://samson.fsektionen.se/projects/web/stages/dev.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d)](http://samson.fsektionen.se/projects/web/stages/dev)
 
+[![Join the chat at https://gitter.im/fsek/web](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fsek/web?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Skriva kod:
 ==========
 1. Skapa en ny branch med `git checkout -b my-branch`

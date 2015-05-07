@@ -4,6 +4,8 @@ sv:
   success_destroy: har raderats
   user_add_information: Du behöver fylla i namn och efternamn. Fyll gärna i den andra informationen också.
   your_user: Din användare
+  not_allowed_update: får inte uppdateras.
+  not_allowed_destroy: får inte raderas.
   error: fel
   prevent_save: gör att det inte går att spara
   try_login: prova att logga in.

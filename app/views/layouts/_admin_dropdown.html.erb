@@ -21,6 +21,11 @@
           <%= link_to(model_name(Page),:pages)%>
         </li>
     <%end%>
+    <% if can? :manage, ShortLink %>
+        <li class="dropdown-submenu">
+          <%= link_to(ShortLink.model_name.human(:count => 2), :short_links) %>
+        </li>
+    <%end%>
     <% if can? :manage, Rent %>
         <li class="dropdown-submenu">
           <%= link_to(model_name(Rent),:admin_car)%>

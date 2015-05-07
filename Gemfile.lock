@@ -224,6 +224,8 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.3)
       pry (>= 0.9.10)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
@@ -395,6 +397,7 @@ DEPENDENCIES
   prawn-rails
   pry-byebug
   pry-rails
+  quiet_assets
   rails (~> 4.2.0)
   responders (~> 2.0)
   rspec-example_steps
