@@ -21,7 +21,7 @@ Fsek::Application.routes.draw do
     get 'avbryt_reg' => 'registrations#cancel', as: :cancel_user_registration
     post 'anvandare/skapa' => 'registrations#create', as: :user_registration
     get 'anvandare/registrera' => 'registrations#new', as: :new_user_registration
-    #delete 'anvandare/ta_bort/:id' => 'users#destroy', :as => :admin_destroy_user
+    # delete 'anvandare/ta_bort/:id' => 'users#destroy', :as => :admin_destroy_user
 
     #sessions
     get 'logga_in' => 'devise/sessions#new', as: :new_user_session
@@ -142,22 +142,17 @@ Fsek::Application.routes.draw do
     resources :elections, path: :val, only: :index do
       collection do
         resources :nominations, controller: 'elections/nominations',
-          path: :nominera, only: [:create] do
+                                path: :nominera, only: [:create] do
           get '', action: :new, on: :collection, as: :new
         end
         resources :candidates, controller: 'elections/candidates',
-          path: :kandidera, except: :edit
+                               path: :kandidera, except: :edit
       end
     end
 
     resources :albums, path: :galleri do
-      #post :edit, on: :member
-      #get :settings, path: :installningar, on: :collection
       get :upload_images, path: :ladda_upp, on: :member
       patch :upload_images, path: :ladda_upp, on: :member
-      #delete :destroy_images, path: :ta_bort_bilder, on: :member
-      #post :settings, path: :installningar, on: :collection
-      #post '', on: :member, action: :show
       resources :images, path: :bilder, except: [:new]
     end
   end

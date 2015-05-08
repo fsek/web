@@ -130,12 +130,12 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
   describe 'POST #setup_create' do
     # Should use a more precise method
     it 'preview post' do
-      post :setup_create, {commit: 'Förhandsgranska', cafe_work: attributes_for(:cafe_work), lv_first: 1, lv_last: 1}
+      post :setup_create, commit: I18n.t(:preview), cafe_work: attributes_for(:cafe_work), lv_first: 1, lv_last: 1
       assigns(:cafe_works).count.should eq(CafeSetupWeek.new(cwork.work_day, cwork.lp).preview(1, 1).count)
     end
     it 'create post' do
       lambda {
-        post :setup_create, {commit: 'Spara', cafe_work: attributes_for(:cafe_work, lv_first: 1, lv_last: 1)}
+        post :setup_create, commit: 'Spara', cafe_work: attributes_for(:cafe_work, lv_first: 1, lv_last: 1)
       }.should change(CafeWork, :count).by(20)
     end
   end
