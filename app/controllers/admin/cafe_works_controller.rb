@@ -71,7 +71,7 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def cafe_work_params
-    params.require(:cafe_work).permit(:work_day, :pass, :lp, :lv, :lv_first, :lv_last)
+    params.require(:cafe_work).permit(:work_day, :pass, :lp, :lv, :lv_first, :lv_last, :d_year)
   end
 
   def set_new_cafe_work

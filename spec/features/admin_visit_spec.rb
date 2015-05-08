@@ -4,16 +4,13 @@ feature 'admin visits paths' do
   let(:album) { create(:album) }
   let(:cafe_work) { create(:cafe_work) }
 
-  controllers = [:albums, :cafe_works, :constants, :contacts, :councils,
-                 :documents, :elections, :events, :faqs, :menus, :news,
-                 :notices, :pages, :posts, :rents, :work_posts]
   paths = {
     albums: [ :show ],
-    cafe_works: [ :index, :nyckelpiga ],
-    constants: [ :index, :new, :show ],
-    contacts: [ :index, :new, :show],
-    councils: [ :index, :show ],
-   #documents: [ :index, :new ],
+    cafe_works: [:index, :nyckelpiga ],
+    constants: [:index, :new, :show ],
+    contacts: [:index, :new, :show],
+    councils: [:index, :show ],
+    # documents: [ :index, :new ],
     # No idea why this fails TODO Fix
     documents: [:new ],
     elections: [ :index],
@@ -25,7 +22,6 @@ feature 'admin visits paths' do
     pages: [:index, :new],
     rents: [:main, :index ]
   }
-  admin_controllers = [:cafe_works, :elections, :rents, :users]
 
   let(:election) { create(:election) }
 

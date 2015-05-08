@@ -17,7 +17,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :admin, class: 'User' do |user|
+  factory :admin, class: 'User' do
     username
     password '12345678'
     firstname
