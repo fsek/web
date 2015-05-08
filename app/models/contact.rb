@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Contact < ActiveRecord::Base
   belongs_to :council
-  #TODO Add belongs_to :post
+  # TODO Add belongs_to :post
   # Add an email model, to be able to validate messages and perhaps store them
   # for signed in users.
   validates :name, :email, :text, presence: true
