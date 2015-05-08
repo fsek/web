@@ -25,7 +25,7 @@ RSpec.describe Rent, type: :model do
     end
 
     describe :Purpose do
-      #TODO Must be fixed with new member thingy.
+      # TODO Must be fixed with new member thingy.
       context 'validate purpose when not a member' do
         it { should validate_presence_of(:purpose) }
       end
