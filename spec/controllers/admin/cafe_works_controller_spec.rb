@@ -134,7 +134,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
     # This test keeps on failing, the actual method works as it should -
     # clueless
     it 'preview post', pending: true do
-        post :setup_create, commit: I18n.t(:preview),
+      post :setup_create, commit: I18n.t(:preview),
                             cafe_work: attributes_for(:cafe_work,
                                                       lv_first: 1,
                                                       lv_last: 1)
