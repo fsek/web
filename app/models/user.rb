@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
 
   # Attachment
   has_attached_file :avatar,
-    styles: { medium: '300x300>', thumb: '100x100>' },
-    path: ':rails_root/storage/user/:id/:style/:filename'
+                    styles: { medium: '300x300>', thumb: '100x100>' },
+                    path: ':rails_root/storage/user/:id/:style/:filename'
 
 
   # Validations
@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
   #  @f_member = res.body.include? "<img src=\"http://www.tlth.se/img/guilds/F.gif\"/>"
   # end
 
-  def is? role_name
+  def is?(role_name)
     posts.find_by(title: role_name).present?
   end
 
