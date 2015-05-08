@@ -5,8 +5,8 @@ class ContactMailer < ActionMailer::Base
 
   def contact_email(name, email, msg, kontakt, copy)
     @name, @email, @msg, @kontakt = name, email, msg, kontakt
-    if @name.present?  && @email.present? && @msg.present? && kontakt.present?
-    recipients = copy == '1' ? [@kontakt.email, email] : @kontakt.email
+    if @name.present? && @email.present? && @msg.present? && kontakt.present?
+      recipients = copy == '1' ? [@kontakt.email, email] : @kontakt.email
       mail from: @name + ' <'+@email+'>', to: recipients
     end
   end

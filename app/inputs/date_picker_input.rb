@@ -10,7 +10,7 @@ class DatePickerInput < SimpleForm::Inputs::StringInput
   end
 
   def input_html_classes
-    super.push ''   # 'form-control'
+    super.push '' # 'form-control'
   end
 
   private
@@ -52,13 +52,12 @@ class DatePickerInput < SimpleForm::Inputs::StringInput
 
   def date_options_base
     {
-        locale: I18n.locale.to_s,
-        format: picker_pattern
+      locale: I18n.locale.to_s,
+      format: picker_pattern
     }
   end
 
   def date_options
-    date_options_base.merge!( dayViewHeaderFormat: date_view_header_format )
+    date_options_base.merge!(dayViewHeaderFormat: date_view_header_format)
   end
-
 end
