@@ -20,7 +20,6 @@ class CafeWork < ActiveRecord::Base
   scope :period, ->(p) { where(lp: p) }
   scope :year, ->(y) { where(d_year: y) }
 
-
   attr_accessor :lv_first, :lv_last
   after_update :send_email, if: :has_worker?
 

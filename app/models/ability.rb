@@ -18,9 +18,9 @@ class Ability
 
     # Abilities all signed in users get
     if user.id
-      can [:main, :new, :edit, :create, :update, :destroy] , Rent, user_id: user.id
+      can [:main, :new, :edit, :create, :update, :destroy], Rent, user_id: user.id
       can [:edit, :update, :show, :update_password, :update_account], User, id: user.id
-      #TODO Implement add_worker
+      # TODO Implement add_worker
       # can :add_worker, CafeWork, user_id: nil
       # can :update_worker, CafeWork, user_id: user.id
       can :update_worker, CafeWork

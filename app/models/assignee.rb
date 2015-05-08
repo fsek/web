@@ -49,7 +49,7 @@ class Assignee
   def load_user(p_user)
     if p_user.present?
       self.firstname, self.lastname = p_user.firstname, p_user.lastname
-      self.email,self.phone = p_user.email, p_user.phone
+      self.email, self.phone = p_user.email, p_user.phone
     end
     attributes
   end

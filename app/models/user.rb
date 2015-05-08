@@ -99,6 +99,10 @@ class User < ActiveRecord::Base
     self
   end
 
+  def has_attributes?
+    firstname.present? && lastname.present? && email.present? &&
+      phone.present? && stil_id.present?
+  end
   private
 
   def delete_avatar

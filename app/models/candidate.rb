@@ -61,13 +61,11 @@ class Candidate < ActiveRecord::Base
   protected
 
   def user_attributes
-    if user.present? && user.firstname.present? &&
-      user.lastname.present? && user.email.present? &&
-      user.phone.present? && user.stil_id.present?
+    if user.present? && user.has_attributes?
       return true
     end
 
-    errors.add(:user,'Du måste fylla i dina användaruppgifter')
+    errors.add(:user, 'Du måste fylla i dina användaruppgifter')
     false
   end
 end
