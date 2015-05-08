@@ -20,7 +20,8 @@ RSpec.describe CafeWorksController, type: :controller do
       context 'valid user' do
         before { allow(controller).to receive(:current_user).and_return(user) }
         it 'add worker' do
-          patch(:update_worker, id: cwork.to_param, cafe_work: attributes_for(:assignee, user: user))
+          patch(:update_worker, id: cwork.to_param,
+                                cafe_work: attributes_for(:assignee, user: user))
           cwork.reload
 
           cwork.has_worker?.should be_truthy
@@ -28,7 +29,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
         it 'update worker' do
           patch(:update_worker, id: cwork_worker.to_param,
-                cafe_work: attributes_for(:assignee, :test))
+                                cafe_work: attributes_for(:assignee, :test))
           cwork_worker.reload
 
           cwork_worker.worker.attributes.should include(attributes_for(:assignee, :test))
@@ -54,7 +55,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
         it 'update worker' do
           patch(:update_worker, id: cwork_worker.to_param,
-                cafe_work: attributes_for(:assignee, :test))
+                                cafe_work: attributes_for(:assignee, :test))
           cwork_worker.reload
 
           cwork_worker.worker.attributes.should_not include(attributes_for(:assignee, :test))

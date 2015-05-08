@@ -1,9 +1,9 @@
 # encoding: UTF-8
 FactoryGirl.define do
-  factory :contact do
+  factory :contact do |c|
     name
     email
-    public { [true, false].sample }
+    c.public { [true, false].sample }
     text { generate(:description) }
   end
 end

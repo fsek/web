@@ -136,7 +136,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
                           cafe_work: attributes_for(:cafe_work),
                           lv_first: 1,
                           lv_last: 1
-      count = CafeSetupWeek.new(cwork.work_day, cwork.lp).preview(1,1).count
+      count = CafeSetupWeek.new(cwork.work_day, cwork.lp).preview(1, 1).count
       assigsn(:cafe_works).count should eq(count)
     end
 
