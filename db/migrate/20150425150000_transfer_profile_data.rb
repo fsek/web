@@ -1,12 +1,19 @@
 class TransferProfileData < ActiveRecord::Migration
   def change
-    # Update relation with posts
-    # Doing this with a join model called PostUser instead.
-    # TODO Transfer to new objects
+    # Update join table
+    copy_post_profile_to_post_user
+
     update_tables :post_users, :cafe_works, :rents, :candidates, :documents, :news
 
     # Merge profiles into users
     copy_profile_fields_to_user
+  end
+
+  def copy_post_profile_to_post_user
+    ActiveRecord::Base.connection.execute <<-eof
+    insert into post_users (post_id, user_id)
+    select post_id, profile_id as user_id from posts_profiles
+    eof
   end
 
   def copy_profile_fields_to_user
