@@ -17,7 +17,7 @@ class Admin::RentsController < ApplicationController
   def create
     @rent = Rent.new_with_status(rent_params, nil)
     flash[:notice] = 'Bokningen skapades' if @rent.save(validate: false)
-    redirect_to @rent
+    redirect_to admin_rent_path(@rent)
   end
 
   def new

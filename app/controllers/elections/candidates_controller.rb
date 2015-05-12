@@ -25,7 +25,7 @@ class Elections::CandidatesController < ApplicationController
     @candidate.profile = current_user.profile
     if @candidate.save
       flash[:notice] = %(#{model_name(Candidate, 1)} #{t(:success_create)}.)
-      redirect_to @candidate
+      redirect_to candidate_path(@candidate)
     else
       render action: :new
     end
@@ -34,7 +34,7 @@ class Elections::CandidatesController < ApplicationController
   def update
     if @candidate.update(candidate_params)
       flash[:notice] = %(#{model_name(Candidate, 1)} #{t(:success_update)}.)
-      redirect_to @candidate
+      redirect_to candidate_path(@candidate)
     else
       render action: :show
     end
