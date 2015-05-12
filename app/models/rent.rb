@@ -10,20 +10,16 @@ class Rent < ActiveRecord::Base
   validates :d_from, :d_til, :user, :disclaimer, presence: true
 
   # Purpose not required for members of F-guild
-  validates :purpose, presence: true, if: :not_member?
+  validates :purpose, presence: true, unless: :member?
 
   # Duration is only allowed to be 48h, unless it is for a council
-  validate :duration?
-
-  # Dates need to be in the future
-  validate :date_future, :dates_ascending, on: :create
-
   # Validate that there is no overlap
   # Council booking, overlapping is present => call overbook on the overlapped
   # Normal booking, overlapping is present => will add error
-  validate :overlap
-  validate :overlap_council
-  validate :overlap_overbook
+  validate :duration?, :overlap, :overlap_council, :overlap_overbook
+
+  # Dates need to be in the future
+  validate :date_future, :dates_ascending, on: :create
 
   # After creation
   after_create :send_email
@@ -63,6 +59,10 @@ class Rent < ActiveRecord::Base
   end
 
   # Methods
+
+  def member?
+    user.present? && user.member?
+  end
 
   # Update only if authorized
   # /d.wessman
@@ -124,7 +124,7 @@ class Rent < ActiveRecord::Base
   def duration
     if d_from.present? && d_til.present?
       h = (d_til - d_from) / 3600
-      return (h < 0) ? 0 : h
+      return h < 0 ? 0 : h
     end
     0
   end
