@@ -30,7 +30,8 @@ class TransferProfileData < ActiveRecord::Migration
           u.first_post_id = p.first_post,
           u.stil_id = p.stil_id,
           u.phone = p.phone,
-          u.lastname = p.lastname
+          u.lastname = p.lastname,
+          u.program = p.program
     eof
   end
 
