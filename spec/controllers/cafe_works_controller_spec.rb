@@ -29,7 +29,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
         it 'update worker' do
           patch(:update_worker, id: cwork_worker.to_param,
-                cafe_work: attributes_for(:assignee, :test))
+                                cafe_work: attributes_for(:assignee, :test))
           cwork_worker.reload
 
           cwork_worker.worker.attributes.should include(attributes_for(:assignee, :test))
