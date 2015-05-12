@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: c5405f3486b57a52416caf93b79fc09d56930a82
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.15)
+      momentjs-rails (>= 2.9.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -215,6 +224,8 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.3)
       pry (>= 0.9.10)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
@@ -279,6 +290,9 @@ GEM
     sexp_processor (4.5.0)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
+    simple_form (3.1.0)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     simplecov (0.9.2)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -361,6 +375,7 @@ DEPENDENCIES
   coffee-rails
   coffee-script-source (= 1.8.0)
   database_cleaner
+  datetimepicker-rails!
   devise
   factory_girl_rails
   fancybox2-rails
@@ -382,12 +397,14 @@ DEPENDENCIES
   prawn-rails
   pry-byebug
   pry-rails
+  quiet_assets
   rails (~> 4.2.0)
   responders (~> 2.0)
   rspec-example_steps
   rspec-rails
   sass-rails
   shoulda-matchers
+  simple_form
   sqlite3
   therubyracer
   turbolinks

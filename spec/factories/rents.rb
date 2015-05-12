@@ -2,10 +2,7 @@
 FactoryGirl.define do
 
   factory :rent do
-    name
-    lastname
-    email
-    phone
+    user
     disclaimer true
     purpose 'Handla möbler på IKEA'
     d_from { Time.zone.now + 10.day }
@@ -54,7 +51,7 @@ FactoryGirl.define do
   end
 
   trait :good do
-    profile
+    user
     aktiv true
   end
 end

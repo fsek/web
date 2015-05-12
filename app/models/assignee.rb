@@ -11,28 +11,29 @@ class Assignee
   include ActiveModel::Model
 
   # Attributes that can be set and be read.
-  attr_accessor :name, :lastname, :phone, :email, :profile_id, :access_code, :profile
+  attr_accessor :firstname, :lastname, :phone, :email, :user_id, :user
 
-  # Method used to setup new Assignee with a user > profile/access_code
-  # User present > Profile is set to User.profile
-  # User absent  > Access Code is generated
   def self.setup(assignee_params, user)
     new(assignee_params).prepare(user)
   end
 
   # To define if the Assignee is set and present.
   def present?
-    has_profile? || has_access_code?
+    user.present?
+  end
+
+  def to_s
+    p_name
   end
 
   # Printing methods
   def p_name
-    %(#{name} #{lastname})
+    %(#{firstname} #{lastname})
   end
 
   # Can be used in mailer, will generate proper tag.
   def p_email
-    %("#{name} #{lastname}" <#{email}>)
+    %("#{firstname} #{lastname}" <#{email}>)
   end
 
   # A way to clear all the attributes of the Assignee
@@ -40,15 +41,15 @@ class Assignee
   # Model.attributes = assignee.clear_attributes
   # Which saves a lot of rows and declarations.
   def clear_attributes
-    self.name, self.lastname, self.phone = nil, nil, nil
-    self.email, self.profile_id, self.access_code = nil, nil, nil
+    self.firstname, self.lastname, self.phone = nil, nil, nil
+    self.email, self.user_id = nil, nil
     attributes
   end
 
-  def load_profile(user)
-    if (user.present?) && !has_profile?
-      self.name, self.lastname = user.profile.name, user.profile.lastname
-      self.email,self.phone = user.profile.email, user.profile.phone
+  def load_user(p_user)
+    if p_user.present?
+      self.firstname, self.lastname = p_user.firstname, p_user.lastname
+      self.email, self.phone = p_user.email, p_user.phone
     end
     attributes
   end
@@ -56,51 +57,36 @@ class Assignee
   # Returns a hash of the current attributes
   def attributes
     {
-      name: name, lastname: lastname, email: email,
-      phone: phone, profile_id: profile_id, access_code: access_code
+      firstname: firstname, lastname: lastname, email: email,
+      phone: phone, user_id: user_id
     }
   end
 
-  # Method to return the profile.
-  # The @profile variable is set if a profile is sent in with the parameter hash.
-  def profile
-    @profile || Profile.find_by_id(profile_id)
-  end
-
-  def has_profile?
-    profile.present?
-  end
-
-  def has_access_code?
-    access_code.present?
+  # Method to return the user.
+  # The @user variable is set if a user is sent in with the parameter hash.
+  def user
+    @user || User.find_by_id(user_id)
   end
 
   def equals?(assignee)
-    name == assignee.name &&
+    firstname == assignee.firstname &&
       lastname == assignee.lastname &&
       email == assignee.email &&
       phone == assignee.phone
   end
 
   # For custom creation action where parameters is set and
-  # profile or access_code setup is made.
-  def prepare(user)
-    set_profile(user)
-    set_access_code
+  # user or access_code setup is made.
+  def prepare(new)
+    set_user(new)
     self
   end
 
-  protected
+  private
 
-  def set_profile(user)
-    if !has_profile? && user.present?
-      self.profile_id = (@profile = user.profile).id
-    end
-  end
-
-  def set_access_code
-    if !has_profile? && !has_access_code?
-      self.access_code = (0...15).map { (65 + rand(26)).chr }.join.to_s
+  def set_user(new)
+    if !user.present? && new.present?
+      self.user_id = (@user = new).id
     end
   end
 end

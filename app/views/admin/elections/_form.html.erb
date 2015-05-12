@@ -8,11 +8,15 @@
         </div>
         <%= f.label 'Öppnar', class: 'reg-label' %>
         <div class="input-group margin-bottom-20">
-          <%= f.text_field :start, class: 'form-control datetimepicker1' %>
+          <%= f.text_field :start, class: 'form-control datetimepicker' %>
         </div>
-        <%= f.label 'Stänger', class: 'reg-label' %>
+        <%= f.label 'Ansökan till Terminsmöte stänger', class: 'reg-label' %>
         <div class="input-group margin-bottom-20">
-          <%= f.text_field :end, class: 'form-control datetimepicker2' %>
+          <%= f.text_field :end, class: 'form-control datetimepicker' %>
+        </div>
+        <%= f.label 'Alla ansökningar stänger', class: 'reg-label' %>
+        <div class="input-group margin-bottom-20">
+          <%= f.text_field :closing, class: 'form-control datetimepicker' %>
         </div>
         <%= f.label 'Url', class: 'reg-label' %><br>
         T.ex. ht-14 (endast a-z, 1-9 och -)

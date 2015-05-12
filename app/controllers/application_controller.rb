@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_devise_parameters, if: :devise_controller?
   before_action :set_locale
 
-  helper_method :success_update
-  helper_method :success_create
+  helper_method :alert_update, :alert_create, :alert_destroy
 
   rescue_from CanCan::AccessDenied do |ex|
     if current_user.nil?
@@ -16,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActiveRecord::RecordInvalid do |ex|
-    flash[:error] =
+    flash[:alert] =
       "Fel i formulär:  #{ex.record.errors.full_messages.join '; '}"
     render referring_action, status: :unprocessable_entity
   end
@@ -40,12 +39,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def alert_update_resource(resource)
-    %(#{model_name(resource, false)} #{I18n.t('success_update')}.)
+  def alert_update(resource)
+    %(#{model_name(resource, false)} #{I18n.t(:success_update)}.)
   end
 
-  def alert_create_resource(resource)
-    %(#{model_name(resource, false)} #{I18n.t('success_create')}.)
+  def alert_create(resource)
+    %(#{model_name(resource, false)} #{I18n.t(:success_create)}.)
+  end
+
+  def alert_destroy(resource)
+    %(#{model_name(resource, false)} #{I18n.t(:success_destroy)}.)
   end
 
   protected
@@ -73,7 +76,7 @@ class ApplicationController < ActionController::Base
   # load the permissions for the current user so that UI can be manipulated
   def load_permissions
     return unless current_user
-    @current_permissions = current_user.profile.posts.each do |post|
+    @current_permissions = current_user.posts.each do |post|
       post.permissions.map { |i| [i.subject_class, i.action] }
     end
   end

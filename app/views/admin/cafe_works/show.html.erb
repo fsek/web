@@ -14,10 +14,8 @@
             <tr>
               <td><i class="fa fa-user"></i></td>
               <td>
-                <% if @cafe_work.profile.present? %>
-                    <%= link_to(@cafe_work.worker.p_name, profile_path(@cafe_work.profile)) %>
-                <% else %>
-                    <%= @cafe_work.worker.p_name %>
+                <% if @cafe_work.has_worker? %>
+                    <%= link_to(@cafe_work.worker, user_path(@cafe_work.user)) %>
                 <% end %>
               </td>
             </tr>
@@ -33,7 +31,7 @@
               <td><i class="fa fa-users"> Cafetävling</i></td>
               <td><%= (@cafe_work.utskottskamp) ? "Ja" : "Nej" %></td>
             </tr>
-            <% if @cafe_work.access_code.present? %>
+            <% if 1 == 0 && @cafe_work.access_code.present? %>
                 <tr>
                   <td><i class="fa fa-lock"> Kod:</i></td>
                   <td><%= @cafe_work.access_code %></td>

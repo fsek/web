@@ -7,7 +7,8 @@ class Council < ActiveRecord::Base
   belongs_to :vice_president, foreign_key: :vicepresident_id, class_name: :Post
 
   has_many :posts
-  has_many :profiles, through: :posts
+  has_many :users, through: :posts
+
   has_many :cafe_work_councils
   has_many :cafe_works, through: :cafe_work_councils
 
@@ -29,7 +30,6 @@ class Council < ActiveRecord::Base
     title
   end
 
-  # To use the url as actual url
   def to_param
     (url.present?) ? url : id
   end

@@ -2,12 +2,11 @@
 
 class NewsController < ApplicationController
   load_and_authorize_resource
-  
-  def index  
-    @news = News.all  
+
+  def index
   end
 
-  def show    
+  def show
   end
 
   def new
@@ -17,7 +16,7 @@ class NewsController < ApplicationController
   end
 
   def create
-    @news.profile = current_user.profile        
+    @news.user = current_user
     @news.save!
     redirect_to @news
   end
@@ -33,6 +32,7 @@ class NewsController < ApplicationController
   end
 
   private
+
   def news_params
     params.require(:news).permit(
       :title, :content, :image,

@@ -5,9 +5,13 @@ sv:
         one: Kontakt
         other: Kontakter
     attributes:
-      constant:
+      contact:
         name: Namn
         email: E-post
         public: Publik
         text: Beskrivning
         council_id: Utskott
+        send_name: Ditt namn
+        send_email: Din e-post
+        copy: Skicka kopia till dig?
+        message: Meddelande

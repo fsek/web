@@ -21,8 +21,8 @@ RSpec.describe Post, type: :model do
   describe 'ActiveRecord associations' do
     # Associations
     it { should belong_to(:council) }
-    it { should have_and_belong_to_many(:profiles) }
-    it { should have_and_belong_to_many(:elections) }
+    it { should have_many(:post_users) }
+    it { should have_many(:users) }
     it { should have_many(:nominations) }
     it { should have_many(:candidates) }
     it { should have_many(:permissions) }
@@ -34,25 +34,25 @@ RSpec.describe Post, type: :model do
       it { should respond_to(:to_s) }
       it { should respond_to(:printLimit) }
       it { should respond_to(:limited?) }
-      it { should respond_to(:add_profile) }
-      it { should respond_to(:remove_profile) }
+      it { should respond_to(:add_user) }
+      it { should respond_to(:remove_user) }
       it { should respond_to(:set_permissions) }
     end
 
     context 'executes methods correctly' do
       context 'valid parameters' do
-        it 'add_profile' do
-          post.add_profile(user.profile).should be_truthy
+        it 'add_user' do
+          post.add_user(user).should be_truthy
 
-          post.errors[:profile].should be_empty
-          post.profiles.should include(user.profile)
+          post.errors[:user].should be_empty
+          post.users.should include(user)
         end
 
-        it 'remove_profile' do
-          post.profiles << user.profile
+        it 'remove_user' do
+          post.users << user
 
-          post.remove_profile(user.profile).should be_truthy
-          post.profiles.should_not include(user.profile)
+          post.remove_user(user).should be_truthy
+          post.users.should_not include(user)
         end
 
         it 'set_permissions' do
@@ -62,13 +62,13 @@ RSpec.describe Post, type: :model do
         end
       end
       context 'invalid parameters' do
-        it 'add_profile' do
-          post.add_profile(nil).should be_falsey
-          post.errors[:profile].should_not be_empty
+        it 'add_user' do
+          post.add_user(nil).should be_falsey
+          post.errors[:user].should_not be_empty
 
-          post.profiles << user.profile
-          post.add_profile(user.profile).should be_falsey
-          post.errors[:profile].should_not be_empty
+          post.users << user
+          post.add_user(user).should be_falsey
+          post.errors[:user].should_not be_empty
         end
       end
     end
