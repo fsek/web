@@ -21,7 +21,7 @@ RSpec.describe CafeWorksController, type: :controller do
         before { allow(controller).to receive(:current_user).and_return(user) }
         it 'add worker' do
           patch(:update_worker, id: cwork.to_param,
-                                cafe_work: attributes_for(:assignee, user: user))
+                cafe_work: attributes_for(:assignee, user: user))
           cwork.reload
 
           cwork.has_worker?.should be_truthy
@@ -29,7 +29,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
         it 'update worker' do
           patch(:update_worker, id: cwork_worker.to_param,
-                                cafe_work: attributes_for(:assignee, :test))
+                cafe_work: attributes_for(:assignee, :test))
           cwork_worker.reload
 
           cwork_worker.worker.attributes.should include(attributes_for(:assignee, :test))
@@ -55,7 +55,7 @@ RSpec.describe CafeWorksController, type: :controller do
 
         it 'update worker' do
           patch(:update_worker, id: cwork_worker.to_param,
-                                cafe_work: attributes_for(:assignee, :test))
+                cafe_work: attributes_for(:assignee, :test))
           cwork_worker.reload
 
           cwork_worker.worker.attributes.should_not include(attributes_for(:assignee, :test))
@@ -76,6 +76,7 @@ RSpec.describe CafeWorksController, type: :controller do
       end
     end
   end
+
   describe 'PATCH #remove_worker' do
     context 'with valid user' do
       before do
@@ -122,14 +123,17 @@ RSpec.describe CafeWorksController, type: :controller do
       get(:index)
       response.should render_template(:index)
     end
+
     it 'assigns CafeWork.lv as @lv' do
       get(:index)
       assigns(:lv).should eq(CafeWork.get_lv)
     end
+
     before {
       cwork
       cwork_worker
     }
+
     it 'responds with JSON' do
       get(:index, start: cwork.work_day - 2.days, end: cwork.work_day + 2.days, format: :json)
       response.body.should eq([cwork.as_json, cwork_worker.as_json].to_json)
@@ -146,6 +150,7 @@ RSpec.describe CafeWorksController, type: :controller do
         response.should redirect_to :new_user_session
       end
     end
+
     context 'allowed' do
       allow_user_to :nyckelpiga, CafeWork
       it 'works' do

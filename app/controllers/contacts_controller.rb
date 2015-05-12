@@ -6,7 +6,6 @@ class ContactsController < ApplicationController
   end
 
   def show
-    @sent = false
   end
 
   def new
@@ -25,7 +24,7 @@ class ContactsController < ApplicationController
 
   def create
     if @contact.save
-      redirect_to @contact, notice: alert_created(Contact)
+      redirect_to @contact, notice: alert_create(Contact)
     else
       render action: :new
     end
