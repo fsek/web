@@ -21,7 +21,7 @@ RSpec.describe CafeWorksController, type: :controller do
         before { allow(controller).to receive(:current_user).and_return(user) }
         it 'add worker' do
           patch(:update_worker, id: cwork.to_param,
-                cafe_work: attributes_for(:assignee, user: user))
+                                cafe_work: attributes_for(:assignee, user: user))
           cwork.reload
 
           cwork.has_worker?.should be_truthy

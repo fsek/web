@@ -78,13 +78,13 @@ Fsek::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.default charset: 'utf-8'
 
   config.action_mailer.smtp_settings = {
-    address: "127.0.0.1",
+    address: '127.0.0.1',
     port: 25,
     domain: 'fsektionen.se',
-    authentication: "plain",
+    authentication: 'plain',
     enable_starttls_auto: false
   }
 
@@ -95,5 +95,5 @@ Fsek::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.assets.precompile = ['*.js', '*.css', '*.css.erb']
   config.assets.compile = true
-  PUBLIC_URL = "fsektionen.se"
+  PUBLIC_URL = 'fsektionen.se'
 end

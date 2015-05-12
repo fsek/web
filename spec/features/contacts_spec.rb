@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'visit contact, create new, send email' do
+feature 'visit contact, create new, send email', pending: true do
   let(:user) { create(:admin) }
   let(:council) { create(:council) }
   let(:contact) { build(:contact, council: council) }
