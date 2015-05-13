@@ -4,7 +4,6 @@ RSpec.describe NewsController, type: :controller do
   let(:user) { create(:user) }
   let(:news) { create(:news, profile: user.profile) }
 
-
   allow_user_to(:manage, News)
   before(:each) do
     allow(controller).to receive(:current_user) { user }
@@ -33,9 +32,9 @@ RSpec.describe NewsController, type: :controller do
 
   describe 'POST #create' do
     it 'posts new news' do
-      lambda {
+      lambda do
         post :create, news: attributes_for(:news)
-      }.should change(News, :count).by(1)
+      end.should change(News, :count).by(1)
 
       response.should redirect_to(News.last)
     end
