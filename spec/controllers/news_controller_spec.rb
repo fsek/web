@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe NewsController, type: :controller do
   let(:user) { create(:user) }
-  let(:news) { create(:news, profile: user.profile) }
+  let(:news) { create(:news, user: user) }
 
   allow_user_to(:manage, News)
   before(:each) do
