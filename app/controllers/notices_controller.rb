@@ -35,6 +35,19 @@ class NoticesController < ApplicationController
     redirect_to notices_url
   end
 
+  # Requested to hide the current Notice
+  # /d.wessman
+  def hide
+    @notice.display(false)
+  end
+
+  # Requested to display the current Notice
+  # /d.wessman
+  def display
+    @notice.display(true)
+  end
+
+  # Action to show notice picture
   def image
     if @notice.image?
       if params[:style] == 'original' || params[:style] == 'large' || params[:style] == 'small'

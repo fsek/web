@@ -20,31 +20,22 @@ FactoryGirl.define do
     end
 
     trait :test_work do
-      name 'Test'
+      firstname 'Test'
       lastname 'Testet'
       email 'test@test.se'
       phone '0705507889'
     end
 
     trait :worker do
-      name
+      firstname
       lastname
       email
       phone
     end
 
-    trait :w_profile do
+    trait :w_user do
       worker
-      profile
-      access_code nil
-    end
-
-    trait :access do
-      worker
-      profile nil
-      access_code
+      user
     end
   end
-
-
 end

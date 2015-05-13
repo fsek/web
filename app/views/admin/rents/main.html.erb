@@ -17,7 +17,7 @@
             rent.d_til.strftime('%H:%M %d/%m').to_s
           end
           g.column name: "Förnamn:", attribute: "name" do |rent|
-            (rent.profile.nil?) ? rent.name : link_to(rent.name, rent.profile)
+            link_to(rent.name, rent.user)
           end
           g.column name: "Efternamn", attribute: "lastname"
           g.column name: "Status", attribute: "status"
@@ -31,31 +31,31 @@
             link_to("Visa", preview_admin_rent_path(rent), remote: true)
           end
         end -%>
-      </div>
-      <div class="col-md-3">
-        <div class="row">
-          <div class="headline headline-md"><h2>F.A.Q.</h2></div>
-          <div class="panel-group acc-v1 margin-bottom-40" id="unanswered">
-            <% @faqs.each do |faq| %>
-                <%= render '/faqs/faq', faq: faq %>
-            <% end %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="headline headline-md"><h2>Verktyg</h2></div>
-          <div class="input-group margin-bottom-20">
-            <%= link_to("Rensa sökning", admin_car_path, class: "btn btn-u") %><br><br>
-            <%= link_to("Ny bokning", new_admin_rent_path, class: "btn btn-u") %> <br><br>
-            <%= link_to("Bilbokning - start", bil_path, class: "btn btn-u") %> <br><br>
-          </div>
+    </div>
+    <div class="col-md-3">
+      <div class="row">
+        <div class="headline headline-md"><h2>F.A.Q.</h2></div>
+        <div class="panel-group acc-v1 margin-bottom-40" id="unanswered">
+          <% @faqs.each do |faq| %>
+            <%= render '/faqs/faq', faq: faq %>
+          <% end %>
         </div>
       </div>
-      <div class="col-md-12" id="">
-        <div class="col-md-6" id="preview-rent">
-        </div>
-        <div class="col-md-6" id="preview-profile">
+      <div class="row">
+        <div class="headline headline-md"><h2>Verktyg</h2></div>
+        <div class="input-group margin-bottom-20">
+          <%= link_to("Rensa sökning", admin_car_path, class: "btn btn-u") %><br><br>
+          <%= link_to("Ny bokning", new_admin_rent_path, class: "btn btn-u") %> <br><br>
+          <%= link_to("Bilbokning - start", bil_path, class: "btn btn-u") %> <br><br>
         </div>
       </div>
+    </div>
+    <div class="col-md-12" id="">
+      <div class="col-md-6" id="preview-rent">
+      </div>
+      <div class="col-md-6" id="preview-user">
+      </div>
+    </div>
     </div>
   </div>
 </div>

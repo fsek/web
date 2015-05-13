@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class CafeWork < ActiveRecord::Base
   # Associations
-  belongs_to :profile
+  belongs_to :user
   has_many :councils, through: :cafe_work_councils
   has_many :cafe_work_councils
 
@@ -9,17 +9,18 @@ class CafeWork < ActiveRecord::Base
   validates :work_day, :pass, :lp, :lv, presence: true
   validates :pass, :lp, inclusion: { in: 1..4 }
   validates :lv, inclusion: { in: 1..20 }
-  validates :name, :lastname, :phone, :email, presence: true, if: :has_worker?
+  validates :firstname, :lastname, :phone, :email, presence: true, if: :has_worker?
   validates :pass, uniqueness: { scope: [:work_day, :lv, :lp, :d_year] }
 
   # Scopes
-  scope :with_worker, -> { where('profile_id IS NOT null OR access_code IS NOT null') }
+  scope :with_worker, -> { where.not(user: nil) }
   scope :between, ->(from, to) { where(work_day: from..to) }
   scope :ascending, -> { order(pass: :asc) }
   scope :week, ->(week) { where(lv: week) }
   scope :period, ->(p) { where(lp: p) }
   scope :year, ->(y) { where(d_year: y) }
 
+  attr_accessor :lv_first, :lv_last
   after_update :send_email, if: :has_worker?
 
   # A custom class for the worker
@@ -42,7 +43,7 @@ class CafeWork < ActiveRecord::Base
   # user is present.
   # /d.wessman
   def load(user)
-    self.attributes = worker.load_profile(user)
+    self.attributes = worker.load_user(user)
   end
 
   # Shows different status texts depending on the user.
@@ -55,21 +56,13 @@ class CafeWork < ActiveRecord::Base
       return 'Du är uppskriven för att arbeta på passet.'
     when :assigned
       return 'Passet är redan bokat.'
-    when :authorize
-      return 'Passet är bokat, fyll i koden som mailades ut vid anmälan för att redigera.'
     end
   end
 
   # Gives different statuses for the view
-  # 0 = everyone can sign up
-  # 1 = can be edited, either logged in or authorized
-  # 2 = shows no form
-  # 3 = shows form for authorization
   # /d.wessman
   def status_view(user)
-    if access_code.present?
-      return :authorize
-    elsif has_worker?
+    if has_worker?
       return owner?(user) ? :edit : :assigned
     end
     :sign_up
@@ -94,34 +87,33 @@ class CafeWork < ActiveRecord::Base
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
-    self.attributes = worker_params
-    self.attributes = Assignee.setup(worker_attributes, user).attributes
-    save
+    # self.attributes = Assignee.setup(worker_params, user).attributes
+    # save
+    self.user = user
+    update(worker_params)
   end
 
   # User to update worker, checks for edit-access
   # /d.wessman
   def update_worker(worker_params, user)
-    if !owner?(user) && !authorize(worker_params[:access_code])
+    if !owner?(user)
       errors.add('Auktorisering',
-                 'misslyckades, du har inte rättighet att redigera eller skrev fel kod.')
+                 'misslyckades, du har inte rättighet att redigera.')
       return false
     end
 
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
-    self.attributes = worker_params
-    self.attributes = Assignee.setup(worker_attributes, user).attributes
-    save
+    update(worker_params)
   end
 
   # Remove-function used by the worker
   # /d.wessman
-  def remove_worker(user, access)
-    if !owner?(user) && !authorize(access)
+  def remove_worker(user)
+    if !owner?(user)
       errors.add('Auktorisering',
-                 'misslyckades, du har inte rättighet att ta bort eller skrev fel kod.')
+                 'misslyckades, du har inte rättighet att ta bort.')
       return false
     end
 
@@ -137,10 +129,8 @@ class CafeWork < ActiveRecord::Base
     self.save!(validate: false)
   end
 
-  # Returns true if the profiles are similar and not nil
-  # /d.wessman
   def owner?(user)
-    user.present? && user.profile.present? && profile.present? && user.profile == profile
+    self.user == user
   end
 
   # Returns true if the user can edit the object
@@ -151,12 +141,6 @@ class CafeWork < ActiveRecord::Base
 
   def editable?
     work_day > Time.zone.now
-  end
-
-  # Returns true only if the access_code is correct
-  # /d.wessman
-  def authorize(access)
-    access.present? && access_code.present? && access_code == access
   end
 
   # Returns true if there is a worker
@@ -232,8 +216,8 @@ class CafeWork < ActiveRecord::Base
 
   def worker_attributes
     {
-      name: name, lastname: lastname, email: email,
-      phone: phone, profile: profile, profile_id: profile_id, access_code: access_code
+      firstname: firstname, lastname: lastname, email: email,
+      phone: phone, user: user, user_id: user_id
     }
   end
 

@@ -1,28 +1,23 @@
-<div class="container content">  		
-	<div class="headline headline-md"><h3>Kontakt</h3></div>
-	    
-	    	<div class="panel-group acc-v1 margin-bottom-40" id="answered">
-            	<%@first=true%>
-            	<% @contacts.each do |p| %>
-                	<div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-	                        	<div id="faq123">
-	                            	<a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#collapse<%=p.id%>">
-	                                   	<%=p.name%>
-	                                </a>
-	                            </div>
-                            </h4>
-                        </div>
-                        <div id="collapse<%=p.id%>" class="panel-collapse collapse <%if @first%><%@first=false%> in<%end%>">
-                            <div class="panel-body">
-								<%=p.text%>									
-								<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Kontakta"), contact_path(p), class: "btn-u btn-u-small pull-right"%>	                        		
-                            </div>
-                        </div>
-                    </div>
-				<%end%>
-            </div>  		
-        
-	</div>	
+<div class="headline headline-md"><h3><%= Contact.model_name.human(count: 2)%></h3></div>
+<div class="panel-group acc-v1 margin-bottom-40" id="answered">
+  <%@first=true%>
+  <% @contacts.each do |p| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <div id="faq123">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#<%=dom_id(p)%>">
+              <%=p.name%>
+            </a>
+          </div>
+        </h4>
+      </div>
+      <div id="<%=dom_id(p)%>" class="panel-collapse collapse <%if @first%><%@first=false%> in<%end%>">
+        <div class="panel-body">
+          <%=p.text%>
+          <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Kontakta"), contact_path(p), class: "btn-u btn-u-small pull-right"%>
+        </div>
+      </div>
+    </div>
+  <%end%>
 </div>

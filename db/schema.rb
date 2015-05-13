@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425064439) do
+ActiveRecord::Schema.define(version: 20150503052846) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20150425064439) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",      limit: 4
+    t.string   "firstname",    limit: 255
   end
 
   create_table "candidates", force: :cascade do |t|
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150425064439) do
     t.string   "name",        limit: 255
     t.string   "lastname",    limit: 255
     t.integer  "user_id",     limit: 4
+    t.string   "firstname",   limit: 255
   end
 
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id", using: :btree
@@ -159,6 +161,7 @@ ActiveRecord::Schema.define(version: 20150425064439) do
     t.text     "candidate_mail_star", limit: 65535
     t.string   "mail_link",           limit: 255
     t.string   "mail_styrelse_link",  limit: 255
+    t.datetime "closing"
   end
 
   create_table "elections_posts", id: false, force: :cascade do |t|
@@ -381,6 +384,7 @@ ActiveRecord::Schema.define(version: 20150425064439) do
     t.boolean  "service",     limit: 1,     default: false
     t.string   "access_code", limit: 255
     t.integer  "user_id",     limit: 4
+    t.string   "firstname",   limit: 255
   end
 
   create_table "roles", force: :cascade do |t|
@@ -431,8 +435,14 @@ ActiveRecord::Schema.define(version: 20150425064439) do
     t.datetime "avatar_updated_at"
     t.integer  "start_year",             limit: 4
     t.string   "program",                limit: 255
+    t.string   "confirmation_token",     limit: 255
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email",      limit: 255
+    t.datetime "member_at"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 

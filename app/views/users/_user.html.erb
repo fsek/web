@@ -1,0 +1,23 @@
+<h2><%= user.print %></h2>
+<div class="row portfolio-item1">
+  <div class="col-xs-4">
+    <ul class="list-unstyled">
+      <li><%= fa_icon('space-shuttle') %>Började år:</li>
+      <li><%= fa_icon('rocket') %>Program:</li>
+      <% if user.posts.size == 1 %>
+          <li><%= fa_icon('mortar-board') %>Post:</li>
+      <% elsif user.posts.size > 1 %>
+          <li><%= fa_icon('mortar-board') %>Poster:</li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-xs-8">
+    <ul class="list-unstyled">
+      <li><%= user.start_year %></li>
+      <li><%= user.program %></li>
+      <% user.posts.each do |p| %>
+          <li><%= p.title %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<%= simple_form_for(user, url: user_path, html: { class: 'reg-page' } ) do |f| %>
+  <div class=" form inputs" >
+    <%= f.input :email  %>
+    <p><%= t('user.email_confirmed') %></p>
+    <%= f.input :confirmed_at, as: :datetime_picker %>
+    <%= f.input :member_at, as: :datetime_picker %>
+  </div>
+<% end %>

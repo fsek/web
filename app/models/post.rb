@@ -2,7 +2,8 @@
 class Post < ActiveRecord::Base
   # Associations
   belongs_to :council
-  has_and_belongs_to_many :profiles
+  has_many :post_users
+  has_many :users, through: :post_users
   has_and_belongs_to_many :elections
   has_many :nominations
   has_many :candidates
@@ -38,17 +39,17 @@ class Post < ActiveRecord::Base
   end
 
   def limited?
-    limit > 0 && profiles.count >= limit
+    limit > 0 && users.count >= limit
   end
 
-  def add_profile(profile)
-    if profile.nil?
-      errors.add(:profile, I18n.t('errors.messages.not_found'))
+  def add_user(user)
+    if user.nil?
+      errors.add(:user, I18n.t('errors.messages.not_found'))
       return false
     end
 
-    if profiles.include?(profile)
-      errors.add(:profile, I18n.t('posts.already_have_post'))
+    if users.include?(user)
+      errors.add(:user, I18n.t('posts.already_have_post'))
       return false
     end
 
@@ -57,12 +58,12 @@ class Post < ActiveRecord::Base
       return false
     end
 
-    profiles << profile
+    users << user
     true
   end
 
-  def remove_profile(profile)
-    profiles.delete(profile)
+  def remove_user(user)
+    users.delete(user)
   end
 
   def set_permissions(params)

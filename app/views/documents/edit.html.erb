@@ -2,8 +2,8 @@
 	<div class="row">
 		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
 			<%= label_tag "Redigera dokument",nil, class:  'reg-header'%>
-			<%=render partial: "form"%>
-			<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @dokument, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %><br>			
+			<%= render 'form' %>
+			<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @document, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %><br>			
 			<%= link_to 'Tillbaka till start', root_url %>
 		</div>
 	</div>
