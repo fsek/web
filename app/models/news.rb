@@ -3,7 +3,8 @@ class News < ActiveRecord::Base
   belongs_to :user
 
   has_attached_file :image,
-                    styles: {original: '4000x4000>', large: '800x800>', small: '250x250>', thumb: '100x100>'},
+                    styles: { original: '4000x4000>', large: '800x800>',
+                              small: '250x250>', thumb: '100x100>' },
                     path: ':rails_root/public/system/images/news/:id/:style/:filename',
                     url: '/system/images/news/:id/:style/:filename'
 
@@ -16,4 +17,5 @@ class News < ActiveRecord::Base
   scope :not_removed, -> { where('d_remove > ?', Time.zone.today) }
   scope :public_n, -> { where(public: true) }
   scope :latest, -> { order(created_at: :asc).limit(5) }
+  scope :all_date, -> { order(created_at: :asc) }
 end
