@@ -2,7 +2,7 @@
 
 <div class="container">	
   <div class="col-md-12">
-    <% if can? :modify, News %>
+    <% if can? :modify, @news.first || News.new %>
       <div class="row">
         <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till nyhet"), new_news_path, class: "btn-u btn-u-small"%>
       </div>
@@ -11,7 +11,7 @@
       <ul class="timeline-v2">
         <% @news.each do |news| %>
           <li>					
-            <time class="cbp_tmtime"><span><%= link_to fa_icon("user") + (news.profile) ,news.profile %> </span>
+            <time class="cbp_tmtime"><span><%= link_to fa_icon("user") + (news.user) ,news.user %> </span>
               <span><%= news.created_at.to_s %></span></time>
             <i class="cbp_tmicon"></i>
             <div class="cbp_tmlabel">
@@ -37,7 +37,7 @@
 </div>
 <% content_for(:sidebar) do %>
   <% if user_signed_in? %>
-    <% if can? :create, News %>
+    <% if can? :create, @news.first || News.new %>
       <div class="headline headline-md"><h2>Verktyg</h2></div>
       <ul class="list">
         <li><%= link_to "Skapa nyhet", new_news_path %></li>

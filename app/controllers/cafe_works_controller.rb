@@ -8,10 +8,6 @@ class CafeWorksController < ApplicationController
     @cafe_work.load(current_user)
   end
 
-  def authorize
-    @authenticated = @cafe_work.authorize(worker_params[:access_code])
-  end
-
   def update_worker
     if @cafe_work.add_or_update(worker_params, current_user)
       flash[:notice] = 'Bokningen uppdaterades - du arbetar!'
@@ -22,8 +18,7 @@ class CafeWorksController < ApplicationController
   end
 
   def remove_worker
-    access = (params[:cafe_work].present?) ? worker_params[:access_code] : nil
-    if @cafe_work.remove_worker(current_user, access)
+    if @cafe_work.remove_worker(current_user)
       flash[:notice] = 'Du arbetar inte längre på passet'
       redirect_to @cafe_work
     else
@@ -48,8 +43,8 @@ class CafeWorksController < ApplicationController
   private
 
   def worker_params
-    params.require(:cafe_work).permit(:profile_id, :name, :lastname, :phone, :email,
-                                      :utskottskamp, :access_code, council_ids: [])
+    params.require(:cafe_work).permit(:user_id, :firstname, :lastname, :phone, :email,
+                                      :utskottskamp, council_ids: [])
   end
 
   def councils

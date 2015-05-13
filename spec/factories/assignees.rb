@@ -1,20 +1,20 @@
 # encoding: UTF-8
 FactoryGirl.define do
   factory :assignee do
-    name
+    firstname
     lastname
     email
     phone
 
     trait :test do
-      name 'Test'
+      firstname 'Test'
       lastname 'Testaren'
       email 'tests@tes.t'
       phone '7357'
     end
 
     trait :invalid do
-      name ''
+      firstname ''
       lastname ''
       email ''
       phone ''

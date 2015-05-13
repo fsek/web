@@ -1,7 +1,0 @@
-<% if current_user.admin? %>
-	<%= form_tag change_role_path, :method => :put do%>
-		<%= hidden_field_tag :user_id, @user.id%>
-		<%= select_tag :role_id, options_for_select(Role.all.collect{ |r| [r.name, r.id] })%>
-		<%= submit_tag%>
-	<%end%>
-<%end%>

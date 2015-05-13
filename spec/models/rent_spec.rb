@@ -2,14 +2,15 @@
 require 'rails_helper'
 
 RSpec.describe Rent, type: :model do
-  subject(:rent) { build(:rent) }
+  subject(:rent) { build(:rent, user: create(:user, member_at: nil)) }
   let(:saved) { create(:rent, :good) }
+
   describe 'has valid factory' do
     it { should be_valid }
   end
 
   describe :Associations do
-    it { should belong_to(:profile) }
+    it { should belong_to(:user) }
     it { should belong_to(:council) }
   end
 
@@ -20,20 +21,13 @@ RSpec.describe Rent, type: :model do
     describe :RequiredAttributes do
       it { should validate_presence_of(:d_from) }
       it { should validate_presence_of(:d_til) }
-      it { should validate_presence_of(:name) }
-      it { should validate_presence_of(:lastname) }
-      it { should validate_presence_of(:phone) }
-      it { should validate_presence_of(:email) }
+      it { should validate_presence_of(:user) }
     end
 
     describe :Purpose do
-      context 'validate purpose when there is not profile' do
-        before { allow(subject).to receive(:no_profile?).and_return(true) }
+      # TODO Must be fixed with new member thingy.
+      context 'validate purpose when not a member' do
         it { should validate_presence_of(:purpose) }
-      end
-      context 'do not validate purpose when there is a profile' do
-        before { allow(subject).to receive(:no_profile?).and_return(false) }
-        it { should_not validate_presence_of(:purpose) }
       end
     end
 

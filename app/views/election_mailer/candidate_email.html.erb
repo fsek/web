@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-  	<h3> Hej <%=@candidate.profile.name %></h3>
+  	<h3> Hej <%=@candidate.person %></h3>
 			<p>Du har kandiderat till sektionsposten <%=@candidate.post.title%>.</p>
 			<%if @candidate.post.elected_by == "Terminsmötet"%>
 				<%if (@candidate.election.candidate_mail)%>

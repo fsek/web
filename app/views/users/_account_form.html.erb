@@ -1,0 +1,8 @@
+<%= simple_form_for(user, url: account_user_path, method: :patch, html: { class: 'reg-page' }) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :username %>
+    <%= f.input :email %>
+    <%= f.input :current_password %>
+    <%= f.button :submit , class: 'btn btn-u' %>
+  </div>
+<% end %>

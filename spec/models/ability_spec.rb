@@ -19,7 +19,6 @@ describe Ability do
     it { should_not be_able_to :read, Event.new }
     it { should_not be_able_to :read, Candidate.new }
     it { should_not be_able_to :read, Permission.new }
-    it { should_not be_able_to :read, Profile.new }
     it { should_not be_able_to :read, User.new }
   end
 

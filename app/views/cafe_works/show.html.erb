@@ -26,25 +26,15 @@
   </div>
   <div class="margin-bottom-25">
     <div class="headline headline-md"><h2>Jobbare</h2></div>
-    <%= render 'shared/form_errors', current: @cafe_work %>
     <p id="status"><%= @cafe_work.status_text(current_user) %></p>
-    <% case @cafe_work.status_view(current_user)
-         when :sign_up, :edit %>
-        <div id="form_r">
-          <%= render 'form' %>
-        </div>
-    <% when :authorize %>
-        <div id="authorization">
-          <%= render 'authorization' %>
-        </div>
-        <div id="after_authorization" ,style="display:none;">
-        </div>
-    <% end %>
+    <div id="form_r">
+      <%= render 'form' %>
+    </div>
   </div>
 
   <div class="row">
-    <% if can? :manage, CafeWork %>
-        <%= link_to("Administrera passet", admin_cafe_work_path(@cafe_work), class: "btn btn-u") %>
+    <% if can? :manage, @cafe_work %>
+      <%= link_to("Administrera passet", admin_cafe_work_path(@cafe_work), class: "btn btn-u") %>
     <% end %>
     <%= link_to("Startsida för Hilbert", :hilbert, class: "btn btn-u") %>
   </div>

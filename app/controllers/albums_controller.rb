@@ -27,7 +27,8 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album.author = current_user.profile
+    @album = Album.new(album_params)
+    @album.author = current_user
     if @album.save
       redirect_to @album, notice: 'Albumet skapades!'
     else

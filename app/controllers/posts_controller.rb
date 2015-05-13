@@ -6,17 +6,18 @@ class PostsController < ApplicationController
     [:edit_permissions, :update_permissions]
   before_action :set_permissions
   before_action :set_councils, only: [:new, :edit, :update, :create]
-  before_action :set_profile, only: [:remove_profile, :add_profile]
+  before_action :set_user, only: [:remove_user, :add_user]
 
-  def remove_profile
-    @post.remove_profile(@profile)
-    redirect_to back,
-                notice: %(#{@profile.full_name} har inte längre posten #{@post.title}.)
+  def remove_user
+    user = User.find_by_id(params[:user_id])
+    @post.users.delete(user)
+    flash[:notice] = %(#{user.name} har inte längre posten #{@post.title}.)
+    redirect_to council_posts_path(@council)
   end
 
-  def add_profile
-    if @post.add_profile(@profile)
-      flash[:notice] = %(#{@profile.full_print} tilldelades #{@post})
+  def add_user
+    if @post.add_user(@user)
+      flash[:notice] = %(#{@user.full_print} tilldelades #{@post})
     else
       flash[:alert] = %(Tilldelningen gick inte: #{@post.errors.full_messages})
     end
@@ -106,11 +107,11 @@ class PostsController < ApplicationController
     @permissions = Permission.all
   end
 
-  def set_profile
+  def set_user
     if @post.nil?
       @post = Post.find_by_id(params[:post_id])
     end
-    @profile = Profile.find_by_id(params[:profile_id])
+    @user = User.find_by_id(params[:user_id])
   end
 
   def back

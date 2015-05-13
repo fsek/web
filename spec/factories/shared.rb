@@ -4,6 +4,7 @@ FactoryGirl.define do
   sequence(:email) { |n| "d.wessman#{n}@fsektionen.se" }
   sequence(:lastname) { |n| "Wessman#{n}" }
   sequence(:name) { |n| "David#{n}" }
+  sequence(:firstname) { |n| "David#{n}" }
   sequence(:phone) { |n| "070#{n}606122" }
   sequence(:stil_id) { |n| "tfy54dw#{n}" }
   sequence(:title) { |n| "Titel#{n}" }
@@ -13,16 +14,11 @@ FactoryGirl.define do
   sequence(:location) { ['MH:A','Hilbert','Kårhuset','Ön-ön','Sjönsjön','Bastun'].sample }
 
   # Used in Bilbokning
-  trait :with_profile do
-    profile
+  trait :with_user do
+    user
   end
 
   trait :with_council do
     council
-  end
-
-  # Used in Cafebokning and Bilbokning
-  trait :with_access_code do
-    access_code
   end
 end
