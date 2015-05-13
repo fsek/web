@@ -108,5 +108,22 @@ namespace :db do
     Contact.find_or_create_by(name: 'Spindelman - David', email: 'spindelman@fsektionen.se',
                               public: true, text: 'Detta är en linte spindelman',
                               council_id: Council.first.try(:id))
+
+    # News
+    News.find_or_create_by!(title: 'Ett helt nytt användarsystem',
+                           content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
+                           user: User.first)
+    News.find_or_create_by!(title: 'Andra helt nytt användarsystem',
+                           content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
+                           user: User.first)
+    News.find_or_create_by!(title: 'Tredje helt nytt användarsystem',
+                           content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
+                           user: User.first)
+    News.find_or_create_by!(title: 'Fjärde helt nytt användarsystem',
+                           content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
+                           user: User.first)
+    News.find_or_create_by!(title: 'Femte helt nytt användarsystem',
+                           content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
+                           user: User.first)
   end
 end
