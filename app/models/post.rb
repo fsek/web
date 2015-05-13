@@ -64,6 +64,7 @@ class Post < ActiveRecord::Base
     end
     save!
   end
+
   protected
 
   def check_user(user)

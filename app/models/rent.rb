@@ -147,8 +147,8 @@ class Rent < ActiveRecord::Base
     elsif status.present?
       str += I18n.t(%(rent.#{self.status})) + ' - '
     end
-      str += aktiv == true ? I18n.t('rent.active') : I18n.t('rent.inactive')
-      str
+    str += aktiv == true ? I18n.t('rent.active') : I18n.t('rent.inactive')
+    str
   end
 
   # Prints the date of the rent in a readable way, should be localized
