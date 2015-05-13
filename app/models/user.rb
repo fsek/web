@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   attr_accessor :remove_avatar
   before_save :delete_avatar, if: -> { remove_avatar == '1' && !avatar_updated_at_changed? }
 
+  scope :all_firstname, -> { order(firstname: :asc) }
   # Returns all councils the user belongs to with a Post who is
   # allowed to rent the car
   # /d.wessman

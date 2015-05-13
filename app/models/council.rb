@@ -18,6 +18,8 @@ class Council < ActiveRecord::Base
 
   after_update :check_page
 
+  scope :all_name, -> { order(title: :asc) }
+
   def check_page
     if page.nil?
       build_page(url: url, visible: true, title: title).save!

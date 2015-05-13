@@ -140,6 +140,17 @@ class Rent < ActiveRecord::Base
 
   # Methods for printing
 
+  def print_status
+    str = ''
+    if service == true
+      str += %(#{I18n.t('rent.service')} - )
+    elsif status.present?
+      str += I18n.t(%(rent.#{self.status})) + ' - '
+    end
+      str += aktiv == true ? I18n.t('rent.active') : I18n.t('rent.inactive')
+      str
+  end
+
   # Prints the date of the rent in a readable way, should be localized
   # /d.wessman
   def p_time

@@ -29,3 +29,9 @@ sv:
       overlap: överlappar med en annan bokning.
       overlap_council: överlappar med en annan utskottsbokning.
       overlap_overbook: överlappar med en bokning som det är mindre än 5 dagar till.
+    denied_comment: Orsak vid nekad bokning
+    confirmed: Bekräftad
+    unconfirmed: Ej bekräftad
+    denied: Nekad
+    active: Aktiv
+    inactive: Inaktiv

@@ -6,6 +6,7 @@ feature 'Admin visits rents' do
 
   background do
     council
+    rent.user
   end
 
   Steps 'Admin signs in' do
@@ -29,16 +30,14 @@ feature 'Admin visits rents' do
       find(:linkhref, new_admin_rent_path).click
     end
     And 'Fill out information' do
-      fill_in 'rent_name', with: rent.name
-      fill_in 'rent_lastname', with: rent.lastname
-      fill_in 'rent_email', with: rent.email
-      fill_in 'rent_phone', with: rent.phone
+      select(rent.user.to_s, from: 'rent_user_id')
       fill_in 'rent_d_from', with: rent.d_from.to_s
       fill_in 'rent_d_til', with: rent.d_til.to_s
-      select(rent.council, from: 'rent_council')
-      select('Bekräftad', from: 'rent_status')
+      select(rent.council.to_s, from: 'rent_council_id')
+      select(I18n.t('rent.confirmed'), from: 'rent_status')
       find('#rent-submit').click
       Then 'I should see greeting' do
+        #TODO Some way to assure it is created - or not.
       end
     end
   end

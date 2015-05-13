@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503052846) do
+ActiveRecord::Schema.define(version: 20150513082710) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -380,7 +380,7 @@ ActiveRecord::Schema.define(version: 20150503052846) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment",     limit: 65535
-    t.string   "status",      limit: 255,   default: "Ej bestÃƒÂ¤md"
+    t.string   "status",      limit: 255
     t.boolean  "service",     limit: 1,     default: false
     t.string   "access_code", limit: 255
     t.integer  "user_id",     limit: 4
