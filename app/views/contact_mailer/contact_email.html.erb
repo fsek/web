@@ -4,14 +4,14 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h2>Meddelande skickat via hemsidan till <%= @kontakt.name%> </h2>
+    <h2>Meddelande skickat via hemsidan till <%= @kontakt%> </h2>
     <p>
     Från: <%= @name%><br>
     E-post: <%= @email%>
   </p>
   <p>
   Meddelande: <br>
-  <%= simple_format(@msg)%>
+  <%= simple_format(@msg) %>
   </p>
   </body>
 </html>

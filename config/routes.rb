@@ -18,13 +18,10 @@ Fsek::Application.routes.draw do
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
   devise_scope :user do
-    #registration
     get 'avbryt_reg' => 'registrations#cancel', as: :cancel_user_registration
     post 'anvandare/skapa' => 'registrations#create', as: :user_registration
     get 'anvandare/registrera' => 'registrations#new', as: :new_user_registration
-    patch 'anvandare/redigera/:id' => 'users#update_password', as: :update_user_registration
-    get 'anvandare/redigera' => 'registrations#edit', as: :edit_user_registration
-    delete 'anvandare/ta_bort/:id' => 'users#destroy', :as => :admin_destroy_user
+    # delete 'anvandare/ta_bort/:id' => 'users#destroy', :as => :admin_destroy_user
 
     #sessions
     get 'logga_in' => 'devise/sessions#new', as: :new_user_session
@@ -32,10 +29,24 @@ Fsek::Application.routes.draw do
     delete 'logga_ut' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  get 'anvandare' => 'users#index', as: :users
-
   # Scope to change urls to swedish
   scope path_names: {new: 'ny', edit: 'redigera'} do
+    namespace :admin do
+      resources :users, path: :anvandare, only: [:index]
+    end
+
+    resource :user, path: :anvandare, only: [:edit, :update] do
+      get '', action: :show, as: :own_user
+      patch :password, path: :losenord, action: :update_password
+      patch :account, path: :konto, action: :update_account
+    end
+
+    resources :users, path: :anvandare, only: [:show] do
+      patch :search, on: :collection
+      patch :remove_post, on: :member
+      get :avatar, on: :member
+    end
+
     resources :constants
 
     scope :hilbertcafe do
@@ -88,8 +99,8 @@ Fsek::Application.routes.draw do
     resources :posts, path: :poster, only: :index do
       get :display, on: :member
       get :collapse, on: :collection
-      patch :add_profile, on: :collection
-      patch :remove_profile, on: :collection
+      patch :add_user, on: :collection
+      patch :remove_user, on: :collection
       collection do
         get :show_permissions
       end
@@ -97,8 +108,11 @@ Fsek::Application.routes.draw do
 
     resources :councils, path: :utskott do
       resources :posts, path: :poster do
-        patch :remove_profile, on: :member
-        patch :add_profile, on: :collection
+        patch :remove_user, on: :member
+        patch :add_user, on: :member
+      end
+      resource :page, path: :sida do
+        resources :page_elements, path: :element, on: :member
       end
     end
 
@@ -106,12 +120,6 @@ Fsek::Application.routes.draw do
 
     resources :contacts, path: :kontakt do
       post :mail, on: :member
-    end
-
-    resources :profiles, path: :profil do
-      patch :search, on: :collection
-      patch :remove_post, on: :member
-      get :avatar, on: :member
     end
 
     resources :events do
@@ -143,13 +151,8 @@ Fsek::Application.routes.draw do
     end
 
     resources :albums, path: :galleri do
-      #post :edit, on: :member
-      #get :settings, path: :installningar, on: :collection
       get :upload_images, path: :ladda_upp, on: :member
       patch :upload_images, path: :ladda_upp, on: :member
-      #delete :destroy_images, path: :ta_bort_bilder, on: :member
-      #post :settings, path: :installningar, on: :collection
-      #post '', on: :member, action: :show
       resources :images, path: :bilder, except: [:new]
     end
   end

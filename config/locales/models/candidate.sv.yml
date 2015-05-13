@@ -9,7 +9,7 @@ sv:
     attributes:
       candidate:
         post_id: Post
-        profile_id: Profil
+        user_id: Användare
         election_id: Val
         motivation: Motivering
         stil_id: Stil-id

@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class News < ActiveRecord::Base
-  belongs_to :profile
+  belongs_to :user
 
   has_attached_file :image,
                     styles: { original: '4000x4000>', large: '800x800>',
@@ -10,7 +10,7 @@ class News < ActiveRecord::Base
 
   # Validations
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  validates :title, :content, :profile, presence: true
+  validates :title, :content, :user, presence: true
 
   # Scopes
   scope :d_published, -> { where('d_publish <= ?', Time.zone.today) }

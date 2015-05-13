@@ -12,7 +12,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
   let(:search_post) { create(:post) }
   let(:not_owner) { create(:user) }
   let(:candidate) do
-    create(:candidate, profile: user.profile, election: election, post: search_post)
+    create(:candidate, user: user, election: election, post: search_post)
   end
 
   context 'when not allowed to' do
@@ -50,7 +50,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       it 'assigns users candidates' do
         get :index
 
-        assigns(:candidates).should eq(user.profile.candidates.where(election: election))
+        assigns(:candidates).should eq(user.candidates.where(election: election))
       end
     end
 
@@ -63,7 +63,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       it 'prepares new candidate with user' do
         get :new
 
-        assigns(:candidate).name.should eq(user.profile.name)
+        assigns(:candidate).user.should eq(user)
       end
     end
 
@@ -76,51 +76,17 @@ RSpec.describe Elections::CandidatesController, type: :controller do
     end
 
     describe 'POST #create' do
+      allow_user_to :manage, Candidate
       before { search_post }
       it 'creates a new candidate' do
         lambda do
           post :create, candidate: attributes_for(:candidate, post_id: search_post.id)
         end.should change(Candidate, :count).by(1)
       end
+
       it 'creates candidate and redirects to candidate' do
         post :create, candidate: attributes_for(:candidate, post_id: search_post.id)
         response.should redirect_to(Candidate.last)
-      end
-    end
-
-    describe 'PATCH #update' do
-      before { candidate }
-      let(:change_attributes) { { name: 'David', lastname: 'Ny', stil_id: 'Nytt' } }
-      context 'with valid params' do
-        it 'updates the requested candidate' do
-          patch :update, id: candidate.to_param, candidate: change_attributes
-
-          candidate.reload
-          (candidate.name == change_attributes[:name] &&
-           candidate.lastname == change_attributes[:lastname]).should be_truthy
-        end
-
-        it 'assigns the requested candidate as @candidate' do
-          patch :update, id: candidate.to_param, candidate: change_attributes
-          assigns(:candidate).should eq(candidate)
-        end
-
-        it 'redirects to the candidate' do
-          patch :update, id: candidate.to_param, candidate: change_attributes
-          response.should redirect_to(candidate)
-        end
-      end
-
-      context 'with invalid params' do
-        it 'assigns the candidate as @candidate' do
-          patch :update, id: candidate.to_param, candidate: { profile_id: nil }
-          assigns(:candidate).should eq(candidate)
-        end
-
-        it 're-renders the show-template' do
-          patch :update, id: candidate.to_param, candidate: { profile_id: nil }
-          response.should render_template(:show)
-        end
       end
     end
 

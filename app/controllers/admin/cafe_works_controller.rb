@@ -16,14 +16,13 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def create
-    flash[:notice] = 'Cafejobbet skapades, success.' if @cafe_work.save
+    flash[:notice] = alert_create(CafeWork) if @cafe_work.save
     redirect_to [:admin, @cafe_work]
   end
 
   def update
     if @cafe_work.update(cafe_work_params)
-      flash[:notice] = 'Cafejobbet uppdaterades'
-      redirect_to [:admin, @cafe_work]
+      redirect_to [:admin, @cafe_work], notice: alert_update(CafeWork)
     else
       render action: :edit
     end
@@ -34,7 +33,7 @@ class Admin::CafeWorksController < ApplicationController
     @id = @cafe_work.id
     @cafe_work.destroy
     respond_to do |format|
-      format.html { redirect_to :admin_hilbert, notice: 'Cafepasset raderades.' }
+      format.html { redirect_to :admin_hilbert, alert: alert_destroy(CafeWork) }
       format.js
     end
   end
@@ -51,7 +50,8 @@ class Admin::CafeWorksController < ApplicationController
   def setup_create
     if preview?
       @cafe_works = @r.preview(@lv_first, @lv_last)
-    elsif save?
+      @cafe_work.valid?
+    else
       @r.setup(@lv_first, @lv_last)
       flash[:notice] = 'Cafejobben skapades'
     end
@@ -71,7 +71,7 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def cafe_work_params
-    params.require(:cafe_work).permit(:work_day, :pass, :lp, :lv)
+    params.require(:cafe_work).permit(:work_day, :pass, :lp, :lv, :lv_first, :lv_last, :d_year)
   end
 
   def set_new_cafe_work
@@ -89,15 +89,11 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def set_lv
-    @lv_first = (params[:lv_first].present?) ? params[:lv_first].to_i : 0
-    @lv_last = (params[:lv_last].present?) ? params[:lv_last].to_i : 0
+    @lv_first = cafe_work_params[:lv_first] || 0
+    @lv_last = cafe_work_params[:lv_last] || 0
   end
 
   def preview?
-    params[:commit] == 'Förhandsgranska'
-  end
-
-  def save?
-    params[:commit] == 'Spara'
+    params[:commit] == I18n.t(:preview)
   end
 end

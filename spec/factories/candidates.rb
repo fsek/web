@@ -1,13 +1,8 @@
 FactoryGirl.define do
   factory :candidate do |c|
     election
-    email
-    lastname
-    name
-    phone
     c.post
-    profile
-    stil_id
+    user
 
     # Override after_create callbacks.
     after(:build) do |candidate|

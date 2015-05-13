@@ -1,21 +1,19 @@
-<div class="container content">  		
-	<div class="headline headline-md"><h3>Dokument</h3></div>
-    <div class="col-md-10 col-md-offset-1">
-		<%= grid(@documents_grid) do |g|			
-		  g.column name: "Titel",attribute: "title",filter: false do |post|
-		  	link_to(post.title,document_path(post),target: "blank")
-	  	  end  
-		  g.column name: "Kategori",attribute: "category",filter: false do |post|
-	  		post.category
-		  end
-		  g.column name: "Skapad", attribute: "created_at",filter: false do |post|
-		  	post.created_at.to_date
-	  	  end
-		  if @edit
-		  	g.column name: "Redigera",filter: false do |post|
-		  		link_to(post.title,edit_document_path(post))
-		  	end	
-		  end		  	  
-		end -%>		
-	</div>	
+  <div class="headline headline-md"><h3>Dokument</h3></div>
+  <div class="col-md-10 col-md-offset-1">
+    <%= grid(@documents_grid) do |g|
+      g.column name: "Titel",attribute: "title",filter: false do |post|
+        link_to(post.title,document_path(post),target: "blank")
+      end
+      g.column name: "Kategori",attribute: "category",filter: false do |post|
+        post.category
+      end
+      g.column name: "Skapad", attribute: "created_at",filter: false do |post|
+        post.created_at.to_date
+      end
+      if can? :edit, Document
+        g.column name: "Redigera",filter: false do |post|
+          link_to(post.title,edit_document_path(post))
+        end
+      end
+    end -%>
 </div>

@@ -5,6 +5,6 @@ task :promote_admin => :environment do
   post = Post.find_or_create_by!(title: 'Admin', description: 'Administratör')
   PermissionPost.find_or_create_by!(permission: perm, post: post)
   u = User.first
-  u.profile.posts << post
+  u.posts << post
   u.save!
 end

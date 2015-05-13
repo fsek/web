@@ -3,6 +3,6 @@ FactoryGirl.define do
   factory :news do
     title
     content { generate(:description) }
-    profile
+    user
   end
 end

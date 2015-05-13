@@ -17,7 +17,7 @@ class NewsController < ApplicationController
   end
 
   def create
-    @news.profile = current_user.profile
+    @news.user = current_user
     @news.save!
     redirect_to news_path(@news)
   end

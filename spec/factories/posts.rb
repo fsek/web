@@ -3,7 +3,8 @@ FactoryGirl.define do
   factory :post do
     title
     description
-    elected_by { ['Studierådet','Terminsmötet'].sample}
+    elected_by { ['Studierådet', 'Terminsmötet'].sample }
+    elected_at { ['VT', 'HT'].sample }
     limit { rand(1..3) }
     recLimit { rand(3..7) }
   end

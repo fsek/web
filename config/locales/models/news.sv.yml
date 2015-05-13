@@ -10,4 +10,4 @@ sv:
         content: Text
         front_page: Startsida
         image: Bild
-        profile_id: Upplagd av
+        user_id: Upplagd av

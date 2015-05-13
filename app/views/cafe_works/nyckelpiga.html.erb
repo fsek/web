@@ -16,8 +16,7 @@
           <tr>
             <th>ID</th>
             <th>Pass</th>
-            <th>Förnamn</th>
-            <th>Efternamn</th>
+            <th>Arbetare</th>
             <th>Telefon</th>
           </tr>
           </thead>
@@ -26,8 +25,7 @@
               <tr>
                 <td><%= link_to(work.id, work) %></td>
                 <td><%= work.pass %></td>
-                <td><%= (work.profile.present?) ? link_to(work.name, work.profile) : work.name %></td>
-                <td><%= work.lastname %></td>
+                <td><%= link_to(work.worker, work.user) %></td>
                 <td><%= work.phone %></td>
               </tr>
           <% end %>

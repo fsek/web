@@ -12,7 +12,7 @@ sv:
         greater_than: '#{attribute} måste vara större än %{count}'
         greater_than_or_equal_to: '#{attribute} måste vara större än eller lika med %{count}'
         inclusion: '#{attribute} finns inte i listan'
-        invalid: '#{attribute} har fel format'
+        invalid: '#{attribute} är inte giltligt'
         less_than: '#{attribute} måste vara mindre än %{count}'
         less_than_or_equal_to: '#{attribute} måste vara mindre än eller lika med %{count}'
         not_a_number: '#{attribute} är inte ett nummer'

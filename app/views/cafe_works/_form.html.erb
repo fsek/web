@@ -1,74 +1,55 @@
 <%= form_for(@cafe_work, url: {action: :update_worker}) do |f| %>
-    <%= render 'shared/form_errors', current: @cafe_work %>
-    <div class="margin-bottom-20">
-      <%= f.label 'Namn & Efternamn', class: 'reg-label' %>
-      <div class="row">
-        <div class="col-md-6"><%= f.text_field :name, class: 'form-control', placeholder: "Förnamn" %></div>
-        <div class="col-md-6"> <%= f.text_field :lastname, class: 'form-control', placeholder: "Efternamn" %></div>
-      </div>
+  <%= render 'shared/form_errors', current: @cafe_work %>
+  <div class="margin-bottom-20">
+    <%= f.label 'Namn & Efternamn', class: 'reg-label' %>
+    <div class="row">
+      <div class="col-md-6"><%= f.text_field :firstname, class: 'form-control', placeholder: "Förnamn" %></div>
+      <div class="col-md-6"> <%= f.text_field :lastname, class: 'form-control', placeholder: "Efternamn" %></div>
     </div>
-    <%= f.label 'E-post & telefon', class: 'reg-label' %>
-    <div class="margin-bottom-20">
-      <div class="row">
-        <div class="col-md-6"><%= f.email_field :email, class: 'form-control', placeholder: "E-post" %></div>
-        <div class="col-md-6"> <%= f.phone_field :phone, class: 'form-control', placeholder: "Telefon" %></div>
-      </div>
+  </div>
+  <%= f.label 'E-post & telefon', class: 'reg-label' %>
+  <div class="margin-bottom-20">
+    <div class="row">
+      <div class="col-md-6"><%= f.email_field :email, class: 'form-control', placeholder: "E-post" %></div>
+      <div class="col-md-6"> <%= f.phone_field :phone, class: 'form-control', placeholder: "Telefon" %></div>
     </div>
-    <% if @cafe_work.access_code.present? %>
-        <%= f.label 'Kod', class: 'reg-label' %>
-        <p>Koden måste fyllas i för att ändringar ska sparas</p>
-        <div class="margin-bottom-20">
-          <%= f.text_field :access_code, class: 'form-control', placeholder: "Kod", value: nil %>
-        </div>
-    <% end %>
-    <% if @councils %>
-        <div class="headline headline-md"><h3>Utskottskampen</h3></div>
-        <div class="row">
-          <div class="col-md-6">
-            <%= f.label :utskottskamp, "Delta i cafétävlingen?", value: false, class: 'reg-label' %>
-            <p>Ditt namn kommer synas i resultatet</p>
-            <%= f.check_box :utskottskamp, class: 'form-control', value: @cafe_work.utskottskamp %>
-          </div>
-          <%= f.label "Välj ett eller flera utskott att representera", class: 'reg-label' %>
-          <div class="col-md-6">
-            <%= f.collection_check_boxes(:council_ids, @councils, :id, :title, class: "form-control") do |b| %>
-						<span>
-							<%= b.check_box %>
-                          <%= b.label %><br>
-						</span>
-            <% end %>
-          </div>
-        </div>
-        <hr>
-    <% end %>
-    <% if @cafe_work.editable? %>
-        <% if !@cafe_work.has_worker? %>
-            <div class="margin-bottom-20 reg-page">
-              <p>Genom att trycka på spara accepterar du att dina personuppgifter hanteras elektroniskt.
-                Dina uppgifter kan endast ses av administratörer, cafeansvariga samt nyckelpigor.</p>
-            </div>
+  </div>
+  <% if @councils %>
+    <div class="headline headline-md"><h3>Utskottskampen</h3></div>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.label :utskottskamp, "Delta i cafétävlingen?", value: false, class: 'reg-label' %>
+        <p>Ditt namn kommer synas i resultatet</p>
+        <%= f.check_box :utskottskamp, class: 'form-control', value: @cafe_work.utskottskamp %>
+      </div>
+      <%= f.label "Välj ett eller flera utskott att representera", class: 'reg-label' %>
+      <div class="col-md-6">
+        <%= f.collection_check_boxes(:council_ids, @councils, :id, :title, class: "form-control") do |b| %>
+          <span>
+            <%= b.check_box %>
+            <%= b.label %><br>
+          </span>
         <% end %>
-        <div class="margin-bottom-40">
-          <%= f.submit "Spara", class: 'btn-u pull-right' %>
-        </div>
-    <% else %>
-        <p>Det går inte längre att skriva upp sig på passet eller redigera.</p>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+  <% if @cafe_work.editable? %>
+    <% if !@cafe_work.has_worker? %>
+      <div class="margin-bottom-20 reg-page">
+        <p>Genom att trycka på spara accepterar du att dina personuppgifter hanteras elektroniskt.
+        Dina uppgifter kan endast ses av administratörer, cafeansvariga samt nyckelpigor.</p>
+      </div>
     <% end %>
+    <div class="margin-bottom-40">
+      <%= f.submit "Spara", class: 'btn-u pull-right' %>
+    </div>
+  <% else %>
+    <p>Det går inte längre att skriva upp sig på passet eller redigera.</p>
+  <% end %>
 <% end %>
 <% if @cafe_work.has_worker? %>
-    <% if @authenticated %>
-        <%= form_for(@cafe_work, url: remove_worker_cafe_work_path(@cafe_work)) do |f| %>
-            <%= f.label 'Hoppa av', class: 'reg-label', id: 'leave_status' %>
-            <p>Din kod måste fyllas i för att kunna hoppa av passet</p>
-            <div class="margin-bottom-20">
-              <%= f.text_field :access_code, class: 'form-control', placeholder: "Kod", value: nil %>
-            </div>
-            <%= f.submit("Hoppa av", class: "btn btn-u") %><br>
-        <% end %>
-    <% else %>
-        <%= link_to("Hoppa av", remove_worker_cafe_work_path(@cafe_work), class: "btn btn-u", method: :patch) %>
-        <br>
-    <% end %>
-
+  <%= link_to("Hoppa av", remove_worker_cafe_work_path(@cafe_work), class: "btn btn-u", method: :patch) %>
+  <br>
 <% end %>
 

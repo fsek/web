@@ -2,16 +2,15 @@
 class Elections::CandidatesController < ApplicationController
   before_action :set_election
   load_permissions_and_authorize_resource
-  respond_to :html
 
   def index
-    @candidates = current_user.profile.candidates.where(election: @election)
+    @candidates = current_user.candidates.where(election: @election)
     @candidates_grid = initialize_grid(@candidates)
   end
 
   def new
     @candidate = @election.candidates.new
-    @candidate.prepare(current_user)
+    @candidate.user = current_user
     if params[:post].present?
       @candidate.post = Post.find_by_id(params[:post])
     end
@@ -22,7 +21,7 @@ class Elections::CandidatesController < ApplicationController
 
   def create
     @candidate = @election.candidates.build(candidate_params)
-    @candidate.profile = current_user.profile
+    @candidate.user = current_user
     if @candidate.save
       flash[:notice] = %(#{model_name(Candidate, 1)} #{t(:success_create)}.)
       redirect_to candidate_path(@candidate)
@@ -57,7 +56,6 @@ class Elections::CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:profile_id, :post_id, :stil_id,
-                                      :email, :phone, :name, :lastname)
+    params.require(:candidate).permit(:post_id)
   end
 end
