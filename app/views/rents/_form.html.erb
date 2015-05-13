@@ -1,14 +1,14 @@
 <%= simple_form_for(@rent, html: { class: 'reg-page'}) do |f| %>
-  <div class="center">
-    <h1>Bilbokning</h1>
-
-    <div class="headline headline-md"><h2>Avtal</h2></div>
-    <% if @TOA.present? %>
-      <iframe src="<%= document_path(@terms) %>" class="iframe-document" frameborder="5"></iframe>
-    <% else %>
-      Syns inget här finnes avtalet <%= link_to('här', documents_path) %>.
-    <% end %>
-    <%= f.input :disclaimer, as: :boolean %>
+  <div class="headline headline-md"><h1><%= Rent.model_name.human %></h1></div>
+  <div class="headline headline-md"><h2><%= t('activerecord.attributes.rent.disclaimer') %></h2></div>
+  <% if @terms.present? %>
+    <iframe src="<%= document_path(@terms) %>" class="iframe-document" frameborder="5"></iframe>
+  <% else %>
+    <%= t('rent.no_terms') %> <%= link_to(t(:here), documents_path) %>.
+  <% end %>
+  <%= f.input :disclaimer, as: :boolean %>
+  <div class="row">
+    <%= render 'users/preview', user: @rent.user, prot: (@rent.owner?(current_user) || can?(:manage, @rent))%>
   </div>
   <div class="form-inputs">
     <%= f.input :d_from, as: :datetime_picker %>
@@ -18,26 +18,26 @@
     <% else %>
       <%= f.input :purpose, as: :text, required: true %>
     <% end %>
-    <% if (current_user.car_councils.count > 0) %>
-      <strong>Utskottsbokning:</strong>
+    <% if current_user.car_councils.count > 0 %>
+      <strong><%= t('rent.council') %></strong>
       <ul class="list">
-        <li>får <strong>endast</strong> göras åt utskottet</li>
-        <li>kan boka över en bokning, som börjar minst 5 dagar fram i tiden.</li>
+        <li><%= t('rent.council_only') %></li>
+        <li><%= t('rent.council_overbook') %></li>
       </ul>
       <%= f.association :council, collection: current_user.car_councils %>
     <% end %>
   </div>
   <% if @rents.count > 0 %>
-    Bokningar (från idag + 30 dagar):<br>
+    <p><%= t('rent.list_bookings') %></p>
     <% @rents.each do |r| %>
       <p><%= r.p_time %></p>
     <% end %>
   <% end %>
-  <p><strong>Viktigt:</strong></p>
-  <p>När du bokar utan att vara medlem blir bokningen endast en förfrågan som måste
-  hanteras av Bilförmannen.</p>
-  <p>Om ni är medlem i sektionen är det bäst om ni bekräftar ert <%= link_to('konto', edit_user_path) %>.
-  </p>
+  <% if !current_user.member? %>
+    <p><strong><%= t('important') %></strong></p>
+    <p><%= t('rent.not_member') %></p>
+    <p><%= t('rent.confirm_member') %> <%= link_to(t('account'), edit_own_user_path) %>.</p>
+  <% end %>
   <div class="form-group">
     <%= f.button :submit, class: 'btn btn-u' %>
   </div>

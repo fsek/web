@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   # allowed to rent the car
   # /d.wessman
   def car_councils
-    councils.merge(Post.renters)
+    councils.merge(Post.renters).distinct
   end
 
   def member?

@@ -1,4 +1,4 @@
-<% provide(:title, 'Bilbokning') %>
+<% provide(:title, Rent.model_name.human) %>
 <div class="col-md-8 col-md-offset-2 reg-page">
   <% if @rent %>
       <%= render @rent %>
@@ -7,9 +7,9 @@
             <%= link_to('Redigera', edit_rent_path(@rent), class: 'btn btn-u') %>
             <hr>
         <% end %>
-        <%= link_to("Startsida för Bilbokning", :bil, class: "btn btn-u") %>
+        <%= link_to(t('rent.back_to_index'), :bil, class: 'btn btn-u') %>
         <% if can? :manage, Rent %>
-            <%= link_to('Administrera', admin_rent_path(@rent), class: 'btn btn-u') %>
+            <%= link_to(t('administrate'), admin_rent_path(@rent), class: 'btn btn-u') %>
         <% end %>
       </div>
   <% end %>

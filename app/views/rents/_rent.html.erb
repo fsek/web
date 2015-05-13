@@ -2,79 +2,71 @@
   <div class="row">
     <div class="col-md-12 funny-boxes-img">
       <h2>Bilbokning - ID <%= rent.id %>
-        <% if rent.service %><span class="label rounded label-danger pull-right">Service</span>
-        <% end %>
-        <% if rent.status == "Nekad" %> <span class="label rounded label-danger pull-right">Nekad</span>
-        <% end %>
-        <% if rent.status == "Ej bestämd" %>  <span class="label rounded-2x label-warning pull-right">Ej bestämd</span>
-        <% end %>
-        <% if rent.status == "Bekräftad" %>  <span class="label rounded-2x label-success pull-right">Bekräftad</span>
-        <% end %>
+      <% if rent.service %><span class="label rounded label-danger pull-right">Service</span>
+      <% end %>
+      <% if rent.status == :denied %> <span class="label rounded label-danger pull-right"><%= t('rent.denied') %></span>
+      <% end %>
+      <% if rent.status == :unconfirmed %>  <span class="label rounded-2x label-warning pull-right"><%= t('rent.unconfirmed') %></span>
+      <% end %>
+      <% if rent.status == :confirmed %>  <span class="label rounded-2x label-success pull-right"><%= t('rent.confirmed')%></span>
+      <% end %>
       </h2>
+      <div class="row">
+        <%= render 'users/preview', user: rent.user, prot: (rent.owner?(current_user) || can?(:manage, rent)) %>
+      </div>
+      </div>
       <table class="table">
         <tbody>
-        <tr>
-          <td><%= fa_icon('user') %></i></td>
-          <td><%= link_to(rent.user, rent.user)%></td>
-        </tr>
-        <tr>
-          <td><%= fa_icon('calendar') %> Start</td>
-          <td><%= rent.d_from %></td>
-        </tr>
-        <tr>
-          <td><%= fa_icon('calendar-o') %> Slut</td>
-          <td><%= rent.d_til %></td>
-        </tr>
-        <% if can? :manage, rent %>
-            <tr>
-              <td><%= fa_icon('envelope') %></td>
-              <td><%= rent.email %></td>
-            </tr>
-            <tr>
-              <td><%= fa_icon('phone') %></td>
-              <td><%= rent.phone %></td>
-            </tr>
+          <tr>
+            <td><%= fa_icon('calendar') %> Start</td>
+            <td><%= rent.d_from %></td>
+          </tr>
+          <tr>
+            <td><%= fa_icon('calendar-o') %> Slut</td>
+            <td><%= rent.d_til %></td>
+          </tr>
+          <% if can? :manage, rent %>
             <tr>
               <td><%= fa_icon('check') %></td>
               <td>
                 <% if rent.disclaimer %>
-                    Avtal accepterat<br>
+                  Avtal accepterat<br>
                 <% end %>
                 <% if rent.aktiv %>
-                    Markerad som aktiv<br>
+                  Markerad som aktiv<br>
                 <% end %>
                 <% if rent.status == "Bekräftad" %>
-                    Bekräftad
+                  Bekräftad
                 <% end %> </td>
             </tr>
             <tr>
               <td><%= fa_icon('exclamation-circle') %></td>
               <td>
                 <% if !rent.disclaimer %>
-                    Avtal ej accepterat <br>
+                  Avtal ej accepterat <br>
                 <% end %>
                 <% if !rent.aktiv %>
-                    Markerad som inaktiv <br>
+                  Markerad som inaktiv <br>
                 <% end %>
                 <% if rent.status == "Ej bestämd" %>
-                    Ingen status - måste bekräftas/nekas
-                    <br>
+                  Ingen status - måste bekräftas/nekas
+                  <br>
                 <% end %>
                 <% if rent.status == "Nekad" %>
-                    Nekad
+                  Nekad
                 <% end %> </td>
             </tr>
             <% if rent.council.present? %>
-                <tr>
-                  <td><%= fa_icon('users') %> Utskott:</td>
-                  <td><%= link_to(rent.council.title, council_path(rent.council)) %></td>
-                </tr>
+              <tr>
+                <td><%= fa_icon('users') %> Utskott:</td>
+                <td><%= link_to(rent.council, council_path(rent.council)) %></td>
+              </tr>
             <% end %>
             <% if rent.purpose.present? %>
-                <tr>
-                  <td><%= fa_icon('exclamation-circle') %> Syfte</td>
-                  <td><%= simple_format(rent.purpose) %></td>
-                </tr>
+              <tr>
+                <td><%= fa_icon('exclamation-circle') %> Syfte</td>
+                <td><%= simple_format(rent.purpose) %></td>
+              </tr>
             <% end %>
             <tr>
               <td><%= fa_icon('calendar') %> Skapad</td>
@@ -84,7 +76,7 @@
               <td><%= fa_icon('calendar') %> Ändrad</td>
               <td><%= rent.updated_at %></td>
             </tr>
-        <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>

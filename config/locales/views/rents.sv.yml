@@ -1,0 +1,10 @@
+sv:
+  rent:
+    council_only: får endast göras åt utskottet
+    council_overbook: kan boka över en bokning som börjar mer än 5 dagar fram i tiden
+    list_bookings: Bokningar (från idag och 30 dagar fram)
+    not_member: Bokningar från icke-medlemmar måste hanteras av Bilförmannen
+    confirm_member: Om ni när medlem i sektionen är det bäst att bekräfta ert
+    no_terms: Syns inget här finnes avtalet
+    council: Utskottsbokning
+    back_to_index: Startsida för Bilbokning

@@ -21,3 +21,6 @@ sv:
         password: Lösenord
         confirmed_at: E-post bekräftades
         member_at: Medlemskap bekräftades
+  user:
+    public_information: Publik information
+    protected_information: Information som endast visas av funktionärer

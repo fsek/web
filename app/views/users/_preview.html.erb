@@ -1,0 +1,18 @@
+<% if current_user = user %>
+  <p><%= t('user.keep_info_updated') %></p>
+<% end %>
+<dl class="dl-horizontal">
+  <dt><strong><%= User.human_attribute_name(:name) %> </strong></dt>
+  <dd><%= link_to(user, user_path(user)) %> </dd>
+  <br>
+  <% if prot.present? && prot == true %>
+    <dt><strong><%= User.human_attribute_name(:email) %> </strong></dt>
+    <dd><%= user.email %> </dd>
+    <br>
+    <dt><strong><%= User.human_attribute_name(:phone) %> </strong></dt>
+    <dd><%= user.phone %> </dd>
+    <br>
+    <dt><strong><%= User.human_attribute_name(:stil_id) %> </strong></dt>
+    <dd><%= user.stil_id %> </dd>
+  <% end %>
+</dl>

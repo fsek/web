@@ -1,7 +1,4 @@
 <ul class="loginbar pull-right">
-  <% if can?(:manage, :all) %>
-      <li class="devider"></li>
-  <% end %>
   <% if user_signed_in? %>
       <% if current_user.permissions.count > 0 %>
           <%= render 'layouts/admin_dropdown' %>
@@ -15,7 +12,7 @@
                     class: "dropdown-toggle", data: {toggle: "dropdown", delay: "0",
                                                      'close-others' => "false"}) %>
         <ul class="dropdown-menu pull-right">
-          <li><%= link_to t('user.settings'), :edit_user %></li>
+          <li><%= link_to t('user.settings'), :edit_own_user %></li>
           <li><%= link_to t('devise.sign_out'), :destroy_user_session, method: :delete %></li>
         </ul>
       </li>
