@@ -4,7 +4,7 @@
 
     <div class="headline headline-md"><h2>Avtal</h2></div>
     <% if @TOA.present? %>
-      <iframe src="<%= document_path(@TOA) %>" class="iframe-document" frameborder="5"></iframe>
+      <iframe src="<%= document_path(@terms) %>" class="iframe-document" frameborder="5"></iframe>
     <% else %>
       Syns inget här finnes avtalet <%= link_to('här', documents_path) %>.
     <% end %>
