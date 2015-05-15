@@ -21,6 +21,7 @@ sv:
         status: Status
         service: Service
         access_code: Kod
+        renter: Hyrs av
   rent:
     validation:
       future: måste vara i framtiden.
