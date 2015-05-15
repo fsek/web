@@ -19,6 +19,8 @@ class Rent < ActiveRecord::Base
   # Dates need to be in the future
   validate :date_future, :dates_ascending, on: :create
 
+  validate :user_attributes
+
   # After creation
   after_create :send_email
   after_create :overbook_all, if: :overbook_all?
@@ -210,6 +212,15 @@ class Rent < ActiveRecord::Base
       end
     end
     'red'
+  end
+
+  def user_attributes
+    if user.present? && user.has_attributes?
+      return true
+    end
+
+    errors.add(:user, I18n.t('user.add_information'))
+    false
   end
 
   # Validates d_from is in the future

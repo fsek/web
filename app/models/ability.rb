@@ -14,11 +14,11 @@ class Ability
     can :export, Event
 
     can :read, CafeWork
-    can :main, Rent
+    can [:main, :show], Rent
 
     # Abilities all signed in users get
     if user.id
-      can [:main, :new, :edit, :create, :update, :destroy], Rent, user_id: user.id
+      can [:index, :new, :edit, :create, :update, :destroy], Rent, user_id: user.id
       can [:edit, :update, :show, :update_password, :update_account], User, id: user.id
       # TODO Implement add_worker
       # can :add_worker, CafeWork, user_id: nil

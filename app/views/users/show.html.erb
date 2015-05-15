@@ -1,16 +1,20 @@
 <div class="row">
   <div class="col-md-offset-1 col-md-5 md-margin-bottom-40">
-    <div class="headline headline-md"><h4><%= t('user.public_information') %></h4></div>
-    <%= render current_user %>
-    <% if current_user.avatar? %>
-      <%= image_tag(avatar_user_path(current_user, style: 'original')) %>
+    <% if @user == current_user %>
+      <div class="headline headline-md"><h4><%= t('user.public_information') %></h4></div>
+    <% end %>
+    <%= render @user %>
+    <% if @user.avatar? %>
+      <%= image_tag(avatar_user_path(@user, style: 'original')) %>
     <% end %>
   </div>
-  <div class="col-md-offset-1 col-md-5 md-margin-bottom-40">
-    <div class="margin-bottom-20">
-      <%= link_to (fa_icon('edit') + ' Redigera'), edit_own_user_path, class: "btn-u btn-u-small" %>
+  <% if @user == current_user %>
+    <div class="col-md-offset-1 col-md-5 md-margin-bottom-40">
+      <div class="margin-bottom-20">
+        <%= link_to (fa_icon('edit') + ' Redigera'), own_user_path, class: "btn-u btn-u-small" %>
+      </div>
+      <div class="headline headline-md"><h4><%= t('user.protected_information') %></h4></div>
+      <%= render 'users/protected_information', user: @user %>
     </div>
-    <div class="headline headline-md"><h4><%= t('user.protected_information') %></h4></div>
-    <%= render 'users/protected_information', user: current_user %>
-  </div>
+  <% end %>
 </div>

@@ -24,3 +24,4 @@ sv:
   user:
     public_information: Publik information
     protected_information: Information som endast visas av funktionärer
+    add_information: Du måste fylla i dina användaruppgifter
