@@ -1,44 +1,59 @@
-<%= simple_form_for(@rent, html: { class: 'reg-page'}) do |f| %>
-  <div class="center">
-    <h1><%= t('rent.title') %></h1>
+<%= simple_form_for(@rent, html: { class: 'col-md-12' }, error_method: :to_sentence) do |f| %>
+  <div class="headline headline-md"><h1><%= Rent.model_name.human %></h1></div>
+  <div class="headline headline-md"><h2><%= t('activerecord.attributes.rent.disclaimer') %></h2></div>
 
-    <div class="headline headline-md"><h2><%= t('rent.agreement') %></h2></div>
-    <% if @TOA.present? %>
-      <iframe src="<%= document_path(@terms) %>" class="iframe-document" frameborder="5"></iframe>
-    <% else %>
-      Syns inget här finnes avtalet <%= link_to('här', documents_path) %>.
-    <% end %>
-    <%= f.input :disclaimer, as: :boolean %>
-  </div>
+  <% if @terms.present? %>
+    <iframe src="<%= document_path(@terms) %>" class="iframe-document" frameborder="5"></iframe>
+  <% else %>
+    <%= t('rent.no_terms') %> <%= link_to(t(:here), documents_path) %>.
+  <% end %>
+
+  <%= f.input :disclaimer, as: :boolean %>
+  <%= f.association :user, collection: [current_user], include_blank: false %>
+
+  <% if @rent.errors[:user].present? %>
+    <p><%= link_to(t('user.edit_information'), edit_own_user_path) %></p>
+  <% end %>
+
+  <%= render 'renter_table', user: @rent.user, rent: @rent %>
   <div class="form-inputs">
+    <% if (overlap = @rent.overlap).present? && overlap.count > 0 %>
+      <span class='overlapping-date'><%= t('rent.overlaps_with') %></span>
+      <ul class='overlapping-date'>
+        <% overlap.each do |o| %>
+          <li><%=link_to(%(#{o.user} #{o.council} - #{o.p_time}), o, target: :blank_p)%></li>
+        <% end %>
+      </ul>
+    <% end %>
     <%= f.input :d_from, as: :datetime_picker %>
     <%= f.input :d_til, as: :datetime_picker %>
+
     <% if current_user.member? %>
       <%= f.input :purpose, as: :text %>
     <% else %>
       <%= f.input :purpose, as: :text, required: true %>
     <% end %>
-    <% if (current_user.car_councils.count > 0) %>
-      <strong>Utskottsbokning:</strong>
+    <% if current_user.car_councils && current_user.car_councils.count > 0 %>
+      <strong><%= t('rent.council') %></strong>
       <ul class="list">
         <li>får <strong>endast</strong> göras åt utskottet</li>
         <li>kan boka över en bokning, som börjar minst 5 dagar fram i tiden.</li>
       </ul>
       <%= f.association :council, collection: current_user.car_councils %>
     <% end %>
+
   </div>
-  <% if @rents.count > 0 %>
-    Bokningar (från idag + 30 dagar):<br>
-    <% @rents.each do |r| %>
-      <p><%= r.p_time %></p>
-    <% end %>
+  <% if !current_user.member? %>
+    <p><strong><%= t('important') %></strong></p>
+    <p><%= t('rent.not_member') %></p>
+    <p><%= t('rent.confirm_member') %> <%= link_to(t('account'), edit_own_user_path) %>.</p>
   <% end %>
-  <p><strong>Viktigt:</strong></p>
-  <p>När du bokar utan att vara medlem blir bokningen endast en förfrågan som måste
-  hanteras av Bilförmannen.</p>
-  <p>Om ni är medlem i sektionen är det bäst om ni bekräftar ert <%= link_to('konto', edit_own_user_path) %>.
-  </p>
+
   <div class="form-group">
-    <%= f.button :submit, class: 'btn btn-u' %>
+    <% if @rent.edit?(current_user) %>
+      <%= f.button :submit, class: 'btn btn-u' %>
+    <% else %>
+      <strong><%= t('rent.cannot_edit') %></strong>
+    <% end %>
   </div>
 <% end %>

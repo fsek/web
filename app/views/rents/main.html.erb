@@ -1,47 +1,40 @@
 <% provide(:title, 'Bilbokning') %>
-<%= stylesheet_link_tag "fullcalendar-custom", :media => "print" %>
-<div class="col-md-12">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="headline headline-md"><h1>F-bilen (Beta)</h1></div>
-      <div class="margin-bottom-40">
-        Stöter ni på problem eller om det blir fel, hör gärna av er
-        till <%= render partial: "contacts/contact", locals: {name: 'Bilförman'} %>
-        eller <%= render partial: "contacts/contact", locals: {name: 'Spindelmän'} %>.
+<div class='col-md-12'>
+  <div class='headline headline-md'><h1>F-bilen (Beta)</h1></div>
+  <div class='margin-bottom-40'>
+    Stöter ni på problem eller om det blir fel, hör gärna av er
+    till <%= render partial: 'contacts/kontakt', locals: {name: 'Bilförman'} %>
+  eller <%= render partial: 'contacts/kontakt', locals: {name: 'Spindelmän'} %>.
+  </div>
+  <div class='col-md-9'>
+    <div id='bilkalender'></div>
+  </div>
+  <div class='col-md-3'>
+    <div class='row'>
+      <div class='headline headline-md'><h2>F.A.Q.</h2></div>
+      <div class='panel-group acc-v1' id='answered'>
+        <%= render @faqs %>
+        <ul class='list'>
+          <li><%= link_to('Ställ ny fråga', new_faq_path(category: 'Bil')) %></li>
+        </ul>
       </div>
-      <div class="col-md-9">
-        <div id='bilkalender'></div>
-      </div>
-      <div class="col-md-3">
-        <div class="row">
-          <div class="headline headline-md"><h2>F.A.Q.</h2></div>
-          <div class="panel-group acc-v1" id="answered">
-            <%= render @faqs %>
-            <ul class="list">
-              <li><%= link_to("Ställ ny fråga", new_faq_path(category: "Bil")) %></li>
-            </ul>
-          </div>
+    </div>
+    <div class='row'>
+      <div class='headline headline-md'><h2>Bokning?</h2></div>
+      <% if user_signed_in? %>
+        <div class='input-group margin-bottom-20'>
+          <%= link_to('Se tidigare bokningar', rents_path, class: 'btn btn-u') %>
         </div>
-        <div class="row">
-          <div class="headline headline-md"><h2>Bokning?</h2></div>
-          <% if user_signed_in? %>
-              <div class="input-group margin-bottom-20">
-                <%= link_to("Se tidigare bokningar", rents_path, class: "btn btn-u") %>
-              </div>
-          <% end %>
-          <div class="input-group margin-bottom-20">
-            <%= link_to("Ny bokning", new_rent_path, class: "btn btn-u") %>
-          </div>
-          <% if can? :manage, Rent %>
-              <div class="headline headline-md"><h2>Verktyg</h2></div>
-              <ul class="list">
-                <li><%= link_to("Administration", admin_car_path) %></li>
-
-              </ul>
-          <% end %>
-        </div>
-
+      <% end %>
+      <div class='input-group margin-bottom-20'>
+        <%= link_to('Ny bokning', new_rent_path, class: 'btn btn-u') %>
       </div>
+      <% if can? :manage, Rent %>
+        <div class='headline headline-md'><h2>Verktyg</h2></div>
+        <ul class='list'>
+          <li><%= link_to('Administration', :admin_rents) %></li>
+        </ul>
+      <% end %>
     </div>
   </div>
 </div>

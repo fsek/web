@@ -1,0 +1,24 @@
+<tr>
+  <td><%= fa_icon('calendar') %> <%= Rent.human_attribute_name(:d_from) %></td>
+  <td><%= rent.d_from %></td>
+</tr>
+<tr>
+  <td><%= fa_icon('calendar-o') %> <%= Rent.human_attribute_name(:d_til) %></td>
+  <td><%= rent.d_til %></td>
+</tr>
+<tr>
+  <td><%= fa_icon('check') %> <%= Rent.human_attribute_name(:status) %></td>
+  <td><%= t(%(rent.#{rent.status})) %></td>
+</tr>
+<% if rent.council.present? %>
+  <tr>
+    <td><%= fa_icon('users') %> <%= Rent.human_attribute_name(:council) %></td>
+    <td><%= link_to(rent.council.title, council_path(rent.council)) %></td>
+  </tr>
+<% end %>
+<% if rent.purpose.present? %>
+  <tr>
+    <td><%= fa_icon('exclamation-circle') %> <%= Rent.human_attribute_name(:purpose) %></td>
+    <td><%= simple_format(rent.purpose) %></td>
+  </tr>
+<% end %>

@@ -1,7 +1,6 @@
 # encoding:UTF-8
 class RentsController < ApplicationController
   load_permissions_and_authorize_resource
-  before_action :set_rents, except: [:main, :index]
 
   def main
     @faqs = Faq.answered.category('Bil')
@@ -41,7 +40,7 @@ class RentsController < ApplicationController
 
   def destroy
     @rent.destroy
-    redirect_to :bil, notice: alert_destroy(@rent)
+    redirect_to :rents, notice: alert_destroy(Rent)
   end
 
   # Index page available to logged in users.
@@ -54,14 +53,7 @@ class RentsController < ApplicationController
     end
   end
 
-
   private
-
-  # @rents: used to show rents under the form when creating new.
-  def set_rents
-    id = params[:id] || nil
-    @rents = Rent.active.date_overlap(Time.zone.now, Time.zone.now+30.days, id).limit(10).ascending
-  end
 
   def rent_params
     params.require(:rent).permit(:d_from, :d_til, :purpose, :disclaimer, :council_id)

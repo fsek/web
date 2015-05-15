@@ -7,17 +7,18 @@ feature 'visit contact, create new, send email', pending: true do
   let(:login) { LoginPage.new }
 
   Steps 'Signing in' do
-    Then 'I sign in' do
+    Then 'sign in' do
       login.visit_page.login(user, '12345678')
     end
+  end
 
+  Steps 'contact page' do
     When 'visiting index page' do
       page.visit contacts_path
     end
 
     Then 'I see contacts' do
-      page.should have_css('div.headline.headline-md > h3')
-      find('div.headline.headline-md > h3').text.should include(Contact.model_name.human(count: 2))
+      page.should have_css('#contacts_title', text: Contact.model_name.human(count: 2))
     end
 
     When 'visiting new contact' do

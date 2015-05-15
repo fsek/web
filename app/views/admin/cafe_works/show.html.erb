@@ -24,7 +24,6 @@
                     method: :patch) %>
     </div>
   </div>
-
 <% else %>
   <%= render 'worker_form', cafe_work: @cafe_work %>
   <%= link_to(t('cafe_work.remove_work'), admin_cafe_work_path(@cafe_work),

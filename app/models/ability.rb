@@ -22,6 +22,7 @@ class Ability
     # But cannot view any albums
     can :index, :gallery
     can [:index, :matrix, :modal], :nollning
+    can [:index, :about, :company_about, :company_offer], :static_pages
 
     # Abilities all signed in users get
     if user.id.present?

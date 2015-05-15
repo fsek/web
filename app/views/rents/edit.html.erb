@@ -1,19 +1,15 @@
-<% provide(:title, 'Bilbokning') %>
-<div class="col-md-8 col-md-offset-2 col-xs-12">
-  <% if @rent %>
-    <div class="row margin-bottom-20">
-      <% if @rent.edit?(current_user) %>
-        <%= render 'form' %>
-        <hr>
-        <%= link_to('Radera bokning', rent_path(@rent), method: :delete, class: "btn btn-u", data: {confirm: 'Din bokning kommer nu att raderas.'}) %>
-        <%= link_to("Bilbokning", bil_path, class: "btn btn-u") %>
-      <% else %>
-        Redigering inte möjlig.
-        <%= render @rent %><br>
-      <% end %>
-    </div>
-  <% end %>
-  <div class="row">
-    <%= link_to("Tillbaka - Bilbokning", :bil, class: "btn btn-u") %>
-  </div>
+<% provide(:title, model_name(Rent)) %>
+<div class='col-md-8 col-md-offset-2 col-sm-12 reg-page'>
+    <%= render 'form' %>
+    <hr>
+    <% if @rent.edit?(current_user) %> 
+    <%= link_to(t('rent.remove'), rent_path(@rent), method: :delete, class: 'btn danger',
+                data: { confirm: t('rent.confirm_remove')}) %>
+    <% end %>
+
+    <% if can? :manage, @rent %>
+      <%= link_to(t('administrate'), admin_rent_path(@rent)) %>
+    <% end %>
+
+    <%= link_to(t('rent.back_to_index'), rents_path, class: 'btn secondary') %>
 </div>

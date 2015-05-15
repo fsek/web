@@ -1,17 +1,20 @@
-<div class='row portfolio-item margin-bottom-50'>
-  <div class='col-md-offset-2 col-md-5 md-margin-bottom-40'>
+<div class="row">
+  <div class="col-md-offset-1 col-md-5 md-margin-bottom-40">
+    <% if @user == current_user %>
+      <div class="headline headline-md"><h4><%= t('user.public_information') %></h4></div>
+    <% end %>
     <%= render @user %>
+    <% if @user.avatar? %>
+      <%= image_tag(avatar_user_path(@user, style: 'original')) %>
+    <% end %>
   </div>
-</div>
-
-<% if @user.avatar? %>
-  <div class='col-md-3'>
-    <div class='carousel slide carousel-v1' id='myCarousel'>
-      <div class='carousel-inner'>
-        <div class='item active'>
-          <%= image_tag avatar_user_path(@user, style: 'original') %>
-        </div>
+  <% if @user == current_user %>
+    <div class="col-md-offset-1 col-md-5 md-margin-bottom-40">
+      <div class="margin-bottom-20">
+        <%= link_to (fa_icon('edit') + ' Redigera'), own_user_path, class: "btn-u btn-u-small" %>
       </div>
+      <div class="headline headline-md"><h4><%= t('user.protected_information') %></h4></div>
+      <%= render 'users/protected_information', user: @user %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

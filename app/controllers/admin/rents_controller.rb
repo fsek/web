@@ -2,7 +2,7 @@ class Admin::RentsController < ApplicationController
   load_permissions_and_authorize_resource
   before_action :prepare, only: [:new, :show]
 
-  def main
+  def index
     @rents = Rent.ascending.from_date(Time.zone.now.beginning_of_day)
     @rent_grid = initialize_grid(@rents)
     @faqs = Faq.where(answer: '').where(category: 'Bil')
@@ -37,7 +37,7 @@ class Admin::RentsController < ApplicationController
 
   def destroy
     @rent.destroy
-    redirect_to :admin_car, notice: alert_destroy(Rent)
+    redirect_to :admin_rents, notice: alert_destroy(Rent)
   end
 
   private

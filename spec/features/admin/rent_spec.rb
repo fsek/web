@@ -20,6 +20,7 @@ feature 'admin tries to create rent' do
       find('h1').text.should include('F-bilen')
       find(:linkhref, new_admin_rent_path).click
     end
+
     And 'Fill out information' do
       select(rent.user.to_s, from: 'rent_user_id')
       fill_in 'rent_d_from', with: rent.d_from.to_s
@@ -30,7 +31,7 @@ feature 'admin tries to create rent' do
     end
 
     Then 'I should see greeting' do
-      #TODO Some way to assure it is created - or not.
+      # TODO Some way to assure it is created - or not.
     end
   end
 end

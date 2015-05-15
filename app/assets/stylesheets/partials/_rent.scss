@@ -1,7 +1,16 @@
+$overlapping-color: #a94442;
+
 .iframe-document {
   height: auto;
   max-height: 80%;
   max-width: 100%;
   min-height: 30%;
   width: 100%;
+}
+span,
+li {
+  .overlapping-date {
+    color: $overlapping-color;
+    margin-right: 10px;
+  }
 }
