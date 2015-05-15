@@ -8,6 +8,7 @@ FactoryGirl.define do
     d_from { Time.zone.now + 10.day }
     d_til { Time.zone.now + 10.day + 12.hours }
     aktiv true
+    status :unconfirmed
 
     # Override after_create callbacks.
     after(:build) { |rent| rent.class.skip_callback(:create, :after, :send_email, :overbook_all) }

@@ -37,7 +37,7 @@ feature 'Admin visits rents' do
       select(I18n.t('rent.confirmed'), from: 'rent_status')
       find('#rent-submit').click
       Then 'I should see greeting' do
-        #TODO Some way to assure it is created - or not.
+        # TODO Some way to assure it is created - or not.
       end
     end
   end

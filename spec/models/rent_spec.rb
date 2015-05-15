@@ -31,7 +31,6 @@ RSpec.describe Rent, type: :model do
     end
 
     describe :Purpose do
-      # TODO Must be fixed with new member thingy.
       context 'validate purpose when not a member' do
         it { rent_n.should validate_presence_of(:purpose) }
         it { rent.should_not validate_presence_of(:purpose) }
@@ -42,6 +41,8 @@ RSpec.describe Rent, type: :model do
       context :when_no_council do
         it 'add error if duration is over 48' do
           rent = build(:rent, :over_48)
+          rent.valid?
+
           rent.should_not be_valid
           rent.errors.get(:d_from).should include(I18n.t('rent.validation.duration'))
         end
@@ -104,7 +105,7 @@ RSpec.describe Rent, type: :model do
           it %(#{key} should be #{b[key]}) do
             new.d_from = saved.d_from + value[0] unless value[0] == 0
             new.d_from = saved.d_til + value[1] unless value[1] == 0
-            new.d_til = saved.d_til + value[2] unless value[2] == 0
+            new.d_til = saved.d_from + value[2] unless value[2] == 0
             new.d_til = saved.d_til + value[3] unless value[3] == 0
 
             new.valid?.should eq(b[key])
@@ -119,7 +120,7 @@ RSpec.describe Rent, type: :model do
           it %(#{key} should be true) do
             new.d_from = saved.d_from + value[0] unless value[0] == 0
             new.d_from = saved.d_til + value[1] unless value[1] == 0
-            new.d_til = saved.d_til + value[2] unless value[2] == 0
+            new.d_til = saved.d_from + value[2] unless value[2] == 0
             new.d_til = saved.d_til + value[3] unless value[3] == 0
 
             new.valid?.should eq(true)
@@ -135,7 +136,7 @@ RSpec.describe Rent, type: :model do
           it %(#{key} should be #{b[key]}) do
             new.d_from = saved.d_from + value[0] unless value[0] == 0
             new.d_from = saved.d_til + value[1] unless value[1] == 0
-            new.d_til = saved.d_til + value[2] unless value[2] == 0
+            new.d_til = saved.d_from + value[2] unless value[2] == 0
             new.d_til = saved.d_til + value[3] unless value[3] == 0
 
             new.valid?.should eq(b[key])
@@ -151,7 +152,7 @@ RSpec.describe Rent, type: :model do
           it %(#{key} should be #{b[key]}) do
             new.d_from = saved.d_from + value[0] unless value[0] == 0
             new.d_from = saved.d_til + value[1] unless value[1] == 0
-            new.d_til = saved.d_til + value[2] unless value[2] == 0
+            new.d_til = saved.d_from + value[2] unless value[2] == 0
             new.d_til = saved.d_til + value[3] unless value[3] == 0
 
             new.valid?.should eq(b[key])

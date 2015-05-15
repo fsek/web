@@ -1,6 +1,5 @@
 require 'rails_helper'
 feature 'Visit Election', js: true do
-# feature 'Visit Election' do
   let(:user) { create(:user) }
   let(:election) { create(:election) }
   let(:council) { create(:council) }
@@ -54,7 +53,6 @@ feature 'Visit Election', js: true do
     And 'I fill out form' do
       fill_in 'nomination_name', with: 'David Wessman'
       fill_in 'nomination_email', with: 'd.wessman@fsektionen.se'
-      # This is driving me crazy.
       select(the_post.to_s, from: 'nomination_post_id')
       fill_in 'nomination_motivation', with: 'Foo'
     end
