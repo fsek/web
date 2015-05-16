@@ -69,8 +69,7 @@ RSpec.describe CafeWork, type: :model do
           (cwork.reload.has_worker?).should be_falsey
         end
         it 'add worker with params and user' do
-          cwork.add_worker({ utskottskamp: true,
-                             council_ids: [council.id] },
+          cwork.add_worker({ utskottskamp: true, council_ids: [council.id] },
                             user)
           cwork.reload.user.should eq(user)
         end
@@ -105,7 +104,8 @@ RSpec.describe CafeWork, type: :model do
       end
 
       it 'as_json request is processed with parameters' do
-        (cwork_worker.as_json(nil, 'params').to_json).should include(cwork_worker.start.iso8601.to_json)
+        (cwork_worker.as_json(nil, 'params').to_json).should 
+        include(cwork_worker.start.iso8601.to_json)
       end
     end
   end
