@@ -12,8 +12,8 @@ class Ability
 
     # For calendar-subscription
     can :export, Event
-
-    can :read, CafeWork
+# Leaking personal information!
+#    can :read, CafeWork
     can :main, Rent
     can [:new, :read, :create], Faq
 

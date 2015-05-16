@@ -45,10 +45,10 @@ class CafeWorksController < ApplicationController
   def index
     respond_to do |format|
       format.html { @lv = CafeWork.get_lv }
-      format.json {
+      format.json do
         render json: CafeWork.between(params[:start],
                                       params[:end]).as_json(user: current_user)
-      }
+      end
     end
   end
 

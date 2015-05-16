@@ -34,7 +34,7 @@ class CafeWork < ActiveRecord::Base
   end
 
   def old_profile
-    if profile_id != nil
+    if profile_id.present?
       if user_id == nil
         return User.find_by(id: profile_id)
       else
@@ -78,8 +78,8 @@ class CafeWork < ActiveRecord::Base
       errors.add(CafeWork.human_attribute_name(:worker), I18n.t('cafe_work.has_worker'))
       return false
     end
-    
-    if !editable? 
+
+    if !editable?
       errors.add(:work_day, I18n.t('cafe_work.no_longer_editable'))
       return false
     end

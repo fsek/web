@@ -22,7 +22,7 @@ RSpec.describe CafeWorksController, type: :controller do
       context 'valid user' do
         before { allow(controller).to receive(:current_user).and_return(user) }
         it 'add worker' do
-          patch(:add_worker, id: cwork.to_param, cafe_work: { utskottskamp: true } )
+          patch(:add_worker, id: cwork.to_param, cafe_work: { utskottskamp: true })
           cwork.reload
 
           # cwork.has_worker?.should be_truthy
@@ -30,13 +30,13 @@ RSpec.describe CafeWorksController, type: :controller do
         end
 
         it 'assigns the requested cafe_work as @cafe_work' do
-          patch(:add_worker, id: cwork.to_param, cafe_work: { utskottskamp: true } )
+          patch(:add_worker, id: cwork.to_param, cafe_work: { utskottskamp: true })
 
           assigns(:cafe_work).should eq(cwork)
         end
 
         it 'redirects to the cafe_work' do
-          patch(:add_worker, id: cwork.to_param, cafe_work: { utskottskamp: true } )
+          patch(:add_worker, id: cwork.to_param, cafe_work: { utskottskamp: true })
 
           response.should redirect_to(cafe_work_path(cwork))
         end
@@ -58,13 +58,13 @@ RSpec.describe CafeWorksController, type: :controller do
         end
 
         it 'assigns the requested cafe_work as @cafe_work' do
-          patch(:update_worker, id: cwork.to_param, cafe_work: { utskottskamp: true } )
+          patch(:update_worker, id: cwork.to_param, cafe_work: { utskottskamp: true })
 
           assigns(:cafe_work).should eq(cwork)
         end
 
         it 'redirects to the cafe_work' do
-          patch(:update_worker, id: cwork_worker.to_param, cafe_work: { utskottskamp: true } )
+          patch(:update_worker, id: cwork_worker.to_param, cafe_work: { utskottskamp: true })
 
           response.should redirect_to(cafe_work_path(cwork_worker))
         end
@@ -76,7 +76,7 @@ RSpec.describe CafeWorksController, type: :controller do
         end
 
         it 'update worker' do
-          patch(:update_worker, id: cwork_worker.to_param, cafe_work: { utskottskamp: false } )
+          patch(:update_worker, id: cwork_worker.to_param, cafe_work: { utskottskamp: false })
 
           cwork_worker.reload
 
@@ -84,7 +84,7 @@ RSpec.describe CafeWorksController, type: :controller do
         end
 
         it 'redirects to the cafe_work' do
-          patch(:update_worker, id: cwork_worker.to_param, cafe_work: { utskottskamp: true } )
+          patch(:update_worker, id: cwork_worker.to_param, cafe_work: { utskottskamp: true })
 
           response.should render_template('show')
         end
@@ -150,7 +150,9 @@ RSpec.describe CafeWorksController, type: :controller do
     }
 
     it 'responds with JSON' do
-      get(:index, start: cwork_worker.work_day - 2.days, end: cwork_worker.work_day + 2.days, format: :json)
+      get(:index, start: cwork_worker.work_day - 2.days,
+                  end: cwork_worker.work_day + 2.days,
+                  format: :json)
       response.body.should eq([cwork.as_json(nil), cwork_worker.as_json(user)].to_json)
     end
   end
