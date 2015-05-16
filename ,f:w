@@ -10,9 +10,6 @@ class Admin::CafeWorksController < ApplicationController
     @councils = Council.all
   end
 
-  def edit
-  end
-
   def new
   end
 
@@ -41,21 +38,21 @@ class Admin::CafeWorksController < ApplicationController
     @id = @cafe_work.id
     @cafe_work.destroy
     respond_to do |format|
-      format.html { redirect_to admin_cafe_works_path, alert: alert_destroy(CafeWork) }
+      format.html { redirect_to :admin_hilbert, alert: alert_destroy(CafeWork) }
       format.js
     end
   end
 
   def add_worker
     if @cafe_work.update(worker_params)
-      redirect_to admin_cafe_work_path(@cafe_work), notice: I18n.t('cafe_work.worker_added')
+      redirect_to cafe_work_path([:admin, @cafe_work]), notice: I18n.t('cafe_work.worker_added')
     else
       render action: :show
     end
   end
 
   def update_worker
-    if @cafe_work.update!(worker_params)
+    if @cafe_work.update(worker_params)
       redirect_to cafe_work_path([:admin, @cafe_work]), notice: I18n.t('cafe_work.worker_updated')
     else
       render action: :show

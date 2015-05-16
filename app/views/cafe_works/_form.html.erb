@@ -1,17 +1,17 @@
-<%= simple_form_for(@cafe_work, url: { action: @cafe_work.current_action } ) do |f| %>
+<%= simple_form_for(@cafe_work, url: { action: action } ) do |f| %>
   <%= f.association :user, collection: [current_user], include_blank: false %>
   <% if @cafe_work.errors[:user].present? %>
-         <p><%= link_to(t('user.edit_information'), own_user_path) %></p>
+    <p><%= link_to(t('user.edit_information'), edit_user_path) %></p>
   <% end %>
   <% if @councils %>
     <div class="headline headline-md"><h4><%= t('cafe_work.council_battle') %></h4></div>
     <%= f.input :utskottskamp, as: :boolean, label: I18n.t('cafe_work.compete_battle') %>
     <%= f.association :councils, as: :check_boxes %>
   <% end %>
-  <%= f.button :submit, class: 'btn btn-u' %>
-<% if @cafe_work.has_worker? %>
-  <%= link_to(t('cafe_work.leave'), remove_worker_cafe_work_path(@cafe_work),
-              class: 'btn btn-u pull-right', method: :patch) %>
-<% end %>
+  <%= f.button :submit, value: t('cafe_work.button_worker'),class: 'btn btn-u' %>
+  <% if @cafe_work.has_worker? %>
+    <%= link_to(t('cafe_work.leave'), remove_worker_cafe_work_path(@cafe_work),
+                class: 'btn btn-u pull-right', method: :patch) %>
+  <% end %>
 <% end %>
 

@@ -10,7 +10,6 @@ RSpec.describe CafeWork, type: :model do
   let(:council) { create(:council) }
   let(:cwork_worker) { create(:cafe_work, :w_user, user: user) }
   let(:cwork) { create(:cafe_work) }
-  let(:attr) { cafe_work: { utskottskamp: true, council_ids: [council.id] } }
   subject { build(:cafe_work) }
 
   describe 'ActiveModel validations' do
@@ -22,12 +21,6 @@ RSpec.describe CafeWork, type: :model do
     it { should validate_inclusion_of(:pass).in_range(1..4) }
     it { should validate_inclusion_of(:lp).in_range(1..4) }
     it { should validate_inclusion_of(:lv).in_range(1..20) }
-
-    context 'if has_worker' do
-      before { allow(subject).to receive(:has_worker?).and_return(true) }
-      it { subject.should validate_presence_of(:user) }
-    end
-
   end
 
   describe 'ActiveRecord associations' do
@@ -62,38 +55,41 @@ RSpec.describe CafeWork, type: :model do
     context 'executes methods correctly' do
       context 'has_worker' do
         it 'does not have worker' do
-          (cwork.has_worker?).should be_falsey
+          cwork.has_worker?.should be_falsey
         end
+
         it 'does have worker' do
-          (cwork_worker.has_worker?).should be_truthy
+          cwork_worker.has_worker?.should be_truthy
         end
       end
 
       context 'add_worker' do
         it 'add worker with params and no user' do
-          cwork.add_worker(attr, nil)
+          cwork.add_worker({ utskottskamp: true }, nil)
           (cwork.reload.has_worker?).should be_falsey
         end
         it 'add worker with params and user' do
-          cwork.add_worker(attr, user)
-          (cwork.reload.user).should eq(user)
+          cwork.add_worker({ utskottskamp: true,
+                             council_ids: [council.id] },
+                            user)
+          cwork.reload.user.should eq(user)
         end
       end
 
       context 'remove_worker' do
         it 'with the right user' do
           cwork_worker.remove_worker(user)
-          (cwork_worker.user).should be_nil
+          cwork_worker.reload.user.should be_nil
         end
         it 'with the wrong user' do
           cwork_worker.remove_worker(not_owner)
-          (cwork_worker.user).should_not be_nil
+          cwork_worker.reload.user.should_not be_nil
         end
       end
 
       context 'update_worker' do
         it 'update worker with user' do
-          cwork_worker.update_worker(cafe_work: { utskottskamp: false }, user)
+          cwork_worker.update_worker({ utskottskamp: false }, user)
           cwork_worker.utskottskamp.should be_falsey
         end
       end
@@ -104,11 +100,12 @@ RSpec.describe CafeWork, type: :model do
     # /d.wessman
     describe :Json do
       it 'check date format is iso8601' do
-        (cwork_worker.as_json.to_json).should include(cwork_worker.start.iso8601.to_json)
-        (cwork_worker.as_json.to_json).should include(cwork_worker.stop.iso8601.to_json)
+        (cwork_worker.as_json(nil).to_json).should include(cwork_worker.start.iso8601.to_json)
+        (cwork_worker.as_json(nil).to_json).should include(cwork_worker.stop.iso8601.to_json)
       end
+
       it 'as_json request is processed with parameters' do
-        (cwork_worker.as_json('params').to_json).should include(cwork_worker.start.iso8601.to_json)
+        (cwork_worker.as_json(nil, 'params').to_json).should include(cwork_worker.start.iso8601.to_json)
       end
     end
   end

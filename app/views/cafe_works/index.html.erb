@@ -42,12 +42,12 @@
               <% if can? :manage, CafeWork %>
                   <div class="headline headline-md"><h2>Verktyg</h2></div>
                   <ul class="list">
-                    <li><%= link_to("Gå till administrationssida", :admin_hilbert) %></li>
+                    <li><%= link_to("Gå till administrationssida", :admin_cafe_works) %></li>
                   </ul>
               <% end %>
               <% if can? :nyckelpiga, CafeWork %>
                   <ul class="list">
-                    <li><%= link_to("Nyckelpiga", :nyckelpiga) %></li>
+                    <li><%= link_to("Nyckelpiga", :nyckelpiga_cafe_works) %></li>
                   </ul>
               <% end %>
             </div>

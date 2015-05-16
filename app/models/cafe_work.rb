@@ -78,6 +78,11 @@ class CafeWork < ActiveRecord::Base
       errors.add(CafeWork.human_attribute_name(:worker), I18n.t('cafe_work.has_worker'))
       return false
     end
+    
+    if !editable? 
+      errors.add(:work_day, I18n.t('cafe_work.no_longer_editable'))
+      return false
+    end
 
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
@@ -98,7 +103,7 @@ class CafeWork < ActiveRecord::Base
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
-    update(worker_params)
+    update!(worker_params)
   end
 
   # Remove-function used by the worker
@@ -218,7 +223,7 @@ class CafeWork < ActiveRecord::Base
   # Background color for the event
   def b_color(user)
     if has_worker?
-      owner?(user[:user]) ? 'green' : 'orange'
+      (user.nil? || owner?(user[:user])) ? 'green' : 'orange'
     else
       'white'
     end

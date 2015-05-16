@@ -28,9 +28,9 @@
   <div class="margin-bottom-20">
     <div class="headline headline-md"><h2>Jobbare</h2></div>
     <%= render 'worker_table', cafe_work: cafe_work %>
-    <%= render 'form' %>
+    <%= render 'form', action: :update_worker %>
   </div>
   <div class="margin-bottom-20">
-    <%= link_to(t('cafe_work.back_to_index'), :hilbert, class: 'btn btn-u') %>
+    <%= link_to(t('cafe_work.back_to_index'), cafe_works_path, class: 'btn btn-u') %>
   </div>
 </div>

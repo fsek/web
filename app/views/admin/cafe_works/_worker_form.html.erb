@@ -1,0 +1,10 @@
+<%= simple_form_for([:admin, cafe_work], url: { action: :add_worker } ) do |f| %>
+  <%= f.association :user, collection: User.all_firstname %>
+  <% if @councils %>
+    <div class="headline headline-md"><h4><%= t('cafe_work.council_battle') %></h4></div>
+    <%= f.input :utskottskamp, as: :boolean, label: I18n.t('cafe_work.compete_battle') %>
+    <%= f.association :councils, collection: @councils, as: :check_boxes %>
+  <% end %>
+  <%= f.button :submit, value: t('cafe_work.button_worker'),class: 'btn btn-u' %>
+<% end %>
+

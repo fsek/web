@@ -45,15 +45,17 @@ class CafeWorksController < ApplicationController
   def index
     respond_to do |format|
       format.html { @lv = CafeWork.get_lv }
-      format.json { render json: CafeWork.between(params[:start], params[:end]).as_json(user: current_user) }
+      format.json {
+        render json: CafeWork.between(params[:start],
+                                      params[:end]).as_json(user: current_user)
+      }
     end
   end
 
   def nyckelpiga
     authorize! :nyckelpiga, CafeWork
     @date = (params[:date].present?) ? Time.zone.parse(params[:date]) : Time.zone.now
-    @work_grid = initialize_grid(CafeWork.between(@date.beginning_of_day,
-                                                  @date.end_of_day).ascending)
+    @cafe_works = CafeWork.between(@date.beginning_of_day, @date.end_of_day).ascending
   end
 
   private

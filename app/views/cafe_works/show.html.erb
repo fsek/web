@@ -29,7 +29,7 @@
     <div class="headline headline-md"><h2>Jobbare</h2></div>
     <%= render 'worker_table', cafe_work: cafe_work %>
     <% if cafe_work.user.nil? || @form == true %>
-      <%= render 'form' %>
+      <%= render 'form', action: :add_worker %>
     <% end %>
   </div>
   <div class="row">
@@ -41,6 +41,6 @@
     <% elsif @form == nil && can?(:edit, cafe_work) %>
       <%= link_to(t('cafe_work.edit'), edit_cafe_work_path(cafe_work), class: 'btn btn-u') %>
     <% end %>
-    <%= link_to(t('cafe_work.back_to_index'), :hilbert, class: 'btn btn-u') %>
+    <%= link_to(t('cafe_work.back_to_index'), cafe_works_path, class: 'btn btn-u') %>
   </div>
 </div>

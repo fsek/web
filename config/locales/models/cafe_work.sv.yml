@@ -30,3 +30,4 @@ sv:
     worker_added: Du arbetar nu på passet
     worker_updated: Dina uppgifter uppdaterades
     worker_removed: Du arbetar inte längre på passet
+    no_longer_editable: Går inte längre att redigera
