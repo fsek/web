@@ -103,7 +103,7 @@ RSpec.describe CafeWork, type: :model do
       end
 
       it 'as_json request is processed with parameters' do
-        (cwork_worker.as_json(nil).to_json).should 
+        (cwork_worker.as_json(nil).to_json).should
         include(cwork_worker.start.iso8601.to_json)
       end
     end
