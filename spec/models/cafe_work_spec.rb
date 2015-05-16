@@ -5,10 +5,12 @@ RSpec.describe CafeWork, type: :model do
     (build(:cafe_work)).should be_valid
   end
 
-  let(:user) { create(:user)}
-  let(:not_owner) { create(:user)}
+  let(:user) { create(:user) }
+  let(:not_owner) { create(:user) }
+  let(:council) { create(:council) }
   let(:cwork_worker) { create(:cafe_work, :w_user, user: user) }
   let(:cwork) { create(:cafe_work) }
+  let(:attr) { cafe_work: { utskottskamp: true, council_ids: [council.id] } }
   subject { build(:cafe_work) }
 
   describe 'ActiveModel validations' do
@@ -23,10 +25,7 @@ RSpec.describe CafeWork, type: :model do
 
     context 'if has_worker' do
       before { allow(subject).to receive(:has_worker?).and_return(true) }
-      it { subject.should validate_presence_of(:firstname) }
-      it { subject.should validate_presence_of(:lastname) }
-      it { subject.should validate_presence_of(:phone) }
-      it { subject.should validate_presence_of(:email) }
+      it { subject.should validate_presence_of(:user) }
     end
 
   end
@@ -41,10 +40,8 @@ RSpec.describe CafeWork, type: :model do
   describe 'public instance methods' do
     context 'responds to its methods' do
       it { should respond_to(:send_email) }
-      it { should respond_to(:load) }
       it { should respond_to(:status_text) }
       it { should respond_to(:status_view) }
-      it { should respond_to(:add_or_update) }
       it { should respond_to(:add_worker) }
       it { should respond_to(:update_worker) }
       it { should respond_to(:remove_worker) }
@@ -74,42 +71,30 @@ RSpec.describe CafeWork, type: :model do
 
       context 'add_worker' do
         it 'add worker with params and no user' do
-          cwork.add_worker(attributes_for(:assignee), nil)
+          cwork.add_worker(attr, nil)
           (cwork.reload.has_worker?).should be_falsey
         end
         it 'add worker with params and user' do
-          cwork.add_worker(attributes_for(:assignee), user)
+          cwork.add_worker(attr, user)
           (cwork.reload.user).should eq(user)
         end
       end
 
       context 'remove_worker' do
         it 'with the right user' do
-          cwork.remove_worker(user)
-          (cwork.worker.user).should be_nil
+          cwork_worker.remove_worker(user)
+          (cwork_worker.user).should be_nil
         end
         it 'with the wrong user' do
           cwork_worker.remove_worker(not_owner)
-          (cwork_worker.worker.user).should_not be_nil
+          (cwork_worker.user).should_not be_nil
         end
       end
 
       context 'update_worker' do
         it 'update worker with user' do
-          cwork_worker.update_worker(attributes_for(:assignee, lastname: 'Wessman'), user)
-          (cwork_worker.lastname).should eq('Wessman')
-        end
-      end
-
-      context 'status_view' do
-        it 'should return :sign_up for cwork' do
-          cwork.status_view(nil).should eq(:sign_up)
-        end
-        it 'should return :edit for cwork_worker' do
-          cwork_worker.status_view(user).should eq(:edit)
-        end
-        it 'should return :assigned for cwork_user' do
-          cwork_worker.status_view(not_owner).should eq(:assigned)
+          cwork_worker.update_worker(cafe_work: { utskottskamp: false }, user)
+          cwork_worker.utskottskamp.should be_falsey
         end
       end
     end

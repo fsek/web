@@ -1,55 +1,17 @@
-<%= form_for(@cafe_work, url: {action: :update_worker}) do |f| %>
-  <%= render 'shared/form_errors', current: @cafe_work %>
-  <div class="margin-bottom-20">
-    <%= f.label 'Namn & Efternamn', class: 'reg-label' %>
-    <div class="row">
-      <div class="col-md-6"><%= f.text_field :firstname, class: 'form-control', placeholder: "Förnamn" %></div>
-      <div class="col-md-6"> <%= f.text_field :lastname, class: 'form-control', placeholder: "Efternamn" %></div>
-    </div>
-  </div>
-  <%= f.label 'E-post & telefon', class: 'reg-label' %>
-  <div class="margin-bottom-20">
-    <div class="row">
-      <div class="col-md-6"><%= f.email_field :email, class: 'form-control', placeholder: "E-post" %></div>
-      <div class="col-md-6"> <%= f.phone_field :phone, class: 'form-control', placeholder: "Telefon" %></div>
-    </div>
-  </div>
+<%= simple_form_for(@cafe_work, url: { action: @cafe_work.current_action } ) do |f| %>
+  <%= f.association :user, collection: [current_user], include_blank: false %>
+  <% if @cafe_work.errors[:user].present? %>
+         <p><%= link_to(t('user.edit_information'), own_user_path) %></p>
+  <% end %>
   <% if @councils %>
-    <div class="headline headline-md"><h3>Utskottskampen</h3></div>
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.label :utskottskamp, "Delta i cafétävlingen?", value: false, class: 'reg-label' %>
-        <p>Ditt namn kommer synas i resultatet</p>
-        <%= f.check_box :utskottskamp, class: 'form-control', value: @cafe_work.utskottskamp %>
-      </div>
-      <%= f.label "Välj ett eller flera utskott att representera", class: 'reg-label' %>
-      <div class="col-md-6">
-        <%= f.collection_check_boxes(:council_ids, @councils, :id, :title, class: "form-control") do |b| %>
-          <span>
-            <%= b.check_box %>
-            <%= b.label %><br>
-          </span>
-        <% end %>
-      </div>
-    </div>
-    <hr>
+    <div class="headline headline-md"><h4><%= t('cafe_work.council_battle') %></h4></div>
+    <%= f.input :utskottskamp, as: :boolean, label: I18n.t('cafe_work.compete_battle') %>
+    <%= f.association :councils, as: :check_boxes %>
   <% end %>
-  <% if @cafe_work.editable? %>
-    <% if !@cafe_work.has_worker? %>
-      <div class="margin-bottom-20 reg-page">
-        <p>Genom att trycka på spara accepterar du att dina personuppgifter hanteras elektroniskt.
-        Dina uppgifter kan endast ses av administratörer, cafeansvariga samt nyckelpigor.</p>
-      </div>
-    <% end %>
-    <div class="margin-bottom-40">
-      <%= f.submit "Spara", class: 'btn-u pull-right' %>
-    </div>
-  <% else %>
-    <p>Det går inte längre att skriva upp sig på passet eller redigera.</p>
-  <% end %>
-<% end %>
+  <%= f.button :submit, class: 'btn btn-u' %>
 <% if @cafe_work.has_worker? %>
-  <%= link_to("Hoppa av", remove_worker_cafe_work_path(@cafe_work), class: "btn btn-u", method: :patch) %>
-  <br>
+  <%= link_to(t('cafe_work.leave'), remove_worker_cafe_work_path(@cafe_work),
+              class: 'btn btn-u pull-right', method: :patch) %>
+<% end %>
 <% end %>
 

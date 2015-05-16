@@ -2,54 +2,36 @@
 <div class="col-md-6 col-md-offset-3">
   <div class="row">
     <%= render 'links' %>
-    <div class="headline headline-md"><h2>Cafejobb - ID <%= @cafe_work.id %> Admin</h2></div>
-    <%= render 'form' %>
-    <div class="headline headline-md"><h2>Jobbare</h2></div>
+    <div class="headline headline-md">
+      <h2>
+        <%= %(#{CafeWork.model_name.human} - ID #{@cafe_work.id} - Admin) %>
+      </h2>
+    </div>
+    <div class="margin-bottom-20">
+      <%= render 'form' %>
+    </div>
+    <div class="headline headline-md">
+      <h2>
+        <%= CafeWork.human_attribute_name(:user) %>
+      </h2>
+    </div>
     <% if @cafe_work.has_worker? %>
-        <span id="status"></span>
-
-        <div id="jobbare">
-          <table class="table">
-            <tbody>
-            <tr>
-              <td><i class="fa fa-user"></i></td>
-              <td>
-                <% if @cafe_work.has_worker? %>
-                    <%= link_to(@cafe_work.worker, user_path(@cafe_work.user)) %>
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td><i class="fa fa-envelope"></i></td>
-              <td><%= @cafe_work.email %></td>
-            </tr>
-            <tr>
-              <td><i class="fa fa-phone"></i></td>
-              <td><%= @cafe_work.phone %></td>
-            </tr>
-            <tr>
-              <td><i class="fa fa-users"> Cafetävling</i></td>
-              <td><%= (@cafe_work.utskottskamp) ? "Ja" : "Nej" %></td>
-            </tr>
-            <% if 1 == 0 && @cafe_work.access_code.present? %>
-                <tr>
-                  <td><i class="fa fa-lock"> Kod:</i></td>
-                  <td><%= @cafe_work.access_code %></td>
-                </tr>
-            <% end %>
-            </tbody>
-          </table>
-          <div class="margin-bottom-20">
-            <%= link_to("Ta bort jobbare",
-                        remove_worker_admin_cafe_work_path(@cafe_work), class: "btn btn-u",
-                        remote: true, method: :patch) %>
-          </div>
-        </div>
+        <table class='table'>
+          <tbody>
+            <%= render 'cafe_works/worker_table', cafe_work: @cafe_work %>
+          </tbody>
+        </table>
+        <div class="margin-bottom-20">
+          <%= link_to(t('cafe_work.remove_worker'),
+                      remove_worker_admin_cafe_work_path(@cafe_work), class: 'btn btn-u',
+                      method: :patch) %>
+      </div>
+      </div>
 
     <% else %>
-        <p>Jobbare saknas</p>
-        <%= link_to("Ta bort pass", admin_cafe_work_path(@cafe_work),
-                    method: :delete, class: "btn btn-u") %>
-    <% end %>
+      <p>Jobbare saknas</p>
+      <%= link_to(t('cafe_work.remove_work'), admin_cafe_work_path(@cafe_work),
+                  method: :delete, class: 'btn btn-u') %>
+              <% end %>
   </div>
 </div>

@@ -21,3 +21,6 @@ sv:
         password: Lösenord
         confirmed_at: E-post bekräftades
         member_at: Medlemskap bekräftades
+  user:
+    attributes_missing: du måste fylla i dina användaruppgifter.
+    edit_information: Redigera användaruppgifter

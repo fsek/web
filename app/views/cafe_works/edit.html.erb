@@ -28,19 +28,9 @@
   <div class="margin-bottom-20">
     <div class="headline headline-md"><h2>Jobbare</h2></div>
     <%= render 'worker_table', cafe_work: cafe_work %>
-    <% if cafe_work.user.nil? || @form == true %>
-      <%= render 'form' %>
-    <% end %>
+    <%= render 'form' %>
   </div>
-  <div class="row">
-    <% if can? :manage, cafe_work %>
-      <%= link_to(t('administrate'), admin_cafe_work_path(cafe_work), class: 'btn btn-u') %>
-      <% if cafe_work.owner?(current_user) %>
-        <%= link_to(t('cafe_work.edit'), edit_cafe_work_path(cafe_work), class: 'btn btn-u') %>
-      <% end %>
-    <% elsif @form == nil && can?(:edit, cafe_work) %>
-      <%= link_to(t('cafe_work.edit'), edit_cafe_work_path(cafe_work), class: 'btn btn-u') %>
-    <% end %>
+  <div class="margin-bottom-20">
     <%= link_to(t('cafe_work.back_to_index'), :hilbert, class: 'btn btn-u') %>
   </div>
 </div>

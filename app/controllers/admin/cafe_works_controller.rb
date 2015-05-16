@@ -15,6 +15,10 @@ class Admin::CafeWorksController < ApplicationController
   def edit
   end
 
+  def overview
+    @cafe_works = CafeWork.all_work_day
+  end
+
   def create
     flash[:notice] = alert_create(CafeWork) if @cafe_work.save
     redirect_to [:admin, @cafe_work]
