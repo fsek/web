@@ -13,8 +13,8 @@ class Ability
     # For calendar-subscription
     can :export, Event
 
-    can :read, CafeWork
     can [:main, :show], Rent
+    # can :read, CafeWork
 
     # Abilities all signed in users get
     if user.id
@@ -23,8 +23,8 @@ class Ability
       # TODO Implement add_worker
       # can :add_worker, CafeWork, user_id: nil
       # can :update_worker, CafeWork, user_id: user.id
-      can :update_worker, CafeWork
-      can :remove_worker, CafeWork, user_id: user.id
+      # can :update_worker, CafeWork
+      # can :remove_worker, CafeWork, user_id: user.id
       can [:show, :avatar], User
       can [:read, :display, :hide], Post
     end

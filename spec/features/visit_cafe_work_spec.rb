@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'logged in' do
+feature 'logged in', pending: true do
   let(:user) { create(:user) }
   let(:cafe_work) { create(:cafe_work)}
   scenario 'they can sign up to work' do

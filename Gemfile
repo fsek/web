@@ -46,7 +46,6 @@ end
 
 group :development, :test do
   gem 'capybara'
-	gem 'rspec-example_steps'
   gem 'mailcatcher'
   gem 'poltergeist'
   gem 'rspec-rails'
