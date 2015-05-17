@@ -9,8 +9,9 @@ class CafeWork < ActiveRecord::Base
   validates :work_day, :pass, :lp, :lv, presence: true
   validates :pass, :lp, inclusion: { in: 1..4 }
   validates :lv, inclusion: { in: 1..20 }
-  validates :firstname, :lastname, :phone, :email, presence: true, if: :has_worker?
   validates :pass, uniqueness: { scope: [:work_day, :lv, :lp, :d_year] }
+  # Worker validations
+  validate :user_attributes?, if: :has_worker?
 
   # Scopes
   scope :with_worker, -> { where.not(user: nil) }
@@ -19,16 +20,10 @@ class CafeWork < ActiveRecord::Base
   scope :week, ->(week) { where(lv: week) }
   scope :period, ->(p) { where(lp: p) }
   scope :year, ->(y) { where(d_year: y) }
+  scope :all_work_day, -> { order(work_day: :asc) }
 
   attr_accessor :lv_first, :lv_last
-  after_update :send_email, if: :has_worker?
-
-  # A custom class for the worker
-  # For more information see Assignee model or
-  # read comments above methods
-  def worker
-    @worker || Assignee.new(worker_attributes)
-  end
+  #  after_update :send_email, if: :has_worker?
 
   # Sends email to worker
   # /d.wessman
@@ -38,12 +33,20 @@ class CafeWork < ActiveRecord::Base
     Rails.logger.info 'Mailer could not connect, rescued here'
   end
 
-  # Prepares work for a user to sign up, without saving
-  # Will only change attributes if there is no worker and
-  # user is present.
-  # /d.wessman
-  def load(user)
-    self.attributes = worker.load_user(user)
+  def old_profile
+    if profile_id.present?
+      if user_id == nil
+        return User.find_by(id: profile_id)
+      else
+        return user
+      end
+    else
+      return user
+    end
+  end
+
+  def current_action
+    user.present? ? :update_worker : :add_worker
   end
 
   # Shows different status texts depending on the user.
@@ -51,11 +54,11 @@ class CafeWork < ActiveRecord::Base
   def status_text(user)
     case status_view(user)
     when :sign_up
-      return 'Fyll i uppgifter och tryck på Spara för att skriva upp dig och arbeta på passet.'
+      return I18n.t('cafe_work.status.sign_up')
     when :edit
-      return 'Du är uppskriven för att arbeta på passet.'
+      return I18n.t('cafe_work.status.signed_up')
     when :assigned
-      return 'Passet är redan bokat.'
+      return I18n.t('cafe_work.status.assigned')
     end
   end
 
@@ -68,27 +71,22 @@ class CafeWork < ActiveRecord::Base
     :sign_up
   end
 
-  def add_or_update(worker_params, user)
-    if has_worker?
-      update_worker(worker_params, user)
-    else
-      add_worker(worker_params, user)
-    end
-  end
-
   # User to update worker, checks for edit-access and triggers at_update
   # /d.wessman
   def add_worker(worker_params, user)
     if has_worker?
-      errors.add('Arbetare', 'passet har redan en.')
+      errors.add(CafeWork.human_attribute_name(:worker), I18n.t('cafe_work.has_worker'))
+      return false
+    end
+
+    if !editable?
+      errors.add(:work_day, I18n.t('cafe_work.no_longer_editable'))
       return false
     end
 
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
-    # self.attributes = Assignee.setup(worker_params, user).attributes
-    # save
     self.user = user
     update(worker_params)
   end
@@ -97,23 +95,23 @@ class CafeWork < ActiveRecord::Base
   # /d.wessman
   def update_worker(worker_params, user)
     if !owner?(user)
-      errors.add('Auktorisering',
-                 'misslyckades, du har inte rättighet att redigera.')
+      errors.add(I18n.t('authorization'),
+                 I18n.t('cafe_work.authorize_failed'))
       return false
     end
 
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
     # /d.wessman
-    update(worker_params)
+    update!(worker_params)
   end
 
   # Remove-function used by the worker
   # /d.wessman
   def remove_worker(user)
     if !owner?(user)
-      errors.add('Auktorisering',
-                 'misslyckades, du har inte rättighet att ta bort.')
+      errors.add(I18n.t('authorization'),
+                 I18n.t('cafe_work.authorize_failed'))
       return false
     end
 
@@ -123,7 +121,7 @@ class CafeWork < ActiveRecord::Base
   # Method to remove the worker from current work.
   # /d.wessman
   def clear_worker
-    self.attributes = worker.clear_attributes
+    self.user = nil
     self.utskottskamp = false
     councils.clear
     self.save!(validate: false)
@@ -146,7 +144,7 @@ class CafeWork < ActiveRecord::Base
   # Returns true if there is a worker
   # /d.wessman
   def has_worker?
-    worker.present?
+    user.present?
   end
 
   # Used to print date in a usable format.
@@ -174,16 +172,16 @@ class CafeWork < ActiveRecord::Base
     Rails.application.routes.url_helpers.cafe_work_path(id)
   end
 
-  def as_json(*)
+  def as_json(user, *)
     {
       id: id,
-      title: %(Cafepass #{pass}),
+      title: p_title,
       start: start.iso8601,
       end: stop.iso8601,
       status: print,
       url: p_path,
       color: 'black',
-      backgroundColor: b_color,
+      backgroundColor: b_color(user),
       textColor: 'black'
     }
   end
@@ -214,20 +212,34 @@ class CafeWork < ActiveRecord::Base
 
   protected
 
-  def worker_attributes
-    {
-      firstname: firstname, lastname: lastname, email: email,
-      phone: phone, user: user, user_id: user_id
-    }
+  def p_title
+    if has_worker?
+      %(#{CafeWork.model_name.human} #{pass} - #{user})
+    else
+      %(#{CafeWork.model_name.human} #{pass})
+    end
   end
 
   # Background color for the event
-  def b_color
-    (has_worker?) ? 'orange' : 'white'
+  def b_color(user)
+    if has_worker?
+      (user.nil? || owner?(user[:user])) ? 'green' : 'orange'
+    else
+      'white'
+    end
   end
 
   # Duration of work
   def duration
     ((pass == 1) || (pass == 2)) ? 2 : 3
+  end
+
+  def user_attributes?
+    if !user.has_attributes?
+      errors.add(:user, I18n.t('user.attributes_missing'))
+      return false
+    end
+
+    true
   end
 end

@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
                     styles: { medium: '300x300>', thumb: '100x100>' },
                     path: ':rails_root/storage/user/:id/:style/:filename'
 
+  scope :all_firstname, -> { order(firstname: :asc) }
 
   # Validations
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/

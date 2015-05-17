@@ -25,3 +25,6 @@ sv:
     public_information: Publik information
     protected_information: Information som endast visas av funktionärer
     add_information: Du måste fylla i dina användaruppgifter
+
+    attributes_missing: du måste fylla i dina användaruppgifter.
+    edit_information: Redigera användaruppgifter

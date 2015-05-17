@@ -7,12 +7,20 @@ class Admin::CafeWorksController < ApplicationController
   before_action :set_cafe_setup, only: [:setup_create]
 
   def show
+    @councils = Council.all
+  end
+
+  def edit
   end
 
   def new
   end
 
   def edit
+  end
+
+  def overview
+    @cafe_works = CafeWork.all_work_day
   end
 
   def create
@@ -33,14 +41,32 @@ class Admin::CafeWorksController < ApplicationController
     @id = @cafe_work.id
     @cafe_work.destroy
     respond_to do |format|
-      format.html { redirect_to :admin_hilbert, alert: alert_destroy(CafeWork) }
+      format.html { redirect_to admin_cafe_works_path, alert: alert_destroy(CafeWork) }
       format.js
+    end
+  end
+
+  def add_worker
+    if @cafe_work.update(worker_params)
+      redirect_to admin_cafe_work_path(@cafe_work), notice: I18n.t('cafe_work.worker_added')
+    else
+      render action: :show
+    end
+  end
+
+  def update_worker
+    if @cafe_work.update!(worker_params)
+      redirect_to cafe_work_path([:admin, @cafe_work]), notice: I18n.t('cafe_work.worker_updated')
+    else
+      render action: :show
     end
   end
 
   def remove_worker
     if !@cafe_work.clear_worker
       render action: show, notice: 'Lyckades inte'
+    else
+      redirect_to admin_cafe_work_path(@cafe_work)
     end
   end
 
@@ -71,7 +97,11 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def cafe_work_params
-    params.require(:cafe_work).permit(:work_day, :pass, :lp, :lv, :lv_first, :lv_last, :d_year)
+    params.require(:cafe_work).permit(:work_day, :pass, :lp, :lv, :lv_last, :d_year)
+  end
+
+  def worker_params
+    params.require(:cafe_work).permit(:user_id, :utskottskamp, council_ids: [])
   end
 
   def set_new_cafe_work
@@ -89,7 +119,7 @@ class Admin::CafeWorksController < ApplicationController
   end
 
   def set_lv
-    @lv_first = cafe_work_params[:lv_first] || 0
+    @lv_first = cafe_work_params[:lv] || 0
     @lv_last = cafe_work_params[:lv_last] || 0
   end
 

@@ -1,12 +1,8 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-      <%= label_tag 'Redigera cafepass', nil, class: 'reg-header' %>
-      <%= render 'links' %>
-      <%= render 'form' %>
-      <%= link_to 'Visa cafepass', @cwork, class: "btn btn-u" %>
-      <%= link_to 'Ta bort passet', @cwork, method: :delete, class: "btn btn-u" %>
-      <%= link_to 'Tillbaka till Hilbert', :hilbert, class: "btn btn-u" %>
-    </div>
-  </div>
+<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
+  <%= label_tag 'Redigera cafepass', nil, class: 'reg-header' %>
+  <%= render 'links' %>
+  <%= render 'form' %>
+  <%= link_to 'Visa cafepass', @cafe_work, class: 'btn btn-u' %>
+  <%= link_to 'Ta bort passet', @cafe_work, method: :delete, class: 'btn btn-u' %>
+  <%= link_to 'Tillbaka till Hilbert', admin_cafe_works_path, class: 'btn btn-u' %>
 </div>

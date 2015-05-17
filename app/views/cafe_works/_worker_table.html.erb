@@ -1,0 +1,23 @@
+<table class="table">
+  <tbody>
+    <%= cafe_work.status_text(current_user) %>
+    <% if cafe_work.user.present? %>
+      <%= render 'users/as_table', user: cafe_work.user, prot: (can?(:manage, cafe_work) || cafe_work.owner?(current_user)) %>
+    <% end %>
+    <tr>
+      <td><%= CafeWork.human_attribute_name(:utskottskamp) %></td>
+      <td><%= cafe_work.utskottskamp ? t('cafe_work.competing') : t('cafe_work.not_competing') %></td>
+    </tr>
+    <% if cafe_work.councils.count > 0 %>
+      <tr>
+        <td><%= Council.model_name.human(count: cafe_work.councils.count) %> </td>
+        <td>
+          <% cafe_work.councils.each do |c| %>
+            <%= link_to(c,c) %><br>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
