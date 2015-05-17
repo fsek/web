@@ -12,8 +12,7 @@ FactoryGirl.define do
   sequence(:username) { |n| "davidwessman#{n}" }
   sequence(:value) { |n| "david#{n}" }
   sequence(:location) { ['MH:A','Hilbert','Kårhuset','Ön-ön','Sjönsjön','Bastun'].sample }
-
-  # Used in Bilbokning
+  sequence(:date) { |n| Time.zone.now + 10.days + n.days }
   trait :with_user do
     user
   end

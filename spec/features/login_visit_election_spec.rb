@@ -4,12 +4,13 @@ feature 'Visit Election' do
   let(:user) { create(:user) }
   let(:election) { create(:election) }
   let(:council) { create(:council) }
-  let(:post) { create(:post, council: council, elected_by: 'Terminsmötet') }
+  let(:the_post) { create(:post, council: council, elected_by: 'Terminsmötet') }
   background do
     council
-    post
-    election
-    allow(election).to receive(:current_posts) { Post.all }
+    the_post
+    Election.update_all(visible: false)
+    election.update(visible: true)
+    election.posts << the_post
   end
 
   Steps 'Visit the election page' do
