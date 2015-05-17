@@ -71,17 +71,15 @@ Fsek::Application.routes.draw do
 
     # A scope to put car-associated things under /bil
     # /d.wessman
-    scope :bil do
-      namespace :admin do
-        resources :rents, path: :bokningar, except: [:index, :edit] do
-          get :preview, path: :visa, on: :member
-        end
-        get '', controller: :rents, action: :main, as: :car
+    namespace :admin do
+      resources :rents, path: :bilbokning, except: :edit do
+        get :preview, path: :visa, on: :member
       end
-      resources :rents, path: :bokningar do
-        patch :authorize, on: :member, path: :auktorisera
-      end
-      get '', controller: :rents, action: :main, as: :bil
+    end
+
+    resources :rents, path: :bilbokning, except: :index do
+      get :oversikt, action: :index, on: :collection
+      get '', action: :main, as: :main, on: :collection
     end
 
     resources :notices, path: :notiser do
@@ -141,11 +139,11 @@ Fsek::Application.routes.draw do
     resources :elections, path: :val, only: :index do
       collection do
         resources :nominations, controller: 'elections/nominations',
-                                path: :nominera, only: [:create] do
+          path: :nominera, only: [:create] do
           get '', action: :new, on: :collection, as: :new
         end
         resources :candidates, controller: 'elections/candidates',
-                               path: :kandidera, except: :edit
+          path: :kandidera, except: :edit
       end
     end
 
