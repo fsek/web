@@ -1,9 +1,9 @@
 # encoding: UTF-8
 FactoryGirl.define do
   factory :cafe_work do
-    pass { rand(1..4) }
-    lv { rand(1..7) }
-    lp { rand(1..4) }
+    pass 1
+    lv 1
+    lp 2
     d_year { Time.zone.now.year }
     work_day { generate(:date) }
 
