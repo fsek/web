@@ -35,8 +35,8 @@ Fsek::Application.routes.draw do
       resources :users, path: :anvandare, only: [:index]
     end
 
-    resource :user, path: :profil, as: :own_user, only: [:edit, :update] do
-      get '', action: :profile
+    resource :user, path: :anvandare, as: :own_user, only: [:update] do
+      get '', action: :edit, as: :edit
       patch :password, path: :losenord, action: :update_password
       patch :account, path: :konto, action: :update_account
     end
