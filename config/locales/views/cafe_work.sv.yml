@@ -1,0 +1,17 @@
+sv:
+  cafe_work:
+    compete_battle: Delta i Cafétävlingen
+    back_to_index: Tillbaka till Startsida för Hilbert
+    edit: Redigera bokning
+    leave: Hoppa av
+    competing: Deltar
+    not_competing: Deltar inte
+    remove_worker: Ta bort jobbare
+    remove_work: Ta bort pass
+    button_worker: Jobba
+    admin_title: Administration för Hilbert Café
+    clear_search: Rensa sökning
+    setup_weeks: Skapa pass för läsperiod
+    setup_single: Skapa ensklit pass
+    ladybug: Nyckelpiga
+    overview: Översikt

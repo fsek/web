@@ -1,4 +1,7 @@
 sv:
+  default:
+    yes: Ja
+    no: Nej
   success_create: har skapats
   success_update: har uppdaterats
   success_destroy: har raderats
@@ -10,6 +13,8 @@ sv:
   prevent_save: gör att det inte går att spara
   try_login: prova att logga in.
   preview: Förhandsgranska
+  show: Visa
+  remove: Ta bort
 
   administrate: Administrera
 

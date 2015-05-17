@@ -5,7 +5,7 @@ feature 'admin visits paths' do
   let(:cafe_work) { create(:cafe_work) }
 
   paths = {
-    albums: [:show ],
+    albums: [:show],
     cafe_works: [:index, :nyckelpiga],
     constants: [:index, :new, :show],
     contacts: [:index, :new, :show],
@@ -57,10 +57,3 @@ feature 'admin visits paths' do
     end
   end
 end
-#   menus: [ :index, :new],
-#   news: [ :index, :new, :show ],
-#   notices: [ :index, :new, :show ],
-#   pages: [ :index, :show, :new ],
-#   rents: [ :main, :index ],
-#   work_posts: [ :index, :new, :show ]
-# }

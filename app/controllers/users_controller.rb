@@ -2,10 +2,14 @@
 class UsersController < ApplicationController
   load_permissions_and_authorize_resource
   before_action :set_user
+
   def index
   end
 
   def show
+  end
+
+  def profile
   end
 
   def edit

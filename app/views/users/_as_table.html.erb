@@ -1,0 +1,21 @@
+<% if user.present? %>
+  <tr>
+    <td><%=User.human_attribute_name(:name)%></td>
+    <td><%= link_to(user, user) %></td>
+  </tr>
+  <% if prot == true %>
+    <tr>
+      <td><%=User.human_attribute_name(:email)%>*</td>
+      <td><%= user.email %></td>
+    </tr>
+    <tr>
+      <td><%=User.human_attribute_name(:phone)%>*</td>
+      <td><%= user.phone %></td>
+    </tr>
+    <tr>
+      <td><%=User.human_attribute_name(:stil_id)%>*</td>
+      <td><%= user.stil_id %></td>
+    </tr>
+    <p><%= t('user.asterix_hidden') %> </p>
+  <% end %>
+<% end %>

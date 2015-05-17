@@ -35,8 +35,8 @@ Fsek::Application.routes.draw do
       resources :users, path: :anvandare, only: [:index]
     end
 
-    resource :user, path: :anvandare, only: [:edit, :update] do
-      get '', action: :show, as: :own_user
+    resource :user, path: :anvandare, as: :own_user, only: [:update] do
+      get '', action: :edit, as: :edit
       patch :password, path: :losenord, action: :update_password
       patch :account, path: :konto, action: :update_account
     end
@@ -49,25 +49,23 @@ Fsek::Application.routes.draw do
 
     resources :constants
 
-    scope :hilbertcafe do
-      namespace :admin do
-        resources :cafe_works, path: :jobb, controller: :cafe_works, except: :index do
-          patch :remove_worker, path: :jobbare, on: :member
-        end
-        get '/setup', controller: :cafe_works, action: :setup, as: :setup_cafe
-        post '/setup', controller: :cafe_works, action: :setup_create, as: :setup_cafe_create
-        get '', controller: :cafe_works, action: :index, as: :hilbert
-        post '', controller: :cafe_works, action: :index
-      end
-      resources :cafe_works, path: :jobb, only: [:show] do
-        patch :add_worker, path: :jobba, on: :member
+    namespace :admin do
+      resources :cafe_works, path: :hilbertcafe do
+        patch :add_worker, path: :jobbare, on: :member
         patch :update_worker, path: :uppdatera, on: :member
         patch :remove_worker, path: :inte_jobba, on: :member
-        patch :authorize, path: :auktorisera, on: :member
+        get :overview, path: :oversikt, on: :collection
+        get :setup, as: :setup, on: :collection
+        post :setup_create, on: :collection
       end
-      get '', controller: :cafe_works, action: :index, as: :hilbert
-      get '/nyckelpiga', controller: :cafe_works, action: :nyckelpiga
-      # get '/tavling', controller: :cafe_works, action: :tavling, as: :cafe_tavling
+    end
+
+    resources :cafe_works, path: :hilbertcafe, only: [:index, :show] do
+      get :edit, path: :jobba, on: :member
+      patch :add_worker, path: :jobbare, on: :member
+      patch :update_worker, path: :jobba, on: :member
+      patch '', action: :remove_worker, on: :member, as: :remove_worker
+      get :nyckelpiga, on: :collection
     end
 
     # A scope to put car-associated things under /bil

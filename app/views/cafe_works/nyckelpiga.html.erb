@@ -1,37 +1,41 @@
 <% provide(:title, 'Hilbert Café') %>
-<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 reg-page">
-  <div class="coming-soon">
+<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 reg-page'>
+  <div class='coming-soon'>
     <h2><%= label_tag 'Cafebokning - nyckelpiga', nil, class: 'reg-header' %></h2>
   </div>
-  <div class="row margin-bottom-20">
-    <%= form_tag(nyckelpiga_path, {method: 'get'}) do |f| %>
-        <%= text_field_tag(:date, @date.iso8601, class: "form-control datetimepicker") %>
-        <%= submit_tag "Visa", class: "btn btn-u" %>
+  <div class='row margin-bottom-20'>
+    <%= form_tag(nyckelpiga_cafe_works_path, { method: 'get' }) do |f| %>
+      <%= text_field_tag(:date, @date.iso8601, class: 'form-control datetimepicker') %>
+      <%= submit_tag 'Visa', class: 'btn btn-u' %>
     <% end %>
   </div>
-  <div class="row">
-    <% if @works %>
-        <table class="table-striped table-bordered table">
-          <thead>
+  <div class='row'>
+    <% if @cafe_works %>
+      <table class='table-striped table-bordered table'>
+        <thead>
           <tr>
             <th>ID</th>
             <th>Pass</th>
             <th>Arbetare</th>
             <th>Telefon</th>
           </tr>
-          </thead>
-          <tbody>
-          <% @works.each do |work| %>
-              <tr>
-                <td><%= link_to(work.id, work) %></td>
-                <td><%= work.pass %></td>
-                <td><%= link_to(work.worker, work.user) %></td>
-                <td><%= work.phone %></td>
-              </tr>
+        </thead>
+        <tbody>
+          <% @cafe_works.each do |work| %>
+            <tr>
+              <td><%= link_to(work.id, work) %></td>
+              <td><%= work.pass %></td>
+              <% if work.has_worker? %>
+                <td><%= link_to(work.user, user_path(work.user)) %></td>
+                <td><%= work.user.try(:phone) %></td>
+              <% else %>
+                <td></td><td></td>
+              <% end %>
+            </tr>
           <% end %>
-          </tbody>
-        </table>
+        </tbody>
+      </table>
     <% end %>
   </div>
-  <%= link_to("Startsida för Hilbert", :hilbert, class: "btn btn-u") %>
+  <%= link_to(t('cafe_work.back_to_index'), :cafe_works, class: 'btn btn-u') %>
 </div>

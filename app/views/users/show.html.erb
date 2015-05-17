@@ -1,28 +1,17 @@
-<div class="container content">
-  <div class="row portfolio-item margin-bottom-50">
-    <div class="col-md-offset-2 col-md-5 md-margin-bottom-40">
-      <%= render current_user %>
-      <div class="row">
-        <div class="col-xs-6">
-          <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_user_path(current_user), class: "btn-u btn-u-small" %>
+<div class='row portfolio-item margin-bottom-50'>
+  <div class='col-md-offset-2 col-md-5 md-margin-bottom-40'>
+    <%= render @user %>
+  </div>
+</div>
+
+<% if @user.avatar? %>
+  <div class='col-md-3'>
+    <div class='carousel slide carousel-v1' id='myCarousel'>
+      <div class='carousel-inner'>
+        <div class='item active'>
+          <%= image_tag avatar_user_path(@user, style: 'original') %>
         </div>
       </div>
     </div>
-    <!-- End Content Info -->
-
-    <!-- Carousel -->
-    <% if current_user.avatar? %>
-      <div class="col-md-3">
-        <div class="carousel slide carousel-v1" id="myCarousel">
-          <div class="carousel-inner">
-            <div class="item active">
-              <%= image_tag avatar_user_path(current_user, style: "original") %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <!-- End Carousel -->
   </div>
-  <!--/row-->
-</div>
+<% end %>

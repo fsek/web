@@ -105,7 +105,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
 
     it 'redirects to the candidates list' do
       delete :destroy, id: cwork.to_param
-      response.should redirect_to(:admin_hilbert)
+      response.should redirect_to(:admin_cafe_works)
     end
 
     it 'assigns the requested id' do
@@ -117,7 +117,7 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
 
   describe 'PATCH #remove_worker' do
     it 'remove worker' do
-      xhr :patch, :remove_worker, id: cwork_worker.to_param
+      patch :remove_worker, id: cwork_worker.to_param
       cwork_worker.reload
 
       cwork_worker.has_worker?.should be_falsey
@@ -135,20 +135,20 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
     # Should use a more precise method
     # This test keeps on failing, the actual method works as it should -
     # clueless
-    it 'preview post', pending: true do
+    it 'preview post' do
       post(:setup_create, commit: I18n.t(:preview),
                           cafe_work: attributes_for(:cafe_work,
-                                                    lv_first: 1,
+                                                    lv: 1,
                                                     lv_last: 1))
 
       count = CafeSetupWeek.new(Time.zone.now, 1).preview(1, 1).count
-      assigns(:cafe_works).count should eq(count)
+      assigns(:cafe_works).count.should eq(count)
     end
 
     it 'create post' do
       lambda {
         post :setup_create, cafe_work: attributes_for(:cafe_work,
-                                                      lv_first: 1,
+                                                      lv: 1,
                                                       lv_last: 1)
       }.should change(CafeWork, :count).by(20)
     end

@@ -19,23 +19,9 @@ FactoryGirl.define do
       lp 6122
     end
 
-    trait :test_work do
-      firstname 'Test'
-      lastname 'Testet'
-      email 'test@test.se'
-      phone '0705507889'
-    end
-
-    trait :worker do
-      firstname
-      lastname
-      email
-      phone
-    end
-
     trait :w_user do
-      worker
       user
+      utskottskamp true
     end
   end
 end
