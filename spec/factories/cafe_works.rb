@@ -5,7 +5,7 @@ FactoryGirl.define do
     lv { rand(1..7) }
     lp { rand(1..4) }
     d_year { Time.zone.now.year }
-    work_day { Time.zone.now + 10.day }
+    work_day { generate(:date) }
 
     trait :tester do
       pass 1
