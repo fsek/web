@@ -7,8 +7,8 @@ feature 'Visit Election', js: true do
   background do
     council
     the_post
-    election
-    election.posts
+    Election.update_all(visible: false)
+    election.update(visible: true)
     election.posts << the_post
   end
 

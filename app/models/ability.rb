@@ -12,9 +12,9 @@ class Ability
 
     # For calendar-subscription
     can :export, Event
-
     can [:main, :show], Rent
     can :read, CafeWork
+    can :main, Rent
     can [:new, :read, :create], Faq
 
     # Abilities all signed in users get
@@ -22,8 +22,7 @@ class Ability
       can [:index, :new, :edit, :create, :update, :destroy], Rent, user_id: user.id
       can [:edit, :update, :show, :update_password, :update_account], User, id: user.id
       can :add_worker, CafeWork, user_id: nil
-      can :update_worker, CafeWork, user_id: user.id
-      can [:edit, :remove_worker], CafeWork, user_id: user.id
+      can [:edit, :update_worker, :remove_worker], CafeWork, user_id: user.id
       can [:show, :avatar], User
       can [:read, :display, :hide], Post
     end
