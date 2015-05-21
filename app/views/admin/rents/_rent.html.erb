@@ -1,96 +1,10 @@
-<div class="funny-boxes funny-boxes-top-orange col-md-12">
-  <%= link_to('Redigera bokning', admin_rent_path(@rent), class: 'btn btn-u') %>
-  <hr>
-  <div class="row">
-    <div class="col-md-12 funny-boxes-img">
-      <h2>Bilbokning - ID <%= rent.id %>
-        <% if rent.service %><span class="label rounded label-danger pull-right">Service</span>
-        <% elsif rent.status == "Nekad" %> <span class="label rounded label-danger pull-right">Nekad</span>
-        <% elsif rent.status == "Ej bestämd" %>
-            <span class="label rounded-2x label-warning pull-right">Ej bestämd</span>
-        <% elsif rent.status == "Bekräftad" %>  <span class="label rounded-2x label-success pull-right">Bekräftad</span>
-        <% end %>
-      </h2>
-      <table class="table">
-        <tbody>
-        <tr>
-          <td><%= fa_icon('user') %></i></td>
-          <td><%= link_to(rent.p_name, rent.user) %></td>
-        </tr>
-        <tr>
-          <td><%= fa_icon('calendar') %> Start</td>
-          <td><%= rent.d_from %></td>
-        </tr>
-        <tr>
-          <td><%= fa_icon('calendar-o') %> Slut</td>
-          <td><%= rent.d_til %></td>
-        </tr>
-        <tr>
-          <td><%= fa_icon('envelope') %></td>
-          <td><%= rent.email %></td>
-        </tr>
-        <tr>
-          <td><%= fa_icon('phone') %></td>
-          <td><%= rent.phone %></td>
-        </tr>
-        <tr>
-          <td><%= fa_icon('check') %></td>
-          <td>
-            <% if rent.disclaimer %>
-                Avtal accepterat<br>
-            <% end %>
-            <% if rent.aktiv %>
-                Markerad som aktiv<br>
-            <% end %>
-            <% if rent.status == "Bekräftad" %>
-                Bekräftad
-            <% end %> </td>
-        </tr>
-        <tr>
-          <td><%= fa_icon('exclamation-circle') %></td>
-          <td>
-            <% if !rent.disclaimer %>
-                Avtal ej accepterat <br>
-            <% end %>
-            <% if !rent.aktiv %>
-                Markerad som inaktiv <br>
-            <% end %>
-            <% if rent.status == "Ej bestämd" %>
-                Ingen status - måste bekräftas/nekas
-                <br>
-            <% end %>
-            <% if rent.status == "Nekad" %>
-                Nekad
-            <% end %> </td>
-        </tr>
-        <% if rent.council.present? %>
-            <tr>
-              <td><%= fa_icon('users') %> Utskott:</td>
-              <td><%= link_to(rent.council.title, council_path(rent.council)) %></td>
-            </tr>
-        <% end %>
-        <% if rent.purpose.present? %>
-            <tr>
-              <td><%= fa_icon('exclamation-circle') %> Syfte</td>
-              <td><%= simple_format(rent.purpose) %></td>
-            </tr>
-        <% end %>
-        <% if rent.access_code.present? %>
-            <tr>
-              <td><%= fa_icon('lock') %> Kod</td>
-              <td><%= rent.access_code %></td>
-            </tr>
-        <% end %>
-        <tr>
-          <td><%= fa_icon('calendar') %> Skapad</td>
-          <td><%= rent.created_at %></td>
-        </tr>
-        <tr>
-          <td><%= fa_icon('calendar') %> Ändrad</td>
-          <td><%= rent.updated_at %></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+<h2>Bilbokning - ID <%= rent.id %>
+<%= link_to('Redigera bokning', admin_rent_path(@rent), class: 'btn btn-u') %>
+<% if rent.service %><span class='label rounded label-danger pull-right'>Service</span>
+<% elsif rent.status == 'Nekad' %> <span class='label rounded label-danger pull-right'>Nekad</span>
+<% elsif rent.status == 'Ej bestämd' %>
+  <span class='label rounded-2x label-warning pull-right'>Ej bestämd</span>
+<% elsif rent.status == 'Bekräftad' %>  <span class='label rounded-2x label-success pull-right'>Bekräftad</span>
+<% end %>
+</h2>
+<%= render 'rents/renter_table', rent: @rent %>

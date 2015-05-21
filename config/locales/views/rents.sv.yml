@@ -8,3 +8,25 @@ sv:
     no_terms: Syns inget här finnes avtalet
     council: Utskottsbokning
     back_to_index: Startsida för Bilbokning
+    remove: Ta bort bokning
+    confirm_remove: Din bokning kommer nu att tas bort
+    view_normal: Bokning - vanlig vy
+    admin_index: Startsida administration Bilbokning
+    new: Ny bokning
+    book: Boka bil
+    contact: Kontakta Bilförman
+    your_bookings: Dina bokningar
+    delete: Radera bokning
+    date_format: 'Datum och tid skrivs enligt "25/05/2015 10:00"'
+    cannot_edit: Du kan inte längre redigera bokningen
+
+
+
+    admin:
+      index: Startsida administration
+      title: Administration - Bilbokning
+      delete_confirm: Bokning kommer att raderas
+      status: säger om bokningen är bekräftad eller ej
+      aktiv: sätts till falsk om bokningen t.ex. bokas över
+      comment: skickas med i mail om en boknings ändras till Nekad
+      inactive: En bokning är inaktiverad om status är Nekad eller aktiv är falsk

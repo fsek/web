@@ -12,7 +12,9 @@ sv:
   error: fel
   prevent_save: gör att det inte går att spara
   try_login: prova att logga in.
+  view: Visa
   preview: Förhandsgranska
+  clear_search: Rensa sökning
   authenticate: Autentisera
   authorize: Auktorisera
   back_to_root: Tillbaka till startsidan
@@ -22,6 +24,9 @@ sv:
   important: Viktigt
   show: Visa
   remove: Ta bort
+  edit: Redigera
+  tools: Verktyg
+  links: Länkar
 
   administrate: Administrera
 

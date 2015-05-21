@@ -2,6 +2,7 @@
 FactoryGirl.define do
   factory :page do
     council
+    url { |n| %(page#{n}) }
 
     factory :page_with_elements do
       transient do

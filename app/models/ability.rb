@@ -14,8 +14,9 @@ class Ability
     can :export, Event
     can [:main, :show], Rent
     can :read, CafeWork
-    can :main, Rent
     can [:new, :read, :create], Faq
+    can [:index, :show], Council
+    can [:index, :about, :company_about, :company_offer], :static_pages
 
     # Abilities all signed in users get
     if user.id

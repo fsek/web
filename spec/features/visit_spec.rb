@@ -1,34 +1,32 @@
 require 'rails_helper'
-
 feature 'user visits paths' do
   let(:user) { create(:user) }
   let(:album) { create(:album) }
   let(:cafe_work) { create(:cafe_work) }
+  let(:login) { LoginPage.new }
+  let(:election) { create(:election) }
 
-  paths2 = %w( / /om /utskott /val /bil /proposals/form /foretag/om /kontakt /logga_in /anvandare/registrera )
   paths = {
     albums: [:show],
     cafe_works: [:index],
-    contacts: [:index,:show],
+    contacts: [:index, :show],
     councils: [:index, :show],
     elections: [:index],
     events: [:index, :calendar, :show],
     faqs: [:index, :show],
     news: [:index, :show],
     pages: [:show],
+    proposals: [:form],
     rents: [:main, :index],
-    static_pages: [:about, :company_offer, :company_about]
+    static_pages: [:company_offer, :company_about]
   }
-
-  let(:election) { create(:election) }
-  let(:login) { LoginPage.new }
 
   background do
     election
   end
 
   Steps 'Checking out pages' do
-    Then 'login' do
+    Then 'signing in' do
       login.visit_page.login(user, '12345678')
     end
   end

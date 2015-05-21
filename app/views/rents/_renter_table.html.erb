@@ -1,0 +1,7 @@
+<table class="table">
+  <tbody>
+      <%= render 'users/as_table', user: rent.user, prot: (can?(:manage, rent) || rent.owner?(current_user)) %>
+      <%= render 'rents/table', rent: rent %>
+  </tbody>
+</table>
+

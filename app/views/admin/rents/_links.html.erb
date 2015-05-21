@@ -1,3 +1,7 @@
-<div class="row margin-bottom-20 center">
-  <%= link_to("Admin - start", admin_car_path, class: "btn btn-u") %> <%= link_to("Bilbokning - start", bil_path, class: "btn btn-u") %> <%if @rent.present?%> <%= link_to("Bokning - vanlig vy", rent_path(@rent), class: "btn btn-u") %> <%end%>
+<div class='margin-bottom-20'>
+  <%= link_to(t('rent.admin.index'), admin_rents_path, class: 'btn btn-u') %>
+  <%= link_to(t('rent.back_to_index'), rents_path, class: 'btn btn-u') %>
+  <%if !@rent.new_record?%>
+    <%= link_to(t('rent.view_normal'), rent_path(@rent), class: 'btn btn-u') %>
+  <%end%>
 </div>

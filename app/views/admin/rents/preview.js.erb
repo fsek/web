@@ -1,6 +1,2 @@
 $('#preview-rent').html("")
-$('#preview-user').html("")
 $('#preview-rent').html("<%= escape_javascript( render @rent)%>")
-<%if @rent.user.present? %>
-$('#preview-user').html("<%= escape_javascript( render '/users/user',user: @rent.user)%>")
-<%end%>

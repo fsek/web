@@ -11,7 +11,7 @@ Fsek::Application.routes.draw do
   get 'kalender' => 'events#calendar', as: :kalender
   get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
 
-  get 'om' => 'static_pages#om', as: :om
+  get :about, controller: :static_pages, path: :om, as: :om
   get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about
   get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
 
@@ -139,11 +139,11 @@ Fsek::Application.routes.draw do
     resources :elections, path: :val, only: :index do
       collection do
         resources :nominations, controller: 'elections/nominations',
-          path: :nominera, only: [:create] do
+                                path: :nominera, only: [:create] do
           get '', action: :new, on: :collection, as: :new
         end
         resources :candidates, controller: 'elections/candidates',
-          path: :kandidera, except: :edit
+                               path: :kandidera, except: :edit
       end
     end
 

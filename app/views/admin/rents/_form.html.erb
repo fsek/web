@@ -1,23 +1,18 @@
-<% if 1 == 0 %>
-  <div class="margin-bottom-20">
-    <p>Sök på ett namn, räcker med en bokstav.</p>
-    <%= form_tag(search_user_path, method: :patch, remote: true) do %>
-      <%= text_field_tag :firstname, nil, placeholder: :firstname %>
-      <%= text_field_tag :lastname, nil, placeholder: :lastname %>
-      <%= submit_tag 'Sök', class: 'btn-u btn-u-small' %>
-    <% end %>
-  </div>
-<%end%>
 <%= simple_form_for([:admin, @rent]) do |f| %>
-  <h2><%= @rent.print_status %> </h2>
+  <h4><%= @rent.print_status %></h4>
   <%= f.input :disclaimer, as: :boolean %>
   <%= f.input :service, as: :boolean %>
   <%= f.association :user, collection: @users %>
   <% if @rent.user.present? %>
-    <%= render '/users/user', user: @rent.user %>
-  <%end%>
+    <table class='table'>
+      <tbody>
+        <%= render 'users/as_table', user: @rent.user, prot: (can?(:manage, @rent) || @rent.owner?(current_user)) %>
+      </tbody>
+    </table>
+  <% end %>
   <%= f.input :d_from, as: :datetime_picker %>
   <%= f.input :d_til, as: :datetime_picker %>
+  <small><%= t('rent.date_format') %></small>
   <%= f.input :purpose, as: :text %>
   <%= f.association :council, collection: @councils %>
   <%= f.input(:status, collection: [[t('rent.confirmed'),:confirmed],
@@ -26,4 +21,4 @@
   <%= f.input :aktiv, as: :boolean %>
   <%= f.input :comment, as: :text, placeholder: t('rent.denied_comment')%>
   <%= f.button :submit, class: 'btn btn-u', id: 'rent-submit' %>
-  <% end %>
+<% end %>

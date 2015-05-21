@@ -21,7 +21,7 @@ feature 'Admin visits rents' do
       find('div.alert.alert-info').text.should include(I18n.t('devise.sessions.signed_in'))
     end
     And 'I go to Rent Admin' do
-      visit admin_car_path
+      visit admin_rents_path
     end
     And 'Should find headline' do
       find('h1').text.should include('F-bilen')

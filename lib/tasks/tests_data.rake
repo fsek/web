@@ -86,7 +86,7 @@ namespace :db do
     Menu.find_or_create_by!(location: 'För medlemmar', name: 'Val',
                             link: '/val', index: 10, visible: true, turbolinks: true)
     Menu.find_or_create_by!(location: 'För medlemmar', name: 'Bilbokning',
-                            link: '/bil', index: 20, visible: true, turbolinks: false)
+                            link: '/bilbokning', index: 20, visible: true, turbolinks: false)
     Menu.find_or_create_by!(location: 'För medlemmar', name: 'Hilbertcafé',
                             link: '/hilbertcafe', index: 30, visible: true, turbolinks: false)
 

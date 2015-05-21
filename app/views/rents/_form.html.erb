@@ -1,4 +1,4 @@
-<%= simple_form_for(@rent, html: { class: 'reg-page'}) do |f| %>
+<%= simple_form_for(@rent, html: { class: 'col-md-12' }) do |f| %>
   <div class="headline headline-md"><h1><%= Rent.model_name.human %></h1></div>
   <div class="headline headline-md"><h2><%= t('activerecord.attributes.rent.disclaimer') %></h2></div>
   <% if @terms.present? %>
@@ -7,9 +7,11 @@
     <%= t('rent.no_terms') %> <%= link_to(t(:here), documents_path) %>.
   <% end %>
   <%= f.input :disclaimer, as: :boolean %>
-  <div class="row">
-    <%= render 'users/preview', user: @rent.user, prot: (@rent.owner?(current_user) || can?(:manage, @rent))%>
-  </div>
+  <%= f.association :user, collection: [current_user], include_blank: false %>
+  <% if @rent.errors[:user].present? %>
+    <p><%= link_to(t('user.edit_information'), edit_own_user_path) %></p>
+  <% end %>
+  <%= render 'renter_table', user: @rent.user, rent: @rent %>
   <div class="form-inputs">
     <%= f.input :d_from, as: :datetime_picker %>
     <%= f.input :d_til, as: :datetime_picker %>
@@ -39,6 +41,9 @@
     <p><%= t('rent.confirm_member') %> <%= link_to(t('account'), edit_own_user_path) %>.</p>
   <% end %>
   <div class="form-group">
-    <%= f.button :submit, class: 'btn btn-u' %>
+    <% if @rent.edit?(current_user) %>
+      <%= f.button :submit, class: 'btn btn-u' %>
+    <% else %>
+      <strong><%= t('rent.cannot_edit') %></strong>
   </div>
 <% end %>

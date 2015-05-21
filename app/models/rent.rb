@@ -7,7 +7,7 @@ class Rent < ActiveRecord::Base
 
   # Validations
   # Everyone has to accept the disclaimer
-  validates :d_from, :d_til, :user, :disclaimer, presence: true
+  validates :d_from, :d_til, :user_id, :disclaimer, presence: true
 
   # Purpose not required for members of F-guild
   validates :purpose, presence: true, unless: :member?
@@ -116,7 +116,7 @@ class Rent < ActiveRecord::Base
   # Returns true if the rent is editable (not for admins)
   # /d.wessman
   def edit?(user)
-    d_til > Time.zone.now && owner?(user)
+    d_from > Time.zone.now && owner?(user)
   end
 
   # Returns the length of the booking in hours, as an virtual attribute
@@ -149,6 +149,14 @@ class Rent < ActiveRecord::Base
     end
     str += aktiv == true ? I18n.t('rent.active') : I18n.t('rent.inactive')
     str
+  end
+
+  def p_from
+    d_from.strftime('%H:%M %d/%m')
+  end
+
+  def p_til
+    d_til.strftime('%H:%M %d/%m')
   end
 
   # Prints the date of the rent in a readable way, should be localized
