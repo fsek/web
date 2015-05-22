@@ -11,7 +11,7 @@ feature 'visit contact, create new, send email' do
     end
   end
 
-  Steps'contact page' do
+  Steps 'contact page' do
     When 'visiting index page' do
       page.visit contacts_path
     end
