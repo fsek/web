@@ -89,6 +89,7 @@ sv:
     new:
       nomination: Du måste logga in för att kunna nominera.
       candidate: Du måste logga in för att kunna kandidera.
+      rent: Du måste logga in för att boka bilen.
   user:
     settings: Kontoinställningar
 

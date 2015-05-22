@@ -9,6 +9,7 @@ class Ability
     can :read, [Contact, Document], public: true
     can [:display, :image], Notice
     can [:collapse, :display], Post
+    can :manage, Contact
 
     # For calendar-subscription
     can :export, Event

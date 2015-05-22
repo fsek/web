@@ -7,7 +7,7 @@ class Rent < ActiveRecord::Base
 
   # Validations
   # Everyone has to accept the disclaimer
-  validates :d_from, :d_til, :user_id, :disclaimer, presence: true
+  validates :d_from, :d_til, :user, :disclaimer, presence: true
 
   # Purpose not required for members of F-guild
   validates :purpose, presence: true, unless: :member?
@@ -223,12 +223,14 @@ class Rent < ActiveRecord::Base
   end
 
   def user_attributes
-    if user.present? && user.has_attributes?
-      return true
+    if user.present?
+      if user.has_attributes?
+        return true
+      else
+        errors.add(:user, I18n.t('user.add_information'))
+        return false
+      end
     end
-
-    errors.add(:user, I18n.t('user.add_information'))
-    false
   end
 
   # Validates d_from is in the future

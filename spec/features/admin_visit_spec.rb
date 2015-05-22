@@ -10,7 +10,7 @@ feature 'admin visits paths' do
     albums: [:show],
     cafe_works: [:index, :nyckelpiga],
     constants: [:index, :new, :show],
-    contacts: [:mail, :index, :new, :show],
+    contacts: [:index, :new, :show],
     councils: [:index, :show],
     # documents: [ :index, :new ],
     # No idea why this fails TODO Fix
