@@ -2,24 +2,22 @@ require 'rails_helper'
 require 'cancan_matchers'
 
 describe Ability do
-  context 'member' do
-    let(:user) { create(:user, member_at: Time.zone.now) }
-    subject(:ability) { Ability.new(user) }
+  context 'not_signed_in' do
+    subject(:ability) { Ability.new(nil) }
 
     context 'album' do
       it { should not_have_abilities([:read, :new, :edit], Album.new) }
     end
 
     context 'cafe_work' do
-      it { should have_abilities([:read, :add_worker], build(:cafe_work)) }
-      it { should have_abilities([:read, :update_worker,
-                                  :edit, :remove_worker], build(:cafe_work, user: user)) }
-      it { should not_have_abilities([:new, :nyckelpiga], CafeWork.new) }
+      it { should have_abilities(:read, CafeWork.new) }
+      it { should not_have_abilities([:new, :edit,
+                                      :add_worker, :update_worker,
+                                      :remove_worker, :nyckelpiga], CafeWork.new) }
     end
 
     context 'candidate' do
-      it { should have_abilities([:read, :new, :edit], Candidate.new) }
-      it { should have_abilities([:read, :new, :edit], Candidate.new) }
+      it { should not_have_abilities([:read, :new, :edit], Candidate.new) }
     end
 
     context 'constant' do
@@ -97,35 +95,4 @@ describe Ability do
       it { should not_have_abilities([:new, :edit], Rent.new) }
     end
   end
-
-  context 'default user' do
-    let(:user) { create(:user) }
-    let(:ability) { create(:user) }
-    subject(:ability) { Ability.new(user) }
-
-    # Stuff everyone can do
-    it { should have_abilities :read, Event.new }
-    it { should have_abilities :read, Council.new }
-    #it { should have_abilities :read, CafeWork.new }
-    it { should have_abilities :read, News.new }
-    it { should have_abilities :read, Post.new }
-    it { should have_abilities :read, Election.new }
-
-
-    # Stuff everyone must not be able to do
-    it { should_not have_abilities :read, Constant.new }
-    it { should_not have_abilities :read, Candidate.new }
-    it { should_not have_abilities :read, Permission.new }
-    it { should_not have_abilities :read, User.new }
-  end
-
-
-  context 'admin user' do
-    let(:user) { create(:admin) }
-    subject(:ability) { Ability.new(user) }
-
-    # Can do anything
-    it { should have_abilities(:manage, :all) }
-  end
-
 end

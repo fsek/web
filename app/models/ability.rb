@@ -6,12 +6,14 @@ class Ability
 
     # Abilities that everyone get.
     can :read, [News, Council, Page, Election]
-    can :read, [Contact, Document], public: true
+    can :read, Document, public: true
+    can [:mail, :read], Contact, public: true
     can [:display, :image], Notice
     can [:collapse, :display], Post
 
     # For calendar-subscription
     can :export, Event
+
     can :read, CafeWork
     can :main, Rent
     can [:new, :read, :create], Faq
@@ -28,7 +30,9 @@ class Ability
 
     # Only for members of the Guild
     if user.member?
-      can :read, [Contact, Document]
+      # Add album abilities
+      can [:read, :mail], Contact
+      can :read, Document
       can :read, :old_gallery
       # TODO We really need to move calendar to its own controller
       can [:read, :calendar], Event
