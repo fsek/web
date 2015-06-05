@@ -43,9 +43,9 @@ RSpec.describe Ability do
     Contact.new(public: true) => { yes: [:read, :mail], no: [:create, :update] },
     Council.new => { yes: [:read], no: [:create, :update, :destroy] },
     Document.new(public: true) => { yes: [:read], no: [:create, :update, :destroy] },
-    Document.new => { yes: [], no: standard},
+    Document.new => { yes: [], no: standard },
     Election.new => { yes: [:index], no: [:create, :update, :destroy] },
-    Event.new => { yes: [], no: standard},
+    Event.new => { yes: [], no: standard },
     Faq.new => { yes: [:read, :create], no: [:update, :destroy] },
     Menu.new => { yes: [], no: standard },
     News.new => { yes: [:read], no: [:create, :update, :destroy] },
@@ -83,7 +83,6 @@ RSpec.describe Ability do
     Rent.new => { yes: [:main, :create, :index], no: [:update, :destroy] }
   }
 
-
   subject(:not_signed_ability) { Ability.new(nil) }
 
   let(:signed) { create(:user, member_at: nil) }
@@ -118,7 +117,8 @@ RSpec.describe Ability do
     # Extra cases which cannot be covered in loop
     # These also count for the members
     it { signed_ability.should have_abilities([:show, :update, :destroy], Rent.new(user: signed)) }
-    it { signed_ability.should have_abilities([:update_worker, :remove_worker, :edit], CafeWork.new(user: signed)) }
+    it { signed_ability.should
+         have_abilities([:update_worker, :remove_worker, :edit], CafeWork.new(user: signed)) }
   end
 
   describe 'Member' do
@@ -133,7 +133,8 @@ RSpec.describe Ability do
     end
 
     # Extra cases which cannot be covered in loop
-    it { member_ability.should have_abilities([:update, :show, :destroy], Candidate.new(user: member)) }
+    it { member_ability.should
+         have_abilities([:update, :show, :destroy], Candidate.new(user: member)) }
   end
 
 end

@@ -10,7 +10,7 @@ describe Ability do
     # Stuff everyone can do
     it { should be_able_to :read, News.new }
     it { should be_able_to :read, Council.new }
-    #it { should be_able_to :read, CafeWork.new }
+    # it { should be_able_to :read, CafeWork.new }
 
     # Stuff everyone must not be able to do
     it { should_not be_able_to :read, Constant.new }
@@ -30,9 +30,9 @@ describe Ability do
     # Stuff everyone can do
     it { should be_able_to :read, Event.new }
     it { should be_able_to :read, Council.new }
-    #it { should be_able_to :read, CafeWork.new }
+    # it { should be_able_to :read, CafeWork.new }
     it { should be_able_to :read, News.new }
-    it { should be_able_to :read, Post.new }
+    # it { should be_able_to :read, Post.new }
     it { should be_able_to :read, Election.new }
 
     # Stuff everyone must not be able to do
