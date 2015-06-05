@@ -84,6 +84,7 @@ RSpec.describe Ability do
 
   subject(:visitor) { Ability.new(nil) }
 
+
   let(:signed) { create(:user, member_at: nil) }
   subject(:signed_ability) { Ability.new(signed) }
 
