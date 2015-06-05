@@ -16,16 +16,19 @@ class Ability
 
     can :read, CafeWork
     can :main, Rent
-    can [:new, :read, :create], Faq
+    cannot [:create, :update, :destroy], Rent
+    cannot [:add_worker, :update_worker, :remove_worker], CafeWork
+    can [:read, :create], Faq
 
     # Abilities all signed in users get
-    if user.id
-      can [:main, :new, :edit, :create, :update, :destroy], Rent, user_id: user.id
-      can [:edit, :update, :show, :update_password, :update_account], User, id: user.id
+    if user.id.present?
+      can [:index, :create], Rent
+      can [:show, :update, :destroy], Rent, user_id: user.id
+      can [:edit, :show, :update_password, :update_account], User, id: user.id
       can :add_worker, CafeWork, user_id: nil
       can [:edit, :update_worker, :remove_worker], CafeWork, user_id: user.id
       can [:show, :avatar], User
-      can [:read, :display, :hide], Post
+      can [:show, :display, :hide], Post
     end
 
     # Only for members of the Guild
@@ -36,8 +39,9 @@ class Ability
       can :read, :old_gallery
       # TODO We really need to move calendar to its own controller
       can [:read, :calendar], Event
-      can :manage, Candidate, user_id: user.id
-      can :manage, Nomination
+      can [:create, :index], Candidate
+      can [:update, :show, :destroy], Candidate, user_id: user.id
+      can [:create], Nomination
     end
 
     # Note: Root access is given dynamically by having a post with permissions :manage, :all

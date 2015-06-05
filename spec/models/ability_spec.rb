@@ -1,131 +1,139 @@
 require 'rails_helper'
 require 'cancan_matchers'
 
-describe Ability do
-  context 'member' do
-    let(:user) { create(:user, member_at: Time.zone.now) }
-    subject(:ability) { Ability.new(user) }
+RSpec.describe Ability do
+  standard = :read, :create, :update, :destroy
 
-    context 'album' do
-      it { should not_have_abilities([:read, :new, :edit], Album.new) }
-    end
+  unsigned = {
+    Album.new => { yes: [], no: standard },
+    CafeWork.new => {
+      yes: [:read],
+      no: [:create, :update, :add_worker, :update_worker, :remove_worker, :nyckelpiga]
+    },
+    Candidate.new => { yes: [], no: standard },
+    Constant.new => { yes: [], no: standard },
+    Contact.new => { yes: [], no: [:mail, :create, :update, :destroy, :read] },
+    Contact.new(public: true) => { yes: [:read, :mail], no: [:create, :update] },
+    Council.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Document.new(public: true) => { yes: [:read], no: [:create, :update, :destroy] },
+    Document.new => { yes: [], no: standard },
+    Election.new => { yes: [:index], no: [:create, :update, :destroy] },
+    Event.new => { yes: [], no: standard },
+    Faq.new => { yes: [:read, :create], no: [:update, :destroy] },
+    Menu.new => { yes: [], no: standard },
+    News.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Nomination.new => { yes: [], no: [:create] },
+    Notice.new => { yes: [:display, :image], no: standard },
+    PageElement.new => { yes: [], no: standard },
+    Page.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Permission.new => { yes: [], no: standard },
+    Post.new => { yes: [:collapse, :display], no: [:read, :create, :update] },
+    Rent.new => { yes: [:main], no: [:create, :update, :destroy] }
+  }
 
-    context 'cafe_work' do
-      it { should have_abilities([:read, :add_worker], build(:cafe_work)) }
-      it { should have_abilities([:read, :update_worker,
-                                  :edit, :remove_worker], build(:cafe_work, user: user)) }
-      it { should not_have_abilities([:new, :nyckelpiga], CafeWork.new) }
-    end
+  ab_signed = {
+    Album.new => { yes: [], no: standard },
+    CafeWork.new => {
+      yes: [:read, :add_worker],
+      no: [:create, :update]
+    },
+    Candidate.new => { yes: [], no: standard },
+    Constant.new => { yes: [], no: standard },
+    Contact.new => { yes: [], no: [:mail, :read, :create, :update, :destroy] },
+    Contact.new(public: true) => { yes: [:read, :mail], no: [:create, :update] },
+    Council.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Document.new(public: true) => { yes: [:read], no: [:create, :update, :destroy] },
+    Document.new => { yes: [], no: standard},
+    Election.new => { yes: [:index], no: [:create, :update, :destroy] },
+    Event.new => { yes: [], no: standard},
+    Faq.new => { yes: [:read, :create], no: [:update, :destroy] },
+    Menu.new => { yes: [], no: standard },
+    News.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Nomination.new => { yes: [], no: [:create] },
+    Notice.new => { yes: [:display, :image], no: standard },
+    PageElement.new => { yes: [], no: standard },
+    Page.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Permission.new => { yes: [], no: standard },
+    Post.new => { yes: [:collapse, :display, :show], no: [:index, :create, :update] },
+    Rent.new => { yes: [:main, :index, :create], no: [] }
+  }
 
-    context 'candidate' do
-      it { should have_abilities([:read, :new, :edit], Candidate.new) }
-      it { should have_abilities([:read, :new, :edit], Candidate.new) }
-    end
+  ab_member = {
+    Album.new => { yes: [], no: standard },
+    CafeWork.new => {
+      yes: [:read, :add_worker],
+      no: [:create, :update, :update_worker, :remove_worker, :nyckelpiga]
+    },
+    Candidate.new => { yes: [:index, :create], no: [] },
+    Constant.new => { yes: [], no: standard },
+    Contact.new => { yes: [:read, :mail], no: [:create, :update, :destroy] },
+    Council.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Document.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Election.new => { yes: [:index], no: [:create, :update, :destroy] },
+    Event.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Faq.new => { yes: [:read, :create], no: [:update, :destroy] },
+    Menu.new => { yes: [], no: standard },
+    News.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Nomination.new => { yes: [:create], no: [] },
+    Notice.new => { yes: [:display, :image], no: standard },
+    PageElement.new => { yes: [], no: standard },
+    Page.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Permission.new => { yes: [], no: standard },
+    Post.new => { yes: [:collapse, :display, :show], no: [:index, :create, :update] },
+    Rent.new => { yes: [:main, :create, :index], no: [:update, :destroy] }
+  }
 
-    context 'constant' do
-      it { should not_have_abilities([:read, :new, :edit], Constant.new) }
-    end
 
-    context 'contact' do
-      it { should have_abilities([:read, :mail], Contact.new(public: true)) }
-      it { should not_have_abilities([:new, :edit], Contact.new) }
-      it { should not_have_abilities([:show, :mail], Contact.new(public: false)) }
-    end
+  subject(:not_signed_ability) { Ability.new(nil) }
 
-    context 'council' do
-      it { should have_abilities(:read, Council.new) }
-      it { should not_have_abilities([:new, :edit], Council.new) }
-    end
+  let(:signed) { create(:user, member_at: nil) }
+  subject(:signed_ability) { Ability.new(signed) }
 
-    context 'document' do
-      it { should have_abilities(:read, Document.new(public: true)) }
-      it { should not_have_abilities([:new, :edit], Document.new) }
-      it { should not_have_abilities(:show, Document.new(public: false)) }
-    end
+  let(:member) { create(:user, member_at: Time.zone.now) }
+  subject(:member_ability) { Ability.new(member) }
 
-    context 'election' do
-      it { should have_abilities(:index, Election.new) }
-      it { should not_have_abilities([:new, :edit], Election.new) }
-    end
+  describe 'Not signed in' do
+    unsigned.each do |obj, value|
+      if value[:yes].present?
+        it { not_signed_ability.should have_abilities(value[:yes], obj) }
+      end
 
-    context 'event' do
-      it { should not_have_abilities([:read, :new, :edit], Event.new) }
-    end
-
-    context 'faq' do
-      it { should have_abilities(:read, Faq.new) }
-      it { should not_have_abilities([:update, :edit], Faq.new) }
-    end
-
-    context 'menu' do
-      it { should not_have_abilities([:read, :new, :edit], Menu.new) }
-    end
-
-    context 'news' do
-      it { should have_abilities(:read, News.new) }
-      it { should not_have_abilities([:new, :edit], News.new) }
-    end
-
-    context 'nomination' do
-      it { should not_have_abilities([:new, :create], Nomination.new) }
-    end
-
-    context 'notice' do
-      it { should have_abilities([:display, :image], Notice.new) }
-      it { should not_have_abilities([:read, :new, :edit], Notice.new) }
-    end
-
-    context 'page_element' do
-      it { should not_have_abilities([:read, :new, :edit], PageElement.new) }
-    end
-
-    context 'page' do
-      it { should not_have_abilities([:new, :edit], Page.new) }
-    end
-
-    context 'permission' do
-      it { should not_have_abilities([:read, :new, :edit], Permission.new) }
-    end
-
-    context 'post' do
-      it { should have_abilities([:collapse, :display], Post.new) }
-      it { should not_have_abilities([:index, :new, :edit], Post.new) }
-    end
-
-    context 'rent' do
-      it { should have_abilities(:main, Rent.new) }
-      it { should not_have_abilities([:new, :edit], Rent.new) }
+      if value[:no].present?
+        it { not_signed_ability.should not_have_abilities(value[:no], obj) }
+      end
     end
   end
 
-  context 'default user' do
-    let(:user) { create(:user) }
-    let(:ability) { create(:user) }
-    subject(:ability) { Ability.new(user) }
+  describe 'Signed in' do
+    ab_signed.each do |obj, value|
+      if value[:yes].present?
+        it { signed_ability.should have_abilities(value[:yes], obj) }
+      end
 
-    # Stuff everyone can do
-    it { should have_abilities :read, Event.new }
-    it { should have_abilities :read, Council.new }
-    #it { should have_abilities :read, CafeWork.new }
-    it { should have_abilities :read, News.new }
-    it { should have_abilities :read, Post.new }
-    it { should have_abilities :read, Election.new }
+      if value[:no].present?
+        it { signed_ability.should not_have_abilities(value[:no], obj) }
+      end
+    end
 
-
-    # Stuff everyone must not be able to do
-    it { should_not have_abilities :read, Constant.new }
-    it { should_not have_abilities :read, Candidate.new }
-    it { should_not have_abilities :read, Permission.new }
-    it { should_not have_abilities :read, User.new }
+    # Extra cases which cannot be covered in loop
+    # These also count for the members
+    it { signed_ability.should have_abilities([:show, :update, :destroy], Rent.new(user: signed)) }
+    it { signed_ability.should have_abilities([:update_worker, :remove_worker, :edit], CafeWork.new(user: signed)) }
   end
 
+  describe 'Member' do
+    ab_member.each do |obj, value|
+      if value[:yes].present?
+        it { member_ability.should have_abilities(value[:yes], obj) }
+      end
 
-  context 'admin user' do
-    let(:user) { create(:admin) }
-    subject(:ability) { Ability.new(user) }
+      if value[:no].present?
+        it { member_ability.should not_have_abilities(value[:no], obj) }
+      end
+    end
 
-    # Can do anything
-    it { should have_abilities(:manage, :all) }
+    # Extra cases which cannot be covered in loop
+    it { member_ability.should have_abilities([:update, :show, :destroy], Candidate.new(user: member)) }
   end
 
 end
