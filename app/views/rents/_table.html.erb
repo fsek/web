@@ -1,58 +1,24 @@
 <tr>
-  <td><%= fa_icon('calendar') %> Start</td>
+  <td><%= fa_icon('calendar') %> <%= Rent.human_attribute_name(:d_from) %></td>
   <td><%= rent.d_from %></td>
 </tr>
 <tr>
-  <td><%= fa_icon('calendar-o') %> Slut</td>
+  <td><%= fa_icon('calendar-o') %> <%= Rent.human_attribute_name(:d_til) %></td>
   <td><%= rent.d_til %></td>
 </tr>
 <tr>
-  <td><%= fa_icon('check') %></td>
-  <td>
-    <% if rent.disclaimer %>
-      Avtal accepterat<br>
-    <% end %>
-    <% if rent.aktiv %>
-      Markerad som aktiv<br>
-    <% end %>
-    <% if rent.status == "Bekräftad" %>
-      Bekräftad
-    <% end %> </td>
-</tr>
-<tr>
-  <td><%= fa_icon('exclamation-circle') %></td>
-  <td>
-    <% if !rent.disclaimer %>
-      Avtal ej accepterat <br>
-    <% end %>
-    <% if !rent.aktiv %>
-      Markerad som inaktiv <br>
-    <% end %>
-    <% if rent.status == "Ej bestämd" %>
-      Ingen status - måste bekräftas/nekas
-      <br>
-    <% end %>
-    <% if rent.status == "Nekad" %>
-      Nekad
-    <% end %> </td>
+  <td><%= fa_icon('check') %> <%= Rent.human_attribute_name(:status) %></td>
+  <td><%= t(%(rent.#{rent.status})) %></td>
 </tr>
 <% if rent.council.present? %>
   <tr>
-    <td><%= fa_icon('users') %> Utskott:</td>
+    <td><%= fa_icon('users') %> <%= Rent.human_attribute_name(:council) %></td>
     <td><%= link_to(rent.council.title, council_path(rent.council)) %></td>
   </tr>
 <% end %>
 <% if rent.purpose.present? %>
   <tr>
-    <td><%= fa_icon('exclamation-circle') %> Syfte</td>
+    <td><%= fa_icon('exclamation-circle') %> <%= Rent.human_attribute_name(:purpose) %></td>
     <td><%= simple_format(rent.purpose) %></td>
   </tr>
 <% end %>
-<tr>
-  <td><%= fa_icon('calendar') %> Skapad</td>
-  <td><%= rent.created_at %></td>
-</tr>
-<tr>
-  <td><%= fa_icon('calendar') %> Ändrad</td>
-  <td><%= rent.updated_at %></td>
-</tr>

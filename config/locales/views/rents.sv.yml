@@ -19,8 +19,13 @@ sv:
     delete: Radera bokning
     date_format: 'Datum och tid skrivs enligt "25/05/2015 10:00"'
     cannot_edit: Du kan inte längre redigera bokningen
-
-
+    check_dates: Kontroller datum
+    disclaimer_accepted: Bilbokningsavtal accepterat
+    marked_active: Markerad som aktiv
+    disclaimer_not_accepted: Bilboknignsavtal inte accepterat
+    marked_inactive: Markerad som inaktiv
+    unconfirmed_status: Ingen status - måste bekräftas eller nekas
+    overlaps_with: 'Överlappar med:'
 
     admin:
       index: Startsida administration
@@ -29,4 +34,4 @@ sv:
       status: säger om bokningen är bekräftad eller ej
       aktiv: sätts till falsk om bokningen t.ex. bokas över
       comment: skickas med i mail om en boknings ändras till Nekad
-      inactive: En bokning är inaktiverad om status är Nekad eller aktiv är falsk
+      inactive: En bokning är inaktiverad om status är Nekad eller Aktiv äri satt till falsk

@@ -5,3 +5,10 @@
   height:auto;
   min-height: 30%;
 }
+span, li {
+  #overlapping {
+    color: #a94442;
+    content: '\00BB';
+    margin-right: 10px;
+  }
+}

@@ -80,6 +80,7 @@ Fsek::Application.routes.draw do
     resources :rents, path: :bilbokning, except: :index do
       get :oversikt, action: :index, on: :collection
       get '', action: :main, as: :main, on: :collection
+      post :check_dates, on: :collection
     end
 
     resources :notices, path: :notiser do

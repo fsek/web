@@ -30,7 +30,7 @@ class Admin::RentsController < ApplicationController
 
   def destroy
     @rent.destroy
-    redirect_to :admin_car, notice: alert_destroy(Rent)
+    redirect_to :admin_rents, notice: alert_destroy(Rent)
   end
 
   private

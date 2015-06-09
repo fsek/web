@@ -12,14 +12,9 @@ class Rent < ActiveRecord::Base
   # Purpose not required for members of F-guild
   validates :purpose, presence: true, unless: :member?
 
-  # Duration is only allowed to be 48h, unless it is for a council
-  # Validate that there is no overlap
-  validate :duration?, :overlap, :overlap_council, :overlap_overbook
-
-  # Dates need to be in the future
-  validate :date_future, :dates_ascending, on: :create
-
-  validate :user_attributes
+  validate do |rent|
+    RentValidator.new(rent).validate
+  end
 
   # After creation
   after_create :send_email
@@ -56,6 +51,7 @@ class Rent < ActiveRecord::Base
     self.aktiv = false
     save(validate: false)
     send_active_email
+    Rails.logger.info %(ID: #{id} getting overbooked\n\n\n\n\n)
   end
 
   # Methods
@@ -116,7 +112,7 @@ class Rent < ActiveRecord::Base
   # Returns true if the rent is editable (not for admins)
   # /d.wessman
   def edit?(user)
-    d_from > Time.zone.now && owner?(user)
+    id.nil? || ( d_from.nil? && d_til.nil?) || (d_from > Time.zone.now && owner?(user))
   end
 
   # Returns the length of the booking in hours, as an virtual attribute
@@ -143,7 +139,7 @@ class Rent < ActiveRecord::Base
   def print_status
     str = ''
     if service == true
-      str += %(#{I18n.t('rent.service')} - )
+      str += %(#{Rent.human_attribute_name(:service)} - )
     elsif status.present?
       str += I18n.t(%(rent.#{status})) + ' - '
     end
@@ -185,10 +181,9 @@ class Rent < ActiveRecord::Base
     if service
       {
         id: id,
-        title: 'Service',
+        title: %(Service -\n #{purpose}),
         start: d_from.iso8601,
         end: d_til.iso8601,
-        status: comment,
         backgroundColor: 'black',
         textColor: 'white'
       }
@@ -199,12 +194,20 @@ class Rent < ActiveRecord::Base
         start: d_from.iso8601,
         end: d_til.iso8601,
         url: p_path,
-        status: status,
         backgroundColor: bg_color,
         textColor: 'black'
       }
     end
   end
+
+  def overlap
+    if d_from.present? && d_til.present?
+      Rent.active.date_overlap(d_from, d_til, id)
+    else
+      nil
+    end
+  end
+
 
   private
 
@@ -213,92 +216,32 @@ class Rent < ActiveRecord::Base
   def bg_color
     if aktiv
       case status
-      when :confirmed
+      when 'confirmed'
         'green'
-      when :unconfirmed
+      when 'unconfirmed'
         'yellow'
+      when 'denied'
+        'red'
       end
+    else
+      'red'
     end
-    'red'
-  end
-
-  def user_attributes
-    if user.present?
-      if user.has_attributes?
-        return true
-      else
-        errors.add(:user, I18n.t('user.add_information'))
-        return false
-      end
-    end
-  end
-
-  # Validates d_from is in the future
-  def date_future
-    if d_from.present? && d_til.present? && d_from < Time.zone.now
-      errors.add(:d_from, I18n.t('rent.validation.future'))
-      return false
-    end
-    true
-  end
-
-  # Validates d_from is before d_til
-  def dates_ascending
-    if d_from.present? && d_til.present? && d_from > d_til
-      errors.add(:d_til, I18n.t('rent.validation.ascending'))
-      return false
-    end
-    true
-  end
-
-  # To validate the length of the renting
-  # /d.wessman
-  def duration?
-    if duration > 48 && council.nil?
-      errors.add(:d_from, I18n.t('rent.validation.duration'))
-      return false
-    end
-    true
-  end
-
-  # Custom validations
-  def overlap
-    if council.nil? && Rent.active.date_overlap(d_from, d_til, id).count > 0
-      errors.add(:d_from, I18n.t('rent.validation.overlap'))
-      return false
-    end
-    true
-  end
-
-  def overlap_council
-    if council.present? && Rent.active.date_overlap(d_from, d_til, id).councils.count > 0
-      errors.add(:d_from, I18n.t('rent.validation.overlap_council'))
-      return false
-    end
-    true
-  end
-
-  # Sets the @overbook variable to true only if overlap is empty.
-  def overlap_overbook
-    if council.present?
-      overlap = Rent.active.date_overlap(d_from, d_til, id).ascending.first
-      if @overbook = (overlap.present? && overlap.d_from < Time.zone.now + 5.days)
-        errors.add(:d_from, I18n.t('rent.validation.overlap_overbook'))
-        return false
-      end
-    end
-    true
   end
 
   # Method that uses the instance variable @overbook from check_overbook.
   # /d.wessman
   def overbook_all?
-    @overbook || false
+    council.present? && (o = overlap.ascending.first).present? &&
+      o.d_from > Time.zone.now + 5.days
   end
 
   # Will overbook all rents that are overlapping, should only be used as after_create
   # /d.wessman
   def overbook_all
-    Rent.active.date_overlap(d_from, d_til, id).each(&overbook)
+    overlap.each do |r|
+      Rails.logger.info %(Trying to overbook ID: #{r.id}\n\n\n\n\n)
+      puts %(Trying to overbook ID: #{r.id})
+      r.overbook
+    end
   end
 end

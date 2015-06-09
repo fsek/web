@@ -4,7 +4,9 @@ require 'rails_helper'
 RSpec.describe Rent, type: :model do
   let(:member) { create(:user, member_at: Time.zone.now) }
   let(:n_member) { create(:user, member_at: nil) }
+
   let(:council) { create(:council) }
+
   let(:new_rent) { build(:rent, user: member) }
   let(:new_rent_council) { build(:rent, user: member, council: council) }
   subject(:rent_n) { build(:rent, user: n_member) }
@@ -99,16 +101,14 @@ RSpec.describe Rent, type: :model do
 
       context 'no councils' do
         b = { end: false, from: false, both: false, none: false, after: true }
-        let(:new) { new_rent }
-        let(:saved) { rent }
         overlap.each do |key, value|
           it %(#{key} should be #{b[key]}) do
-            new.d_from = saved.d_from + value[0] unless value[0] == 0
-            new.d_from = saved.d_til + value[1] unless value[1] == 0
-            new.d_til = saved.d_from + value[2] unless value[2] == 0
-            new.d_til = saved.d_til + value[3] unless value[3] == 0
+            new_rent.d_from = rent.d_from + value[0] unless value[0] == 0
+            new_rent.d_from = rent.d_til + value[1] unless value[1] == 0
+            new_rent.d_til = rent.d_from + value[2] unless value[2] == 0
+            new_rent.d_til = rent.d_til + value[3] unless value[3] == 0
 
-            new.valid?.should eq(b[key])
+            new_rent.valid?.should eq(b[key])
           end
         end
       end
@@ -118,12 +118,12 @@ RSpec.describe Rent, type: :model do
         let(:saved) { rent }
         overlap.each do |key, value|
           it %(#{key} should be true) do
-            new.d_from = saved.d_from + value[0] unless value[0] == 0
-            new.d_from = saved.d_til + value[1] unless value[1] == 0
-            new.d_til = saved.d_from + value[2] unless value[2] == 0
-            new.d_til = saved.d_til + value[3] unless value[3] == 0
+            new_rent_council.d_from = rent.d_from + value[0] unless value[0] == 0
+            new_rent_council.d_from = rent.d_til + value[1] unless value[1] == 0
+            new_rent_council.d_til = rent.d_from + value[2] unless value[2] == 0
+            new_rent_council.d_til = rent.d_til + value[3] unless value[3] == 0
 
-            new.valid?.should eq(true)
+            new_rent_council.valid?.should eq(true)
           end
         end
       end
@@ -158,6 +158,18 @@ RSpec.describe Rent, type: :model do
             new.valid?.should eq(b[key])
           end
         end
+      end
+    end
+
+    describe 'overbook' do
+      it 'overbooks when ok' do
+        new_rent_council.d_from = rent.d_from - 5.hours
+        new_rent_council.d_til = rent.d_from + 1.hours
+
+        new_rent_council.should be_valid
+        new_rent_council.save!
+        rent.reload
+        rent.aktiv.should be_falsey
       end
     end
 
