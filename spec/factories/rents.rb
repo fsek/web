@@ -5,8 +5,8 @@ FactoryGirl.define do
     user
     disclaimer true
     purpose 'Handla möbler på IKEA'
-    d_from { Time.zone.now + 10.day }
-    d_til { Time.zone.now + 10.day + 12.hours }
+    d_from { Time.zone.now + 10.days }
+    d_til { Time.zone.now + 10.days + 12.hours }
     aktiv true
     status :confirmed
 

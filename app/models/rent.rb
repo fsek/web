@@ -112,7 +112,7 @@ class Rent < ActiveRecord::Base
   # Returns true if the rent is editable (not for admins)
   # /d.wessman
   def edit?(user)
-    id.nil? || ( d_from.nil? && d_til.nil?) || (d_from > Time.zone.now && owner?(user))
+    id.nil? || (d_from.nil? && d_til.nil?) || (d_from > Time.zone.now && owner?(user))
   end
 
   # Returns the length of the booking in hours, as an virtual attribute
@@ -231,8 +231,8 @@ class Rent < ActiveRecord::Base
   # Method that uses the instance variable @overbook from check_overbook.
   # /d.wessman
   def overbook_all?
-    council.present? && (o = overlap.ascending.first).present? &&
-      o.d_from > Time.zone.now + 5.days
+    aktiv == true && status == 'confirmed' && council.present? &&
+      (o = overlap.ascending.first).present? && o.d_from > Time.zone.now + 5.days
   end
 
   # Will overbook all rents that are overlapping, should only be used as after_create
@@ -240,7 +240,6 @@ class Rent < ActiveRecord::Base
   def overbook_all
     overlap.each do |r|
       Rails.logger.info %(Trying to overbook ID: #{r.id}\n\n\n\n\n)
-      puts %(Trying to overbook ID: #{r.id})
       r.overbook
     end
   end

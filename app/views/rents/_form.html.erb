@@ -14,8 +14,8 @@
   <%= render 'renter_table', user: @rent.user, rent: @rent %>
   <div class="form-inputs">
     <% if (overlap = @rent.overlap).present? && overlap.count > 0 %>
-      <span id='overlapping'><%= t('rent.overlaps_with') %></span>
-      <ul id='overlapping'>
+      <span class='overlapping-date'><%= t('rent.overlaps_with') %></span>
+      <ul class='overlapping-date'>
         <% overlap.each do |o| %>
           <li><%=link_to(%(#{o.user} #{o.council} - #{o.p_time}), o, target: :blank_p)%></li>
         <% end %>

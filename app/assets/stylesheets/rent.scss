@@ -1,3 +1,5 @@
+$overlapping-color: #a94442;
+
 .iframe-document {
   max-width: 100%;
   max-height: 80%;
@@ -5,10 +7,10 @@
   height:auto;
   min-height: 30%;
 }
-span, li {
-  #overlapping {
-    color: #a94442;
-    content: '\00BB';
+span,
+li {
+  .overlapping-date {
+    color: $overlapping-color;
     margin-right: 10px;
   }
 }

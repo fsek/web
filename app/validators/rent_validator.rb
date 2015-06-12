@@ -61,10 +61,9 @@ class RentValidator
   end
 
   def overlap_overbook
-    if @rent.council.present?
-      @rent.overlap.present? &&
-        (overlap = @rent.overlap.ascending.first).present? &&
-        overlap.d_from < Time.zone.now + 5.days
+    if @rent.council.present? && @rent.overlap.present? &&
+      (overlap = @rent.overlap.ascending.first).present? &&
+      overlap.d_from < Time.zone.now + 5.days
       @rent.errors.add(:d_from, I18n.t('rent.validation.overlap_overbook'))
     end
   end

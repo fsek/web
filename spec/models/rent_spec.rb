@@ -10,8 +10,10 @@ RSpec.describe Rent, type: :model do
   let(:new_rent) { build(:rent, user: member) }
   let(:new_rent_council) { build(:rent, user: member, council: council) }
   subject(:rent_n) { build(:rent, user: n_member) }
-  let(:rent) { create(:rent, user: member) }
-  let(:rent_council) { create(:rent, user: member, council: council) }
+
+  let(:rent) { create(:rent, user: member, d_from: Time.zone.now + 15.days,
+                      d_til: Time.zone.now + 15.days + 12.hours) }
+  let(:rent_council) { create(:rent, user: member, council: council, d_from: Time.zone.now + 20.days, d_til: Time.zone.now + 20.days + 12.hours) }
 
   describe 'has valid factory' do
     it { should be_valid }
@@ -114,8 +116,6 @@ RSpec.describe Rent, type: :model do
       end
 
       context 'new council' do
-        let(:new) { new_rent_council }
-        let(:saved) { rent }
         overlap.each do |key, value|
           it %(#{key} should be true) do
             new_rent_council.d_from = rent.d_from + value[0] unless value[0] == 0
@@ -130,32 +130,28 @@ RSpec.describe Rent, type: :model do
 
       context 'saved council' do
         b = { end: false, from: false, both: false, none: false, after: true }
-        let(:new) { new_rent }
-        let(:saved) { rent_council }
         overlap.each do |key, value|
           it %(#{key} should be #{b[key]}) do
-            new.d_from = saved.d_from + value[0] unless value[0] == 0
-            new.d_from = saved.d_til + value[1] unless value[1] == 0
-            new.d_til = saved.d_from + value[2] unless value[2] == 0
-            new.d_til = saved.d_til + value[3] unless value[3] == 0
+            new_rent.d_from = rent_council.d_from + value[0] unless value[0] == 0
+            new_rent.d_from = rent_council.d_til + value[1] unless value[1] == 0
+            new_rent.d_til = rent_council.d_from + value[2] unless value[2] == 0
+            new_rent.d_til = rent_council.d_til + value[3] unless value[3] == 0
 
-            new.valid?.should eq(b[key])
+            new_rent.valid?.should eq(b[key])
           end
         end
       end
 
       context 'both council' do
         b = { end: false, from: false, both: false, none: false, after: true }
-        let(:new) { new_rent_council }
-        let(:saved) { rent_council }
         overlap.each do |key, value|
           it %(#{key} should be #{b[key]}) do
-            new.d_from = saved.d_from + value[0] unless value[0] == 0
-            new.d_from = saved.d_til + value[1] unless value[1] == 0
-            new.d_til = saved.d_from + value[2] unless value[2] == 0
-            new.d_til = saved.d_til + value[3] unless value[3] == 0
+            new_rent_council.d_from = rent_council.d_from + value[0] unless value[0] == 0
+            new_rent_council.d_from = rent_council.d_til + value[1] unless value[1] == 0
+            new_rent_council.d_til = rent_council.d_from + value[2] unless value[2] == 0
+            new_rent_council.d_til = rent_council.d_til + value[3] unless value[3] == 0
 
-            new.valid?.should eq(b[key])
+            new_rent_council.valid?.should eq(b[key])
           end
         end
       end
@@ -165,10 +161,15 @@ RSpec.describe Rent, type: :model do
       it 'overbooks when ok' do
         new_rent_council.d_from = rent.d_from - 5.hours
         new_rent_council.d_til = rent.d_from + 1.hours
+        Rails.logger.info rent.d_from.to_s
+        Rails.logger.info rent.d_til.to_s
+        Rails.logger.info new_rent_council.d_from.to_s
+        Rails.logger.info new_rent_council.d_til.to_s
+        Rails.logger.info '\n\n\n\n\n'
 
         new_rent_council.should be_valid
+        rent.should be_valid
         new_rent_council.save!
-        rent.reload
         rent.aktiv.should be_falsey
       end
     end
