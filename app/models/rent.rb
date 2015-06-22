@@ -6,12 +6,9 @@ class Rent < ActiveRecord::Base
   belongs_to :council
 
   # Validations
-  # Everyone has to accept the disclaimer
   validates :d_from, :d_til, :user, :disclaimer, presence: true
-
   # Purpose not required for members of F-guild
   validates :purpose, presence: true, unless: :member?
-
   validate do |rent|
     RentValidator.new(rent).validate
   end
@@ -21,28 +18,11 @@ class Rent < ActiveRecord::Base
   after_create :overbook_all, if: :overbook_all?
 
   # Scopes
-
-  # Scope to find the ones with councils
-  # /d.wessman
   scope :councils, -> { where.not(council_id: nil) }
-
-  # To scope up the ones not marked as inactive
-  # /d.wessman
   scope :active, -> { where(aktiv: true).where.not(status: :denied) }
-
-  # To scope all rents between two dates
-  # /d.wessman
   scope :between, ->(from, to) { where('? >= d_from AND ? <= d_til', to, from) }
-  # Covers all possibilities of an overlaps and excludes self.
-  # /d.wessman
   scope :date_overlap, ->(from, to, id) { between(from, to).where.not(id: id) }
-
-  # To order according to d_from
-  # /d.wessman
   scope :ascending, -> { order(d_from: :asc) }
-
-  # Get all rents after given date
-  # /d.wessman
   scope :from_date, ->(from) { where('d_from >= ?', from) }
 
   # Set as overbooked, announce via email that it is overbooked, should be made as background job.
@@ -51,7 +31,6 @@ class Rent < ActiveRecord::Base
     self.aktiv = false
     save(validate: false)
     send_active_email
-    Rails.logger.info %(ID: #{id} getting overbooked\n\n\n\n\n)
   end
 
   # Methods
@@ -239,7 +218,6 @@ class Rent < ActiveRecord::Base
   # /d.wessman
   def overbook_all
     overlap.each do |r|
-      Rails.logger.info %(Trying to overbook ID: #{r.id}\n\n\n\n\n)
       r.overbook
     end
   end
