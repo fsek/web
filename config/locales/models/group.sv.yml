@@ -1,0 +1,12 @@
+sv:
+  activerecord:
+    models:
+      group:
+        one: Grupp
+        other: Grupper
+    attributes:
+      group:
+        title: Titel
+        public: Publik
+        category: Kategori
+        users: Medlemmar

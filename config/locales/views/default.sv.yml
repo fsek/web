@@ -1,0 +1,3 @@
+sv:
+  new: Ny #{attr}
+  edit: Redigera #{attr}

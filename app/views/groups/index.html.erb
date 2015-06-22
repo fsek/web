@@ -1,0 +1,22 @@
+<% title(Group.model_name.human(count: 2)) %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><%= Group.human_attribute_name(:title) %></th>
+      <th><%= Group.human_attribute_name(:category) %></th>
+      <th><%= t('edit') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= link_to(group.id, group) %></td>
+        <td><%= group.title %></td>
+        <td><%= group.category%></td>
+        <td><%= link_to(t('edit'), edit_group_path(group))%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
