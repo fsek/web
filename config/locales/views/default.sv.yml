@@ -1,3 +1,4 @@
 sv:
   new: Ny #{attr}
   edit: Redigera #{attr}
+  index: Alla #{attr}
