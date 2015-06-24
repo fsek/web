@@ -1,11 +1,11 @@
 sv:
   activerecord:
     models:
-      group:
+      squad:
         one: Grupp
         other: Grupper
     attributes:
-      group:
+      squad:
         title: Titel
         public: Publik
         category: Kategori

@@ -1,0 +1,21 @@
+<div class="headline headline-md"><h3><%= Squad.model_name.human(count: 2)%></h3></div>
+<div class="panel-group acc-v1 margin-bottom-40">
+  <% @squads.each do |p| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="accordion-toggle" data-toggle="collapse" href="#<%=dom_id(p)%>">
+            <%=p.title%>
+          </a>
+        </h4>
+      </div>
+      <div id="<%= dom_id(p) %>" class="panel-collapse collapse" >
+        <div class="panel-body">
+          <%=p.description%>
+          <%= link_to(t(:show, attr: Squad.model_name.human.downcase),
+                      squad_path(p), class: "btn-u btn-u-small pull-right"%>
+        </div>
+      </div>
+    </div>
+  <%end%>
+</div>
