@@ -83,7 +83,7 @@ Fsek::Application.routes.draw do
       get '', controller: :rents, action: :main, as: :bil
     end
 
-    resources :squads, path: :grupper
+    resources :groups, path: :grupper
 
     resources :notices, path: :notiser do
       post :display, path: :visa, on: :member
