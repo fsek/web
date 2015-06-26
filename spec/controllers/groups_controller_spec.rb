@@ -63,7 +63,7 @@ RSpec.describe GroupsController, type: :controller do
         assigns(:group).should be_a_new(Group)
       end
 
-      it 're-renders the 'new' template' do
+      it 're-renders the "new" template' do
         post :create, group: invalid_attr
         response.should render_template('new')
       end
