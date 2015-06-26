@@ -1,18 +1,22 @@
 require 'rails_helper'
 
 feature 'admin visits paths' do
-  let(:election) { create(:election) }
-  let(:user) { create(:admin) }
-  let(:test_post) { create(:post) }
   let(:album) { create(:album) }
   let(:cafe_work) { create(:cafe_work) }
+  let(:contact) { create(:contact) }
+  let(:contact) { create(:contact) }
   let(:council) { create(:council) }
   let(:election) { create(:election) }
+  let(:election) { create(:election) }
+  let(:election) { create(:election) }
   let(:event) { create(:event) }
-  let(:news) { create(:news) }
-  let(:rent) { create(:rent) }
-  let(:contact) { create(:contact) }
   let(:login) { LoginPage.new }
+  let(:login) { LoginPage.new }
+  let(:news) { create(:news) }
+  let(:post) { create(:post) }
+  let(:rent) { create(:rent) }
+  let(:test_post) { create(:post) }
+  let(:user) { create(:admin) }
 
   paths = {
     albums: [:show],
@@ -82,6 +86,7 @@ feature 'admin visits paths' do
             page.visit url_for(controller: %(admin/#{key}), action: v)
           end
           page.status_code.should eq(200)
+
         end
       end
     end

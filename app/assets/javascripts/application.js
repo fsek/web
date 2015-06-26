@@ -29,6 +29,7 @@
 //= require jquery.countdown.min
 //= require bootstrap-datetimepicker
 //= require pickers
+//= require wice_grid
 
 var bottom;
 bottom = function () {
