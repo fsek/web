@@ -399,7 +399,7 @@ ActiveRecord::Schema.define(version: 20150622194754) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment",     limit: 65535
-    t.string   "status",      limit: 255
+    t.string   "status",      limit: 255,   default: "Ej bestÃƒÂ¤md"
     t.boolean  "service",     limit: 1,     default: false
     t.string   "access_code", limit: 255
     t.integer  "user_id",     limit: 4
