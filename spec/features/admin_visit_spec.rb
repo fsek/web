@@ -1,8 +1,10 @@
 require 'rails_helper'
+
 feature 'admin visits paths' do
+  let(:election) { create(:election) }
   let(:user) { create(:admin) }
-  let(:album) { create(:album) }
-  let(:cafe_work) { create(:cafe_work) }
+  let(:post) { create(:post) }
+  let(:login) { LoginPage.new }
 
   paths = {
     albums: [:show],
@@ -20,34 +22,23 @@ feature 'admin visits paths' do
     news: [:index, :new, :show],
     notices: [:index, :new, :show],
     pages: [:index, :new],
+    posts: [:index],
     rents: [:main, :index]
   }
 
-  let(:election) { create(:election) }
 
   background do
     election
+    PostUser.create!(post: post, user: user)
+    login.visit_page.login(user, '12345678')
   end
-  Steps 'Checking out pages' do
-    When 'Visit sign_in page' do
-      page.visit new_user_session_path
-    end
-    And 'I sign in' do
-      page.fill_in 'user_username', with: user.username
-      page.fill_in 'user_password', with: '12345678'
-      page.click_button I18n.t('devise.sign_in')
-    end
-    Then 'I see logged in alert' do
-      page.should have_css('div.alert.alert-info')
-      find('div.alert.alert-info').text.should include(I18n.t('devise.sessions.signed_in'))
-    end
-  end
+
   paths.each do |key, value|
     value.each do |v|
       Steps %(Controller: #{key}, action: #{v}) do
-        if v == :show
+        if v == :show || v == :edit
           resource = create(key.to_s.singularize.to_sym)
-          page.visit url_for(controller: key, action: :show, id:
+          page.visit url_for(controller: key, action: v, id:
                              resource.to_param)
         else
           page.visit url_for(controller: key, action: v)

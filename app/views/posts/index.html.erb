@@ -24,58 +24,61 @@
       <% end %>
     </div>
   </div>
-  <div class="col-md-12">
-    <%= grid(@post_grid) do |g|
-      g.column name: "Titel", attribute: "title", filter: false do |post|
-        link_to(post.title, %(##{dom_id(post)}), class: "", data: {toggle: "collapse"})
-      end
-      g.column name: "Gräns", attribute: "limit", filter: false do |post|
-        (post.limit) && (post.limit > 0) ? post.limit : "Ingen"
-      end
-
-      g.column name: "Utskott", attribute: "council_id", filter: false do |post|
-        link_to(post.council.title, council_path(post.council))
-      end
-      g.column name: "Styrelsepost?", attribute: "styrelse", filter: false do |post|
-        (post.styrelse) ? "Ja" : "Nej"
-      end
-
-      g.column name: "Väljs av:", attribute: "elected_by", filter: false
-
-      g.column name: "HT/VT?", attribute: "elected_at", filter: false
-      if can? :edit, @post
-        g.column do |post|
-          link_to('Redigera', edit_council_post_path(post.council, post))
+  <% if @post_grid.present? && @posts.present? && @posts.count > 0 %>
+    <div class="col-md-12">
+      <%= grid(@post_grid) do |g|
+        g.column name: "Titel", attribute: "title", filter: false do |post|
+          link_to(post.title, %(##{dom_id(post)}), class: "", data: {toggle: "collapse"})
         end
-      end
-    end -%>
-</div>
+        g.column name: "Gräns", attribute: "limit", filter: false do |post|
+          (post.limit) && (post.limit > 0) ? post.limit : "Ingen"
+        end
+
+        g.column name: "Utskott", attribute: "council_id", filter: false do |post|
+          if post.council.present?
+            link_to(post.council.title, council_path(post.council))
+          end
+        end
+        g.column name: "Styrelsepost?", attribute: "styrelse", filter: false do |post|
+          (post.styrelse) ? "Ja" : "Nej"
+        end
+
+        g.column name: "Väljs av:", attribute: "elected_by", filter: false
+
+        g.column name: "HT/VT?", attribute: "elected_at", filter: false
+        if can? :edit, @post
+          g.column do |post|
+            link_to('Redigera', edit_council_post_path(post.council, post))
+          end
+        end
+      end -%>
+  </div>
+<% end %>
 <div class="col-md-12">
-  <% for @post in @posts %>
-    <div id="<%= dom_id(@post) %>" class="collapse">
+  <% @posts.each do |post| %>
+    <div id="<%= dom_id(post) %>" class="collapse">
       <div class="funny-boxes funny-boxes-left-orange">
-        <h2><%= @post.title %></h2>
+        <h2><%= post.title %></h2>
 
         <div class="col-md-12">
-          <% if can? :edit, @post %>
-            <%= link_to 'Ändra posten', edit_council_post_path(@post.council, @post) %>
-            <% if @post.users.size > 0 %>
+          <% if can? :edit, post %>
+            <%= link_to 'Ändra posten', edit_council_post_path(post.council, post) %>
+            <% if post.users.size > 0 %>
               <p>Ta bort någon från posten.</p>
-              <%= form_tag remove_user_council_post_path(@post.council, @post), method: :patch do %>
-                <%= hidden_field_tag :id, @post.id %>
-                <%= select_tag :user_id, options_from_collection_for_select(@post.users,'id','full_print') %>
+              <%= form_tag remove_user_council_post_path(post.council, post), method: :patch do %>
+                <%= hidden_field_tag :id, post.id %>
+                <%= collection_select nil, :user_id, post.users, :id, :to_s %>
                 <%= submit_tag 'Ta bort', class: "btn btn-u", data: {confirm: "Den valda användaren kommer att bli av med vald post."} %>
               <% end %><br>
             <% end %>
           <% end %>
           <p>Beskrivning:</p>
-          <% if @post.description %>
-            <%= simple_format(@post.description) %>
+          <% if post.description %>
+            <%= simple_format(post.description) %>
           <% end %>
-
         </div>
       </div>
     </div>
   <% end %>
 </div>
-</div>		
+</div>
