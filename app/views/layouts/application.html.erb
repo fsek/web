@@ -86,7 +86,7 @@
 <div class="container content">
   <div class="row magazine-page">
     <!-- Begin Content -->
-    <div class="col-md-12">
+    <div class="col-md-12 roman-border">
       <% if notice %>
           <div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -100,8 +100,6 @@
           </div>
       <% end %>
       <%= yield %>
-      <%= yield :role_main %>
-      <%= yield :role_sidebar %>
     </div>
   </div>
   <!-- /row -->
