@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="sv"> <!--<![endif]-->
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
+</head>
+
+<body>
+<!--=== Top ===-->
+<div class="top">
+  <div class="container">
+    <%= render 'layouts/topbar' %>
+  </div>
+</div>
+<!--=== End Top ===-->
+
+
+<!--=== Header ===-->
+<div class="header header-start">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <!-- Logo and toggle-menu button for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to root_path do %>
+            <div class="navbar-brand">
+              <%= image_tag("layout/f.svg", id: "logo-header", height: "60") %>
+            </div>
+            <div class="navbar-brand-text pull-left">
+              <span>&mdash;</span>TEKNOLOGSEKTIONEN<br/>INOM TLTH
+            </div>
+        <% end %>
+      </div>
+      <%= render "layouts/menu" %>
+    </div>
+  </div>
+</div>
+<!--/header-->
+<!--=== End Header ===-->
+
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs" style="border-bottom: 0px solid #333;">
+  <div class="container">
+
+  </div>
+</div>
+<!--=== End Breadcrumbs ===-->
+
+<% if yield(:title) == 'Utskott' %>
+    <div class="container">
+      <%= render "councils/menu" %>
+    </div>
+<% end %>
+
+
+<!--=== Content Part ===-->
+<%= yield :pre_content %>
+
+<div class="container content">
+  <div class="row magazine-page">
+    <!-- Begin Content -->
+    <div class="col-md-12 roman-border">
+      <% if notice %>
+          <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= notice %>
+          </div>
+      <% end %>
+      <% if alert %>
+          <div class="alert alert-danger fade-in">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Fel:</strong> <%= alert %>
+          </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </div>
+  <!-- /row -->
+</div>
+<!--/container-->
+<!-- End Content Part -->
+
+<!--=== Footer ===-->
+<div class="footer navbar" id="footer">
+  <div class="container">
+    <div class="row">
+      <%= render "layouts/footer" %>
+    </div>
+  </div>
+</div>
+<!--=== End Footer ===-->
+
+<!--=== Copyright ===-->
+<div class="copyright" id="copyright">
+  <div class="container">
+    <div class="row">
+      <%= render "layouts/bottombar" %>
+    </div>
+  </div>
+</div>
+<!--=== End Copyright ===-->
+</body>
+</html> 
+

@@ -1,0 +1,7 @@
+.roman-border {
+  border: 70px solid transparent;
+  padding: 15px;
+  -webkit-border-image: url(frame_special.svg) 43% 37% 43% 37% repeat; /* Safari 3.1-5 */
+  -o-border-image: url(frame_special.svg) 43% 37% 43% 37% repeat; /* Opera 11-12.1 */
+  border-image: url(frame_special.svg) 43% 37% 43% 37% repeat;
+}
