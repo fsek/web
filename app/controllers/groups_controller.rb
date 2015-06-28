@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    @group.destroy
+    @group.destroy!
     redirect_to groups_url, notice: alert_destroy(Group)
   end
 

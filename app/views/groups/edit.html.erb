@@ -5,16 +5,16 @@
       <div class="panel-heading">
         <h4 class="panel-title">
           <a class="accordion-toggle" data-toggle="collapse" href="#<%=dom_id(p)%>">
-            <%=p.title%>
+            <%= p.title %>
           </a>
         </h4>
       </div>
       <div id="<%= dom_id(p) %>" class="panel-collapse collapse" >
         <div class="panel-body">
-          <%=p.description%>
+          <%= p.description %>
           <%= link_to(t(:show, attr: Group.model_name.human.downcase),
                       group_path(p), class: "btn-u btn-u-small pull-right"%>
-        </div>
+      </div>
       </div>
     </div>
   <%end%>

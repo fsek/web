@@ -7,5 +7,8 @@ class CreateGroupUsers < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :group_users, :user_id
+    add_index :group_users, :group_id
   end
 end
