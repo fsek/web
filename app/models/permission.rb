@@ -4,6 +4,6 @@ class Permission < ActiveRecord::Base
   validates :subject_class, :action, presence: true
 
   def to_s
-    %(#{action}#{subject_class})
+    %(#{subject_class} - #{action})
   end
 end

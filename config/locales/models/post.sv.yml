@@ -15,3 +15,7 @@ sv:
         styrelse: Styrelse
         recLimit: Rekommenderad gräns
         car_rent: Får hyra bil
+  post:
+    added: "%{u} tilldelades %{p}"
+    add_error: "Tilldelningen gick inte: %{errors}"
+    user_removed: "%{u} har inte längre posten %{p}"

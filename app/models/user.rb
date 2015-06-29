@@ -23,6 +23,9 @@ class User < ActiveRecord::Base
                     path: ':rails_root/storage/user/:id/:style/:filename'
 
   scope :all_firstname, -> { order(firstname: :asc) }
+  scope :search, -> (firstname, lastname) { 
+    where('firstname LIKE ? OR lastname LIKE ?', "%#{firstname}%", "%#{lastname}%")
+  }
 
   # Validations
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/

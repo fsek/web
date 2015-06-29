@@ -9,11 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require custom
- *= require app 
+ *= require app
  *= require bootstrap
  *= require_self
  *= require colors
- *= require style 
+ *= require style
  *= require header1
  *= require responsive
  *= require font-awesome
@@ -23,38 +23,40 @@
  *= require page_login_reg
  *= require portfolio
  *= require style
- *= require timeline  
+ *= require timeline
  *= require default_theme
  * require_tree .
- *= require start_page 
- *= require fullcalendar 
+ *= require start_page
+ *= require fullcalendar
  *= require colorbox
  *= require countdown
- *= require jquery.countdown 
- *= require elections 
- *= require fancybox 
- *= require faq
+ *= require jquery.countdown
+ *= require elections
+ *= require fancybox
  *= require gallery
  *= require jquery-ui/datepicker
- *= require rent
  */
 
- /* Override for Bootstrap 3 font location */
+/* Override for Bootstrap 3 font location */
 
 // We should eventually import all files like this
 @import "colors";
 @import "cafe_works";
+@import "elections";
+@import "rents";
+@import "posts";
+@import "faqs";
 @import "bootstrap";
 @import "bootstrap-datetimepicker";
 
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('../assets/glyphicons-halflings-regular.eot');
-  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
-       url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
-       url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
-       url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-} 
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+  url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
 
 .content {
   padding-top: 20px;

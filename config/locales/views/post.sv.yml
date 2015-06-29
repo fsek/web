@@ -2,3 +2,8 @@ sv:
   posts:
     already_have_post: har redan posten.
     limited: för många har posten.
+    remove_user: Ta bort användare från posten
+    remove_confirm: Vald användare kommer att bli av med vald post
+    no_limit: Ingen begränsning
+    user_search: Sök efter användare
+
