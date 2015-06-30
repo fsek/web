@@ -1,9 +1,33 @@
-$frame: "theme/frame_special.svg";
-.roman-border {
-  border: 100px solid transparent;
-  padding: 15px;
-  -webkit-border-image: url($frame) 43% 37% 43% 37% stretch; /* Safari 3.1-5 */
-  -o-border-image: url($frame) 43% 37% 43% 37% stretch; /* Opera 11-12.1 */
-  border-image: url($frame) 42% 40% 41% 40% repeat;
-  // border-image: url($frame) 60% 25% 35% 30% stretch;
+$top: "theme/top.svg";
+$pillars: "theme/pillars.svg";
+$stairs: "theme/stairs.svg";
+.roman-top {
+  border: 90px solid transparent;
+  padding-top: 25px;
+  -webkit-border-image: url($top) 40% 40% 40% 40% repeat;
+  -o-border-image: url($top) 40% 40% 40% 40% repeat;
+  border-image: url($top) 40% 40% 40% 40% repeat;
+}
+.roman-pillars {
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  -webkit-border-image: url($pillars) 40% 40% 40% 40% repeat;
+  -o-border-image: url($pillars) 40% 40% 40% 40% repeat;
+  border-image: url($pillars) 30% 37% 30% 37% repeat;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.roman-footer {
+  border-top: 110px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  -webkit-border-image: url($pillars) 40% 40% 40% 40% repeat;
+  -o-border-image: url($pillars) 40% 40% 40% 40% repeat;
+  border-image: url($stairs) 70% 37% 25% 37% repeat;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
 }

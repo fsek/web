@@ -28,6 +28,7 @@
 </head>
 
 <body>
+<div class="roman-top">
 <!--=== Top ===-->
 <div class="top">
   <div class="container">
@@ -38,7 +39,7 @@
 
 
 <!--=== Header ===-->
-<div class="header header-start roman-border">
+<div class="header header-start">
   <div class="navbar navbar-default" role="navigation">
     <div class="container">
       <!-- Logo and toggle-menu button for better mobile display -->
@@ -78,15 +79,14 @@
       <%= render "councils/menu" %>
     </div>
 <% end %>
-
-
+</div>
+<div class="roman-pillars">
 <!--=== Content Part ===-->
 <%= yield :pre_content %>
-
 <div class="container content">
   <div class="row magazine-page">
     <!-- Begin Content -->
-    <div class="col-md-12 roman-border">
+    <div class="col-md-12">
       <% if notice %>
           <div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -104,8 +104,11 @@
   </div>
   <!-- /row -->
 </div>
+</div>
 <!--/container-->
 <!-- End Content Part -->
+<div class="roman-footer">
+</div>
 
 <!--=== Footer ===-->
 <div class="footer navbar" id="footer">
