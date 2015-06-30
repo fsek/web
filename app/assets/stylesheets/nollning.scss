@@ -1,7 +1,9 @@
+$frame: "theme/frame_special.svg";
 .roman-border {
-  border: 70px solid transparent;
+  border: 100px solid transparent;
   padding: 15px;
-  -webkit-border-image: url(frame_special.svg) 43% 37% 43% 37% repeat; /* Safari 3.1-5 */
-  -o-border-image: url(frame_special.svg) 43% 37% 43% 37% repeat; /* Opera 11-12.1 */
-  border-image: url(frame_special.svg) 43% 37% 43% 37% repeat;
+  -webkit-border-image: url($frame) 43% 37% 43% 37% stretch; /* Safari 3.1-5 */
+  -o-border-image: url($frame) 43% 37% 43% 37% stretch; /* Opera 11-12.1 */
+  border-image: url($frame) 42% 40% 41% 40% repeat;
+  // border-image: url($frame) 60% 25% 35% 30% stretch;
 }
