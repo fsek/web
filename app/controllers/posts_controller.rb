@@ -1,3 +1,5 @@
+# encoding: UTF-8
+class PostsController < ApplicationController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :council, parent: true, find_by: :url
   before_action :can_manage_permissions, only: \
