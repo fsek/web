@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503052846) do
+ActiveRecord::Schema.define(version: 20150701053116) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -288,6 +288,7 @@ ActiveRecord::Schema.define(version: 20150503052846) do
     t.string   "url",        limit: 255
     t.boolean  "visible",    limit: 1
     t.string   "title",      limit: 255
+    t.string   "namespace",  limit: 255
   end
 
   add_index "pages", ["council_id"], name: "index_pages_on_council_id", using: :btree

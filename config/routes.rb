@@ -104,6 +104,12 @@ Fsek::Application.routes.draw do
       end
     end
 
+    # Namespace for Nollning
+    namespace :nollning do
+      get '', controller: :nollnings, action: :index
+      get :matrix, controller: :nollnings, action: :matrix, path: :matris
+    end
+
     resources :councils, path: :utskott do
       resources :posts, path: :poster do
         patch :remove_user, on: :member

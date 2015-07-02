@@ -1,24 +1,8 @@
-<%= form_for(@page) do |f| %>
-    <%= render 'shared/form_errors', current: @page %>
-    <%= f.label :title, class: 'reg-label' %>
-    <div class="input-group margin-bottom-20">
-      <%= f.text_field :title, class: 'form-control', placeholder: 'Titel' %>
-    </div>
-    <% if @page.council.present? %>
-        <%= f.label 'Sida', class: 'reg-label' %>
-        <div class="input-group margin-bottom-20">
-          <%= link_to(@page.council, @page.council) %>
-        </div>
-    <% end %>
-    <%= f.label :url, class: 'reg-label' %>
-    <div class="input-group margin-bottom-20">
-      <%= f.text_field :url, class: 'form-control', placeholder: 'Url' %>
-    </div>
-    <%= f.label :visible, class: 'reg-label' %>
-    <div class="input-group margin-bottom-20">
-      <%= f.check_box :visible, checked: @page.visible %>
-    </div>
-    <div class="row">
-      <%= f.submit "Spara", class: 'btn-u pull-right' %>
-    </div>
+<%= simple_form_for(@page) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :url %>
+  <%= f.input :visible, as: :boolean %>
+  <%= f.input :namespace %>
+  <%= f.input :council, collection: Council.all %>
+  <%= f.submit t(:save, attr: Page.model_name.human), class: 'btn btn-u' %>
 <% end %>
