@@ -3,10 +3,10 @@
     <h2>
       <%= %(#{Rent.model_name.human} - ID: #{rent.id}) %>
     </h2>
+    <span class="label rounded-2x  <%= rent.status %> pull-right">
+      <%= t(%(rent.#{rent.status})) %>
+    </span>
   </div>
-  <span class="label rounded-2x label-warning pull-right">
-    <%= t(%(rent.#{rent.status})) %>
-  </span>
   <table class="table">
     <tbody>
       <tr>
@@ -27,11 +27,14 @@
           <td><%= link_to(rent.council, rent.council) %></td>
         </tr>
       <% end %>
-    </tbody>
-  </table>
-  <% if can?(:manage, rent) %>
-    <table class="table">
-      <tbody>
+      <% if can?(:edit, rent) && rent.status == "denied" %>
+        <tr>
+          <td><%=Rent.human_attribute_name(:comment)%></td>
+          <td><%= simple_format(rent.comment) %></td>
+        </tr>
+      <% end %>
+
+      <% if can?(:manage, rent) %>
         <tr>
           <td><%=User.human_attribute_name(:email)%></td>
           <td><%= rent.user.email %></td>
@@ -44,8 +47,7 @@
           <td><%=User.human_attribute_name(:stil_id)%></td>
           <td><%= rent.user.stil_id %></td>
         </tr>
-      </tbody>
-    </table>
-
-  <% end %>
+      <% end %>
+    </tbody>
+  </table>
 </div>

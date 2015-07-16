@@ -13,12 +13,12 @@ RSpec.describe Admin::RentsController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested rent as @rent' do
-      get :show, {id: rent.to_param}
+      get :show, id: rent.to_param
       assigns(:rent).should eq(rent)
     end
     it 'error rent is not found' do
       lambda do
-        get :show, {id: 99997777}
+        get :show, id: 99997777
       end.should raise_error(ActionController::RoutingError)
     end
   end
@@ -38,6 +38,10 @@ RSpec.describe Admin::RentsController, type: :controller do
   end
 
   describe 'POST #create' do
+    before do
+      not_owner
+    end
+
     it 'new rent' do
       lambda do
         post :create, rent: attributes_for(:rent, user_id: not_owner.id)
@@ -49,6 +53,9 @@ RSpec.describe Admin::RentsController, type: :controller do
   end
 
   describe 'PATCH #update' do
+    before do
+      rent
+    end
     context 'with valid params' do
       it 'assigns the requested rent and redirects ' do
         patch :update, id: rent.to_param, rent: attributes_for(:rent)

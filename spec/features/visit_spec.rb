@@ -39,6 +39,7 @@ feature 'visits paths' do
         And 'sign in' do
           login.visit_page.login(user, '12345678')
         end
+
         And 'visit' do
           if v == :show || v == :edit
             resource = create(key.to_s.split('/').last.singularize.to_sym)
@@ -47,6 +48,9 @@ feature 'visits paths' do
           else
             page.visit url_for(controller: key, action: v)
           end
+        end
+
+        Then 'check page status' do
           page.status_code.should eq(200)
         end
       end

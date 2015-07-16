@@ -1,9 +1,9 @@
-#encoding: UTF-8
+# encoding: UTF-8
 require 'rails_helper'
 
 RSpec.describe Rent, type: :model do
-  let(:member) { create(:user, member_at: Time.zone.now) }
-  let(:n_member) { create(:user, member_at: nil) }
+  let(:member) { create(:user) }
+  let(:n_member) { create(:user, :not_member) }
 
   let(:council) { create(:council) }
 
@@ -11,47 +11,36 @@ RSpec.describe Rent, type: :model do
   let(:new_rent_council) { build(:rent, user: member, council: council) }
   subject(:rent_n) { build(:rent, user: n_member) }
 
-  let(:rent) { create(:rent, user: member, d_from: Time.zone.now + 15.days,
-                      d_til: Time.zone.now + 15.days + 12.hours) }
-  let(:rent_council) { create(:rent, user: member, council: council, d_from: Time.zone.now + 20.days, d_til: Time.zone.now + 20.days + 12.hours) }
+  let(:rent) do
+    create(:rent, user: member, d_from: Time.zone.now + 15.days,
+                  d_til: Time.zone.now + 15.days + 12.hours)
+  end
+  let(:rent_council) do
+    create(:rent, user: member, council: council, d_from: Time.zone.now + 20.days,
+                  d_til: Time.zone.now + 20.days + 12.hours)
+  end
 
   describe 'has valid factory' do
     it { should be_valid }
   end
 
-  describe :Associations do
-    it { should belong_to(:profile) }
+  describe :associations do
+    it { should belong_to(:user) }
     it { should belong_to(:council) }
   end
 
-  describe :Validations do
-    # Disclaimer
-    it { should allow_value(true).for(:disclaimer) }
-    it { should_not allow_value(false).for(:disclaimer) }
+  describe :validations do
+    it { should validate_presence_of(:disclaimer) }
+    it { should validate_presence_of(:d_from) }
+    it { should validate_presence_of(:d_til) }
+    it { rent_n.should validate_presence_of(:purpose) }
 
-    describe :RequiredAttributes do
-      it { should validate_presence_of(:d_from) }
-      it { should validate_presence_of(:d_til) }
-      it { should validate_presence_of(:name) }
-      it { should validate_presence_of(:lastname) }
-      it { should validate_presence_of(:phone) }
-      it { should validate_presence_of(:email) }
+    context 'do not validate purpose when user is member' do
+      before { allow(subject).to receive(:member?).and_return(true) }
+      it { should_not validate_presence_of(:purpose) }
     end
 
-    describe :Purpose do
-      context 'validate purpose when not a member' do
-        it { rent_n.should validate_presence_of(:purpose) }
-        it { rent.should_not validate_presence_of(:purpose) }
-      end
-      context 'do not validate purpose when there is a profile' do
-        before { allow(subject).to receive(:no_profile?).and_return(false) }
-        it { should_not validate_presence_of(:purpose) }
-      end
-    end
-
-    # Some tests for the duration method
-    # /d.wessman
-    describe :Duration do
+    describe :duration do
       context :when_no_council do
         it 'add error if duration is over 48' do
           rent = build(:rent, :over_48)
@@ -60,11 +49,13 @@ RSpec.describe Rent, type: :model do
           rent.should_not be_valid
           rent.errors.get(:d_from).should include(I18n.t('rent.validation.duration'))
         end
+
         it 'do not add error if duration is under 48' do
           rent = build(:rent, :under_48)
           rent.should be_valid
         end
       end
+
       context :when_council do
         it 'do not add error if duration is over 48' do
           rent = build(:rent, :over_48, :with_council)
@@ -73,9 +64,7 @@ RSpec.describe Rent, type: :model do
       end
     end
 
-    # Test to make sure rent is in future
-    # /d.wessman
-    describe :Dates_in_future do
+    describe :dates_in_future do
       context :when_future do
         it 'add error if d_from > d_til' do
           new_rent.d_from = new_rent.d_til + 1.hour
@@ -90,6 +79,7 @@ RSpec.describe Rent, type: :model do
           new_rent.should_not be_valid
           new_rent.errors.get(:d_from).should include(I18n.t('rent.validation.future'))
         end
+
         it 'add error if d_from < d_til' do
           new_rent.d_from = Time.zone.now - 10.hours
           new_rent.d_til = new_rent.d_from + 5.hours
@@ -99,11 +89,8 @@ RSpec.describe Rent, type: :model do
       end
     end
 
-
-
     # Validate if overlap
-    # /d.wessman
-    describe :Overlap do
+    describe :overlap do
       # The times mark offset from:
       # new.from = saved.from + offset
       # new.from = saved.til + offset
@@ -173,27 +160,9 @@ RSpec.describe Rent, type: :model do
       end
     end
 
-    describe 'overbook' do
-      it 'overbooks when ok' do
-        new_rent_council.d_from = rent.d_from - 5.hours
-        new_rent_council.d_til = rent.d_from + 1.hours
-        Rails.logger.info rent.d_from.to_s
-        Rails.logger.info rent.d_til.to_s
-        Rails.logger.info new_rent_council.d_from.to_s
-        Rails.logger.info new_rent_council.d_til.to_s
-        Rails.logger.info '\n\n\n\n\n'
-
-        new_rent_council.should be_valid
-        rent.should be_valid
-        new_rent_council.save!
-        rent.aktiv.should be_falsey
-      end
-    end
-
     # This tests makes sure that dates are formatted into ISO8601 for
     # Fullcalendars json-feed
     # Ref.: https://github.com/fsek/web/issues/99
-    # /d.wessman
     describe :Json do
       it 'check date format is iso8601' do
         (rent.as_json.to_json).should include(rent.d_from.iso8601.to_json)

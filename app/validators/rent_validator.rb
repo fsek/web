@@ -1,70 +1,120 @@
-class RentValidator
-  def initialize(rent)
-    @rent = rent
+class RentValidator < ActiveModel::Validator
+  def validate(record)
+    if base(record)
+      if user_attributes(record)
+        record.errors.add(:user, I18n.t('user.add_information'))
+      end
+
+      if date_future(record)
+        record.errors.add(:d_from, I18n.t('rent.validation.future'))
+      end
+
+      if dates_ascending(record)
+        record.errors.add(:d_til, I18n.t('rent.validation.ascending'))
+      end
+
+      if duration(record)
+        record.errors.add(:d_from, I18n.t('rent.validation.duration'))
+        record.errors.add(:d_til, I18n.t('rent.validation.duration'))
+      end
+
+      if overlap(record)
+        record.errors.add(:d_from, I18n.t('rent.validation.overlap'))
+      end
+
+      if overlap_council(record)
+        record.errors.add(:d_from, I18n.t('rent.validation.overlap_council'))
+      end
+
+      if overlap_overbook(record)
+        record.errors.add(:d_from, I18n.t('rent.validation.overlap_overbook'))
+      end
+    end
   end
 
-  def validate
-    user_attributes
-    date_future
-    dates_ascending
-    duration
-    overlap
-    overlap_council
-    overlap_overbook
+  # Checks presence of purpose, user, disclaimer and dates.
+  # When necessary - based on defined actions.
+  def base(record)
+    state = true
+    if !purpose(record)
+      record.errors.add(:purpose, :blank)
+      state = false
+    end
+
+    if !user(record)
+      record.errors.add(:user, :blank)
+      state = false
+    end
+
+    if !disclaimer(record)
+      record.errors.add(:disclaimer, :blank)
+      state = false
+    end
+
+    if !d_from(record)
+      record.errors.add(:d_from, :blank)
+      state = false
+    end
+
+    if !d_til(record)
+      record.errors.add(:d_til, :blank)
+      state = false
+    end
+
+    state
   end
 
   private
 
-  def user_attributes
-    if !@rent.user.try(:has_attributes?)
-      @rent.errors.add(:user, I18n.t('user.add_information'))
-    end
+  def purpose(record)
+    record.member? || record.purpose.present?
   end
 
-  # Validates d_from is in the future
-  def date_future
-    if @rent.d_from.present? && @rent.d_til.present? &&
-      @rent.d_from < Time.zone.now
-      @rent.errors.add(:d_from, I18n.t('rent.validation.future'))
-    end
+  def user(record)
+    record.user.present?
   end
 
-  # Validates d_from is before d_til
-  def dates_ascending
-    if @rent.d_from.present? && @rent.d_til.present? &&
-      @rent.d_from > @rent.d_til
-      @rent.errors.add(:d_til, I18n.t('rent.validation.ascending'))
-    end
+  def disclaimer(record)
+    record.disclaimer.present?
   end
 
-  # To validate the length of the renting
-  # /d.wessman
-  def duration
-    if @rent.duration > 48 && @rent.council.nil?
-      @rent.errors.add(:d_from, I18n.t('rent.validation.duration'))
-      @rent.errors.add(:d_til, I18n.t('rent.validation.duration'))
-    end
+  def d_from(record)
+    record.d_from.present?
   end
 
-  # Custom validations
-  def overlap
-    if @rent.council.nil? && @rent.overlap.present? && @rent.overlap.count > 0
-      @rent.errors.add(:d_from, I18n.t('rent.validation.overlap'))
-    end
+  def d_til(record)
+    record.d_til.present?
   end
 
-  def overlap_council
-    if @rent.council.present? && @rent.overlap.present? &&
-      @rent.overlap.councils.count > 0
-      @rent.errors.add(:d_from, I18n.t('rent.validation.overlap_council'))
-    end
+  # Validations assume that d_from, d_til and user is present.
+
+  def user_attributes(record)
+    !record.user.try(:has_attributes?)
   end
 
-  def overlap_overbook
-    if @rent.council.present? && @rent.overlap.present? &&
-      (overlap = @rent.overlap.ascending.first).present? &&
+  def date_future(record)
+    record.d_from < Time.zone.now
+  end
+
+  def dates_ascending(record)
+    record.d_from > record.d_til
+  end
+
+  def duration(record)
+    record.duration > 48 && !record.has_council?
+  end
+
+  def overlap(record)
+    !record.has_council? && record.overlap.try(:count) > 0
+  end
+
+  def overlap_council(record)
+    record.council.present? && record.overlap.present? && record.overlap.councils.count > 0
+  end
+
+  def overlap_overbook(record)
+    record.has_council? && record.overlap.present? &&
+      (overlap = record.overlap.ascending.first).present? &&
       overlap.d_from < Time.zone.now + 5.days
-      @rent.errors.add(:d_from, I18n.t('rent.validation.overlap_overbook'))
-    end
   end
 end

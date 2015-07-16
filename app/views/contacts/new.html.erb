@@ -1,7 +1,10 @@
-<div class="col-md-6 col-md-offset-4 col-xs-12 reg-page">
-  <h3 class="headline headline-md">
-    <%= t(:new_attr, attr: model_name(Contact)) %>
-  </h3>
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <div class="headline">
+    <h2><%= t(:new_attr, attr: model_name(Contact)) %></h2>
+  </div>
+
   <%= render 'form'%>
-  <%= link_to(t(:index_attr, attr: models_name(Contact)), contacts_path) %>
+  <hr>
+  <%= link_to(t(:index_attr, attr: models_name(Contact)), contacts_path, class: 'btn secondary') %>
+  <%= link_to(t(:back_to_root), root_url, class: 'btn secondary') %>
 </div>

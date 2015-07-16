@@ -15,8 +15,7 @@ class Admin::RentsController < ApplicationController
   end
 
   def create
-    @rent = Rent.new_with_status(rent_params, nil)
-    if @rent.save(validate: false)
+    if RentService.admin_reservation(@rent)
       redirect_to admin_rent_path(@rent), notice: alert_create(Rent)
     else
       render :new
@@ -28,10 +27,10 @@ class Admin::RentsController < ApplicationController
   end
 
   def update
-    if @rent.update_without_validation(rent_params)
+    if RentService.administrate(@rent, rent_params)
       redirect_to admin_rent_path(@rent), notice: alert_update(Rent)
     else
-      render :edit
+      render :show
     end
   end
 
@@ -42,7 +41,6 @@ class Admin::RentsController < ApplicationController
 
   private
 
-  # To set the councils
   def prepare
     @councils = Council.all_name
     @users = User.all_firstname

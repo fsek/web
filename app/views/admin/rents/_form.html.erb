@@ -1,6 +1,5 @@
 <%= simple_form_for([:admin, @rent]) do |f| %>
 <h2><%= @rent.print_status %> </h2>
-<%= f.input :disclaimer, as: :boolean %>
 <%= f.input :service, as: :boolean %>
 <%= f.association :user, collection: @users %>
 <% if @rent.user.present? %>
@@ -15,5 +14,5 @@
                                   [t('rent.denied'), :denied]]) %>
 <%= f.input :aktiv, as: :boolean %>
 <%= f.input :comment, as: :text, placeholder: t('rent.denied_comment')%>
-<%= f.button :submit, class: 'btn btn-u', id: 'rent-submit' %>
+<%= f.button :submit, id: 'rent-submit' %>
 <% end %>

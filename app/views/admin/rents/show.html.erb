@@ -7,21 +7,29 @@
     </h2>
   </div>
   <div class='margin-bottom-20'>
-  <%= render 'form'%>
-    <%= link_to(t('rent.delete'), admin_rent_path(@rent), method: :delete,
-                class: 'btn btn-u pull-right',
-                data: {
-                  confirm: t('rent.admin.delete_confirm')
-                }) %>
+    <%= render 'form'%>
+    <%= link_to(admin_rent_path(@rent), method: :delete, class: 'btn btn-u pull-right',
+                data: { confirm: t('rent.admin.delete_confirm') } ) do %>
+      <%= t(:delete, attr: model_name(Rent)) %>
+    <% end %>
   </div>
   <div class='margin-bottom-20'>
-</div>
-<div class='row'>
-  <ul class='list'>
-    <li><strong><%= Rent.human_attribute_name(:status) %></strong> <%= t('rent.admin.status') %></li>
-    <li><strong><%= Rent.human_attribute_name(:aktiv) %></strong> <%= t('rent.admin.aktiv') %></li>
-    <li><strong><%= Rent.human_attribute_name(:comment) %></strong> <%= t('rent.admin.comment') %></li>
-    <li><%= t('rent.admin.inactive') %></li>
-  </ul>
-</div>
+  </div>
+  <div class='row'>
+    <ul class='list'>
+      <li>
+        <strong><%= Rent.human_attribute_name(:status) %></strong>
+        <%= t('rent.admin.status') %>
+      </li>
+      <li>
+        <strong> <%= Rent.human_attribute_name(:aktiv) %> </strong>
+        <%= t('rent.admin.aktiv') %>
+      </li>
+      <li>
+        <strong><%= Rent.human_attribute_name(:comment) %></strong>
+        <%= t('rent.admin.comment') %>
+      </li>
+      <li><%= t('rent.admin.inactive') %></li>
+    </ul>
+  </div>
 </div>

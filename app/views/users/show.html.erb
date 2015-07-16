@@ -13,8 +13,6 @@
       <div class="margin-bottom-20">
         <%= link_to (fa_icon('edit') + ' Redigera'), own_user_path, class: "btn-u btn-u-small" %>
       </div>
-      <div class="headline headline-md"><h4><%= t('user.protected_information') %></h4></div>
-      <%= render 'users/protected_information', user: @user %>
     </div>
   <% end %>
 </div>

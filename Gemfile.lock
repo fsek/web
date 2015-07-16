@@ -377,6 +377,7 @@ DEPENDENCIES
   font-awesome-rails
   fotoramajs
   fullcalendar-rails
+  haml
   haml-rails
   i18n-tasks
   icalendar

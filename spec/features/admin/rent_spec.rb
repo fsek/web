@@ -16,7 +16,7 @@ feature 'admin tries to create rent' do
     end
 
     And 'visit rent index' do
-      visit admin_car_path
+      visit admin_rents_path
       find('h1').text.should include('F-bilen')
       find(:linkhref, new_admin_rent_path).click
     end

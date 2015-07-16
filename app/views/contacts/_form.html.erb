@@ -3,5 +3,10 @@
   <%= f.input :text %>
   <%= f.input :email %>
   <%= f.input :public %>
-  <%= f.button :submit, class: "btn btn-u", id: "contact-submit" %>
+  <%= f.button :submit, id: 'contact-submit' %>
+  <% if !@contact.new_record? %>
+    <%= link_to(t(:delete, attr: model_name(Contact)), contact_path(@contact),
+                method: :delete,
+                class: 'btn danger pull-right') %>
+  <% end %>
 <% end %>

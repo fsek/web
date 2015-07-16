@@ -60,12 +60,12 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 end
 
-def build *args
-  FactoryGirl.build *args
+def build(*args)
+  FactoryGirl.build(*args)
 end
 
-def create *args
-  FactoryGirl.create *args
+def create(*args)
+  FactoryGirl.create(*args)
 end
 
 

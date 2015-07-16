@@ -5,17 +5,18 @@
   <div class='panel-group acc-v1 margin-bottom-40' id='answered'>
     <% @rents.each do |f| %>
       <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h4 class='panel-title'>
-            <div id='faq123'>
-              <a class='accordion-toggle' data-toggle='collapse' data-parent='#answered' href='#collapse<%= dom_id(f) %>'>
-                <%= f.p_time %></a>
-            </div>
-          </h4>
-        </div>
+        <%= link_to(%(#collapse#{dom_id(f)}), class: "accordion-toggle", data: { toggle: "collapse", parent: "#answered" }) do %>
+          <div class='panel-heading'>
+            <h4 class='panel-title'>
+              <%= f.p_time %>
+            </h4>
+          </div>
+        <% end %>
         <div id='collapse<%= dom_id(f) %>' class='panel-collapse collapse'>
           <div class='panel-body'>
-            <%= link_to(t('edit'), edit_rent_path(f)) %>
+            <div class="margin-bottom-20">
+            <%= link_to(t('edit', attr: model_name(Rent)), edit_rent_path(f), class: 'btn secondary') %>
+            </div>
             <%= render f %>
           </div>
         </div>
@@ -25,9 +26,8 @@
 </div>
 <div class='col-md-4'>
   <div class='headline headline-md'><h2><%= t('links') %></h2></div>
-  <div class='row'>
-    <%= link_to(t('rent.book'), new_rent_path(), class: 'btn btn-u margin-bottom-10 center') %><br>
-    <%= link_to(t('rent.back_to_index'), rents_path, class: 'btn btn-u margin-bottom-10') %><br>
-    <%= link_to(t('rent.contact'), contacts_path, class: 'btn btn-u margin-bottom-10') %><br>
-  </div>
+  <ul class='buttons'>
+    <%= content_tag(:li, link_to(t('rent.book'), new_rent_path, class: 'btn primary')) %>
+    <%= content_tag(:li, link_to(t('rent.back_to_index'), rents_path, class: 'btn secondary')) %>
+    <%= content_tag(:li, link_to(t('rent.contact'), contacts_path, class: 'btn secondary')) %>
 </div>

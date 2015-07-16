@@ -1,15 +1,16 @@
-<% provide(:title, model_name(Rent)) %>
-<div class='col-md-8 col-md-offset-2 col-sm-12 reg-page'>
+<% provide(:title, Rent.model_name.human) %>
+<div class='col-md-8 col-md-offset-2 col-xs-12 reg-page'>
+  <div class='row margin-bottom-20'>
     <%= render 'form' %>
-    <hr>
-    <% if @rent.edit?(current_user) %> 
-    <%= link_to(t('rent.remove'), rent_path(@rent), method: :delete, class: 'btn danger',
-                data: { confirm: t('rent.confirm_remove')}) %>
-    <% end %>
-
     <% if can? :manage, @rent %>
       <%= link_to(t('administrate'), admin_rent_path(@rent)) %>
     <% end %>
-
-    <%= link_to(t('rent.back_to_index'), rents_path, class: 'btn secondary') %>
+  </div>
+  <div class='row'>
+    <% if @rent.edit?(current_user) %>
+      <%= link_to(t('rent.remove'), rent_path(@rent), method: :delete, class: 'btn danger',
+                  data: {confirm: t('rent.confirm_remove')}) %>
+    <% end %>
+    <%= link_to(t(:index, attr: models_name(Rent)), :rents, class: 'btn gray') %>
+  </div>
 </div>

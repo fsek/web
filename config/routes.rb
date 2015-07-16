@@ -65,7 +65,6 @@ Fsek::Application.routes.draw do
       get :nyckelpiga, on: :collection
     end
 
-    # A scope to put car-associated things under /bil
     namespace :admin do
       resources :rents, path: :bilbokning, except: :edit do
         get :preview, path: :visa, on: :member
@@ -73,9 +72,11 @@ Fsek::Application.routes.draw do
     end
 
     resources :rents, path: :bilbokning, except: :index do
-      get :oversikt, action: :index, on: :collection
-      get '', action: :main, as: :main, on: :collection
-      post :check_dates, on: :collection
+      collection do
+        get :oversikt, action: :index, as: :overview
+        get '', action: :main, as: :main
+        post :check_dates
+      end
     end
 
     resources :notices, path: :notiser do

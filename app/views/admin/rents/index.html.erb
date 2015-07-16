@@ -15,7 +15,11 @@
         rent.p_til
       end
       g.column name: Rent.human_attribute_name(:user), attribute: 'user_id' do |rent|
-        link_to(rent.user, rent.user)
+        if rent.user
+          link_to(rent.user, rent.user)
+        else
+          t('rent.no_user')
+        end
       end
       g.column name: Rent.human_attribute_name(:status), attribute: 'status' do |rent|
         t(%(rent.#{rent.status}))
@@ -46,8 +50,8 @@
       <div class='headline headline-md'><h2><%= t('tools')%></h2></div>
       <div class='input-group margin-bottom-20'>
         <%= link_to(t('clear_search'), admin_rents_path, class: 'btn btn-u') %><br><br>
-        <%= link_to(t('rent.new'), new_admin_rent_path, class: 'btn btn-u') %> <br><br>
-        <%= link_to(t('rent.back_to_index'), rents_path, class: 'btn btn-u') %> <br><br>
+        <%= link_to(t(:new, attr: model_name(Rent)), new_admin_rent_path, class: 'btn btn-u') %> <br><br>
+        <%= link_to(t(:index, attr: models_name(Rent)), rents_path, class: 'btn btn-u') %> <br><br>
       </div>
     </div>
   </div>

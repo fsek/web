@@ -135,9 +135,9 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
     # Should use a more precise method
     it 'preview post' do
       post(:setup_create, commit: I18n.t(:preview),
-           cafe_work: attributes_for(:cafe_work,
-                                     lv_first: 1,
-                                     lv_last: 1))
+                          cafe_work: attributes_for(:cafe_work,
+                                                    lv_first: 1,
+                                                    lv_last: 1))
 
       count = CafeSetupWeek.new(Time.zone.now, 1).preview(1, 1).count
       assigns(:cafe_works).count.should eq(count)

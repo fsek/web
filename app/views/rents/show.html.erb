@@ -1,15 +1,15 @@
-<% provide(:title, 'Bilbokning') %>
-<div class="col-md-8 col-md-offset-2 reg-page">
+<% provide(:title, model_name(Rent)) %>
+<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <% if @rent %>
     <%= render @rent %>
     <div class="row">
       <% if can? :edit, @rent %>
-        <%= link_to(t('edit'), edit_rent_path(@rent), class: 'btn btn-u') %>
+        <%= link_to(t('edit', attr: model_name(Rent)), edit_rent_path(@rent), class: 'btn primary') %>
         <hr>
       <% end %>
-      <%= link_to(t('rent.back_to_index'), :rents, class: 'btn btn-u') %>
+      <%= link_to(t(:index, attr: models_name(Rent)), :rents, class: 'btn gray') %>
       <% if can? :manage, Rent %>
-        <%= link_to(t('administrate'), admin_rent_path(@rent), class: 'btn btn-u') %>
+        <%= link_to(t('administrate'), admin_rent_path(@rent), class: 'btn secondary') %>
       <% end %>
     </div>
   <% end %>

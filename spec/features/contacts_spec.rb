@@ -6,13 +6,11 @@ feature 'visit contact, create new, send email', pending: true do
   let(:contact) { build(:contact, council: council) }
   let(:login) { LoginPage.new }
 
-  Steps 'Signing in' do
+  Steps 'contact page' do
     Then 'sign in' do
       login.visit_page.login(user, '12345678')
     end
-  end
 
-  Steps 'contact page' do
     When 'visiting index page' do
       page.visit contacts_path
     end
@@ -23,6 +21,7 @@ feature 'visit contact, create new, send email', pending: true do
 
     When 'visiting new contact' do
       page.visit new_contact_path
+      page.status_code.should eq(200)
     end
 
     When 'Fill in form and create' do
@@ -34,8 +33,13 @@ feature 'visit contact, create new, send email', pending: true do
       else
         page.uncheck 'contact_public'
       end
+<<<<<<< ec420d9df230a3a51446d02d84d8f7b83d2f7f6c
       find('#contact-submit').click
 
+=======
+
+      find('#contact-submit').click
+>>>>>>> Refactor Rent with service
     end
 
     Then 'Response should be 200' do

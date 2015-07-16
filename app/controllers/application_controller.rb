@@ -29,26 +29,22 @@ class ApplicationController < ActionController::Base
     redirect_to :root
   end
 
-  def model_name(model, multiple)
+  def model_name(model)
     if model.instance_of?(Class)
-      if multiple
-        model.model_name.human(count: 2)
-      else
-        model.model_name.human
-      end
+      model.model_name.human
     end
   end
 
   def alert_update(resource)
-    %(#{model_name(resource, false)} #{I18n.t(:success_update)}.)
+    %(#{model_name(resource)} #{I18n.t(:success_update)}.)
   end
 
   def alert_create(resource)
-    %(#{model_name(resource, false)} #{I18n.t(:success_create)}.)
+    %(#{model_name(resource)} #{I18n.t(:success_create)}.)
   end
 
   def alert_destroy(resource)
-    %(#{model_name(resource, false)} #{I18n.t(:success_destroy)}.)
+    %(#{model_name(resource)} #{I18n.t(:success_destroy)}.)
   end
 
   protected
