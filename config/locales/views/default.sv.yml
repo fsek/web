@@ -12,3 +12,5 @@ sv:
 
   back_to_root: Tillbaka till startsidan
   for: "%{a} för %{b}"
+
+  links: Länkar
