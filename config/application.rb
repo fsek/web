@@ -28,5 +28,7 @@ module Fsek
     config.assets.precompile += ['application-print.css']
     config.filter_parameters += [:password, :password_confirmation, :civic]
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
   end
 end

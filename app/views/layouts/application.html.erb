@@ -84,6 +84,7 @@
 <%= yield :pre_content %>
 
 <div class="container content">
+  <% if 1 == 0 %>
   <div class="row magazine-page">
     <!-- Begin Content -->
     <div class="col-md-12">
@@ -102,6 +103,20 @@
       <%= yield %>
     </div>
   </div>
+<% end %>
+      <% if notice %>
+          <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= notice %>
+          </div>
+      <% end %>
+      <% if alert %>
+          <div class="alert alert-danger fade-in">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Fel:</strong> <%= alert %>
+          </div>
+      <% end %>
+      <%= yield %>
   <!-- /row -->
 </div>
 <!--/container-->
