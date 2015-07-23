@@ -1,8 +1,33 @@
-<div class="row">
-  <ul class="nollning grid">
-    <li class="col-md-3 col-sm-6 col-xs-12"></li>
-    <li class="col-md-3 col-sm-6 col-xs-12"></li>
-    <li class="col-md-3 col-sm-6 col-xs-12"></li>
-    <li class="col-md-3 col-sm-6 col-xs-12"></li>
-  </ul>
+<div class="row nollning nollning-top">
+  <div class="col-md-12 nollning-grid">
+    <div class="row matrix-grid-wrap">
+      <% (Date.new(2015,8,24)..Date.new(2015,9,20)).each do |date| %>
+        <%= link_to(nollning_event_path(date), data: { toggle: "modal", target: "#ajax-modal"} , remote: true) do %>
+          <div class="col-md-1 col-xs-4 matrix-grid">
+            <span class="date">
+              <%= date.strftime("%-d/%-m") %>
+            </span> <br>
+            <div class="nollning matrix-grid-text">
+              <% events = Event.from_date(date) %>
+              <% if events.count > 0 %>
+                <% events.each do |e| %>
+                  <%= minimal_time(e.starts_at.time, nil) %>
+                  <span class="event-title">
+                    <%= e.short_title %>
+                  </span><br>
+                <% end %>
+              <% else %>
+                <span class="rest-title">
+                  <%= t('nollning.rest') %>
+                </span>
+                <%= image_tag("theme/rest.svg", class: "rest-symbol") %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+<%= render 'modal' %>

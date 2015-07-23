@@ -69,7 +69,6 @@ Fsek::Application.routes.draw do
     end
 
     # A scope to put car-associated things under /bil
-    # /d.wessman
     scope :bil do
       namespace :admin do
         resources :rents, path: :bokningar, except: [:index, :edit] do
@@ -108,6 +107,8 @@ Fsek::Application.routes.draw do
     namespace :nollning do
       get '', controller: :nollnings, action: :index
       get :matrix, controller: :nollnings, action: :matrix, path: :matris
+      post "modal/:date", controller: :nollnings, action: :modal, as: :event
+      get "modal/:date", controller: :nollnings, action: :modal, as: :get_event
     end
 
     resources :councils, path: :utskott do

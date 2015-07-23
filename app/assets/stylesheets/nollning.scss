@@ -1,19 +1,237 @@
-.nollning-nope {
-  font-family: 'diogenesregular';
+@import "mixins";
+
+$inner: url("theme/border.svg") 10% 10% 10% 10% stretch;
+$outer-top: url("theme/top.svg") 27.5% 0% 13.1% 0% stretch;
+$outer: url("theme/frame.svg") 27% 15% 23% 15% repeat;
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+  .nollning-grid {
+    border: 160px;
+    @include border-image($outer);
+  }
+  .matrix-grid-wrap {
+    margin: -95.9px -36.7px -35.7px -26.1px;
+  }
+  .matrix-grid {
+    border: 8px solid transparent;
+    @include border-image($inner);
+    height: 150px;
+    padding: 0;
+    width: 14.26%;
+  }
+  .nollning-top {
+    border: solid transparent;
+    border-width: 160px 0 0 0;
+    @include border-image($outer-top);
+  }
+
+  .matrix-grid-text {
+    color: black;
+    font-size: 16px;
+    word-wrap: break-word;
+  }
+
+  .rest-symbol {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    max-width: 50px;
+  }
 }
 
-.nollning-grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .nollning-grid {
+    border: 120px;
+    @include border-image($outer);
+  }
+
+  .matrix-grid-wrap {
+    margin: -71.6px -31px -27px -23.6px
+  }
+
+  .matrix-grid {
+    padding: 0;
+    width: 14.26% !important;
+    height: 150px;
+    border: 8px solid transparent;
+    @include border-image($inner);
+  }
+
+  .nollning-top {
+    border: solid transparent;
+    border-width: 100px 0 0 0;
+    @include border-image($outer-top);
+  }
+
+  .matrix-grid-text {
+    color: black;
+    font-size: 12px;
+    word-wrap: break-word;
+  }
+
+  .rest-symbol {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    max-width: 50px;
+  }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+  .nollning-grid {
+    border: 100px;
+    @include border-image($outer);
+  }
+
+  .matrix-grid-wrap {
+    margin: -59.6px -26.6px -22px -21.6px
+  }
+
+  .matrix-grid {
+    padding: 0;
+    width: 25%;
+    height: 100px;
+    border: 8px solid transparent;
+    @include border-image($inner);
+  }
+
+  .nollning-top {
+    border: solid transparent;
+    border-width: 120px 0 0 0;
+    @include border-image($outer-top);
+  }
+
+  .matrix-grid-text {
+    color: black;
+    font-size: 12px;
+    word-wrap: break-word;
+  }
+
+  .rest-symbol {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50px;
+  }
+
+  .rest-title {
+    display: none;
+  }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+  .nollning-grid {
+    border: 100px;
+    @include border-image($outer);
+  }
+
+  .matrix-grid-wrap {
+    margin: -59.6px -26.9px -22px -21.6px
+  }
+
+  .matrix-grid {
+    padding: 0;
+    width: 25%;
+    height: 110px;
+    border: 8px solid transparent;
+    @include border-image($inner);
+  }
+
+  .nollning-top {
+    border: solid transparent;
+    border-width: 100px 0 0 0;
+    @include border-image($outer-top);
+  }
+
+  .matrix-grid-text {
+    color: black;
+    font-size: 12px;
+    word-wrap: break-word;
+  }
+
+  .rest-symbol {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50px;
+  }
+
+  .rest-title {
+    display: none;
+  }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+  .nollning-grid {
+    border: 70px;
+    @include border-image($outer);
+  }
+  .matrix-grid-wrap {
+    margin: -41px -23.6px -16px -20px;
+  }
+  .matrix-grid {
+    border: 8px solid transparent;
+    @include border-image($inner);
+    height: 80px;
+    overflow: hidden;
+    padding: 0;
+    width: 25%;
+  }
+  .nollning-top {
+    border: solid transparent;
+    border-width: 60px 0 0 0;
+    @include border-image($outer-top);
+  }
+
+  .matrix-grid-text {
+    color: black;
+    font-size: 10px;
+  }
+
+  .rest-symbol {
+    max-width: 25px;
+  }
+
+  .event-title {
+    display: none;
+  }
 }
 
 .nollning {
-  .grid {
-    list-style: none;
-    ul {
-      margin: 0;
-      padding: 0;
-    }
+  font-family: 'diogenesregular';
+  .date {
+    position: absolute;
+    left: -1;
+    top: -1;
   }
 }
+
+.symbols {
+  display: table-cell;
+  width: 25%;
+  img {
+    width: auto;
+    max-height: 32px;
+  }
+}
+
+ul.symbol-list {
+  list-style-type: circle;
+  padding: 10px;
+}
+
+#ajax-modal {
+  margin-top: 6%;
+}
+
+.modal-event-body {
+  position: relative;
+}
+

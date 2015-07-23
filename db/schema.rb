@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701053116) do
+ActiveRecord::Schema.define(version: 20150723050347) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -184,6 +184,17 @@ ActiveRecord::Schema.define(version: 20150701053116) do
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
+    t.integer  "council_id",         limit: 4
+    t.integer  "user_id",            limit: 4
+    t.string   "short",              limit: 255
+    t.boolean  "signup",             limit: 1
+    t.datetime "last_reg"
+    t.datetime "last_unreg"
+    t.integer  "slots",              limit: 4
+    t.string   "position",           limit: 255
+    t.boolean  "drink",              limit: 1
+    t.boolean  "food",               limit: 1
+    t.boolean  "cash",               limit: 1
   end
 
   create_table "faqs", force: :cascade do |t|

@@ -7,5 +7,15 @@ class Nollning::NollningsController < ApplicationController
   end
 
   def matrix
+    @events = Event.nollning
+  end
+
+  def modal
+    @date = Date.strptime(%({#{params[:date]}}), "{%Y-%m-%d}")
+    @events = Event.from_date(@date)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 end

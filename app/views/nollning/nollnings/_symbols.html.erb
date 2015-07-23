@@ -1,0 +1,12 @@
+<% if event.signup? %>
+  <%= image_tag("theme/signup.svg", title: t('nollning.signup')) %>
+<% end %>
+<% if event.drink? %>
+  <%= image_tag("theme/drink.svg", title: t('nollning.drink')) %>
+<% end %>
+<% if event.food? %>
+  <%= image_tag("theme/food.svg", title: t('nollning.food')) %>
+<% end %>
+<% if event.cash? %>
+  <%= image_tag("theme/cash.svg", title: t('nollning.cash')) %>
+<% end %>
