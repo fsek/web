@@ -12,19 +12,19 @@
               <%= render 'form', user: current_user %>
             </div>
 
-            <div id="confirm" class="profile-edit tab-pane fade in <%=@tab == :confirm ? 'active' : ''%>">
-              <%= render 'confirm_form', user: current_user %>
-            </div>
+        <div id="confirm" class="profile-edit tab-pane fade in <%=@tab == :confirm ? 'active' : ''%>">
+          <%= render 'confirm_form', user: current_user %>
+        </div>
 
-            <div id="account" class="profile-edit tab-pane fade in <%=@tab == :account ? 'active' : ''%>">
-              <%= render 'account_form', user: current_user %>
-            </div>
+        <div id="account" class="profile-edit tab-pane fade in <%=@tab == :account ? 'active' : ''%>">
+          <%= render 'account_form', user: current_user %>
+        </div>
 
-            <div id="password" class="profile-edit tab-pane fade in <%=@tab == :password ? 'active' : ''%>">
-              <%= render 'password_form', user: current_user %>
-            </div>
-          </div>
+        <div id="password" class="profile-edit tab-pane fade in <%=@tab == :password ? 'active' : ''%>">
+          <%= render 'password_form', user: current_user %>
         </div>
       </div>
-      <%= link_to 'Tillbaka till startsidan', :root %>
     </div>
+  </div>
+  <%= link_to t('back_to_root'), :root %>
+</div>

@@ -1,69 +1,24 @@
-<%= form_for([:admin, @rent]) do |f| %>
-    <%= render 'shared/form_errors', current: @rent %>
-    <div class="center">
-      <h2><%= (@rent.service) ? "Service" : @rent.status %>
-        - <%= (@rent.aktiv) ? "Aktiv" : "Inaktiv" %></h2>
-
-      <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 center">
-        <div class="row margin-bottom-20">
-          <%= f.label 'Disclaimer', class: 'reg-label' %>
-          <%= f.check_box :disclaimer, id: "accepted_disclaimer", checked: true %>
-          <%= f.label 'Service', class: 'reg-label' %>
-          <%= f.check_box :service %>
-        </div>
-        <div class="margin-bottom-20">
-          <%= f.label 'Namn & Efternamn', class: 'reg-label' %>
-          <div class="row">
-            <div class="col-md-6"><%= f.text_field :name, class: 'form-control', placeholder: "Namn" %></div>
-            <div class="col-md-6"> <%= f.text_field :lastname, class: 'form-control', placeholder: "Efternamn" %></div>
-          </div>
-        </div>
-        <%= f.label 'E-post & telefon', class: 'reg-label' %>
-        <div class="margin-bottom-20">
-          <div class="row">
-            <div class="col-md-6"><%= f.email_field :email, class: 'form-control', placeholder: "Epost" %></div>
-            <div class="col-md-6"> <%= f.phone_field :phone, class: 'form-control', placeholder: "Telefon" %></div>
-          </div>
-        </div>
-        <%= f.label 'Syfte', class: 'reg-label' %>
-        <div class="margin-bottom-20">
-          <%= f.text_area :purpose, class: "form-control" %>
-        </div>
-        <%= f.label 'Från', class: 'reg-label' %>
-        <div class="margin-bottom-20">
-          <%= f.text_field :d_from, class: 'form-control datetimepicker1' %>
-        </div>
-        <%= f.label 'Till', class: 'reg-label' %>
-        <div class="margin-bottom-20">
-          <%= f.text_field :d_til, class: 'datetimepicker2'%>
-        </div>
-        <%= f.label 'Utskott', class: 'reg-label' %>
-        <div class="margin-bottom-20">
-          <%= f.collection_select(:council, Council.all, :id,:title,
-                                  include_blank: true, class: 'form-control listBox')%>
-
-        </div>
-        <div class="col-md-6">
-          <%= f.label :status, class: 'reg-label' %>
-          <div class="margin-bottom-20">
-            <%= f.select :status, options_for_select([["Ej bestämd"], ["Bekräftad"], ["Nekad"]],
-                                                     @rent.status), {}, class: "listBox form-control" %>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <%= f.label 'Aktiv', class: 'reg-label' %>
-          <div class="margin-bottom-20">
-            <%= f.check_box :aktiv %>
-          </div>
-        </div>
-        <div class="margin-bottom-20">
-          <%= f.label 'Kommentar (vid nekad bokning)', class: 'reg-label' %><br>
-          <%= f.text_area :comment, class: 'form-control' %>
-        </div>
-        <div class="row">
-          <%= f.submit "Spara", id: 'rent-submit', class: "btn btn-u",
-                       data: {confirm: 'Som administratör bokar man över vad som helst (utan att påverka bokningen), ingenting valideras.'} %>
-        </div>
-      </div>
-    </div>
+<%= simple_form_for([:admin, @rent]) do |f| %>
+  <h4><%= @rent.print_status %></h4>
+  <%= f.input :disclaimer, as: :boolean %>
+  <%= f.input :service, as: :boolean %>
+  <%= f.association :user, collection: @users %>
+  <% if @rent.user.present? %>
+    <table class='table'>
+      <tbody>
+        <%= render 'users/as_table', user: @rent.user, prot: (can?(:manage, @rent) || @rent.owner?(current_user)) %>
+      </tbody>
+    </table>
+  <% end %>
+  <%= f.input :d_from, as: :datetime_picker %>
+  <%= f.input :d_til, as: :datetime_picker %>
+  <small><%= t('rent.date_format') %></small>
+  <%= f.input :purpose, as: :text %>
+  <%= f.association :council, collection: @councils %>
+  <%= f.input(:status, collection: [[t('rent.confirmed'),:confirmed],
+                                    [t('rent.unconfirmed'), :unconfirmed],
+                                    [t('rent.denied'), :denied]]) %>
+  <%= f.input :aktiv, as: :boolean %>
+  <%= f.input :comment, as: :text, placeholder: t('rent.denied_comment')%>
+  <%= f.button :submit, class: 'btn btn-u', id: 'rent-submit' %>
 <% end %>

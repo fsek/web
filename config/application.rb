@@ -22,6 +22,7 @@ module Fsek
     config.i18n.default_locale = :sv
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths += Dir["#{config.root}/services/**/"]
+    config.autoload_paths += Dir["#{config.root}/validators/**/"]
 
     config.time_zone ='Stockholm'
     config.secret_token='53925521d781eeebea75a93a98a86e8aee9a3fac8b2be4c9ee4fed6f745899921e0b22502ee937fcfaa8cf4b471dd02ba8627ebb8b48f99c1975761c45ccd790'

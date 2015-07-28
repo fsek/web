@@ -65,7 +65,7 @@ class Candidate < ActiveRecord::Base
       return true
     end
 
-    errors.add(:user, 'Du måste fylla i dina användaruppgifter')
+    errors.add(:user, I18n.t('user.add_information'))
     false
   end
 end

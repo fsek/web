@@ -133,8 +133,6 @@ RSpec.describe Admin::CafeWorksController, type: :controller do
 
   describe 'POST #setup_create' do
     # Should use a more precise method
-    # This test keeps on failing, the actual method works as it should -
-    # clueless
     it 'preview post' do
       post(:setup_create, commit: I18n.t(:preview),
                           cafe_work: attributes_for(:cafe_work,

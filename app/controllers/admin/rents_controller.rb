@@ -1,8 +1,8 @@
 class Admin::RentsController < ApplicationController
   load_permissions_and_authorize_resource
-  before_action :set_councils, only: [:new, :show]
+  before_action :prepare, only: [:new, :show]
 
-  def main
+  def index
     @rents = Rent.ascending.from_date(Time.zone.now.beginning_of_day)
     @rent_grid = initialize_grid(@rents)
     @faqs = Faq.where(answer: '').where(category: 'Bil')
@@ -15,35 +15,35 @@ class Admin::RentsController < ApplicationController
   end
 
   def create
-    @rent = Rent.new_with_status(rent_params, nil)
-    flash[:notice] = 'Bokningen skapades' if @rent.save(validate: false)
+    flash[:notice] = alert_create(Rent) if @rent.save(validate: false)
     redirect_to admin_rent_path(@rent)
   end
 
   def new
+    @rent.user = nil
   end
 
   def update
     @rent.update_without_validation(rent_params)
-    redirect_to admin_rent_path(@rent), notice: 'Bokningen uppdaterades.'
+    redirect_to admin_rent_path(@rent), notice: alert_update(Rent)
   end
 
   def destroy
     @rent.destroy
-    redirect_to :admin_car, notice: 'Bokningen raderades.'
+    redirect_to :admin_rents, notice: alert_destroy(Rent)
   end
 
   private
 
   # To set the councils
-  def set_councils
-    @councils = Council.all
+  def prepare
+    @councils = Council.all_name
+    @users = User.all_firstname
   end
 
   def rent_params
-    params.require(:rent).permit(:d_from, :d_til, :name, :lastname, :email,
-                                 :phone, :purpose, :disclaimer, :council_id,
-                                 :comment, :access_code, :status, :aktiv,
-                                 :service)
+    params.require(:rent).permit(:d_from, :d_til, :user_id,
+                                 :purpose, :disclaimer, :council_id,
+                                 :comment, :status, :aktiv, :service)
   end
 end

@@ -1,6 +1,5 @@
 class LoginPage
   include Capybara::DSL
-  include ActionView::Helpers::UrlHelper::ClassMethods
 
   def visit_page
     visit '/logga_in'

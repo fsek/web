@@ -46,10 +46,10 @@ end
 
 group :development, :test do
   gem 'capybara'
-	gem 'rspec-example_steps'
   gem 'mailcatcher'
   gem 'poltergeist'
   gem 'rspec-rails'
+  gem 'rspec-example_steps'
   gem 'web-console', '~> 2.0'
   gem 'pry-rails'
   gem 'pry-byebug'

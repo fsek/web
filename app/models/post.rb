@@ -43,23 +43,12 @@ class Post < ActiveRecord::Base
   end
 
   def add_user(user)
-    if user.nil?
-      errors.add(:user, I18n.t('errors.messages.not_found'))
-      return false
+    if check_user(user)
+      users << user
+      return true
     end
 
-    if users.include?(user)
-      errors.add(:user, I18n.t('posts.already_have_post'))
-      return false
-    end
-
-    if limited?
-      errors.add(:limit, I18n.t('posts.limited'))
-      return false
-    end
-
-    users << user
-    true
+    false
   end
 
   def remove_user(user)
@@ -74,5 +63,25 @@ class Post < ActiveRecord::Base
       end
     end
     save!
+  end
+
+  protected
+
+  def check_user(user)
+    if user.nil?
+      errors.add(:user, I18n.t('errors.messages.not_found'))
+      return false
+    end
+
+    if users.include?(user)
+      errors.add(:user, I18n.t('posts.already_have_post'))
+      return false
+    end
+
+    if limited?
+      errors.add(:limit, I18n.t('posts.limited'))
+      return false
+    end
+    true
   end
 end

@@ -1,10 +1,10 @@
-<% provide(:title, 'Bilbokning') %>
-<div class="col-md-8 col-md-offset-2 reg-page">
-  <div class="row">
+<% provide(:title, Rent.model_name.human) %>
+<div class='col-md-8 col-md-offset-2'>
+  <div class="row margin-bottom-20">
     <%= render 'form' %>
   </div>
-  <hr>
-  <div class="row">
-    <%= link_to("Startsida för Bilbokning", :bil, data: {no_turbolink: true}, class: "btn btn-u") %>
+  <div class='row'>
+    <%= link_to(t('rent.back_to_index'), :rents, data: { no_turbolink: true },
+                                               class: 'btn btn-u') %>
   </div>
 </div>

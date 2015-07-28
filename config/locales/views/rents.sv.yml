@@ -1,0 +1,37 @@
+sv:
+  rent:
+    council_only: får endast göras åt utskottet
+    council_overbook: kan boka över en bokning som börjar mer än 5 dagar fram i tiden
+    list_bookings: Bokningar (från idag och 30 dagar fram)
+    not_member: Bokningar från icke-medlemmar måste hanteras av Bilförmannen
+    confirm_member: Om ni när medlem i sektionen är det bäst att bekräfta ert
+    no_terms: Syns inget här finnes avtalet
+    council: Utskottsbokning
+    back_to_index: Startsida för Bilbokning
+    remove: Ta bort bokning
+    confirm_remove: Din bokning kommer nu att tas bort
+    view_normal: Bokning - vanlig vy
+    admin_index: Startsida administration Bilbokning
+    new: Ny bokning
+    book: Boka bil
+    contact: Kontakta Bilförman
+    your_bookings: Dina bokningar
+    delete: Radera bokning
+    date_format: 'Datum och tid skrivs enligt "25/05/2015 10:00"'
+    cannot_edit: Du kan inte längre redigera bokningen
+    check_dates: Kontroller datum
+    disclaimer_accepted: Bilbokningsavtal accepterat
+    marked_active: Markerad som aktiv
+    disclaimer_not_accepted: Bilboknignsavtal inte accepterat
+    marked_inactive: Markerad som inaktiv
+    unconfirmed_status: Ingen status - måste bekräftas eller nekas
+    overlaps_with: 'Överlappar med:'
+
+    admin:
+      index: Startsida administration
+      title: Administration - Bilbokning
+      delete_confirm: Bokning kommer att raderas
+      status: säger om bokningen är bekräftad eller ej
+      aktiv: sätts till falsk om bokningen t.ex. bokas över
+      comment: skickas med i mail om en boknings ändras till Nekad
+      inactive: En bokning är inaktiverad om status är Nekad eller Aktiv äri satt till falsk

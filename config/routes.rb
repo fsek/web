@@ -11,7 +11,7 @@ Fsek::Application.routes.draw do
   get 'kalender' => 'events#calendar', as: :kalender
   get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
 
-  get 'om' => 'static_pages#om', as: :om
+  get :about, controller: :static_pages, path: :om, as: :om
   get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about
   get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
 
@@ -31,9 +31,6 @@ Fsek::Application.routes.draw do
 
   # Scope to change urls to swedish
   scope path_names: {new: 'ny', edit: 'redigera'} do
-    namespace :admin do
-      resources :users, path: :anvandare, only: [:index]
-    end
 
     resource :user, path: :anvandare, as: :own_user, only: [:update] do
       get '', action: :edit, as: :edit
@@ -45,6 +42,10 @@ Fsek::Application.routes.draw do
       patch :search, on: :collection
       patch :remove_post, on: :member
       get :avatar, on: :member
+    end
+
+    namespace :admin do
+      resources :users, path: :anvandare, only: [:index]
     end
 
     resources :constants
@@ -70,17 +71,16 @@ Fsek::Application.routes.draw do
 
     # A scope to put car-associated things under /bil
     # /d.wessman
-    scope :bil do
-      namespace :admin do
-        resources :rents, path: :bokningar, except: [:index, :edit] do
-          get :preview, path: :visa, on: :member
-        end
-        get '', controller: :rents, action: :main, as: :car
+    namespace :admin do
+      resources :rents, path: :bilbokning, except: :edit do
+        get :preview, path: :visa, on: :member
       end
-      resources :rents, path: :bokningar do
-        patch :authorize, on: :member, path: :auktorisera
-      end
-      get '', controller: :rents, action: :main, as: :bil
+    end
+
+    resources :rents, path: :bilbokning, except: :index do
+      get :oversikt, action: :index, on: :collection
+      get '', action: :main, as: :main, on: :collection
+      post :check_dates, on: :collection
     end
 
     resources :notices, path: :notiser do
