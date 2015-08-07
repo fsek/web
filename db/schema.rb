@@ -169,6 +169,17 @@ ActiveRecord::Schema.define(version: 20150723050347) do
     t.integer "post_id",     limit: 4
   end
 
+  create_table "event_registrations", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "event_id",   limit: 4
+    t.boolean  "reserve",    limit: 1
+    t.datetime "removed_at"
+    t.integer  "remover_id", limit: 4
+    t.text     "comment",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.string   "author",             limit: 255
@@ -189,9 +200,7 @@ ActiveRecord::Schema.define(version: 20150723050347) do
     t.string   "short",              limit: 255
     t.boolean  "signup",             limit: 1
     t.datetime "last_reg"
-    t.datetime "last_unreg"
     t.integer  "slots",              limit: 4
-    t.string   "position",           limit: 255
     t.boolean  "drink",              limit: 1
     t.boolean  "food",               limit: 1
     t.boolean  "cash",               limit: 1

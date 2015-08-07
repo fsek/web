@@ -16,9 +16,11 @@
       <div class="col-xs-12 col-sm-6 col-md-6">
         <%= render 'info', event: @event %>
       </div>
-      <div class="col-xs-12 col-sm-6 col-md-6">
-        <%= render 'registration', event: @event, reg: @event_registration %>
-      </div>
+      <% if 1 == 0 %>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <%= render 'registration', event: @event, reg: @event_registration %>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="col-md-3">

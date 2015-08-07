@@ -1,0 +1,36 @@
+<%= simple_form_for([:admin, @event]) do |f| %><div class="tab-v1">
+    <%= f.error_notification %>
+    <ul class="nav nav-justified nav-tabs">
+      <li class="<%=@tab == :info ? 'active' : ''%>"><a data-toggle="tab" href="#info"><%= t('event.info') %></a></li>
+      <li class="<%=@tab == :dates ? 'active' : ''%>"><a data-toggle="tab" href="#dates"><%= t('event.dates') %></a></li>
+      <li class="<%=@tab == :registration ? 'active' : ''%>"><a data-toggle="tab" href="#registration"><%= t('event.registration') %></a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="info" class="profile-edit tab-pane fade in <%=@tab == :info ? 'active' : ''%>">
+        <%= f.input :title %>
+        <%= f.input :short %>
+        <%= f.input :description %>
+        <%= f.input :location %>
+        <%= f.input :image, as: :file %>
+        <%= f.association :council, collection: Council.titles %>
+        <%= f.input :category, collection: [[t(:nollningen), :nollning]] %>
+      </div>
+
+      <div id="dates" class="profile-edit tab-pane fade in <%=@tab == :dates ? 'active' : ''%>">
+        <%= f.input :starts_at, as: :datetime_picker %>
+        <%= f.input :ends_at, as: :datetime_picker %>
+        <%= f.input :all_day, as: :boolean %>
+      </div>
+
+      <div id="registration" class="profile-edit tab-pane fade in <%=@tab == :registration ? 'active' : ''%>">
+        <%= f.input :signup, as: :boolean %>
+        <%= f.input :last_reg, as: :datetime_picker %>
+        <%= f.input :slots, as: :integer %>
+        <%= f.input :drink, as: :boolean %>
+        <%= f.input :food, as: :boolean %>
+        <%= f.input :cash, as: :boolean %>
+      </div>
+    </div>
+</div>
+<%= f.submit as: :button, class: "btn btn-u" %>
+<% end %>

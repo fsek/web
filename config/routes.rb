@@ -8,7 +8,6 @@ Fsek::Application.routes.draw do
   get "githook/master" => "githook#master"
 
   # Resources on the page
-  get 'kalender' => 'events#calendar', as: :kalender
   get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
 
   get 'om' => 'static_pages#om', as: :om
@@ -127,9 +126,22 @@ Fsek::Application.routes.draw do
       post :mail, on: :member
     end
 
-    resources :events do
+    resources :calendars, path: :kalender,  only: :index do
       get :export, on: :collection
     end
+
+    resources :events, only: [:index, :show], path: :evenemang do
+      resource :event_registration, path: :registrering, as: :registration
+    end
+
+    resources :event_registrations, path: :registrering, only: :index
+
+    namespace :admin do
+      resources :events, path: :evenemang do
+        resources :event_registrations, path: :registrering, as: :registration
+      end
+    end
+
 
     resources :work_posts, path: :jobbportal, except: :show
 
@@ -147,11 +159,11 @@ Fsek::Application.routes.draw do
     resources :elections, path: :val, only: :index do
       collection do
         resources :nominations, controller: 'elections/nominations',
-                                path: :nominera, only: [:create] do
+          path: :nominera, only: [:create] do
           get '', action: :new, on: :collection, as: :new
         end
         resources :candidates, controller: 'elections/candidates',
-                               path: :kandidera, except: :edit
+          path: :kandidera, except: :edit
       end
     end
 

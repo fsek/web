@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Event < ActiveRecord::Base
   has_attached_file :image,
-    styles: {original: "800x800>", medium: "300x300>", thumb: "100x100>"},
+    styles: { original: "800x800>", medium: "300x300>", thumb: "100x100>" },
     path: ":rails_root/public/system/images/event/:id/:style/:filename",
     url: "/system/images/event/:id/:style/:filename"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
@@ -13,10 +13,14 @@ class Event < ActiveRecord::Base
 
   validates :title, :description, :starts_at, :ends_at, presence: true
 
+  # Validate slots if event allows signup
+  validates :slots, presence: true, if: :signup?
+
   scope :nollning, -> { where(category: :nollning) }
   scope :from_date, -> (date) { where('(starts_at BETWEEN ? AND ?) OR (ends_at BETWEEN ? AND ?)',
-                                 date.beginning_of_day, date.end_of_day,
-                                 date.beginning_of_day, date.end_of_day) }
+                                      date.beginning_of_day, date.end_of_day,
+                                      date.beginning_of_day, date.end_of_day) }
+
   def to_s
     title
   end
@@ -51,6 +55,44 @@ class Event < ActiveRecord::Base
     else
       title
     end
+  end
+
+  def registration(user)
+    event_registrations.find_by(user: user, reserve: false)
+  end
+
+  def attending(user)
+    if signup?
+      registration(user).present?
+    else
+      nil
+    end
+  end
+
+  def reserve(user)
+    if signup?
+      event_registrations.find_by(user: user, reserve: true).present?
+    else
+      nil
+    end
+  end
+
+  def free_slots
+    if signup?
+      slots-event_registrations.where(reserve: false).count
+    else
+      nil
+    end
+  end
+
+  def full?
+    if signup
+      free_slots <= 0
+    end
+  end
+
+  def reserves
+    event_registrations.where(reserve: true).order(created_at: :asc)
   end
 
   def ical

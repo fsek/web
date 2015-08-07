@@ -13,11 +13,16 @@
         </span>
         <%= simple_format(@event.description) %>
       </div>
-      <div class="col-xs-12 col-sm-6 col-md-6">
-        <%= render 'info', event: @event %>
+      <div class="col-md-12">
+        <%= render 'admin/events/info', event: @event %>
       </div>
-      <div class="col-xs-12 col-sm-6 col-md-6">
-        <%= render 'registration', event: @event, reg: @event_registration %>
+      <div class="col-md-12">
+      <h3>Anmälda</h3>
+        <ol class="registrations-list">
+          <% @event.event_registrations.each do |reg| %>
+            <li><%= link_to(reg.user, user_path(reg.user)) %></li>
+          <% end %>
+        </ol>
       </div>
     </div>
   </div>
@@ -30,7 +35,7 @@
 
 <% if can?(:manage, @event) %>
   <div class="col-md-8 col-md-offset-2 col-xs-12">
-    <%= link_to(t(:edit, attr: nil), edit_admin_event_path, class: "btn btn-default") %>
+    <%= link_to(t(:edit, attr: nil), edit_admin_event_path(@event), class: "btn btn-default") %>
     <%= link_to(t(:index, attr: nil), admin_events_path, class: "btn btn-default") %>
   </div>
 <% end %>

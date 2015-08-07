@@ -14,7 +14,7 @@ feature 'admin visits paths' do
     # No idea why this fails TODO Fix
     documents: [:new],
     elections: [:index],
-    events: [:index, :calendar, :show, :new],
+    events: [:index, :show],
     faqs: [:index, :show, :new],
     menus: [:index, :new],
     news: [:index, :new, :show],
