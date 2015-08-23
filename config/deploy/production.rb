@@ -7,7 +7,7 @@
 
 set :stage, :production
 set :branch, 'master'
-set :deploy_to, '/home/deploy/production'
+set :deploy_to, '/home/deploy/fsek'
 set :rails_env,      "production"
 set :migrate_target, :latest
 
