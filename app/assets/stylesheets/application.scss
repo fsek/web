@@ -7,48 +7,27 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require custom
- *= require app
- *= require_self
- *= require style
- *= require header1
- *= require responsive
- *= require font-awesome
- * require xaxa-font-awesome
- *= require page_search
- *= require page_magazine
- *= require page_login_reg
- *= require portfolio
- *= require style
- *= require timeline
- *= require default_theme
- * require_tree .
- *= require start_page
- *= require fullcalendar
- *= require countdown
- *= require jquery.countdown
- *= require fancybox
- *= require jquery-ui/datepicker
  */
 
 /* Override for Bootstrap 3 font location */
 /* Start importing Bootstrap */
 @import "bootstrap";
 
-/* Include partials */
+/* Include gems */
+
+@import "fullcalendar";
+@import "fancybox";
+@import "font-awesome";
+
+/* Include colors and mixins */
 
 @import "colors";
-@import "cafe_works";
-@import "bootstrap-datetimepicker";
+@import "mixins";
 @import "fonts";
-@import "nollning";
-@import "rent";
-@import "elections";
-@import "faq";
-@import "gallery";
-@import "calendar";
-@import "event";
+
+/* Include partials */
+
+@import "partials/*";
 
 .content {
   padding-top: 20px;

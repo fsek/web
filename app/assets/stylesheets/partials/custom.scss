@@ -1,21 +1,22 @@
+@import "colors";
 /* unvisited link */
 a:link {
-    color: #eb7125;
+    color: $fsek-orange;
 }
 
 /* visited link */
 a:visited {
-    color: #eb7125;
+    color: $fsek-orange;
 }
 
 /* mouse over link */
 a:hover {
-    color: #eb7125;
+    color: $fsek-orange;
 }
 
 /* selected link */
 a:active {
-    color: #eb7125;
+    color: $fsek-orange;
 }
 .black-link a a:visited a:hover a:active {
   color: #777 !important;
@@ -274,11 +275,11 @@ background-color: #fff !important;
 }
 
 .funny-boxes   {
-  color: #eb7125;
+  color: $fsek-orange;
 }
 
 .funny-boxes .funny-boxes-img li i {
-  color: #eb7125;
+  color: $fsek-orange;
   font-size: 12px;
   margin-right: 5px;
 }
@@ -321,27 +322,27 @@ background-color: #fff !important;
 }
 
 .funny-boxes-left-orange:hover {
-  border-left-color: #eb7125;
+  border-left-color: $fsek-orange;
 }
 .funny-boxes-top-orange {
   border-top: solid 2px #fff;
-  border-top-color: #eb7125;
+  border-top-color: $fsek-orange;
 }
 
 /*Green Right Bordered Funny Box**/
 .funny-boxes-right-u {
-  border-right: solid 2px #eb7125;
+  border-right: solid 2px $fsek-orange;
 }
 
 .funny-boxes-right-u:hover {
-  border-right-color: #eb7125;
+  border-right-color: $fsek-orange;
 }
 #phrasing-edit-all-phrases { /* Hide to avoid linking to /phrasing*/
   display:none;
 }
 
 .pagination > li > a:hover {
-  background-color: #eb7125 !important;
+  background-color: $fsek-orange !important;
   border: 1px solid #fff;
   outline: 0;
 }

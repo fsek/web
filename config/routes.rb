@@ -131,14 +131,14 @@ Fsek::Application.routes.draw do
     end
 
     resources :events, only: [:index, :show], path: :evenemang do
-      resource :event_registration, path: :registrering, as: :registration
+      # resource :event_registration, path: :registrering, as: :registration
     end
 
-    resources :event_registrations, path: :registrering, only: :index
+    # resources :event_registrations, path: :registrering, only: :index
 
     namespace :admin do
       resources :events, path: :evenemang do
-        resources :event_registrations, path: :registrering, as: :registration
+        # resources :event_registrations, path: :registrering, as: :registration
       end
     end
 

@@ -51,7 +51,7 @@ class Admin::EventsController < ApplicationController
     params.require(:event).permit(:title, :author, :description,
                                   :location, :starts_at, :ends_at,
                                   :all_day, :category, :image,
-                                  :signup, :last_reg, :last_unreg,
+                                  :signup, :last_reg,
                                   :slots, :drink, :food, :cash,
                                   :short, :council_id)
   end

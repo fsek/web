@@ -70,9 +70,9 @@ ActiveRecord::Schema.define(version: 20150723050347) do
     t.boolean  "utskottskamp", limit: 1
     t.string   "access_code",  limit: 255
     t.integer  "d_year",       limit: 4
+    t.integer  "user_id",      limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",      limit: 4
     t.string   "firstname",    limit: 255
   end
 
@@ -343,9 +343,6 @@ ActiveRecord::Schema.define(version: 20150723050347) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "post_users", ["post_id"], name: "index_post_users_on_post_id", using: :btree
-  add_index "post_users", ["user_id"], name: "index_post_users_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",         limit: 255

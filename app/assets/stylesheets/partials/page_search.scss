@@ -1,3 +1,4 @@
+@import "colors";
 /*Search Page v1
 ------------------------------------*/
 .search-page h2 {
@@ -17,7 +18,7 @@
 }
 
 .search-blocks p a {
-	color: #72c02c;
+	color: $fsek-orange;
 }
 
 .search-blocks .search-img li i {
@@ -99,7 +100,7 @@
 
 /*Search Orange Border Top*/
 .search-blocks-top-orange {
-	border-top: solid 2px #eb7125;
+	border-top: solid 2px $fsek-orange;
 }
 
 .search-blocks-top-orange:hover {

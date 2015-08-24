@@ -57,6 +57,7 @@ class DatabaseStructure < ActiveRecord::Migration
         t.boolean   :utskottskamp
         t.string    :access_code
         t.integer   :d_year
+        t.integer   :user_id
         t.timestamps
       end
     end
@@ -81,6 +82,7 @@ class DatabaseStructure < ActiveRecord::Migration
         t.string 'phone', limit: 255
         t.string 'name', limit: 255
         t.string 'lastname', limit: 255
+        t.integer :user_id
       end
 
       add_index 'candidates', ['post_id'], name: 'index_candidates_on_post_id', using: :btree
@@ -135,6 +137,7 @@ class DatabaseStructure < ActiveRecord::Migration
         t.integer 'profile_id', limit: 4
         t.datetime 'created_at'
         t.datetime 'updated_at'
+        t.integer :user_id
       end
     end
     unless table_exists? :elections
@@ -232,6 +235,7 @@ class DatabaseStructure < ActiveRecord::Migration
         t.datetime 'created_at'
         t.datetime 'updated_at'
         t.integer 'profile_id', limit: 4
+        t.integer :user_id
       end
     end
     unless table_exists? :nominations
@@ -373,9 +377,10 @@ class DatabaseStructure < ActiveRecord::Migration
         t.datetime 'created_at'
         t.datetime 'updated_at'
         t.text 'comment', limit: 65535
-        t.string 'status', limit: 255, default: 'Ej bestÃƒÂ¤md'
+        t.string 'status', limit: 255, default: :unconfirmed
         t.boolean 'service', limit: 1, default: false
         t.string 'access_code', limit: 255
+        t.integer 'user_id'
       end
     end
     unless table_exists? :short_links
@@ -408,6 +413,17 @@ class DatabaseStructure < ActiveRecord::Migration
         t.integer 'role_id', limit: 4, default: 2, null: false
         t.datetime 'created_at'
         t.datetime 'updated_at'
+        t.string :firstname
+        t.string :lastname
+        t.string :phone
+        t.string :stil_id
+        t.integer :first_post_id
+        t.string :avatar_file_name
+        t.string :avatar_content_type
+        t.integer :avatar_file_size
+        t.datetime :avatar_updated_at
+        t.integer :start_year
+        t.string :program
       end
       add_index 'users', ['email'], name: 'index_users_on_email', unique: true, using: :btree
       add_index 'users', ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, using: :btree
@@ -443,6 +459,15 @@ class DatabaseStructure < ActiveRecord::Migration
         t.text 'the_role', limit: 65535, null: false
         t.datetime 'created_at'
         t.datetime 'updated_at'
+      end
+    end
+
+    unless table_exists? :post_users
+      create_table :post_users, force: :cascade do |t|
+        t.integer :post_id
+        t.integer :user_id
+        t.datetime :created_at
+        t.datetime :updated_at
       end
     end
   end

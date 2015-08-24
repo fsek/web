@@ -7,11 +7,10 @@
 
 set :stage, :dev
 set :branch, 'dev'
-set :deploy_to, '/home/deploy/dev'
-set :rails_env,      'development'
+set :rails_env, 'development'
 set :migrate_target, :latest
 
-role :app, %w{fsektionen.se}
+role :app, %w{dirac@fsektionen.se}
 
 # Extended Server Syntax
 # ======================
@@ -19,7 +18,9 @@ role :app, %w{fsektionen.se}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'fsektionen.se', user: 'deploy', roles: %w{web app db}
+server 'fsektionen.se', user: 'dirac', roles: %w{web app db}
+set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}/#{fetch(:stage)}"
+set :tmp_dir, "/home/#{fetch(:user)}/tmp/#{fetch(:stage)}"
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

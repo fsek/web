@@ -1,12 +1,3 @@
-/*
- * Template Name: Unify - Responsive Bootstrap Template
- * Description: Business, Corporate, Portfolio and Blog Theme.
- * Version: 1.3
- * Author: Html Stream
- * Website: http://htmlstream.com/preview/unify
- */
-
-
 /* Temporarily disable breadcrumb */
 .breadcrumb {
   display: none;
@@ -25,17 +16,15 @@
 }
 
 .navbar-brand-text {
-  padding: 0 0 0 25px;
+  padding: 2px 0 0 35px;
   overflow: visible;
-  font-size: 11px;
-  line-height: 14px;
+  font-size: 15px;
+  line-height: 17px;
   color: #555;
-  /*font-family: 'Open Sans', sans-serif;*/
-}
-
-.navbar-brand-text > span {
-  position: absolute;
-  margin-left: -20px;
+  span {
+    position: absolute;
+    margin-left: -25px;
+  }
 }
 
 .blog h2 {
@@ -321,34 +310,34 @@ a.btn-u-lg {
   opacity: 1;
 }
 
-.social_amazon {background: url(unify/icons/social/amazon.png) no-repeat;}
-.social_behance {background: url(unify/icons/social/behance.png) no-repeat;}
-.social_blogger {background: url(unify/icons/social/blogger.png) no-repeat;}
-.social_deviantart {background: url(unify/icons/social/deviantart.png) no-repeat;}
-.social_dribbble {background: url(unify/icons/social/dribbble.png) no-repeat;}
-.social_dropbox {background: url(unify/icons/social/dropbox.png) no-repeat;}
-.social_evernote {background: url(unify/icons/social/evernote.png) no-repeat;}
-.social_facebook {background: url(unify/icons/social/facebook.png) no-repeat;}
-.social_forrst {background: url(unify/icons/social/forrst.png) no-repeat;}
-.social_github {background: url(unify/icons/social/github.png) no-repeat;}
-.social_googleplus {background: url(unify/icons/social/googleplus.png) no-repeat;}
-.social_jolicloud {background: url(unify/icons/social/jolicloud.png) no-repeat;}
-.social_last-fm {background: url(unify/icons/social/last-fm.png) no-repeat;}
-.social_linkedin {background: url(unify/icons/social/linkedin.png) no-repeat;}
-.social_picasa {background: url(unify/icons/social/picasa.png) no-repeat;}
-.social_pintrest {background: url(unify/icons/social/pintrest.png) no-repeat;}
-.social_rss {background: url(unify/icons/social/rss.png) no-repeat;}
-.social_skype {background: url(unify/icons/social/skype.png) no-repeat;}
-.social_spotify {background: url(unify/icons/social/spotify.png) no-repeat;}
-.social_stumbleupon {background: url(unify/icons/social/stumbleupon.png) no-repeat;}
-.social_tumblr {background: url(unify/icons/social/tumblr.png) no-repeat;}
-.social_twitter {background: url(unify/icons/social/twitter.png) no-repeat;}
-.social_vimeo {background: url(unify/icons/social/vimeo.png) no-repeat;}
-.social_wordpress {background: url(unify/icons/social/wordpress.png) no-repeat;}
-.social_xing {background: url(unify/icons/social/xing.png) no-repeat;}
-.social_yahoo {background: url(unify/icons/social/yahoo.png) no-repeat;}
-.social_youtube {background: url(unify/icons/social/youtube.png) no-repeat;}
-.social_vk {background: url(unify/icons/social/vk.png) no-repeat;}
+.social_amazon {background: image-url("unify/icons/social/amazon.png") no-repeat;}
+.social_behance {background: image-url("unify/icons/social/behance.png") no-repeat;}
+.social_blogger {background: image-url("unify/icons/social/blogger.png") no-repeat;}
+.social_deviantart {background: image-url("unify/icons/social/deviantart.png") no-repeat;}
+.social_dribbble {background: image-url("unify/icons/social/dribbble.png") no-repeat;}
+.social_dropbox {background: image-url("unify/icons/social/dropbox.png") no-repeat;}
+.social_evernote {background: image-url("unify/icons/social/evernote.png") no-repeat;}
+.social_facebook {background: image-url("unify/icons/social/facebook.png") no-repeat;}
+.social_forrst {background: image-url("unify/icons/social/forrst.png") no-repeat;}
+.social_github {background: image-url("unify/icons/social/github.png") no-repeat;}
+.social_googleplus {background: image-url("unify/icons/social/googleplus.png") no-repeat;}
+.social_jolicloud {background: image-url("unify/icons/social/jolicloud.png") no-repeat;}
+.social_last-fm {background: image-url("unify/icons/social/last-fm.png") no-repeat;}
+.social_linkedin {background: image-url("unify/icons/social/linkedin.png") no-repeat;}
+.social_picasa {background: image-url("unify/icons/social/picasa.png") no-repeat;}
+.social_pintrest {background: image-url("unify/icons/social/pintrest.png") no-repeat;}
+.social_rss {background: image-url("unify/icons/social/rss.png") no-repeat;}
+.social_skype {background: image-url("unify/icons/social/skype.png") no-repeat;}
+.social_spotify {background: image-url("unify/icons/social/spotify.png") no-repeat;}
+.social_stumbleupon {background: image-url("unify/icons/social/stumbleupon.png") no-repeat;}
+.social_tumblr {background: image-url("unify/icons/social/tumblr.png") no-repeat;}
+.social_twitter {background: image-url("unify/icons/social/twitter.png") no-repeat;}
+.social_vimeo {background: image-url("unify/icons/social/vimeo.png") no-repeat;}
+.social_wordpress {background: image-url("unify/icons/social/wordpress.png") no-repeat;}
+.social_xing {background: image-url("unify/icons/social/xing.png") no-repeat;}
+.social_yahoo {background: image-url("unify/icons/social/yahoo.png") no-repeat;}
+.social_youtube {background: image-url("unify/icons/social/youtube.png") no-repeat;}
+.social_vk {background: image-url("unify/icons/social/vk.png") no-repeat;}
 
 
 /*Font Awesome Icon Page*/
