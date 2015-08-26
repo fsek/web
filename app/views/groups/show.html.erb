@@ -1,0 +1,7 @@
+<h2><%= @group.title %></h2>
+<div class="row portfolio-item1">
+  <div class="col-xs-12">
+    <%= simple_format(@group.description)%>
+  </div>
+</div>
+<%= render 'shared/links', object: @group %>

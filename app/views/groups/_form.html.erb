@@ -1,0 +1,6 @@
+<%= simple_form_for(@group) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :category, collection: ['Nollning', 'Övrigt'] %>
+  <%= f.input :description, as: :text %>
+  <%= f.button :submit %>
+<% end %>

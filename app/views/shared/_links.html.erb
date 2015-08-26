@@ -1,0 +1,13 @@
+<% if !object.new_record? %>
+  <%= link_to(t(:edit, attr: object.class.model_name.human.downcase),
+              url_for(action: :edit, controller: '/' + object.class.name.tableize,
+                      id: object.id),
+                      class: 'btn btn-u btn-u-primary') %>
+<% end %>
+<br><hr>
+<%= link_to(t(:new, attr: object.class.model_name.human.downcase),
+            url_for(action: :new, controller: '/' + object.class.name.tableize),
+            class: 'btn btn-u btn-u-primary') %>
+<%= link_to(t(:index, attr: object.class.model_name.human(count: 2).downcase),
+            url_for(action: :index, controller: '/' + object.class.name.tableize),
+            class: 'btn btn-u  btn-u-primary') %>

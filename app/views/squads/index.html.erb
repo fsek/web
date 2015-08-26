@@ -1,0 +1,22 @@
+<% title(Squad.model_name.human(count: 2)) %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><%= Squad.human_attribute_name(:title) %></th>
+      <th><%= Squad.human_attribute_name(:category) %></th>
+      <th><%= t('edit') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @squads.each do |squad| %>
+      <tr>
+        <td><%= link_to(squad.id, squad) %></td>
+        <td><%= squad.title %></td>
+        <td><%= squad.category%></td>
+        <td><%= link_to(t('edit'), edit_squad_path(squad))%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
