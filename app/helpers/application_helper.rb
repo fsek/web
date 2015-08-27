@@ -41,7 +41,7 @@ module ApplicationHelper
   end
 
 
-  def minimal_time(start, stop)
+  def minimal_time(start, stop, prick)
     str = ""
     if start.present?
       if start.min == 0
@@ -49,6 +49,11 @@ module ApplicationHelper
       else
         str += start.strftime('%-H:%M')
       end
+    end
+    if prick == "double"
+      str += '(..)'
+    elsif prick == "single"
+      str += '(.)'
     end
     if start.present? && stop.present?
       str += '-'

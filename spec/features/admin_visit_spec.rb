@@ -20,7 +20,7 @@ feature 'admin visits paths' do
     news: [:index, :new, :show],
     notices: [:index, :new, :show],
     pages: [:index, :new],
-    rents: [:main, :index]
+    rents: [:main, :index],
   }
 
   let(:election) { create(:election) }

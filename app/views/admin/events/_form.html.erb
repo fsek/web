@@ -19,6 +19,7 @@
       <div id="dates" class="profile-edit tab-pane fade in <%=@tab == :dates ? 'active' : ''%>">
         <%= f.input :starts_at, as: :datetime_picker %>
         <%= f.input :ends_at, as: :datetime_picker %>
+        <%= f.input :dot, collection: [["Ingen",nil],["Enkel",:single],["Dubbel",:double]] %>
         <%= f.input :all_day, as: :boolean %>
       </div>
 

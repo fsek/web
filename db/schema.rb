@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(version: 20150723050347) do
     t.string   "short",              limit: 255
     t.boolean  "signup",             limit: 1
     t.datetime "last_reg"
+    t.string   "dot",                limit: 255
     t.integer  "slots",              limit: 4
     t.boolean  "drink",              limit: 1
     t.boolean  "food",               limit: 1

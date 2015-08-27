@@ -7,6 +7,7 @@ class AddFieldsToEvent < ActiveRecord::Migration
 
     add_column :events, :signup, :boolean
     add_column :events, :last_reg, :datetime
+    add_column :events, :dot, :string
     add_column :events, :slots, :integer
 
     add_column :events, :drink, :boolean

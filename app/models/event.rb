@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
   # validates :slots, presence: true, if: :signup?
 
   scope :nollning, -> { where(category: :nollning) }
-  scope :from_date, -> (date) { where('(starts_at BETWEEN ? AND ?) OR (ends_at BETWEEN ? AND ?)',
+  scope :from_date, -> (date) { where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
                                       date.beginning_of_day, date.end_of_day,
                                       date.beginning_of_day, date.end_of_day) }
 
@@ -42,15 +42,30 @@ class Event < ActiveRecord::Base
   end
 
   def p_time
-    if starts_at.day == ends_at.day
-      %(#{starts_at.strftime("%-H:%M")}-#{ends_at.strftime("%-H:%M")})
+    str = ""
+    if dot == "single"
+      str += %(#{starts_at.strftime("%-H")}(.))
+    elsif dot == "double"
+      str += %(#{starts_at.strftime("%-H")}(..))
     else
-      %(#{starts_at.hour}->)
+      if starts_at.min == 0
+        str += starts_at.strftime("%-H")
+      else
+        str += starts_at.strftime("%-H:%M")
+      end
     end
+    if starts_at.day == ends_at.day
+      if ends_at.min == 0
+        str += %(-#{ends_at.strftime("%-H")})
+      else
+        str += %(-#{ends_at.strftime("%-H:%M")})
+      end
+    end
+    return str
   end
 
   def short_title
-    if short
+    if short.present?
       short
     else
       title

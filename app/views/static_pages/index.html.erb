@@ -2,24 +2,24 @@
   <div class="carousel slide carousel-v1 margin-bottom-20 margin-top-20" id="myCarousel-1">
     <div class="carousel-inner">
       <div class="item active">
-        <div class="start-background">
+        <div class="start-background" style="background: <%=image_url("img/bg.jpg") %>">
           <div class="container">
-            <h1>Välkommen till F-sektionen!</h1>                     
+            <h1>Välkommen till F-sektionen!</h1>
             <p>F-sektionen är en ideell förening för studenter som läser vid något av programmen Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap.</p>
           </div>
         </div>
-      </div>                    
+      </div>
     </div>
-  </div>	
+  </div>
 <% end %>
 
 <!--Mini News-->
-<div class="col-md-5">  
-    <div class="headline headline-md"><h3>Nyheter</h3></div>
-    <%= render @news%>
-    <%= link_to news_index_path do%>
-        <i class="fa fa-plus"></i> Fler nyheter
-     <%end%>
+<div class="col-md-5">
+  <div class="headline headline-md"><h3>Nyheter</h3></div>
+  <%= render @news%>
+  <%= link_to news_index_path do%>
+    <i class="fa fa-plus"></i> Fler nyheter
+  <%end%>
 </div>
 
 <div class="col-md-7">

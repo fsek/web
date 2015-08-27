@@ -53,7 +53,7 @@ class Admin::EventsController < ApplicationController
                                   :all_day, :category, :image,
                                   :signup, :last_reg,
                                   :slots, :drink, :food, :cash,
-                                  :short, :council_id)
+                                  :short, :council_id, :dot)
   end
 
   def authorize
