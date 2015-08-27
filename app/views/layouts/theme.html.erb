@@ -18,17 +18,9 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
-
-  <% if current_user # This script is needed for the old gallery hack. /Erik Henriksson    %>
-      <%= javascript_tag do %>
-          gallery_username = '<%= j current_user.username %>';
-          gallery_secret = '<%= j current_user.encrypted_password %>';
-      <% end %>
-  <% end %>
 </head>
 
 <body>
-<div class="roman-top">
 <!--=== Top ===-->
 <div class="top">
   <div class="container">
@@ -79,14 +71,15 @@
       <%= render "councils/menu" %>
     </div>
 <% end %>
-</div>
-<div class="roman-pillars">
+
+
 <!--=== Content Part ===-->
 <%= yield :pre_content %>
+
 <div class="container content">
   <div class="row magazine-page">
     <!-- Begin Content -->
-    <div class="col-md-12">
+    <div class="col-md-12 roman-border">
       <% if notice %>
           <div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -104,11 +97,8 @@
   </div>
   <!-- /row -->
 </div>
-</div>
 <!--/container-->
 <!-- End Content Part -->
-<div class="roman-footer">
-</div>
 
 <!--=== Footer ===-->
 <div class="footer navbar" id="footer">
@@ -131,3 +121,4 @@
 <!--=== End Copyright ===-->
 </body>
 </html> 
+
