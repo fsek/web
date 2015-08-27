@@ -1,29 +1,20 @@
 @import "colors";
-/* unvisited link */
-a:link {
-    color: $fsek-orange;
-}
 
-/* visited link */
-a:visited {
-    color: $fsek-orange;
-}
-
-/* mouse over link */
-a:hover {
-    color: $fsek-orange;
-}
-
-/* selected link */
+a:link,
+a:visited,
+a:hover,
 a:active {
-    color: $fsek-orange;
+  color: $fsek-orange;
 }
-.black-link a a:visited a:hover a:active {
-  color: #777 !important;
+.black-link {
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: $gray-text;
+  }
 }
-
-/*Easy Block
-------------------------------------*/
+/*Easy Block  ------------------------------------*/
 .easy-block-v1 {
   position: relative;
 }
@@ -33,28 +24,28 @@ a:active {
 }
 
 .easy-block-v1 .overflow-h h3 {
-  width: 60%; 
   float: left;
   font-size: 18px;
   line-height: 24px;
   margin-bottom: 5px;
+  width: 60%;
 }
 
 .easy-block-v1 .easy-block-v1-badge {
+  color: $black;
   left: 0px;
-  top: 10px;
-  z-index: 1;
-  color: #fff;
   padding: 4px 10px;
   position: absolute;
+  top: 10px;
+  z-index: 1;
 }
 
 /*Easy Block v2
 ------------------------------------*/
 .easy-block-v2 {
+  margin-bottom: 20px;
   overflow: hidden;
   position: relative;
-  margin-bottom: 20px;
 }
 
 .easy-block-v2 img {
@@ -62,52 +53,54 @@ a:active {
 }
 
 .easy-bg-v2 {
-  top: 5px;
-  color: #fff;
-  width: 100px;
-  padding: 5px;
-  right: -32px;
-  font-size: 13px;
-  position: absolute;
-  text-align: center;
-  letter-spacing: 2px;
-  transform: rotate(45deg);   
-  -o-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+  color: $black;
+  font-size: 13px;
+  letter-spacing: 2px;
+  padding: 5px;
+  position: absolute;
+  right: -32px;
+  text-align: center;
+  top: 5px;
+  transform: rotate(45deg);
+  width: 100px;
 }
 
-.rgba-red { background-color: rgba(231,76,60,0.8);}
 .rgba-blue{ background-color: rgba(52,152,219,0.8);}
 .rgba-default { background-color: rgba(114,192,44,0.8);}
 .rgba-purple { background-color: rgba(155,107,204,0.8);}
+.rgba-red { background-color: rgba(231,76,60,0.8);}
 
 /*Easy Block v3
 ------------------------------------*/
 .easy-block-v3 {
-  text-align: left;
-  background: #585f69;
+  background: $dark-gray;
   margin-bottom: 10px;
   padding: 30px 20px 20px;
-}
+  text-align: left;
 
-.easy-block-v3.first { 
-  background: #696f77; 
-}
-.easy-block-v3.second { 
-  background: #707780; 
-}
-.easy-block-v3.third { 
-  background: #787f88; 
-}
+  .first {
+    background: #696f77;
+  }
 
-.easy-block-v3 i {
-  color: #fff;
-  float: left;
-  font-size: 30px;
-  min-width: 45px;
-  padding-top: 10px;
+  .second {
+    background: #707780;
+  }
+
+  .third {
+    background: #787f88;
+  }
+
+  i {
+    color: $black;
+    float: left;
+    font-size: 30px;
+    min-width: 45px;
+    padding-top: 10px;
+  }
 }
 
 .easy-block-v3 .inner-faq-b {
@@ -121,7 +114,7 @@ a:active {
 }
 
 .easy-block-v3 .inner-faq-b h4 {
-  color: #fff;
+  color: $black;
   font-size: 17px;
   margin-bottom: 2px;
 }
@@ -129,34 +122,34 @@ a:active {
 .easy-block-v3 .inner-faq-b h2,
 .easy-block-v3 .inner-faq-b h3,
 .easy-block-v3 .inner-faq-b p {
-  color: #fff;
+  color: $black;
 }
 
 .carousel-indicators li {
-display: inline-block !important;
-width: 10px !important;
-height: 10px !important;
-margin: 1px !important;
-text-indent: -999px !important;
-border: 1px solid #fff !important;
-border-radius: 10px !important;
-cursor: pointer !important;
-background-color: #000 \9 !important;
-background-color: rgba(0,0,0,0) !important;
+  display: inline-block !important;
+  width: 10px !important;
+  height: 10px !important;
+  margin: 1px !important;
+  text-indent: -999px !important;
+  border: 1px solid $black !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  background-color: $black !important;
+  background-color: rgba(0,0,0,0) !important;
 }
 .carousel-indicators .active {
-width: 12px;
-height: 12px;
-margin: 0;
-background-color: #fff !important;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  background-color: $black !important;
 }
 
-.carousel-example-generic-2 img {  
+.carousel-example-generic-2 img {
   margin:auto;
   max-height:200px !important;
   width:auto !important;
 }
-.carousel-category img {  
+.carousel-category img {
   margin:auto;
   max-height:150px !important;
   width:auto !important;
@@ -172,7 +165,7 @@ background-color: #fff !important;
 
 .servive-block p,
 .servive-block h2 {
-  color: #fff;
+  color: $black;
 }
 
 .servive-block h2 a:hover{
@@ -182,7 +175,7 @@ background-color: #fff !important;
 .servive-block-light,
 .servive-block-default {
   background: #fafafa;
-  border: solid 1px #eee; 
+  border: solid 1px #eee;
 }
 
 .servive-block-default:hover {
@@ -215,7 +208,7 @@ background-color: #fff !important;
   background: #f1c40f;
 }
 .servive-block-orange {
-  background: #e67e22;
+  background: $fsek-orange;
 }
 .servive-block-green {
   background: #2ecc71;
@@ -253,8 +246,8 @@ background-color: #fff !important;
   height: 150px;
 }
 .border-dotted {
- border-style: solid;
- border-width: 1px;
+  border-style: solid;
+  border-width: 1px;
 }
 
 /*Funny Boxes
@@ -263,7 +256,7 @@ background-color: #fff !important;
   overflow: hidden;
   padding: 15px 20px;
   margin-bottom: 25px;
-  background: #fff;
+  background: $black;
   -webkit-transition:all 0.3s ease-in-out;
   -moz-transition:all 0.3s ease-in-out;
   -o-transition:all 0.3s ease-in-out;
@@ -314,18 +307,18 @@ background-color: #fff !important;
 .funny-boxes-colored h2 ,
 .funny-boxes-colored .funny-boxes-img li,
 .funny-boxes-colored .funny-boxes-img li i {
-  color: #fff;
+  color: $black;
 }
 /*Orange Left Bordered Funny Box**/
 .funny-boxes-left-orange {
-  border-left: solid 2px #fff;
+  border-left: solid 2px $black;
 }
 
 .funny-boxes-left-orange:hover {
   border-left-color: $fsek-orange;
 }
 .funny-boxes-top-orange {
-  border-top: solid 2px #fff;
+  border-top: solid 2px $black;
   border-top-color: $fsek-orange;
 }
 
@@ -337,12 +330,9 @@ background-color: #fff !important;
 .funny-boxes-right-u:hover {
   border-right-color: $fsek-orange;
 }
-#phrasing-edit-all-phrases { /* Hide to avoid linking to /phrasing*/
-  display:none;
-}
 
 .pagination > li > a:hover {
-  background-color: $fsek-orange !important;
-  border: 1px solid #fff;
+  background-color: $fsek-orange;
+  border: 1px solid $black;
   outline: 0;
 }
