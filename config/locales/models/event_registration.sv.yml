@@ -1,0 +1,8 @@
+sv:
+  activerecord:
+    models:
+      event_registration: Din eventanmälan
+    attributes:
+      event_registration:
+        user: Användare
+        event: Event

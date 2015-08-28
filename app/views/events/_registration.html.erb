@@ -1,0 +1,34 @@
+<% if event.signup %>
+  <% if event.attending(current_user) %>
+    <span class="icon-lg attending-icon">
+      <%= fa_icon("check-circle-o") %>
+      <%= t("event.is-attending") %><br>
+    </span><br>
+    <%= link_to(t('event.unsignup'), event_registration_path(event), method: :delete, class: "btn btn-u", data: { confirm: t('event.confirm-unsign') }) %>
+  <% elsif event.reserve(current_user) %>
+    <span class="icon-lg pending-icon">
+      <%= fa_icon("question-circle") %>
+      <%= %(#{t("event.is-pending")} #{event.reserves.count}) %><br>
+      <% if event.last_reg.present? %>
+        <%= Event.human_attribute_name(:last_reg) %>: <%= event.last_reg %>
+        <br>
+      <% end %>
+      <%= link_to(t('event.unsignup'), event_registration_path(event), method: :delete, class: "btn btn-u", data: { confirm: t('event.confirm-unsign') }) %>
+    </span>
+  <% else %>
+    <span class="icon-lg not-attending-icon">
+      <%= fa_icon("question-circle") %>
+      <%= t("event.not-attending") %>
+      <% if event.last_reg.present? %>
+        <br>
+        <%= Event.human_attribute_name(:last_reg) %>: <%= event.last_reg %>
+      <% end %>
+      <br>
+      <%= simple_form_for(reg, url: event_registration_path(event)) do |f| %>
+        <%= f.submit t('event.signup-action'), class: "btn btn-u" %>
+      <% end %>
+    </span>
+  <% end %>
+  <br>
+<% end %>
+
