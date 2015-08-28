@@ -45,6 +45,8 @@ namespace :deploy do
     end
   end
 
+  before :deploy, 'deploy:run_tests'
+  after :deploy, 'permissions:load'
   after :publishing, :restart
 
   after :restart, :clear_cache do
@@ -55,5 +57,4 @@ namespace :deploy do
       # end
     end
   end
-
 end
