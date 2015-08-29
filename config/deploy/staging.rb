@@ -5,8 +5,8 @@
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
 
-set :stage, :production
-set :branch, 'master'
+set :stage, :staging
+set :branch, 'stage'
 set :rails_env,      'production'
 
 role :app, %w{dirac@fsektionen.se}
@@ -44,3 +44,4 @@ set :tmp_dir, "/home/#{fetch(:user)}/tmp/#{fetch(:stage)}"
 #     # password: 'please use keys'
 #   }
 # setting per server overrides global ssh_options
+
