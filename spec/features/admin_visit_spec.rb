@@ -3,21 +3,19 @@ feature 'admin visits paths' do
   let(:user) { create(:admin) }
   let(:album) { create(:album) }
   let(:cafe_work) { create(:cafe_work) }
+  let(:council) { create(:council) }
+  let(:news) { create(:news) }
 
   paths = {
     albums: [:show],
-    cafe_works: [:index, :nyckelpiga],
-    constants: [:index, :new, :show],
-    contacts: [:index, :new, :show],
+    cafe_works: [:index],
+    contacts: [:index, :show],
     councils: [:index, :show],
-    # documents: [ :index, :new ],
-    # No idea why this fails TODO Fix
-    documents: [:new],
+    documents: [:index, :new],
     elections: [:index],
     events: [:index, :show],
     faqs: [:index, :show, :new],
-    menus: [:index, :new],
-    news: [:index, :new, :show],
+    news: [:index, :show],
     notices: [:index, :new, :show],
     pages: [:index, :new],
     rents: [:main, :index],
@@ -26,7 +24,9 @@ feature 'admin visits paths' do
   let(:election) { create(:election) }
 
   background do
+    council
     election
+    news
   end
   Steps 'Checking out pages' do
     When 'Visit sign_in page' do

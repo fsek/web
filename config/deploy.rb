@@ -8,32 +8,13 @@ set :stages, %w(staging production development)
 
 set :user, :dirac
 
-# Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+set :format, :petty
 
-
-# Default value for :format is :pretty
-set :format, :pretty
-
-# Default value for :log_level is :debug
-# set :log_level, :debug
-
-# Default value for :pty is false
-# set :pty, true
 
 # Default value for :linked_files is []
-# set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml}
 
 # Default value for linked_dirs is []
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
-
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-# Default value for keep_releases is 5
-# set :keep_releases, 5
-
-set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs, %w{bin log tmp vendor/bundle public/system storage}
 
 namespace :deploy do
@@ -57,4 +38,8 @@ namespace :deploy do
       # end
     end
   end
+
+  after :deploy, 'permissions:load'
+  after :publishing, 'deploy:restart'
+  after :finishing, 'deploy:cleanup'
 end

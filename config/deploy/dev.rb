@@ -5,12 +5,13 @@
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
 
-set :stage, :dev
+set :stage, :development
 set :branch, 'dev'
 set :rails_env, 'development'
-set :migrate_target, :latest
 
 role :app, %w{dirac@fsektionen.se}
+role :web, %w{dirac@fsektionen.se}
+role :deb, %w{dirac@fsektionen.se}
 
 # Extended Server Syntax
 # ======================
