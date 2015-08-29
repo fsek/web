@@ -28,6 +28,11 @@
         </ul>
       </li>
     <% end %>
+    <% if can? :manage, Album %>
+      <li class="dropdown-submenu">
+        <%= link_to(model_name(Album), :admin_gallery_albums)%>
+      </li>
+    <% end %>
     <% if can? :manage, Page %>
       <li class="dropdown-submenu">
         <%= link_to(model_name(Page),:pages)%>

@@ -1,0 +1,15 @@
+<%= simple_form_for([:admin,:gallery, @album]) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :location %>
+    <%= f.input :start_date, as: :datetime_picker %>
+    <%= f.input :end_date, as: :datetime_picker %>
+  </div>
+  <div class="form-files">
+    <%= f.input :images_upload, as: :file, input_html: { multiple: true } %>
+  </div>
+  <div class="form-group">
+    <%= f.button :submit, class: 'btn btn-u' %>
+  </div>
+<% end %>

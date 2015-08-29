@@ -1,0 +1,11 @@
+<div class="gallery-page">
+  <div class="row margin-bottom-20">
+    <% @images.each do |p| %>
+      <div class="col-md-4 col-sm-6">
+        <span class="overlay-zoom">
+          <%= image_tag(p.foto(:large),class: 'img-responsive gallery', rel: "album", href: p.foto(), id: p.id)  %>
+          <span class="zoom-icon"></span>
+        </span>
+      </div>
+  </div> <!--row-->
+</div><!--/gallery-page-->

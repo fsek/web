@@ -159,10 +159,19 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :albums, path: :galleri do
-      get :upload_images, path: :ladda_upp, on: :member
-      patch :upload_images, path: :ladda_upp, on: :member
-      resources :images, path: :bilder, except: [:new]
+    namespace :admin do
+      namespace :gallery, path: :bildgalleri do
+        resources :albums, path: :album do
+          resources :images, path: :bilder
+        end
+      end
+    end
+
+    get :bildgalleri, controller: :gallery, action: :index
+    namespace :gallery, path: :bildgalleri do
+      resources :albums, path: :album, only: [:show] do
+        resources :images, path: :bilder, except: [:show]
+      end
     end
 
     namespace :admin do

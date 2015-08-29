@@ -1,0 +1,11 @@
+<%= title(t('gallery.title')) %>
+<div class="headline headline-md">
+  <h1><%= t('gallery.title') %></h1>
+</div>
+<div class="headline headline-md"><h3><%= t('gallery.all_albums') %></h3></div>
+<% @albums.each do |p| %>
+  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+    <%= render 'album_preview', album: p %>
+  </div>
+<%end%>
+

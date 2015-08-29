@@ -1,0 +1,16 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <h3 class="headline headline-md">
+    <%= t(:edit, attr: Album.model_name.human) %>
+  </h3>
+  <%= render 'form'%>
+  <%= link_to(t(:show, attr: Album.model_name.human), admin_gallery_album_path(@album),
+                                                      class: 'btn btn-u')%>
+  <%= link_to(t(:destroy, attr: Album.model_name.human), admin_gallery_album_path(@album),
+                                                         method: :delete, class: 'btn btn-u') %>
+  <%= link_to(t('gallery.title'), admin_gallery_albums_path, class: 'btn btn-u') %>
+</div>
+<div class="col-md-8 col-md-offset-2 col-sm-12 album-preview">
+  <% @album.images.each do |img| %>
+    <%= image_tag(img.thumb, class: 'img-resposive') %>
+  <% end %>
+</div>

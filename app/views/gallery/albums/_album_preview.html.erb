@@ -1,0 +1,5 @@
+<%= link_to gallery_album_path(album), data: {no_turbolink: true} do%>
+  <%if album.images.count > 0%>
+    <%= image_tag(album.images.sample().foto.url(:small),class: "img-responsive")%>
+  <% end %>
+<%end%>

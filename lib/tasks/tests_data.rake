@@ -130,5 +130,9 @@ namespace :db do
                                description: "beskrivningen", food: true, drink: true)
       date = date + 1.days + [-3,-2,-1,0,1,2,3].sample.hours
     end
+
+    # Gallery
+    Album.find_or_create_by!(title: 'Välkomstgasque', description: 'Väldans trevligt!', location: 'Gasquesalen', public: true,
+                             start_date: Time.zone.now, category: 'Nollning')
   end
 end

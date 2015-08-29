@@ -4,6 +4,10 @@ ruby '2.2.3'
 
 gem 'rails', '4.2.4'
 
+# Need to use this for multiple file upload
+# https://github.com/carrierwaveuploader/carrierwave#multiple-file-uploads
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick'
 gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'coffee-rails'
