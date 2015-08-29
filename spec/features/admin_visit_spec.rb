@@ -11,13 +11,14 @@ feature 'admin visits paths' do
     cafe_works: [:index],
     contacts: [:index, :show],
     councils: [:index, :show],
-    documents: [ :index, :new ],
+    documents: [:index, :new],
     elections: [:index],
+    events: [:index, :show],
     faqs: [:index, :show, :new],
     news: [:index, :show],
     notices: [:index, :new, :show],
-    pages: [:index],
-    rents: [:main, :index]
+    pages: [:index, :new],
+    rents: [:main, :index],
   }
 
   let(:election) { create(:election) }

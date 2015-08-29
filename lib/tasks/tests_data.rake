@@ -125,5 +125,17 @@ namespace :db do
     News.find_or_create_by!(title: 'Femte helt nytt användarsystem',
                            content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
                            user: User.first)
+    # Events
+    nollning = Time.zone.local(2015, 8, 23, 13)
+    Event.find_or_create_by!(short: "E1",title: "Eventett", starts_at: nollning + 3.days, ends_at: nollning + 3.days + 10.hours,
+                             description: "beskrivningen", food: true, drink: true, category: :nollning)
+    Event.find_or_create_by!(short: "E2",title: "Eventtvå", starts_at: nollning + 4.days, ends_at: nollning + 4.days + 10.hours,
+                             description: "beskrivningen", food: true, signup: true, category: :nollning)
+    Event.find_or_create_by!(short: "E3",title: "Eventtre", starts_at: nollning + 5.days, ends_at: nollning + 5.days + 10.hours,
+                             description: "beskrivningen", signup: true, drink: true, category: :nollning)
+    Event.find_or_create_by!(short: "E4",title: "Eventfyra", starts_at: nollning + 6.days, ends_at: nollning + 6.days + 10.hours,
+                             description: "beskrivningen", cash: true, drink: true, category: :nollning)
+    Event.find_or_create_by!(short: "E5", title: "Eventfem", starts_at: nollning + 7.days, ends_at: nollning + 7.days + 10.hours,
+                             description: "beskrivningen", food: true, drink: true, category: :nollning)
   end
 end

@@ -1,8 +1,9 @@
 language: ruby
 rvm:
-  - 2.1.0
+  - 2.1.3
+  - 2.2.3
 env:
-  - DB=sqlite
+  - DB=mysql
 script:
   - RAILS_ENV=test
   - bundle exec rake db:test:prepare
@@ -10,8 +11,10 @@ script:
 before_script:
  - cp config/database.yml.template config/database.yml
  - chmod +x config/database.yml
+ - cp config/secrets.yml.template config/secrets.yml
+ - chmod +x config/secrets.yml
+ - mysql -e 'create database fsek_test'
 notifications:
   webhooks:
     urls:
-      - http://samson.fsektionen.se/integrations/travis/17f87d9a378f1dd581c52d9da708cce5
       - https://webhooks.gitter.im/e/48801aad6f679014cfd3

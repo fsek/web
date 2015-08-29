@@ -410,9 +410,11 @@ DEPENDENCIES
   sass-rails
   shoulda-matchers
   simple_form
-  sqlite3
   therubyracer
   turbolinks
   uglifier
   web-console (~> 2.0)
   wice_grid
+
+BUNDLED WITH
+   1.10.5

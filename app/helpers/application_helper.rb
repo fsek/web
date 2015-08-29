@@ -39,4 +39,32 @@ module ApplicationHelper
     end
     content_tag :div, raw(html.to_html), class: 'form-group'
   end
+
+
+  def minimal_time(start, stop, prick)
+    str = ""
+    if start.present?
+      if start.min == 0
+        str += start.strftime('%-H')
+      else
+        str += start.strftime('%-H:%M')
+      end
+    end
+    if prick == "double"
+      str += '(..)'
+    elsif prick == "single"
+      str += '(.)'
+    end
+    if start.present? && stop.present?
+      str += '-'
+    end
+    if stop.present?
+      if stop.min == 0
+        str += stop.strftime('%-H')
+      else
+        str += stop.strftime('%-H:%M')
+      end
+    end
+    str
+  end
 end

@@ -5,6 +5,7 @@ sv:
     attributes:
       event:
         title: Titel
+        short: Kort titel
         author: Upplagd av
         description: Beskrivning
         location: Plats
@@ -13,3 +14,11 @@ sv:
         all_day: Heldag
         category: Kategori
         image: Bild
+        signup: Med anmälan
+        last_reg: Sista anmälningsdatum
+        last_unreg: Sista avanmälningsdatum
+        slots: Antal platser
+        drink: Dryck
+        food: Mat
+        cash: Kontant
+

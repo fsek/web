@@ -1,4 +1,4 @@
-# encoding:UTF-8
+# encoding: UTF-8
 class PagesController < ApplicationController
   load_permissions_and_authorize_resource find_by: :url
 
@@ -15,26 +15,29 @@ class PagesController < ApplicationController
   end
 
   def create
-    flash[:notice] = 'Sidan skapades, success!.' if @page.save
-    redirect_to @page
+    if @page.save
+      redirect_to page_path(@page), notice: alert_create(Page)
+    else
+      render :new
+    end
   end
 
   def update
     if @page.update(page_params)
-      redirect_to @page, notice: 'Sidan uppdaterades, great!'
+      redirect_to edit_page_path(@page), notice: alert_update(Page)
     else
-      render action: :edit
+      render :edit
     end
   end
 
   def destroy
-    @page.destroy
+    @page.destroy!
     redirect_to pages_url
   end
 
   private
 
   def page_params
-    params.fetch(:page).permit(:council_id, :url, :visible, :title)
+    params.require(:page).permit(:council_id, :url, :visible, :title, :namespace)
   end
 end

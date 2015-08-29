@@ -7,7 +7,7 @@
 
 set :stage, :development
 set :branch, 'dev'
-set :rails_env,      'development'
+set :rails_env, 'development'
 
 role :app, %w{dirac@fsektionen.se}
 role :web, %w{dirac@fsektionen.se}

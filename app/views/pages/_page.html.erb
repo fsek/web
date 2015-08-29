@@ -1,9 +1,13 @@
 <div class="headline"><h2><%= page.title %></h2></div>
 <div class="col-md-9">
   <!-- Our Services -->
-  <%= render page.main %>
+  <% page.main.each do |element| %>
+    <%= render 'page_elements/page_element', page_element: element %>
+  <% end %>
 </div>
 <!--/col-md-9-->
 <div class="col-md-3">
-  <%= render page.side %>
+  <% page.side.each do |element| %>
+    <%= render 'page_elements/page_element', page_element: element %>
+  <% end %>
 </div>
