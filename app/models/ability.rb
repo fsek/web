@@ -8,7 +8,7 @@ class Ability
     can :read, [News, Council, Page, Election]
     can :read, [Contact, Document], public: true
     can [:display, :image], Notice
-    can [:collapse, :display], Post
+    can [:show, :collapse, :display], Post
 
     # For calendar-subscription
     can :export, Event

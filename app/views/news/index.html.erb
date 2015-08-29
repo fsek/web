@@ -1,6 +1,6 @@
 <% title("Nyheter") %>
 
-<div class="container">	
+<div class="container">
   <div class="col-md-12">
     <% if can? :modify, @news.first || News.new %>
       <div class="row">
@@ -10,7 +10,7 @@
     <div class="row">
       <ul class="timeline-v2">
         <% @news.each do |news| %>
-          <li>					
+          <li>
             <time class="cbp_tmtime"><span><%= link_to fa_icon("user") + (news.user) ,news.user %> </span>
               <span><%= news.created_at.to_s %></span></time>
             <i class="cbp_tmicon"></i>
@@ -28,7 +28,7 @@
                 </div>
               </div>
             </div>
-          </li>								
+          </li>
         <% end %>
 
       </ul>

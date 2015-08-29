@@ -1,7 +1,6 @@
 # encoding: utf-8
-
 class NewsController < ApplicationController
-  load_and_authorize_resource
+  load_permissions_and_authorize_resource
 
   def index
     @news = News.all_date
