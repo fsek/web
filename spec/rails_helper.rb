@@ -4,8 +4,9 @@ require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
-require 'rspec/example_steps'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'rspec/example_steps'
+include ActionDispatch::TestProcess
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -42,6 +43,9 @@ RSpec.configure do |config|
 
   # Allow for I18n in tests
   config.include AbstractController::Translation
+
+  # Allow for route-helpers in tests
+  config.include Rails.application.routes.url_helpers
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

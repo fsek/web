@@ -44,7 +44,7 @@ class DocumentsController < ApplicationController
   private
 
   def set_documents
-    @documents = (current_user) ? Document.all : Document.public
+    @documents = (current_user) ? Document.all : Document.publik
   end
 
   def document_params

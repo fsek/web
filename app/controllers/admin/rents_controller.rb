@@ -16,21 +16,27 @@ class Admin::RentsController < ApplicationController
 
   def create
     @rent = Rent.new_with_status(rent_params, nil)
-    flash[:notice] = 'Bokningen skapades' if @rent.save(validate: false)
-    redirect_to admin_rent_path(@rent)
+    if @rent.save(validate: false)
+      redirect_to admin_rent_path(@rent), notice: alert_create(Rent)
+    else
+      render :new
+    end
   end
 
   def new
   end
 
   def update
-    @rent.update_without_validation(rent_params)
-    redirect_to admin_rent_path(@rent), notice: 'Bokningen uppdaterades.'
+    if @rent.update_without_validation(rent_params)
+      redirect_to admin_rent_path(@rent), notice: alert_update(Rent)
+    else
+      render :edit
+    end
   end
 
   def destroy
     @rent.destroy
-    redirect_to :admin_car, notice: 'Bokningen raderades.'
+    redirect_to :admin_car, notice: alert_destroy(Rent)
   end
 
   private

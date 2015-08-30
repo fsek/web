@@ -7,54 +7,27 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require custom
- *= require app
- *= require bootstrap
- *= require_self
- *= require colors
- *= require style
- *= require header1
- *= require responsive
- *= require font-awesome
- * require xaxa-font-awesome
- *= require page_search
- *= require page_magazine
- *= require page_login_reg
- *= require portfolio
- *= require style
- *= require timeline
- *= require default_theme
- * require_tree .
- *= require start_page
- *= require fullcalendar
- *= require colorbox
- *= require countdown
- *= require jquery.countdown
- *= require elections
- *= require fancybox
- *= require gallery
- *= require jquery-ui/datepicker
  */
 
-// We should eventually import all files like this
-@import "colors";
-@import "cafe_works";
-@import "elections";
-@import "rents";
-@import "posts";
-@import "faqs";
+/* Override for Bootstrap 3 font location */
+/* Start importing Bootstrap */
+@import "bootstrap-sprockets";
 @import "bootstrap";
-@import "bootstrap-datetimepicker";
 
-@font-face {
-  font-family: "Glyphicons Halflings";
-  src: url("../assets/glyphicons-halflings-regular.eot");
-  src: url("../assets/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"),
-  url("../assets/glyphicons-halflings-regular.woff") format("woff"),
-  url("../assets/glyphicons-halflings-regular.ttf") format("truetype"),
-  url("../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
-}
+/* Include gems */
+@import "fullcalendar";
+@import "fancybox";
+@import "font-awesome";
+
+/* Include colors and mixins */
+
+@import "colors";
+@import "mixins";
+@import "fonts";
+
+/* Include partials */
+
+@import "partials/*";
 
 .content {
   padding-top: 20px;

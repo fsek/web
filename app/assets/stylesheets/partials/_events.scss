@@ -1,0 +1,27 @@
+@import "colors";
+.attending-icon {
+  color: $fsek-orange;
+}
+
+.pending-icon {
+  color: SlateBlue;
+}
+
+.not-attending-icon {
+  color: red;
+}
+
+.event-info {
+  ul {
+    padding: 0;
+    li {
+      list-style-type: none;
+    }
+  }
+}
+
+.registrations-list {
+  column-count: 2;
+  column-gap: 20px;
+}
+

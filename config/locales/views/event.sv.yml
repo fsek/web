@@ -1,0 +1,20 @@
+sv:
+  event:
+    matrix: Matris
+    info: Information
+    dates: Datum
+    registration: Anmälan
+
+    signup: Anmälan krävs
+    cash: Cash is king
+    food: Mat serveras
+    drink: Alkohol serveras
+
+    is-attending: Du är anmäld!
+    slots-left: plats(er) kvar.
+    is-pending: "Du är reserv, plats:"
+    not-attending: Du är inte anmäld
+
+    unsignup: Avanmäl
+    confirm-unsign: Är du säker på att du vill avanmäla dig? Det finns inget sätt att få tillbaka platsen.
+    signup-action: Anmäl

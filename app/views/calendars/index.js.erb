@@ -1,0 +1,22 @@
+var title       =   '.modal-title',
+    loader      =   '.ajax-loader',
+    content     =   '.modal-body-content',
+    dataRemote  =   'a[data-remote=true]',
+    toolbar     =   'div.modal-footer',
+    modal       =   '#ajax-modal';
+
+//i set the title through a helper function
+$(title).html('My Messages');
+//hides the modal and shows the ajax content
+$(loader).fadeToggle('fast', function() {
+  $(loader).fadeOut('slow');
+  $(content).html('<%= j render("index") %>');
+  $(modal).modal();
+});
+//brings the loader back up + gets rid of the content when linking to another controller method etc
+$(content).on('click', dataRemote, function(){
+  $(content).fadeOut('slow', function() {
+    $(content).empty();
+    $(loader).fadeIn('slow');
+  });
+});

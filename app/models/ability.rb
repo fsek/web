@@ -8,7 +8,7 @@ class Ability
     can :read, [News, Council, Page, Election]
     can :read, [Contact, Document], public: true
     can [:display, :image], Notice
-    can [:collapse, :display], Post
+    can [:show, :collapse, :display], Post
 
     # For calendar-subscription
     can :export, Event
@@ -28,10 +28,12 @@ class Ability
 
     # Only for members of the Guild
     if user.member?
+      can [:new, :create], EventRegistration
       can :read, [Contact, Document]
       can :read, :old_gallery
-      # TODO We really need to move calendar to its own controller
-      can [:read, :calendar], Event
+      can :read, Event
+      can [:read, :create, :destroy], EventRegistration
+
       can :manage, Candidate, user_id: user.id
       can :manage, Nomination
     end

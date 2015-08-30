@@ -1,0 +1,39 @@
+<% provide(:title, 'En Gudomlig Nollning i Antikens Tecken') %>
+<div class="nollning">
+  <div class="row">
+    <div class="col-md-12">
+      <%= image_tag("theme/fos.jpg", class: 'nollning-header img-responsive') %>
+      <h1 class="headline headline-md"><%= t('nollning.welcome') %></h1>
+      <div class="col-md-8 col-md-offset-2 col-xs-12">
+        <p class="nollning-paragraph">
+        Välkommen F-sektionens Nollning 2015!
+        Här hittar du <%= link_to('Nollematrisen', nollning_matrix_path) %>, det stora schemat för nollningen,
+        och lite länkar till andra sidor som kan vara bra att ha koll på.
+        </p>
+        <p class="nollning-paragraph">
+        Om du är nyantagen student, så välkommen till F-sektionen och välkommen till vår nollning.
+        Det kommer bli en intensiv tid, och vi har gjort vårt bästa för att du ska ha så roligt som möjligt.
+        Om du är en äldre student på sektionen så hoppas vi att du är med och engagerar dig och har riktigt roligt du också!
+        </p>
+        <span class="nollning-sign">
+          Kram,<br>
+          Antikföset
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-9">
+        <h1 class="headline headline-md">En Gudomlig Nolledans</h1>
+        <div class="nollning-video">
+          <iframe src="https://www.youtube.com/embed/RvjQ50ZB4uA?rel=0&amp;vq=hd1080" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <%= render 'nollning/sidebar' %>
+      </div>
+    </div>
+  </div>
+</div>

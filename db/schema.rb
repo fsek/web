@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503052846) do
+ActiveRecord::Schema.define(version: 20150723050347) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -70,9 +70,9 @@ ActiveRecord::Schema.define(version: 20150503052846) do
     t.boolean  "utskottskamp", limit: 1
     t.string   "access_code",  limit: 255
     t.integer  "d_year",       limit: 4
+    t.integer  "user_id",      limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",      limit: 4
     t.string   "firstname",    limit: 255
   end
 
@@ -169,6 +169,17 @@ ActiveRecord::Schema.define(version: 20150503052846) do
     t.integer "post_id",     limit: 4
   end
 
+  create_table "event_registrations", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "event_id",   limit: 4
+    t.boolean  "reserve",    limit: 1
+    t.datetime "removed_at"
+    t.integer  "remover_id", limit: 4
+    t.text     "comment",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.string   "author",             limit: 255
@@ -184,6 +195,16 @@ ActiveRecord::Schema.define(version: 20150503052846) do
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
+    t.integer  "council_id",         limit: 4
+    t.integer  "user_id",            limit: 4
+    t.string   "short",              limit: 255
+    t.boolean  "signup",             limit: 1
+    t.datetime "last_reg"
+    t.string   "dot",                limit: 255
+    t.integer  "slots",              limit: 4
+    t.boolean  "drink",              limit: 1
+    t.boolean  "food",               limit: 1
+    t.boolean  "cash",               limit: 1
   end
 
   create_table "faqs", force: :cascade do |t|
@@ -288,6 +309,7 @@ ActiveRecord::Schema.define(version: 20150503052846) do
     t.string   "url",        limit: 255
     t.boolean  "visible",    limit: 1
     t.string   "title",      limit: 255
+    t.string   "namespace",  limit: 255
   end
 
   add_index "pages", ["council_id"], name: "index_pages_on_council_id", using: :btree
@@ -322,9 +344,6 @@ ActiveRecord::Schema.define(version: 20150503052846) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "post_users", ["post_id"], name: "index_post_users_on_post_id", using: :btree
-  add_index "post_users", ["user_id"], name: "index_post_users_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",         limit: 255
@@ -380,7 +399,7 @@ ActiveRecord::Schema.define(version: 20150503052846) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment",     limit: 65535
-    t.string   "status",      limit: 255,   default: "Ej bestÃƒÂ¤md"
+    t.string   "status",      limit: 255,   default: "unconfirmed"
     t.boolean  "service",     limit: 1,     default: false
     t.string   "access_code", limit: 255
     t.integer  "user_id",     limit: 4
