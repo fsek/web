@@ -5,37 +5,44 @@ class Ability
     user ||= User.new
 
     # Abilities that everyone get.
-    can :read, [News, Council, Page, Election]
-    can :read, [Contact, Document], public: true
+    can :read, [Council, Election, News, Page]
+    can :read, Document, public: true
+    can [:mail, :read], Contact, public: true
     can [:display, :image], Notice
-    can [:show, :collapse, :display], Post
+    can [:collapse, :display, :show], Post
+    can [:create, :read], Faq
+    can :read, CafeWork
+    cannot [:add_worker, :update_worker, :remove_worker], CafeWork
+    can :main, Rent
+    cannot [:create, :destroy, :update], Rent
 
     # For calendar-subscription
-    can :export, Event
-    can :read, CafeWork
-    can :main, Rent
-    can [:new, :read, :create], Faq
+    can :export, :calendar
 
     # Abilities all signed in users get
-    if user.id
-      can [:main, :new, :edit, :create, :update, :destroy], Rent, user_id: user.id
-      can [:edit, :update, :show, :update_password, :update_account], User, id: user.id
+    if user.id.present?
+      can [:index, :create], Rent
+      can [:show, :update, :destroy], Rent, user_id: user.id
+      can [:edit, :show, :update_password, :update_account], User, id: user.id
       can :add_worker, CafeWork, user_id: nil
       can [:edit, :update_worker, :remove_worker], CafeWork, user_id: user.id
       can [:show, :avatar], User
-      can [:read, :display, :hide], Post
+      can [:show, :display, :hide], Post
     end
 
     # Only for members of the Guild
     if user.member?
-      can [:new, :create], EventRegistration
-      can :read, [Contact, Document]
+      # Add album abilities
+      can [:read, :mail], Contact
+      can :read, Document
       can :read, :old_gallery
+      can :index, :calendar
       can :read, Event
-      can [:read, :create, :destroy], EventRegistration
+      #can [:read, :create, :destroy], EventRegistration
 
-      can :manage, Candidate, user_id: user.id
-      can :manage, Nomination
+      can [:create, :index], Candidate
+      can [:update, :show, :destroy], Candidate, user_id: user.id
+      can [:create], Nomination
     end
 
     # Note: Root access is given dynamically by having a post with permissions :manage, :all
