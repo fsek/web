@@ -1,4 +1,4 @@
-# encoding:UTF-8
+# encoding: UTF-8
 class PostsController < ApplicationController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :council, parent: true, find_by: :url
@@ -11,15 +11,15 @@ class PostsController < ApplicationController
   def remove_user
     user = User.find_by_id(params[:user_id])
     @post.users.delete(user)
-    flash[:notice] = %(#{user.name} har inte längre posten #{@post.title}.)
+    flash[:notice] = I18n.t('post.user_removed', u: user.to_s, p: @post.to_s)
     redirect_to council_posts_path(@council)
   end
 
   def add_user
     if @post.add_user(@user)
-      flash[:notice] = %(#{@user.full_print} tilldelades #{@post})
+      flash[:notice] = I18n.t('post.added', u: @user.to_s, p: @post.to_s)
     else
-      flash[:alert] = %(Tilldelningen gick inte: #{@post.errors.full_messages})
+      flash[:alert] = I18n.t('post.add_error', errors: @post.errors.full_messages)
     end
     redirect_to back
   end
@@ -71,7 +71,7 @@ class PostsController < ApplicationController
 
   def update_permissions
     if @post.set_permissions(permission_params)
-      redirect_to permissions_path, notice: alert_update_resource(Post)
+      redirect_to permissions_path, notice: alert_update(Post)
     else
       render action: permission_path(@post)
     end

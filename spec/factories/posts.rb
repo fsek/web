@@ -2,6 +2,7 @@
 FactoryGirl.define do
   factory :post do
     title
+    council
     description
     elected_by { ['Studierådet', 'Terminsmötet'].sample }
     elected_at { ['VT', 'HT'].sample }

@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   load_permissions_and_authorize_resource
   before_action :set_user
 
+  def search
+    @search_users = User.search(params[:firstname], params[:lastname])
+  end
+
   def index
   end
 

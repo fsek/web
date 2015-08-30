@@ -1,6 +1,9 @@
 require 'rails_helper'
+
 feature 'admin visits paths' do
+  let(:election) { create(:election) }
   let(:user) { create(:admin) }
+  let(:post) { create(:post) }
   let(:album) { create(:album) }
   let(:cafe_work) { create(:cafe_work) }
   let(:council) { create(:council) }
@@ -23,7 +26,8 @@ feature 'admin visits paths' do
     news: [:index, :show],
     notices: [:index, :new, :show],
     pages: [:index, :new],
-    rents: [:main, :index],
+    posts: [:index],
+    rents: [:main, :index]
   }
 
   admins = {
@@ -39,14 +43,12 @@ feature 'admin visits paths' do
     election
     event
     news
+    PostUser.create!(post: post, user: user)
   end
 
   paths.each do |key, value|
     value.each do |v|
       Steps %(Controller: #{key}, action: #{v}) do
-        And 'sign in' do
-          login.visit_page.login(user, '12345678')
-        end
         And 'visit' do
           if v == :show || v == :edit
             resource = create(key.to_s.singularize.to_sym)

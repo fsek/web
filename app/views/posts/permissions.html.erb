@@ -1,22 +1,45 @@
-<div class="col-md-8 col-md-offset-2">
-	<div class="headline">Permissions för <%=@post%></div>
-	<%= form_for(@post,url: permission_path(@post), method: :patch) do |f|%>
-    <% @permissions.group_by(&:subject_class).each do |subject, action| %>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= subject %>">
-            <div class="headline headline-md panel-title"><h3>Permissions: <%= subject %></h3></div>
-          </a></h4>
-        </div>
-        <div id="collapse<%= subject %>" class="panel-collapse collapse">
-          <div class="panel-body">
-						<%= f.collection_check_boxes(:permission_ids,action,:id, :to_s) do |b|%>
-						 	<%= b.label { b.check_box + ' ' + b.text } %><br>
-						<%end%>
-          </div>
-        </div>
+<div class="col-md-12 reg-page">
+  <h2><%= t(:for, a: Permission.model_name.human(count: 2), b: @post) %></h2>
+  <div class="profile-body margin-bottom-20">
+    <div class="tab-v1">
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <ul class="nav nav-stacked nav-tabs">
+          <% @permissions.group_by(&:subject_class).each do |subject, action| %>
+            <li class="">
+              <a data-toggle="tab" href="#<%= subject %>">
+                <% if subject != 'all' %>
+                  <%= subject.constantize.try(:model_name).try(:human) %>
+                <% else %>
+                  <%= t('permission.all').titleize %>
+                <% end %>
+              </a>
+            </li>
+          <% end %>
+        </ul>
       </div>
-    <% end %>
-		<%= f.submit %>
-	<%end%>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <%= link_to t('back_to_root'), :root %>
+        <%= form_for(@post, url: permission_path(@post), method: :patch) do |f| %>
+          <%= f.submit t(:save, attr: Permission.model_name.human),
+            class: 'btn btn-u', input_html: { class: 'btn btn-u' }  %>
+          <div class="tab-content">
+            <% @permissions.group_by(&:subject_class).each do |subject, action| %>
+              <div id="<%= subject %>" class="profile-edit tab-pane fade in">
+                <h2>
+                  <% if subject != 'all' %>
+                    <%= subject.constantize.try(:model_name).try(:human) %>
+                  <% else %>
+                    <%= t('permission.all').titleize %>
+                  <% end %>
+                </h2>
+                <%= f.collection_check_boxes(:permission_ids, action, :id, :to_s) do |b|%>
+                  <%= b.label { b.check_box + ' ' + b.text } %><br>
+                <%end%>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
