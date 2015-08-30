@@ -1,0 +1,38 @@
+<div class="row">
+  <h2 class="headline headline-md">
+    <%= @event.title %>
+  </h2>
+  <div class="col-md-8">
+    <div class="col-md-9 col-xs-12">
+      <div class="col-md-12">
+        <span class="time">
+          <%= @event.p_date %>
+        </span>
+        <span class="location">
+          <%= @event.location %>
+        </span>
+        <%= simple_format(@event.description) %>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <%= render 'info', event: @event %>
+      </div>
+      <% if :event_reg  == true %>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <%= render 'registration', event: @event, reg: @event_registration %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <% if @event.image? %>
+      <%= image_tag(@event.image.url, class: "img-responsive event-image") %>
+    <% end %>
+  </div>
+</div>
+
+<% if can?(:manage, @event) %>
+  <div class="col-md-8 col-md-offset-2 col-xs-12">
+    <%= link_to(t(:edit, attr: nil), edit_admin_event_path, class: "btn btn-default") %>
+    <%= link_to(t(:index, attr: nil), admin_events_path, class: "btn btn-default") %>
+  </div>
+<% end %>

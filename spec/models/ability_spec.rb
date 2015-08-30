@@ -4,7 +4,7 @@ require 'cancan_matchers'
 RSpec.describe Ability do
   standard = :read, :create, :update, :destroy
 
-  unsigned = {
+  ab_visitor = {
     Album.new => { yes: [], no: standard },
     CafeWork.new => {
       yes: [:read],
@@ -83,7 +83,7 @@ RSpec.describe Ability do
     Rent.new => { yes: [:main, :create, :index], no: [:update, :destroy] }
   }
 
-  subject(:not_signed_ability) { Ability.new(nil) }
+  subject(:visitor) { Ability.new(nil) }
 
   let(:signed) { create(:user, member_at: nil) }
   subject(:signed_ability) { Ability.new(signed) }
@@ -92,13 +92,13 @@ RSpec.describe Ability do
   subject(:member_ability) { Ability.new(member) }
 
   describe 'Not signed in' do
-    unsigned.each do |obj, value|
+    ab_visitor.each do |obj, value|
       if value[:yes].present?
-        it { not_signed_ability.should have_abilities(value[:yes], obj) }
+        it { visitor.should have_abilities(value[:yes], obj) }
       end
 
       if value[:no].present?
-        it { not_signed_ability.should not_have_abilities(value[:no], obj) }
+        it { visitor.should not_have_abilities(value[:no], obj) }
       end
     end
   end

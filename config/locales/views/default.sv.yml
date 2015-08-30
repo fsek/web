@@ -1,0 +1,19 @@
+sv:
+  new: Ny %{attr}
+  edit: Redigera %{attr}
+  index: Alla %{attr}
+  add: Lägg till %{attr}
+  show: Visa %{attr}
+  save: Spara %{attr}
+  search: Sök
+  back: Tillbaka
+  close: Stäng
+  destroy: Förinta
+
+  "yes": Ja
+  "no": Nej
+
+  back_to_root: Tillbaka till startsidan
+  for: "%{a} för %{b}"
+
+  links: Länkar

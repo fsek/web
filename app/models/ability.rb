@@ -5,20 +5,19 @@ class Ability
     user ||= User.new
 
     # Abilities that everyone get.
-    can :read, [News, Council, Page, Election]
+    can :read, [Council, Election, News, Page]
     can :read, Document, public: true
     can [:mail, :read], Contact, public: true
     can [:display, :image], Notice
-    can [:collapse, :display], Post
+    can [:collapse, :display, :show], Post
+    can [:create, :read], Faq
+    can :read, CafeWork
+    cannot [:add_worker, :update_worker, :remove_worker], CafeWork
+    can :main, Rent
+    cannot [:create, :destroy, :update], Rent
 
     # For calendar-subscription
-    can :export, Event
-
-    can :read, CafeWork
-    can :main, Rent
-    cannot [:create, :update, :destroy], Rent
-    cannot [:add_worker, :update_worker, :remove_worker], CafeWork
-    can [:read, :create], Faq
+    can :export, :calendar
 
     # Abilities all signed in users get
     if user.id.present?
@@ -37,8 +36,10 @@ class Ability
       can [:read, :mail], Contact
       can :read, Document
       can :read, :old_gallery
-      # TODO We really need to move calendar to its own controller
-      can [:read, :calendar], Event
+      can :index, :calendar
+      can :read, Event
+      #can [:read, :create, :destroy], EventRegistration
+
       can [:create, :index], Candidate
       can [:update, :show, :destroy], Candidate, user_id: user.id
       can [:create], Nomination

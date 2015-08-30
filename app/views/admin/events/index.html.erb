@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Sektionens event</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Titel:</th>
+        <th>Beskrivning:</th>
+        <th>Ansvarig:</th>
+        <th>Utskott:</th>
+        <th>Börjar:</th>
+        <th>Slutar:</th>
+        <th>Heldag?</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event.title %></td>
+          <td><%= event.description %></td>
+          <td><%= link_to event.author, event.author%></td>
+          <td><%= event.category%></td>
+          <td><%= event.starts_at %></td>
+          <td><%= event.ends_at %></td>
+          <td><%if event.all_day%>Ja <%else%>Nej<%end%></td>
+
+          <td><%= link_to(t(:show, attr: nil), admin_event_path(event)) %></td>
+          <td><%= link_to(t(:edit, attr: nil), edit_admin_event_path(event)) %></td>
+          <td><%= link_to(t(:destroy), admin_event_path(event), confirm: 'Are you sure?', method: :delete) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br />
+
+  <div class="row">
+    <%= link_to(t(:add, attr: Event.model_name.human(count: 1)), new_admin_event_path, class: "btn-u btn-u-small")%>
+  </div>
+</div>

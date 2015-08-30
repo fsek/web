@@ -1,0 +1,39 @@
+<div class="row nollning nollning-top">
+  <div class="col-md-12 nollning-grid">
+    <div class="row matrix-grid-wrap">
+      <% (Date.new(2015,8,24)..Date.new(2015,9,20)).each do |date| %>
+        <%= link_to(nollning_event_path(date), data: { toggle: "modal", target: "#ajax-modal"} , remote: true) do %>
+          <div class="col-md-1 col-xs-4 matrix-grid">
+            <% events = Event.from_date(date) %>
+            <span class="date">
+              <%= date.strftime("%-d/%-m") %>
+              <% if (ev = events.where(all_day: true)).count > 0 %>
+                <span class="nollning-all-day"><%= ev.first.title %></span>
+              <% end %>
+            </span> <br>
+            <div class="nollning matrix-grid-text">
+              <% events = Event.from_date(date) %>
+              <% if events.count > 0 %>
+                <% events.each do |e| %>
+                  <% if e.all_day != true %>
+                    <%= minimal_time(e.starts_at.time, nil, e.dot) %>
+                    <span class="event-title">
+                      <%= e.short_title %>
+                    </span><br>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <span class="rest-title">
+                  <%= t('nollning.rest') %>
+                </span>
+                <%= image_tag("theme/rest.svg", class: "rest-symbol") %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<p class="nollning-matrix-footer">Tryck på en dag för att läsa mer</p>
+<%= render 'modal' %>

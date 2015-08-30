@@ -92,6 +92,12 @@ class ApplicationController < ActionController::Base
     skip_before_filter(:load_permissions, *args)
   end
 
+  # To be used with controllers without models as resource
+  def self.load_permissions_then_authorize_resource(*args)
+    authorize_resource(*args)
+    before_action(:load_permissions, *args)
+  end
+
   def set_locale
     locale = 'sv'
     langs = %w{ sv en }
