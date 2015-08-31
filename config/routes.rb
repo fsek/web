@@ -209,6 +209,13 @@ Fsek::Application.routes.draw do
     end
   end
 
+  resources :mail_aliases, :only => [ :index ] do
+    collection do
+      put 'update' => 'mail_aliases#update'
+      get 'search' => 'mail_aliases#search'
+    end
+  end
+
   get 'proposals/form' => 'proposals#form'
   post 'proposals/generate' => 'proposals#generate'
 

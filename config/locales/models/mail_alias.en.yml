@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      mail_alias:
+        one: Mail alias
+        other: Mail aliases
+    attributes:
+      mail_alias:
+        username: Alias name
+        domain: Domain
+        target: Target address
+

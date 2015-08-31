@@ -1,0 +1,11 @@
+sv:
+  activerecord:
+    models:
+      mail_alias:
+        one: Mailalias
+        other: Mailalias
+    attributes:
+      mail_alias:
+        username: Aliasnamn
+        domain: Domän
+        target: Måladress

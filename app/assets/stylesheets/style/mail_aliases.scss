@@ -1,0 +1,34 @@
+#alias-tbody {
+  td {
+    vertical-align: top;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    color: inherit;
+    list-style: none;
+    margin: inherit;
+  }
+}
+
+td.alias-key {
+  font-weight: bold;
+}
+
+td.alias-arrow {
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 0.2 !important;
+}
+
+#alias-form {
+  margin-bottom: 2rem;
+}
+
+.alias-edit-button {
+  color: inherit;
+}

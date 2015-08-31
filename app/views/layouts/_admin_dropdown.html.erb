@@ -48,6 +48,12 @@
       </li>
     <% end %>
 
+    <% if can? :modify, MailAlias %>
+      <li class="dropdown-submenu">
+        <%= link_to(models_name(MailAlias), '/mail_aliases') %>
+      </li>
+    <% end %>
+
     <% if can? :manage, Rent %>
       <li class="dropdown-submenu">
         <%= link_to(model_name(Rent),:admin_rents)%>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224115802) do
+ActiveRecord::Schema.define(version: 20160224234005) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -259,6 +259,16 @@ ActiveRecord::Schema.define(version: 20160224115802) do
   add_index "images", ["file"], name: "index_images_on_file", using: :btree
   add_index "images", ["filename"], name: "index_images_on_filename", using: :btree
   add_index "images", ["photographer_id"], name: "index_images_on_photographer_id", using: :btree
+
+  create_table "mail_aliases", force: :cascade do |t|
+    t.string   "username",   limit: 255, null: false
+    t.string   "domain",     limit: 255, null: false
+    t.string   "target",     limit: 255, null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "mail_aliases", ["target"], name: "index_mail_aliases_on_target", using: :btree
+  add_index "mail_aliases", ["username", "domain", "target"], name: "index_mail_aliases_on_username_and_domain_and_target", unique: true, using: :btree
 
   create_table "menus", force: :cascade do |t|
     t.string   "location",   limit: 255
