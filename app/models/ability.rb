@@ -19,6 +19,8 @@ class Ability
     # For calendar-subscription
     can :export, :calendar
 
+    can [:index, :matrix, :modal], :nollning
+
     # Abilities all signed in users get
     if user.id.present?
       can [:index, :create], Rent

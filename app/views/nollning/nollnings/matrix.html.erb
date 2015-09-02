@@ -4,7 +4,7 @@
       <% (Date.new(2015,8,24)..Date.new(2015,9,20)).each do |date| %>
         <%= link_to(nollning_event_path(date), data: { toggle: "modal", target: "#ajax-modal"} , remote: true) do %>
           <div class="col-md-1 col-xs-4 matrix-grid">
-            <% events = Event.from_date(date) %>
+            <% events = @events.from_date(date) %>
             <span class="date">
               <%= date.strftime("%-d/%-m") %>
               <% if (ev = events.where(all_day: true)).count > 0 %>
@@ -12,7 +12,7 @@
               <% end %>
             </span> <br>
             <div class="nollning matrix-grid-text">
-              <% events = Event.from_date(date) %>
+              <% events = @events.from_date(date) %>
               <% if events.count > 0 %>
                 <% events.each do |e| %>
                   <% if e.all_day != true %>
