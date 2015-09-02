@@ -8,7 +8,7 @@ Fsek::Application.routes.draw do
   get "githook/master" => "githook#master"
 
   # Resources on the page
-  get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
+  get '/vecktorn', to: redirect('http://eepurl.com/bxH7lv'), as: :vecktorn_signup
 
   get 'om' => 'static_pages#om', as: :om
   get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about

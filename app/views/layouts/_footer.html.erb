@@ -1,48 +1,48 @@
 <div class="col-md-5">
-  <div class="headline"><h2>Kort om sektionen</h2></div>  
+  <div class="headline"><h2><%= t('footer.about') %></h2></div>
   <p class="margin-bottom-25 md-margin-bottom-40">
-  F-sektionen är en ideell förening för studenter som läser vid något av programmen
+  <%= t('footer.about_start') %>
   <ul class="list">
-    <li>Teknisk Fysik</li> 
+    <li>Teknisk Fysik</li>
     <li>Teknisk Matematik</li>
     <li>Teknisk Nanovetenskap</li>
-  </ul> 
+  </ul>
   <br>
-  och har till ändamål att främja kamratskap bland medlemmarna och tillvarata medlemmarnas gemensamma intressen.
+  <%= t('footer.about_end') %>
   </p>
-</div> <!-- Kort om sektionen--> 
+</div> <!-- Kort om sektionen-->
 
 <div class="col-md-4">        <!-- Vecktorn -->
-  <div class="headline"><h2>Vecktorn</h2></div> 
-  <p>Prenumerera på F-sektionens veckobrev som kommer ut varje läsvecka!</p>
-  <%= link_to "Prenumerera", :vecktorn_signup, class: 'btn btn-u'%>      		
+  <div class="headline"><h2><%= t('vecktorn.title') %></h2></div>
+  <%= simple_format(t('vecktorn.subscribe_footer')) %>
+  <%= link_to(t(:subscribe), :vecktorn_signup, class: 'btn btn-u', target: '_blank')%>
   <p>
-    Vill du skicka med en notis i vecktorn? Skicka i så fall in den till 
-    <%=render 'contacts/kontakt', name: 'Sanningsministeriet' %> 
-    senast måndag kl 17.
+  <%= t('vecktorn.contribute_start') %>
+  <%=render 'contacts/kontakt', name: 'Sanningsministeriet' %>
+  <%= t('vecktorn.contribute_end') %>
   </p>
   <hr>
-  <div class="headline"><h3>Håll dig uppdaterad</h3></div>
+  <div class="headline"><h3><%= t('footer.stay_connected') %></h3></div>
   <ul class="social-icons">
     <li><a href="https://www.facebook.com/Fsektionen" data-original-title="Facebook" class="social_facebook"></a></li>
     <li><a href="https://twitter.com/Fsektionen" data-original-title="Twitter" class="social_twitter"></a></li>
     <li><a href="https://www.youtube.com/user/fsektionen" data-original-title="Youtube" class="social_youtube"></a></li>
-  </ul>  	                       
+  </ul>
 </div> <!-- Vecktorn-->
-<div class="col-md-3">    
-  <div class ="headline"><h2>Kontakta oss</h2></div>
+<div class="col-md-3">
+  <div class ="headline"><h2><%= t('footer.address_visit') %></h2></div>
   <p>
   <%= fa_icon 'phone' %> 046 - 14 47 22
   <br>
   <%= render 'contacts/kontakt', name: 'Ordförande' %>
   <br>
-  <div class="row-fluid">			
-    <div class="headline"><h3>Besöksadress</h3></div>
+  <div class="row-fluid">
+    <div class="headline"><h3><%= t('footer.address_visit') %></h3></div>
     <address class="md-margin-bottom-40">
-    C/o Hilbert Älg <br>
-    Matematikhuset <br>
-    Sölvegatan 18, <br>
-    22362 Lund <br><br><br>
+      C/o Hilbert Älg <br>
+      Matematikhuset <br>
+      Sölvegatan 18, <br>
+      22362 Lund <br><br><br>
     </address>
   </div>
   </p>
