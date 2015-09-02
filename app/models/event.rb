@@ -16,7 +16,8 @@ class Event < ActiveRecord::Base
   # Validate slots if event allows signup
   # validates :slots, presence: true, if: :signup?
 
-  scope :nollning, -> { where(category: :nollning) }
+  scope :calendar, -> { all }
+  scope :nollning, -> { where(category: 'nollning') }
   scope :from_date, -> (date) { where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
                                       date.beginning_of_day, date.end_of_day,
                                       date.beginning_of_day, date.end_of_day) }

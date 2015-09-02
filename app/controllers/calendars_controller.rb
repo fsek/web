@@ -5,7 +5,7 @@ class CalendarsController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.js
+      format.json { render json: Event.calendar }
     end
   end
 
