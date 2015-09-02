@@ -22,6 +22,8 @@ class Ability
 
     can [:index, :matrix, :modal], :nollning
 
+    can [:index, :matrix, :modal], :nollning
+
     # Abilities all signed in users get
     if user.id.present?
       can [:edit, :show, :update, :update_password, :update_account], User, id: user.id
