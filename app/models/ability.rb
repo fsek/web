@@ -30,6 +30,11 @@ class Ability
       can [:edit, :update_worker, :remove_worker], CafeWork, user_id: user.id
       can [:show, :avatar], User
       can [:show, :display, :hide], Post
+
+      # Temporarily letting non-members see the calendar
+      can [:read, :mail], Contact
+      can :index, :calendar
+      can :read, Document
     end
 
     # Only for members of the Guild
