@@ -66,3 +66,8 @@
   -o-transform: $args;
   transform: $args;
 }
+
+@mixin icon-dimensions {
+  width: 16px;
+  height: 16px;
+}

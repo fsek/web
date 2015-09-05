@@ -18,23 +18,23 @@
   <%= link_to(t(:subscribe), :vecktorn_signup, class: 'btn btn-u', target: '_blank')%>
   <p>
   <%= t('vecktorn.contribute_start') %>
-  <%=render 'contacts/kontakt', name: 'Sanningsministeriet' %>
+  <%=render 'contacts/contact', name: 'Sanningsministeriet' %>
   <%= t('vecktorn.contribute_end') %>
   </p>
   <hr>
   <div class="headline"><h3><%= t('footer.stay_connected') %></h3></div>
   <ul class="social-icons">
-    <li><a href="https://www.facebook.com/Fsektionen" data-original-title="Facebook" class="social_facebook"></a></li>
-    <li><a href="https://twitter.com/Fsektionen" data-original-title="Twitter" class="social_twitter"></a></li>
-    <li><a href="https://www.youtube.com/user/fsektionen" data-original-title="Youtube" class="social_youtube"></a></li>
+    <li><%= link_to('', :facebook, 'data-original-title' => 'Facebook', class: 'social_facebook')%></li>
+    <li><%= link_to('', :twitter, 'data-original-title' => 'Twitter', class: 'social_twitter')%></li>
+    <li><%= link_to('', :youtube, 'data-original-title' => 'Youtube', class: 'social_youtube')%></li>
   </ul>
 </div> <!-- Vecktorn-->
 <div class="col-md-3">
-  <div class ="headline"><h2><%= t('footer.address_visit') %></h2></div>
+  <div class ="headline"><h2><%= t('footer.contact') %></h2></div>
   <p>
   <%= fa_icon 'phone' %> 046 - 14 47 22
   <br>
-  <%= render 'contacts/kontakt', name: 'Ordförande' %>
+  <%= render 'contacts/contact', name: 'Ordförande' %>
   <br>
   <div class="row-fluid">
     <div class="headline"><h3><%= t('footer.address_visit') %></h3></div>

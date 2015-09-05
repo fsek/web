@@ -1,4 +1,6 @@
 @import "colors";
+@import "mixins";
+
 /*Search Page v1
 ------------------------------------*/
 .search-page h2 {
@@ -10,11 +12,7 @@
 	overflow: hidden;
 	padding: 15px 20px;
 	margin-bottom: 25px;
-	background: #fcfcfc;
-	-webkit-transition:all 0.3s ease-in-out;
-	-moz-transition:all 0.3s ease-in-out;
-	-o-transition:all 0.3s ease-in-out;
-	transition:all 0.3s ease-in-out;
+  @include transition(all 0.3s ease-in-out);
 }
 
 .search-blocks p a {
@@ -60,76 +58,20 @@
 	color: #fff;
 }
 
-/*Search Red Block*/
-.search-blocks-red {
-	background: #e74c3c;
-}
-
-/*Search Blue Block*/
-.search-blocks-blue {
-	background: #3498db;
-}
-
-/*Search Grey Block*/
-.search-blocks-grey {
-	background: #95a5a6;
-}
-
-/*Search Sea Block*/
-.search-blocks-sea {
-	background: #1abc9c;
-}
-
-/*Search Sea Border Top*/
-.search-blocks-top-sea {
-	border-top: solid 2px #1abc9c;
-}
-
-.search-blocks-top-sea:hover {
-	border-top-color: #16a085;	
-}
-
-/*Search Yellow Border Top*/
-.search-blocks-top-yellow {
-	border-top: solid 2px #f1c40f;
-}
-
-.search-blocks-top-yellow:hover {
-	border-top-color: #f39c12;
-}
-
 /*Search Orange Border Top*/
 .search-blocks-top-orange {
 	border-top: solid 2px $fsek-orange;
 }
 
 .search-blocks-top-orange:hover {
-	border-top-color: #ff6122;
+	border-top-color: $fsek-orange-hover;
 }
 
 /*Search Orange Border Left*/
 .search-blocks-left-orange {
-	border-left: solid 2px #e67e22;
+	border-left: solid 2px $fsek-orange;
 }
 
 .search-blocks-left-orange:hover {
-	border-left-color: #d35400;
-}
-
-/*Search Green Border Left*/
-.search-blocks-left-green {
-	border-left: solid 2px #72c02c;
-}
-
-.search-blocks-left-green:hover {
-	border-left-color: #5fb611;
-}
-
-/*Search Green Border Right*/
-.search-blocks-right-green {
-	border-right: solid 2px #72c02c;
-}
-
-.search-blocks-right-green:hover {
-	border-right-color: #5fb611;
+	border-left-color: $fsek-orange-hover;
 }

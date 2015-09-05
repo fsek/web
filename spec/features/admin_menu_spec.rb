@@ -11,7 +11,7 @@ feature 'admin creates menu' do
 
     And 'visit menu index' do
       visit menus_path
-      find('h3.panel-title').text.should include('Menyelement')
+      find('h3.panel-title').text.should include(Menu.model_name.human(count: 2))
       find(:linkhref, new_menu_path).click
     end
 
@@ -23,7 +23,7 @@ feature 'admin creates menu' do
       find(:css, '#menu_visible').set(menu.visible)
       find(:css, '#menu_turbolinks').set(menu.turbolinks)
       find(:css, '#menu_blank_p').set(menu.blank_p)
-      click_button 'Spara'
+      click_button 'menu_id'
     end
 
     And 'Assure menu is created' do
