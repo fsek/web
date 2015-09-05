@@ -109,6 +109,10 @@ class User < ActiveRecord::Base
       phone.present? && stil_id.present?
   end
 
+  def full_name
+    "#{firstname} #{lastname}"
+  end
+
   private
 
   def delete_avatar
