@@ -27,7 +27,7 @@ feature 'admin visits paths' do
     notices: [:index, :new, :show],
     pages: [:index, :new],
     posts: [:index],
-    rents: [:main, :index]
+    rents: [:main, :index, :new]
   }
 
   admins = {
@@ -49,6 +49,9 @@ feature 'admin visits paths' do
   paths.each do |key, value|
     value.each do |v|
       Steps %(Controller: #{key}, action: #{v}) do
+        And 'sign in' do
+          login.visit_page.login(user, '12345678')
+        end
         And 'visit' do
           if v == :show || v == :edit
             resource = create(key.to_s.singularize.to_sym)

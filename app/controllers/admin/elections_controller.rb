@@ -67,6 +67,6 @@ class Admin::ElectionsController < ApplicationController
   end
 
   def set_posts
-    @posts = Post.all
+    @posts = Post.order(title: :asc)
   end
 end

@@ -1,67 +1,17 @@
-<%= form_for(@work_post) do |f| %>
-  <% if @work_post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@work_post.errors.count, "error") %> hindar posten från att sparas:</h2>
-
-      <ul>
-      <% @work_post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= simple_form_for(@work_post) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :company %>
+  <%= f.input :category %>
+  <%= f.input :kind %>
+  <%= f.input :for %>
+  <%= f.input :link %>
+  <%= f.input :visible %>
+  <%= f.input :deadline, as: :datetime_picker %>
+  <%= f.input :publish, as: :datetime_picker %>
+  <%= f.input :picture %>
+  <% if @work_post.picture_file_name%>
+    <%= image_tag(@work_post.picture(:view),class: "img-responsive")%>
   <% end %>
-  	<div class="col-md-6">  
-	    <%= f.label 'Titel', class:  'reg-label'%>
-	  	<div class="input-group margin-bottom-20">  		
-	  		<%= f.text_field :title,class:  'form-control' %>
-	  	</div>
-	  	<%= f.label 'Text', class:  'reg-label'%>
-	  	<div class="input-group margin-bottom-20">
-	  		<%= f.text_area :description,class:  'form-control', size: "60x8" %>
-	  	</div>
-	  	<%= f.label 'Företag', class:  'reg-label'%>
-	  	<div class="input-group margin-bottom-20">  		
-	  		<%= f.text_field :company,class:  'form-control' %>
-	  	</div>
-	  	<%= f.label 'Område', class:  'reg-label'%>
-	  	<div class="input-group margin-bottom-20">  		
-	  		<%= f.text_field :category,class:  'form-control' %>
-	  	</div>
-	  	<%= f.label 'Typ', class:  'reg-label'%>
-	  	<div class="input-group margin-bottom-20">  		
-	  		<%= f.text_field :kind,class:  'form-control' %>
-	  	</div>
-  	</div>
-  	<div class="col-md-6">
-	  	<%= f.label 'Målgrupp', class:  'reg-label'%>
-	  	<div class="input-group margin-bottom-20">  		
-	  		<%= f.text_field :for,class:  'form-control' %>
-	  	</div>
-	  	 <%= f.label 'Länk', class:  'reg-label'%>
-	  	<div class="input-group margin-bottom-20">  		
-	  		<%= f.text_field :link,class:  'form-control' %>
-	  	</div>
-	 	<%= f.label 'Synlig?', class:  'reg-label'%>
-		<%= f.check_box :visible,class:  'form-control' %>
-		<%= f.label 'Deadline', class:  'reg-label'%><br>
-		Fulfix: för ingen deadline, sätt ett datum efter <br><b>2100-03-25</b>
-	  	<div class="input-group margin-bottom-20">  			  	  		 		  	
-	  		<%= f.date_field :deadline, class:  'form-control' %>
-	  	</div>
-	  	<%= f.label 'Publicera', class:  'reg-label'%><br>
-	  	Måste sättas, sätt idag för att visa direkt. 
-	  	<div class="input-group margin-bottom-20">  		 	  		 		  	
-	  		<%= f.date_field :publish, class:  'form-control' %>
-	  	</div>
-	  	<%= f.label 'Bild', class:  'reg-label'%>
-	  	<% if @work_post.picture_file_name%>
-  			<%= image_tag(@work_post.picture(:view),class: "img-responsive")%><br>
-		<% end %>
-	  	<div class="input-group margin-bottom-20">
-	  		<%= f.file_field :picture,class:  'form-control' %>
-	  	</div>  			
-	  	<div class="row">
-	  			<%= f.submit "Spara",class:  'btn-u pull-right' %>
-	  	</div>
-  	</div>
+  <%= f.button :submit, class: "btn btn-u" %>
 <% end %>

@@ -1,5 +1,7 @@
 <div class="col-md-6 col-md-offset-4 col-xs-12 reg-page">
-  <h3 class="headline headline-md"><%= t(:new, attr: Event.model_name.human) %></h3>
+  <h3 class="headline headline-md">
+    <%= t(:new, attr: model_name(Event)) %>
+  </h3>
   <%= render 'form'%>
-  <%= link_to t(:back), :back %>
+  <%= link_to(t(:index, attr: models_name(Event)), :admin_events) %>
 </div>

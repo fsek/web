@@ -17,7 +17,7 @@ feature 'visitor visits paths' do
     menus: [:index, :new],
     news: [:index, :new, :show],
     pages: [:index, :new],
-    rents: [:main, :index]
+    rents: [:main, :index, :new]
   }
 
   background do

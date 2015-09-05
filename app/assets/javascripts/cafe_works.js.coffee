@@ -1,10 +1,3 @@
-jQuery ->
-  $('.datetimepicker').datetimepicker
-    format: 'DD/MM/YYYY HH:mm'
-jQuery ->
-  $('#date').datepicker()
-jQuery ->
-  $('#date2').datepicker()
 loadCalendar = ->
   $('#hilbertkalender').fullCalendar
     events: '/hilbertcafe',

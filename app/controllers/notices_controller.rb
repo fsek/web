@@ -16,7 +16,7 @@ class NoticesController < ApplicationController
 
   def create
     if @notice.save
-      redirect_to @notice, notice: %(#{t(:notice)} #{t(:success_create)}.)
+      redirect_to @notice, notice: alert_create(Notice)
     else
       render action: :new
     end
@@ -24,7 +24,7 @@ class NoticesController < ApplicationController
 
   def update
     if @notice.update(notice_params)
-      redirect_to @notice, notice: %(#{t(:notice)} #{t(:success_update)}.)
+      redirect_to @notice, notice: alert_update(Notice)
     else
       render action: :edit
     end
@@ -32,7 +32,7 @@ class NoticesController < ApplicationController
 
   def destroy
     @notice.destroy
-    redirect_to notices_url
+    redirect_to notices_url, notice: alert_destroy(Notice)
   end
 
   # Requested to hide the current Notice

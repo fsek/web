@@ -8,3 +8,9 @@ sv:
     posts_during: Poster som kan sökas
     posts_after: Poster som inte längre kan sökas
     get_in_touch: Ser något konstigt ut eller blir det fel? Hör av dig till
+
+    confirm_delete: Valet raderas och kan inte återställas, är du säker?
+
+    show_as_user: Visa valet (som användare ser det)
+    show_nominations: Visa nomineringar
+    show_candidates: Visa kandideringar

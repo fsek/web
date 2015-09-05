@@ -1,68 +1,21 @@
-<%= form_for([:admin, @election]) do |f| %>
-    <%= render 'shared/form_errors', current: @election %>
-    <div class="row">
-      <div class="col-md-5">
-        <%= f.label 'Titel', class: 'reg-label' %>
-        <div class="input-group margin-bottom-20">
-          <%= f.text_field :title, class: 'form-control' %>
-        </div>
-        <%= f.label 'Öppnar', class: 'reg-label' %>
-        <div class="input-group margin-bottom-20">
-          <%= f.text_field :start, class: 'form-control datetimepicker' %>
-        </div>
-        <%= f.label 'Ansökan till Terminsmöte stänger', class: 'reg-label' %>
-        <div class="input-group margin-bottom-20">
-          <%= f.text_field :end, class: 'form-control datetimepicker' %>
-        </div>
-        <%= f.label 'Alla ansökningar stänger', class: 'reg-label' %>
-        <div class="input-group margin-bottom-20">
-          <%= f.text_field :closing, class: 'form-control datetimepicker' %>
-        </div>
-        <%= f.label 'Url', class: 'reg-label' %><br>
-        T.ex. ht-14 (endast a-z, 1-9 och -)
-        <div class="input-group margin-bottom-20">
-          <%= f.text_field :url, class: 'form-control' %>
-        </div>
-      </div>
-      <div class="col-md-7">
-        <%= f.label 'Beskrivning av valet', class: 'reg-label' %>
-        <div class="input-group margin-bottom-20">
-          <%= f.text_area :description, class: 'form-control', size: "40x2" %>
-        </div>
-        <% if @election.new_record? == false %>
-            <%= link_to 'Lägg till fler texter', edit_admin_election_path(@election), class: "btn btn-u" %><br>
-        <% end %>
-        <%= f.label 'Länk för intervjutider - styrelseposter', class: 'reg-label' %>
-        <div class="input-group margin-bottom-20">
-          <%= f.text_field :mail_styrelse_link, class: 'form-control', size: "40x2" %>
-        </div>
-        <%= f.label 'Länk för intervjutider - övriga', class: 'reg-label' %><br>
-        Om ingen fylls i för styrelseposter så används denna.
-        <div class="input-group margin-bottom-20">
-          <%= f.text_field :mail_link, class: 'form-control', size: "40x2" %>
-        </div>
-        <%= f.label 'Synlig?', class: 'reg-label' %>
-        <%= f.check_box :visible, class: 'form-control' %>
-      </div>
+<%= simple_form_for([:admin, @election]) do |f| %>
+    <div class="col-md-6 col-xs-12">
+      <%= f.input :title %>
+      <%= f.input :start, as: :datetime_picker %>
+      <%= f.input :end, as: :datetime_picker %>
+      <%= f.input :closing, as: :datetime_picker %>
+      <%= f.input :url %>
     </div>
-    <% if @posts %>
-        <hr>
-        <%= label_tag 'Poster att söka', nil, class: 'reg-header' %>
-        <div class="row">
-          <% @posts.in_groups_of(10, false) do |row_posts| %>
-              <div class="col-md-4">
-                <% row_posts.each do |post| %>
-                    <div class="input-group margin-bottom-1">
-                      <%= f.check_box(:post_ids, {multiple: true}, post.id, nil) %>
-                      <%= f.label :post_ids, post.title, value: false, class: 'reg-label' %>
-                    </div>
-                <% end %>
-              </div>
-          <% end %>
-        </div>
-        <hr>
-    <% end %>
-    <div class="row margin-bottom-20">
-      <%= f.submit "Spara", class: 'btn-u' %>
+    <div class="col-md-6 col-xs-12">
+      <%= f.input :description %>
+      <%= f.input :mail_styrelse_link %>
+      <%= f.input :mail_link %>
+      <%= f.input :visible %>
     </div>
+    <%= f.button :submit, class: "btn btn-u" %>
+  <% if @posts %>
+    <div class="col-md-12">
+      <%= f.association :posts, collection: @posts, input_html: { multiple: true }, as: :check_boxes %>
+    </div>
+  <% end %>
 <% end %>

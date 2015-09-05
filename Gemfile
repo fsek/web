@@ -9,7 +9,6 @@ gem 'coffee-rails'
 gem 'coffee-script-source', '1.8.0'
 gem 'devise'
 gem 'bootstrap-sass'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'factory_girl_rails'
 gem 'fancybox2-rails'
