@@ -415,6 +415,3 @@ DEPENDENCIES
   uglifier
   web-console (~> 2.0)
   wice_grid
-
-BUNDLED WITH
-   1.10.6

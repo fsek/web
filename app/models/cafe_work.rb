@@ -33,17 +33,7 @@ class CafeWork < ActiveRecord::Base
     Rails.logger.info 'Mailer could not connect, rescued here'
   end
 
-  def old_profile
-    if profile_id.present?
-      if user_id == nil
-        return User.find_by(id: profile_id)
-      else
-        return user
-      end
-    else
-      return user
-    end
-  end
+  alias old_profile user
 
   def current_action
     user.present? ? :update_worker : :add_worker
