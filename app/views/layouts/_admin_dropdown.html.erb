@@ -1,6 +1,7 @@
 <li class="dropdown">
-  <%= link_to t(:administrate), "#", class: "dropdown-toggle",
-    data: {toggle: "dropdown", delay: "0", 'close-others' => "false"} %>
+  <%= link_to("#", class: "dropdown-toggle", data: { toggle: "dropdown", "close-others" => "false" }) do %>
+    <%= fa_icon('cog') %> <%= content_tag(:span, t(:administrate)) %>
+  <% end %>
   <ul class="dropdown-menu">
     <% if can? :manage, :all  %>
       <li class="dropdown-submenu">

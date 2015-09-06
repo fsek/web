@@ -1,0 +1,67 @@
+.promo-box {
+  margin: 25px 0 20;
+  padding: 20;
+  text-align: center;
+
+  i {
+    display: block;
+    font-size: 50;
+  }
+
+  p {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  strong,
+  strong a {
+    color: $gray-headline;
+    display: block;
+    font-size: 20;
+    font-weight: 200;
+    margin: 20 0 15px;
+  }
+
+  &:hover {
+    strong,
+    strong a {
+      color: $gray-headline;
+    }
+  }
+}
+
+.promo-service {
+  margin-bottom: 20;
+
+  a {
+    .btn-u {
+      margin: 0 20 10 0;
+    }
+  }
+}
+
+.title-box {
+  border-bottom: solid 1px $light-gray-text;
+  font-size: 16px;
+  margin: 20 0;
+  padding: 40 0;
+  text-align: center;
+
+  .title-box-text {
+    color: $gray-headline;
+    display: block;
+    font-size: 35px;
+    font-weight: 200;
+  }
+}
+
+.block-blockquote {
+  border: dashed 1px $gray-text;
+  margin: 20 0;
+  text-align: center;
+
+  p {
+    font-size: 26px;
+    margin-bottom: 0;
+  }
+}

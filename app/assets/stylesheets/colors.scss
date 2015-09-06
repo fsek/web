@@ -3,16 +3,42 @@
 // Color definitions
 $fsek-orange: #eb7125;
 $fsek-orange-hover: #eb7125;
-$fsek-nano-green: #4E9D2D;
-$fsek-pi-silver: #BEBEBE;
-$black: #fff;
-$highlight: 0 1px 0 #fff;
+$fsek-nano-green: #4e9d2d;
+$fsek-pi-silver: #bebebe;
+
+$black: #000;
+$white: #fff;
 $gray-text: #777;
+$gray-headline: #555;
 $light-gray-text: #eee;
 $dark-gray: #585f69;
 $link-hover-color: #f82805;
+$light-gray: #fcfcfc;
+$footer-gray: #333;
+
+
+$highlight: 0 1px 0 $white;
 
 // Function definitions
 $text-color: $black;
 $border-color: $black;
 $box-color: $fsek-orange;
+$main-color: $fsek-orange;
+
+
+// Unify
+$unify-red: #e74c3c;
+$unify-sea: #1abc9c;
+$unify-blue: #3498db;
+$unify-grey: #95a5a6;
+$unify-yellow: #f1c40f;
+$unify-orange: $fsek-orange;
+$unify-green: $fsek-nano-green;
+
+$unify-red-hover: #e74c3c;
+$unify-sea-hover: #1abc9c;
+$unify-blue-hover: #3498db;
+$unify-grey-hover: #95a5a6;
+$unify-yellow-hover: #f1c40f;
+$unify-orange-hover: $fsek-orange;
+$unify-green-hover: $fsek-nano-green;

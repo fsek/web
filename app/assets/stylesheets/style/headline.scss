@@ -1,0 +1,28 @@
+.headline {
+  border-bottom: 1px dotted $fsek-pi-silver;
+  display: block;
+  margin: 0 0 25px;
+
+  h2 {
+    font-size: 23px;
+  }
+
+  h2,
+  h3,
+  h4 {
+    border-bottom: 2px solid $fsek-orange;
+    color: $gray-headline;
+    display: inline-block;
+    margin: 0 0 -2px;
+    padding-bottom: 5px;
+  }
+}
+
+.headline-md {
+  margin-bottom: 15px;
+
+  h2 {
+    font-size: 18px;
+  }
+}
+

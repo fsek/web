@@ -1,0 +1,17 @@
+.pagination {
+  > .active > {
+    a,
+    span,
+    a:focus,
+    span:focus {
+      background-color: $main-color;
+      border-color: $main-color;
+    }
+  }
+
+  li a:hover {
+    background: $fsek-pi-silver;
+    border-color: $fsek-pi-silver;
+    color: $black;
+  }
+}

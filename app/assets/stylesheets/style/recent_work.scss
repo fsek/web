@@ -1,0 +1,51 @@
+.recent-work {
+  a {
+    background: $light-gray;
+    display: inline-block;
+    text-align: center;
+
+    &:hover {
+      text-decoration: none;
+
+      img {
+        @include transform(scale(1.2) rotate(3deg));
+        opacity: 0.8;
+      }
+
+      span {
+        @include transition(all 0.3s ease-in-out);
+        border-bottom: solid 2px $fsek-orange;
+      }
+
+      strong {
+        color: $gray-headline;
+      }
+    }
+
+    i {
+      color: $gray-text;
+    }
+
+    img {
+      @include transition(all 0.8s ease-in-out);
+    }
+
+    span {
+      border-bottom: solid 2px $gray-headline;
+      display: block;
+      padding: 10;
+    }
+
+    strong {
+      color: $gray-headline;
+      display: block;
+    }
+  }
+
+  em {
+    .overflow-hidden {
+      display: block;
+    }
+  }
+}
+

@@ -1,0 +1,80 @@
+.carousel-v1 {
+  .carousel-caption {
+    background: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    left: 0;
+    padding: 7px 15px;
+    right: 0;
+
+    p {
+      color: $black;
+      margin-bottom: 0;
+    }
+
+    a {
+      .carousel-control {
+        background: none;
+        font-size: 30;
+        height: inherit;
+        opacity: 1;
+        position: inherit;
+        text-shadow: none;
+        width: inherit;
+      }
+
+      i {
+        background: $black;
+        margin-top: -18px;
+        opacity: 0.6;
+        padding: 2px 12px;
+        position: absolute;
+        top: 50%;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      .left i {
+        left: 0;
+      }
+
+      .right i {
+        right: 0;
+      }
+    }
+  }
+}
+
+.carousel-indicators {
+  li {
+    background-color: $black;
+    border: 1px solid $black;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    width: 10px;
+  }
+
+  .active {
+    background-color: $black;
+    height: 12px;
+    margin: 0;
+    width: 12px;
+  }
+}
+
+.carousel-example-generic-2 img {
+  margin: auto;
+  max-height: 200px;
+  width: auto;
+}
+
+.carousel-category img {
+  margin: auto;
+  max-height: 150px;
+  width: auto;
+}

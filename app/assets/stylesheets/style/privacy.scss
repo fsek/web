@@ -1,0 +1,10 @@
+.privacy {
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      color: $main-color;
+      text-decoration: none;
+    }
+  }
+}

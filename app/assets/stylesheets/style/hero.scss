@@ -1,0 +1,21 @@
+.hero {
+  background: $light-gray;
+  border-left: 4px solid $fsek-orange;
+  color: $dark-gray;
+  font-size: 16px;
+  margin: 20 0;
+  padding: 18px;
+
+  h1,
+  p {
+    text-shadow: 1px 1px 0 $black;
+  }
+}
+
+.hero-unify {
+  p {
+    font-size: 13px;
+    line-height: 20;
+  }
+}
+

@@ -7,10 +7,10 @@
               Stänger om:
           <%end%>
         </h2>
-        <div id="countdown" class=""></div>
+        <div class="countdown"></div>
     </div>
     <script type="text/javascript" >
-        $("#countdown").countdown('<%=%(#{@election.countdown.strftime('%Y/%m/%d %H:%M:%S')} UTC)%>', function(event) {
+        $(".countdown").countdown('<%=%(#{@election.countdown.strftime('%Y/%m/%d %H:%M:%S')} UTC)%>', function(event) {
             var days = event.offset.totalDays;
             if (days > 1) {
                 $(this).html(event.strftime('<span>'

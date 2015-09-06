@@ -1,0 +1,157 @@
+.magazine-page {
+  h3,
+  h3 a {
+    color: $gray-headline;
+    font-size: 20px;
+    font-weight: 200;
+    line-height: 28px;
+    margin-bottom: 1px;
+    text-decoration: none;
+  }
+
+  h3 a:hover {
+    color: $main-color;
+  }
+
+  span {
+    .magazine-badge {
+      color: $black;
+      font-size: 14px;
+      font-style: inherit;
+      left: 0;
+      padding: 2px 8px;
+      position: absolute;
+      top: 0;
+    }
+
+    .magazine-badge-default {
+      background: $main-color;
+    }
+
+    .magazine-badge-red {
+      background: $unify-red;
+    }
+
+    .magazine-badge-green {
+      background: $unify-green;
+    }
+
+    .magazine-badge-blue {
+      background: $unify-blue;
+    }
+  }
+}
+
+.magazine-news {
+  margin-bottom: 20px;
+
+  h3 {
+    margin: 15px 0 10px;
+  }
+
+  .by-author {
+    margin-bottom: 8px;
+
+    strong {
+      color: $main-color;
+    }
+
+    span {
+      color: $gray-text;
+    }
+  }
+
+  a {
+    .read-more {
+      color: $main-color;
+    }
+  }
+}
+
+.magazine-news-img {
+  max-height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.magazine-mini-news {
+  .post-author {
+    font-size: 11px;
+    margin-bottom: 8px;
+
+    span {
+      color: $gray-headline;
+    }
+
+    strong {
+      color: $main-color;
+    }
+  }
+
+  h3,
+  h3 a {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 6px;
+  }
+}
+
+.news-read-more {
+  margin: 20px 0;
+
+  a {
+    font-size: 14px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  i {
+    background: $main-color;
+    color: $black;
+    font-size: 14px;
+    padding: 2px 3px;
+  }
+}
+
+.magazine-posts {
+  margin-bottom: 18px;
+
+  span {
+    color: $gray-headline;
+    display: block;
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+
+  .magazine-posts-img {
+    max-height: 105px;
+    overflow: hidden;
+    position: relative;
+
+    &:hover img {
+      opacity: 0.9;
+    }
+  }
+}
+
+.magazine-sb-categories {
+  ul {
+    li {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    i {
+      color: $main-color;
+      font-size: 14px;
+    }
+  }
+}
+
+.magazine-sb-social .social-icons li {
+  margin-bottom: 8px;
+  margin-right: 8px;
+}

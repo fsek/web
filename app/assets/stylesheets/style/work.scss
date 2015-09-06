@@ -1,0 +1,20 @@
+.work {
+  margin-top: 6px;
+
+  .details {
+    padding: 10;
+  }
+
+  .caption {
+    color: $black;
+    display: block;
+    font-size: 18px;
+    padding-top: 5px;
+
+    :hover {
+      color: $black;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}

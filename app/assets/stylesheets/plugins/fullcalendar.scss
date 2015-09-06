@@ -1,0 +1,34 @@
+@include max-screen(320px) {
+  .fc-button {
+    background: none !important;
+    border: none !important;
+    height: 13px;
+    size: 8px;
+    width: 30px;
+  }
+
+  .fc-right {
+    display: none;
+  }
+
+  .fc-center {
+    h2 {
+      font-size: 15px;
+      margin-top: 6px !important;
+    }
+  }
+
+  h2 {
+    font-size: 15px;
+  }
+}
+
+
+@include screen(320px, 720px) {
+  .fc-center {
+    h2 {
+      font-size: 20px;
+      margin-top: 3px !important;
+    }
+  }
+}

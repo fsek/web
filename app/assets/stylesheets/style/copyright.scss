@@ -1,0 +1,24 @@
+.copyright {
+  background: $footer-gray;
+  border-top: solid 1px $gray-headline;
+  font-size: 12px;
+  padding: 11px 0 7px;
+
+  p {
+    color: none;
+
+    .copyright-space {
+      margin-top: 12px;
+    }
+  }
+
+  a {
+    color: $fsek-orange;
+    margin: 0 5px;
+
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
+}
+

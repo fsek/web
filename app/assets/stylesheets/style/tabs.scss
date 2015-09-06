@@ -1,0 +1,110 @@
+.tab-v1 {
+  .nav-tabs {
+    background: none;
+    border: none;
+    border-bottom: solid 2px $unify-orange;
+
+    a {
+      font-size: 14px;
+      padding: 5px 15px;
+    }
+
+    > .active {
+      > a,
+      > a:hover,
+      > a:focus {
+        background: $unify-orange;
+        border: none;
+        color: $white;
+      }
+    }
+
+    > li {
+      > a {
+        border: none;
+      }
+
+      > a:hover {
+        background: $unify-orange;
+        color: $white;
+      }
+    }
+  }
+
+  .tab-content {
+    padding: 10 0;
+
+    img {
+      margin-bottom: 15px;
+      margin-top: 4px;
+
+      .img-tab-space {
+        margin-top: 7px;
+      }
+    }
+  }
+}
+
+.tab-v2 {
+  .nav-tabs {
+    border-bottom: none;
+
+    li {
+      a {
+        background: none;
+        border: none;
+        padding: 9px 16px;
+      }
+
+      .active a {
+        background: $black;
+        border: solid 1px $light-gray-text;
+        border-bottom: none;
+        border-top: solid 2px $unify-orange;
+        padding: 7px 15px 9px;
+      }
+    }
+
+  }
+
+  .tab-content {
+    border: solid 1px $light-gray-text;
+    padding: 10 16px;
+  }
+}
+
+.tab-v3 {
+  .nav-pills {
+    li {
+      a {
+        background: $light-gray;
+        border: solid 1px $light-gray-text;
+        color: $gray-text;
+        font-size: 17px;
+        margin-bottom: 3px;
+        padding: 4px 8px;
+      }
+
+      a:hover,
+      .active a {
+        background: $unify-orange;
+        border: solid 1px $unify-orange;
+        color: $black;
+      }
+
+      i {
+        display: inline-block;
+        margin-right: 5px;
+        text-align: center;
+        width: 1.25em;
+      }
+    }
+  }
+
+  .tab-content {
+    background: $light-gray;
+    border: solid 1px $light-gray-text;
+    padding: 15px;
+  }
+}
+

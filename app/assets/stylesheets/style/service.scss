@@ -1,0 +1,42 @@
+.service {
+  margin-bottom: 10;
+  overflow: hidden;
+  padding: 15px 15px 10;
+
+  &:hover {
+    @include transition(box-shadow 0.2s ease-in-out);
+    background: $light-gray;
+    box-shadow: 0 0 5px $fsek-pi-silver;
+
+    i {
+      color: $dark-gray;
+    }
+  }
+
+  .desc {
+    overflow: hidden;
+    padding: 0 15px;
+
+    h4 {
+      font-size: 22px;
+      line-height: 25px;
+    }
+  }
+
+  .service-icon {
+    @include transition(all 0.4s ease-in-out);
+    color: $fsek-orange;
+    float: left;
+    font-size: 45px;
+    padding: 10;
+    text-align: center;
+
+    .icon-cogs {
+      font-size: 37px;
+    }
+
+    .icon-plane {
+      font-size: 43px;
+    }
+  }
+}

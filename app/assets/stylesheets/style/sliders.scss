@@ -1,0 +1,54 @@
+.slider-inner .da-slider {
+  border-bottom: 2px solid $light-gray;
+  box-shadow: none;
+}
+
+.bg-black-opacity {
+  background: image-url("../img/sliders/revolution/bg-text.png") repeat;
+  padding: 7px;
+  text-shadow: none;
+}
+
+.fullwidthbanner-container {
+  max-height: 500px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
+
+  .slider-promo {
+    max-height: 460;
+  }
+}
+
+.layer-slider {
+  overflow: hidden;
+}
+
+.ls-ct-half,
+.ls-ct-center {
+  border-radius: 100px;
+}
+
+.slider-promo-info-bg {
+  background: image-url("../img/bg-black.png") repeat;
+  padding: 25px 20px 20px;
+}
+
+.slider-promo-info {
+  span {
+    .big-size {
+      color: $black;
+      display: block;
+      font-size: 30px;
+      margin-bottom: 25px;
+      text-shadow: 0;
+    }
+  }
+
+  p {
+    color: $black;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+}

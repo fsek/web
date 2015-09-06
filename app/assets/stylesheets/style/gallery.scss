@@ -1,0 +1,12 @@
+.gallery-page {
+  .thumbnail,
+  .thumbnail:hover {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .thumbnails {
+    margin-bottom: 6px;
+  }
+}

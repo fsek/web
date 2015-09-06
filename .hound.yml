@@ -6,3 +6,4 @@ scss:
   config_file: .scss-lint.yml
   exclude:
     -"app/assets/stylesheets/mixins.scss"
+    -"app/assets/stylesheets/plugins/*"

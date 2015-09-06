@@ -1,49 +1,55 @@
-<div class="col-md-5">
-  <div class="headline"><h2><%= t('footer.about') %></h2></div>
-  <p class="margin-bottom-25 md-margin-bottom-40">
-  <%= t('footer.about_start') %>
-  <ul class="list">
-    <li>Teknisk Fysik</li>
-    <li>Teknisk Matematik</li>
-    <li>Teknisk Nanovetenskap</li>
-  </ul>
-  <br>
-  <%= t('footer.about_end') %>
-  </p>
-</div> <!-- Kort om sektionen-->
+<div class="footer navbar" id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="headline"><h2><%= t('footer.about') %></h2></div>
+        <p class="margin-bottom-25 md-margin-bottom-40">
+        <%= t('footer.about_start') %>
+        <ul class="list">
+          <li>Teknisk Fysik</li>
+          <li>Teknisk Matematik</li>
+          <li>Teknisk Nanovetenskap</li>
+        </ul>
+        <br>
+        <%= t('footer.about_end') %>
+        </p>
+      </div> <!-- Kort om sektionen-->
 
-<div class="col-md-4">        <!-- Vecktorn -->
-  <div class="headline"><h2><%= t('vecktorn.title') %></h2></div>
-  <%= simple_format(t('vecktorn.subscribe_footer')) %>
-  <%= link_to(t(:subscribe), :vecktorn_signup, class: 'btn btn-u', target: '_blank')%>
-  <p>
-  <%= t('vecktorn.contribute_start') %>
-  <%=render 'contacts/contact', name: 'Sanningsministeriet' %>
-  <%= t('vecktorn.contribute_end') %>
-  </p>
-  <hr>
-  <div class="headline"><h3><%= t('footer.stay_connected') %></h3></div>
-  <ul class="social-icons">
-    <li><%= link_to('', :facebook, 'data-original-title' => 'Facebook', class: 'social_facebook')%></li>
-    <li><%= link_to('', :twitter, 'data-original-title' => 'Twitter', class: 'social_twitter')%></li>
-    <li><%= link_to('', :youtube, 'data-original-title' => 'Youtube', class: 'social_youtube')%></li>
-  </ul>
-</div> <!-- Vecktorn-->
-<div class="col-md-3">
-  <div class ="headline"><h2><%= t('footer.contact') %></h2></div>
-  <p>
-  <%= fa_icon 'phone' %> 046 - 14 47 22
-  <br>
-  <%= render 'contacts/contact', name: 'Ordförande' %>
-  <br>
-  <div class="row-fluid">
-    <div class="headline"><h3><%= t('footer.address_visit') %></h3></div>
-    <address class="md-margin-bottom-40">
-      C/o Hilbert Älg <br>
-      Matematikhuset <br>
-      Sölvegatan 18, <br>
-      22362 Lund <br><br><br>
-    </address>
+      <div class="col-md-4">        <!-- Vecktorn -->
+        <div class="headline"><h2><%= t('vecktorn.title') %></h2></div>
+        <%= simple_format(t('vecktorn.subscribe_footer')) %>
+        <%= link_to(t(:subscribe), :vecktorn_signup, class: 'btn btn-u', target: '_blank')%>
+        <p>
+        <%= t('vecktorn.contribute_start') %>
+        <%=render 'contacts/contact', name: 'Sanningsministeriet' %>
+        <%= t('vecktorn.contribute_end') %>
+        </p>
+        <hr>
+        <div class="headline"><h3><%= t('footer.stay_connected') %></h3></div>
+        <ul class="social-icons">
+          <li><%= link_to('', :facebook, 'data-original-title' => 'Facebook', class: 'social-facebook')%></li>
+          <li><%= link_to('', :twitter, 'data-original-title' => 'Twitter', class: 'social-twitter')%></li>
+          <li><%= link_to('', :youtube, 'data-original-title' => 'Youtube', class: 'social-youtube')%></li>
+        </ul>
+      </div> <!-- Vecktorn-->
+      <div class="col-md-3">
+        <div class ="headline"><h2><%= t('footer.contact') %></h2></div>
+        <p>
+        <%= fa_icon 'phone' %> 046 - 14 47 22
+        <br>
+        <%= render 'contacts/contact', name: 'Ordförande' %>
+        <br>
+        <div class="row-fluid">
+          <div class="headline"><h3><%= t('footer.address_visit') %></h3></div>
+          <address class="md-margin-bottom-40">
+            C/o Hilbert Älg <br>
+            Matematikhuset <br>
+            Sölvegatan 18, <br>
+            22362 Lund <br><br><br>
+          </address>
+        </div>
+        </p>
+      </div>
+    </div>
   </div>
-  </p>
 </div>

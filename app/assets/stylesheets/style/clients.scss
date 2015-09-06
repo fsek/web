@@ -1,0 +1,58 @@
+.clients {
+  box-shadow: none;
+  margin-bottom: 0;
+
+  li {
+    background: $light-gray;
+    float: left;
+    margin-left: 1px;
+    overflow: hidden;
+    position: relative;
+
+    &:hover {
+      background: $light-gray-text;
+    }
+
+    img {
+      filter: $footer-gray;
+      float: none;
+      margin: 0 auto;
+
+      &:hover {
+        filter: none;
+      }
+    }
+
+    .color-img {
+      display: none;
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  &:hover {
+    img {
+      .color-img {
+        display: block;
+      }
+    }
+  }
+}
+
+.clients,
+.flexslider.home {
+  border: 0;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.flexslider {
+  background: none;
+  margin-top: 10px;
+
+  .flex-direction-nav a {
+    margin-top: -10px;
+  }
+}

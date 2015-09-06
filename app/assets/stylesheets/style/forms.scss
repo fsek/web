@@ -1,0 +1,13 @@
+.form-control {
+  box-shadow: none;
+
+  &:focus {
+    border-color: $unify-orange;
+    box-shadow: none;
+  }
+}
+
+.form-spacing .form-control {
+  margin-bottom: 15px;
+}
+

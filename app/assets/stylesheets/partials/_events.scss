@@ -1,19 +1,19 @@
-@import "colors";
 .attending-icon {
   color: $fsek-orange;
 }
 
 .pending-icon {
-  color: SlateBlue;
+  color: $fsek-nano-green;
 }
 
 .not-attending-icon {
-  color: red;
+  color: $unify-red;
 }
 
 .event-info {
   ul {
     padding: 0;
+
     li {
       list-style-type: none;
     }

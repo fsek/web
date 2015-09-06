@@ -10,18 +10,18 @@
   }
 }
 
-@mixin border-image($arg)  {
+@mixin border-image($arg) {
   @include prefix((border-image: $arg), webkit o);
 }
 
-@function calculateRem($size) {
-  $remSize: $size / 16px;
-  @return $remSize * 1rem;
+@function calculate-rem($size) {
+  $rem-size: $size / 16px;
+  @return $rem-size * 1rem;
 }
 
 @mixin font-size($size) {
   font-size: $size;
-  font-size: calculateRem($size);
+  font-size: calculate-rem($size);
 }
 
 // Animation mixin

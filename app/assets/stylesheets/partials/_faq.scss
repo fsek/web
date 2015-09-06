@@ -1,11 +1,15 @@
-// Place all the styles related to the faq controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-#faq123 > a, #faq123 >a:focus, #faq123 >a:visited {
-    color: rgb(51, 51, 51);
-    text-decoration: none;
-}
-#faq123 > a:hover, #faq123 >a:active {
-    color: rgb(235, 113, 37);
-    text-decoration: underline;
+.faq-accordion {
+  > a {
+    &:focus,
+    &:visited {
+      color: $main-color;
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:active {
+      color: $fsek-pi-silver;
+      text-decoration: underline;
+    }
+  }
 }

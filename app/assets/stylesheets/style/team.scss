@@ -1,0 +1,50 @@
+.team {
+  ul {
+    .team-socail {
+      text-align: right;
+
+      li {
+        margin: 0;
+        padding: 0;
+
+        a,
+        a:hover {
+          text-decoration: none;
+        }
+
+        i {
+          background: $gray-text;
+          color: $gray-headline;
+          display: inline-block;
+          font-size: 20;
+          min-width: 30;
+          padding: 3px;
+          text-align: center;
+        }
+
+        i:hover {
+          @include transition(all 0.2s ease-in-out);
+          background: $unify-orange;
+          color: $black;
+        }
+      }
+    }
+  }
+
+  .thumnail-style {
+    padding: 12px;
+
+    small {
+      display: block;
+      font-size: 12px;
+    }
+
+    h3 {
+      margin-bottom: 10;
+    }
+
+    &:hover h3 a {
+      color: $unify-orange;
+    }
+  }
+}

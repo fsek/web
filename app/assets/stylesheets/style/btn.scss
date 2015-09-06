@@ -1,0 +1,118 @@
+.btn {
+  box-shadow: none;
+}
+
+.btn-u {
+  background: $unify-orange;
+  border: 0;
+  border-radius: 2px;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 6px 13px;
+  position: relative;
+  text-decoration: none;
+
+  &:hover {
+    background: $unify-orange;
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+.btn-u-small {
+  padding: 3px 12px;
+}
+
+.btn-u-lg {
+  font-size: 18px;
+  padding: 10px 25px;
+}
+
+a {
+  .btn-u {
+    padding: 4px 13px;
+    vertical-align: middle;
+  }
+
+  .btn-u-small {
+    padding: 2px 12px;
+  }
+
+  .btn-u-lg {
+    font-size: 18px;
+    padding: 6px 25px;
+  }
+}
+
+// For FF only
+@-moz-document url-prefix() {
+  .footer-subsribe .btn-u {
+    padding-bottom: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  @-moz-document url-prefix() {
+    .btn-u {
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.btn-u-blue {
+  background: $unify-blue;
+
+  &:hover {
+    background: $unify-blue-hover;
+  }
+}
+
+.btn-u-red {
+  background: $unify-red;
+
+  &:hover {
+    background: $unify-red-hover;
+  }
+}
+
+.btn-u-sea {
+  background: $unify-sea;
+
+  &:hover {
+    background: $unify-sea-hover;
+  }
+}
+
+.btn-u-grey {
+  background: $unify-grey;
+
+  &:hover {
+    background: $unify-grey-hover;
+  }
+}
+
+.btn-u-yellow {
+  background: $unify-yellow;
+
+  &:hover {
+    background: $unify-yellow-hover;
+  }
+}
+
+.btn-u-orange {
+  background: $unify-orange;
+
+  &:hover {
+    background: $unify-orange-hover;
+  }
+}
+
+.btn-u-green {
+  background: $unify-green;
+
+  &:hover {
+    background: $unify-green-hover;
+  }
+}

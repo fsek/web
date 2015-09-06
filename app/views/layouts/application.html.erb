@@ -8,7 +8,6 @@
 <head>
   <title><%= full_title(yield(:title)) %></title>
 
-  <!-- Meta -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
@@ -21,82 +20,18 @@
 </head>
 
 <body>
-<!--=== Top ===-->
-<div class="top">
-  <div class="container">
-    <%= render 'layouts/topbar' %>
-  </div>
-</div>
-<!--=== End Top ===-->
 
+<%= render 'layouts/topbar' %>
 
-<!--=== Header ===-->
-<div class="header header-start">
-  <div class="navbar navbar-default" role="navigation">
-    <div class="container">
-      <!-- Logo and toggle-menu button for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <%= link_to root_path do %>
-            <div class="navbar-brand">
-              <%= image_tag("layout/f.svg", id: "logo-header", height: "60") %>
-            </div>
-            <div class="navbar-brand-text pull-left">
-              <span>&mdash;</span>TEKNOLOGSEKTIONEN<br/>INOM TLTH
-            </div>
-        <% end %>
-      </div>
-      <%= render "layouts/menu" %>
-    </div>
-  </div>
-</div>
-<!--/header-->
-<!--=== End Header ===-->
+<%= render 'layouts/header' %>
 
-<!--=== Content Part ===-->
 <%= yield :pre_content %>
 
-<div class="container content">
-      <% if notice %>
-          <div class="alert alert-info">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= notice %>
-          </div>
-      <% end %>
-      <% if alert %>
-          <div class="alert alert-danger fade-in">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Fel:</strong> <%= alert %>
-          </div>
-      <% end %>
-      <%= yield %>
-  <!-- /row -->
-</div>
-<!-- End Content Part -->
+<%= render 'layouts/content' %>
 
-<!--=== Footer ===-->
-<div class="footer navbar" id="footer">
-  <div class="container">
-    <div class="row">
-      <%= render "layouts/footer" %>
-    </div>
-  </div>
-</div>
-<!--=== End Footer ===-->
+<%= render "layouts/footer" %>
 
-<!--=== Copyright ===-->
-<div class="copyright" id="copyright">
-  <div class="container">
-    <div class="row">
-      <%= render "layouts/bottombar" %>
-    </div>
-  </div>
-</div>
-<!--=== End Copyright ===-->
+<%= render "layouts/copyright" %>
+
 </body>
 </html>
