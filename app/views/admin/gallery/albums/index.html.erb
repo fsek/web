@@ -1,11 +1,42 @@
 <%= title(t('gallery.title')) %>
-<div class="headline headline-md">
-  <h1><%= t('gallery.title') %></h1>
-</div>
-<div class="headline headline-md"><h3><%= t('gallery.all_albums') %></h3></div>
-<% @albums.each do |p| %>
-  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-    <%= render 'album_preview', album: p %>
+<div class="col-md-12">
+  <div class="panel panel-orange margin-bottom-40">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= fa_icon('tasks') %> <%= t('gallery.title') %>
+      </h3>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <%= content_tag(:th, 'Id') %>
+          <%= content_tag(:th, Album.human_attribute_name(:title)) %>
+          <%= content_tag(:th, Album.human_attribute_name(:location)) %>
+          <%= content_tag(:th, Album.human_attribute_name(:public)) %>
+          <%= content_tag(:th, Album.human_attribute_name(:start_date)) %>
+          <%= content_tag(:th, Album.human_attribute_name(:end_date)) %>
+          <%= content_tag(:th, Album.human_attribute_name(:updated_at)) %>
+          <%= content_tag(:th, link_to(t(:new, attr: model_name(Album)),
+                                       new_admin_gallery_album_path,
+                                       class: 'btn btn-u')) %>
+        </tr>
+      </thead>
+      <tbody>
+        <% for album in @albums %>
+          <tr>
+            <%= content_tag(:td, album.id) %>
+            <%= content_tag(:td, album.title) %>
+            <%= content_tag(:td, album.location) %>
+            <%= content_tag(:td, album.public) %>
+            <%= content_tag(:td, album.start_date) %>
+            <%= content_tag(:td, album.end_date) %>
+            <%= content_tag(:td, album.updated_at) %>
+            <%= content_tag(:td, link_to(t(:edit, attr: nil),
+                                         edit_admin_gallery_album_path(album),
+                                         class: 'btn btn-u')) %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-<%end%>
-
+</div>

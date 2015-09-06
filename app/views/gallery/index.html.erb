@@ -2,10 +2,39 @@
 <div class="headline headline-md">
   <h1><%= t('gallery.title') %></h1>
 </div>
-<div class="headline headline-md"><h3>Alla album</h3></div>
-<% @albums.each do |p| %> <!-- ändra till @albums_latest -->
-  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-    <%= render 'gallery/albums/album_preview', album: p %>
+<div class="col-md-2 col-xs-12">
+  <div class="dropdown margin-bottom-20">
+    <button class="btn secondary dropdown-toggle"
+            type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <% if @year.present? %>
+        <%= @year %>
+      <% else %>
+        <%= 'Tidigare år' %>
+      <% end %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="oldies">
+      <% if @year.present? %>
+        <li>
+          <%= link_to(Time.zone.now.year, gallery_path) %>
+        </li>
+      <% end %>
+      <% if @years.present? %>
+        <% @years.each do |year| %>
+          <% unless year.year == Time.zone.now.year || year.year == @year.try(:to_i) %>
+            <li>
+              <%= link_to(year.year, gallery_path(year: year.year)) %>
+            </li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
   </div>
-<%end%>
-
+</div>
+<div class="col-md-10 col-xs-12">
+  <div class="gallery album-preview">
+    <% @albums.each do |p| %>
+      <%= render 'gallery/albums/album_preview', album: p %>
+    <% end %>
+  </div>
+</div>

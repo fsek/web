@@ -10,3 +10,7 @@ sv:
         public: Publik
         start_date: Startdatum
         end_date: Slutdatum
+        images_upload: Bilduppladdning
+        images_photographer: Fotograf
+        created_at: Skapat
+        updated_at: Uppdaterat

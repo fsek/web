@@ -1,5 +1,10 @@
 <div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
-  <h3 class="headline headline-md"><%= t(:new, attr: Album.model_name.human) %></h3>
+  <div class="headline">
+    <h3>
+      <%= t(:new, attr: model_name(Album)) %>
+    </h3>
+  </div>
   <%= render 'form'%>
-  <%= link_to( t('gallery.title'), admin_gallery_albums_path) %>
+  <%= link_to(t('gallery.title'), admin_gallery_albums_path,
+              class: 'btn secondary') %>
 </div>

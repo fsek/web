@@ -87,6 +87,8 @@ namespace :db do
                             link: '/bil', index: 20, visible: true, turbolinks: false)
     Menu.find_or_create_by!(location: :members, name: 'Hilbertcafé',
                             link: '/hilbertcafe', index: 30, visible: true, turbolinks: false)
+    Menu.find_or_create_by!(location: :members, name: 'Bildgalleri',
+                            link: '/galleri', index: 40, visible: true, turbolinks: false)
 
     # Notice
     Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))

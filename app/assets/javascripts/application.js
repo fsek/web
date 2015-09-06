@@ -23,13 +23,13 @@
 //= require fullcalendar/lang/sv.js
 //= require fancybox
 //= require wice_grid.js
+//= require fotorama
 //= require_tree .
 //= require turbolinks
 //= require gallery_hook.js
 //= require jquery.countdown.min
 //= require bootstrap-datetimepicker
 //= require pickers
-//= require wice_grid
 
 var bottom;
 bottom = function () {

@@ -6,16 +6,14 @@ class Admin::Gallery::AlbumsController < ApplicationController
 
   def index
     @albums = Album.order('start_date asc')
-    @albums_latest = Album.order('created_at desc LIMIT 4')
   end
 
   def edit
-  end
-
-  def show
+    @users = User.all_firstname
   end
 
   def new
+    @users = User.all_firstname
   end
 
   def create
@@ -32,10 +30,11 @@ class Admin::Gallery::AlbumsController < ApplicationController
   end
 
   def update
+    @users = User.all_firstname
     if @album.update(album_params)
       if album_params[:images_upload].present?
         album_params[:images_upload].each do |f|
-          @album.images.create(file: f)
+          @album.images.create(file: f, photographer_id: album_params[:images_photographer])
         end
       end
       redirect_to edit_admin_gallery_album_path(@album), notice: alert_update(Album)
@@ -53,6 +52,6 @@ class Admin::Gallery::AlbumsController < ApplicationController
   def album_params
     params.require(:album).permit(:title, :description, :location,
                                   :public, :start_date, :end_date,
-                                  images_upload: [])
+                                  :images_photographer, images_upload: [])
   end
 end

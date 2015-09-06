@@ -1,7 +1,7 @@
 Fsek::Application.routes.draw do
   # Resources on the page
-  get '/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=f1fbd74cac'),
-                   as: :vecktorn_signup, status: 301
+  get('/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=f1fbd74cac'),
+                   as: :vecktorn_signup, status: 301)
   get '/farad', to: redirect('http://www.farad.nu'), as: :farad, status: 301
   get '/facebook', to: redirect('https://www.facebook.com/Fsektionen'), as: :facebook, status: 301
   get '/twitter', to: redirect('https://www.twitter.com/Fsektionen'), as: :twitter, status: 301
@@ -95,7 +95,7 @@ Fsek::Application.routes.draw do
       get :collapse, on: :collection
       post :add_user, on: :collection
       delete 'user/:post_user_id', on: :collection, action: :remove_user,
-                                   as: :remove_user
+        as: :remove_user
       collection do
         get :show_permissions
       end
@@ -148,6 +148,7 @@ Fsek::Application.routes.draw do
         get :candidates, path: :kandideringar, on: :member, except: [:update]
       end
     end
+
     resources :elections, path: :val, only: :index do
       collection do
         resources :nominations, controller: 'elections/nominations',
@@ -160,18 +161,14 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
-      namespace :gallery, path: :bildgalleri do
-        resources :albums, path: :album do
-          resources :images, path: :bilder
-        end
+      namespace :gallery, path: :galleri do
+        resources :albums, path: :album, except: :show
       end
     end
 
-    get :bildgalleri, controller: :gallery, action: :index
-    namespace :gallery, path: :bildgalleri do
-      resources :albums, path: :album, only: [:show] do
-        resources :images, path: :bilder, except: [:show]
-      end
+    get :galleri, controller: :gallery, action: :index, as: :gallery
+    namespace :gallery, path: :galleri do
+      resources :albums, path: :album, only: [:show]
     end
 
     namespace :admin do

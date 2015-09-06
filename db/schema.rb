@@ -215,14 +215,14 @@ ActiveRecord::Schema.define(version: 20151025195202) do
   add_index "faqs", ["category"], name: "index_faqs_on_category", using: :btree
 
   create_table "images", force: :cascade do |t|
-    t.string   "description",    limit: 255
-    t.integer  "album_id",       limit: 4
+    t.integer  "album_id",        limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "captured"
-    t.integer  "subcategory_id", limit: 4
-    t.string   "file",           limit: 255
-    t.string   "filename",       limit: 255
+    t.string   "file",            limit: 255
+    t.string   "filename",        limit: 255
+    t.integer  "photographer_id", limit: 4
+    t.integer  "width",           limit: 4
+    t.integer  "height",          limit: 4
   end
 
   add_index "images", ["file"], name: "index_images_on_file", using: :btree

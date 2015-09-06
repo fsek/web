@@ -5,11 +5,16 @@
     <%= f.input :location %>
     <%= f.input :start_date, as: :datetime_picker %>
     <%= f.input :end_date, as: :datetime_picker %>
+    <%= f.input :public %>
   </div>
-  <div class="form-files">
-    <%= f.input :images_upload, as: :file, input_html: { multiple: true } %>
-  </div>
+  <% unless @album.new_record? %>
+    <div class="form-files">
+      <%= f.input :images_upload, as: :file, input_html: { multiple: true } %>
+      <%= f.input :images_photographer, as: :select, collection: @users %>
+    </div>
+  <% end %>
+
   <div class="form-group">
-    <%= f.button :submit, class: 'btn btn-u' %>
+    <%= f.button :submit %>
   </div>
 <% end %>

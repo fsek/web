@@ -108,6 +108,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
+    coffee-script-source (1.9.1.1)
     colorize (0.7.7)
     columnize (0.9.0)
     database_cleaner (1.5.0)
@@ -136,6 +137,8 @@ GEM
       railties (>= 3.1.0, < 5.0)
     font-awesome-rails (4.4.0.0)
       railties (>= 3.2, < 5.0)
+    fotoramajs (4.6.4)
+      sprockets (>= 2)
     fullcalendar-rails (2.3.1.0)
       jquery-rails (>= 3.1.1, < 5.0.0)
       momentjs-rails (~> 2.8, >= 2.8.4)
@@ -191,7 +194,7 @@ GEM
     mimemagic (0.3.0)
     mini_magick (4.2.10)
     mini_portile (0.6.2)
-    minitest (5.8.0)
+    minitest (5.8.1)
     momentjs-rails (2.10.3)
       railties (>= 3.1)
     multi_json (1.11.2)
@@ -372,6 +375,7 @@ DEPENDENCIES
   factory_girl_rails
   fancybox2-rails
   font-awesome-rails
+  fotoramajs
   fullcalendar-rails
   haml-rails
   i18n-tasks

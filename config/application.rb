@@ -29,3 +29,4 @@ module Fsek
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+Rack::Utils.multipart_part_limit = 512

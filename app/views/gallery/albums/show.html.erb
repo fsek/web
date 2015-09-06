@@ -1,10 +1,26 @@
-<div class="headline headline-md">
-  <h1><%= @album.title %></h1>
+<%= provide(:title, @album.title) %>
+<div class="headline">
+  <h3><%= @album.title %></h3>
+  <%= link_to(fa_icon('arrow-left'), gallery_path,
+              class: 'btn secondary pull-right small') %>
 </div>
-<ul class="row sorting-grid">
+
+<div class="fotorama" data-nav="thumbs"
+                      data-keyboard='{"space": true, "home": true, "end": true, "up": true, "down": true}'
+                      data-click="true"
+                      data-swipe="true"
+                      data-allowfullscreen="true"
+                      data-height="80%"
+                      data-ratio="4/3"
+                      data-startindex="<%= @start %>">
   <% @album.images.each do |p| %>
-    <li class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <%= image_tag(p.foto(:large),class: 'img-responsive gallery', rel: "album", href: p.foto(:original), id: p.id)  %>
-    </li>
-  <%end%>
-</ul>
+    <div data-img="<%= p.view %>" data-thumb="<%= p.thumb %>">
+      <%= link_to(t('gallery.share'), gallery_album_path(@album, start: @album.images.find_index(p))) %>
+    </div>
+  <% end %>
+</div>
+  <ul class="list center">
+    <% @album.photographers.each do |p| %>
+      <li><%= link_to(p, p) %></li>
+    <% end %>
+  </ul>

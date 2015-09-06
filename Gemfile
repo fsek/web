@@ -8,6 +8,8 @@ gem 'rails', '4.2.4'
 # https://github.com/carrierwaveuploader/carrierwave#multiple-file-uploads
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
+gem 'fotoramajs'
+
 gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'coffee-rails'

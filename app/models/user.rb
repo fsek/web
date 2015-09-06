@@ -8,14 +8,15 @@ class User < ActiveRecord::Base
   validates :email, format: { with: Devise::email_regexp }
 
   # Associations
+  belongs_to :first_post, class_name: Post, foreign_key: :first_post_id
+  has_many :candidates
+  has_many :councils, through: :posts
+  has_many :event_registrations
+  has_many :images
+  has_many :permissions, through: :posts
   has_many :post_users
   has_many :posts, through: :post_users
-  has_many :permissions, through: :posts
-  has_many :candidates
   has_many :rents
-  has_many :councils, through: :posts
-  belongs_to :first_post, class_name: Post, foreign_key: :first_post_id
-  has_many :event_registrations
 
   # Attachment
   has_attached_file(:avatar,
