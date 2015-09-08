@@ -1,57 +1,48 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.0'
+ruby '2.2.3'
 
-gem 'cancancan'
+gem 'rails', '4.2.4'
 
-gem 'coffee-rails'
-# Set to 1.8 due to https://github.com/jashkenas/coffeescript/issues/3829
-gem 'coffee-script-source', '1.8.0'
-gem 'devise'
 gem 'bootstrap-sass'
+gem 'cancancan'
+gem 'coffee-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'devise'
 gem 'factory_girl_rails'
 gem 'fancybox2-rails'
 gem 'font-awesome-rails'
 gem 'fullcalendar-rails'
-gem 'haml'
 gem 'haml-rails'
 gem 'icalendar'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
-gem 'momentjs-rails', "~> 2.9.0"
-gem 'mysql2'
+gem 'momentjs-rails'
+gem 'mysql2', '~> 0.3.20' # Rails 4 compatibility
 gem 'paperclip'
 gem 'prawn-rails'
-gem 'responders', '~> 2.0'
+gem 'quiet_assets'
+gem 'responders'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'wice_grid'
-gem 'quiet_assets'
-
-group :production do
-  gem 'therubyracer', platforms: :ruby
-end
 
 group :development, :test do
-  gem 'capybara'
-  gem 'rspec-example_steps'
-  gem 'mailcatcher'
-  gem 'poltergeist'
-  gem 'rspec-rails'
-  gem 'web-console', '~> 2.0'
-  gem 'pry-rails'
-  gem 'pry-byebug'
   gem 'better_errors'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capybara'
   gem 'i18n-tasks'
-
-  gem 'capistrano', '~> 3.4.0', require: false
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-rbenv', require: false
+  gem 'poltergeist'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'rspec-example_steps'
+  gem 'rspec-rails'
+  gem 'web-console'
 end
 
 group :test do

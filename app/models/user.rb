@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :candidates
   has_many :rents
   has_many :councils, through: :posts
-  belongs_to :first_post, class: Post, foreign_key: :first_post_id
+  belongs_to :first_post, class_name: Post, foreign_key: :first_post_id
   has_many :event_registrations
 
   # Attachment

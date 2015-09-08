@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+=begin
 RSpec.describe EventRegistrationsController, type: :controller, pending: true do
   let(:user) { create(:user) }
   let(:event) { create(:event) }
@@ -33,10 +34,5 @@ RSpec.describe EventRegistrationsController, type: :controller, pending: true do
       response.should eq(success)
     end
   end
-
-  describe 'POST #create' do
-  end
-
-  describe 'POST #destroy' do
-  end
 end
+=end
