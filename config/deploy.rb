@@ -1,4 +1,4 @@
-# config valid only for Capistrano 3.3.5
+# config valid only for Capistrano 3.4.0
 lock '3.4.0'
 
 set :application, 'fsek'
@@ -15,6 +15,6 @@ set :bundle_binstubs, nil
 set :linked_files, %w{config/database.yml config/secrets.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp vendor/bundle public/system storage}
+set :linked_dirs, %w{log tmp vendor/bundle public/system storage}
 
-after 'deploy:publishing', 'deploy:restart'
+after 'deploy:publishing', 'passenger:restart'
