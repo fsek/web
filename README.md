@@ -6,14 +6,28 @@ Server versions:
 
 [![Join the chat at https://gitter.im/fsek/web](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fsek/web?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Skriva kod:
-==========
-1. Skapa en ny branch med `git checkout -b my-branch`
-2. Gör dina ändringar som vanligt och commita dem
-3. Pusha din branch med `git push --set-upstream origin manual-refresh`
-4. På github, skapa en pull request mot master
-5. Låta denna ligga ett par timmar, fixa kommentarer från hound och oss andra spindelmän
-6. Merga in till master via github. Servern synkar automatiskt.
+
+Hur man gör saker
+================
+
+Jag vill skriva kod
+-------------------
+1. git checkout master.
+2. git checkout -b minfetabransch.
+3. Gör dina ändringar och committa dem.
+4. Under tiden kan det ha hänt saker med master. Då behöver du rebasea (inte
+   merga) din bransch på master med git rebase origin/master.
+5. Kontrollera så att din commitlog består av vettiga och logiska patchar. Slå
+   ihop små plottriga committar med git rebase -i. Dela upp committar som
+   handlar om mer en än sak med git add -p.
+6. Läs igenom din patch (git diff master).
+7. Läs den en gång till.
+8. git push --set-upstream origin minfetabransch
+9. In på github och skapa en pullrequest.
+10. Vänta några dagar på kommentarer, se vad hounden har att säga och fixa det
+    om det låter vettigt.
+11. Upprepa (5-7)
+12. Merga till master och pusha upp. Deploy ska ske automagiskt.
 
 [dev.fsektionen.se](http://dev.fsektionen.se)
 - Följer dev-branchen och kör mot prod databasen
@@ -22,35 +36,51 @@ Skriva kod:
 
 __Vad man inte ska göra:__
 - Ändra filer direkt på servern. Det kan förstöra konfigurationerna (speciellt om detta görs som root).
-- Force-pusha till master eller dev branchen.
+- Force-pusha till master
 - Commita direkt på master-branchen.
 
 Om det inte funkar:
 - Synka most github manuellt (kräver att du är admin): [master](http://fsektionen.se/githook/master) [dev](http://fsektionen.se/githook/dev)
 
-Branscher
-========
+Jag vill ha en bransch
+----------------------
+
+Kalla branschen för dittnamn/vadduvillgöra så ser alla att du äger den. Då kan
+du force-pusha till den osv., det är ju din bransch.
+
+Om du behöver integrera flera ändringar tillsammans så är det enklast att
+använda en egen integrationsbransch. Den får man förstås inte force-pusha till.
+Det är enklast att undvika detta om man inte verkligen måste.
+
+Specialbranscher som har egna gitkrokar
 
 * master: motsvarar den version av koden som körs i produktion. 
+  * Var rädd om master, i regel vill vi se pull requests innan merge
   * Deployas automatiskt till fsektionen.se mha. gitkrokar. 
-  * Buggfixar i liveversionen händer på master, men ingen nyutveckling.
-* stage: motsvarar det som kommer att finnas i nästa release av appen. 
-  * Här samlas kod som är på väg till master för integration.
-  * Nya features utgår från stage.
-* dev: en throw away-bransch för testning. 
-  * Denna branschen är ok att trasha om det behövs
+* stage: en testversion som körs live på servern
+  * Denna branschen är ok att klubba om det behövs
+  * Deployas automatiskt till stage.fsektionen.se mha. gitkrokar
+* dev: en annan testversion
+  * Denna branschen är ok att klubba om det behövs
   * Deployas automatiskt till dev.fsektionen.se mha. gitkrokar
-* Övriga branscher skapas efter behov och kan användas lite hur som
 
-Detta finns:
-============
-- Användarsystem, profiler och auktorisering
-- Bilbokning
-- Dynamiska utskott som har poster
-- Kontaktformulär 
-- Nyheter
-- Layout
-- En storage-mapp där vi placerar bilder, dokument
+Jag vill ha lite fräsch testdata i min lokala databas
+-----------------------------------------------------
+
+Enklast är att dumpa produktionsdatabasen och ladda in den lokalt. ssha till
+dirac och använd mysqldump för att få ut en fil med all data i.
+
+På dirac:
+
+mysqldump db/fsek_production -u root -p > mindatabas.sql
+
+Lokalt:
+
+scp fsektionen.se:mindatabas.sql .
+
+mysql fsek_development -u root -p < mindatabas.sql
+
+rake db:migrate
 
 
 Generella layoutsaker:
@@ -87,8 +117,6 @@ Vill man kolla om använaren är inloggad anropar man
 Eftersom vi kör lite olika versioner av diverse plugins/bootstrap kan den köpta layouten strula lite ibland, då får man småpilla! :)
 
 
-
-
 Skapa nya controllers
 =====================
 Tag news_controller som exempel.
@@ -111,10 +139,6 @@ Vill man kolla om använaren är inloggad anropar man
     DO STUFF
   <% end %>
 
-
-
-
-
 Skapa nya views
 ===============
 Lägg till 
@@ -127,16 +151,3 @@ Lägg till
   <% end %>
 någonstans i en view för att få content specifikt för just den sidan/viewen.
 
-
-
-Minnasanteckningar om knep som körts för att få det att installera:
-===================================================================
-Run the follow commands (do they need to be run for each new setup?)
-bundle install
-rake assets:precompile RAILS_ENV=development
-rake db:create
-rake db:migrate
-
-git add -A
-git commit -m "Ditt commit meddelande"
-git push origin master
