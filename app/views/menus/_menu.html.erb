@@ -1,9 +1,16 @@
-<%if (menu.turbolinks) && (menu.blank_p) %>
-  <li><%= link_to(menu.name,menu.link, target: 'blank')%></li>
-<%elsif menu.turbolinks%>
-  <li><%= link_to(menu.name,menu.link)%></li>
-<%elsif menu.blank_p%>
-  <li><%= link_to(menu.name,menu.link,'data-no-turbolink'=>true, target: 'blank')%></li>
-<%else%>
-  <li><%= link_to(menu.name,menu.link,'data-no-turbolink'=>true)%></li>
-<%end%>
+<% if menu.turbolinks && menu.blank_p %>
+  <%= content_tag(:li, link_to(menu, menu.link, target: 'blank')) %>
+<% elsif menu.turbolinks %>
+  <%= content_tag(:li, link_to(menu, menu.link)) %>
+<% elsif menu.blank_p %>
+  <%= content_tag(:li, class: 'menu blank') do %>
+    <%= link_to(menu.link, 'data-no-turbolink' => true, target: :blank) do %>
+      <%= menu %>
+      <span>
+        <%= Menu.human_attribute_name(:blank_p) %>
+      </span>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= content_tag(:li, link_to(menu, menu.link, 'data-no-turbolink' => true )) %>
+<% end %>

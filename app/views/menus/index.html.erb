@@ -1,33 +1,39 @@
-<div class="container">
-	<div class="col-md-12">
-		<div class="panel panel-orange margin-bottom-40">
-            <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-tasks"></i> Menyelement</h3> <%=link_to('Skapa ny',new_menu_path,class:'btn btn-u')%></div>                                                          
-            <table class="table">
-                <thead>
-                    <tr>                                
-                        <th>Id</th>
-                        <th>Namn</th> 
-                        <th>Position</th>
-                        <th>Synlig</th>
-                        <th>Länk</th>                         
-                        <th>Uppdaterad</th>
-                        <th>Redigera</th>                                
-                    </tr>
-                </thead>
-                <tbody>
-                	<%for @menu in @menues%>	                            							
-                        <tr>
-                            <td><%=@menu.id%></td>
-                            <td><%=@menu.name%></td>
-                            <td><%=@menu.location%></td>
-                            <td><%=@menu.visible%></td>
-                            <td><%=link_to(@menu.link,@menu.link)%></td>                            
-                            <td><%=@menu.updated_at%></td>
-                            <td><%=link_to('Redigera',edit_menu_path(@menu),class: "btn btn-u")%></td>		                                	                                                          
-                        </tr>	                            
-                    <%end%>                            	                     
-                </tbody>
-            </table>
-        </div>                        
+<div class="col-md-12">
+  <div class="panel panel-orange margin-bottom-40">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= fa_icon('tasks') %> <%= Menu.model_name.human(count: 2) %>
+      </h3>
     </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <%= content_tag(:th, 'Id') %>
+          <%= content_tag(:th, Menu.human_attribute_name(:name)) %>
+          <%= content_tag(:th, Menu.human_attribute_name(:location)) %>
+          <%= content_tag(:th, Menu.human_attribute_name(:visible)) %>
+          <%= content_tag(:th, Menu.human_attribute_name(:turbolinks)) %>
+          <%= content_tag(:th, Menu.human_attribute_name(:blank_p)) %>
+          <%= content_tag(:th, Menu.human_attribute_name(:link)) %>
+          <%= content_tag(:th, Menu.human_attribute_name(:updated_at)) %>
+          <%= content_tag(:th, link_to(t(:new, attr: Menu.model_name.human), new_menu_path, class: 'btn btn-u')) %>
+        </tr>
+      </thead>
+      <tbody>
+        <% for menu in @menues %>
+          <tr>
+            <%= content_tag(:td, menu.id) %>
+            <%= content_tag(:td, menu.name) %>
+            <%= content_tag(:td, menu.location) %>
+            <%= content_tag(:td, menu.visible) %>
+            <%= content_tag(:td, menu.turbolinks) %>
+            <%= content_tag(:td, menu.blank_p) %>
+            <%= content_tag(:td, link_to(menu.link, menu.link)) %>
+            <%= content_tag(:td, menu.updated_at) %>
+            <%= content_tag(:td, link_to(t(:edit, attr: nil), edit_menu_path(menu))) %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

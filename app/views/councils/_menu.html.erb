@@ -1,8 +1,7 @@
-<ul class="list-inline list-unstyled black-link" style="margin-top: 10px; text-align: left">
-  <% if can? :manage, Council %>
-      <li><%= link_to(fa_icon('edit') + " Lägg till utskott", new_council_path, class: "btn-u btn-u-small") %> </li>
-  <% end %>
-  <% @councils.each do |u| %>
-      <li><%= link_to u.title, council_path(u) %></li>
-  <% end %>
-</ul>
+<div class="col-md-12">
+  <ul class="list-inline list-unstyled black-link council">
+      <% councils.each do |u| %>
+        <li><%= link_to(u.title, council_path(u)) %></li>
+      <% end %>
+  </ul>
+</div>

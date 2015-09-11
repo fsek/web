@@ -1,11 +1,5 @@
 @import "colors";
 
-a:link,
-a:visited,
-a:hover,
-a:active {
-  color: $fsek-orange;
-}
 .black-link {
   a,
   a:visited,
@@ -329,10 +323,4 @@ a:active {
 
 .funny-boxes-right-u:hover {
   border-right-color: $fsek-orange;
-}
-
-.pagination > li > a:hover {
-  background-color: $fsek-orange;
-  border: 1px solid $black;
-  outline: 0;
 }

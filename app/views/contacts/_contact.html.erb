@@ -1,0 +1,8 @@
+<% contact = Contact.find_by(name: name)%>
+<% if contact %>
+  <%= link_to(contact_path(contact)) do %>
+    <%= fa_icon('envelope') %> <%= kontakt.name %>
+  <% end %>
+<% else %>
+  <%= name %>
+<% end %>

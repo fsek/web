@@ -2,3 +2,7 @@ ruby:
   config_file: .ruby-style.yml
 java_script:
   config_file: .javascript-style.json
+scss:
+  config_file: .scss-lint.yml
+  exclude:
+    -"app/assets/stylesheets/mixins.scss"

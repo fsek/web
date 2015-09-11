@@ -1,8 +1,8 @@
 <%= simple_form_for(@rent, html: { class: 'reg-page'}) do |f| %>
   <div class="center">
-    <h1>Bilbokning</h1>
+    <h1><%= t('rent.title') %></h1>
 
-    <div class="headline headline-md"><h2>Avtal</h2></div>
+    <div class="headline headline-md"><h2><%= t('rent.agreement') %></h2></div>
     <% if @TOA.present? %>
       <iframe src="<%= document_path(@TOA) %>" class="iframe-document" frameborder="5"></iframe>
     <% else %>
