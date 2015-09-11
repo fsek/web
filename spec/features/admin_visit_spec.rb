@@ -11,8 +11,8 @@ feature 'admin visits paths' do
   let(:event) { create(:event) }
   let(:news) { create(:news) }
   let(:rent) { create(:rent) }
+  let(:contact) { create(:contact) }
   let(:login) { LoginPage.new }
-
   paths = {
     albums: [:show],
     cafe_works: [:index],
