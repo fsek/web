@@ -1,10 +1,10 @@
-<div class="col-md-6">                      
+<div class="col-md-6">
   <p class="copyright-space">
-  2015 &copy; F-teknologsektionen inom TLTH.
-  </p>         
+    <%= Time.current.year %> &copy; F-teknologsektionen inom TLTH.
+  </p>
 </div>
-<div class="col-md-6">   
-  <p class="copyright-space pull-right">				
-  Kontrollerar detta nät: <%= render 'contacts/kontakt', name: 'Spindelmän' %>
-</p>              
-</div>            
+<div class="col-md-6">
+  <p class="copyright-space pull-right">
+  <%= t('footer.control_the_web') %>: <%= render 'contacts/contact', name: 'Spindelmän' %>
+</p>
+</div>

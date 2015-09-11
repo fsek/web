@@ -50,8 +50,9 @@ group :development, :test do
   gem 'better_errors'
   gem 'i18n-tasks'
 
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
+  gem 'capistrano', '~> 3.4.0', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false
 end
 
 group :test do

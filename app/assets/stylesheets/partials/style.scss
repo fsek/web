@@ -1,6 +1,5 @@
-/*Import Google Fonts*/
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 @import "colors";
+@import "mixins";
 
 /*Block Headline*/
 .headline {
@@ -31,7 +30,7 @@
 
 /*Purchase Block*/
 .purchase {
-  background: url(../img/breadcrumbs.png) repeat;
+  background: image-url('../img/breadcrumbs.png') repeat;
   box-shadow: inset 0 0 4px #eee;
   margin-bottom: 30px;
   padding: 30px 0;
@@ -42,14 +41,14 @@
 .purchase span {
   color: #666;
   display: block;
-  font-family: 'Open Sans', sans-serif;
+  //font-family: 'Open Sans', sans-serif;
   font-size: 28px;
   font-weight: 200;
   line-height: 35px;
   margin-bottom: 12px;
 }
 .purchase a.btn-buy {
-  background: #72c02c;
+  background: $fsek-orange;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -75,12 +74,9 @@
   padding: 15px 15px 10px;
 }
 .service:hover {
-  -moz-transition: box-shadow 0.2s ease-in-out;
-  -o-transition: box-shadow 0.2s ease-in-out;
-  -webkit-transition: box-shadow 0.2s ease-in-out;
+  @include transition(box-shadow 0.2s ease-in-out);
   background: #fcfcfc;
   box-shadow: 0 0 5px #ddd;
-  transition: box-shadow 0.2s ease-in-out;
 }
 .service:hover i {
   color: #656565;
@@ -96,15 +92,12 @@
 }
 
 .service .service-icon {
-  -moz-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
-  color: #72c02c;
+  @include transition(all 0.4s ease-in-out);
+  color: $fsek-orange;
   float: left;
   font-size: 45px;
   padding: 10px;
   text-align: center;
-  transition: all 0.4s ease-in-out;
 }
 .service .service-icon.icon-cogs {
   font-size: 37px;
@@ -144,32 +137,21 @@
 }
 
 .recent-work a i {
-  color: #777;
+  color: $gray-text;
 }
 
 .recent-work a img {
-  -moz-transition: all 0.8s ease-in-out;
-  -ms-transition: all 0.8s ease-in-out;
-  -o-transition: all 0.8s ease-in-out;
-  -webkit-transition: all 0.8s ease-in-out;
-  transition: all 0.8s ease-in-out;
+  @include transition(all 0.8s ease-in-out);
 }
 
 .recent-work a:hover img {
-  -moz-transform: scale(1.2) rotate(3deg);
-  -ms-transform: scale(1.2) rotate(3deg);
-  -o-transform: scale(1.0) rotate(3deg);
-  -webkit-transform: scale(1.2) rotate(3deg);
+  @include transform(scale(1.2) rotate(3deg));
   opacity: 0.8;
-  transform: scale(1.2) rotate(3deg);
 }
 
 .recent-work a:hover span {
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
-  border-bottom: solid 2px #72c02c;
-  transition: all 0.3s ease-in-out;
+  @include transition(all 0.3s ease-in-out);
+  border-bottom: solid 2px $fsek-orange;
 }
 
 /*Blockquote*/
@@ -179,17 +161,14 @@ blockquote p {
 }
 
 blockquote:hover {
-  -moz-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
-  border-left-color: #72c02c;
-  transition: all 0.4s ease-in-out;
+  @include transition(all 0.4s ease-in-out);
+  border-left-color: $fsek-orange;
 }
 .hero {
   background: #fcfcfc;
   border-left: 4px solid #94c564;
   color: #566c8a;
-  font-family: 'Open Sans', sans-serif;
+  //font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   margin: 20px 0;
   padding: 18px;
@@ -226,86 +205,72 @@ blockquote:hover {
 .footer {
   background: #f9f9f9;
   border-top: 1px solid #eee;
-  color: #777;
+  color: $gray-text;
   margin-top: 40px;
   padding: 20px 0 30px;
   text-shadow: 0 1px 0 #fff;
-}
 
-.footer.margin-top-0 {
-  margin-top: 0;
-}
+  .margin-top-0 {
+    margin-top: 0;
+  }
 
-.footer .headline {
-  margin-bottom: 15px !important;
-}
+  .headline {
+    margin-bottom: 15px;
+  }
 
-.footer h1,
-.footer h2,
-.footer h3,
-.footer h4,
-.footer h5 {
-  border: none !important;
-  color: #555;
-  font-size: 18px;
-  font-weight: normal !important;
-  text-shadow: 0 1px 0 #fff;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    border: none;
+    color: #555;
+    font-size: 18px;
+    font-weight: normal;
+    text-shadow: 0 1px 0 #fff;
+  }
+  p {
+    font-size: 14px;
+    color: $gray-text;
+  }
 
-.footer p,
-.footer a {
-  font-size: 14px;
-}
-.footer p {
-  color: #777;
-}
+  a {
+    font-size: 14px;
+  }
 
-.footer a {
-  color: #72c02c;
-}
-.footer a:hover {
-  -moz-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
-  color: #a8f85f;
-  transition: all 0.4s ease-in-out;
-}
+  .footer-subscribe {
+    width: 85%;
+  }
 
+  .blog-list {
+    color: #dadada;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-/*Footer Subsribe*/
-.footer .footer-subsribe {
-  width: 85%;
-}
+    li {
+      margin-bottom: 7px;
+      padding: 0 0;
+    }
+    li span {
+      color: #818488;
+    }
+  }
 
-/*Blog Posts*/
-.footer .blog-list {
-  color: #dadada;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+  .dl-horizontal,
+  .dl-horizontal:hover {
+    background: none;
+    border: none;
+  }
 
-.footer .blog-list li {
-  margin-bottom: 7px;
-  padding: 0 0;
-}
-.footer .blog-list li span {
-  color: #818488;
-}
-
-.footer .dl-horizontal,
-.footer .dl-horizontal:hover {
-  background: none !important;
-  border: none !important;
-}
-.footer .dl-horizontal a {
-  color: #777;
-}
-.footer .dl-horizontal a:hover {
-  color: #a8f85f !important;
-}
-.footer .dl-horizontal img {
-  border-color: #eee !important;
+  .dl-horizontal {
+    a {
+      color: $gray-text;
+    }
+    img {
+      border-color: #eee;
+    }
+  }
 }
 
 /*Copyright*/
@@ -314,22 +279,23 @@ blockquote:hover {
   border-top: solid 1px #555;
   font-size: 12px;
   padding: 11px 0 7px;
-}
 
-.copyright p {
-  color: #aaa;
-}
+  p {
+    color: none;
+  }
 
-.copyright p.copyright-space {
-  margin-top: 12px;
-}
+  p.copyright-space {
+    margin-top: 12px;
+  }
 
-.copyright a {
-  color: #72c02c;
-  margin: 0 5px;
-}
-.copyright a:hover {
-  color: #a8f85f;
+  a {
+    color: $fsek-orange;
+    margin: 0 5px;
+  }
+
+  a:hover {
+    color: $link-hover-color;
+  }
 }
 
 /*Page (Features)
@@ -346,11 +312,8 @@ a.thumbnail {
   margin-bottom: 20px;
 }
 .thumbnail-style:hover {
-  -moz-transition: box-shadow 0.2s ease-in-out;
-  -o-transition: box-shadow 0.2s ease-in-out;
-  -webkit-transition: box-shadow 0.2s ease-in-out;
+  @include transition(box-shadow 0.2s ease-in-out);
   box-shadow: 0 0 8px #ddd;
-  transition: box-shadow 0.2s ease-in-out;
 }
 .thumbnail-style h3 {
   margin: 5px 0 0 0;
@@ -359,7 +322,7 @@ a.thumbnail {
   font-size: 20px;
 }
 .thumbnail-style h3 a:hover {
-  color: #72c02c;
+  color: $fsek-orange;
   text-decoration: none;
 }
 .thumbnail-style .thumbnail-img {
@@ -367,7 +330,7 @@ a.thumbnail {
   margin-bottom: 10px;
 }
 .thumbnail-style a.btn-more {
-  background: #72c02c;
+  background: $fsek-orange;
   bottom: 10px;
   color: #fff;
   display: inline-block;
@@ -384,33 +347,22 @@ a.thumbnail {
 }
 
 .thumbnail-kenburn img {
-  -moz-transition: all 0.8s ease-in-out;
-  -ms-transition: all 0.8s ease-in-out;
-  -o-transition: all 0.8s ease-in-out;
-  -webkit-transition: all 0.8s ease-in-out;
+  @include transition(all 0.8s ease-in-out);
   left: 10px;
   margin-left: -10px;
   position: relative;
-  transition: all 0.8s ease-in-out;
 }
 .thumbnail-kenburn:hover img {
-  -moz-transform: scale(1.2) rotate(2deg);
-  -ms-transform: scale(1.2) rotate(2deg);
-  -o-transform: scale(1.2) rotate(2deg);
-  -webkit-transform: scale(1.2) rotate(2deg);
-  transform: scale(1.2) rotate(2deg);
+  @include transform(scale(1.2) rotate(2deg));
 }
 
 /*Servive Blocks*/
 .servive-block .servive-block-in {
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
+  @include transition(all 0.3s ease-in-out);
   background: #fafafa;
   margin-bottom: 20px;
   padding: 20px 30px;
   text-align: center;
-  transition: all 0.3s ease-in-out;
 }
 .servive-block .servive-block-in:hover {
   box-shadow: 0 0 8px #ddd;
@@ -421,22 +373,19 @@ a.thumbnail {
 }
 
 .servive-block .servive-block-in h4 a:hover {
-  color: #72c02c;
+  color: $fsek-orange;
   text-decoration: none;
 }
 
 .servive-block .servive-block-in:hover h4,
 .servive-block .servive-block-in:hover i {
-  color: #72c02c;
+  color: $fsek-orange;
 }
 
 .servive-block .servive-block-in i {
-  -moz-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
+  @include transition(all 0.4s ease-in-out);
   color: #565656;
   font-size: 40px;
-  transition: all 0.4s ease-in-out;
 }
 
 .servive-block .servive-block-red {
@@ -476,11 +425,8 @@ a.thumbnail {
 
 /*Service Alternative Block*/
 .service-alternative .service:hover {
-  -moz-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
+  @include transition(all 0.4s ease-in-out);
   background: #76ca2c;
-  transition: all 0.4s ease-in-out;
 }
 .service-alternative .service:hover i,
 .service-alternative .service:hover p,
@@ -532,25 +478,22 @@ a.thumbnail {
 }
 
 .posts .dl-horizontal dd a:hover {
-  color: #72c02c;
+  color: $fsek-orange;
   text-decoration: none;
 }
 
 .posts .dl-horizontal:hover dt img,
 .posts .dl-horizontal:hover dd a {
-  -moz-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
-  border-color: #72c02c !important;
-  color: #72c02c;
-  transition: all 0.4s ease-in-out;
+  @include transition(all 0.4s ease-in-out);
+  border-color: $fsek-orange !important;
+  color: $fsek-orange;
 }
 
 /*Breadcrumbs*/
 .breadcrumbs {
   background: #f9f9f9;
   border-bottom: 1px solid #eee;
-  color: #777;
+  color: $gray-text;
 }
 .breadcrumbs h1 {
   color: #555;
@@ -566,18 +509,12 @@ a.thumbnail {
   padding: 10px 0 0 0;
 }
 .breadcrumb a {
-  color: #777;
+  color: $gray-text;
 }
 .breadcrumb li.active,
 .breadcrumb li a:hover {
-  color: #72c02c;
+  color: $fsek-orange;
   text-decoration: none;
-}
-
-/*Pegination*/
-.pagination li a {
-  color: #777;
-  padding: 5px 15px;
 }
 
 /* Testimonials */
@@ -586,7 +523,7 @@ a.thumbnail {
 }
 
 .testimonials .testimonial-info {
-  color: #72c02c;
+  color: $fsek-orange;
   font-size: 16px;
   margin-top: 18px;
   padding: 0 15px;
@@ -598,7 +535,7 @@ a.thumbnail {
 }
 
 .testimonials .testimonial-info em {
-  color: #777;
+  color: $gray-text;
   display: block;
   font-size: 13px;
 }
@@ -624,13 +561,13 @@ a.thumbnail {
 
 .testimonials .carousel-arrow i {
   background: #fafafa;
-  color: #777;
+  color: $gray-text;
   font-size: 20px;
   padding: 2px 8px;
 }
 
 .testimonials .carousel-arrow i:hover {
-  background: #72c02c;
+  background: $fsek-orange;
   color: #fff;
 }
 
@@ -715,7 +652,7 @@ a.thumbnail {
 /*Tabs v1*/
 .tab-v1 .nav-tabs {
   background: none;
-  border-bottom: solid 2px #72c02c;
+  border-bottom: solid 2px $fsek-orange;
   border: none;
 }
 
@@ -727,7 +664,7 @@ a.thumbnail {
 .tab-v1 .nav-tabs > .active > a,
 .tab-v1 .nav-tabs > .active > a:hover,
 .tab-v1 .nav-tabs > .active > a:focus {
-  background: #72c02c;
+  background: $fsek-orange;
   border: none;
   color: #fff;
 }
@@ -736,7 +673,7 @@ a.thumbnail {
   border: none;
 }
 .tab-v1 .nav-tabs > li > a:hover {
-  background: #72c02c;
+  background: $fsek-orange;
   color: #fff;
 }
 
@@ -767,7 +704,7 @@ a.thumbnail {
 .tab-v2 .nav-tabs li.active a {
   background: #fff;
   border-bottom: none !important;
-  border-top: solid 2px #72c02c;
+  border-top: solid 2px $fsek-orange;
   border: solid 1px #eee;
   padding: 7px 15px 9px;
 }
@@ -781,7 +718,7 @@ a.thumbnail {
 .tab-v3 .nav-pills li a {
   background: #fafafa;
   border: solid 1px #eee;
-  color: #777;
+  color: $gray-text;
   font-size: 17px;
   margin-bottom: 3px;
   padding: 4px 8px;
@@ -789,7 +726,7 @@ a.thumbnail {
 
 .tab-v3 .nav-pills li a:hover,
 .tab-v3 .nav-pills li.active a {
-  background: #72c02c;
+  background: $fsek-orange;
   border: solid 1px #68af28;
   color: #fff;
 }
@@ -896,12 +833,9 @@ a.thumbnail {
   text-align: center;
 }
 .team ul.team-socail li i:hover {
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
-  background: #72c02c;
+  @include transition(all 0.2s ease-in-out);
+  background: $fsek-orange;
   color: #fff;
-  transition: all 0.2s ease-in-out;
 }
 
 .team .thumbnail-style {
@@ -917,7 +851,7 @@ a.thumbnail {
   margin-bottom: 10px;
 }
 .team .thumbnail-style:hover h3 a {
-  color: #72c02c !important;
+  color: $fsek-orange !important;
 }
 
 /*Gallery Page
@@ -938,7 +872,7 @@ a.thumbnail {
   text-decoration: underline;
 }
 .privacy a:hover {
-  color: #72c02c;
+  color: $fsek-orange;
   text-decoration: none;
 }
 
@@ -994,17 +928,14 @@ ul.blog-tags a i {
 }
 
 ul.blog-tags a:hover {
-  background: #72c02c;
+  background: $fsek-orange;
 }
 
 ul.blog-tags a:hover,
 ul.blog-tags a:hover i {
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
+  @include transition(all 0.2s ease-in-out);
   color: #fff !important;
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
 }
 
 /*Blog Photo Stream*/
@@ -1018,7 +949,7 @@ ul.blog-tags a:hover i {
   width: 58px;
 }
 .blog-photos li img:hover {
-  box-shadow: 0 0 0 2px #72c02c;
+  box-shadow: 0 0 0 2px $fsek-orange;
   opacity: 1;
 }
 
@@ -1034,11 +965,7 @@ ul.blog-tags a:hover i {
 .blog-twitter .blog-twitter-inner,
 .blog-twitter .blog-twitter-inner:after,
 .blog-twitter .blog-twitter-inner:before {
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  @include transition(all 0.3s ease-in-out);
 }
 
 .blog-twitter .blog-twitter-inner:after,
@@ -1068,21 +995,21 @@ ul.blog-tags a:hover i {
 }
 
 .blog-twitter .blog-twitter-inner:hover {
-  border-color: #72c02c;
-  border-top-color: #72c02c;
+  border-color: $fsek-orange;
+  border-top-color: $fsek-orange;
 }
 .blog-twitter .blog-twitter-inner:hover:after {
-  border-top-color: #72c02c;
+  border-top-color: $fsek-orange;
 }
 
 .blog-twitter .blog-twitter-inner span {
-  color: #777;
+  color: $gray-text;
   display: block;
   font-size: 11px;
 }
 
 .blog-twitter .blog-twitter-inner a {
-  color: #72c02c;
+  color: $fsek-orange;
   text-decoration: none;
 }
 .blog-twitter .blog-twitter-inner a:hover {
@@ -1103,7 +1030,7 @@ ul.blog-tags a:hover i {
   margin-bottom: 6px;
 }
 .who li i {
-  color: #72c02c;
+  color: $fsek-orange;
   font-size: 18px;
   margin-right: 8px;
   position: relative;
@@ -1111,7 +1038,7 @@ ul.blog-tags a:hover i {
 }
 .who li:hover i,
 .who li:hover a {
-  color: #777;
+  color: $gray-text;
 }
 .who li:hover a:hover {
   text-decoration: none;
@@ -1180,14 +1107,14 @@ ul.blog-tags a:hover i {
 /*Tag Boxes v1*/
 .tag-box-v1 {
   border: solid 1px #eee;
-  border-top: solid 2px #72c02c;
+  border-top: solid 2px $fsek-orange;
 }
 
 /*Tag Boxes v2*/
 .tag-box-v2 {
   background: #fafafa;
   border: solid 1px #eee;
-  border-left: solid 2px #72c02c;
+  border-left: solid 2px $fsek-orange;
 }
 
 /*Tag Boxes v3*/
@@ -1222,7 +1149,7 @@ ul.blog-tags a:hover i {
 /*Tag Boxes v7*/
 .tag-box-v7 {
   border: solid 1px #eee;
-  border-bottom: solid 2px #72c02c;
+  border-bottom: solid 2px $fsek-orange;
 }
 
 /*Panels (Portlets)
@@ -1405,15 +1332,12 @@ ul.blog-tags a:hover i {
 }
 
 .info-blocks:hover i.icon-info-blocks {
-  -moz-transition:all 0.2s ease-in-out;
-  -o-transition:all 0.2s ease-in-out;
-  -webkit-transition:all 0.2s ease-in-out;
-  color: #72c02c;
-  transition:all 0.2s ease-in-out;
+  @include transition(all 0.2s ease-in-out);
+  color: $fsek-orange;
 }
 
 .info-blocks i.icon-info-blocks {
-  color: #777;
+  color: $gray-text;
   float: left;
   font-size: 40px;
   margin-top: 5px;

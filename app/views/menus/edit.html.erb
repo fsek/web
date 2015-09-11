@@ -1,11 +1,8 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-      <%= label_tag 'Redigera ment', nil, class: 'reg-header' %>
-      <%= render 'form' %>
-      <%= link_to 'Tillbaka', :back %>
-      <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @menu,
-                  method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
-    </div>
-  </div>
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <h3 class="headline headline-md">
+    <%= t(:edit, attr: Menu.model_name.human) %>
+  </h3>
+  <%= render('form') %>
+  <%= link_to(t(:index, attr: Menu.model_name.human(count: 2)), :menus,
+              class: "pull-right") %>
 </div>

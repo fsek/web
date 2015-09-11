@@ -1,0 +1,15 @@
+.menu {
+  span {
+    display: none;
+  }
+
+  &.blank {
+    &:hover {
+      span {
+        display: inline;
+        float: right;
+      }
+    }
+  }
+}
+

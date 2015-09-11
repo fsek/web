@@ -1,67 +1,67 @@
 <li class="dropdown">
   <%= link_to t(:administrate), "#", class: "dropdown-toggle",
-              data: {toggle: "dropdown", delay: "0", 'close-others' => "false"} %>
+    data: {toggle: "dropdown", delay: "0", 'close-others' => "false"} %>
   <ul class="dropdown-menu">
     <% if can? :manage, :all  %>
-        <li class="dropdown-submenu">
-          <a href="">Admin</a>
-          <ul class="dropdown-menu">
-            <li><%= link_to models_name(User), :admin_users %></li>
-            <li><%= link_to models_name(Menu), :menus %></li>
-            <li><%= link_to models_name(Constant), :constants %></li>
-          </ul>
-        </li>
+      <li class="dropdown-submenu">
+        <a href="">Admin</a>
+        <ul class="dropdown-menu">
+          <li><%= link_to models_name(User), :admin_users %></li>
+          <li><%= link_to models_name(Menu), :menus %></li>
+          <li><%= link_to models_name(Constant), :constants %></li>
+        </ul>
+      </li>
     <% end %>
     <% if can? :manage, Page %>
-        <li class="dropdown-submenu">
-          <%= link_to(model_name(Page),:pages)%>
-        </li>
+      <li class="dropdown-submenu">
+        <%= link_to(model_name(Page),:pages)%>
+      </li>
     <%end%>
     <% if can? :manage, ShortLink %>
-        <li class="dropdown-submenu">
-          <%= link_to(ShortLink.model_name.human(:count => 2), :short_links) %>
-        </li>
+      <li class="dropdown-submenu">
+        <%= link_to(ShortLink.model_name.human(:count => 2), :short_links) %>
+      </li>
     <%end%>
     <% if can? :manage, Rent %>
-        <li class="dropdown-submenu">
-          <%= link_to(model_name(Rent),:admin_car)%>
-        </li>
+      <li class="dropdown-submenu">
+        <%= link_to(model_name(Rent),:admin_car)%>
+      </li>
     <%end%>
     <% if can? :manage, Election %>
-        <li class="dropdown-submenu">
-          <%= link_to(model_name(Election),:admin_elections)%>
-        </li>
+      <li class="dropdown-submenu">
+        <%= link_to(model_name(Election),:admin_elections)%>
+      </li>
     <%end%>
     <% if can? :modify, Event %>
-        <li class="dropdown-submenu">
-          <a href=""><%=model_name(Event)%></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Snabbvy av alla event", :admin_events %></li>
-            <li><%= link_to "Nytt event", :new_admin_event %></li>
-          </ul>
-        </li>
+      <li class="dropdown-submenu">
+        <a href=""><%=model_name(Event)%></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Snabbvy av alla event", :admin_events %></li>
+          <li><%= link_to "Nytt event", :new_admin_event %></li>
+        </ul>
+      </li>
     <% end %>
     <% if can? :modify, News %>
-        <li class="dropdown-submenu">
-          <%= link_to model_name(News), :new_news %>
-        </li>
+      <li class="dropdown-submenu">
+        <%= link_to model_name(News), :new_news %>
+      </li>
     <% end %>
     <% if can? :modify, Council %>
-        <li class="dropdown-submenu">
-          <a href=""><%=model_name(Council)%></a>
-          <ul class="dropdown-menu">
-            <% for council in Council.all %>
-                <% if can? :manage, council %>
-                    <li><%= link_to council.title, edit_council_path(council) %></li>
-                <% end %>
+      <li class="dropdown-submenu">
+        <a href=""><%=model_name(Council)%></a>
+        <ul class="dropdown-menu">
+          <% for council in Council.all %>
+            <% if can? :manage, council %>
+              <li><%= link_to council.title, edit_council_path(council) %></li>
             <% end %>
-          </ul>
-        </li>
+          <% end %>
+        </ul>
+      </li>
     <% end %>
     <% if can? :manage, CafeWork %>
-        <li class="dropdown-submenu">
+      <li class="dropdown-submenu">
         <%= link_to(model_name(CafeWork), :admin_cafe_works)%>
-        </li>
+      </li>
     <% end %>
   </ul>
 </li>

@@ -8,7 +8,12 @@ Fsek::Application.routes.draw do
   get "githook/master" => "githook#master"
 
   # Resources on the page
-  get '/vecktorn', to: redirect('http://old.fsektionen.se/vecktorn/signup.php'), as: :vecktorn_signup
+  get '/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=f1fbd74cac'),
+                   as: :vecktorn_signup, status: 301
+  get '/farad', to: redirect('http://www.farad.nu'), as: :farad, status: 301
+  get '/facebook', to: redirect('https://www.facebook.com/Fsektionen'), as: :facebook, status: 301
+  get '/twitter', to: redirect('https://www.twitter.com/Fsektionen'), as: :twitter, status: 301
+  get '/youtube', to: redirect('https://www.youtube.com/user/fsektionen'), as: :youtube, status: 301
 
   get 'om' => 'static_pages#om', as: :om
   get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about

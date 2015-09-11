@@ -1,9 +1,8 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag 'Lägg till meny',nil, class: 'reg-header'%>
-			<%= render 'form'%>
-			<%= link_to 'Tillbaka', :back %>
-		</div>
-	</div>
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <h3 class="headline headline-md">
+    <%= t(:new, attr: Menu.model_name.human) %>
+  </h3>
+  <%= render('form') %>
+  <%= link_to(t(:index, attr: Menu.model_name.human(count: 2)), :menus,
+              class: "pull-right") %>
 </div>

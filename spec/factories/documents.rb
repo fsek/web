@@ -2,6 +2,8 @@
 FactoryGirl.define do
   factory :document do
     title
-    pdf { fixture_file_upload(Rails.root.join('spec', 'assets', 'fpapper.pdf'), 'application/pdf') }
+    pdf_file_name { generate(:name) }
+    pdf_content_type { 'application/pdf' }
+    pdf_file_size 1024
   end
 end
