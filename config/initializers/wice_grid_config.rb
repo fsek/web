@@ -146,4 +146,6 @@ if defined?(Wice::Defaults)
   # popup calendar will be shown relative to the popup trigger element or to the mouse pointer
   Wice::Defaults::POPUP_PLACEMENT_STRATEGY = :trigger # :pointer
 
+  Wice::Defaults::ALLOW_SHOWING_ALL_RECORDS = true
+
 end
