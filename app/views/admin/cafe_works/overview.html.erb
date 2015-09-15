@@ -20,7 +20,7 @@
 
         <tbody>
           <% @cafe_works.each do |cw| %>
-            <% if cw.user_id != nil || cw.profile_id != nil || cw.access_code != nil %>
+            <% if cw.user_id != nil || cw.access_code != nil %>
               <tr>
                 <td><%= link_to(cw.id, admin_cafe_work_path(cw)) %></td>
                 <td><%= cw.lp %></td>

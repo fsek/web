@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723050347) do
+ActiveRecord::Schema.define(version: 20150906182103) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 20150723050347) do
     t.integer  "pass",         limit: 4
     t.integer  "lp",           limit: 4
     t.integer  "lv",           limit: 4
-    t.integer  "profile_id",   limit: 4
     t.string   "name",         limit: 255
     t.string   "lastname",     limit: 255
     t.string   "phone",        limit: 255
@@ -78,7 +77,6 @@ ActiveRecord::Schema.define(version: 20150723050347) do
 
   create_table "candidates", force: :cascade do |t|
     t.integer  "post_id",     limit: 4
-    t.integer  "profile_id",  limit: 4
     t.integer  "election_id", limit: 4
     t.text     "motivation",  limit: 65535
     t.datetime "created_at"
@@ -93,7 +91,6 @@ ActiveRecord::Schema.define(version: 20150723050347) do
   end
 
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id", using: :btree
-  add_index "candidates", ["profile_id"], name: "index_candidates_on_profile_id", using: :btree
 
   create_table "constants", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -137,7 +134,6 @@ ActiveRecord::Schema.define(version: 20150723050347) do
     t.boolean  "public",           limit: 1
     t.boolean  "download",         limit: 1
     t.string   "category",         limit: 255
-    t.integer  "profile_id",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",          limit: 4
@@ -253,7 +249,6 @@ ActiveRecord::Schema.define(version: 20150723050347) do
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "profile_id",         limit: 4
     t.integer  "user_id",            limit: 4
   end
 
@@ -361,29 +356,6 @@ ActiveRecord::Schema.define(version: 20150723050347) do
     t.boolean  "car_rent",      limit: 1
   end
 
-  create_table "posts_profiles", id: false, force: :cascade do |t|
-    t.integer "post_id",    limit: 4
-    t.integer "profile_id", limit: 4
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.string   "name",                limit: 255
-    t.string   "program",             limit: 255
-    t.integer  "start_year",          limit: 4
-    t.integer  "user_id",             limit: 4
-    t.string   "avatar_file_name",    limit: 255
-    t.string   "avatar_content_type", limit: 255
-    t.integer  "avatar_file_size",    limit: 4
-    t.datetime "avatar_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "first_post",          limit: 4
-    t.string   "email",               limit: 255
-    t.string   "stil_id",             limit: 255
-    t.string   "phone",               limit: 255
-    t.string   "lastname",            limit: 255
-  end
-
   create_table "rents", force: :cascade do |t|
     t.datetime "d_from"
     t.datetime "d_til"
@@ -395,7 +367,6 @@ ActiveRecord::Schema.define(version: 20150723050347) do
     t.boolean  "disclaimer",  limit: 1,     default: false
     t.boolean  "aktiv",       limit: 1,     default: true
     t.integer  "council_id",  limit: 4
-    t.integer  "profile_id",  limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment",     limit: 65535
