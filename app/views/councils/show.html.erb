@@ -1,7 +1,7 @@
 <% title(Council.model_name.human) %>
 <%= content_for :pre_content do %>
   <div class="row">
-    <%= render('councils/menu', councils: @councils) %>
+    <%= render('councils/menu', councils: @councils, current: @council) %>
   </div>
 <% end %>
 

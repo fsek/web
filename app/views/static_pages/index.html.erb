@@ -13,16 +13,17 @@
   </div>
 <% end %>
 
-<!--Mini News-->
-<div class="col-md-5">
-  <div class="headline headline-md"><h3><%= News.model_name.human(count: 2) %></h3></div>
-  <%= render @news%>
-  <%= link_to news_index_path do%>
-    <i class="fa fa-plus"></i> <%= t('news.more') %>
-<%end%>
-</div>
-
 <div class="col-md-7">
+  <%= render '/events/stream', events: @events %>
   <%= render @notices%>
 </div>
 
+<div class="col-md-5">
+  <div class="headline headline-md">
+    <%= content_tag(:h3, models_name(News)) %>
+  </div>
+  <%= render @news%>
+  <%= link_to news_index_path do%>
+    <%= fa_icon('plus') %> <%= t('news.more') %>
+<%end%>
+</div>

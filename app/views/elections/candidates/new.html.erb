@@ -1,8 +1,7 @@
-<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
-  <div class="headline">
-    <%= content_tag(:h3, t(:new, attr: model_name(Candidate))) %>
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <div class="page-header">
+    <h3><%= t(:new, attr: model_name(Candidate)) %></h3>
   </div>
-
   <%= render 'form' %>
-  <%= link_to(t(:index, attr: models_name(Candidate)), candidates_path) %>
+  <%= link_to(t(:back), candidates_path) %>
 </div>

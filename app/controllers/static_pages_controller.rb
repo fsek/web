@@ -7,7 +7,10 @@ class StaticPagesController < ApplicationController
   end
 
   def index
-    @news = News.order('created_at desc LIMIT 5')
+    @news = News.order(created_at: :desc).limit(5)
+    date = Time.zone.now
+    @events = Event.between(date.beginning_of_day, (date + 7.days).end_of_day).limit(5)
+
     if current_user.nil?
       @notices = Notice.published
     else

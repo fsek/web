@@ -1,5 +1,14 @@
 ul {
   &.council {
+    margin: 10px;
     text-align: center;
+
+    > li {
+      &.current {
+        border: 1px solid;
+        border-color: $main-color;
+        border-radius: 10px;
+      }
+    }
   }
 }

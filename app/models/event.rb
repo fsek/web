@@ -21,6 +21,8 @@ class Event < ActiveRecord::Base
   scope :from_date, -> (date) { where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
                                       date.beginning_of_day, date.end_of_day,
                                       date.beginning_of_day, date.end_of_day) }
+  scope :between, -> (start, stop) { where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
+                                           start, stop, start, stop) }
 
   def to_s
     title

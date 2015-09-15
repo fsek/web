@@ -20,11 +20,6 @@
           <%= render partial: 'menus/menu', collection: medlem_menus %>
         <% end %>
 
-        <% # This link could be made automatically too, the important part is that it as the right id.   %>
-        <% if current_user %>
-          <li><a id="gallery_link" href="#"><%= t('gallery.old') %></a></li>
-        <% end %>
-
         <% # Always show these links   %>
         <li><%= link_to(t('proposals.machine'), proposals_form_path) %></li>
       </ul>

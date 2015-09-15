@@ -26,13 +26,3 @@ loadCalendar = ->
       $(this).css 'z-index', 8
       $('.tooltipevent').remove()
 $('document').ready(loadCalendar)
-
-$('document').ready ->
-  $('input[type=\'checkbox\']#rent_disclaimer').on 'change', ->
-    if $('#rent_disclaimer').is(':checked')
-      $('.after_disclaimer').show()
-      $('html, body').animate { scrollTop: $('.after_disclaimer').offset().top }, 1000
-    else
-      $('.after_disclaimer').hide()
-  if $('#rent_disclaimer').is(':checked')
-    $('.after_disclaimer').show()
