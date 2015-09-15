@@ -1,0 +1,64 @@
+* {
+  border-radius: 0;
+}
+
+body {
+  color: $footer-gray;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+p,
+li {
+  color: $gray-text;
+  line-height: 1.6;
+}
+
+a {
+  color: $main-color;
+}
+
+a,
+a:focus,
+a:hover,
+a:active {
+  outline: 0;
+}
+
+a:hover {
+  color: $fsek-pi-silver;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: normal;
+  margin-top: 0;
+  text-shadow: none;
+}
+
+h1 i,
+h2 i,
+h3 i,
+h4 i,
+h5 i {
+  margin-right: 7px;
+}
+
+img {
+  .img-circle {
+    border-radius: 50%;
+  }
+}
+
+.text-justify p {
+  text-align: justify;
+}
+
+dl {
+  margin-bottom: 20px;
+  margin-top: 13px;
+}

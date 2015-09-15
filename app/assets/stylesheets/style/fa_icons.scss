@@ -1,0 +1,83 @@
+.fa-heading .headline {
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 19px;
+  }
+}
+
+.fa-icons {
+  li {
+    background: $light-gray;
+    border: solid 1px $light-gray-text;
+    font-size: 11px;
+    margin-bottom: 3px;
+
+    &:hover {
+      color: $main-color;
+
+      i {
+        background: $main-color;
+        color: $black;
+      }
+    }
+
+    i {
+      background: $light-gray-text;
+      font-size: 18px;
+      margin-right: 5px;
+      min-width: 30px;
+      padding: 4px;
+    }
+  }
+}
+
+li [class^="fa-"],
+li [class*=" fa-"] {
+  display: inline-block;
+  text-align: center;
+  width: 1.25em;
+}
+
+li [class^="fa-"].icon-lg,
+li [class*=" fa-"].icon-lg {
+  width: 1.5625em;
+}
+
+
+.bs-glyphicons {
+  list-style: none;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding-bottom: 1px;
+  padding-left: 0;
+
+  li {
+    border: 1px solid $light-gray;
+    float: left;
+    font-size: 12px;
+    height: 115px;
+    line-height: 1.4;
+    margin: 0 -1px -1px 0;
+    padding: 10px;
+    text-align: center;
+    width: 25%;
+
+    &:hover {
+      background-color: $light-gray;
+      color: $main-color;
+    }
+  }
+
+  .glyphicon {
+    display: block;
+    font-size: 24px;
+    margin: 5px auto 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .bs-glyphicons li {
+    width: 12.5%;
+  }
+}

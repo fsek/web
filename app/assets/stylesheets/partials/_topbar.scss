@@ -1,0 +1,7 @@
+.loginbar {
+  @include max-screen(640px) {
+    span {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+.tag-box {
+  margin-bottom: 30;
+  padding: 20;
+
+  h2 {
+    font-size: 20;
+    line-height: 25px;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.tag-box-v1 {
+  border: solid 1px $light-gray-text;
+  border-top: solid 2px $fsek-orange;
+}
+
+.tag-box-v2 {
+  background: $light-gray;
+  border: solid 1px $light-gray-text;
+  border-left: solid 2px $unify-orange;
+}
+
+.tag-box-v3 {
+  border: solid 2px $light-gray-text;
+}
+
+.tag-box-v4 {
+  border: dashed 1px $gray-headline;
+}
+
+.tag-box-v5 {
+  border: dashed 1px $gray-text;
+  margin: 20 0;
+  text-align: center;
+
+  span {
+    color: $gray-headline;
+    font-size: 28px;
+    margin-bottom: 0;
+  }
+}
+
+.tag-box-v6 {
+  background: $light-gray;
+  border: solid 1px $light-gray-text;
+}
+
+.tag-box-v7 {
+  border: solid 1px $light-gray-text;
+  border-bottom: solid 2px $unify-orange;
+}
+

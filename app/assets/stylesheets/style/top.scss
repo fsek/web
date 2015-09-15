@@ -1,0 +1,111 @@
+.top {
+  padding-top: 8px;
+
+  .dropdown-menu {
+    border: 1px solid $light-gray-text;
+    box-shadow: none;
+    margin-top: -5px;
+    padding: 0;
+
+    > li > a {
+      font-size: 12px;
+      padding: 8px 15px;
+    }
+
+    > li > a:hover {
+      background: $main-color;
+      color: $white;
+    }
+  }
+
+  ul {
+    &.loginbar {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      z-index: 9999;
+
+      > li {
+        display: inline;
+        list-style: none;
+        padding-bottom: 15px;
+      }
+
+      > li > a,
+      > li > a:hover {
+        color: $gray-text;
+        font-size: 11px;
+        text-transform: uppercase;
+      }
+
+      li.devider {
+        border-right: solid 1px $dark-gray;
+        font-size: 8px;
+        margin: 0 9px 0 5px;
+        padding: 0;
+        position: relative;
+        top: -1px;
+      }
+
+      li i {
+        .icon-globe {
+          color: $dark-gray;
+        }
+      }
+    }
+
+    .languages {
+      background: $light-gray-text;
+      display: none;
+      left: -5px;
+      list-style: none;
+      min-width: 100px;
+      padding: 4px 0;
+      padding-left: 0;
+      position: absolute;
+      top: 25px;
+
+      li {
+        a {
+          color: $gray-headline;
+          display: block;
+          font-size: 10px;
+          margin-bottom: 1px;
+          padding: 2px 12px;
+          text-transform: uppercase;
+        }
+
+        .active a i {
+          color: $gray-text;
+          float: right;
+          margin-top: 2px;
+        }
+
+        a:hover {
+          background: $light-gray;
+          text-decoration: none;
+        }
+
+        .active a {
+          background: $light-gray;
+        }
+      }
+    }
+
+    .languages:after {
+      border-bottom: 6px solid $light-gray-text;
+      border-left: 6px solid transparent;
+      border-left-style: inset; // FF fixes
+      border-right: 6px solid transparent;
+      border-right-style: inset; // FF fixes
+      content: " ";
+      display: block;
+      height: 0;
+      left: 8px;
+      position: absolute;
+      top: -4px;
+      width: 0;
+    }
+  }
+}
+

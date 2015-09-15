@@ -1,4 +1,4 @@
-<% menus_by_location = Menu.index.group_by &:location %>
+<% menus_by_location = Menu.index.group_by(&:location) %>
 <div class="collapse navbar-collapse navbar-responsive-collapse">
   <ul class="nav navbar-nav navbar-right">
     <li class="dropdown active">

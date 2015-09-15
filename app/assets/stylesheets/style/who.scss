@@ -1,0 +1,23 @@
+.who {
+  li {
+    margin-bottom: 6px;
+
+    i {
+      color: $unify-orange;
+      font-size: 18px;
+      margin-right: 8px;
+      position: relative;
+      top: 2px;
+    }
+
+    :hover i,
+    :hover a {
+      color: $gray-text;
+
+      :hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+

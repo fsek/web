@@ -1,0 +1,46 @@
+.posts {
+  .dl-horizontal {
+    margin-bottom: 0;
+    overflow: hidden;
+
+    dd {
+      margin-left: 70;
+
+      a {
+        font-size: 14px;
+        line-height: 16px;
+
+        &:hover {
+          color: $unify-orange;
+          text-decoration: none;
+        }
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    dt {
+      float: left;
+      width: 60;
+
+      img {
+        border: solid 1px $light-gray;
+        height: 60;
+        margin-top: 2px;
+        padding: 2px;
+        width: 60;
+      }
+    }
+
+    &:hover {
+      dt img,
+      dd a {
+        @include transition(all 0.4s ease-in-out);
+        border-color: $unify-orange;
+        color: $unify-orange;
+      }
+    }
+  }
+}

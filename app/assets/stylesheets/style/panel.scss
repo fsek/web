@@ -1,0 +1,70 @@
+.panel {
+  .table {
+    margin-bottom: 0;
+  }
+}
+
+.panel-red {
+  border-color: $unify-red;
+
+  > .panel-heading {
+    background: $unify-red;
+    color: $gray-headline;
+  }
+}
+
+.panel-sea {
+  border-color: $unify-sea;
+
+  > .panel-heading {
+    background: $unify-sea;
+    color: $gray-headline;
+  }
+}
+
+.panel-blue {
+  border-color: $unify-blue;
+
+  > .panel-heading {
+    background: $unify-blue;
+    color: $gray-headline;
+  }
+}
+
+.panel-grey {
+  border-color: $unify-grey;
+
+  > .panel-heading {
+    background: $unify-grey;
+    color: $gray-headline;
+  }
+}
+
+
+.panel-yellow {
+  border-color: $unify-yellow;
+
+  > .panel-heading {
+    background: $unify-yellow;
+    color: $gray-headline;
+  }
+}
+
+.panel-orange {
+  border-color: $unify-orange;
+
+  > .panel-heading {
+    background: $unify-orange;
+    color: $gray-headline;
+  }
+}
+
+.panel-green {
+  border-color: $unify-green;
+
+  > .panel-heading {
+    background: $unify-green;
+    color: $gray-headline;
+  }
+}
+

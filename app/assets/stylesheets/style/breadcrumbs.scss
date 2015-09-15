@@ -1,0 +1,43 @@
+.breadcrumbs {
+  background: $light-gray;
+  border-bottom: 1px solid $light-gray-text;
+  color: $gray-text;
+
+  h1 {
+    color: $gray-headline;
+    font-size: 18px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-shadow: 0 1px 0 $black;
+  }
+
+  ul > li {
+    padding-right: 10px;
+
+    > a {
+      text-shadow: 0 1px 0 $black;
+    }
+
+    > a:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.breadcrumb {
+  background: none;
+  margin: 0;
+  padding: 10 0 0;
+
+  a {
+    color: $gray-text;
+  }
+
+  li {
+    .active,
+    a:hover {
+      color: $unify-orange;
+      text-decoration: none;
+    }
+  }
+}

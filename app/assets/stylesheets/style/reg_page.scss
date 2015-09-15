@@ -1,0 +1,30 @@
+.reg-page {
+  background: $light-gray;
+  border: solid 1px $light-gray-text;
+  box-shadow: 0 0 3px $light-gray-text;
+  color: $gray-headline;
+  padding: 30px;
+
+  label {
+    color: $gray-text;
+  }
+}
+
+.reg-header {
+  border-bottom: solid 1px $light-gray-text;
+  color: $gray-headline;
+  margin-bottom: 20px;
+  text-align: center;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+}
+
+.reg-label {
+  color: $gray-headline;
+  font-size: 12px;
+  margin-bottom: 5px;
+  text-align: center;
+}

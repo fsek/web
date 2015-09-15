@@ -1,0 +1,117 @@
+.portfolio-item {
+  h2 {
+    color: $gray-headline;
+    font-size: 24px;
+    margin: 0 0 15px;
+  }
+
+  li {
+    padding: 3px 0;
+  }
+
+  p {
+    a {
+      text-decoration: underline;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.portfolia-item1 {
+  ul {
+    margin: 10 0 20;
+  }
+
+  li {
+    font-size: 16px;
+    margin-bottom: 3px;
+
+    i {
+      font-size: 18px;
+      margin-right: 4px;
+    }
+  }
+}
+
+.sorting-block {
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  .sorting-nav {
+    margin-bottom: 30px;
+
+    li {
+      cursor: pointer;
+      display: inline-block;
+      font-size: 14px;
+      list-style: none;
+      padding: 0 2px;
+
+      .active {
+        border-bottom: solid 1px $main-color;
+        color: $main-color;
+      }
+    }
+  }
+
+  .sorting-nav-v1 {
+    li {
+      font-size: 17px;
+      font-style: italic;
+      margin: 0 5px;
+    }
+  }
+
+  .sorting-grid {
+    list-style: none;
+
+    .mix {
+      display: none;
+      margin-bottom: 30px;
+      opacity: 0;
+    }
+
+    li {
+      a:hover {
+        text-decoration: none;
+
+        span {
+          .sorting-cover {
+            @include transition(all 0.4s ease);
+            background: $main-color;
+
+            p {
+              color: $black;
+            }
+
+            span {
+              color: $black;
+            }
+          }
+        }
+      }
+
+      span {
+        .sorting-cover {
+          background: $light-gray;
+          display: block;
+          margin-top: 1px;
+          padding: 8px;
+
+          p {
+            margin-bottom: 0;
+          }
+
+          span {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

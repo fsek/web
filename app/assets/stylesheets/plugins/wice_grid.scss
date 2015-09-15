@@ -1,0 +1,148 @@
+.wg-detached-filter,
+.wice-grid {
+  .text-filter-container {
+    input {
+      display: inline;
+      margin-right: 10px;
+      width: auto;
+    }
+  }
+
+  a {
+    .date-label {
+      text-decoration: none;
+    }
+
+    .date-label:hover {
+      text-decoration: line-through;
+    }
+  }
+
+  .clickable {
+    cursor: pointer;
+    margin-bottom: 2px;
+    margin-right: 2px;
+  }
+
+  .ui-datepicker-trigger,
+  .wg-detached-filter .ui-datepicker-trigger {
+    cursor: pointer;
+  }
+
+  .custom-dropdown-container {
+    .expand-multi-select-icon,
+    .collapse-multi-select-icon {
+      display: inline-block;
+      height: 10px;
+      margin-left: 5px;
+      vertical-align: top;
+      width: 10px;
+    }
+
+    .collapse-multi-select-icon {
+      background: transparent asset-url("/assets/icons/grid/collapse.gif") no-repeat;
+    }
+
+    .expand-multi-select-icon {
+      background: transparent asset-url("/assets/icons/grid/expand.gif") no-repeat;
+    }
+  }
+}
+
+.wice-grid {
+  .desc,
+  .asc {
+    padding-right: 18px;
+    text-decoration: none;
+  }
+
+  .desc {
+    background: transparent asset-url("/assets/icons/grid/arrow_down.gif") right no-repeati;
+  }
+
+  .asc {
+    background: transparent asset-url("/assets/icons/grid/arrow_up.gif") right no-repeat;
+  }
+
+  .submit.clickable {
+    @include icon-dimensions;
+    background: transparent asset-url("/assets/icons/grid/table_refresh.png") no-repeat;
+  }
+
+  .reset.clickable {
+    @include icon-dimensions;
+    background: transparent asset-url("/assets/icons/grid/table.png") no-repeat;
+  }
+
+  .wg-show-filter.clickable,
+  .wg-hide-filter.clickable {
+    @include icon-dimensions;
+    background: transparent asset-url("/assets/icons/grid/page_white_find.png") no-repeat;
+  }
+
+  .export-to-csv-button.clickable {
+    @include icon-dimensions;
+    background: transparent asset-url("/assets/icons/grid/page_white_excel.png") no-repeat;
+  }
+
+  .clickable.select-all {
+    @include icon-dimensions;
+    background: transparent asset-url("/assets/icons/grid/tick_all.png") no-repeat;
+    float: left;
+  }
+
+  .clickable.deselect-all {
+    @include icon-dimensions;
+    background: transparent asset-url("/assets/icons/grid/untick_all.png") no-repeat;
+    float: left;
+  }
+
+  // in case of twitter bootstrap :)
+  thead th select {
+    width: auto;
+  }
+
+  .pagination {
+    float: left;
+    margin: 0;
+  }
+
+  tr {
+    .wg-filter-row input[type=text] {
+      width: 100px;
+    }
+  }
+
+  .pagination-status {
+    float: right;
+    font-weight: bold;
+  }
+}
+
+.wice-grid-query-panel {
+  li {
+    list-style-type: none;
+  }
+
+  ul {
+    margin-left: 0;
+  }
+
+  a {
+    .wice-grid-delete-query .delete-icon {
+
+      @include icon-dimensions;
+      background: transparent asset-url("/assets/icons/grid/delete.png") no-repeat;
+      float: left;
+    }
+  }
+}
+
+input {
+  .wice-grid-save-query-field {
+    display: inline-block;
+    margin-right: 10px;
+    width: auto;
+  }
+}
+

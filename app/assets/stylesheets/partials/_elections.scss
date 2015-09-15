@@ -1,83 +1,72 @@
-// Place all the styles related to the Elections controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-.coming-soon,
-.coming-soon-plugin {
+.coming-soon {
+  margin-top: 20px;
   padding: 20px;
   text-align: center;
-  margin-top: 20px;
-}  
+
+  h1,
+  p {
+    color: $black;
+  }
+
+  h1 {
+    font-size: 50px;
+    line-height: 50px;
+    margin-bottom: 15px;
+    text-shadow: none;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+
+}
 
 .coming-soon-plugin {
+  margin-top: 20px;
   min-height: 200px;
-}
+  padding: 20px;
+  text-align: center;
 
-.coming-soon h1,
-.coming-soon p {
-  color: #000;
-}
-
-.coming-soon h1 {
-  font-size: 50px;
-  line-height: 50px;
-  margin-bottom: 15px;
-  text-shadow: none;
-}
-
-.coming-soon p {
-  font-size: 16px;
-  line-height: 22px;
 }
 
 .coming-soon-copyright {
   padding: 5px 0;
+
+  p {
+    color: $white;
+    text-align: right;
+  }
 }
 
-.coming-soon-copyright p {
-  color: #fff;
-  text-align: right;
-}
-.val-logo {
-  max-height: 200px;
+.election-logo {
   margin-bottom: 50px;
+  max-height: 200px;
 }
 
-.wice-grid-container{  
-  margin:auto;
-}
-.left-text-align {
-  text-align:left !important;
-}
-div.center, p.center, img.center {
+div,
+p,
+img {
+  &.center {
     display: block;
-    float: none !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
+  }
 }
-.btn-election,
-a.btn-election {
-   font-size: 18px;
-   padding: 10px 25px;
-   border-color: #000;
-   border-radius: 10px !important;
-   color: #000;
-   background-color: transparent;
-}
-.btn-election:hover,
-a.btn-election:hover {   
-   color: #eb7125;
-   border-color:#eb7125;
-}
-.wice-grid > tbody > tr > td {
-  background-color:transparent !important;  
-}
-.margin-left-20 {
-  margin-left: 20px;
-}
-#countdown {
-  display: inline-block;
-  line-height: 2em;
-  font-size: 2em;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+
+.btn-election {
+  background-color: transparent;
+  border-color: $black;
+  border-radius: 10px;
+  color: $black;
+  font-size: 18px;
+  padding: 10px 25px;
+
+  &:hover {
+    border-color: $main-color;
+    color: $main-color;
+  }
 }

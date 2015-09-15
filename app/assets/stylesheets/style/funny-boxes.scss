@@ -1,0 +1,72 @@
+.funny-boxes {
+  @include transition(all 0.3s ease-in-out);
+  background: $white;
+  margin-bottom: 25px;
+  overflow: hidden;
+  padding: 15px 20px;
+
+  h2 {
+    color: $main-color;
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 0;
+  }
+
+  .funny-boxes-img {
+    li i {
+      color: $main-color;
+      font-size: 12px;
+      margin-right: 5px;
+    }
+
+    img {
+      display: block;
+      margin: 5px 10px 10px 0;
+    }
+  }
+
+  ul {
+    .funny-boxes-rating {
+      li {
+        display: inline;
+
+        i,
+        i:hover {
+          color: $main-color;
+          cursor: pointer;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+.funny-boxes-colored {
+  p,
+  h2,
+  .funny-boxes-img li,
+  .funny-boxes-img li i {
+    color: $white;
+  }
+}
+
+.funny-boxes-left-u {
+  border-left: solid 2px $white;
+
+  &:hover {
+    border-left-color: $main-color;
+  }
+}
+
+.funny-boxes-top-u {
+  border-top: solid 2px $white;
+  border-top-color: $main-color;
+}
+
+.funny-boxes-right-u {
+  border-right: solid 2px $main-color;
+
+  &:hover {
+    border-right-color: $main-color;
+  }
+}

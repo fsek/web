@@ -1,0 +1,101 @@
+.service-block {
+  .service-block-in {
+    @include transition(all 0.3s ease-in-out);
+    background: $light-gray;
+    margin-bottom: 20;
+    padding: 20 30;
+    text-align: center;
+
+    &:hover {
+      box-shadow: 0 0 8px $light-gray;
+
+      h4,
+      i {
+        color: $unify-orange;
+      }
+    }
+
+    h4 {
+      line-height: 25px;
+
+      a:hover {
+        color: $unify-orange;
+        text-decoration: none;
+      }
+    }
+
+    i {
+      @include transition(all 0.4s ease-in-out);
+      color: $dark-gray;
+      font-size: 40;
+    }
+  }
+
+  .service-block-red {
+    background: $unify-red;
+  }
+
+  .service-block-sea {
+    background: $unify-sea;
+  }
+
+  .service-block-blue {
+    background: $unify-blue;
+  }
+
+  .service-block-grey {
+    background: $unify-grey;
+  }
+
+  .service-block-yellow {
+    background: $unify-yellow;
+  }
+
+  .service-block-orange {
+    background: $unify-orange;
+  }
+
+  .service-block-green {
+    background: $unify-green;
+  }
+
+  .service-block-colored {
+    i,
+    p,
+    h4,
+    &:hover i,
+    &:hover h4 {
+      color: $black;
+    }
+  }
+
+  &:hover {
+    box-shadow: none;
+    opacity: 0.8;
+  }
+}
+
+.service-alternative {
+  .service:hover {
+    @include transition(all 0.4s ease-in-out);
+    background: $unify-orange;
+
+    i,
+    p,
+    h4 {
+      color: $black;
+    }
+  }
+}
+
+.service-v1 {
+  h2 {
+    font-size: 20;
+    line-height: 28px;
+    margin: 15px 0;
+  }
+
+  p {
+    text-align: justify;
+  }
+}

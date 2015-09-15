@@ -1,0 +1,152 @@
+.blog {
+  h2 {
+    font-size: 28px;
+  }
+
+  p {
+    color: $white;
+    font-size: 14px;
+  }
+}
+
+.blog-info {
+  li,
+  li a {
+    color: $gray-headline;
+  }
+}
+
+.list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 1em;
+  text-indent: -1em;
+
+  li:before {
+    content: "\00BB";
+    margin-right: 10px;
+  }
+}
+
+ul {
+  .blog-tags {
+    li {
+      display: inline-block;
+    }
+
+    a {
+      background: $light-gray;
+      display: inline-block;
+      font-size: 13px;
+      margin: 0 3px 6px 0;
+      padding: 2px 7px;
+
+      i {
+        color: $gray-text;
+      }
+
+      &:hover {
+        background: $unify-orange;
+      }
+
+      &:hover,
+      &:hover i {
+        @include transition(all 0.2s ease-in-out);
+        color: $black;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.blog-photos {
+  li {
+    display: inline;
+
+    img {
+      height: 58px;
+      margin: 0 2px 8px;
+      opacity: 0.6;
+      width: 58px;
+
+      &:hover {
+        box-shadow: 0 0 0 2px $unify-orange;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.blog-twitter {
+  .blog-twitter-inner {
+    @include transition(all 0.3s ease-in-out);
+    background: $light-gray;
+    border-top: solid 2px $light-gray-text;
+    margin-bottom: 15px;
+    padding: 10;
+    position: relative;
+
+
+    &:after {
+      @include transition(all 0.3s ease-in-out);
+      border-left: 0 solid transparent;
+      border-left-style: inset; // FF fixes
+      border-right: 15px solid transparent;
+      border-right-style: inset; // FF fixes
+      border-top: 15px solid $dark-gray;
+    }
+
+    &:before {
+      @include transition(all 0.3s ease-in-out);
+      border-bottom: 15px solid $black;
+      border-bottom-style: inset; //FF fixes
+      border-left: 15px solid transparent;
+      border-left-style: inset; //FF fixes
+      border-right: 0 solid transparent;
+    }
+
+    &:after,
+    &:before {
+      bottom: 0;
+      content: " ";
+      display: block;
+      height: 0;
+      position: absolute;
+      right: 0;
+      width: 0;
+    }
+
+    &:hover {
+      border-color: $unify-orange;
+      border-top-color: $unify-orange;
+
+      &:after {
+        border-top-color: $fsek-orange;
+      }
+    }
+
+    span {
+      color: $gray-text;
+      display: block;
+      font-size: 11px;
+    }
+
+    a {
+      color: $unify-orange;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    i {
+      .fa-twitter {
+        color: $footer-gray;
+        font-size: 18px;
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+}

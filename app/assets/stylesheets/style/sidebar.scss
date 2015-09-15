@@ -1,0 +1,55 @@
+.sidebar-nav-v1 {
+  li {
+    padding: 0;
+
+    a {
+      display: block;
+      padding: 8px 30 8px 10;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .active,
+    .active:hover {
+      background: $light-gray;
+      border-color: $gray-text;
+    }
+
+    .active a {
+      color: $gray-headline;
+    }
+  }
+
+  span {
+    .badge {
+      margin-right: 10;
+      margin-top: 10;
+    }
+
+    .badge-green {
+      background: $unify-green;
+    }
+
+    .badge-red {
+      background: $unify-red;
+    }
+
+    .badge-blue {
+      background: $unify-blue;
+    }
+
+    .badge-sea {
+      background: $unify-sea;
+    }
+
+    .badge-grey {
+      background: $unify-grey;
+    }
+
+    .badge-orange {
+      background: $unify-orange;
+    }
+  }
+}

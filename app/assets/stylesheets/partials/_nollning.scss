@@ -1,34 +1,35 @@
-@import "mixins";
-
 $inner: image-url("theme/border.svg") 10% 10% 10% 10% stretch;
 $outer-top: image-url("theme/top.svg") 27.5% 0% 13.1% 0% stretch;
 $outer: image-url("theme/frame.svg") 27% 15% 23% 15% repeat;
 
-/* Large desktops and laptops */
+// Large desktops and laptops
 @media (min-width: 1200px) {
   .nollning-grid {
-    border: 160px;
     @include border-image($outer);
+    border: 160px;
   }
+
   .matrix-grid-wrap {
     margin: -95.9px -36.7px -35.7px -26.1px;
   }
+
   .matrix-grid {
-    border: 8px solid transparent;
     @include border-image($inner);
+    border: 8px solid transparent;
     height: 150px;
+    overflow: auto;
     padding: 0;
     width: 14.26%;
-    overflow: auto;
   }
+
   .nollning-top {
-    border: solid transparent;
-    border-width: 160px 0 0 0;
     @include border-image($outer-top);
+    border: solid transparent;
+    border-width: 160px 0 0;
   }
 
   .matrix-grid-text {
-    color: black;
+    color: $black;
     font-size: 12px;
   }
 
@@ -45,34 +46,34 @@ $outer: image-url("theme/frame.svg") 27% 15% 23% 15% repeat;
   }
 }
 
-/* Landscape tablets and medium desktops */
+// Landscape tablets and medium desktops
 @media (min-width: 992px) and (max-width: 1199px) {
   .nollning-grid {
-    border: 120px;
     @include border-image($outer);
+    border: 120px;
   }
 
   .matrix-grid-wrap {
-    margin: -71.6px -31px -27px -23.6px
+    margin: -71.6px -31px -27px -23.6px;
   }
 
   .matrix-grid {
-    padding: 0;
-    width: 14.26% !important;
-    height: 150px;
-    border: 8px solid transparent;
     @include border-image($inner);
+    border: 8px solid transparent;
+    height: 150px;
     overflow: auto;
+    padding: 0;
+    width: 14.26%;
   }
 
   .nollning-top {
-    border: solid transparent;
-    border-width: 100px 0 0 0;
     @include border-image($outer-top);
+    border: solid transparent;
+    border-width: 100px 0 0;
   }
 
   .matrix-grid-text {
-    color: black;
+    color: $black;
     font-size: 12px;
     word-wrap: break-word;
   }
@@ -86,34 +87,34 @@ $outer: image-url("theme/frame.svg") 27% 15% 23% 15% repeat;
   }
 }
 
-/* Portrait tablets and small desktops */
+// Portrait tablets and small desktops
 @media (min-width: 768px) and (max-width: 991px) {
   .nollning-grid {
-    border: 100px;
     @include border-image($outer);
+    border: 100px;
   }
 
   .matrix-grid-wrap {
-    margin: -59.6px -26.6px -22px -21.6px
+    margin: -59.6px -26.6px -22px -21.6px;
   }
 
   .matrix-grid {
+    @include border-image($inner);
+    border: 8px solid transparent;
+    height: 100px;
+    overflow: auto;
     padding: 0;
     width: 25%;
-    height: 100px;
-    border: 8px solid transparent;
-    @include border-image($inner);
-    overflow: auto;
   }
 
   .nollning-top {
-    border: solid transparent;
-    border-width: 120px 0 0 0;
     @include border-image($outer-top);
+    border: solid transparent;
+    border-width: 120px 0 0;
   }
 
   .matrix-grid-text {
-    color: black;
+    color: $black;
     font-size: 12px;
     word-wrap: break-word;
   }
@@ -130,34 +131,34 @@ $outer: image-url("theme/frame.svg") 27% 15% 23% 15% repeat;
   }
 }
 
-/* Landscape phones and portrait tablets */
+// Landscape phones and portrait tablets
 @media (max-width: 767px) {
   .nollning-grid {
-    border: 100px;
     @include border-image($outer);
+    border: 100px;
   }
 
   .matrix-grid-wrap {
-    margin: -59.6px -26.9px -22px -21.6px
+    margin: -59.6px -26.9px -22px -21.6px;
   }
 
   .matrix-grid {
+    @include border-image($inner);
+    border: 8px solid transparent;
+    height: 110px;
+    overflow: auto;
     padding: 0;
     width: 25%;
-    height: 110px;
-    border: 8px solid transparent;
-    @include border-image($inner);
-    overflow: auto;
   }
 
   .nollning-top {
-    border: solid transparent;
-    border-width: 100px 0 0 0;
     @include border-image($outer-top);
+    border: solid transparent;
+    border-width: 100px 0 0;
   }
 
   .matrix-grid-text {
-    color: black;
+    color: $black;
     font-size: 12px;
     word-wrap: break-word;
   }
@@ -174,32 +175,34 @@ $outer: image-url("theme/frame.svg") 27% 15% 23% 15% repeat;
   }
 }
 
-/* Portrait phones and smaller */
+// Portrait phones and smaller
 @media (max-width: 480px) {
   .nollning-grid {
-    border: 70px;
     @include border-image($outer);
+    border: 70px;
   }
+
   .matrix-grid-wrap {
     margin: -41px -23.6px -16px -20px;
   }
+
   .matrix-grid {
-    border: 8px solid transparent;
     @include border-image($inner);
+    border: 8px solid transparent;
     height: 80px;
     overflow: hidden;
     padding: 0;
     width: 25%;
-    overflow: auto;
   }
+
   .nollning-top {
-    border: solid transparent;
-    border-width: 60px 0 0 0;
     @include border-image($outer-top);
+    border: solid transparent;
+    border-width: 60px 0 0;
   }
 
   .matrix-grid-text {
-    color: black;
+    color: $black;
     font-size: 10px;
   }
 
@@ -213,10 +216,11 @@ $outer: image-url("theme/frame.svg") 27% 15% 23% 15% repeat;
 }
 
 .nollning {
-  font-family: 'diogenesregular';
+  font-family: "diogenesregular";
+
   .date {
-    position: absolute;
     left: -1;
+    position: absolute;
     top: -1;
   }
 }
@@ -224,15 +228,18 @@ $outer: image-url("theme/frame.svg") 27% 15% 23% 15% repeat;
 .symbols {
   display: table-cell;
   width: 25%;
+
   img {
-    width: auto;
     max-height: 32px;
+    width: auto;
   }
 }
 
-ul.symbol-list {
-  list-style-type: circle;
-  padding: 10px;
+ul {
+  .symbol-list {
+    list-style-type: circle;
+    padding: 10px;
+  }
 }
 
 #ajax-modal {
@@ -245,14 +252,14 @@ ul.symbol-list {
 
 .nollning-header {
   height: auto;
+  margin-bottom: 30px;
   max-height: 400px;
   max-width: 100%;
   vertical-align: middle;
-  margin-bottom: 30px;
 }
 
 .nollning-paragraph {
-  color: black;
+  color: $black;
   font-size: 18px;
 }
 
@@ -263,17 +270,18 @@ ul.symbol-list {
 }
 
 .nollning-video {
+  height: 0;
   margin-bottom: 30px;
-  position: relative;
   padding-bottom: 56.25%;
   padding-top: 20px;
-  height: 0;
+  position: relative;
+
   iframe {
+    height: 100%;
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
   }
 }
 

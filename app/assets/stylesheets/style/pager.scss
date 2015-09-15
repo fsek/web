@@ -1,0 +1,10 @@
+.page {
+  li > {
+    a:hover,
+    a:focus {
+      background: $main-color;
+      border-color: $main-color;
+      color: $black;
+    }
+  }
+}

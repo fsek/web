@@ -1,0 +1,38 @@
+.info-blocks {
+  margin-bottom: 15px;
+
+  i {
+    .icon-info.blocks {
+      color: $gray-text;
+      float: left;
+      font-size: 40;
+      margin-top: 5px;
+      min-width: 50;
+      text-align: center;
+    }
+  }
+
+  .info-blocks-in {
+    overflow: hidden;
+    padding: 0 10;
+
+    h3 {
+      color: $gray-headline;
+      font-size: 20;
+      line-height: 28px;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
+
+  &:hover i {
+    .icon-info-blocks {
+      @include transition(all 0.2s ease-in-out);
+      color: $unify-orange;
+    }
+  }
+}
+
+

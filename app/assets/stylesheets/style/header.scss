@@ -1,0 +1,147 @@
+.header {
+  border-bottom: solid 1px $light-gray-text;
+  position: relative;
+  z-index: 999;
+
+
+  .navbar-default {
+    background: none;
+    border: none;
+
+    .navbar-nav {
+      color: $main-color;
+
+      > li > a {
+        color: $gray-headline;
+        font-size: 15px;
+        font-weight: 400;
+        padding: 10px 20px;
+        text-transform: uppercase;
+
+        &,
+        &:focus {
+          border-bottom: solid 1px transparent;
+        }
+
+        &,
+        &:hover,
+        &:focus {
+          background: none;
+        }
+      }
+
+      > .active > a,
+      > .active > a:focus {
+        background: none;
+      }
+
+      > .open > a,
+      > .open > a:focus,
+      > li > a:hover {
+        color: $main-color;
+      }
+    }
+
+    .navbar-toggle {
+      border-color: $main-color;
+
+      &:hover,
+      &:focus {
+        background: $main-color;
+      }
+
+      .icon-bar {
+        background: $white;
+      }
+    }
+  }
+
+  .navbar-collapse {
+    padding: 0;
+    position: relative;
+  }
+
+  .navbar-brand {
+    margin-top: -18px;
+    padding: 0 0 0 10px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .navbar-right {
+    .dropdown-menu {
+      right: inherit;
+    }
+  }
+
+  .nav {
+    > li > a {
+      .search {
+        border-bottom-color: $white;
+        cursor: pointer;
+        padding: 8px 8px 12px;
+
+        &:hover {
+          border-bottom-color: $main-color;
+          color: $main-color;
+        }
+      }
+    }
+  }
+
+  .navbar-nav {
+    margin-top: 10px;
+    position: relative;
+    top: 1px;
+  }
+
+  .dropdown-menu {
+    border: none;
+    border-left: 1px solid $light-gray-text;
+    border-radius: 0;
+    border-right: 1px solid $light-gray-text;
+    border-top: 1px solid $main-color;
+    box-shadow: none;
+    margin-top: -1px;
+    min-width: 200px;
+    padding: 0;
+    z-index: 9999;
+
+    li a {
+      border-bottom: solid 1px $light-gray-text;
+      font-size: 12px;
+      font-weight: 400;
+      padding: 8px 15px;
+    }
+
+    .active > a,
+    li > a:hover {
+      background: $main-color;
+      border-bottom: 1px solid $light-gray-text;
+      color: $white;
+      filter: none;
+    }
+
+    li > a:focus {
+      background: none;
+      filter: none;
+    }
+  }
+}
+
+
+.navbar-toggle {
+  background: $main-color;
+
+  &:hover {
+    background: $main-color;
+  }
+}
+
+@media (max-width: 767px) {
+  .header .navbar {
+    .navbar-nav {
+      padding: 0 10px;
+    }
+  }
+}

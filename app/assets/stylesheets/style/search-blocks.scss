@@ -1,0 +1,32 @@
+.search-blocks {
+  background: none;
+  text-shadow: $highlight;
+
+  h2 {
+    border-bottom: 1px dotted $light-gray-text;
+    font-size: 18px;
+    text-shadow: $highlight;
+  }
+
+  a,
+  a:active,
+  a:visited {
+    color: $gray-headline;
+  }
+
+  a:hover {
+    color: $main-color;
+    text-decoration: none;
+  }
+}
+
+.search-blocks-top-orange {
+  background: none;
+  border-top: 1px solid $fsek-orange;
+  padding-top: 15px;
+}
+
+.blocks-top-orange {
+  background: none;
+  border-top: 1px solid $fsek-orange;
+}

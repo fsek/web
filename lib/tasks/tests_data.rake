@@ -19,8 +19,6 @@ namespace :db do
                                        description: 'Prylmästarn', council: pryl, elected_by: 'Terminsmötet',
                                        styrelse: true, elected_at: 'VT', car_rent: true)
     # Sexmästeriet
-    server =  Post.find_or_create_by!(title: 'Server', limit: 0, recLimit: 10, description: 'En serverare',
-                                      council: sexm, elected_by: 'Styrelsen', elected_at: 'HT')
 
     sexmast = Post.find_or_create_by!(title: 'Sexmästare', limit: 1, recLimit: 1,
                                       description: 'Sexmästaren', council: sexm, elected_by: 'Terminsmötet',
@@ -76,18 +74,18 @@ namespace :db do
     end
 
     # Menues
-    Menu.find_or_create_by!(location: 'Sektionen', name: 'Om oss',
+    Menu.find_or_create_by!(location: :guild, name: 'Om oss',
                             link: '/om', index: 10, visible: true, turbolinks: true)
-    Menu.find_or_create_by!(location: 'Sektionen', name: 'Utskott',
+    Menu.find_or_create_by!(location: :guild, name: 'Utskott',
                             link: '/utskott', index: 20, visible: true, turbolinks: true)
-    Menu.find_or_create_by!(location: 'Sektionen', name: 'Dokument',
+    Menu.find_or_create_by!(location: :guild, name: 'Dokument',
                             link: '/dokument', index: 30, visible: true, turbolinks: true)
 
-    Menu.find_or_create_by!(location: 'För medlemmar', name: 'Val',
+    Menu.find_or_create_by!(location: :members, name: 'Val',
                             link: '/val', index: 10, visible: true, turbolinks: true)
-    Menu.find_or_create_by!(location: 'För medlemmar', name: 'Bilbokning',
+    Menu.find_or_create_by!(location: :members, name: 'Bilbokning',
                             link: '/bil', index: 20, visible: true, turbolinks: false)
-    Menu.find_or_create_by!(location: 'För medlemmar', name: 'Hilbertcafé',
+    Menu.find_or_create_by!(location: :members, name: 'Hilbertcafé',
                             link: '/hilbertcafe', index: 30, visible: true, turbolinks: false)
 
     # Notice

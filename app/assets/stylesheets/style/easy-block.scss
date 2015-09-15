@@ -1,0 +1,97 @@
+.easy-block-v1 {
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  .overflow-h h3 {
+    float: left;
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 5px;
+    width: 60%;
+  }
+
+  .easy-block-v1-badge {
+    color: $black;
+    left: 0;
+    padding: 4px 10px;
+    position: absolute;
+    top: 10px;
+    z-index: 1;
+  }
+}
+
+.easy-block-v2 {
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+}
+
+.easy-bg-v2 {
+  @include transform(rotate(45deg));
+  color: $black;
+  font-size: 13px;
+  letter-spacing: 2px;
+  padding: 5px;
+  position: absolute;
+  right: -32px;
+  text-align: center;
+  top: 5px;
+  width: 100px;
+}
+
+
+.easy-block-v3 {
+  background: $dark-gray;
+  margin-bottom: 10px;
+  padding: 30px 20px 20px;
+  text-align: left;
+
+  .first {
+    background: $dark-gray;
+  }
+
+  .second {
+    background: $gray-headline;
+  }
+
+  .third {
+    background: $gray-text;
+  }
+
+  i {
+    color: $black;
+    float: left;
+    font-size: 30px;
+    min-width: 45px;
+    padding-top: 10px;
+  }
+
+  .inner-faq-b {
+    overflow: hidden;
+
+    h2,
+    h3,
+    h4,
+    p {
+      color: $black;
+
+      h2,
+      h3 {
+        font-size: 21px;
+        margin-bottom: 8px;
+      }
+
+      h4 {
+        font-size: 17px;
+        margin-bottom: 2px;
+      }
+    }
+  }
+}
