@@ -8,6 +8,7 @@ sv:
       election:
         start: Startdatum
         end: Slutdatum
+        closing: Stänger
         visible: Synlig
         url: Url
         title: Titel

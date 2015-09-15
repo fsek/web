@@ -4,9 +4,9 @@
     <h2><%= label_tag 'Cafebokning - nyckelpiga', nil, class: 'reg-header' %></h2>
   </div>
   <div class='row margin-bottom-20'>
-    <%= form_tag(nyckelpiga_cafe_works_path, { method: 'get' }) do |f| %>
-      <%= text_field_tag(:date, @date.iso8601, class: 'form-control datetimepicker') %>
-      <%= submit_tag 'Visa', class: 'btn btn-u' %>
+    <%= simple_form_for(:nyckelpiga, { url: nyckelpiga_cafe_works_path, method: :get }) do |f| %>
+      <%= f.input :date, as: :date_picker, input_html: { value: @date.iso8601 }, label: t('choose.date') %>
+      <%= f.button :submit, class: "btn btn-u" %>
     <% end %>
   </div>
   <div class='row'>

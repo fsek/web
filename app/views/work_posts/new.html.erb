@@ -1,10 +1,9 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag 'Ny jobbpost',nil, class:  'reg-header'%>
-			<%= render 'form'%>
-			<%= link_to 'Visa jobbposter',work_posts_path %><br>
-			<%= link_to 'Tillbaka till startsida', root_url %>
-		</div>
-	</div>
+<% provide(:title, t('work_post.title')) %>
+<div class="col-md-10 col-md-offset-1 col-xs-12 reg-page">
+  <h3 class="headline headline-md">
+    <%= t(:new, attr: model_name(WorkPost)) %>
+  </h3>
+  <%= render 'form'%>
+  <%= link_to t(:index, attr: models_name(WorkPost)), work_posts_path %>
+  <%= link_to t(:back_to_root), root_path %>
 </div>

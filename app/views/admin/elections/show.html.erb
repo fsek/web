@@ -1,14 +1,19 @@
-<% provide(:title, 'Val') %>
-<div class="col-md-10 col-md-offset-1 col-sm-1+ col-sm-offset-1 reg-page">
-  <%= label_tag 'Inställningar', nil, class: 'reg-header' %>
+<% provide(:title, model_name(Election)) %>
+<div class="col-md-10 col-md-offset-1 col-xs-12 reg-page">
+  <h3 class="headline headline-md">
+    <%= t(:new, attr: model_name(Election)) %>
+  </h3>
   <%= render 'form' %>
   <hr>
   <% if can? :manage,:all %>
-      <%= link_to 'Radera val', admin_election_path(@election), class: 'btn btn-u',data: {confirm: 'Valet raderas och kan inte återställas, är du säker?'}, method: :delete %>
+    <%= link_to t(:destroy),
+      admin_election_path(@election), class: 'btn btn-u',
+      data: { confirm: t('elections.confirm_delete')}, method: :delete %>
   <% end %>
 
-  <%= link_to 'Visa valet (som användare ser det)', elections_path,class: 'btn btn-u' %>
-  <%= link_to 'Visa nomineringar', nominations_admin_election_path,class: 'btn btn-u' %>
-  <%= link_to 'Visa kandideringar', candidates_admin_election_path,class: 'btn btn-u' %>
-
+  <%= link_to t('elections.show_as_user'), elections_path, class: 'btn btn-u' %>
+  <%= link_to t('elections.show_nominations'), nominations_admin_election_path,
+    class: 'btn btn-u' %>
+  <%= link_to t('elections.show_candidates'), candidates_admin_election_path,
+    class: 'btn btn-u' %>
 </div>

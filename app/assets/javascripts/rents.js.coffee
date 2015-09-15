@@ -1,10 +1,3 @@
-jQuery ->
-  $('.datetimepicker1').datetimepicker
-    format: 'DD/MM/YYYY HH:mm'
-  $('.datetimepicker').datetimepicker
-    format: 'DD/MM/YYYY HH:mm'
-  $('.datetimepicker2').datetimepicker
-    format: 'DD/MM/YYYY HH:mm'
 loadCalendar = ->
   $('#bilkalender').fullCalendar
     events: '/bil',

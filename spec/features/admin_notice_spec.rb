@@ -4,14 +4,14 @@ feature 'admin create notice' do
   let(:notice) { build(:notice) }
   let(:login) { LoginPage.new }
 
-  Steps 'Create menu' do
+  Steps 'Create notice' do
     And 'I sign in' do
       login.visit_page.login(user, '12345678')
     end
 
-    And 'visit menu index' do
+    And 'visit notice index' do
       visit notices_path
-      find('h2#notice-headline').text.should include('Notiser')
+      find('h2#notice-headline').text.should include(Notice.model_name.human(count: 2))
       find(:linkhref, new_notice_path).click
     end
 
@@ -28,7 +28,7 @@ feature 'admin create notice' do
     And 'Assure notice is created' do
       page.should have_css('div.alert.alert-info')
       find('div.alert.alert-info').text.should \
-       include(%(#{I18n.t(:notice)} #{I18n.t(:success_create)}))
+       include(I18n.t(:success_create))
     end
   end
 end

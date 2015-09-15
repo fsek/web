@@ -1,3 +1,6 @@
 <%= render @notice %>
-<%= link_to 'Redigera', edit_notice_path(@notice),class:"btn btn-u" %> |
-<%= link_to 'Tillbaka', notices_path,class:"btn btn-u" %>
+<hr>
+<%= link_to(t(:edit, attr: model_name(Notice)), edit_notice_path(@notice),
+            class: "btn btn-u")%>
+<%= link_to(t(:index, attr: models_name(Notice)), notices_path, class: "btn btn-u")%>
+<%= link_to(t(:back_to_root), root_url, class: "btn btn-u")%>

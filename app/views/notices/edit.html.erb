@@ -1,12 +1,10 @@
 <% provide(:title, 'Notiser') %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 reg-page">
-      <%= label_tag 'Redigera notis',nil, class:  'reg-header'%>
-      <%= render 'form'%>
-      <hr>
-      <%= link_to('Visa alla notiser',notices_path, class: "btn btn-u")%>
-      <%= link_to('Tillbaka till startsida', root_url, class: "btn btn-u")%>
-    </div>
-  </div>
+<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
+  <h3 class="headline headline-md">
+    <%= t(:edit, attr: model_name(Notice)) %>
+  </h3>
+  <%= render 'form'%>
+  <hr>
+  <%= link_to(t(:index, attr: models_name(Notice)), notices_path, class: "btn btn-u")%>
+  <%= link_to(t(:back_to_root), root_url, class: "btn btn-u")%>
 </div>
