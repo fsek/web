@@ -22,7 +22,7 @@
     @include transform(scale(0));
     -webkit-backface-visibility: hidden;
     background-color: $black;
-    background-image: image-url("../img/overlay-icon.png");
+    background-image: image-url("img/overlay-icon.png");
     background-position: 50%;
     background-repeat: no-repeat;
     filter: alpha(opacity = 0);

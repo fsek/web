@@ -31,6 +31,11 @@ gem 'turbolinks'
 gem 'uglifier'
 gem 'wice_grid'
 
+# To have a working JVM on server
+group :staging, :production do
+  gem 'therubyracer', platform: :ruby
+end
+
 group :development, :test do
   gem 'better_errors'
   gem 'capistrano-rails'
