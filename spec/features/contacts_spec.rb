@@ -1,4 +1,5 @@
 require 'rails_helper'
+=begin
 feature 'visit contact, create new, send email', pending: true do
   let(:user) { create(:admin) }
   let(:council) { create(:council) }
@@ -46,3 +47,4 @@ feature 'visit contact, create new, send email', pending: true do
     end
   end
 end
+=end
