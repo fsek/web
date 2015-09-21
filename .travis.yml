@@ -8,7 +8,7 @@ script:
   - bundle exec rake db:test:prepare
   - bundle exec rake
 before_script:
- - cp config/database.yml.template config/database.yml
+ - cp config/database.yml.travis config/database.yml
  - chmod +x config/database.yml
  - cp config/secrets.yml.template config/secrets.yml
  - chmod +x config/secrets.yml
