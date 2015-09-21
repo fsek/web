@@ -345,7 +345,8 @@ DEPENDENCIES
   better_errors
   bootstrap-sass
   cancancan
-  capistrano-rails
+  capistrano
+  capistrano-rails (~> 1.1.3)
   capistrano-rbenv
   capybara
   codeclimate-test-reporter
