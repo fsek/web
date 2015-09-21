@@ -38,7 +38,9 @@ end
 
 group :development, :test do
   gem 'better_errors'
-  gem 'capistrano-rails'
+  gem 'capistrano'
+  # Need 1.1.3 to load sprockets manifest file
+  gem 'capistrano-rails', '~> 1.1.3'
   gem 'capistrano-rbenv'
   gem 'capybara'
   gem 'i18n-tasks'
