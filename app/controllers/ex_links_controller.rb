@@ -62,13 +62,15 @@ class ExLinksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ex_link
-      @ex_link = ExLink.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ex_link_params
-      params.require(:ex_link).permit(:label, :url, :tags, :test_availability, :note, :active, :expiration)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ex_link
+    @ex_link = ExLink.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ex_link_params
+    params.require(:ex_link).permit(:label, :url, :tags, :test_availability,
+                                    :note, :active, :expiration)
+  end
 end
