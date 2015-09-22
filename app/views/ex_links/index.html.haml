@@ -1,0 +1,39 @@
+.col-md-12.margin-bottom-20
+  %h1 Listing External Links
+  .panel.panel-orange
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Image
+          %th Label
+          %th Url
+          %th Tags
+          %th Test availability
+          %th Active
+          %th Expiration
+          %th Note
+          %th
+          %th
+          %th
+
+      %tbody
+        - @ex_links.each do |ex_link|
+          %tr
+            %td= image_tag ex_link.image.url(:thumb), width: 30
+            %td= ex_link.label
+            %td= link_to ex_link.url, ex_link.url
+            %td= ex_link.get_tagnames
+            %td= bool2icon ex_link.test_availability
+            %td= bool2icon ex_link.active
+            %td= ex_link.expiration
+            %td= ex_link.note
+            %td= button_to 'Show', ex_link, :method => 'get',
+                                            class: 'btn btn-u-blue btn-u-sm'
+            %td= button_to 'Edit', edit_ex_link_path(ex_link),
+                  :method => 'get', class: 'btn btn-u-green btn-u-sm'
+            %td= button_to 'Destroy', ex_link, :method => :delete,
+                :data => { :confirm => 'Are you sure?' },
+                class: 'btn-u btn-u-red btn-u-xs'
+
+  = link_to 'List all tags', {action: 'list_tags'}, class: 'btn-u btn-u-green'
+  = link_to 'New External Link', new_ex_link_path, class: 'btn-u btn-u-default'
