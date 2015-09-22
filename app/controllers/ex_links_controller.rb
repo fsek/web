@@ -25,29 +25,20 @@ class ExLinksController < ApplicationController
   # POST /ex_links.json
   def create
     @ex_link = ExLink.new(ex_link_params)
-
-    respond_to do |format|
-      if @ex_link.save
-        format.html { redirect_to @ex_link, notice: 'Ex link was successfully created.' }
-        format.json { render :show, status: :created, location: @ex_link }
-      else
-        format.html { render :new }
-        format.json { render json: @ex_link.errors, status: :unprocessable_entity }
-      end
+    if @ex_link.save
+      redirect_to @ex_link, notice: 'Ex link was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /ex_links/1
   # PATCH/PUT /ex_links/1.json
   def update
-    respond_to do |format|
-      if @ex_link.update(ex_link_params)
-        format.html { redirect_to @ex_link, notice: 'Ex link was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ex_link }
-      else
-        format.html { render :edit }
-        format.json { render json: @ex_link.errors, status: :unprocessable_entity }
-      end
+    if @ex_link.update(ex_link_params)
+      redirect_to @ex_link, notice: 'Ex link was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -55,10 +46,7 @@ class ExLinksController < ApplicationController
   # DELETE /ex_links/1.json
   def destroy
     @ex_link.destroy
-    respond_to do |format|
-      format.html { redirect_to ex_links_url, notice: 'Ex link was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to ex_links_url, notice: 'Ex link was successfully destroyed.'
   end
 
   private
