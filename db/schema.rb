@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906182103) do
+ActiveRecord::Schema.define(version: 20150922165007) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -201,6 +201,18 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.boolean  "drink"
     t.boolean  "food"
     t.boolean  "cash"
+  end
+
+  create_table "ex_links", force: :cascade do |t|
+    t.string   "label",             limit: 255
+    t.text     "url",               limit: 65535
+    t.string   "tags",              limit: 255
+    t.boolean  "test_availability"
+    t.text     "note",              limit: 65535
+    t.boolean  "active"
+    t.date     "expiration"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "faqs", force: :cascade do |t|
