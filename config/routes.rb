@@ -1,5 +1,8 @@
 Fsek::Application.routes.draw do
+
+  get 'ex_links/tags' => 'ex_links#list_tags'
   resources :ex_links
+
   get 'permissions' => 'posts#show_permissions'
   get 'permission/:id' => 'posts#edit_permissions', as: :permission
   patch 'permission/:id' => 'posts#update_permissions'
