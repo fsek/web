@@ -1,0 +1,33 @@
+%h1 Listing ex_links
+
+%table
+  %thead
+    %tr
+      %th Label
+      %th Url
+      %th Tags
+      %th Test availability
+      %th Note
+      %th Active
+      %th Expiration
+      %th
+      %th
+      %th
+
+  %tbody
+    - @ex_links.each do |ex_link|
+      %tr
+        %td= ex_link.label
+        %td= ex_link.url
+        %td= ex_link.tags
+        %td= ex_link.test_availability
+        %td= ex_link.note
+        %td= ex_link.active
+        %td= ex_link.expiration
+        %td= link_to 'Show', ex_link
+        %td= link_to 'Edit', edit_ex_link_path(ex_link)
+        %td= link_to 'Destroy', ex_link, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Ex link', new_ex_link_path

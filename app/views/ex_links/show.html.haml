@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Label:
+  = @ex_link.label
+%p
+  %b Url:
+  = @ex_link.url
+%p
+  %b Tags:
+  = @ex_link.tags
+%p
+  %b Test availability:
+  = @ex_link.test_availability
+%p
+  %b Note:
+  = @ex_link.note
+%p
+  %b Active:
+  = @ex_link.active
+%p
+  %b Expiration:
+  = @ex_link.expiration
+
+= link_to 'Edit', edit_ex_link_path(@ex_link)
+\|
+= link_to 'Back', ex_links_path

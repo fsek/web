@@ -1,4 +1,5 @@
 Fsek::Application.routes.draw do
+  resources :ex_links
   get 'permissions' => 'posts#show_permissions'
   get 'permission/:id' => 'posts#edit_permissions', as: :permission
   patch 'permission/:id' => 'posts#update_permissions'

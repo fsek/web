@@ -1,0 +1,2 @@
+module ExLinksHelper
+end
