@@ -1,153 +1,173 @@
-[![Code Climate](https://codeclimate.com/github/fsek/web/badges/gpa.svg)](https://codeclimate.com/github/fsek/web) [![Test Coverage](https://codeclimate.com/github/fsek/web/badges/coverage.svg)](https://codeclimate.com/github/fsek/web) [![Build Status](https://travis-ci.org/fsek/web.svg?branch=master)](https://travis-ci.org/fsek/web) [![Dependency Status](https://gemnasium.com/fsek/web.svg)](https://gemnasium.com/fsek/web) [![security](https://hakiri.io/github/fsek/web/master.svg)](https://hakiri.io/github/fsek/web/master)
+[![Code Climate](https://codeclimate.com/github/fsek/web/badges/gpa.svg)](https://codeclimate.com/github/fsek/web)
+[![Test Coverage](https://codeclimate.com/github/fsek/web/badges/coverage.svg)](https://codeclimate.com/github/fsek/web)
+[![Dependency Status](https://gemnasium.com/fsek/web.svg)](https://gemnasium.com/fsek/web)
+[![security](https://hakiri.io/github/fsek/web/master.svg)](https://hakiri.io/github/fsek/web/master)
 
-Server versions:
-[![Production](http://samson.fsektionen.se/projects/web/stages/production.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d)](http://samson.fsektionen.se/projects/web/stages/production)
-[![Dev](http://samson.fsektionen.se/projects/web/stages/dev.svg?token=8d70d6eaf8ef80c828d2f1472e89dc6d)](http://samson.fsektionen.se/projects/web/stages/dev)
+[Master](https://fsektionen.se)
 
-[![Join the chat at https://gitter.im/fsek/web](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fsek/web?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![CircleCI](https://circleci.com/gh/fsek/web/tree/master.svg?style=shield&circle-token=:circle-ci-badge-token)](https://circleci.com/gh/fsek/web/tree/master)
+
+[Stage](http://stage.fsektionen.se)
+
+[![CircleCI](https://circleci.com/gh/fsek/web/tree/stage.svg?style=shield&circle-token=:circle-ci-badge-token)](https://circleci.com/gh/fsek/web/tree/stage)
 
 
-Hur man gör saker
+How to do stuff
 ================
 
-Jag vill skriva kod
+I wanna write code
 -------------------
-1. git checkout master.
-2. git checkout -b minfetabransch.
-3. Gör dina ändringar och committa dem.
-4. Under tiden kan det ha hänt saker med master. Då behöver du rebasea (inte
-   merga) din bransch på master med git rebase origin/master.
-5. Kontrollera så att din commitlog består av vettiga och logiska patchar. Slå
-   ihop små plottriga committar med git rebase -i. Dela upp committar som
-   handlar om mer en än sak med git add -p.
-6. Läs igenom din patch (git diff master).
-7. Läs den en gång till.
-8. git push --set-upstream origin minfetabransch
-9. In på github och skapa en pullrequest.
-10. Vänta några dagar på kommentarer, se vad hounden har att säga och fixa det
-    om det låter vettigt.
-11. Upprepa (5-7)
-12. Merga till master och pusha upp. Deploy ska ske automagiskt.
+1. `git checkout master`
+2. `git checkout -b mycoolfeature`.
+3. Make your changes and commit them
+4. While working on your branch, there might have been changes at the master
+branch. This calls for a **rebase** (do not do merges for this).
+You call `git rebase origin master`.
+5. Control your `git log` to make sure that your commits are sane and logical.
+Incase of messy Hound fixes and similar, wrap them up with `git rebase -i`. If
+you have a lot of changes which doesn't belong in the same commit, you can use
+`git add -p` to split it into logical commits.
+6. Read through your path, check `git diff master`
+7. (round == 1) ? Repeat 6 : Continue;
+8. `git push --set-upstream origin mycoolfeature`
+9. Go into Github and submit a pull request.
+10. Let the team comment, become friends with the Hound and solve code style
+errors which makes sense.
+11. If you done changes - repeat step 5-7
+12. Merge your branch to master, deploy should follow
 
-[dev.fsektionen.se](http://dev.fsektionen.se)
-- Följer dev-branchen och kör mot prod databasen
-- Här kan ni merga in era brancher och testa dem
-- Var försiktiga så ni inte sabbar prod-databasen
+---------------------
 
-__Vad man inte ska göra:__
-- Ändra filer direkt på servern. Det kan förstöra konfigurationerna (speciellt om detta görs som root).
-- Force-pusha till master
-- Commita direkt på master-branchen.
+__[stage.fsektionen.se](http://stage.fsektionen.se)__
+- Follows the `stage`-branch and running on a separate database
+- Is okay to merge and force push and to use as a crash course.
 
-Om det inte funkar:
-- Synka most github manuellt (kräver att du är admin): [master](http://fsektionen.se/githook/master) [dev](http://fsektionen.se/githook/dev)
 
-Jag vill ha en bransch
+__[fsektionen.se](https://fsektionen.se)__
+- Follows the `master`-branch and running on the production database
+
+__What you should never do:__
+- Change files directly on the server (especially running commands as root!)
+- Force-push to master
+- Create commits directly on master
+
+I want my own branch!
 ----------------------
 
-Kalla branschen för dittnamn/vadduvillgöra så ser alla att du äger den. Då kan
-du force-pusha till den osv., det är ju din bransch.
+Call the branch something with your `ownname-feature` or `ownname/feature`.
 
-Om du behöver integrera flera ändringar tillsammans så är det enklast att
-använda en egen integrationsbransch. Den får man förstås inte force-pusha till.
-Det är enklast att undvika detta om man inte verkligen måste.
+This shows that this is your branch, you can do whatever force-pushes and equal.
 
-Specialbranscher som har egna gitkrokar
+If you want to integrate many features at ones, make pull-requests to a separate
+branch which you can then merge into master.
 
-* master: motsvarar den version av koden som körs i produktion. 
-  * Var rädd om master, i regel vill vi se pull requests innan merge
-  * Deployas automatiskt till fsektionen.se mha. gitkrokar. 
-* stage: en testversion som körs live på servern
-  * Denna branschen är ok att klubba om det behövs
-  * Deployas automatiskt till stage.fsektionen.se mha. gitkrokar
-* dev: en annan testversion
-  * Denna branschen är ok att klubba om det behövs
-  * Deployas automatiskt till dev.fsektionen.se mha. gitkrokar
-
-Jag vill ha lite fräsch testdata i min lokala databas
+I want some fresh data for my database!
 -----------------------------------------------------
 
-Enklast är att dumpa produktionsdatabasen och ladda in den lokalt. ssha till
-dirac och använd mysqldump för att få ut en fil med all data i.
+For a smaller setup you can use the rake-task:
+`rake db:populate_test`.
 
-På dirac:
+If you are adding new features which should be in this database you edit the
+file in `lib/tasks`.
 
-mysqldump db/fsek_production -u root -p > mindatabas.sql
+----------------------
 
-Lokalt:
+If you want a complete set you can dump the production database from the server
+and use it locally.
 
-scp fsektionen.se:mindatabas.sql .
+On the server:
 
-mysql fsek_development -u root -p < mindatabas.sql
+`mysqldump db/fsek_production -u root -p > mydatabase.sql`
+
+Locally:
+
+`scp fsektionen.se:mydatabase.sql .`
+
+`mysql fsek_development -u root -p < mindatabas.sql`
 
 rake db:migrate
 
 
-Generella layoutsaker:
+Layout things:
 ======================
-Lite kunskap om rails layouts
-  Rails bygger ihop css och js filer genom /app/assets/stylesheets/application.css resp. /app/assets/javascripts/application.js.
-  Där tar den och samlar ihop css-filer resp. js-filer från en massa olika källor:
-    - Lokala css-/js-filer för varje view och för huvudlayouten ligger under
-        /app/assets/javascript eller stylesheets
-    - Plugin som sparas lokalt på servern ligger under
-        /vendor/assets
-        t.ex. bootstrap, hover-dropdown.js, back-to-top.js
-    - Plugin som installers som gem finns i Gemfilen (dessa ligger också lokalt på datorn fast utanför rails-applikationen)
-        t.ex. jQuery, FontAwesome, Breadcrumbs
+For compiling our stylesheets and javascript files there are two main files.
 
-  Bilder sparas i /app/assets/images och koms åt i applikationen genom att anropa
-    <%= image_tag "name.jpg", class: "enklass" %>
+For **CSS** there is `app/assets/stylesheets/application.scss` where the needed
+CSS is added with `@import`-tags.
 
+All css located in the `stylesheets/style` folder holds our theme laying over
+our Bootstrap.
 
-Vill man ha en ikon 
-  - gå in på http://fortawesome.github.io/Font-Awesome/icons/ och hitta den du vill ha
-  - skapa ikonen genom att anropa
-      icon("namnetpåikonen") #utan 'fa-' prefixet
-  - i den köpta layouten förkomemr ibland klassen 'icon-myicon', den behöver bytas ut mot 'fa fa-myicon', pga versionsbyte
+All css located in the `stylesheets/partials` is our own written scss files,
+split on controller or function.
 
-Vill man komma åt den inloggade användaren anropar man
-  current_user() #du måste inte ha paranteser
+All files in these folders will be loaded.
 
-Vill man kolla om använaren är inloggad anropar man
-  <% if user_signed_in? %>
-    DO STUFF
-  <% end %>
+For **Javascript** we have the same setup but using Sprockets.
+This is seen in `app/assets/javascripts/application.js`.
 
-Eftersom vi kör lite olika versioner av diverse plugins/bootstrap kan den köpta layouten strula lite ibland, då får man småpilla! :)
+All the local files go into these folders.
 
 
-Skapa nya controllers
+Files from Vendors, such ass from plugins or gems are placed in `vendor/assets`.
+
+Files that are not from vendors but not project specific goes into `lib/assets`.
+
+Images which are used in layouts and similar should be placed in:
+`app/assets/images`.
+
+An image in this folder called `image.jpg` can be referenced with:
+
+`<%= image_tag('image.jpg') %>`
+
+If you are looking for **icons**:
+- visit [FontAwesome](https://fortawesome.github.io/Font-Awesome/icons/) and
+  find your icon
+- Use the helper method to call it: `fa_icon('user')`.
+
+
+Creating new controllers
 =====================
-Tag news_controller som exempel.
 
-Breadcrumbs:
-  Hem/Nyheter/Redigera (dvs strängen under menyn som visar var på sidan man befinner sig.
+For example `news_controller`:
 
-  Lämpligen lägger man till
-    add_breadcrumbs "Nyheter", :news_index_path
-  högst upp i controllern någonstans. Därefter lägger man (om man vill) till typ
-    add_breadcrumbs "Redigera", nil
-  inne i en action om man vill specificera breadcrumben mer
+To use our authentication system Cancancan you need to call:
+`load_permissions_and_authorize_resource`
 
+before all your controller methods.
 
-Vill man komma åt den inloggade användaren anropar man
-  current_user() #du måste inte ha paranteser
+It will load and evaluate all user permissions, but also prepare your standard
+actions by loading the resources.
 
-Vill man kolla om använaren är inloggad anropar man
-  <% if user_signed_in? %>
-    DO STUFF
-  <% end %>
+If the command is called in the beginning, your `show`-action can be change
+from:
+```
+def show
+  @news = News.find(params[:id])
+end
+```
 
-Skapa nya views
-===============
-Lägg till 
-  <% title("MinSida") %> 
-någonstans i en view för att få titeln på sidan under F-sektionsloggan.
+to:
 
-Lägg till
-  <% content_for(:sidebar) do %>
-    COOLA SAKER
-  <% end %>
-någonstans i en view för att få content specifikt för just den sidan/viewen.
+```
+def show
+end
+```
 
+With the same results!
+
+The same goes for `:edit, :new, :index, :create, :update, :destroy`.
+
+All you need to add for standard functionality is in the end, under the
+`private` scope:
+```
+private
+
+def news_params
+  params.require(:news).permit(:title,..
+end
+```
+
+---------------------
+
+Happy coding!
