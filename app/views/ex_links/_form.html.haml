@@ -2,15 +2,20 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :label, placeholder: 'Electrical And Information Technology', hint:'Nice formatted name of the link. E.g. '
+    = f.input :label, placeholder: 'Electrical And Information Technology',
+              hint:'Nice formatted name of the link. E.g. '
     = f.input :url, placeholder: 'http://www.eit.lth.se/index.php?L=1', hint: 'Full URL of the link.'
     / TODO: Show user known tags nicely
-    = f.input :tags, placeholder: 'LTH,informatics', hint: raw("List of tags separated by a comma. White space is ignored and tags are saved in lowercase. #{link_to 'Show all tags', action: 'list_tags'}")
-    = f.input :test_availability,  :input_html => { :checked => true }, hint: 'If checked, then this link will be check for availability (NOT IMPLEMENTED YET)"'
+    = f.input :tags, placeholder: 'LTH,informatics',
+hint: raw("Tags separated by a comma. White space is ignored and tags are saved in lowercase. #{link_to 'Show all tags',
+          action: 'list_tags'}")
+    = f.input :test_availability,  :input_html => { :checked => true },
+              hint: 'If checked, then this link will be check for availability (NOT IMPLEMENTED YET)"'
     = f.input :active, :input_html => { :checked => true }, hint: 'Signalize if the link is active or not.'
     = f.input :image, as: :file
     / TODO: Some clickable calendar would be nicer. Do we have one?
-    = f.input :expiration, label: 'Expiration date', hint: 'After this date the link will be marked as inactive. (NOT IMPLEMENTED YET)', :default => Date.today + 1460
+    = f.input :expiration, label: 'Expiration date',
+        hint: 'After this date the link will be marked as inactive. (NOT IMPLEMENTED)', :default => Date.today + 1460
     = f.input :note, placeholder: '', hint: 'Any info about the link which might be useful.'
   .form-actions
     = f.button :submit
