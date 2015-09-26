@@ -96,4 +96,5 @@ class ExLinksController < ApplicationController
     params.require(:ex_link).permit(:label, :url, :tags, :test_availability,
                                     :note, :active, :expiration, :image)
   end
+
 end
