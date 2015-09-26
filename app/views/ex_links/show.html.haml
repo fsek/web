@@ -1,11 +1,15 @@
 %p#notice= notice
 
 %p
+  %b
+  = image_tag @ex_link.image.url(:medium)
+
+%p
   %b Label:
   = @ex_link.label
 %p
   %b Url:
-  = @ex_link.url
+  %a{:href => @ex_link.url, :title => @ex_link.label} #{@ex_link.url}
 %p
   %b Tags:
   = @ex_link.tags
