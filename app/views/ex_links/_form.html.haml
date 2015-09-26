@@ -1,0 +1,13 @@
+= simple_form_for(@ex_link) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :label, placeholder: 'Nice formatted name of the link. E.g. "Electrical And Information Technology"'
+    = f.input :url, placeholder: 'Full URL of the link. E.g "http://www.eit.lth.se/index.php?L=1"'
+    = f.input :tags, placeholder: 'List of tags separated by a comma. E.g.: "LTH,informatics"'
+    = f.input :test_availability, label: 'If checked, then this link will be check for availability (NOT IMPLEMENTED YET)',:input_html => { :checked => true }
+    = f.input :active, label: 'If checked, then the link is available for querying (NOT IMPLEMENTED YET)', :input_html => { :checked => true }
+    = f.input :expiration, label: 'After this date the link will be marked as inactive. (NOT IMPLEMENTED YET)', :default => Date.today + 1460
+    = f.input :note, placeholder: 'Any info about the link which might be useful'
+  .form-actions
+    = f.button :submit
