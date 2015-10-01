@@ -22,8 +22,8 @@ class Election < ActiveRecord::Base
       initialize_grid(p, name: 'election')
     end
   end
+
   # Returns current status
-  # /d.wessman
   def view_status
     if start > Time.zone.now
       return :before
@@ -37,7 +37,6 @@ class Election < ActiveRecord::Base
   end
 
   # Returns a status text depending on the view_status
-  # /d.wessman
   def status_text
     case view_status
     when :before
@@ -50,7 +49,6 @@ class Election < ActiveRecord::Base
   end
 
   # Returns a status text for the nominations page
-  # /d.wessman
   def nomination_status
     if view_status == :after
       I18n.t('nominations.status_after')
@@ -58,7 +56,6 @@ class Election < ActiveRecord::Base
   end
 
   # Returns the current posts
-  # /d.wessman
   def current_posts
     if view_status == :after
       posts.not_termins
@@ -68,7 +65,6 @@ class Election < ActiveRecord::Base
   end
 
   # Returns the start_date if before, the end_date if during and none if after.
-  # /d.wessman
   def countdown
     case view_status
     when :before

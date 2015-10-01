@@ -7,8 +7,8 @@ sv:
     attributes:
       election:
         start: Startdatum
-        end: Slutdatum
-        closing: Stänger
+        end: Stängning - teminsvalda poster
+        closing: Stängning - allt
         visible: Synlig
         url: Url
         title: Titel

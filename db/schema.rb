@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.text     "text",       limit: 65535
-    t.boolean  "visible",    limit: 1
+    t.boolean  "visible"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.text     "description",       limit: 65535
     t.string   "author",            limit: 255
     t.string   "location",          limit: 255
-    t.boolean  "public",            limit: 1
+    t.boolean  "public"
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "created_at"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.string   "lastname",     limit: 255
     t.string   "phone",        limit: 255
     t.string   "email",        limit: 255
-    t.boolean  "utskottskamp", limit: 1
+    t.boolean  "utskottskamp"
     t.string   "access_code",  limit: 255
     t.integer  "d_year",       limit: 4
     t.integer  "user_id",      limit: 4
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
   create_table "contacts", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "email",      limit: 255
-    t.boolean  "public",     limit: 1
+    t.boolean  "public"
     t.text     "text",       limit: 65535
     t.integer  "council_id", limit: 4
     t.datetime "created_at"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.string   "logo_content_type", limit: 255
     t.integer  "logo_file_size",    limit: 4
     t.datetime "logo_updated_at"
-    t.boolean  "public",            limit: 1,     default: true
+    t.boolean  "public",                          default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contact_id",        limit: 4
@@ -131,8 +131,8 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.integer  "pdf_file_size",    limit: 4
     t.datetime "pdf_updated_at"
     t.string   "title",            limit: 255
-    t.boolean  "public",           limit: 1
-    t.boolean  "download",         limit: 1
+    t.boolean  "public"
+    t.boolean  "download"
     t.string   "category",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
   create_table "elections", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
-    t.boolean  "visible",             limit: 1
+    t.boolean  "visible"
     t.string   "url",                 limit: 255
     t.string   "title",               limit: 255
     t.text     "description",         limit: 65535
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
   create_table "event_registrations", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "event_id",   limit: 4
-    t.boolean  "reserve",    limit: 1
+    t.boolean  "reserve"
     t.datetime "removed_at"
     t.integer  "remover_id", limit: 4
     t.text     "comment",    limit: 65535
@@ -183,7 +183,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.string   "location",           limit: 255
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.boolean  "all_day",            limit: 1
+    t.boolean  "all_day"
     t.string   "category",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -194,13 +194,13 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.integer  "council_id",         limit: 4
     t.integer  "user_id",            limit: 4
     t.string   "short",              limit: 255
-    t.boolean  "signup",             limit: 1
+    t.boolean  "signup"
     t.datetime "last_reg"
     t.string   "dot",                limit: 255
     t.integer  "slots",              limit: 4
-    t.boolean  "drink",              limit: 1
-    t.boolean  "food",               limit: 1
-    t.boolean  "cash",               limit: 1
+    t.boolean  "drink"
+    t.boolean  "food"
+    t.boolean  "cash"
   end
 
   create_table "faqs", force: :cascade do |t|
@@ -232,9 +232,9 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.integer  "index",      limit: 4
     t.string   "link",       limit: 255
     t.string   "name",       limit: 255
-    t.boolean  "visible",    limit: 1
-    t.boolean  "turbolinks", limit: 1,   default: true
-    t.boolean  "blank_p",    limit: 1
+    t.boolean  "visible"
+    t.boolean  "turbolinks",             default: true
+    t.boolean  "blank_p"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -242,7 +242,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
   create_table "news", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.text     "content",            limit: 65535
-    t.boolean  "front_page",         limit: 1
+    t.boolean  "front_page"
     t.string   "image_file_name",    limit: 255
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
@@ -267,7 +267,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
   create_table "notices", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.text     "description",        limit: 65535
-    t.boolean  "public",             limit: 1
+    t.boolean  "public"
     t.date     "d_publish"
     t.date     "d_remove"
     t.integer  "sort",               limit: 4
@@ -281,13 +281,13 @@ ActiveRecord::Schema.define(version: 20150906182103) do
 
   create_table "page_elements", force: :cascade do |t|
     t.integer  "displayIndex",         limit: 4
-    t.boolean  "sidebar",              limit: 1
-    t.boolean  "visible",              limit: 1
+    t.boolean  "sidebar"
+    t.boolean  "visible"
     t.text     "text",                 limit: 65535
     t.string   "headline",             limit: 255
-    t.boolean  "border",               limit: 1
+    t.boolean  "border"
     t.string   "name",                 limit: 255
-    t.boolean  "pictureR",             limit: 1
+    t.boolean  "pictureR"
     t.string   "picture_file_name",    limit: 255
     t.string   "picture_content_type", limit: 255
     t.integer  "picture_file_size",    limit: 4
@@ -302,7 +302,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.datetime "updated_at"
     t.integer  "council_id", limit: 4
     t.string   "url",        limit: 255
-    t.boolean  "visible",    limit: 1
+    t.boolean  "visible"
     t.string   "title",      limit: 255
     t.string   "namespace",  limit: 255
   end
@@ -328,7 +328,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
   create_table "photo_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "text",       limit: 255
-    t.boolean  "visible",    limit: 1
+    t.boolean  "visible"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -347,13 +347,13 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "council_id",    limit: 4
-    t.boolean  "extra_text",    limit: 1
+    t.boolean  "extra_text"
     t.string   "elected_by",    limit: 255
     t.string   "elected_at",    limit: 255
     t.text     "election_text", limit: 65535
-    t.boolean  "styrelse",      limit: 1
+    t.boolean  "styrelse"
     t.integer  "recLimit",      limit: 4,     default: 0
-    t.boolean  "car_rent",      limit: 1
+    t.boolean  "car_rent"
   end
 
   create_table "rents", force: :cascade do |t|
@@ -364,14 +364,14 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.string   "email",       limit: 255
     t.string   "phone",       limit: 255
     t.text     "purpose",     limit: 65535
-    t.boolean  "disclaimer",  limit: 1,     default: false
-    t.boolean  "aktiv",       limit: 1,     default: true
+    t.boolean  "disclaimer",                default: false
+    t.boolean  "aktiv",                     default: true
     t.integer  "council_id",  limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comment",     limit: 65535
     t.string   "status",      limit: 255,   default: "unconfirmed"
-    t.boolean  "service",     limit: 1,     default: false
+    t.boolean  "service",                   default: false
     t.string   "access_code", limit: 255
     t.integer  "user_id",     limit: 4
     t.string   "firstname",   limit: 255
@@ -442,7 +442,7 @@ ActiveRecord::Schema.define(version: 20150906182103) do
     t.string   "company",              limit: 255
     t.datetime "deadline"
     t.string   "for",                  limit: 255
-    t.boolean  "visible",              limit: 1
+    t.boolean  "visible"
     t.datetime "publish"
     t.string   "picture_file_name",    limit: 255
     t.string   "picture_content_type", limit: 255

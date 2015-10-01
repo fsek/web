@@ -12,8 +12,8 @@ class ElectionMailer < ActionMailer::Base
 
   def candidate_email(candidate)
     @candidate = candidate
-    if @candidate.present? && @candidate.email.present?
-      mail to: @candidate.email, subject: 'Du har kandiderat till en post på Fsektionen.se'
+    if @candidate.present? && @candidate.user.email.present?
+      mail to: @candidate.user.email, subject: 'Du har kandiderat till en post på Fsektionen.se'
     end
   end
 end

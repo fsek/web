@@ -5,12 +5,13 @@ namespace 'permissions' do
     #load all the controllers
     controllers = Dir.new("#{Rails.root}/app/controllers").entries
     controllers.each do |entry|
-      if entry =~ /_controller/
+      if entry =~ /_controller/ && entry != 'application_controller.rb'
+        puts entry
         #check if the controller is valid
         arr << entry.camelize.gsub('.rb', '').constantize
       elsif entry =~ /^[a-z]*$/ #namescoped controllers
         Dir.new("#{Rails.root}/app/controllers/#{entry}").entries.each do |x|
-          if x =~ /_controller/
+          if x =~ /_controller/ && entry != 'application_controller.rb'
             arr << "#{entry.titleize}::#{x.camelize.gsub('.rb', '')}".constantize
           end
         end

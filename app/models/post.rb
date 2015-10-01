@@ -21,6 +21,7 @@ class Post < ActiveRecord::Base
 
   # Scopes
   scope :renters, -> { where(car_rent: true) }
+  scope :title, -> { order(title: :asc) }
 
   def to_s
     title

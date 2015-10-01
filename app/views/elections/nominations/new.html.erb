@@ -1,28 +1,31 @@
-<% provide(:title, 'Val') %>
+<% provide(:title, model_name(Election)) %>
 <% if [:after,:during].include?(@election.view_status) %>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-        <div class="headline headline-md"><h1>Nominering till<br><%=@election.title %></h1></div>
-        <div id="status">
-        </div>
-        <div id="nomination-form">
-          <div class="margin-bottom-20">
-            <h4>Nominera någon som du tror skulle passa bra på en post.</h4>
-            <h4>Ett mejl skickas till den nominerade personen.</h4>
-            <%= simple_format(@election.nomination_status) %>
-          </div>
-          <div class="margin-bottom-20">
-            <%= render 'form', election: @election, nomination: @nomination%>
-          </div>
-        </div>
-        <%= link_to t('actions.back'), elections_path, class: "btn-u btn-u-small" %>
+  <div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+    <div class="headline">
+      <h2>
+        <%= %(#{t('nominations.for')} #{@election.title}) %>
+      </h2>
+    </div>
+
+    <div id="nomination-form">
+      <div class="margin-bottom-20">
+        <%= simple_format(t('nominations.a_fitting_person')) %>
+        <%= simple_format(t('nominations.mail_will_be_sent')) %>
+        <%= simple_format(@election.nomination_status) %>
+      </div>
+
+      <div class="margin-bottom-20">
+        <%= render 'form', election: @election, nomination: @nomination%>
       </div>
     </div>
+
+    <%= link_to t('actions.back'), elections_path, class: "btn-u btn-u-small" %>
   </div>
 <% else %>
-  <div class="coming-soon">
-    <h2><%= label_tag models_name(Nomination), nil, class:  'reg-header' %></h2>
+  <div class="countdown">
+    <h2 class="headline">
+      <%= models_name(Nomination) %>
+    </h2>
     <% if @election.view_status == :before %>
       <%= t('nominations.before') %><br>
       <%= render 'elections/countdown' %>

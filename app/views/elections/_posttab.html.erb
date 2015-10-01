@@ -1,24 +1,24 @@
 <%= grid(grid) do |g|
-	g.row_attributes do |post|
-	    if (post.styrelse == true) && (post.elected_by != "Studierådet")
-	      {style: 'background: rgba(252, 155, 0,0.7);'}					   
-	    elsif (post.elected_by == "Studierådet") && (post.styrelse == false)
-	      {style: 'background: rgba(0, 204, 0,0.6);'}
-	    end
-	  end			
-	  g.column name: "Titel",attribute: "title",filter: false  do |post|			    
-	    link_to(post.title,display_post_path(post),remote: true)
-	  end
-	  g.column name: "Rekommenderat antal",attribute: "limit",filter: false do |post|
-	  	post.printLimit
-	  end			
-	  g.column name: "Utskott", attribute: "council_id",filter: false do |post|
-	    post.council
-	  end
-	  g.column name: "Väljs av", attribute: "elected_by",filter: false
-  	  if (election.view_status != 1)
-		  g.column name: "Kandidater", filter: false do |post|
-		  	 election.candidate_count(post)
-		  end
-  	  end
+  g.row_attributes do |post|
+    if (post.styrelse == true) && (post.elected_by != "Studierådet")
+      {style: 'background: rgba(252, 155, 0,0.7);'}
+    elsif (post.elected_by == "Studierådet") && (post.styrelse == false)
+      {style: 'background: rgba(0, 204, 0,0.6);'}
+    end
+  end
+  g.column name: Post.human_attribute_name(:title), attribute: "title", filter: false  do |post|
+    link_to(post.title,display_post_path(post),remote: true)
+  end
+  g.column name: Post.human_attribute_name(:limit), attribute: "limit", filter: false do |post|
+    post.printLimit
+  end
+  g.column name: model_name(Council), attribute: "council_id",filter: false do |post|
+    post.council
+  end
+  g.column name: Post.human_attribute_name(:elected_by), attribute: "elected_by",filter: false
+  if (election.view_status != 1)
+    g.column name: models_name(Candidate), filter: false do |post|
+      election.candidate_count(post)
+    end
+  end
 end -%>

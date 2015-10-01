@@ -47,6 +47,7 @@ class Candidate < ActiveRecord::Base
       errors.add(:election, I18n.t('candidate.time_error'))
       return false
     end
+
     true
   end
 

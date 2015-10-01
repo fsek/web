@@ -7,3 +7,9 @@ sv:
     opens: Kandideringar öppnar
     closed: Det är stängt för nya kandideringar
     title: Dina Kandidaturer
+    cannot_change_post: Det går inte att byta post, har du valt fel får du ta bort kandidaturen och skapa en ny.
+    user_attributes: Se till att dina uppgifter är uppdaterade, annars kan din kandidering inte antas.
+    user_update: Dina uppgifter uppdaterar du
+
+    count: Sökande
+    not_editable: Kan inte redigeras längre

@@ -12,7 +12,11 @@ class Elections::NominationsController < ApplicationController
 
   def create
     @nomination = @election.nominations.build(nomination_params)
-    @saved = @nomination.save
+    if @nomination.save
+      redirect_to new_nominations_path, notice: alert_create(Nomination)
+    else
+      render :new
+    end
   end
 
   private

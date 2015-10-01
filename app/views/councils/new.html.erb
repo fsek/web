@@ -1,9 +1,8 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag 'Ny kontakt',nil, class:  'reg-header'%>
-			<%= render 'form'%>
-			<%= link_to 'Tillbaka till start', root_url %>
-		</div>
-	</div>
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <%= content_tag(:h3, t(:new, attr: model_name(Council))) %>
+  </div>
+  <%= render 'form'%>
+  <%= link_to(t(:index, attr: models_name(Council)), councils_path,
+                                                     class: "btn btn-default")%>
 </div>

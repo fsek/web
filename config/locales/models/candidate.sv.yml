@@ -11,9 +11,7 @@ sv:
         post_id: Post
         user_id: Användare
         election_id: Val
-        motivation: Motivering
         stil_id: Stil-id
-        name: Förnamn
-        lastname: Efternamn
-        phone: Telefon
-        email: E-post
+        limit: Gräns
+        created_at: Skapades
+        updated_at: Uppdaterades

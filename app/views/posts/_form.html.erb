@@ -1,50 +1,38 @@
-<%= form_for([@council, @post]) do |f| %>
-    <%= render 'shared/form_errors', current: @post %>
-    <div class="col-md-6">
-      <%= f.label 'Titel', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.text_field :title, class: 'form-control' %>
-      </div>
-      <%= f.label 'Styrelsepost', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.check_box :styrelse, checked: @post.styrelse %>
-      </div>
-      <%= f.label 'Får boka bilen för utskottet', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.check_box :car_rent, checked: @post.car_rent %>
-      </div>
-      <%= f.label 'Väljs av?, väljs när?', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.select :elected_by, options_for_select(["", "Terminsmötet", "Styrelsen", "Studierådet"], @post.elected_by), class: "form-control" %> <%= f.select :elected_at, options_for_select(["", "HT", "VT"], @post.elected_at), class: "form-control" %>
-      </div>
-      <%= f.label 'Ansvarigt utskott', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.select :council_id,
-                     options_from_collection_for_select(@councils, :id, :title, @post.council_id),
-                     include_blank: true,
-                     class: "form-control listBox" %>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <%= f.label 'Hur många kan ha posten?', class: 'reg-label' %>
-      <p>0 - 0 ger * (det gör även 7 - 0)</p>
-
-      <p>5 - 5 get 5 (x)</p>
-
-      <p>4 - 5 ger 4-5</p>
-
-      <div class="input-group margin-bottom-20">
-        <%= f.select :recLimit, 0..10, selected: @post.recLimit, class: 'form-control' %> -
-        <%= f.select :limit, 0..10, selected: @post.limit, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <%= f.label 'Beskrivning:', class: 'reg-label' %>
-      <div class="input-group margin-bottom-20">
-        <%= f.text_area :description, size: '80x18', class: 'form-control' %>
-      </div>
-    </div>
-    <div class="row">
-      <%= f.submit "Spara", class: 'btn-u pull-right' %>
-    </div>
+<%= simple_form_for([@council, @post]) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :styrelse %>
+  <%= f.input :car_rent %>
+  <%= f.input :elected_by, collection: ["Terminsmötet", "Styrelsen", "Studierådet"] %>
+  <%= f.input :elected_at, collection: ["HT", "VT", "Båda"] %>
+  <%= f.association :council %>
+  <div class="panel-body">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <%= content_tag(:th, Post.human_attribute_name(:recLimit)) %>
+          <%= content_tag(:th, Post.human_attribute_name(:limit)) %>
+          <%= content_tag(:th, '==') %>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>*</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>5</td>
+          <td>5 (x)</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>5</td>
+          <td>4-5</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <%= f.input :recLimit %>
+  <%= f.input :limit %>
+  <%= f.input :description %>
+  <%= f.button :submit %>
 <% end %>
