@@ -1,5 +1,10 @@
 class ExLink < ActiveRecord::Base
-  validates :label, :url, presence: true
+  validates :label, :url, presence: true, uniqueness: true
+  has_many :ex_link_tags
+  has_many :tags, through: :ex_link_tags
+
+  attr_accessor :tagstring
+
   before_save :polish_tags
 
   has_attached_file :image,
@@ -9,12 +14,19 @@ class ExLink < ActiveRecord::Base
                     default_url: 'img/ex_link/:style/external_link_sample.png'
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  protected
+  # for nice formating in views
+  def get_tagnames
+    @tagnames = []
+    tags.each { |tag| @tagnames << tag.tagname }
+    @tagnames.join(',')
+  end
 
-  # Tags could be converted to an array of string (and saving as serialized objects)
-  # instead of strings. In case this would be slow...
+  # Rewrote NICELY!
   def polish_tags
-    self.tags.gsub!(/\s+/, '')
-    self.tags = self.tags.downcase
+    tags = []
+    tagstring.gsub!(/\s+/, '')
+    tagstring.downcase.split(',').each do |tagnm|
+      tags << Tag.find_or_create_by(tagname: tagnm)
+    end
   end
 end

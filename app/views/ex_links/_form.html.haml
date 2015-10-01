@@ -1,21 +1,26 @@
-= simple_form_for(@ex_link) do |f|
-  = f.error_notification
+.col-md-8.col-md-offset-2.margin-bottom-5
+  = simple_form_for(@ex_link, html: { class: 'reg-page'}) do |f|
+    = f.error_notification
 
-  .form-inputs
-    = f.input :label, placeholder: 'Electrical And Information Technology',
-              hint:'Nice formatted name of the link. E.g. '
-    = f.input :url, placeholder: 'http://www.eit.lth.se/index.php?L=1',
-              hint: 'Full URL of the link.'
-    / TODO: Show user known tags nicely
-    = f.input :tags, placeholder: 'LTH,informatics',
-              hint: raw("Tags separated by a comma. White space is ignored and tags are saved in lowercase. #{link_to 'Show all tags', action: 'list_tags'}")
-    = f.input :test_availability,  :input_html => { :checked => true },
-              hint: 'If checked, then this link will be check for availability (NOT IMPLEMENTED YET)"'
-    = f.input :active, :input_html => { :checked => true }, hint: 'Signalize if the link is active or not.'
-    = f.input :image, as: :file
-    / TODO: Some clickable calendar would be nicer. Do we have one?
-    = f.input :expiration, label: 'Expiration date',
-              hint: 'After this date the link will be marked as inactive. (NOT IMPLEMENTED)', :default => Date.today + 1460
-    = f.input :note, placeholder: '', hint: 'Any info about the link which might be useful.'
-  .form-actions
-    = f.button :submit
+    .form-input
+      = f.input :label, placeholder: 'Electrical And Information Technology',
+                hint:'Nice formatted name of the link. E.g. '
+      = f.input :url, placeholder: 'http://www.eit.lth.se/index.php?L=1',
+                hint: 'Full URL of the link.'
+      / TODO: Show user known tags nicely
+      / TODO: This should be prepopulated by current tags when editing
+      / White space is ignored and tags are saved in lowercase.
+      = f.input :tagstring, :input_html => {:value => @ex_link.get_tagnames},
+                hint: raw("Tags separated by a comma. #{link_to 'Show all tags',
+                                                        action: 'list_tags'}")
+      = f.input :test_availability,  :input_html => { :checked => true },
+                hint: 'Check this link for availability (WIP)"'
+      = f.input :active, :input_html => { :checked => true },
+                hint: 'Signalize if the link is active or not.'
+      = f.input :image, as: :file
+      = f.input :expiration, as: :datetime_picker,
+                hint: 'Mark inactive at this date. (WIP)',
+                :input_html => {:value => Date.today + 730}
+      = f.input :note, placeholder: '', hint: 'Useful info about the link.'
+    .form-group.margin-bottom-5
+      = f.button :submit, class: 'btn btn-u'

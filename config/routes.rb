@@ -1,5 +1,6 @@
 Fsek::Application.routes.draw do
   get 'ex_links/tags' => 'ex_links#list_tags'
+  get 'ex_links/del_unused_tags' => 'ex_links#del_unused_tags'
   resources :ex_links
 
   get 'permissions' => 'posts#show_permissions'
@@ -39,10 +40,7 @@ Fsek::Application.routes.draw do
   # Scope to change urls to swedish
   scope path_names: {new: 'ny', edit: 'redigera'} do
     namespace :admin do
-      resources :users, path: :anvandare, only: [:index] do
-        post :member, on: :member
-        post :unmember, on: :member
-      end
+      resources :users, path: :anvandare, only: [:index]
     end
 
     resource :user, path: :anvandare, as: :own_user, only: [:update] do
@@ -106,9 +104,8 @@ Fsek::Application.routes.draw do
     resources :posts, path: :poster, only: :index do
       get :display, on: :member
       get :collapse, on: :collection
-      post :add_user, on: :collection
-      delete 'user/:post_user_id', on: :collection, action: :remove_user,
-                                   as: :remove_user
+      patch :add_user, on: :collection
+      patch :remove_user, on: :collection
       collection do
         get :show_permissions
       end
@@ -165,7 +162,7 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :elections, path: :val do
         get :nominations, path: :nomineringar, on: :member
-        get :candidates, path: :kandideringar, on: :member, except: [:update]
+        get :candidates, path: :kandideringar, on: :member
       end
     end
     resources :elections, path: :val, only: :index do
@@ -183,14 +180,6 @@ Fsek::Application.routes.draw do
       get :upload_images, path: :ladda_upp, on: :member
       patch :upload_images, path: :ladda_upp, on: :member
       resources :images, path: :bilder, except: [:new]
-    end
-
-    namespace :admin do
-      resources :permissions, only: [] do
-        get '/:post_id', action: :show_post, on: :collection, as: :post
-        patch '(/:post_id)', action: :update_post, on: :collection, as: :update
-        get '', action: :index, on: :collection, as: :index
-      end
     end
   end
 

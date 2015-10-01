@@ -4,7 +4,7 @@ class ExLinksController < ApplicationController
   # GET /ex_links
   def index
     if params[:tag]
-      @ex_links = query_by_tags(params[:tag])
+      @ex_links = get_exlinks_if_all_tags_present(params[:tag])
     else
       @ex_links = ExLink.all
     end
@@ -27,7 +27,7 @@ class ExLinksController < ApplicationController
   def create
     @ex_link = ExLink.new(ex_link_params)
     if @ex_link.save
-      redirect_to @ex_link, notice: 'Ex link was successfully created.'
+      redirect_to @ex_link, notice: alert_create(ExLink)
     else
       render :new
     end
@@ -36,7 +36,7 @@ class ExLinksController < ApplicationController
   # PATCH/PUT /ex_links/1
   def update
     if @ex_link.update(ex_link_params)
-      redirect_to @ex_link, notice: 'Ex link was successfully updated.'
+      redirect_to @ex_link, notice: alert_update(ExLink)
     else
       render :edit
     end
@@ -45,40 +45,62 @@ class ExLinksController < ApplicationController
   # DELETE /ex_links/1
   def destroy
     @ex_link.destroy
-    redirect_to ex_links_url, notice: 'Ex link was successfully destroyed.'
+    redirect_to ex_links_path, notice: alert_destroy(ExLink)
   end
 
   # QUERY_BY_TAGS
-  # TODO1: Now returns even if tag is substring of other
-  # TODO1: e.g. Returns link which has tag 'bullsh' on 'bull' query
-  def query_by_tags(tags_string)
-    # make an input list nice
-    wanted = []
-    tags_string.split(',').each { |word| wanted << word.downcase.strip }
-    wanted = wanted.sort
-    return [] if wanted.empty?
 
-    # search for every tag from input in all links
-    result = []
-    ExLink.all.each do |link|
-      if (wanted & link.tags.split(',').uniq.sort) == wanted
-        result << link
+  # get all ExLinks with specific tag
+  def get_exlinks_if_tag_present(tagname)
+    ExLink.includes(:tags).where(tags: { tagname: tagname })
+  end
+
+  # break string with tags to words and lowercase them
+  # then find appropriate ID of tags with those names
+  def find_tag_ids_by_names(tags_string)
+    ids_of_wanted_tags = []
+    tags_string.split(',').each do |word|
+      possible_tag = Tag.where(tagname: word.downcase.strip)
+      if possible_tag.size > 0
+        ids_of_wanted_tags << possible_tag[0].id
       end
     end
+    ids_of_wanted_tags
+  end
+
+  # find all exlinks which have all tags present
+  def get_exlinks_if_all_tags_present(tags_string)
+    ids_of_wanted_tags = find_tag_ids_by_names(tags_string)
+
+    # TODO: Brutally inefficient. I need something like:
+    # SELECT ex_link_id FROM ex_link_tags WHERE tag_id = 1
+    # INTERSECT
+    # SELECT ex_link_id FROM ex_link_tags WHERE tag_id = 2
+    # ...
+    # David thinks that 'joins' might help here
+    wanted_links = []
+    ExLink.all.each do |exlink|
+      if (ids_of_wanted_tags - exlink.tag_ids).empty?
+        wanted_links << exlink
+      end
+    end
+    wanted_links
   end
 
   # LIST_TAGS /ex_links/tags
   def list_tags
-    all_tags = []
-    ExLink.all.each do |link|
-      all_tags.concat(link.tags.split(','))
-    end
     res = {}
-    all_tags.uniq.each do |tag|
-      res[tag] = query_by_tags(tag).length
+    Tag.all.each do |tag|
+      res[tag.tagname] = tag.ex_links.size
     end
     @tags = res
     render 'list_tags'
+  end
+
+  # /ex_links/del_unused/tags
+  def del_unused_tags
+    Tag.delete_unused_tags
+    list_tags
   end
 
   private
@@ -88,9 +110,9 @@ class ExLinksController < ApplicationController
     @ex_link = ExLink.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, allow the white list through
   def ex_link_params
-    params.require(:ex_link).permit(:label, :url, :tags, :test_availability,
-                                    :note, :active, :expiration, :image)
+    params.require(:ex_link).permit(:label, :url, :test_availability, :note,
+                                    :active, :expiration, :image, :tagstring)
   end
 end
