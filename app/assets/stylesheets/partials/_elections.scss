@@ -65,3 +65,23 @@ img {
   max-width: 60%;
   min-width: 40%;
 }
+
+.election-grid {
+  tr {
+    &.styrelse {
+      td,
+      &.even td,
+      &.odd td {
+        background-color: rgba($orange-highlight, 0.7);
+      }
+    }
+
+    &.studierad {
+      td,
+      &.even td,
+      &.odd td {
+        background-color: rgba($green-highlight, 0.7);
+      }
+    }
+  }
+}

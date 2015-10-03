@@ -1,0 +1,12 @@
+sv:
+  activerecord:
+    models:
+      post_user:
+        one: Användare + Post
+        other: Användare + Poster
+    attributes:
+      post_user:
+        user: Användare
+        post: Post
+        created_at: Skapad
+        updated_at: Updated

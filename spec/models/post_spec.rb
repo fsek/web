@@ -32,43 +32,17 @@ RSpec.describe Post, type: :model do
   describe 'public instance methods' do
     context 'responds to its methods' do
       it { should respond_to(:to_s) }
-      it { should respond_to(:printLimit) }
+      it { should respond_to(:print_limit) }
       it { should respond_to(:limited?) }
-      it { should respond_to(:add_user) }
-      it { should respond_to(:remove_user) }
       it { should respond_to(:set_permissions) }
     end
 
     context 'executes methods correctly' do
       context 'valid parameters' do
-        it 'add_user' do
-          post.add_user(user).should be_truthy
-
-          post.errors[:user].should be_empty
-          post.users.should include(user)
-        end
-
-        it 'remove_user' do
-          post.users << user
-
-          post.remove_user(user).should be_truthy
-          post.users.should_not include(user)
-        end
-
         it 'set_permissions' do
           post.set_permissions(permission_ids: [permission.id])
 
           post.permissions.should include(permission)
-        end
-      end
-      context 'invalid parameters' do
-        it 'add_user' do
-          post.add_user(nil).should be_falsey
-          post.errors[:user].should_not be_empty
-
-          post.users << user
-          post.add_user(user).should be_falsey
-          post.errors[:user].should_not be_empty
         end
       end
     end

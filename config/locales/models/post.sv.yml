@@ -12,7 +12,7 @@ sv:
         council_id: Utskott
         elected_by: Väljs av
         elected_at: Väljs på
-        styrelse: Styrelse
+        styrelse: Styrelsepost
         recLimit: Rekommenderad gräns
         car_rent: Får hyra bil
   post:

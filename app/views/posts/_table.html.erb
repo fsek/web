@@ -1,34 +1,40 @@
 <div class="tab-v1">
-  <div class="headline"><h4>Poster</h4></div>
+  <div class="headline">
+    <%= content_tag(:h4, models_name(Post)) %>
+  </div>
   <ul class="nav nav-tabs">
     <% first = true%>
     <% collection.each do |post| %>
-        <li class="<%=(first) ? 'active' : ''%>">
-          <%= link_to(post.title, %(##{dom_id(post)}), data: {toggle: 'tab'}) %>
-        </li>
-        <% first = false%>
+      <li class="<%=(first) ? 'active' : ''%>">
+        <%= link_to(post, %(##{dom_id(post)}), data: { toggle: 'tab' }) %>
+      </li>
+      <% first = false%>
     <% end %>
   </ul>
   <div class="tab-content">
     <% first = true %>
     <% collection.each do |post| %>
-        <div id="<%= dom_id(post) %>" class="tab-pane fade in <%= (first) ? 'active' : '' %>">
-          <div class="row">
-            <div class="col-md-8">
-              Beskrivning: <%= simple_format(post.description) %>
+      <div id="<%= dom_id(post) %>" class="tab-pane fade in <%= (first) ? 'active' : '' %>">
+        <div class="col-md-12">
+          <div class="col-md-8">
+            <div class="headline">
+              <%= content_tag(:h4, Post.human_attribute_name(:description)) %>
             </div>
-            <div class="col-md-4">
-              Vem har posten just nu?
-              <ul class="list">
-                <% post.users.each do |user|%>
-                    <li><%=user%></li>
-                <%end%>
-              </ul>
-
+            <%= simple_format(post.description) %>
+          </div>
+          <div class="col-md-4">
+            <div class="headline">
+              <%= content_tag(:h4, t('posts.who_currently')) %>
             </div>
+            <ul class="list">
+              <% post.users.each do |user| %>
+                <%= content_tag(:li, link_to(user, user)) %>
+              <% end %>
+            </ul>
           </div>
         </div>
-        <% first = false %>
+      </div>
+      <% first = false %>
     <% end %>
   </div>
 </div>
