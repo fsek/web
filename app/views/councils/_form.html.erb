@@ -1,39 +1,12 @@
-<%= form_for(@council) do |f| %>
-    <%= render 'shared/form_errors', current: @council %>
-    <%= f.label 'Titel', class: "reg-label" %>
-    <div class="input-group margin-bottom-20">
-      <%= f.text_field :title, class: 'form-control', placeholder: 'Titel' %>
-    </div>
-    <%= f.label 'Beskrivning', class: 'reg-label' %>
-    <div class="input-group margin-bottom-20">
-      <%= f.text_area :description, class: 'form-control', placeholder: 'Beskrivning', size: '40x5' %>
-    </div>
-    <%= f.label 'Url - små bokstäver, a-z, till exempel "pryl"', class: 'reg-label' %>
-    <div class="input-group margin-bottom-20">
-      <%= f.text_field :url, class: 'form-control', placeholder: 'Url' %>
-    </div>
-    <%= f.label 'Publik?', class: 'reg-label' %>
-    <div class="input-group margin-bottom-20">
-      Innebär att även de som inte är inloggade kan <br>
-      läsa om utskottet.
-      <%= f.check_box :public, class: 'form-control' %>
-    </div>
-    <% if @council.posts.count > 0 %>
-        <%= f.label 'Ordförande', class: 'reg-label' %>
-        <div class="input-group margin-bottom-20">
-          <%= f.collection_select(:president_id, @council.posts, :id, :title, include_blank: true,
-                       class: 'form-control')%>
-        </div>
-    <% elsif not @council.new_record? %>
-        Detta utskott har inga poster, lägg till en post och välj sedan här vilken post som är utskottets ordförande.
-        <hr>
-    <% end %>
-    <div class="row">
-      <%= f.submit "Spara", class: 'btn-u pull-right btn-u-small' %>
-      <% if not @council.new_record? %>
-          <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"),
-                      @council, method: :delete, data: {confirm: "Är du säker?"},
-                      class: "btn-u btn-u-small" %>
-      <% end %>
-    </div>
+<%= simple_form_for(@council) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :url %>
+  <%= f.input :public %>
+  <% if @council.posts.count > 0 %>
+    <%= f.association :president %>
+  <% elsif not @council.new_record? %>
+    <%= simple_format(t('councils.no_posts'))%>
+  <% end %>
+  <%= f.button :submit %>
 <% end %>

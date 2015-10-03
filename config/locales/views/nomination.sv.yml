@@ -4,3 +4,7 @@ sv:
     status_after: Det går endast att nominera till poster som inte väljs på Terminsmötet.
     closed: Nomineringar har stängt.
     before: Nomineringar har inte öppnat ännu.
+
+    for: Nominering till
+    a_fitting_person: Nominera någon som du tror skulle passa bra på en post.
+    mail_will_be_sent: Ett mejl skickas till den nominerade personen.

@@ -1,3 +1,6 @@
 sv:
   council: Utskott
 
+  councils:
+    no_posts: Detta utskott saknar poster, lägg till en post för att välja utskottsordförande.
+

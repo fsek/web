@@ -1,43 +1,47 @@
-<%= form_for(@candidate) do |f| %>
-  <%= render 'shared/form_errors',current: @candidate %>
-  <div class="margin-bottom-20 center">
-    <h4>Post</h4>
-    <% if @candidate.new_record?%>
-      <%= f.select :post_id,
-        options_from_collection_for_select(@election.current_posts, :id, :title, @candidate.post_id),
-        include_blank: true,
-        class:  "form-control listBox" %>
-    <%else%>
-      <h4><%= @candidate.post.title%></h4>
-      <p>Det går inte att byta post, har du valt fel får du ta bort kandidaturen och skapa en ny.</p>
-    <%end%>
-  </div>
-  <div class="row center margin-bottom-20">
-    <% if @candidate.new_record? %>
-      <%= f.submit class:  'btn btn-u' %>
-    <% end %>
-  </div>
+<%= simple_form_for(@candidate) do |f| %>
+  <% if @candidate.new_record? %>
+    <%= f.association :post, collection: @election.current_posts %>
+    <%= f.association :user, collection: [ current_user ] %>
+    <%= f.button :submit, id: 'candidate-submit' %>
+  <% else %>
+    <h4><%= @candidate.post.title%></h4>
+    <%= simple_format(t('candidates.cannot_change_post')) %>
+  <% end %>
 <% end %>
-<p>Se till att dina uppgifter är uppdaterade, annars kan din nominering inte antas.</p>
-<p>Dina uppgifter uppdaterar du <%=link_to('här', edit_user_path(current_user)) %>.</p>
-<% user = @candidate.new_record? ? current_user : @candidate.user %>
+<br>
+
+<%= simple_format(t('candidates.user_attributes')) %>
+<p>
+<%= t('candidates.user_update') %>
+<%= link_to(t(:here), edit_own_user_path, target: :blank) %>
+</p>
+
 <table class="table">
   <tbody>
     <tr>
       <td><%= fa_icon('user') %></i></td>
-      <td><%= user %></td>
+      <td><%= current_user %></td>
     </tr>
     <tr>
-      <td><%= fa_icon('envelope') %> E-post</td>
-      <td><%= user.email %></td>
+      <td>
+        <%= fa_icon('envelope') %>
+        <%= User.human_attribute_name(:email)%>
+      </td>
+      <td><%= current_user.email %></td>
     </tr>
     <tr>
-      <td><%= fa_icon('phone') %> Telefon</td>
-      <td><%= user.phone %></td>
+      <td>
+        <%= fa_icon('phone') %>
+        <%= User.human_attribute_name(:phone) %>
+      </td>
+      <td><%= current_user.phone %></td>
     </tr>
     <tr>
-      <td><%= fa_icon('tag') %> Stil-id</td>
-      <td><%= user.stil_id %></td>
+      <td>
+        <%= fa_icon('tag') %>
+        <%= User.human_attribute_name(:stil_id) %>
+      </td>
+      <td><%= current_user.stil_id %></td>
     </tr>
   </tbody>
 </table>

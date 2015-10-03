@@ -1,0 +1,30 @@
+<div class="col-md-12">
+  <div class="panel panel-orange margin-bottom-40">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= fa_icon('tasks') %> <%= Permission.model_name.human(count: 2) %>
+      </h3>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <%= content_tag(:th, model_name(Post)) %>
+          <%= content_tag(:th, models_name(Permission)) %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <%= content_tag(:td, link_to(post, post_admin_permissions_path(post))) %>
+            <td>
+              <% post.permissions.each do |p| %>
+                <%= %(#{p.action} #{p.subject_class}) %><br>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

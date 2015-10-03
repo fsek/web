@@ -1,7 +1,4 @@
 Fsek::Application.routes.draw do
-  get 'permissions' => 'posts#show_permissions'
-  get 'permission/:id' => 'posts#edit_permissions', as: :permission
-  patch 'permission/:id' => 'posts#update_permissions'
 
   post "githook" => "githook#index"
   get "githook/dev" => "githook#dev"
@@ -158,7 +155,7 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :elections, path: :val do
         get :nominations, path: :nomineringar, on: :member
-        get :candidates, path: :kandideringar, on: :member
+        get :candidates, path: :kandideringar, on: :member, except: [:update]
       end
     end
     resources :elections, path: :val, only: :index do
@@ -176,6 +173,14 @@ Fsek::Application.routes.draw do
       get :upload_images, path: :ladda_upp, on: :member
       patch :upload_images, path: :ladda_upp, on: :member
       resources :images, path: :bilder, except: [:new]
+    end
+
+    namespace :admin do
+      resources :permissions, only: [] do
+        get '/:post_id', action: :show_post, on: :collection, as: :post
+        patch '(/:post_id)', action: :update_post, on: :collection, as: :update
+        get '', action: :index, on: :collection, as: :index
+      end
     end
   end
 

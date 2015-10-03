@@ -1,10 +1,8 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag 'Ny post',nil, class:  'reg-header'%>
-			<%= render 'form'%>
-			<%= link_to 'Visa utskott', @council %><br>
-			<%= link_to 'Tillbaka till startsida', root_url %>
-		</div>
-	</div>
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <%= content_tag(:h2, t(:new, attr: model_name(Post))) %>
+  </div>
+
+  <%= render 'form'%>
+  <%= link_to(t(:show, attr: model_name(Council)), @council) %><br>
 </div>

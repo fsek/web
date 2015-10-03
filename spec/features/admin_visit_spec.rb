@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'admin visits paths' do
   let(:election) { create(:election) }
   let(:user) { create(:admin) }
-  let(:post) { create(:post) }
+  let(:test_post) { create(:post) }
   let(:album) { create(:album) }
   let(:cafe_work) { create(:cafe_work) }
   let(:council) { create(:council) }
@@ -13,6 +13,7 @@ feature 'admin visits paths' do
   let(:rent) { create(:rent) }
   let(:contact) { create(:contact) }
   let(:login) { LoginPage.new }
+
   paths = {
     albums: [:show],
     cafe_works: [:index],
@@ -40,10 +41,10 @@ feature 'admin visits paths' do
   background do
     album
     council
-    election
+    election.posts << test_post
     event
     news
-    PostUser.create!(post: post, user: user)
+    PostUser.create!(post: test_post, user: user)
   end
 
   paths.each do |key, value|

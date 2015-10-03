@@ -1,42 +1,27 @@
-.coming-soon {
+.election {
   margin-top: 20px;
   padding: 20px;
-  text-align: center;
 
-  h1,
   p {
     color: $black;
-  }
-
-  h1 {
-    font-size: 50px;
-    line-height: 50px;
-    margin-bottom: 15px;
-    text-shadow: none;
-  }
-
-  p {
     font-size: 16px;
     line-height: 22px;
   }
 
+  .countdown {
+    margin-top: 20px;
+    min-height: 200px;
+    padding: 20px;
+    text-align: center;
 
-}
-
-.coming-soon-plugin {
-  margin-top: 20px;
-  min-height: 200px;
-  padding: 20px;
-  text-align: center;
-
-}
-
-.coming-soon-copyright {
-  padding: 5px 0;
-
-  p {
-    color: $white;
-    text-align: right;
+    .timer {
+      color: $gray-headline;
+      display: inline-block;
+      font-size: 25px;
+      font-weight: bold;
+      line-height: 25px;
+      padding: 5px;
+    }
   }
 }
 
@@ -57,16 +42,26 @@ img {
   }
 }
 
-.btn-election {
-  background-color: transparent;
-  border-color: $black;
-  border-radius: 10px;
-  color: $black;
-  font-size: 18px;
-  padding: 10px 25px;
+.btn {
+  &.election {
+    background-color: transparent;
+    border-color: $black;
+    border-radius: 10px;
+    color: $black;
+    font-size: 18px;
+    padding: 10px 25px;
 
-  &:hover {
-    border-color: $main-color;
-    color: $main-color;
+    &:hover {
+      border-color: $main-color;
+      color: $main-color;
+    }
   }
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60%;
+  min-width: 40%;
 }

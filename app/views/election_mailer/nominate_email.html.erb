@@ -2,17 +2,19 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
- </head>
+  </head>
   <body>
     <h3> Hej <%=@nomination.name%></h3>
     <p>Du har blivit nominerad till sektionsposten <%= @nomination.post.title%>.<%if @nomination.motivation.present?%><br>
-	Med motiveringen:</p>
-    	<%=simple_format('"'+@nomination.motivation+'"')%><br>
-	<%end%>
-	<%= simple_format(@nomination.election.nominate_mail)%>
-	<p>Tänk på att du måste tacka ja, dvs. kandidera, innan valet stänger, <%=@nomination.election.end%>.</p>
-	
-	<p>Mvh,<br>
-	Valberedningen</p>     
+      Med motiveringen:</p>
+    <%=simple_format('"'+@nomination.motivation+'"')%><br>
+  <%end%>
+  <%= simple_format(@nomination.election.nominate_mail)%>
+  <p>Tänk på att du måste tacka ja, dvs. kandidera, innan valet stänger, <%=@nomination.election.end%>.</p>
+  <p>Detta görs via sektionens hemsida: <br>
+  <%= link_to(@nomination.candidate_url, @nomination.candidate_url) %>
+
+  <p>Mvh,<br>
+  Valberedningen</p>
   </body>
 </html>

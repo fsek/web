@@ -1,5 +1,5 @@
 ruby:
-  config_file: .ruby-style.yml
+  config_file: .rubocop.yml
 java_script:
   config_file: .javascript-style.json
 scss:

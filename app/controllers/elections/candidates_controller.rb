@@ -21,10 +21,9 @@ class Elections::CandidatesController < ApplicationController
 
   def create
     @candidate = @election.candidates.build(candidate_params)
-    @candidate.user = current_user
-    if @candidate.save
-      flash[:notice] = %(#{model_name(Candidate, 1)} #{t(:success_create)}.)
-      redirect_to candidate_path(@candidate)
+
+    if ElectionService.create_candidate(@candidate, current_user)
+      redirect_to candidate_path(@candidate), notice: alert_create(Candidate)
     else
       render action: :new
     end
@@ -32,21 +31,19 @@ class Elections::CandidatesController < ApplicationController
 
   def update
     if @candidate.update(candidate_params)
-      flash[:notice] = %(#{model_name(Candidate, 1)} #{t(:success_update)}.)
-      redirect_to candidate_path(@candidate)
+      redirect_to candidate_path(@candidate), notice: alert_update(Candidate)
     else
       render action: :show
     end
   end
 
   def destroy
-    if @candidate.editable?
-      @candidate.destroy
-      flash[:notice] = %(#{model_name(Candidate, 1)} #{t(:success_destroy)}.)
+    if ElectionService.destroy_candidate(@candidate)
+      redirect_to candidates_path, notice: alert_destroy(Candidate)
     else
-      flash[:notice] = %(#{model_name(Candidate, 1)} #{t(:not_allowed_destroy)}.)
+      redirect_to candidate_path(@candidate),
+                  notice: %(#{model_name(Candidate)} #{t(:not_allowed_destroy)}.)
     end
-    redirect_to candidates_path
   end
 
   private
@@ -56,6 +53,6 @@ class Elections::CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:post_id)
+    params.require(:candidate).permit(:post_id, :user_id)
   end
 end

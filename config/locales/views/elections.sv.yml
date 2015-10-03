@@ -2,7 +2,7 @@ sv:
   elections:
     orange_posts: Orangefärgade fält innebär att posten sitter i styrelsen.
     green_posts: Grönfärgade fält innebär att posten väljs av studierådet.
-    x_posts: Poster med antal markerat med (x) anger exakt antal.
+    x_posts: Poster med antal markerat med (x) anger exakt maximalt antal.
     star_posts: Poster med antal * har ingen bestämd gräns.
     posts_before: Poster som kommer att kunna sökas
     posts_during: Poster som kan sökas
@@ -11,6 +11,21 @@ sv:
 
     confirm_delete: Valet raderas och kan inte återställas, är du säker?
 
+    edit_texts: Redigera övriga texter
+
     show_as_user: Visa valet (som användare ser det)
     show_nominations: Visa nomineringar
     show_candidates: Visa kandideringar
+
+    opens_in: 'Öppnar om:'
+    closes_in: 'Stänger om:'
+
+
+    day: dag
+    days: dagar
+    hour: timme
+    hours: timmar
+    minute: minut
+    minutes: minuter
+    second: sekund
+    seconds: sekunder

@@ -7,53 +7,73 @@
       <li class="dropdown-submenu">
         <a href="">Admin</a>
         <ul class="dropdown-menu">
-          <li><%= link_to models_name(User), :admin_users %></li>
-          <li><%= link_to models_name(Menu), :menus %></li>
-          <li><%= link_to models_name(Constant), :constants %></li>
+          <%= content_tag(:li, link_to(models_name(User), :admin_users)) %>
+          <%= content_tag(:li, link_to(models_name(Menu), :menus)) %>
+          <%= content_tag(:li, link_to(models_name(Constant), :constants)) %>
+          <%= content_tag(:li, link_to(models_name(Permission), :index_admin_permissions)) %>
         </ul>
       </li>
     <% end %>
+
     <% if can? :manage, Page %>
       <li class="dropdown-submenu">
         <%= link_to(model_name(Page),:pages)%>
       </li>
-    <%end%>
+    <% end %>
+
     <% if can? :manage, ShortLink %>
       <li class="dropdown-submenu">
         <%= link_to(ShortLink.model_name.human(:count => 2), :short_links) %>
       </li>
-    <%end%>
+    <% end %>
+
     <% if can? :manage, Rent %>
       <li class="dropdown-submenu">
         <%= link_to(model_name(Rent),:admin_car)%>
       </li>
-    <%end%>
+    <% end %>
+
     <% if can? :manage, Election %>
       <li class="dropdown-submenu">
         <%= link_to(model_name(Election),:admin_elections)%>
       </li>
-    <%end%>
+    <% end %>
+
     <% if can? :modify, Event %>
       <li class="dropdown-submenu">
         <a href=""><%=model_name(Event)%></a>
         <ul class="dropdown-menu">
-          <li><%= link_to "Snabbvy av alla event", :admin_events %></li>
-          <li><%= link_to "Nytt event", :new_admin_event %></li>
+          <%= content_tag(:li, link_to(t(:index, attr: models_name(Event)), :admin_events)) %>
+          <%= content_tag(:li, link_to(t(:new, attr: model_name(Event)), :new_admin_event)) %>
         </ul>
       </li>
     <% end %>
+
     <% if can? :modify, News %>
       <li class="dropdown-submenu">
         <%= link_to model_name(News), :new_news %>
       </li>
     <% end %>
+
     <% if can? :modify, Council %>
       <li class="dropdown-submenu">
         <a href=""><%=model_name(Council)%></a>
         <ul class="dropdown-menu">
+          <% Council.all.each do |council| %>
+            <% if can? :manage, council %>
+              <%= content_tag(:li, link_to(council, edit_council_path(council))) %>
+            <% end %>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+    <% if can? :modify, Post %>
+      <li class="dropdown-submenu">
+        <%= link_to(models_name(Post), posts_path) %>
+        <ul class="dropdown-menu">
           <% for council in Council.all %>
             <% if can? :manage, council %>
-              <li><%= link_to council.title, edit_council_path(council) %></li>
+              <%= content_tag(:li, link_to(council.title, council_posts_path(council))) %>
             <% end %>
           <% end %>
         </ul>

@@ -1,18 +1,19 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3 reg-page">
-      <%= label_tag 'Redigera utskott', nil, class: 'reg-header' %>
-      <%= render 'form' %>
-      <hr>
-      <%= link_to 'Lägg till post', new_council_post_path(@council), class: "btn-u" %>
-      <%= link_to 'Visa poster', council_posts_path(@council), class: "btn-u" %>
-      <% if @council.page.present?%>
-          <%= link_to 'Redigera sida', page_path(@page), class: "btn-u" %>
-      <% end %>
-      <hr>
-      <%= link_to 'Visa utskott', @council, class: "btn-u" %>
-    </div>
-
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <%= content_tag(:h3, t(:edit, attr: model_name(Council))) %>
   </div>
-</div>
+  <%= render 'form'%>
+
+  <%= link_to(t(:add, attr: model_name(Post)), new_council_post_path(@council),
+                                               class: "btn-u") %>
+  <%= link_to(t(:index, attr: models_name(Post)), council_posts_path(@council),
+                                                  class: "btn-u") %>
+  <% if @council.page.present?%>
+    <%= link_to(t(:edit, attr: model_name(Page)), page_path(@page),
+                                                class: "btn-u") %>
+  <% end %>
+  <hr>
+  <%= link_to(t(:show, attr: model_name(Council)), @council, class: "btn-u") %>
+  <%= link_to(t(:index, attr: models_name(Council)), councils_path,
+                                                     class: "btn btn-default")%>
 </div>

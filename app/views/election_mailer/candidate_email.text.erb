@@ -1,24 +1,24 @@
-Hej <%=@candidate.person %>
+Hej <%=@candidate.user %>
 ===============================================
 Du har kandiderat till sektionsposten <%=@candidate.post%>.
 
 
-<%if @candidate.post.elected_by == "Terminsmötet"%>
-<%if (@candidate.election.candidate_mail)%>
-<%=@candidate.election.candidate_mail%>
-<%end%>
+<% if @candidate.post.elected_by == "Terminsmötet" %>
+<% if @candidate.election.candidate_mail %>
+<%= @candidate.election.candidate_mail %>
+<% end %>
 
 
-<%if (@candidate.post.styrelse)%>
-<%=url_for(@candidate.election.mail_styrelse_link)%>
-<%else%>
-<%=url_for(@candidate.election.mail_link)%>
-<%end%>
+<% if (@candidate.post.styrelse) %>
+<%= url_for(@candidate.election.mail_styrelse_link) %>
+<% else %>
+<%= url_for(@candidate.election.mail_link) %>
+<% end %>
 
 
-<%else%>
-<%= simple_format(@candidate.election.candidate_mail_star)%>
-<%end%>
+<% else %>
+<%= simple_format(@candidate.election.candidate_mail_star) %>
+<% end %>
 Valet stänger <%= @candidate.election.end%>,
 
 fram tills dess kan du redigera din kandidatur på:

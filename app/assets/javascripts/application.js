@@ -26,7 +26,7 @@
 //= require_tree .
 //= require turbolinks
 //= require gallery_hook.js
-//= require jquery.countdown
+//= require jquery.countdown.min
 //= require bootstrap-datetimepicker
 //= require pickers
 
