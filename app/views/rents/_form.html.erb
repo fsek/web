@@ -1,14 +1,14 @@
 <%= simple_form_for(@rent, error_method: :to_sentence) do |f| %>
   <div class="headline">
-    <h2>
-      <%= model_name(Rent) %>
-    </h2>
+      <%= content_tag(:h2, model_name(Rent)) %>
   </div>
 
   <% if @terms.present? %>
-    <%= link_to(t('rent.disclaimer_read'), document_path(@terms), target: :blank, class: "btn secondary") %>
+    <%= link_to(t('rent.disclaimer_read'), document_path(@terms),
+                                          target: :blank, class: 'btn secondary') %>
   <% else %>
-    <%= link_to(models_name(Document), documents_path, target: :blank, class: "btn secondary") %>
+    <%= link_to(models_name(Document), documents_path, target: :blank,
+                                       class: 'btn secondary') %>
   <% end %>
 
   <%= f.input :disclaimer %>
@@ -16,7 +16,7 @@
   <%= f.association :user, collection: [current_user], include_blank: false %>
 
   <% if @rent.errors[:user].present? %>
-    <p><%= link_to(t('user.edit_information'), edit_own_user_path) %></p>
+    <%= content_tag(:p, link_to(t('user.edit_information'), edit_own_user_path)) %>
   <% end %>
 
   <%= render 'renter_table', user: @rent.user, rent: @rent %>
@@ -25,7 +25,8 @@
     <span class='overlapping-date'><%= t('rent.overlaps_with') %></span>
     <ul class='overlapping-date'>
       <% overlap.each do |o| %>
-        <li><%=link_to(%(#{o.user} #{o.council} - #{o.p_time}), o, target: :blank_p)%></li>
+        <%= content_tag(:li, link_to(%(#{o.user} #{o.council} - #{o.p_time}), 
+                                     o, target: :blank_p)) %>
       <% end %>
     </ul>
   <% end %>
@@ -48,13 +49,13 @@
   <% end %>
 
   <% if !current_user.member? %>
-    <p><strong><%= t('important') %></strong></p>
-    <p><%= t('rent.not_member') %></p>
+    <%= content_tag(:p, :strong, t('important')) %>
+    <%= content_tag(:p, t('rent.not_member')) %>
     <p><%= t('rent.confirm_member') %> <%= link_to(t('account'), edit_own_user_path) %>.</p>
   <% end %>
 
   <% if @rent.edit?(current_user) %>
-    <%= f.button :submit, class: 'btn primary' %>
+    <%= f.button :submit %>
   <% else %>
     <strong><%= t('rent.cannot_edit') %></strong>
   <% end %>

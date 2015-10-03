@@ -75,8 +75,29 @@ describe RentService do
   end
 
   describe :admin_reservation do
+    before do
+      other.save!
+    end
+
+    it :valid_update do
+      RentService.admin_reservation(rent).should be_truthy
+    end
+
+    it :invalid_update do
+      rent.user = nil
+      RentService.admin_reservation(rent).should be_falsey
+    end
   end
 
   describe :administrate do
+    it :valid_update do
+      RentService.administrate(rent, purpose: 'A test').should be_truthy
+      Rent.first.purpose.should eq('A test')
+    end
+
+    it :invalid_update do
+      rent.owner?(other).should be_falsey
+      RentService.administrate(rent, user: nil).should be_falsey
+    end
   end
 end

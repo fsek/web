@@ -3,7 +3,7 @@ module RentService
     Rent.transaction do
       rent.validate!
       rent.user = user
-      rent.status = user.member? ? :confirmed : :unconfirmed
+      rent.status = user.try(:member?) ? :confirmed : :unconfirmed
       rent.save!
       if rent.council.present?
         rent.overlap.each(&:overbook)
@@ -24,21 +24,22 @@ module RentService
   end
 
   def self.admin_reservation(rent)
-    Rent.transaction do
-      RentValidator.new.base(rent)
+    if RentValidator.new.base(rent)
       rent.status = rent.user.member? ? :confirmed : :unconfirmed
       rent.save!(validate: false)
-
       true
+    else
+      false
     end
   end
 
   def self.administrate(rent, params)
-    Rent.transaction do
-      rent.attributes = params
+    rent.attributes = params
+    if RentValidator.new.base(rent)
       rent.save!(validate: false)
-
       true
+    else
+      false
     end
   end
 end

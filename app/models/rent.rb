@@ -52,14 +52,13 @@ class Rent < ActiveRecord::Base
   end
 
   def p_from
-    d_from.strftime('%H:%M %d/%m')
+    I18n.l(d_from, format: '%H:%M %d/%m')
   end
 
   def p_til
-    d_til.strftime('%H:%M %d/%m')
+    I18n.l(d_til, format: '%H:%M %d/%m')
   end
 
-  # Prints the date of the rent in a readable way, should be localized
   def p_time
     if (d_from.day == d_til.day)
       %(#{d_from.strftime('%H:%M')} till #{d_til.strftime('%H:%M')} den #{d_from.strftime('%d/%m')})
@@ -88,7 +87,7 @@ class Rent < ActiveRecord::Base
   def overbook
     self.aktiv = false
     save!(validate: false)
-    # Send email
+    RentMailer.active_email(self).deliver_now
   end
 
   # Moved function to a service, but this is now coupled

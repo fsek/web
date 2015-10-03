@@ -45,7 +45,7 @@ class RentsController < ApplicationController
 
   # Index page available to logged in users.
   def index
-    @rents = current_user.rents.order("d_from desc")
+    @rents = current_user.rents.order('d_from desc')
   end
 
   private
@@ -56,7 +56,7 @@ class RentsController < ApplicationController
   end
 
   def load_terms
-    constant = Constant.find_by(name: "rents_disclaimer_id")
+    constant = Constant.find_by(name: 'rents_disclaimer_id')
     @terms = Document.find_by(id: constant.try(:value))
   end
 end

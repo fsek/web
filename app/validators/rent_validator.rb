@@ -67,7 +67,7 @@ class RentValidator < ActiveModel::Validator
   private
 
   def purpose(record)
-    record.member? || record.purpose.present?
+    record.try(:member?) || record.purpose.present?
   end
 
   def user(record)

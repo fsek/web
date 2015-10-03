@@ -1,43 +1,37 @@
 <p>Bokningens uppgifter (ID: <%= rent.id %>).</p>
 <table class="table">
   <tbody>
-  <tr>
-    <td>Namn:</td>
-    <td><%= rent.p_name %></td>
-  </tr>
-  <tr>
-    <td>Epost:</td>
-    <td><%= rent.email %></td>
-  </tr>
-  <tr>
-    <td>Telefon:</td>
-    <td><%= rent.phone %></td>
-  </tr>
-  <tr>
-    <td>Datum:</td>
-    <td><%= rent.p_time %></td>
-  </tr>
-  <% if rent.purpose.present? %>
+    <tr>
+      <%= content_tag(:td, User.human_attribute_name(:firstname)) %>:
+      <%= content_tag(:td, rent.user) %>
+    </tr>
+    <tr>
+      <%= content_tag(:td, User.human_attribute_name(:email)) %>:
+      <%= content_tag(:td, rent.user.email) %>
+    </tr>
+    <tr>
+      <%= content_tag(:td, User.human_attribute_name(:phone)) %>:
+      <%= content_tag(:td, rent.user.phone) %>
+    </tr>
+    <tr>
+      <%= content_tag(:td, Rent.human_attribute_name(:d_from)) %>:
+      <%= content_tag(:td, rent.p_time) %>
+    </tr>
+    <% if rent.purpose.present? %>
       <tr>
-        <td>Syfte:</td>
-        <td><%= simple_format(rent.purpose) %></td>
+        <%= content_tag(:td, Rent.human_attribute_name(:purpose)) %>:
+        <%= content_tag(:td, simple_format(rent.purpose)) %>
       </tr>
-  <% end %>
-  <% if rent.council.present? %>
+    <% end %>
+    <% if rent.council.present? %>
       <tr>
-        <td>Utskott:</td>
-        <td><%= link_to(rent.council.title, rent.council.p_url) %></td>
+        <%= content_tag(:td, model_name(Council)) %>:
+        <%= content_tag(:td, link_to(rent.council, rent.council.p_url)) %>
       </tr>
-  <% end %>
-  <tr>
-    <td>Länk:</td>
-    <td><%= link_to(rent.p_url, rent.p_url) %></td>
-  </tr>
-  <% if rent.access_code.present? %>
-      <tr>
-        <td>Kod:</td>
-        <td><%= rent.access_code %></td>
-      </tr>
-  <% end %>
+    <% end %>
+    <tr>
+      <%= content_tag(:td, t(:link)) %>:
+      <%= content_tag(:td, link_to(rent.p_url, rent.p_url)) %>
+    </tr>
   </tbody>
 </table>
