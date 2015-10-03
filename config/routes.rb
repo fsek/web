@@ -97,8 +97,9 @@ Fsek::Application.routes.draw do
     resources :posts, path: :poster, only: :index do
       get :display, on: :member
       get :collapse, on: :collection
-      patch :add_user, on: :collection
-      patch :remove_user, on: :collection
+      post :add_user, on: :collection
+      delete 'user/:post_user_id', on: :collection, action: :remove_user,
+                                   as: :remove_user
       collection do
         get :show_permissions
       end

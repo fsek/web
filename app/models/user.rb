@@ -39,7 +39,6 @@ class User < ActiveRecord::Base
 
   # Returns all councils the user belongs to with a Post who is
   # allowed to rent the car
-  # /d.wessman
   def car_councils
     councils.merge(Post.renters)
   end
@@ -49,7 +48,6 @@ class User < ActiveRecord::Base
   end
 
   # Check if user has post, and in that case what first_post is set to
-  # /d.wessman
   def check_posts
     if posts.count > 0 && first_post?
       return
@@ -61,7 +59,6 @@ class User < ActiveRecord::Base
   end
 
   # Check if user has user data (name and lastname)
-  # /d.wessman
   def has_name_data?
     firstname.present? && lastname.present?
   end
@@ -111,6 +108,10 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{firstname} #{lastname}"
+  end
+
+  def print_id
+    %(#{id} - #{print})
   end
 
   private

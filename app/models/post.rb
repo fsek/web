@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
     title
   end
 
-  def printLimit
+  def print_limit
     if recLimit == 0 && limit == 0 || recLimit > limit
       "*"
     elsif recLimit == limit && recLimit > 0
@@ -41,30 +41,6 @@ class Post < ActiveRecord::Base
 
   def limited?
     limit > 0 && users.count >= limit
-  end
-
-  def add_user(user)
-    if user.nil?
-      errors.add(:user, I18n.t('errors.messages.not_found'))
-      return false
-    end
-
-    if users.include?(user)
-      errors.add(:user, I18n.t('posts.already_have_post'))
-      return false
-    end
-
-    if limited?
-      errors.add(:limit, I18n.t('posts.limited'))
-      return false
-    end
-
-    users << user
-    true
-  end
-
-  def remove_user(user)
-    users.delete(user)
   end
 
   def set_permissions(params)

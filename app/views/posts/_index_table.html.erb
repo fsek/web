@@ -1,0 +1,43 @@
+<% if grid.present? %>
+  <%= grid(grid) do |g|
+    g.column name: Post.human_attribute_name(:title),
+      attribute: 'title', filter: false do |post|
+      link_to(post.title, %(##{dom_id(post)}), 
+                          data: { toggle: 'collapse' })
+    end
+    g.column name: Post.human_attribute_name(:limit),
+      attribute: 'limit', filter: false do |post|
+      (post.limit) && (post.limit > 0) ? post.limit : t('posts.no_limit')
+    end
+
+    g.column name: Council.model_name,
+      attribute: 'council_id', filter: false do |post|
+      if post.council.present?
+        link_to(post.council.title, council_path(post.council))
+      end
+    end
+    g.column name: Post.human_attribute_name(:styrelse),
+      attribute: 'styrelse', filter: false do |post|
+      (post.styrelse) ? t(:yes) : t(:no)
+    end
+
+    g.column name: Post.human_attribute_name(:elected_by),
+      attribute: 'elected_by', filter: false
+
+    g.column name: Post.human_attribute_name(:elected_at),
+      attribute: 'elected_at', filter: false
+    if can? :edit, @post
+      if councils.present?
+        g.column do |post|
+          link_to(t(:edit, attr: models_name(Post)),
+                  council_posts_path(post.council))
+        end
+      end
+
+      g.column do |post|
+        link_to(t(:edit, attr: Post.model_name.human),
+                edit_council_post_path(post.council, post))
+      end
+    end
+  end -%>
+<% end %>

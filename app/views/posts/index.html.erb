@@ -6,75 +6,52 @@
     <%= link_to(t(:edit, attr: Council.model_name.human), edit_council_path(@council), class: "btn btn-u") %>
   </div>
 <% end %>
+
 <div class="col-md-12">
   <div class="margin-bottom-20">
-    <p><%= t('posts.user_search') %>.</p>
-    <%= form_tag(search_users_path, method: :patch, remote: true, autocomplete: :off) do %>
-      <%= text_field_tag :firstname, nil, placeholder: User.human_attribute_name(:firstname) %>
-      <%= text_field_tag :lastname, nil, placeholder: User.human_attribute_name(:lastname) %>
-      <%= submit_tag t(:search), class: 'btn-u btn-u-small' %>
-    <% end %>
-  </div>
-  <div class="margin-bottom-20">
-    <%= form_tag(add_user_posts_path, method: :patch) do %>
-      <%= select_tag :user_id, @search_users %>
-      <%= select_tag :post_id, options_from_collection_for_select(@posts, 'id', 'title') %>
-      <%= submit_tag t(:save, attr: nil), class: 'btn-u-small btn-u' %>
+    <%= simple_form_for(@post_user, url: add_user_posts_path) do |f| %>
+      <%= f.association :user, collection: User.all_firstname, label_method: :print_id %>
+      <%= f.association :post, collection: @posts %>
+      <%= f.button :submit %>
     <% end %>
   </div>
 </div>
+
 <% if @post_grid.present? && @posts.count > 0 %>
   <div class="col-md-12">
-    <%= grid(@post_grid) do |g|
-      g.column name: Post.human_attribute_name(:title),
-        attribute: 'title', filter: false do |post|
-        link_to(post.title, %(##{dom_id(post)}), class: '', data: { toggle: 'collapse' })
-      end
-      g.column name: Post.human_attribute_name(:limit),
-        attribute: 'limit', filter: false do |post|
-        (post.limit) && (post.limit > 0) ? post.limit : t('posts.no_limit')
-      end
-
-      g.column name: Council.model_name,
-        attribute: 'council_id', filter: false do |post|
-        if post.council.present?
-          link_to(post.council.title, council_path(post.council))
-        end
-      end
-      g.column name: Post.human_attribute_name(:styrelse),
-        attribute: 'styrelse', filter: false do |post|
-        (post.styrelse) ? t(:yes) : t(:no)
-      end
-
-      g.column name: Post.human_attribute_name(:elected_by),
-        attribute: 'elected_by', filter: false
-      g.column name: Post.human_attribute_name(:elected_at),
-        attribute: 'elected_at', filter: false
-      if can? :edit, @post
-        g.column do |post|
-          link_to(t(:edit, attr: Post.model_name.human),
-                  edit_council_post_path(post.council, post))
-        end
-      end
-    end -%>
-</div>
+    <%= render '/posts/index_table', grid: @post_grid, councils: @councils %>
+  </div>
 <% end %>
 <div class="col-md-12">
   <% @posts.each do |post| %>
     <div id="<%= dom_id(post) %>" class="collapse">
       <div class="funny-boxes funny-boxes-left-orange">
-        <h2><%= post.title %></h2>
+        <%= content_tag(:h2, post) %>
         <div class="col-md-12">
           <% if can? :edit, post %>
-            <%= link_to(t(:edit, attr: Post.model_name.human),
-                        edit_council_post_path(post.council, post)) %>
+            <%= link_to(t(:edit, attr: Post.model_name.human), edit_council_post_path(post.council, post), class: 'btn default') %>
             <% if post.users.size > 0 %>
               <p><%= t('posts.remove_user') %></p>
-              <%= form_tag remove_user_council_post_path(post.council, post), method: :patch do %>
-                <%= hidden_field_tag :id, post.id %>
-                <%= collection_select nil, :user_id, post.users, :id, :to_s %>
-                <%= submit_tag t(:remove), class: "btn btn-u", data: { confirm: t('posts.remove_confirm') } %>
-              <% end %><br>
+              <div class="panel-body">
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <%= content_tag(:th, model_name(Post)) %>
+                      <%= content_tag(:th, model_name(User)) %>
+                      <%= content_tag(:th, PostUser.human_attribute_name(:created_at))%>
+                      <%= t(:destroy, attr: nil ) %>
+                    </tr>
+                    <% PostUser.from_post(post.id).each do |pu| %>
+                      <tr>
+                        <%= content_tag(:td, link_to(pu.user, pu.user)) %>
+                        <%= content_tag(:td, pu.post) %>
+                        <%= content_tag(:td, pu.created_at) %>
+                        <%= content_tag(:td, link_to(t(:destroy, attr: nil), remove_user_posts_path(pu), method: :delete)) %>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
             <% end %>
           <% end %>
           <% if post.description %>

@@ -16,20 +16,19 @@ class CouncilsController < ApplicationController
   end
 
   def edit
-    @contact = Contact.where(council_id: @council.id).first
   end
 
   def create
     if @council.save
-      redirect_to edit_council_path(@council), notice: 'Utskott skapades, success.'
+      redirect_to edit_council_path(@council), notice: alert_create(Council)
     else
-      render action: 'new'
+      render action: :new
     end
   end
 
   def update
     if @council.update(council_params)
-      redirect_to edit_council_path(@council), notice: 'Utskott uppdaterades!'
+      redirect_to edit_council_path(@council), notice: alert_update(Council)
     else
       render action: :edit
     end
@@ -37,7 +36,7 @@ class CouncilsController < ApplicationController
 
   def destroy
     @council.destroy
-    redirect_to councils_url, notice: 'Utskottet raderades'
+    redirect_to councils_url, notice: alert_destroy(Council)
   end
 
   private
@@ -47,7 +46,7 @@ class CouncilsController < ApplicationController
   end
 
   def set_councils
-    @councils = Council.all
+    @councils = Council.titles
   end
 
   def council_params
