@@ -2,22 +2,21 @@
   function bindProposal(form) {
     var form = $(form)
       , pointsContainer = form.find('.proposal-points')
-      , firstPoint = pointsContainer.find('.proposal-point')
-      , template = templateFrom(firstPoint)
+      , points = form.find('.proposal-point')
       , addLink = form.find('.proposal-add')
       , removeLink = form.find('.proposal-remove')
 
     addLink.click(function() {
-      pointsContainer.append(template)
+      pointsContainer.append(points[0].outerHTML)
     })
-    removeLink.click(function() {
-      pointsContainer.children().last().remove()
-    })
-  }
 
-  function templateFrom(elem) {
-    var html = elem.html()
-    return html
+    removeLink.click(function() {
+      var freshPoints = $(points.selector)
+
+      if (freshPoints.length !== 1) {
+        freshPoints.last().remove()
+      }
+    })
   }
 
   $(function() {
