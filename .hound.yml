@@ -1,5 +1,7 @@
 ruby:
   config_file: .rubocop.yml
+  exclude:
+    -"config/initializers/wice_grid_config.rb"
 java_script:
   config_file: .javascript-style.json
 scss:

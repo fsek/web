@@ -1,5 +1,4 @@
 require 'rails_helper'
-# feature 'Visit Election', js: true do
 feature 'Visit Election' do
   let(:user) { create(:user) }
   let(:election) { create(:election) }

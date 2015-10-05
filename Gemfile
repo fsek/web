@@ -29,7 +29,8 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'wice_grid'
+# Introduces feature needed in tables, no errors when updating
+gem 'wice_grid', '3.6.0.pre4'
 
 # To have a working JVM on server
 group :staging, :production do

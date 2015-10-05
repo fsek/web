@@ -19,7 +19,7 @@ class Admin::ElectionsController < ApplicationController
 
   def create
     if @election.save
-      redirect_to [:admin, @election], notice: 'Valet skapades'
+      redirect_to admin_election_path(@election), notice: alert_create(Election)
     else
       render action: :new
     end
@@ -27,30 +27,27 @@ class Admin::ElectionsController < ApplicationController
 
   def update
     if @election.update(election_params)
-      redirect_to [:admin, @election], notice: 'Valet uppdaterades, gött'
+      redirect_to admin_election_path(@election), notice: alert_update(Election)
     else
-      render action: :edit
+      render action: :show
     end
   end
 
   def destroy
-    @election.destroy
-    redirect_to admin_elections_path, notice: 'Valet raderades, hoppas att det var meningen!.'
+    @election.destroy!
+    redirect_to admin_elections_path, notice: alert_destroy(Election)
   end
 
   def nominations
     @nominations_grid = initialize_grid(@election.nominations,
-                                        name: 'g2',
-                                        enable_export_to_csv: true,
-                                        csv_file_name: 'nomineringar')
+                                        name: 'nominations',
+                                        include: :post)
   end
 
   def candidates
     @candidates_grid = initialize_grid(@election.candidates,
                                        name: 'candidates',
-                                       enable_export_to_csv: true,
-                                       csv_file_name: 'candidates')
-    export_grid_if_requested('g2' => 'nominations_grid')
+                                       include: [:post, :user])
   end
 
   private

@@ -17,6 +17,7 @@ sv:
   "no": Nej
 
   back_to_root: Tillbaka till startsidan
+  back_to: Tillbaka till %{attr}
   for: "%{a} för %{b}"
 
   links: Länkar

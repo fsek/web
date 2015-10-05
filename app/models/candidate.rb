@@ -4,6 +4,7 @@ class Candidate < ActiveRecord::Base
   belongs_to :election
   belongs_to :user
   belongs_to :post
+  has_one :council, through: :post
 
   # Validations
   validates :user_id, uniqueness: {
