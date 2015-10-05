@@ -1,14 +1,15 @@
 <div class="copyright" id="copyright">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <p class="copyright-space">
+      <div class="col-md-6 col-sm-12">
+        <p class="year">
         <%= Time.current.year %> &copy; F-teknologsektionen inom TLTH.
         </p>
       </div>
-      <div class="col-md-6">
-        <p class="copyright-space pull-right">
-        <%= t('footer.control_the_web') %>: <%= render 'contacts/contact', name: 'Spindelmän' %>
+      <div class="col-md-6 col-sm-12">
+        <p class="contact">
+        <%= t('footer.control_the_web') %>:
+        <%= render 'contacts/contact', name: 'Spindelmän' %>
         </p>
       </div>
     </div>

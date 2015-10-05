@@ -1,5 +1,5 @@
 .pagination {
-  > .active > {
+  .active {
     a,
     span,
     a:focus,
@@ -7,11 +7,27 @@
       background-color: $main-color;
       border-color: $main-color;
     }
+
+    a:hover {
+      background-color: $fsek-pi-silver;
+      border-color: $fsek-orange;
+    }
   }
+
+  li {
+    a {
+      color: $gray-headline;
+    }
+  }
+
 
   li a:hover {
     background: $fsek-pi-silver;
     border-color: $fsek-pi-silver;
     color: $black;
+  }
+  &_status {
+    display: inline-block;
+    padding: 7px;
   }
 }

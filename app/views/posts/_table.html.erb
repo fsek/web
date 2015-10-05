@@ -32,11 +32,6 @@
               <% end %>
             </ul>
           </div>
-          <ul class="list">
-            <% post.users.each do |user|%>
-              <li><%= link_to(user.to_s, user) %></li>
-            <%end%>
-          </ul>
         </div>
       </div>
       <% first = false %>

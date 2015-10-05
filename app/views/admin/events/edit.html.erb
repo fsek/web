@@ -1,9 +1,14 @@
-<div class="col-md-6 col-md-offset-4 col-xs-12 reg-page">
+<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <h3 class="headline headline-md">
     <%= t(:edit, attr: model_name(Event)) %>
   </h3>
   <%= render 'form'%>
   <hr>
-  <%= link_to(t(:show, attr: model_name(Event)), admin_event_path(@event)) %><br>
-  <%= link_to(t(:index, attr: models_name(Event)), :admin_events) %>
+  <%= link_to(t(:show, attr: model_name(Event)),
+              admin_event_path(@event), class: 'btn secondary') %>
+  <%= link_to(t(:index, attr: models_name(Event)),
+              :admin_events, class: 'btn secondary') %>
+  <%= link_to(t(:destroy, attr: models_name(Event)),
+              admin_event_path(@event), method: :delete,
+              class: 'btn danger') %>
 </div>

@@ -1,13 +1,22 @@
-<div class="headline"><h2><%= page.title %></h2></div>
-<div class="col-md-9">
-  <!-- Our Services -->
-  <% page.main.each do |element| %>
+<div class="headline">
+  <%= content_tag(:h1, page.title) %>
+  <% if @councils.present? %>
+    <span class="council dropdown">
+      <%= render '/elements/dropdown_button', collection: @councils, 
+        controller: :councils, action: :show, 
+        title: page.title %>
+    </span>
+  <% end %>
+</div>
+
+<div class="col-md-3 col-sm-12">
+  <% page.side.each do |element| %>
     <%= render 'page_elements/page_element', page_element: element %>
   <% end %>
 </div>
-<!--/col-md-9-->
-<div class="col-md-3">
-  <% page.side.each do |element| %>
+
+<div class="col-md-9 col-sm-12">
+  <% page.main.each do |element| %>
     <%= render 'page_elements/page_element', page_element: element %>
   <% end %>
 </div>

@@ -1,16 +1,14 @@
-<% title(Council.model_name.human) %>
-<%= content_for :pre_content do %>
-  <div class="row">
-    <%= render('councils/menu', councils: @councils, current: nil) %>
+<% title(model_name(Council)) %>
+<div class="col-md-8 col-md-offset-2 col-sm-12">
+  <div class="headline">
+    <%= content_tag(:h2, t(:councils)) %>
+    <span class="council dropdown">
+      <%= render '/elements/dropdown_button', collection: @councils, controller: :councils, action: :show, title: models_name(Council) %>
+    </span>
   </div>
-<% end %>
-<div class="row">
-  <div class="col-md-offset-2 col-md-8">
-    <h1><%= t(:councils) %></h1>
-    <%= simple_format(t(:councils_first)) %>
-    <%= simple_format(t(:councils_second)) %>
-    <p>
-    <%= t(:councils_third) %> <%= render partial: "contacts/contact", locals: {name: 'Vice ordförande'}%>
-    </p>
-  </div>
+  <%= simple_format(t(:councils_first)) %>
+  <%= simple_format(t(:councils_second)) %>
+  <p>
+  <%= t(:councils_third) %> <%= render partial: "contacts/contact", locals: {name: 'Vice ordförande'}%>
+  </p>
 </div>

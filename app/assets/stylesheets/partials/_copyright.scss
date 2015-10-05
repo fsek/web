@@ -1,0 +1,18 @@
+.copyright {
+  &.year {
+    float: left;
+  }
+
+  &.contact {
+    float: right;
+  }
+}
+
+@media (min-width: 500px) {
+  .copyright {
+    &.contact {
+      float: auto;
+    }
+  }
+}
+

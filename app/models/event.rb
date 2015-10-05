@@ -16,16 +16,26 @@ class Event < ActiveRecord::Base
   # Validate slots if event allows signup
   # validates :slots, presence: true, if: :signup?
 
+  scope :start, -> { order(starts_at: :asc) }
   scope :calendar, -> { all }
   scope :nollning, -> { where(category: 'nollning') }
-  scope :from_date, -> (date) { where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
-                                      date.beginning_of_day, date.end_of_day,
-                                      date.beginning_of_day, date.end_of_day) }
-  scope :between, -> (start, stop) { where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
-                                           start, stop, start, stop) }
+  scope :from_date, -> (date) { between(date.beginning_of_day, date.end_of_day) }
+  scope :between, -> (start, stop) do
+    where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
+          start, stop, start, stop)
+  end
 
   def to_s
     title
+  end
+
+  def stream_print
+    I18n.l(starts_at, format: ' %H:%M')
+  end
+
+  # To group event-stream.
+  def day
+    starts_at.to_date
   end
 
   def print
