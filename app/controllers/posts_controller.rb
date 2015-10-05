@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :council, parent: true, find_by: :url
   before_action :prepare_index, only: [:index, :add_user, :remove_user]
-  before_action :set_councils, only: [:new, :edit, :update, :create]
+  before_action :set_councils, only: [:new, :edit, :update, :create, :index]
   before_action :set_post_user, only: [:remove_user, :add_user]
 
   def add_user
@@ -88,7 +88,7 @@ class PostsController < ApplicationController
 
   def prepare_index
     @posts = (@council.present?) ? @council.posts : Post.all
-    @post_grid = initialize_grid(@posts)
+    @post_grid = initialize_grid(@posts, include: :council)
   end
 
   def back(council)

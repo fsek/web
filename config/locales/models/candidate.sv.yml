@@ -8,10 +8,11 @@ sv:
         other: Kandidaturer
     attributes:
       candidate:
-        post_id: Post
-        user_id: Användare
-        election_id: Val
-        stil_id: Stil-id
-        limit: Gräns
         created_at: Skapades
+        elected_by: Väljs av
+        election_id: Val
+        limit: Gräns
+        post_id: Post
+        stil_id: Stil-id
         updated_at: Uppdaterades
+        user_id: Användare

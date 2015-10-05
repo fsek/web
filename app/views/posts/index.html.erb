@@ -19,9 +19,10 @@
 
 <% if @post_grid.present? && @posts.count > 0 %>
   <div class="col-md-12">
-    <%= render '/posts/index_table', grid: @post_grid, councils: @councils %>
+    <%= render '/posts/index_table', post_grid: @post_grid, councils: @councils %>
   </div>
 <% end %>
+
 <div class="col-md-12">
   <% @posts.each do |post| %>
     <div id="<%= dom_id(post) %>" class="collapse">

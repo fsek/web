@@ -1,28 +1,38 @@
-<div class="col-md-12 reg-page">
-  <div class="row">
-    <h2>Kandidaturer</h2>
-    <%= grid(@candidates_grid) do |g|
-      g.column name: "Post",attribute: "post_id", filter: false do |candidate|
-        candidate.post.title
-      end
-
-      g.column name: "Namn",attribute: "user_id",filter: false do |candidate|
-        link_to(candidate.person,candidate.user)
-      end
-      g.column name: "Stil-ID",attribute: "stil_id",filter: false
-      g.column name: "E-post", attribute: "email",filter: false
-      g.column name: "Telefon", attribute: "phone",filter: false
-      g.column name: "Skapad:",attribute: "created_at",filter:false
-      g.column name: "Styrelse", filter: false do |candidate|
-        link_to(candidate.post.council.title,candidate.post.council)
-      end
-      g.column name: "Styrelse", filter: false do |candidate|
-        (candidate.post.styrelse) ? "Ja" : "Nej"
-      end
-      g.column name: "Väljs av", filter: false do |candidate|
-        candidate.post.elected_by
-      end
-    end -%>
+<div class="col-md-12">
+  <div class="headline">
+    <%= content_tag(:h2, models_name(Candidate)) %>
   </div>
-  <%=link_to('Tillbaka till valet',admin_election_path(@election), class:'btn btn-u')%>
+  <%= grid(@candidates_grid) do |g|
+    g.column name: model_name(Post), attribute: "post_id",
+      filter: false do |candidate|
+      candidate.post
+    end
+
+    g.column name: model_name(User), attribute: "user_id",
+      filter: false do |candidate|
+      link_to(candidate.user, candidate.user)
+    end
+
+    g.column name: User.human_attribute_name(:stil_id), assoc: :user,
+      attribute: "stil_id", filter: false
+    g.column name: User.human_attribute_name(:email), assoc: :user,
+      attribute: "email", filter: false
+    g.column name: User.human_attribute_name(:phone), assoc: :user,
+      attribute: "phone", filter: false
+    g.column name: Candidate.human_attribute_name(:created_at),
+      attribute: "created_at", filter:false
+    g.column name: model_name(Council), assoc: :post, attribute: 'council_id',
+      filter: false do |candidate|
+      link_to(candidate.council, candidate.council)
+    end
+    g.column name: Candidate.human_attribute_name(:styrelse),
+      filter: false do |candidate|
+      (candidate.post.styrelse) ? t('yes') : t('no')
+    end
+    g.column name: Candidate.human_attribute_name(:elected_by),
+      filter: false do |candidate|
+      candidate.post.elected_by
+    end
+  end -%>
+  <%= link_to(t(:back_to, attr: model_name(Election)), admin_election_path(@election), class: 'btn default')%>
 </div>
