@@ -1,43 +1,40 @@
-<div class="container">
-  <h1>Sektionens event</h1>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Titel:</th>
-        <th>Beskrivning:</th>
-        <th>Ansvarig:</th>
-        <th>Utskott:</th>
-        <th>Börjar:</th>
-        <th>Slutar:</th>
-        <th>Heldag?</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @events.each do |event| %>
+<div class="col-md-12">
+  <div class="panel panel-orange margin-bottom-40">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= fa_icon('tasks') %> <%= models_name(Event) %>
+      </h3>
+    </div>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= event.title %></td>
-          <td><%= event.description %></td>
-          <td><%= link_to event.author, event.author%></td>
-          <td><%= event.category%></td>
-          <td><%= event.starts_at %></td>
-          <td><%= event.ends_at %></td>
-          <td><%if event.all_day%>Ja <%else%>Nej<%end%></td>
-
-          <td><%= link_to(t(:show, attr: nil), admin_event_path(event)) %></td>
-          <td><%= link_to(t(:edit, attr: nil), edit_admin_event_path(event)) %></td>
-          <td><%= link_to(t(:destroy), admin_event_path(event), confirm: 'Are you sure?', method: :delete) %></td>
+          <%= content_tag(:th, 'Id') %>
+          <%= content_tag(:th, Event.human_attribute_name(:title)) %>
+          <%= content_tag(:th, Event.human_attribute_name(:location)) %>
+          <%= content_tag(:th, Event.human_attribute_name(:category)) %>
+          <%= content_tag(:th, Event.human_attribute_name(:starts_at)) %>
+          <%= content_tag(:th, Event.human_attribute_name(:ends_at)) %>
+          <%= content_tag(:th, Event.human_attribute_name(:all_day)) %>
+          <%= content_tag(:th, Event.human_attribute_name(:updated_at)) %>
+          <%= content_tag(:th, link_to(t(:new, attr: model_name(Event)),
+                                       new_admin_event_path, class: 'btn default')) %>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br />
-
-  <div class="row">
-    <%= link_to(t(:add, attr: Event.model_name.human(count: 1)), new_admin_event_path, class: "btn-u btn-u-small")%>
+      </thead>
+      <tbody>
+        <% @events.each do |event| %>
+          <tr>
+            <%= content_tag(:td, event.id) %>
+            <%= content_tag(:td, link_to(event.title, event)) %>
+            <%= content_tag(:td, event.location) %>
+            <%= content_tag(:td, event.category) %>
+            <%= content_tag(:td, event.starts_at) %>
+            <%= content_tag(:td, event.ends_at) %>
+            <%= content_tag(:td, event.all_day ? t('yes') : t('no')) %>
+            <%= content_tag(:td, event.updated_at) %>
+            <%= content_tag(:td, link_to(t(:edit, attr: nil), edit_admin_event_path(event))) %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
