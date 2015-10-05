@@ -33,7 +33,7 @@ feature 'admin visits paths' do
 
   admins = {
     cafe_works: [:index, :new, :edit, :show, :overview, :setup],
-    events: [:show, :new, :index],
+    events: [:show, :new, :index, :edit],
     elections: [:new, :index],
     rents: [:main, :show, :new]
   }

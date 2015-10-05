@@ -3,6 +3,7 @@
     <%= t(:edit, attr: model_name(Event)) %>
   </h3>
   <%= render 'form'%>
-  <%= link_to(t(:show, attr: model_name(Event), admin_event_path(@event)) %><br>
+  <hr>
+  <%= link_to(t(:show, attr: model_name(Event)), admin_event_path(@event)) %><br>
   <%= link_to(t(:index, attr: models_name(Event)), :admin_events) %>
 </div>

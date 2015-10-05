@@ -4,10 +4,7 @@ class Admin::EventsController < ApplicationController
   before_action :authorize
 
   def index
-    respond_to do |format|
-      format.html
-      format.json { render json: @events }
-    end
+    @events = @events.order(starts_at: :desc)
   end
 
   def show

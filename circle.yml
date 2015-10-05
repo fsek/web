@@ -7,6 +7,10 @@ deployment:
     branch: stage
     commands:
       - bundle exec cap staging deploy
+  production:
+    branch: master
+    commands:
+      - bundle exec cap production deploy
 
 database:
   override:
