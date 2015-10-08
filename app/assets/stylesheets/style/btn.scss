@@ -1,5 +1,72 @@
 .btn {
+  border: 0;
+  border-radius: 2px;
   box-shadow: none;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 6px 13px;
+  position: relative;
+  text-decoration: none;
+
+  &-default {
+    background-color: $white;
+    border: 1px solid $border;
+    border-radius: 4px;
+    color: $gray-headline;
+
+    &:hover {
+      color: $unify-orange;
+    }
+  }
+
+  &.primary {
+    background: $unify-orange;
+    border: 1px solid $unify-orange;
+    color: $white;
+
+    &:hover {
+      background: $unify-orange-hover;
+      color: $white;
+    }
+  }
+
+  &.gray {
+    background: $unify-grey;
+    border: 1px solid $unify-grey;
+    color: $white;
+    margin: 0 10px 0 0;
+
+    &:hover {
+      background: $unify-grey-hover;
+    }
+  }
+
+  &.secondary {
+    background: $white;
+    border: 1px solid $border;
+    color: $black;
+    margin: 0 10px 0 0;
+
+    &:hover {
+      background: $fsek-pi-silver;
+      border: 1px solid $fsek-pi-silver;
+      color: $white;
+    }
+  }
+
+  &.danger {
+    background: $unify-red;
+    border: 1px solid $unify-red;
+    margin: 0 10px 0 0;
+
+    &:hover {
+      background: $unify-red-hover;
+      border: 1px solid $unify-red-hover;
+      color: $white;
+    }
+  }
 }
 
 .btn-u {
