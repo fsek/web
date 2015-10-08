@@ -6,3 +6,8 @@ sv:
     account: Konto
     password: Lösenord
     asterix_hidden: Fält markerade med * visas endast för funktionärer vid t.ex. Hilbert Café
+
+    make_member: Ge medlemskap
+    unmake_member: Ta bort medlemskap
+    member: Medlem
+    membership?: Medlemskap?

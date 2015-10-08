@@ -5,6 +5,16 @@ class Admin::UsersController < ApplicationController
   def index
   end
 
+  def member
+    @success = UserService.make_member(@user)
+    render
+  end
+
+  def unmember
+    @destroyed = UserService.unmember(@user)
+    render
+  end
+
   private
 
   def authorize
