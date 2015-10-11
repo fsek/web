@@ -44,6 +44,10 @@ Fsek::Application.configure do
   config.serve_static_files = true
   PUBLIC_URL = 'localhost:3000'
 
+  # Assets for mailers
+  config.action_controller.asset_host = 'localhost:3000'
+  config.action_mailer.asset_host = 'http://localhost:3000'
+
   config.action_view.raise_on_missing_translations = true
 
   # Don't log partials etc. in development.

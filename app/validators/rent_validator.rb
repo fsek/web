@@ -32,22 +32,12 @@ class RentValidator < ActiveModel::Validator
     end
   end
 
-  # Checks presence of purpose, user, disclaimer and dates.
+  # Checks presence of purpose, user and dates.
   # When necessary - based on defined actions.
   def base(record)
     state = true
-    if !purpose(record)
-      record.errors.add(:purpose, :blank)
-      state = false
-    end
-
     if !user(record)
       record.errors.add(:user, :blank)
-      state = false
-    end
-
-    if !disclaimer(record)
-      record.errors.add(:disclaimer, :blank)
       state = false
     end
 
@@ -65,17 +55,8 @@ class RentValidator < ActiveModel::Validator
   end
 
   private
-
-  def purpose(record)
-    record.try(:member?) || record.purpose.present?
-  end
-
   def user(record)
     record.user.present?
-  end
-
-  def disclaimer(record)
-    record.disclaimer.present?
   end
 
   def d_from(record)

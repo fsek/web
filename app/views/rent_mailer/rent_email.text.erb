@@ -1,13 +1,12 @@
-Hej <%=@rent.p_name %>
+Hej <%= @rent.user %>
 ===============================================
 Du har bokat F-sektionens bil.
 
-<%= render 'attributes_text', rent: @rent%>
+<%= render 'attributes', rent: @rent%>
 
-
-<%if @rent.status != "Bekräftad"%>
+<% if @rent.status != "Bekräftad" %>
 Din bokning måste hanteras direkt av bilförmannen och ett mejl kommer skickas ut då bokningen är beräkftad eller nekad.
-<%end%>
+<% end %>
 Har du några frågor så svarar du enklast direkt på detta mejl.
 
 

@@ -1,6 +1,5 @@
 # encoding:UTF-8
 class Rent < ActiveRecord::Base
-
   belongs_to :user
   belongs_to :council
 
@@ -61,9 +60,9 @@ class Rent < ActiveRecord::Base
 
   def p_time
     if (d_from.day == d_til.day)
-      %(#{d_from.strftime('%H:%M')} till #{d_til.strftime('%H:%M')} den #{d_from.strftime('%d/%m')})
+      %(#{I18n.l(d_from, format:'%H:%M')} - #{I18n.l(d_til, format: '%H:%M')}, #{I18n.l(d_from, format: '%d/%m')})
     else
-      %(#{d_from.strftime('%H:%M %d/%m')} till #{d_til.strftime('%H:%M %d/%m')})
+      %(#{I18n.l(d_from, format:'%H:%M %d/%m')} - #{I18n.l(d_til, format: '%H:%M %d/%m')})
     end
   end
 

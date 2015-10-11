@@ -1,0 +1,15 @@
+Uppgifter för bokningen (ID: <%= rent.id %>).
+<%= User.human_attribute_name(:name) %>:       <%= rent.user %>
+<%= User.human_attribute_name(:email) %>:      <%= rent.user.try(:email) %>
+<%= User.human_attribute_name(:phone) %>:      <%= rent.user.try(:phone) %>
+<%= Rent.human_attribute_name(:date) %>:      <%= rent.p_time %>
+
+<% if rent.purpose.present? %>
+  <%= Rent.human_attribute_name(:purpose) %>:      <%= rent.purpose %>
+<% end %>
+
+<% if rent.council.present? %>
+  <%= Council.model_name.human %>:    <%= rent.council %>
+<% end %>
+
+<%= t(:link) %>:       <%= rent.p_url %>

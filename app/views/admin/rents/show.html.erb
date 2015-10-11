@@ -1,5 +1,5 @@
 <% provide(:title, t('rent.admin.title')) %>
-<div class='col-md-8 col-md-offset-2 reg-page'>
+<div class='col-md-8 col-md-offset-2 col-sm-12 reg-page'>
   <%= render 'links' %>
   <div class='headline headline-md'>
     <h2>
@@ -8,9 +8,9 @@
   </div>
   <div class='margin-bottom-20'>
     <%= render 'form'%>
-    <%= link_to(admin_rent_path(@rent), method: :delete, class: 'btn btn-u pull-right',
+    <%= link_to(admin_rent_path(@rent), method: :delete, class: 'btn danger pull-right',
                 data: { confirm: t('rent.admin.delete_confirm') } ) do %>
-      <%= t(:delete, attr: model_name(Rent)) %>
+      <%= t(:destroy_attr, attr: model_name(Rent)) %>
     <% end %>
   </div>
   <div class='margin-bottom-20'>

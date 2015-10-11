@@ -1,19 +1,7 @@
-<<<<<<< ec420d9df230a3a51446d02d84d8f7b83d2f7f6c
 <% provide(:title, model_name(Rent)) %>
-<div class='col-md-8 col-md-offset-2 col-sm-12'>
+<div class='col-md-8 col-md-offset-2 col-sm-12 reg-page'>
     <%= render 'form' %>
     <hr>
     <%= link_to(t('rent.back_to_index'), :rents, data: { no_turbolink: true },
                                                class: 'btn secondary') %>
-=======
-<% provide(:title, Rent.model_name.human) %>
-<div class='col-md-8 col-md-offset-2 col-xs-12 reg-page'>
-  <div class="row margin-bottom-20">
-    <%= render 'form' %>
-  </div>
-
-  <div class='row'>
-    <%= link_to(t(:index, attr: models_name(Rent)), :rents, class: 'btn gray') %>
-  </div>
->>>>>>> Refactor Rent with service
 </div>

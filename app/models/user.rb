@@ -78,6 +78,10 @@ class User < ActiveRecord::Base
     %(#{print} - #{id})
   end
 
+  def print_email
+    %(#{print} <#{email}>)
+  end
+
   private
 
   def delete_avatar

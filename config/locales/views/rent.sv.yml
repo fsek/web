@@ -1,6 +1,7 @@
 sv:
   rent:
-    agreement: Bokningsavtal
+    terms: Bokningsavtal
+    terms_agree: Genom att genomföra bokningen accepterar ni sektionens
     back_to_index: Startsida för Bilbokning
     book: Boka bil
     cannot_edit: Du kan inte längre redigera bokningen
@@ -13,9 +14,6 @@ sv:
     council_only: får endast göras åt utskottet
     council_overbook: kan boka över en bokning som börjar mer än 5 dagar fram i tiden
     delete: Radera bokning
-    disclaimer_accepted: Bilbokningsavtal accepterat
-    disclaimer_not_accepted: Bilboknignsavtal inte accepterat
-    disclaimer_read: Läs bilbokningsavtal
     list_bookings: Bokningar (från idag och 30 dagar fram)
     marked_active: Markerad som aktiv
     marked_inactive: Markerad som inaktiv
@@ -30,6 +28,7 @@ sv:
     unconfirmed_status: Ingen status - måste bekräftas eller nekas
     user_asterix: Fält markerade med * måste ifyllas i användarprofilen
     view_normal: Bokning - vanlig vy
+    your_booking: Din bokning
     your_bookings: Dina bokningar
 
     admin:

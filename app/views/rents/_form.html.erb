@@ -1,59 +1,47 @@
 <%= simple_form_for(@rent, error_method: :to_sentence) do |f| %>
-  <div class="headline">
-      <%= content_tag(:h2, model_name(Rent)) %>
-  </div>
-
-  <% if @terms.present? %>
-    <%= link_to(t('rent.disclaimer_read'), document_path(@terms),
-                                          target: :blank, class: 'btn secondary') %>
-  <% else %>
-    <%= link_to(models_name(Document), documents_path, target: :blank,
-                                       class: 'btn secondary') %>
-  <% end %>
-
-  <%= f.input :disclaimer %>
-
   <%= f.association :user, collection: [current_user], include_blank: false %>
-
   <% if @rent.errors[:user].present? %>
-    <%= content_tag(:p, link_to(t('user.edit_information'), edit_own_user_path)) %>
+    <p><%= link_to(t('user.edit_information'), edit_own_user_path) %></p>
   <% end %>
-
   <%= render 'renter_table', user: @rent.user, rent: @rent %>
 
   <% if (overlap = @rent.overlap).present? && overlap.count > 0 %>
     <span class='overlapping-date'><%= t('rent.overlaps_with') %></span>
     <ul class='overlapping-date'>
       <% overlap.each do |o| %>
-        <%= content_tag(:li, link_to(%(#{o.user} #{o.council} - #{o.p_time}), 
-                                     o, target: :blank_p)) %>
+        <li>
+          <%= link_to(%(#{o.user} #{o.council} - #{o.p_time}), rent_path(o), target: :blank_p) %>
+        </li>
       <% end %>
     </ul>
   <% end %>
+
   <%= f.input :d_from, as: :datetime_picker %>
   <%= f.input :d_til, as: :datetime_picker %>
-
-  <% if current_user.member? %>
-    <%= f.input :purpose, as: :text %>
-  <% else %>
-    <%= f.input :purpose, as: :text, required: true %>
-  <% end %>
+  <%= f.input :purpose, as: :text %>
 
   <% if current_user.car_councils && current_user.car_councils.count > 0 %>
     <strong><%= t('rent.council') %></strong>
     <ul class="list">
-      <%= content_tag(:li, t('rent.council_only')) %>
-      <%= content_tag(:li, t('rent.council_overbook')) %>
+      <li><%= t('rent.council_only') %></li>
+      <li><%= t('rent.council_overbook') %></li>
     </ul>
     <%= f.association :council, collection: current_user.car_councils %>
   <% end %>
 
   <% if !current_user.member? %>
-    <%= content_tag(:p, :strong, t('important')) %>
-    <%= content_tag(:p, t('rent.not_member')) %>
+    <p><strong><%= t('important') %></strong></p>
+    <p><%= t('rent.not_member') %></p>
     <p><%= t('rent.confirm_member') %> <%= link_to(t('account'), edit_own_user_path) %>.</p>
   <% end %>
 
+  <% if @terms.present? %>
+    <%= t('rent.terms_agree') %>
+    <%= link_to(document_path(@terms), class: 'btn secondary small', target: 'blank_p') do %>
+      <%= fa_icon('paperclip') %> <%= t('rent.terms') %>.
+    <% end %>
+    <hr>
+  <% end %>
   <% if @rent.edit?(current_user) %>
     <%= f.button :submit %>
   <% else %>

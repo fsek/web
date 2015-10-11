@@ -30,15 +30,8 @@ RSpec.describe Rent, type: :model do
   end
 
   describe :validations do
-    it { should validate_presence_of(:disclaimer) }
     it { should validate_presence_of(:d_from) }
     it { should validate_presence_of(:d_til) }
-    it { rent_n.should validate_presence_of(:purpose) }
-
-    context 'do not validate purpose when user is member' do
-      before { allow(subject).to receive(:member?).and_return(true) }
-      it { should_not validate_presence_of(:purpose) }
-    end
 
     describe :duration do
       context :when_no_council do

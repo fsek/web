@@ -34,6 +34,7 @@ sv:
   back: Tillbaka
   for: "%{a} för %{b}"
 
+  link: Länk
   links: Länkar
   about: Om oss
 

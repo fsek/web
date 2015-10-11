@@ -17,7 +17,7 @@ feature 'admin visits paths' do
     cafe_works: [:index, :nyckelpiga],
     calendars: [:index],
     constants: [:index, :show, :edit, :new],
-    contacts: [:index, :new, :show],
+    contacts: [:index, :new, :show, :edit],
     councils: [:index, :show],
     documents: [:index, :new],
     elections: [:index],

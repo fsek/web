@@ -1,11 +1,20 @@
 <% provide(:title, Rent.model_name.human) %>
-<div class='headline headline-md'><h1><%= Rent.model_name.human %></h1></div>
-<div class='col-md-8'>
+<div class='headline'>
+    <h1><%= model_name(Rent) %></h1>
+</div>
+<div class='col-md-3 col-xs-12'>
+  <div class='headline headline-md'><h2><%= t('links') %></h2></div>
+  <ul class='buttons'>
+    <li><%= link_to(t('rent.book'), new_rent_path, class: 'btn primary') %></li>
+    <li><%= link_to(t('rent.back_to_index'), rents_path, class: 'btn secondary') %></li>
+    <li><%= link_to(t('rent.contact'), contacts_path, class: 'btn secondary') %></li>
+</div>
+<div class='col-md-9 col-xs-12'>
   <div class='headline headline-md'><h2><%= t('rent.your_bookings')%></h2></div>
   <div class='panel-group acc-v1 margin-bottom-40' id='answered'>
     <% @rents.each do |f| %>
       <div class='panel panel-default'>
-        <%= link_to(%(#collapse#{dom_id(f)}), class: "accordion-toggle", data: { toggle: "collapse", parent: "#answered" }) do %>
+        <%= link_to(%(#collapse#{dom_id(f)}), class: 'accordion-toggle', data: { toggle: 'collapse', parent: '#answered' }) do %>
           <div class='panel-heading'>
             <h4 class='panel-title'>
               <%= f.p_time %>
@@ -23,11 +32,4 @@
       </div>
     <% end %>
   </div>
-</div>
-<div class='col-md-4'>
-  <div class='headline headline-md'><h2><%= t('links') %></h2></div>
-  <ul class='buttons'>
-    <%= content_tag(:li, link_to(t('rent.book'), new_rent_path, class: 'btn primary')) %>
-    <%= content_tag(:li, link_to(t('rent.back_to_index'), rents_path, class: 'btn secondary')) %>
-    <%= content_tag(:li, link_to(t('rent.contact'), contacts_path, class: 'btn secondary')) %>
 </div>

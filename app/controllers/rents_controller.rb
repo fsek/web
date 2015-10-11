@@ -31,7 +31,7 @@ class RentsController < ApplicationController
   end
 
   def update
-    if RentServices.update(rent_params, current_user, @rent)
+    if RentService.update(rent_params, current_user, @rent)
       redirect_to edit_rent_path(@rent), notice: alert_update(Rent)
     else
       render action: :edit
@@ -43,7 +43,6 @@ class RentsController < ApplicationController
     redirect_to :rents, notice: alert_destroy(Rent)
   end
 
-  # Index page available to logged in users.
   def index
     @rents = current_user.rents.order('d_from desc')
   end
@@ -52,11 +51,11 @@ class RentsController < ApplicationController
 
   def rent_params
     params.require(:rent).permit(:d_from, :d_til, :purpose,
-                                 :disclaimer, :council_id)
+                                 :council_id, :user_id)
   end
 
   def load_terms
-    constant = Constant.find_by(name: 'rents_disclaimer_id')
+    constant = Constant.find_by(name: 'rent_terms')
     @terms = Document.find_by(id: constant.try(:value))
   end
 end

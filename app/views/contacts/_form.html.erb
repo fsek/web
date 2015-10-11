@@ -5,7 +5,7 @@
   <%= f.input :public %>
   <%= f.button :submit, id: 'contact-submit' %>
   <% if !@contact.new_record? %>
-    <%= link_to(t(:delete, attr: model_name(Contact)), contact_path(@contact),
+    <%= link_to(t(:destroy_attr, attr: model_name(Contact)), contact_path(@contact),
                 method: :delete,
                 class: 'btn danger pull-right') %>
   <% end %>

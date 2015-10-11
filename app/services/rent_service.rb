@@ -4,7 +4,7 @@ module RentService
       rent.validate!
       rent.user = user
       rent.status = user.try(:member?) ? :confirmed : :unconfirmed
-      rent.save!
+      rent.save
       if rent.council.present?
         rent.overlap.each(&:overbook)
       end

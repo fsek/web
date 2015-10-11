@@ -1,33 +1,34 @@
 <% provide(:title, model_name(Rent)) %>
-<div class='col-md-12'>
-  <div class='headline headline-md'>
-    <h1><%= t('rent.car') %></h1>
-  </div>
+<div class='headline headline-md'>
+  <h1><%= t('rent.car') %></h1>
+</div>
 
-  <div class='col-md-9'>
-    <div id='bilkalender'></div>
-  </div>
-
-  <div class='col-md-3'>
-    <div class='row'>
-      <div class='headline headline-md'><h2>F.A.Q.</h2></div>
-      <div class='panel-group acc-v1' id='answered'>
-        <%= render @faqs %>
-        <ul class='list'>
-          <li><%= link_to(t('faq.new_question'), new_faq_path(category: 'Bil')) %></li>
-        </ul>
-      </div>
+<div class='col-md-3 col-xs-12'>
+  <% if @faqs.present? %>
+  <div class='row'>
+    <div class='headline headline-md'><h2>F.A.Q.</h2></div>
+    <div class='panel-group acc-v1' id='answered'>
+      <%= render @faqs %>
+      <ul class='list'>
+        <li><%= link_to(t('faq.new_question'), new_faq_path(category: 'Bil')) %></li>
+      </ul>
     </div>
-    <div class='row'>
-      <div class='headline headline-md'><h2>Bokning?</h2></div>
-      <% if user_signed_in? %>
-        <div class='input-group margin-bottom-20'>
-          <%= link_to(t('rent.overview'), overview_rents_path, class: 'btn secondary') %>
-        </div>
-      <% end %>
+  </div>
+<% end %>
+  <div class='row'>
+    <div class='headline headline-md'><h2>Bokning?</h2></div>
+    <% if user_signed_in? && current_user.member? %>
       <div class='input-group margin-bottom-20'>
-        <%= link_to(t(:new, attr: model_name(Rent)), new_rent_path, class: 'btn primary') %>
+        <%= link_to(t('rent.overview'), overview_rents_path, class: 'btn secondary') %>
       </div>
+    <% end %>
+    <div class='input-group margin-bottom-20'>
+      <%= link_to(t(:new_attr, attr: model_name(Rent)), new_rent_path, class: 'btn primary') %>
     </div>
   </div>
 </div>
+
+<div class='col-md-9 col-xs-12'>
+  <div id='bilkalender'></div>
+</div>
+
