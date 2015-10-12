@@ -9,7 +9,6 @@ FactoryGirl.define do
   sequence(:stil_id) { |n| "tfy54dw#{n}" }
   sequence(:title) { |n| "Titel#{n}" }
   sequence(:url) { |n| "url#{n}" }
-  sequence(:username) { |n| "davidwessman#{n}" }
   sequence(:value) { |n| "david#{n}" }
   sequence(:location) { ['MH:A','Hilbert','Kårhuset','Ön-ön','Sjönsjön','Bastun'].sample }
   sequence(:date) { |n| Time.zone.now + 10.days + n.days }

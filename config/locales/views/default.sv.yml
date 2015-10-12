@@ -12,6 +12,9 @@ sv:
   subscribe: Prenumerera
   here: här
   hide: Dölj
+  welcome: Välkommen
+
+  update: Uppdatera %{attr}
 
   "yes": Ja
   "no": Nej
@@ -26,7 +29,6 @@ sv:
   choose:
     date: Välj datum
 
-
   about_us_first: "F-sektionen är en ideell förening för studenter som läser något av civilingenjörsprogrammen Teknisk Fysik, Teknisk Matematik eller Teknisk Nanovetenskap och har till ändamål att främja kamratskap bland medlemmarna och tillvarata medlemmarnas gemensamma intressen."
   about_us_second: "Sektionen är belägen i Mattehuset och här hittar du bland annat uppehållsrum, Hilbert Café - här kan du köpa bland annat gott kaffe och goda baguetter, mikrovågsugnar och gött häng. F-sektionen har några olika utskott samt en grupp som kallas kärnstyrelsen som alla har hand om var sitt område. Varje sådant utskott leds av en utskottsordförande och de flesta utskottsordförandena sitter med i sektionens styrelse. Styrelsen tar beslut i frågor som rör hela sektionen centralt."
   about_us_third: "Som medlem kan du välja att vara väldigt aktiv och engagerarad, lite lagom eller kanske bara delta på något enstaka event. Vi hoppas att du ska trivas på sektionen! Om du har några frågor är det bara att höra av sig, se fliken 'Kontakt', eller sväng förbi SK som ligger bredvid mikrorummet så hittar du nästan alltid någon från styrelsen där!"
@@ -37,3 +39,5 @@ sv:
   councils_third: "Kontakta då "
 
   today: idag
+  alert:
+    error: Fel

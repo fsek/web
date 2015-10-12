@@ -1,12 +1,12 @@
-<h2>Skicka berkräftelsemail.</h2>
-
-<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <div><%= f.submit "Skicka bekräftelseinstruktioner" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <div class="headline">
+    <%= content_tag(:h2, t('devise.confirmations.instructions')) %>
+  </div>
+  <%= simple_form_for(resource, as: resource_name,
+                      url: confirmation_path(resource_name), method: :post) do |f| %>
+    <%= f.input :email %>
+    <%= f.button :submit, t('devise.confirmations.instructions') %>
+    <hr>
+    <%= render 'devise/shared/links' %>
+  <% end %>
+</div>

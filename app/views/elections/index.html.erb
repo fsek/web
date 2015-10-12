@@ -2,8 +2,9 @@
 <% if @election.present? %>
   <%= render @election, election: @election %>
   <% if can? :manage, @election %>
-    <div class="col-md-2 col-md-offset-5">
-      <%= link_to("Redigera valet!", admin_election_path(@election), class: "btn election ") %>
+    <div class="col-md-4 col-md-offset-4 election">
+      <%= link_to(t(:edit, attr: model_name(Election)),
+                  admin_election_path(@election), class: "btn primary center") %>
     </div>
   <% end %>
 <% else %>

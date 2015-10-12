@@ -1,11 +1,10 @@
 # encoding: UTF-8
 FactoryGirl.define do
   factory :user do
-    username
+    email
     password '12345678'
     firstname
     lastname
-    email
     phone
     stil_id
     confirmed_at { Time.zone.now }
@@ -18,7 +17,6 @@ FactoryGirl.define do
   end
 
   factory :admin, class: 'User' do
-    username
     password '12345678'
     firstname
     lastname
@@ -34,5 +32,16 @@ FactoryGirl.define do
     after(:create) do |user|
       create(:post_user, post: create(:post, :with_admin_permissions), user: user)
     end
+  end
+
+  trait :unconfirmed do
+    confirmed_at nil
+    confirmation_token 'confirmmyaccount'
+    confirmation_sent_at { Time.zone.now }
+  end
+
+  trait :reset_password do
+    reset_password_token 'resetmypassword'
+    reset_password_sent_at { Time.zone.now }
   end
 end

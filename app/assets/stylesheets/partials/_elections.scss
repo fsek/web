@@ -42,18 +42,14 @@ img {
   }
 }
 
-.btn {
-  &.election {
-    background-color: transparent;
-    border-color: $black;
-    border-radius: 10px;
-    color: $black;
-    font-size: 18px;
-    padding: 10px 25px;
-
-    &:hover {
-      border-color: $main-color;
-      color: $main-color;
+.election {
+  .btn {
+    &.primary {
+      &.center {
+        display: block;
+        font-size: 16px;
+        margin: auto;
+      }
     }
   }
 }

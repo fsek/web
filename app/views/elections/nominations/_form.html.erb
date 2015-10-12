@@ -1,7 +1,7 @@
 <%= simple_form_for(nomination) do |f| %>
   <%= f.input :name %>
   <%= f.input :email %>
-  <%= f.association :post, collection: @election.current_posts %>
+  <%= f.association :post, collection: @election.current_posts.title %>
   <%= f.input :motivation %>
   <%= f.button :submit, id: 'nomination-submit' %>
 <% end %>

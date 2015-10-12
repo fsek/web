@@ -1,10 +1,9 @@
-.timeline-v2 {
+.timeline {
   list-style: none;
   padding: 0;
   position: relative;
 
   &:before {
-    background: $light-gray;
     bottom: 0;
     content: "";
     left: 22%;
@@ -14,14 +13,14 @@
     width: 4px;
   }
 
-  > li {
+  li {
     position: relative;
 
     .cbp-tmtime {
       display: block;
       padding-right: 80px;
       position: absolute;
-      width: 25%;
+      width: 15%;
 
       span {
         &:first-child {
@@ -39,7 +38,7 @@
     }
 
     .cbp-tmlabel {
-      background: $light-gray;
+      border: 1px solid $black;
       border-radius: 5px;
       clear: both;
       color: $black;
@@ -56,15 +55,6 @@
         padding: 0;
       }
 
-      h2 {
-        border-bottom: 1px solid $light-gray;
-        font-size: 21px;
-        margin-bottom: 10px;
-        margin-top: 0;
-        padding: 0 0 5px;
-        text-transform: capitalize;
-      }
-
       &:after {
         border: solid transparent;
         border-right-color: $light-gray;
@@ -77,18 +67,6 @@
         top: 18px;
         width: 0;
       }
-    }
-
-    .cbp-tmicon {
-      background: $main-color;
-      box-shadow: 0 0 0 4px $light-gray;
-      -webkit-font-smoothing: antialiased;
-      height: 10px;
-      left: 22%;
-      margin: 0 0 0 -17px;
-      position: absolute;
-      top: 22px;
-      width: 10px;
     }
   }
 }

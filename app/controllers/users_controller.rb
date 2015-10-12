@@ -3,17 +3,20 @@ class UsersController < ApplicationController
   load_permissions_and_authorize_resource
   before_action :set_user
 
-  def search
-    @search_users = User.search(params[:firstname], params[:lastname])
-  end
-
   def index
   end
 
   def show
   end
 
-  def profile
+  def avatar
+    if @user.avatar?
+      style = [:original, :medium, :thumb].include?(params[:style]) ? params[:style] : :medium
+      send_file(@user.avatar.path(style), filename: @user.avatar_file_name,
+                type: 'image/jpg',
+                disposition: 'inline',
+                x_sendfile: true)
+    end
   end
 
   def edit
@@ -22,64 +25,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @tab = :profile
+    if @user.update(user_params)
+      flash[:notice] = alert_update(User)
+    end
+    render action: :edit
+  end
+
   def update_account
     @tab = :account
     if @user.update_with_password(account_params)
-      redirect_to :edit_user, notice: 'Kontoinställningar uppdaterades.', tab: :account
-      sign_in @user, bypass: true
+      redirect_to edit_own_user_path, notice: t('user.account_updated'), tab: :account
     else
-      @tab = :account
-      render action: :edit, notice: 'Lösenord måste fyllas i för att ändra uppgifter.'
+      render action: :edit, alert: t('user.password_required')
     end
   end
 
   def update_password
     @tab = :password
     if @user.update_with_password(password_params)
-      redirect_to :edit_user, notice: 'Lösenordet uppdaterades.'
+      redirect_to edit_own_user_path, notice: t('user.password_updated')
       sign_in @user, bypass: true
     else
-      render action: :edit, notice: 'Nuvarande lösenord måste fyllas i för att byta lösenord.'
-    end
-  end
-
-  def update
-    if @user.update(user_params)
-      flash[:notice] = 'Användare uppdaterades.'
-    end
-    @tab = :profile
-    render action: :edit
-  end
-
-  # def destroy
-  #  if @user.update_with_password(user_params)
-  #    @user.posts.clear
-  #    if @user.destroy
-  #      redirect_to root_url, notice: 'Användare togs bort.'
-  #    end
-  #  else
-  #    redirect_to :edit_user_registration,
-  #      notice: 'Lösenord måste fyllas i för att radera användare.'
-  #  end
-  # end
-
-  def remove_post
-    @post = Post.find_by_id(params[:post_id])
-    @user.posts.delete(@post)
-    if @user.posts.count == 0
-      @user.update(first_post: nil)
-    end
-    redirect_to edit_user_path(@user), notice: %(Du har inte längre posten #{@post.title}.)
-  end
-
-  # Action to show avatar picture only for authenticated
-  def avatar
-    if @user.avatar?
-      style = [:original, :medium, :thumb].include?(params[:style]) ? params[:style] : :medium
-      send_file(@user.avatar.path(style), filename: @user.avatar_file_name,
-                                          type: 'image/jpg',
-                                          disposition: 'inline',
-                                          x_sendfile: true)
+      render action: :edit, alert: t('user.password_required_update')
     end
   end
 
@@ -92,7 +61,7 @@ class UsersController < ApplicationController
   end
 
   def account_params
-    params.require(:user).permit(:username, :email, :current_password)
+    params.require(:user).permit(:email, :current_password)
   end
 
   def password_params

@@ -1,37 +1,43 @@
-<div class="container content"> 	
-  <div class="row portfolio-item margin-bottom-50">
-    <div class="col-md-offset-2 col-md-<%if !@news.image_file_name.nil?%>5<%else%>9<%end%> md-margin-bottom-40">
-      <h2><%= @news.title %></h2>            
-      <div class="row portfolio-item1">
-        <div class="col-xs-12">
-          <%= simple_format(@news.content)%>
-        </div>
-      </div>
+<%= content_for :text do %>
+  <%= simple_format(@news.content) %>
+  <span class="news">
+    <% if @news.author.present? %>
+      <%= link_to(@news.author) do %>
+        <%= fa_icon('user') %> <%= @news.author %>
+      <% end %>
+      <br>
+      <%= fa_icon('calendar') %>
+      <%= @news.created_at.strftime('%Y/%m/%d %H:%M') %>
+    <% end %>
+  </span>
+<% end %>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Nyheter"), news_index_path, class: "btn-u btn-u-small"%>
-          <% if can? :modify, @news %>				      	
-            <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_news_path(@news), class: "btn-u btn-u-small"%>
-            <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @news, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
-          <% end %>
-        </div>    		 	          
-      </div>
+<div class="col-md-8 col-md-offset-2 col-xs-12 news">
+  <div class="headline">
+    <%= content_tag(:h1, @news.title) %>
+  </div>
+  <% if @news.image.present? %>
+    <div class="col-md-8 col-xs-12">
+      <%= yield :text %>
     </div>
-    <!-- End Content Info -->        
 
-    <!-- Carousel -->
-    <%if !@news.image_file_name.nil?%>
-      <div class="col-md-3">
-        <div class="carousel slide carousel-v1" id="myCarousel">
-          <div class="carousel-inner">
-            <div class="item active">
-              <%= image_tag @news.image(:original)%>                        
-            </div>                    
-          </div>
-        </div>
-      </div>
-    <%end%>
-    <!-- End Carousel -->
-  </div><!--/row-->
+    <div class="col-md-4 col-xs-12">
+      <%= image_tag(@news.image(:original), class: 'img-responsive') %>
+    </div>
+
+  <% else %>
+    <div class="col-md-12 margin-bottom-20">
+      <%= yield :text %>
+    </div>
+  <% end %>
+
+  <div class="col-xs-12">
+    <%= link_to(t(:index, attr: models_name(News)), news_index_path, class: 'btn secondary') %>
+    <% if can? :modify, @news %>
+      <%= link_to(t(:edit, attr: model_name(News)), edit_news_path(@news), class: 'btn secondary') %>
+      <%= link_to(t(:destroy, attr: nil), @news, method: :delete, class: 'btn danger') %>
+    <% end %>
+  </div>
 </div>
+
+

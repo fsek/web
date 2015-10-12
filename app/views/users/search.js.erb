@@ -1,4 +1,0 @@
-// This might be the wrong way to do this.
-<% if @search_users  %>
-$('#user_id').html("<%=j options_from_collection_for_select(@search_users, :id, :to_s) %>");
-<% end %>
