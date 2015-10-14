@@ -1,5 +1,33 @@
 ul {
   &.council {
+    margin: 10px;
     text-align: center;
+
+    > li {
+      &.current {
+        border: 1px solid;
+        border-color: $main-color;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+.council {
+  &.dropdown {
+    display: inline-block;
+    float: right;
+    margin-bottom: 10px;
+    right: 0;
+    top: 0;
+
+    .dropdown {
+      &.open {
+        .dropdown-menu {
+          left: auto;
+          right: 0;
+        }
+      }
+    }
   }
 }

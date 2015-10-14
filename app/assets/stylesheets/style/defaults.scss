@@ -25,7 +25,8 @@ a:active {
   outline: 0;
 }
 
-a:hover {
+a:hover,
+a:focus {
   color: $fsek-pi-silver;
   text-decoration: none;
 }

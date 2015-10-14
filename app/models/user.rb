@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
   end
 
   def print_id
-    %(#{id} - #{print})
+    %(#{print} - #{id})
   end
 
   private

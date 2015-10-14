@@ -1,0 +1,15 @@
+.dropdown {
+  &.right {
+    .dropdown-menu {
+      left: auto;
+      right: 0;
+
+      .dropdown-submenu {
+        .dropdown-menu {
+          left: auto;
+          right: 100%;
+        }
+      }
+    }
+  }
+}

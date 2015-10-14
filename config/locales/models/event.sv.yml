@@ -21,4 +21,6 @@ sv:
         drink: Dryck
         food: Mat
         cash: Kontant
-
+        dot: Prickar
+        created_at: Skapat
+        updated_at: Uppdaterat

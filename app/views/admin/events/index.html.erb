@@ -24,8 +24,8 @@
         <% @events.each do |event| %>
           <tr>
             <%= content_tag(:td, event.id) %>
-            <%= content_tag(:td, link_to(event.title, event)) %>
-            <%= content_tag(:td, event.location) %>
+            <%= content_tag(:td, link_to(event.title.try(:truncate, 20), event)) %>
+            <%= content_tag(:td, event.location.try(:truncate, 20)) %>
             <%= content_tag(:td, event.category) %>
             <%= content_tag(:td, event.starts_at) %>
             <%= content_tag(:td, event.ends_at) %>

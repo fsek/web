@@ -27,7 +27,7 @@ feature 'admin tries to create rent' do
       fill_in 'rent_phone', with: rent.phone
       fill_in 'rent_d_from', with: rent.d_from.to_s
       fill_in 'rent_d_til', with: rent.d_til.to_s
-      select(rent.council, from: 'rent_council')
+      select(rent.council, from: 'rent_council_id')
       select('Bekräftad', from: 'rent_status')
       find('#rent-submit').click
     end

@@ -1,4 +1,4 @@
-<% title(Post.model_name.human(count: 2)) %>
+<% title(models_name(Post)) %>
 <% if @council %>
   <div class="row margin-bottom-20">
     <%= link_to(t(:add, attr: Post.model_name.human), new_council_post_path(@council), class: "btn btn-u") %>
@@ -27,12 +27,13 @@
   <% @posts.each do |post| %>
     <div id="<%= dom_id(post) %>" class="collapse">
       <div class="funny-boxes funny-boxes-left-orange">
-        <%= content_tag(:h2, post) %>
+        <div class="headline">
+          <%= content_tag(:h2, post) %>
+        </div>
         <div class="col-md-12">
           <% if can? :edit, post %>
-            <%= link_to(t(:edit, attr: Post.model_name.human), edit_council_post_path(post.council, post), class: 'btn default') %>
+            <%= link_to(t(:edit, attr: model_name(Post)), edit_council_post_path(post.council, post), class: 'btn secondary') %>
             <% if post.users.size > 0 %>
-              <p><%= t('posts.remove_user') %></p>
               <div class="panel-body">
                 <table class="table table-bordered">
                   <tbody>
@@ -40,7 +41,7 @@
                       <%= content_tag(:th, model_name(Post)) %>
                       <%= content_tag(:th, model_name(User)) %>
                       <%= content_tag(:th, PostUser.human_attribute_name(:created_at))%>
-                      <%= t(:destroy, attr: nil ) %>
+                      <%= content_tag(:th, t(:destroy, attr: nil)) %>
                     </tr>
                     <% PostUser.from_post(post.id).each do |pu| %>
                       <tr>
