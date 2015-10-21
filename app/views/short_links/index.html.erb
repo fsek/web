@@ -1,0 +1,27 @@
+<% title = models_name(ShortLink) %>
+<% title(title) %>
+
+<div class="headline">
+  <%= content_tag(:h2, title) %>
+</div>
+
+<%= render 'form' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <%= content_tag(:th, ShortLink.human_attribute_name(:link)) %>
+      <%= content_tag(:th, ShortLink.human_attribute_name(:target)) %>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% ShortLink.order(link: :asc).each do |sl| %>
+      <tr>
+        <%= content_tag(:td, sl.link) %>
+        <%= content_tag(:td, link_to(sl.target, sl.target)) %>
+        <%= content_tag(:td, link_to(t(:destroy, attr: nil), short_link_path(sl), method: :delete)) %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

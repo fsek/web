@@ -1,0 +1,12 @@
+<%= simple_form_for(@short_link, html: { class: 'form-inline shortlink-check' } ) do |f| %>
+  <%= f.input_field(:link, class: 'shortlink-field', placeholder: ShortLink.human_attribute_name(:link)) %>
+  <span>
+    <%= fa_icon('arrow-circle-right') %>
+  </span>
+  <%= f.input_field(:target, as: :string, placeholder: ShortLink.human_attribute_name(:target)) %>
+  <%= f.button :submit %>
+
+  <p class="shortlink-notice">
+  <%= t('short_links.already_exists') %>
+  </p>
+<% end %>
