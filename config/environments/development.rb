@@ -21,7 +21,8 @@ Fsek::Application.configure do
   config.action_mailer.default charset: 'utf-8'
   config.action_mailer.default_url_options = { host: 'fsektionen.se' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
+  # Disabled emailing
+  config.action_mailer.perform_deliveries = false
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.smtp_settings = {
@@ -43,7 +44,7 @@ Fsek::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.serve_static_files = true
-  PUBLIC_URL = 'dev.fsektionen.se'
+  PUBLIC_URL = 'localhost:3000'
 
 
   config.action_view.raise_on_missing_translations = true

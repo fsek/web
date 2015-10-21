@@ -5,6 +5,7 @@ sv:
     attributes:
       user:
         email: E-post
+        username: Användarnamn
         firstname: Namn
         program: Program
         start_year: Började år

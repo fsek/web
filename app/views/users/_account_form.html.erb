@@ -20,11 +20,11 @@
   <% end %>
 
   <div class="headline">
-    <%= content_tag(:h4, t(:update, attr: User.human_attribute_name(:email))) %>
+    <%= content_tag(:h4, t(:update, attr: nil)) %>
   </div>
   <%= f.input :email %>
-  <%= f.input :current_password %>
-  <%= f.button :submit %>
+  <%= f.input :current_password, input_html: { class: 'account'} %>
+  <%= f.button :submit, id: 'user_account_submit' %>
   <hr>
   <div class="headline">
     <%= content_tag(:h2) do %>

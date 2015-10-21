@@ -20,7 +20,7 @@ RSpec.describe UsersController, type: :controller do
   describe 'GET #edit' do
     it 'should render edit page' do
       get(:edit)
-      response.code.should eq("200")
+      response.code.should eq('200')
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe UsersController, type: :controller do
     it 'updates passwordt' do
       patch :update_password, user: { password: 'testatesta',
                                       password_confirmation: 'testatesta',
-                                     current_password: '12345678' }
+                                      current_password: '12345678' }
       user.reload
       user.valid_password?('testatesta').should be_truthy
     end

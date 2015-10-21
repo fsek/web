@@ -14,8 +14,10 @@ class News < ActiveRecord::Base
 
   # Scopes
   scope :all_date, -> { order(created_at: :desc) }
-  scope :year, -> (date) { where('created_at >= ? AND created_at <= ?',
-                                 date.beginning_of_year, date.end_of_year)}
+  scope :year, -> (date) {
+    where('created_at >= ? AND created_at <= ?',
+          date.beginning_of_year, date.end_of_year)
+  }
 
   def to_s
     title

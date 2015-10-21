@@ -13,15 +13,19 @@ class UsersController < ApplicationController
     if @user.avatar?
       style = [:original, :medium, :thumb].include?(params[:style]) ? params[:style] : :medium
       send_file(@user.avatar.path(style), filename: @user.avatar_file_name,
-                type: 'image/jpg',
-                disposition: 'inline',
-                x_sendfile: true)
+                                          type: 'image/jpg',
+                                          disposition: 'inline',
+                                          x_sendfile: true)
     end
   end
 
   def edit
     if @tab.nil?
-      @tab = :profile
+      if params[:tab].present?
+        @tab = params[:tab]
+      else
+        @tab = :profile
+      end
     end
   end
 
@@ -36,20 +40,22 @@ class UsersController < ApplicationController
   def update_account
     @tab = :account
     if @user.update_with_password(account_params)
-      redirect_to edit_own_user_path, notice: t('user.account_updated'), tab: :account
+      flash[:notice] = t('user.account_updated')
     else
-      render action: :edit, alert: t('user.password_required')
+      flash[:alert] = t('user.password_required')
     end
+    render :edit
   end
 
   def update_password
     @tab = :password
     if @user.update_with_password(password_params)
-      redirect_to edit_own_user_path, notice: t('user.password_updated')
+      flash[:notice] = t('user.password_updated')
       sign_in @user, bypass: true
     else
-      render action: :edit, alert: t('user.password_required_update')
+      flash[:alert] = t('user.password_required_update')
     end
+    render :edit
   end
 
   private
