@@ -3,7 +3,7 @@ class NewsController < ApplicationController
   load_permissions_and_authorize_resource
 
   def index
-    @news = News.all_date
+    @news = News.all_date.year(Time.zone.now)
   end
 
   def show
@@ -16,19 +16,25 @@ class NewsController < ApplicationController
   end
 
   def create
-    @news.user = current_user
-    @news.save!
-    redirect_to news_path(@news)
+    @news.author = current_user
+    if @news.save
+      redirect_to news_path(@news), notice: alert_create(News)
+    else
+      render :new
+    end
   end
 
   def update
-    @news.update! news_params
-    redirect_to news_path(@news)
+    if @news.update(news_params)
+      redirect_to news_path(@news), notice: alert_update(News)
+    else
+      render :edit
+    end
   end
 
   def destroy
     @news.destroy!
-    redirect_to news_index_path
+    redirect_to news_index_path, notice: alert_destroy(News)
   end
 
   private

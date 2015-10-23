@@ -13,7 +13,6 @@
           <tr>
             <%= content_tag(:th, '#') %>
             <%= content_tag(:th, User.human_attribute_name(:name)) %>
-            <%= content_tag(:th, User.human_attribute_name(:username)) %>
             <%= content_tag(:th, User.human_attribute_name(:email)) %>
             <%= content_tag(:th, User.human_attribute_name(:program)) %>
             <%= content_tag(:th, User.human_attribute_name(:start_year)) %>
@@ -27,7 +26,6 @@
             <tr id="<%= dom_id(user) %>">
               <%= content_tag(:td, user.id) %>
               <%= content_tag(:td, user) %>
-              <%= content_tag(:td, user.username) %>
               <%= content_tag(:td, user.email) %>
               <%= content_tag(:td, user.program) %>
               <%= content_tag(:td, user.start_year) %>

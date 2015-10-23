@@ -4,14 +4,15 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, </h1>
-    <p>
-      You have successfully signed up to example.com,
-      your username is: <%= @user.username %>.<br>
-    </p>
-    <p>
-      To login to the site, just follow this link: <%= @url %>.
-    </p>
-    <p>Thanks for joining and have a great day!</p>
+    <%= content_tag(:h1, t('user.mailer.welcome')) %>
+
+    <%= content_tag(:p, t('user.mailer.registered')) %>
+
+    <%= content_tag(:p, t('user.mailer.how_to_sign_in',
+                          url: @url, mail: @user.email)) %>
+    <%= content_tag(:p, t('user.mailer.enjoy')) %>
+
+    <%= content_tag(:p, t('user.mailer.problem')) %>
+    <%= link_to(t('contact.index'), contacts_path) %>
   </body>
 </html>

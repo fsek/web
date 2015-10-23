@@ -1,8 +1,47 @@
 <%= simple_form_for(user, url: account_own_user_path, method: :patch, html: { class: 'reg-page' }) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :username %>
-    <%= f.input :email %>
-    <%= f.input :current_password %>
-    <%= f.button :submit , class: 'btn btn-u' %>
+  <div class="headline">
+    <%= content_tag(:h2) do %>
+      <%= fa_icon('envelope') %>
+      <%= User.human_attribute_name(:email) %>
+    <% end %>
   </div>
+
+  <% if user.unconfirmed_email.present? %>
+    <%= content_tag(:p, class: 'control-label') do %>
+      <%= fa_icon('close', class: 'icon-background red round-icon') %>
+      <%= content_tag(:span, User.human_attribute_name('unconfirmed_email')) %>:
+      <%= content_tag(:strong, user.unconfirmed_email) %>
+    <% end %>
+    <br>
+    <%= content_tag(:p) do %>
+      <%= t('user.check_email_to_confirm', date: user.confirmation_sent_at.strftime('%Y/%m/%d %H:%M')) %>
+      <%= link_to t('devise.not_receive_confirm'), new_confirmation_path(user) %>
+    <% end %>
+  <% end %>
+
+  <div class="headline">
+    <%= content_tag(:h4, t(:update, attr: nil)) %>
+  </div>
+  <%= f.input :email %>
+  <%= f.input :current_password, input_html: { class: 'account'} %>
+  <%= f.button :submit, id: 'user_account_submit' %>
+  <hr>
+  <div class="headline">
+    <%= content_tag(:h2) do %>
+      <%= fa_icon('user') %>
+      <%= User.human_attribute_name(:member) %>
+    <% end %>
+  </div>
+
+  <% if user.member? %>
+    <%= content_tag(:span, class: 'control-label') do %>
+      <%= fa_icon('check', class: 'icon-background green round-icon') %>
+      <%= user.member_at.strftime('%Y/%m/%d') %>
+    <% end %>
+  <% else %>
+    <%= content_tag(:span, class: 'control-label') do %>
+      <%= fa_icon('close', class: 'icon-background red round-icon') %>
+      <%= t('user.contact_for_membership') %>
+    <% end %>
+  <% end %>
 <% end %>

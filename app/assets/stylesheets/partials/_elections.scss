@@ -23,6 +23,16 @@
       padding: 5px;
     }
   }
+
+  .btn {
+    &.primary {
+      &.center {
+        display: block;
+        font-size: 16px;
+        margin: auto;
+      }
+    }
+  }
 }
 
 .election-logo {
@@ -39,22 +49,6 @@ img {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-  }
-}
-
-.btn {
-  &.election {
-    background-color: transparent;
-    border-color: $black;
-    border-radius: 10px;
-    color: $black;
-    font-size: 18px;
-    padding: 10px 25px;
-
-    &:hover {
-      border-color: $main-color;
-      color: $main-color;
-    }
   }
 }
 

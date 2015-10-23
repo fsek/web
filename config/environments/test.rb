@@ -38,5 +38,9 @@ Fsek::Application.configure do
   config.active_support.deprecation = :stderr
   PUBLIC_URL = "dev.fsektionen.se"
 
+  config.action_controller.asset_host = 'example.com'
+  config.action_mailer.default_url_options = { host: 'example.com' }
+  config.action_mailer.asset_host = 'http://example.com'
+
   config.action_view.raise_on_missing_translations = true
 end

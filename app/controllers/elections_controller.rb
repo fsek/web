@@ -5,8 +5,14 @@ class ElectionsController < ApplicationController
 
   def index
     if @election.instance_of?(Election)
-      @grid_election = initialize_grid(@election.current_posts, name: 'election')
-      @grid_termins = initialize_grid(@election.posts.termins, name: 'election')
+      @grid_election = initialize_grid(@election.current_posts,
+                                       name: 'election',
+                                       order: 'posts.title',
+                                       order_direction: :asc)
+      @grid_termins = initialize_grid(@election.posts.termins,
+                                      name: 'termin',
+                                      order: 'posts.title',
+                                      order_direction: :asc)
     else
       @election = nil
     end

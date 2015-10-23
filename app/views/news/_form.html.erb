@@ -1,21 +1,9 @@
-<%= form_for(@news, :html => {  :autocomplete => 'off' }) do |f| %>
-	<%= render 'shared/form_errors',current: @news%>
-  	<%= f.label 'Titel', class:  'reg-label'%>
-  	<div class="input-group margin-bottom-20">					
-		<%= f.text_field :title, class:  'form-control',:placeholder => 'Titel'%>
-  	</div>
-  	<%= f.label 'Innehåll', class:  'reg-label'%>
-  	<div class="input-group margin-bottom-20">		  	  		 		  	
-  		<%= f.text_area :content, class:  'form-control',:placeholder => 'Innehåll', size: "120x15" %>
-  	</div>
-  	<%= f.label 'Visningsbild', class:  'reg-label'%>
-  	<div class="input-group margin-bottom-20">		  	
-  		<% if @news.image != nil%>
-  			<%= image_tag(@news.image(:thumb))%>
-		<% end %>  		 	 		  	
-  		<%= f.file_field :image, class:  'form-control' %>
-  	</div>
-  	<div class="row">
-  			<%= f.submit "Spara",class:  'btn-u pull-right' %>
-  	</div>
+<%= simple_form_for(@news) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :content %>
+  <% if @news.image.present? %>
+    <%= image_tag(@news.image(:thumb)) %>
+  <% end %>
+  <%= f.input :image %>
+  <%= f.button :submit %>
 <% end %>

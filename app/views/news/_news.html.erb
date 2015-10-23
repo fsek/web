@@ -3,15 +3,16 @@
     <h4><%=link_to(news.title,news)%></h4>
     <%=simple_format(truncate(news.content,length: 140, separator: '', escape: false){ link_to "Läs mer", news })%>
     <ul class="list-unstyled">
-      <% if news.user %>
+      <% if news.author %>
         <li>
-          <%= link_to(news.user) do %>
-            <%= fa_icon('user') %> <%= news.user %>
+          <%= link_to(news.author) do %>
+            <%= fa_icon('user') %> <%= news.author %>
           <% end %>
         </li>
       <% end %>
       <li>
-        <%= fa_icon('calendar') %> <%=news.created_at%>
+        <%= fa_icon('calendar') %>
+        <%= news.created_at.strftime('%Y/%m/%d %H:%M') %>
       </li>
     </ul>
   </div>

@@ -43,7 +43,6 @@ sv:
     comment: Kommentar
     access_code: Kod
     password: Lösenord
-    username: Användarnamn
     password_confirmation: Bekräfta lösenord
     civic: Personnummer (10 siffror i följd)
     purpose: Syfte

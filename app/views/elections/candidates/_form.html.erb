@@ -1,6 +1,6 @@
 <%= simple_form_for(@candidate) do |f| %>
   <% if @candidate.new_record? %>
-    <%= f.association :post, collection: @election.current_posts %>
+    <%= f.association :post, collection: @election.current_posts.title %>
     <%= f.association :user, collection: [ current_user ] %>
     <%= f.button :submit, id: 'candidate-submit' %>
   <% else %>

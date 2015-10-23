@@ -1,10 +1,9 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 reg-page">
-			<%= label_tag 'Redigera nyhet',nil, class:  'reg-header'%>
-			<%= render 'form'%>			
-			<%= link_to 'Visa nyhet', @news %><br>
-			<%= link_to 'Tillbaka till nyheter', news_index_path %>
-		</div>
-	</div>
+<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
+  <div class="headline">
+    <%= content_tag(:h2, t(:edit, attr: model_name(News))) %>
+  </div>
+  <%= render 'form'%>
+  <hr>
+  <%= link_to(t(:show, attr: model_name(News)), news_path(@news)) %><br>
+  <%= link_to(t(:index, attr: models_name(News)), news_index_path) %>
 </div>

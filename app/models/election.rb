@@ -58,9 +58,9 @@ class Election < ActiveRecord::Base
   # Returns the current posts
   def current_posts
     if view_status == :after
-      posts.title.not_termins
+      posts.not_termins
     else
-      posts.title
+      posts
     end
   end
 

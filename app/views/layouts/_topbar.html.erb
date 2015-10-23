@@ -3,29 +3,40 @@
     <ul class="loginbar pull-right">
       <% if user_signed_in? %>
         <% if current_user.permissions.count > 0 %>
-          <%= render 'layouts/admin_dropdown' %>
-          <li class="devider"></li>
+          <%= render('layouts/admin_dropdown') %>
+          <%= content_tag(:li, nil, class: 'devider') %>
         <% end %>
-        <%= content_tag(:li, link_to(fa_icon("calendar"), :calendars)) %>
-        <li class="devider"></li>
-        <li class="dropdown">
-          <%= link_to(current_user, class: "dropdown-toggle", 
-                                    data: { toggle: "dropdown", delay: "0", 'close-others' => "false" }) do %>
-            <%= fa_icon("user") %> <%= content_tag(:span, current_user.to_s) %>
+
+        <%= content_tag(:li, link_to(fa_icon('calendar'), :calendars)) %>
+
+        <%= content_tag(:li, nil, class: 'devider') %>
+
+        <li class="dropdown user">
+          <%= link_to(current_user, class: 'dropdown-toggle', data: { toggle: 'dropdown', delay: '0', 'close-others': 'false' }) do %>
+            <%= fa_icon("user") %> <%= content_tag(:span, current_user) %>
           <% end %>
+
           <ul class="dropdown-menu pull-right">
-            <li><%= link_to t('user.settings'), :edit_own_user %></li>
-            <li><%= link_to t('devise.sign_out'), :destroy_user_session, method: :delete %></li>
-          </ul>
+            <%= content_tag(:li, link_to(t('user.settings'), edit_own_user_path)) %>
+            <%= content_tag(:li, link_to(t('devise.sign_out'), destroy_user_session_path,
+                                         method: :delete)) %>
+        </ul>
         </li>
       <% else %>
-        <li>
-          <%= link_to(fa_icon("sign-in") + ' '+ t('devise.sign_in'), new_user_session_path) %>
-        </li>
-        <li class="devider"> <li>
-            <%= link_to(fa_icon("plus") + ' ' + t('devise.sign_up'), new_user_registration_path) %>
-          </li>
+        <%= content_tag(:li) do %>
+          <%= link_to(new_user_session_path) do %>
+            <%= fa_icon('sign-in')%> <%= t('devise.sign_in') %>
+          <% end %>
         <% end %>
+
+        <%= content_tag(:li, nil, class: 'devider') %>
+
+        <%= content_tag(:li) do %>
+          <%= link_to(new_user_registration_path) do %>
+            <%= fa_icon('plus')%> <%= t('devise.sign_up') %>
+          <% end %>
+        <% end %>
+      <% end %>
     </ul>
   </div>
 </div>

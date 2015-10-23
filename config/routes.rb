@@ -46,8 +46,6 @@ Fsek::Application.routes.draw do
     end
 
     resources :users, path: :anvandare, only: [:show] do
-      patch :search, on: :collection
-      patch :remove_post, on: :member
       get :avatar, on: :member
     end
 
