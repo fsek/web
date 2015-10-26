@@ -4,8 +4,8 @@ sv:
       user: Användare
     attributes:
       user:
-        username: Användarnamn
         email: E-post
+        username: Användarnamn
         firstname: Namn
         program: Program
         start_year: Började år
@@ -21,6 +21,15 @@ sv:
         password: Lösenord
         confirmed_at: E-post bekräftades
         member_at: Medlemskap bekräftades
+        remember_me: Kom ihåg mig
+        unconfirmed_email: Obekräftad epost
+        member: Medlemskap
+        confirmed_email: Bekräftad epost
   user:
     attributes_missing: du måste fylla i dina användaruppgifter.
     edit_information: Redigera användaruppgifter
+    settings: Kontoinställningar
+    account_updated: Kontoinställningar uppdaterades
+    password_required: Lösenord måste fyllas i för att ändra uppgifter
+    password_required_update: Nuvarande lösenord måste fyllas i för att byta lösenord
+    password_updated: Lösenordet uppdaterades.

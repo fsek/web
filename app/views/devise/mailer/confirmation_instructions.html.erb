@@ -1,5 +1,9 @@
-<p>Välkommen <%= @email %>!</p>
+<p>
+  <%= t('welcome')%> <%= @email %>
+</p>
 
-<p>Du kan bekräfta kontot med länken nedan:</p>
-
-<p><%= link_to 'Bekräfta mitt konto', confirmation_url(@resource, :confirmation_token => @token) %></p>
+<%= simple_format(t('devise.mailer.confirmation_instructions.description_link')) %>
+<p>
+<%= link_to(t('devise.mailer.confirmation_instructions.link'),
+            user_confirmation_url(confirmation_token: @token)) %>
+</p>

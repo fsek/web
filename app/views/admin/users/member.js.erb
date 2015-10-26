@@ -1,6 +1,6 @@
 <% if @success %>
-  $('#<%= dom_id(@user) %> td.member_tag').html('<%= j fa_icon('check-square-o') %>');
-  $('#<%= dom_id(@user) %> td.member_action').html('<%= j link_to(t('user.unmake_member'), unmember_admin_user_path(@user), class: 'btn danger', remote: true, method: :post) %>');
+  $('#<%= dom_id(@user) %> td.member-tag').html('<%= j fa_icon('check-square-o') %>');
+  $('#<%= dom_id(@user) %> td.member-action').html('<%= j link_to(t('user.unmake_member'), unmember_admin_user_path(@user), class: 'btn danger', remote: true, method: :post) %>');
   $('#<%= dom_id(@user) %> td.status').html('');
   $('#<%= dom_id(@user) %>').style('background: #eb7125;');
 <% else %>

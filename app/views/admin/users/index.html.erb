@@ -11,42 +11,41 @@
       <table class="table">
         <thead>
           <tr>
-            <%= content_tag(:th, '#') %>
-            <%= content_tag(:th, User.human_attribute_name(:name)) %>
-            <%= content_tag(:th, User.human_attribute_name(:username)) %>
-            <%= content_tag(:th, User.human_attribute_name(:email)) %>
-            <%= content_tag(:th, User.human_attribute_name(:program)) %>
-            <%= content_tag(:th, User.human_attribute_name(:start_year)) %>
-            <%= content_tag(:th, t('user.member')) %>
-            <%= content_tag(:th, t('user.membership?')) %>
-          </tr>
+            <th>#</th>
+            <th><%= User.human_attribute_name(:name) %></th>
+            <th><%= User.human_attribute_name(:username) %></th>
+            <th><%= User.human_attribute_name(:email) %></th>
+            <th><%= User.human_attribute_name(:program) %></th>
+            <th><%= User.human_attribute_name(:start_year) %></th>
+            <th><%= t('user.member') %></th>
+            <th><%= t('user.membership?') %></th>
+        </tr>
         </thead>
 
         <tbody>
           <% @users.each do |user| %>
             <tr id="<%= dom_id(user) %>">
-              <%= content_tag(:td, user.id) %>
-              <%= content_tag(:td, user) %>
-              <%= content_tag(:td, user.username) %>
-              <%= content_tag(:td, user.email) %>
-              <%= content_tag(:td, user.program) %>
-              <%= content_tag(:td, user.start_year) %>
-              <%= content_tag(:td, class: 'member_tag') do %>
+              <td><%= user.id %></td>
+              <td><%= user %></td>
+              <td><%= user.email %></td>
+              <td><%= user.program %></td>
+              <td><%= user.start_year %></td>
+              <td class="member-tag">
                 <% if user.member? %>
                   <%= fa_icon('check-square-o') %>
                 <% else %>
                   <%= fa_icon('square-o') %>
                 <% end %>
-              <% end %>
-              <%= content_tag(:td, class: 'member_action') do %>
+              </td>
+              <td class="member-action">
                 <% if user.member? %>
                   <%= link_to(t('user.unmake_member'), unmember_admin_user_path(user),
-                             class: 'btn danger', remote: true, method: :post) %>
+                              class: 'btn danger', remote: true, method: :post) %>
                 <% else %>
                   <%= link_to(t('user.make_member'), member_admin_user_path(user),
-                             class: 'btn secondary', remote: true, method: :post) %>
+                              class: 'btn secondary', remote: true, method: :post) %>
                 <% end %>
-              <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>

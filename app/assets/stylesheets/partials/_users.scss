@@ -7,3 +7,26 @@
   max-width: 60%;
 }
 
+.user {
+  .round-icon {
+    border: 50px;
+    border-radius: 50%;
+    font-size: 18px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    width: 22px;
+  }
+
+  .icon-background {
+    color: $white;
+
+    &.green {
+      background: $unify-green;
+    }
+
+    &.red {
+      background: $unify-red;
+    }
+  }
+}

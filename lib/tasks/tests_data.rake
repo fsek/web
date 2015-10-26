@@ -48,13 +48,13 @@ namespace :db do
     PermissionPost.find_or_create_by!(permission: perm_admin, post: spindel)
     PermissionPost.find_or_create_by!(permission: perm_nyckelpiga, post: nyckelpiga)
 
-    u = User.find_or_initialize_by(username: 'admin', email: 'admin@da.vid',
+    u = User.find_or_initialize_by(email: 'admin@fsektionen.se',
                                    firstname: 'David-Admin', lastname: 'Wessman',
                                    program: 'Teknisk Fysik', start_year: 2013)
     u.password = 'passpass'
     u.confirmed_at = Time.zone.now
     u.member_at = Time.zone.now
-    u.as_f_member.save!
+    u.save!
     if u.present?
       PostUser.find_or_create_by(post: spindel, user: u)
       PostUser.find_or_create_by(post: prylmast, user: u)
@@ -62,13 +62,13 @@ namespace :db do
       PostUser.find_or_create_by(post: sexmast, user: u)
     end
 
-    a = User.find_or_initialize_by(username: 'user', email: 'david@da.vid',
+    a = User.find_or_initialize_by(email: 'user@fsektionen.se',
                                    firstname: 'David', lastname: 'Wessman',
                                    program: 'Teknisk Fysik', start_year: 2013)
     a.confirmed_at = Time.zone.now
     a.member_at = Time.zone.now
     a.password = 'passpass'
-    a.as_f_member.save!
+    a.save!
     if a.present?
       PostUser.find_or_create_by(post: prylmast, user: a)
     end
