@@ -1,7 +1,9 @@
 <% title(model_name(Council)) %>
 <div class="col-md-8 col-md-offset-2 col-sm-12">
   <div class="headline">
-    <%= content_tag(:h2, t(:councils)) %>
+    <h2>
+      <%= t(:councils) %>
+    </h2>
     <span class="council dropdown">
       <%= render '/elements/dropdown_button', collection: @councils, controller: :councils, action: :show, title: models_name(Council) %>
     </span>
@@ -9,6 +11,6 @@
   <%= simple_format(t(:councils_first)) %>
   <%= simple_format(t(:councils_second)) %>
   <p>
-  <%= t(:councils_third) %> <%= render partial: "contacts/contact", locals: {name: 'Vice ordförande'}%>
+    <%= t(:councils_third) %> <%= render partial: "contacts/contact", locals: {name: 'Vice ordförande'}%>
   </p>
 </div>
