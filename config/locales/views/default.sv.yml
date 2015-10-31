@@ -1,23 +1,36 @@
 sv:
-  new: Ny %{attr}
-  edit: Redigera %{attr}
-  index: Alla %{attr}
-  add: Lägg till %{attr}
-  show: Visa %{attr}
-  save: Spara %{attr}
-  search: Sök
+  add: Lägg till
+  add_attr: Lägg till %{attr}
+  admin: Administratör
   back: Tillbaka
   close: Stäng
   destroy: Förinta
-  subscribe: Prenumerera
+  edit: Redigera
+  edit_attr: Redigera %{attr}
   here: här
   hide: Dölj
+  index: Alla
+  index_attr: Alla %{attr}
+  new: Ny
+  new_attr: Ny %{attr}
+  new_t: Nytt
+  new_t_attr: Nytt %{attr}
+  save: Spara
+  save_attr: Spara %{attr}
+  search: Sök
+  show: Visa
+  show_attr: Visa %{attr}
+  subscribe: Prenumerera
+  update: Uppdatera
+  update_attr: Uppdatera %{attr}
+  welcome: Välkommen
 
   "yes": Ja
   "no": Nej
 
   back_to_root: Tillbaka till startsidan
   back_to: Tillbaka till %{attr}
+  back: Tillbaka
   for: "%{a} för %{b}"
 
   links: Länkar
@@ -37,3 +50,6 @@ sv:
   councils_third: "Kontakta då "
 
   today: idag
+
+  alert:
+    error: Fel

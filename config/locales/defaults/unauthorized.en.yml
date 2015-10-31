@@ -1,0 +1,9 @@
+en:
+  unauthorized:
+    default: 'There where errors with your permissions'
+    manage:
+      all: 'Not authorized for %{action} %{subject}'
+      user: 'Not authorized for handling user accounts'
+    new:
+      nomination: 'You need to sign in to be able to nominate'
+      candidate: 'You need to sign in to be able to candidate'

@@ -1,0 +1,11 @@
+sv:
+  unauthorized:
+    default: Någonting blev fel (rättigheter)
+    manage:
+      all: Inte auktoriserad för att %{action} %{subject}.
+      user: "Inte auktoriserad för att hantera användarkonton."
+    update:
+      project: "Inte tillåten att uppdatera projektet."
+    new:
+      nomination: Du måste logga in för att kunna nominera.
+      candidate: Du måste logga in för att kunna kandidera.

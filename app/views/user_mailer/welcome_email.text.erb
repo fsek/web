@@ -1,9 +1,10 @@
-Welcome to example.com, <%= @user.username %>
+<%= t('user.mailer.welcome') %>
 ===============================================
- 
-You have successfully signed up to example.com,
-your username is: <%= @user.username %>.
- 
-To login to the site, just follow this link: <%= @url %>.
- 
-Thanks for joining and have a great day!
+<%= t('user.mailer.registered') %>
+
+<%= t('user.mailer.how_to_sign_in', url: @url, mail: @user.email) %>
+
+<%= t('user.mailer.enjoy') %>
+
+<%= t('user.mailer.problem') %>
+<%= link_to(t('contact.index'), contacts_path) %>

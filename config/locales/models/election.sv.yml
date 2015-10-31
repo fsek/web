@@ -6,19 +6,21 @@ sv:
       election: Val
     attributes:
       election:
-        start: Startdatum
-        end: Stängning - teminsvalda poster
-        closing: Stängning - allt
-        visible: Synlig
-        url: Url
-        title: Titel
-        description: Beskrivning
         candidate_mail: Text till kandideringsmail
-        nominate_mail: Text till nomineringsmail
-        text_before: Text före valet
-        text_during: Text under valet
-        text_after: Text efter valet
-        extra_text: Extra text
         candidate_mail_star: Text till kandideringsmail för stjärnpost
+        closing: Stängning - allt
+        current_election: Aktuellt val
+        description: Beskrivning
+        end: Stängning - teminsvalda poster
+        extra_text: Extra text
         mail_link: Länk i kandideringsmail
         mail_styrelse_link: Länk i kandideringsmail för styrelsepost
+        nominate_mail: Text till nomineringsmail
+        start: Startdatum
+        text_after: Text efter valet
+        text_before: Text före valet
+        text_during: Text under valet
+        title: Titel
+        updated_at: Uppdaterad
+        url: Url
+        visible: Synlig

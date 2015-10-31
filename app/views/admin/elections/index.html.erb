@@ -1,39 +1,42 @@
-<div class="container">
-  <div class="col-md-12">
-    <div class="panel panel-orange margin-bottom-40">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <i class="fa fa-tasks"></i> Sektionsval</h3>
-        <%=link_to('Nytt val',new_admin_election_path, class: 'btn btn-u')%>
-      </div>
-      <table class="table">
-        <thead>
-        <tr>
-          <th>Titel</th>
-          <th>Url</th>
-          <th>Synlig</th>
-          <th>Öppnar</th>
-          <th>Stänger</th>
-          <th>Aktuellt val?</th>
-          <th>Uppdaterad</th>
-          <th>Redigera</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @elections.each do |election| %>
-            <tr>
-              <td><%= election.title %></td>
-              <td><%= election.url %></td>
-              <td><%= election.visible %></td>
-              <td><%= election.start%></td>
-              <td><%= election.end%></td>
-              <td><%= (election == Election.current) ? 'Sant': 'Falskt'%></td>
-              <td><%= election.updated_at %></td>
-              <td><%= link_to('Redigera', admin_election_path(election), class: "btn btn-u") %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+<div class="col-md-12">
+  <div class="panel panel-orange margin-bottom-40">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= fa_icon('tasks') %>
+        <%= model_name(Election) %>
+      </h3>
     </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= Election.human_attribute_name(:title) %></th>
+          <th><%= Election.human_attribute_name(:url) %></th>
+          <th><%= Election.human_attribute_name(:visible) %></th>
+          <th><%= Election.human_attribute_name(:start) %></th>
+          <th><%= Election.human_attribute_name(:end) %></th>
+          <th><%= Election.human_attribute_name(:current_election) %></th>
+          <th><%= Election.human_attribute_name(:updated_at) %></th>
+          <th>
+            <%= link_to(t(:new_t_attr, attr: model_name(Election)),
+                        new_admin_election_path, class: 'btn secondary small') %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @elections.each do |election| %>
+          <tr>
+            <td><%= election.title %></td>
+            <td><%= election.url %></td>
+            <td><%= election.visible %></td>
+            <td><%= l(election.start) %></td>
+            <td><%= l(election.end) %></td>
+            <td><%= (election == Election.current) ? t(:yes) : t(:no) %></td>
+            <td><%= l(election.updated_at) %></td>
+            <td><%= link_to(t(:edit), admin_election_path(election),
+                            class: 'btn primary') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

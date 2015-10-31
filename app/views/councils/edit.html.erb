@@ -1,19 +1,28 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <%= content_tag(:h3, t(:edit, attr: model_name(Council))) %>
+    <h3>
+      <%= t(:edit_attr, attr: model_name(Council)) %>
+    </h3>
   </div>
   <%= render 'form'%>
-
-  <%= link_to(t(:add, attr: model_name(Post)), new_council_post_path(@council),
-                                               class: "btn-u") %>
-  <%= link_to(t(:index, attr: models_name(Post)), council_posts_path(@council),
-                                                  class: "btn-u") %>
+  <hr>
+  <%= link_to(t(:add_attr, attr: model_name(Post)),
+              new_council_post_path(@council),
+              class: 'btn secondary') %>
+  <%= link_to(t(:index_attr, attr: models_name(Post)),
+              council_posts_path(@council),
+              class: 'btn secondary') %>
   <% if @council.page.present?%>
-    <%= link_to(t(:edit, attr: model_name(Page)), page_path(@page),
-                                                class: "btn-u") %>
+    <%= link_to(t(:edit_attr, attr: model_name(Page)),
+                page_path(@page),
+                class: 'btn secondary') %>
   <% end %>
   <hr>
-  <%= link_to(t(:show, attr: model_name(Council)), @council, class: "btn-u") %>
-  <%= link_to(t(:index, attr: models_name(Council)), councils_path,
-                                                     class: "btn btn-default")%>
+  <%= link_to(t(:show_attr, attr: model_name(Council)),
+              council_path(@council),
+              class: 'btn secondary') %>
+
+  <%= link_to(t(:index_attr, attr: models_name(Council)),
+              councils_path,
+              class: 'btn secondary')%>
 </div>

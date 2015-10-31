@@ -1,4 +1,3 @@
-
 Fsek::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -36,7 +35,11 @@ Fsek::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
-  PUBLIC_URL = "dev.fsektionen.se"
+  PUBLIC_URL = "example.com"
+
+  config.action_controller.asset_host = 'example.com'
+  config.action_mailer.default_url_options = { host: 'example.com' }
+  config.action_mailer.asset_host = 'http://example.com'
 
   config.action_view.raise_on_missing_translations = true
 end
