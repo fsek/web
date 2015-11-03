@@ -4,23 +4,24 @@ sv:
       event: Event
     attributes:
       event:
-        title: Titel
-        short: Kort titel
-        author: Upplagd av
-        description: Beskrivning
-        location: Plats
-        starts_at: Startar
-        ends_at: Slutar
         all_day: Heldag
+        author: Upplagd av
+        cash: Kontant
         category: Kategori
+        council: Utskott
+        created_at: Skapat
+        description: Beskrivning
+        dot: Prickar
+        drink: Dryck
+        ends_at: Slutar
+        food: Mat
         image: Bild
-        signup: Med anmälan
         last_reg: Sista anmälningsdatum
         last_unreg: Sista avanmälningsdatum
+        location: Plats
+        short: Kort titel
+        signup: Med anmälan
         slots: Antal platser
-        drink: Dryck
-        food: Mat
-        cash: Kontant
-        dot: Prickar
-        created_at: Skapat
+        starts_at: Startar
+        title: Titel
         updated_at: Uppdaterat

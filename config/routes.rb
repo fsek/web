@@ -1,9 +1,4 @@
 Fsek::Application.routes.draw do
-
-  post "githook" => "githook#index"
-  get "githook/dev" => "githook#dev"
-  get "githook/master" => "githook#master"
-
   # Resources on the page
   get '/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=f1fbd74cac'),
                    as: :vecktorn_signup, status: 301
@@ -134,18 +129,11 @@ Fsek::Application.routes.draw do
       get :export, on: :collection
     end
 
-    resources :events, only: [:index, :show], path: :evenemang do
-      # resource :event_registration, path: :registrering, as: :registration
-    end
-
-    # resources :event_registrations, path: :registrering, only: :index
+    resources :events, only: :show, path: :evenemang
 
     namespace :admin do
-      resources :events, path: :evenemang do
-        # resources :event_registrations, path: :registrering, as: :registration
-      end
+      resources :events, path: :evenemang
     end
-
 
     resources :work_posts, path: :jobbportal, except: :show
 
