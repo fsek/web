@@ -1,5 +1,7 @@
 <div class="col-md-12">
 	<div id='event_calendar'></div>
 	<hr>
-	<%= link_to(t('calendar.subscription'), 'webcal://'+PUBLIC_URL+'/events/export.ics')%>
+  <%= link_to(t('calendar.subscription'),
+              export_calendars_url(protocol: 'webcal',
+                                   format: 'ics'))%>
 </div>

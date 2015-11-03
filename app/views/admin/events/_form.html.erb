@@ -14,7 +14,7 @@
         <%= f.input :location %>
         <%= f.input :image, as: :file %>
         <%= f.association :council, collection: Council.titles %>
-        <%= f.input :category, collection: [[t(:nollningen), :nollning]] %>
+        <%= f.input :category %>
       </div>
 
       <div id="dates" class="profile-edit tab-pane fade in <%=@tab == :dates ? 'active' : ''%>">

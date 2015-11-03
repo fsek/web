@@ -1,13 +1,13 @@
 <div class="top">
   <div class="container">
     <ul class="loginbar pull-right">
+      <li><%= link_to(fa_icon('calendar'), calendars_path, data: { no_turbolink: false }) %></li>
+        <li class="devider"></li>
       <% if user_signed_in? %>
         <% if current_user.permissions.count > 0 %>
           <%= render 'layouts/admin_dropdown' %>
           <li class="devider"></li>
         <% end %>
-        <li><%= link_to(fa_icon('calendar'), calendars_path) %></li>
-        <li class="devider"></li>
         <li class="dropdown">
           <%= link_to(current_user, class: 'dropdown-toggle',
                       data: { toggle: 'dropdown', delay: '0', 'close-others': 'false' }) do %>

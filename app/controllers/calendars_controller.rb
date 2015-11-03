@@ -11,13 +11,13 @@ class CalendarsController < ApplicationController
 
   def export
     @calendar = Icalendar::Calendar.new
-    @events.each do |e|
-      @calendar.add_event(e)
+    Event.calendar.each do |e|
+      @calendar.add_event(e.ical)
     end
 
     @calendar.publish
-    respond_to do |f|
-      f.ics
+    respond_to do |format|
+      format.ics
     end
   end
 end
