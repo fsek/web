@@ -1,9 +1,6 @@
 <% if @destroyed %>
-  $('#<%= dom_id(@user) %> td.member-tag').html('<%= j fa_icon('square-o') %>');
   $('#<%= dom_id(@user) %> td.member-action').html('<%= j link_to(t('user.make_member'), member_admin_user_path(@user), class: 'btn secondary', remote: true, method: :post) %>');
   $('#<%= dom_id(@user) %> td.status').html('');
-  $('#<%= dom_id(@user) %>').style('background: #eb7125;');
 <% else %>
   $('#<%= dom_id(@user) %> td.status').html('');
-  $('#<%= dom_id(@user) %>').style('background: #eb7125;');
 <% end %>

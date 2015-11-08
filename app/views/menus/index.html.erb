@@ -27,12 +27,22 @@
           <tr>
             <td><%= menu.id %></td>
             <td><%= menu.name %></td>
-            <td><%= menu.location %></td>
-            <td><%= menu.visible %></td>
-            <td><%= menu.turbolinks %></td>
-            <td><%= menu.blank_p %></td>
-            <td><%= link_to(menu.link, menu.link) %></td>
-            <td><%= l(menu.updated_at) %></td>
+            <td><%= t(%(menu.#{menu.location})) %></td>
+            <td><%= menu.visible ? t(:yes) : t(:no) %></td>
+            <td><%= menu.turbolinks ? t(:yes) : t(:no) %></td>
+            <td><%= menu.blank_p ? t(:yes) : t(:no) %></td>
+            <td>
+              <%= link_to(menu.link) do %>
+                <%= truncate(menu.link, length: 10) %>
+              <% end %>
+            </td>
+            <td>
+              <% if menu.updated_at.present? %>
+                <%= l(menu.updated_at) %>
+              <% else %>
+                -
+              <% end %>
+            </td>
             <td>
               <%= link_to(t(:edit), edit_menu_path(menu),
                           class: 'btn secondary small') %>

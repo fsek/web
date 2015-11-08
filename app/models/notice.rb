@@ -17,19 +17,16 @@ class Notice < ActiveRecord::Base
   scope :published, -> { order(sort: :asc).d_published.not_removed }
 
   # Assures dates are set for queries
-  # /d.wessman
   before_create :check_dates
   before_update :check_dates
 
   # Methods
   # Return: all published and public notices
-  # /d.wessman
   def self.public_published
     published.public_n
   end
 
   # Action: Change display of current notice ()
-  # /d.wessman
   def display(bool)
     if bool == true
       update(d_publish: Time.zone.today - 2.days, d_remove: '2094-03-25')
@@ -44,8 +41,7 @@ class Notice < ActiveRecord::Base
   end
 
   # Assures dates are set (if not present) to allow for good queries
-  # Also my 100th birthday!
-  # /d. wessman
+  # Also David Wessmans 100th birthday!
   def check_dates
     if d_publish.nil?
       self.d_publish = Time.zone.today
