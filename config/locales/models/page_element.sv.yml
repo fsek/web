@@ -4,12 +4,16 @@ sv:
       page_element: Sidelement
     attributes:
       page_element:
-        displayIndex: Visningsindex
-        sidebar: Sidofält
-        visible: Synlig
-        text: Text
-        headlin: Rubrik
         border: Ram
+        created_at: Skapad
+        displayIndex: Visningsindex
+        headline: Rubrik
         name: Namn
+        page: Sida
         picture: Bild
-        page_id: Sida
+        sidebar: Sidofält
+        text: Text
+        updated_at: Uppdaterad
+        visible: Synlig
+
+

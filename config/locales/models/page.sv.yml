@@ -6,7 +6,9 @@ sv:
         other: Sidor
     attributes:
       page:
-        council_id: Utskott
+        council: Utskott
+        created_at: Skapad
+        title: Titel
+        updated_at: Uppdaterad
         url: Url
         visible: Synlig
-        title: Titel

@@ -87,7 +87,7 @@ Fsek::Application.routes.draw do
     resources :menus, path: :meny, except: :show
 
     resources :pages, path: :sida do
-      resources :page_elements, path: :element, on: :member, except: :show
+      resources :page_elements, path: :element, except: :show
     end
 
     resources :posts, path: :poster, only: :index do
@@ -115,7 +115,7 @@ Fsek::Application.routes.draw do
         patch :add_user, on: :member
       end
       resource :page, path: :sida do
-        resources :page_elements, path: :element, on: :member
+        resources :page_elements, path: :element
       end
     end
 
