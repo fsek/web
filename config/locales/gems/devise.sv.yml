@@ -34,7 +34,7 @@ sv:
       timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
       inactive: 'Ditt konto har inte aktiverats ännu.'
       user:
-        not_found_in_database: 'Inget konto finns registrerat med detta användarnamn.'
+        not_found_in_database: 'Inget konto finns registrerat med angiven epostadress.'
     sessions:
       signed_in: 'Loggade in.'
       signed_out: 'Loggade ut.'

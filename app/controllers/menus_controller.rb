@@ -14,7 +14,7 @@ class MenusController < ApplicationController
 
   def create
     if @menu.save
-      redirect_to menus_path, notice: 'Menyn skapades.'
+      redirect_to menus_path, notice: alert_create(Menu)
     else
       render action: :new
     end
@@ -22,16 +22,16 @@ class MenusController < ApplicationController
 
   def update
     if @menu.update(menu_params)
-      redirect_to edit_menu_path(@menu), notice: 'Menyn uppdaterades.'
+      redirect_to edit_menu_path(@menu), notice: alert_update(Menu)
     else
-      render action: 'edit'
+      render :edit
     end
 
   end
 
   def destroy
     @menu.destroy
-    redirect_to menus_url, notice: 'Menyn raderades'
+    redirect_to menus_url, notice: alert_destroy(Menu)
   end
 
   private

@@ -5,6 +5,7 @@ sv:
   back: Tillbaka
   close: Stäng
   destroy: Förinta
+  destroy_attr: Förinta %{attr}
   edit: Redigera
   edit_attr: Redigera %{attr}
   here: här

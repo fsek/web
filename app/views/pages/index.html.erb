@@ -1,35 +1,48 @@
-<div class="container">
-  <div class="col-md-12">
-    <div class="panel panel-orange margin-bottom-40">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <i class="fa fa-tasks"></i> Sidor</h3>
-        <%= link_to('Skapa ny', new_page_path, class: 'btn btn-u') %>
-      </div>
-      <table class="table">
-        <thead>
+<div class="col-md-12">
+  <div class="panel panel-orange margin-bottom-40">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= fa_icon('tasks') %> <%= models_name(Page) %>
+      </h3>
+    </div>
+    <table class="table">
+      <thead>
         <tr>
           <th>Id</th>
-          <th>Url</th>
-          <th>Synlig</th>
-          <th>Utskott</th>
-          <th>Uppdaterad</th>
-          <th>Redigera</th>
+          <th><%= Page.human_attribute_name(:url) %></th>
+          <th><%= Page.human_attribute_name(:visible) %></th>
+          <th><%= Page.human_attribute_name(:council) %></th>
+          <th><%= Page.human_attribute_name(:created_at) %></th>
+          <th><%= Page.human_attribute_name(:updated_at) %></th>
+          <th>
+            <%= link_to(t(:new_attr, attr: model_name(Page)),
+                        new_page_path, class: 'btn primary small') %>
+          </th>
         </tr>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
         <% @pages.each do |page| %>
-            <tr>
-              <td><%= page.id %></td>
-              <td><%= page.url %></td>
-              <td><%= page.visible %></td>
-              <td><%= (page.council.nil?) ? link_to(page.council, page.council) : 'Inget' %></td>
-              <td><%= page.updated_at %></td>
-              <td><%= link_to('Redigera', edit_page_path(page), class: "btn btn-u") %></td>
-            </tr>
+          <tr>
+            <td><%= page.id %></td>
+            <td><%= link_to(page.url, page_path(page)) %></td>
+            <td><%= page.visible ? t(:yes) : t(:no) %></td>
+            <td>
+              <% if page.council.present? %>
+                <%= link_to(page.council, council_path(page.council)) %>
+              <% else %>
+                -
+              <% end %>
+            </td>
+            <td><%= page.created_at %></td>
+            <td><%= page.updated_at %></td>
+            <td>
+              <%= link_to(t(:edit), edit_page_path(page),
+                          class: 'btn secondary small') %>
+            </td>
+          </tr>
         <% end %>
-        </tbody>
-      </table>
-    </div>
+      </tbody>
+    </table>
   </div>
 </div>
+

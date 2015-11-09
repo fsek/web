@@ -36,13 +36,11 @@ class NoticesController < ApplicationController
   end
 
   # Requested to hide the current Notice
-  # /d.wessman
   def hide
     @notice.display(false)
   end
 
   # Requested to display the current Notice
-  # /d.wessman
   def display
     @notice.display(true)
   end

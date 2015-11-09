@@ -16,9 +16,7 @@ class Council < ActiveRecord::Base
   validates :title, :url, presence: true
   validates :url, uniqueness: true
 
-  def self.titles
-    order(:title)
-  end
+  scope :titles, -> { order(:title) }
 
   after_update :check_page
 

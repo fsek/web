@@ -4,7 +4,6 @@
     <div class="panel-heading">
       <h3 class="panel-title">
         <%= fa_icon('tasks') %> <%= models_name(User) %>
-        <span id="test"></span>
       </h3>
     </div>
     <div class="col-md-12">
@@ -13,11 +12,10 @@
           <tr>
             <th>#</th>
             <th><%= User.human_attribute_name(:name) %></th>
-            <th><%= User.human_attribute_name(:username) %></th>
             <th><%= User.human_attribute_name(:email) %></th>
             <th><%= User.human_attribute_name(:program) %></th>
             <th><%= User.human_attribute_name(:start_year) %></th>
-            <th><%= t('user.member') %></th>
+            <th><%= User.human_attribute_name(:confirmed_at) %></th>
             <th><%= t('user.membership?') %></th>
         </tr>
         </thead>
@@ -30,13 +28,14 @@
               <td><%= user.email %></td>
               <td><%= user.program %></td>
               <td><%= user.start_year %></td>
-              <td class="member-tag">
-                <% if user.member? %>
-                  <%= fa_icon('check-square-o') %>
+              <td>
+                <% if user.confirmed? %>
+                  <%= l(user.confirmed_at) %>
                 <% else %>
-                  <%= fa_icon('square-o') %>
+                  <%= t(:no) %>
                 <% end %>
               </td>
+
               <td class="member-action">
                 <% if user.member? %>
                   <%= link_to(t('user.unmake_member'), unmember_admin_user_path(user),

@@ -26,7 +26,7 @@ feature 'admin visits paths' do
     faqs: [:index, :show, :new],
     news: [:index, :show],
     notices: [:index, :new, :show],
-    pages: [:index, :new],
+    pages: [:index, :new, :edit, :show],
     posts: [:index],
     rents: [:main, :index, :new]
   }

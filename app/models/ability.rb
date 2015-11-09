@@ -5,7 +5,7 @@ class Ability
     user ||= User.new
 
     # Abilities that everyone get.
-    can :read, [Council, Election, News, Page]
+    can :read, [Council, Election, News]
     can :read, Document, public: true
     can [:mail, :read], Contact, public: true
     can [:display, :image], Notice
@@ -15,6 +15,7 @@ class Ability
     cannot [:add_worker, :update_worker, :remove_worker], CafeWork
     can :main, Rent
     cannot [:create, :destroy, :update], Rent
+    can :show, Page
 
     can :show, Event
     can [:index, :export], :calendar

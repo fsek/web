@@ -25,7 +25,7 @@ RSpec.describe Ability do
     Nomination.new => { yes: [], no: [:create] },
     Notice.new => { yes: [:display, :image], no: standard },
     PageElement.new => { yes: [], no: standard },
-    Page.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Page.new => { yes: [:show], no: [:index, :new, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
     Post.new => { yes: [:collapse, :display], no: [:read, :create, :update] },
     Rent.new => { yes: [:main], no: [:create, :update, :destroy] }
@@ -51,7 +51,7 @@ RSpec.describe Ability do
     Nomination.new => { yes: [], no: [:create] },
     Notice.new => { yes: [:display, :image], no: standard },
     PageElement.new => { yes: [], no: standard },
-    Page.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Page.new => { yes: [:show], no: [:new, :index, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
     Post.new => { yes: [:collapse, :display, :show], no: [:index, :create, :update] },
     Rent.new => { yes: [:main], no: [:index, :create] }
@@ -76,7 +76,7 @@ RSpec.describe Ability do
     Nomination.new => { yes: [:create], no: [] },
     Notice.new => { yes: [:display, :image], no: standard },
     PageElement.new => { yes: [], no: standard },
-    Page.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Page.new => { yes: [:show], no: [:index, :new, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
     Post.new => { yes: [:collapse, :display, :show], no: [:index, :create, :update] },
     Rent.new => { yes: [:main, :create, :index], no: [:update, :destroy] }

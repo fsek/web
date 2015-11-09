@@ -7,9 +7,6 @@ class PageElementsController < ApplicationController
   def index
   end
 
-  def show
-  end
-
   def new
   end
 
@@ -19,7 +16,7 @@ class PageElementsController < ApplicationController
   def create
     if @page_element.save
       redirect_to edit_page_page_element_path(@page, @page_element),
-                  notice: 'Elementet skapades'
+                  notice: alert_create(PageElement)
     else
       render action: :new
     end
@@ -28,15 +25,15 @@ class PageElementsController < ApplicationController
   def update
     if @page_element.update(page_element_params)
       redirect_to edit_page_page_element_path(@page, @page_element),
-                  notice: 'Elementet uppdaterades.'
+                  notice: alert_update(PageElement)
     else
       render action: :edit
     end
   end
 
   def destroy
-    @page_element.destroy
-    redirect_to @page
+    @page_element.destroy!
+    redirect_to page_path(@page), notice: alert_destroy(PageElement)
   end
 
   private
