@@ -3,6 +3,6 @@ FactoryGirl.define do
   factory :image do
     album
     photographer { FactoryGirl.create(:user) }
+    file File.open('app/assets/images/hilbert.jpg')
   end
 end
-

@@ -19,14 +19,12 @@ class Ability
 
     can :show, Event
     can [:index, :export], :calendar
-
-    can [:index, :matrix, :modal], :nollning
-
+    # But cannot view any albums
+    can :index, :gallery
     can [:index, :matrix, :modal], :nollning
 
     # Abilities all signed in users get
     if user.id.present?
-      can [:show], Album, public: true
       can [:edit, :show, :update, :update_password, :update_account], User, id: user.id
       can :add_worker, CafeWork, user_id: nil
       can [:edit, :update_worker, :remove_worker], CafeWork, user_id: user.id
@@ -43,7 +41,6 @@ class Ability
       can [:index, :new, :create], Rent
       can [:show, :update, :destroy], Rent, user_id: user.id
       can [:show], Album
-      can :index, :gallery
       can [:read, :mail], Contact
       can :read, Document
 

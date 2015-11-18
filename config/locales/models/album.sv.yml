@@ -10,7 +10,8 @@ sv:
         public: Publik
         start_date: Startdatum
         end_date: Slutdatum
-        images_upload: Bilduppladdning
-        images_photographer: Fotograf
+        image_upload: Bilduppladdning
+        photographer_user: Fotograf
+        photographer_name: Namn på fotograf (om ej medlem)
         created_at: Skapat
         updated_at: Uppdaterat

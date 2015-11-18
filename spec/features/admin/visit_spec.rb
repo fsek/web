@@ -11,11 +11,12 @@ feature 'admin visits paths' do
     'admin/elections': [:new, :index, :show, :edit],
     'admin/events': [:show, :new, :index],
     'admin/rents': [:main, :show, :new],
-    'admin/gallery/albums': [:index, :show, :edit],
+    'admin/gallery/albums': [:index, :edit],
     'gallery/albums': [:show],
     cafe_works: [:index],
     calendars: [:index],
     contacts: [:index, :show],
+    constants: [:index, :show, :edit, :new],
     councils: [:index, :show],
     documents: [:index, :new],
     elections: [:index],
@@ -26,7 +27,8 @@ feature 'admin visits paths' do
     notices: [:index, :new, :show],
     pages: [:index, :new, :edit, :show],
     posts: [:index],
-    rents: [:main, :index, :new]
+    rents: [:main, :index, :new],
+    static_pages: [:company_offer, :company_about]
   }
 
   background do

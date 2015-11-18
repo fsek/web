@@ -15,13 +15,13 @@ class Watermarker
     options[:gravity] ||= 'SouthEast'
     image = MiniMagick::Image.open(@original_path)
     watermark = MiniMagick::Image.open(watermark_path)
-    height = image[:height]*0.20
+    height = image[:height] * 0.20
 
     watermark.resize(%(x#{height}))
 
     result = image.composite(watermark, 'png') do |c|
       c.gravity options[:gravity]
-      c.geometry %(+#{height/2}+#{height/2})
+      c.geometry %(+#{height / 2}+#{height / 2})
     end
     result.write @original_path
   end

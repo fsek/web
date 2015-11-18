@@ -3,33 +3,29 @@
   <h1><%= t('gallery.title') %></h1>
 </div>
 <div class="col-md-2 col-xs-12">
-  <div class="dropdown margin-bottom-20">
-    <button class="btn secondary dropdown-toggle"
-            type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <% if @year.present? %>
-        <%= @year %>
-      <% else %>
-        <%= 'Tidigare år' %>
-      <% end %>
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="oldies">
-      <% if @year.present? %>
-        <li>
-          <%= link_to(Time.zone.now.year, gallery_path) %>
-        </li>
-      <% end %>
-      <% if @years.present? %>
-        <% @years.each do |year| %>
-          <% unless year.year == Time.zone.now.year || year.year == @year.try(:to_i) %>
+  <% if @policy.present? %>
+    <%= link_to( document_path(@policy), target: 'blank_p', class: 'btn primary') do %>
+      <%= fa_icon('paperclip') %> <%= t('gallery.policy') %>
+    <% end %>
+  <% end %>
+
+  <% if @years.present? %>
+    <div class="dropdown margin-bottom-20">
+      <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <%= @year || t('gallery.earlier_years') %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="oldies">
+        <% if @years.present? %>
+          <% @years.each do |year| %>
             <li>
-              <%= link_to(year.year, gallery_path(year: year.year)) %>
+              <%= link_to(year, gallery_path(year: year)) %>
             </li>
           <% end %>
         <% end %>
-      <% end %>
-    </ul>
-  </div>
+      </ul>
+    </div>
+  <% end %>
 </div>
 <div class="col-md-10 col-xs-12">
   <div class="gallery album-preview">

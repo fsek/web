@@ -134,7 +134,7 @@ namespace :db do
     end
 
     # Gallery
-    Album.find_or_create_by!(title: 'Välkomstgasque', description: 'Väldans trevligt!', location: 'Gasquesalen', public: true,
+    Album.find_or_create_by!(title: 'Välkomstgasque', description: 'Väldans trevligt!', location: 'Gasquesalen',
                              start_date: Time.zone.now, category: 'Nollning')
   end
 end

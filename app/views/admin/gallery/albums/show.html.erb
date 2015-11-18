@@ -1,9 +1,10 @@
 <div class="headline headline-md">
   <h1><%= @album.title %></h1>
-  <%= link_to(t(:edit, attr: nil), edit_admin_gallery_album_path(@album), class: "btn btn-u") %>
+  <%= link_to(t(:edit), edit_admin_gallery_album_path(@album), class: 'btn primary') %>
 </div>
+
 <ul class="row">
   <% @album.images.each do |p| %>
-      <%= image_tag(p.view, class: 'img-responsive') %>
-  <%end%>
+    <%= image_tag(p.view, class: 'img-responsive') %>
+  <% end %>
 </ul>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025195202) do
+ActiveRecord::Schema.define(version: 20151117194027) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -27,17 +27,14 @@ ActiveRecord::Schema.define(version: 20151025195202) do
   end
 
   create_table "albums", force: :cascade do |t|
-    t.string   "title",             limit: 255
-    t.text     "description",       limit: 65535
-    t.string   "author",            limit: 255
-    t.string   "location",          limit: 255
-    t.boolean  "public"
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+    t.string   "location",    limit: 255
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category",          limit: 255
-    t.integer  "photo_category_id", limit: 4
+    t.string   "category",    limit: 255
   end
 
   create_table "albums_images", id: false, force: :cascade do |t|
@@ -215,18 +212,21 @@ ActiveRecord::Schema.define(version: 20151025195202) do
   add_index "faqs", ["category"], name: "index_faqs_on_category", using: :btree
 
   create_table "images", force: :cascade do |t|
-    t.integer  "album_id",        limit: 4
+    t.integer  "album_id",          limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "file",            limit: 255
-    t.string   "filename",        limit: 255
-    t.integer  "photographer_id", limit: 4
-    t.integer  "width",           limit: 4
-    t.integer  "height",          limit: 4
+    t.string   "file",              limit: 255
+    t.string   "filename",          limit: 255
+    t.integer  "photographer_id",   limit: 4
+    t.string   "photographer_name", limit: 255
+    t.integer  "width",             limit: 4
+    t.integer  "height",            limit: 4
   end
 
+  add_index "images", ["album_id"], name: "index_images_on_album_id", using: :btree
   add_index "images", ["file"], name: "index_images_on_file", using: :btree
   add_index "images", ["filename"], name: "index_images_on_filename", using: :btree
+  add_index "images", ["photographer_id"], name: "index_images_on_photographer_id", using: :btree
 
   create_table "menus", force: :cascade do |t|
     t.string   "location",   limit: 255

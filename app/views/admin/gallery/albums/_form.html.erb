@@ -5,12 +5,12 @@
     <%= f.input :location %>
     <%= f.input :start_date, as: :datetime_picker %>
     <%= f.input :end_date, as: :datetime_picker %>
-    <%= f.input :public %>
   </div>
   <% unless @album.new_record? %>
     <div class="form-files">
-      <%= f.input :images_upload, as: :file, input_html: { multiple: true } %>
-      <%= f.input :images_photographer, as: :select, collection: @users %>
+      <%= f.input :image_upload, as: :file, input_html: { multiple: true } %>
+      <%= f.input :photographer_user, as: :select, collection: @users %>
+      <%= f.input :photographer_name, as: :string %>
     </div>
   <% end %>
 

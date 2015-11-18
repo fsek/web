@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :email, format: { with: Devise::email_regexp }
 
   # Associations
-  belongs_to :first_post, class_name: Post, foreign_key: :first_post_id
+  belongs_to :first_post, class_name: Post
   has_many :candidates
   has_many :councils, through: :posts
   has_many :event_registrations

@@ -2,7 +2,8 @@
 class Album < ActiveRecord::Base
   has_many :images, dependent: :destroy
 
-  attr_accessor :images_upload, :images_photographer
+  attr_accessor(:image_upload, :photographer_user,
+                :photographer_name)
 
   validates :title, :start_date, :description, presence: true
 
@@ -11,16 +12,18 @@ class Album < ActiveRecord::Base
           date.beginning_of_year, date.end_of_year)
   }
 
-  scope :publik, -> { where(public: true) }
-
   # Used to find first year there exists an album
   def self.first_year
     order(start_date: :asc).first.start_date.year
   end
 
   def photographers
-    ids = images.pluck(:photographer_id).uniq
-    return User.find(ids)
+    ids = images.pluck(:photographer_id).uniq.compact
+    User.find(ids)
+  end
+
+  def photographer_names
+    images.pluck(:photographer_name).uniq.reject(&:blank?)
   end
 
   def to_date

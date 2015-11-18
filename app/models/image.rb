@@ -1,8 +1,10 @@
 # encoding: UTF-8
 class Image < ActiveRecord::Base
   belongs_to :album
-  belongs_to :photographer, foreign_key: :photographer_id, class_name: User
+  belongs_to :photographer, class_name: User
+  default_scope { order(:filename) }
   mount_uploader :file, ImageUploader
+  validates :file, presence: true
 
   def original
     file.url

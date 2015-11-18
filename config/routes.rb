@@ -95,7 +95,7 @@ Fsek::Application.routes.draw do
       get :collapse, on: :collection
       post :add_user, on: :collection
       delete 'user/:post_user_id', on: :collection, action: :remove_user,
-        as: :remove_user
+                                   as: :remove_user
       collection do
         get :show_permissions
       end
@@ -162,7 +162,11 @@ Fsek::Application.routes.draw do
 
     namespace :admin do
       namespace :gallery, path: :galleri do
-        resources :albums, path: :album, except: :show
+        resources :albums, path: :album, except: :show do
+          resources :images, path: :bild, only: [:edit, :show] do
+            get :download, path: :hamta, on: :member
+          end
+        end
       end
     end
 

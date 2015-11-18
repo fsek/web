@@ -4,16 +4,12 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   storage :file
 
-  # Override the directory where uploaded files will be stored.
-  # Can be changed in model.
-  # This is a sensible default for uploaders that are meant to be mounted:
+  # For saving original image without formatting or wratermarking
   def store_dir
     %(#{Rails.root}/storage/#{model.parent.class.name.pluralize.downcase}/#{model.parent.id})
   end
 
-
-  # Will resize to 800px wide, the large height is to make it stop at width
-  # first.
+  # Resizes to width 1680px (if the image is larger)
   version :large do
     process resize_to_fit: [1680, 10000]
     process :watermark
@@ -24,7 +20,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     end
   end
 
-  # Create different versions of your uploaded files:
+  # Creates a thumbnail version
   version :thumb do
     process resize_to_fill: [350, 350]
 
@@ -39,14 +35,20 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
-  # Own config /dwessman
+  # Used for hashing filename
+  def filename
+    if original_filename
+      if model && model.read_attribute(mounted_as).present?
+        model.read_attribute(mounted_as)
+      else
+        @name ||= %(#{File.basename(super, File.extname(super))}_#{md5}#{File.extname(super)}) if super
+      end
+    end
+  end
+
   def md5
     chunk = model.send(mounted_as)
     @md5 ||= Digest::MD5.hexdigest(chunk.read.to_s)
-  end
-
-  def filename
-    @name ||= "#{md5}#{File.extname(super)}" if super
   end
 
   # Watermark should always be processed after thumbkit, ensuring that we always
@@ -56,6 +58,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     Watermarker.new(current_path).watermark!(options)
   end
 
+  # To store initial filesize and filename in model
   def store_dimensions
     if file && model
       model.width, model.height = ::MiniMagick::Image.open(file.file)[:dimensions]

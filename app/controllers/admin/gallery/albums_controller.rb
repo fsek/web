@@ -3,22 +3,21 @@ class Admin::Gallery::AlbumsController < ApplicationController
   before_action :authorize
   load_permissions_and_authorize_resource
   load_and_authorize_resource :image, through: :album
+  before_action :load_users, only: [:edit, :new, :update]
 
   def index
     @albums = Album.order('start_date asc')
   end
 
   def edit
-    @users = User.all_firstname
   end
 
   def new
-    @users = User.all_firstname
   end
 
   def create
     if @album.save
-      redirect_to admin_gallery_album_path(@album), notice: alert_create(Album)
+      redirect_to edit_admin_gallery_album_path(@album), notice: alert_create(Album)
     else
       render action: :new
     end
@@ -30,13 +29,7 @@ class Admin::Gallery::AlbumsController < ApplicationController
   end
 
   def update
-    @users = User.all_firstname
-    if @album.update(album_params)
-      if album_params[:images_upload].present?
-        album_params[:images_upload].each do |f|
-          @album.images.create(file: f, photographer_id: album_params[:images_photographer])
-        end
-      end
+    if @album.update(album_params) && AlbumService.upload_images(@album)
       redirect_to edit_admin_gallery_album_path(@album), notice: alert_update(Album)
     else
       render action: :edit
@@ -52,6 +45,11 @@ class Admin::Gallery::AlbumsController < ApplicationController
   def album_params
     params.require(:album).permit(:title, :description, :location,
                                   :public, :start_date, :end_date,
-                                  :images_photographer, images_upload: [])
+                                  :photographer_user, :photographer_name,
+                                  image_upload: [])
+  end
+
+  def load_users
+    @users = User.all_firstname
   end
 end

@@ -3,13 +3,16 @@ require 'rails_helper'
 RSpec.describe GalleryController, type: :controller do
   let(:user) { create(:user) }
   let(:album) { create(:album) }
-  let(:old_album) { create(:album, start_date: Time.new(1986,3,25)) }
+  let(:old_album) { create(:album, start_date: Time.zone.parse('1986-03-25T12:00:00')) }
 
   before(:each) do
     allow(controller).to receive(:current_user) { user }
     album.reload
     old_album.reload
   end
+
+  allow_user_to :manage, :gallery
+  allow_user_to :manage, Album
 
   describe 'GET #index' do
     it 'assigns albums for current year as @albums' do
