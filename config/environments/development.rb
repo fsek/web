@@ -17,7 +17,7 @@ Fsek::Application.configure do
   # Don't care if the mailer can't send.
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
-  config.action_mailer.default_url_options = { host: 'fsektionen.se' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
@@ -26,7 +26,7 @@ Fsek::Application.configure do
   config.action_mailer.smtp_settings = {
     address: '127.0.0.1',
     port: 1025,
-    domain: 'fsektionen.se',
+    domain: 'localhost:3000',
     authentication: 'plain',
     enable_starttls_auto: false
   }
@@ -42,7 +42,7 @@ Fsek::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.serve_static_files = true
-  PUBLIC_URL = 'dev.fsektionen.se'
+  PUBLIC_URL = 'localhost:3000'
 
   config.action_view.raise_on_missing_translations = true
 

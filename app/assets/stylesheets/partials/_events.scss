@@ -25,3 +25,30 @@
   column-gap: 20px;
 }
 
+.event {
+  &.stream {
+    .weekday-wrap {
+      display: inline-block;
+      margin-right: 5px;
+      padding-left: 5px;
+      padding-right: -10px;
+
+      .weekday {
+        color: $gray-headline;
+        display: inline-block;
+        font-weight: bold;
+        width: 70px;
+      }
+    }
+
+    .event-wrap {
+      color: $black;
+      margin-right: 5px;
+
+      .date,
+      .title {
+        color: $black;
+      }
+    }
+  }
+}

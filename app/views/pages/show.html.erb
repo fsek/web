@@ -1,8 +1,10 @@
-<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till element"),
-            new_page_page_element_path(@page), class: "btn-u btn-u-small" %>
-<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Visa alla element"),
-            page_page_elements_path(@page), class: "btn-u btn-u-small" %>
-<hr>
-Den här sidan visas endast för de med rättighet att redigera. För att se hur sidan faktiskt se ut gå till:
-<hr>
-<%= render @page  %>
+<% if can? :manage, @page %>
+  <%= link_to(t(:add_attr, attr: model_name(PageElement)),
+              new_page_page_element_path(@page), class: 'btn primary') %>
+  <%= link_to(t(:index_attr, attr: models_name(PageElement)),
+              page_page_elements_path(@page), class: 'btn secondary') %>
+  <%= link_to(t(:edit_attr, attr: model_name(Page)),
+              edit_page_path(@page), class: 'btn secondary') %>
+  <hr>
+<% end %>
+<%= render @page %>

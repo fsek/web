@@ -1,0 +1,8 @@
+sv:
+  helpers:
+    submit:
+      create: "Skapa %{model}"
+      submit: "Spara %{model}"
+      update: "Uppdatera %{model}"
+      nomination:
+        create: Skicka %{model}

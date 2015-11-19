@@ -48,13 +48,13 @@ namespace :db do
     PermissionPost.find_or_create_by!(permission: perm_admin, post: spindel)
     PermissionPost.find_or_create_by!(permission: perm_nyckelpiga, post: nyckelpiga)
 
-    u = User.find_or_initialize_by(username: 'admin', email: 'admin@da.vid',
+    u = User.find_or_initialize_by(email: 'admin@fsektionen.se',
                                    firstname: 'David-Admin', lastname: 'Wessman',
                                    program: 'Teknisk Fysik', start_year: 2013)
     u.password = 'passpass'
     u.confirmed_at = Time.zone.now
     u.member_at = Time.zone.now
-    u.as_f_member.save!
+    u.save!
     if u.present?
       PostUser.find_or_create_by(post: spindel, user: u)
       PostUser.find_or_create_by(post: prylmast, user: u)
@@ -62,13 +62,13 @@ namespace :db do
       PostUser.find_or_create_by(post: sexmast, user: u)
     end
 
-    a = User.find_or_initialize_by(username: 'user', email: 'david@da.vid',
+    a = User.find_or_initialize_by(email: 'user@fsektionen.se',
                                    firstname: 'David', lastname: 'Wessman',
                                    program: 'Teknisk Fysik', start_year: 2013)
     a.confirmed_at = Time.zone.now
     a.member_at = Time.zone.now
     a.password = 'passpass'
-    a.as_f_member.save!
+    a.save!
     if a.present?
       PostUser.find_or_create_by(post: prylmast, user: a)
     end
@@ -109,31 +109,26 @@ namespace :db do
 
     # News
     News.find_or_create_by!(title: 'Ett helt nytt användarsystem',
-                           content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
-                           user: User.first)
+                            content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
+                            user: User.first)
     News.find_or_create_by!(title: 'Andra helt nytt användarsystem',
-                           content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
-                           user: User.first)
+                            content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
+                            user: User.first)
     News.find_or_create_by!(title: 'Tredje helt nytt användarsystem',
-                           content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
-                           user: User.first)
+                            content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
+                            user: User.first)
     News.find_or_create_by!(title: 'Fjärde helt nytt användarsystem',
-                           content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
-                           user: User.first)
+                            content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
+                            user: User.first)
     News.find_or_create_by!(title: 'Femte helt nytt användarsystem',
-                           content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
-                           user: User.first)
+                            content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
+                            user: User.first)
     # Events
-    nollning = Time.zone.local(2015, 8, 23, 13)
-    Event.find_or_create_by!(short: "E1",title: "Eventett", starts_at: nollning + 3.days, ends_at: nollning + 3.days + 10.hours,
-                             description: "beskrivningen", food: true, drink: true, category: :nollning)
-    Event.find_or_create_by!(short: "E2",title: "Eventtvå", starts_at: nollning + 4.days, ends_at: nollning + 4.days + 10.hours,
-                             description: "beskrivningen", food: true, signup: true, category: :nollning)
-    Event.find_or_create_by!(short: "E3",title: "Eventtre", starts_at: nollning + 5.days, ends_at: nollning + 5.days + 10.hours,
-                             description: "beskrivningen", signup: true, drink: true, category: :nollning)
-    Event.find_or_create_by!(short: "E4",title: "Eventfyra", starts_at: nollning + 6.days, ends_at: nollning + 6.days + 10.hours,
-                             description: "beskrivningen", cash: true, drink: true, category: :nollning)
-    Event.find_or_create_by!(short: "E5", title: "Eventfem", starts_at: nollning + 7.days, ends_at: nollning + 7.days + 10.hours,
-                             description: "beskrivningen", food: true, drink: true, category: :nollning)
+    date = Time.zone.now.middle_of_day
+    (1..10).each do |i|
+      Event.find_or_create_by!(short: %(E#{i}), title: %(Event#{i}), starts_at: date, ends_at: date + 5.hours,
+                               description: "beskrivningen", food: true, drink: true)
+      date = date + 1.days + [-3,-2,-1,0,1,2,3].sample.hours
+    end
   end
 end

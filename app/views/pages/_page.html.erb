@@ -1,13 +1,38 @@
-<div class="headline"><h2><%= page.title %></h2></div>
-<div class="col-md-9">
-  <!-- Our Services -->
-  <% page.main.each do |element| %>
-    <%= render 'page_elements/page_element', page_element: element %>
-  <% end %>
+<div class="headline">
+  <h2>
+    <%= page.title %>
+  </h2>
+  <% if @councils.present? %>
+    <span class="council dropdown">
+      <%= render('/elements/dropdown_button', collection: @councils,
+                 controller: :councils, action: :show,
+                 title: page.title) %>
+  </span>
+<% end %>
 </div>
-<!--/col-md-9-->
-<div class="col-md-3">
+
+<%= content_for :page_sidebar do %>
   <% page.side.each do |element| %>
     <%= render 'page_elements/page_element', page_element: element %>
   <% end %>
-</div>
+<% end %>
+<%= content_for :page_main do %>
+  <% page.main.each do |element| %>
+    <%= render 'page_elements/page_element', page_element: element %>
+  <% end %>
+<% end %>
+
+<% if content_for?(:page_sidebar) %>
+  <div class="col-md-3 col-sm-12">
+    <%= yield :page_sidebar %>
+  </div>
+
+  <div class="col-md-9 col-sm-12">
+    <%= yield :page_main %>
+  </div>
+<% else %>
+  <div class="col-md-12">
+    <%= yield :page_main %>
+  </div>
+<% end %>
+

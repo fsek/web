@@ -1,16 +1,14 @@
-<h2>Byt lösenord</h2>
-
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div><%= f.label :password, "Nytt lösenord" %><br />
-  <%= f.password_field :password, :autofocus => true %></div>
-
-  <div><%= f.label :password_confirmation, "Bekräfta lösenord" %><br />
-  <%= f.password_field :password_confirmation %></div><br>
-
-  <div><%= f.submit "Byt lösenord" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
+  <div class="headline">
+    <h2 class="password"><%= t('devise.passwords.change') %></h2>
+  </div>
+  <%= simple_form_for(resource, as: resource_name,
+                      url: password_path(resource_name), method: :patch) do |f| %>
+    <%= f.input :reset_password_token, as: :hidden %>
+    <%= f.input :password, label: t('devise.passwords.new') %>
+    <%= f.input :password_confirmation, label: t('devise.passwords.confirmation') %>
+    <%= f.button :submit, t('devise.passwords.change'), id: 'user-submit' %>
+  <% end %>
+  <hr>
+  <%= render "devise/shared/links" %>
+</div>

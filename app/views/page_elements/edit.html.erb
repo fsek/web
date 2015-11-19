@@ -1,13 +1,17 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-      <%= label_tag 'Redigera element', nil, class: 'reg-header' %>
-      <%= render 'form' %>
-      <%= link_to 'Visa sida', @page %><br>
-      <%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"),
-                  page_page_element_path(@page, @page_element), method: :delete,
-                  data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %>
-      <%= link_to 'Tillbaka till startsida', root_url %>
-    </div>
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h3>
+      <%= t(:edit_attr, attr: model_name(PageElement)) %>
+    </h3>
   </div>
+
+  <%= render 'form' %>
+  <hr>
+  <%= link_to(t(:index_attr, attr: models_name(PageElement)),
+              page_page_elements_path(@page), class: 'btn secondary')%>
+  <%= link_to(t(:show_attr, attr: model_name(Page)), page_path(@page),
+              class: 'btn secondary') %>
+  <%= link_to(t(:destroy_attr, attr: model_name(PageElement)),
+              page_page_element_path(@page, @page_element),
+              method: :delete, class: 'btn danger') %>
 </div>

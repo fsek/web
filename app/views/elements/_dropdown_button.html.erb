@@ -1,0 +1,18 @@
+<% if collection.count > 0 %>
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle"
+            type="button" id="<%= dom_id(collection.first) %>"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          <%= title %>
+                          <span class="caret"></span>
+    </button>
+
+    <ul class="dropdown-menu" aria-labelledby="<%= dom_id(collection.first) %>">
+      <% collection.each do |c| %>
+        <%= content_tag(:li) do %>
+          <%= link_to(c.try(:to_s), url_for(controller: controller, action: action, id: c.try(:to_param))) %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

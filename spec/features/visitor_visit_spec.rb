@@ -16,7 +16,7 @@ feature 'visitor visits paths' do
     faqs: [:index, :show, :new],
     menus: [:index, :new],
     news: [:index, :new, :show],
-    pages: [:index, :new],
+    pages: [:show],
     rents: [:main, :index, :new]
   }
 
@@ -24,6 +24,7 @@ feature 'visitor visits paths' do
     council
     election
   end
+
   paths.each do |key, value|
     value.each do |v|
       Steps %(Controller: #{key}, action: #{v}) do

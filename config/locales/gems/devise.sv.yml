@@ -19,29 +19,41 @@ sv:
     not_receive_unlock: Fick inget upplåsningsmail?
     not_receive_confirm: Fick inget bekräftelsemail?
 
+    change_password: Byt lösenord
+    new_password: Nytt lösenord
+    password_confirmation: Bekräfta lösenord
+
+
     failure:
       already_authenticated: 'Du har redan loggat in.'
       unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'
-      unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
+      unconfirmed: 'Du måste bekräfta din e-postadress till ditt konto innan du kan fortsätta.'
       locked: 'Ditt konto är låst.'
       invalid: 'Ogiltig epost eller lösenord.'
       invalid_token: 'Ogiltig token för autentisering.'
       timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
       inactive: 'Ditt konto har inte aktiverats ännu.'
       user:
-        not_found_in_database: 'Användarnamn eller lösenord stämmer inte.'
+        not_found_in_database: 'Inget konto finns registrerat med angiven epostadress.'
     sessions:
       signed_in: 'Loggade in.'
       signed_out: 'Loggade ut.'
       already_signed_out: 'Du har redan loggats ut.'
     passwords:
+      change: 'Byt lösenord'
+      confirm_instructions: 'Skicka instruktioner för lösenordsåterställning'
+      confirmation: 'Bekräfta lösenord'
+      new: 'Nytt lösenord'
+      reset: 'Återställ lösenord'
       send_instructions: 'Du kommer få epost med instruktioner om hur du kan återställa ditt lösenord inom några minuter.'
-      updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
       send_paranoid_instructions: "Om din email är i vår databas, kommer du att få en lösenordslänk till din mail."
+      updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
+
     confirmations:
+      confirmed: 'Ditt konto har bekräftats. Du kan nu logga in.'
+      instructions: 'Skicka bekräftelsemail'
       send_instructions: 'Du kommer att få epost med instruktioner om hur du kan bekräfta ditt konto inom några minuter.'
       send_paranoid_instructions: 'Om din email är i vår databas, kommer du att få ett mail med instruktioner om hur du ska aktivera ditt konto inom några minuter.'
-      confirmed: 'Ditt konto har bekräftats. Du är nu inloggad.'
     registrations:
       signed_up_but_unconfirmed: 'Ett nytt konto har skapats, du har fått instruktioner via e-post om hur din e-postadress bekräftas.'
       signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats till din epost.'
@@ -61,9 +73,10 @@ sv:
       failure: 'Kunde inte autentisera dig med %{kind} för "%{reason}".'
     mailer:
       confirmation_instructions:
+        description_link: 'Du kan bekräfta kontot med länken nedan'
+        link: 'Bekräfta mitt konto'
         subject: 'Instruktioner om bekräftning av konto'
       reset_password_instructions:
         subject: 'Instruktioner om återställning av lösenord'
       unlock_instructions:
         subject: 'Instruktioner om upplåsning av konto'
-

@@ -1,38 +1,35 @@
-<div class="row">
-  <div class="headline headline-md">
-    <%= content_tag(:h1, @event) %>
+<%= content_for :event_info do %>
+  <div class="col-xs-12">
+    <span class="time">
+      <%= @event.p_date %>
+    </span>
+    <span class="location">
+      <%= @event.location %>
+    </span>
+    <%= simple_format(@event.description) %>
   </div>
-  <div class="col-md-8">
-    <div class="col-md-9 col-xs-12">
-      <div class="col-md-12">
-        <span class="time">
-          <%= @event.p_date %>
-        </span>
-        <span class="location">
-          <%= @event.location %>
-        </span>
-        <%= simple_format(@event.description) %>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-6">
-        <%= render 'info', event: @event %>
-      </div>
-      <% if :event_reg == true %>
-        <div class="col-xs-12 col-sm-6 col-md-6">
-          <%= render 'registration', event: @event, reg: @event_registration %>
-        </div>
-      <% end %>
-    </div>
+  <div class="col-md-12">
+    <%= render 'info', event: @event %>
   </div>
-  <div class="col-md-3">
-    <% if @event.image? %>
-      <%= image_tag(@event.image.url, class: "img-responsive event-image") %>
-    <% end %>
-  </div>
+<% end %>
+
+<div class="headline">
+  <h2> <%= @event %> </h2>
 </div>
+<% if @event.image? %>
+  <div class="col-md-8 col-xs-12">
+    <%= yield :event_info %>
+  </div>
+  <div class="col-md-4 col-xs-12">
+    <%= image_tag(@event.image.url, class: "img-responsive event-image") %>
+  </div>
+<% else %>
+  <%= yield :event_info %>
+<% end %>
 
 <% if can?(:manage, @event) %>
-  <div class="col-md-8 col-md-offset-2 col-xs-12">
-    <%= link_to(t(:edit, attr: nil), edit_admin_event_path, class: "btn btn-default") %>
-    <%= link_to(t(:index, attr: nil), admin_events_path, class: "btn btn-default") %>
+  <div class="col-md-12">
+    <%= link_to(t(:edit), edit_admin_event_path, class: 'btn primary') %>
+    <%= link_to(t(:index), admin_events_path, class: 'btn secondary') %>
   </div>
 <% end %>

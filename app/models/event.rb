@@ -1,29 +1,38 @@
 # encoding: UTF-8
 class Event < ActiveRecord::Base
-  has_attached_file :image,
-    styles: { original: "800x800>", medium: "300x300>", thumb: "100x100>" },
-    path: ":rails_root/public/system/images/event/:id/:style/:filename",
-    url: "/system/images/event/:id/:style/:filename"
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  has_attached_file(:image,
+                    styles: { original: '800x800>',
+                              medium: '300x300>',
+                              thumb: '100x100>' },
+                    path: ':rails_root/public/system/images/event/:id/:style/:filename',
+                    url: '/system/images/event/:id/:style/:filename')
+  validates_attachment_content_type(:image, content_type: /\Aimage\/.*\Z/)
 
-  # has_many :event_registrations, dependent: :destroy
-  # has_many :users, through: :event_registrations
   belongs_to :council
   belongs_to :user
 
   validates :title, :description, :starts_at, :ends_at, presence: true
 
-  # Validate slots if event allows signup
-  # validates :slots, presence: true, if: :signup?
-
+  scope :start, -> { order(starts_at: :asc) }
   scope :calendar, -> { all }
   scope :nollning, -> { where(category: 'nollning') }
-  scope :from_date, -> (date) { where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
-                                      date.beginning_of_day, date.end_of_day,
-                                      date.beginning_of_day, date.end_of_day) }
+  scope :from_date, -> (date) { between(date.beginning_of_day, date.end_of_day) }
+  scope :between, -> (start, stop) do
+    where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
+          start, stop, start, stop)
+  end
 
   def to_s
     title
+  end
+
+  def stream_print
+    I18n.l(starts_at, format: ' %H:%M')
+  end
+
+  # To group event-stream.
+  def day
+    starts_at.to_date
   end
 
   def print
@@ -72,44 +81,6 @@ class Event < ActiveRecord::Base
       title
     end
   end
-
-  # def registration(user)
-  #  event_registrations.find_by(user: user, reserve: false)
-  # end
-
-  # def attending(user)
-  #  if signup?
-  #    registration(user).present?
-  #  else
-  #   nil
-  #  end
-  # end
-
-  # def reserve(user)
-  #  if signup?
-  #    event_registrations.find_by(user: user, reserve: true).present?
-  #  else
-  #    nil
-  #  end
-  # end
-
-  # def free_slots
-  #  if signup?
-  #    slots-event_registrations.where(reserve: false).count
-  #  else
-  #    nil
-  #  end
-  # end
-
-  # def full?
-  #  if signup
-  #    free_slots <= 0
-  #  end
-  # end
-
-  # def reserves
-  #  event_registrations.where(reserve: true).order(created_at: :asc)
-  # end
 
   def ical
     e = Icalendar::Event.new

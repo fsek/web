@@ -1,8 +1,12 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <%= content_tag(:h3, t(:new, attr: model_name(Council))) %>
+    <h3>
+      <%= t('council.new') %>
+    </h3>
   </div>
-  <%= render 'form'%>
+
+  <%= render 'form' %>
+  <hr>
   <%= link_to(t(:index, attr: models_name(Council)), councils_path,
-                                                     class: "btn btn-default")%>
+                                                     class: 'btn secondary')%>
 </div>

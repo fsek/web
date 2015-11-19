@@ -8,30 +8,32 @@
     <table class="table">
       <thead>
         <tr>
-          <%= content_tag(:th, 'Id') %>
-          <%= content_tag(:th, Event.human_attribute_name(:title)) %>
-          <%= content_tag(:th, Event.human_attribute_name(:location)) %>
-          <%= content_tag(:th, Event.human_attribute_name(:category)) %>
-          <%= content_tag(:th, Event.human_attribute_name(:starts_at)) %>
-          <%= content_tag(:th, Event.human_attribute_name(:ends_at)) %>
-          <%= content_tag(:th, Event.human_attribute_name(:all_day)) %>
-          <%= content_tag(:th, Event.human_attribute_name(:updated_at)) %>
-          <%= content_tag(:th, link_to(t(:new, attr: model_name(Event)),
-                                       new_admin_event_path, class: 'btn default')) %>
+          <th>Id</th>
+          <th><%= Event.human_attribute_name(:title) %></th>
+          <th><%= Event.human_attribute_name(:location) %></th>
+          <th><%= Event.human_attribute_name(:category) %></th>
+          <th><%= Event.human_attribute_name(:starts_at) %></th>
+          <th><%= Event.human_attribute_name(:ends_at) %></th>
+          <th><%= Event.human_attribute_name(:all_day) %></th>
+          <th><%= Event.human_attribute_name(:updated_at) %></th>
+          <th>
+              <%= link_to(t(:new, attr: model_name(Event)),
+                          new_admin_event_path, class: 'btn primary small') %>
+          </th>
         </tr>
       </thead>
       <tbody>
         <% @events.each do |event| %>
           <tr>
-            <%= content_tag(:td, event.id) %>
-            <%= content_tag(:td, link_to(event.title, event)) %>
-            <%= content_tag(:td, event.location) %>
-            <%= content_tag(:td, event.category) %>
-            <%= content_tag(:td, event.starts_at) %>
-            <%= content_tag(:td, event.ends_at) %>
-            <%= content_tag(:td, event.all_day ? t('yes') : t('no')) %>
-            <%= content_tag(:td, event.updated_at) %>
-            <%= content_tag(:td, link_to(t(:edit, attr: nil), edit_admin_event_path(event))) %>
+            <td><%= event.id %></td>
+            <td><%= link_to(event.title.try(:truncate, 20), event) %></td>
+            <td><%= event.location.try(:truncate, 20) %></td>
+            <td><%= event.category %></td>
+            <td><%= l(event.starts_at) %></td>
+            <td><%= l(event.ends_at) %></td>
+            <td><%= event.all_day ? t('yes') : t('no') %></td>
+            <td><%= l(event.updated_at) %></td>
+            <td><%= link_to(t(:edit), edit_admin_event_path(event)) %></td>
           </tr>
         <% end %>
       </tbody>

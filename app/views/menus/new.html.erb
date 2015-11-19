@@ -1,8 +1,9 @@
 <div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
   <h3 class="headline headline-md">
-    <%= t(:new, attr: Menu.model_name.human) %>
+    <%= t(:new_attr, attr: model_name(Menu)) %>
   </h3>
+
   <%= render('form') %>
-  <%= link_to(t(:index, attr: Menu.model_name.human(count: 2)), :menus,
-              class: "pull-right") %>
+  <%= link_to(t(:index_attr, attr: models_name(Menu)),
+              menus_path, class: 'pull-right') %>
 </div>

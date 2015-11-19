@@ -1,43 +1,9 @@
-<%= form_for([@page,@page_element]) do |f| %>
-	<%= render 'shared/form_errors', current: @page_element%>
-  	<%= f.label 'Namn', class:  'reg-label'%>
-  	<div class="input-group margin-bottom-20">
-  		För att ni ska kunna skilja på olika element.
-  		<%= f.text_field :name,class:  'form-control' %>
-  	</div>
- 	<%= f.label 'Synlig?', class:  'reg-label'%>
-	<%= f.check_box :visible,class:  'form-control' %>
-  	
-  	<%= f.label 'Text', class:  'reg-label'%>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.text_area :text,class:  'form-control', size: "60x8" %>
-  	</div>
-  	 <%= f.label 'Rubrik', class:  'reg-label'%>
-  	<div class="input-group margin-bottom-20">
-  		Lämnas tomt för element utan rubrik
-  		<%= f.text_field :headline,class:  'form-control' %>
-  	</div>
-  	<%if 1 == 0%>
-  		<%= f.label 'Ram?', class:  'reg-label'%>
-  		<%= f.check_box :border,class:  'form-control' %>
-	<%end%>
-  	  	
-  	<%= f.label 'Position?', class:  'reg-label'%><br>
-  	<%= f.radio_button :sidebar, false,checked: true %> 
-  	<%= f.label :sidebar, 'Huvudfält', :value => false,class:  'reg-label' %>
-  	<%= f.radio_button :sidebar, true %>
-  	<%= f.label :sidebar, 'Sidofält', :value => true,class:  'reg-label' %><br>
-  	
-  	<%= f.label 'Sorteringsindex', class:  'reg-label'%>
-  	<div class="input-group margin-bottom-20">
-  		Elementen i sidofältet och huvudfältet sorteras efter detta nummer.
-  		<%= f.number_field :displayIndex,class:  'form-control' %>
-  	</div>
-  	<%= f.label 'Bild', class:  'reg-label'%>
-  	<div class="input-group margin-bottom-20">
-  		<%= f.file_field :picture,class:  'form-control' %>
-  	</div>  			
-  	<div class="row">
-  			<%= f.submit "Spara",class:  'btn-u pull-right' %>
-  	</div>
-<%end%>
+<%= simple_form_for([@page, @page_element]) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :visible %>
+  <%= f.input :text, input_html: { rows: 10 } %>
+  <%= f.input :headline %>
+  <%= f.input :sidebar %>
+  <%= f.input :displayIndex %>
+  <%= f.button :submit %>
+<% end %>

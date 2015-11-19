@@ -1,8 +1,11 @@
 <% provide(:title, t('work_post.title')) %>
 <div class="col-md-10 col-md-offset-1 col-xs-12 reg-page">
-  <h3 class="headline headline-md">
-    <%= t(:new, attr: model_name(WorkPost)) %>
-  </h3>
+  <div class="headline">
+    <h3>
+      <%= t(:new_attr, attr: model_name(WorkPost)) %>
+    </h3>
+  </div>
+
   <%= render 'form'%>
   <%= link_to t(:index, attr: models_name(WorkPost)), work_posts_path %>
   <%= link_to t(:back_to_root), root_path %>

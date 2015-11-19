@@ -1,7 +1,9 @@
 # encoding: UTF-8
 FactoryGirl.define do
   factory :page do
-    council
+    url
+    visible { true }
+    title
 
     factory :page_with_elements do
       transient do

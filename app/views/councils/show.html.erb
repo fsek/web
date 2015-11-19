@@ -1,15 +1,5 @@
-<% title(Council.model_name.human) %>
-<%= content_for :pre_content do %>
-  <div class="row">
-    <%= render('councils/menu', councils: @councils) %>
-  </div>
-<% end %>
+<% title(model_name(Council)) %>
 
-<div class="col-md-offset-10 col-md-2 md-margin-bottom-40">
-  <% if can? :edit, @council %>
-    <%= link_to(fa_icon('edit') + ' Redigera', edit_council_path(@council), class: "btn-u btn-u-small") %>
-  <% end %>
-</div>
 <div class="col-md-12">
   <% if @page.present? %>
     <div class="row">

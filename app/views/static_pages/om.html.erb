@@ -1,18 +1,12 @@
-<% provide(:title, 'Om') %>
-<h1>Om oss</h1>
+<% provide(:title, t(:about)) %>
+<h1><%= t(:about) %></h1>
 <div class="search-blocks search-blocks-top-orange">
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        F-sektionen är en ideel förening för studenter som läser något av civilingenjörsprogrammen Teknisk Fysik, Teknisk Matematik eller Teknisk Nanovetenskap och har till ändamål att främja kamratskap bland medlemmarna och tillvarata medlemmarnas gemensamma intressen. 
-        <br>
-        Sektionen är belägen i Mattehuset och här hittar du bland annat uppehållsrum, Hilbert Café - här kan du köpa bland annat gott kaffe och goda baguetter, mikrovågsugnar och gött häng. F-sektionen har i dagsläget åtta olika utskott samt en grupp som kallas kärnstyrelsen som alla har hand om var sitt område. Varje sådant utskott leds av en utskottsordförande som sitter med i sektionens styrelse. Styrelsen tar beslut i frågor som rör hela sektionen centralt. 
-        <br>
-        Som medlem kan du välja att vara väldigt aktiv och engagerarad, lite lagom eller kanske bara delta på något enstaka event. Vi hoppas att du ska trivas på sektionen! Om du har några frågor är det bara att höra av sig, se fliken "Kontakt", eller sväng förbi SK som ligger bredvid mikrorummet så hittar du nästan alltid någon från styrelsen där!
-        <br>
-		Johan Andersson<br>
-		Ordförande 2014
-      </div> <!-- col-md-3 -->
-    </div> <!-- row -->
-  </div> <!-- col md-12 -->
-</div> <!-- col-md-9 -->
+  <div class="col-md-8 col-xs-12">
+    <%= simple_format(t(:about_us_first))%>
+    <%= simple_format(t(:about_us_second))%>
+    <%= simple_format(t(:about_us_third))%>
+  </div>
+  <div class="col-md-4 col-xs-12">
+    <%= render Menu.where(location: 'guild') %>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<% if events.count > 0 %>
+  <div class="event stream">
+    <div class="headline">
+      <%= content_tag(:h3, t('event.stream')) %>
+    </div>
+
+    <% events.group_by(&:day).each do |day, ev| %>
+      <span class="weekday-wrap">
+        <%= content_tag(:span, class: 'weekday') do %>
+          <% if day.day == Time.zone.now.day %>
+            <%= t(:today).capitalize %>:
+          <% else %>
+            <%= l(day, format: '%A').capitalize %>:
+          <% end %>
+        <% end %>
+        <% ev.each do |e| %>
+          <span class="event-wrap">
+            <%= content_tag(:span, e.stream_print, class: 'date') %>
+            <%= content_tag(:span, link_to(e.short_title.truncate(20), event_path(e)), class: 'title') %>
+          </span>
+        <% end %>
+      </span>
+      <br>
+    <% end %>
+  </div>
+  <hr>
+<% end %>

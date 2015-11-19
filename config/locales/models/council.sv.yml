@@ -11,3 +11,5 @@ sv:
         public: Publik
         contact_id: Kontakt
         president_id: Ordförande
+  council:
+    new: Nytt Utskott

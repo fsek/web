@@ -28,7 +28,7 @@ feature 'admin creates menu' do
 
     And 'Assure menu is created' do
       page.should have_css('div.alert.alert-info')
-      find('div.alert.alert-info').text.should include('Menyn skapades')
+      find('div.alert.alert-info').text.should include(I18n.t(:success_create))
     end
   end
 end

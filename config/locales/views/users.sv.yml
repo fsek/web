@@ -10,4 +10,13 @@ sv:
     make_member: Ge medlemskap
     unmake_member: Ta bort medlemskap
     member: Medlem
-    membership?: Medlemskap?
+    membership?: Medlemskap
+    check_email_to_confirm: Vänlig kontrollera om du fått ett epost %{date} med en länk för att bekräfta din e-postadress.
+    contact_for_membership: Kontakta Spindelmännen för att bli registrerad som medlem
+
+    mailer:
+      welcome: Välkommen till F-sektionens hemsida
+      registered: Du har lyckats att registrera en användare.
+      how_to_sign_in: Du loggar in på %{url} med hjälp av din e-postadress %{mail} och lösenordet du angav.
+      enjoy: Hoppas att ni ska trivas här på hemsidan.
+      problem: Har ni några problem får ni kontakta Spindelmän via

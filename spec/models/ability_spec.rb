@@ -18,14 +18,14 @@ RSpec.describe Ability do
     Document.new(public: true) => { yes: [:read], no: [:create, :update, :destroy] },
     Document.new => { yes: [], no: standard },
     Election.new => { yes: [:index], no: [:create, :update, :destroy] },
-    Event.new => { yes: [], no: standard },
-    Faq.new => { yes: [:read, :create], no: [:update, :destroy] },
+    Event.new => { yes: [:show], no: [:create, :update, :destroy] },
+    Faq.new => { yes: [:read, :new, :create], no: [:update, :destroy] },
     Menu.new => { yes: [], no: standard },
     News.new => { yes: [:read], no: [:create, :update, :destroy] },
     Nomination.new => { yes: [], no: [:create] },
     Notice.new => { yes: [:display, :image], no: standard },
     PageElement.new => { yes: [], no: standard },
-    Page.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Page.new => { yes: [:show], no: [:index, :new, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
     Post.new => { yes: [:collapse, :display], no: [:read, :create, :update] },
     Rent.new => { yes: [:main], no: [:create, :update, :destroy] }
@@ -37,16 +37,11 @@ RSpec.describe Ability do
       yes: [:read, :add_worker],
       no: [:create, :update]
     },
+    :calendar => { yes: [:index, :export], no: [] },
     Candidate.new => { yes: [], no: standard },
     Constant.new => { yes: [], no: standard },
-    # Changing temporarily to allow non-members.
-    # Contact.new => { yes: [], no: [:mail, :read, :create, :update, :destroy] },
-    # Contact.new(public: true) => { yes: [:read, :mail], no: [:create, :update] },
     Contact.new => { yes: [:read, :mail], no: [:create, :update, :destroy] },
     Council.new => { yes: [:read], no: [:create, :update, :destroy] },
-    # Changing temporarily to allow non-members.
-    # Document.new(public: true) => { yes: [:read], no: [:create, :update, :destroy] },
-    # Document.new => { yes: [], no: standard },
     Document.new => { yes: [:read], no: [:create, :update, :destroy] },
     Election.new => { yes: [:index], no: [:create, :update, :destroy] },
     Event.new => { yes: [], no: standard},
@@ -56,10 +51,10 @@ RSpec.describe Ability do
     Nomination.new => { yes: [], no: [:create] },
     Notice.new => { yes: [:display, :image], no: standard },
     PageElement.new => { yes: [], no: standard },
-    Page.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Page.new => { yes: [:show], no: [:new, :index, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
     Post.new => { yes: [:collapse, :display, :show], no: [:index, :create, :update] },
-    Rent.new => { yes: [:main, :index, :create], no: [] }
+    Rent.new => { yes: [:main], no: [:index, :create] }
   }
 
   ab_member = {
@@ -74,14 +69,14 @@ RSpec.describe Ability do
     Council.new => { yes: [:read], no: [:create, :update, :destroy] },
     Document.new => { yes: [:read], no: [:create, :update, :destroy] },
     Election.new => { yes: [:index], no: [:create, :update, :destroy] },
-    Event.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Event.new => { yes: [:show], no: [:create, :update, :destroy] },
     Faq.new => { yes: [:read, :create], no: [:update, :destroy] },
     Menu.new => { yes: [], no: standard },
     News.new => { yes: [:read], no: [:create, :update, :destroy] },
     Nomination.new => { yes: [:create], no: [] },
     Notice.new => { yes: [:display, :image], no: standard },
     PageElement.new => { yes: [], no: standard },
-    Page.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Page.new => { yes: [:show], no: [:index, :new, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
     Post.new => { yes: [:collapse, :display, :show], no: [:index, :create, :update] },
     Rent.new => { yes: [:main, :create, :index], no: [:update, :destroy] }
@@ -120,7 +115,6 @@ RSpec.describe Ability do
 
     # Extra cases which cannot be covered in loop
     # These also count for the members
-    it { signed_ability.should have_abilities([:show, :update, :destroy], Rent.new(user: signed)) }
     it do
       signed_ability.should have_abilities([:update_worker, :remove_worker, :edit],
                                            CafeWork.new(user: signed))
@@ -139,10 +133,10 @@ RSpec.describe Ability do
     end
 
     # Extra cases which cannot be covered in loop
+    it { member_ability.should have_abilities([:show, :update, :destroy], Rent.new(user: member)) }
     it do
       member_ability.should have_abilities([:update, :show, :destroy],
                                            Candidate.new(user: member))
     end
   end
-
 end

@@ -1,30 +1,51 @@
-<%= link_to(fa_icon('edit') +' Redigera sida' ,
-    page_path(@page), class: "btn-u btn-u-small")%>
-<%= link_to(fa_icon('edit') + ' Lägg till nytt element',
-            new_page_page_element_path(@page,@page_element),
-            class: "btn-u btn-u-small")%>
-<hr>
-<div class="container content">
-  <div class="headline headline-md"><h3>Sida</h3></div>
-  <div class="row high-rated margin-bottom-20">
-    <div class="sorting-block">
-      <ul class="row sorting-grid">
-        <% @page_elements.each do |p| %>
-            <li class="col-md-3 col-sm-6 col-xs-12">
-              <div class="tag-box tag-box-v2">
-                <div class="overflow-h">
-                  <h3><%= p.name %></h3>
-                </div>
-                <div class="overflow-h">
-                  <br> <%= simple_format(p.text) %>
-                  <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"),
-                              edit_page_page_element_path(@page, p), class: "btn-u btn-u-small" %>
-                </div>
-              </div>
-            </li>
-        <% end %>
-      </ul>
-      <div class="clearfix"></div>
+<% if can? :manage, @page %>
+  <%= link_to(t(:add_attr, attr: model_name(PageElement)), new_page_page_element_path(@page), class: 'btn primary') %>
+  <%= link_to(t(:show_attr, attr: model_name(Page)), page_path(@page), class: 'btn secondary') %>
+  <%= link_to(t(:edit_attr, attr: model_name(Page)), edit_page_path(@page), class: 'btn secondary') %>
+  <hr>
+<% end %>
+<div class="col-md-12">
+  <div class="panel panel-orange margin-bottom-40">
+    <div class="panel-heading">
+      <h3>
+        <%= models_name(PageElement) %>
+      </h3>
     </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th><%= PageElement.human_attribute_name(:name) %></th>
+          <th><%= PageElement.human_attribute_name(:visible) %></th>
+          <th><%= PageElement.human_attribute_name(:text) %></th>
+          <th><%= PageElement.human_attribute_name(:headline) %></th>
+          <th><%= PageElement.human_attribute_name(:sidebar) %></th>
+          <th><%= PageElement.human_attribute_name(:displayIndex) %></th>
+          <th><%= PageElement.human_attribute_name(:updated_at) %></th>
+          <th>
+            <%= link_to(t(:new_attr, attr: model_name(PageElement)),
+                        new_page_page_element_path(@page), class: 'btn primary small') %>
+        </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @page_elements.each do |element| %>
+          <tr>
+            <td><%= element.id %></td>
+            <td><%= element.name %></td>
+            <td><%= element.text.present? ? t(:yes) : t(:no) %></td>
+            <td><%= element.visible ? t(:yes) : t(:no) %></td>
+            <td><%= element.headline %></td>
+            <td><%= element.sidebar ? t(:yes) : t(:no) %></td>
+            <td><%= element.displayIndex %></td>
+            <td><%= l(element.updated_at) %></td>
+            <td>
+              <%= link_to(t(:edit), edit_page_page_element_path(element.page, element),
+                          class: 'btn secondary small') %>
+          </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

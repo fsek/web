@@ -2,35 +2,51 @@
   <div class="panel panel-orange margin-bottom-40">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <%= fa_icon('tasks') %> <%= Menu.model_name.human(count: 2) %>
+        <%= fa_icon('tasks') %> <%= models_name(Menu) %>
       </h3>
     </div>
     <table class="table">
       <thead>
         <tr>
-          <%= content_tag(:th, 'Id') %>
-          <%= content_tag(:th, Menu.human_attribute_name(:name)) %>
-          <%= content_tag(:th, Menu.human_attribute_name(:location)) %>
-          <%= content_tag(:th, Menu.human_attribute_name(:visible)) %>
-          <%= content_tag(:th, Menu.human_attribute_name(:turbolinks)) %>
-          <%= content_tag(:th, Menu.human_attribute_name(:blank_p)) %>
-          <%= content_tag(:th, Menu.human_attribute_name(:link)) %>
-          <%= content_tag(:th, Menu.human_attribute_name(:updated_at)) %>
-          <%= content_tag(:th, link_to(t(:new, attr: Menu.model_name.human), new_menu_path, class: 'btn btn-u')) %>
+          <th>Id</th>
+          <th><%= Menu.human_attribute_name(:name) %></th>
+          <th><%= Menu.human_attribute_name(:location) %></th>
+          <th><%= Menu.human_attribute_name(:visible) %></th>
+          <th><%= Menu.human_attribute_name(:turbolinks) %></th>
+          <th><%= Menu.human_attribute_name(:blank_p) %></th>
+          <th><%= Menu.human_attribute_name(:link) %></th>
+          <th><%= Menu.human_attribute_name(:updated_at) %></th>
+          <th>
+            <%= link_to(t(:new_attr, attr: model_name(Menu)),
+                        new_menu_path, class: 'btn primary small') %>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <% for menu in @menues %>
+        <% @menues.each do |menu| %>
           <tr>
-            <%= content_tag(:td, menu.id) %>
-            <%= content_tag(:td, menu.name) %>
-            <%= content_tag(:td, menu.location) %>
-            <%= content_tag(:td, menu.visible) %>
-            <%= content_tag(:td, menu.turbolinks) %>
-            <%= content_tag(:td, menu.blank_p) %>
-            <%= content_tag(:td, link_to(menu.link, menu.link)) %>
-            <%= content_tag(:td, menu.updated_at) %>
-            <%= content_tag(:td, link_to(t(:edit, attr: nil), edit_menu_path(menu))) %>
+            <td><%= menu.id %></td>
+            <td><%= menu.name %></td>
+            <td><%= t(%(menu.#{menu.location})) %></td>
+            <td><%= menu.visible ? t(:yes) : t(:no) %></td>
+            <td><%= menu.turbolinks ? t(:yes) : t(:no) %></td>
+            <td><%= menu.blank_p ? t(:yes) : t(:no) %></td>
+            <td>
+              <%= link_to(menu.link) do %>
+                <%= truncate(menu.link, length: 10) %>
+              <% end %>
+            </td>
+            <td>
+              <% if menu.updated_at.present? %>
+                <%= l(menu.updated_at) %>
+              <% else %>
+                -
+              <% end %>
+            </td>
+            <td>
+              <%= link_to(t(:edit), edit_menu_path(menu),
+                          class: 'btn secondary small') %>
+            </td>
           </tr>
         <% end %>
       </tbody>

@@ -70,7 +70,7 @@
 
   .navbar-right {
     .dropdown-menu {
-      right: inherit;
+      right: 0;
     }
   }
 
@@ -103,7 +103,7 @@
     border-top: 1px solid $main-color;
     box-shadow: none;
     margin-top: -1px;
-    min-width: 200px;
+    min-width: 160px;
     padding: 0;
     z-index: 9999;
 
