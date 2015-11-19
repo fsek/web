@@ -11,15 +11,16 @@
       / TODO: This should be prepopulated by current tags when editing
       / White space is ignored and tags are saved in lowercase.
       = f.input :tagstring, :input_html => {:value => @ex_link.get_tagnames},
-                hint: raw("Tags separated by a comma. #{link_to 'Show all tags',
+                hint: raw("Tags separated by space. #{link_to 'Show all tags',
                                                         action: 'list_tags'}")
-      = f.input :test_availability,  :input_html => { :checked => true },
+      = f.input :test_availability,
+                :input_html => { :checked => @ex_link.test_availability },
                 hint: 'Check this link for availability (WIP)"'
-      = f.input :active, :input_html => { :checked => true },
+      = f.input :active, :input_html => { :checked => @ex_link.active },
                 hint: 'Signalize if the link is active or not.'
       = f.input :image, as: :file
       = f.input :expiration, as: :datetime_picker,
-                hint: 'Mark inactive at this date. (WIP)',
+                hint: 'Mark inactive after this date.',
                 :input_html => {:value => Date.today + 730}
       = f.input :note, placeholder: '', hint: 'Useful info about the link.'
     .form-group.margin-bottom-5

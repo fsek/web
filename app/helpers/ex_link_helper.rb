@@ -8,4 +8,13 @@ module ExLinkHelper
     end
     res.html_safe
   end
+
+  # print tags nicely in labels
+  def tags2labs(tagnames)
+    res = ''
+    tagnames.each do |tag|
+      res += "<span class='label rounded label-warning'>#{tag}</span>\n"
+    end
+    res.html_safe
+  end
 end

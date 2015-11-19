@@ -22,7 +22,7 @@
             %td= image_tag ex_link.image.url(:thumb), width: 30
             %td= ex_link.label
             %td= link_to ex_link.url, ex_link.url
-            %td= ex_link.get_tagnames
+            %td= tags2labs ex_link.get_tagnames
             %td= bool2icon ex_link.test_availability
             %td= bool2icon ex_link.active
             %td= ex_link.expiration
@@ -34,6 +34,16 @@
             %td= button_to 'Destroy', ex_link, :method => :delete,
                 :data => { :confirm => 'Are you sure?' },
                 class: 'btn-u btn-u-red btn-u-xs'
+  .grid
+    .row
+      .col-md-4
+        = link_to 'List all tags', {action: 'list_tags'},
+                                              class: 'btn-u btn-u-green'
+        = link_to 'New External Link', new_ex_link_path,
+                                              class: 'btn-u btn-u-default'
+      .col-md-4
+        = link_to 'Check expired links', {action: 'check_expired'},
+                                              class: 'btn-u btn-u-red'
+        = link_to 'Check dead links', {action: 'check_dead'},
+                                              class: 'btn-u btn-u-red'
 
-  = link_to 'List all tags', {action: 'list_tags'}, class: 'btn-u btn-u-green'
-  = link_to 'New External Link', new_ex_link_path, class: 'btn-u btn-u-default'
