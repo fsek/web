@@ -5,7 +5,7 @@ class ExLink < ActiveRecord::Base
 
   attr_accessor :tagstring
 
-  before_save :polish_tags
+  before_save :add_tags
 
   has_attached_file :image,
                     styles: { medium: '300x300>', thumb: '100x100>' },
@@ -18,15 +18,50 @@ class ExLink < ActiveRecord::Base
   def get_tagnames
     @tagnames = []
     tags.each { |tag| @tagnames << tag.tagname }
-    @tagnames.join(',')
+    @tagnames
+  end
+
+  def add_tags
+    self.tags = []
+    polish_tags.each do |tagnm|
+      tago = Tag.find_by(tagname: tagnm)
+      if tago.nil?
+        tago = Tag.create(tagname: tagnm)
+      end
+      tags << tago
+    end
   end
 
   # Rewrote NICELY!
   def polish_tags
     tags = []
-    tagstring.gsub!(/\s+/, '')
-    tagstring.downcase.split(',').each do |tagnm|
-      tags << Tag.find_or_create_by(tagname: tagnm)
+    if not tagstring.nil?
+      tagstring.gsub(/\s+/m, ' ')
+      tagstring.strip.downcase.split(' ').each do |tagnm|
+        tags << Tag.find_or_create_by(tagname: tagnm)
+      end
+    end
+  end
+
+  # mark links unactive if expired
+  def self.expiration_check
+    current_time = Time.now.getlocal
+    ExLink.find_each do |link|
+      if link.expiration < current_time
+        link.update_attribute(:active, false)
+      end
+    end
+  end
+
+  # check if current link is alive
+  def self.aliveness_check
+    require 'uri'
+    require 'net/http'
+
+    ExLink.where(active: true).find_each do |link|
+      unless Net::HTTP.get_response(URI(link.url)) == '200'
+        link.update_attribute(:active, false)
+      end
     end
   end
 end

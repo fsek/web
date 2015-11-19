@@ -1,16 +1,4 @@
 Fsek::Application.routes.draw do
-  get 'ex_links/tags' => 'ex_links#list_tags'
-  get 'ex_links/del_unused_tags' => 'ex_links#del_unused_tags'
-  resources :ex_links
-
-  get 'permissions' => 'posts#show_permissions'
-  get 'permission/:id' => 'posts#edit_permissions', as: :permission
-  patch 'permission/:id' => 'posts#update_permissions'
-
-  post "githook" => "githook#index"
-  get "githook/dev" => "githook#dev"
-  get "githook/master" => "githook#master"
-
   # Resources on the page
   get('/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=f1fbd74cac'),
                    as: :vecktorn_signup, status: 301)
@@ -38,10 +26,20 @@ Fsek::Application.routes.draw do
     delete 'logga_ut' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
+  # tags and exlinks
+  get 'ex_links/tags' => 'ex_links#list_tags'
+  get 'ex_links/del_unused_tags' => 'ex_links#del_unused_tags'
+  get 'ex_links/check_dead' => 'ex_links#check_dead'
+  get 'ex_links/check_expired' => 'ex_links#check_expired'
+  resources :ex_links
+
   # Scope to change urls to swedish
   scope path_names: {new: 'ny', edit: 'redigera'} do
     namespace :admin do
-      resources :users, path: :anvandare, only: [:index]
+      resources :users, path: :anvandare, only: [:index] do
+        post :member, on: :member
+        post :unmember, on: :member
+      end
     end
 
     resource :user, path: :anvandare, as: :own_user, only: [:update] do
@@ -105,8 +103,9 @@ Fsek::Application.routes.draw do
     resources :posts, path: :poster, only: :index do
       get :display, on: :member
       get :collapse, on: :collection
-      patch :add_user, on: :collection
-      patch :remove_user, on: :collection
+      post :add_user, on: :collection
+      delete 'user/:post_user_id', on: :collection, action: :remove_user,
+                                   as: :remove_user
       collection do
         get :show_permissions
       end
@@ -168,7 +167,7 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :elections, path: :val do
         get :nominations, path: :nomineringar, on: :member
-        get :candidates, path: :kandideringar, on: :member
+        get :candidates, path: :kandideringar, on: :member, except: [:update]
       end
     end
 
@@ -197,6 +196,14 @@ Fsek::Application.routes.draw do
     get :galleri, controller: :gallery, action: :index, as: :gallery
     namespace :gallery, path: :galleri do
       resources :albums, path: :album, only: [:show]
+    end
+
+    namespace :admin do
+      resources :permissions, only: [] do
+        get '/:post_id', action: :show_post, on: :collection, as: :post
+        patch '(/:post_id)', action: :update_post, on: :collection, as: :update
+        get '', action: :index, on: :collection, as: :index
+      end
     end
   end
 

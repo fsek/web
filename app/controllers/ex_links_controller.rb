@@ -100,7 +100,19 @@ class ExLinksController < ApplicationController
   # /ex_links/del_unused/tags
   def del_unused_tags
     Tag.delete_unused_tags
-    list_tags
+    redirect_to action: 'list_tags'
+  end
+
+  # /ex_links/check_dead
+  def check_dead
+    ExLink.aliveness_check
+    redirect_to action: 'index'
+  end
+
+  # /ex_links/check_expired
+  def check_expired
+    ExLink.expiration_check
+    redirect_to action: 'index'
   end
 
   private
