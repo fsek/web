@@ -3,13 +3,13 @@ class Admin::Gallery::AlbumsController < ApplicationController
   before_action :authorize
   load_permissions_and_authorize_resource
   load_and_authorize_resource :image, through: :album
-  before_action :load_users, only: [:edit, :new, :update]
+  before_action :load_users, only: [:show, :new, :update]
 
   def index
     @albums = Album.order('start_date asc')
   end
 
-  def edit
+  def show
   end
 
   def new
@@ -17,7 +17,7 @@ class Admin::Gallery::AlbumsController < ApplicationController
 
   def create
     if @album.save
-      redirect_to edit_admin_gallery_album_path(@album), notice: alert_create(Album)
+      redirect_to admin_gallery_album_path(@album), notice: alert_create(Album)
     else
       render action: :new
     end
@@ -29,11 +29,19 @@ class Admin::Gallery::AlbumsController < ApplicationController
   end
 
   def update
-    if @album.update(album_params) && AlbumService.upload_images(@album)
-      redirect_to edit_admin_gallery_album_path(@album), notice: alert_update(Album)
+    service = AlbumService.new
+    if @album.update(album_params) && service.upload_images(@album)
+      redirect_to(admin_gallery_album_path(@album),
+                  notice: %(#{alert_update(Album)} #{I18n.t('gallery.uploaded')}: #{service.uploaded}))
     else
-      render action: :edit
+      render action: :show
     end
+  end
+
+  def destroy_images
+    @album.images.destroy_all
+    redirect_to(admin_gallery_album_path(@album),
+                notice: alert_destroy(Image))
   end
 
   private

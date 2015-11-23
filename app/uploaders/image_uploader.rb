@@ -8,12 +8,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     %(#{Rails.root}/storage/#{model.parent.class.name.pluralize.downcase}/#{model.parent.id})
   end
+  # Store dimensions of original
+  process :store_dimensions
 
   # Resizes to width 1680px (if the image is larger)
   version :large do
     process resize_to_fit: [1680, 10000]
     process :watermark
-    process :store_dimensions
 
     def store_dir
       %(uploads/#{model.parent.class.name.pluralize.downcase}/#{model.parent.id}/large)

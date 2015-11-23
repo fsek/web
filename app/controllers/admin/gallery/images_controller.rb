@@ -13,7 +13,7 @@ class Admin::Gallery::ImagesController < ApplicationController
 
   def destroy
     @image.destroy
-    redirect_to admin_gallery_albums_path, notice: alert_destroy(Album)
+    redirect_to admin_gallery_album_path(@album), notice: alert_destroy(Image)
   end
 
   private

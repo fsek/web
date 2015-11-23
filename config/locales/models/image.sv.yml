@@ -6,6 +6,8 @@ sv:
         other: Bilder
     attributes:
       image:
-        description: Beskrivning
         album_id: Album
-        foto: Bild
+        created_at: Skapad
+        dimensions: Dimensioner
+        file: Bild
+        photographer: Fotograf

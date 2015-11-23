@@ -11,7 +11,7 @@ feature 'admin visits paths' do
     'admin/elections': [:new, :index, :show, :edit],
     'admin/events': [:show, :new, :index],
     'admin/rents': [:main, :show, :new],
-    'admin/gallery/albums': [:index, :edit],
+    'admin/gallery/albums': [:index, :show],
     'gallery/albums': [:show],
     cafe_works: [:index],
     calendars: [:index],

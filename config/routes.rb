@@ -162,8 +162,9 @@ Fsek::Application.routes.draw do
 
     namespace :admin do
       namespace :gallery, path: :galleri do
-        resources :albums, path: :album, except: :show do
-          resources :images, path: :bild, only: [:edit, :show] do
+        resources :albums, path: :album, except: :edit do
+          delete :destroy_images, on: :member
+          resources :images, path: :bild, only: [:destroy, :show] do
             get :download, path: :hamta, on: :member
           end
         end

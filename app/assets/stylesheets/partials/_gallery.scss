@@ -72,6 +72,10 @@
   &.photographer {
     margin-top: 10px;
   }
+
+  &.has-error {
+    color: $unify-red;
+  }
 }
 
 @media(min-width: 1200px) and (max-width: 801px) {
@@ -98,12 +102,12 @@
       .preview-wrap {
         .caption {
           .title {
-            font-size: 13px;
+            font-size: 15px;
           }
         }
 
         span {
-          font-size: 11px;
+          font-size: 13px;
         }
       }
     }

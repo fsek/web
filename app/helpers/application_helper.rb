@@ -40,7 +40,6 @@ module ApplicationHelper
     content_tag :div, raw(html.to_html), class: 'form-group'
   end
 
-
   def minimal_time(start, stop, prick)
     str = ""
     if start.present?

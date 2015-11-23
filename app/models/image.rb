@@ -4,7 +4,8 @@ class Image < ActiveRecord::Base
   belongs_to :photographer, class_name: User
   default_scope { order(:filename) }
   mount_uploader :file, ImageUploader
-  validates :file, presence: true
+  validates :file, :filename, presence: true
+  validates :filename, uniqueness: { message: '%{value} är redan uppladdad' }
 
   def original
     file.url

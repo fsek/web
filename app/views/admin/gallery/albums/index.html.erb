@@ -29,7 +29,7 @@
             <td><%= album.start_date %></td>
             <td><%= album.end_date %></td>
             <td><%= album.updated_at %></td>
-            <td><%= link_to(t(:edit), edit_admin_gallery_album_path(album),
+            <td><%= link_to(t(:edit), admin_gallery_album_path(album),
                             class: 'btn secondary') %></td>
           </tr>
         <% end %>

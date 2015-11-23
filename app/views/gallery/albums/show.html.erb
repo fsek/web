@@ -13,22 +13,22 @@
                       data-height="80%"
                       data-ratio="4/3"
                       data-startindex="<%= @start.to_s %>">
-                      <% @album.images.each do |p| %>
-                        <div data-img="<%= p.view %>" data-thumb="<%= p.thumb %>">
-                          <%= link_to(t('gallery.share'), gallery_album_path(@album, start: @album.images.find_index(p)),
-                                      data: { no_turbolink: true }) %>
-                      </div>
-                    <% end %>
+    <% @album.images.each do |p| %>
+      <div data-img="<%= p.view %>" data-thumb="<%= p.thumb %>">
+        <%= link_to(t('gallery.share'), gallery_album_path(@album, start: @album.images.find_index(p)),
+                    data: { no_turbolink: true }) %>
+    </div>
+  <% end %>
 </div>
 <div class="span7 gallery center photographer">
   <h3 class=""><%= t('gallery.photographers') %></h3>
   <ul class="list">
     <% @album.photographers.each do |p| %>
-      <li class=""><%= link_to(p, p) %></li>
+      <li><%= link_to(p, p) %></li>
     <% end %>
 
     <% @album.photographer_names.each do |p| %>
-      <li class=""><%= simple_format(p) %></li>
+      <li><%= p %></li>
     <% end %>
   </ul>
   <% if @policy.present? %>
