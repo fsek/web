@@ -22,9 +22,11 @@ module Fsek
     config.i18n.default_locale = :sv
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths += Dir["#{config.root}/services/**/"]
+    config.autoload_paths += Dir["#{config.root}/uploaders/**/"]
 
     config.time_zone ='Stockholm'
     config.filter_parameters += [:password, :password_confirmation, :civic]
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+Rack::Utils.multipart_part_limit = 512

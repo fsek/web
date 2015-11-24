@@ -1,7 +1,7 @@
 Fsek::Application.routes.draw do
   # Resources on the page
-  get '/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=f1fbd74cac'),
-                   as: :vecktorn_signup, status: 301
+  get('/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=f1fbd74cac'),
+                   as: :vecktorn_signup, status: 301)
   get '/farad', to: redirect('http://www.farad.nu'), as: :farad, status: 301
   get '/facebook', to: redirect('https://www.facebook.com/Fsektionen'), as: :facebook, status: 301
   get '/twitter', to: redirect('https://www.twitter.com/Fsektionen'), as: :twitter, status: 301
@@ -148,6 +148,7 @@ Fsek::Application.routes.draw do
         get :candidates, path: :kandideringar, on: :member, except: [:update]
       end
     end
+
     resources :elections, path: :val, only: :index do
       collection do
         resources :nominations, controller: 'elections/nominations',
@@ -159,10 +160,20 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :albums, path: :galleri do
-      get :upload_images, path: :ladda_upp, on: :member
-      patch :upload_images, path: :ladda_upp, on: :member
-      resources :images, path: :bilder, except: [:new]
+    namespace :admin do
+      namespace :gallery, path: :galleri do
+        resources :albums, path: :album, except: :edit do
+          delete :destroy_images, on: :member
+          resources :images, path: :bild, only: [:destroy, :show] do
+            get :download, path: :hamta, on: :member
+          end
+        end
+      end
+    end
+
+    get :galleri, controller: :gallery, action: :index, as: :gallery
+    namespace :gallery, path: :galleri do
+      resources :albums, path: :album, only: [:show]
     end
 
     namespace :admin do

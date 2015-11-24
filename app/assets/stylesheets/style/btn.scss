@@ -25,7 +25,7 @@
     background: $unify-orange;
     border: 1px solid $unify-orange;
     color: $white;
-    margin: 0 10px 0 0;
+    margin: 0 10px 10px 0;
 
     &:hover {
       background: $unify-orange-hover;
@@ -37,7 +37,7 @@
     background: $unify-grey;
     border: 1px solid $unify-grey;
     color: $white;
-    margin: 0 10px 0 0;
+    margin: 0 10px 10px 0;
 
     &:hover {
       background: $unify-grey-hover;
@@ -48,7 +48,7 @@
     background: $white;
     border: 1px solid $border;
     color: $black;
-    margin: 0 10px 0 0;
+    margin: 0 10px 10px 0;
 
     &:hover {
       background: $fsek-pi-silver;
@@ -60,7 +60,7 @@
   &.danger {
     background: $unify-red;
     border: 1px solid $unify-red;
-    margin: 0 10px 0 0;
+    margin: 0 10px 10px 0;
 
     &:hover {
       background: $unify-red-hover;

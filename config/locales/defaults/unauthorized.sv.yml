@@ -9,3 +9,5 @@ sv:
     new:
       nomination: Du måste logga in för att kunna nominera.
       candidate: Du måste logga in för att kunna kandidera.
+    show:
+      album: Bildgalleriet är endast till för sektionens medlemmar.

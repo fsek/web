@@ -1,0 +1,25 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h2><%= link_to(%(#{model_name(Image)} #{@image.filename}), gallery_album_path(@album, image: @image)) %></h2>
+  </div>
+  <%= image_tag(@image.view, class: 'img-responsive') %>
+  <ul class="list">
+    <li><%= Image.human_attribute_name(:dimensions) %>: <%= %(#{@image.width}x#{@image.height}) %></li>
+    <li><%= Image.human_attribute_name(:created_at) %>: <%= l(@image.created_at) %></li>
+    <li><%= Image.human_attribute_name(:photographer) %>:
+      <% if @image.photographer.present? %>
+        <%= link_to(@image.photographer, user_path(@image.photographer)) %>
+      <% else %>
+        <%= @image.photographer_name %>
+      <% end %>
+    </li>
+  </ul>
+  <hr>
+  <%= link_to(t('gallery.download'), download_admin_gallery_album_image_path(@album, @image),
+              class: 'btn secondary') %>
+  <%= link_to(t(:destroy_attr, attr: model_name(Image)), admin_gallery_album_image_path(@album, @image),
+              method: :delete, class: 'btn danger') %>
+  <hr>
+  <%= link_to(t(:show_attr, attr: model_name(Album)), admin_gallery_album_path(@album),
+              class: 'btn secondary') %>
+</div>

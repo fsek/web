@@ -87,6 +87,8 @@ namespace :db do
                             link: '/bil', index: 20, visible: true, turbolinks: false)
     Menu.find_or_create_by!(location: :members, name: 'Hilbertcafé',
                             link: '/hilbertcafe', index: 30, visible: true, turbolinks: false)
+    Menu.find_or_create_by!(location: :members, name: 'Bildgalleri',
+                            link: '/galleri', index: 40, visible: true, turbolinks: false)
 
     # Notice
     Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
@@ -130,5 +132,9 @@ namespace :db do
                                description: "beskrivningen", food: true, drink: true)
       date = date + 1.days + [-3,-2,-1,0,1,2,3].sample.hours
     end
+
+    # Gallery
+    Album.find_or_create_by!(title: 'Välkomstgasque', description: 'Väldans trevligt!', location: 'Gasquesalen',
+                             start_date: Time.zone.now, category: 'Nollning')
   end
 end

@@ -1,12 +1,6 @@
 require 'rails_helper'
 feature 'visitor visits paths' do
-  let(:album) { create(:album) }
-  let(:cafe_work) { create(:cafe_work) }
-  let(:council) { create(:council) }
-  let(:election) { create(:election) }
-
   paths = {
-    albums: [:show],
     cafe_works: [:index, :nyckelpiga],
     constants: [:index, :new, :show],
     contacts: [:index, :new, :show],
@@ -14,6 +8,7 @@ feature 'visitor visits paths' do
     documents: [:index, :show],
     elections: [:index],
     faqs: [:index, :show, :new],
+    gallery: [:index],
     menus: [:index, :new],
     news: [:index, :new, :show],
     pages: [:show],
@@ -21,16 +16,19 @@ feature 'visitor visits paths' do
   }
 
   background do
-    council
-    election
+    create(:notice)
+    create(:news)
+    create(:event)
+    create(:council)
+    create(:election)
   end
 
   paths.each do |key, value|
     value.each do |v|
       Steps %(Controller: #{key}, action: #{v}) do
-        if v == :show
-          resource = create(key.to_s.singularize.to_sym)
-          page.visit url_for(controller: key, action: :show, id:
+        if v == :show || v == :edit
+          resource = create(key.to_s.split('/').last.singularize.to_sym)
+          page.visit url_for(controller: key, action: v, id:
                              resource.to_param)
         else
           page.visit url_for(controller: key, action: v)

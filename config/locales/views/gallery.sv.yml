@@ -1,3 +1,15 @@
 sv:
   gallery:
     old: Gamla bildgalleriet
+    title: Bildgalleri
+    all_albums: Alla album
+    share: Dela
+    photographers: Fotografer
+    earlier_years: Tidigare år
+    policy: Policy för bilder
+    download: Ladda ner bild
+    already_uploaded: Redan uppladdade
+    uploaded: Uppladdade
+    destroy_images: Förinta alla bilder
+  album:
+    new: Nytt Album

@@ -87,6 +87,11 @@ class ApplicationController < ActionController::Base
     before_action(:load_permissions, *args)
   end
 
+  def self.load_permissions_then_authorize_resource(*args)
+    authorize_resource(*args)
+    before_action(:load_permissions, *args)
+  end
+
   def self.skip_authorization(*args)
     skip_authorization_check(*args)
     skip_before_filter(:load_permissions, *args)

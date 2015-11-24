@@ -1,14 +1,25 @@
 # encoding: UTF-8
 class Image < ActiveRecord::Base
-  belongs_to :album  
-  has_one :subcategory
-  
-  has_attached_file :foto, 
-                    :styles => { original: "4000x4000>", large: "1500x1500>", small: "250x250>",thumb: "100x100>" },                     
-                    :path => ":rails_root/public/system/images/album/:album_id/:id/:style/:filename",
-                    :url => "/system/images/album/:album_id/:id/:style/:filename"  
-  validates_attachment_content_type :foto, :content_type => /\Aimage\/.*\Z/  
-  Paperclip.interpolates :album_id do |a, s|    
-    a.instance.album_id    
-  end  
+  belongs_to :album
+  belongs_to :photographer, class_name: User
+  default_scope { order(:filename) }
+  mount_uploader :file, ImageUploader
+  validates :file, :filename, presence: true
+  validates :filename, uniqueness: { message: '%{value} är redan uppladdad' }
+
+  def original
+    file.url
+  end
+
+  def thumb
+    file.thumb.url
+  end
+
+  def view
+    file.large.url
+  end
+
+  def parent
+    album
+  end
 end

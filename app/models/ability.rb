@@ -19,7 +19,8 @@ class Ability
 
     can :show, Event
     can [:index, :export], :calendar
-
+    # But cannot view any albums
+    can :index, :gallery
     can [:index, :matrix, :modal], :nollning
 
     # Abilities all signed in users get
@@ -39,10 +40,9 @@ class Ability
       # Only members allowed to rent
       can [:index, :new, :create], Rent
       can [:show, :update, :destroy], Rent, user_id: user.id
-
+      can [:show], Album
       can [:read, :mail], Contact
       can :read, Document
-      can :read, :old_gallery
 
       can [:create, :index], Candidate
       can [:update, :show, :destroy], Candidate, user_id: user.id

@@ -1,4 +1,0 @@
-<% if can?(:manage,Album) %>
-  	<%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Lägg till bilder"), upload_images_album_path(@album), class: "btn-u btn-u-small" %>
-    <%= link_to (content_tag(:i, nil, class: "fa fa-edit") + " Redigera"), edit_album_path(@album), class: "btn-u btn-u-small" %>    
-<% end %>

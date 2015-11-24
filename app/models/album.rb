@@ -1,18 +1,38 @@
 # encoding: UTF-8
 class Album < ActiveRecord::Base
   has_many :images, dependent: :destroy
-  belongs_to :user
-  has_and_belongs_to_many :album_categories
-  has_and_belongs_to_many :subcategories
-  
-  validates :start_date, presence: true  
+
+  attr_accessor(:image_upload, :photographer_user,
+                :photographer_name)
+
+  validates :title, :start_date, :description, presence: true
+
+  scope :gallery, -> (date) {
+    where('start_date BETWEEN ? AND ?',
+          date.beginning_of_year, date.end_of_year)
+  }
+
+  # Used to find first year there exists an album
+  def self.first_year
+    order(start_date: :asc).first.start_date.year
+  end
+
+  def photographers
+    ids = images.pluck(:photographer_id).uniq.compact
+    User.find(ids)
+  end
+
+  def photographer_names
+    images.pluck(:photographer_name).uniq.reject(&:blank?)
+  end
+
   def to_date
-    if(self.start_date) && (self.end_date) && (self.start_date.to_date != self.end_date.to_date)
-      self.start_date.to_date.to_s + " till " +self.end_date.to_date.to_s
-    elsif (self.start_date)
-      self.start_date.to_date.to_s
-    elsif (self.end_date)
-      self.end_date.to_date.to_s
+    if start_date && end_date && start_date.day != end_date.day
+      %(#{l(start_date)} till #{l(end_date)})
+    elsif start_date
+      I18n.l(start_date, format: '%d %B %Y')
+    elsif end_date
+      I18n.l(end_date, format: '%d %B %Y')
     else
       false
     end

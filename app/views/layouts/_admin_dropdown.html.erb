@@ -28,6 +28,15 @@
         </ul>
       </li>
     <% end %>
+    <% if can? :manage, Album %>
+      <li class="dropdown-submenu">
+        <%= link_to(model_name(Album), :admin_gallery_albums)%>
+        <ul class="dropdown-menu">
+          <li><%= link_to(t(:index_attr, attr: models_name(Album)), admin_gallery_albums_path) %></li>
+          <li><%= link_to(t('album.new'), new_admin_gallery_album_path) %></li>
+        </ul>
+      </li>
+    <% end %>
     <% if can? :manage, Page %>
       <li class="dropdown-submenu">
         <%= link_to(model_name(Page),:pages)%>
@@ -57,7 +66,7 @@
         <%= link_to(model_name(Event), nil) %>
         <ul class="dropdown-menu">
           <li><%= link_to(t(:index_attr, attr: models_name(Event)), admin_events_path) %></li>
-          <li><%= link_to(t(:new_attr, attr: model_name(Event)), new_admin_event_path) %></li>
+          <li><%= link_to(t('event.new'), new_admin_event_path) %></li>
         </ul>
       </li>
     <% end %>

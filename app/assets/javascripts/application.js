@@ -23,6 +23,7 @@
 //= require fullcalendar/lang/sv.js
 //= require fancybox
 //= require wice_grid.js
+//= require fotorama
 //= require_tree .
 //= require turbolinks
 //= require gallery_hook.js

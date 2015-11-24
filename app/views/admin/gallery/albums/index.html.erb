@@ -1,0 +1,39 @@
+<%= title(t('gallery.title')) %>
+<div class="col-md-12">
+  <div class="panel panel-orange margin-bottom-40">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= fa_icon('tasks') %> <%= t('gallery.title') %>
+      </h3>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th><%= Album.human_attribute_name(:title) %></th>
+          <th><%= Album.human_attribute_name(:location) %></th>
+          <th><%= Album.human_attribute_name(:start_date) %></th>
+          <th><%= Album.human_attribute_name(:end_date) %></th>
+          <th><%= Album.human_attribute_name(:updated_at) %></th>
+          <th><%= link_to(t(:new_attr, attr: model_name(Album)),
+                          new_admin_gallery_album_path,
+                          class: 'btn primary') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for album in @albums %>
+          <tr>
+            <td><%= album.id %></td>
+            <td><%= album.title %></td>
+            <td><%= album.location %></td>
+            <td><%= album.start_date %></td>
+            <td><%= album.end_date %></td>
+            <td><%= album.updated_at %></td>
+            <td><%= link_to(t(:edit), admin_gallery_album_path(album),
+                            class: 'btn secondary') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

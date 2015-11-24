@@ -6,12 +6,16 @@ gem 'rails', '4.2.4'
 
 gem 'bootstrap-sass'
 gem 'cancancan'
+# Need to use this for multiple file upload
+# https://github.com/carrierwaveuploader/carrierwave#multiple-file-uploads
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'coffee-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'devise'
 gem 'factory_girl_rails'
 gem 'fancybox2-rails'
 gem 'font-awesome-rails'
+gem 'fotoramajs'
 gem 'fullcalendar-rails'
 gem 'haml-rails'
 gem 'icalendar'
@@ -19,6 +23,7 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
+gem 'mini_magick'
 gem 'momentjs-rails'
 gem 'mysql2', '~> 0.3.20' # Rails 4 compatibility
 gem 'paperclip'
