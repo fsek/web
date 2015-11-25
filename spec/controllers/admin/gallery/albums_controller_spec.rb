@@ -1,51 +1,63 @@
 require 'rails_helper'
 
-RSpec.describe NewsController, type: :controller do
-  let(:user) { create(:user) }
-  let(:news) { create(:news, user: user) }
+RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
+  let(:user) { create(:admin) }
+  let(:album) { create(:album) }
+  let(:new_album) { build(:album) }
 
-  allow_user_to(:manage, News)
+  # Should be Album, Image and :gallery
+  # Cannot get it to work /dwessman
+  allow_user_to(:manage, :all)
+
   before(:each) do
+    album.reload
     allow(controller).to receive(:current_user) { user }
   end
+
   describe 'GET #show' do
-    it 'assigns the requested news as @news' do
-      get(:show, id: news.to_param)
-      assigns(:news).should eq(news)
+    it 'assigns the requested album as @album' do
+      get(:show, id: album.to_param)
+      assigns(:album).should eq(album)
     end
   end
 
   describe 'GET #new' do
-    it 'assigns a new news as @news' do
+    it 'assigns a new album as @album' do
       get(:new)
-      assigns(:news).new_record?.should be_truthy
-      assigns(:news).instance_of?(News).should be_truthy
+      assigns(:album).new_record?.should be_truthy
+      assigns(:album).instance_of?(Album).should be_truthy
     end
   end
 
   describe 'GET #index' do
-    it 'assigns news sorted as @news' do
+    it 'assigns albums sorted as @albums' do
       get(:index)
-      assigns(:news).should eq(News.all.order(created_at: :asc))
+      assigns(:albums).should match_array(Album.all.order(start_date: :desc))
     end
   end
 
   describe 'POST #create' do
-    it 'posts new news' do
+    it 'posts new album' do
       lambda do
-        post :create, news: attributes_for(:news)
-      end.should change(News, :count).by(1)
+        post :create, album: attributes_for(:album)
+      end.should change(Album, :count).by(1)
 
-      response.should redirect_to(News.last)
+      response.should redirect_to(admin_gallery_album_path(Album.last))
     end
   end
 
   describe 'PATCH #update' do
-    it 'update news' do
-      patch :update, id: news.to_param, news: { title: 'Hej' }
-      news.reload
-      news.title.should eq('Hej')
-      response.should redirect_to(news)
+    it 'update album' do
+      patch(:update, id: album.to_param, \
+            album: { title: 'Hej',
+                     image_upload: [Rack::Test::UploadedFile.new(File.open('app/assets/images/hilbert.jpg'))],
+                     photographer_user: user.id, photographer_name: user.firstname })
+      album.reload
+      album.title.should eq('Hej')
+      response.should redirect_to(admin_gallery_album_path(album))
+      album.images.count.should eq(1)
+      album.images.last.photographer.should eq(user)
+      album.images.last.photographer_name.should eq(user.firstname)
     end
   end
 end

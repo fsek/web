@@ -15,7 +15,7 @@
           <th><%= Album.human_attribute_name(:start_date) %></th>
           <th><%= Album.human_attribute_name(:end_date) %></th>
           <th><%= Album.human_attribute_name(:updated_at) %></th>
-          <th><%= link_to(t(:new_attr, attr: model_name(Album)),
+          <th><%= link_to(t('album.new'),
                           new_admin_gallery_album_path,
                           class: 'btn primary') %></th>
         </tr>

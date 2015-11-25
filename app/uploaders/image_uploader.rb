@@ -1,6 +1,7 @@
 # encoding: utf-8
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+  before :cache, :save_original_filename
 
   storage :file
 
@@ -59,11 +60,14 @@ class ImageUploader < CarrierWave::Uploader::Base
     Watermarker.new(current_path).watermark!(options)
   end
 
+  def save_original_filename(file)
+    model.filename = file.filename
+  end
+
   # To store initial filesize and filename in model
   def store_dimensions
     if file && model
       model.width, model.height = ::MiniMagick::Image.open(file.file)[:dimensions]
-      model.filename = file.filename
     end
   end
 end
