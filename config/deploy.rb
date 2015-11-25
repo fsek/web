@@ -15,6 +15,6 @@ set :bundle_binstubs, nil
 set :linked_files, %w{config/database.yml config/secrets.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{log tmp vendor/bundle public/system storage}
+set :linked_dirs, %w{log tmp vendor/bundle public/system public/uploads storage}
 
 after 'deploy:publishing', 'passenger:restart'
