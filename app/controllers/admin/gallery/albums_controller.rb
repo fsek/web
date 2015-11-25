@@ -6,7 +6,7 @@ class Admin::Gallery::AlbumsController < ApplicationController
   before_action :load_users, only: [:show, :new, :update]
 
   def index
-    @albums = Album.order('start_date asc')
+    @albums = Album.order(start_date: :desc)
   end
 
   def show

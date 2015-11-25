@@ -5,7 +5,7 @@ class Image < ActiveRecord::Base
   default_scope { order(:filename) }
   mount_uploader :file, ImageUploader
   validates :file, :filename, presence: true
-  validates :filename, uniqueness: { message: '%{value} är redan uppladdad' }
+  validates :filename, uniqueness: { scope: :album_id, message: '%{value} är redan uppladdad' }
 
   def original
     file.url

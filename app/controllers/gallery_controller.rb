@@ -13,7 +13,7 @@ class GalleryController < ApplicationController
   # If year != current_year the variable is set
   def set_year
     @year = params[:year]
-    @years = Album.select('distinct year(start_date)').pluck('year(start_date)')
+    @years = Album.pluck('distinct year(start_date)')
     @years = @years.try { sort.reverse }
 
     if @year.present?
