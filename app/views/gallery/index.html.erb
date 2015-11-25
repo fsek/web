@@ -1,6 +1,13 @@
 <%= title(t('gallery.title')) %>
 <div class="headline headline-md">
-  <h1><%= t('gallery.title') %></h1>
+  <h1>
+    <%= t('gallery.title') %> -
+    <% if @year.present? %>
+     <%= @year.to_i %>
+   <% else %>
+     <%= Time.zone.now.year %>
+   <% end %>
+  </h1>
 </div>
 <div class="col-md-2 col-xs-12">
   <% if @policy.present? %>

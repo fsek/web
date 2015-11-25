@@ -4,7 +4,7 @@ class Album < ActiveRecord::Base
 
   attr_accessor(:image_upload, :photographer_user,
                 :photographer_name)
-
+  default_scope { order(start_date: :desc) }
   validates :title, :start_date, :description, presence: true
 
   scope :gallery, -> (date) {
