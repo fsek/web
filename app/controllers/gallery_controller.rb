@@ -12,23 +12,12 @@ class GalleryController < ApplicationController
 
   # If year != current_year the variable is set
   def set_year
-    @year = params[:year]
-    @years = Album.pluck('distinct year(start_date)')
-    @years = @years.try { sort.reverse }
-
-    if @year.present?
-      @years = @years - [@year]
-    else
-      @years = @years - [Time.zone.now.year.to_i]
-    end
+    @year = params[:year] || Time.zone.now.year
+    @all_years = Album.unique_years - [@year.to_i]
   end
 
   def load_albums
-    if @year.present?
-      @albums = Album.gallery(Time.zone.local(@year))
-    else
-      @albums = Album.gallery(Time.zone.now)
-    end
+    @albums = Album.gallery(Time.zone.local(@year, 3))
   end
 
   def load_policy
