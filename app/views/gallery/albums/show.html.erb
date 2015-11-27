@@ -1,7 +1,7 @@
 <%= provide(:title, @album.title) %>
 <div class="headline">
   <h3><%= @album.title %></h3>
-  <%= link_to(fa_icon('arrow-left'), gallery_path,
+  <%= link_to(fa_icon('arrow-left'), gallery_path(year: @album.start_date.year.to_i),
               class: 'btn secondary pull-right small') %>
 </div>
 
@@ -24,7 +24,7 @@
   <h3 class=""><%= t('gallery.photographers') %></h3>
   <ul class="list">
     <% @album.photographers.each do |p| %>
-      <li><%= link_to(p, p) %></li>
+      <li><%= link_to(p, p, target: 'blank_p') %></li>
     <% end %>
 
     <% @album.photographer_names.each do |p| %>

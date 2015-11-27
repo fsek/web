@@ -1,20 +1,19 @@
 # encoding: UTF-8
 class Album < ActiveRecord::Base
-  has_many :images, dependent: :destroy
+  has_many :images, -> { order(:filename) }, dependent: :destroy
 
   attr_accessor(:image_upload, :photographer_user,
                 :photographer_name)
-  default_scope { order(start_date: :desc) }
   validates :title, :start_date, :description, presence: true
 
+  scope :start_date, -> { order(start_date: :desc) }
   scope :gallery, -> (date) {
-    where('start_date BETWEEN ? AND ?',
-          date.beginning_of_year, date.end_of_year)
+    start_date.where('start_date BETWEEN ? AND ?',
+                     date.beginning_of_year, date.end_of_year)
   }
 
-  # Used to find first year there exists an album
-  def self.first_year
-    order(start_date: :asc).first.start_date.year
+  def self.unique_years
+    pluck('distinct year(start_date)').try { sort.reverse }
   end
 
   def photographers

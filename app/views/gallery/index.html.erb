@@ -1,12 +1,7 @@
 <%= title(t('gallery.title')) %>
 <div class="headline headline-md">
   <h1>
-    <%= t('gallery.title') %> -
-    <% if @year.present? %>
-     <%= @year.to_i %>
-   <% else %>
-     <%= Time.zone.now.year %>
-   <% end %>
+    <%= t('gallery.title') %> - <%= @year %>
   </h1>
 </div>
 <div class="col-md-2 col-xs-12">
@@ -16,19 +11,17 @@
     <% end %>
   <% end %>
 
-  <% if @years.present? %>
+  <% if @all_years.present? %>
     <div class="dropdown margin-bottom-20">
       <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <%= @year || t('gallery.earlier_years') %>
+        <%= t('gallery.other_years') %>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="oldies">
-        <% if @years.present? %>
-          <% @years.each do |year| %>
-            <li>
-              <%= link_to(year, gallery_path(year: year)) %>
-            </li>
-          <% end %>
+        <% @all_years.each do |year| %>
+          <li>
+            <%= link_to(year, gallery_path(year: year)) %>
+          </li>
         <% end %>
       </ul>
     </div>

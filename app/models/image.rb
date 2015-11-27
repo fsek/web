@@ -2,7 +2,7 @@
 class Image < ActiveRecord::Base
   belongs_to :album
   belongs_to :photographer, class_name: User
-  default_scope { order(:filename) }
+  scope :filename, -> { order(:filename) }
   mount_uploader :file, ImageUploader
   validates :file, :filename, presence: true
   validates :filename, uniqueness: { scope: :album_id, message: '%{value} är redan uppladdad' }
