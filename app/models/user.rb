@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   # Returns all councils the user belongs to with a Post who is
   # allowed to rent the car
   def car_councils
-    councils.merge(Post.renters)
+    councils.merge(Post.renters).uniq.all_name
   end
 
   def member?

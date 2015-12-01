@@ -1,11 +1,13 @@
-<% provide(:title, Rent.model_name.human) %>
+<% provide(:title, model_name(Rent)) %>
 <div class='col-md-8 col-md-offset-2 col-xs-12 reg-page'>
   <div class="headline">
     <h2><%= t(:edit_attr, attr: model_name(Rent)) %></h2>
   </div>
   <%= render 'form' %>
   <hr>
-  <%= link_to(t('rent.remove'), rent_path(@rent), method: :delete, class: 'btn danger',
-              data: {confirm: t('rent.confirm_remove')}) %>
+  <% if @rent.edit?(current_user) %>
+    <%= link_to(t('rent.remove'), rent_path(@rent), method: :delete, class: 'btn danger',
+                data: {confirm: t('rent.confirm_remove')}) %>
+  <% end %>
   <%= link_to(t(:index_attr, attr: models_name(Rent)), :rents, class: 'btn secondary') %>
 </div>

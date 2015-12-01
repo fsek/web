@@ -50,14 +50,6 @@ class Rent < ActiveRecord::Base
     str
   end
 
-  def p_from
-    I18n.l(d_from, format: '%H:%M %d/%m')
-  end
-
-  def p_til
-    I18n.l(d_til, format: '%H:%M %d/%m')
-  end
-
   def p_time
     if (d_from.day == d_til.day)
       %(#{I18n.l(d_from, format:'%H:%M')} - #{I18n.l(d_til, format: '%H:%M')}, #{I18n.l(d_from, format: '%d/%m')})

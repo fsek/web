@@ -1,7 +1,7 @@
 <%= simple_form_for(@rent, error_method: :to_sentence) do |f| %>
   <%= f.association :user, collection: [current_user], include_blank: false %>
   <% if @rent.errors[:user].present? %>
-    <p><%= link_to(t('user.edit_information'), edit_own_user_path) %></p>
+    <p><%= link_to(t('user.edit_information'), edit_own_user_path, target: :blank_p) %></p>
   <% end %>
   <%= render 'renter_table', user: @rent.user, rent: @rent %>
 
@@ -16,8 +16,8 @@
     </ul>
   <% end %>
 
-  <%= f.input :d_from, as: :datetime_picker %>
-  <%= f.input :d_til, as: :datetime_picker %>
+  <%= f.input :d_from, as: :datetime_picker, required: true %>
+  <%= f.input :d_til, as: :datetime_picker, required: true %>
   <%= f.input :purpose, as: :text %>
 
   <% if current_user.car_councils && current_user.car_councils.count > 0 %>
@@ -29,19 +29,16 @@
     <%= f.association :council, collection: current_user.car_councils %>
   <% end %>
 
-  <% if !current_user.member? %>
-    <p><strong><%= t('important') %></strong></p>
-    <p><%= t('rent.not_member') %></p>
-    <p><%= t('rent.confirm_member') %> <%= link_to(t('account'), edit_own_user_path) %>.</p>
-  <% end %>
-
   <% if @terms.present? %>
+    <span class="rent terms">
     <%= t('rent.terms_agree') %>
-    <%= link_to(document_path(@terms), class: 'btn secondary small', target: 'blank_p') do %>
+    <%= link_to(document_path(@terms), target: 'blank_p') do %>
       <%= fa_icon('paperclip') %> <%= t('rent.terms') %>.
     <% end %>
-    <hr>
+    </span>
+    <br>
   <% end %>
+
   <% if @rent.edit?(current_user) %>
     <%= f.button :submit %>
   <% else %>

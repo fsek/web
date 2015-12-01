@@ -1,9 +1,11 @@
 <%= simple_form_for([:admin, @rent]) do |f| %>
-<h2><%= @rent.print_status %> </h2>
+<h4><%= @rent.print_status %> </h4>
 <%= f.input :service, as: :boolean %>
 <%= f.association :user, collection: @users %>
 <% if @rent.user.present? %>
-  <%= render '/users/user', user: @rent.user %>
+  <table class="table">
+  <%= render '/users/as_table', user: @rent.user, prot: true %>
+  </table>
 <% end %>
 <%= f.input :d_from, as: :datetime_picker %>
 <%= f.input :d_til, as: :datetime_picker %>

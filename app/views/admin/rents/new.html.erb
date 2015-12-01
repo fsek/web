@@ -1,6 +1,9 @@
 <% provide(:title, t('rent.admin.title')) %>
 <div class='col-md-8 col-md-offset-2 col-xs-12 reg-page'>
-  <%= render 'links' %>
-  <hr>
+  <div class="headline">
+    <h2><%= t(:new_attr, attr: model_name(Rent)) %></h2>
+  </div>
   <%= render 'form' %>
+  <hr>
+  <%= link_to(t('rent.admin.index'), admin_rents_path, class: 'btn secondary') %>
 </div>

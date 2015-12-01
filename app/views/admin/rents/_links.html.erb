@@ -1,7 +1,0 @@
-<div class='margin-bottom-20'>
-  <%= link_to(t('rent.admin.index'), admin_rents_path, class: 'btn btn-u') %>
-  <%= link_to(t(:index, attr: models_name(Rent)), rents_path, class: 'btn btn-u') %>
-  <%if !@rent.new_record?%>
-    <%= link_to(t('rent.view_normal'), rent_path(@rent), class: 'btn btn-u') %>
-  <%end%>
-</div>

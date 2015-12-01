@@ -3,8 +3,8 @@ class Admin::RentsController < ApplicationController
   before_action :prepare, only: [:new, :show]
 
   def index
-    @rents = Rent.ascending.from_date(Time.zone.now.beginning_of_day)
-    @rent_grid = initialize_grid(@rents)
+    @rents = Rent.from_date(Time.zone.now.beginning_of_day).includes(:user)
+    @rent_grid = initialize_grid(@rents, order: 'rents.d_from', order_direction: :asc)
     @faqs = Faq.where(answer: '').where(category: 'Bil')
   end
 

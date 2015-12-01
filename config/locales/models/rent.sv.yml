@@ -6,24 +6,21 @@ sv:
         other: Bilbokningar
     attributes:
       rent:
+        aktiv: Aktiv
+        comment: Kommentar
+        council_id: Utskott
+        created_at: Skapad
+        date: Datum
         d_from: Startdatum
         d_til: Slutdatum
-        name: Förnamn
-        lastname: Efternamn
-        email: E-post
-        phone: Telefon
-        purpose: Syfte
         disclaimer: Bilbokningsavtal
-        aktiv: Aktiv
-        council_id: Utskott
-        user_id: Användare
-        comment: Kommentar
-        status: Status
-        service: Service
-        access_code: Kod
+        email: E-post
+        purpose: Syfte
         renter: Hyrs av
-        created_at: Skapad
+        service: Service
+        status: Status
         updated_at: Redigerad
+        user_id: Användare
   rent:
     validation:
       future: måste vara i framtiden
@@ -33,8 +30,8 @@ sv:
       overlap_council: överlappar med en annan utskottsbokning
       overlap_overbook: överlappar med en bokning som det är mindre än 5 dagar till
     denied_comment: Orsak vid nekad bokning
-    confirmed: Bekräftad
-    unconfirmed: Ej bekräftad
-    denied: Nekad
-    active: Aktiv
-    inactive: Inaktiv
+    confirmed: bekräftad
+    unconfirmed: ej bekräftad
+    denied: nekad
+    active: aktiv
+    inactive: inaktiv

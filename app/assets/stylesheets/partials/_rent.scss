@@ -32,3 +32,9 @@ ul {
     font-size: 15px;
   }
 }
+
+.rent {
+  &.terms {
+    display: block;
+  }
+}

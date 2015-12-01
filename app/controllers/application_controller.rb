@@ -15,8 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActiveRecord::RecordInvalid do |ex|
-    flash[:alert] =
-      "Fel i formulär:  #{ex.record.errors.full_messages.join '; '}"
+    flash[:alert] = ex.record.errors.full_messages.join '; '
     render referring_action, status: :unprocessable_entity
   end
 
