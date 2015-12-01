@@ -8,6 +8,7 @@ module RentService
       if rent.council.present?
         rent.overlap.each(&:overbook)
       end
+      RentMailer.rent_email(rent).deliver_now
       true
     end
   end
@@ -27,6 +28,7 @@ module RentService
     if RentValidator.new.base(rent)
       rent.status = rent.user.member? ? :confirmed : :unconfirmed
       rent.save!(validate: false)
+      RentMailer.rent_email(rent).deliver_now
       true
     else
       false
@@ -34,9 +36,18 @@ module RentService
   end
 
   def self.administrate(rent, params)
+    active = rent.aktiv
+    status = rent.status
     rent.attributes = params
     if RentValidator.new.base(rent)
       rent.save!(validate: false)
+      if rent.aktiv != active
+        RentMailer.active_email(rent).deliver_now
+      end
+
+      if rent.status != status
+        RentMailer.status_email(rent).deliver_now
+      end
       true
     else
       false

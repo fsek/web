@@ -1,14 +1,12 @@
-Hej <%= @rent.user %>
+<%= %(#{t(:hello)} #{@rent.user}) %>
 ===============================================
-Du har bokat F-sektionens bil.
+<%= t('rent.mailer.booked') %>
+<%= render 'attributes', rent: @rent %>
 
-<%= render 'attributes', rent: @rent%>
-
-<% if @rent.status != "Bekräftad" %>
-Din bokning måste hanteras direkt av bilförmannen och ett mejl kommer skickas ut då bokningen är beräkftad eller nekad.
+<% if (@rent.status != 'confirmed') %>
+  <%= t('rent.mailer.confirm_foreman') %>
 <% end %>
-Har du några frågor så svarar du enklast direkt på detta mejl.
 
-
-Mvh,
-Bilförmannen
+<%= t('rent.mailer.signature_questions') %>
+<%= t(:sincerely) %>,
+<%= t('rent.foreman') %>

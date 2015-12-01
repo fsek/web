@@ -1,15 +1,13 @@
-Hej <%=@rent.p_name %>
+<%= %(#{t(:hello)} #{@rent.user}) %>
 ===============================================
-<%if !@rent.aktiv%>
-Din bokning har bokats över utav ett utskott.
-Om du tror att någonting har gått fel eller om det är lätt att lösa, svara på mejlet och kontakta bilförmannen.
-<%else%>
-Din bokning har markerats som aktiv igen.  				
-<%end%>
-  			
-<%= render 'attributes_text', rent: @rent%>
+<% if !@rent.aktiv %>
+  <%= t('rent.mailer.marked_inactive_text') %>
+<% else %>
+  <%= t('rent.mailer.marked_active_text') %>
+<% end %>
+<%= render 'attributes', rent: @rent%>
 
-Har du några frågor så svarar du enklast direkt på detta mejl.
+<%= t('rent.mailer.signature_questions') %>
 
-Mvh,
-Bilförmannen
+<%= t(:sincerely) %>,
+<%= t('rent.foreman') %>

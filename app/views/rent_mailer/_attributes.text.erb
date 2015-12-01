@@ -1,8 +1,10 @@
-Uppgifter för bokningen (ID: <%= rent.id %>).
+<%= %(#{t('rent.mailer.attributes')} (ID: #{rent.id})) %>.
+
 <%= User.human_attribute_name(:name) %>:       <%= rent.user %>
 <%= User.human_attribute_name(:email) %>:      <%= rent.user.try(:email) %>
 <%= User.human_attribute_name(:phone) %>:      <%= rent.user.try(:phone) %>
-<%= Rent.human_attribute_name(:date) %>:      <%= rent.p_time %>
+<%= Rent.human_attribute_name(:d_from) %>:      <%= l(rent.d_from) %>
+<%= Rent.human_attribute_name(:d_til) %>:      <%= l(rent.d_til) %>
 
 <% if rent.purpose.present? %>
   <%= Rent.human_attribute_name(:purpose) %>:      <%= rent.purpose %>

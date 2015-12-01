@@ -1,37 +1,41 @@
-<p>Bokningens uppgifter (ID: <%= rent.id %>).</p>
+<p><%= %(#{t('rent.mailer.attributes')} (ID: #{rent.id})) %>.</p>
 <table class="table">
   <tbody>
     <tr>
-      <%= content_tag(:td, User.human_attribute_name(:firstname)) %>
-      <%= content_tag(:td, rent.user) %>
+      <td><%= User.human_attribute_name(:firstname) %></td>
+      <td><%= rent.user %></td>
     </tr>
     <tr>
-      <%= content_tag(:td, User.human_attribute_name(:email)) %>
-      <%= content_tag(:td, rent.user.email) %>
+      <td><%= User.human_attribute_name(:email) %></td>
+      <td><%= rent.user.email %></td>
     </tr>
     <tr>
-      <%= content_tag(:td, User.human_attribute_name(:phone)) %>
-      <%= content_tag(:td, rent.user.phone) %>
+      <td><%= User.human_attribute_name(:phone) %></td>
+      <td><%= rent.user.phone %></td>
     </tr>
     <tr>
-      <%= content_tag(:td, Rent.human_attribute_name(:d_from)) %>
-      <%= content_tag(:td, rent.p_time) %>
+      <td><%= Rent.human_attribute_name(:d_from) %></td>
+      <td><%= l(rent.d_from) %></td>
+    </tr>
+    <tr>
+      <td><%= Rent.human_attribute_name(:d_til) %></td>
+      <td><%= l(rent.d_til) %></td>
     </tr>
     <% if rent.purpose.present? %>
       <tr>
-        <%= content_tag(:td, Rent.human_attribute_name(:purpose)) %>
-        <%= content_tag(:td, simple_format(rent.purpose)) %>
+        <td><%= Rent.human_attribute_name(:purpose) %></td>
+        <td><%= simple_format(rent.purpose) %></td>
       </tr>
     <% end %>
     <% if rent.council.present? %>
       <tr>
-        <%= content_tag(:td, model_name(Council)) %>
-        <%= content_tag(:td, link_to(rent.council, council_url(rent.council))) %>
+        <td><%= Council.model_name.human %></td>
+        <td><%= link_to(rent.council, council_url(rent.council)) %></td>
       </tr>
     <% end %>
     <tr>
-      <%= content_tag(:td, t(:link)) %>
-      <%= content_tag(:td, link_to(t('rent.your_booking'), rent_url(rent))) %>
+      <td><%= t(:link) %></td>
+      <td><%= link_to(t('rent.your_booking'), rent_url(rent)) %></td>
     </tr>
   </tbody>
 </table>

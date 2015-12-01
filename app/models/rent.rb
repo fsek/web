@@ -52,9 +52,9 @@ class Rent < ActiveRecord::Base
 
   def p_time
     if (d_from.day == d_til.day)
-      %(#{I18n.l(d_from, format:'%H:%M')} - #{I18n.l(d_til, format: '%H:%M')}, #{I18n.l(d_from, format: '%d/%m')})
+      %(#{I18n.l(d_from, format: '%H:%M')} - #{I18n.l(d_til, format: '%H:%M')}, #{I18n.l(d_from, format: '%d/%m')})
     else
-      %(#{I18n.l(d_from, format:'%H:%M %d/%m')} - #{I18n.l(d_til, format: '%H:%M %d/%m')})
+      %(#{I18n.l(d_from, format: '%H:%M %d/%m')} - #{I18n.l(d_til, format: '%H:%M %d/%m')})
     end
   end
 

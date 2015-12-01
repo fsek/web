@@ -55,6 +55,7 @@ class RentValidator < ActiveModel::Validator
   end
 
   private
+
   def user(record)
     record.user.present?
   end
