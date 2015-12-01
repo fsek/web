@@ -8,6 +8,7 @@
 }
 
 .user {
+
   .round-icon {
     border: 50px;
     border-radius: 50%;
@@ -27,6 +28,23 @@
 
     &.red {
       background: $unify-red;
+    }
+  }
+
+  &.table {
+    border: none;
+
+    tr {
+      border: none;
+    }
+  }
+
+  &.post-list {
+    list-style: none;
+    padding-left: 4px;
+
+    li:before {
+      content: "- ";
     }
   }
 }

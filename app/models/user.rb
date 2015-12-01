@@ -47,10 +47,6 @@ class User < ActiveRecord::Base
 
 
   def to_s
-    print
-  end
-
-  def print
     if has_name_data?
       %(#{firstname} #{lastname})
     elsif firstname.present?
@@ -68,10 +64,6 @@ class User < ActiveRecord::Base
   def has_attributes?
     has_name_data? && email.present? &&
       phone.present? && stil_id.present?
-  end
-
-  def full_name
-    "#{firstname} #{lastname}"
   end
 
   def print_id

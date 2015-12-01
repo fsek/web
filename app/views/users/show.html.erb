@@ -1,18 +1,16 @@
-<div class="row">
-  <div class="col-md-offset-1 col-md-5 md-margin-bottom-40">
-    <% if @user == current_user %>
-      <div class="headline headline-md"><h4><%= t('user.public_information') %></h4></div>
-    <% end %>
-    <%= render @user %>
-    <% if @user.avatar? %>
-      <%= image_tag(avatar_user_path(@user, style: 'original')) %>
-    <% end %>
-  </div>
-  <% if @user == current_user %>
-    <div class="col-md-offset-1 col-md-5 md-margin-bottom-40">
-      <div class="margin-bottom-20">
-        <%= link_to (fa_icon('edit') + ' Redigera'), own_user_path, class: "btn-u btn-u-small" %>
-      </div>
-    </div>
-  <% end %>
+<div class="headline">
+  <h2><%= @user.to_s %></h2>
 </div>
+<% if @user.avatar? %>
+  <div class="col-md-6 col-xs-12">
+    <%= render '/users/user', user: @user, no_name: true %>
+  </div>
+  <div class="col-md-6 col-xs-12">
+    <%= image_tag(avatar_user_path(@user, style: 'original'),
+                  class: 'img-responsive') %>
+</div>
+<% else %>
+  <div class="col-md-6 col-md-offset-3 col-xs-12">
+    <%= render '/users/user', user: @user, no_name: true %>
+  </div>
+<% end %>
