@@ -1,10 +1,9 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 reg-page">
-			<%= label_tag "Redigera kontakt",nil, class:  'reg-header'%>
-			<%= render 'form'%>
-			<%= link_to (content_tag(:i, nil, class: "fa fa-trash-o") + " Förinta"), @contact, method: :delete, data: {confirm: "Är du säker?"}, class: "btn-u btn-u-small" %><br>			
-			<%= link_to 'Tillbaka till start', root_url %>
-		</div>
-	</div>
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <div class="headline">
+    <h2><%= t(:edit, attr: model_name(Contact)) %></h2>
+  </div>
+  <%= render 'form'%>
+  <hr>
+  <%= link_to(t(:index_attr, attr: models_name(Contact)), contacts_path, class: 'btn secondary') %>
+  <%= link_to(t(:back_to_root), root_url, class: 'btn secondary') %>
 </div>

@@ -1,30 +1,18 @@
-Hej <%=@rent.name.to_s %>
-===============================================
-Din boknings status har ändrats till <%=@rent.status%>
-<%if @rent.status == "Nekad"%>
-Kommentar:
-<%=@rent.comment%>
+<%= %(#{t(:hello)} #{@rent.user}) %>
 
-Överklagan kan göras till styrelsen.
-<%end%>
-  			
-  			
-Uppgifter för bokningen (ID: <%=@rent.id%>).
-Namn:    	<%=@rent.name.to_s%> <%=@rent.lastname.to_s%>
-Epost: 	 	<%=@rent.email.to_s%> 
-Telefon: 	<%=@rent.phone.to_s%>
-Datum:   	<%=@rent.p_time%>
-<%if @rent.purpose.blank? == false %>
-Syfte:		<%=@rent.purpose%>
-<%end%>
-<%@council = Council.find_by_id(@rent.council_id)%>
-<%if @council%>			      	
-Utskott: 	<%=@council.title.to_s%>
-<%end%>
-Länk:		<%=@rent.p_url%>
+<%= %(#{t('rent.mailer.booking_status')} #{t('rent.' + @rent.status)}) %>
 
+<% if @rent.status == 'denied' %>
+  <%= Rent.human_attribute_name(:comment) %>:
 
-Har du några frågor så svarar du enklast direkt på detta mejl.
+  <%= @rent.comment %>
 
-Mvh,
-Bilförmannen
+  <%= t('rent.mailer.denied_appeal') %>
+<% end %>
+
+<%= render 'attributes', rent: @rent %>
+
+<%= t('rent.mailer.signature_questions') %>
+
+<%= t(:sincerely) %>,
+<%= t('rent.foreman') %>

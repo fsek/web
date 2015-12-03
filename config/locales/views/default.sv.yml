@@ -2,12 +2,14 @@ sv:
   add: Lägg till
   add_attr: Lägg till %{attr}
   admin: Administratör
+  administration: Administration
   back: Tillbaka
   close: Stäng
   destroy: Förinta
   destroy_attr: Förinta %{attr}
   edit: Redigera
   edit_attr: Redigera %{attr}
+  hello: Hej
   here: här
   hide: Dölj
   index: Alla
@@ -25,6 +27,7 @@ sv:
   update: Uppdatera
   update_attr: Uppdatera %{attr}
   welcome: Välkommen
+  sincerely: Med vänlig hälsning
 
   "yes": Ja
   "no": Nej
@@ -34,6 +37,7 @@ sv:
   back: Tillbaka
   for: "%{a} för %{b}"
 
+  link: Länk
   links: Länkar
   about: Om oss
 

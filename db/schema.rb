@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117194027) do
+ActiveRecord::Schema.define(version: 20151120082038) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -360,22 +360,19 @@ ActiveRecord::Schema.define(version: 20151117194027) do
   create_table "rents", force: :cascade do |t|
     t.datetime "d_from"
     t.datetime "d_til"
-    t.string   "name",        limit: 255
-    t.string   "lastname",    limit: 255
-    t.string   "email",       limit: 255
-    t.string   "phone",       limit: 255
-    t.text     "purpose",     limit: 65535
-    t.boolean  "disclaimer",                default: false
-    t.boolean  "aktiv",                     default: true
-    t.integer  "council_id",  limit: 4
+    t.string   "lastname",   limit: 255
+    t.string   "email",      limit: 255
+    t.string   "phone",      limit: 255
+    t.text     "purpose",    limit: 65535
+    t.boolean  "aktiv",                    default: true
+    t.integer  "council_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "comment",     limit: 65535
-    t.string   "status",      limit: 255,   default: "unconfirmed"
-    t.boolean  "service",                   default: false
-    t.string   "access_code", limit: 255
-    t.integer  "user_id",     limit: 4
-    t.string   "firstname",   limit: 255
+    t.text     "comment",    limit: 65535
+    t.string   "status",     limit: 255,   default: "unconfirmed"
+    t.boolean  "service",                  default: false
+    t.integer  "user_id",    limit: 4
+    t.string   "firstname",  limit: 255
   end
 
   create_table "roles", force: :cascade do |t|

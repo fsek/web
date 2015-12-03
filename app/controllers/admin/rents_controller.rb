@@ -1,10 +1,10 @@
 class Admin::RentsController < ApplicationController
   load_permissions_and_authorize_resource
-  before_action :set_councils, only: [:new, :show]
+  before_action :prepare, only: [:new, :show]
 
-  def main
-    @rents = Rent.ascending.from_date(Time.zone.now.beginning_of_day)
-    @rent_grid = initialize_grid(@rents)
+  def index
+    @rents = Rent.from_date(Time.zone.now.beginning_of_day).includes(:user)
+    @rent_grid = initialize_grid(@rents, order: 'rents.d_from', order_direction: :asc)
     @faqs = Faq.where(answer: '').where(category: 'Bil')
   end
 
@@ -15,8 +15,7 @@ class Admin::RentsController < ApplicationController
   end
 
   def create
-    @rent = Rent.new_with_status(rent_params, nil)
-    if @rent.save(validate: false)
+    if RentService.admin_reservation(@rent)
       redirect_to admin_rent_path(@rent), notice: alert_create(Rent)
     else
       render :new
@@ -24,32 +23,32 @@ class Admin::RentsController < ApplicationController
   end
 
   def new
+    @rent.user = nil
   end
 
   def update
-    if @rent.update_without_validation(rent_params)
+    if RentService.administrate(@rent, rent_params)
       redirect_to admin_rent_path(@rent), notice: alert_update(Rent)
     else
-      render :edit
+      render :show
     end
   end
 
   def destroy
     @rent.destroy
-    redirect_to :admin_car, notice: alert_destroy(Rent)
+    redirect_to :admin_rents, notice: alert_destroy(Rent)
   end
 
   private
 
-  # To set the councils
-  def set_councils
-    @councils = Council.all
+  def prepare
+    @councils = Council.all_name
+    @users = User.all_firstname
   end
 
   def rent_params
-    params.require(:rent).permit(:d_from, :d_til, :name, :lastname, :email,
-                                 :phone, :purpose, :disclaimer, :council_id,
-                                 :comment, :access_code, :status, :aktiv,
-                                 :service)
+    params.require(:rent).permit(:d_from, :d_til, :user_id,
+                                 :purpose, :disclaimer, :council_id,
+                                 :comment, :status, :aktiv, :service)
   end
 end

@@ -24,7 +24,7 @@ require 'rails/all'
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
-
+require 'rspec/example_steps'
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 
@@ -38,9 +38,8 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: 'controller'
   config.extend ControllerMacros, type: 'controller'
   config.expect_with :rspec do |expectations|
-    # Uncomment when all tests uses should
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-    expectations.syntax = [:should, :expect]
+    expectations.syntax = [:should]
   end
 
   config.mock_with :rspec do |mocks|
@@ -61,12 +60,12 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 end
 
-def build *args
-  FactoryGirl.build *args
+def build(*args)
+  FactoryGirl.build(*args)
 end
 
-def create *args
-  FactoryGirl.create *args
+def create(*args)
+  FactoryGirl.create(*args)
 end
 
 

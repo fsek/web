@@ -4,6 +4,14 @@
   }
 }
 
+.panel-default {
+
+  > .panel-heading {
+    background: $white;
+    color: $gray-headline;
+  }
+}
+
 .panel-red {
   border-color: $unify-red;
 

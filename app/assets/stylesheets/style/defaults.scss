@@ -22,11 +22,12 @@ a,
 a:focus,
 a:hover,
 a:active {
+  color: $fsek-orange;
   outline: 0;
+  text-decoration: none;
 }
 
-a:hover,
-a:focus {
+a:hover {
   color: $fsek-pi-silver;
   text-decoration: none;
 }

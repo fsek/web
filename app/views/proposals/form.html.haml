@@ -24,7 +24,7 @@
         = form_group do
           = f.label :sign_name
           = f.text_field :sign_name,
-            :value => current_user && current_user.full_name
+            :value => current_user && current_user.to_s
 
         = form_group do
           = f.label :sign_title

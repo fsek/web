@@ -1,16 +1,36 @@
-<% provide(:title, 'Admin - Bilbokning') %>
-<div class="col-md-8 col-md-offset-2  reg-page">
-  <%= render 'links' %>
-  <%= render 'form'%>
-  <div class="row">
-   <%= link_to('Radera bokning', admin_rent_path(@rent), method: :delete, class: "btn btn-u", data: {confirm: 'Din bokning kommer nu att raderas.'}) %>
+<% provide(:title, t('rent.admin.title')) %>
+<div class='col-md-8 col-md-offset-2 col-sm-12 reg-page'>
+  <div class='headline'>
+    <h1>
+      <%= %(#{Rent.model_name.human} - ID: #{@rent.id}) %>
+    </h1>
   </div>
-  <div class="row center">
-    <ul class="list">
-      <li><strong>Status</strong> beskriver om bokningen är bekräftad eller inte</li>
-      <li><strong>Aktiv</strong> sätts till falsk om bokningen t.ex. bokas över</li>
-      <li><strong>Kommentar</strong> skickas med i mail om en bokning ändras till 'Nekad'</li>
-      <li>En bokning är inaktiverad om status är 'Nekad' eller aktiv är satt till falsk</li>
+  <div class='margin-bottom-20'>
+    <%= render 'form'%>
+    <%= link_to(admin_rent_path(@rent), method: :delete, class: 'btn danger pull-right',
+                data: { confirm: t('rent.admin.delete_confirm') } ) do %>
+      <%= t(:destroy_attr, attr: model_name(Rent)) %>
+    <% end %>
+  </div>
+  <div class='margin-bottom-20'>
+  </div>
+  <div class='row'>
+    <ul class='list'>
+      <li>
+        <strong><%= Rent.human_attribute_name(:status) %></strong>
+        <%= t('rent.admin.status') %>
+      </li>
+      <li>
+        <strong> <%= Rent.human_attribute_name(:aktiv) %> </strong>
+        <%= t('rent.admin.aktiv') %>
+      </li>
+      <li>
+        <strong><%= Rent.human_attribute_name(:comment) %></strong>
+        <%= t('rent.admin.comment') %>
+      </li>
+      <li><%= t('rent.admin.inactive') %></li>
     </ul>
   </div>
+  <hr>
+  <%= link_to(t('rent.admin.index'), admin_rents_path, class: 'btn secondary') %>
 </div>

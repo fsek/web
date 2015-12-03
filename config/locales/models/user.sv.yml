@@ -9,7 +9,6 @@ sv:
         confirmed_email: Bekräftad epost
         current_password: Nuvarande lösenord
         email: E-post
-        email: E-post
         first_post: Visningspost
         firstname: Namn
         lastname: Efternamn
@@ -34,3 +33,6 @@ sv:
     password_required: Lösenord måste fyllas i för att ändra uppgifter
     password_required_update: Nuvarande lösenord måste fyllas i för att byta lösenord
     password_updated: Lösenordet uppdaterades.
+    public_information: Publik information
+    protected_information: Information som endast visas av funktionärer
+    add_information: Du måste fylla i dina användaruppgifter

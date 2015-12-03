@@ -116,7 +116,7 @@ RSpec.describe Ability do
     # Extra cases which cannot be covered in loop
     # These also count for the members
     it do
-      signed_ability.should have_abilities([:update_worker, :remove_worker, :edit],
+      signed_ability.should have_abilities([:update_worker, :remove_worker],
                                            CafeWork.new(user: signed))
     end
   end

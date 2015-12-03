@@ -1,27 +1,58 @@
-<div class="headline headline-md">
-  <h3>
+<div class='headline headline-md'>
+  <h3 id='contacts_title'>
     <%= models_name(Contact) %>
   </h3>
 </div>
-<div class="panel-group acc-v1 margin-bottom-40" id="answered">
-  <%@first=true%>
-  <% @contacts.each do |p| %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <div id="contact">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#answered" href="#<%=dom_id(p)%>">
-              <%=p.name%>
-            </a>
+
+<%= content_for(:main_panel) do %>
+  <div class='panel-group accordion margin-bottom-40'>
+    <% first = true %>
+    <% @contacts.each do |p| %>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h4 class='panel-title'>
+            <%= link_to(%(##{dom_id(p)}), class: 'accordion-toggle', data: { toggle: 'collapse' }) do %>
+              <%= p.name %>
+            <% end %>
+          </h4>
+        </div>
+        <div id='<%=dom_id(p)%>' class='panel-collapse collapse <%if first %><% first = false %>in<% end %>'>
+          <div class='panel-body'>
+            <%= simple_format(p.text) %>
+            <%= link_to(t('contact.contact'), contact_path(p), class: 'btn small primary pull-right')%>
           </div>
-        </h4>
-      </div>
-      <div id="<%=dom_id(p)%>" class="panel-collapse collapse <%if @first%><%@first=false%> in<%end%>">
-        <div class="panel-body">
-          <%= simple_format(p.text) %>
-          <%= link_to(t('contact.contact'), contact_path(p), class: "btn-u btn-u-small pull-right") %>
         </div>
       </div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= content_for(:admin_panel) do %>
+  <div class="col-md-2 col-xs-12">
+    <div class="btn-group">
+      <button type="button" class="btn primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= t(:edit, attr: models_name(Contact)) %> <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <% @contacts.each do |c| %>
+          <li><%= link_to(c, edit_contact_path(c)) %></li>
+        <% end %>
+        <li role="separator" class="divider"></li>
+        <li><%= link_to(t(:new_attr, attr: model_name(Contact)), new_contact_path) %></lI>
+      </ul>
     </div>
-  <%end%>
-</div>
+  </div>
+<% end %>
+
+<% if can?(:manage, Contact.new) %>
+  <div class="col-md-2 col-xs-12">
+    <%= yield :admin_panel %>
+  </div>
+  <div class="col-md-10 col-xs-12">
+    <%= yield :main_panel %>
+  </div>
+<% else %>
+  <div class="col-md-12">
+    <%= yield :main_panel %>
+  </div>
+<% end %>

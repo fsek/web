@@ -1,7 +1,40 @@
-.iframe-document {
-  height: auto;
-  max-height: 80%;
-  max-width: 100%;
-  min-height: 30%;
-  width: 100%;
+span,
+li {
+  .overlapping-date {
+    color: $main-color;
+    margin-right: 10px;
+  }
+}
+
+ul {
+  &.buttons {
+    list-style: none;
+
+    li {
+      margin: 10px;
+    }
+  }
+}
+
+.label {
+  &.confirmed {
+    background: $unify-green;
+    font-size: 15px;
+  }
+
+  &.unconfirmed {
+    background: $unify-yellow;
+    font-size: 15px;
+  }
+
+  &.denied {
+    background: $unify-red;
+    font-size: 15px;
+  }
+}
+
+.rent {
+  &.terms {
+    display: block;
+  }
 }

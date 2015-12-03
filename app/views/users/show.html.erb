@@ -1,17 +1,16 @@
-<div class='row portfolio-item margin-bottom-50'>
-  <div class='col-md-offset-2 col-md-5 md-margin-bottom-40'>
-    <%= render @user %>
-  </div>
+<div class="headline">
+  <h2><%= @user.to_s %></h2>
 </div>
-
 <% if @user.avatar? %>
-  <div class='col-md-3'>
-    <div class='carousel slide carousel-v1' id='myCarousel'>
-      <div class='carousel-inner'>
-        <div class='item active'>
-          <%= image_tag avatar_user_path(@user, style: 'original') %>
-        </div>
-      </div>
-    </div>
+  <div class="col-md-6 col-xs-12">
+    <%= render '/users/user', user: @user, no_name: true %>
+  </div>
+  <div class="col-md-6 col-xs-12">
+    <%= image_tag(avatar_user_path(@user, style: 'original'),
+                  class: 'img-responsive') %>
+</div>
+<% else %>
+  <div class="col-md-6 col-md-offset-3 col-xs-12">
+    <%= render '/users/user', user: @user, no_name: true %>
   </div>
 <% end %>

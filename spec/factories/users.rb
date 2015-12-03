@@ -44,4 +44,8 @@ FactoryGirl.define do
     reset_password_token 'resetmypassword'
     reset_password_sent_at { Time.zone.now }
   end
+
+  trait :not_member do
+    member_at nil
+  end
 end

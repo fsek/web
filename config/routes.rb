@@ -7,7 +7,7 @@ Fsek::Application.routes.draw do
   get '/twitter', to: redirect('https://www.twitter.com/Fsektionen'), as: :twitter, status: 301
   get '/youtube', to: redirect('https://www.youtube.com/user/fsektionen'), as: :youtube, status: 301
 
-  get 'om' => 'static_pages#om', as: :om
+  get :about, controller: :static_pages, path: :om, as: :om
   get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about
   get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
 
@@ -65,18 +65,18 @@ Fsek::Application.routes.draw do
       get :nyckelpiga, on: :collection
     end
 
-    # A scope to put car-associated things under /bil
-    scope :bil do
-      namespace :admin do
-        resources :rents, path: :bokningar, except: [:index, :edit] do
-          get :preview, path: :visa, on: :member
-        end
-        get '', controller: :rents, action: :main, as: :car
+    namespace :admin do
+      resources :rents, path: :bilbokning, except: :edit do
+        get :preview, path: :visa, on: :member
       end
-      resources :rents, path: :bokningar do
-        patch :authorize, on: :member, path: :auktorisera
+    end
+
+    resources :rents, path: :bilbokning, except: :index do
+      collection do
+        get :oversikt, action: :index, as: :overview
+        get '', action: :main, as: :main
+        post :check_dates
       end
-      get '', controller: :rents, action: :main, as: :bil
     end
 
     resources :notices, path: :notiser do
@@ -152,11 +152,11 @@ Fsek::Application.routes.draw do
     resources :elections, path: :val, only: :index do
       collection do
         resources :nominations, controller: 'elections/nominations',
-          path: :nominera, only: [:create] do
+                                path: :nominera, only: [:create] do
           get '', action: :new, on: :collection, as: :new
         end
         resources :candidates, controller: 'elections/candidates',
-          path: :kandidera, except: :edit
+                               path: :kandidera, except: :edit
       end
     end
 

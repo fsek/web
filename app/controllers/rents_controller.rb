@@ -1,18 +1,19 @@
 # encoding:UTF-8
 class RentsController < ApplicationController
   load_permissions_and_authorize_resource
-  before_action :set_rents, except: [:main, :index]
+  before_action :load_terms, only: [:new, :edit, :create, :update]
 
   def main
     @faqs = Faq.answered.category('Bil')
     respond_to do |format|
       format.html
-      format.json { render json: Rent.between(params[:start], params[:end]).active }
+      format.json do
+        render json: Rent.between(params[:start], params[:end]).active
+      end
     end
   end
 
   def new
-    @TOA = Document.find_by(title: 'Regler för Beerit')
   end
 
   def show
@@ -22,18 +23,16 @@ class RentsController < ApplicationController
   end
 
   def create
-    @rent = Rent.new_with_status(rent_params, current_user)
-    if @rent.save
-      redirect_to @rent, notice: alert_create(Rent)
+    if RentService.reservation(current_user, @rent)
+      redirect_to rent_path(@rent), notice: alert_create(Rent)
     else
       render action: :new
     end
   end
 
   def update
-    if @rent.update_with_authorization(rent_params, current_user)
-      flash[:notice] = alert_update(Rent)
-      redirect_to edit_rent_path(@rent)
+    if RentService.update(rent_params, current_user, @rent)
+      redirect_to edit_rent_path(@rent), notice: alert_update(Rent)
     else
       render action: :edit
     end
@@ -41,29 +40,22 @@ class RentsController < ApplicationController
 
   def destroy
     @rent.destroy
-    redirect_to :bil, notice: alert_destroy(@rent)
+    redirect_to :rents, notice: alert_destroy(Rent)
   end
 
-  # Index page available to logged in users.
   def index
-    if current_user.present?
-      @rents = current_user.rents.order('d_from desc')
-      render action: 'index'
-    else
-      redirect_to(action: 'main')
-    end
+    @rents = current_user.rents.order('d_from desc')
   end
-
 
   private
 
-  # @rents: used to show rents under the form when creating new.
-  def set_rents
-    id = params[:id] || nil
-    @rents = Rent.active.date_overlap(Time.zone.now, Time.zone.now+30.days, id).limit(10).ascending
+  def rent_params
+    params.require(:rent).permit(:d_from, :d_til, :purpose,
+                                 :council_id, :user_id)
   end
 
-  def rent_params
-    params.require(:rent).permit(:d_from, :d_til, :purpose, :disclaimer, :council_id)
+  def load_terms
+    constant = Constant.find_by(name: 'rent_terms')
+    @terms = Document.find_by(id: constant.try(:value))
   end
 end

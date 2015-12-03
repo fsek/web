@@ -1,8 +1,9 @@
-<% provide(:title, 'Admin - Bilbokning') %>
-<div class="col-md-6 col-md-offset-3 col-xs-6 reg-page">
-  <div class="row">
-    <%= render 'form' %>
+<% provide(:title, t('rent.admin.title')) %>
+<div class='col-md-8 col-md-offset-2 col-xs-12 reg-page'>
+  <div class="headline">
+    <h2><%= t(:new_attr, attr: model_name(Rent)) %></h2>
   </div>
-  <%= link_to("Admin - Bilbokning", :admin_car,
-              data: {no_turbolink: true}, class: "btn btn-u pull-right") %>
+  <%= render 'form' %>
+  <hr>
+  <%= link_to(t('rent.admin.index'), admin_rents_path, class: 'btn secondary') %>
 </div>

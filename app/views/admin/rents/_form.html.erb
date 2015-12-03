@@ -1,16 +1,20 @@
 <%= simple_form_for([:admin, @rent]) do |f| %>
-  <%= f.input :service %>
-  <%= f.input :disclaimer %>
-  <%= f.input :name %>
-  <%= f.input :lastname %>
-  <%= f.input :email %>
-  <%= f.input :phone %>
-  <%= f.input :purpose %>
-  <%= f.input :d_from, as: :datetime_picker %>
-  <%= f.input :d_til, as: :datetime_picker %>
-  <%= f.association :council, collection: Council.titles %>
-  <%= f.input :status, collection: [["Ej bestämd"], ["Bekräftad"], ["Nekad"]] %>
-  <%= f.input :aktiv %>
-  <%= f.input :comment %>
-  <%= f.button :submit, class: "btn btn-u", id: 'rent-submit' %>
+<h4><%= @rent.print_status %> </h4>
+<%= f.input :service, as: :boolean %>
+<%= f.association :user, collection: @users %>
+<% if @rent.user.present? %>
+  <table class="table">
+  <%= render '/users/as_table', user: @rent.user, prot: true %>
+  </table>
+<% end %>
+<%= f.input :d_from, as: :datetime_picker %>
+<%= f.input :d_til, as: :datetime_picker %>
+<%= f.input :purpose, as: :text %>
+<%= f.association :council, collection: @councils %>
+<%= f.input(:status, collection: [[t('rent.confirmed'),:confirmed],
+                                  [t('rent.unconfirmed'), :unconfirmed],
+                                  [t('rent.denied'), :denied]]) %>
+<%= f.input :aktiv, as: :boolean %>
+<%= f.input :comment, as: :text, placeholder: t('rent.denied_comment')%>
+<%= f.button :submit, id: 'rent-submit' %>
 <% end %>

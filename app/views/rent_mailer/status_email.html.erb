@@ -1,25 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
-</head>
-<body>
-<h3> Hej <%= @rent.p_name %></h3>
-
-<p>Din bokningsstatus har ändrats till <%= @rent.status %></p>
-<% if @rent.status == "Nekad" %>
-    <p>Kommentar</p>
-
-    <p><%= @rent.comment %></p>
-
-    <p>Överklagan kan göras till styrelsen.</p>
+<%= content_for :title do %>
+  <%= Rent.model_name.human %>
 <% end %>
-<%= render 'attributes_html', rent: @rent%>
-<br>
 
-<p>Har du några frågor så svarar du enklast direkt på detta mejl.</p>
+<%= content_for :greeting do %>
+  <h3><%= %(#{t(:hello)} #{@rent.user}) %></h3>
+<% end %>
 
-<p>Mvh,<br>
-  Bilförmannen</p>
-</body>
-</html>
+<%= content_for :main_content do %>
+  <p><%= t('rent.mailer.booking_status') %> <%= t(%(rent.#{@rent.status})) %>.</p>
+  <% if @rent.status == 'denied' %>
+    <%= simple_format(Rent.human_attribute_name(:comment)) %>
+    <%= simple_format(@rent.comment) %>
+    <%= t('rent.mailer.denied_appeal') %>
+  <% end %>
+
+  <%= render 'attributes', rent: @rent %>
+<% end %>
+
+<%= content_for :bottom_signature do %>
+  <%= simple_format(t('rent.mailer.signature_questions')) %>
+  <p><%= t(:sincerely) %>,<br>
+  <%= t('rent.foreman') %></p>
+<% end %>

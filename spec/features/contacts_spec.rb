@@ -6,8 +6,8 @@ feature 'visit contact, create new, send email', pending: true do
   let(:contact) { build(:contact, council: council) }
   let(:login) { LoginPage.new }
 
-  Steps 'Signing in' do
-    Then 'I sign in' do
+  Steps 'contact page' do
+    Then 'sign in' do
       login.visit_page.login(user, '12345678')
     end
 
@@ -16,12 +16,12 @@ feature 'visit contact, create new, send email', pending: true do
     end
 
     Then 'I see contacts' do
-      page.should have_css('div.headline.headline-md > h3')
-      find('div.headline.headline-md > h3').text.should include(Contact.model_name.human(count: 2))
+      page.should have_css('#contacts_title', text: Contact.model_name.human(count: 2))
     end
 
     When 'visiting new contact' do
       page.visit new_contact_path
+      page.status_code.should eq(200)
     end
 
     When 'Fill in form and create' do
@@ -33,8 +33,13 @@ feature 'visit contact, create new, send email', pending: true do
       else
         page.uncheck 'contact_public'
       end
+<<<<<<< ec420d9df230a3a51446d02d84d8f7b83d2f7f6c
       find('#contact-submit').click
 
+=======
+
+      find('#contact-submit').click
+>>>>>>> Refactor Rent with service
     end
 
     Then 'Response should be 200' do

@@ -2,239 +2,164 @@
 require 'rails_helper'
 
 RSpec.describe Rent, type: :model do
-  subject(:rent) { build(:rent, user: create(:user, member_at: nil)) }
-  let(:saved) { create(:rent, :good) }
+  let(:member) { create(:user) }
+  let(:n_member) { create(:user, :not_member) }
+
+  let(:council) { create(:council) }
+
+  let(:new_rent) { build(:rent, user: member) }
+  let(:new_rent_council) { build(:rent, user: member, council: council) }
+  subject(:rent_n) { build(:rent, user: n_member) }
+
+  let(:rent) do
+    create(:rent, user: member, d_from: Time.zone.now + 15.days,
+                  d_til: Time.zone.now + 15.days + 12.hours)
+  end
+  let(:rent_council) do
+    create(:rent, user: member, council: council, d_from: Time.zone.now + 20.days,
+                  d_til: Time.zone.now + 20.days + 12.hours)
+  end
 
   describe 'has valid factory' do
     it { should be_valid }
   end
 
-  describe :Associations do
+  describe :associations do
     it { should belong_to(:user) }
     it { should belong_to(:council) }
   end
 
-  describe :Validations do
-    it { should allow_value(true).for(:disclaimer) }
-    it { should_not allow_value(false).for(:disclaimer) }
+  describe :validations do
+    it { should validate_presence_of(:d_from) }
+    it { should validate_presence_of(:d_til) }
 
-    describe :RequiredAttributes do
-      it { should validate_presence_of(:d_from) }
-      it { should validate_presence_of(:d_til) }
-      it { should validate_presence_of(:user) }
-    end
-
-    describe :Purpose do
-      # TODO Must be fixed with new member thingy.
-      context 'validate purpose when not a member' do
-        it { should validate_presence_of(:purpose) }
-      end
-    end
-
-    describe :Duration do
+    describe :duration do
       context :when_no_council do
         it 'add error if duration is over 48' do
           rent = build(:rent, :over_48)
           rent.valid?
-          rent.errors.get(:d_from).should include(', får inte vara längre än 48 h')
+
+          rent.should_not be_valid
+          rent.errors.get(:d_from).should include(I18n.t('rent.validation.duration'))
         end
+
         it 'do not add error if duration is under 48' do
           rent = build(:rent, :under_48)
-          rent.valid?
-          rent.errors.get(:d_from).should be_nil or not_include(', får inte vara längre än 48 h')
-        end
-        it 'valid when duration is under 48' do
-          rent = build(:rent, :good, :under_48)
           rent.should be_valid
         end
       end
+
       context :when_council do
         it 'do not add error if duration is over 48' do
           rent = build(:rent, :over_48, :with_council)
-          rent.valid?
-          rent.errors.get(:d_from).should be_nil
-        end
-        it 'do not add error if duration is under 48' do
-          rent = build(:rent, :under_48, :with_council)
-          rent.valid?
-          rent.errors.get(:d_from).should be_nil
-        end
-        it 'valid for any duration' do
-          rent = build(:rent, :good, :over_48, :with_council)
           rent.should be_valid
         end
       end
     end
 
-    describe :Dates_in_future do
+    describe :dates_in_future do
       context :when_future do
         it 'add error if d_from > d_til' do
-          rent.d_from = rent.d_til + 1.hour
-          rent.valid?
-          rent.errors.get(:d_til).should include('måste vara efter startdatumet.')
-        end
-        it 'do not add error if d_from < d_til ' do
-          rent.valid?
-          rent.errors.get(:d_til).should be_nil
+          new_rent.d_from = new_rent.d_til + 1.hour
+          new_rent.should_not be_valid
+          new_rent.errors.get(:d_til).should include(I18n.t('rent.validation.ascending'))
         end
       end
       context :when_past do
         it 'add error if d_from > d_til' do
-          rent.d_til = Time.zone.now - 10.hours
-          rent.d_from = rent.d_til + 5.hours
-          rent.valid?
-          rent.errors.get(:d_til).should include("måste vara efter startdatumet.")
+          new_rent.d_til = Time.zone.now - 10.hours
+          new_rent.d_from = new_rent.d_til + 5.hours
+          new_rent.should_not be_valid
+          new_rent.errors.get(:d_from).should include(I18n.t('rent.validation.future'))
         end
-        it 'add error if d_from > d_til' do
-          rent.d_til = Time.zone.now - 10.hours
-          rent.d_from = rent.d_til + 5.hours
-          rent.valid?
-          rent.errors.get(:d_from).should include("måste vara i framtiden.")
-        end
+
         it 'add error if d_from < d_til' do
-          rent.d_from = Time.zone.now - 10.hours
-          rent.d_til = rent.d_from + 5.hours
-          rent.valid?
-          rent.errors.get(:d_from).should include("måste vara i framtiden.")
+          new_rent.d_from = Time.zone.now - 10.hours
+          new_rent.d_til = new_rent.d_from + 5.hours
+          new_rent.should_not be_valid
+          new_rent.errors.get(:d_from).should include(I18n.t('rent.validation.future'))
         end
       end
     end
 
-    describe :Overlap do
-      context :when_no_councils do
-        let(:overlap) { create(:rent, :good) }
-        let(:normal) { build(:rent, :good) }
-        it 'invalid when d_til is within saved rent' do
-          normal.d_from = overlap.d_from - 5.hours
-          normal.d_til = overlap.d_til - 5.hours
-          normal.should_not be_valid
-        end
-        it 'invalid when d_from and d_til is within saved rent' do
-          normal.d_from = overlap.d_from + 5.hours
-          normal.d_til = overlap.d_til - 5.hours
-          normal.should_not be_valid
-        end
-        it 'add error if d_from is within saved' do
-          normal.d_from = overlap.d_from + 5.hours
-          normal.d_til = overlap.d_til - 5.hours
-          normal.valid?.should be_falsey
-          normal.errors.get(:d_from).should include("överlappar med annan bokning")
-        end
-        it 'invalid when d_from is within saved rent' do
-          normal.d_from = overlap.d_til - 5.hours
-          normal.d_til = overlap.d_til + 5.hours
-          normal.should_not be_valid
-        end
-        it 'do add error if d_from is within saved' do
-          normal.d_from = overlap.d_til - 5.hours
-          normal.d_til = overlap.d_til + 5.hours
-          normal.valid?
-          normal.errors.get(:d_from).should include("överlappar med annan bokning")
-        end
+    # Validate if overlap
+    describe :overlap do
+      # The times mark offset from:
+      # new.from = saved.from + offset
+      # new.from = saved.til + offset
+      # new.til = saved.from + offset
+      # new.til = saved.til + offset
+      overlap = {
+        end: [-5, 0, 0, -5],
+        from: [5, 0, 0, 5],
+        both: [5, 0, 0, -5],
+        none: [-5, 0, 0, 5],
+        after: [0, 5, 0, 5]
+      }
 
-        it 'valid when d_from and d_til is outside saved rent' do
-          normal.d_from = overlap.d_til + 5.hours
-          normal.d_til = normal.d_from + 5.hours
-          normal.should be_valid
-        end
-        it 'do not add error if d_til and d_from is outside saved' do
-          normal.d_from = overlap.d_til + 5.hours
-          normal.d_til = normal.d_from + 5.hours
-          normal.valid?
-          normal.errors.get(:d_from).should be_nil
+      context 'no councils' do
+        b = { end: false, from: false, both: false, none: false, after: true }
+        overlap.each do |key, value|
+          it %(#{key} should be #{b[key]}) do
+            new_rent.d_from = rent.d_from + value[0] unless value[0] == 0
+            new_rent.d_from = rent.d_til + value[1] unless value[1] == 0
+            new_rent.d_til = rent.d_from + value[2] unless value[2] == 0
+            new_rent.d_til = rent.d_til + value[3] unless value[3] == 0
+
+            new_rent.valid?.should eq(b[key])
+          end
         end
       end
 
-      context :when_first_council_second_not do
-        let(:overlap) { create(:rent, :good, :with_council) }
-        let(:normal) { build(:rent, :good) }
-        it 'invalid when d_til is within' do
-          normal.d_from = overlap.d_from - 5.hours
-          normal.d_til = overlap.d_til - 5.hours
-          normal.should_not be_valid
-          normal.errors.get(:d_from).should include('överlappar med annan bokning')
-        end
-        it 'invalid when d_from and d_til is within saved' do
-          normal.d_from = overlap.d_from + 5.hours
-          normal.d_til = overlap.d_til - 5.hours
-          normal.should_not be_valid
-        end
-        it 'invalid when d_from is within saved rent' do
-          normal.d_from = overlap.d_til - 5.hours
-          normal.d_til = overlap.d_til + 5.hours
-          normal.should_not be_valid
-        end
-        it 'valid when d_from and d_til is outside saved rent' do
-          normal.d_from = overlap.d_til + 5.hours
-          normal.d_til = normal.d_from + 5.hours
-          normal.should be_valid
+      context 'new council' do
+        overlap.each do |key, value|
+          it %(#{key} should be true) do
+            new_rent_council.d_from = rent.d_from + value[0] unless value[0] == 0
+            new_rent_council.d_from = rent.d_til + value[1] unless value[1] == 0
+            new_rent_council.d_til = rent.d_from + value[2] unless value[2] == 0
+            new_rent_council.d_til = rent.d_til + value[3] unless value[3] == 0
+
+            new_rent_council.valid?.should eq(true)
+          end
         end
       end
 
-      context :when_second_council_first_not do
-        let(:overlap) { create(:rent, :good) }
-        let(:normal) { build(:rent, :good, :with_council) }
-        it 'valid when d_til is within good rent' do
-          normal.d_from = overlap.d_from - 5.hours
-          normal.d_til = overlap.d_til - 5.hours
-          normal.should be_valid
-        end
-        it 'valid when d_from and d_til is within good rent' do
-          normal.d_from = overlap.d_from + 5.hours
-          normal.d_til = overlap.d_til - 5.hours
-          normal.should be_valid
-        end
-        it 'valid when d_from is within good rent' do
-          normal.d_from = overlap.d_til - 5.hours
-          normal.d_til = overlap.d_til + 5.hours
-          normal.should be_valid
-        end
-        it 'valid when d_from and d_til is outside good rent' do
-          normal.d_from = overlap.d_til + 5.hours
-          normal.d_til = normal.d_from + 5.hours
-          normal.should be_valid
+      context 'saved council' do
+        b = { end: false, from: false, both: false, none: false, after: true }
+        overlap.each do |key, value|
+          it %(#{key} should be #{b[key]}) do
+            new_rent.d_from = rent_council.d_from + value[0] unless value[0] == 0
+            new_rent.d_from = rent_council.d_til + value[1] unless value[1] == 0
+            new_rent.d_til = rent_council.d_from + value[2] unless value[2] == 0
+            new_rent.d_til = rent_council.d_til + value[3] unless value[3] == 0
+
+            new_rent.valid?.should eq(b[key])
+          end
         end
       end
 
-      context :when_two_councils do
-        let(:overlap) { create(:rent, :good, :with_council) }
-        let(:normal) { build(:rent, :good, :with_council) }
-        it 'invalid when d_til is within good rent' do
-          normal.d_from = overlap.d_from - 5.hours
-          normal.d_til = overlap.d_til - 5.hours
-          normal.should_not be_valid
-        end
-        it 'do add error if d_til within saved' do
-          normal.d_from = overlap.d_from - 5.hours
-          normal.d_til = overlap.d_til + 5.hours
-          normal.valid?
-          normal.errors.get(:d_from).should include('överlappar med annan utskottsbokning')
-        end
-        it 'invalid when d_from and d_til is within good rent' do
-          normal.d_from = overlap.d_from + 5.hours
-          normal.d_til = overlap.d_til - 5.hours
-          normal.should_not be_valid
-        end
-        it 'invalid when d_from is within good rent' do
-          normal.d_from = overlap.d_til - 5.hours
-          normal.d_til = overlap.d_til + 5.hours
-          normal.should_not be_valid
-        end
-        it 'valid when d_from and d_til is outside good rent' do
-          normal.d_from = overlap.d_til + 5.hours
-          normal.d_til = normal.d_from + 5.hours
-          normal.should be_valid
+      context 'both council' do
+        b = { end: false, from: false, both: false, none: false, after: true }
+        overlap.each do |key, value|
+          it %(#{key} should be #{b[key]}) do
+            new_rent_council.d_from = rent_council.d_from + value[0] unless value[0] == 0
+            new_rent_council.d_from = rent_council.d_til + value[1] unless value[1] == 0
+            new_rent_council.d_til = rent_council.d_from + value[2] unless value[2] == 0
+            new_rent_council.d_til = rent_council.d_til + value[3] unless value[3] == 0
+
+            new_rent_council.valid?.should eq(b[key])
+          end
         end
       end
     end
+
     # This tests makes sure that dates are formatted into ISO8601 for
     # Fullcalendars json-feed
     # Ref.: https://github.com/fsek/web/issues/99
-    # /d.wessman
     describe :Json do
       it 'check date format is iso8601' do
-        (saved.as_json.to_json).should include(saved.d_from.iso8601.to_json)
-        (saved.as_json.to_json).should include(saved.d_til.iso8601.to_json)
+        (rent.as_json.to_json).should include(rent.d_from.iso8601.to_json)
+        (rent.as_json.to_json).should include(rent.d_til.iso8601.to_json)
       end
     end
   end

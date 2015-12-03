@@ -1,0 +1,41 @@
+<p><%= %(#{t('rent.mailer.attributes')} (ID: #{rent.id})) %>.</p>
+<table class="table">
+  <tbody>
+    <tr>
+      <td><%= User.human_attribute_name(:firstname) %></td>
+      <td><%= rent.user %></td>
+    </tr>
+    <tr>
+      <td><%= User.human_attribute_name(:email) %></td>
+      <td><%= rent.user.email %></td>
+    </tr>
+    <tr>
+      <td><%= User.human_attribute_name(:phone) %></td>
+      <td><%= rent.user.phone %></td>
+    </tr>
+    <tr>
+      <td><%= Rent.human_attribute_name(:d_from) %></td>
+      <td><%= l(rent.d_from) %></td>
+    </tr>
+    <tr>
+      <td><%= Rent.human_attribute_name(:d_til) %></td>
+      <td><%= l(rent.d_til) %></td>
+    </tr>
+    <% if rent.purpose.present? %>
+      <tr>
+        <td><%= Rent.human_attribute_name(:purpose) %></td>
+        <td><%= simple_format(rent.purpose) %></td>
+      </tr>
+    <% end %>
+    <% if rent.council.present? %>
+      <tr>
+        <td><%= Council.model_name.human %></td>
+        <td><%= link_to(rent.council, council_url(rent.council)) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><%= t(:link) %></td>
+      <td><%= link_to(t('rent.your_booking'), rent_url(rent)) %></td>
+    </tr>
+  </tbody>
+</table>

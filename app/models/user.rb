@@ -34,10 +34,11 @@ class User < ActiveRecord::Base
   attr_accessor :remove_avatar
   before_save :delete_avatar, if: -> { remove_avatar == '1' && !avatar_updated_at_changed? }
 
+  scope :all_firstname, -> { order(firstname: :asc) }
   # Returns all councils the user belongs to with a Post who is
   # allowed to rent the car
   def car_councils
-    councils.merge(Post.renters)
+    councils.merge(Post.renters).uniq.all_name
   end
 
   def member?
@@ -46,10 +47,6 @@ class User < ActiveRecord::Base
 
 
   def to_s
-    print
-  end
-
-  def print
     if has_name_data?
       %(#{firstname} #{lastname})
     elsif firstname.present?
@@ -69,12 +66,12 @@ class User < ActiveRecord::Base
       phone.present? && stil_id.present?
   end
 
-  def full_name
-    "#{firstname} #{lastname}"
-  end
-
   def print_id
     %(#{print} - #{id})
+  end
+
+  def print_email
+    %(#{print} <#{email}>)
   end
 
   private

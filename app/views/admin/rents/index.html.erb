@@ -1,0 +1,46 @@
+<% provide(:title, %(#{model_name(Rent)} - #{t(:administration)})) %>
+<div class="headline rents">
+  <h2><%= model_name(Rent) %> - <%= t(:administration) %></h2>
+</div>
+<div class='col-md-2 col-xs-12'>
+  <div class='headline headline-md'><h2><%= t('tools')%></h2></div>
+  <div class='input-group margin-bottom-20'>
+    <%= link_to(t('clear_search'), admin_rents_path, class: 'btn primary') %><br>
+    <%= link_to(t('rent.new'), new_admin_rent_path, class: 'btn secondary') %> <br>
+    <%= link_to(t(:index_attr, attr: models_name(Rent)), rents_path, class: 'btn secondary') %> <br>
+  </div>
+</div>
+<div class="col-md-10 col-xs-12">
+  <%= grid(@rent_grid) do |g|
+    g.row_attributes do |post|
+      if (post.status == :unconfirmed)
+        { style: 'background: rgba(252, 155, 0,0.7);' }
+      end
+    end
+    g.column name: Rent.human_attribute_name(:d_from), attribute: 'd_from', filter: false do |rent|
+      l(rent.d_from)
+    end
+    g.column name: Rent.human_attribute_name(:d_til), attribute: 'd_til', filter: false do |rent|
+      l(rent.d_til)
+    end
+    g.column name: Rent.human_attribute_name(:user), assoc: :user, attribute: 'firstname' do |rent|
+      link_to(rent.user, rent.user, target: :blank_p)
+    end
+    g.column name: Rent.human_attribute_name(:status), attribute: 'status' do |rent|
+      t(%(rent.#{rent.status}))
+    end
+    g.column name: Rent.human_attribute_name(:aktiv), attribute: 'aktiv' do |rent|
+      rent.aktiv == true ?  t('rent.active') : t('rent.inactive')
+    end
+    g.column name: Rent.human_attribute_name(:council), assoc: :council, attribute: 'title' do |rent|
+      rent.council_id.nil? ? '-' : link_to(rent.council, rent.council, target: :blank_p)
+    end
+    g.column name: t('view') do |rent|
+      link_to(t('view'), preview_admin_rent_path(rent), remote: true)
+    end
+    g.column name: t('edit') do |rent|
+      link_to(t('edit'), admin_rent_path(rent))
+    end
+  end -%>
+<div class='col-md-12 col-xs-12' id='preview-rent'> </div>
+</div>
