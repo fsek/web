@@ -24,16 +24,4 @@ class Album < ActiveRecord::Base
   def photographer_names
     images.pluck(:photographer_name).uniq.reject(&:blank?)
   end
-
-  def to_date
-    if start_date && end_date && start_date.day != end_date.day
-      %(#{l(start_date)} till #{l(end_date)})
-    elsif start_date
-      I18n.l(start_date, format: '%d %B %Y')
-    elsif end_date
-      I18n.l(end_date, format: '%d %B %Y')
-    else
-      false
-    end
-  end
 end

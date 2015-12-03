@@ -135,6 +135,6 @@ namespace :db do
 
     # Gallery
     Album.find_or_create_by!(title: 'Välkomstgasque', description: 'Väldans trevligt!', location: 'Gasquesalen',
-                             start_date: Time.zone.now, category: 'Nollning')
+                             start_date: Time.zone.now, category: 'Nollning', end_date: Time.zone.now + 10.hours)
   end
 end
