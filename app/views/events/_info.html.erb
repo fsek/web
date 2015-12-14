@@ -1,19 +1,19 @@
 <div class="event-info">
   <ul class="event-info">
     <% if event.signup? %>
-      <li><%= fa_icon("pencil-square-o")%> <%= t('event.signup') %></li>
+      <li><%= fa_icon('pencil-square-o')%> <%= t('event.signup') %></li>
     <% end %>
     <% if event.cash? %>
-      <li><%= fa_icon("money")%> <%= t('event.cash') %></li>
+      <li><%= fa_icon('money')%> <%= t('event.cash') %></li>
     <% end %>
     <% if event.food? %>
-      <li><%= fa_icon("cutlery")%> <%= t('event.food') %></li>
+      <li><%= fa_icon('cutlery')%> <%= t('event.food') %></li>
     <% end %>
     <% if event.drink? %>
-      <li><%= fa_icon("flask")%> <%= t('event.drink') %></li>
+      <li><%= fa_icon('flask')%> <%= t('event.drink') %></li>
     <% end %>
     <% if event.signup? %>
-      <li><%= fa_icon("users") %> <%= event.free_slots %> <%= t('event.slots-left') %></li>
+      <li><%= fa_icon('users') %> <%= event.free_slots %> <%= t('event.slots-left') %></li>
       <li><%= event.last_reg %></li>
     <% end %>
   </ul>

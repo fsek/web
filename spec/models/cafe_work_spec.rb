@@ -42,9 +42,6 @@ RSpec.describe CafeWork, type: :model do
       it { should respond_to(:owner?) }
       it { should respond_to(:edit?) }
       it { should respond_to(:has_worker?) }
-      it { should respond_to(:print_time) }
-      it { should respond_to(:print) }
-      it { should respond_to(:print_date) }
       it { should respond_to(:p_url) }
       it { should respond_to(:p_path) }
       it { should respond_to(:as_json) }

@@ -1,7 +1,7 @@
 <%= content_for :event_info do %>
   <div class="col-xs-12">
     <span class="time">
-      <%= @event.p_date %>
+      <%= time_range(@event.starts_at, @event.ends_at, format: :long) %>
     </span>
     <span class="location">
       <%= @event.location %>

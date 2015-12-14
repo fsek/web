@@ -3,7 +3,7 @@ module TimeHelper
   # Expecting two dates
   def date_range(from_date, until_date, options = {})
     options.symbolize_keys!
-    format = options[:format] || :long
+    format = options[:format] || :default
 
     if from_date.present? && until_date.present?
       from_date = from_date.to_date
@@ -12,9 +12,9 @@ module TimeHelper
       if same_day?(from_date, until_date)
         I18n.l(from_date, format: format)
       elsif same_month?(from_date, until_date)
-        %(#{I18n.l(from_date, format: '%-d')} - #{I18n.l(until_date, format: format)})
+        %(#{I18n.l(from_date, format: :day)} - #{I18n.l(until_date, format: format)})
       elsif same_year?(from_date, until_date)
-        %(#{I18n.l(from_date, format: '%-d %B')} - #{I18n.l(until_date, format: format)})
+        %(#{I18n.l(from_date, format: :day_month)} - #{I18n.l(until_date, format: format)})
       else
         %(#{I18n.l(from_date, format: format)} - #{I18n.l(until_date, format: format)})
       end
@@ -23,28 +23,25 @@ module TimeHelper
       I18n.l(from_date.to_date, format: format)
     elsif until_date.present?
       I18n.l(until_date.to_date, format: format)
-    else
-      nil
     end
   end
 
   def time_range(from_time, until_time, options = {})
     options.symbolize_keys!
-    format = options[:format] || :long
+    format = options[:format] || :default
 
     if from_time.present? && until_time.present?
       if from_time == until_time
         I18n.l(from_time, format: format)
-      elsif same_day?(from_date, until_date)
+      elsif same_day?(from_time, until_time)
+        %(#{I18n.l(from_time, format: :time)} - #{I18n.l(until_time, format: format)})
+      else
         %(#{I18n.l(from_time, format: format)} - #{I18n.l(until_time, format: format)})
       end
-
     elsif from_time.present?
       I18n.l(from_time, format: format)
     elsif until_time.present?
       I18n.l(until_time, format: format)
-    else
-      nil
     end
   end
 

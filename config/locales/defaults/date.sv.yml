@@ -1,9 +1,12 @@
 sv:
   date:
     formats:
-      default: "%Y/%m/%d"
-      long: "%-d %B %Y"
-      short: "%e %b"
+      default: '%e %b %Y'
+      long: '%e %B %Y'
+      short: '%e %b'
+      day_month: '%e %b'
+      day: '%e'
+      month_year: '%b %Y'
     abbr_day_names:
     - sön
     - mån
@@ -98,7 +101,10 @@ sv:
   time:
     am: ''
     formats:
-      default: "%Y/%m/%d %H:%M:%S"
-      long: "%Y/%m %d %H:%M:%S"
-      short: "%d %b %H:%M"
+      default: '%H:%M, %e %b %Y'
+      long: '%H:%M, %e %B %Y'
+      short: '%H:%M, %e %b'
+      time: '%H:%M'
+      day_month: '%e %b'
+      month_year: '%b %Y'
     pm: ''

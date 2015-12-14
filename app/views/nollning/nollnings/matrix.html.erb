@@ -2,11 +2,11 @@
   <div class="col-md-12 nollning-grid">
     <div class="row matrix-grid-wrap">
       <% (Date.new(2015,8,24)..Date.new(2015,9,20)).each do |date| %>
-        <%= link_to(nollning_event_path(date), data: { toggle: "modal", target: "#ajax-modal"} , remote: true) do 
+        <%= link_to(nollning_event_path(date), data: { toggle: "modal", target: "#ajax-modal"} , remote: true) do %>
           <div class="col-md-1 col-xs-4 matrix-grid">
             <% events = @events.from_date(date) %>
             <span class="date">
-              <%= date.strftime("%-d/%-m") %>
+              <%= l(date, format: :day_month) %>
               <% if (ev = events.where(all_day: true)).count > 0 %>
                 <span class="nollning-all-day"><%= ev.first.title %></span>
               <% end %>
@@ -16,7 +16,7 @@
               <% if events.count > 0 %>
                 <% events.each do |e| %>
                   <% if e.all_day != true %>
-                    <%= minimal_time(e.starts_at.time, nil, e.dot) %>
+                    <%= l(e.starts_at, format: :time) %>
                     <span class="event-title">
                       <%= e.short_title %>
                     </span><br>

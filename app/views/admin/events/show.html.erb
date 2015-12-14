@@ -6,7 +6,7 @@
     <div class="col-md-9 col-xs-12">
       <div class="col-md-12">
         <span class="time">
-          <%= @event.p_date %>
+          <%= time_range(@event.starts_at, @event.ends_at) %>
         </span>
         <span class="location">
           <%= @event.location %>
@@ -25,14 +25,14 @@
   </div>
   <div class="col-md-3">
     <% if @event.image? %>
-      <%= image_tag(@event.image.url, class: "img-responsive event-image") %>
+      <%= image_tag(@event.image.url, class: 'img-responsive event-image') %>
     <% end %>
   </div>
 </div>
 
 <% if can?(:manage, @event) %>
   <div class="col-md-8 col-md-offset-2 col-xs-12">
-    <%= link_to(t(:edit, attr: nil), edit_admin_event_path, class: "btn btn-default") %>
-    <%= link_to(t(:index, attr: nil), admin_events_path, class: "btn btn-default") %>
+    <%= link_to(t(:edit), edit_admin_event_path, class: 'btn primary') %>
+    <%= link_to(t(:index), admin_events_path, class: 'btn secondary') %>
   </div>
 <% end %>
