@@ -3,12 +3,12 @@
   <%= render @election, election: @election %>
   <% if can? :manage, @election %>
     <div class="col-md-2 col-md-offset-5">
-      <%= link_to("Redigera valet!", admin_election_path(@election), class: "btn election ") %>
+      <%= link_to(t(:edit_attr, attr: model_name(Election)), admin_election_path(@election), class: 'btn primary') %>
     </div>
   <% end %>
 <% else %>
   <div class="col-md-8 col-md-offset-2 col-sm-12">
     <h1>Just nu finns det ingen information om valet.</h1>
-    <%= link_to image_tag("layout/f.svg", class: "election-logo"), :root %>
+    <%= link_to(image_tag('layout/f.svg', class: 'election-logo'), :root) %>
   </div>
 <% end %>
