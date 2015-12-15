@@ -23,10 +23,8 @@ class CafeWork < ActiveRecord::Base
   scope :all_work_day, -> { order(work_day: :asc) }
 
   attr_accessor :lv_first, :lv_last
-  #  after_update :send_email, if: :has_worker?
 
   # Sends email to worker
-  # /d.wessman
   def send_email
     CafeMailer.sign_up_email(self).deliver_now
   rescue
@@ -40,7 +38,6 @@ class CafeWork < ActiveRecord::Base
   end
 
   # Shows different status texts depending on the user.
-  # /d.wessman
   def status_text(user)
     case status_view(user)
     when :sign_up
@@ -53,7 +50,6 @@ class CafeWork < ActiveRecord::Base
   end
 
   # Gives different statuses for the view
-  # /d.wessman
   def status_view(user)
     if has_worker?
       return owner?(user) ? :edit : :assigned
@@ -62,7 +58,6 @@ class CafeWork < ActiveRecord::Base
   end
 
   # User to update worker, checks for edit-access and triggers at_update
-  # /d.wessman
   def add_worker(worker_params, user)
     if has_worker?
       errors.add(CafeWork.human_attribute_name(:worker), I18n.t('cafe_work.has_worker'))
@@ -76,13 +71,11 @@ class CafeWork < ActiveRecord::Base
 
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
-    # /d.wessman
     self.user = user
     update(worker_params)
   end
 
   # User to update worker, checks for edit-access
-  # /d.wessman
   def update_worker(worker_params, user)
     if !owner?(user)
       errors.add(I18n.t('authorization'),
@@ -92,12 +85,10 @@ class CafeWork < ActiveRecord::Base
 
     # Should be done with a bang when the error handling works
     # Ref: https://github.com/fsek/web/issues/93
-    # /d.wessman
     update!(worker_params)
   end
 
   # Remove-function used by the worker
-  # /d.wessman
   def remove_worker(user)
     if !owner?(user)
       errors.add(I18n.t('authorization'),
@@ -109,7 +100,6 @@ class CafeWork < ActiveRecord::Base
   end
 
   # Method to remove the worker from current work.
-  # /d.wessman
   def clear_worker
     self.user = nil
     self.utskottskamp = false
@@ -122,7 +112,6 @@ class CafeWork < ActiveRecord::Base
   end
 
   # Returns true if the user can edit the object
-  # /d.wessman
   def edit?(user)
     editable? && (!has_worker? || owner?(user))
   end
@@ -132,25 +121,8 @@ class CafeWork < ActiveRecord::Base
   end
 
   # Returns true if there is a worker
-  # /d.wessman
   def has_worker?
     user.present?
-  end
-
-  # Used to print date in a usable format.
-  # /d.wessman
-  def print_time
-    %(#{start.strftime('%H:%M')}-#{stop.strftime('%H:%M')})
-  end
-
-  # Used to print out date, reading week and work number
-  # /d.wessman
-  def print
-    %(#{print_date} LV: #{lv} Pass: #{pass})
-  end
-
-  def print_date
-    %(#{print_time}, #{start.strftime('%A %d/%m')})
   end
 
   # Prints the url or path for the current object
@@ -174,16 +146,6 @@ class CafeWork < ActiveRecord::Base
       backgroundColor: b_color(user),
       textColor: 'black'
     }
-  end
-
-  # To print start time
-  def t_start
-    start.strftime('%H:%M')
-  end
-
-  # To print end time
-  def t_end
-    stop.strftime('%H:%M')
   end
 
   def start

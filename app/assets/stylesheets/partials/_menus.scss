@@ -1,14 +1,7 @@
-.menu {
-  span {
-    display: none;
-  }
-
-  &.blank {
-    &:hover {
-      span {
-        display: inline;
-        float: right;
-      }
+.dropdown-menu {
+  .menu {
+    i {
+      float: right;
     }
   }
 }

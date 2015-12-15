@@ -106,12 +106,6 @@ class ApplicationController < ActionController::Base
       lang = params[:locale]
       if langs.include? lang
         locale = lang
-        cookies[:locale] = lang
-      end
-    else
-      if cookies[:locale]
-        lang = cookies[:locale]
-        locale = lang if langs.include? lang
       end
     end
     I18n.locale = locale

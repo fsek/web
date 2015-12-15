@@ -3,7 +3,8 @@ FactoryGirl.define do
   factory :album do
     title
     description
-    start_date { Time.zone.now }
+    start_date { Time.zone.now.beginning_of_day + 10.hours }
+    end_date { Time.zone.now.beginning_of_day + 20.hours }
 
     factory :album_with_images do
       transient do

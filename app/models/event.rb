@@ -43,37 +43,6 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def p_date
-    if starts_at.day == ends_at.day
-      %(#{starts_at.strftime("%-H:%M")} - #{ends_at.strftime("%-H:%M")} #{starts_at.strftime("%-d/%-m")})
-    else
-      %(#{title} #{starts_at.hour}->)
-    end
-  end
-
-  def p_time
-    str = ""
-    if dot == "single"
-      str += %(#{starts_at.strftime("%-H")}(.))
-    elsif dot == "double"
-      str += %(#{starts_at.strftime("%-H")}(..))
-    else
-      if starts_at.min == 0
-        str += starts_at.strftime("%-H")
-      else
-        str += starts_at.strftime("%-H:%M")
-      end
-    end
-    if starts_at.day == ends_at.day
-      if ends_at.min == 0
-        str += %(-#{ends_at.strftime("%-H")})
-      else
-        str += %(-#{ends_at.strftime("%-H:%M")})
-      end
-    end
-    return str
-  end
-
   def short_title
     if short.present?
       short

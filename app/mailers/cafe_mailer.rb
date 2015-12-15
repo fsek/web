@@ -5,10 +5,10 @@ class CafeMailer < ActionMailer::Base
 
   def sign_up_email(cafe_work)
     @cafe_work = cafe_work
-    if (@cafe_work) && (@cafe_work.email.present?)
-      mail to: @cafe_work.assignee.p_email,
-           subject: %(Hilbert Café: jobba den #{@cafe_work.print_date} (fsektionen.se)),
-           sent_on: Time.zone.now
+    if @cafe_work && @cafe_work.user.present? && @cafe_work.user.email.present?
+      mail(to: @cafe_work.user.print_email,
+           subject: %(Hilbert Café: #{time_range(@cafe_work.start, @cafe_work.stop)}),
+           sent_on: Time.zone.now)
     end
   end
 
