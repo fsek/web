@@ -1,0 +1,14 @@
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <div class="headline">
+    <h2><%= t(:edit_attr, attr: model_name(CafeWork)) %></h2>
+  </div>
+  <%= render 'form' %>
+  <hr>
+  <%= link_to(t(:show_attr, attr: model_name(CafeWork)),
+              cafe_work_path(@cafe_work),
+              class: 'btn secondary') %>
+  <%= link_to(t(:destroy_attr, attr: modle_name(CafeWork)),
+                admin_cafe_work_path(@cafe_work), method: :delete,
+                class: 'btn danger') %>
+  <%= link_to(t(:index), admin_cafe_works_path, class: 'btn secondary') %>
+</div>

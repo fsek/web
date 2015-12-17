@@ -107,4 +107,5 @@ sv:
       time: '%H:%M'
       day_month: '%e %b'
       month_year: '%b %Y'
+      weekday: '%A %H:%M, %e %b %Y'
     pm: ''

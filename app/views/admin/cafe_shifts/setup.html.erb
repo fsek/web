@@ -1,0 +1,36 @@
+<% provide(:title, t('cafe_work.title')) %>
+<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
+  <div class="headline">
+    <h1><%= t('cafe_work.create') %></h1>
+  </div>
+  <%= simple_format(t('cafe_work.admin.setup_fill_date_preview')) %>
+  <%= simple_format(t('cafe_work.admin.setup_single')) %>
+  <%= link_to(t('cafe_work.single'), new_admin_cafe_work_path, class: 'btn secondary') %>
+  <hr>
+  <%= render 'setup_form' %>
+  <hr>
+
+  <div class="panel-group acc-v1 margin-bottom-40">
+    <% @cafe_works.group_by(&:lv).each do |week, work| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= week %>">
+            <div class="headline panel-title">
+              <h3>Läsvecka <%= week %></h3>
+            </div>
+          </a>
+        </div>
+        <div id="collapse<%= week %>" class="panel-collapse collapse">
+          <div class="panel-body">
+            <% work.each do |w| %>
+              <div class="margin-bottom-20">
+                <%= %(#{l(w.start, w.stop)} LV: #{w.lv} Pass: #{w.pass}) %>
+                <hr>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  </div>
+<% end %>
+</div>

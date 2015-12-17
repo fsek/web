@@ -1,4 +1,6 @@
 module CalendarJSON
+  include Rails.application.routes.url_helpers
+
   def self.rent(rent)
     if rent.service
       {
@@ -22,7 +24,28 @@ module CalendarJSON
     end
   end
 
+  def self.cafe(shift, user)
+    {
+      id: shift.id,
+      title: shift.to_s,
+      start: shift.start.iso8601,
+      end: shift.stop.iso8601,
+      url: Rails.application.routes.url_helpers.cafe_shift_path(shift),
+      color: 'black',
+      backgroundColor: cafe_color(shift, user),
+      textColor: 'black'
+    }
+  end
+
   private
+
+  def self.cafe_color(shift, user)
+    if shift.cafe_worker.present?
+      shift.cafe_worker == user ? 'green' : 'orange'
+    else
+      'white'
+    end
+  end
 
   def self.rent_color(rent)
     if rent.aktiv

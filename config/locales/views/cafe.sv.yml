@@ -1,0 +1,11 @@
+sv:
+  cafe:
+    title: Hilbert Café
+    ladybug: Nyckelpiga
+    ladybug_contact: Nyckelpiga - Kontaktinformation
+    submit_ladybug: Sök upp jobbare
+    overview: Översikt
+    competition: Tävling
+    white_color: Vit färg innebär att passet inte har någon jobbare.
+    orange_color: Orange färg innebär att passet redan har en jobbare.
+    green_color: Grön färg innebär att du jobbar.

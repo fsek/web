@@ -1,0 +1,26 @@
+<% provide(:title, t('cafe.title')) %>
+<div class="headline">
+  <h1><%= t('cafe.title') %></h1>
+</div>
+
+<div class="col-md-2 col-xs-12">
+  <ul class="list">
+      <li><%= link_to(t('cafe.overview'), overview_cafe_path) %></li>
+      <li><%= link_to(t('cafe.competition'), competition_cafe_path) %></li>
+    <% if can?(:manage, CafeShift) %>
+      <li><%= link_to(t(:admin), admin_cafe_shifts_path) %></li>
+    <% end %>
+    <% if can?(:ladybug, CafeShift) %>
+      <li><%= link_to(t('cafe.ladybug'), ladybug_cafe_path) %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="col-md-10 col-xs-12">
+  <div id='cafe-calendar'></div>
+  <ul class="list center">
+    <li><%= t('cafe.white_color') %></li>
+    <li><%= t('cafe.orange_color') %></li>
+    <li><%= t('cafe.green_color') %></li>
+    </ul>
+</div>

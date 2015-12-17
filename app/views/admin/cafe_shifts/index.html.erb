@@ -1,0 +1,39 @@
+<% provide(:title, t('cafe_work.title')) %>
+<div class="headline">
+  <h1><%= t('cafe_work.admin_title') %></h1>
+</div>
+
+<div class="col-md-3 col-xs-12">
+  <ul class="list">
+    <li><%= link_to(t('cafe_work.clear_search'), admin_cafe_shifts_path) %></li>
+    <li><%= link_to(t('cafe_work.setup_weeks'), admin_cafe_shifts_path) %></li>
+    <li><%= link_to(t('cafe_work.setup_single'), new_admin_cafe_shift_path) %></li>
+    <li><%= link_to(t('cafe_work.ladybug'), ladybug_cafe_path) %></li>
+    <li><%= link_to(t('cafe_work.overview'), overview_admin_cafe_shifts_path) %></li>
+  </ul>
+</div>
+
+<div class="col-md-9 col-xs-12">
+  <%= grid(@cafe_shift_grid) do |g|
+    g.row_attributes do |cwork|
+      { id: dom_id(cwork) }
+      if cwork.user.present?
+        { class: 'with_worker' }
+      end
+    end
+    g.column name: CafeShift.human_attribute_name(:work_day), attribute: 'work_day' do |post|
+      l(post.work_day, format: :weekday)
+    end
+    g.column name: CafeShift.human_attribute_name(:lv), attribute: 'lv'
+    g.column name: CafeShift.human_attribute_name(:lp), attribute: 'lp'
+    g.column name: CafeShift.human_attribute_name(:pass), attribute: 'pass'
+    g.column name: t(:show) do |post|
+      link_to(t('show'), admin_cafe_shift_path(post))
+    end
+    g.column name: t('remove') do |post|
+      link_to(t('remove'), admin_cafe_shift_path(post), remote: true,
+              method: :delete, html: { id: dom_id(post) })
+    end
+  end -%>
+<span id="status"></span>
+</div>

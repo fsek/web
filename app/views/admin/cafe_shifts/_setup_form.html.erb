@@ -1,0 +1,8 @@
+<%= simple_form_for(@cafe_work, method: :post, url: { action: :setup_create }) do |f| %>
+  <%= f.input :lv, as: :integer %>
+  <%= f.input :lv_last, as: :integer, required: true %>
+  <%= f.input :lp, as: :integer %>
+  <%= f.input :work_day, as: :datetime_picker %>
+  <%= f.button :submit, class: 'btn primary pull-left' %>
+  <%= f.button :submit, t(:preview), class: 'btn secondary pull-right' %>
+<% end %>

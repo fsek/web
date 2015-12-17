@@ -1,0 +1,36 @@
+<% title(model_name(User)) %>
+<%= simple_format(t('cafe_work.all_shifts_with_worker'))%>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><%= CafeWork.human_attribute_name(:lp) %></th>
+      <th><%= CafeWork.human_attribute_name(:lv) %></th>
+      <th><%= model_name(User) %></th>
+      <th><%= User.human_attribute_name(:name) %></th>
+      <th><%= User.human_attribute_name(:email) %></th>
+      <th><%= User.human_attribute_name(:phone) %></th>
+      <th><%= User.human_attribute_name(:competition) %></th>
+      <th><%= User.human_attribute_name(:council_competition) %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cafe_works.each do |cw| %>
+      <tr>
+        <td><%= link_to(cw.id, admin_cafe_work_path(cw)) %></td>
+        <td><%= cw.lp %></td>
+        <td><%= cw.lv %></td>
+        <td><%= link_to(cw.user, user_path(cw.user), target: :blank_p) %></td>
+        <td><%= cw.user.try(:email)%></td>
+        <td><%= cw.user.try(:phone) %></td>
+        <td><%= cw.competition %></td>
+        <td>
+          <% cw.councils.each do |c| %>
+            <%= c.to_s %><br>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

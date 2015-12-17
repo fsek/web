@@ -47,30 +47,40 @@ ActiveRecord::Schema.define(version: 20151219200039) do
     t.integer "subcategory_id", limit: 4
   end
 
-  create_table "cafe_work_councils", force: :cascade do |t|
-    t.integer  "cafe_work_id", limit: 4
-    t.integer  "council_id",   limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "cafe_works", force: :cascade do |t|
+  create_table "cafe_shifts", force: :cascade do |t|
     t.datetime "work_day"
-    t.integer  "pass",         limit: 4
-    t.integer  "lp",           limit: 4
-    t.integer  "lv",           limit: 4
-    t.string   "name",         limit: 255
-    t.string   "lastname",     limit: 255
-    t.string   "phone",        limit: 255
-    t.string   "email",        limit: 255
-    t.boolean  "utskottskamp"
-    t.string   "access_code",  limit: 255
-    t.integer  "d_year",       limit: 4
-    t.integer  "user_id",      limit: 4
+    t.integer  "pass",           limit: 4
+    t.integer  "lp",             limit: 4
+    t.integer  "lv",             limit: 4
+    t.boolean  "competition"
+    t.integer  "user_id",        limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "firstname",    limit: 255
+    t.integer  "cafe_worker_id", limit: 4
   end
+
+  add_index "cafe_shifts", ["cafe_worker_id"], name: "index_cafe_shifts_on_cafe_worker_id", using: :btree
+
+  create_table "cafe_worker_councils", force: :cascade do |t|
+    t.integer  "cafe_worker_id", limit: 4
+    t.integer  "council_id",     limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "cafe_worker_councils", ["cafe_worker_id"], name: "index_cafe_worker_councils_on_cafe_worker_id", using: :btree
+  add_index "cafe_worker_councils", ["council_id"], name: "index_cafe_worker_councils_on_council_id", using: :btree
+
+  create_table "cafe_workers", force: :cascade do |t|
+    t.integer  "user_id",       limit: 4,                null: false
+    t.integer  "cafe_shift_id", limit: 4,                null: false
+    t.boolean  "competition",             default: true
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "cafe_workers", ["cafe_shift_id"], name: "index_cafe_workers_on_cafe_shift_id", using: :btree
+  add_index "cafe_workers", ["user_id"], name: "index_cafe_workers_on_user_id", using: :btree
 
   create_table "candidates", force: :cascade do |t|
     t.integer  "post_id",     limit: 4

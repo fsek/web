@@ -1,0 +1,41 @@
+<% provide(:title, t('cafe.title')) %>
+<div class='col-md-8 col-md-offset-2 col-sm-12 reg-page'>
+  <div class="headline">
+    <h2><%= t('cafe.ladybug_contact') %></h2>
+  </div>
+  <div class='row margin-bottom-20'>
+    <%= simple_form_for(:ladybug, { url: ladybug_cafe_path, method: :get }) do |f| %>
+      <%= f.input :date, as: :date_picker, input_html: { value: @date.iso8601 }, label: t('choose.date') %>
+      <%= f.button :submit, t('cafe.submit_ladybug') %>
+    <% end %>
+  </div>
+  <div class='row'>
+    <% if @cafe_shifts %>
+      <table class='table-striped table-bordered table'>
+        <thead>
+          <tr>
+            <th><%= CafeShift.human_attribute_name(:id) %></th>
+            <th><%= CafeShift.human_attribute_name(:pass) %></th>
+            <th><%= model_name(CafeWorker) %></th>
+            <th><%= User.human_attribute_name(:phone) %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cafe_shifts.each do |shift| %>
+            <tr>
+              <td><%= link_to(shift.id, shift) %></td>
+              <td><%= shift.pass %></td>
+              <% if shift.cafe_worker.present? %>
+                <td><%= link_to(shift.user, user_path(shift.user)) %></td>
+                <td><%= shift.user.try(:phone) %></td>
+              <% else %>
+                <td></td><td></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+  <%= link_to(t('cafe_work.back_to_index'), cafe_path, class: 'btn secondary') %>
+</div>

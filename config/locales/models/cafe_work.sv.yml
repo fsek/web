@@ -1,24 +1,14 @@
 sv:
   activerecord:
     models:
-      cafe_work: Cafejobb
+      cafe_shift: Cafepass
     attributes:
-      cafe_work:
+      cafe_shift:
         work_day: Arbetsdag
         pass: Pass
         lp: Läsperiod
         lv: Läsvecka
-        name: Förnamn
-        lastname: Efternamn
-        phone: Telefon
-        email: E-post
-        utskottskamp: Cafetävling
-        access_code: Kod
-        d_year: År
-        lv_first: Läsvecka, från
-        lv_last: Läsvecka, till
-        councils: Utskott
-        user: Jobbare
+        cafe_worker: Jobbare
   cafe_work:
     status:
       sign_up: Se till att dina uppgifter är uppdaterade och välj deltagande i Cafetävling för att skriva upp dig på passet.

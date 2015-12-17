@@ -1,0 +1,10 @@
+<%= simple_form_for([cafe_shift, cafe_shift.cafe_worker]) do |f| %>
+  <%= f.association :user, collection: [current_user], include_blank: false %>
+  <%= f.input :competition, as: :boolean %>
+  <%= f.button :submit %>
+  <% if cafe_shift.cafe_worker.persisted? %>
+  <%= link_to(t('cafe_worker.destroy'),
+              cafe_shift_cafe_worker_path(cafe_shift, cafe_shift.cafe_worker),
+              method: :delete, class: 'btn danger pull-right') %>
+  <% end %>
+<% end %>

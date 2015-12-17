@@ -1,17 +1,27 @@
 sv:
   cafe_work:
-    compete_battle: Delta i Cafétävlingen
-    back_to_index: Tillbaka till Startsida för Hilbert
-    edit: Redigera bokning
-    leave: Hoppa av
-    competing: Deltar
-    not_competing: Deltar inte
-    remove_worker: Ta bort jobbare
-    remove_work: Ta bort pass
-    button_worker: Jobba
+    single: Enskilt Cafepass
+    new: Nytt Cafepass
+    create: Skapa Cafepass
     admin_title: Administration för Hilbert Café
+    all_shifts_with_worker: Visar alla pass som har haft jobbare
+    back_to_index: Tillbaka till Startsida för Hilbert
+    button_worker: Jobba
     clear_search: Rensa sökning
-    setup_weeks: Skapa pass för läsperiod
-    setup_single: Skapa ensklit pass
+    compete_battle: Delta i Cafétävlingen
+    competing: Deltar
+    edit: Redigera bokning
     ladybug: Nyckelpiga
+    leave: Hoppa av
+    not_competing: Deltar inte
     overview: Översikt
+    remove_work: Ta bort pass
+    remove_worker: Ta bort jobbare
+    setup_single: Skapa ensklit pass
+    setup_weeks: Skapa pass för läsperiod
+    title: Hilbert Café
+    until: till
+    admin:
+      setup_fill_date_preview: Genom att fylla i datum och tid för läsperiodens 
+        första pass genereras en förhandsvisning för hela läsperioden
+      setup_single: För att lägga till enskilt pass
