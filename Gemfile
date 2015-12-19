@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.5'
 
 gem 'bootstrap-sass'
 gem 'cancancan'
@@ -56,6 +56,9 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-example_steps'
   gem 'rspec-rails'
+end
+
+group :development do
   gem 'web-console'
 end
 
