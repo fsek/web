@@ -9,7 +9,8 @@ class ProposalsController < ApplicationController
   end
 
   private
+
   def proposal_params
-    params.require(:proposal).permit!
+    params.require(:proposal).permit(:title, :body, :sign_name, :sign_title, points: [])
   end
 end
