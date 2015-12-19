@@ -1,5 +1,10 @@
 <% if menu.turbolinks && menu.blank_p %>
-  <li><%= link_to(menu, menu.link, target: 'blank') %></li>
+  <li class="menu blank">
+    <%= link_to(menu.link, target: :blank) do %>
+      <%= menu %>
+      <%= fa_icon('external-link') %>
+    <% end %>
+  </li>
 <% elsif menu.turbolinks %>
   <li><%= link_to(menu, menu.link) %></li>
 <% elsif menu.blank_p %>

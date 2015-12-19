@@ -1,9 +1,9 @@
 <% title(models_name(Post)) %>
 <% if @council %>
   <div class="row margin-bottom-20">
-    <%= link_to(t(:add, attr: Post.model_name.human), new_council_post_path(@council), class: "btn btn-u") %>
-    <%= link_to(t(:show, attr: Council.model_name.human), council_path(@council), class: "btn btn-u") %>
-    <%= link_to(t(:edit, attr: Council.model_name.human), edit_council_path(@council), class: "btn btn-u") %>
+    <%= link_to(t(:add_attr, attr: Post.model_name.human), new_council_post_path(@council), class: 'btn secondary') %>
+    <%= link_to(t(:show_attr, attr: Council.model_name.human), council_path(@council), class: 'btn secondary') %>
+    <%= link_to(t(:edit_attr, attr: Council.model_name.human), edit_council_path(@council), class: 'btn secondary') %>
   </div>
 <% end %>
 
@@ -28,20 +28,19 @@
     <div id="<%= dom_id(post) %>" class="collapse">
       <div class="funny-boxes funny-boxes-left-orange">
         <div class="headline">
-          <%= content_tag(:h2, post) %>
+          <h2><%= post %></h2>
         </div>
         <div class="col-md-12">
           <% if can? :edit, post %>
-            <%= link_to(t(:edit, attr: model_name(Post)), edit_council_post_path(post.council, post), class: 'btn secondary') %>
             <% if post.users.size > 0 %>
               <div class="panel-body">
                 <table class="table table-bordered">
                   <tbody>
                     <tr>
-                      <%= content_tag(:th, model_name(Post)) %>
-                      <%= content_tag(:th, model_name(User)) %>
-                      <%= content_tag(:th, PostUser.human_attribute_name(:created_at))%>
-                      <%= content_tag(:th, t(:destroy, attr: nil)) %>
+                      <th><%= model_name(Post) %></th>
+                      <th><%= model_name(User) %></th>
+                      <th><%= PostUser.human_attribute_name(:created_at) %></th>
+                      <th><%= t(:destroy) %></th>
                     </tr>
                     <% PostUser.from_post(post.id).each do |pu| %>
                       <tr>
