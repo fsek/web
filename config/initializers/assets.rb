@@ -2,7 +2,7 @@
 module Fsek
   class Application < Rails::Application
     # Version of your assets, change this if you want to expire all your assets.
-    config.assets.version = '1.1'
+    config.assets.version = '1.2'
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
     config.assets.precompile += %w( application.scss )
     #

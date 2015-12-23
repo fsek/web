@@ -24,9 +24,6 @@ class User < ActiveRecord::Base
                     path: ':rails_root/storage/user/:id/:style/:filename')
 
   scope :all_firstname, -> { order(firstname: :asc) }
-  scope :search, -> (firstname, lastname) {
-    where('firstname LIKE ? OR lastname LIKE ?', "%#{firstname}%", "%#{lastname}%")
-  }
 
   # Validations
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
@@ -44,7 +41,6 @@ class User < ActiveRecord::Base
   def member?
     member_at.present? && Time.zone.now > member_at
   end
-
 
   def to_s
     if has_name_data?
@@ -67,11 +63,11 @@ class User < ActiveRecord::Base
   end
 
   def print_id
-    %(#{print} - #{id})
+    %(#{self} - #{id})
   end
 
   def print_email
-    %(#{print} <#{email}>)
+    %(#{self} <#{email}>)
   end
 
   private
