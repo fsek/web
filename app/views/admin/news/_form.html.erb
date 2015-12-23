@@ -1,0 +1,12 @@
+<%= simple_form_for([:admin, @news]) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :content %>
+  <%= f.input :url %>
+  <% if @news.image.present? %>
+    <%= image_tag(@news.image.thumb.url) %>
+    <%= f.input :remove_image, as: :boolean %>
+  <% else %>
+    <%= f.input :image, as: :file %>
+  <% end %>
+  <%= f.button :submit %>
+<% end %>

@@ -6,8 +6,10 @@ sv:
         other: Nyheter
     attributes:
       news:
-        title: Titel
         content: Text
-        front_page: Startsida
+        created_at: Skapad
         image: Bild
-        user_id: Upplagd av
+        remove_image: Ta bort bild
+        title: Titel
+        updated_at: Uppdaterad
+        user: Upplagd av

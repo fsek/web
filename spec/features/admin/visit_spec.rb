@@ -10,6 +10,7 @@ feature 'admin visits paths' do
     'admin/cafe_works': [:index, :new, :edit, :show, :overview, :setup],
     'admin/elections': [:new, :index, :show, :edit],
     'admin/events': [:show, :new, :index],
+    'admin/news': [:index, :new, :edit],
     'admin/rents': [:index, :show, :new],
     'admin/gallery/albums': [:index, :show],
     'gallery/albums': [:show],

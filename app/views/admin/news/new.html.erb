@@ -1,0 +1,9 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h2><%= t(:new_attr, attr: model_name(News)) %></h2>
+  </div>
+  <%= render 'form'%>
+  <hr>
+  <%= link_to(t(:index_attr, attr: models_name(News)),
+              admin_news_index_path(@news), class: 'btn secondary') %>
+</div>

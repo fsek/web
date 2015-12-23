@@ -1,21 +1,16 @@
 # encoding: UTF-8
 class News < ActiveRecord::Base
   belongs_to :user
-
-  has_attached_file :image,
-                    styles: { original: '4000x4000>', large: '800x800>',
-                              small: '250x250>', thumb: '100x100>' },
-                    path: ':rails_root/public/system/images/news/:id/:style/:filename',
-                    url: '/system/images/news/:id/:style/:filename'
+  mount_uploader :image, AttachedImageUploader
 
   # Validations
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates :title, :content, :user, presence: true
 
   # Scopes
-  scope :d_published, -> { where('d_publish <= ?', Time.zone.today) }
-  scope :not_removed, -> { where('d_remove > ?', Time.zone.today) }
-  scope :public_n, -> { where(public: true) }
-  scope :latest, -> { order(created_at: :asc).limit(5) }
-  scope :all_date, -> { order(created_at: :asc) }
+  scope :latest, -> { in_date.limit(5) }
+  scope :by_date, -> { order(created_at: :desc) }
+
+  def to_s
+    title || id
+  end
 end
