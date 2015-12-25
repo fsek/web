@@ -1,0 +1,62 @@
+.col-md-12.margin-bottom-20
+  %h1= ExLink.human_attribute_name("Tags")
+  .row
+    .col-md-10.margin-bottom-20
+      = link_to 'Delete Unused Tags', {action: 'del_unused_tags'},
+      :data => { :confirm => 'Are you sure you want to delete unusued tags?' },
+      :class => 'btn-u btn-u-red'
+
+    .col-md-10.margin-bottom-20
+      %ul.list-inline.badge-lists
+        %button.btn.btn-u-default
+          =link_to ExLink.human_attribute_name("All tags"), action: 'index'
+        - @tags.each do |tagname, number|
+          %button.btn.btn-u-default
+            =link_to "#{tagname} (#{number})", action: 'index', tag: tagname
+
+.col-md-12.margin-bottom-20
+  %h1= models_name(ExLink)
+  .row
+    .col-md-10.margin-bottom-20
+      = link_to 'New External Link', new_admin_ex_link_path,
+                                              class: 'btn-u btn-secondary'
+      = link_to 'Check expired links', {action: 'check_expired'},
+                                              class: 'btn-u btn-u-red'
+      = link_to 'Check dead links', {action: 'check_dead'},
+                                              class: 'btn-u btn-u-red'
+
+  .row
+    .col-md-10.margin-bottom-20
+      %table.table.table-hover
+        %thead
+          %tr
+            %th= ExLink.human_attribute_name("Image")
+            %th= ExLink.human_attribute_name("Label")
+            %th= ExLink.human_attribute_name("Url")
+            %th= ExLink.human_attribute_name("Tags")
+            %th= ExLink.human_attribute_name("Test availability")
+            %th= ExLink.human_attribute_name("Active")
+            %th= ExLink.human_attribute_name("Expiration")
+            %th= ExLink.human_attribute_name("Note")
+            %th= ExLink.human_attribute_name("Action")
+
+        %tbody
+          - @ex_links.each do |ex_link|
+            %tr
+              %td= image_tag ex_link.image.url(:thumb), width: 30
+              %td= truncate(ex_link.label, :length => 30)
+              %td= link_to truncate(ex_link.url, :length => 30), ex_link.url
+              %td= tags2labs ex_link.get_tagnames
+              %td= bool2icon ex_link.test_availability
+              %td= bool2icon ex_link.active
+              %td= ex_link.expiration
+              %td= truncate(ex_link.note, :length => 30)
+              %td
+                .btn-group
+                  %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}
+                    =link_to 'Show', admin_ex_link_path(ex_link), :method => 'get'
+                    %i.fa.fa-angle-down
+                  %ul.dropdown-menu{:role => "menu"}
+                    %li=link_to 'Show', admin_ex_link_path(ex_link), :method => 'get'
+                    %li=link_to 'Edit', edit_admin_ex_link_path(ex_link), :method => 'get'
+                    %li=link_to 'Destroy', admin_ex_link_path(ex_link), :method => :delete, :data => { :confirm => 'Are you sure?' }

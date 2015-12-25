@@ -30,7 +30,9 @@
 
   .row.margin-bottom-40.col-md-6
     %p
-      = link_to 'Back', ex_links_path, class: 'btn-u btn-secondary'
+      = link_to 'Edit', edit_admin_ex_link_path(@ex_link),class: 'btn-u btn-secondary'
+      = link_to 'Back', admin_ex_links_path, class: 'btn-u btn-secondary'
+      = link_to 'Destroy', admin_ex_link_path(@ex_link), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn-u btn-u-red'
 
 .col-md-6
   %p

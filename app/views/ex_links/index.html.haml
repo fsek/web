@@ -1,49 +1,63 @@
 .col-md-12.margin-bottom-20
-  %h1 Listing External Links
-  .panel.panel-orange
-    %table.table.table-hover
-      %thead
-        %tr
-          %th Image
-          %th Label
-          %th Url
-          %th Tags
-          %th Test availability
-          %th Active
-          %th Expiration
-          %th Note
-          %th
-          %th
-          %th
+  %h1= ExLink.human_attribute_name("Tags")
+  .row
+    .col-md-10.margin-bottom-20
+      %ul.list-inline.badge-lists
+        %button.btn.btn-u-default
+          =link_to ExLink.human_attribute_name("All tags"), action: 'index'
+        - @tags.each do |tagname, number|
+          %button.btn.btn-u-default
+            =link_to "#{tagname} (#{number})", action: 'index', tag: tagname
 
-      %tbody
-        - @ex_links.each do |ex_link|
-          %tr
-            %td= image_tag ex_link.image.url(:thumb), width: 30
-            %td= ex_link.label
-            %td= link_to ex_link.url, ex_link.url
-            %td= tags2labs ex_link.get_tagnames
-            %td= bool2icon ex_link.test_availability
-            %td= bool2icon ex_link.active
-            %td= ex_link.expiration
-            %td= ex_link.note
-            %td= button_to 'Show', ex_link, :method => 'get',
-                                            class: 'btn btn-u-blue btn-u-sm'
-            %td= button_to 'Edit', edit_ex_link_path(ex_link),
-                  :method => 'get', class: 'btn btn-u-green btn-u-sm'
-            %td= button_to 'Destroy', ex_link, :method => :delete,
-                :data => { :confirm => 'Are you sure?' },
-                class: 'btn-u btn-u-red btn-u-xs'
-  .grid
-    .row
-      .col-md-4
-        = link_to 'List all tags', {action: 'list_tags'},
-                                              class: 'btn-u btn-u-green'
-        = link_to 'New External Link', new_ex_link_path,
-                                              class: 'btn-u btn-u-default'
-      .col-md-4
-        = link_to 'Check expired links', {action: 'check_expired'},
-                                              class: 'btn-u btn-u-red'
-        = link_to 'Check dead links', {action: 'check_dead'},
-                                              class: 'btn-u btn-u-red'
+  .row
+    .col-md-10
+      %h1= models_name(ExLink)
+      .panel.panel-orange
+        %table.table.table-hover
+          %thead
+            %tr
+              %th= ExLink.human_attribute_name("Image")
+              %th= ExLink.human_attribute_name("Label")
+              %th= ExLink.human_attribute_name("Url")
+              %th= ExLink.human_attribute_name("Tags")
+              %th= ExLink.human_attribute_name("Test availability")
+              %th= ExLink.human_attribute_name("Active")
+              %th= ExLink.human_attribute_name("Expiration")
+              %th= ExLink.human_attribute_name("Note")
+              %th= ExLink.human_attribute_name("Action")
+
+          %tbody
+            - @ex_links.each do |ex_link|
+              %tr
+                %td= image_tag ex_link.image.url(:thumb), width: 30
+                %td= truncate(ex_link.label, :length => 30)
+                %td= link_to truncate(ex_link.url, :length => 30), ex_link.url
+                %td= tags2labs ex_link.get_tagnames
+                %td= bool2icon ex_link.test_availability
+                %td= bool2icon ex_link.active
+                %td= ex_link.expiration
+                %td= truncate(ex_link.note, :length => 30)
+                %td
+                  .btn-group
+                    %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}
+                      =link_to 'Show', ex_link, :method => 'get'
+  -#.row
+  -#  .col-md-4
+  -#    = link_to 'List all tags', {action: 'list_tags'},
+  -#                                            class: 'btn-u btn-secondary'
+  -#.row
+  -#  .col-md-12
+  -#    %h1 Listing tags
+  -#    .panel.panel-sea.margin-bottom-10
+  -#      %table.table.table-hover
+  -#        %thead
+  -#          %tr
+  -#            %th Label
+  -#            %th Occurence
+  -#
+  -#        %tbody
+  -#          - @tags.each do |tagname, number|
+  -#            %tr
+  -#              %td= tagname
+  -#              %td= link_to "#{number}", action: 'index', tag: tagname
 

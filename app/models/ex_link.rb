@@ -23,22 +23,10 @@ class ExLink < ActiveRecord::Base
 
   def add_tags
     self.tags = []
-    polish_tags.each do |tagnm|
-      tago = Tag.find_by(tagname: tagnm)
-      if tago.nil?
-        tago = Tag.create(tagname: tagnm)
-      end
-      tags << tago
-    end
-  end
-
-  # Rewrote NICELY!
-  def polish_tags
-    tags = []
     if not tagstring.nil?
       tagstring.gsub(/\s+/m, ' ')
       tagstring.strip.downcase.split(' ').each do |tagnm|
-        tags << Tag.find_or_create_by(tagname: tagnm)
+        self.tags << Tag.find_or_create_by(tagname: tagnm)
       end
     end
   end
@@ -59,8 +47,12 @@ class ExLink < ActiveRecord::Base
     require 'net/http'
 
     ExLink.where(active: true).find_each do |link|
-      unless Net::HTTP.get_response(URI(link.url)) == '200'
-        link.update_attribute(:active, false)
+      begin
+        unless Net::HTTP.get_response(URI(link.url)).code == '200'
+          link.update_attribute(:active, false)
+        end
+      rescue Exception => e
+        raise e, link.url
       end
     end
   end
