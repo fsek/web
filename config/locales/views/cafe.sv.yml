@@ -1,11 +1,14 @@
 sv:
   cafe:
-    title: Hilbert Café
+    admin_title: Administration för Hilbert Café
+    already_working: Du är uppskriven som arbetare på passet.
+    back_to_index: Hilbert
+    competition: Tävling
+    green_color: Grön färg innebär att du jobbar.
     ladybug: Nyckelpiga
     ladybug_contact: Nyckelpiga - Kontaktinformation
-    submit_ladybug: Sök upp jobbare
-    overview: Översikt
-    competition: Tävling
-    white_color: Vit färg innebär att passet inte har någon jobbare.
     orange_color: Orange färg innebär att passet redan har en jobbare.
-    green_color: Grön färg innebär att du jobbar.
+    overview: Översikt
+    submit_ladybug: Sök upp jobbare
+    title: Hilbert Café
+    white_color: Vit färg innebär att passet inte har någon jobbare.

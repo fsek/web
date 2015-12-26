@@ -3,13 +3,18 @@ class CafeWorkersController < ApplicationController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :cafe_shift, parent: true
 
+  def new
+    @cafe_shift = CafeShift.find(params[:cafe_shift_id])
+    @cafe_shift.cafe_worker || @cafe_shift.build_cafe_worker
+  end
+
   def create
-    cafe_shift = CafeShift.find(params[:cafe_shift_id])
-    cafe_shift.build_cafe_worker(cafe_worker_params)
-    if cafe_shift.cafe_worker.save!
-      redirect_to(cafe_shift_path(cafe_shift), notice: alert_create(CafeWorker))
+    @cafe_shift = CafeShift.find(params[:cafe_shift_id])
+    @cafe_shift.build_cafe_worker(cafe_worker_params)
+    if @cafe_shift.cafe_worker.save
+      redirect_to(cafe_shift_path(@cafe_shift), notice: I18n.t('cafe_worker.created'))
     else
-      render controller: :cafe_shifts, action: :show
+      render :new
     end
   end
 
@@ -17,7 +22,7 @@ class CafeWorkersController < ApplicationController
     cafe_shift = CafeShift.find(params[:cafe_shift_id])
     cafe_worker = CafeWorker.find(params[:id])
     if cafe_worker.update(cafe_worker_params)
-      redirect_to(cafe_shift_path(cafe_shift), notice: alert_update(CafeWorker))
+      redirect_to(cafe_shift_path(cafe_shift), notice: I18n.t('cafe_worker.updated'))
     else
       render controller: :cafe_shifts, action: :show
     end
@@ -27,7 +32,7 @@ class CafeWorkersController < ApplicationController
     cafe_shift = CafeShift.find(params[:cafe_shift_id])
     cafe_worker = CafeWorker.find(params[:id])
     if cafe_worker.destroy!
-      redirect_to(cafe_shift_path(cafe_shift), notice: alert_destroy(CafeWorker))
+      redirect_to(cafe_shift_path(cafe_shift), notice: I18n.t('cafe_worker.destroyed'))
     else
       redirect_to(cafe_shift_path(cafe_shift))
     end
@@ -36,6 +41,6 @@ class CafeWorkersController < ApplicationController
   private
 
   def cafe_worker_params
-    params.require(:cafe_worker).permit(:user_id, :competition, group_ids: [])
+    params.require(:cafe_worker).permit(:user_id, :competition, :group)
   end
 end

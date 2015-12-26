@@ -1,36 +1,20 @@
 <% title(model_name(User)) %>
-<%= simple_format(t('cafe_work.all_shifts_with_worker'))%>
-<table class="table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th><%= CafeWork.human_attribute_name(:lp) %></th>
-      <th><%= CafeWork.human_attribute_name(:lv) %></th>
-      <th><%= model_name(User) %></th>
-      <th><%= User.human_attribute_name(:name) %></th>
-      <th><%= User.human_attribute_name(:email) %></th>
-      <th><%= User.human_attribute_name(:phone) %></th>
-      <th><%= User.human_attribute_name(:competition) %></th>
-      <th><%= User.human_attribute_name(:council_competition) %></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cafe_works.each do |cw| %>
-      <tr>
-        <td><%= link_to(cw.id, admin_cafe_work_path(cw)) %></td>
-        <td><%= cw.lp %></td>
-        <td><%= cw.lv %></td>
-        <td><%= link_to(cw.user, user_path(cw.user), target: :blank_p) %></td>
-        <td><%= cw.user.try(:email)%></td>
-        <td><%= cw.user.try(:phone) %></td>
-        <td><%= cw.competition %></td>
-        <td>
-          <% cw.councils.each do |c| %>
-            <%= c.to_s %><br>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= simple_format(t('cafe_shift.all_shifts_with_worker'))%>
+<div class="col-md-12">
+  <%= link_to(t(:index_attr, attr: models_name(CafeShift)),
+              admin_cafe_shifts_path, class: 'btn secondary') %>
+</div>
+<div class="col-md-12">
+  <%= grid(@cafe_shift_grid) do |grid|
+    grid.column name: '#', attribute: 'id', filter: false
+    grid.column name: CafeShift.human_attribute_name(:lp), attribute: 'lp'
+    grid.column name: CafeShift.human_attribute_name(:lv), attribute: 'lv'
+    grid.column name: model_name(User), assoc: :user, attribute: 'firstname', filter: false do |shift|
+      link_to(shift.user, user_path(shift.user), target: :blank_p)
+    end
+    grid.column name: User.human_attribute_name(:email), assoc: :user, attribute: 'email'
+    grid.column name: User.human_attribute_name(:phone), assoc: :user, attribute: 'phone'
+    grid.column name: CafeWorker.human_attribute_name(:competition), assoc: :cafe_worker, attribute: 'competition'
+    grid.column name: CafeWorker.human_attribute_name(:group), assoc: :cafe_worker, attribute: 'group'
+  end -%>
+</div>

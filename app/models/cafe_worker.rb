@@ -2,8 +2,8 @@ class CafeWorker < ActiveRecord::Base
   belongs_to :user
   belongs_to :cafe_shift, inverse_of: :cafe_worker
 
-  has_many :groups, through: :worker_group
-  has_many :worker_groups
+  validates :user_id, :cafe_shift_id, presence: true
+  validate :user_attributes?
 
   def owner?(owner)
     user == owner
@@ -12,7 +12,7 @@ class CafeWorker < ActiveRecord::Base
   protected
 
   def user_attributes?
-    if !user.has_attributes?
+    if !user.try(:has_attributes?)
       errors.add(:user, I18n.t('user.attributes_missing'))
       false
     else

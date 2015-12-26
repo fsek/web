@@ -48,7 +48,7 @@ Fsek::Application.routes.draw do
 
     namespace :admin do
       resources :cafe_shifts, path: :hilbertcafe do
-        resources :cafe_workers, path: :jobba, only: [:create, :update, :destroy]
+        resources :cafe_workers, path: :jobba, only: [:create, :update, :destroy, :new]
 
         get :overview, path: :oversikt, on: :collection
         get :setup, as: :setup, on: :collection
@@ -63,6 +63,7 @@ Fsek::Application.routes.draw do
 
     resources :cafe_shifts, path: :hilbertcafe, only: :show do
       get :feed, on: :collection
+      get :new, path: :jobba, controller: :cafe_workers
       resources :cafe_workers, path: :jobba, only: [:create, :update, :destroy]
     end
 

@@ -8,13 +8,13 @@ class CafeShiftsController < ApplicationController
   end
 
   def feed
-    render json: CafeShift.between(params[:start],
+    render json: CafeShift.includes(:cafe_worker).includes(:user).between(params[:start],
                                    params[:end]).as_json(user: current_user)
   end
 
   private
 
   def cafe_worker_params
-    params.require(:cafe_worker).permit(:user_id, :competition, group_ids: [])
+    params.require(:cafe_worker).permit(:user_id, :competition, :group)
   end
 end

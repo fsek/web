@@ -1,24 +1,22 @@
 sv:
-  cafe_work:
-    single: Enskilt Cafepass
-    new: Nytt Cafepass
-    create: Skapa Cafepass
-    admin_title: Administration för Hilbert Café
+  cafe_shift:
     all_shifts_with_worker: Visar alla pass som har haft jobbare
-    back_to_index: Tillbaka till Startsida för Hilbert
     button_worker: Jobba
     clear_search: Rensa sökning
     compete_battle: Delta i Cafétävlingen
     competing: Deltar
+    create: Skapa Cafepass
     edit: Redigera bokning
     ladybug: Nyckelpiga
     leave: Hoppa av
+    new: Nytt Cafepass
     not_competing: Deltar inte
     overview: Översikt
     remove_work: Ta bort pass
     remove_worker: Ta bort jobbare
     setup_single: Skapa ensklit pass
     setup_weeks: Skapa pass för läsperiod
+    single: Enskilt Cafepass
     title: Hilbert Café
     until: till
     admin:

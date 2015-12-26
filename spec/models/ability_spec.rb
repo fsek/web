@@ -5,10 +5,7 @@ RSpec.describe Ability do
 
   ab_visitor = {
     Album.new => { yes: [], no: standard },
-    CafeWork.new => {
-      yes: [:read],
-      no: [:create, :update, :add_worker, :update_worker, :remove_worker, :nyckelpiga]
-    },
+    CafeShift.new => { yes: [:index, :feed], no: [] },
     Candidate.new => { yes: [], no: standard },
     Constant.new => { yes: [], no: standard },
     Contact.new => { yes: [], no: [:mail, :create, :update, :destroy, :read] },
@@ -32,10 +29,7 @@ RSpec.describe Ability do
 
   ab_signed = {
     Album.new => { yes: [], no: standard },
-    CafeWork.new => {
-      yes: [:read, :add_worker],
-      no: [:create, :update]
-    },
+    CafeShift.new => { yes: [:index, :feed], no: [] },
     :calendar => { yes: [:index, :export], no: [] },
     Candidate.new => { yes: [], no: standard },
     Constant.new => { yes: [], no: standard },
@@ -58,10 +52,7 @@ RSpec.describe Ability do
 
   ab_member = {
     Album.new => { yes: [], no: standard },
-    CafeWork.new => {
-      yes: [:read, :add_worker],
-      no: [:create, :update, :update_worker, :remove_worker, :nyckelpiga]
-    },
+    CafeShift.new => { yes: [:index, :feed], no: [] },
     Candidate.new => { yes: [:index, :create], no: [] },
     Constant.new => { yes: [], no: standard },
     Contact.new => { yes: [:read, :mail], no: [:create, :update, :destroy] },
@@ -83,10 +74,10 @@ RSpec.describe Ability do
 
   subject(:visitor) { Ability.new(nil) }
 
-  let(:signed) { create(:user, member_at: nil) }
+  let(:signed) { build_stubbed(:user, member_at: nil) }
   subject(:signed_ability) { Ability.new(signed) }
 
-  let(:member) { create(:user, member_at: Time.zone.now) }
+  let(:member) { build_stubbed(:user, member_at: Time.zone.now) }
   subject(:member_ability) { Ability.new(member) }
 
   describe 'Not signed in' do
@@ -115,8 +106,8 @@ RSpec.describe Ability do
     # Extra cases which cannot be covered in loop
     # These also count for the members
     it do
-      signed_ability.should have_abilities([:update_worker, :remove_worker],
-                                           CafeWork.new(user: signed))
+      signed_ability.should have_abilities([:create, :update, :destroy],
+                                           CafeWorker.new(user: signed))
     end
   end
 

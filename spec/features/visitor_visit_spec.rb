@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.feature 'visitor visits paths' do
   paths = {
-    cafe_works: [:index],
+    cafe: [:index],
     constants: [:index, :new, :show],
     contacts: [:index, :new, :show],
     councils: [:index, :show],

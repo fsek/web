@@ -1,5 +1,9 @@
-<%= simple_form_for([cafe_shift, cafe_shift.cafe_worker], url: admin_cafe_shift_path(cafe_shift)) do |f| %>
-  <%= f.association :user, collection: [current_user] %>
+<%= simple_form_for([:admin, cafe_shift, cafe_shift.cafe_worker])  do |f| %>
+  <%= f.association :user, collection: users, label_method: :print_id %>
   <%= f.input :competition, as: :boolean %>
-  <%= f.association :councils, as: :check_boxes %>
+  <%= f.button :submit %>
+  <% if cafe_shift.user.present? %>
+    <%= link_to(t('cafe_worker.remove'), admin_cafe_shift_cafe_worker_path(cafe_shift, cafe_shift.cafe_worker),
+                method: :delete, class: 'btn danger pull-right') %>
+  <% end %>
 <% end %>

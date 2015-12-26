@@ -1,10 +1,19 @@
 <%= simple_form_for([cafe_shift, cafe_shift.cafe_worker]) do |f| %>
+  <% if current_user == cafe_shift.user %>
+    <span class="cafe working">
+      <%= fa_icon('thumbs-o-up') %> <%= t('cafe.already_working') %>
+    </span>
+  <% end %>
   <%= f.association :user, collection: [current_user], include_blank: false %>
+  <% if cafe_shift.cafe_worker.errors[:user].present? %>
+    <%= link_to(t('user.edit'), edit_own_user_path, class: 'btn danger small',
+                target: :blank_p) %>
+  <% end %>
   <%= f.input :competition, as: :boolean %>
   <%= f.button :submit %>
   <% if cafe_shift.cafe_worker.persisted? %>
-  <%= link_to(t('cafe_worker.destroy'),
-              cafe_shift_cafe_worker_path(cafe_shift, cafe_shift.cafe_worker),
-              method: :delete, class: 'btn danger pull-right') %>
+    <%= link_to(t('cafe_worker.destroy'),
+                cafe_shift_cafe_worker_path(cafe_shift, cafe_shift.cafe_worker),
+                method: :delete, class: 'btn danger pull-right') %>
   <% end %>
 <% end %>

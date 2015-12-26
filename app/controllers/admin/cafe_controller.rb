@@ -1,6 +1,7 @@
 # encoding:UTF-8
 class Admin::CafeController < ApplicationController
   skip_authorization
+  before_action :authorize
 
   def index
   end
@@ -11,13 +12,9 @@ class Admin::CafeController < ApplicationController
   def competition
   end
 
-  def ladybug
-    authorize!(:ladybuyg, CafeShift)
-    if (date = params[:ladybug][:date]).present?
-      @date = Time.zone.parse(date)
-    else
-      @date = Time.zone.now
-    end
-    @cafe_shifts = CafeShift.between(@date.beginning_of_day, @date.end_of_day).ascending
+  private
+
+  def authorize
+    authorize! :manage, CafeShift
   end
 end

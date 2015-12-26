@@ -4,6 +4,7 @@ class CreateCafeWorkers < ActiveRecord::Migration
       t.integer :user_id, index: true, null: false
       t.integer :cafe_shift_id, index: true, null: false
       t.boolean :competition, default: true
+      t.string :group
       t.timestamps null: false
     end
   end

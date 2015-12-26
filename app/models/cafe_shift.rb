@@ -3,24 +3,28 @@ class CafeShift < ActiveRecord::Base
   # Associations
   has_one :cafe_worker, inverse_of: :cafe_shift
   has_one :user, through: :cafe_worker
-  has_many :groups, through: :cafe_worker
 
   # Validations
-  validates :work_day, :pass, :lp, :lv, presence: true
+  validates :start, :pass, :lp, :lv, presence: true
   validates :pass, :lp, inclusion: { in: 1..4 }
   validates :lv, inclusion: { in: 1..20 }
-  validates :pass, uniqueness: { scope: [:work_day, :lv, :lp] }
+  validates :pass, uniqueness: { scope: [:start, :lv, :lp] }
 
   # Scopes
-  scope :between, ->(from, to) { where(work_day: from..to) }
+  scope :between, ->(from, to) { where(start: from..to) }
+  scope :from_date, ->(from) { where('start >= ?', from) }
   scope :ascending, -> { order(pass: :asc) }
   scope :week, ->(week) { where(lv: week) }
   scope :period, ->(lp) { where(lp: lp) }
-  scope :year, ->(year) { where('extract(year from work_day) = ?',  year) }
-  scope :all_work_day, -> { order(work_day: :asc) }
-  scope :with_worker, -> { where.not(worker_id: nil) }
+  scope :year, ->(year) { where('extract(year from start) = ?',  year) }
+  scope :all_start, -> { order(start: :asc) }
+  scope :with_worker, -> { joins(:cafe_worker) }
 
   attr_accessor :lv_first, :lv_last
+
+  def self.with_worker
+    all.includes(:cafe_worker).where.not(cafe_workers: { id: nil })
+  end
 
   def to_s
     if user.present?
@@ -30,20 +34,20 @@ class CafeShift < ActiveRecord::Base
     end
   end
 
-  def as_json(user, *)
-    CalendarJSON.cafe(self, user)
+  def as_json(options = {})
+    owner = false
+    if options.present?
+      owner = (user.try(:id) == options[:user].try(:id))
+    end
+    CalendarJSON.cafe(self, owner)
   end
 
   def worker?(user)
     self.user.present? && self.user == user
   end
 
-  def start
-    work_day
-  end
-
   def stop
-    work_day + duration.hours
+    start + duration.hours
   end
 
   protected

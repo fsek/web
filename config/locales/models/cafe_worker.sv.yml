@@ -6,7 +6,7 @@ sv:
       cafe_worker:
         user_id: Användare
         competition: Cafetävling
-        groups_id: Grupper
+        group: Grupp
   helpers:
     submit:
       cafe_worker:
@@ -14,3 +14,6 @@ sv:
         update: Uppdatera uppgifter
   cafe_worker:
     destroy: Hoppa av passet
+    created: Du arbetar nu på passet
+    updated: Dina uppgifter uppdaterades
+    destroyed: Du arbetar inte längre på passet

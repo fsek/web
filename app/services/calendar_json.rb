@@ -1,5 +1,4 @@
 module CalendarJSON
-  include Rails.application.routes.url_helpers
 
   def self.rent(rent)
     if rent.service
@@ -39,9 +38,9 @@ module CalendarJSON
 
   private
 
-  def self.cafe_color(shift, user)
+  def self.cafe_color(shift, owner)
     if shift.cafe_worker.present?
-      shift.cafe_worker == user ? 'green' : 'orange'
+      owner ? 'green' : 'orange'
     else
       'white'
     end

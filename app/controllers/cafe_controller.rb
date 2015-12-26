@@ -13,11 +13,13 @@ class CafeController < ApplicationController
 
   def ladybug
     authorize!(:ladybug, CafeShift)
-    if (date = params[:ladybug][:date]).present?
-      @date = Time.zone.parse(date)
+    if params[:ladybug].present? && params[:ladybug][:date].present?
+      @date = Time.zone.parse(params[:ladybug][:date])
     else
       @date = Time.zone.now
     end
-    @cafe_shifts = CafeShift.between(@date.beginning_of_day, @date.end_of_day).ascending
+
+    @cafe_shifts = CafeShift.between(@date.beginning_of_day,
+                                     @date.end_of_day).ascending.includes(:user)
   end
 end

@@ -65,11 +65,21 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+<<<<<<< 84fc7289fcf5eacdec826390fb618cefe5cdebb7
     bootstrap-datepicker-rails (1.5.0)
       railties (>= 3.0)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+=======
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.5.0)
+      railties (>= 3.0)
+    bootstrap-sass (3.3.5.1)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.3.0)
+>>>>>>> CafeWork is now CafeShift, Adding CafeWorker to manage users working on the shifts. Refactoring all cafe views.
     builder (3.2.2)
     byebug (8.2.1)
     cancancan (1.13.1)

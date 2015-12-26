@@ -1,0 +1,15 @@
+.cafe {
+  &.working {
+    color: $fsek-orange;
+    display: block;
+    font-weight: bold;
+    margin: 20px 0 20px 0;
+  }
+
+  tr.with_worker {
+
+    td {
+      background-color: rgba($unify-green, 0.4) !important;
+    }
+  }
+}
