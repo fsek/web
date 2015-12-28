@@ -4,17 +4,17 @@ loadCalendar = function() {
   return $('#cafe-calendar').fullCalendar({
     events: '/hilbertcafe/feed',
     weekNumbers: true,
-    minTime: "08:00:00",
-    maxTime: "13:00:00",
+    minTime: '08:00:00',
+    maxTime: '13:00:00',
     defaultView: 'agendaWeek',
-    height: "auto",
+    height: 'auto',
     weekends: false,
     header: {
       left: 'prev,next today',
       center: 'title'
     },
     aspectRatio: 1.3,
-    weekNumberTitle: "V ",
+    weekNumberTitle: 'V ',
     allDaySlot: false,
     slotEventOverlap: false,
     eventMouseover: function(calEvent, jsEvent) {

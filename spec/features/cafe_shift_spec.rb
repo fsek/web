@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.feature 'logged in' do
   let(:user) { create(:user) }
-  let(:cafe_shift) { create(:cafe_shift)}
+  let(:cafe_shift) { create(:cafe_shift) }
   let(:login) { LoginPage.new }
 
   Steps 'sign up to work' do

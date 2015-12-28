@@ -1,5 +1,4 @@
 module CalendarJSON
-
   def self.rent(rent)
     if rent.service
       {

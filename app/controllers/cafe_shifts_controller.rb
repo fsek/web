@@ -8,8 +8,8 @@ class CafeShiftsController < ApplicationController
   end
 
   def feed
-    render json: CafeShift.includes(:cafe_worker).includes(:user).between(params[:start],
-                                   params[:end]).as_json(user: current_user)
+    render json: CafeQueries.between(params[:start], params[:end]).
+      as_json(user: current_user)
   end
 
   private

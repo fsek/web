@@ -6,7 +6,7 @@ class Admin::CafeController < ApplicationController
   def index
     @cafe_shift_grid = initialize_grid(CafeShift,
                                        include: :user, order: :start,
-                                      conditions: ['start >= ?', Time.zone.now.beginning_of_day]  )
+                                       conditions: ['start >= ?', Time.zone.now.beginning_of_day])
   end
 
   def overview

@@ -11,18 +11,11 @@ class CafeShift < ActiveRecord::Base
   validates :pass, uniqueness: { scope: [:start, :lv, :lp] }
 
   # Scopes
-  scope :between, ->(from, to) { where(start: from..to) }
-  scope :from_date, ->(from) { where('start >= ?', from) }
-  scope :ascending, -> { order(pass: :asc) }
-  scope :week, ->(week) { where(lv: week) }
-  scope :period, ->(lp) { where(lp: lp) }
-  scope :year, ->(year) { where('extract(year from start) = ?',  year) }
   scope :all_start, -> { order(start: :asc) }
   scope :with_worker, -> { joins(:cafe_worker).includes(:cafe_worker) }
   scope :without_worker, -> { where('id NOT IN (SELECT cafe_shift_id FROM cafe_workers)') }
 
   attr_accessor :lv_first, :lv_last
-
 
   def to_s
     if user.present?

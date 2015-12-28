@@ -5,10 +5,16 @@ class CafeController < ApplicationController
   def index
   end
 
-  def overview
-  end
-
   def competition
+    lp = params[:lp] || '1'
+    year = Time.zone.now
+    if params[:year].present?
+      year = Time.zone.local(params[:year])
+    end
+
+    @competition = CafeCompetition.new(CafeQueries.cafe_workers(lp, year),
+                                       CafeQueries.working_users(lp, year),
+                                       lp, year)
   end
 
   def ladybug
@@ -19,7 +25,6 @@ class CafeController < ApplicationController
       @date = Time.zone.now
     end
 
-    @cafe_shifts = CafeShift.between(@date.beginning_of_day,
-                                     @date.end_of_day).ascending.includes(:user)
+    @cafe_shifts = CafeQueries.for_day(@date)
   end
 end

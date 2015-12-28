@@ -1,0 +1,93 @@
+<%= provide(:title, t('cafe.title')) %>
+<div class="headline">
+  <h2>
+    <%= %(#{t('cafe.title')} - #{t('datetime.prompts.year')}: #{@competition.year},)%>
+    <%= %(#{CafeShift.human_attribute_name(:lp)}: #{@competition.lp})%>
+  </h2>
+</div>
+
+<div class="col-md-3 col-sm-12 cafe competition margin-bottom-20">
+  <div class="dropdown">
+    <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <%= t('cafe.other_years') %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="oldies">
+      <% @competition.years.each do |year| %>
+        <li>
+          <%= link_to(year, competition_cafe_path(lp:  @competition.lp, year: year)) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="dropdown margin-bottom-20">
+    <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <%= t('cafe.other_lps') %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="oldies">
+      <% @competition.lps.each do |lp| %>
+        <li>
+          <%= link_to(lp, competition_cafe_path(lp: lp, year: @competition.year)) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="headline">
+    <h4><%= t('cafe.worked_chosen_lp') %></h4>
+  </div>
+  <span class="worker">
+    <%= fa_icon('bar-chart') %> <%= models_name(CafeShift) %>:
+  </span>
+  <span class="worker count right">
+    <%= @competition.count %>
+  </span>
+  <br>
+  <span class="worker">
+    <%= fa_icon('user') %> <%= models_name(User) %>:
+  </span>
+  <span class="worker count right">
+    <%= @competition.user_count %>
+  </span>
+  <br>
+  <span class="worker">
+    <%= fa_icon('graph') %> Lediga <%= models_name(CafeShift) %>:
+  </span>
+  <span class="worker count right">
+    <%= @competition.free_shifts[:first].try(:id) %>
+    <%= @competition.free_shifts[:count] %>
+  </span>
+  <br>
+  <span class="worker">
+    Första lediga:
+  </span>
+  <span class="worker count right">
+    <%= link(@competition.free_shifts[:free]) %>
+  </span>
+</div>
+
+<div class="col-md-9 col-sm-12 cafe competition">
+  <div class="headline">
+    <h3><%= t('cafe.highscore') %></h3>
+  </div>
+  <table class="table">
+    <tr>
+      <th><%= model_name(User) %></th>
+      <th><%= t('cafe.shifts_worked') %></th>
+    </tr>
+    <% @competition.highscore.each do |user| %>
+      <tr>
+        <td>
+          <span class="worker">
+            <%= user_link(user) %>
+          </span>
+        </td>
+        <td>
+          <span class="worker count">
+            <%= user[:score] %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

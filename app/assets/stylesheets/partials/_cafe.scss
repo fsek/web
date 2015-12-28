@@ -6,10 +6,28 @@
     margin: 20px 0 20px 0;
   }
 
-  tr.with_worker {
+  tr {
+    &.with-worker {
 
-    td {
-      background-color: rgba($unify-green, 0.4) !important;
+      td {
+        // Need !important because it is the gem
+        background-color: rgba($unify-green, 0.4) !important;
+      }
+    }
+  }
+
+  &.competition {
+    .worker {
+      display: inline-block;
+      font-size: 20px;
+
+      &.count {
+        color: $fsek-orange;
+
+        &.right {
+          float: right;
+        }
+      }
     }
   }
 }
