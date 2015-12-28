@@ -24,7 +24,7 @@
   <hr>
   <%= render('admin/cafe_workers/form', cafe_shift: @cafe_shift, users: @users) %>
   <hr>
-  <%= link_to(t('cafe_shift.remove_work'), admin_cafe_shift_path(@cafe_shift),
+  <%= link_to(t('cafe_shift.remove'), admin_cafe_shift_path(@cafe_shift),
               method: :delete, class: 'btn danger pull-right') %>
   <%= link_to(t(:index_attr, attr: models_name(CafeShift)), admin_cafe_shifts_path,
               class: 'btn secondary') %>

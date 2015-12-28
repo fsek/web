@@ -18,13 +18,11 @@ class CafeShift < ActiveRecord::Base
   scope :period, ->(lp) { where(lp: lp) }
   scope :year, ->(year) { where('extract(year from start) = ?',  year) }
   scope :all_start, -> { order(start: :asc) }
-  scope :with_worker, -> { joins(:cafe_worker) }
+  scope :with_worker, -> { joins(:cafe_worker).includes(:cafe_worker) }
+  scope :without_worker, -> { where('id NOT IN (SELECT cafe_shift_id FROM cafe_workers)') }
 
   attr_accessor :lv_first, :lv_last
 
-  def self.with_worker
-    all.includes(:cafe_worker).where.not(cafe_workers: { id: nil })
-  end
 
   def to_s
     if user.present?

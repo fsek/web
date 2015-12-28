@@ -47,10 +47,11 @@ Fsek::Application.routes.draw do
     resources :constants
 
     namespace :admin do
-      resources :cafe_shifts, path: :hilbertcafe do
-        resources :cafe_workers, path: :jobba, only: [:create, :update, :destroy, :new]
+      get :cafe, path: :hilbertcafe, controller: :cafe, action: :index
+      get :overview_cafe, controller: :cafe, action: :overview, path: 'hilbertcafe/oversikt'
 
-        get :overview, path: :oversikt, on: :collection
+      resources :cafe_shifts, path: :hilbertcafe, except: :index do
+        resources :cafe_workers, path: :jobba, only: [:create, :update, :destroy, :new]
         get :setup, as: :setup, on: :collection
         post :setup_create, on: :collection
       end
@@ -58,7 +59,6 @@ Fsek::Application.routes.draw do
 
     get :ladybug_cafe, controller: :cafe, action: :ladybug, path: 'hilbertcafe/nyckelpiga'
     get :cafe, path: :hilbertcafe, controller: :cafe, action: :index
-    get :overview_cafe, controller: :cafe, action: :overview, path: 'hilbertcafe/oversikt'
     get :competition_cafe, controller: :cafe, action: :competition, path: 'hilbertcafe/tavling'
 
     resources :cafe_shifts, path: :hilbertcafe, only: :show do

@@ -4,14 +4,12 @@
 </div>
 
 <div class="col-md-2 col-xs-12">
-  <ul class="list">
-      <li><%= link_to(t('cafe.overview'), overview_cafe_path) %></li>
-      <li><%= link_to(t('cafe.competition'), competition_cafe_path) %></li>
+      <%= link_to(t('cafe.competition'), competition_cafe_path, class: 'btn secondary') %>
     <% if can?(:manage, CafeShift) %>
-      <li><%= link_to(t(:admin), admin_cafe_shifts_path) %></li>
+      <%= link_to(t(:admin), admin_cafe_shifts_path, class: 'btn secondary') %>
     <% end %>
     <% if can?(:ladybug, CafeShift) %>
-      <li><%= link_to(t('cafe.ladybug'), ladybug_cafe_path) %></li>
+      <%= link_to(t('cafe.ladybug'), ladybug_cafe_path, class: 'btn secondary') %>
     <% end %>
   </ul>
 </div>

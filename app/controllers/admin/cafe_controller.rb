@@ -4,12 +4,13 @@ class Admin::CafeController < ApplicationController
   before_action :authorize
 
   def index
+    @cafe_shift_grid = initialize_grid(CafeShift,
+                                       include: :user, order: :start,
+                                      conditions: ['start >= ?', Time.zone.now.beginning_of_day]  )
   end
 
   def overview
-  end
-
-  def competition
+    @cafe_shift_grid = initialize_grid(CafeShift.all_start.with_worker)
   end
 
   private

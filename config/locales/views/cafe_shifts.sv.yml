@@ -1,24 +1,14 @@
 sv:
   cafe_shift:
     all_shifts_with_worker: Visar alla pass som har haft jobbare
-    button_worker: Jobba
-    clear_search: Rensa sökning
-    compete_battle: Delta i Cafétävlingen
-    competing: Deltar
-    create: Skapa Cafepass
-    edit: Redigera bokning
     ladybug: Nyckelpiga
-    leave: Hoppa av
-    new: Nytt Cafepass
-    not_competing: Deltar inte
+    new: Nytt Cafépass
     overview: Översikt
-    remove_work: Ta bort pass
-    remove_worker: Ta bort jobbare
+    remove: Ta bort Cafépass
     setup_single: Skapa ensklit pass
     setup_weeks: Skapa pass för läsperiod
     single: Enskilt Cafepass
     title: Hilbert Café
-    until: till
     admin:
       setup_fill_date_preview: Genom att fylla i datum och tid för läsperiodens 
         första pass genereras en förhandsvisning för hela läsperioden

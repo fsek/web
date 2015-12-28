@@ -17,10 +17,6 @@ class Admin::CafeShiftsController < ApplicationController
     @cafe_shift = CafeShift.new
   end
 
-  def overview
-    @cafe_shift_grid = initialize_grid(CafeShift.all_start.with_worker)
-  end
-
   def create
     @cafe_shift = CafeShift.new(shift_params)
     if @cafe_shift.save
@@ -49,12 +45,6 @@ class Admin::CafeShiftsController < ApplicationController
     end
   end
 
-  def index
-    @cafe_shift_grid = initialize_grid(CafeShift,
-                                       include: :user, order: :start,
-                                      conditions: ['start >= ?', Time.zone.now.beginning_of_day]  )
-  end
-
   def setup
     @cafe_shift = CafeShift.new
   end
@@ -77,9 +67,5 @@ class Admin::CafeShiftsController < ApplicationController
 
   def shift_params
     params.require(:cafe_shift).permit(:start, :pass, :lp, :lv, :lv_last)
-  end
-
-  def worker_params
-    params.require(:cafe_worker).permit(:user_id, :competition, :group)
   end
 end

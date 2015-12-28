@@ -5,10 +5,15 @@ sv:
     back_to_index: Hilbert
     competition: Tävling
     green_color: Grön färg innebär att du jobbar.
+    highscore: Topplista
     ladybug: Nyckelpiga
     ladybug_contact: Nyckelpiga - Kontaktinformation
     orange_color: Orange färg innebär att passet redan har en jobbare.
     overview: Översikt
+    shifts_worked: Arbetade pass
     submit_ladybug: Sök upp jobbare
     title: Hilbert Café
     white_color: Vit färg innebär att passet inte har någon jobbare.
+    other_lps: Andra läsperioder
+    other_years: Andra år
+    worked_chosen_lp: Jobbat - vald läsperiod
