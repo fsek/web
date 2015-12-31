@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ShortLinksController, :type => :controller do
+RSpec.describe ShortLinksController, type: :controller do
   describe '#go' do
     it 'redirects to the link when present' do
       link = 'hej'

@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'admin tries to create rent' do
+RSpec.feature 'admin tries to create rent' do
   let(:user) { create(:admin) }
   let(:council) { create(:council) }
   let(:rent) { build(:rent, council: council) }

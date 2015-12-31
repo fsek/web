@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe RentService do
+RSpec.describe RentService do
   let(:user) { create(:user) }
   let(:council) { create(:council) }
   let(:other) { build(:user) }

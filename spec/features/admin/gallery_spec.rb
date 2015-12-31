@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'Gallery' do
+RSpec.feature 'Gallery' do
   let(:user) { create(:admin) }
   let(:album_w_img) { create(:album_with_images) }
   let(:album) { create(:album) }

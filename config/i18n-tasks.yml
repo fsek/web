@@ -18,7 +18,7 @@ data:
     ## Default:
     # - config/locales/%{locale}.yml
     ## More files:
-    # - config/locales/**/*.%{locale}.yml
+    - config/locales/**/*.%{locale}.yml
     ## Another gem:
     # - "<%= %x[bundle show vagrant].chomp %>/templates/locales/%{locale}.yml"
 

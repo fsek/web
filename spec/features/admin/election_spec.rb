@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'Admin visit election:' do
+RSpec.feature 'Admin visit election:' do
   let(:user) { create(:admin) }
   let(:election) { create(:election) }
   let(:council) { create(:council) }

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'cancan_matchers'
 
 RSpec.describe Ability do
   standard = :read, :create, :update, :destroy

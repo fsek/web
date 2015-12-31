@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PostUserService do
+RSpec.describe PostUserService do
   let(:post_user) { build(:post_user) }
 
   describe :valid do

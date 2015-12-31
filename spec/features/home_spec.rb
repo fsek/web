@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-feature 'User goes to the home page' do
+RSpec.feature 'User goes to the home page' do
   let(:news1) { create(:news) }
   let(:news2) { create(:news) }
   let(:news3) { create(:news) }

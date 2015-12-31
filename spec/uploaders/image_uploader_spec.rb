@@ -1,6 +1,6 @@
 require 'carrierwave/test/matchers'
 
-describe ImageUploader do
+RSpec.describe ImageUploader do
   include CarrierWave::Test::Matchers
   let(:image) { create(:image) }
   let(:uploader) { ImageUploader.new(image, :file) }

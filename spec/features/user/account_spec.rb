@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'Update account' do
+RSpec.feature 'Update account' do
   let(:user) { create(:user, stil_id: nil) }
   let(:login) { LoginPage.new }
   before do

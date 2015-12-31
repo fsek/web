@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'User sign in' do
+RSpec.feature 'User sign in' do
   let(:user) { create(:user) }
 
   scenario 'sign in correct credentials' do

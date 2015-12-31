@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'visits paths' do
+RSpec.feature 'visits paths' do
   let(:election) { create(:election) }
   let(:login) { LoginPage.new }
   let(:test_post) { create(:post) }
@@ -21,7 +21,7 @@ feature 'visits paths' do
     pages: [:show],
     proposals: [:form],
     rents: [:main, :index, :new],
-    static_pages: [:company_offer, :company_about]
+    static_pages: [:about, :company_offer, :company_about]
   }
 
   background do

@@ -7,7 +7,8 @@ module ControllerMacros
       allow(controller).to receive(:load_permissions).and_return(nil)
     end
   end
-  def allow_user_to *args
+
+  def allow_user_to(*args)
     before(:each) do
       @ability.can(*args)
     end

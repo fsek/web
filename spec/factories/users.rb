@@ -7,8 +7,8 @@ FactoryGirl.define do
     lastname
     phone
     stil_id
-    confirmed_at { Time.zone.now }
-    member_at { Time.zone.now }
+    confirmed_at { 10.days.ago }
+    member_at { 10.days.ago }
 
     trait :admin do
       password '12345678'

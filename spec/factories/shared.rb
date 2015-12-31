@@ -1,5 +1,4 @@
 FactoryGirl.define do
-  sequence(:access_code) { (0...15).map { (65 + rand(26)).chr }.join.to_s }
   sequence(:description) { |n| "This describes the most impressive nr#{n}" }
   sequence(:email) { |n| "d.wessman#{n}@fsektionen.se" }
   sequence(:lastname) { |n| "Wessman#{n}" }
@@ -13,6 +12,7 @@ FactoryGirl.define do
   sequence(:value) { |n| "david#{n}" }
   sequence(:location) { ['MH:A','Hilbert','Kårhuset','Ön-ön','Sjönsjön','Bastun'].sample }
   sequence(:date) { |n| Time.zone.now + 10.days + n.days }
+
   trait :with_user do
     user
   end

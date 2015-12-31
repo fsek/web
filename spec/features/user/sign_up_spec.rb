@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'Confirm account' do
+RSpec.feature 'Confirm account' do
   let(:user) { create(:user, :unconfirmed) }
 
   scenario 'confirm' do

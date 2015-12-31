@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'Admin Visit Posts' do
+RSpec.feature 'Admin Visit Posts' do
   let(:user) { create(:admin) }
   let(:council) { create(:council) }
   let(:test_post) do
