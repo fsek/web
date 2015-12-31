@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 FactoryGirl.factories.map(&:name).each do |factory_name|
   RSpec.describe %(#{factory_name} factory) do
     # Test each factory

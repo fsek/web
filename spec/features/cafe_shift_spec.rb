@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.feature 'logged in' do
+RSpec.feature 'Visit cafe' do
   let(:user) { create(:user) }
   let(:cafe_shift) { create(:cafe_shift) }
   let(:login) { LoginPage.new }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CafeQueries do
+RSpec.describe CafeQueries do
   include ActiveSupport::Testing::TimeHelpers
   let(:first_user) { create(:user) }
   let(:second_user) { create(:user) }

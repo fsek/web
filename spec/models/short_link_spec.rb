@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ShortLink do
+RSpec.describe ShortLink, type: :model do
   describe '#valid?' do
     subject { build :short_link }
 

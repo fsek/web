@@ -12,7 +12,6 @@ gem 'cancancan'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'coffee-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
-gem 'bootstrap-datepicker-rails'
 gem 'devise'
 gem 'factory_girl_rails'
 gem 'fancybox2-rails'

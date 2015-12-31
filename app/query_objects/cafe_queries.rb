@@ -33,7 +33,7 @@ class CafeQueries
       includes(:user)
   end
 
-  protected
+  private
 
   # If past year, give end of year
   # If current year, give end of day
