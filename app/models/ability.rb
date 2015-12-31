@@ -53,7 +53,7 @@ class Ability
     # Note: Root access is given dynamically by having a post with permissions :manage, :all
 
     # Add abilities gained from posts
-    user.posts.each do |post|
+    user.posts.includes(:permissions).each do |post|
       post.permissions.each do |permission|
         if permission.subject_class == 'all'
           can permission.action.to_sym, :all

@@ -5,6 +5,7 @@ ruby '2.2.3'
 gem 'rails', '4.2.5'
 
 gem 'bootstrap-sass'
+gem 'bootstrap-datepicker-rails'
 gem 'cancancan'
 # Need to use this for multiple file upload
 # https://github.com/carrierwaveuploader/carrierwave#multiple-file-uploads

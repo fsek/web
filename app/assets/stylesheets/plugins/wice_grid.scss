@@ -1,5 +1,6 @@
 .wg-detached-filter,
 .wice-grid {
+
   .text-filter-container {
     input {
       display: inline;
@@ -8,12 +9,16 @@
     }
   }
 
+  thead th select {
+    display: inline-block;
+  }
+
   a {
-    .date-label {
+    &.date-label {
       text-decoration: none;
     }
 
-    .date-label:hover {
+    &.date-label:hover {
       text-decoration: line-through;
     }
   }
@@ -38,14 +43,6 @@
       vertical-align: top;
       width: 10px;
     }
-
-    .collapse-multi-select-icon {
-      background: transparent asset-url("/assets/icons/grid/collapse.gif") no-repeat;
-    }
-
-    .expand-multi-select-icon {
-      background: transparent asset-url("/assets/icons/grid/expand.gif") no-repeat;
-    }
   }
 }
 
@@ -56,44 +53,8 @@
     text-decoration: none;
   }
 
-  .desc {
-    background: transparent asset-url("/assets/icons/grid/arrow_down.gif") right no-repeati;
-  }
-
-  .asc {
-    background: transparent asset-url("/assets/icons/grid/arrow_up.gif") right no-repeat;
-  }
-
-  .submit.clickable {
-    @include icon-dimensions;
-    background: transparent asset-url("/assets/icons/grid/table_refresh.png") no-repeat;
-  }
-
-  .reset.clickable {
-    @include icon-dimensions;
-    background: transparent asset-url("/assets/icons/grid/table.png") no-repeat;
-  }
-
-  .wg-show-filter.clickable,
-  .wg-hide-filter.clickable {
-    @include icon-dimensions;
-    background: transparent asset-url("/assets/icons/grid/page_white_find.png") no-repeat;
-  }
-
-  .export-to-csv-button.clickable {
-    @include icon-dimensions;
-    background: transparent asset-url("/assets/icons/grid/page_white_excel.png") no-repeat;
-  }
-
-  .clickable.select-all {
-    @include icon-dimensions;
-    background: transparent asset-url("/assets/icons/grid/tick_all.png") no-repeat;
-    float: left;
-  }
-
+  .clickable.select-all,
   .clickable.deselect-all {
-    @include icon-dimensions;
-    background: transparent asset-url("/assets/icons/grid/untick_all.png") no-repeat;
     float: left;
   }
 
@@ -108,12 +69,12 @@
   }
 
   tr {
-    .wg-filter-row input[type=text] {
+    &.wg-filter-row  input[type=text] {
       width: 100px;
     }
   }
 
-  .pagination-status {
+  .pagination_status {
     float: right;
     font-weight: bold;
   }
@@ -127,15 +88,6 @@
   ul {
     margin-left: 0;
   }
-
-  a {
-    .wice-grid-delete-query .delete-icon {
-
-      @include icon-dimensions;
-      background: transparent asset-url("/assets/icons/grid/delete.png") no-repeat;
-      float: left;
-    }
-  }
 }
 
 input {
@@ -145,4 +97,3 @@ input {
     width: auto;
   }
 }
-

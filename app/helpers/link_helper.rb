@@ -10,4 +10,12 @@ module LinkHelper
       link_to obj, obj, options
     end
   end
+
+  def user_link(obj, options = {})
+    if obj.present? && obj.is_a?(User)
+      link_to(obj, user_path(obj), options)
+    else
+      obj
+    end
+  end
 end

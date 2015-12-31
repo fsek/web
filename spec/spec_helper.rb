@@ -12,11 +12,13 @@ RSpec.configure do |config|
     config.default_formatter = 'doc'
   end
 
-  #config.disable_monkey_patching!
+  # Need to be disabled to allow :should syntax
+  # config.disable_monkey_patching!
 
   config.order = :random
 
   Kernel.srand config.seed
 
-  config.profile_examples = 10
+  # Nice for checking, not working on Circle CI
+  # config.profile_examples = 10
 end
