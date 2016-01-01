@@ -67,5 +67,3 @@ end
 def create(*args)
   FactoryGirl.create(*args)
 end
-
-
