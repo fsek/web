@@ -5,6 +5,7 @@ set :application, 'fsek'
 set :scm, :git
 set :repo_url, 'https://github.com/fsek/web.git'
 set :stages, %w(staging production development)
+set :rbenv_path, '$HOME/.rbenv'
 
 set :user, :dirac
 
