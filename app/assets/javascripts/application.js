@@ -22,13 +22,13 @@
 //= require fullcalendar
 //= require fullcalendar/lang/sv.js
 //= require fancybox
-//= require wice_grid.js
+//= require wice_grid
 //= require fotorama
 //= require_tree .
 //= require turbolinks
-//= require gallery_hook.js
 //= require jquery.countdown.min
 //= require bootstrap-datetimepicker
+//= require bootstrap-datepicker
 //= require pickers
 
 var bottom;

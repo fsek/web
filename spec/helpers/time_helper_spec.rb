@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe TimeHelper do
+RSpec.describe TimeHelper do
   describe 'date_range' do
     context 'same day' do
       from_date = Time.zone.local(Time.zone.now.year, 3, 25, 12)

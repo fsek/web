@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'admin create notice' do
+RSpec.feature 'admin create notice' do
   let(:user) { create(:admin) }
   let(:notice) { build(:notice) }
   let(:login) { LoginPage.new }

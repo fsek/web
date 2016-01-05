@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe 'promote_admin' do
+RSpec.describe 'promote_admin' do
   include_context 'rake'
 
   before do

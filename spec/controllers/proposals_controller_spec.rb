@@ -1,13 +1,13 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ProposalsController, :type => :controller do
+RSpec.describe ProposalsController, type: :controller do
   describe '#generate' do
     render_views
 
     it 'doesn\'t die horribly when you try to use it' do
       lambda do
-        post :generate, :format => :pdf, :proposal => 
-          { :title => 'my proposal', :points => [] }
+        post :generate, format: :pdf, proposal:
+          { title: 'my proposal', points: [] }
       end.should_not raise_error
       response.should be_success
     end

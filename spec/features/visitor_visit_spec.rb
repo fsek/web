@@ -1,7 +1,7 @@
 require 'rails_helper'
-feature 'visitor visits paths' do
+RSpec.feature 'visitor visits paths' do
   paths = {
-    cafe_works: [:index, :nyckelpiga],
+    cafe_works: [:index],
     constants: [:index, :new, :show],
     contacts: [:index, :new, :show],
     councils: [:index, :show],
@@ -12,7 +12,8 @@ feature 'visitor visits paths' do
     menus: [:index, :new],
     news: [:index, :show],
     pages: [:show],
-    rents: [:main, :index, :new]
+    rents: [:main, :index, :new],
+    static_pages: [:about, :company_offer, :company_about]
   }
 
   background do

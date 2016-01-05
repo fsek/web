@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'admin creates menu' do
+RSpec.feature 'admin creates menu' do
   let(:user) { create(:admin) }
   let(:menu) { build(:menu) }
   let(:login) { LoginPage.new }
