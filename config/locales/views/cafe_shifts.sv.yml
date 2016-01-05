@@ -2,8 +2,10 @@ sv:
   cafe_shift:
     all_shifts_with_worker: Visar alla pass som har haft jobbare
     ladybug: Nyckelpiga
+    lv_first: Första läsvecka
     new: Nytt Cafépass
     overview: Översikt
+    other_date: Sök från annat datum
     remove: Ta bort Cafépass
     setup_single: Skapa ensklit pass
     setup_weeks: Skapa pass för läsperiod

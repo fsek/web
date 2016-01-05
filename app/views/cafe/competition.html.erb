@@ -34,60 +34,63 @@
     </ul>
   </div>
   <div class="headline">
-    <h4><%= t('cafe.worked_chosen_lp') %></h4>
+    <h4><%= t('cafe.chosen_study_period') %></h4>
   </div>
   <span class="worker">
-    <%= fa_icon('bar-chart') %> <%= models_name(CafeShift) %>:
+    <%= t('cafe.worked_shifts') %>:
   </span>
   <span class="worker count right">
     <%= @competition.count %>
   </span>
   <br>
   <span class="worker">
-    <%= fa_icon('user') %> <%= models_name(User) %>:
+    <%= t('cafe.working_users') %>:
   </span>
   <span class="worker count right">
     <%= @competition.user_count %>
   </span>
   <br>
   <span class="worker">
-    <%= fa_icon('graph') %> Lediga <%= models_name(CafeShift) %>:
+    <%= t('cafe.free_shifts') %>:
   </span>
   <span class="worker count right">
-    <%= @competition.free_shifts[:first].try(:id) %>
     <%= @competition.free_shifts[:count] %>
   </span>
-  <br>
-  <span class="worker">
-    Första lediga:
-  </span>
-  <span class="worker count right">
-    <%= link(@competition.free_shifts[:free]) %>
-  </span>
+
+  <% if @competition.free_shifts[:free].present? %>
+    <hr>
+    <%= link_to(t('cafe.first_free_shift'),
+                cafe_shift_path(@competition.free_shifts[:free]),
+                class: 'btn primary') %>
+  <% end %>
 </div>
 
 <div class="col-md-9 col-sm-12 cafe competition">
   <div class="headline">
     <h3><%= t('cafe.highscore') %></h3>
   </div>
-  <table class="table">
-    <tr>
-      <th><%= model_name(User) %></th>
-      <th><%= t('cafe.shifts_worked') %></th>
-    </tr>
-    <% @competition.highscore.each do |user| %>
+  <% unless @competition.has_highscore? %>
+    <h3><%= t('cafe.highscore_missing') %></h3>
+  <% else %>
+    <table class="table">
       <tr>
-        <td>
-          <span class="worker">
-            <%= user_link(user) %>
-          </span>
-        </td>
-        <td>
-          <span class="worker count">
-            <%= user[:score] %>
-          </span>
-        </td>
+        <th><%= model_name(User) %></th>
+        <th><%= t('cafe.shifts_worked') %></th>
       </tr>
-    <% end %>
-  </table>
+      <% @competition.highscore.each do |user| %>
+        <tr>
+          <td>
+            <span class="worker">
+              <%= user_link(user) %>
+            </span>
+          </td>
+          <td>
+            <span class="worker count">
+              <%= user[:score] %>
+            </span>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
 </div>

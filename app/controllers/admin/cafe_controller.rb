@@ -4,9 +4,13 @@ class Admin::CafeController < ApplicationController
   before_action :authorize
 
   def index
+    date = Time.zone.now.beginning_of_day
+    if params[:cafe].present?
+      date = params[:cafe][:date]
+    end
     @cafe_shift_grid = initialize_grid(CafeShift,
                                        include: :user, order: :start,
-                                       conditions: ['start >= ?', Time.zone.now.beginning_of_day])
+                                       conditions: ['start >= ?', date])
   end
 
   def overview

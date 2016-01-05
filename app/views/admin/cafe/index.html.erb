@@ -4,12 +4,15 @@
 </div>
 
 <div class="col-md-3 col-xs-12">
-  <ul class="list">
-    <li><%= link_to(t('cafe_shift.setup_weeks'), setup_admin_cafe_shifts_path) %></li>
-    <li><%= link_to(t('cafe_shift.setup_single'), new_admin_cafe_shift_path) %></li>
-    <li><%= link_to(t('cafe_shift.ladybug'), ladybug_cafe_path) %></li>
-    <li><%= link_to(t('cafe_shift.overview'), admin_overview_cafe_path) %></li>
-  </ul>
+  <%= link_to(t('cafe_shift.setup_weeks'), setup_admin_cafe_shifts_path, class: 'btn primary') %>
+  <%= link_to(t('cafe_shift.setup_single'), new_admin_cafe_shift_path, class: 'btn secondary') %>
+  <%= link_to(t('cafe_shift.ladybug'), ladybug_cafe_path, class: 'btn secondary') %>
+  <%= link_to(t('cafe_shift.overview'), admin_overview_cafe_path, class: 'btn secondary') %>
+  <%= simple_form_for(:cafe, url: admin_cafe_path, method: :get) do |f| %>
+    <%= f.input :date, label: t('cafe_shift.other_date'), as: :date_picker %>
+    <%= f.button :submit, t(:search) %>
+    <%= link_to(t(:reset), admin_cafe_path, class: 'btn secondary') %>
+  <% end %>
 </div>
 
 <div class="col-md-9 col-xs-12 cafe">

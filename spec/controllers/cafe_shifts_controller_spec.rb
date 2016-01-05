@@ -10,7 +10,6 @@ RSpec.describe CafeShiftsController, type: :controller do
     allow(controller).to receive(:current_user).and_return(user)
   end
 
-
   describe 'GET #show' do
     it 'assigns the requested cafe_shift as @cafe_shift' do
       get :show, id: shift.to_param

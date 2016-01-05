@@ -22,6 +22,10 @@ class CafeCompetition
     @highscore
   end
 
+  def has_highscore?
+    @highscore.exists?
+  end
+
   def study_periods
     ['1', '2', '3', '4'] - [lp]
   end
