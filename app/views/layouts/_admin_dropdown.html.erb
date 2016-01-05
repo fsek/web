@@ -73,7 +73,7 @@
 
     <% if can? :modify, News %>
       <li class="dropdown-submenu">
-        <%= link_to model_name(News), :new_news %>
+        <%= link_to(model_name(News), admin_news_index_path) %>
       </li>
     <% end %>
 

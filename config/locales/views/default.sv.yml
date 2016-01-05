@@ -18,6 +18,7 @@ sv:
   new_attr: Ny %{attr}
   new_t: Nytt
   new_t_attr: Nytt %{attr}
+  read_more: Läs mer
   save: Spara
   save_attr: Spara %{attr}
   search: Sök

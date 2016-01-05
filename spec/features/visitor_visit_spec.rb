@@ -10,7 +10,7 @@ feature 'visitor visits paths' do
     faqs: [:index, :show, :new],
     gallery: [:index],
     menus: [:index, :new],
-    news: [:index, :new, :show],
+    news: [:index, :show],
     pages: [:show],
     rents: [:main, :index, :new]
   }

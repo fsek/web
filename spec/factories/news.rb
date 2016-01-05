@@ -4,5 +4,6 @@ FactoryGirl.define do
     title
     content { generate(:description) }
     user
+    url
   end
 end

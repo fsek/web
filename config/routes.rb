@@ -137,7 +137,11 @@ Fsek::Application.routes.draw do
 
     resources :work_posts, path: :jobbportal, except: :show
 
-    resources :news, path: :nyheter
+    namespace :admin do
+      resources :news, path: :nyheter
+    end
+
+    resources :news, path: :nyheter, only: [:index, :show]
 
     resources :documents, path: :dokument
 

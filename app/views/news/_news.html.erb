@@ -1,18 +1,39 @@
-<div class="row">
-  <div class="funny-boxes funny-boxes-left-u">
-    <h4><%=link_to(news.title,news)%></h4>
-    <%=simple_format(truncate(news.content,length: 140, separator: '', escape: false){ link_to "Läs mer", news })%>
-    <ul class="list-unstyled">
-      <% if news.user %>
-        <li>
-          <%= link_to(news.user) do %>
-            <%= fa_icon('user') %> <%= news.user %>
-          <% end %>
-        </li>
+<div class="news">
+  <h4>
+    <%= link_to(news, news_path(news)) %>
+    <% if news.image.present? %>
+      <%= fa_icon('image') %>
+    <% end %>
+  </h4>
+  <%= simple_format(truncate(news.content,
+                             length: 140,
+                             separator: '',
+                             escape: false){
+                               link_to(t(:read_more), news_path(news))
+                             }) %>
+  <% if news.url.present? %>
+    <span class="link">
+      <%= link_to(news.url, target: :blank_p) do %>
+        <%= fa_icon('link') %> <%= news.url %>
       <% end %>
-      <li>
-        <%= fa_icon('calendar') %> <%= l(news.created_at) %>
-      </li>
-    </ul>
-  </div>
+    </span>
+  <% end %>
+  <span class="date">
+    <%= fa_icon('calendar') %> <%= l(news.created_at) %>
+  </span>
+
+  <span class="user">
+    <%= link_to(user_path(news.user), target: :blank_p) do %>
+      <%= fa_icon('user') %> <%= news.user %>
+    <% end %>
+  </span>
+
+  <% if can?(:manage, news) %>
+    <span class="edit">
+      <%= link_to(edit_admin_news_path(news)) do %>
+        <%= fa_icon('cog') %> <%= t(:edit) %>
+      <% end %>
+    </span>
+  <% end %>
+  <hr>
 </div>
