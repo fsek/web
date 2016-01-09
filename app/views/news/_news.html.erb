@@ -11,22 +11,13 @@
                              escape: false){
                                link_to(t(:read_more), news_path(news))
                              }) %>
-  <% if news.url.present? %>
-    <span class="link">
-      <%= link_to(news.url, target: :blank_p) do %>
-        <%= fa_icon('link') %> <%= news.url %>
-      <% end %>
-    </span>
-  <% end %>
+  <%= news_url(news) %>
+
   <span class="date">
     <%= fa_icon('calendar') %> <%= l(news.created_at) %>
   </span>
 
-  <span class="user">
-    <%= link_to(user_path(news.user), target: :blank_p) do %>
-      <%= fa_icon('user') %> <%= news.user %>
-    <% end %>
-  </span>
+  <%= news_user(news) %>
 
   <% if can?(:manage, news) %>
     <span class="edit">

@@ -1,7 +1,7 @@
 sv:
   activerecord:
     models:
-      event: Event
+      event: Evenemang
     attributes:
       event:
         all_day: Heldag

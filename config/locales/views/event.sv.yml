@@ -1,25 +1,24 @@
 sv:
   event:
-    matrix: Matris
-    info: Information
-    dates: Datum
-    registration: Anmälan
-
-    signup: Anmälan krävs
-    cash: Cash is king
-    food: Mat serveras
-    drink: Alkohol serveras
-
-    is-attending: Du är anmäld!
-    slots-left: plats(er) kvar.
-    is-pending: "Du är reserv, plats:"
-    not-attending: Du är inte anmäld
-
-    unsignup: Avanmäl
-    confirm-unsign: Är du säker på att du vill avanmäla dig? Det finns inget sätt att få tillbaka platsen.
-    signup-action: Anmäl
-
     calendar: Kalender
-
+    cash: Cash is king
+    confirm-unsign: Är du säker på att du vill avanmäla dig? Det finns inget sätt att få tillbaka platsen.
+    edit: Redigera Evenemang
+    dates: Datum
+    destroy: Förinta Evenemang
+    drink: Alkohol serveras
+    food: Mat serveras
+    index: Alla Evenemang
+    info: Information
+    is-attending: Du är anmäld!
+    is-pending: "Du är reserv, plats:"
+    matrix: Matris
+    new: Nytt Evenemang
+    not-attending: Du är inte anmäld
+    registration: Anmälan
+    show: Visa Evenemang
+    signup-action: Anmäl
+    signup: Anmälan krävs
+    slots-left: plats(er) kvar.
     stream: Kommande evenemang
-    new: Nytt Event
+    unsignup: Avanmäl

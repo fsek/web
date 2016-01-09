@@ -132,7 +132,7 @@ Fsek::Application.routes.draw do
     resources :events, only: :show, path: :evenemang
 
     namespace :admin do
-      resources :events, path: :evenemang
+      resources :events, path: :evenemang, except: :show
     end
 
     resources :work_posts, path: :jobbportal, except: :show
