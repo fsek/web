@@ -6,11 +6,14 @@ class CafeWorkersController < ApplicationController
   def new
     @cafe_shift = CafeShift.find(params[:cafe_shift_id])
     @cafe_shift.cafe_worker || @cafe_shift.build_cafe_worker
+    @councils = Council.titles
   end
 
   def create
     @cafe_shift = CafeShift.find(params[:cafe_shift_id])
+    @councils = Council.titles
     @cafe_shift.build_cafe_worker(cafe_worker_params)
+
     if @cafe_shift.cafe_worker.save
       redirect_to(cafe_shift_path(@cafe_shift), notice: I18n.t('cafe_worker.created'))
     else
@@ -21,6 +24,7 @@ class CafeWorkersController < ApplicationController
   def update
     @cafe_shift = CafeShift.find(params[:cafe_shift_id])
     cafe_worker = CafeWorker.find(params[:id])
+    @councils = Council.titles
     if cafe_worker.update(cafe_worker_params)
       redirect_to(cafe_shift_path(@cafe_shift), notice: I18n.t('cafe_worker.updated'))
     else
@@ -41,6 +45,6 @@ class CafeWorkersController < ApplicationController
   private
 
   def cafe_worker_params
-    params.require(:cafe_worker).permit(:user_id, :competition, :group)
+    params.require(:cafe_worker).permit(:user_id, :competition, :group, council_ids: [])
   end
 end

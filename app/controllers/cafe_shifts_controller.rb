@@ -5,6 +5,7 @@ class CafeShiftsController < ApplicationController
   def show
     @cafe_shift = CafeShift.find(params[:id])
     @cafe_shift.cafe_worker || @cafe_shift.build_cafe_worker
+    @councils = Council.titles
   end
 
   def feed
@@ -15,6 +16,6 @@ class CafeShiftsController < ApplicationController
   private
 
   def cafe_worker_params
-    params.require(:cafe_worker).permit(:user_id, :competition, :group)
+    params.require(:cafe_worker).permit(:user_id, :competition, :group, :council_ids)
   end
 end

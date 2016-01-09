@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219200039) do
+ActiveRecord::Schema.define(version: 20160106215206) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 20151219200039) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "cafe_worker_councils", force: :cascade do |t|
+    t.integer "cafe_worker_id", limit: 4
+    t.integer "council_id",     limit: 4
+  end
+
+  add_index "cafe_worker_councils", ["cafe_worker_id"], name: "index_cafe_worker_councils_on_cafe_worker_id", using: :btree
+  add_index "cafe_worker_councils", ["council_id"], name: "index_cafe_worker_councils_on_council_id", using: :btree
+
   create_table "cafe_workers", force: :cascade do |t|
     t.integer  "user_id",       limit: 4,                  null: false
     t.integer  "cafe_shift_id", limit: 4,                  null: false
@@ -71,6 +79,7 @@ ActiveRecord::Schema.define(version: 20151219200039) do
   end
 
   add_index "cafe_workers", ["cafe_shift_id"], name: "index_cafe_workers_on_cafe_shift_id", using: :btree
+  add_index "cafe_workers", ["group"], name: "index_cafe_workers_on_group", using: :btree
   add_index "cafe_workers", ["user_id"], name: "index_cafe_workers_on_user_id", using: :btree
 
   create_table "cafe_works", force: :cascade do |t|

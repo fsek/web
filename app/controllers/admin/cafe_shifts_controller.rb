@@ -7,10 +7,12 @@ class Admin::CafeShiftsController < ApplicationController
     @cafe_shift = CafeShift.find(params[:id])
     @cafe_shift.cafe_worker || @cafe_shift.build_cafe_worker
     @users = User.all_firstname
+    @councils = Council.titles
   end
 
   def edit
     @cafe_shift = CafeShift.find(params[:id])
+    @councils = Council.titles
   end
 
   def new

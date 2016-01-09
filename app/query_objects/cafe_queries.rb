@@ -9,12 +9,21 @@ class CafeQueries
     join_cafe_shifts(CafeWorker.joins(:cafe_shift), lp, year)
   end
 
+  def self.highscore_groups(lp, year)
+    (join_cafe_shifts(CafeWorker.select('cafe_workers.group as title, count(*) as score').
+                     joins(:cafe_shift), lp, year).
+    group('group') +
+    join_cafe_shifts(Council.select('councils.title,  count(*) as score').
+                     joins(:cafe_shifts), lp, year).
+    group('council_id')).sort_by{ |g| -g[:score] }
+  end
+
   def self.highscore(lp, year)
     join_cafe_shifts(User.select('users.id, users.firstname, users.lastname, count(*) as score').
                      joins(:cafe_shifts), lp, year).
-      group('user_id').
-      order('score desc').
-      limit(10)
+    group('user_id').
+    order('score desc').
+    limit(10)
   end
 
   def self.free_shifts(lp, year)

@@ -18,4 +18,32 @@ module CafeService
     end
     shifts
   end
+
+  def self.create_worker(shift, param)
+    puts param
+    shift.build_cafe_worker(param)
+
+    if shift.cafe_worker.save!
+      self.cafe_worker_groups(shift, param)
+      true
+    else
+      false
+    end
+  end
+
+  def self.update_worker(shift, param)
+
+  end
+
+  private
+
+  def self.cafe_worker_groups(shift, param)
+    CafeWorkerCouncil.transaction do
+      if param[:council_ids].present?
+        param[:council_ids].each do |id|
+          CafeWorkerCouncil.new(cafe_worker: shift.cafe_worker, council_id: id).save! if id.present?
+        end
+      end
+    end
+  end
 end

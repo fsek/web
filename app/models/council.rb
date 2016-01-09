@@ -9,8 +9,10 @@ class Council < ActiveRecord::Base
   has_many :posts
   has_many :users, through: :posts
 
-  has_many :cafe_work_councils
-  has_many :cafe_works, through: :cafe_work_councils
+  has_many :cafe_worker_councils
+  has_many :cafe_workers, through: :cafe_worker_councils
+  has_many :cafe_shifts, through: :cafe_workers
+
 
   # Validation
   validates :title, :url, presence: true

@@ -8,6 +8,7 @@ class CafeCompetition
     @year = year.year
     @free_shifts = CafeQueries.free_shifts(lp, year)
     @highscore = CafeQueries.highscore(lp, year)
+    @highscore_group = CafeQueries.highscore_groups(lp, year)
   end
 
   def count
@@ -24,6 +25,14 @@ class CafeCompetition
 
   def has_highscore?
     @highscore.exists?
+  end
+
+  def has_highscore_group?
+    @highscore_group.count > 0
+  end
+
+  def highscore_group
+    @highscore_group
   end
 
   def study_periods

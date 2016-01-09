@@ -29,5 +29,15 @@
         }
       }
     }
+
+    th {
+      &.score {
+        width: 35%;
+      }
+
+      &.worker {
+        width: 100%;
+      }
+    }
   }
 }

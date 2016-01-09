@@ -62,7 +62,7 @@
     <%= link_to(t('cafe.first_free_shift'),
                 cafe_shift_path(@competition.free_shifts[:free]),
                 class: 'btn primary') %>
-  <% end %>
+            <% end %>
 </div>
 
 <div class="col-md-9 col-sm-12 cafe competition">
@@ -72,25 +72,50 @@
   <% unless @competition.has_highscore? %>
     <h3><%= t('cafe.highscore_missing') %></h3>
   <% else %>
-    <table class="table">
+  <table class="table">
+    <tr>
+      <th class="worker"><%= model_name(User) %></th>
+      <th class="score"><%= t('cafe.shifts_worked') %></th>
+    </tr>
+    <% @competition.highscore.each do |user| %>
       <tr>
-        <th><%= model_name(User) %></th>
-        <th><%= t('cafe.shifts_worked') %></th>
+        <td>
+          <span class="worker">
+            <%= user_link(user) %>
+          </span>
+        </td>
+        <td>
+          <span class="worker count">
+            <%= user[:score] %>
+          </span>
+        </td>
       </tr>
-      <% @competition.highscore.each do |user| %>
-        <tr>
-          <td>
-            <span class="worker">
-              <%= user_link(user) %>
-            </span>
-          </td>
-          <td>
-            <span class="worker count">
-              <%= user[:score] %>
-            </span>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  <% end %>
+    <% end %>
+  </table>
+<% end %>
+
+<% unless @competition.has_highscore_group? %>
+  <h3><%= t('cafe.highscore_missing') %></h3>
+<% else %>
+  <table class="table">
+    <tr>
+      <th class="worker"><%= model_name(Council) %></th>
+      <th class="score"><%= t('cafe.shifts_worked') %></th>
+    </tr>
+    <% @competition.highscore_group.each do |group| %>
+      <tr>
+        <td>
+          <span class="worker">
+            <%= group.title %>
+          </span>
+        </td>
+        <td>
+          <span class="worker count">
+            <%= group[:score] %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
 </div>

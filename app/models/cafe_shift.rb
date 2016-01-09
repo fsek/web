@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class CafeShift < ActiveRecord::Base
   # Associations
-  has_one :cafe_worker, inverse_of: :cafe_shift
+  has_one :cafe_worker
   has_one :user, through: :cafe_worker
 
   # Validations

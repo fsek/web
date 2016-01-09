@@ -5,8 +5,9 @@ sv:
     attributes:
       cafe_worker:
         user_id: Användare
+        council_ids: Utskott
         competition: Cafetävling
-        group: Grupp
+        group: Grupp - om inget utskott passar
   helpers:
     submit:
       cafe_worker:
