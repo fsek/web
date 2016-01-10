@@ -18,7 +18,7 @@ class PageElementsController < ApplicationController
       redirect_to edit_page_page_element_path(@page, @page_element),
                   notice: alert_create(PageElement)
     else
-      render action: :new
+      render :new, status: 422
     end
   end
 
@@ -27,7 +27,7 @@ class PageElementsController < ApplicationController
       redirect_to edit_page_page_element_path(@page, @page_element),
                   notice: alert_update(PageElement)
     else
-      render action: :edit
+      render :edit, status: 422
     end
   end
 

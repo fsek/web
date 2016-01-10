@@ -2,15 +2,17 @@
 class Admin::ElectionsController < ApplicationController
   load_permissions_and_authorize_resource find_by: :url
   before_action :authorize
-  before_action :set_posts, only: [:new, :show, :edit]
 
   def new
+    @posts = Post.order(title: :asc)
   end
 
   def show
+    @posts = Post.order(title: :asc)
   end
 
   def edit
+    @posts = Post.order(title: :asc)
   end
 
   def index
@@ -21,7 +23,7 @@ class Admin::ElectionsController < ApplicationController
     if @election.save
       redirect_to admin_election_path(@election), notice: alert_create(Election)
     else
-      render action: :new
+      render :new, status: 422
     end
   end
 
@@ -29,7 +31,7 @@ class Admin::ElectionsController < ApplicationController
     if @election.update(election_params)
       redirect_to admin_election_path(@election), notice: alert_update(Election)
     else
-      render action: :show
+      render :show, status: 422
     end
   end
 
@@ -61,9 +63,5 @@ class Admin::ElectionsController < ApplicationController
                                    :visible, :mail_link, :mail_styrelse_link, :text_before,
                                    :text_during, :text_after, :nominate_mail, :candidate_mail,
                                    :extra_text, :candidate_mail_star, post_ids: [])
-  end
-
-  def set_posts
-    @posts = Post.order(title: :asc)
   end
 end

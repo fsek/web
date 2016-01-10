@@ -33,18 +33,21 @@ class UsersController < ApplicationController
     @tab = :profile
     if @user.update(user_params)
       flash[:notice] = alert_update(User)
+      render :edit
+    else
+      render :edit, status: 422
     end
-    render action: :edit
   end
 
   def update_account
     @tab = :account
     if @user.update_with_password(account_params)
       flash[:notice] = t('user.account_updated')
+      render :edit
     else
       flash[:alert] = t('user.password_required')
+      render :edit, status: 422
     end
-    render :edit
   end
 
   def update_password
@@ -52,10 +55,11 @@ class UsersController < ApplicationController
     if @user.update_with_password(password_params)
       flash[:notice] = t('user.password_updated')
       sign_in @user, bypass: true
+      render :edit
     else
       flash[:alert] = t('user.password_required_update')
+      render :edit, status: 422
     end
-    render :edit
   end
 
   private

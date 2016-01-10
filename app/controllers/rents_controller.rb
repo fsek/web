@@ -26,7 +26,7 @@ class RentsController < ApplicationController
     if RentService.reservation(current_user, @rent)
       redirect_to rent_path(@rent), notice: alert_create(Rent)
     else
-      render action: :new
+      render :new, status: 422
     end
   end
 
@@ -34,7 +34,7 @@ class RentsController < ApplicationController
     if RentService.update(rent_params, current_user, @rent)
       redirect_to edit_rent_path(@rent), notice: alert_update(Rent)
     else
-      render action: :edit
+      render :edit, status: 422
     end
   end
 

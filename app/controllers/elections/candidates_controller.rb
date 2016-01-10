@@ -25,7 +25,7 @@ class Elections::CandidatesController < ApplicationController
     if ElectionService.create_candidate(@candidate, current_user)
       redirect_to candidate_path(@candidate), notice: alert_create(Candidate)
     else
-      render action: :new
+      render :new, status: 422
     end
   end
 
@@ -33,7 +33,7 @@ class Elections::CandidatesController < ApplicationController
     if @candidate.update(candidate_params)
       redirect_to candidate_path(@candidate), notice: alert_update(Candidate)
     else
-      render action: :show
+      render :show, status: 422
     end
   end
 

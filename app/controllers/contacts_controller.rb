@@ -26,15 +26,15 @@ class ContactsController < ApplicationController
     if @contact.save
       redirect_to @contact, notice: alert_create(Contact)
     else
-      render action: :new
+      render :new, status: 422
     end
   end
 
   def update
     if @contact.update(contact_params)
-      render action: :edit, notice: alert_update(Contact)
+      redirect_to edit_contact_path(@contact), notice: alert_update(Contact)
     else
-      render action: :edit
+      render :edit, status: 422
     end
   end
 

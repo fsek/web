@@ -24,7 +24,7 @@ class Admin::EventsController < ApplicationController
       redirect_to admin_event_path(@event), notice: alert_create(Event)
     else
       @tab = :info
-      render action: :new
+      render :new, status: 422
     end
   end
 
@@ -34,7 +34,7 @@ class Admin::EventsController < ApplicationController
       redirect_to edit_admin_event_path(@event), notice: alert_update(Event)
     else
       @tab = :info
-      render action: :edit
+      render :edit, status: 422
     end
   end
 

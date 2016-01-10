@@ -22,7 +22,7 @@ class Admin::NewsController < ApplicationController
     if @news.save
       redirect_to news_path(@news), notice: alert_create(News)
     else
-      render :new
+      render :new, status: 422
     end
   end
 
@@ -31,7 +31,7 @@ class Admin::NewsController < ApplicationController
     if @news.update(news_params)
       redirect_to news_path(@news), notice: alert_update(News)
     else
-      render :edit
+      render :edit, status: 422
     end
   end
 
