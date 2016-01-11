@@ -2,21 +2,38 @@ require 'rails_helper'
 
 RSpec.describe Admin::CafeShiftsController, type: :controller do
   let(:user) { create(:user) }
-  let(:shift) { create(:cafe_shift) }
+  let(:shift) { create(:cafe_shift, pass: 3) }
+
+  allow_user_to :manage, CafeShift
 
   before(:each) do
     allow(controller).to receive(:current_user).and_return(user)
   end
 
-  allow_user_to :manage, CafeShift
-
   describe 'GET #show' do
     it 'assigns the requested cafe_shift as @cafe_shift' do
       get :show, id: shift.to_param
       assigns(:cafe_shift).should eq(shift)
+      assigns(:councils).should eq(Council.titles)
+      assigns(:users).should eq(User.all_firstname)
+      response.status.should eq(200)
     end
 
-    it 'error cafe_work is not found' do
+    it 'error cafe_shift is not found' do
+      lambda do
+        get :show, id: 9999777
+      end.should raise_error(ActionController::RoutingError)
+    end
+  end
+
+  describe 'GET #edit' do
+    it 'assigns the requested cafe_shift as @cafe_shift' do
+      get :edit, id: shift.to_param
+      assigns(:cafe_shift).should eq(shift)
+      response.status.should eq(200)
+    end
+
+    it 'error cafe_shift is not found' do
       lambda do
         get :show, id: 9999777
       end.should raise_error(ActionController::RoutingError)
@@ -24,82 +41,80 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
   end
 
   describe 'GET #new' do
-    it 'submit action and set variable' do
-      get :new
-
-      response.should be_success
-      assigns(:cafe_shift).should be_an_instance_of(CafeShift)
+    it 'assigns a new cafe_shift as @cafe_shift' do
+      get(:new)
       assigns(:cafe_shift).new_record?.should be_truthy
-    end
-  end
-
-  describe 'GET #edit' do
-    it 'assigns the requested cafe_shift as @cafe_shift' do
-      get :edit, id: shift.to_param
-
-      assigns(:cafe_shift).should eq(shift)
-      response.should be_success
+      assigns(:cafe_shift).instance_of?(CafeShift).should be_truthy
     end
   end
 
   describe 'POST #create' do
-    it 'new cafe shift' do
+    it 'valid params' do
       lambda do
         post :create, cafe_shift: attributes_for(:cafe_shift)
       end.should change(CafeShift, :count).by(1)
 
       response.should redirect_to([:admin, CafeShift.last])
     end
+
+    it 'invalid params' do
+      lambda do
+        post :create, cafe_shift: { start: nil }
+      end.should change(CafeShift, :count).by(0)
+
+      response.should render_template(:new)
+      response.status.should eq(422)
+    end
   end
 
   describe 'PATCH #update' do
-    context 'with valid params' do
-      let(:attr) { attributes_for(:cafe_shift, :tester) }
-      it 'updates the requested cafe work' do
-        patch :update, id: shift.to_param, cafe_shift: attr
-        shift.reload
-        (shift.pass == attr[:pass] &&
-         shift.lv == attr[:lv] &&
-         shift.lp == attr[:lp]).should be_truthy
+    it 'valid params' do
+      post :update, id: shift.to_param, cafe_shift: { pass: 4 }
+      shift.reload
 
-        assigns(:cafe_shift).should eq(shift)
-        response.should redirect_to([:admin, shift])
-      end
+      response.should redirect_to([:admin, shift])
+      shift.pass.should eq(4)
     end
 
-    context 'with invalid params' do
-      let(:attr) { attributes_for(:cafe_shift, :invalid) }
-      it 'assigns the cafe_shift as @cafe_shift' do
-        patch :update, id: shift.to_param, cafe_shift: attr
+    it 'valid params' do
+      post :update, id: shift.to_param, cafe_shift: { pass: nil }
 
-        assigns(:cafe_shift).should eq(shift)
-      end
-
-      it 're-renders the edit-template' do
-        patch :update, id: shift.to_param, cafe_shift: attr
-
-        response.should render_template(:edit)
-      end
+      response.should render_template(:edit)
+      response.status.should eq(422)
+      shift.reload
+      shift.pass.should eq(3)
     end
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested cwork' do
+    it 'destroys record' do
       shift.reload
       lambda do
-        delete :destroy, id: shift.to_param, format: :html
+        delete :destroy, id: shift.to_param
       end.should change(CafeShift, :count).by(-1)
     end
+  end
 
-    it 'redirects to the candidates list' do
-      delete :destroy, id: shift.to_param
-      response.should redirect_to(:admin_cafe_shifts)
+  describe 'GET #setup' do
+    it 'assigns a new cafe_shift as @cafe_shift' do
+      get(:setup)
+      assigns(:cafe_shift).new_record?.should be_truthy
+      assigns(:cafe_shift).instance_of?(CafeShift).should be_truthy
     end
+  end
 
-    it 'assigns the requested id' do
-      xhr :delete, :destroy, id: shift.to_param
+  describe 'POST #setup_create' do
+    it 'creates multiple cafe_shifts' do
+      lambda do
+        post(:setup_create, cafe_shift: { lv: 1,
+                                          lv_last: 1,
+                                          start: Time.zone.now.change(hour: 8),
+                                          lp: 4 })
+      end.should change(CafeShift, :count).by(20)
+      response.should redirect_to(admin_cafe_shifts_path)
 
-      assigns(:id).should eq(shift.id)
+      assigns(:cafe_shift).new_record?.should be_truthy
+      assigns(:cafe_shift).instance_of?(CafeShift).should be_truthy
     end
   end
 end

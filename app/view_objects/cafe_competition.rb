@@ -40,7 +40,7 @@ class CafeCompetition
   end
 
   def years
-    (2015..(Time.zone.now.year + 1)).to_a - [year]
+    (2015..Time.zone.now.year).to_a - [year]
   end
 
   def free_shifts

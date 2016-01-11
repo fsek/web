@@ -13,7 +13,6 @@ class Council < ActiveRecord::Base
   has_many :cafe_workers, through: :cafe_worker_councils
   has_many :cafe_shifts, through: :cafe_workers
 
-
   # Validation
   validates :title, :url, presence: true
   validates :url, uniqueness: true

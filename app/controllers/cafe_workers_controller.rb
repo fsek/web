@@ -17,7 +17,7 @@ class CafeWorkersController < ApplicationController
     if @cafe_shift.cafe_worker.save
       redirect_to(cafe_shift_path(@cafe_shift), notice: I18n.t('cafe_worker.created'))
     else
-      render :new
+      render :new, status: 422
     end
   end
 
@@ -28,7 +28,7 @@ class CafeWorkersController < ApplicationController
     if cafe_worker.update(cafe_worker_params)
       redirect_to(cafe_shift_path(@cafe_shift), notice: I18n.t('cafe_worker.updated'))
     else
-      render action: :new
+      render :new, status: 422
     end
   end
 

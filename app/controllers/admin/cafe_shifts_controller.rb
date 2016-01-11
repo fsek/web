@@ -12,7 +12,6 @@ class Admin::CafeShiftsController < ApplicationController
 
   def edit
     @cafe_shift = CafeShift.find(params[:id])
-    @councils = Council.titles
   end
 
   def new
@@ -24,7 +23,7 @@ class Admin::CafeShiftsController < ApplicationController
     if @cafe_shift.save
       redirect_to admin_cafe_shift_path(@cafe_shift), notice: alert_create(CafeShift)
     else
-      render :new
+      render :new, status: 422
     end
   end
 
@@ -33,7 +32,7 @@ class Admin::CafeShiftsController < ApplicationController
     if @cafe_shift.update(shift_params)
       redirect_to admin_cafe_shift_path(@cafe_shift), notice: alert_update(CafeShift)
     else
-      render action: :edit
+      render :edit, status: 422
     end
   end
 
@@ -57,7 +56,7 @@ class Admin::CafeShiftsController < ApplicationController
                          Time.zone.parse(shift_params[:start]), shift_params[:lp])
       redirect_to(admin_cafe_shifts_path, notice: alert_create(CafeShift))
     else
-      render :setup
+      render :setup, status: 422
     end
   end
 

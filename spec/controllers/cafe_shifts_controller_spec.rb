@@ -4,7 +4,7 @@ RSpec.describe CafeShiftsController, type: :controller do
   let(:user) { create(:user) }
   let(:shift) { create(:cafe_shift) }
 
-  allow_user_to :show, CafeShift
+  allow_user_to [:show, :feed], CafeShift
 
   before(:each) do
     allow(controller).to receive(:current_user).and_return(user)
@@ -14,12 +14,22 @@ RSpec.describe CafeShiftsController, type: :controller do
     it 'assigns the requested cafe_shift as @cafe_shift' do
       get :show, id: shift.to_param
       assigns(:cafe_shift).should eq(shift)
+      assigns(:councils).should eq(Council.titles)
+      response.status.should eq(200)
     end
 
-    it 'error cafe_work is not found' do
+    it 'error cafe_shift is not found' do
       lambda do
         get :show, id: 9999777
       end.should raise_error(ActionController::RoutingError)
+    end
+  end
+
+  describe 'GET #feed' do
+    it 'renders feed' do
+      request.accept = 'application/json'
+      get :feed
+      response.status.should eq(200)
     end
   end
 end
