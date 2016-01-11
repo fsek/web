@@ -24,7 +24,7 @@ class DocumentsController < ApplicationController
     if @document.save
       redirect_to documents_path, notice: alert_create(Document)
     else
-      render action: :new
+      render :new, status: 422
     end
   end
 
@@ -32,12 +32,12 @@ class DocumentsController < ApplicationController
     if @document.update(document_params)
       redirect_to edit_document_path(@document), notice: alert_update(Document)
     else
-      render action: :edit
+      render :edit, status: 422
     end
   end
 
   def destroy
-    @document.destroy
+    @document.destroy!
     redirect_to documents_url, notice: alert_destroy(Document)
   end
 

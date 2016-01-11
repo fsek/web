@@ -20,14 +20,10 @@
       <div id="dates" class="profile-edit tab-pane fade in <%=@tab == :dates ? 'active' : ''%>">
         <%= f.input :starts_at, as: :datetime_picker %>
         <%= f.input :ends_at, as: :datetime_picker %>
-        <%= f.input :dot, collection: [["Ingen",nil],["Enkel",:single],["Dubbel",:double]] %>
         <%= f.input :all_day, as: :boolean %>
       </div>
 
       <div id="registration" class="profile-edit tab-pane fade in <%=@tab == :registration ? 'active' : ''%>">
-        <%= f.input :signup, as: :boolean %>
-        <%= f.input :last_reg, as: :datetime_picker %>
-        <%= f.input :slots, as: :integer %>
         <%= f.input :drink, as: :boolean %>
         <%= f.input :food, as: :boolean %>
         <%= f.input :cash, as: :boolean %>

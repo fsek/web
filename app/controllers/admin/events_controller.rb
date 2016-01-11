@@ -4,40 +4,42 @@ class Admin::EventsController < ApplicationController
   before_action :authorize
 
   def index
-    @events = @events.order(starts_at: :desc)
-  end
-
-  def show
+    @events = Event.order(starts_at: :desc)
   end
 
   def new
+    @event = Event.new
     @tab = :info
   end
 
   def edit
+    @event = Event.find(params[:id])
     @tab = :info
   end
 
   def create
+    @event = Event.new(event_params)
     @event.author = current_user
     if @event.save
       redirect_to admin_event_path(@event), notice: alert_create(Event)
     else
       @tab = :info
-      render action: :new
+      render :new, status: 422
     end
   end
 
   def update
+    @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to edit_admin_event_path(@event), notice: alert_update(Event)
     else
       @tab = :info
-      render action: :edit
+      render :edit, status: 422
     end
   end
 
   def destroy
+    @event = Event.find(params[:id])
     @event.destroy
     redirect_to admin_events_path, notice: alert_destroy(Event)
   end

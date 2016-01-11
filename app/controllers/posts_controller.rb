@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to council_posts_path(@council), notice: alert_create(Post)
     else
-      render action: :new
+      render :new, status: 422
     end
   end
 
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
       redirect_to(edit_council_post_path(@post.council, @post),
                   notice: alert_update(Post))
     else
-      render action: :edit
+      render :edit, status: 422
     end
   end
 

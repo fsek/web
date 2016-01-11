@@ -19,7 +19,7 @@ class Admin::PermissionsController < ApplicationController
     if @post.set_permissions(permission_params)
       redirect_to index_admin_permissions_path, notice: alert_update(Post)
     else
-      render action: :show_post
+      render :show_post, status: 422
     end
   end
 

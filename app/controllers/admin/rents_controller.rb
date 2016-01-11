@@ -1,6 +1,6 @@
 class Admin::RentsController < ApplicationController
   load_permissions_and_authorize_resource
-  before_action :prepare, only: [:new, :show]
+  before_action :prepare, only: [:new, :show, :create, :update]
 
   def index
     @rents = Rent.from_date(Time.zone.now.beginning_of_day).includes(:user)
@@ -18,7 +18,7 @@ class Admin::RentsController < ApplicationController
     if RentService.admin_reservation(@rent)
       redirect_to admin_rent_path(@rent), notice: alert_create(Rent)
     else
-      render :new
+      render :new, status: 422
     end
   end
 
@@ -30,7 +30,7 @@ class Admin::RentsController < ApplicationController
     if RentService.administrate(@rent, rent_params)
       redirect_to admin_rent_path(@rent), notice: alert_update(Rent)
     else
-      render :show
+      render :show, status: 422
     end
   end
 

@@ -22,7 +22,7 @@ class CouncilsController < ApplicationController
     if @council.save
       redirect_to edit_council_path(@council), notice: alert_create(Council)
     else
-      render action: :new
+      render :new, status: 422
     end
   end
 
@@ -30,7 +30,7 @@ class CouncilsController < ApplicationController
     if @council.update(council_params)
       redirect_to edit_council_path(@council), notice: alert_update(Council)
     else
-      render action: :edit
+      render :edit, status: 422
     end
   end
 

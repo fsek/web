@@ -1,49 +1,91 @@
 require 'rails_helper'
+
 RSpec.describe ContactsController, type: :controller do
+  let(:contact) { create(:contact) }
   let(:attr) { attributes_for(:contact) }
 
-  context 'when allowed to manage contacts' do
-    allow_user_to :manage, Contact
+  allow_user_to :manage, Contact
 
-    describe 'POST #create new contact' do
-      it 'creates a new candidate' do
-        lambda do
-          post :create, contact: attr
-        end.should change(Contact, :count).by(1)
-      end
-
-      it 'creates candidate and redirects to candidate' do
+  describe 'POST #create' do
+    it 'valid params' do
+      lambda do
         post :create, contact: attr
-        response.should redirect_to(contact_path(Contact.last))
-      end
+      end.should change(Contact, :count).by(1)
+
+      response.should redirect_to(contact_path(Contact.last))
     end
 
-    describe 'GET #new' do
-      it 'succeeds' do
-        get :new
+    it 'invalid params' do
+      lambda do
+        post :create, contact: { name: nil }
+      end.should change(Contact, :count).by(0)
 
-        response.should be_success
-      end
+      response.should render_template(:new)
+      response.status.should eq(422)
+    end
+  end
 
-      it 'prepares new candidate with user' do
-        get :new
+  describe 'PATCH #update' do
+    it 'valid params' do
+      post :update, id: contact.to_param, contact: { name: 'Titel' }
+      contact.reload
+      response.should redirect_to(edit_contact_path(contact))
 
-        assigns(:contact).new_record?.should be_truthy
-      end
+      contact.name.should eq('Titel')
     end
 
-    describe 'GET #index' do
-      it 'succeeds' do
-        get :index
+    it 'valid params' do
+      post :update, id: contact.to_param, contact: { name: '' }
+      contact.reload
 
-        response.should be_success
-      end
+      response.should render_template(:edit)
+      response.status.should eq(422)
+    end
+  end
 
-      it 'assigns users candidates' do
-        get :index
+  describe 'GET #new' do
+    it 'succeeds' do
+      get :new
 
-        assigns(:contacts).should eq(Contact.all)
-      end
+      response.should be_success
+    end
+
+    it 'prepares new candidate with user' do
+      get :new
+
+      assigns(:contact).new_record?.should be_truthy
+    end
+  end
+
+  describe 'GET #index' do
+    it 'succeeds' do
+      get :index
+
+      response.should be_success
+    end
+
+    it 'assigns users candidates' do
+      get :index
+
+      assigns(:contacts).should eq(Contact.all)
+    end
+  end
+
+  describe 'GET #show' do
+    it 'succeeds' do
+      get :show, id: contact.to_param
+
+      response.should be_success
+      assigns(:contact).should eq(contact)
+    end
+  end
+
+  describe 'GET #edit' do
+    it 'succeeds' do
+      get :edit, id: contact.to_param
+
+      response.should be_success
+      assigns(:contact).should eq(contact)
     end
   end
 end

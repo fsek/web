@@ -29,9 +29,9 @@ class FaqsController < ApplicationController
 
   def update
     if @faq.update(faq_params)
-      redirect_to @faq, notice: 'FAQ uppdaterades!'
+      redirect_to faq_path(@faq), notice: alert_update(Faq)
     else
-      render action: 'edit'
+      render :edit, status: 422
     end
   end
 
@@ -40,9 +40,9 @@ class FaqsController < ApplicationController
       @faq.answer = ''
     end
     if @faq.save
-      redirect_to @faq, notice: 'Frågan skapades!'
+      redirect_to faq_path(@faq), notice: alert_create(Faq)
     else
-      render action: 'new'
+      render :new, status: 422
     end
   end
 

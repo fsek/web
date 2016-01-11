@@ -18,7 +18,7 @@ class NoticesController < ApplicationController
     if @notice.save
       redirect_to @notice, notice: alert_create(Notice)
     else
-      render action: :new
+      render :new, status: 422
     end
   end
 
@@ -26,7 +26,7 @@ class NoticesController < ApplicationController
     if @notice.update(notice_params)
       redirect_to @notice, notice: alert_update(Notice)
     else
-      render action: :edit
+      render :edit, status: 422
     end
   end
 

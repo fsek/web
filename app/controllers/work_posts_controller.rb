@@ -26,7 +26,7 @@ class WorkPostsController < ApplicationController
     if @work_post.save
       redirect_to work_posts_path, notice: alert_create(WorkPost)
     else
-      render action: :new
+      render :new, status: 422
     end
   end
 
@@ -34,7 +34,7 @@ class WorkPostsController < ApplicationController
     if @work_post.update(work_post_params)
       redirect_to work_posts_path, notice: alert_update(WorkPost)
     else
-      render action: :edit
+      render :edit, status: 422
     end
   end
 

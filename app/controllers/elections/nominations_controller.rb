@@ -15,7 +15,7 @@ class Elections::NominationsController < ApplicationController
     if @nomination.save
       redirect_to new_nominations_path, notice: alert_create(Nomination)
     else
-      render :new
+      render :new, status: 422
     end
   end
 
