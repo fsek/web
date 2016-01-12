@@ -2,7 +2,6 @@ sv:
   cafe:
     admin_title: Administration för Hilbert Café
     already_working: Du är uppskriven som arbetare på passet.
-    back_to_index: Hilbert
     chosen_study_period: Vald läsperiod
     competition: Tävling
     first_free_shift: Första lediga passet
@@ -22,3 +21,4 @@ sv:
     white_color: Vit färg innebär att passet inte har någon jobbare.
     worked_shifts: Arbetade pass
     working_users: Arbetare
+    ladybug_instruction: Fyll i ett datum och tryck på Sök för att få fram namn och telefonnummer till jobbare.

@@ -42,4 +42,11 @@ loadCalendar = function() {
   });
 };
 
+loadSelect2 = function() {
+  $('.cafe-select2').select2({
+    theme: 'bootstrap'
+  });
+};
+
 $(document).ready(loadCalendar);
+$(document).ready(loadSelect2);
