@@ -103,7 +103,7 @@
     <% end %>
     <% if can? :manage, CafeShift %>
       <li class="dropdown-submenu">
-        <%= link_to(model_name(CafeShift), admin_cafe_shifts_path)%>
+        <%= link_to(t('cafe.title'), admin_cafe_shifts_path)%>
       </li>
     <% end %>
   </ul>

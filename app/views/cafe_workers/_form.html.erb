@@ -10,11 +10,7 @@
                 target: :blank_p) %>
   <% end %>
   <%= f.input :competition, as: :boolean %>
-  <%= f.input :council_ids, collection: @councils,
-                               label_method: :title,
-                               value_method: :id,
-                               as: :check_boxes,
-                               item_wrapper_class: 'inline'  %>
+  <%= f.association :councils, input_html: { class: 'cafe-select2' } %>
   <%= f.input :group %>
   <%= f.button :submit %>
   <% if cafe_shift.cafe_worker.persisted? %>
