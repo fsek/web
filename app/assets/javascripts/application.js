@@ -29,7 +29,6 @@
 //= require jquery.countdown.min
 //= require bootstrap-datepicker
 //= require bootstrap-datetimepicker
-//= require bootstrap-datepicker
 //= require pickers
 //= require select2
 //= require select2_locale_sv

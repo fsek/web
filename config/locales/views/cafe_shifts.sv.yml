@@ -12,6 +12,12 @@ sv:
     single: Enskilt Cafepass
     title: Hilbert Café
     admin:
-      setup_fill_date_preview: Genom att fylla i datum och tid för läsperiodens 
+      setup_fill_date_preview: Genom att fylla i datum och tid för läsperiodens
         första pass genereras en förhandsvisning för hela läsperioden
       setup_single: För att lägga till enskilt pass
+
+  unauthorized:
+    ladybug:
+      cafe_shift: Du måste vara inloggad och vara Nyckelpiga för att visa sidan.
+    show:
+      cafe_shift: Du måste logga in för att jobba i Hilbert Café.

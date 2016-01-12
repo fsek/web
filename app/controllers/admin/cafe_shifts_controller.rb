@@ -52,8 +52,7 @@ class Admin::CafeShiftsController < ApplicationController
 
   def setup_create
     @cafe_shift = CafeShift.new(shift_params)
-    if CafeService.setup(shift_params[:lv], shift_params[:lv_last],
-                         Time.zone.parse(shift_params[:start]), shift_params[:lp])
+    if CafeService.setup(@cafe_shift)
       redirect_to(admin_cafe_shifts_path, notice: alert_create(CafeShift))
     else
       render :setup, status: 422

@@ -35,7 +35,7 @@ module CalendarJSON
     }
   end
 
-  private
+  private_class_method
 
   def self.cafe_color(shift, owner)
     if shift.cafe_worker.present?

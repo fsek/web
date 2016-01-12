@@ -7,24 +7,34 @@ class CafeController < ApplicationController
 
   def competition
     lp = params[:lp] || '1'
-    year = Time.zone.now
-    if params[:year].present?
-      year = Time.zone.local(params[:year])
-    end
-
-    @competition = CafeCompetition.new(CafeQueries.cafe_workers(lp, year),
-                                       CafeQueries.working_users(lp, year),
-                                       lp, year)
+    @competition = CafeCompetition.new(lp: lp, year: competition_year)
   end
 
   def ladybug
     authorize!(:ladybug, CafeShift)
-    if params[:ladybug].present? && params[:ladybug][:date].present?
-      @date = Time.zone.parse(params[:ladybug][:date])
+
+    if date = ladybug_date
+      @date = Time.zone.parse(date)
     else
       @date = Time.zone.now
     end
 
     @cafe_shifts = CafeQueries.for_day(@date)
+  end
+
+  private
+
+  def competition_year
+    if params[:year].present?
+      Time.zone.local(params[:year])
+    else
+      Time.zone.now
+    end
+  end
+
+  def ladybug_date
+    if params[:ladybug].present?
+      params[:ladybug][:date]
+    end
   end
 end

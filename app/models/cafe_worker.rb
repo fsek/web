@@ -7,14 +7,6 @@ class CafeWorker < ActiveRecord::Base
   validates :user_id, :cafe_shift_id, presence: true
   validate :user_attributes?
 
-  def owner?(owner)
-    user == owner
-  end
-
-  def lp
-    cafe_shift.lp
-  end
-
   protected
 
   def user_attributes?

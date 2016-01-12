@@ -18,7 +18,7 @@ RSpec.describe Admin::CafeController, type: :controller do
 
   describe 'GET #overview' do
     it 'loads overview view properly' do
-      get :index
+      get :overview
       response.status.should eq(200)
     end
   end

@@ -43,7 +43,7 @@ loadCalendar = function() {
 };
 
 loadSelect2 = function() {
-  $('.cafe-select2').select2({
+  $('.select2').select2({
     theme: 'bootstrap'
   });
 };

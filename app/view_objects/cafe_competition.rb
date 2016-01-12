@@ -1,9 +1,9 @@
 class CafeCompetition
   attr_accessor :cafe_workers, :lp, :users, :lps, :year, :years
-  def initialize(cafe_workers, users, lp, year)
-    @cafe_workers = cafe_workers
+  def initialize(lp:, year:)
+    @cafe_workers = CafeQueries.cafe_workers(lp, year)
     @lp = lp
-    @users = users
+    @users = CafeQueries.working_users(lp, year)
     @lps = ['1', '2', '3', '4'] - [lp]
     @year = year.year
     @free_shifts = CafeQueries.free_shifts(lp, year)

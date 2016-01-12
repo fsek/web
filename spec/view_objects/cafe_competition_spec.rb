@@ -11,7 +11,10 @@ RSpec.describe CafeCompetition do
     second_shift.save!
     first_shift.build_cafe_worker(user: first_user).save!
     second_shift.build_cafe_worker(user: second_user).save!
-    @cafe_comp = CafeCompetition.new(CafeWorker.all, User.all, '3', Time.zone.now)
+    allow(CafeQueries).to receive(:cafe_workers) { CafeWorker.all }
+    allow(CafeQueries).to receive(:working_users) { User.all }
+
+    @cafe_comp = CafeCompetition.new(lp: '3', year: Time.zone.now)
   end
 
   describe :attributes do
