@@ -4,14 +4,20 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h2>Meddelande skickat via hemsidan till <%= @kontakt%> </h2>
-    <p>
-    Från: <%= @name%><br>
-    E-post: <%= @email%>
-  </p>
-  <p>
-  Meddelande: <br>
-  <%= simple_format(@msg) %>
-  </p>
+    <h2><%= t('contact.message_sent_via') %> - <%= @contact.name %></h2>
+    <table>
+      <tr>
+        <td><%= Contact.human_attribute_name(:name) %></td>
+        <td><%= @contact.send_name %></td>
+      </tr>
+      <tr>
+        <td><%= Contact.human_attribute_name(:email) %></td>
+        <td><%= @contact.send_email %></td>
+      </tr>
+      <tr>
+        <td><%= Contact.human_attribute_name(:message) %></td>
+        <td><%= simple_format(@contact.msg) %></td>
+      </tr>
+    </table>
   </body>
 </html>

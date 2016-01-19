@@ -8,9 +8,9 @@ class Contact < ActiveRecord::Base
   validates :email, uniqueness: true
 
   attr_accessor :copy, :message, :send_name, :send_email
-  def mail(params)
-    ContactMailer.contact_email(params[:send_name], params[:send_email],
-                                params[:message], self, params[:copy]).deliver_now
+
+  def mail
+    ContactMailer.mail(self).deliver_now
   end
 
   def to_s

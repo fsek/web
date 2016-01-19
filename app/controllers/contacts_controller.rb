@@ -15,7 +15,8 @@ class ContactsController < ApplicationController
   end
 
   def mail
-    if @contact.mail(mail_params)
+    @contact.assign_attributes(mail_params)
+    if @contact.mail
       redirect_to @contact, notice: 'Meddelandet skickades.'
     else
       redirect_to @contact, alert: 'Någonting blev fel, prova att skicka igen.'
