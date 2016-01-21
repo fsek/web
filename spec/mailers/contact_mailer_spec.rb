@@ -3,35 +3,48 @@ require 'rails_helper'
 RSpec.describe ContactMailer, type: :mailer do
   describe 'mail' do
     it 'has appropriate subject' do
-      contact = create(:contact, :with_message, copy: true)
-      mail = ContactMailer.mail(contact)
+      contact = create(:contact, :with_message)
+      mail = ContactMailer.contact_email(contact)
 
-      mail.should have_subject("Please confirm")
+      mail.subject.should eq(I18n.t('contact.message_sent_via'))
     end
 
-    it 'sends to the subscriber' do
-      contact = create(:contact, :with_message)
-      mail = ContactMailer.mail(contact)
+    it 'sends to the given contact' do
+      contact = create(:contact, :with_message, email: 'david@fsektionen.se')
+      mail = ContactMailer.contact_email(contact)
 
-      mail.should be_delivered_to('subscriber@foo.tld')
+      mail.to.should eq(['david@fsektionen.se'])
+    end
+
+    it 'sends from dirac' do
+      contact = create(:contact, :with_message)
+      mail = ContactMailer.contact_email(contact)
+
+      mail.from.should eq(['dirac@fsektionen.se'])
+    end
+
+    it 'Message-ID has right domain' do
+      contact = create(:contact, :with_message)
+      mail = ContactMailer.contact_email(contact)
+
+      mail.message_id.should include('@fsektionen.se')
     end
 
     context 'HTML body' do
       it 'includes the confirm link' do
         contact = create(:contact, :with_message)
-        puts contact.name
-        mail = ContactMailer.mail(contact)
+        mail = ContactMailer.contact_email(contact)
 
-        mail.should have_body_text(anchor_html)
+        mail.html_part.body.should include(contact.sender_message)
       end
     end
 
     context 'plain text body' do
       it 'includes the confirm URL' do
         contact = create(:contact, :with_message)
-        mail = ContactMailer.mail(contact)
+        mail = ContactMailer.contact_email(contact)
 
-          mail.text_part.should have_body_text(contact.message)
+        mail.text_part.body.should include(contact.sender_message)
       end
     end
   end

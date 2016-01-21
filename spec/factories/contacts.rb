@@ -7,10 +7,9 @@ FactoryGirl.define do
     text { generate(:description) }
 
     trait :with_message do
-      send_name "David Wessman"
-      send_email "spindelman@fsektionen.se"
-      copy true
-      message { generate(:description) }
+      sender_name 'Hilbert Älg'
+      sender_email 'utomifran@gmail.se'
+      sender_message { generate(:description) }
     end
   end
 end

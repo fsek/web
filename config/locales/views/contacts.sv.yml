@@ -1,5 +1,9 @@
 sv:
   contact:
-    index: Kontaktsida
+    back_to_index: Tillbaka till Kontakter
     contact: Kontakta
+    index: Kontaktsida
+    message_sent: Meddelandet skickades.
     message_sent_via: Meddelande skickat via Fsektionen.se
+    send_message: Skicka meddelande
+    something_wrong: Någonting blev fel, prova att skicka igen.

@@ -11,7 +11,6 @@ sv:
         public: Publik
         text: Beskrivning
         council_id: Utskott
-        send_name: Ditt namn
-        send_email: Din e-post
-        copy: Skicka kopia till dig?
-        message: Meddelande
+        sender_name: Ditt namn
+        sender_email: Din e-post
+        sender_message: Meddelande

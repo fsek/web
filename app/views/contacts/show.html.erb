@@ -1,16 +1,17 @@
-<%= title("Kontakt")%>
-<%= simple_form_for @contact, method: :post, url: mail_contact_path(@contact), html: { class: 'col-md-6 col-md-offset-3 reg-page' } do |f| %>
-  <div class="tag-box tag-box-v2">
-    <%=@contact%><br>
-    <%=simple_format(@contact.text)%>
+<%= title(model_name(Contact))%>
+<div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
+  <div class="headline">
+    <h2><%= @contact.to_s %></h2>
   </div>
-  <% if @sent == true %>
-    <p><strong>Ditt meddelande har skickats. Tack så mycket.</strong></p>
-  <% else %>
-    <%= f.input :send_name, required: true %>
-    <%= f.input :send_email %>
-    <%= f.input :message, as: :text %>
-    <%= f.input :copy, as: :boolean %>
-    <%= f.button :submit, 'Skicka meddelande', class: 'btn btn-u' %>
+
+  <%=simple_format(@contact.text)%>
+  <hr>
+  <%= simple_form_for(@contact, method: :post, url: mail_contact_path(@contact)) do |f| %>
+    <%= f.input :sender_name, required: true %>
+    <%= f.input :sender_email, required: true %>
+    <%= f.input :sender_message, as: :text %>
+    <%= f.button :submit, t('contact.send_message') %>
   <% end %>
-<% end %>
+  <hr>
+  <%= link_to(t('contact.back_to_index'), contacts_path, class: 'btn secondary') %>
+</div>
