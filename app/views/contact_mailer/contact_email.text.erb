@@ -1,8 +1,8 @@
-Meddelande från hemsidan till: <%= @kontakt%>
+<%= t('contact.message_sent_via') %> <%= @contact.to_s %>
 ===============================================
 
-Från: <%=@name%>
-E-post: <%=@email%>
+<%= Contact.human_attribute_name(:sender_name) %> <%= @contact.sender_name %>
+<%= Contact.human_attribute_name(:sender_email) %> <%= @contact.sender_email %>
 
-Meddelande:
-<%=simple_format(@msg)%>
+<%= Contact.human_attribute_name(:sender_message) %>
+<%= simple_format(@contact.sender_message) %>

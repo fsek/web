@@ -15,10 +15,11 @@ class ContactsController < ApplicationController
   end
 
   def mail
-    if @contact.mail(mail_params)
-      redirect_to @contact, notice: 'Meddelandet skickades.'
+    @contact.assign_attributes(mail_params)
+    if @contact.send_email
+      redirect_to contact_path(@contact), notice: t('contact.message_sent')
     else
-      redirect_to @contact, alert: 'Någonting blev fel, prova att skicka igen.'
+      redirect_to contact_path(@contact), alert: t('contact.something_wrong')
     end
   end
 
@@ -46,7 +47,7 @@ class ContactsController < ApplicationController
   private
 
   def mail_params
-    params.require(:contact).permit(:send_name, :send_email, :message, :copy)
+    params.require(:contact).permit(:sender_name, :sender_email, :sender_message)
   end
 
   def contact_params
