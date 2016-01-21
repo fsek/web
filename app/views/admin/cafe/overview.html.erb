@@ -1,0 +1,25 @@
+<%= provide(:title, models_name(User)) %>
+<div class="headline">
+  <h2><%= t('cafe.title') %> - <%= model_name(User) %></h2>
+</div>
+<%= simple_format(t('cafe_shift.all_shifts_with_worker'))%>
+<div class="col-md-12">
+  <%= link_to(t(:index_attr, attr: models_name(CafeShift)),
+              admin_cafe_shifts_path, class: 'btn secondary') %>
+</div>
+<div class="col-md-12">
+  <%= grid(@cafe_shift_grid) do |grid|
+    grid.column name: CafeShift.human_attribute_name(:start), attribute: 'start'
+    grid.column name: CafeShift.human_attribute_name(:lp), attribute: 'lp'
+    grid.column name: CafeShift.human_attribute_name(:lv), attribute: 'lv'
+    grid.column name: model_name(User), assoc: :user, attribute: 'firstname', filter: false do |shift|
+      user_link(shift.user, target: :blank_p)
+    end
+    grid.column name: User.human_attribute_name(:email), assoc: :user, attribute: 'email', filter: false
+    grid.column name: User.human_attribute_name(:phone), assoc: :user, attribute: 'phone', filter: false
+    grid.column name: CafeWorker.human_attribute_name(:competition), assoc: :cafe_worker, attribute: 'competition'
+    grid.column name: t(:show) do |shift|
+      link_to(t(:show), admin_cafe_shift_path(shift), class: 'btn secondary small')
+    end
+  end -%>
+</div>

@@ -1,0 +1,9 @@
+<% provide(:title, t('cafe.title')) %>
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <div class="headline">
+    <h2><%= t('cafe_shift.new') %></h2>
+  </div>
+  <%= render 'form'%>
+  <hr>
+  <%= link_to(t(:back), admin_cafe_shifts_path, class: 'btn secondary')%>
+</div>

@@ -7,14 +7,15 @@ RSpec.feature 'admin visits paths' do
   let(:user) { create(:admin) }
 
   paths = {
-    'admin/cafe_works': [:index, :new, :edit, :show, :overview, :setup],
+    'admin/cafe': [:index, :overview],
+    'admin/cafe_shifts': [:new, :edit, :show, :setup],
     'admin/elections': [:new, :index, :show, :edit],
     'admin/events': [:edit, :new, :index],
     'admin/news': [:index, :new, :edit],
     'admin/rents': [:index, :show, :new],
     'admin/gallery/albums': [:index, :show],
     'gallery/albums': [:show],
-    cafe_works: [:index, :nyckelpiga],
+    cafe: [:index, :ladybug],
     calendars: [:index],
     constants: [:index, :show, :edit, :new],
     contacts: [:index, :new, :show, :edit],

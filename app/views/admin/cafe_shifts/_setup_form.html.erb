@@ -1,0 +1,7 @@
+<%= simple_form_for(@cafe_shift, method: :post, url: { action: :setup_create }) do |f| %>
+  <%= f.input :lv, label: t('cafe_shift.lv_first'), as: :integer %>
+  <%= f.input :lv_last, as: :integer, required: true %>
+  <%= f.input :lp, as: :integer %>
+  <%= f.input :start, as: :datetime_picker %>
+  <%= f.button :submit %>
+<% end %>

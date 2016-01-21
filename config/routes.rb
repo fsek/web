@@ -47,22 +47,24 @@ Fsek::Application.routes.draw do
     resources :constants
 
     namespace :admin do
-      resources :cafe_works, path: :hilbertcafe do
-        patch :add_worker, path: :jobbare, on: :member
-        patch :update_worker, path: :uppdatera, on: :member
-        patch :remove_worker, path: :inte_jobba, on: :member
-        get :overview, path: :oversikt, on: :collection
+      get :cafe, path: :hilbertcafe, controller: :cafe, action: :index
+      get :overview_cafe, controller: :cafe, action: :overview, path: 'hilbertcafe/oversikt'
+
+      resources :cafe_shifts, path: :hilbertcafe, except: :index do
+        resources :cafe_workers, path: :jobba, only: [:create, :update, :destroy, :new]
         get :setup, as: :setup, on: :collection
         post :setup_create, on: :collection
       end
     end
 
-    resources :cafe_works, path: :hilbertcafe, only: [:index, :show] do
-      get :edit, path: :jobba, on: :member
-      patch :add_worker, path: :jobbare, on: :member
-      patch :update_worker, path: :jobba, on: :member
-      patch '', action: :remove_worker, on: :member, as: :remove_worker
-      get :nyckelpiga, on: :collection
+    get :ladybug_cafe, controller: :cafe, action: :ladybug, path: 'hilbertcafe/nyckelpiga'
+    get :cafe, path: :hilbertcafe, controller: :cafe, action: :index
+    get :competition_cafe, controller: :cafe, action: :competition, path: 'hilbertcafe/tavling'
+
+    resources :cafe_shifts, path: :hilbertcafe, only: :show do
+      get :feed, on: :collection
+      get :new, path: :jobba, controller: :cafe_workers
+      resources :cafe_workers, path: :jobba, only: [:create, :update, :destroy]
     end
 
     namespace :admin do

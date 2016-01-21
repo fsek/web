@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :post_users
   has_many :posts, through: :post_users
   has_many :rents
+  has_many :cafe_workers
+  has_many :cafe_shifts, through: :cafe_workers
 
   # Attachment
   has_attached_file(:avatar,

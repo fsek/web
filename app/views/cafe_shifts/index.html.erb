@@ -1,0 +1,19 @@
+<% provide(:title, t('cafe.title')) %>
+<div class="headline">
+  <h1><%= t('cafe.title') %></h1>
+</div>
+<div class="col-md-3 col-xs-12">
+  <% if can? :manage, CafeShift %>
+    <div class="headline">
+      <h2><%= t(:tools) %></h2>
+    </div>
+    <ul class="list">
+      <li><%= link_to(t(:admin), admin_cafe_shifts_path) %></li>
+      <li><%= link_to(t('cafe.ladybug'), nyckelpiga_cafe_index_path) %></li>
+    </ul>
+  <% end %>
+</div>
+
+<div class="col-md-9 col-xs-12">
+  <div id='hilbertkalender'></div>
+</div>

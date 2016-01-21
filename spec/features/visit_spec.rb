@@ -8,7 +8,8 @@ RSpec.feature 'visits paths' do
 
   paths = {
     'gallery/albums': [:show],
-    cafe_works: [:index],
+    cafe: [:index],
+    cafe_shifts: [:feed, :show],
     calendars: [:index],
     contacts: [:index, :show],
     councils: [:index, :show],

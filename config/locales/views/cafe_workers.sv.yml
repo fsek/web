@@ -1,0 +1,6 @@
+sv:
+  cafe_worker:
+    cannot_edit: Kan inte redigera
+    remove: Ta bort jobbare
+    count: Cafepass jobbade
+    user_count: Användare jobbat

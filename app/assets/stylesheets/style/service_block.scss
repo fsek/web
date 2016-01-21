@@ -31,31 +31,31 @@
     }
   }
 
-  .service-block-red {
+  &.service-block-red {
     background: $unify-red;
   }
 
-  .service-block-sea {
+  &.service-block-sea {
     background: $unify-sea;
   }
 
-  .service-block-blue {
+  &.service-block-blue {
     background: $unify-blue;
   }
 
-  .service-block-grey {
+  &.service-block-grey {
     background: $unify-grey;
   }
 
-  .service-block-yellow {
+  &.service-block-yellow {
     background: $unify-yellow;
   }
 
-  .service-block-orange {
+  &.service-block-orange {
     background: $unify-orange;
   }
 
-  .service-block-green {
+  &.service-block-green {
     background: $unify-green;
   }
 
@@ -88,7 +88,7 @@
   }
 }
 
-.service-v1 {
+.service-v3 {
   h2 {
     font-size: 20;
     line-height: 28px;

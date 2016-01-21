@@ -1,0 +1,23 @@
+sv:
+  cafe_shift:
+    all_shifts_with_worker: Visar alla pass som har haft jobbare
+    ladybug: Nyckelpiga
+    lv_first: Första läsvecka
+    new: Nytt Cafépass
+    overview: Översikt
+    other_date: Sök från annat datum
+    remove: Ta bort Cafépass
+    setup_single: Skapa ensklit pass
+    setup_weeks: Skapa pass för läsperiod
+    single: Enskilt Cafepass
+    title: Hilbert Café
+    admin:
+      setup_fill_date_preview: Genom att fylla i datum och tid för läsperiodens
+        första pass genereras en förhandsvisning för hela läsperioden
+      setup_single: För att lägga till enskilt pass
+
+  unauthorized:
+    ladybug:
+      cafe_shift: Du måste vara inloggad och vara Nyckelpiga för att visa sidan.
+    show:
+      cafe_shift: Du måste logga in för att jobba i Hilbert Café.

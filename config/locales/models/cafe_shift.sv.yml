@@ -1,0 +1,17 @@
+sv:
+  activerecord:
+    models:
+      cafe_shift: Cafepass
+    attributes:
+      cafe_shift:
+        cafe_worker: Jobbare
+        lp: Läsperiod
+        lv: Läsvecka
+        lv_last: Andra läsvecka
+        pass: Pass
+        start: Arbetsdag
+  cafe_shift:
+    authorize_failed: misslyckades, du har inte rättighet att redigera.
+    council_battle: Utskottskamp
+    has_worker: passet har redan en.
+    no_longer_editable: Går inte längre att redigera

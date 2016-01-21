@@ -1,0 +1,3 @@
+$('#<%=%(cafe_shift_#{@id})%>').fadeOut();
+$('#<%=%(cafe_shift_#{@id})%>').html('');
+$('#status').text("<%= alert_destroy(CafeShift) %>").effect("bounce", 1500);

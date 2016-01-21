@@ -1,0 +1,20 @@
+sv:
+  activerecord:
+    models:
+      cafe_worker: Jobbare
+    attributes:
+      cafe_worker:
+        user_id: Användare
+        councils: Utskott
+        competition: Cafetävling
+        group: Grupp - om inget utskott passar
+  helpers:
+    submit:
+      cafe_worker:
+        create: Arbeta på passet
+        update: Uppdatera uppgifter
+  cafe_worker:
+    destroy: Hoppa av passet
+    created: Du arbetar nu på passet
+    updated: Dina uppgifter uppdaterades
+    destroyed: Du arbetar inte längre på passet

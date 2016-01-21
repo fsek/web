@@ -1,0 +1,43 @@
+.cafe {
+  &.working {
+    color: $fsek-orange;
+    display: block;
+    font-weight: bold;
+    margin: 20px 0 20px 0;
+  }
+
+  tr {
+    &.with-worker {
+
+      td {
+        // Need !important because it is the gem
+        background-color: rgba($unify-green, 0.4) !important;
+      }
+    }
+  }
+
+  &.competition {
+    .worker {
+      display: inline-block;
+      font-size: 20px;
+
+      &.count {
+        color: $fsek-orange;
+
+        &.right {
+          float: right;
+        }
+      }
+    }
+
+    th {
+      &.score {
+        width: 35%;
+      }
+
+      &.worker {
+        width: 100%;
+      }
+    }
+  }
+}
