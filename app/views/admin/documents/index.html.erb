@@ -1,0 +1,28 @@
+<%= provide(:title, t('document.title')) %>
+<div class="headline">
+  <h3><%= t('document.title') %></h3>
+</div>
+<div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
+  <%= link_to(t('document.new'), new_admin_document_path, class: 'btn primary') %>
+  <%= link_to(t('document.index'), documents_path, class: 'btn secondary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@documents.grid) do |g|
+    g.column(name: Document.human_attribute_name(:title), attribute: 'title') do |document|
+      link_to(document, document_path(document), target: :blank)
+    end
+    g.column(name: Document.human_attribute_name(:category), attribute: 'category')
+    g.column(name: Document.human_attribute_name(:public), attribute: 'public') do |document|
+      yes_no(document.public)
+    end
+    g.column(name: Document.human_attribute_name(:updated_at), attribute: 'updated_at',
+             filter: false)
+    g.column(name: model_name(User), assoc: :user, attribute: 'firstname') do |document|
+      user_link(document.user)
+    end
+    g.column(name: t(:edit), filter: false) do |document|
+      link_to(t('document.edit'), edit_admin_document_path(document))
+    end
+  end -%>
+</div>

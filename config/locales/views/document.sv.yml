@@ -1,0 +1,12 @@
+sv:
+  document:
+    admin:
+      index: Administrera dokument
+    all_categories: Alla kategorier
+    categories: Kategorier
+    destroy: Förinta dokument
+    edit: Redigera dokument
+    index: Alla dokument
+    new: Nytt dokument
+    show: Visa dokument
+    title: Dokument

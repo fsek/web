@@ -10,3 +10,5 @@ sv:
         category: Kategori
         download: Nerladdning
         user_id: Uppladdad av
+        created_at: Skapad
+        updated_at: Uppdaterad

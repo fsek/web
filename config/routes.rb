@@ -147,6 +147,10 @@ Fsek::Application.routes.draw do
 
     resources :documents, path: :dokument
 
+    namespace :admin do
+      resources :documents, path: :dokument, except: :show
+    end
+
 
     namespace :admin do
       resources :elections, path: :val do

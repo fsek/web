@@ -4,7 +4,9 @@ class DocumentsController < ApplicationController
   load_permissions_and_authorize_resource
 
   def index
+    @documents = @documents.where(category: params[:category])
     @documents_grid = initialize_grid(@documents)
+    @categories = Document.pluck(:category).uniq
   end
 
   def new
@@ -44,7 +46,11 @@ class DocumentsController < ApplicationController
   private
 
   def set_documents
-    @documents = (current_user) ? Document.all : Document.publik
+    if current_user.try(:member?)
+      @documents = Document.all
+    else
+      Document.publik
+    end
   end
 
   def document_params

@@ -1,19 +1,31 @@
-  <div class="headline headline-md"><h3>Dokument</h3></div>
-  <div class="col-md-10 col-md-offset-1">
-    <%= grid(@documents_grid) do |g|
-      g.column name: "Titel",attribute: "title",filter: false do |post|
-        link_to(post.title,document_path(post),target: "blank")
-      end
-      g.column name: "Kategori",attribute: "category",filter: false do |post|
-        post.category
-      end
-      g.column name: "Skapad", attribute: "created_at",filter: false do |post|
-        post.created_at.to_date
-      end
-      if can? :edit, Document
-        g.column name: "Redigera",filter: false do |post|
-          link_to(post.title,edit_document_path(post))
-        end
-      end
-    end -%>
+<%= provide(:title, t('document.title')) %>
+<div class="headline">
+  <h3><%= t('document.title') %></h3>
+</div>
+<div class="col-md-3 col-sm-12 cafe competition margin-bottom-20">
+  <div class="dropdown">
+    <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <%= t('document.categories') %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="oldies">
+      <% @categories.each do |cat| %>
+        <li>
+          <%= link_to(cat, documents_path(category: cat)) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<div class="col-md-9 col-sm-12">
+  <%= grid(@documents_grid) do |g|
+    g.column(name: Document.human_attribute_name(:title), attribute: 'title',
+             filter: false) do |document|
+      link_to(document, document_path(document), target: :blank)
+    end
+    g.column(name: Document.human_attribute_name(:category), attribute: 'category',
+             filter: false)
+    g.column(name: Document.human_attribute_name(:created_at), attribute: 'created_at',
+             filter: false)
+  end -%>
 </div>

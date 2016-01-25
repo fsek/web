@@ -1,11 +1,25 @@
 # encoding: UTF-8
 class Document < ActiveRecord::Base
+  include CarrierWave::Compatibility::Paperclip
   belongs_to :user
-  has_attached_file :pdf,
-                    path: ':rails_root/storage/documents/:filename',
-                    url: '/storage/documents/:filename'
-  validates_attachment_presence :pdf
-  validates_attachment_content_type :pdf, content_type: 'application/pdf'
+
+  validates :title, :category, presence: true
+
+  mount_uploader :pdf, DocumentUploader, mount_on: :pdf_file_name
+
+  # For caching pdf in form
+  attr_accessor :pdf_cache
 
   scope :publik, -> { where(public: true).order('category asc') }
+
+  def to_s
+    title || id
+  end
+
+  def self.categories
+    where.not(category: nil).
+      where.not(category: '').
+      order(:category).
+      pluck(:category).uniq
+  end
 end

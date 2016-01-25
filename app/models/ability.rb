@@ -32,7 +32,7 @@ class Ability
       can [:show, :display, :hide], Post
 
       can [:read, :mail], Contact
-      can :read, Document
+      can :read, Document, public: true
     end
 
     # Only for members of the Guild

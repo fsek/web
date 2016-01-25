@@ -1,0 +1,14 @@
+<%= provide(:title, t('document.edit')) %>
+<div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
+  <div class="headline">
+    <h2><%= t('document.edit') %></h2>
+  </div>
+  <%= render 'form' %>
+  <hr>
+  <%= link_to(t('document.destroy'), admin_document_path(@document),
+              method: :delete, class: 'btn danger pull-right') %>
+  <%= link_to(t('document.show'), document_path(@document),
+              target: :blank, class: 'btn secondary') %>
+  <%= link_to(t('document.index'), admin_documents_path,
+              class: 'btn secondary') %>
+</div>

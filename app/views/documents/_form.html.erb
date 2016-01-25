@@ -1,15 +1,8 @@
-<%= simple_form_for(@document, html: { class: '' } ) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :category, collection: ['Styrdokument', 'Protokoll', 'Sektionsmöten', 'Övrigt'] %>
-    <% if @document.pdf? %>
-      <p><%=link_to(@document.pdf_file_name,@document)%></p>
-    <% else %>
-      <%= f.input :pdf, as: :file %>
-    <% end %>
-    <%= f.input :public, as: :boolean %>
-  </div>
-  <div class="form-group">
-    <%= f.button :submit, class: 'btn btn-u' %>
-  </div>
+<%= simple_form_for(@document) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :category, collection: ['Styrdokument', 'Protokoll', 'Sektionsmöten', 'Övrigt'] %>
+  <p><%=link_to(@document.pdf_file_name,@document)%></p>
+  <%= f.input :pdf, as: :file %>
+  <%= f.input :public, as: :boolean %>
+  <%= f.button :submit %>
 <% end %>

@@ -77,6 +77,12 @@
       </li>
     <% end %>
 
+    <% if can? :manage, Document %>
+      <li class="dropdown-submenu">
+        <%= link_to(model_name(Document), admin_documents_path) %>
+      </li>
+    <% end %>
+
     <% if can? :modify, Council %>
       <li class="dropdown-submenu">
         <a href=""><%=model_name(Council)%></a>
