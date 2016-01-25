@@ -39,7 +39,7 @@ RSpec.describe Admin::EventsController, type: :controller do
         post :create, event: attributes_for(:event)
       end.should change(Event, :count).by(1)
 
-      response.should redirect_to([:admin, Event.last])
+      response.should redirect_to(edit_admin_event_path(Event.last))
     end
 
     it 'invalid parameters' do
