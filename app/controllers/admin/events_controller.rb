@@ -21,7 +21,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.author = current_user
     if @event.save
-      redirect_to admin_event_path(@event), notice: alert_create(Event)
+      redirect_to edit_admin_event_path(@event), notice: alert_create(Event)
     else
       @tab = :info
       render :new, status: 422
