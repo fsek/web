@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+# Do not forget to update in .ruby-version, Capfile and circle.yml
+ruby '2.3.0'
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.5.1'
 
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
