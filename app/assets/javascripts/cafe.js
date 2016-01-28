@@ -1,6 +1,6 @@
-var loadCalendar;
+var cafeCalendar;
 
-loadCalendar = function() {
+cafeCalendar = function() {
   return $('#cafe-calendar').fullCalendar({
     events: '/hilbertcafe/feed',
     weekNumbers: true,
@@ -48,5 +48,5 @@ loadSelect2 = function() {
   });
 };
 
-$(document).ready(loadCalendar);
+$(document).ready(cafeCalendar);
 $(document).ready(loadSelect2);
