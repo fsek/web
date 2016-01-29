@@ -1,6 +1,4 @@
-var cafeCalendar;
-
-cafeCalendar = function() {
+function cafeCalendar() {
   return $('#cafe-calendar').fullCalendar({
     events: '/hilbertcafe/feed',
     weekNumbers: true,
@@ -42,11 +40,4 @@ cafeCalendar = function() {
   });
 };
 
-loadSelect2 = function() {
-  $('.select2').select2({
-    theme: 'bootstrap'
-  });
-};
-
-$(document).ready(cafeCalendar);
-$(document).ready(loadSelect2);
+$(cafeCalendar);
