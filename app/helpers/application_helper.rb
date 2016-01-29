@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def yes_no(value)
     if value
       I18n.t('yes')

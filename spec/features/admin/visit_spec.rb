@@ -21,7 +21,7 @@ RSpec.feature 'admin visits paths' do
     constants: [:index, :show, :edit, :new],
     contacts: [:index, :new, :show, :edit],
     councils: [:index, :show],
-    documents: [:index, :new],
+    documents: [:index, :show],
     elections: [:index],
     events: [:show],
     faqs: [:index, :show, :new],

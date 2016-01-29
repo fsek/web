@@ -13,7 +13,7 @@ RSpec.feature 'visits paths' do
     calendars: [:index],
     contacts: [:index, :show],
     councils: [:index, :show],
-    documents: [:index, :new],
+    documents: [:index, :show],
     elections: [:index],
     events: [:show],
     faqs: [:index, :show, :new],

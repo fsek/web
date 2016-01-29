@@ -2,30 +2,31 @@
 <div class="headline">
   <h3><%= t('document.title') %></h3>
 </div>
-<div class="col-md-3 col-sm-12 cafe competition margin-bottom-20">
-  <div class="dropdown">
-    <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <%= t('document.categories') %>
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="oldies">
-      <% @categories.each do |cat| %>
-        <li>
-          <%= link_to(cat, documents_path(category: cat)) %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+<div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
+  <%= document_dropdown_button(collection: @documents.categories,
+                               current: @documents.current_category) %>
+  <button class="wg-external-submit-button btn secondary" data-grid-name="grid">
+    <%= t('document.filter') %>
+  </button>
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('document.reset_filter') %>
+  </button>
+  <% if can?(:manage, Document) %>
+    <hr>
+    <%= link_to(t('document.admin.index'), admin_documents_path, class: 'btn secondary') %>
+  <% end %>
 </div>
-<div class="col-md-9 col-sm-12">
-  <%= grid(@documents_grid) do |g|
-    g.column(name: Document.human_attribute_name(:title), attribute: 'title',
-             filter: false) do |document|
+
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@documents.grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: Document.human_attribute_name(:title), attribute: 'title') do |document|
       link_to(document, document_path(document), target: :blank)
     end
     g.column(name: Document.human_attribute_name(:category), attribute: 'category',
              filter: false)
-    g.column(name: Document.human_attribute_name(:created_at), attribute: 'created_at',
+    g.column(name: Document.human_attribute_name(:updated_at), attribute: 'updated_at',
              filter: false)
   end -%>
+  <%= simple_format(t('document.filter_explanation')) %>
 </div>
