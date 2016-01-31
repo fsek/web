@@ -3,10 +3,14 @@
   <h1><%= model_name(Rent) %></h1>
 </div>
 <div class='col-md-3 col-xs-12'>
-  <div class='headline headline-md'><h2><%= t('links') %></h2></div>
   <%= link_to(t('rent.new'), new_rent_path, class: 'btn primary') %>
   <%= link_to(t('rent.back_to_index'), rents_path, class: 'btn secondary') %>
   <%= link_to(t('rent.contact'), contacts_path, class: 'btn secondary') %>
+  <% if @terms.present? %>
+    <%= link_to( document_path(@terms), target: 'blank_p', class: 'btn secondary') do %>
+      <%= fa_icon('paperclip') %> <%= t('rent.terms') %>
+    <% end %>
+  <% end %>
 </div>
 <div class='col-md-9 col-xs-12'>
   <div class='headline headline-md'><h2><%= t('rent.your_bookings')%></h2></div>

@@ -51,6 +51,11 @@ class RentValidator < ActiveModel::Validator
       state = false
     end
 
+    if !purpose(record)
+      record.errors.add(:purpose, :blank)
+      state = false
+    end
+
     state
   end
 
@@ -66,6 +71,10 @@ class RentValidator < ActiveModel::Validator
 
   def d_til(record)
     record.d_til.present?
+  end
+
+  def purpose(record)
+    record.purpose.present?
   end
 
   # Validations assume that d_from, d_til and user is present.
