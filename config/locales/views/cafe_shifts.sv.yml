@@ -4,17 +4,18 @@ sv:
     ladybug: Nyckelpiga
     lv_first: Första läsvecka
     new: Nytt Cafépass
-    overview: Översikt
     other_date: Sök från annat datum
+    overview: Översikt
     remove: Ta bort Cafépass
+    setup: Skapa pass för dag eller vecka
+    setup_day: Dag
+    setup_day_explanation: Fyll i datum och tid för dagens första pass, fyll även i första läsvecka.
+    setup_error: Någonting blev fel, kontrollera att alla fält fyllts i korrekt och att det inte överlappar med andra pass.
     setup_single: Skapa ensklit pass
-    setup_weeks: Skapa pass för läsperiod
+    setup_week: Vecka
+    setup_week_explanation: Fyll i datum och tid för en läsveckas första pass samt första och sista läsveckan genereras pass för alla läsveckorna däremellan.
     single: Enskilt Cafepass
     title: Hilbert Café
-    admin:
-      setup_fill_date_preview: Genom att fylla i datum och tid för läsperiodens
-        första pass genereras en förhandsvisning för hela läsperioden
-      setup_single: För att lägga till enskilt pass
 
   unauthorized:
     ladybug:

@@ -104,17 +104,45 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
   end
 
   describe 'POST #setup_create' do
-    it 'creates multiple cafe_shifts' do
+    it 'creates weeks of cafe_shifts' do
+      attributes = { lv: 1,
+                     lv_last: 1,
+                     start: Time.zone.now.change(hour: 8),
+                     lp: 4,
+                     setup_mode: :week }
       lambda do
-        post(:setup_create, cafe_shift: { lv: 1,
-                                          lv_last: 1,
-                                          start: Time.zone.now.change(hour: 8),
-                                          lp: 4 })
+        post(:setup_create, cafe_shift: attributes)
       end.should change(CafeShift, :count).by(20)
+
       response.should redirect_to(admin_cafe_shifts_path)
 
       assigns(:cafe_shift).new_record?.should be_truthy
       assigns(:cafe_shift).instance_of?(CafeShift).should be_truthy
+    end
+
+    it 'creates days of cafe_shifts' do
+      attributes = { lv: 1,
+                     lv_last: 1,
+                     start: Time.zone.now.change(hour: 8),
+                     lp: 4,
+                     setup_mode: :day }
+      lambda do
+        post(:setup_create, cafe_shift: attributes)
+      end.should change(CafeShift, :count).by(4)
+
+      response.should redirect_to(admin_cafe_shifts_path)
+
+      assigns(:cafe_shift).new_record?.should be_truthy
+      assigns(:cafe_shift).instance_of?(CafeShift).should be_truthy
+    end
+
+    it 'invalid params' do
+      lambda do
+        post(:setup_create, cafe_shift: { start: nil })
+      end.should change(CafeShift, :count).by(0)
+
+      response.status.should eq(422)
+      response.should render_template(:setup)
     end
   end
 end

@@ -15,7 +15,7 @@ class CafeShift < ActiveRecord::Base
   scope :with_worker, -> { joins(:cafe_worker).includes(:cafe_worker) }
   scope :without_worker, -> { where('id NOT IN (SELECT cafe_shift_id FROM cafe_workers)') }
 
-  attr_accessor :lv_first, :lv_last
+  attr_accessor :lv_first, :lv_last, :setup_mode
 
   def to_s
     if user.present?

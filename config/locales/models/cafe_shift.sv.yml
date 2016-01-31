@@ -7,9 +7,10 @@ sv:
         cafe_worker: Jobbare
         lp: Läsperiod
         lv: Läsvecka
-        lv_last: Andra läsvecka
+        lv_last: Sista läsvecka
         pass: Pass
         start: Arbetsdag
+        setup_mode: Skaparläge
   cafe_shift:
     authorize_failed: misslyckades, du har inte rättighet att redigera.
     council_battle: Utskottskamp
