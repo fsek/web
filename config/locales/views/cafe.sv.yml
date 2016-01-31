@@ -1,6 +1,7 @@
 sv:
   cafe:
-    admin_title: Administration för Hilbert Café
+    admin:
+      back_to_hilbert: Tillbaka till vanlig vy
     already_working: Du är uppskriven som arbetare på passet.
     chosen_study_period: Vald läsperiod
     competition: Tävling
