@@ -28,6 +28,11 @@
       </span>
       <br>
     <% end %>
+    <span class="weekday-wrap">
+      <%= link_to(calendars_path) do %>
+        <%= fa_icon('calendar') %> <%= t('event.stream_more') %>
+      <% end%>
+    </span>
   </div>
   <hr>
 <% end %>
