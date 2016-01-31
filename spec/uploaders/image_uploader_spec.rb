@@ -1,3 +1,4 @@
+require 'rails_helper'
 require 'carrierwave/test/matchers'
 
 RSpec.describe ImageUploader do
@@ -8,7 +9,7 @@ RSpec.describe ImageUploader do
   before do
     ImageUploader.enable_processing = true
 
-    File.open('app/assets/images/hilbert.jpg') do |f|
+    File.open('spec/assets/image.jpg') do |f|
       uploader.store!(f)
     end
   end

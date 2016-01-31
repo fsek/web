@@ -1,0 +1,15 @@
+sv:
+  document:
+    admin:
+      index: Administrera dokument
+    all_categories: Alla kategorier
+    categories: Kategorier
+    destroy: Förinta dokument
+    edit: Redigera dokument
+    filter: Filtrera
+    filter_explanation: Genom att fylla i fälten under rubrikerna kan dokumenten filtreras
+    index: Alla dokument
+    new: Nytt dokument
+    reset_filter: Återställ filtrering
+    show: Visa dokument
+    title: Dokument

@@ -36,6 +36,13 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
   config.extend ControllerMacros
+
+  # Clear uploaded files
+  config.after(:each) do
+    if Rails.env.test? || Rails.env.cucumber?
+      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
+    end
+  end
 end
 
 Shoulda::Matchers.configure do |config|

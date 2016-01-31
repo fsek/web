@@ -23,6 +23,8 @@
 //= require fullcalendar/lang/sv.js
 //= require fancybox
 //= require fotorama
+//= require select2
+//= require select2_locale_sv
 //= require_tree .
 //= require turbolinks
 //= require wice_grid
@@ -30,8 +32,6 @@
 //= require bootstrap-datepicker
 //= require bootstrap-datetimepicker
 //= require pickers
-//= require select2
-//= require select2_locale_sv
 
 var bottom;
 bottom = function () {

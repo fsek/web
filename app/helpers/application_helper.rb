@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def yes_no(value)
+    if value
+      I18n.t('yes')
+    else
+      I18n.t('no')
+    end
+  end
+
   def fa_icon(icon_name)
     content_tag :i, nil, class: ("fa fa-" + icon_name)
   end

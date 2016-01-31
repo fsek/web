@@ -34,7 +34,7 @@ RSpec.describe Ability do
     Constant.new => { yes: [], no: standard },
     Contact.new => { yes: [:read, :mail], no: [:create, :update, :destroy] },
     Council.new => { yes: [:read], no: [:create, :update, :destroy] },
-    Document.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Document.new(public: true) => { yes: [:read], no: [:create, :update, :destroy] },
     Election.new => { yes: [:index], no: [:create, :update, :destroy] },
     Event.new => { yes: [], no: standard},
     Faq.new => { yes: [:read, :create], no: [:update, :destroy] },

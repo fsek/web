@@ -3,8 +3,8 @@ module ControllerMacros
     config.before :each, type: :controller do
       @ability = Object.new
       @ability.extend(CanCan::Ability)
-      allow(controller).to receive(:current_ability).and_return(@ability)
-      allow(controller).to receive(:load_permissions).and_return(nil)
+      controller.stub(:current_ability).and_return(@ability)
+      controller.stub(:load_permissions).and_return(nil)
     end
   end
 

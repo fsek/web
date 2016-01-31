@@ -145,7 +145,11 @@ Fsek::Application.routes.draw do
 
     resources :news, path: :nyheter, only: [:index, :show]
 
-    resources :documents, path: :dokument
+    resources :documents, path: :dokument, only: [:index, :show]
+
+    namespace :admin do
+      resources :documents, path: :dokument, except: :show
+    end
 
 
     namespace :admin do

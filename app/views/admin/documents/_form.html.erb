@@ -1,0 +1,11 @@
+<%= simple_form_for([:admin, @document]) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :category, collection: @categories, input_html: { class: 'select2_tags' },
+              include_blank: false %>
+  <% if @document.pdf.present? %>
+    <p><%= link_to(@document.pdf_file_name, @document)%></p>
+  <% end %>
+  <%= f.input :pdf, as: :file %>
+  <%= f.input :public, as: :boolean %>
+  <%= f.button :submit %>
+<% end %>

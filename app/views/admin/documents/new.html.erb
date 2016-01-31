@@ -1,0 +1,9 @@
+<%= provide(:title, t('document.new')) %>
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h2><%= t('document.new') %></h2>
+  </div>
+  <%= render 'form' %>
+  <hr>
+  <%= link_to(t('document.index'), admin_documents_path, class: 'btn secondary') %>
+</div>
