@@ -4,8 +4,8 @@ class Admin::DocumentsController < ApplicationController
 
   def index
     documents = filter_documents(Document.all, params[:category])
-    grid = initialize_grid(documents, order: 'documents.title',
-                                      order_direction: 'asc',
+    grid = initialize_grid(documents, order: 'documents.updated_at',
+                                      order_direction: 'desc',
                                       include: :user)
 
     @documents = DocumentView.new(grid: grid,
