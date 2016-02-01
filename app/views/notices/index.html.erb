@@ -1,21 +1,38 @@
-<% provide(:title, 'Notiser') %>
-<div class="col-md-12 reg-page">
-    <div class="row">
-        <h2 id="notice-headline">Notiser</h2>
-          <%= grid(@notice_grid) do |g|
-            g.row_attributes do |post|
-              if (post.public == true)
-                {style: 'background: rgba(252, 155, 0,0.7);'}
-              end
-            end
-            g.column name: "Titel",attribute: "title" do |post|
-              link_to(post.title,post)
-            end
-            g.column name: "Publik",attribute: "public"
-            g.column name: "Publiceringsdatum", attribute: "d_publish"
-            g.column name: "Tas bort", attribute: "d_remove"
-            g.column name: "Sorteringsindex", attribute: 'sort'
-         end -%>
-    </div>
-    <%=link_to('Skapa ny', new_notice_path, class: 'btn btn-u')%>
+<% provide(:title, t('notice.title')) %>
+<div class="headline notice">
+  <h2><%= t('notice.index') %></h2>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to(t('notice.new'), new_notice_path, class: 'btn primary') %>
+  <hr>
+  <button class="wg-external-submit-button btn secondary" data-grid-name="grid">
+    <%= t('document.filter') %>
+  </button>
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('document.reset_filter') %>
+  </button>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@notice_grid, hide_submit_button: true,
+           hide_reset_button: true) do |g|
+    g.column(name: Notice.human_attribute_name(:title),
+             attribute: 'title') do |notice|
+      link_to(notice, notice)
+    end
+    g.column(name: Notice.human_attribute_name(:public),
+             attribute: 'public') do |notice|
+      yes_no(notice.public)
+    end
+    g.column(name: Notice.human_attribute_name(:d_publish),
+             attribute: 'd_publish')
+    g.column(name: Notice.human_attribute_name(:d_remove),
+             attribute: 'd_remove')
+    g.column(name: Notice.human_attribute_name(:sort),
+             attribute: 'sort')
+    g.column(name: t(:edit)) do |notice|
+      link_to(t(:edit), edit_notice_path(notice))
+    end
+  end -%>
 </div>

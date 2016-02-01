@@ -1,10 +1,11 @@
-<% provide(:title, 'Notiser') %>
-<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
-  <h3 class="headline headline-md">
-    <%= t(:edit, attr: model_name(Notice)) %>
-  </h3>
+<% provide(:title, t('notice.title')) %>
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h2><%= t('notice.edit') %></h2>
+  </div>
   <%= render 'form'%>
   <hr>
-  <%= link_to(t(:index, attr: models_name(Notice)), notices_path, class: "btn btn-u")%>
-  <%= link_to(t(:back_to_root), root_url, class: "btn btn-u")%>
+  <%= link_to(t('notice.destroy'), notice_path(@notice), method: :delete,
+                                   class: 'btn danger pull-right') %>
+  <%= link_to(t('notice.index'), notices_path, class: 'btn secondary') %>
 </div>

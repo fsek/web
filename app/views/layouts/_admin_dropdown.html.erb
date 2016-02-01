@@ -77,6 +77,16 @@
       </li>
     <% end %>
 
+    <% if can? :manage, Notice %>
+      <li class="dropdown-submenu">
+        <%= link_to(t('notice.title'), notices_path)%>
+        <ul class="dropdown-menu">
+          <li><%= link_to(t('notice.title'), notices_path) %></li>
+          <li><%= link_to(t('notice.new'), new_notice_path) %></li>
+        </ul>
+      </li>
+    <% end %>
+
     <% if can? :manage, Document %>
       <li class="dropdown-submenu">
         <%= link_to(model_name(Document), admin_documents_path) %>

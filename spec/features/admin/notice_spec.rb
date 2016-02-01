@@ -11,8 +11,10 @@ RSpec.feature 'admin create notice' do
 
     And 'visit notice index' do
       visit notices_path
-      find('h2#notice-headline').text.should include(Notice.model_name.human(count: 2))
-      find(:linkhref, new_notice_path).click
+      find('.headline.notice > h2').text.should include(I18n.t('notice.index'))
+      within('.col-md-2.col-sm-12') do
+        find(:linkhref, new_notice_path).click
+      end
     end
 
     And 'Fill out notice form' do

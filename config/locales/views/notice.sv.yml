@@ -1,0 +1,7 @@
+sv:
+  notice:
+    title: Notiser
+    edit: Redigera notis
+    new: Ny notis
+    destroy: Förinta notis
+    index: Alla notiser

@@ -6,43 +6,40 @@ class NoticesController < ApplicationController
   end
 
   def show
+    @notice = Notice.find(params[:id])
   end
 
   def new
+    @notice = Notice.new
   end
 
   def edit
+    @notice = Notice.find(params[:id])
   end
 
   def create
+    @notice = Notice.new(notice_params)
     if @notice.save
-      redirect_to @notice, notice: alert_create(Notice)
+      redirect_to notice_path(@notice), notice: alert_create(Notice)
     else
       render :new, status: 422
     end
   end
 
   def update
+    @notice = Notice.find(params[:id])
     if @notice.update(notice_params)
-      redirect_to @notice, notice: alert_update(Notice)
+      redirect_to notice_path(@notice), notice: alert_update(Notice)
     else
       render :edit, status: 422
     end
   end
 
   def destroy
-    @notice.destroy
+    notice = Notice.find(params[:id])
+
+    notice.destroy!
     redirect_to notices_url, notice: alert_destroy(Notice)
-  end
-
-  # Requested to hide the current Notice
-  def hide
-    @notice.display(false)
-  end
-
-  # Requested to display the current Notice
-  def display
-    @notice.display(true)
   end
 
   # Action to show notice picture
