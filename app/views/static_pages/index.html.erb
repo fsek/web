@@ -4,8 +4,8 @@
       <div class="item active">
         <div class="start-background">
           <div class="container">
-            <%= content_tag(:h1, t('front.welcome')) %>
-            <%= content_tag(:p, t('front.below_welcome')) %>
+            <h1><%= t('front.welcome') %></h1>
+            <p><%= t('front.below_welcome') %></p>
           </div>
         </div>
       </div>
@@ -14,16 +14,16 @@
 <% end %>
 
 <div class="col-md-7 col-sm-12">
-  <%= render @notices%>
+  <%= render @start_page.notices %>
 </div>
 
 <div class="col-md-5 col-sm-12">
-  <%= render '/events/stream', events: @events %>
+  <%= render '/events/stream', events: @start_page.events %>
   <div class="headline headline-md">
-    <%= content_tag(:h3, models_name(News)) %>
+    <h3><%= models_name(News) %></h3>
   </div>
-  <%= render @news%>
+  <%= render @start_page.news%>
   <%= link_to news_index_path do%>
     <%= fa_icon('plus') %> <%= t('news.more') %>
-<%end%>
+  <% end %>
 </div>

@@ -35,6 +35,11 @@ class Event < ActiveRecord::Base
     starts_at.to_date
   end
 
+  def self.stream
+    between(Time.zone.now.beginning_of_day,
+            (Time.zone.now + 6.days).end_of_day)
+  end
+
   def print
     if starts_at.day == ends_at.day
       %(#{title} #{starts_at.hour}-#{ends_at.hour})

@@ -6,7 +6,7 @@ FactoryGirl.define do
     description
     location
     starts_at { Time.zone.now + 10.days }
-    ends_at { Time.zone.now + 10.days + 12.hours }
+    ends_at { starts_at + 12.hours }
   end
 
   trait :registration do
