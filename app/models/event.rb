@@ -21,6 +21,9 @@ class Event < ActiveRecord::Base
     where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
           start, stop, start, stop)
   end
+  scope :stream, -> do
+    between(Time.zone.now.beginning_of_day, (Time.zone.now + 6.days).end_of_day)
+  end
 
   def to_s
     title
@@ -33,11 +36,6 @@ class Event < ActiveRecord::Base
   # To group event-stream.
   def day
     starts_at.to_date
-  end
-
-  def self.stream
-    between(Time.zone.now.beginning_of_day,
-            (Time.zone.now + 6.days).end_of_day)
   end
 
   def print

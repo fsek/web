@@ -1,0 +1,8 @@
+sv:
+  cookies:
+    title: Cookies
+    general:
+      first: Cookies är små textfiler som laddas ner till din dator, tablet eller mobiltelefon när du besöker webbsidor eller applikationer. Webbsidan eller applikationen kan sedan hämta dessa cookies från din webbläsare (t.ex. Google Chrome, Mozilla Firefox eller Microsoft Edge) varje gång du besöker sidan. Med hjälp av detta kan sidan känna igen dig, komma ihåg dina inställningar och ge dig en mer säker onlineupplevelse.
+      second: Generellt är cookies väldigt användbara och används av nästan varje webbsida du besöker för att göra din onlineupplevelse så smidig som möjlig. På grund av säkerhetsanledningar fungerar vissa webbsidor inte alls om använding av cookies inaktiverats.
+      third: Cookies använder vanligen inte information för att identifiera en person, utan iställer information för att identifiera en webbläsare på en specifik dator, tablet eller mobiltelefon.
+      fourth: Om du föredrar det, kan du begränsa, blockera eller radera cookies genom att ändra inställningar för webbläsaren. Detta kan leda till att webbsidor inte fungerar ordentligt. För att läsa mer om hur cookies påverkar dig och ditt webbanvändande, gå in på

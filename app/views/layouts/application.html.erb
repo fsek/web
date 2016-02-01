@@ -5,33 +5,36 @@
 <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="sv"> <!--<![endif]-->
-<head>
-  <title><%= full_title(yield(:title)) %></title>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <%= favicon_link_tag 'favicon.ico' %>
-</head>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag 'favicon.ico' %>
+  </head>
 
-<body>
+  <body>
 
-<%= render 'layouts/topbar' %>
+    <span class="cookies">
+      <%= render 'cookies_eu/consent_banner', link: cookies_path %>
+    </span>
 
-<%= render 'layouts/header' %>
+    <%= render 'layouts/topbar' %>
 
-<%= yield :pre_content %>
+    <%= render 'layouts/header' %>
 
-<%= render 'layouts/content' %>
+    <%= yield :pre_content %>
 
-<%= render "layouts/footer" %>
+    <%= render 'layouts/content' %>
 
-<%= render "layouts/copyright" %>
+    <%= render "layouts/footer" %>
 
-</body>
+    <%= render "layouts/copyright" %>
+  </body>
 </html>

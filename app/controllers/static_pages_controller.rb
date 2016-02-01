@@ -5,6 +5,9 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  def cookies_information
+  end
+
   def company_offer
   end
 

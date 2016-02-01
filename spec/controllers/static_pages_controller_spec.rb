@@ -4,7 +4,7 @@ RSpec.describe StaticPagesController, type: :controller do
   let(:user) { create(:user) }
   let(:news) { create(:news, user: user) }
 
-  allow_user_to([:about, :company_offer, :company_about, :index], :static_pages)
+  allow_user_to(:manage, :static_pages)
   before(:each) do
     allow(controller).to receive(:current_user) { user }
   end
@@ -12,6 +12,13 @@ RSpec.describe StaticPagesController, type: :controller do
   describe 'GET #about' do
     it 'renders page with status 200' do
       get(:about)
+      response.status.should eq(200)
+    end
+  end
+
+  describe 'GET #cookies' do
+    it 'renders page with status 200' do
+      get(:cookies_information)
       response.status.should eq(200)
     end
   end

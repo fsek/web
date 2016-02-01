@@ -1,0 +1,13 @@
+.cookies {
+  .cookies-eu {
+    background: $light-gray;
+
+    .cookies-eu-button-holder {
+      .cookies-eu-ok {
+        background-color: $fsek-orange;
+        background-image: none;
+        border: 1px solid $fsek-orange;
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ Fsek::Application.routes.draw do
   get '/twitter', to: redirect('https://www.twitter.com/Fsektionen'), as: :twitter, status: 301
   get '/youtube', to: redirect('https://www.youtube.com/user/fsektionen'), as: :youtube, status: 301
 
+  get :cookies_information, controller: :static_pages, as: :cookies, path: :cookies
   get :about, controller: :static_pages, path: :om, as: :om
   get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about
   get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
