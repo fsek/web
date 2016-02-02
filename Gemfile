@@ -12,6 +12,7 @@ gem 'cancancan'
 # https://github.com/carrierwaveuploader/carrierwave#multiple-file-uploads
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'coffee-rails'
+gem 'cookies_eu'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'devise'
 gem 'factory_girl_rails'

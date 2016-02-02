@@ -23,7 +23,13 @@ RSpec.describe Ability do
     Page.new => { yes: [:show], no: [:index, :new, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
     Post.new => { yes: [:collapse, :display], no: [:read, :create, :update] },
-    Rent.new => { yes: [:main], no: [:create, :update, :destroy] }
+    Rent.new => { yes: [:main], no: [:create, :update, :destroy] },
+    static_pages: { yes: [:index,
+                          :cookies_information,
+                          :company_about,
+                          :company_offer,
+                          :about],
+                    no: [] }
   }
 
   ab_signed = {

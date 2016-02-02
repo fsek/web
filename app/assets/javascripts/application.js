@@ -32,6 +32,7 @@
 //= require bootstrap-datepicker
 //= require bootstrap-datetimepicker
 //= require pickers
+//= require cookies_eu
 
 var bottom;
 bottom = function () {
