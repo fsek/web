@@ -14,7 +14,7 @@ class Ability
     can [:index, :feed], CafeShift
     can :main, Rent
     cannot [:create, :destroy, :update], Rent
-    can :show, Page
+    can :show, Page, public: true
 
     can :show, Event
     can [:index, :export], :calendar
@@ -37,7 +37,6 @@ class Ability
 
     # Only for members of the Guild
     if user.member?
-      # Only members allowed to rent
       can [:show], Album
       can [:show, :index, :new, :create], Rent
       can [:edit, :update, :destroy], Rent, user_id: user.id
@@ -47,6 +46,7 @@ class Ability
       can [:create, :index], Candidate
       can [:update, :show, :destroy], Candidate, user_id: user.id
       can [:create], Nomination
+      can :show, Page
     end
 
     # Note: Root access is given dynamically by having a post with permissions :manage, :all

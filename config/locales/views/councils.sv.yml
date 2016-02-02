@@ -1,6 +1,8 @@
 sv:
-  council: Utskott
-
-  councils:
+  council:
+    destroy: Förinta utskott
+    edit: Redigera utskott
+    index: Alla utskott
+    new: Nytt utskott
     no_posts: Detta utskott saknar poster, lägg till en post för att välja utskottsordförande.
-
+    show: Visa utskott

@@ -1,0 +1,9 @@
+sv:
+  page:
+    admin_title: Administrera sidor
+    edit: Redigera sida
+    destroy: Förinta sida
+    image_already_uploaded: En eller flera av bilderna kunde inte laddas upp
+    index: Alla sidor
+    new: Ny sida
+    show: Visa sida

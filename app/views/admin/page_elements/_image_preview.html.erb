@@ -1,0 +1,10 @@
+<% if page.present? && page.page_images.present?%>
+  <% page.page_images.each do |image| %>
+    <div class="col-xs-2" id="image_<%= image.id %>">
+      <%= image_tag(image.image.thumb.url, class: 'img-responsive') %>
+      <%= image.id %>
+      <%= link_to(t(:destroy), destroy_image_admin_page_path(@page, image), remote: true,
+                 class: 'btn danger small', method: :delete) %>
+    </div>
+  <% end %>
+<% end %>

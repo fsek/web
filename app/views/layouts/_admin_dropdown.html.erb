@@ -38,7 +38,7 @@
     <% end %>
     <% if can? :manage, Page %>
       <li class="dropdown-submenu">
-        <%= link_to(model_name(Page),:pages)%>
+        <%= link_to(model_name(Page), admin_pages_path)%>
       </li>
     <% end %>
 

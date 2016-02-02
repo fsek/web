@@ -33,6 +33,8 @@
 //= require bootstrap-datetimepicker
 //= require pickers
 //= require cookies_eu
+//= require pagedown_bootstrap
+//= require pagedown_init
 
 var bottom;
 bottom = function () {

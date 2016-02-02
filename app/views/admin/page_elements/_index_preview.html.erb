@@ -1,0 +1,19 @@
+<% if page.present? %>
+  <div class="headline">
+    <h3><%= t('page_element.index') %></h3>
+  </div>
+  <% page.page_elements.order(:index).group_by(&:sidebar).each do |bool, elements| %>
+    <div class="headline">
+      <h4>
+        <% if bool %>
+          <%= PageElement.human_attribute_name(:sidebar) %>
+        <% else %>
+          <%= t('page_element.main') %>
+        <% end %>
+      </h4>
+    </div>
+    <% elements.each do |element| %>
+      <%= render '/admin/page_elements/preview', page_element: element %>
+    <% end %>
+  <% end %>
+<% end %>

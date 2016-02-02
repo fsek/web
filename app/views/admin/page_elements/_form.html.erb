@@ -1,0 +1,25 @@
+<%= simple_form_for([:admin, page, page_element]) do |f| %>
+  <%= f.input(:element_type, collection: [[t('page_element.text'), PageElement::TEXT],
+                                          [t('page_element.image'), PageElement::IMAGE]],
+                             hint: t('page_element.element_type_hint'),
+                             include_blank: false) %>
+<% if page_element.element_type == PageElement::TEXT %>
+  <%= f.input :text, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+<% elsif page_element.element_type == PageElement::IMAGE %>
+  <%= f.association :page_image, collection: page.page_images,
+  hint: t('page_element.images_hint') %>
+<% end %>
+<%= f.input :name, hint: t('page_element.name_hint') %>
+<%= f.input :visible %>
+<%= f.input :sidebar, hint: t('page_element.sidebar_hint') %>
+<%= f.input :headline, hint: t('page_element.headline_hint') %>
+<%= f.input :index %>
+<%= f.button :submit %>
+
+  <% if page_element.persisted? %>
+    <%= link_to(t('page_element.destroy'),
+                admin_page_page_element_path(page, page_element),
+                method: :delete, class: 'btn danger pull-right') %>
+
+  <% end %>
+<% end %>

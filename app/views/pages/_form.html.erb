@@ -1,7 +1,0 @@
-<%= simple_form_for(@page) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :url %>
-  <%= f.input :visible, as: :boolean %>
-  <%= f.input :council, collection: Council.titles %>
-  <%= f.button :submit %>
-<% end %>

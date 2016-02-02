@@ -1,16 +1,21 @@
 # encoding: UTF-8
 class PageElement < ActiveRecord::Base
+  TEXT = 'text'.freeze
+  IMAGE = 'image'.freeze
+
   belongs_to :page
-  has_attached_file :picture,
-                    styles: { original: '4000x4000>', large: '1500x1500>',
-                             small: '250x250>', thumb: '100x100>' },
-                    path: ':rails_root/public/system/images/sidor/element/:id/:style/:filename',
-                    url: '/system/images/sidor/element/:id/:style/:filename'
-  validates_attachment_content_type :picture, content_type: /\Aimage\/.*\Z/
+  belongs_to :page_image
+  belongs_to :contact
+
+  validates :page_id, presence: true
 
   scope :visible, -> { where(visible: true) }
   scope :main, -> { visible.where(sidebar: false).index }
   scope :side, -> { visible.where(sidebar: true).index }
-  scope :index, -> { order(:displayIndex) }
+  scope :index, -> { order(:index) }
   scope :rest, -> { where(visible: false) }
+
+  def to_partial_path
+    "/page_elements/#{element_type}_element"
+  end
 end

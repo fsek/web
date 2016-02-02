@@ -1,11 +1,16 @@
 sv:
+  post:
+    new: Ny post
+    show: Visa post
+    index: Alla poster
+    destroy: Förinta post
+    edit: Redigera post
   posts:
     already_have_post: har redan posten.
+    index_for: Visa poster för
     limited: för många har posten.
-    remove_user: Ta bort användare från posten
-    remove_confirm: Vald användare kommer att bli av med vald post
     no_limit: Ingen begränsning
+    remove_confirm: Vald användare kommer att bli av med vald post
+    remove_user: Ta bort användare från posten
     user_search: Sök efter användare
     who_currently: Vem har posten just nu?
-
-    index_for: Visa poster för

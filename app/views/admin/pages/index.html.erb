@@ -1,0 +1,38 @@
+<div class="headline">
+  <h3><%= t('page.admin_title') %></h3>
+</div>
+
+<div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+
+  <hr>
+
+  <%= link_to(t('page.new'), new_admin_page_path, class: 'btn primary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@page_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: Page.human_attribute_name(:url), attribute: 'url') do |page|
+      link_to(page, page_path(page), target: :blank)
+    end
+    g.column(name: Page.human_attribute_name(:council), assoc: :council, attribute: 'title',
+             filter: false)
+    g.column(name: Page.human_attribute_name(:public), attribute: 'public') do |page|
+      yes_no(page.public)
+    end
+    g.column(name: Page.human_attribute_name(:visible), attribute: 'visible') do |page|
+      yes_no(page.visible)
+    end
+    g.column(name: Page.human_attribute_name(:updated_at), attribute: 'updated_at',
+             filter: false)
+    g.column(name: t(:edit), filter: false) do |page|
+      link_to(t('page.edit'), edit_admin_page_path(page))
+    end
+  end -%>
+</div>

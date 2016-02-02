@@ -1,0 +1,25 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h2><%= t('page.edit') %></h2>
+  </div>
+
+  <%= render 'form', page: @page %>
+  <hr>
+  <%= link_to(t('page.show'),
+              page_path(@page),
+              class: 'btn secondary') %>
+
+  <%= link_to(t('page.index'),
+              admin_pages_path,
+              class: 'btn secondary') %>
+  <hr>
+  <%= link_to(t('page_element.new'),
+              new_admin_page_page_element_path(@page),
+              class: 'btn primary') %>
+  <%= link_to(t('page_element.index'),
+              admin_page_page_elements_path(@page),
+              class: 'btn secondary') %>
+  <hr>
+
+  <%= render '/admin/page_elements/image_preview', page: @page %>
+</div>

@@ -1,12 +1,10 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h3>
-      <%= t('council.new') %>
-    </h3>
+    <h3><%= t('council.new') %></h3>
   </div>
 
   <%= render 'form' %>
   <hr>
-  <%= link_to(t(:index, attr: models_name(Council)), councils_path,
-                                                     class: 'btn secondary')%>
+  <%= link_to(t('council.index'), councils_path,
+                                  class: 'btn secondary')%>
 </div>

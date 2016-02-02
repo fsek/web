@@ -1,11 +1,11 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
     <h2>
-      <%= t(:new_attr, attr: model_name(Page)) %>
+      <%= t('page.new') %>
     </h2>
   </div>
-  <%= render 'form' %>
+  <%= render 'form', page: @page %>
   <hr>
-  <%= link_to(t(:index, attr: models_name(Page)), pages_path,
+  <%= link_to(t('page.index'), admin_pages_path,
               class: 'btn secondary') %>
 </div>
