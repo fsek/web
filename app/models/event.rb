@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
           start, stop, start, stop)
   end
   scope :stream, -> do
-    between(Time.zone.now.beginning_of_day, (Time.zone.now + 6.days).end_of_day)
+    between(Time.zone.now.beginning_of_day, (Time.zone.now + 6.days).end_of_day).order(:starts_at)
   end
 
   def to_s
