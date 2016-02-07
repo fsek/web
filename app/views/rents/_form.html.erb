@@ -18,7 +18,7 @@
 
   <%= f.input :d_from, as: :datetime_picker, required: true %>
   <%= f.input :d_til, as: :datetime_picker, required: true %>
-  <%= f.input :purpose, as: :text %>
+  <%= f.input :purpose, as: :text, required: true %>
 
   <% if current_user.car_councils && current_user.car_councils.count > 0 %>
     <strong><%= t('rent.council') %></strong>

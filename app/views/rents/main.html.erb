@@ -22,6 +22,11 @@
     <% end %>
     <%= link_to(t(:new_attr, attr: model_name(Rent)),
                 new_rent_path, class: 'btn primary') %>
+  <% if @terms.present? %>
+    <%= link_to( document_path(@terms), target: 'blank_p', class: 'btn secondary') do %>
+      <%= fa_icon('paperclip') %> <%= t('rent.terms') %>
+    <% end %>
+  <% end %>
   </div>
 </div>
 

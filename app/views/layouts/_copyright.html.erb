@@ -3,13 +3,15 @@
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <p class="year">
-        <%= Time.current.year %> &copy; F-teknologsektionen inom TLTH.
+          <%= Time.current.year %> &copy; F-teknologsektionen inom TLTH.
         </p>
       </div>
       <div class="col-md-6 col-sm-12">
         <p class="contact">
-        <%= t('footer.control_the_web') %>:
-        <%= render 'contacts/contact', name: 'Spindelmän' %>
+        <% cache do %>
+          <%= t('footer.control_the_web') %>:
+          <%= contact_from_constant(constant: 'spindelman_contact') %>
+        <% end %>
         </p>
       </div>
     </div>

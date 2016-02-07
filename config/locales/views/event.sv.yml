@@ -3,10 +3,10 @@ sv:
     calendar: Kalender
     cash: Cash is king
     confirm-unsign: Är du säker på att du vill avanmäla dig? Det finns inget sätt att få tillbaka platsen.
-    edit: Redigera Evenemang
     dates: Datum
     destroy: Förinta Evenemang
     drink: Alkohol serveras
+    edit: Redigera Evenemang
     food: Mat serveras
     index: Alla Evenemang
     info: Information
@@ -21,4 +21,5 @@ sv:
     signup: Anmälan krävs
     slots-left: plats(er) kvar.
     stream: Kommande evenemang
+    stream_more: Fler evenemang
     unsignup: Avanmäl

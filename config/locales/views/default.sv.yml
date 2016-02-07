@@ -9,6 +9,7 @@ sv:
   destroy_attr: Förinta %{attr}
   edit: Redigera
   edit_attr: Redigera %{attr}
+  filter: Filtrera
   hello: Hej
   here: här
   hide: Dölj
@@ -20,6 +21,7 @@ sv:
   new_t_attr: Nytt %{attr}
   read_more: Läs mer
   reset: Återställ
+  reset_filter: Återställ filter
   save: Spara
   save_attr: Spara %{attr}
   search: Sök

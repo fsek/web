@@ -1,10 +1,15 @@
 <%= simple_form_for(@menu) do |f| %>
-  <%= f.input :location, collection: [[t('menu.guild'), :guild], [t('menu.members'), :members], [t('menu.companies'), :companies], [t('menu.contact'), :contact]] %>
-  <%= f.input :index %>
-  <%= f.input :name %>
-  <%= f.input :link %>
-  <%= f.input :visible %>
-  <%= f.input :turbolinks %>
-  <%= f.input :blank_p %>
-  <%= f.button :submit, id: :menu_id %>
+  <%= f.input :location, collection: [[t('menu.guild'), Menu::GUILD],
+                                      [t('menu.members'), Menu::MEMBER],
+                                      [t('menu.companies'), Menu::COMPANY],
+                                      [t('menu.contact'), Menu::CONTACT]],
+                         input_html: { class: 'select2' },
+                         include_blank: false %>
+<%= f.input :index %>
+<%= f.input :name %>
+<%= f.input :link %>
+<%= f.input :visible %>
+<%= f.input :turbolinks %>
+<%= f.input :blank_p %>
+<%= f.button :submit, id: :menu_id %>
 <% end %>

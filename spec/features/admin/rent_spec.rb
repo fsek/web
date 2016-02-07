@@ -21,6 +21,7 @@ RSpec.feature 'admin tries to create rent' do
     select(rent.user.to_s, from: 'rent_user_id')
     fill_in 'rent_d_from', with: rent.d_from.to_s
     fill_in 'rent_d_til', with: rent.d_til.to_s
+    fill_in 'rent_purpose', with: rent.purpose
     select(rent.council.to_s, from: 'rent_council_id')
     select(I18n.t('rent.confirmed'), from: 'rent_status')
     find('#rent-submit').click

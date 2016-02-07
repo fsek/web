@@ -1,55 +1,51 @@
-<div class="col-md-12">
-  <div class="panel panel-orange margin-bottom-40">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <%= fa_icon('tasks') %> <%= models_name(Menu) %>
-      </h3>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th><%= Menu.human_attribute_name(:name) %></th>
-          <th><%= Menu.human_attribute_name(:location) %></th>
-          <th><%= Menu.human_attribute_name(:visible) %></th>
-          <th><%= Menu.human_attribute_name(:turbolinks) %></th>
-          <th><%= Menu.human_attribute_name(:blank_p) %></th>
-          <th><%= Menu.human_attribute_name(:link) %></th>
-          <th><%= Menu.human_attribute_name(:updated_at) %></th>
-          <th>
-            <%= link_to(t(:new_attr, attr: model_name(Menu)),
-                        new_menu_path, class: 'btn primary small') %>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @menues.each do |menu| %>
-          <tr>
-            <td><%= menu.id %></td>
-            <td><%= menu.name %></td>
-            <td><%= t(%(menu.#{menu.location})) %></td>
-            <td><%= menu.visible ? t(:yes) : t(:no) %></td>
-            <td><%= menu.turbolinks ? t(:yes) : t(:no) %></td>
-            <td><%= menu.blank_p ? t(:yes) : t(:no) %></td>
-            <td>
-              <%= link_to(menu.link) do %>
-                <%= truncate(menu.link, length: 10) %>
-              <% end %>
-            </td>
-            <td>
-              <% if menu.updated_at.present? %>
-                <%= l(menu.updated_at) %>
-              <% else %>
-                -
-              <% end %>
-            </td>
-            <td>
-              <%= link_to(t(:edit), edit_menu_path(menu),
-                          class: 'btn secondary small') %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<%= provide(:title, t('menu.index')) %>
+<div class="headline title">
+  <h2><%= t('menu.index') %></h2>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to(t('menu.new'), new_menu_path, class: 'btn primary') %>
+
+  <button class="wg-external-submit-button btn secondary"
+          data-grid-name="grid">
+    <%= t('filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary"
+          data-grid-name="grid">
+    <%= t('reset_filter') %>
+  </button>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@menus_grid, hide_submit_button: true,
+                        hide_reset_button: true) do |g|
+    g.column(name: Menu.human_attribute_name(:name),
+             attribute: 'name', filter: false)
+    g.column(name: Menu.human_attribute_name(:location),
+             attribute: 'location', custom_filter: :auto)
+    g.column(name: Menu.human_attribute_name(:visible),
+             attribute: 'visible') do |menu|
+      yes_no(menu.visible)
+    end
+    g.column(name: Menu.human_attribute_name(:index),
+             attribute: 'index', filter: false)
+    g.column(name: Menu.human_attribute_name(:turbolinks),
+             attribute: 'turbolinks') do |menu|
+      yes_no(menu.turbolinks)
+    end
+    g.column(name: Menu.human_attribute_name(:blank_p),
+             attribute: 'blank_p') do |menu|
+      yes_no(menu.blank_p)
+    end
+    g.column(name: Menu.human_attribute_name(:link), filter: false,
+             attribute: 'link') do |menu|
+      link_to(truncate(menu.link, length: 10), menu.link)
+    end
+    g.column(name: Menu.human_attribute_name(:updated_at), filter: false,
+             attribute: 'updated_at')
+    g.column(name: nil) do |menu|
+      link_to(t(:edit), edit_menu_path(menu), class: 'btn secondary')
+    end
+  end -%>
 </div>

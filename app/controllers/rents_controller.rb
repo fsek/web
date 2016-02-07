@@ -1,7 +1,7 @@
 # encoding:UTF-8
 class RentsController < ApplicationController
   load_permissions_and_authorize_resource
-  before_action :load_terms, only: [:new, :edit, :create, :update]
+  before_action :load_terms, only: [:new, :edit, :create, :update, :main, :index]
 
   def main
     @faqs = Faq.answered.category('Bil')

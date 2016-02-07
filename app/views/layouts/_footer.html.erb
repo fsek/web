@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-5 col-sm-12">
         <div class="headline">
-          <%= content_tag(:h2, t('footer.about')) %>
+          <h2><%= t('footer.about') %></h2>
         </div>
         <p class="margin-bottom-25 md-margin-bottom-40">
         <%= t('footer.about_start') %>
@@ -15,58 +15,79 @@
         <br>
         <%= t('footer.about_end') %>
         </p>
+        <div class="headline">
+          <h3><%= t('footer.about_webpage') %></h3>
+        </div>
+          <%= t('cookies.footer_description') %>
+          <%= link_to(t('cookies.read_more'), cookies_path) %>
       </div>
 
       <div class="col-md-4 col-sm-12">
         <div class="headline">
-          <%= content_tag(:h2, t('vecktorn.title')) %>
+          <h2><%= t('vecktorn.title') %></h2>
         </div>
         <%= simple_format(t('vecktorn.subscribe_footer')) %>
-        <%= link_to(t(:subscribe), :vecktorn_signup,
+        <%= link_to(t(:subscribe), vecktorn_signup_path,
                     class: 'btn primary', target: '_blank')%>
         <p>
         <%= t('vecktorn.contribute_start') %>
-        <%=render 'contacts/contact', name: 'Sanningsministeriet' %>
+        <% cache do %>
+          <%= contact_from_constant(constant: 'sanning_contact') %>
+        <% end %>
         <%= t('vecktorn.contribute_end') %>
         </p>
         <hr>
         <div class="headline">
-          <%= content_tag(:h3, t('footer.stay_connected')) %>
+          <h3><%= t('footer.stay_connected') %></h3>
         </div>
         <ul class="social-icons">
-          <%= content_tag(:li, link_to('', :facebook,
-                                       'data-original-title': 'Facebook',
-                                       class: 'social-facebook'))%>
-          <%= content_tag(:li, link_to('', :twitter,
-                                       'data-original-title': 'Twitter',
-                                       class: 'social-twitter'))%>
-          <%= content_tag(:li, link_to('', :youtube,
-                                       'data-original-title': 'YouTube',
-                                       class: 'social-youtube'))%>
+          <li>
+            <%= link_to('', facebook_path, 'data-original-title': 'Facebook',
+                                           class: 'social-facebook') %>
+          </li>
+          <li>
+            <%= link_to('', twitter_path, 'data-original-title': 'Twitter',
+                                           class: 'social-twitter') %>
+          </li>
+          <li>
+            <%= link_to('', youtube_path, 'data-original-title': 'Youtube',
+                                           class: 'social-youtube') %>
+          </li>
         </ul>
-        <br>
-        <br>
       </div>
 
       <div class="col-md-3 col-sm-12">
         <div class="headline">
-          <%= content_tag(:h2, t('footer.contact')) %>
+          <h2><%= t('footer.contact') %></h2>
         </div>
-        <p>
-        <%= fa_icon 'phone' %> 046 - 14 47 22
+        <span>
+          <%= fa_icon 'phone' %> 046 - 14 47 22
+        </span>
         <br>
-        <%= render 'contacts/contact', name: 'Ordförande' %>
-        <br>
-          <div class="headline">
-            <%= content_tag(:h3, t('footer.address_visit')) %>
-          </div>
-          <address class="md-margin-bottom-40">
-            C/o Hilbert Älg <br>
-            Matematikhuset <br>
-            Sölvegatan 18, <br>
-            22362 Lund <br><br><br>
-          </address>
-        </p>
+        <% cache do %>
+          <%= contact_from_constant(constant: 'ordf_contact') %><br>
+          <%= contact_from_constant(constant: 'inspektor_contact') %>
+        <% end %>
+        <br><br>
+        <div class="headline">
+          <h3><%= t('footer.visit_address') %></h3>
+        </div>
+
+        <address class="md-margin-bottom-40">
+          C/o Hilbert Älg <br>
+          Matematikhuset <br>
+          Sölvegatan 18, <br>
+          22362 Lund
+        </address>
+
+        <div class="headline">
+          <h3><%= t('footer.post_address') %></h3>
+        </div>
+        <address class="md-margin-bottom-40">
+          F-teknologsektionen inom TLTH<br>
+          Box 118<br>
+          22100 Lund
+        </address>
       </div>
     </div>
   </div>

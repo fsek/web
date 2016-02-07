@@ -3,7 +3,9 @@ class MenusController < ApplicationController
   load_permissions_and_authorize_resource
 
   def index
-    @menues = Menu.all
+    @menus_grid = initialize_grid(Menu,
+                                  order: 'menus.location',
+                                  order_direction: 'asc')
   end
 
   def new

@@ -1,9 +1,13 @@
 sv:
   menu:
-    guild: Sektionen
-    members: För medlemmar
+    about: Om oss
     companies: För företag
     contact: Kontakt
-    about: Om oss
-
+    destroy: Förinta meny
+    edit: Redigera meny
     farad: Arbetsmarknadsdagar
+    guild: Sektionen
+    index: Alla menyer
+    members: För medlemmar
+    new: Ny meny
+    show: Visa meny
