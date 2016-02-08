@@ -31,9 +31,7 @@
                     class: 'btn primary', target: '_blank')%>
         <p>
         <%= t('vecktorn.contribute_start') %>
-        <% cache do %>
-          <%= contact_from_constant(constant: 'sanning_contact') %>
-        <% end %>
+        <%= contact_from_slug(slug: 'sanningsminister') %>
         <%= t('vecktorn.contribute_end') %>
         </p>
         <hr>
@@ -64,10 +62,8 @@
           <%= fa_icon 'phone' %> 046 - 14 47 22
         </span>
         <br>
-        <% cache do %>
-          <%= contact_from_constant(constant: 'ordf_contact') %><br>
-          <%= contact_from_constant(constant: 'inspektor_contact') %>
-        <% end %>
+        <%= contact_from_slug(slug: 'ordf') %><br>
+        <%= contact_from_slug(slug: 'inspektor') %>
         <br><br>
         <div class="headline">
           <h3><%= t('footer.visit_address') %></h3>

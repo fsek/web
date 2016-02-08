@@ -8,10 +8,8 @@
       </div>
       <div class="col-md-6 col-sm-12">
         <p class="contact">
-        <% cache do %>
           <%= t('footer.control_the_web') %>:
-          <%= contact_from_constant(constant: 'spindelman_contact') %>
-        <% end %>
+          <%= contact_from_slug(slug: 'spindelman') %>
         </p>
       </div>
     </div>
