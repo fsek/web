@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe ContactMailer, type: :mailer do
   describe 'mail' do
     it 'has appropriate subject' do
-      contact = create(:contact, :with_message)
+      message = build(:contact_message,
+                      name: 'Hilbert Älg',
+                      email: 'utomifran@gmail.com')
+      contact = create(:contact, message: message)
       mail = ContactMailer.contact_email(contact)
 
       mail.subject.should eq(I18n.t('contact.message_sent_via'))
@@ -31,20 +34,22 @@ RSpec.describe ContactMailer, type: :mailer do
     end
 
     context 'HTML body' do
-      it 'includes the confirm link' do
-        contact = create(:contact, :with_message)
+      it 'includes the text' do
+        message = build(:contact_message, message: 'What a wonderful day')
+        contact = create(:contact, message: message)
         mail = ContactMailer.contact_email(contact)
 
-        mail.html_part.body.should include(contact.sender_message)
+        mail.html_part.body.should include('What a wonderful day')
       end
     end
 
     context 'plain text body' do
-      it 'includes the confirm URL' do
-        contact = create(:contact, :with_message)
+      it 'includes the text' do
+        message = build(:contact_message, message: 'What a wonderful day')
+        contact = create(:contact, message: message)
         mail = ContactMailer.contact_email(contact)
 
-        mail.text_part.body.should include(contact.sender_message)
+        mail.text_part.body.should include('What a wonderful day')
       end
     end
   end

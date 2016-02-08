@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106215206) do
+ActiveRecord::Schema.define(version: 20160207135234) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -129,10 +129,14 @@ ActiveRecord::Schema.define(version: 20160106215206) do
     t.string   "email",      limit: 255
     t.boolean  "public"
     t.text     "text",       limit: 65535
-    t.integer  "council_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug",       limit: 255
+    t.integer  "post_id",    limit: 4
   end
+
+  add_index "contacts", ["post_id"], name: "index_contacts_on_post_id", using: :btree
+  add_index "contacts", ["slug"], name: "index_contacts_on_slug", using: :btree
 
   create_table "councils", force: :cascade do |t|
     t.string   "title",             limit: 255

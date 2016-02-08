@@ -26,7 +26,7 @@ module Fsek
     config.autoload_paths += Dir["#{config.root}/validators/**/"]
 
     config.time_zone ='Stockholm'
-    config.filter_parameters += [:password, :password_confirmation, :civic]
+    config.filter_parameters += [:password, :password_confirmation, :message]
     config.active_record.raise_in_transactional_callbacks = true
   end
 end

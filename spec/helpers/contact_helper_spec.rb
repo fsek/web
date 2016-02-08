@@ -8,7 +8,7 @@ RSpec.describe ContactHelper do
 
       result = helper.contact_link(contact)
 
-      result.should include('kontakt/10')
+      result.should include('kontakter/10')
     end
 
     it 'returns nil if no contact' do
@@ -18,14 +18,14 @@ RSpec.describe ContactHelper do
     end
   end
 
-  describe 'contact_from_constant' do
-    it 'finds contact with constant' do
-      create(:contact, id: 10, email: 'spindelman@fsektionen.se')
-      create(:constant, name: 'contact_id', value: 10)
+  describe 'contact_from_slug' do
+    it 'finds contact with slug' do
+      create(:contact, id: 10, email: 'spindelman@fsektionen.se',
+                       slug: 'spindelman_contact')
 
-      result = helper.contact_from_constant(constant: 'contact_id')
+      result = helper.contact_from_slug(slug: 'spindelman_contact')
 
-      result.should include('kontakt/10')
+      result.should include('kontakter/10')
     end
   end
 end

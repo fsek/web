@@ -1,9 +1,17 @@
 sv:
   contact:
+    admin_index: Administration
     back_to_index: Tillbaka till Kontakter
     contact: Kontakta
+    destroy: Förinta kontakt
+    edit: Redigera kontakt
     index: Kontaktsida
     message_sent: Meddelandet skickades.
     message_sent_via: Meddelande skickat via Fsektionen.se
+    new: Ny kontakt
     send_message: Skicka meddelande
+    slug_description: Används för att kunna visa en särskild kontakt i vyer.
+    show: Visa kontakt
     something_wrong: Någonting blev fel, prova att skicka igen.
+    title: Kontaktsida
+    name_or_post: Välj en post eller fyll i ett namn.

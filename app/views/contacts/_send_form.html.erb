@@ -1,0 +1,10 @@
+<%= simple_form_for(contact.message, method: :post,
+                    url: mail_contact_path(contact)) do |f| %>
+  <%= f.input :name, required: true %>
+  <%= f.input :email, required: true %>
+  <%= f.input :message, as: :text %>
+  <% if Recaptcha.configuration.public_key.present? %>
+    <%= recaptcha_tags %>
+  <% end %>
+  <%= f.button :submit, t('contact.send_message') %>
+<% end %>

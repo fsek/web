@@ -9,6 +9,7 @@ RSpec.feature 'admin visits paths' do
   paths = {
     'admin/cafe': [:index, :overview],
     'admin/cafe_shifts': [:new, :edit, :show, :setup],
+    'admin/contacts': [:new, :edit, :index],
     'admin/documents': [:new, :edit, :index],
     'admin/elections': [:new, :index, :show, :edit],
     'admin/events': [:edit, :new, :index],
@@ -19,7 +20,7 @@ RSpec.feature 'admin visits paths' do
     cafe: [:index, :ladybug],
     calendars: [:index],
     constants: [:index, :show, :edit, :new],
-    contacts: [:index, :new, :show, :edit],
+    contacts: [:index, :show],
     councils: [:index, :show],
     documents: [:index, :show],
     elections: [:index],

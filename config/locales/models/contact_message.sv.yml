@@ -1,0 +1,10 @@
+sv:
+  activemodel:
+    models:
+      contact_message: Meddelande
+    attributes:
+      contact_message:
+        name: Namn
+        email: E-post
+        message: Meddelande
+

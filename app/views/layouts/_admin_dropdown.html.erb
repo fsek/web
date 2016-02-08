@@ -17,13 +17,12 @@
         </ul>
       </li>
     <% end %>
-    <% if can? :modify, Contact %>
+    <% if can? :manage, Contact %>
       <li class="dropdown-submenu">
-        <%= link_to(model_name(Contact), nil) %>
+        <%= link_to(model_name(Contact), admin_contacts_path) %>
         <ul class="dropdown-menu">
-          <li><%= link_to(t(:index_attr, attr: models_name(Contact)), contacts_path) %></li>
           <li>
-            <%= link_to(t(:new_attr, attr: model_name(Contact)), new_contact_path) %>
+            <%= link_to(t('contact.new'), new_admin_contact_path) %>
           </li>
         </ul>
       </li>
