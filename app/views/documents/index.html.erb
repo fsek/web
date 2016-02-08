@@ -6,10 +6,10 @@
   <%= document_dropdown_button(collection: @documents.categories,
                                current: @documents.current_category) %>
   <button class="wg-external-submit-button btn secondary" data-grid-name="grid">
-    <%= t('document.filter') %>
+    <%= t('wice_grid.filter') %>
   </button>
   <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
-    <%= t('document.reset_filter') %>
+    <%= t('wice_grid.reset_filter') %>
   </button>
   <% if can?(:manage, Document) %>
     <hr>
