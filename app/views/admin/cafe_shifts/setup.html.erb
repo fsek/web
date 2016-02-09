@@ -1,11 +1,23 @@
 <% provide(:title, t('cafe.title')) %>
 <div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <div class="headline">
-    <h1><%= t('cafe_shift.setup_weeks') %></h1>
+    <h1><%= t('cafe_shift.setup') %></h1>
   </div>
+  <ul class="list">
+    <li>
+      <strong>
+        <%= t('cafe_shift.setup_week') %>
+      </strong><br>
+      <%= t('cafe_shift.setup_week_explanation') %>
+    </li>
+    <li>
+      <strong>
+        <%= t('cafe_shift.setup_day') %>
+      </strong><br>
+      <%= t('cafe_shift.setup_day_explanation') %>
+    </li>
+  </ul>
 
-  <%= simple_format(t('cafe_shift.admin.setup_fill_date_preview')) %>
-  <%= simple_format(t('cafe_shift.admin.setup_single')) %>
   <%= link_to(t('cafe_shift.single'), new_admin_cafe_shift_path, class: 'btn secondary') %>
   <hr>
   <%= render 'setup_form' %>
