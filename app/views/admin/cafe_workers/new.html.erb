@@ -1,24 +1,26 @@
 <% provide(:title, t('cafe.title')) %>
 <div class="col-md-6 col-md-offset-3 col-sm-12">
   <div class="headline">
-    <h2><%= %(#{CafeShift.model_name.human} - ID #{@cafe_shift.id}) %></h2>
+    <h2><%= %(#{CafeShift.model_name.human} - ID #{@cafe_view.shift.id}) %></h2>
   </div>
   <table class="table">
     <tr>
       <td><%= CafeShift.human_attribute_name(:start) %></td>
-      <td><%= time_range(@cafe_shift.start, @cafe_shift.stop, format: :long) %></td>
+      <td><%= time_range(@cafe_view.shift.start,
+                         @cafe_view.shift.stop,
+                         format: :long) %></td>
     </tr>
     <tr>
       <td><%= CafeShift.human_attribute_name(:lv) %></td>
-      <td><%= @cafe_shift.lv %></td>
+      <td><%= @cafe_view.shift.lv %></td>
     </tr>
     <tr>
       <td><%= CafeShift.human_attribute_name(:lp) %></td>
-      <td><%= @cafe_shift.lp %></td>
+      <td><%= @cafe_view.shift.lp %></td>
     </tr>
   </table>
   <hr>
-  <%= render('admin/cafe_workers/form', cafe_shift: @cafe_shift, users: @users) %>
+  <%= render('admin/cafe_workers/form', cafe_view: @cafe_view) %>
   <hr>
   <%= link_to(t('cafe_shift.remove'), admin_cafe_shift_path(@cafe_shift),
               method: :delete, class: 'btn danger pull-right') %>

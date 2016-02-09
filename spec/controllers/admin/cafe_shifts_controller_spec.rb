@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin::CafeShiftsController, type: :controller do
-  let(:user) { create(:user) }
-  let(:shift) { create(:cafe_shift, pass: 3) }
+  let(:user) { create(:user, firstname: 'First') }
 
   allow_user_to :manage, CafeShift
 
@@ -12,10 +11,19 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested cafe_shift as @cafe_shift' do
+      shift = create(:cafe_shift)
+      create(:council, title: 'Second')
+      create(:council, title: 'First')
+      create(:council, title: 'Third')
+      create(:user, firstname: 'Third')
+      create(:user, firstname: 'Second')
+
       get :show, id: shift.to_param
-      assigns(:cafe_shift).should eq(shift)
-      assigns(:councils).should eq(Council.titles)
-      assigns(:users).should eq(User.all_firstname)
+
+      assigns(:cafe_view).shift.should eq(shift)
+      assigns(:cafe_view).councils.map(&:title).should eq(['First', 'Second', 'Third'])
+      assigns(:cafe_view).users.map(&:firstname).should eq(['First', 'Second', 'Third'])
+      assigns(:cafe_view).shift.cafe_worker.should be_a_new(CafeWorker)
       response.status.should eq(200)
     end
 
@@ -28,6 +36,8 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns the requested cafe_shift as @cafe_shift' do
+      shift = create(:cafe_shift)
+
       get :edit, id: shift.to_param
       assigns(:cafe_shift).should eq(shift)
       response.status.should eq(200)
@@ -69,6 +79,8 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
 
   describe 'PATCH #update' do
     it 'valid params' do
+      shift = create(:cafe_shift, pass: 3)
+
       post :update, id: shift.to_param, cafe_shift: { pass: 4 }
       shift.reload
 
@@ -76,7 +88,8 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
       shift.pass.should eq(4)
     end
 
-    it 'valid params' do
+    it 'invalid params' do
+      shift = create(:cafe_shift, pass: 3)
       post :update, id: shift.to_param, cafe_shift: { pass: nil }
 
       response.should render_template(:edit)
@@ -88,10 +101,13 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroys record' do
-      shift.reload
+      shift = create(:cafe_shift)
+
       lambda do
         delete :destroy, id: shift.to_param
       end.should change(CafeShift, :count).by(-1)
+
+      response.should redirect_to(admin_cafe_shifts_path)
     end
   end
 

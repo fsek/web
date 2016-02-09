@@ -5,9 +5,9 @@ class CafeWorker < ActiveRecord::Base
   has_many :councils, through: :cafe_worker_councils
 
   validates :user_id, :cafe_shift_id, presence: true
-  validate :user_attributes?
+  validate :user_attributes?, :multiple_shifts?
 
-  protected
+  private
 
   def user_attributes?
     if !user.try(:has_attributes?)
@@ -16,5 +16,20 @@ class CafeWorker < ActiveRecord::Base
     else
       true
     end
+  end
+
+  def multiple_shifts?
+    if user.present? && cafe_shift.present? && !similar_shifts
+      errors.add(:cafe_shift, I18n.t('cafe_worker.already_working_same_time'))
+      false
+    else
+      true
+    end
+  end
+
+  def similar_shifts
+    user.cafe_shifts.
+      where(start: cafe_shift.start).
+      where.not(id: cafe_shift.id).empty?
   end
 end

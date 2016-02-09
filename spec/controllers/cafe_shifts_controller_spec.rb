@@ -12,9 +12,16 @@ RSpec.describe CafeShiftsController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested cafe_shift as @cafe_shift' do
+      shift = create(:cafe_shift)
+      create(:council, title: 'Second')
+      create(:council, title: 'First')
+      create(:council, title: 'Third')
+
       get :show, id: shift.to_param
-      assigns(:cafe_shift).should eq(shift)
-      assigns(:councils).should eq(Council.titles)
+
+      assigns(:cafe_view).shift.should eq(shift)
+      assigns(:cafe_view).councils.map(&:title).should eq(['First', 'Second', 'Third'])
+      assigns(:cafe_view).shift.cafe_worker.should be_a_new(CafeWorker)
       response.status.should eq(200)
     end
 

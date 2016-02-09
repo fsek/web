@@ -4,28 +4,38 @@ class Admin::CafeWorkersController < ApplicationController
   load_and_authorize_resource :cafe_shift, parent: true
 
   def new
-    @cafe_shift = CafeShift.find(params[:cafe_shift_id])
-    @cafe_shift.cafe_worker || @cafe_shift.build_cafe_worker
-    @users = User.all_firstname
+    cafe_shift = CafeShift.find(params[:cafe_shift_id])
+    cafe_shift.cafe_worker || cafe_shift.build_cafe_worker
+
+    @cafe_view = CafeViewObject.new(users: User.all_firstname,
+                                    councils: Council.titles,
+                                    shift: cafe_shift)
   end
 
   def create
-    @cafe_shift = CafeShift.find(params[:cafe_shift_id])
-    @cafe_shift.build_cafe_worker(cafe_worker_params)
-    if @cafe_shift.cafe_worker.save
+    cafe_shift = CafeShift.find(params[:cafe_shift_id])
+    cafe_shift.build_cafe_worker(cafe_worker_params)
+
+    @cafe_view = CafeViewObject.new(users: User.all_firstname,
+                                    councils: Council.titles,
+                                    shift: cafe_shift)
+    if cafe_shift.cafe_worker.save
       redirect_to(admin_cafe_shift_path(@cafe_shift), notice: alert_create(CafeWorker))
     else
-      render :new
+      render :new, status: 422
     end
   end
 
   def update
     cafe_shift = CafeShift.find(params[:cafe_shift_id])
     cafe_worker = CafeWorker.find(params[:id])
+    @cafe_view = CafeViewObject.new(users: User.all_firstname,
+                                    councils: Council.titles,
+                                    shift: cafe_shift)
     if cafe_worker.update(cafe_worker_params)
       redirect_to(admin_cafe_shift_path(cafe_shift), notice: alert_update(CafeWorker))
     else
-      render :show
+      render :new, status: 422
     end
   end
 
@@ -42,6 +52,6 @@ class Admin::CafeWorkersController < ApplicationController
   private
 
   def cafe_worker_params
-    params.require(:cafe_worker).permit(:user_id, :competition, :group)
+    params.require(:cafe_worker).permit(:user_id, :competition, :group, council_ids: [])
   end
 end

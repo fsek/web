@@ -3,7 +3,14 @@
     color: $fsek-orange;
     display: block;
     font-weight: bold;
-    margin: 20px 0 20px 0;
+    margin: 20px 0;
+  }
+
+  &.danger {
+    color: $unify-red;
+    display: block;
+    font-weight: bold;
+    margin: 20px 0;
   }
 
   tr {

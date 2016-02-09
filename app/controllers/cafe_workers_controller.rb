@@ -4,31 +4,35 @@ class CafeWorkersController < ApplicationController
   load_and_authorize_resource :cafe_shift, parent: true
 
   def new
-    @cafe_shift = CafeShift.find(params[:cafe_shift_id])
-    @cafe_shift.cafe_worker || @cafe_shift.build_cafe_worker
-    @councils = Council.titles
+    cafe_shift = CafeShift.find(params[:cafe_shift_id])
+    cafe_shift.cafe_worker || cafe_shift.build_cafe_worker
+    @cafe_view = CafeViewObject.new(shift: cafe_shift,
+                                    councils: Council.titles)
+    render template: '/cafe_shifts/show'
   end
 
   def create
-    @cafe_shift = CafeShift.find(params[:cafe_shift_id])
-    @councils = Council.titles
-    @cafe_shift.build_cafe_worker(cafe_worker_params)
+    cafe_shift = CafeShift.find(params[:cafe_shift_id])
+    cafe_shift.build_cafe_worker(cafe_worker_params)
+    @cafe_view = CafeViewObject.new(shift: cafe_shift,
+                                    councils: Council.titles)
 
-    if @cafe_shift.cafe_worker.save
-      redirect_to(cafe_shift_path(@cafe_shift), notice: I18n.t('cafe_worker.created'))
+    if cafe_shift.cafe_worker.save
+      redirect_to(cafe_shift_path(cafe_shift), notice: I18n.t('cafe_worker.created'))
     else
-      render :new, status: 422
+      render template: '/cafe_shifts/show', status: 422
     end
   end
 
   def update
-    @cafe_shift = CafeShift.find(params[:cafe_shift_id])
+    cafe_shift = CafeShift.find(params[:cafe_shift_id])
     cafe_worker = CafeWorker.find(params[:id])
-    @councils = Council.titles
+    @cafe_view = CafeViewObject.new(shift: cafe_shift,
+                                    councils: Council.titles)
     if cafe_worker.update(cafe_worker_params)
-      redirect_to(cafe_shift_path(@cafe_shift), notice: I18n.t('cafe_worker.updated'))
+      redirect_to(cafe_shift_path(cafe_shift), notice: I18n.t('cafe_worker.updated'))
     else
-      render :new, status: 422
+      render template: '/cafe_shifts/show', status: 422
     end
   end
 
