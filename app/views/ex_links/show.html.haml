@@ -1,0 +1,39 @@
+.col-md-6
+  .panel.panel-orange.margin-bottom-20
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Attribute
+          %th Value
+      %tbody
+        %tr
+          %td Label
+          %td= @ex_link.label
+        %tr
+          %td Url
+          %td= link_to @ex_link.url, @ex_link.url
+        %tr
+          %td Tags
+          %td= tags2labs @ex_link.get_tagnames
+        %tr
+          %td Test availability
+          %td= bool2icon @ex_link.test_availability
+        %tr
+          %td Note
+          %td= @ex_link.note
+        %tr
+          %td Active
+          %td= bool2icon @ex_link.active
+        %tr
+          %td Expiration
+          %td= @ex_link.expiration
+
+  .row.margin-bottom-40.col-md-6
+    %p
+      = link_to 'Edit', edit_ex_link_path(@ex_link),class: 'btn-u btn-u-default'
+      = link_to 'Back', ex_links_path, class: 'btn-u btn-u-default'
+
+.col-md-6
+  %p
+    = image_tag @ex_link.image.url(:medium, :align=> 'middle')
+

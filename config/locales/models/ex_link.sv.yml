@@ -1,0 +1,9 @@
+sv:
+  activerecord:
+    models:
+      ex_link:
+        one: Extern länk
+        other: Externa länkar
+    attributes:
+      ex_link:
+        expiration: Utgångsdatum

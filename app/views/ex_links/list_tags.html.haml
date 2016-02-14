@@ -1,0 +1,20 @@
+.col-md-6.col-md-offset-3
+  %h1 Listing tags
+  .panel.panel-sea.margin-bottom-10
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Label
+          %th Occurence
+
+      %tbody
+        - @tags.each do |tagname, number|
+          %tr
+            %td= tagname
+            %td= link_to "#{number}", action: 'index', tag: tagname
+
+  .margin-bottom-10
+    = link_to 'Delete Unused Tags', {action: 'del_unused_tags'},
+      :data => { :confirm => 'Are you sure you want to delete unusued tags?' },
+      :class => 'btn-u btn-u-red'
+    = link_to 'Back', ex_links_path, class: 'btn-u btn-u-default'

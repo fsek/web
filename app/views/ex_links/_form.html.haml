@@ -1,0 +1,28 @@
+.col-md-8.col-md-offset-2.margin-bottom-5
+  = simple_form_for(@ex_link, html: { class: 'reg-page'}) do |f|
+    = f.error_notification
+
+    .form-input
+      = f.input :label, placeholder: 'Electrical And Information Technology',
+                hint:'Nice formatted name of the link. E.g. '
+      = f.input :url, placeholder: 'http://www.eit.lth.se/index.php?L=1',
+                hint: 'Full URL of the link.'
+      / TODO: Show user known tags nicely
+      / TODO: This should be prepopulated by current tags when editing
+      / White space is ignored and tags are saved in lowercase.
+      = f.input :tagstring, :input_html => {:value => @ex_link.get_tagnames},
+                hint: raw("Tags separated by space. #{link_to 'Show all tags',
+                                                        action: 'list_tags'}")
+      = f.input :test_availability,
+                :input_html => { :checked => @ex_link.test_availability },
+                hint: 'Check this link for availability (WIP)"'
+      = f.input :active, :input_html => { :checked => @ex_link.active },
+                hint: 'Signalize if the link is active or not.'
+      = f.input :image, as: :file
+      = f.input :expiration, as: :datetime_picker,
+                hint: 'Mark inactive after this date.',
+                :input_html => {:value => Date.today + 730}
+      = f.input :note, placeholder: '', hint: 'Useful info about the link.'
+    .form-group.margin-bottom-5
+      = f.button :submit, class: 'btn btn-u'
+
