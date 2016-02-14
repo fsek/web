@@ -19,6 +19,7 @@ class MenusController < ApplicationController
   def create
     @menu = Menu.new(menu_params)
     if @menu.save
+      expire_fragment('main_menu')
       redirect_to menus_path, notice: alert_create(Menu)
     else
       render :new, status: 422
@@ -28,6 +29,7 @@ class MenusController < ApplicationController
   def update
     @menu = Menu.find(params[:id])
     if @menu.update(menu_params)
+      expire_fragment('main_menu')
       redirect_to edit_menu_path(@menu), notice: alert_update(Menu)
     else
       render :edit, status: 422
@@ -36,7 +38,8 @@ class MenusController < ApplicationController
 
   def destroy
     @menu = Menu.find(params[:id])
-    @menu.destroy
+    @menu.destroy!
+    expire_fragment('main_menu')
     redirect_to menus_url, notice: alert_destroy(Menu)
   end
 
