@@ -1,0 +1,13 @@
+.contact {
+  &.index {
+    border-bottom: solid 1px $fsek-orange;
+    margin-bottom: 50px;
+    margin-top: 10px;
+    padding-bottom: 30px;
+  }
+
+  .description,
+  .users {
+    min-height: 100px;
+  }
+}

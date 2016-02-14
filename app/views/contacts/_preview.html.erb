@@ -1,0 +1,32 @@
+<% if contact.present? %>
+  <div class="row contact index">
+    <div class="col-md-2 col-sm-12">
+      <%= contact_image(contact) %>
+    </div>
+    <div class="col-md-10 col-sm-12">
+      <h3><%= contact.to_s %></h3>
+      <div class="col-md-8 description">
+      <%= simple_format(contact.text) %>
+      </div>
+      <div class="col-md-4 users">
+        <% if contact.users.present? %>
+          <ul class="list">
+            <% contact.users.each do |user| %>
+              <li><%= link_to(user, user) %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <%= link_to(t('contact.contact'), contact_path(contact),
+                 class: 'btn primary') %>
+      <% if can?(:manage, contact) %>
+        <span class="edit">
+          <%= link_to(edit_admin_contact_path(contact),
+                      class: 'pull-right') do %>
+            <%= fa_icon('cog') %> <%= t(:edit) %>
+          <% end %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+<% end %>

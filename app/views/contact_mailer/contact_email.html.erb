@@ -7,16 +7,16 @@
     <h2><%= t('contact.message_sent_via') %> - <%= @contact.to_s %></h2>
     <table>
       <tr>
-        <td><%= Contact.human_attribute_name(:sender_name) %></td>
-        <td><%= @contact.sender_name %></td>
+        <td><%= ContactMessage.human_attribute_name(:name) %></td>
+        <td><%= @contact.message.name %></td>
       </tr>
       <tr>
-        <td><%= Contact.human_attribute_name(:sender_email) %></td>
-        <td><%= @contact.sender_email %></td>
+        <td><%= ContactMessage.human_attribute_name(:email) %></td>
+        <td><%= @contact.message.email %></td>
       </tr>
       <tr>
-        <td><%= Contact.human_attribute_name(:sender_message) %></td>
-        <td><%= simple_format(@contact.sender_message) %></td>
+        <td><%= ContactMessage.human_attribute_name(:message) %></td>
+        <td><%= simple_format(@contact.message.message) %></td>
       </tr>
     </table>
   </body>

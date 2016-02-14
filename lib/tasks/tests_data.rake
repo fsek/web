@@ -106,8 +106,7 @@ namespace :db do
 
     # Contact
     Contact.find_or_create_by(name: 'Spindelman - David', email: 'spindelman@fsektionen.se',
-                              public: true, text: 'Detta är en linte spindelman',
-                              council_id: Council.first.try(:id))
+                              public: true, text: 'Detta är en linte spindelman')
 
     # News
     News.find_or_create_by!(title: 'Ett helt nytt användarsystem',

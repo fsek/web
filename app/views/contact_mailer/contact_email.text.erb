@@ -1,8 +1,8 @@
 <%= t('contact.message_sent_via') %> <%= @contact.to_s %>
 ===============================================
 
-<%= Contact.human_attribute_name(:sender_name) %> <%= @contact.sender_name %>
-<%= Contact.human_attribute_name(:sender_email) %> <%= @contact.sender_email %>
+<%= ContactMessage.human_attribute_name(:name) %> <%= @contact.message.name %>
+<%= ContactMessage.human_attribute_name(:email) %> <%= @contact.message.email %>
 
-<%= Contact.human_attribute_name(:sender_message) %>
-<%= simple_format(@contact.sender_message) %>
+<%= ContactMessage.human_attribute_name(:message) %>
+<%= simple_format(@contact.message.message) %>

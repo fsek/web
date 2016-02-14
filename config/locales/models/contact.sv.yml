@@ -6,11 +6,12 @@ sv:
         other: Kontakter
     attributes:
       contact:
-        name: Namn
+        created_at: Skapad
         email: E-post
+        message: Meddelande
+        name: Namn
+        post_id: Post
         public: Publik
+        slug: Kortreferens
         text: Beskrivning
-        council_id: Utskott
-        sender_name: Ditt namn
-        sender_email: Din e-post
-        sender_message: Meddelande
+        updated_at: Uppdaterad

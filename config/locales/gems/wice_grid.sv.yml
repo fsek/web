@@ -45,3 +45,5 @@ sv:
     deselect_all: Ta bort urval
     expand: Expandera
     collapse: Kollapsa
+    filter: Filtrera
+    reset_filter: Återställ filtrering

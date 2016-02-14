@@ -1,17 +1,33 @@
 <%= title(model_name(Contact))%>
-<div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
-  <div class="headline">
-    <h2><%= @contact.to_s %></h2>
+<div class="headline">
+  <h2><%= @contact.to_s %></h2>
+</div>
+<div class="col-md-6 col-sm-12 contact">
+  <div class="col-xs-2">
+    <%= contact_image(@contact) %>
   </div>
-
-  <%=simple_format(@contact.text)%>
-  <hr>
-  <%= simple_form_for(@contact, method: :post, url: mail_contact_path(@contact)) do |f| %>
-    <%= f.input :sender_name, required: true %>
-    <%= f.input :sender_email, required: true %>
-    <%= f.input :sender_message, as: :text %>
-    <%= f.button :submit, t('contact.send_message') %>
-  <% end %>
-  <hr>
+  <div class="col-xs-6 description">
+    <%= simple_format(@contact.text) %>
+  </div>
+  <div class="col-xs-4 users">
+    <% if @contact.users.present? %>
+      <ul class="list">
+        <% @contact.users.each do |user| %>
+          <li><%= link_to(user, user) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
   <%= link_to(t('contact.back_to_index'), contacts_path, class: 'btn secondary') %>
+  <% if can?(:manage, @contact) %>
+    <span class="edit">
+      <%= link_to(edit_admin_contact_path(@contact),
+                  class: 'pull-right') do %>
+                  <%= fa_icon('cog') %> <%= t(:edit) %>
+                <% end %>
+    </span>
+  <% end %>
+</div>
+<div class="col-md-6 col-sm-12">
+  <%= render 'send_form', contact: @contact %>
 </div>

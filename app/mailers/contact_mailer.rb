@@ -10,7 +10,7 @@ class ContactMailer < ActionMailer::Base
       set_message_id
 
       recipient = "#{contact.name} <#{contact.email}>"
-      sender = "#{contact.sender_name} <#{contact.sender_email}>"
+      sender = "#{contact.message.name} <#{contact.message.email}>"
 
       mail(to: recipient, cc: sender, reply_to: sender)
     end
