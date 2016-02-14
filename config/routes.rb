@@ -132,6 +132,9 @@ Fsek::Application.routes.draw do
       post :mail, on: :member
     end
 
+    get '/kontakt', to: redirect('/kontakter')
+    get '/kontakt/:id', to: redirect('/kontakter/%{id}')
+
     resources :calendars, path: :kalender,  only: :index do
       get :export, on: :collection
     end
