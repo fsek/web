@@ -1,0 +1,64 @@
+.work-post {
+  &.index {
+    border-bottom: solid 1px $fsek-orange;
+    margin-bottom: 50px;
+    margin-top: 10px;
+    padding-bottom: 5px;
+  }
+
+  &.updated-at {
+    display: table-cell;
+    vertical-align: bottom;
+  }
+
+  &.dropdown {
+    display: inline-block;
+  }
+
+  .bottom {
+    margin-bottom: 20px;
+  }
+
+  .link {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+  }
+
+  .image {
+    max-height: 20%;
+  }
+
+  .description,
+  .users {
+    min-height: 100px;
+  }
+
+  .info {
+    display: block;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: -10px;
+
+    .title {
+      color: $dark-gray;
+      display: inline-block;
+      width: 70px;
+    }
+
+    .value {
+      color: $gray-headline;
+      font-weight: bold;
+    }
+  }
+
+  tr {
+    &.published {
+      td,
+      &.even td,
+      &.odd td {
+        background-color: rgba($fsek-nano-green, 0.3);
+      }
+    }
+  }
+}

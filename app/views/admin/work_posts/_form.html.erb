@@ -1,0 +1,28 @@
+<%= simple_form_for([:admin, work_portal.current_post]) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input(:kind, collection: work_portal.kinds,
+                     input_html: { class: 'select2_tags' }) %>
+  <%= f.input(:company, collection: work_portal.companies,
+                        input_html: { class: 'select2_tags' }) %>
+  <%= f.input(:target_group, collection: work_portal.target_groups,
+                             input_html: { class: 'select2_tags' }) %>
+  <%= f.input(:field, collection: work_portal.fields,
+                      input_html: { class: 'select2_tags' }) %>
+  <%= f.input :link %>
+  <%= f.input :visible %>
+  <%= f.input :deadline, as: :datetime_picker %>
+  <%= f.input :publish, as: :datetime_picker %>
+  <%= f.input :image %>
+  <% if work_portal.current_post.image.present? %>
+    <%= image_tag(work_portal.current_post.image.thumb.url, class: 'img-responsive')%>
+    <%= f.input :remove_image, as: :boolean %>
+  <% end %>
+  <%= f.button :submit %>
+
+  <% if work_portal.current_post.persisted? %>
+    <%= link_to(t('work_post.destroy'),
+                admin_work_post_path(work_portal.current_post),
+                method: :delete, class: 'btn danger pull-right') %>
+  <% end %>
+<% end %>

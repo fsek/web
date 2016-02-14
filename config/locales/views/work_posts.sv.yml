@@ -1,3 +1,13 @@
 sv:
   work_post:
+    admin_index: Administrera Jobbportal
+    all: Alla
+    destroy: Förinta jobbpost
+    edit: Redigera jobbpost
+    filter_found: Hittade %{count} st
+    info: Information
+    new: Ny jobbpost
+    reset_filter: Rensa filtrering
+    show: Visa jobbpost
+    show_all: Visa alla
     title: Jobbportal

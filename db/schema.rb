@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207135234) do
+ActiveRecord::Schema.define(version: 20160213203822) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -464,24 +464,24 @@ ActiveRecord::Schema.define(version: 20160207135234) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "work_posts", force: :cascade do |t|
-    t.string   "title",                limit: 255
-    t.text     "description",          limit: 65535
-    t.string   "company",              limit: 255
+    t.string   "title",        limit: 255
+    t.text     "description",  limit: 65535
+    t.string   "company",      limit: 255
     t.datetime "deadline"
-    t.string   "for",                  limit: 255
-    t.boolean  "visible"
+    t.string   "target_group", limit: 255
+    t.boolean  "visible",                    default: true
     t.datetime "publish"
-    t.string   "picture_file_name",    limit: 255
-    t.string   "picture_content_type", limit: 255
-    t.integer  "picture_file_size",    limit: 4
-    t.datetime "picture_updated_at"
-    t.integer  "responsible",          limit: 4
+    t.integer  "user_id",      limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category",             limit: 255
-    t.string   "link",                 limit: 255
-    t.string   "kind",                 limit: 255
-    t.integer  "row_order",            limit: 4
+    t.string   "link",         limit: 255
+    t.string   "kind",         limit: 255
+    t.string   "image",        limit: 255
+    t.string   "field",        limit: 255
   end
+
+  add_index "work_posts", ["field"], name: "index_work_posts_on_field", using: :btree
+  add_index "work_posts", ["target_group"], name: "index_work_posts_on_target_group", using: :btree
+  add_index "work_posts", ["user_id"], name: "index_work_posts_on_user_id", using: :btree
 
 end

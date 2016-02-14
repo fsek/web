@@ -1,96 +1,20 @@
-<% provide(:title, 'Jobbportal') %>
-<% if @edit %>	
-    <ul class="list">
-        <li><%= link_to "Skapa jobbpost", :new_work_post %></li>        
-    </ul>
-  <% end %>
-<div class="container">
-	
-	<div class="col-md-12" id="display-group">
-		<%if @edit && @edit_grid%>
-		Första tabellen visas endast för de med rättigheter att redigera.<br> Här listat för tillfället alla jobbposter.
-			<%= grid(@not_published_grid) do |g|				  		    	 
-				  g.column name: "Titel",attribute: "title",filter: false  do |work_p|			    
-				    work_p.title
-				  end
-				  g.column name: "Företag",attribute: "company",filter: false do |work_p|
-				    work_p.company
-				  end
-				
-				  g.column name: "Område", attribute: "category",filter: false do |work_p|
-				    work_p.category
-				  end
-				  
-				  g.column name: "Målgrupp", attribute: "for",filter: false do |work_p|
-				    work_p.for
-				  end
-				  g.column name: "Synlig" do |work_p|
-				    work_p.visible? ? 'Ja' : 'Nej, ändras via "Redigera"'
-				  end
-				  g.column name: "Publicering" do |work_p|
-				    (work_p.publish == nil)||(work_p.publish <= DateTime.now.beginning_of_day) ? 'Redan gjort' : work_p.publish.to_date
-				  end			  
-				  g.column do |work_p|
-				    link_to('Redigera', edit_work_post_path(work_p))				
-				  end
-			end -%>
-			<hr>
-		<%end%>
-		<div class="headline headline-md">
-	        	<h1>Jobbportal</h1>
-	    	</div>
-	    	<p>Välkommen till Näringslivsutskottetes jobbportal. Här kommer erbjudande från företag såsom lediga jobb och liknande att läggas ut.</p>
-		<%= grid(@work_post_grid) do |g|			
-			  g.column name: "Titel",attribute: "title",filter: false  do |work_p|			    
-			    link_to(work_p.title,"#mer-"+work_p.id.to_s,class: "",data: {toggle: "collapse",parent: "display-group"})
-			  end
-			  g.column name: "Företag",attribute: "company",filter: false do |work_p|
-			    work_p.company
-			  end
-			
-			  g.column name: "Område", attribute: "category",filter: false do |work_p|
-			    work_p.category
-			  end
-			  
-			  g.column name: "Målgrupp", attribute: "for",filter: false do |work_p|
-			    work_p.for
-			  end
-		  
-			  g.column name: "Sista ansökningsdatum", attribute: "deadline",filter: false do |work_p|
-			    (work_p.deadline > Date.new(2100,03,25)) ? "Inte bestämt" : work_p.deadline.to_date 
-			  end
-		  
-			  if @edit
-				  g.column do |work_p|
-				    link_to('Redigera', edit_work_post_path(work_p))
-				  end
-			  end
-		end -%>
-		<div class="col-md-12" id="display-group">              
-			<%for @work_post in @work_posts%>
-	            <div id="mer-<%=@work_post.id%>" class="collapse">
-	                <div class="funny-boxes funny-boxes-left-orange">                	
-	                	<h2><%=@work_post.title%></h2>
-	                	<div class="col-md-8">
-		                    <%if @work_post.description%><p><%=@work_post.description%></p><%end%>
-		                    <ul class="list-unstyled">
-                               <%if @work_post.company%><li><i class="fa fa-briefcase"></i> <%=@work_post.company%></li><%end%>                             
-                               <%if @work_post.deadline.to_date < DateTime.new(2100,03,25).to_date%><li><i class="fa fa-calendar"></i> Sista ansökningsdag: <b><%=@work_post.deadline.to_date%></b></li><%end%>                             
-                               <%if @work_post.category%><li><i class="fa fa-clock-o"></i> <%=@work_post.category%></li><%end%>
-                               <%if @work_post.for%><li><i class="fa fa-users"></i> <%=@work_post.for%></li><%end%>                                                            
-                               <%if @work_post.link%><li><i class="fa fa-map-marker"></i> <%=link_to("Till företaget",url_for(@work_post.link))%></li><%end%>
-                            </ul>
-		                    	                    
-	                    </div>
-	                    <div class="col-md-4">
-	                    	<%if @work_post.picture_file_name%>
-	                    		<%= image_tag(@work_post.picture(:view))%>
-	                    	<%end%>
-                    	</div>
-	                </div>
-	            </div>                                        
-	        <%end%>
+<% provide(:title, t('work_post.title')) %>
+<div class='headline'>
+  <h2><%= t('work_post.title') %></h2>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= render 'dropdown_filters', work_portal: @work_portal %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+    <% @work_portal.work_posts.each do |wp| %>
+      <div class="row work-post index">
+        <div class="headline">
+          <h2><%= wp.to_s %></h2>
         </div>
-                        
-    </div>
+
+        <%= render 'preview', work_post: wp, description: false %>
+      </div>
+    <% end %>
 </div>

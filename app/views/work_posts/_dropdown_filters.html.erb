@@ -1,0 +1,65 @@
+<% if work_portal.present? %>
+  <div class="work-post dropdown">
+    <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <% if work_portal.current[:target].present? %>
+        <%= work_portal.current[:target] %>
+      <% else %>
+        <%= WorkPost.human_attribute_name(:target_group) %>
+      <% end %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="oldies">
+      <li>
+        <%= link_to(t('work_post.all'), work_portal.new_target_path(nil)) %>
+      </li>
+      <% work_portal.target_groups.each do |target| %>
+        <li>
+          <%= link_to(target, work_portal.new_target_path(target)) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="work-post dropdown">
+    <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <% if work_portal.current[:field].present? %>
+        <%= work_portal.current[:field] %>
+      <% else %>
+        <%= WorkPost.human_attribute_name(:field) %>
+      <% end %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="oldies">
+      <li>
+        <%= link_to(t('work_post.all'), work_portal.new_kind_path(nil)) %>
+      </li>
+      <% work_portal.fields.each do |field| %>
+        <li>
+          <%= link_to(field, work_portal.new_field_path(field)) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="work-post dropdown">
+    <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <% if work_portal.current[:kind].present? %>
+        <%= work_portal.current[:kind] %>
+      <% else %>
+        <%= WorkPost.human_attribute_name(:kind) %>
+      <% end %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="oldies">
+      <li>
+        <%= link_to(t('work_post.all'), work_portal.new_kind_path(nil)) %>
+      </li>
+      <% work_portal.kinds.each do |kind| %>
+        <li>
+          <%= link_to(kind, work_portal.new_kind_path(kind)) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <%= link_to(t('work_post.reset_filter'), work_posts_path, class: 'btn secondary') %>
+  <%= t('work_post.filter_found', count: work_portal.work_posts.count) %>
+<% end %>

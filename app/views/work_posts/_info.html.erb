@@ -1,0 +1,24 @@
+<% if work_post.present? %>
+  <div class="headline">
+    <h4><%= t('work_post.info') %></h4>
+  </div>
+
+  <%= work_post_info_title(WorkPost.human_attribute_name(:kind),
+                           work_post.kind) %>
+  <%= work_post_info_title(WorkPost.human_attribute_name(:company),
+                           work_post.company) %>
+  <%= work_post_info_title(WorkPost.human_attribute_name(:target_group),
+                           work_post.target_group) %>
+  <%= work_post_info_title(WorkPost.human_attribute_name(:field),
+                           work_post.field) %>
+  <% if work_post.deadline.present? %>
+    <%= work_post_info_title(WorkPost.human_attribute_name(:deadline),
+                             l(work_post.deadline.to_date)) %>
+  <% end %>
+
+  <% if show_link.present? && work_post.link.present? %>
+    <br>
+    <%= link_to(work_post.link, work_post.link, class: 'btn primary',
+               target: :blank_p) %>
+  <% end %>
+<% end %>
