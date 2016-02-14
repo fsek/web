@@ -1,10 +1,10 @@
 .col-md-12.margin-bottom-20
-  %h1= ExLink.human_attribute_name("Tags")
+  %h1= "Tags"
   .row
     .col-md-10.margin-bottom-20
       %ul.list-inline.badge-lists
         %button.btn.btn-u-default
-          =link_to ExLink.human_attribute_name("All tags"), action: 'index'
+          =link_to ExLink.human_attribute_name(:all_tags), action: 'index'
         - @tags.each do |tagname, number|
           %button.btn.btn-u-default
             =link_to "#{tagname} (#{number})", action: 'index', tag: tagname
@@ -16,15 +16,15 @@
         %table.table.table-hover
           %thead
             %tr
-              %th= ExLink.human_attribute_name("Image")
-              %th= ExLink.human_attribute_name("Label")
-              %th= ExLink.human_attribute_name("Url")
-              %th= ExLink.human_attribute_name("Tags")
-              %th= ExLink.human_attribute_name("Test availability")
-              %th= ExLink.human_attribute_name("Active")
-              %th= ExLink.human_attribute_name("Expiration")
-              %th= ExLink.human_attribute_name("Note")
-              %th= ExLink.human_attribute_name("Action")
+              %th= ExLink.human_attribute_name(:image)
+              %th= ExLink.human_attribute_name(:label)
+              %th= ExLink.human_attribute_name(:url)
+              %th= ExLink.human_attribute_name(:tags)
+              %th= ExLink.human_attribute_name(:test_availability)
+              %th= ExLink.human_attribute_name(:active)
+              %th= ExLink.human_attribute_name(:expiration)
+              %th= ExLink.human_attribute_name(:note)
+              %th= ExLink.human_attribute_name(:action)
 
           %tbody
             - @ex_links.each do |ex_link|
@@ -40,24 +40,4 @@
                 %td
                   .btn-group
                     %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}
-                      =link_to 'Show', ex_link, :method => 'get'
-  -#.row
-  -#  .col-md-4
-  -#    = link_to 'List all tags', {action: 'list_tags'},
-  -#                                            class: 'btn-u btn-secondary'
-  -#.row
-  -#  .col-md-12
-  -#    %h1 Listing tags
-  -#    .panel.panel-sea.margin-bottom-10
-  -#      %table.table.table-hover
-  -#        %thead
-  -#          %tr
-  -#            %th Label
-  -#            %th Occurence
-  -#
-  -#        %tbody
-  -#          - @tags.each do |tagname, number|
-  -#            %tr
-  -#              %td= tagname
-  -#              %td= link_to "#{number}", action: 'index', tag: tagname
-
+                      =link_to ExLink.human_attribute_name(:show), ex_link, :method => 'get'

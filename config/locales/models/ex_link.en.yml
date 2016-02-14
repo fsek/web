@@ -4,6 +4,3 @@ en:
       ex_link:
         one: External link
         other: External links
-    attributes:
-      ex_link:
-        expiration: Expiration Date

@@ -1,8 +1,8 @@
 .col-md-8.col-md-offset-2
-  %h1 Editing External Link
+  %h1= ExLink.human_attribute_name(:editing_external_link)
 
 = render 'form'
 
 .col-md-8.col-md-offset-2
-  = link_to 'Show', admin_ex_link_path(@ex_link), class: 'btn-u btn-u-green'
-  = link_to 'Back', admin_ex_links_path, class: 'btn-u btn-u-default'
+  = link_to ExLink.human_attribute_name(:show), admin_ex_link_path(@ex_link), class: 'btn-u btn-u-green'
+  = link_to ExLink.human_attribute_name(:back), admin_ex_links_path, class: 'btn-u btn-u-default'

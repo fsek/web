@@ -3,34 +3,34 @@
     %table.table.table-striped
       %thead
         %tr
-          %th Attribute
-          %th Value
+          %th= ExLink.human_attribute_name(:attribute)
+          %th= ExLink.human_attribute_name(:value)
       %tbody
         %tr
-          %td Label
+          %td= ExLink.human_attribute_name(:label)
           %td= @ex_link.label
         %tr
-          %td Url
+          %td= ExLink.human_attribute_name(:url)
           %td= link_to @ex_link.url, @ex_link.url
         %tr
-          %td Tags
+          %td= ExLink.human_attribute_name(:tags)
           %td= tags2labs @ex_link.get_tagnames
         %tr
-          %td Test availability
+          %td= ExLink.human_attribute_name(:test_availability)
           %td= bool2icon @ex_link.test_availability
         %tr
-          %td Note
+          %td= ExLink.human_attribute_name(:note)
           %td= @ex_link.note
         %tr
-          %td Active
+          %td= ExLink.human_attribute_name(:active)
           %td= bool2icon @ex_link.active
         %tr
-          %td Expiration
+          %td= ExLink.human_attribute_name(:expiration)
           %td= @ex_link.expiration
 
   .row.margin-bottom-40.col-md-6
     %p
-      = link_to 'Back', ex_links_path, class: 'btn-u btn-secondary'
+      = link_to ExLink.human_attribute_name(:back), ex_links_path, class: 'btn-u btn-secondary'
 
 .col-md-6
   %p

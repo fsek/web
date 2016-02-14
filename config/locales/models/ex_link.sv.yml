@@ -7,3 +7,20 @@ sv:
     attributes:
       ex_link:
         expiration: Utgångsdatum
+#        all_tags:
+#        image:
+#        url:
+#        tags:
+#        test_availability:
+#        active:
+#        note:
+#        action:
+#        show:
+#        destroy:
+#        edit:
+#        back:
+#        new_external_link:
+#        editing_external_link:
+#        delete_unused_tags:
+#        attribute:
+#        value:
