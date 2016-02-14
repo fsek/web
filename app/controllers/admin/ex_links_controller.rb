@@ -65,7 +65,7 @@ class Admin::ExLinksController < ApplicationController
     ids_of_wanted_tags = []
     tags_string.split(',').each do |word|
       possible_tag = Tag.where(tagname: word.downcase.strip)
-      if possible_tag.size > 0
+      if !possible_tag.empty?
         ids_of_wanted_tags << possible_tag[0].id
       end
     end
@@ -110,7 +110,7 @@ class Admin::ExLinksController < ApplicationController
     begin
       ExLink.aliveness_check
       msg = 'Links checked for alliveness'
-    rescue Exception => e
+    rescue StandardError => e
       msg = 'Error while cheching for alliveness of the URL: ' + e.message
     end
     redirect_to admin_ex_links_path, notice: msg
@@ -121,7 +121,7 @@ class Admin::ExLinksController < ApplicationController
     begin
       ExLink.expiration_check
       msg = 'Links checked for expiration.'
-    rescue Exception => e
+    rescue StandardError => e
       msg = e.message
     end
     redirect_to admin_ex_links_path, notice: msg

@@ -51,7 +51,9 @@ class ExLink < ActiveRecord::Base
         unless Net::HTTP.get_response(URI(link.url)).code == '200'
           link.update_attribute(:active, false)
         end
-      rescue Exception => e
+      rescue SocketError
+        link.update_attribute(:active, false)
+      rescue StandardError => e
         raise e, link.url
       end
     end

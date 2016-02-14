@@ -4,10 +4,10 @@
     .col-md-10.margin-bottom-20
       %ul.list-inline.badge-lists
         %button.btn.btn-u-default
-          =link_to ExLink.human_attribute_name(:all_tags), action: 'index'
+          = link_to ExLink.human_attribute_name(:all_tags), action: 'index'
         - @tags.each do |tagname, number|
           %button.btn.btn-u-default
-            =link_to "#{tagname} (#{number})", action: 'index', tag: tagname
+            = link_to "#{tagname} (#{number})", action: 'index', tag: tagname
 
   .row
     .col-md-10
@@ -39,5 +39,9 @@
                 %td= truncate(ex_link.note, :length => 30)
                 %td
                   .btn-group
-                    %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}
-                      =link_to ExLink.human_attribute_name(:show), ex_link, :method => 'get'
+                    %button.btn
+                      .btn-default.dropdown-toggle{ "aria-expanded" => "false",
+                                                    "data-toggle" => "dropdown",
+                                                    :type => "button" }
+                        = link_to ExLink.human_attribute_name(:show),
+                          ex_link, :method => 'get'

@@ -1,6 +1,5 @@
 class ExLinksController < ApplicationController
   load_permissions_and_authorize_resource
-  #before_action :set_ex_link, only: [:show, :edit, :update, :destroy]
 
   # GET /ex_links
   def index
@@ -29,7 +28,7 @@ class ExLinksController < ApplicationController
     ids_of_wanted_tags = []
     tags_string.split(',').each do |word|
       possible_tag = Tag.where(tagname: word.downcase.strip)
-      if possible_tag.size > 0
+      if !possible_tag.empty?
         ids_of_wanted_tags << possible_tag[0].id
       end
     end
@@ -62,5 +61,4 @@ class ExLinksController < ApplicationController
     end
     res
   end
-
 end
