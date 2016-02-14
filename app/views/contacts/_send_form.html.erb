@@ -3,8 +3,5 @@
   <%= f.input :name, required: true %>
   <%= f.input :email, required: true %>
   <%= f.input :message, as: :text %>
-  <% if Recaptcha.configuration.public_key.present? %>
-    <%= recaptcha_tags %>
-  <% end %>
   <%= f.button :submit, t('contact.send_message') %>
 <% end %>
