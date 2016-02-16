@@ -1,6 +1,9 @@
 sv:
   cafe_shift:
+    admin_index: Administrera Cafepass
     all_shifts_with_worker: Visar alla pass som har haft jobbare
+    destroy: Förinta Cafepass
+    edit: Redigera Cafepass
     ladybug: Nyckelpiga
     lv_first: Första läsvecka
     new: Nytt Cafépass

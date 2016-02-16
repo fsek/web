@@ -13,6 +13,9 @@ RSpec.describe CafeQueries do
   end
 
   def shift_with_worker(user:, pass: 1, lp: 3, start: 7.days.ago)
+    if pass == 3 || pass == 4
+      start += 2.hours
+    end
     shift = shift(pass: pass, lp: lp, start: start)
     shift.build_cafe_worker(user: user).save!
     shift

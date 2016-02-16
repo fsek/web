@@ -1,13 +1,14 @@
 # encoding:UTF-8
 class Admin::CafeShiftsController < ApplicationController
-  skip_authorization
+  load_permissions_then_authorize_resource
   before_action :authorize
 
   def show
-    @cafe_shift = CafeShift.find(params[:id])
-    @cafe_shift.cafe_worker || @cafe_shift.build_cafe_worker
-    @users = User.all_firstname
-    @councils = Council.titles
+    cafe_shift = CafeShift.find(params[:id])
+    cafe_shift.cafe_worker || cafe_shift.build_cafe_worker
+    @cafe_view = CafeViewObject.new(users: User.all_firstname,
+                                    councils: Council.titles,
+                                    shift: cafe_shift)
   end
 
   def edit
@@ -41,7 +42,7 @@ class Admin::CafeShiftsController < ApplicationController
     @id = shift.id
     shift.destroy!
     respond_to do |format|
-      format.html { redirect_to admin_cafe_shifts_path, alert: alert_destroy(CafeShift) }
+      format.html { redirect_to admin_cafe_shifts_path, noticnotice: alert_destroy(CafeShift) }
       format.js
     end
   end

@@ -1,5 +1,6 @@
 sv:
   cafe_worker:
+    already_working_same_time: Du arbetar redan ett pass vid samma tid.
     cannot_edit: Kan inte redigera
     remove: Ta bort jobbare
     count: Cafepass jobbade

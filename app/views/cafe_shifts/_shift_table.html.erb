@@ -1,0 +1,19 @@
+<table class="table">
+  <tr>
+    <td><%= CafeShift.human_attribute_name(:start) %></td>
+    <td><%= time_range(cafe_view.shift.start,
+                       cafe_view.shift.stop,
+                       format: :long) %></td>
+  </tr>
+  <tr>
+    <td><%= CafeShift.human_attribute_name(:lv) %></td>
+    <td><%= cafe_view.shift.lv %></td>
+  </tr>
+  <tr>
+    <td><%= CafeShift.human_attribute_name(:lp) %></td>
+    <td><%= cafe_view.shift.lp %></td>
+  </tr>
+  <%= cafe_worker_form(shift: cafe_view.shift,
+                       current_user: current_user,
+                       councils: cafe_view.councils) %>
+</table>

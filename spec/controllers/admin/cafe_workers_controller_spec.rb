@@ -1,23 +1,22 @@
 require 'rails_helper'
 
-RSpec.describe CafeWorkersController, type: :controller do
+RSpec.describe Admin::CafeWorkersController, type: :controller do
   let(:user) { create(:user) }
-  let(:shift) { create(:cafe_shift) }
-  let(:worker) { create(:cafe_worker, cafe_shift: shift, user: user) }
 
-  allow_user_to [:create, :destroy, :update], CafeWorker
-  allow_user_to [:show], CafeShift
+  allow_user_to :manage, CafeWorker
+  allow_user_to :manage, CafeShift
 
   before(:each) do
     allow(controller).to receive(:current_user).and_return(user)
   end
 
   describe 'GET #new' do
-    it 'assigns the requested cafe_shift as @cafe_shift' do
+    it 'assigns the requested cafe_view as @cafe_view' do
+      shift = create(:cafe_shift)
+
       get :new, cafe_shift_id: shift.to_param
-      assigns(:cafe_shift).should eq(shift)
-      assigns(:councils).should eq(Council.titles)
-      assigns(:cafe_shift).cafe_worker.should be_a_new(CafeWorker)
+      assigns(:cafe_view).shift.should eq(shift)
+      assigns(:cafe_view).shift.cafe_worker.should be_a_new(CafeWorker)
       response.status.should eq(200)
     end
 
@@ -30,19 +29,30 @@ RSpec.describe CafeWorkersController, type: :controller do
 
   describe 'POST #create' do
     it 'valid params' do
+      council = create(:council)
+      shift = create(:cafe_shift)
+      attributes = { competition: true,
+                     user_id: user.to_param,
+                     council_ids: [council.id],
+                     group: 'MUR' }
+
       lambda do
-        post(:create, cafe_shift_id: shift.to_param, cafe_worker: { competition: true,
-                                                                    user_id: user.to_param })
+        post(:create, cafe_shift_id: shift.to_param, cafe_worker: attributes)
       end.should change(CafeWorker, :count).by(1)
 
-      response.should redirect_to(shift)
+      assigns(:cafe_view).shift.should eq(shift)
+      assigns(:cafe_view).shift.cafe_worker.user eq(user)
+      assigns(:cafe_view).shift.cafe_worker.councils.should include(council)
+      response.should redirect_to([:admin, shift])
     end
 
     it 'invalid params' do
+      shift = create(:cafe_shift)
       lambda do
         post :create, cafe_shift_id: shift.to_param, cafe_worker: { user_id: nil }
       end.should change(CafeWorker, :count).by(0)
 
+      assigns(:cafe_view).shift.should eq(shift)
       response.should render_template(:new)
       response.status.should eq(422)
     end
@@ -50,18 +60,30 @@ RSpec.describe CafeWorkersController, type: :controller do
 
   describe 'PATCH #update' do
     it 'valid params' do
+      shift = create(:cafe_shift)
+      worker = create(:cafe_worker,
+                      cafe_shift: shift,
+                      user: user,
+                      competition: true)
+
       patch(:update, cafe_shift_id: shift.to_param, id: worker.to_param,
                      cafe_worker: { competition: false })
       shift.reload
       shift.cafe_worker.reload
-      shift.cafe_worker.competition.should be_falsey
-      response.should redirect_to(shift)
+
+      assigns(:cafe_view).shift.should eq(shift)
+      assigns(:cafe_view).shift.cafe_worker.competition.should be_falsey
+      response.should redirect_to([:admin, shift])
     end
 
     it 'invalid_params' do
+      shift = create(:cafe_shift)
+      worker = create(:cafe_worker, cafe_shift: shift, competition: true)
       patch(:update, cafe_shift_id: shift.to_param, id: worker.to_param,
                      cafe_worker: { user_id: nil })
 
+      assigns(:cafe_view).shift.should eq(shift)
+      assigns(:cafe_view).shift.cafe_worker.should_not be_nil
       response.should render_template(:new)
       response.status.should eq(422)
     end
@@ -69,8 +91,13 @@ RSpec.describe CafeWorkersController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroy worker' do
+      shift = create(:cafe_shift)
+      worker = create(:cafe_worker,
+                      cafe_shift: shift,
+                      user: user)
+
       delete :destroy, cafe_shift_id: shift.to_param, id: worker.to_param
-      response.should redirect_to(shift)
+      response.should redirect_to([:admin, shift])
     end
   end
 end
