@@ -1,0 +1,24 @@
+<% if work_post.present? %>
+  <div class="col-xs-4 image">
+  <%= image_tag(work_post.image_url, class: 'img-responsive') %>
+  </div>
+
+  <div class="col-sm-6 col-sm-offset-2 col-xs-8">
+    <%= render 'info', work_post: work_post, show_link: false %>
+    <br>
+    <%= link_to(t('work_post.show'), work_post_path(work_post),
+                class: 'btn primary') %>
+  </div>
+
+  <span class="work-post updated-at">
+    <%= WorkPost.human_attribute_name(:updated_at) %>:
+    <%= l(work_post.updated_at.to_date) %>,
+    <%= user_link(work_post.user) %>
+    <% if can?(:manage, work_post) %>
+      <br>
+      <%= link_to(edit_admin_work_post_path(work_post)) do %>
+        <%= fa_icon('cog') %> <%= t(:edit) %>
+      <% end %>
+    <% end %>
+  </span>
+<% end %>

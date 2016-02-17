@@ -1,0 +1,33 @@
+<%= provide(:title, @work_post.to_s) %>
+<div class="work-post">
+  <div class="headline">
+    <h2><%= @work_post.to_s %></h2>
+  </div>
+
+  <div class="col-md-4 col-sm-12 bottom">
+    <div class="col-md-12 col-sm-6 col-xs-12 margin-bottom-20">
+      <%= image_tag(@work_post.image_url, class: 'image img-responsive') %>
+    </div>
+    <div class="col-md-12 col-sm-6 col-xs-12 margin-bottom-20">
+      <%= render 'info', work_post: @work_post, show_link: true %>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-sm-12">
+    <div class="headline">
+      <h4><%= WorkPost.human_attribute_name(:description) %></h4>
+    </div>
+    <%= simple_format(@work_post.description) %>
+  </div>
+
+  <div class="col-xs-12 work-post updated-at">
+    <%= WorkPost.human_attribute_name(:updated_at) %>:
+    <%= l(@work_post.updated_at.to_date) %>,
+    <%= user_link(@work_post.user) %>
+    <hr>
+    <%= link_to(t('work_post.title'), work_posts_path, class: 'btn secondary') %>
+    <% if can?(:manage, @work_post) %>
+      <%= link_to(t('work_post.edit'), edit_admin_work_post_path(@work_post), class: 'btn secondary') %>
+    <% end %>
+  </div>
+</div>

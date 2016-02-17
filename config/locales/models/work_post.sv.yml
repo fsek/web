@@ -6,16 +6,18 @@ sv:
         other: Jobbposter
     attributes:
       work_post:
-        title: Titel
-        description: Beskrivning
+        category: Kategori
         company: Företag
         deadline: Deadline
-        for: Målgrupp
-        visible: Synlig
-        publish: Publiceringsdatum
-        picture: Bild
-        responsible: Ansvarig
-        category: Kategori
+        description: Beskrivning
+        field: Område
+        image: Bild
+        kind: Jobbtyp
         link: Länk
-        kind: Sort
-        row_order: Radordning
+        publish: Publiceringsdatum
+        remove_image: Ta bort bild
+        responsible: Ansvarig
+        target_group: Målgrupp
+        title: Titel
+        updated_at: Uppdaterades
+        visible: Synlig

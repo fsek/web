@@ -121,5 +121,11 @@
         <%= link_to(t('cafe.title'), admin_cafe_shifts_path)%>
       </li>
     <% end %>
+
+    <% if can? :manage, WorkPost %>
+      <li class="dropdown-submenu">
+        <%= link_to(t('work_post.title'), admin_work_posts_path)%>
+      </li>
+    <% end %>
   </ul>
 </li>

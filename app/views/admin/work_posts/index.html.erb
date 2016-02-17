@@ -1,0 +1,45 @@
+<% provide(:title, t('work_post.admin_index')) %>
+<div class="headline">
+  <h3><%= t('work_post.admin_index') %></h3>
+</div>
+
+<div class="col-md-2 col-sm-12 margin-bottom-20">
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+  <%= link_to(t('work_post.show_all'), admin_work_posts_path(all: true), class: 'btn secondary') %>
+
+  <hr>
+
+  <%= link_to(t('work_post.new'), new_admin_work_post_path, class: 'btn primary') %>
+  <%= link_to(t('work_post.title'), work_posts_path, class: 'btn secondary') %>
+</div>
+
+<div class="col-md-10 col-sm-12 work-post">
+  <%= grid(@work_portal.grid, hide_submit_button: true, hide_reset_button: true,
+           html: { class: 'work-post-grid' }) do |g|
+    g.row_attributes do |post|
+      if post.published?
+        { class: 'published' }
+      end
+    end
+    g.column(name: WorkPost.human_attribute_name(:title), attribute: 'title')
+    g.column(name: WorkPost.human_attribute_name(:company), attribute: 'company',
+             custom_filter: :auto)
+    g.column(name: WorkPost.human_attribute_name(:publish), attribute: 'publish') do |wp|
+      l(wp.publish.to_date) if wp.publish.present?
+    end
+    g.column(name: WorkPost.human_attribute_name(:deadline), attribute: 'deadline') do |wp|
+      l(wp.deadline.to_date) if wp.deadline.present?
+    end
+    g.column(name: WorkPost.human_attribute_name(:updated_at), attribute: 'updated_at',
+             filter: false)
+    g.column(name: t(:edit), filter: false) do |wp|
+      link_to(t('work_post.edit'), edit_admin_work_post_path(wp))
+    end
+  end -%>
+</div>

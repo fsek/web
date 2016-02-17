@@ -1,0 +1,19 @@
+<% provide(:title, t('work_post.admin_index')) %>
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h3><%= t('work_post.edit') %></h3>
+  </div>
+
+  <%= render 'form', work_portal: @work_portal %>
+
+  <span>
+    <%= WorkPost.human_attribute_name(:updated_at) %>:
+    <%= l(@work_portal.current_post.updated_at) %>,
+    <%= user_link(@work_portal.current_post.user) %>
+  </span>
+
+  <hr>
+  <%= link_to(t('work_post.show'), work_post_path(@work_portal.current_post), class: 'btn secondary') %>
+  <%= link_to(t('work_post.title'), work_posts_path, class: 'btn secondary') %>
+  <%= link_to(t('work_post.admin_index'), admin_work_posts_path, class: 'btn secondary') %>
+</div>

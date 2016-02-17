@@ -1,13 +1,43 @@
 class WorkPost < ActiveRecord::Base
-  has_attached_file :picture, 
-                    :styles => { view: "200x200>"},                     
-                    :path => ":rails_root/public/system/jobbportal/:id/:style/:filename",
-                    :url => "/system/jobbportal/:id/:style/:filename"  
-  validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
-  validates :publish,:deadline, :presence => {}
+  belongs_to :user
+
+  validates :title, :description, :company,
+            :kind, :target_group, :field,
+            presence: true
+
+  mount_uploader :image, AttachedImageUploader
+
   scope :visible, -> { where(visible: true) }
-  scope :publish, -> { visible.where(publish: DateTime.new(1937,03,25,06,07,0)..DateTime.now.beginning_of_day).
-                       where(deadline: DateTime.now.beginning_of_day..DateTime.new(2137,03,25,06,07,0))
-                       }    
-  scope :unpublish, -> {all}
+  scope :by_deadline, -> { where('deadline > ? OR deadline IS NULL', Time.zone.now) }
+  scope :by_published, -> { where('publish < ? OR publish IS NULL', Time.zone.now) }
+  scope :published, -> { visible.by_deadline.by_published }
+
+  scope :target, -> (target) { where(target_group: target) }
+  scope :field, -> (field) { where(field: field) }
+  scope :kind, -> (kind) { where(kind: kind) }
+
+  def self.companies
+    select(:company).order(:company).uniq.pluck(:company)
+  end
+
+  def self.target_groups
+    select(:target_group).order(:target_group).uniq.pluck(:target_group)
+  end
+
+  def self.fields
+    select(:field).order(:field).uniq.pluck(:field)
+  end
+
+  def self.kinds
+    select(:kind).order(:kind).uniq.pluck(:kind)
+  end
+
+  def to_s
+    title
+  end
+
+  def published?
+    (publish.nil? || publish < Time.zone.now) &&
+      (deadline.nil? || deadline > Time.zone.now)
+  end
 end

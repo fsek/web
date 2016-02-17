@@ -1,57 +1,19 @@
 # encoding:UTF-8
 class WorkPostsController < ApplicationController
   load_permissions_and_authorize_resource
-  before_action :set_edit
 
   def index
-    @work_posts = WorkPost.publish
-    @work_post_grid = initialize_grid(WorkPost.publish)
-    @not_published_grid = initialize_grid(WorkPost.unpublish)
-    if WorkPost.unpublish.count > 0
-      @edit_grid = true
-    end
+    @work_portal = WorkPortal.new(work_posts: WorkPost.published)
+    @work_portal.current_and_filter(filtering_params)
   end
 
   def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
-  def create
-    @work_post.responsible = current_user.id
-    if @work_post.save
-      redirect_to work_posts_path, notice: alert_create(WorkPost)
-    else
-      render :new, status: 422
-    end
-  end
-
-  def update
-    if @work_post.update(work_post_params)
-      redirect_to work_posts_path, notice: alert_update(WorkPost)
-    else
-      render :edit, status: 422
-    end
-  end
-
-  def destroy
-    @work_post.destroy
-    redirect_to work_posts_path, notice: alert_destroy(WorkPost)
+    @work_post = WorkPost.published.find(params[:id])
   end
 
   private
 
-  def set_edit
-    @edit = can?(:manage, WorkPost)
-  end
-
-  def work_post_params
-    params.fetch(:work_post).permit(:title, :description, :company, :deadline,
-                                    :kind, :for, :visible, :publish, :picture,
-                                    :category, :link)
+  def filtering_params
+    params.slice(:target, :field, :kind)
   end
 end

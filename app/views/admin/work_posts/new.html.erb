@@ -1,0 +1,11 @@
+<% provide(:title, t('work_post.title')) %>
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h3><%= t('work_post.new') %></h3>
+  </div>
+
+  <%= render 'form', work_portal: @work_portal %>
+  <hr>
+  <%= link_to t('work_post.title'), work_posts_path, class: 'btn secondary' %>
+  <%= link_to t('work_post.admin_index'), admin_work_posts_path, class: 'btn secondary' %>
+</div>
