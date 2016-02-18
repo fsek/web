@@ -4,13 +4,17 @@
 
 <%= content_for :page_sidebar do %>
   <% page.side.each do |element| %>
-    <%= render element.to_partial_path, page_element: element %>
+    <% cache(element) do %>
+      <%= render element.to_partial_path, page_element: element %>
+    <% end %>
   <% end %>
 <% end %>
 
 <%= content_for :page_main do %>
   <% page.main.each do |element| %>
-    <%= render element.to_partial_path, page_element: element %>
+    <% cache(element) do %>
+      <%= render element.to_partial_path, page_element: element %>
+    <% end %>
   <% end %>
 <% end %>
 

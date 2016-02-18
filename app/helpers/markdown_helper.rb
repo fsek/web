@@ -7,6 +7,6 @@ module MarkdownHelper
                                        tables: true,
                                        underline: true,
                                        highlight: true)
-    markdown.render(text).html_safe
+    ActionView::Base.new.sanitize(markdown.render(text).html_safe)
   end
 end
