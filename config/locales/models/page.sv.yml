@@ -8,6 +8,7 @@ sv:
       page:
         council: Utskott
         created_at: Skapad
+        image_upload: Ladda upp bilder
         title: Titel
         updated_at: Uppdaterad
         url: Url

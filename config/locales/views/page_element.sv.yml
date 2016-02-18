@@ -1,0 +1,16 @@
+sv:
+  page_element:
+    contact: Kontakt
+    destroy: Förinta sidelement
+    edit: Redigera sidelement
+    element_type_hint: Välj en elementtyp och uppdatera för att få fram nya fält.
+    headline_hint: En rubrik ovanför elementet.
+    image: Bild
+    image_missing: Bild saknas
+    images_hint: Redigera sida för att lägga till bilder
+    index: Visa alla sidelement
+    main: Huvudfält
+    name_hint: Namnet ses endast av adminstratörer.
+    new: Nytt sidelement
+    sidebar_hint: Placerar elementet i ett sidofält.
+    text: Text

@@ -89,9 +89,14 @@ Fsek::Application.routes.draw do
 
     resources :menus, path: :meny, except: :show
 
-    resources :pages, path: :sida do
-      resources :page_elements, path: :element, except: :show
+    namespace :admin do
+      resources :pages, path: :sida do
+        resources :page_elements, path: :element, except: :show
+        delete 'destroy_image/:image_id', on: :member, action: :destroy_image, as: :destroy_image
+      end
     end
+
+    resources :pages, path: :sida, only: :show
 
     resources :posts, path: :poster, only: :index do
       get :display, on: :member
@@ -116,9 +121,6 @@ Fsek::Application.routes.draw do
       resources :posts, path: :poster do
         patch :remove_user, on: :member
         patch :add_user, on: :member
-      end
-      resource :page, path: :sida do
-        resources :page_elements, path: :element
       end
     end
 

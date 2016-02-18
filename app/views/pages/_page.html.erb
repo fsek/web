@@ -1,24 +1,20 @@
 <div class="headline">
-  <h2>
-    <%= page.title %>
-  </h2>
-  <% if @councils.present? %>
-    <span class="council dropdown">
-      <%= render('/elements/dropdown_button', collection: @councils,
-                 controller: :councils, action: :show,
-                 title: page.title) %>
-  </span>
-<% end %>
+  <h2><%= page.title %></h2>
 </div>
 
 <%= content_for :page_sidebar do %>
   <% page.side.each do |element| %>
-    <%= render 'page_elements/page_element', page_element: element %>
+    <% cache(element) do %>
+      <%= render element.to_partial_path, page_element: element %>
+    <% end %>
   <% end %>
 <% end %>
+
 <%= content_for :page_main do %>
   <% page.main.each do |element| %>
-    <%= render 'page_elements/page_element', page_element: element %>
+    <% cache(element) do %>
+      <%= render element.to_partial_path, page_element: element %>
+    <% end %>
   <% end %>
 <% end %>
 

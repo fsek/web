@@ -6,7 +6,7 @@
   <% if @council.posts.count > 0 %>
     <%= f.association :president %>
   <% elsif not @council.new_record? %>
-    <%= simple_format(t('councils.no_posts'))%>
+    <%= simple_format(t('council.no_posts'))%>
   <% end %>
   <%= f.button :submit %>
 <% end %>

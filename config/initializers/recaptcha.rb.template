@@ -1,5 +1,0 @@
-Recaptcha.configure do |config|
-  # A development key, not to be used on the real page.
-  config.public_key  = '6Lfs1xcTAAAAAPDv8Bz15mcthR4ojskHo8zD4pex'
-  config.private_key = '6Lfs1xcTAAAAANfDt19G6e8wZqbIwe0bLgGY_F3j'
-end

@@ -1,0 +1,26 @@
+<%= simple_form_for([:admin, page]) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :url %>
+  <%= f.input :visible, as: :boolean %>
+  <%= f.input :public %>
+  <% if page.persisted? %>
+    <div class="form-files">
+      <%= f.input :image_upload, as: :file, error: false, input_html: { multiple: true } %>
+      <% if page.errors[:image_upload].any? %>
+        <div class="gallery has-error">
+          <%= t('page.image_already_uploaded') %><br>
+          <%= page.errors[:image_upload] %>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+  <% end %>
+  <%= f.button :submit %>
+
+  <% if page.persisted? %>
+    <%= link_to(t('page.destroy'),
+                admin_page_path(@page), method: :delete,
+                class: 'btn danger pull-right') %>
+
+  <% end %>
+<% end %>

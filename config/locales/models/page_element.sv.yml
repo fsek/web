@@ -4,9 +4,8 @@ sv:
       page_element: Sidelement
     attributes:
       page_element:
-        border: Ram
         created_at: Skapad
-        displayIndex: Visningsindex
+        index: Visningsindex
         headline: Rubrik
         name: Namn
         page: Sida
@@ -15,5 +14,5 @@ sv:
         text: Text
         updated_at: Uppdaterad
         visible: Synlig
-
-
+        element_type: Sort
+        page_image: Bild

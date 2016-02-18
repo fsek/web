@@ -1,10 +1,11 @@
+<% provide(:title, @page.to_s) %>
 <% if can? :manage, @page %>
-  <%= link_to(t(:add_attr, attr: model_name(PageElement)),
-              new_page_page_element_path(@page), class: 'btn primary') %>
-  <%= link_to(t(:index_attr, attr: models_name(PageElement)),
-              page_page_elements_path(@page), class: 'btn secondary') %>
-  <%= link_to(t(:edit_attr, attr: model_name(Page)),
-              edit_page_path(@page), class: 'btn secondary') %>
+  <%= link_to(t('page_element.new'),
+              new_admin_page_page_element_path(@page), class: 'btn primary') %>
+  <%= link_to(t('page_element.index'),
+              admin_page_page_elements_path(@page), class: 'btn secondary') %>
+  <%= link_to(t('page.edit'),
+              edit_admin_page_path(@page), class: 'btn secondary') %>
   <hr>
 <% end %>
 <%= render @page %>

@@ -2,12 +2,16 @@
 class Page < ActiveRecord::Base
   # Associations
   belongs_to :council
-  has_many :page_elements
+  has_many :page_elements, dependent: :destroy
+  has_many :page_images, dependent: :destroy
 
   # Validations
-  validates :url, uniqueness: true, if: 'url.present?'
+  validates :title, presence: true
+  validates :url, uniqueness: true,
+                  presence: true,
+                  format: { with: /\A[a-z0-9_-]+\z/ }
 
-  # Scopes
+  attr_accessor :image_upload
 
   def main
     page_elements.main
@@ -19,5 +23,9 @@ class Page < ActiveRecord::Base
 
   def to_param
     url.present? ? url : id
+  end
+
+  def to_s
+    title || id
   end
 end

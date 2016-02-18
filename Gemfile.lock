@@ -214,6 +214,8 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
+    pagedown-bootstrap-rails (2.1.2)
+      railties (> 3.1)
     paperclip (4.3.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -276,8 +278,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.5.0)
-    recaptcha (1.1.0)
-      json
+    redcarpet (3.3.4)
     ref (2.0.0)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
@@ -403,6 +404,7 @@ DEPENDENCIES
   mini_magick
   momentjs-rails
   mysql2 (~> 0.3.20)
+  pagedown-bootstrap-rails
   paperclip
   poltergeist
   prawn-rails
@@ -410,7 +412,7 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (= 4.2.5.1)
-  recaptcha
+  redcarpet
   responders
   rspec-example_steps
   rspec-rails

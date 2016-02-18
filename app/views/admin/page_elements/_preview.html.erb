@@ -1,0 +1,33 @@
+<div class="col-xs-12 page-element preview">
+  <% if page_element.headline.present? %>
+    <div class="headline">
+      <h4>
+        <%= PageElement.human_attribute_name(:headline) %>
+        <%= page_element.headline %>
+      </h4>
+    </div>
+  <% end %>
+
+  <% if page_element.element_type == PageElement::TEXT %>
+    <%= markdown(truncate(page_element.text, length: 100)) %>
+  <% elsif page_element.element_type == PageElement::IMAGE %>
+    <% if page_element.page_image.present? %>
+      <%= image_tag(page_element.page_image.image, class: 'img-responsive') %>
+    <% else %>
+      <%= simple_format(t('page_element.image_missing')) %>
+    <% end %>
+  <% end %>
+
+  <%= link_to(edit_admin_page_page_element_path(page_element.page, page_element)) do %>
+    <%= fa_icon('cog') %> <%= t(:edit) %>
+  <% end %>
+  <br>
+  <%= PageElement.human_attribute_name(:index) %>:
+  <%= page_element.index %>
+  |
+  <%= PageElement.human_attribute_name(:visible) %>:
+  <%= yes_no(page_element.visible) %>
+  |
+  <%= PageElement.human_attribute_name(:element_type) %>:
+  <%= t("page_element.#{page_element.element_type}") %>
+</div>

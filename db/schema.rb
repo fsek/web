@@ -310,22 +310,30 @@ ActiveRecord::Schema.define(version: 20160213203822) do
   end
 
   create_table "page_elements", force: :cascade do |t|
-    t.integer  "displayIndex",         limit: 4
+    t.integer  "index",         limit: 4,     default: 1
     t.boolean  "sidebar"
-    t.boolean  "visible"
-    t.text     "text",                 limit: 65535
-    t.string   "headline",             limit: 255
-    t.boolean  "border"
-    t.string   "name",                 limit: 255
-    t.boolean  "pictureR"
-    t.string   "picture_file_name",    limit: 255
-    t.string   "picture_content_type", limit: 255
-    t.integer  "picture_file_size",    limit: 4
-    t.datetime "picture_updated_at"
-    t.integer  "page_id",              limit: 4
+    t.boolean  "visible",                     default: true
+    t.text     "text",          limit: 65535
+    t.string   "headline",      limit: 255
+    t.string   "name",          limit: 255
+    t.integer  "page_id",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "element_type",  limit: 255,   default: "text", null: false
+    t.integer  "page_image_id", limit: 4
+    t.integer  "contact_id",    limit: 4
   end
+
+  add_index "page_elements", ["page_id"], name: "index_page_elements_on_page_id", using: :btree
+
+  create_table "page_images", force: :cascade do |t|
+    t.integer  "page_id",    limit: 4
+    t.string   "image",      limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "page_images", ["page_id"], name: "index_page_images_on_page_id", using: :btree
 
   create_table "pages", force: :cascade do |t|
     t.datetime "created_at"
@@ -334,7 +342,7 @@ ActiveRecord::Schema.define(version: 20160213203822) do
     t.string   "url",        limit: 255
     t.boolean  "visible"
     t.string   "title",      limit: 255
-    t.string   "namespace",  limit: 255
+    t.boolean  "public",                 default: true, null: false
   end
 
   add_index "pages", ["council_id"], name: "index_pages_on_council_id", using: :btree
@@ -484,4 +492,5 @@ ActiveRecord::Schema.define(version: 20160213203822) do
   add_index "work_posts", ["target_group"], name: "index_work_posts_on_target_group", using: :btree
   add_index "work_posts", ["user_id"], name: "index_work_posts_on_user_id", using: :btree
 
+  add_foreign_key "page_images", "pages"
 end
