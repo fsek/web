@@ -2,8 +2,8 @@ sv:
   activerecord:
     models:
       post_user:
-        one: Användare + Post
-        other: Användare + Poster
+        one: Användare med post
+        other: Användare med poster
     attributes:
       post_user:
         user: Användare

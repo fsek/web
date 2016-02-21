@@ -106,7 +106,7 @@
     <% end %>
     <% if can? :modify, Post %>
       <li class="dropdown-submenu">
-        <%= link_to(models_name(Post), posts_path) %>
+        <%= link_to(models_name(Post), '#') %>
         <ul class="dropdown-menu">
           <% Council.titles.each do |council| %>
             <% if can? :manage, council %>

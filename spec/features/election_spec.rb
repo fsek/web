@@ -1,16 +1,11 @@
 require 'rails_helper'
 RSpec.feature 'Visit Election' do
-  let(:user) { create(:user) }
-  let(:election) { create(:election) }
-  let(:council) { create(:council) }
-  let(:the_post) { create(:post, council: council, elected_by: 'Terminsmötet') }
-  background do
-    council
-    the_post
-    election.posts << the_post
-  end
 
   Steps 'Visit the election page' do
+    postt = create(:post)
+    election = create(:election)
+    election.posts << postt
+
     When 'visit the page' do
       page.visit elections_path
     end

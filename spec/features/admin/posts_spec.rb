@@ -3,7 +3,7 @@ RSpec.feature 'Admin Visit Posts' do
   let(:user) { create(:admin) }
   let(:council) { create(:council) }
   let(:test_post) do
-    create(:post, council: council, elected_by: 'Terminsmötet')
+    create(:post, council: council, elected_by: Post::GENERAL)
   end
   let(:login) { LoginPage.new }
 
@@ -24,7 +24,7 @@ RSpec.feature 'Admin Visit Posts' do
 
     Then 'I see edit council headline' do
       page.status_code.should eq(200)
-      first('div.headline h3').text.should include(I18n.t(:edit, attr: nil))
+      first('div.headline h3').text.should include(I18n.t('council.edit'))
     end
 
     And 'I visit councils posts' do
@@ -41,7 +41,7 @@ RSpec.feature 'Admin Visit Posts' do
 
     Then 'I see edit post page' do
       page.status_code.should eq(200)
-      first('div.headline > h2').text.should include(I18n.t(:edit, attr: nil))
+      first('div.headline > h2').text.should include(I18n.t('post.edit'))
     end
   end
 end

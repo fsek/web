@@ -11,9 +11,9 @@ sv:
         description: Beskrivning
         council_id: Utskott
         elected_by: Väljs av
-        elected_at: Väljs på
-        styrelse: Styrelsepost
-        recLimit: Rekommenderad gräns
+        semester: Väljs på
+        board: Styrelsepost
+        rec_limit: Rekommenderad gräns
         car_rent: Får hyra bil
   post:
     added: "%{u} tilldelades %{p}"

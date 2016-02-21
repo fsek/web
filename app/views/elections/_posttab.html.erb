@@ -1,24 +1,32 @@
 <%= grid(grid, html: { class: 'election-grid' }) do |g|
   g.row_attributes do |post|
-    if (post.styrelse == true) && (post.elected_by != "Studierådet")
-      { class: 'styrelse' }
-    elsif (post.elected_by == "Studierådet") && (post.styrelse == false)
-      { class: 'studierad' }
-    end
+    { class: post.elected_by }
   end
-  g.column name: Post.human_attribute_name(:title), attribute: "title", filter: false  do |post|
-    link_to(post.title,display_post_path(post),remote: true)
+
+  g.column(name: Post.human_attribute_name(:title),
+           attribute: 'title') do |post|
+    link_to(post.title, posts_display_path(post), remote: true)
   end
-  g.column name: Post.human_attribute_name(:limit), attribute: "limit", filter: false do |post|
-    post.print_limit
+
+  g.column name: Post.human_attribute_name(:limit), attribute: 'limit',
+    filter: false do |post|
+    print_post_limit(post)
   end
-  g.column name: model_name(Council), attribute: "council_id",filter: false do |post|
-    post.council
+
+  g.column(name: model_name(Council), assoc: :council,
+           attribute: 'title',
+           custom_filter: :auto) do |post|
+    link_to(post.council, post.council, target: :blank_p)
   end
-  g.column name: Post.human_attribute_name(:elected_by), attribute: "elected_by",filter: false
-  if (election.view_status != :before)
+
+  g.column(name: Post.human_attribute_name(:elected_by),
+           attribute: 'elected_by', custom_filter: :auto) do |post|
+    t("post.#{post.elected_by}")
+  end
+
+  if election.view_status != :before
     g.column name: models_name(Candidate), filter: false do |post|
-      election.candidate_count(post)
+     election.candidate_count(post)
     end
   end
 end -%>

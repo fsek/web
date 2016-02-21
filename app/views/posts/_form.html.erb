@@ -1,17 +1,36 @@
-<%= simple_form_for([@council, @post]) do |f| %>
+<%= simple_form_for([council, post]) do |f| %>
   <%= f.input :title %>
-  <%= f.input :styrelse %>
+  <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :board %>
   <%= f.input :car_rent %>
-  <%= f.input :elected_by, collection: ["Terminsmötet", "Styrelsen", "Studierådet"] %>
-  <%= f.input :elected_at, collection: ["HT", "VT", "Båda"] %>
+  <%= f.input(:elected_by, collection: [[t("post.#{Post::GENERAL}"), Post::GENERAL],
+                                        [t("post.#{Post::BOARD}"), Post::BOARD],
+                                        [t("post.#{Post::EDUCATION}"), Post::EDUCATION]],
+                           include_blank: false,
+                           input_html: { class: 'select2' }) %>
+  <%= f.input(:semester, collection: [[t("post.#{Post::AUTUMN}"), Post::AUTUMN],
+                                      [t("post.#{Post::SPRING}"), Post::SPRING],
+                                      [t("post.#{Post::BOTH}"), Post::BOTH],
+                                      [t("post.#{Post::OTHER}"), Post::OTHER]],
+                         include_blank: false,
+                         input_html: { class: 'select2' }) %>
   <%= f.association :council %>
+  <%= f.input :rec_limit %>
+  <%= f.input :limit %>
+  <%= f.button :submit %>
+
+  <% if post.persisted? %>
+    <%= link_to(t('post.destroy'), council_post_path(council, post),
+                                   method: :delete,
+                                   class: 'btn danger pull-right') %>
+  <% end %>
   <div class="panel-body">
     <table class="table table-bordered">
       <tbody>
         <tr>
-          <%= content_tag(:th, Post.human_attribute_name(:recLimit)) %>
-          <%= content_tag(:th, Post.human_attribute_name(:limit)) %>
-          <%= content_tag(:th, '==') %>
+          <th><%= Post.human_attribute_name(:rec_limit) %></th>
+          <th><%= Post.human_attribute_name(:limit) %></th>
+          <th>==</th>
         </tr>
         <tr>
           <td>0</td>
@@ -31,8 +50,4 @@
       </tbody>
     </table>
   </div>
-  <%= f.input :recLimit %>
-  <%= f.input :limit %>
-  <%= f.input :description %>
-  <%= f.button :submit %>
 <% end %>

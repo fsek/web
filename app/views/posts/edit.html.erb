@@ -1,15 +1,18 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <%= content_tag(:h2, t(:edit, attr: model_name(Post))) %>
+    <h2><%= t('post.edit') %></h2>
   </div>
 
-  <%= render 'form'%>
+  <%= render 'form', council: @council, post: @post%>
+  <hr>
 
-  <%= link_to(t(:destroy, attr: model_name(Post)), council_post_path(@council,@post),
-                                                   method: :delete) %><br>
   <% if can? :modify, PermissionPost %>
-    <%= link_to(t(:edit, attr: models_name(Permission)), post_admin_permissions_path(@post)) %><br>
+    <%= link_to(t('permission.edit'), post_admin_permissions_path(@post),
+                                      class: 'btn secondary') %>
   <% end %>
-  <%= link_to(t(:show, attr: models_name(Post)), council_posts_path(@council)) %><br>
-  <%= link_to(t(:show, attr: model_name(Council)), @council) %><br>
+
+  <%= link_to(t('post.index'), council_posts_path(@council),
+                               class: 'btn secondary') %>
+  <%= link_to(t('council.show'), edit_council_path(@council),
+                                 class: 'btn secondary') %>
 </div>

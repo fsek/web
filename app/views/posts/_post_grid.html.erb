@@ -1,0 +1,33 @@
+<% if post_grid.present? %>
+  <%= grid(post_grid) do |g|
+    g.column(name: Post.human_attribute_name(:title),
+             attribute: 'title')
+
+    g.column(name: Post.human_attribute_name(:limit),
+             attribute: 'limit',
+             filter: false)
+
+    g.column(name: Post.human_attribute_name(:board),
+             attribute: 'board', filter: false) do |post|
+      yes_no(post.board)
+    end
+
+    g.column(name: Post.human_attribute_name(:elected_by),
+             attribute: 'elected_by',
+             filter: false) do |post|
+      t("post.#{post.elected_by}")
+    end
+
+    g.column(name: Post.human_attribute_name(:semester),
+             attribute: 'semester',
+             filter: false) do |post|
+      t("post.#{post.semester}")
+    end
+
+    g.column do |post|
+      link_to(t('post.edit'),
+              edit_council_post_path(post.council, post))
+    end
+
+  end -%>
+<% end %>

@@ -8,7 +8,7 @@
   <% end %>
   <% if @council.posts.present? %>
     <div class="row">
-      <%= render 'posts/table', collection: @council.posts %>
+      <%= render 'posts/table', posts: @council.posts %>
     </div>
   <% end %>
 </div>

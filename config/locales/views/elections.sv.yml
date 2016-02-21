@@ -32,3 +32,5 @@ sv:
 
     candidate: Kandidera
     nominate: Nominera
+  election:
+    edit: Redigera val

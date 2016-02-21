@@ -98,15 +98,12 @@ Fsek::Application.routes.draw do
 
     resources :pages, path: :sida, only: :show
 
-    resources :posts, path: :poster, only: :index do
-      get :display, on: :member
-      get :collapse, on: :collection
-      post :add_user, on: :collection
-      delete 'user/:post_user_id', on: :collection, action: :remove_user,
+    namespace :posts, path: :poster do
+      get ':id/display', action: :display, as: :display
+      get :collapse, action: :collapse
+      delete 'user/:post_user_id', action: :remove_user,
                                    as: :remove_user
-      collection do
-        get :show_permissions
-      end
+      get :show_permissions
     end
 
     # Namespace for Nollning
@@ -119,8 +116,8 @@ Fsek::Application.routes.draw do
 
     resources :councils, path: :utskott do
       resources :posts, path: :poster do
-        patch :remove_user, on: :member
-        patch :add_user, on: :member
+        patch :remove_user, on: :collection
+        patch :add_user, on: :collection
       end
     end
 
