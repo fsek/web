@@ -38,7 +38,7 @@ class CouncilsController < ApplicationController
 
   def destroy
     council = Council.find_by_url!(params[:id])
-    council.destroy
+    council.destroy!
     redirect_to councils_url, notice: alert_destroy(Council)
   end
 
