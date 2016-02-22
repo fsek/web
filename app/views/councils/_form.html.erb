@@ -1,11 +1,12 @@
-<%= simple_form_for(@council) do |f| %>
+<%= simple_form_for(council) do |f| %>
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.input :url %>
   <%= f.input :public %>
-  <% if @council.posts.count > 0 %>
-    <%= f.association :president %>
-  <% elsif not @council.new_record? %>
+  <% if council.posts.count > 0 %>
+    <%= f.association :president, collection: council.posts,
+                                  input_html: { class: 'select2' } %>
+  <% elsif council.persisted? %>
     <%= simple_format(t('council.no_posts'))%>
   <% end %>
   <%= f.button :submit %>

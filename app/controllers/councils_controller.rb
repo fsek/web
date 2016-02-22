@@ -1,24 +1,25 @@
 # encoding:UTF-8
 class CouncilsController < ApplicationController
   load_permissions_and_authorize_resource find_by: :url
-  load_and_authorize_resource :post, through: :council
-  before_action :set_page, only: [:show, :edit]
-  before_action :set_councils
 
   def index
+    @councils = Council.titles
   end
 
   def show
-    @council = Council.includes(:posts).includes(:users).find_by_url!(params[:id])
+    @council = Council.includes(posts: :users).find_by_url!(params[:id])
   end
 
   def new
+    @council = Council.new
   end
 
   def edit
+    @council = Council.includes(:posts).find_by_url!(params[:id])
   end
 
   def create
+    @council = Council.new(council_params)
     if @council.save
       redirect_to edit_council_path(@council), notice: alert_create(Council)
     else
@@ -27,6 +28,7 @@ class CouncilsController < ApplicationController
   end
 
   def update
+    @council = Council.includes(:posts).find_by_url!(params[:id])
     if @council.update(council_params)
       redirect_to edit_council_path(@council), notice: alert_update(Council)
     else
@@ -35,19 +37,12 @@ class CouncilsController < ApplicationController
   end
 
   def destroy
-    @council.destroy
+    council = Council.find_by_url!(params[:id])
+    council.destroy
     redirect_to councils_url, notice: alert_destroy(Council)
   end
 
   private
-
-  def set_page
-    @page = @council.page
-  end
-
-  def set_councils
-    @councils = Council.titles
-  end
 
   def council_params
     params.require(:council).permit(:title, :url, :description,

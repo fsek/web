@@ -3,7 +3,7 @@
     <h3><%= t('council.new') %></h3>
   </div>
 
-  <%= render 'form' %>
+  <%= render 'form', council: @council %>
   <hr>
   <%= link_to(t('council.index'), councils_path,
                                   class: 'btn secondary')%>
