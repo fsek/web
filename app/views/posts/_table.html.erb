@@ -1,41 +1,42 @@
-<div class="tab-v1">
-  <div class="headline">
-    <%= content_tag(:h4, models_name(Post)) %>
-  </div>
-  <ul class="nav nav-tabs">
-    <% first = true%>
-    <% collection.each do |post| %>
-      <li class="<%=(first) ? 'active' : ''%>">
-        <%= link_to(post, %(##{dom_id(post)}), data: { toggle: 'tab' }) %>
-      </li>
-      <% first = false%>
-    <% end %>
-  </ul>
-  <div class="tab-content">
-    <% first = true %>
-    <% collection.each do |post| %>
-      <div id="<%= dom_id(post) %>" class="tab-pane fade in <%= (first) ? 'active' : '' %>">
-        <div class="col-md-12">
-          <div class="col-md-8">
-            <div class="headline">
-              <%= content_tag(:h4, Post.human_attribute_name(:description)) %>
+<% if posts.present? %>
+  <div class="tab-v1">
+    <div class="headline">
+      <h4><%= models_name(Post) %></h4>
+    </div>
+    <ul class="nav nav-tabs">
+      <% first = true%>
+      <% posts.each do |post| %>
+        <li class="<%=(first) ? 'active' : ''%>">
+          <%= link_to(post, %(##{dom_id(post)}), data: { toggle: 'tab' }) %>
+        </li>
+        <% first = false%>
+      <% end %>
+    </ul>
+    <div class="tab-content">
+      <% first = true %>
+      <% posts.each do |post| %>
+        <div id="<%= dom_id(post) %>" class="tab-pane fade in <%= (first) ? 'active' : '' %>">
+          <div class="col-md-12">
+            <div class="col-md-8">
+              <div class="headline">
+                <h4><%= Post.human_attribute_name(:description) %></h4>
+              </div>
+              <%= markdown(post.description) %>
             </div>
-            <%= simple_format(post.description) %>
-          </div>
-          <div class="col-md-4">
-            <div class="headline">
-              <%= content_tag(:h4, t('posts.who_currently')) %>
+            <div class="col-md-4">
+              <div class="headline">
+                <h4><%= t('post.who_currently') %></h4>
+              </div>
+              <ul class="list">
+                <% post.users.each do |user| %>
+                  <li><%= user_link(user) %></li>
+                <% end %>
+              </ul>
             </div>
-            <ul class="list">
-              <% post.users.each do |user| %>
-                <%= content_tag(:li, link_to(user, user)) %>
-              <% end %>
-            </ul>
           </div>
         </div>
-      </div>
-      <% first = false %>
-    <% end %>
+        <% first = false %>
+      <% end %>
+    </div>
   </div>
-</div>
-
+<% end %>

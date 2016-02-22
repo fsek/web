@@ -11,7 +11,7 @@ RSpec.describe PostUser, type: :model do
     it { should validate_presence_of(:post_id) }
     it 'validates uniqueness' do
       should validate_uniqueness_of(:user_id).scoped_to(:post_id).
-        with_message(I18n.t('posts.already_have_post'))
+        with_message(I18n.t('post.already_have_post'))
     end
   end
 

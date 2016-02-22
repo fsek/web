@@ -8,6 +8,7 @@ class Council < ActiveRecord::Base
 
   has_many :posts
   has_many :users, through: :posts
+  has_many :post_users, through: :posts
 
   has_many :cafe_worker_councils
   has_many :cafe_workers, through: :cafe_worker_councils

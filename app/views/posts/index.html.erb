@@ -1,66 +1,35 @@
-<% title(models_name(Post)) %>
-<% if @council %>
-  <div class="row margin-bottom-20">
-    <%= link_to(t(:add_attr, attr: Post.model_name.human), new_council_post_path(@council), class: 'btn secondary') %>
-    <%= link_to(t(:show_attr, attr: Council.model_name.human), council_path(@council), class: 'btn secondary') %>
-    <%= link_to(t(:edit_attr, attr: Council.model_name.human), edit_council_path(@council), class: 'btn secondary') %>
-  </div>
-<% end %>
-
-<div class="col-md-12">
-  <div class="margin-bottom-20">
-    <%= simple_form_for(@post_user, url: add_user_posts_path) do |f| %>
-      <%= f.association :user, collection: User.all_firstname, label_method: :print_id %>
-      <%= f.association :post, collection: @posts %>
-      <%= f.button :submit %>
-    <% end %>
-  </div>
+<% provide(:title, models_name(Post)) %>
+<div class="headline">
+  <h2><%= "#{models_name(Post)} - #{@post_view.council}" %></h2>
 </div>
-
-<% if @post_grid.present? && @posts.count > 0 %>
-  <div class="col-md-12">
-    <%= render '/posts/index_table', post_grid: @post_grid, councils: @councils %>
-  </div>
-<% end %>
-
-<div class="col-md-12">
-  <% @posts.each do |post| %>
-    <div id="<%= dom_id(post) %>" class="collapse">
-      <div class="funny-boxes funny-boxes-left-orange">
-        <div class="headline">
-          <h2><%= post %></h2>
-        </div>
-        <div class="col-md-12">
-          <% if can? :edit, post %>
-            <% if post.users.size > 0 %>
-              <div class="panel-body">
-                <table class="table table-bordered">
-                  <tbody>
-                    <tr>
-                      <th><%= model_name(Post) %></th>
-                      <th><%= model_name(User) %></th>
-                      <th><%= PostUser.human_attribute_name(:created_at) %></th>
-                      <th><%= t(:destroy) %></th>
-                    </tr>
-                    <% PostUser.from_post(post.id).each do |pu| %>
-                      <tr>
-                        <%= content_tag(:td, link_to(pu.user, pu.user)) %>
-                        <%= content_tag(:td, pu.post) %>
-                        <%= content_tag(:td, pu.created_at) %>
-                        <%= content_tag(:td, link_to(t(:destroy, attr: nil), remove_user_posts_path(pu), method: :delete)) %>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-            <% end %>
-          <% end %>
-          <% if post.description %>
-            <p><%= Post.human_attribute_name(:description) %>:</p>
-            <%= simple_format(post.description) %>
-          <% end %>
-        </div>
-      </div>
+<div class="col-md-2 col-sm-12">
+  <%= link_to(t('post.new'), new_council_post_path(@post_view.council),
+                             class: 'btn secondary') %>
+  <%= link_to(t('council.show'), council_path(@post_view.council),
+                                 class: 'btn secondary') %>
+  <%= link_to(t('council.edit'), edit_council_path(@post_view.council),
+                                 class: 'btn secondary') %>
+</div>
+<div class="col-md-10 col-sm-12">
+  <div class="col-sm-12 margin-bottom-20">
+    <div class="headline">
+      <h4><%= models_name(Post) %></h4>
     </div>
-  <% end %>
+    <%= render '/posts/post_grid', post_grid: @post_view.post_grid %>
+  </div>
+
+  <div class="col-sm-12 margin-bottom-20">
+    <div class="headline">
+      <h4><%= models_name(PostUser) %></h4>
+    </div>
+    <span id="post-user-status"></span>
+    <%= render '/posts/post_user_grid', post_user_grid: @post_view.post_user_grid %>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="headline">
+      <h4><%= "#{models_name(Post)} - #{@post_view.council}" %></h4>
+    </div>
+    <%= render '/posts/post_user_form', post_view: @post_view %>
+  </div>
 </div>

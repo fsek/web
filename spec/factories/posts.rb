@@ -4,14 +4,14 @@ FactoryGirl.define do
     title
     council
     description
-    elected_by { ['Studierådet', 'Terminsmötet'].sample }
-    elected_at { ['VT', 'HT'].sample }
+    elected_by { [Post::GENERAL, Post::BOARD, Post::EDUCATION].sample }
+    semester { [Post::AUTUMN, Post::SPRING, Post::BOTH].sample }
     limit { rand(1..3) }
-    recLimit { rand(3..7) }
+    rec_limit { rand(3..7) }
   end
 
   trait :board_member do
-    styrelse true
+    board true
   end
 
   trait :allowed_rental do

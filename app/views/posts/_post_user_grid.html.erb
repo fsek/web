@@ -1,0 +1,16 @@
+<% if post_user_grid.present? %>
+  <%= grid(post_user_grid) do |g|
+    g.row_attributes do |post_user|
+      { id: dom_id(post_user) }
+    end
+    g.column(name: model_name(Post), assoc: :post, attribute: 'title')
+    g.column(name: model_name(User), assoc: :user, attribute: 'firstname') do |pu|
+      user_link(pu.user)
+    end
+    g.column(name: t(:destroy)) do |pu|
+      link_to(t(:destroy), posts_remove_user_path(pu),
+                           remote: true,
+                           method: :delete)
+    end
+  end -%>
+<% end %>

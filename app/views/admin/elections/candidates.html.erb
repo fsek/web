@@ -1,38 +1,41 @@
-<div class="col-md-12">
-  <div class="headline">
-    <%= content_tag(:h2, models_name(Candidate)) %>
-  </div>
+<div class="headline">
+  <h2><%= models_name(Candidate) %></h2>
+</div>
+
+<div class="col-sm-12">
   <%= grid(@candidates_grid) do |g|
-    g.column name: model_name(Post), attribute: "post_id",
-      filter: false do |candidate|
+    g.column(name: model_name(Post),
+             assoc: :post,
+             attribute: 'title') do |candidate|
       candidate.post
     end
 
-    g.column name: model_name(User), attribute: "user_id",
+    g.column name: model_name(User), assoc: :user, attribute: 'firstname',
       filter: false do |candidate|
       link_to(candidate.user, candidate.user)
     end
 
     g.column name: User.human_attribute_name(:stil_id), assoc: :user,
-      attribute: "stil_id", filter: false
+      attribute: 'stil_id', filter: false
     g.column name: User.human_attribute_name(:email), assoc: :user,
-      attribute: "email", filter: false
+      attribute: 'email', filter: false
     g.column name: User.human_attribute_name(:phone), assoc: :user,
-      attribute: "phone", filter: false
+      attribute: 'phone', filter: false
     g.column name: Candidate.human_attribute_name(:created_at),
-      attribute: "created_at", filter:false
+      attribute: 'created_at', filter:false
     g.column name: model_name(Council), assoc: :post, attribute: 'council_id',
       filter: false do |candidate|
       link_to(candidate.council, candidate.council)
     end
-    g.column name: Candidate.human_attribute_name(:styrelse),
+    g.column name: Post.human_attribute_name(:board),
       filter: false do |candidate|
-      (candidate.post.styrelse) ? t('yes') : t('no')
+      yes_no(candidate.post.board)
     end
-    g.column name: Candidate.human_attribute_name(:elected_by),
-      filter: false do |candidate|
-      candidate.post.elected_by
+    g.column(name: Candidate.human_attribute_name(:elected_by), assoc: :post,
+             attribute: 'elected_by', custom_filter: :auto) do |candidate|
+      t("post.#{candidate.post.elected_by}")
     end
   end -%>
-  <%= link_to(t(:back_to, attr: model_name(Election)), admin_election_path(@election), class: 'btn default')%>
+<%= link_to(t('election.edit'), admin_election_path(@election),
+                                class: 'btn secondary')%>
 </div>

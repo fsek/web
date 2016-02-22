@@ -2,26 +2,21 @@
   <div class="headline">
     <h3><%= t('council.edit') %></h3>
   </div>
-  <%= render 'form'%>
+  <%= render 'form', council: @council %>
   <hr>
-  <%= link_to(t('post.new'),
-              new_council_post_path(@council),
-              class: 'btn secondary') %>
-  <%= link_to(t('post.index'),
-              council_posts_path(@council),
-              class: 'btn secondary') %>
+  <%= link_to(t('post.new'), new_council_post_path(@council),
+                             class: 'btn secondary') %>
+  <%= link_to(t('post.index'), council_posts_path(@council),
+                               class: 'btn secondary') %>
 
   <% if @council.page.present?%>
-    <%= link_to(t('page.edit'),
-                edit_admin_page_path(@page),
-                class: 'btn secondary') %>
+    <%= link_to(t('page.edit'), edit_admin_page_path(@council.page),
+                                class: 'btn secondary') %>
   <% end %>
   <hr>
-  <%= link_to(t('council.show'),
-              council_path(@council),
-              class: 'btn secondary') %>
+  <%= link_to(t('council.show'), council_path(@council),
+                                 class: 'btn secondary') %>
 
-  <%= link_to(t('council.index'),
-              councils_path,
-              class: 'btn secondary')%>
+  <%= link_to(t('council.index'), councils_path,
+                                  class: 'btn secondary')%>
 </div>

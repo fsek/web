@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213203822) do
+ActiveRecord::Schema.define(version: 20160221125807) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -379,18 +379,16 @@ ActiveRecord::Schema.define(version: 20160213203822) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title",         limit: 255
-    t.integer  "limit",         limit: 4,     default: 0
-    t.text     "description",   limit: 65535
+    t.string   "title",       limit: 255
+    t.integer  "limit",       limit: 4,     default: 0
+    t.text     "description", limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "council_id",    limit: 4
-    t.boolean  "extra_text"
-    t.string   "elected_by",    limit: 255
-    t.string   "elected_at",    limit: 255
-    t.text     "election_text", limit: 65535
-    t.boolean  "styrelse"
-    t.integer  "recLimit",      limit: 4,     default: 0
+    t.integer  "council_id",  limit: 4
+    t.string   "elected_by",  limit: 255
+    t.string   "semester",    limit: 255,   default: "both"
+    t.boolean  "board"
+    t.integer  "rec_limit",   limit: 4,     default: 0
     t.boolean  "car_rent"
   end
 

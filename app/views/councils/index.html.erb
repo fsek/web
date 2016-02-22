@@ -1,9 +1,7 @@
 <% title(model_name(Council)) %>
 <div class="col-md-8 col-md-offset-2 col-sm-12">
   <div class="headline">
-    <h2>
-      <%= models_name(Council) %>
-    </h2>
+    <h2><%= models_name(Council) %></h2>
     <span class="council dropdown">
       <%= render('/elements/dropdown_button',
                  collection: @councils,

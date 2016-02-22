@@ -14,7 +14,7 @@ RSpec.describe Post, type: :model do
   describe 'ActiveModel validations' do
     # Basic validations
     it { should validate_presence_of(:limit) }
-    it { should validate_presence_of(:recLimit) }
+    it { should validate_presence_of(:rec_limit) }
     it { should validate_presence_of(:description) }
   end
 
@@ -32,7 +32,6 @@ RSpec.describe Post, type: :model do
   describe 'public instance methods' do
     context 'responds to its methods' do
       it { should respond_to(:to_s) }
-      it { should respond_to(:print_limit) }
       it { should respond_to(:limited?) }
       it { should respond_to(:set_permissions) }
     end

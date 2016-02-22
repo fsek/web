@@ -1,5 +1,15 @@
 # encoding: UTF-8
 class Post < ActiveRecord::Base
+  AUTUMN = 'autumn'.freeze
+  SPRING = 'spring'.freeze
+  BOTH = 'both'.freeze
+  OTHER = 'other'.freeze
+
+  BOARD = 'board'.freeze
+  EDUCATION = 'education'.freeze
+  GENERAL = 'general'.freeze
+  EXTRA = 'extra'.freeze
+
   # Associations
   belongs_to :council
   has_many :post_users
@@ -11,13 +21,16 @@ class Post < ActiveRecord::Base
   has_many :permissions, through: :permission_posts
 
   # Scopes
-  scope :studierad, -> { where(elected_by: 'Studierådet').order(council_id: :asc) }
-  scope :termins, -> { where(elected_by: 'Terminsmötet').order(council_id: :asc) }
+  scope :board, -> { where(elected_by: BOARD) }
+  scope :education, -> { where(elected_by: EDUCATION) }
+  scope :general, -> { where(elected_by: GENERAL) }
 
-  scope :not_termins, -> { where.not(elected_by: 'Terminsmötet').order(council_id: :asc) }
+  scope :autumn, -> { where('semester = ? OR semester = ?', AUTUMN, BOTH) }
+  scope :spring, -> { where('semester = ? OR semester = ?', SPRING, BOTH) }
+  scope :both, -> { where(semester: BOTH) }
 
   # Validations
-  validates :limit, :recLimit, :description, presence: true
+  validates :title, :description, :limit, :rec_limit, presence: true
 
   # Scopes
   scope :renters, -> { where(car_rent: true) }
@@ -25,18 +38,6 @@ class Post < ActiveRecord::Base
 
   def to_s
     title
-  end
-
-  def print_limit
-    if recLimit == 0 && limit == 0 || recLimit > limit
-      "*"
-    elsif recLimit == limit && recLimit > 0
-      %(#{limit}  (x))
-    elsif limit > 0 && recLimit == 0
-      limit
-    elsif limit > recLimit
-      %(#{recLimit}- #{limit})
-    end
   end
 
   def limited?

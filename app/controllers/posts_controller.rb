@@ -2,30 +2,49 @@
 class PostsController < ApplicationController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :council, parent: true, find_by: :url
-  before_action :prepare_index, only: [:index, :add_user, :remove_user]
-  before_action :set_councils, only: [:new, :edit, :update, :create, :index]
-  before_action :set_post_user, only: [:remove_user, :add_user]
 
   def add_user
-    if PostUserService.create(@post_user)
-      flash[:notice] = I18n.t('post.added', u: @post_user.user, p: @post_user.post)
-      redirect_to back(@post_user.council)
+    council = Council.find_by_url!(params[:council_id])
+    @post_view = PostView.new(council: council,
+                              post_user: PostUser.new(post_user_params),
+                              users: User.all_firstname)
+    @post_view = set_grids(@post_view)
+
+    if PostUserService.create(@post_view.post_user)
+      redirect_to council_posts_path(@post_view.council),
+                  notice: I18n.t('post.added',
+                                 u: @post_view.post_user.user,
+                                 p: @post_view.post_user.post)
     else
       render :index
     end
   end
 
   def remove_user
-    PostUserService.destroy(@post_user)
-    redirect_to back(@post_user.council),
-      notice: I18n.t('post.user_removed', u: @post_user.user, p: @post_user.post)
+    post_user = PostUser.find(params[:post_user_id])
+    @status = I18n.t('post.user_removed',
+                     u: post_user.user,
+                     p: post_user.post)
+    @id = params[:post_user_id]
+
+    @state = post_user.destroy
   end
 
   def index
-    @post_user = PostUser.new
+    council = Council.find_by_url!(params[:council_id])
+    @post_view = PostView.new(council: council,
+                              post_user: PostUser.new,
+                              users: User.all_firstname)
+    @post_view.post_grid = initialize_grid(council.posts,
+                                           order: :title,
+                                           name: 'posts')
+    @post_view.post_user_grid = initialize_grid(council.post_users,
+                                                include: [:post, :user],
+                                                name: 'post_users')
   end
 
   def new
+    @council = Council.find_by_url!(params[:council_id])
     @post = @council.posts.build
   end
 
@@ -34,6 +53,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    @council = Council.find_by_url!(params[:council_id])
     @post = @council.posts.build(post_params)
     if @post.save
       redirect_to council_posts_path(@council), notice: alert_create(Post)
@@ -43,8 +63,11 @@ class PostsController < ApplicationController
   end
 
   def update
+    @council = Council.find_by_url!(params[:council_id])
+    @post = @council.posts.find(params[:id])
+
     if @post.update(post_params)
-      redirect_to(edit_council_post_path(@post.council, @post),
+      redirect_to(edit_council_post_path(@council, @post),
                   notice: alert_update(Post))
     else
       render :edit, status: 422
@@ -52,8 +75,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
-    redirect_to council_posts_path(@council), alert_destroy(Post)
+    council = Council.find_by_url!(params[:council_id])
+    post = council.posts.find(params[:id])
+
+    post.destroy!
+    redirect_to council_posts_path(council), alert_destroy(Post)
   end
 
   def display
@@ -64,34 +90,24 @@ class PostsController < ApplicationController
 
   private
 
+  def set_grids(post_view)
+    post_view.post_grid = initialize_grid(post_view.council.posts,
+                                          order: :title,
+                                          name: 'posts')
+    post_view.post_user_grid = initialize_grid(post_view.council.post_users,
+                                               include: [:post, :user],
+                                               name: 'post_users')
+
+    post_view
+  end
+
   def post_params
-    params.require(:post).permit(:title, :limit, :recLimit,
-                                 :description, :elected_by, :elected_at,
-                                 :styrelse, :car_rent, :council_id)
+    params.require(:post).permit(:title, :limit, :rec_limit,
+                                 :description, :elected_by, :semester,
+                                 :board, :car_rent, :council_id)
   end
 
   def post_user_params
     params.require(:post_user).permit(:user_id, :post_id)
-  end
-
-  def set_councils
-    @councils = Council.order(title: :asc)
-  end
-
-  def set_post_user
-    if params[:post_user_id].present?
-      @post_user = PostUser.find(params[:post_user_id])
-    else
-      @post_user = PostUser.new(post_user_params)
-    end
-  end
-
-  def prepare_index
-    @posts = (@council.present?) ? @council.posts : Post.all
-    @post_grid = initialize_grid(@posts, include: :council)
-  end
-
-  def back(council)
-    council.present? ? council_posts_path(council) : posts_path
   end
 end

@@ -31,7 +31,6 @@ RSpec.feature 'admin visits paths' do
     news: [:index, :show],
     notices: [:index, :new, :show],
     pages: [:show],
-    posts: [:index],
     rents: [:main, :index, :new],
     static_pages: [:about, :company_offer, :company_about]
   }

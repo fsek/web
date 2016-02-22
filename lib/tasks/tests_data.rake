@@ -9,31 +9,32 @@ namespace :db do
                                       url: 'sex', description: 'Detta är Sexmästeriet', public: true)
     cafem = Council.find_or_create_by!(title: 'Cafemästeriet',
                                        url: 'cafe', description: 'Detta är Cafemästeriet', public: true)
-
     # Posts
     # Prylmästeriet
-    spindel = Post.find_or_create_by!(title: 'Spindelman', limit: 0, recLimit: 10, description: 'En administratör',
-                                      council: pryl, elected_by: 'Styrelsen', elected_at: 'VT', car_rent: true)
+    spindel = Post.find_or_create_by!(title: 'Spindelman', limit: 0, rec_limit: 10, description: 'En administratör',
+                                      council: pryl, elected_by: Post::BOARD, semester: Post::SPRING, car_rent: true)
 
-    prylmast = Post.find_or_create_by!(title: 'Prylmästare', limit: 1, recLimit: 1,
-                                       description: 'Prylmästarn', council: pryl, elected_by: 'Terminsmötet',
-                                       styrelse: true, elected_at: 'VT', car_rent: true)
+    prylmast = Post.find_or_create_by!(title: 'Prylmästare', limit: 1, rec_limit: 1,
+                                       description: 'Prylmästarn', council: pryl, elected_by: Post::GENERAL,
+                                       board: true, semester: Post::SPRING, car_rent: true)
     # Sexmästeriet
 
-    sexmast = Post.find_or_create_by!(title: 'Sexmästare', limit: 1, recLimit: 1,
-                                      description: 'Sexmästaren', council: sexm, elected_by: 'Terminsmötet',
-                                      styrelse: true, elected_at: 'VT', car_rent: true)
+    sexmast = Post.find_or_create_by!(title: 'Sexmästare', limit: 1, rec_limit: 1,
+                                      description: 'Sexmästaren', council: sexm, elected_by: Post::GENERAL,
+                                      board: true, semester: Post::SPRING, car_rent: true)
 
     # Cafemästeriet
-    Post.find_or_create_by!(title: 'Vice cafemästare', limit: 1, recLimit: 1, description: 'En vice cm',
-                            council: cafem, elected_by: 'Terminsmötet',
-                            styrelse: true, elected_at: 'HT', car_rent: true)
+    Post.find_or_create_by!(title: 'Vice cafemästare', limit: 1, rec_limit: 1, description: 'En vice cm',
+                            council: cafem, elected_by: Post::GENERAL,
+                            board: true, semester: Post::AUTUMN, car_rent: true)
 
-    cafemast = Post.find_or_create_by!(title: 'Cafemästare', limit: 1, recLimit: 1,
-                                       description: 'Cafemästaren', council: cafem, elected_by: 'Terminsmötet',
-                                       styrelse: true, elected_at: 'HT', car_rent: true)
-    nyckelpiga = Post.find_or_create_by!(title: 'Nyckelpiga', limit: 0, recLimit: 10,
-                                         description: 'Nyckelpigan!', council: cafem, elected_by: '')
+    cafemast = Post.find_or_create_by!(title: 'Cafemästare', limit: 1, rec_limit: 1,
+                                       description: 'Cafemästaren', council: cafem, elected_by: Post::GENERAL,
+                                       board: true, semester: Post::AUTUMN, car_rent: true)
+
+    nyckelpiga = Post.find_or_create_by!(title: 'Nyckelpiga', limit: 0, rec_limit: 10,
+                                         description: 'Nyckelpigan!', council: cafem, elected_by: Post::BOARD, semester: Post::BOTH)
+
 
     # Set president!
     pryl.update(president: prylmast)

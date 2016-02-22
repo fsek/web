@@ -1,10 +1,8 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h2>
-      <%= t(:new_attr, attr: model_name(Post)) %>
-    </h2>
+    <h2><%= t('post.new') %></h2>
   </div>
 
-  <%= render 'form'%>
-  <%= link_to(t(:show_attr, attr: model_name(Council)), council_path(@council)) %>
+  <%= render 'form', post: @post, council: @council %>
+  <%= link_to(t('council.show'), council_path(@council)) %>
 </div>
