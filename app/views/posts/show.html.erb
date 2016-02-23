@@ -1,0 +1,19 @@
+<%= provide(:title, "#{@post} - #{@election}") %>
+<div class="headline">
+  <h2><%= @post.to_s %></h2>
+</div>
+<div class="col-md-2 col-sm-12">
+  <%= link_to(@election, elections_path, class: 'btn secondary') %>
+  <% if can?(:modify, @post) %>
+    <hr>
+    <%= link_to(t('post.edit'), edit_council_post_path(@post.council, @post), class: 'btn secondary') %>
+  <% end %>
+  <% if can?(:modify, @election) %>
+    <hr>
+    <%= link_to(t('election.edit'), admin_election_path(@election), class: 'btn secondary') %>
+  <% end %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= render '/posts/post', post: @post %>
+</div>
