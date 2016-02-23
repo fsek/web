@@ -1,29 +1,18 @@
-Hej <%=@candidate.user %>
+<%= "#{t(:hello)} #{@candidate.user}" %>
 ===============================================
-Du har kandiderat till sektionsposten <%=@candidate.post%>.
 
+<%= "#{t('candidate.mailer.you_have_candidated')} #{@candidate.post}." %>
 
-<% if @candidate.post.elected_by == "Terminsmötet" %>
-<% if @candidate.election.candidate_mail %>
-<%= @candidate.election.candidate_mail %>
-<% end %>
-
-
-<% if (@candidate.post.styrelse) %>
-<%= url_for(@candidate.election.mail_styrelse_link) %>
+<% if @candidate.post.elected_by == Post::GENERAL %>
+  <%= markdown_plain(@candidate.election.candidate_mail) %>
+  <%= candidate_mail_link(@candidate) %>
 <% else %>
-<%= url_for(@candidate.election.mail_link) %>
+  <%= markdown_plain(@candidate.election.candidate_mail_star) %>
 <% end %>
-
-
-<% else %>
-<%= simple_format(@candidate.election.candidate_mail_star) %>
-<% end %>
-Valet stänger <%= @candidate.election.end%>,
-
-fram tills dess kan du redigera din kandidatur på:
+<%= t('candidate.mailer.election_closes_at',
+      date: @candidate.election.post_closing(@candidate.post)) %>
 
 <%= @candidate.p_url %>
+<%= link_to(@candidate.p_url, @candidate.p_url) %>
 
-Mvh,
-Valberedningen
+<%= t('candidate.mailer.sincerely') %>
