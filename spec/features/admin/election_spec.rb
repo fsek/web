@@ -4,9 +4,8 @@ RSpec.feature 'Admin visit election:' do
   let(:login) { LoginPage.new }
 
   scenario 'index' do
-    election = create(:election)
-    postt = create(:post)
-    election.posts << postt
+    create(:election, semester: Post::AUTUMN)
+    create(:post, semester: Post::AUTUMN)
 
     login_as(user)
     page.visit admin_elections_path
@@ -14,8 +13,8 @@ RSpec.feature 'Admin visit election:' do
   end
 
   scenario 'show' do
-    election = create(:election)
-    election.posts << create(:post)
+    election = create(:election, semester: Post::AUTUMN)
+    create(:post, semester: Post::AUTUMN)
 
     login_as(user)
     page.visit admin_elections_path
@@ -33,8 +32,9 @@ RSpec.feature 'Admin visit election:' do
   end
 
   scenario 'nominations' do
-    election = create(:election)
-    create(:nomination, election: election)
+    election = create(:election, semester: Post::AUTUMN)
+    postt = create(:post, semester: Post::AUTUMN)
+    create(:nomination, election: election, post: postt)
 
     login_as(user)
     page.visit admin_election_path(election)
@@ -43,9 +43,8 @@ RSpec.feature 'Admin visit election:' do
   end
 
   scenario 'candidates' do
-    election = create(:election)
-    postt = create(:post)
-    election.posts << postt
+    election = create(:election, semester: Post::AUTUMN)
+    postt = create(:post, semester: Post::AUTUMN)
     create(:candidate, post: postt, election: election)
 
     login_as(user)
