@@ -1,47 +1,30 @@
-<%= simple_form_for(@candidate) do |f| %>
-  <% if @candidate.new_record? %>
-    <%= f.association :post, collection: @election.current_posts %>
-    <%= f.association :user, collection: [ current_user ] %>
-    <%= f.button :submit, id: 'candidate-submit' %>
-  <% else %>
-    <h4><%= @candidate.post.title%></h4>
-    <%= simple_format(t('candidates.cannot_change_post')) %>
+<% if election_view.present? %>
+  <%= simple_form_for(election_view.candidate) do |f| %>
+      <%= f.association :user, collection: [ current_user ], include_blank: false %>
+    <% if election_view.candidate.new_record? %>
+      <%= f.association(:post, collection: election_view.election.posts.title,
+                               include_blank: false,
+                               input_html: { class: 'select2' }) %>
+      <%= f.button :submit, id: 'candidate-submit' %>
+    <% else %>
+      <h4><%= election_view.candidate.post %></h4>
+      <%= simple_format(t('candidate.cannot_change_post')) %>
+      <%= link_to(t('candidate.destroy'), candidate_path(election_view.candidate),
+                                          method: :delete,
+                                          class: 'btn danger') %>
+    <% end %>
   <% end %>
+
+  <hr>
+
+  <%= simple_format(t('candidate.user_attributes')) %>
+  <%= link_to(t('user.edit'), edit_own_user_path,
+                              target: :blank,
+                              class: 'btn secondary') %>
+
+  <table class="table">
+    <tbody>
+      <%= render '/users/as_table', user: current_user, prot: true %>
+    </tbody>
+  </table>
 <% end %>
-<br>
-
-<%= simple_format(t('candidates.user_attributes')) %>
-<p>
-<%= t('candidates.user_update') %>
-<%= link_to(t(:here), edit_own_user_path, target: :blank) %>
-</p>
-
-<table class="table">
-  <tbody>
-    <tr>
-      <td><%= fa_icon('user') %></i></td>
-      <td><%= current_user %></td>
-    </tr>
-    <tr>
-      <td>
-        <%= fa_icon('envelope') %>
-        <%= User.human_attribute_name(:email)%>
-      </td>
-      <td><%= current_user.email %></td>
-    </tr>
-    <tr>
-      <td>
-        <%= fa_icon('phone') %>
-        <%= User.human_attribute_name(:phone) %>
-      </td>
-      <td><%= current_user.phone %></td>
-    </tr>
-    <tr>
-      <td>
-        <%= fa_icon('tag') %>
-        <%= User.human_attribute_name(:stil_id) %>
-      </td>
-      <td><%= current_user.stil_id %></td>
-    </tr>
-  </tbody>
-</table>
