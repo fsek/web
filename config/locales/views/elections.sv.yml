@@ -1,36 +1,24 @@
 sv:
-  elections:
-    orange_posts: Orangefärgade fält innebär att posten sitter i styrelsen.
+  election:
+    administrate: Administrera Val
+    closes_in: 'Stänger om:'
+    confirm_delete: Valet raderas och kan inte återställas, är du säker?
+    destroy: Förinta val
+    edit: Redigera val
+    edit_texts: Redigera övriga texter
+    get_in_touch: Ser något konstigt ut eller blir det fel? Hör av dig till
     green_posts: Grönfärgade fält innebär att posten väljs av studierådet.
-    x_posts: Poster med antal markerat med (x) anger exakt maximalt antal.
-    star_posts: Poster med antal * har ingen bestämd gräns.
+    index: Alla val
+    new: Nytt val
+    no_information: Just nu finns det ingen information om valet.
+    opens_in: 'Öppnar om:'
+    orange_posts: Orangefärgade fält innebär att posten sitter i styrelsen.
+    posts_after: Poster som inte längre kan sökas
     posts_before: Poster som kommer att kunna sökas
     posts_during: Poster som kan sökas
-    posts_after: Poster som inte längre kan sökas
-    get_in_touch: Ser något konstigt ut eller blir det fel? Hör av dig till
-
-    confirm_delete: Valet raderas och kan inte återställas, är du säker?
-
-    edit_texts: Redigera övriga texter
-
+    show: Visa val
     show_as_user: Visa valet (som användare ser det)
-    show_nominations: Visa nomineringar
     show_candidates: Visa kandideringar
-
-    opens_in: 'Öppnar om:'
-    closes_in: 'Stänger om:'
-
-
-    day: dag
-    days: dagar
-    hour: timme
-    hours: timmar
-    minute: minut
-    minutes: minuter
-    second: sekund
-    seconds: sekunder
-
-    candidate: Kandidera
-    nominate: Nominera
-  election:
-    edit: Redigera val
+    show_nominations: Visa nomineringar
+    star_posts: Poster med antal * har ingen bestämd gräns.
+    x_posts: Poster med antal markerat med (x) anger exakt maximalt antal.

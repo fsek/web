@@ -1,42 +1,30 @@
-<div class="col-md-12">
-  <div class="panel panel-orange margin-bottom-40">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <%= fa_icon('tasks') %>
-        <%= model_name(Election) %>
-      </h3>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th><%= Election.human_attribute_name(:title) %></th>
-          <th><%= Election.human_attribute_name(:url) %></th>
-          <th><%= Election.human_attribute_name(:visible) %></th>
-          <th><%= Election.human_attribute_name(:start) %></th>
-          <th><%= Election.human_attribute_name(:end) %></th>
-          <th><%= Election.human_attribute_name(:current_election) %></th>
-          <th><%= Election.human_attribute_name(:updated_at) %></th>
-          <th>
-            <%= link_to(t(:new_t_attr, attr: model_name(Election)),
-                        new_admin_election_path, class: 'btn secondary small') %>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @elections.each do |election| %>
-          <tr>
-            <td><%= election.title %></td>
-            <td><%= election.url %></td>
-            <td><%= election.visible %></td>
-            <td><%= l(election.start) %></td>
-            <td><%= l(election.end) %></td>
-            <td><%= (election == Election.current) ? t(:yes) : t(:no) %></td>
-            <td><%= l(election.updated_at) %></td>
-            <td><%= link_to(t(:edit), admin_election_path(election),
-                            class: 'btn primary') %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<%= provide(:title, t('election.administrate')) %>
+<div class="headline">
+  <h2><%= t('election.index') %></h2>
+</div>
+
+<div class="col-md-2 col-sm-12 margin-bottom-20">
+  <%= link_to(t('election.new'), new_admin_election_path, class: 'btn primary') %>
+  <%= link_to(t('election.show'), elections_path, class: 'btn secondary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: Election.human_attribute_name(:title), attribute: 'title', filter: false)
+    g.column(name: Election.human_attribute_name(:url), attribute: 'url', filter: false)
+    g.column(name: Election.human_attribute_name(:start), attribute: 'start',
+             filter: false) do |election|
+      l(election.start)
+    end
+    g.column(name: Election.human_attribute_name(:updated_at), attribute: 'updated_at',
+             filter: false) do |election|
+      l(election.updated_at)
+    end
+    g.column(name: Election.human_attribute_name(:current_election)) do |election|
+      yes_no(election == Election.current)
+    end
+    g.column(name: t(:edit), filter: false) do |election|
+      link_to(t('election.edit'), admin_election_path(election))
+    end
+  end -%>
 </div>

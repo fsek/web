@@ -40,8 +40,4 @@ class ElectionView
       nil
     end
   end
-
-  def nomination_status
-    'En Text'
-  end
 end
