@@ -1,8 +1,9 @@
+<%= provide(:title, @candidate_view.election) %>
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
     <h2><%= t('candidate.edit') %></h2>
   </div>
-  <%= render 'form', election_view: @election_view %>
+  <%= render 'form', candidate_view: @candidate_view %>
   <hr>
   <%= link_to(t('candidate.index'), candidates_path,
                                     class: 'btn secondary') %>

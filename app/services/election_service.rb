@@ -12,9 +12,10 @@ module ElectionService
 
   def self.destroy_candidate(candidate)
     if candidate.editable?
-      candidate.destroy
+      candidate.destroy!
+      true
     else
-      false
+      return false
     end
   end
 end

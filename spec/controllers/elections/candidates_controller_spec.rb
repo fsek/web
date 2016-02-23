@@ -20,7 +20,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       get :index
 
       response.should be_success
-      assigns(:election_view).candidates.map(&:post).map(&:title).should eq(['The post'])
+      assigns(:candidate_view).all.map(&:post).map(&:title).should eq(['The post'])
     end
   end
 
@@ -32,8 +32,8 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       get :new
 
       response.should be_success
-      assigns(:election_view).candidate.new_record?.should be_truthy
-      assigns(:election_view).candidate.instance_of?(Candidate).should be_truthy
+      assigns(:candidate_view).current.new_record?.should be_truthy
+      assigns(:candidate_view).current.instance_of?(Candidate).should be_truthy
     end
   end
 
@@ -43,7 +43,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
 
       get :show, id: candidate.id
       response.should be_success
-      assigns(:election_view).candidate.should eq(candidate)
+      assigns(:candidate_view).current.should eq(candidate)
     end
   end
 
@@ -60,8 +60,8 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       end.should change(Candidate, :count).by(1)
 
       response.should redirect_to(Candidate.last)
-      assigns(:election_view).candidate.should eq(Candidate.last)
-      assigns(:election_view).candidate.post.should eq(postt)
+      assigns(:candidate_view).current.should eq(Candidate.last)
+      assigns(:candidate_view).current.post.should eq(postt)
     end
 
     it 'invalid params' do

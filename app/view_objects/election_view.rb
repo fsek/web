@@ -1,11 +1,9 @@
 class ElectionView
   attr_reader :election
-  attr_accessor :grid, :rest_grid, :candidates, :candidate, :user, :nomination
+  attr_accessor :grid, :rest_grid, :user, :nomination
 
-  def initialize(election, candidate: nil, candidates: [])
+  def initialize(election)
     @election = election
-    @candidate = candidate
-    @candidates = candidates
   end
 
   def countdown

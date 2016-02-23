@@ -1,15 +1,15 @@
-<% if election_view.present? %>
-  <%= simple_form_for(election_view.candidate) do |f| %>
+<% if candidate_view.present? %>
+  <%= simple_form_for(candidate_view.current) do |f| %>
       <%= f.association :user, collection: [ current_user ], include_blank: false %>
-    <% if election_view.candidate.new_record? %>
-      <%= f.association(:post, collection: election_view.election.posts.title,
+    <% if candidate_view.current.new_record? %>
+      <%= f.association(:post, collection: candidate_view.election.posts.title,
                                include_blank: false,
                                input_html: { class: 'select2' }) %>
       <%= f.button :submit, id: 'candidate-submit' %>
     <% else %>
-      <h4><%= election_view.candidate.post %></h4>
+      <h4><%= candidate_view.current.post %></h4>
       <%= simple_format(t('candidate.cannot_change_post')) %>
-      <%= link_to(t('candidate.destroy'), candidate_path(election_view.candidate),
+      <%= link_to(t('candidate.destroy'), candidate_path(candidate_view.current),
                                           method: :delete,
                                           class: 'btn danger') %>
     <% end %>

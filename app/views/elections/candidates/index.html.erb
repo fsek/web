@@ -1,4 +1,4 @@
-<%= provide(:title, @election_view.election) %>
+<%= provide(:title, @candidate_view.election) %>
 <div class="headline">
   <h2><%= t('candidate.index') %></h2>
 </div>
@@ -9,21 +9,21 @@
 </div>
 
 <div class="col-md-10 col-sm-12 election">
-  <% if @election_view.candidates.any? %>
+  <% if @candidate_view.all.any? %>
     <div class="headline">
       <h3><%= t('candidate.your_candidates') %></h3>
     </div>
-    <% @election_view.candidates.each do |candidate| %>
+    <% @candidate_view.all.each do |candidate| %>
       <div class="col-md-4 col-sm-6 col-xs-12 candidate">
         <h4><%= candidate.post %></h4>
         <ul class="list">
           <li>
             <%= Candidate.human_attribute_name(:count) %>:
-            <%= @election_view.election.candidate_count(candidate.post) %>
+            <%= @candidate_view.election.candidate_count(candidate.post) %>
           </li>
           <li>
             <%= Candidate.human_attribute_name(:closing) %>:
-            <%= l(@election_view.election.post_closing(candidate.post),
+            <%= l(@candidate_view.election.post_closing(candidate.post),
                   format: :short) %>
           </li>
         </ul>

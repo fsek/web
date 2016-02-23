@@ -50,10 +50,7 @@ class Election < ActiveRecord::Base
   end
 
   def after_posts
-    case state
-    when :after
-      posts.title.general
-    end
+    state == :after ? posts.title.general : nil
   end
 
   # Returns the start_date if before, the end_date if during and none if after.

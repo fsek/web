@@ -5,32 +5,32 @@ class Elections::CandidatesController < ApplicationController
   def index
     election = set_election
     candidates = current_user.candidates.where(election: election)
-    @election_view = ElectionView.new(election, candidates: candidates)
+    @candidate_view = CandidateView.new(election, all: candidates)
   end
 
   def new
     election = set_election
     candidate = election.candidates.build(user: current_user)
-    @election_view = ElectionView.new(election, candidate: candidate)
+    @candidate_view = CandidateView.new(election, current: candidate)
 
     if params[:post].present?
-      @election_view.candidate.post = Post.find_by_id(params[:post])
+      @candidate_view.candidate.post = Post.find_by_id(params[:post])
     end
   end
 
   def show
     election = set_election
     candidate = election.candidates.find_by_id!(params[:id])
-    @election_view = ElectionView.new(election, candidate: candidate)
+    @candidate_view = CandidateView.new(election, current: candidate)
   end
 
   def create
     election = set_election
     candidate = election.candidates.build(candidate_params)
-    @election_view = ElectionView.new(election, candidate: candidate)
+    @candidate_view = CandidateView.new(election, current: candidate)
 
-    if ElectionService.create_candidate(@election_view.candidate, current_user)
-      redirect_to candidate_path(@election_view.candidate),
+    if ElectionService.create_candidate(@candidate_view.current, current_user)
+      redirect_to candidate_path(@candidate_view.current),
                   notice: alert_create(Candidate)
     else
       render :new, status: 422
@@ -38,11 +38,11 @@ class Elections::CandidatesController < ApplicationController
   end
 
   def destroy
-    @candidate = Candidate.find(params[:id])
-    if ElectionService.destroy_candidate(@candidate)
+    candidate = Candidate.find(params[:id])
+    if ElectionService.destroy_candidate(candidate)
       redirect_to candidates_path, notice: alert_destroy(Candidate)
     else
-      redirect_to candidate_path(@candidate),
+      redirect_to candidate_path(candidate),
                   notice: %(#{model_name(Candidate)} #{t(:not_allowed_destroy)}.)
     end
   end

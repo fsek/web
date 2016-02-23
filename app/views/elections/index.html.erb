@@ -14,7 +14,7 @@
     <hr>
     <%= link_to(t('election.edit'), admin_election_path(@election_view.election),
                 class: 'btn primary') %>
-            <% end %>
+  <% end %>
 </div>
 
 <div class="col-md-9 col-sm-12 election">
@@ -39,4 +39,3 @@
   <%= render 'posttab', election_view: @election_view, grid: @election_view.rest_grid %>
   <div class="display-post" id="views"></div>
 </div>
-<% #render '/posts/modal' %>
