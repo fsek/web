@@ -1,88 +1,91 @@
 require 'rails_helper'
 RSpec.describe Elections::CandidatesController, type: :controller do
-  let(:election) { create(:election) }
-  before(:each) do
-    allow(Election).to receive(:current).and_return(election)
-  end
-
   let(:user) { create(:user) }
-  let(:search_post) { create(:post, elected_by: 'Styrelsen') }
-  let(:not_owner) { create(:user) }
-  let(:candidate) do
-    create(:candidate, user: user, election: election, post: search_post)
-  end
 
   allow_user_to :manage, Candidate
 
-  context 'viewing' do
-    before :each do
-      search_post
-      allow(controller).to receive(:current_user).and_return(user)
-    end
+  before :each do
+    allow(controller).to receive(:current_user).and_return(user)
+  end
 
-    describe 'GET #index' do
-      it 'succeeds' do
-        get :index
+  describe 'GET #index' do
+    it 'succeeds' do
+      election = create(:election, title: 'Terminsmötet', semester: Post::AUTUMN)
+      postt = create(:post, semester: Post::AUTUMN, title: 'The post')
+      create(:candidate, post: postt, election: election, user: user)
+      # Candidates from another election is not shown
+      create(:candidate, user: user)
 
-        response.should be_success
-        assigns(:candidates).should eq(user.candidates.where(election: election))
-      end
-    end
+      get :index
 
-    describe 'GET #new' do
-      it 'succeeds' do
-        get :new
-        response.should be_success
-      end
-
-      it 'prepares new candidate with user' do
-        get :new
-        assigns(:candidate).user.should eq(user)
-      end
-    end
-
-    describe 'GET #show' do
-      it 'do not diplay an error flash' do
-        get :show, id: candidate.id
-        response.should be_success
-      end
+      response.should be_success
+      assigns(:election_view).candidates.map(&:post).map(&:title).should eq(['The post'])
     end
   end
 
-  context 'creating and updating' do
-    before :each do
-      search_post
-      allow(controller).to receive(:current_user).and_return(not_owner)
-      allow(election).to receive(:current_posts).and_return(Post.all)
+  describe 'GET #new' do
+    it 'assigns candidate' do
+      create(:election, title: 'Terminsmötet', semester: Post::AUTUMN)
+      create(:post, semester: Post::AUTUMN)
+
+      get :new
+
+      response.should be_success
+      assigns(:election_view).candidate.new_record?.should be_truthy
+      assigns(:election_view).candidate.instance_of?(Candidate).should be_truthy
+    end
+  end
+
+  describe 'GET #show' do
+    it 'sets candidate' do
+      candidate = create(:candidate)
+
+      get :show, id: candidate.id
+      response.should be_success
+      assigns(:election_view).candidate.should eq(candidate)
+    end
+  end
+
+  describe 'POST #create' do
+    it 'valid params' do
+      create(:election, semester: Post::AUTUMN)
+      postt = create(:post, semester: Post::AUTUMN)
+      attributes = { user_id: user.id,
+                     post_id: postt.id }
+
+      lambda do
+        post :create, candidate: attributes
+      end.should change(Candidate, :count).by(1)
+
+      response.should redirect_to(Candidate.last)
+      assigns(:election_view).candidate.should eq(Candidate.last)
+      assigns(:election_view).candidate.post.should eq(postt)
     end
 
-    describe 'POST #create' do
-      it 'creates a new candidate' do
-        lambda do
-          post :create, candidate: attributes_for(:candidate,
-                                                  post_id: search_post.id,
-                                                  user_id: not_owner.id)
-        end.should change(Candidate, :count).by(1)
-      end
+    it 'invalid params' do
+      create(:election, semester: Post::AUTUMN)
+      create(:post, semester: Post::AUTUMN)
+      attributes = { user_id: user.id,
+                     post_id: nil }
 
-      it 'creates candidate and redirects to candidate' do
-        post :create, candidate: attributes_for(:candidate, post_id: search_post.id, user_id: not_owner.id)
-        response.should redirect_to(Candidate.last)
-      end
+      lambda do
+        post :create, candidate: attributes
+      end.should change(Candidate, :count).by(0)
+
+      response.status.should eq(422)
+      response.should render_template(:new)
     end
+  end
 
-    describe 'DELETE #destroy' do
-      before { candidate }
-      it 'destroys the requested candidate' do
-        lambda do
-          delete :destroy, id: candidate.to_param
-        end.should change(Candidate, :count).by(-1)
-      end
+  describe 'DELETE #destroy' do
+    it 'destroys the requested candidate' do
+      candidate = create(:candidate)
 
-      it 'redirects to the candidates list' do
+      lambda do
         delete :destroy, id: candidate.to_param
-        response.should redirect_to(candidates_path)
-      end
+      end.should change(Candidate, :count).by(-1)
+
+      response.should redirect_to(candidates_path)
     end
   end
 end

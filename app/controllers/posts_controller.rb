@@ -82,10 +82,26 @@ class PostsController < ApplicationController
     redirect_to council_posts_path(council), alert_destroy(Post)
   end
 
-  def display
+  def show
+    @election = Election.current
+    if @election.present?
+      @post = @election.posts.includes(:council).find(params[:id])
+    else
+      render '/elections/no_election', status: 422
+    end
   end
 
-  def collapse
+  def modal
+    @election = Election.current
+    if @election.present?
+      @post = @election.posts.includes(:council).find(params[:id])
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    else
+      render '/elections/no_election', status: 422
+    end
   end
 
   private

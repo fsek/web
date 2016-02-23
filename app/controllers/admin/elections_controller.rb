@@ -4,22 +4,23 @@ class Admin::ElectionsController < ApplicationController
   before_action :authorize
 
   def new
-    @posts = Post.order(title: :asc)
+    @election = Election.new
   end
 
   def show
-    @posts = Post.order(title: :asc)
+    @election = Election.find_by_url!(params[:id])
   end
 
   def edit
-    @posts = Post.order(title: :asc)
+    @election = Election.find_by_url!(params[:id])
   end
 
   def index
-    @elections = Election.order(start: :desc)
+    @grid = initialize_grid(Election, order: :start)
   end
 
   def create
+    @election = Election.new(election_params)
     if @election.save
       redirect_to admin_election_path(@election), notice: alert_create(Election)
     else
@@ -28,6 +29,7 @@ class Admin::ElectionsController < ApplicationController
   end
 
   def update
+    @election = Election.find_by_url!(params[:id])
     if @election.update(election_params)
       redirect_to admin_election_path(@election), notice: alert_update(Election)
     else
@@ -36,7 +38,8 @@ class Admin::ElectionsController < ApplicationController
   end
 
   def destroy
-    @election.destroy!
+    election = Election.find_by_url!(params[:id])
+    election.destroy!
     redirect_to admin_elections_path, notice: alert_destroy(Election)
   end
 
@@ -55,13 +58,13 @@ class Admin::ElectionsController < ApplicationController
   private
 
   def authorize
-    authorize! :manage, Election
+    authorize! :modify, Election
   end
 
   def election_params
-    params.fetch(:election).permit(:title, :description, :start, :end, :closing, :url,
-                                   :visible, :mail_link, :mail_styrelse_link, :text_before,
-                                   :text_during, :text_after, :nominate_mail, :candidate_mail,
-                                   :extra_text, :candidate_mail_star, post_ids: [])
+    params.require(:election).permit(:title, :description, :start, :stop,
+                                     :closing, :url, :visible, :mail_link,
+                                     :board_mail_link, :nominate_mail,
+                                     :candidate_mail, :candidate_mail_star)
   end
 end

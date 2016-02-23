@@ -99,10 +99,7 @@ Fsek::Application.routes.draw do
     resources :pages, path: :sida, only: :show
 
     namespace :posts, path: :poster do
-      get ':id/display', action: :display, as: :display
-      get :collapse, action: :collapse
-      delete 'user/:post_user_id', action: :remove_user,
-                                   as: :remove_user
+      delete 'user/:post_user_id', action: :remove_user, as: :remove_user
       get :show_permissions
     end
 
@@ -175,6 +172,10 @@ Fsek::Application.routes.draw do
         end
         resources :candidates, controller: 'elections/candidates',
                                path: :kandidera, except: :edit
+        resources :posts, path: :poster, only: :show do
+          post :modal, on: :member
+          get :modal, on: :member
+        end
       end
     end
 
