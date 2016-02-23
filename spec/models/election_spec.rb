@@ -12,51 +12,47 @@ RSpec.describe Election, type: :model do
   describe 'ActiveModel validations' do
     it { should validate_presence_of(:url) }
     it { should validate_presence_of(:start) }
-    it { should validate_presence_of(:end) }
+    it { should validate_presence_of(:stop) }
+    it { should validate_presence_of(:closing) }
   end
 
   describe 'ActiveRecord associations' do
     it { should have_many(:nominations) }
     it { should have_many(:candidates) }
-    it { should have_and_belong_to_many(:posts) }
   end
 
   context 'callbacks' do
     describe 'public instance methods' do
       context 'responds to its methods' do
-        it { election.should respond_to(:termin_grid) }
-        it { election.should respond_to(:rest_grid) }
-        it { election.should respond_to(:view_status) }
-        it { election.should respond_to(:status_text) }
-        it { election.should respond_to(:nomination_status) }
-        it { election.should respond_to(:current_posts) }
-        it { election.should respond_to(:countdown) }
+        it { election.should respond_to(:state) }
+        it { election.should respond_to(:posts) }
+        it { election.should respond_to(:post_closing) }
         it { election.should respond_to(:candidate_count) }
-        it { election.should respond_to(:can_candidate?) }
+        it { election.should respond_to(:to_s) }
         it { election.should respond_to(:to_param) }
       end
     end
 
     describe 'check that methods are correct' do
-      context 'view_status' do
+      context 'state' do
         it :before do
           e = create(:election, :before)
-          e.view_status.should equal(:before)
+          e.state.should equal(:before)
         end
 
         it :during do
           e = create(:election, :during)
-          e.view_status.should equal(:during)
+          e.state.should equal(:during)
         end
 
         it :after do
           e = create(:election, :after)
-          e.view_status.should equal(:after)
+          e.state.should equal(:after)
         end
 
         it :closed do
           e = create(:election, :closed)
-          e.view_status.should equal(:closed)
+          e.state.should equal(:closed)
         end
       end
     end

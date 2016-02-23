@@ -2,77 +2,45 @@
 class Election < ActiveRecord::Base
   has_many :nominations, dependent: :destroy
   has_many :candidates, dependent: :destroy
-  has_and_belongs_to_many :posts
 
-  validates :url, presence: true, uniqueness: true
-  validates :start, :end, presence: true
+  validates :url, uniqueness: true,
+                  presence: true,
+                  format: { with: /\A[a-z0-9_-]+\z/ }
+
+  validates :title, :start, :stop, :closing, :semester, presence: true
 
   def self.current
     self.order(start: :asc).where(visible: true).first || nil
   end
 
-  def termin_grid
-    if (p = posts.termins).count > 0
-      initialize_grid(p, name: 'election')
+  def posts
+    if semester == Post::AUTUMN
+      Post.autumn
+    elsif semester == Post::SPRING
+      Post.spring
+    else
+      Post.none
     end
   end
 
-  def rest_grid
-    if (p = posts.not_termins).count > 0
-      initialize_grid(p, name: 'election')
-    end
-  end
-
-  # Returns current status
-  def view_status
-    if start > Time.zone.now
+  def state
+    t = Time.zone.now
+    if t < start
       return :before
-    elsif start <= Time.zone.now && self.end > Time.zone.now
+    elsif t >= start && t < stop
       return :during
-    elsif closing.nil? ||  closing > Time.zone.now
+    elsif t < closing
       return :after
     else
       return :closed
     end
   end
 
-  # Returns a status text depending on the view_status
-  def status_text
-    case view_status
-    when :before
-      text_before
-    when :during
-      text_during
-    when :after, :closed
-      text_after
-    end
-  end
-
-  # Returns a status text for the nominations page
-  def nomination_status
-    if view_status == :after
-      I18n.t('nominations.status_after')
-    end
-  end
-
-  # Returns the current posts
-  def current_posts
-    if view_status == :after
-      posts.title.not_termins
+  def post_closing(post)
+    if post.elected_by == Post::GENERAL
+      stop
     else
-      posts.title
-    end
-  end
-
-  # Returns the start_date if before, the end_date if during and none if after.
-  def countdown
-    case view_status
-    when :before
-      start
-    when :during
-      self.end
-    when :after
-      closing || nil
+      closing
     end
   end
 
@@ -84,17 +52,11 @@ class Election < ActiveRecord::Base
     end
   end
 
-  def can_candidate?(post)
-    if post.elected_by == 'Terminsmötet' && view_status == :during
-      return true
-    elsif post.elected_by != 'Terminsmötet' && view_status != :before
-      return true
-    end
-
-    false
-  end
-
   def to_param
     (url.present?) ? url : id
+  end
+
+  def to_s
+    title || id
   end
 end

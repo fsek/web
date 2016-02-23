@@ -16,3 +16,5 @@ sv:
         stil_id: Stil-id
         updated_at: Uppdaterades
         user_id: Användare
+        closing: Kandidering stänger
+        count: Antal kandiderande
