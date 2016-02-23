@@ -1,10 +1,11 @@
 <% provide(:title, model_name(Election)) %>
 <div class="col-md-10 col-md-offset-1 col-xs-12 reg-page">
-  <h3 class="headline headline-md">
-    <%= t(:new_attr, attr: model_name(Election)) %>
-  </h3>
-  <%= render 'form'%>
-  <%= link_to t(:show_attr, attr: model_name(Election)), admin_elections_path %><br>
-  <%= link_to t(:back_to_root), root_path %>
-</div>
+  <div class="headline">
+    <h3><%= t('election.new') %></h3>
+  </div>
 
+  <%= render 'form', election: @election %>
+
+  <%= link_to(t('election.index'), admin_elections_path,
+              class: 'btn secondary') %>
+</div>

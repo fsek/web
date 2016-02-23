@@ -1,23 +1,12 @@
 require 'rails_helper'
 RSpec.feature 'Visit Election' do
   let(:user) { create(:user) }
-  let(:election) do
-    create(:election,
-           start: Time.zone.now - 5.days,
-           end: Time.zone.now + 2.days)
-  end
-  let(:council) { create(:council) }
-  let(:test_post) { create(:post, council: council, elected_by: 'Terminsmötet') }
   let(:login) { LoginPage.new }
 
-  background do
-    council
-    test_post
-    election.posts << test_post
-    allow(election).to receive(:current_posts) { Post.all }
-  end
-
   Steps 'Trying nomination page' do
+    postt = create(:post, semester: Post::AUTUMN)
+    create(:election, semester: Post::AUTUMN)
+
     Then 'Sign in' do
       login.visit_page.login(user, '12345678')
     end
@@ -30,7 +19,7 @@ RSpec.feature 'Visit Election' do
     And 'I fill out form' do
       fill_in 'nomination_name', with: 'David Wessman'
       fill_in 'nomination_email', with: 'd.wessman@fsektionen.se'
-      select(test_post, from: 'nomination_post_id')
+      select(postt, from: 'nomination_post_id')
       fill_in 'nomination_motivation', with: 'Foo'
     end
 

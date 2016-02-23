@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221125807) do
+ActiveRecord::Schema.define(version: 20160220130722) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -103,19 +103,14 @@ ActiveRecord::Schema.define(version: 20160221125807) do
   create_table "candidates", force: :cascade do |t|
     t.integer  "post_id",     limit: 4
     t.integer  "election_id", limit: 4
-    t.text     "motivation",  limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "stil_id",     limit: 255
-    t.string   "email",       limit: 255
-    t.string   "phone",       limit: 255
-    t.string   "name",        limit: 255
-    t.string   "lastname",    limit: 255
     t.integer  "user_id",     limit: 4
-    t.string   "firstname",   limit: 255
   end
 
+  add_index "candidates", ["election_id"], name: "index_candidates_on_election_id", using: :btree
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id", using: :btree
+  add_index "candidates", ["user_id"], name: "index_candidates_on_user_id", using: :btree
 
   create_table "constants", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -170,7 +165,7 @@ ActiveRecord::Schema.define(version: 20160221125807) do
 
   create_table "elections", force: :cascade do |t|
     t.datetime "start"
-    t.datetime "end"
+    t.datetime "stop"
     t.boolean  "visible"
     t.string   "url",                 limit: 255
     t.string   "title",               limit: 255
@@ -179,15 +174,14 @@ ActiveRecord::Schema.define(version: 20160221125807) do
     t.datetime "updated_at"
     t.text     "candidate_mail",      limit: 65535
     t.text     "nominate_mail",       limit: 65535
-    t.text     "text_before",         limit: 65535
-    t.text     "text_during",         limit: 65535
-    t.text     "text_after",          limit: 65535
-    t.text     "extra_text",          limit: 65535
     t.text     "candidate_mail_star", limit: 65535
     t.string   "mail_link",           limit: 255
-    t.string   "mail_styrelse_link",  limit: 255
+    t.string   "board_mail_link",     limit: 255
     t.datetime "closing"
+    t.string   "semester",            limit: 255,   default: "spring"
   end
+
+  add_index "elections", ["url"], name: "index_elections_on_url", using: :btree
 
   create_table "elections_posts", id: false, force: :cascade do |t|
     t.integer "election_id", limit: 4

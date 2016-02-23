@@ -1,18 +1,13 @@
-<% if @election.countdown.present? %>
+<% if election_view.present? %>
   <div class="countdown row">
-    <h2>
-      <% if @election.view_status == :before %>
-        <%= t('elections.opens_in') %>
-      <% elsif @election.view_status == :during %>
-        <%= t('elections.closes_in') %>
-      <% end %>
-    </h2>
+    <h3><%= election_view.countdown_text %></h3>
     <div class="timer">
     </div>
+
   </div>
   <script type="text/javascript" >
-    $(".timer").countdown('<%= l(@election.countdown, format: '%Y/%m/%d %H:%M:%S %z') %>', function(event) {
+    $(".timer").countdown('<%= l(election_view.countdown, format: '%Y/%m/%d %H:%M:%S %z') %>', function(event) {
       $(this).html(event.strftime('%D dagar %H:%M:%S'));
     });
   </script>
-<%end%>
+<% end %>

@@ -5,7 +5,7 @@
 
   g.column(name: Post.human_attribute_name(:title),
            attribute: 'title') do |post|
-    link_to(post.title, posts_display_path(post), remote: true)
+    election_post_link(post)
   end
 
   g.column name: Post.human_attribute_name(:limit), attribute: 'limit',
@@ -14,8 +14,8 @@
   end
 
   g.column(name: model_name(Council), assoc: :council,
-           attribute: 'title',
-           custom_filter: :auto) do |post|
+                                      attribute: 'title',
+                                      custom_filter: :auto) do |post|
     link_to(post.council, post.council, target: :blank_p)
   end
 
@@ -24,9 +24,9 @@
     t("post.#{post.elected_by}")
   end
 
-  if election.view_status != :before
+  if (election_view.election.state != :before)
     g.column name: models_name(Candidate), filter: false do |post|
-     election.candidate_count(post)
+      election_view.election.candidate_count(post)
     end
   end
 end -%>

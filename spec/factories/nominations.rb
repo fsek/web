@@ -1,10 +1,10 @@
 FactoryGirl.define do
-  factory :nomination do |c|
+  factory :nomination do
     name
     email
     motivation { generate(:description) }
-    election
-    c.post
+    association :election, semester: Post::AUTUMN
+    association :post, semester: Post::AUTUMN, elected_by: Post::GENERAL
 
     # Override after_create callbacks.
     after(:build) do |candidate|

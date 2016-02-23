@@ -1,0 +1,59 @@
+<div class="col-md-12 reg-page">
+  <p>Mejl vid kandidatur av styrelsepost som intervjuas av valberedning</p>
+  <h3> <%= t(:hello) %> Hilbert</h3>
+  <p><%= t('candidate.mailer.you_have_candidated') %> Prylmästare.</p>
+
+  <%= markdown(election.candidate_mail) %>
+  <%= link_to(election.board_mail_link, election.board_mail_link) %>
+  <p>
+  <%= t('candidate.mailer.election_closes_at', date: l(election.stop)) %>
+  <br>
+  <%= link_to('redigeringslänk', '#') %>
+  </p>
+  <p><%= t('candidate.mailer.sincerely') %></p>
+</div>
+
+<div class="col-md-12 reg-page">
+  <p>Mejl vid kandidatur av vanlig post som väljs av valberedning</p>
+  <h3><%= t(:hello) %> Hilbert</h3>
+  <p><%= t('candidate.mailer.you_have_candidated') %> Spindelman.</p>
+
+  <%= markdown(election.candidate_mail) %>
+  <%= link_to(election.mail_link, election.mail_link) %>
+  <p>
+  <%= t('candidate.mailer.election_closes_at', date: l(election.closing)) %>
+  <br>
+  <%= link_to('redigeringslänk', '#') %>
+  </p>
+  <p><%= t('candidate.mailer.sincerely') %></p>
+</div>
+
+<div class="col-md-12 reg-page">
+  <p>Mejl vid kandidatur av post som väljs av nomineringsgrupp</p>
+  <h3><%= t(:hello) %> Hilbert</h3>
+  <p><%= t('candidate.mailer.you_have_candidated') %> Spindelman.</p>
+
+  <%= markdown(election.candidate_mail_star) %>
+  <p>
+  <%= t('candidate.mailer.election_closes_at', date: l(election.closing)) %>
+  <br>
+  <%= link_to('redigeringslänk', '#') %>
+  </p>
+  <p><%= t('candidate.mailer.sincerely') %></p>
+</div>
+
+<div class="col-md-12 reg-page">
+  <p>Mejl vid nominering</p>
+
+  <h3> Hej Namn</h3>
+  <p>Du har blivit nominerad till sektionsposten Exempelpost.<br>
+  med motiveringen:<br>
+  "motivering".<br>
+  </p>
+  <%= simple_format(election.nominate_mail)%>
+  <p>Skulle du vara intresserad eller bara vill läsa lite mer så hittar<br>
+  du information och instruktioner för att kandidera på: <br></p>
+
+  <p>Mvh,<br>
+  Valberedningen</p>
+</div>

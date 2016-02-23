@@ -9,7 +9,7 @@ class Ability
     can :read, Document, public: true
     can [:mail, :read], Contact, public: true
     can [:display, :image], Notice
-    can [:collapse, :display, :show], Post
+    can [:modal, :show], Post
     can [:new, :create, :read], Faq
     can [:index, :feed], CafeShift
     can :main, Rent

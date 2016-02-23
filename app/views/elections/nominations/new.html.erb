@@ -1,40 +1,18 @@
 <% provide(:title, model_name(Election)) %>
-<% if [:after,:during].include?(@election.view_status) %>
-  <div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
-    <div class="headline">
-      <h2>
-        <%= %(#{t('nominations.for')} #{@election.title}) %>
-      </h2>
-    </div>
-
-    <div id="nomination-form">
-      <div class="margin-bottom-20">
-        <%= simple_format(t('nominations.a_fitting_person')) %>
-        <%= simple_format(t('nominations.mail_will_be_sent')) %>
-        <%= simple_format(@election.nomination_status) %>
-      </div>
-
-      <div class="margin-bottom-20">
-        <%= render 'form', election: @election, nomination: @nomination%>
-      </div>
-    </div>
-
-    <%= link_to t('actions.back'), elections_path, class: "btn-u btn-u-small" %>
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <div class="headline">
+    <h2><%= %(#{t('nomination.for')} #{@election_view.election}) %></h2>
   </div>
-<% else %>
-  <div class="countdown">
-    <div class="headline">
-      <h2>
-        <%= models_name(Nomination) %>
-      </h2>
+
+  <div id="nomination-form">
+    <div class="margin-bottom-20">
+      <%= simple_format(t('nomination.a_fitting_person')) %>
+      <%= simple_format(t('nomination.mail_will_be_sent')) %>
     </div>
-    <% if @election.view_status == :before %>
-      <%= t('nominations.before') %><br>
-      <%= render 'elections/countdown' %>
-    <% else %>
-      <%= t('nominations.closed')%><br>
-    <%end%>
-    <%= link_to image_tag('layout/f.svg', class: 'val-logo'), elections_path %><br>
-    <%= link_to t('actions.back'), elections_path, class: 'btn secondary small' %>
+
+      <%= render('form', election: @election_view.election,
+                         nomination: @election_view.nomination) %>
+      <hr>
   </div>
-<% end %>
+  <%= link_to(@election_view.election, elections_path, class: 'btn secondary') %>
+</div>

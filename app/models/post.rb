@@ -14,9 +14,10 @@ class Post < ActiveRecord::Base
   belongs_to :council
   has_many :post_users
   has_many :users, through: :post_users
-  has_and_belongs_to_many :elections
+
   has_many :nominations
   has_many :candidates
+
   has_many :permission_posts
   has_many :permissions, through: :permission_posts
 
@@ -30,7 +31,7 @@ class Post < ActiveRecord::Base
   scope :both, -> { where(semester: BOTH) }
 
   # Validations
-  validates :title, :description, :limit, :rec_limit, presence: true
+  validates :council_id, :title, :description, :limit, :rec_limit, presence: true
 
   # Scopes
   scope :renters, -> { where(car_rent: true) }

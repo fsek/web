@@ -1,19 +1,28 @@
 # encoding: UTF-8
 class ElectionMailer < ActionMailer::Base
+  helper MarkdownHelper, ElectionHelper
   default from: 'Valberedningen <valb@fsektionen.se>', parts_order: ["text/plain", "text/html"]
-  default subject: 'Du har blivit nominerad via Fsektionen.se'
 
   def nominate_email(nomination)
+    set_message_id
     @nomination = nomination
     if @nomination && @nomination.email.present?
-      mail to: @nomination.email, subject: 'Du har blivit nominerad till en post på Fsektionen.se'
+      mail to: @nomination.email, subject: I18n.t('nomination.mailer.subject')
     end
   end
 
   def candidate_email(candidate)
+    set_message_id
     @candidate = candidate
     if @candidate.present? && @candidate.user.email.present?
-      mail to: @candidate.user.email, subject: 'Du har kandiderat till en post på Fsektionen.se'
+      mail to: @candidate.user.print_email, subject: I18n.t('candidate.mailer.subject')
     end
+  end
+
+  private
+
+  def set_message_id
+    str = Time.zone.now.to_i.to_s
+    headers['Message-ID'] = "<#{Digest::SHA2.hexdigest(str)}@fsektionen.se>"
   end
 end

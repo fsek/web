@@ -14,7 +14,7 @@ sv:
         end: Stängning - teminsvalda poster
         extra_text: Extra text
         mail_link: Länk i kandideringsmail
-        mail_styrelse_link: Länk i kandideringsmail för styrelsepost
+        board_mail_link: Länk i kandideringsmail för styrelsepost
         nominate_mail: Text till nomineringsmail
         start: Startdatum
         text_after: Text efter valet
