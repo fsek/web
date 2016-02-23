@@ -1,14 +1,41 @@
-<% provide(:title, model_name(Election)) %>
-<% if @election.present? %>
-  <%= render @election, election: @election %>
-  <% if can? :manage, @election %>
-    <div class="col-md-2 col-md-offset-5">
-      <%= link_to(t(:edit_attr, attr: model_name(Election)), admin_election_path(@election), class: 'btn primary') %>
+<% provide(:title, @election_view.election) %>
+<div class="headline">
+  <h2 id="election-title"><%= @election_view.election %></h2>
+</div>
+<div class="col-md-3 col-sm-12 election">
+  <%= render 'countdown', election_view: @election_view %>
+
+  <hr>
+
+  <%= link_to(model_name(Candidate), candidates_path, class: 'btn primary') %>
+  <%= link_to(model_name(Nomination), new_nominations_path, class: 'btn primary') %><br>
+
+  <% if can? :manage, @election_view.election %>
+    <hr>
+    <%= link_to(t('election.edit'), admin_election_path(@election_view.election),
+                class: 'btn primary') %>
+            <% end %>
+</div>
+
+<div class="col-md-9 col-sm-12 election">
+  <% if @election_view.election.description.present? %>
+    <div class="col-sm-12">
+      <%= markdown(@election_view.election.description) %>
     </div>
   <% end %>
-<% else %>
-  <div class="col-md-8 col-md-offset-2 col-sm-12">
-    <h1>Just nu finns det ingen information om valet.</h1>
-    <%= link_to(image_tag('layout/f.svg', class: 'election-logo'), :root) %>
-  </div>
-<% end %>
+</div>
+
+<div class="col-md-12 election">
+  <h3><%= @election_view.posts_text %></h3>
+  <%= render 'posttab', election_view: @election_view, grid: @election_view.grid %>
+
+  <ul class="list">
+    <li><%= t('election.x_posts') %></li>
+    <li><%= t('election.star_posts') %></li>
+    <li><%= t('election.orange_posts') %></li>
+    <li><%= t('election.green_posts') %></li>
+  </ul>
+
+  <div class="display-post" id="views"></div>
+</div>
+<% #render '/posts/modal' %>

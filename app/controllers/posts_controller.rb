@@ -83,6 +83,7 @@ class PostsController < ApplicationController
   end
 
   def display
+    @election = Election.current
   end
 
   def collapse

@@ -11,8 +11,8 @@ RSpec.feature 'Visit Election' do
     end
 
     Then 'I should see greeting' do
-      page.should have_css('h1#election-title')
-      find('h1#election-title').text.should include(election.title)
+      page.should have_css('h2#election-title')
+      find('h2#election-title').text.should include(election.title)
     end
   end
 end

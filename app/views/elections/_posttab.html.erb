@@ -1,32 +1,34 @@
-<%= grid(grid, html: { class: 'election-grid' }) do |g|
-  g.row_attributes do |post|
-    { class: post.elected_by }
-  end
-
-  g.column(name: Post.human_attribute_name(:title),
-           attribute: 'title') do |post|
-    link_to(post.title, posts_display_path(post), remote: true)
-  end
-
-  g.column name: Post.human_attribute_name(:limit), attribute: 'limit',
-    filter: false do |post|
-    print_post_limit(post)
-  end
-
-  g.column(name: model_name(Council), assoc: :council,
-           attribute: 'title',
-           custom_filter: :auto) do |post|
-    link_to(post.council, post.council, target: :blank_p)
-  end
-
-  g.column(name: Post.human_attribute_name(:elected_by),
-           attribute: 'elected_by', custom_filter: :auto) do |post|
-    t("post.#{post.elected_by}")
-  end
-
-  if election.view_status != :before
-    g.column name: models_name(Candidate), filter: false do |post|
-     election.candidate_count(post)
+<% if election_view.present? %>
+  <%= grid(grid, html: { class: 'election-grid' }) do |g|
+    g.row_attributes do |post|
+      { class: post.elected_by }
     end
-  end
-end -%>
+
+    g.column(name: Post.human_attribute_name(:title),
+             attribute: 'title') do |post|
+      link_to(post.title, posts_display_path(post), remote: true)
+    end
+
+    g.column name: Post.human_attribute_name(:limit), attribute: 'limit',
+      filter: false do |post|
+      print_post_limit(post)
+    end
+
+    g.column(name: model_name(Council), assoc: :council,
+             attribute: 'title',
+             custom_filter: :auto) do |post|
+      link_to(post.council, post.council, target: :blank_p)
+    end
+
+    g.column(name: Post.human_attribute_name(:elected_by),
+             attribute: 'elected_by', custom_filter: :auto) do |post|
+      t("post.#{post.elected_by}")
+    end
+
+    if election_view.election.state != :before
+      g.column name: models_name(Candidate), filter: false do |post|
+        election_view.election.candidate_count(post)
+      end
+    end
+  end -%>
+<% end %>

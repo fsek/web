@@ -1,37 +1,37 @@
-<% provide(:title, model_name(Election)) %>
-<% if [:during, :after].include?(@election.view_status) %>
-  <div class="col-md-8 col-md-offset-2 coming-soon">
-    <h2><%=t('candidates.title')%></h2>
-    <p><%=t('candidates.display_post')%></p>
-    <p><%= %(#{t('candidates.post_terminmeeting')} #{@election.end.to_date})%></p>
-    <%= render "candidate_table" %>
-    <hr>
-    <%=link_to('Ny kandidatur',new_candidate_path, class: 'btn-u btn-u-small')%>
-    <%=link_to('Tillbaka till valet',elections_path, class: "btn-u btn-u-small")%>
-  </div>
-<% elsif @election.view_status == :before %>
-  <div class="coming-soon">
-    <h2><%= label_tag %(#{t('candidates.opens')} #{@election.start.to_date}), nil, class:  'reg-header' %></h2>
-    <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
-  </div>
-<% elsif @election.view_status == :closed %>
-  <div class="coming-soon">
-    <h2><%= label_tag t('candidates.closed'), nil, class:  'reg-header' %></h2>
-    <h4><%= t('candidates.cannot_edit')%></h4>
-    <%= link_to image_tag("layout/f.svg", class: "val-logo"), elections_path %>
-    <%= grid(@candidates_grid) do |g|
-      g.column name: "Post", attribute: "post_id", filter: false do |candidate|
-        candidate.post.title
-      end
-      g.column name: "Namn", attribute: "user_id", filter: false do |candidate|
-        link_to(candidate.person, candidate.user)
-      end
-      g.column name: "Stil-ID", attribute: "stil_id", filter: false
-      g.column name: "E-post", attribute: "email", filter: false
-      g.column name: "Telefon", attribute: "phone", filter: false
-      g.column name: "Skapad:", attribute: "created_at", filter: false do |candidate|
-        candidate.created_at
-      end
-    end -%>
+<%= provide(:title, @election_view.election) %>
+<div class="headline">
+  <h2><%= t('candidate.index') %></h2>
 </div>
-<% end %>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to(t('candidate.new'), new_candidate_path, class: 'btn primary') %>
+  <%= link_to(t('election.show'), elections_path, class: 'btn primary') %>
+</div>
+
+<div class="col-md-10 col-sm-12 election">
+  <% if @election_view.candidates.any? %>
+    <div class="headline">
+      <h3><%= t('candidate.your_candidates') %></h3>
+    </div>
+    <% @election_view.candidates.each do |candidate| %>
+      <div class="col-md-4 col-sm-6 col-xs-12 candidate">
+        <h4><%= candidate.post %></h4>
+        <ul class="list">
+          <li>
+            <%= Candidate.human_attribute_name(:count) %>:
+            <%= @election_view.election.candidate_count(candidate.post) %>
+          </li>
+          <li>
+            <%= Candidate.human_attribute_name(:closing) %>:
+            <%= l(@election_view.election.post_closing(candidate.post),
+                  format: :short) %>
+          </li>
+        </ul>
+        <%= link_to(t('candidate.edit'), candidate_path(candidate),
+                                         class: 'btn secondary') %>
+      </div>
+    <% end %>
+  <% else %>
+    <h3><%= t('candidate.no_candidates') %></h3>
+  <% end %>
+</div>

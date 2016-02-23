@@ -6,13 +6,11 @@
   </div>
 
   <div class="col-md-6 col-sm-12">
-    <%= render "countdown" %>
+    <%= render 'countdown', election_view: @election_view %>
   </div>
 
   <div class="col-md-6 col-sm-12">
     <%= simple_format(election.description) %>
-
-    <%= simple_format(election.status_text) %>
   </div>
 
   <div class="col-md-12">
@@ -27,30 +25,27 @@
 
   <div class="col-md-12 election">
     <h3>
-      <% if election.view_status == :before %>
-        <%= t('elections.posts_before') %>
+      <% if election.state == :before %>
+        <%= t('election.posts_before') %>
       <% else %>
-        <%= t('elections.posts_during') %>
+        <%= t('election.posts_during') %>
       <% end %>
     </h3>
 
     <%= render "posttab", grid: @grid_election, election: election %>
 
     <ul class="list">
-      <li><%= t('elections.x_posts') %></li>
-      <li><%= t('elections.star_posts') %></li>
-      <li><%= t('elections.orange_posts') %></li>
-      <% if [:after, :closed].include?(election.view_status)%>
-        <li><%= t('elections.green_posts') %></li>
+      <li><%= t('election.x_posts') %></li>
+      <li><%= t('election.star_posts') %></li>
+      <li><%= t('election.orange_posts') %></li>
+      <% if [:after, :closed].include?(election.state)%>
+        <li><%= t('election.green_posts') %></li>
       <% end %>
     </ul>
-    <% if election.view_status == :after  %>
-      <h3><%= t('elections.posts_after') %></h3>
+    <% if election.state == :after  %>
+      <h3><%= t('election.posts_after') %></h3>
       <%= render "posttab", grid: @grid_termins, election: election %>
     <% end %>
     <div class="display-post" id="views"></div>
-
-    <p> <%= t('elections.get_in_touch') %>
-  <%= render partial: "contacts/contact", locals: {name: 'Spindelmän'} %></p>
   </div>
 </div>

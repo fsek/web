@@ -12,9 +12,9 @@ RSpec.describe Candidate, type: :model do
   describe 'ActiveModel validations' do
     # Basic validations
     it do
-      cand.should validate_uniqueness_of(:user_id).
-        scoped_to(:post_id, :election_id).
-        with_message(I18n.t('candidates.similar_candidate')).
+      cand.should validate_uniqueness_of(:post_id).
+        scoped_to(:user_id, :election_id).
+        with_message(I18n.t('candidate.similar_candidate')).
         on(:create)
     end
   end
@@ -33,7 +33,6 @@ RSpec.describe Candidate, type: :model do
   context 'callbacks' do
     describe 'public instance methods' do
       context 'responds to its methods' do
-        it { saved.should respond_to(:send_email) }
         it { saved.should respond_to(:editable?) }
         it { saved.should respond_to(:p_url) }
         it { saved.should respond_to(:owner?) }

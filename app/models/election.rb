@@ -4,8 +4,11 @@ class Election < ActiveRecord::Base
   has_many :candidates, dependent: :destroy
   has_and_belongs_to_many :posts
 
-  validates :url, presence: true, uniqueness: true
-  validates :start, :end, presence: true
+  validates :url, uniqueness: true,
+                  presence: true,
+                  format: { with: /\A[a-z0-9_-]+\z/ }
+
+  validates :start, :end, :closing, presence: true
 
   def self.current
     self.order(start: :asc).where(visible: true).first || nil
@@ -24,40 +27,22 @@ class Election < ActiveRecord::Base
   end
 
   # Returns current status
-  def view_status
-    if start > Time.zone.now
+  def state
+    t = Time.zone.now
+    if t < start
       return :before
-    elsif start <= Time.zone.now && self.end > Time.zone.now
+    elsif t >= start && t < self.end
       return :during
-    elsif closing.nil? ||  closing > Time.zone.now
+    elsif t < closing
       return :after
     else
       return :closed
     end
   end
 
-  # Returns a status text depending on the view_status
-  def status_text
-    case view_status
-    when :before
-      text_before
-    when :during
-      text_during
-    when :after, :closed
-      text_after
-    end
-  end
-
-  # Returns a status text for the nominations page
-  def nomination_status
-    if view_status == :after
-      I18n.t('nominations.status_after')
-    end
-  end
-
   # Returns the current posts
   def current_posts
-    if view_status == :after
+    if state == :after
       posts.title.not_termins
     else
       posts.title
@@ -66,13 +51,23 @@ class Election < ActiveRecord::Base
 
   # Returns the start_date if before, the end_date if during and none if after.
   def countdown
-    case view_status
+    case state
     when :before
       start
     when :during
       self.end
     when :after
       closing || nil
+    end
+  end
+
+  def post_closing(post)
+    if post.present?
+      if post.elected_by == Post::GENERAL
+        self.end
+      else
+        closing
+      end
     end
   end
 
@@ -85,9 +80,9 @@ class Election < ActiveRecord::Base
   end
 
   def can_candidate?(post)
-    if post.elected_by == 'Terminsmötet' && view_status == :during
+    if post.elected_by == Post::GENERAL && state == :during
       return true
-    elsif post.elected_by != 'Terminsmötet' && view_status != :before
+    elsif post.elected_by != Post::GENERAL && state != :before
       return true
     end
 
@@ -96,5 +91,9 @@ class Election < ActiveRecord::Base
 
   def to_param
     (url.present?) ? url : id
+  end
+
+  def to_s
+    title || url
   end
 end

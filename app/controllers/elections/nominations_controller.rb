@@ -6,7 +6,7 @@ class Elections::NominationsController < ApplicationController
   def new
     @nomination = @election.nominations.new
     if params[:post].present?
-      @nomination.post == Post.find_by_id(params[:post])
+      @nomination.post = Post.find_by_id(params[:post])
     end
   end
 
