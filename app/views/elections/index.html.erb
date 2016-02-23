@@ -36,6 +36,7 @@
     <li><%= t('election.green_posts') %></li>
   </ul>
 
+  <%= render 'posttab', election_view: @election_view, grid: @election_view.rest_grid %>
   <div class="display-post" id="views"></div>
 </div>
 <% #render '/posts/modal' %>

@@ -1,7 +1,11 @@
-<% if election_view.present? %>
+<% if election_view.present? && grid.present? %>
   <%= grid(grid, html: { class: 'election-grid' }) do |g|
     g.row_attributes do |post|
-      { class: post.elected_by }
+      if post.board
+        { class: "board-post #{post.elected_by}" }
+      else
+        { class: post.elected_by }
+      end
     end
 
     g.column(name: Post.human_attribute_name(:title),

@@ -22,25 +22,13 @@
   }
 }
 
-div,
-p,
-img {
-  &.center {
-    display: block;
-    float: none;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-}
-
 .election-grid {
   tr {
-    &.styrelse {
+    &.board-post {
       td,
       &.even td,
       &.odd td {
-        background-color: rgba($orange-highlight, 0.7);
+        background-color: rgba($orange-highlight, 0.5);
       }
     }
 

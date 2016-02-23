@@ -43,9 +43,16 @@ class Election < ActiveRecord::Base
   # Returns the current posts
   def current_posts
     if state == :after
-      posts.title.not_termins
+      posts.title.not_general
     else
       posts.title
+    end
+  end
+
+  def after_posts
+    case state
+    when :after
+      posts.title.general
     end
   end
 
