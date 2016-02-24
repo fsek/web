@@ -6,8 +6,15 @@ sv:
       user: "Inte auktoriserad för att hantera användarkonton."
     update:
       project: "Inte tillåten att uppdatera projektet."
+      rent: Bilbokning är endast till för sektionens medlemmar.
     new:
-      nomination: Du måste logga in för att kunna nominera.
-      candidate: Du måste logga in för att kunna kandidera.
+      candidate: Kandideringar till val är endast för medlemmar vid sektionen.
+      nomination: Nomineringar till val är endast för medlemmar vid sektionen.
+      rent: Bilbokning är endast till för sektionens medlemmar.
     show:
       album: Bildgalleriet är endast till för sektionens medlemmar.
+      candidate: Kandideringar till val är endast för medlemmar vid sektionen.
+      rent: Bilbokning är endast till för sektionens medlemmar.
+    index:
+      candidate: Kandideringar till val är endast för medlemmar vid sektionen.
+      rent: Bilbokning är endast till för sektionens medlemmar.
