@@ -4,15 +4,15 @@ class Admin::ElectionsController < ApplicationController
   before_action :authorize
 
   def new
-    @posts = Post.order(title: :asc)
+    @posts = Post.title
   end
 
   def show
-    @posts = Post.order(title: :asc)
+    @posts = Post.title
   end
 
   def edit
-    @posts = Post.order(title: :asc)
+    @posts = Post.title
   end
 
   def index

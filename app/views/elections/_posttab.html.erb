@@ -25,7 +25,7 @@
     end
 
     g.column(name: Post.human_attribute_name(:elected_by),
-             attribute: 'elected_by', custom_filter: :auto) do |post|
+             attribute: 'elected_by', filter: false) do |post|
       t("post.#{post.elected_by}")
     end
 

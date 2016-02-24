@@ -4,17 +4,24 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3> Hej <%=@nomination.name%></h3>
-    <p>Du har blivit nominerad till sektionsposten <%= @nomination.post.title%>.<%if @nomination.motivation.present?%><br>
-      Med motiveringen:</p>
-    <%=simple_format('"'+@nomination.motivation+'"')%><br>
-  <%end%>
-  <%= simple_format(@nomination.election.nominate_mail)%>
-  <p>Tänk på att du måste tacka ja, dvs. kandidera, innan valet stänger, <%=@nomination.election.end%>.</p>
-  <p>Detta görs via sektionens hemsida: <br>
+    <h3> <%= "#{t(:hello)} #{@nomination.name}" %></h3>
+    <p><%= "#{t('nomination.mailer.you_have_been_nominated')}: #{@nomination.post}." %></p>
+
+    <% if @nomination.motivation.present? %>
+      <p>
+        <%= t('nomination.mailer.with_motivation') %>:<br>
+        <%= simple_format(@nomination.motivation) %>
+      <p>
+    <% end %>
+
+  <%= markdown(@nomination.election.nominate_mail)%>
+
+  <%= simple_format(t('nomination.mailer.accept_before_closing',
+                      date: l(@nomination.election.post_closing(@nomination.post)))) %>
+  <p><%= t('nomination.mailer.via_web') %>:<br>
+
   <%= link_to(@nomination.candidate_url, @nomination.candidate_url) %>
 
-  <p>Mvh,<br>
-  Valberedningen</p>
+  <%= simple_format(t('nomination.mailer.sincerely')) %>
   </body>
 </html>

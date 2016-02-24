@@ -2,7 +2,7 @@
   <%= simple_form_for(candidate_view.current) do |f| %>
       <%= f.association :user, collection: [ current_user ], include_blank: false %>
     <% if candidate_view.current.new_record? %>
-      <%= f.association(:post, collection: candidate_view.election.posts.title,
+      <%= f.association(:post, collection: candidate_view.election.current_posts.title,
                                include_blank: false,
                                input_html: { class: 'select2' }) %>
       <%= f.button :submit, id: 'candidate-submit' %>

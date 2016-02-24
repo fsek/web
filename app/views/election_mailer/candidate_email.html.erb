@@ -4,24 +4,22 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3> Hej <%= @candidate.user %></h3>
-    <p>Du har kandiderat till sektionsposten <%= @candidate.post %>.</p>
-    <% if @candidate.post.elected_by == "Terminsmötet" %>
-      <% if (@candidate.election.candidate_mail) %>
-        <%= simple_format(@candidate.election.candidate_mail) %>
-      <% end %>
-      <% if @candidate.post.styrelse && @candidate.election.mail_styrelse_link.present? %>
-        <%=link_to(@candidate.election.mail_styrelse_link,@candidate.election.mail_styrelse_link) %><br><br>
-      <% elsif @candidate.election.mail_link.present? %>
-        <%=link_to(@candidate.election.mail_link,@candidate.election.mail_link)%><br><br>
-      <% end %>
-    <% else %>
-      <%= simple_format(@candidate.election.candidate_mail_star) %>
-    <% end %>
-    <p>Valet stänger <%= @candidate.election.end %>,
-    fram tills dess kan du redigera din kandidatur på:<br><%= link_to(@candidate.p_url, @candidate.p_url) %></p>
+    <h3> <%= "#{t(:hello)} #{@candidate.user}" %></h3>
+    <p><%= "#{t('candidate.mailer.you_have_candidated')} #{@candidate.post}." %></p>
 
-    <p>Mvh,<br>
-    Valberedningen</p>
+    <% if @candidate.post.elected_by == Post::GENERAL %>
+        <%= markdown(@candidate.election.candidate_mail) %>
+        <%= candidate_mail_link_html(@candidate) %>
+    <% else %>
+      <%= markdown(@candidate.election.candidate_mail_star) %>
+    <% end %>
+    <p>
+      <%= t('candidate.mailer.election_closes_at',
+            date: l(@candidate.election.post_closing(@candidate.post))) %>
+      <br>
+      <%= link_to(@candidate.p_url, @candidate.p_url) %>
+    </p>
+
+    <%= simple_format(t('candidate.mailer.sincerely')) %>
   </body>
 </html>

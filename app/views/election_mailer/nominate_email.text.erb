@@ -1,17 +1,19 @@
-Hej <%=@nomination.name%>
+<%= "#{t(:hello)} #{@nomination.name}" %>
 ===============================================
-Du har blivit nominerad till sektionsposten <%= @nomination.post.title%>.
 
-<%if @nomination.motivation.present?%>
-Med motiveringen:
+<%= "#{t('nomination.mailer.you_have_been_nominated')} #{@nomination.post}." %>
 
-<%=@nomination.motivation%>
+<% if @nomination.motivation.present? %>
+  <%= t('nomination.mailer.with_motivation') %>:
+  <%= @nomination.motivation %>
+<% end %>
 
-<%end%>
-<%= @nomination.election.nominate_mail%>
+<%= markdown_plain(@nomination.election.nominate_mail) %>
 
+<%= (t('nomination.mailer.accept_before_closing',
+       date: l(@nomination.election.post_closing(@nomination.post)))) %>
 
-Tänk på att du måste tacka ja, dvs. kandidera, innan valet stänger, <%=@nomination.election.end%>.
+<%= t('nomination.mailer.via_web') %>:
+<%= @nomination.candidate_url %>
 
-Mvh,
-Valberedningen 
+<%= t('nomination.mailer.sincerely') %>
