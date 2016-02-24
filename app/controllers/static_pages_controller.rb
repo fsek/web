@@ -15,6 +15,7 @@ class StaticPagesController < ApplicationController
   end
 
   def index
-    @start_page = StartPage.new
+    member = current_user.present? && current_user.member?
+    @start_page = StartPage.new(member: member)
   end
 end
