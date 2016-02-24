@@ -14,7 +14,7 @@ class Elections::CandidatesController < ApplicationController
     @candidate_view = CandidateView.new(election, current: candidate)
 
     if params[:post].present?
-      @candidate_view.candidate.post = Post.find_by_id(params[:post])
+      @candidate_view.current.post = Post.find_by_id(params[:post])
     end
   end
 

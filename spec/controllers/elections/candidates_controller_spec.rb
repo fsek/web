@@ -35,6 +35,18 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       assigns(:candidate_view).current.new_record?.should be_truthy
       assigns(:candidate_view).current.instance_of?(Candidate).should be_truthy
     end
+
+    it 'assign candidate with post' do
+      election = create(:election, title: 'Terminsmötet')
+      postt = create(:post, semester: Post::AUTUMN)
+      election.posts << postt
+
+      get :new, post: postt.id
+
+      response.should be_success
+      assigns(:candidate_view).current.new_record?.should be_truthy
+      assigns(:candidate_view).current.instance_of?(Candidate).should be_truthy
+    end
   end
 
   describe 'GET #show' do
