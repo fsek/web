@@ -24,8 +24,6 @@ RSpec.describe Election, type: :model do
   context 'callbacks' do
     describe 'public instance methods' do
       context 'responds to its methods' do
-        it { election.should respond_to(:termin_grid) }
-        it { election.should respond_to(:rest_grid) }
         it { election.should respond_to(:state) }
         it { election.should respond_to(:current_posts) }
         it { election.should respond_to(:countdown) }

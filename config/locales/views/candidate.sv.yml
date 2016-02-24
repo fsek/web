@@ -13,6 +13,7 @@ sv:
     no_candidates: Du har inte kandiderat till några poster.
     not_editable: Kan inte redigeras längre
     opens: Kandideringar öppnar
+    post_invalid: Posten går inte att söka nu.
     post_terminmeeting: Poster valda på Terminsmötet kan ej redigeras efter
     similar_candidate: har redan en likadan kandidatur.
     title: Dina Kandidaturer
@@ -20,6 +21,7 @@ sv:
     user_update: Dina uppgifter uppdaterar du
     your_candidates: Du har kandiderat till
     mailer:
-      you_have_candidated: Du har kandiderat till sektionsposten
       election_closes_at: "Valet för posten stänger %{date}, fram tills dess kan kandidaturen redigeras på:"
       sincerely: Mvh, Valberedningen
+      subject: Du har kandiderat till en post på Fsektionen.se
+      you_have_candidated: Du har kandiderat till sektionsposten

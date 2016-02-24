@@ -45,15 +45,21 @@
 <div class="col-md-12 reg-page">
   <p>Mejl vid nominering</p>
 
-  <h3> Hej Namn</h3>
-  <p>Du har blivit nominerad till sektionsposten Exempelpost.<br>
-  med motiveringen:<br>
-  "motivering".<br>
-  </p>
-  <%= simple_format(election.nominate_mail)%>
-  <p>Skulle du vara intresserad eller bara vill läsa lite mer så hittar<br>
-  du information och instruktioner för att kandidera på: <br></p>
+  <h3><%= t(:hello) %> Hilbert</h3>
+  <p><%= t('nomination.mailer.you_have_been_nominated') %>: Server</p>
 
-  <p>Mvh,<br>
-  Valberedningen</p>
+      <p>
+        <%= t('nomination.mailer.with_motivation') %>:<br>
+        En motivering!
+      <p>
+
+  <%= markdown(election.nominate_mail)%>
+
+  <%= simple_format(t('nomination.mailer.accept_before_closing',
+                      date: l(election.closing))) %>
+  <p><%= t('nomination.mailer.via_web') %>:<br>
+
+  <%= link_to('redigeringslänk', '#') %></p>
+
+  <%= simple_format(t('nomination.mailer.sincerely')) %>
 </div>

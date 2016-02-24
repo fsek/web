@@ -14,18 +14,6 @@ class Election < ActiveRecord::Base
     self.order(start: :asc).where(visible: true).first || nil
   end
 
-  def termin_grid
-    if (p = posts.termins).count > 0
-      initialize_grid(p, name: 'election')
-    end
-  end
-
-  def rest_grid
-    if (p = posts.not_termins).count > 0
-      initialize_grid(p, name: 'election')
-    end
-  end
-
   # Returns current status
   def state
     t = Time.zone.now
@@ -43,14 +31,14 @@ class Election < ActiveRecord::Base
   # Returns the current posts
   def current_posts
     if state == :after
-      posts.title.not_general
+      posts.not_general
     else
-      posts.title
+      posts
     end
   end
 
   def after_posts
-    state == :after ? posts.title.general : nil
+    state == :after ? posts.general : nil
   end
 
   # Returns the start_date if before, the end_date if during and none if after.
