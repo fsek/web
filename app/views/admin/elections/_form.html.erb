@@ -1,19 +1,26 @@
-<%= simple_form_for([:admin, @election]) do |f| %>
+<%= simple_form_for([:admin, election]) do |f| %>
   <%= f.input :title %>
   <%= f.input :start, as: :datetime_picker %>
   <%= f.input :end, as: :datetime_picker %>
   <%= f.input :closing, as: :datetime_picker %>
   <%= f.input :url %>
-  <%= f.input :description %>
+  <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :mail_styrelse_link %>
   <%= f.input :mail_link %>
   <%= f.input :visible %>
   <%= f.button :submit %>
-  <% unless @election.new_record? %>
-    <%= link_to(t('elections.edit_texts'), edit_admin_election_path(@election),
-                                           target: :blank,
-                                           class: "btn btn-default") %>
-  <% end%>
+
+  <% if election.persisted? %>
+    <%= link_to(t('election.edit_texts'),
+                edit_admin_election_path(election),
+                class: 'btn secondary') %>
+    <% if can? :manage, :all %>
+      <%= link_to(t('election.destroy'), admin_election_path(election),
+                  class: 'btn danger pull-right',
+                  data: { confirm: t('election.confirm_delete')},
+                  method: :delete) %>
+    <% end %>
+  <% end %>
   <% if @posts %>
     <%= f.association :posts, collection: @posts,
                               input_html: { multiple: true },

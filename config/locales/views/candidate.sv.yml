@@ -1,15 +1,25 @@
 sv:
-  candidates:
-    similar_candidate: har redan en likadan kandidatur.
-    display_post: Tryck på postens namn för att visa mer information samt kunna redigera.
-    post_terminmeeting: Poster valda på Terminsmötet kan ej redigeras efter
-    cannot_edit: Du kan inte längre kandidera på nya poster eller ändra din kandidatur.
-    opens: Kandideringar öppnar
-    closed: Det är stängt för nya kandideringar
-    title: Dina Kandidaturer
+  candidate:
     cannot_change_post: Det går inte att byta post, har du valt fel får du ta bort kandidaturen och skapa en ny.
+    cannot_edit: Du kan inte längre kandidera på nya poster eller ändra din kandidatur.
+    closed: Det är stängt för nya kandideringar
+    count: Sökande
+    destroy: Förinta kandidatur
+    display_post: Tryck på postens namn för att visa mer information samt kunna redigera.
+    do: Kandidera
+    edit: Redigera kandidatur
+    index: Alla kandidaturer
+    new: Ny kandidatur
+    no_candidates: Du har inte kandiderat till några poster.
+    not_editable: Kan inte redigeras längre
+    opens: Kandideringar öppnar
+    post_terminmeeting: Poster valda på Terminsmötet kan ej redigeras efter
+    similar_candidate: har redan en likadan kandidatur.
+    title: Dina Kandidaturer
     user_attributes: Se till att dina uppgifter är uppdaterade, annars kan din kandidering inte antas.
     user_update: Dina uppgifter uppdaterar du
-
-    count: Sökande
-    not_editable: Kan inte redigeras längre
+    your_candidates: Du har kandiderat till
+    mailer:
+      you_have_candidated: Du har kandiderat till sektionsposten
+      election_closes_at: "Valet för posten stänger %{date}, fram tills dess kan kandidaturen redigeras på:"
+      sincerely: Mvh, Valberedningen

@@ -1,13 +1,10 @@
+<%= provide(:title, @candidate_view.election) %>
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <%= content_tag(:h2, t(:edit, attr: model_name(Candidate))) %>
+    <h2><%= t('candidate.edit') %></h2>
   </div>
-  <%= render 'form'%>
-  <%= link_to(t(:index, attr: models_name(Candidate)), candidates_path,
-                                                       class: 'btn') %>
-  <% if @candidate.editable? %>
-    <%= link_to(t(:remove, attr: model_name(Candidate)), candidate_path(@candidate),
-                                                        method: :delete,
-                                                        class: "btn") %>
-  <% end%>
+  <%= render 'form', candidate_view: @candidate_view %>
+  <hr>
+  <%= link_to(t('candidate.index'), candidates_path,
+                                    class: 'btn secondary') %>
 </div>

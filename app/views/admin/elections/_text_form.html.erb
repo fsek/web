@@ -1,0 +1,14 @@
+<% if election.present? %>
+  <%= simple_form_for([:admin, election]) do |f| %>
+    <%= f.input(:nominate_mail,
+                as: :pagedown,
+                input_html: { preview: true, rows: 10 }) %>
+    <%= f.input(:candidate_mail,
+                as: :pagedown,
+                input_html: { preview: true, rows: 10 }) %>
+    <%= f.input(:candidate_mail_star, 
+                as: :pagedown,
+                input_html: { preview: true, rows: 10 }) %>
+    <%= f.button :submit %>
+  <% end %>
+<% end %>

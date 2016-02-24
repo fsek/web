@@ -7,39 +7,25 @@ class Candidate < ActiveRecord::Base
   has_one :council, through: :post
 
   # Validations
-  validates :user_id, uniqueness: {
-    scope: [:post_id, :election_id], message: I18n.t('candidates.similar_candidate')
-  }, on: :create
+  validates :post_id, uniqueness: { scope: [:user_id, :election_id],
+                                    message: I18n.t('candidate.similar_candidate') }
   validates :post, :user, :election, presence: true
-  validate :user_attributes
-
-  validate :check_edit
-  after_create :send_email
-  after_update :send_email
-
-  def send_email
-    ElectionMailer.candidate_email(self).deliver_now
-  end
-
-  def prepare(user)
-    if user.present?
-      self.attributes = person.load_user(user)
-      self.stil_id = user.stil_id
-    end
-  end
+  validate :user_attributes, :check_edit
 
   def owner?(user)
     self.user == user
   end
 
   def editable?
-    v = election.try(:view_status)
-    if v == :during
-      return true
-    elsif ['Studierådet', 'Styrelsen'].include?(post.elected_by) && v == :after
-      return true
-    else
-      return false
+    if election.present?
+      case election.state
+      when :during
+        return true
+      when :after
+        return !(post.elected_by == Post::GENERAL)
+      else
+        false
+      end
     end
   end
 

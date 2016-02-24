@@ -98,8 +98,9 @@ namespace :db do
     # Election
     election = Election.find_or_initialize_by(title: 'Vårterminsmöte',
                                               url: 'vt-15', visible: true )
-    election.update!(start: Time.zone.now - 2.days,
-                     end: Time.zone.now + 5.days)
+    election.update!(start: 2.days.ago,
+                     end: 5.days.from_now,
+                     closing: 7.days.from_now)
     Post.all do |posten|
       election.posts << posten
     end

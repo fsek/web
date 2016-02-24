@@ -2,17 +2,17 @@
   <div class="funny-boxes funny-boxes-left-orange left-text-align">
     <%= link_to(t(:hide), posts_collapse_path, remote: true,
                           class: 'btn secondary pull-right') %>
-    <% if @election && @election.can_candidate?(post) %>
-      <%= link_to(t('elections.candidate'), new_election_candidate_path(post: post.id.to_s),
-                                            class: 'btn primary pull-right') %>
-      <%= link_to(t('elections.candidate'), new_election_nominations_path(post: post.id.to_s),
-                                            class: 'btn primary pull-right') %>
+    <% if election && election.can_candidate?(post) %>
+      <%= link_to(t('candidate.do'), new_candidate_path(post: post.id.to_s),
+                                           class: 'btn primary pull-right') %>
+      <%= link_to(t('nomination.do'), new_nominations_path(post: post.id.to_s),
+                                          class: 'btn primary pull-right') %>
     <% end %>
+    <h2><%= post.to_s %></h2>
 
-    <%= content_tag(:h2, post) %>
 
     <% if post.description %>
-      <%= simple_format(post.description) %>
+      <%= markdown(post.description) %>
     <% end %>
 
     <ul class="list-unstyled">

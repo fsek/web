@@ -1,7 +1,9 @@
+<%= provide(:title, @candidate_view.election) %>
 <div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
   <div class="headline">
-    <h3><%= t(:new_attr, attr: model_name(Candidate)) %></h3>
+    <h2><%= t('candidate.new') %></h2>
   </div>
-  <%= render 'form' %>
-  <%= link_to(t(:back), candidates_path) %>
+  <%= render 'form', candidate_view: @candidate_view %>
+  <hr>
+  <%= link_to(t(:back), candidates_path, class: 'btn secondary') %>
 </div>

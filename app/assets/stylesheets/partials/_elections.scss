@@ -1,7 +1,4 @@
 .election {
-  margin-top: 20px;
-  padding: 20px;
-
   p {
     color: $black;
     font-size: 16px;
@@ -9,56 +6,29 @@
   }
 
   .countdown {
-    margin-top: 20px;
-    min-height: 200px;
-    padding: 20px;
-    text-align: center;
-
     .timer {
       color: $gray-headline;
-      display: inline-block;
-      font-size: 25px;
+      font-size: 20px;
       font-weight: bold;
       line-height: 25px;
-      padding: 5px;
+      margin-top: 10px;
     }
   }
-  .btn {
-    &.center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 60%;
-      min-width: 40%;
-    }
-  }
-}
 
-.election-logo {
-  margin-bottom: 50px;
-  max-height: 200px;
-}
-
-.btn,
-div,
-p,
-img {
-  &.center {
-    display: block;
-    float: none;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+  .candidate {
+    border: 1px solid $fsek-orange;
+    margin: 20px;
+    padding: 20px;
   }
 }
 
 .election-grid {
   tr {
-    &.styrelse {
+    &.board-post {
       td,
       &.even td,
       &.odd td {
-        background-color: rgba($orange-highlight, 0.7);
+        background-color: rgba($orange-highlight, 0.5);
       }
     }
 

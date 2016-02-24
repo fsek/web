@@ -1,47 +1,48 @@
 # encoding: UTF-8
 class Elections::CandidatesController < ApplicationController
-  before_action :set_election
   load_permissions_and_authorize_resource
 
   def index
-    @candidates = current_user.candidates.where(election: @election)
-    @candidates_grid = initialize_grid(@candidates)
+    election = set_election
+    candidates = current_user.candidates.where(election: election)
+    @candidate_view = CandidateView.new(election, all: candidates)
   end
 
   def new
-    @candidate = @election.candidates.new
-    @candidate.user = current_user
+    election = set_election
+    candidate = election.candidates.build(user: current_user)
+    @candidate_view = CandidateView.new(election, current: candidate)
+
     if params[:post].present?
-      @candidate.post = Post.find_by_id(params[:post])
+      @candidate_view.candidate.post = Post.find_by_id(params[:post])
     end
   end
 
   def show
+    election = set_election
+    candidate = election.candidates.find_by_id!(params[:id])
+    @candidate_view = CandidateView.new(election, current: candidate)
   end
 
   def create
-    @candidate = @election.candidates.build(candidate_params)
+    election = set_election
+    candidate = election.candidates.build(candidate_params)
+    @candidate_view = CandidateView.new(election, current: candidate)
 
-    if ElectionService.create_candidate(@candidate, current_user)
-      redirect_to candidate_path(@candidate), notice: alert_create(Candidate)
+    if ElectionService.create_candidate(@candidate_view.current, current_user)
+      redirect_to candidate_path(@candidate_view.current),
+                  notice: alert_create(Candidate)
     else
       render :new, status: 422
     end
   end
 
-  def update
-    if @candidate.update(candidate_params)
-      redirect_to candidate_path(@candidate), notice: alert_update(Candidate)
-    else
-      render :show, status: 422
-    end
-  end
-
   def destroy
-    if ElectionService.destroy_candidate(@candidate)
+    candidate = Candidate.find(params[:id])
+    if ElectionService.destroy_candidate(candidate)
       redirect_to candidates_path, notice: alert_destroy(Candidate)
     else
-      redirect_to candidate_path(@candidate),
+      redirect_to candidate_path(candidate),
                   notice: %(#{model_name(Candidate)} #{t(:not_allowed_destroy)}.)
     end
   end
@@ -49,10 +50,15 @@ class Elections::CandidatesController < ApplicationController
   private
 
   def set_election
-    @election = Election.current
+    election = Election.current
+    if election.nil?
+      render '/elections/no_election', status: 422
+    else
+      election
+    end
   end
 
   def candidate_params
-    params.require(:candidate).permit(:post_id, :user_id)
+    params.require(:candidate).permit(:post_id)
   end
 end

@@ -24,6 +24,7 @@ class Post < ActiveRecord::Base
   scope :board, -> { where(elected_by: BOARD) }
   scope :education, -> { where(elected_by: EDUCATION) }
   scope :general, -> { where(elected_by: GENERAL) }
+  scope :not_general, -> { where.not(elected_by: GENERAL) }
 
   scope :autumn, -> { where('semester = ? OR semester = ?', AUTUMN, BOTH) }
   scope :spring, -> { where('semester = ? OR semester = ?', SPRING, BOTH) }

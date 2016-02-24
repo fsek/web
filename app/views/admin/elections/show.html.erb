@@ -1,19 +1,21 @@
 <% provide(:title, model_name(Election)) %>
 <div class="col-md-10 col-md-offset-1 col-xs-12 reg-page">
-  <h3 class="headline headline-md">
-    <%= t(:edit, attr: model_name(Election)) %>
-  </h3>
-  <%= render 'form' %>
-  <hr>
-  <% if can? :manage,:all %>
-    <%= link_to t(:destroy),
-      admin_election_path(@election), class: 'btn btn-u',
-      data: { confirm: t('elections.confirm_delete')}, method: :delete %>
-  <% end %>
+  <div class="headline">
+    <h3><%= t('election.edit') %></h3>
+  </div>
 
-  <%= link_to t('elections.show_as_user'), elections_path, class: 'btn btn-u' %>
-  <%= link_to t('elections.show_nominations'), nominations_admin_election_path,
-    class: 'btn btn-u' %>
-  <%= link_to t('elections.show_candidates'), candidates_admin_election_path,
-    class: 'btn btn-u' %>
+  <%= render 'form', election: @election %>
+
+  <hr>
+
+  <%= link_to(t('election.show'), elections_path,
+              class: 'btn primary') %>
+
+  <%= link_to(t('election.show_nominations'),
+              nominations_admin_election_path,
+              class: 'btn secondary') %>
+
+  <%= link_to(t('election.show_candidates'),
+              candidates_admin_election_path,
+              class: 'btn secondary') %>
 </div>
