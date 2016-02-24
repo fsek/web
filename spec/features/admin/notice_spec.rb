@@ -10,16 +10,16 @@ RSpec.feature 'admin create notice' do
     end
 
     And 'visit notice index' do
-      visit notices_path
+      visit admin_notices_path
       find('.headline.notice > h2').text.should include(I18n.t('notice.index'))
       within('.col-md-2.col-sm-12') do
-        find(:linkhref, new_notice_path).click
+        find(:linkhref, new_admin_notice_path).click
       end
     end
 
     And 'Fill out notice form' do
       fill_in 'notice_title', with: notice.title
-      fill_in 'notice_description', with: notice.description
+      fill_in 'notice[description]', with: notice.description
       find(:css, '#notice_public').set(notice.public)
       fill_in 'notice[d_publish]', with: notice.d_publish
       fill_in 'notice[d_remove]', with: notice.d_remove

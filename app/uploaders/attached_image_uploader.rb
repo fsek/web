@@ -1,18 +1,26 @@
-# encoding: utf-8
 class AttachedImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :file
-  process resize_to_fit: [1200, 10000]
 
-  # For saving original image without formatting or wratermarking
   def store_dir
-    %(uploads/#{model.class.name.pluralize.downcase}/#{model.id})
+    %(#{Rails.root}/storage/#{model.class.name.pluralize.downcase}/#{model.id})
   end
 
-  # Creates a thumbnail version
+  version :large do
+    process resize_to_fit: [800, 10000]
+
+    def store_dir
+      %(uploads/#{model.class.name.pluralize.downcase}/#{model.id})
+    end
+  end
+
   version :thumb do
     process resize_to_fill: [350, 350]
+
+    def store_dir
+      %(uploads/#{model.class.name.pluralize.downcase}/#{model.id})
+    end
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -20,9 +28,14 @@ class AttachedImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
-  # Used for hashing filename
   def filename
-    @name ||= "#{md5}#{File.extname(super)}" if super
+    if original_filename
+      if model && model.read_attribute(mounted_as).present?
+        model.read_attribute(mounted_as)
+      else
+        @name ||= %(#{File.basename(super, File.extname(super))}_#{md5}#{File.extname(super)}) if super
+      end
+    end
   end
 
   def md5

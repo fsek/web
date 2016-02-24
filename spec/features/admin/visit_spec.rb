@@ -15,6 +15,7 @@ RSpec.feature 'admin visits paths' do
     'admin/events': [:edit, :new, :index],
     'admin/gallery/albums': [:index, :show],
     'admin/news': [:index, :new, :edit],
+    'admin/notices': [:index, :new, :edit],
     'admin/pages': [:index, :new, :edit],
     'admin/rents': [:index, :show, :new],
     'gallery/albums': [:show],
@@ -29,7 +30,6 @@ RSpec.feature 'admin visits paths' do
     faqs: [:index, :show, :new],
     gallery: [:index],
     news: [:index, :show],
-    notices: [:index, :new, :show],
     pages: [:show],
     rents: [:main, :index, :new],
     static_pages: [:about, :company_offer, :company_about]

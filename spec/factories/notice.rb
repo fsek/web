@@ -7,5 +7,6 @@ FactoryGirl.define do
     d_publish { Time.zone.now }
     d_remove { d_publish + 10.days }
     sort { rand(10..100) }
+    user
   end
 end

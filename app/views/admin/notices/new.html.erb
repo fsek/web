@@ -3,7 +3,8 @@
   <div class="headline">
     <h2><%= t('notice.new') %></h2>
   </div>
-  <%= render 'form'%>
+  <%= render 'form', notice: @notice %>
   <hr>
-  <%= link_to(t('notice.index'), notices_path, class: 'btn secondary') %>
+  <%= link_to(t('notice.index'), admin_notices_path,
+                                 class: 'btn secondary') %>
 </div>

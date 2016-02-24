@@ -82,9 +82,8 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :notices, path: :notiser do
-      post :display, path: :visa, on: :member
-      get :image, path: :bild, on: :member
+    namespace :admin do
+      resources :notices, path: :notiser, except: :show
     end
 
     resources :menus, path: :meny, except: :show
