@@ -28,6 +28,9 @@ Fsek::Application.routes.draw do
 
   # Scope to change urls to swedish
   scope path_names: {new: 'ny', edit: 'redigera'} do
+
+    resources :tools, path: :verktyg
+
     namespace :admin do
       resources :users, path: :anvandare, only: [:index] do
         post :member, on: :member
