@@ -1,6 +1,6 @@
 Fsek::Application.routes.draw do
   # Resources on the page
-  get('/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=f1fbd74cac'),
+  get('/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=aeb6a02396'),
                    as: :vecktorn_signup, status: 301)
   get '/farad', to: redirect('http://www.farad.nu'), as: :farad, status: 301
   get '/facebook', to: redirect('https://www.facebook.com/Fsektionen'), as: :facebook, status: 301
