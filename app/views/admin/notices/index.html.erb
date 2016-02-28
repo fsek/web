@@ -4,7 +4,7 @@
 </div>
 
 <div class="col-md-2 col-sm-12">
-  <%= link_to(t('notice.new'), new_notice_path, class: 'btn primary') %>
+  <%= link_to(t('notice.new'), new_admin_notice_path, class: 'btn primary') %>
   <hr>
   <button class="wg-external-submit-button btn secondary" data-grid-name="grid">
     <%= t('wice_grid.filter') %>
@@ -16,10 +16,15 @@
 
 <div class="col-md-10 col-sm-12">
   <%= grid(@notice_grid, hide_submit_button: true,
-           hide_reset_button: true) do |g|
+           hide_reset_button: true, html: { class: 'notice' }) do |g|
+    g.row_attributes do |notice|
+      if notice.published?
+        { class: 'published' }
+      end
+    end
     g.column(name: Notice.human_attribute_name(:title),
              attribute: 'title') do |notice|
-      link_to(notice, notice)
+      link_to(notice, edit_admin_notice_path(notice))
     end
     g.column(name: Notice.human_attribute_name(:public),
              attribute: 'public') do |notice|
@@ -32,7 +37,7 @@
     g.column(name: Notice.human_attribute_name(:sort),
              attribute: 'sort')
     g.column(name: t(:edit)) do |notice|
-      link_to(t(:edit), edit_notice_path(notice))
+      link_to(t(:edit), edit_admin_notice_path(notice))
     end
   end -%>
 </div>

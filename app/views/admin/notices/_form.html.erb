@@ -1,0 +1,21 @@
+<% if notice.present? %>
+  <%= simple_form_for([:admin, notice]) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+    <%= f.input :public %>
+    <%= f.input :d_publish, as: :datetime_picker %>
+    <%= f.input :d_remove, as: :datetime_picker %>
+    <%= f.input :sort %>
+    <%= f.input :image, as: :file %>
+    <% if notice.image? %>
+      <%= image_tag(notice.image.thumb.url, class: 'img-responsive') %><br>
+      <%= f.input :remove_image, as: :boolean %>
+    <% end %>
+    <%= f.button :submit, id: 'submit-notice' %>
+
+    <% if notice.persisted? %>
+      <%= link_to(t('notice.destroy'), admin_notice_path(notice), method: :delete,
+                  class: 'btn danger pull-right') %>
+    <% end %>
+  <% end %>
+<% end %>

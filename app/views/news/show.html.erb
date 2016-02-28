@@ -37,7 +37,7 @@
 <% end %>
 
 <%= content_for :image do %>
-  <%= image_tag(@news.image.url, class: 'img-responsive') %>
+  <%= image_tag(@news.image.large.url, class: 'img-responsive') %>
 <% end %>
 
 <% if @news.image.present? %>

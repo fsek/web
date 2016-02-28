@@ -13,3 +13,4 @@ sv:
         d_remove: Datum för borttagning
         sort: Sorteringsindex
         image: Bild
+        remove_image: Ta bort bild

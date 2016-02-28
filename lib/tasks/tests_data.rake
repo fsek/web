@@ -92,8 +92,8 @@ namespace :db do
                             link: '/galleri', index: 40, visible: true, turbolinks: false)
 
     # Notice
-    Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
-    Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
+    FactoryGirl.create(:notice)
+    FactoryGirl.create(:notice)
 
     # Election
     election = Election.find_or_initialize_by(title: 'Vårterminsmöte',

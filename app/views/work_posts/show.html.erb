@@ -6,7 +6,7 @@
 
   <div class="col-md-4 col-sm-12 bottom">
     <div class="col-md-12 col-sm-6 col-xs-12 margin-bottom-20">
-      <%= image_tag(@work_post.image_url, class: 'image img-responsive') %>
+      <%= image_tag(@work_post.image.large.url, class: 'image img-responsive') %>
     </div>
     <div class="col-md-12 col-sm-6 col-xs-12 margin-bottom-20">
       <%= render 'info', work_post: @work_post, show_link: true %>

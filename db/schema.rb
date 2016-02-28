@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221125807) do
+ActiveRecord::Schema.define(version: 20160224115802) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -295,18 +295,16 @@ ActiveRecord::Schema.define(version: 20160221125807) do
   end
 
   create_table "notices", force: :cascade do |t|
-    t.string   "title",              limit: 255
-    t.text     "description",        limit: 65535
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
     t.boolean  "public"
-    t.date     "d_publish"
-    t.date     "d_remove"
-    t.integer  "sort",               limit: 4
-    t.string   "image_file_name",    limit: 255
-    t.string   "image_content_type", limit: 255
-    t.integer  "image_file_size",    limit: 4
-    t.datetime "image_updated_at"
+    t.datetime "d_publish"
+    t.datetime "d_remove"
+    t.integer  "sort",        limit: 4
+    t.string   "image",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",     limit: 4,     null: false
   end
 
   create_table "page_elements", force: :cascade do |t|
