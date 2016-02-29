@@ -14,16 +14,15 @@ class ExLink < ActiveRecord::Base
                     default_url: 'img/ex_link/:style/external_link_sample.png'
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  # for nice formating in views
+  # get tagnames for nice formating in views
   def get_tagnames
-    @tagnames = []
-    tags.each { |tag| @tagnames << tag.tagname }
-    @tagnames
+    @tagnames = tags.select(:tagname).order(:tagname).uniq.pluck(:tagname)
   end
 
+  # takes tag string and converts it to tag objects
   def add_tags
     self.tags = []
-    if not tagstring.nil?
+    if tagstring.present?
       tagstring.gsub(/\s+/m, ' ')
       tagstring.strip.downcase.split(' ').each do |tagnm|
         self.tags << Tag.find_or_create_by(tagname: tagnm)
@@ -41,7 +40,7 @@ class ExLink < ActiveRecord::Base
     end
   end
 
-  # check if current link is alive
+  # mark link unactive if it doesn't response with code 200
   def self.aliveness_check
     require 'uri'
     require 'net/http'

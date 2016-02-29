@@ -4,7 +4,6 @@ class Admin::ExLinksController < ApplicationController
   before_action :authorize
   before_action :set_ex_link, only: [:show, :edit, :update, :destroy]
 
-  # GET /ex_links
   def index
     if params[:tag]
       @ex_links = get_exlinks_if_all_tags_present(params[:tag])
@@ -14,39 +13,34 @@ class Admin::ExLinksController < ApplicationController
     @tags = get_tags
   end
 
-  # GET /ex_links/1
   def show
+    @ex_link = ExLink.find(params[:id])
   end
 
-  # GET /ex_links/new
   def new
     @ex_link = ExLink.new
   end
 
-  # GET /ex_links/1/edit
   def edit
   end
 
-  # POST /ex_links
   def create
     @ex_link = ExLink.new(ex_link_params)
     if @ex_link.save
       redirect_to admin_ex_link_path(@ex_link), notice: alert_create(ExLink)
     else
-      render :new
+      render :new, status: 422
     end
   end
 
-  # PATCH/PUT /ex_links/1
   def update
     if @ex_link.update(ex_link_params)
       redirect_to admin_ex_link_path(@ex_link), notice: alert_update(ExLink)
     else
-      render :edit
+      render :edit, status: 422
     end
   end
 
-  # DELETE /ex_links/1
   def destroy
     @ex_link.destroy
     redirect_to admin_ex_links_path, notice: alert_destroy(ExLink)
@@ -99,13 +93,11 @@ class Admin::ExLinksController < ApplicationController
     res
   end
 
-  # /ex_links/del_unused/tags
   def del_unused_tags
     Tag.delete_unused_tags
     redirect_to admin_ex_links_path
   end
 
-  # /ex_links/check_dead
   def check_dead
     begin
       ExLink.aliveness_check
@@ -116,7 +108,6 @@ class Admin::ExLinksController < ApplicationController
     redirect_to admin_ex_links_path, notice: msg
   end
 
-  # /ex_links/check_expired
   def check_expired
     begin
       ExLink.expiration_check
@@ -129,12 +120,10 @@ class Admin::ExLinksController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_ex_link
     @ex_link = ExLink.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, allow the white list through
   def ex_link_params
     params.require(:ex_link).permit(:label, :url, :test_availability, :note,
                                     :active, :expiration, :image, :tagstring)

@@ -2,11 +2,11 @@ module ExLinkHelper
   # instead of boring true/false for booleans renders appropriate symbols
   def bool2icon(boolval)
     if boolval
-      res = "<i class='fa fa-check'>"
+      res = fa_icon('check')
     else
-      res = "<i class='fa fa-times'>"
+      res = fa_icon('times')
     end
-    res.html_safe
+    res
   end
 
   # print tags nicely in labels

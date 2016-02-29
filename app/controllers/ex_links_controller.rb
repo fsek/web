@@ -1,7 +1,6 @@
 class ExLinksController < ApplicationController
   load_permissions_and_authorize_resource
 
-  # GET /ex_links
   def index
     if params[:tag]
       @ex_links = get_exlinks_if_all_tags_present(params[:tag])
@@ -11,8 +10,8 @@ class ExLinksController < ApplicationController
     @tags = get_tags
   end
 
-  # GET /ex_links/1
   def show
+    @ex_link = ExLink.find(params[:id])
   end
 
   # QUERY_BY_TAGS
