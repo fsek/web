@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-md-10 margin-bottom-20">
       <%= link_to ExLink.human_attribute_name(:delete_unused_tags),
-                  {action: 'del_unused_tags'},
+                  del_unused_tags_admin_ex_links_path,
                   :data => { :confirm => 'Are you sure you want to delete unusued tags?' },
                   :class => 'btn danger' %>
     </div>
@@ -32,9 +32,9 @@
       <%= link_to ExLink.human_attribute_name(:new_external_link),
                   new_admin_ex_link_path, class: 'btn primary' %>
       <%= link_to ExLink.human_attribute_name(:check_expired_links),
-                  {action: 'check_expired'}, class: 'btn danger' %>
+                  check_expired_admin_ex_links_path, class: 'btn danger' %>
       <%= link_to ExLink.human_attribute_name(:check_dead_links),
-                  {action: 'check_dead'}, class: 'btn danger' %>
+                  check_dead_admin_ex_links_path, class: 'btn danger' %>
     </div>
   </div>
   <div class="row">
@@ -99,21 +99,23 @@
                 <%= truncate(ex_link.note, :length => 30) %>
               </td>
               <td>
-                <div class="btn-group">
-                  <!-- TODO: Should be dropdown! -->
-                  <%= link_to ExLink.human_attribute_name(:show),
-                              admin_ex_link_path(ex_link), :method => 'get',
-                              class:'btn primary' %>
-                  <ul class="dropdown-menu" role="menu">
+                <div class="dropdown">
+                  <button class="btn secondary dropdown-toggle" type="button"
+                          id="ex_link-actions" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="true">
+                    Actions
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="actions">
                     <li>
                       <%= link_to ExLink.human_attribute_name(:show),
                                   admin_ex_link_path(ex_link),
                                   :method => 'get' %>
                     </li>
                     <li>
-                      <%= link_to ExLink.human_attribute_name(:edit),
-                                  edit_admin_ex_link_path(ex_link),
-                                  :method => 'get' %>
+                    <%= link_to ExLink.human_attribute_name(:edit),
+                                edit_admin_ex_link_path(ex_link),
+                                :method => 'get' %>
                     </li>
                     <li>
                       <%= link_to ExLink.human_attribute_name(:destroy),

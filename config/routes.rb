@@ -30,10 +30,11 @@ Fsek::Application.routes.draw do
   resources :ex_links
 
   namespace :admin do
-    get 'ex_links/del_unused_tags' => 'ex_links#del_unused_tags'
-    get 'ex_links/check_dead' => 'ex_links#check_dead'
-    get 'ex_links/check_expired' => 'ex_links#check_expired'
-    resources :ex_links
+    resources :ex_links do
+      get :del_unused_tags, on: :collection
+      get :check_dead, on: :collection
+      get :check_expired, on: :collection
+    end
   end
 
   # Scope to change urls to swedish
