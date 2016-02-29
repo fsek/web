@@ -1,0 +1,91 @@
+<div class="col-md-6">
+  <div class="panel panel-orange margin-bottom-20">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>
+          <%= ExLink.human_attribute_name(:attribute) %>
+        </th>
+        <th>
+          <%= ExLink.human_attribute_name(:value) %>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <%= ExLink.human_attribute_name(:label) %>
+        </td>
+        <td>
+          <%= @ex_link.label %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= ExLink.human_attribute_name(:url) %>
+        </td>
+        <td>
+          <%= link_to @ex_link.url, @ex_link.url %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= ExLink.human_attribute_name(:tags) %>
+        </td>
+        <td>
+          <%= tags2labs @ex_link.get_tagnames %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= ExLink.human_attribute_name(:test_availability) %>
+        </td>
+        <td>
+          <%= bool2icon @ex_link.test_availability %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= ExLink.human_attribute_name(:note) %>
+        </td>
+        <td>
+          <%= @ex_link.note %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= ExLink.human_attribute_name(:active) %>
+        </td>
+        <td>
+          <%= bool2icon @ex_link.active %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= ExLink.human_attribute_name(:expiration) %>
+        </td>
+        <td>
+          <%= @ex_link.expiration %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row margin-bottom-40 col-md-6">
+    <p>
+      <%= link_to ExLink.human_attribute_name(:edit),
+                  edit_admin_ex_link_path(@ex_link), class: 'btn primary' %>
+      <%= link_to ExLink.human_attribute_name(:back),
+                  admin_ex_links_path, class: 'btn primary' %>
+      <%= link_to ExLink.human_attribute_name(:destroy),
+                  admin_ex_link_path(@ex_link), :method => :delete,
+                  :data => { :confirm => 'Are you sure?' },
+                  class: 'btn danger' %>
+    </p>
+  </div>
+</div>
+<div class="col-md-6">
+  <p>
+    <%= image_tag @ex_link.image.url(:medium, :align=> 'middle') %>
+  </p>
+</div>
