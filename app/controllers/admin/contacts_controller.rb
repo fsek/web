@@ -21,7 +21,7 @@ class Admin::ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     @posts = Post.title
     if @contact.save
-      redirect_to admin_contact_path(@contact), notice: alert_create(Contact)
+      redirect_to edit_admin_contact_path(@contact), notice: alert_create(Contact)
     else
       render :new, status: 422
     end

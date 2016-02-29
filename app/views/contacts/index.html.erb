@@ -1,11 +1,11 @@
 <% provide(:title, t('contact.title')) %>
 <div class='headline'>
-  <h2 id='contacts_title'>
+  <h1 id='contacts_title'>
     <%= t('contact.title') %>
-  </h2>
+  </h1>
 </div>
-<div class="col-xs-12">
-  <% @contacts.each do |c| %>
-    <%= render 'preview', contact: c %>
+<div class="col-md-12">
+  <% cache(@contacts) do %>
+    <%= render @contacts %>
   <% end %>
 </div>

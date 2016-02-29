@@ -2,7 +2,7 @@
   <%= f.association(:post, collection: posts, input_html: { class: 'select2' },
                     hint: t('contact.name_or_post')) %>
   <%= f.input :name %>
-  <%= f.input :text %>
+  <%= f.input :text, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :email %>
   <%= f.input :public %>
   <%= f.input :slug, hint: t('contact.slug_description') %>

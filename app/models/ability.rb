@@ -14,6 +14,7 @@ class Ability
     can :main, Rent
     cannot [:create, :destroy, :update], Rent
     can :show, Page, public: true
+    can :avatar, User
 
     can :show, Event
     can [:index, :export], :calendar

@@ -1,10 +1,35 @@
-<% if name.present? %>
-  <% contact = Contact.find_by(name: name)%>
-  <% if contact %>
-    <%= link_to(contact_path(contact)) do %>
-      <%= fa_icon('envelope') %> <%= contact.name %>
+<% if contact.present? %>
+  <div class="row contact index">
+    <h2><%= contact.to_s %></h2>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <%= contact_image(contact) %>
+    </div>
+
+    <div class="col-md-9 col-sm-6 col-xs-12 description">
+      <%= markdown(contact.text) %>
+    </div>
+
+    <% if contact.users.present? %>
+      <div class="col-sm-4 users">
+        <%= t('contact.users') %>
+        <ul class="list">
+          <% contact.users.each do |user| %>
+            <li><%= user_link(user) %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-  <% else %>
-    <%= name %>
-  <% end %>
+    <div class="col-sm-12">
+      <%= link_to(t('contact.contact'), contact_path(contact), class: 'btn primary pull-right') %>
+
+      <% if can?(:modify, contact) %>
+        <span class="edit">
+          <%= link_to(edit_admin_contact_path(contact)) do %>
+            <%= fa_icon('cog') %> <%= t(:edit) %>
+          <% end %>
+        </span>
+      <% end %>
+    </div>
+  </div>
 <% end %>
