@@ -46,7 +46,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
         post :create, contact: attributes
       end.should change(Contact, :count).by(1)
 
-      response.should redirect_to(admin_contact_path(Contact.last))
+      response.should redirect_to(edit_admin_contact_path(Contact.last))
       Contact.last.name.should eq('David')
     end
 
