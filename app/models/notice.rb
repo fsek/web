@@ -6,7 +6,7 @@ class Notice < ActiveRecord::Base
   validates :title, :description, :sort, :d_publish, :user, presence: true
 
   scope :published, -> do
-    where('d_publish <= ? AND (d_remove > ? OR d_remove = NULL)',
+    where('d_publish <= ? AND (d_remove > ? OR d_remove IS NULL)',
           Time.zone.now,
           Time.zone.now).
       order(sort: :asc)
