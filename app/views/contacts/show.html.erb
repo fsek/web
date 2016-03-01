@@ -4,7 +4,7 @@
 </div>
 
 <div class="col-md-12 contact">
-  <div class="col-md-4 col-xs-12">
+  <div class="col-md-4 col-xs-12 image">
     <%= contact_image(@contact) %>
   </div>
 
@@ -22,16 +22,16 @@
       </ul>
     <% end %>
   </div>
-  <div class="col-md-12">
-    <% if can?(:manage, @contact) %>
+  <% if can?(:manage, @contact) %>
+    <div class="col-md-12">
       <span class="edit">
         <%= link_to(edit_admin_contact_path(@contact),
                     class: 'pull-right') do %>
-                    <%= fa_icon('cog') %> <%= t(:edit) %>
-                  <% end %>
+          <%= fa_icon('cog') %> <%= t(:edit) %>
+        <% end %>
       </span>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
   <div class="col-md-12">
     <%= render 'send_form', contact: @contact %>
     <hr>
