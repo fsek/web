@@ -321,6 +321,8 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    sitemap_generator (5.1.0)
+      builder
     slop (3.6.0)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -418,6 +420,7 @@ DEPENDENCIES
   select2-rails
   shoulda-matchers
   simple_form
+  sitemap_generator
   therubyracer
   turbolinks
   uglifier

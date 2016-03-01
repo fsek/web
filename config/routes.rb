@@ -8,7 +8,7 @@ Fsek::Application.routes.draw do
   get '/youtube', to: redirect('https://www.youtube.com/user/fsektionen'), as: :youtube, status: 301
 
   get :cookies_information, controller: :static_pages, as: :cookies, path: :cookies
-  get :about, controller: :static_pages, path: :om, as: :om
+  get :about, controller: :static_pages, path: :om
   get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about
   get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
 

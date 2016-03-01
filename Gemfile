@@ -38,6 +38,7 @@ gem 'responders'
 gem 'sass-rails'
 gem 'select2-rails'
 gem 'simple_form'
+gem 'sitemap_generator'
 gem 'turbolinks'
 gem 'uglifier'
 # Introduces feature needed in tables, no errors when updating
