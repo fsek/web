@@ -10,6 +10,8 @@ class Contact < ActiveRecord::Base
 
   attr_accessor :message
 
+  scope :publik, -> { where(public: true) }
+
   def send_email
     if message.validate!
       ContactMailer.contact_email(self).deliver_now

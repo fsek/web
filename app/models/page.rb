@@ -11,6 +11,7 @@ class Page < ActiveRecord::Base
                   presence: true,
                   format: { with: /\A[a-z0-9_-]+\z/ }
 
+  scope :publik, -> { where(public: true) }
   attr_accessor :image_upload
 
   def main
