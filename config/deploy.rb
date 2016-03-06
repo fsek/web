@@ -18,4 +18,6 @@ set :linked_files, %w{config/database.yml config/secrets.yml}
 # Default value for linked_dirs is []
 set :linked_dirs, %w{log tmp vendor/bundle public/system public/uploads storage public/sitemaps}
 
-after 'deploy:publishing', 'passenger:restart', 'deploy:sitemap:refresh'
+after 'deploy:publishing', 'passenger:restart'
+after 'deploy:publishing', 'deploy:sitemap:refresh'
+after 'deploy:publishing', 'deploy:permissions:load'
