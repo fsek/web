@@ -1,0 +1,20 @@
+<% if page_element.headline.present? %>
+  <div class="headline">
+    <h4><%= page_element.headline %></h4>
+  </div>
+<% end %>
+
+<% if page_element.text.present? %>
+  <div class="col-md-12 page-element">
+    <%= markdown(page_element.text) %>
+  </div>
+<% end %>
+
+<% if can? :manage, page %>
+  <div class="col-md-12 margin-bottom-10">
+    <%= link_to(edit_admin_page_page_element_path(page, page_element),
+                class: 'pull-right') do %>
+      <%= fa_icon('cog') %> <%= t(:edit) %>
+    <% end %>
+  </div>
+<% end %>

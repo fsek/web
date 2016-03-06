@@ -9,13 +9,17 @@
   <% end %>
 
   <% if page_element.element_type == PageElement::TEXT %>
+
     <%= markdown(truncate(page_element.text, length: 100)) %>
+
   <% elsif page_element.element_type == PageElement::IMAGE %>
+
     <% if page_element.page_image.present? %>
-      <%= image_tag(page_element.page_image.image, class: 'img-responsive') %>
+      <%= image_tag(page_element.page_image.show, class: 'img-responsive') %>
     <% else %>
       <%= simple_format(t('page_element.image_missing')) %>
     <% end %>
+
   <% end %>
 
   <%= link_to(edit_admin_page_page_element_path(page_element.page, page_element)) do %>
