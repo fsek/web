@@ -7,7 +7,7 @@ class PageElement < ActiveRecord::Base
   belongs_to :page_image
   belongs_to :contact
 
-  validates :page_id, presence: true
+  validates :page_id, :element_type,  presence: true
 
   scope :visible, -> { where(visible: true) }
   scope :main, -> { visible.where(sidebar: false).index }
@@ -16,6 +16,10 @@ class PageElement < ActiveRecord::Base
   scope :rest, -> { where(visible: false) }
 
   def to_partial_path
-    "/page_elements/#{element_type}_element"
+    "/pages/#{element_type}_element"
+  end
+
+  def to_s
+    name || id
   end
 end

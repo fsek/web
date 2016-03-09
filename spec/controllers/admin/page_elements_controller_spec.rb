@@ -22,6 +22,19 @@ RSpec.describe Admin::PageElementsController, type: :controller do
     end
   end
 
+  describe 'GET #edit' do
+    it 'assigns the right page_element' do
+      page = create(:page)
+      page_element = create(:page_element, page: page)
+
+      get(:edit, page_id: page.to_param, id: page_element.to_param)
+
+      assigns(:page_element).should eq(page_element)
+
+      response.status.should eq(200)
+    end
+  end
+
   describe 'GET #index' do
     it 'assigns page_element sorted as @page_elements' do
       page = create(:page)
@@ -48,6 +61,19 @@ RSpec.describe Admin::PageElementsController, type: :controller do
 
       response.should redirect_to(edit_admin_page_page_element_path(page, PageElement.last))
     end
+
+    it 'invalid params' do
+      page = create(:page)
+      attributes = { name: 'About',
+                     element_type: '' }
+
+      lambda do
+        post :create, page_id: page, page_element: attributes
+      end.should change(PageElement, :count).by(0)
+
+      response.status.should eq(422)
+      response.status.should render_template(:new)
+    end
   end
 
   describe 'PATCH #update' do
@@ -62,6 +88,19 @@ RSpec.describe Admin::PageElementsController, type: :controller do
       element.headline.should eq('Not about')
       response.should redirect_to(edit_admin_page_page_element_path(page, element))
     end
+
+    it 'update page_element' do
+      page = create(:page)
+      element = create(:page_element, page: page, element_type: PageElement::TEXT)
+
+      patch(:update, page_id: page.to_param, id: element.to_param,
+                     page_element: { element_type: '' })
+
+      element.reload
+      element.element_type.should eq(PageElement::TEXT)
+      response.status.should eq(422)
+      response.status.should render_template(:edit)
+    end
   end
 
   describe 'DELETE #destroy' do
@@ -73,7 +112,7 @@ RSpec.describe Admin::PageElementsController, type: :controller do
         delete :destroy, page_id: page, id: element
       end.should change(PageElement, :count).by(-1)
 
-      response.should redirect_to(admin_page_path(page))
+      response.should redirect_to(edit_admin_page_path(page))
     end
   end
 end

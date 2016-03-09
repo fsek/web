@@ -4,6 +4,7 @@ FactoryGirl.define do
     url
     visible { true }
     title
+    public true
 
     factory :page_with_elements do
       transient do

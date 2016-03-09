@@ -79,6 +79,17 @@ RSpec.describe Admin::PagesController, type: :controller do
       response.status.should eq(422)
       response.should render_template(:edit)
     end
+
+    it 'uploads image' do
+      page = create(:page)
+      image = [Rack::Test::UploadedFile.new(File.open('app/assets/images/hilbert.jpg'))]
+
+      lambda do
+        patch :update, id: page.to_param, page: { image_upload: image }
+      end.should change(PageImage, :count).by(1)
+
+      response.should redirect_to(edit_admin_page_path(page))
+    end
   end
 
   describe 'DELETE #destroy' do

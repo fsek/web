@@ -13,7 +13,7 @@ class Ability
     can [:index, :feed], CafeShift
     can :main, Rent
     cannot [:create, :destroy, :update], Rent
-    can :show, Page, public: true
+    can :show, Page, public: true, visible: true
     can :avatar, User
 
     can :show, Event
@@ -46,7 +46,7 @@ class Ability
       can [:create, :index], Candidate
       can [:update, :show, :destroy], Candidate, user_id: user.id
       can [:create], Nomination
-      can :show, Page
+      can :show, Page, visible: true
     end
 
     # Note: Root access is given dynamically by having a post with permissions :manage, :all

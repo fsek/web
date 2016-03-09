@@ -46,7 +46,7 @@ class Admin::PageElementsController < ApplicationController
     page = Page.find_by!(url: params[:page_id])
     page_element = page.page_elements.find(params[:id])
     page_element.destroy!
-    redirect_to admin_page_path(page), notice: alert_destroy(PageElement)
+    redirect_to edit_admin_page_path(page), notice: alert_destroy(PageElement)
   end
 
   private

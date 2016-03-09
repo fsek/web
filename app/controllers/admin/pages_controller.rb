@@ -28,9 +28,8 @@ class Admin::PagesController < ApplicationController
   def update
     @page = Page.find_by!(url: params[:id])
     authorize!(:modify, @page)
-    service = PageService.new
 
-    if @page.update(page_params) && service.upload_images(@page)
+    if @page.update(page_params) && PageService.upload_images(@page)
       redirect_to edit_admin_page_path(@page), notice: alert_update(Page)
     else
       render :edit, status: 422
@@ -38,8 +37,8 @@ class Admin::PagesController < ApplicationController
   end
 
   def destroy
-    @page = Page.find_by!(url: params[:id])
-    @page.destroy!
+    page = Page.find_by!(url: params[:id])
+    page.destroy!
     redirect_to admin_pages_url
   end
 

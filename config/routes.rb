@@ -89,7 +89,7 @@ Fsek::Application.routes.draw do
     resources :menus, path: :meny, except: :show
 
     namespace :admin do
-      resources :pages, path: :sida do
+      resources :pages, path: :sida, except: :show do
         resources :page_elements, path: :element, except: :show
         delete 'destroy_image/:image_id', on: :member, action: :destroy_image, as: :destroy_image
       end
