@@ -1,9 +1,9 @@
 <div class="headline">
-  <h2><%= @news.title %></h2>
+  <h1><%= @news.title %></h1>
 </div>
 
 <%= content_for :info do %>
-  <%= simple_format(@news.content)%>
+  <%= markdown(@news.content)%>
 
   <% if @news.url.present? %>
     <span class="link">
@@ -22,7 +22,7 @@
     <% end %>
   </span>
 
-  <% if can?(:manage, @news) %>
+  <% if can?(:modify, @news) %>
     <span class="edit">
       <%= link_to(edit_admin_news_path(@news)) do %>
         <%= fa_icon('cog') %> <%= t(:edit) %>
@@ -31,21 +31,22 @@
   <% end %>
   <hr>
 
-  <%= link_to(t(:index_attr, attr: models_name(News)),
+  <%= link_to(t('news.index'),
               news_index_path,
               class: 'btn secondary') %>
 <% end %>
 
 <%= content_for :image do %>
-  <%= image_tag(@news.image.large.url, class: 'img-responsive') %>
+  <%= image_tag(@news.large, class: 'img-responsive') %>
 <% end %>
 
 <% if @news.image.present? %>
-  <div class="col-md-6 col-sm-12 news">
-    <%= yield :info %>
-  </div>
-  <div class="col-md-6 col-sm-12">
+  <div class="col-md-3 col-sm-12">
     <%= yield :image %>
+  </div>
+
+  <div class="col-md-9 col-sm-12 news">
+    <%= yield :info %>
   </div>
 <% else %>
   <div class="col-md-12 news">

@@ -5,26 +5,24 @@
       <%= fa_icon('image') %>
     <% end %>
   </h4>
-  <%= simple_format(truncate(news.content,
-                             length: 140,
-                             separator: '',
-                             escape: false){
-                               link_to(t(:read_more), news_path(news))
-                             }) %>
-  <%= news_url(news) %>
+  <%= truncate(markdown_plain(news.content),
+               length: 140,
+               separator: ''){ link_to(t(:read_more), news_path(news))} %>
 
-  <span class="date">
-    <%= fa_icon('calendar') %> <%= l(news.created_at) %>
-  </span>
+   <%= news_url(news) %>
 
-  <%= news_user(news) %>
+   <span class="date">
+     <%= fa_icon('calendar') %> <%= l(news.created_at) %>
+   </span>
 
-  <% if can?(:manage, news) %>
-    <span class="edit">
-      <%= link_to(edit_admin_news_path(news)) do %>
-        <%= fa_icon('cog') %> <%= t(:edit) %>
-      <% end %>
-    </span>
-  <% end %>
-  <hr>
+   <%= news_user(news) %>
+
+   <% if can?(:modify, news) %>
+     <span class="edit">
+       <%= link_to(edit_admin_news_path(news)) do %>
+         <%= fa_icon('cog') %> <%= t(:edit) %>
+       <% end %>
+     </span>
+   <% end %>
+   <hr>
 </div>

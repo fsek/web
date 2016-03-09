@@ -36,15 +36,16 @@ class Admin::NewsController < ApplicationController
   end
 
   def destroy
-    @news = News.find(params[:id])
-    @news.destroy!
+    news = News.find(params[:id])
+    news.destroy!
+
     redirect_to admin_news_index_path, notice: alert_destroy(News)
   end
 
   private
 
   def authorize
-    can?(:manage, News)
+    authorize!(:modify, News)
   end
 
   def news_params

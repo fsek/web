@@ -13,4 +13,16 @@ class News < ActiveRecord::Base
   def to_s
     title || id
   end
+
+  def large
+    if image.present?
+      image.large.url
+    end
+  end
+
+  def thumb
+    if image.present?
+      image.thumb.url
+    end
+  end
 end
