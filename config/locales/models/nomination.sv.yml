@@ -13,3 +13,5 @@ sv:
         motivation: Motivering
         phone: Telefon
         stil_id: Stil-id
+  nomination:
+    invalid_email: E-postadressen har inte giltligt format.
