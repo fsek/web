@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Tool, type: :model do
-
   describe :Validations do
     it 'check presence title' do
       tool = build(:tool)

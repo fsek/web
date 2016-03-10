@@ -1,7 +1,6 @@
 class CreateTools < ActiveRecord::Migration
   def change
     create_table :tools do |t|
-
       t.string :title
       t.text :description
       t.integer :rents, default: 0

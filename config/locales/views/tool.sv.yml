@@ -1,7 +1,6 @@
 sv:
   tool:
-    title: Verktyg
-    edit: Redigera verktyg
-    new: Nytt verktyg
-    destroy: Förinta verktyg
-    index: Alla verktyg
+    title: Sektionens Verktyg
+    edit: Redigera Verktyg
+    new: Nytt Verktyg
+    destroy: Ta bort Verktyg

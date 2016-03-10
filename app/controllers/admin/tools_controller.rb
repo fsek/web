@@ -39,6 +39,7 @@ class Admin::ToolsController < ApplicationController
   end
 
   private
+
   def tools_params
     params.require(:tool).permit(:title, :description, :total)
   end
