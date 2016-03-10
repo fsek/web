@@ -2,3 +2,5 @@ sv:
   activerecord:
     models:
       tool: Verktyg
+    attributes:
+      total: Antal verktyg

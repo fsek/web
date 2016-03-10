@@ -4,6 +4,8 @@ class CreateTools < ActiveRecord::Migration
 
       t.string :title
       t.text :description
+      t.integer :rents, default: 0
+      t.integer :total
       t.timestamps null: false
     end
   end

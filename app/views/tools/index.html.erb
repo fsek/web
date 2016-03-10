@@ -1,18 +1,21 @@
-<% provide(:title, 'Verktyg') %>
-<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+<% provide(:title, t('tool.title')) %>
+<div class="col-md-8 col-md-offset-2 col-sm-12">
   <div class="headline">
-    <h1>Sektionens verktyg</h1>
+  <h1><%= t('tool.title') %></h1>
   </div>
 
-  <%= link_to('Nytt verktyg', new_tool_path, class: 'btn primary') %>
-
-  <ol class = "list-group">
+  <ul class = "list-group">
     <% @all_tools.each do |tool| %>
-      <li class = "list-group-item">
+      <% if tool.free == 0 %>
+        <li class="list-group-item list-group-item-danger">
+      <% else %>
+        <li class="list-group-item">
+      <% end %>
         <h4 class = "list-group-item-heading"><%= tool.title %></h4>
+        <span class="badge"><%= tool.free %></span>
         <p class = "list-group-item-text"> <%= tool.description %></p>
-      </li>
+      </a>
     <% end %>
-  </ol>
+  </ul>
 
 </div>

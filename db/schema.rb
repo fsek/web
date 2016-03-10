@@ -443,8 +443,10 @@ ActiveRecord::Schema.define(version: 20160224234005) do
   create_table "tools", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "rents",       limit: 4,     default: 0
+    t.integer  "total",       limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "users", force: :cascade do |t|
