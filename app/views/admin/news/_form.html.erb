@@ -1,12 +1,19 @@
-<%= simple_form_for([:admin, @news]) do |f| %>
+<%= simple_form_for([:admin, news]) do |f| %>
   <%= f.input :title %>
-  <%= f.input :content %>
+  <%= f.input :content, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :url %>
-  <% if @news.image.present? %>
-    <%= image_tag(@news.image.thumb.url) %>
+  <% if news.image.present? %>
+    <%= image_tag(news.thumb) %>
     <%= f.input :remove_image, as: :boolean %>
   <% else %>
     <%= f.input :image, as: :file %>
   <% end %>
   <%= f.button :submit %>
+
+  <% if news.persisted? %>
+    <%= link_to(t('news.destroy'), admin_news_path(news),
+                                   method: :delete,
+                                   class: 'btn danger pull-right') %>
+
+  <% end %>
 <% end %>

@@ -1,3 +1,10 @@
 sv:
   news:
+    admin_title: Administrera nyheter
+    destroy: Förinta nyhet
+    edit: Redigera nyhet
+    index: Alla nyheter
     more: Fler nyheter
+    new: Ny nyhet
+    show: Visa nyhet
+    title: Nyheter

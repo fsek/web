@@ -1,32 +1,43 @@
-<%= title(models_name(News)) %>
+<%= provide(:title, t('news.admin_title')) %>
 <div class="headline">
-  <h3><%= models_name(News) %></h3>
+  <h1><%= t('news.index') %></h1>
 </div>
-<%= link_to(t(:new_attr, attr: model_name(News)), new_admin_news_path, class: 'btn secondary') %>
 
-<%= grid(@news_grid) do |g|
-  g.column name: News.human_attribute_name(:title), attribute: 'title', filter: false
-  g.column name: News.human_attribute_name(:url), attribute: 'url', filter: false
-  g.column name: News.human_attribute_name(:image), attribute: 'image', filter: false do |news|
-    if news.image.present?
-      t(:yes)
-    else
-      t(:no)
+<div class="col-md-2 col-sm-12 margin-bottom-20">
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+
+  <hr>
+
+  <%= link_to(t('news.new'), new_admin_news_path, class: 'btn primary') %>
+  <%= link_to(t('news.index'), news_index_path, class: 'btn secondary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@news_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column name: News.human_attribute_name(:title), attribute: 'title' do |news|
+      link_to(news, news_path(news))
     end
-  end
-  g.column name: News.human_attribute_name(:created_at), attribute: 'created_at', filter: false do |news|
-    l(news.created_at)
-  end
-  g.column name: News.human_attribute_name(:user), assoc: :user,
-    attribute: 'id', filter: false do |post|
-    if post.user.present?
-      link_to(post.user, user_path(post.user))
+    g.column name: News.human_attribute_name(:url), attribute: 'url'
+    g.column name: News.human_attribute_name(:image), attribute: 'image' do |news|
+      yes_no(news.image.present?)
     end
-  end
-  g.column name: News.human_attribute_name(:updated_at), attribute: 'updated_at', filter: false do |news|
-    l(news.updated_at)
-  end
-  g.column name: t(:edit) do |link|
-    link_to(t(:edit), edit_admin_news_path(link))
-  end
-end -%>
+    g.column name: News.human_attribute_name(:user), assoc: :user, attribute: 'id' do |post|
+      user_link(post.user)
+    end
+    g.column name: News.human_attribute_name(:created_at), attribute: 'created_at' do |news|
+      l(news.created_at)
+    end
+    g.column name: News.human_attribute_name(:updated_at), attribute: 'updated_at' do |news|
+      l(news.updated_at)
+    end
+    g.column name: t(:edit) do |link|
+      link_to(t(:edit), edit_admin_news_path(link))
+    end
+  end -%>
+</div>

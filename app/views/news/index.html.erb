@@ -1,10 +1,8 @@
-<% title(models_name(News)) %>
+<% provide(:title, t('news.title')) %>
 <div class="headline">
-  <h2><%= models_name(News) %></h2>
+  <h1><%= t('news.title') %></h1>
 </div>
 
 <div class="col-md-8 col-md-offset-2 col-xs-12">
-  <% @news.each do |news| %>
-    <%= render news %>
-  <% end %>
+  <%= render @news %>
 </div>
