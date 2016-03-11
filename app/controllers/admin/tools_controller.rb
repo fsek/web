@@ -10,7 +10,7 @@ class Admin::ToolsController < ApplicationController
     if @tool.save
       redirect_to admin_tools_path, notice: alert_create(Tool)
     else
-      render 'new', status: 422
+      render :new, status: 422
     end
   end
 
@@ -45,6 +45,6 @@ class Admin::ToolsController < ApplicationController
   end
 
   def authorize
-    authorize!(:modify, Tool)
+    authorize!(:manage, Tool)
   end
 end

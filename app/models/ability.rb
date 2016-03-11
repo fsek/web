@@ -5,7 +5,6 @@ class Ability
     user ||= User.new
 
     # Abilities that everyone get.
-    can :index, Tool
     can :read, [Council, Election, News, WorkPost]
     can :read, Document, public: true
     can [:mail, :read], Contact, public: true

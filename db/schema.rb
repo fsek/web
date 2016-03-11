@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224234005) do
+ActiveRecord::Schema.define(version: 20160225000000) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -441,10 +441,9 @@ ActiveRecord::Schema.define(version: 20160224234005) do
   end
 
   create_table "tools", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.integer  "rents",       limit: 4,     default: 0
-    t.integer  "total",       limit: 4
+    t.string   "title",       limit: 255,               null: false
+    t.text     "description", limit: 65535,             null: false
+    t.integer  "total",       limit: 4,     default: 1
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end

@@ -4,16 +4,12 @@
   <h1><%= t('tool.title') %></h1>
   </div>
 
-  <ul class = "list-group">
+  <ul class="list-group">
     <% @all_tools.each do |tool| %>
-      <% if tool.free == 0 %>
-        <li class="list-group-item list-group-item-danger">
-      <% else %>
         <li class="list-group-item">
-      <% end %>
-        <h4 class = "list-group-item-heading"><%= tool.title %></h4>
-        <span class="badge"><%= tool.free %></span>
-        <p class = "list-group-item-text"> <%= tool.description %></p>
+        <h4 class="list-group-item-heading"><%= tool.title %></h4>
+        <span class="badge"><%= tool.total %></span>
+        <p class="list-group-item-text"> <%= tool.description %></p>
       </a>
     <% end %>
   </ul>

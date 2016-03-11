@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :tool do
     title { generate(:tool_title) }
     description
-    total { [2, 4, 7].sample }
+    total { rand(1..20) }
   end
 
   sequence(:tool_title) { |n| "Tool #{n}" }
