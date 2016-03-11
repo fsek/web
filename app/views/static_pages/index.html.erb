@@ -14,23 +14,17 @@
 <% end %>
 
 <div class="col-md-7 col-sm-12">
-  <% cache(@start_page.notices) do %>
-    <%= render @start_page.notices %>
-  <% end %>
+  <%= render @start_page.notices %>
 </div>
 
 <div class="col-md-5 col-sm-12">
-  <% cache(@start_page.events) do %>
-    <%= render '/events/stream', events: @start_page.events %>
-  <% end %>
+  <%= render '/events/stream', events: @start_page.events %>
 
   <div class="headline headline-md">
     <h3><%= models_name(News) %></h3>
   </div>
-  <% cache(@start_page.news) do %>
-    <%= render @start_page.news %>
-    <%= link_to news_index_path do%>
-      <%= fa_icon('plus') %> <%= t('news.more') %>
-    <% end %>
+  <%= render @start_page.news %>
+  <%= link_to news_index_path do%>
+    <%= fa_icon('plus') %> <%= t('news.more') %>
   <% end %>
 </div>
