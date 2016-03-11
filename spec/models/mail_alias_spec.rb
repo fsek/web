@@ -73,7 +73,7 @@ describe MailAlias do
       c = create :mail_alias, :updated_at => 1.month.ago
       MailAlias.insert_aliases! c.username, c.domain, [ c.target ]
       MailAlias.count.should == 1
-      MailAlias.first.updated_at.to_date.should == Date.today
+      MailAlias.first.updated_at.to_date.should == Time.zone.now.to_date
     end
   end
 end
