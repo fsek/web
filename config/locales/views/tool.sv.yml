@@ -1,0 +1,6 @@
+sv:
+  tool:
+    title: Sektionens Verktyg
+    edit: Redigera Verktyg
+    new: Nytt Verktyg
+    destroy: Ta bort Verktyg

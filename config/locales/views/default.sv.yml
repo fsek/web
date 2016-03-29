@@ -29,7 +29,6 @@ sv:
   show_attr: Visa %{attr}
   sincerely: Med vänlig hälsning
   subscribe: Prenumerera
-  tool: Verktyg
   update: Uppdatera
   update_attr: Uppdatera %{attr}
   welcome: Välkommen
