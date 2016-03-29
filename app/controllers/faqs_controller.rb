@@ -1,9 +1,6 @@
 # encoding:UTF-8
 class FaqsController < Admin::BaseController
-  # This is not used at the moment
-  # Will update when time comes around
   load_permissions_and_authorize_resource
-  before_action :set_editor, only: [:new, :show, :edit, :index]
 
   def index
     @faq = Faq.where.not(answer: '').where(category: 'main')
@@ -49,10 +46,6 @@ class FaqsController < Admin::BaseController
   end
 
   private
-
-  def set_editor
-    @editor = can? :manage, Faq
-  end
 
   def faq_params
     params.require(:faq).permit(:question, :answer, :category)
