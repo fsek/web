@@ -1,4 +1,4 @@
-class Admin::NoticesController < ApplicationController
+class Admin::NoticesController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index

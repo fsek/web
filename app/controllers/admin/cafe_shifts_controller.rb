@@ -1,7 +1,6 @@
 # encoding:UTF-8
-class Admin::CafeShiftsController < ApplicationController
+class Admin::CafeShiftsController < Admin::BaseController
   load_permissions_then_authorize_resource
-  before_action :authorize
 
   def show
     cafe_shift = CafeShift.find(params[:id])
@@ -62,10 +61,6 @@ class Admin::CafeShiftsController < ApplicationController
   end
 
   private
-
-  def authorize
-    authorize! :manage, CafeShift
-  end
 
   def shift_params
     params.require(:cafe_shift).permit(:start, :pass, :lp, :lv, :lv_last, :setup_mode)

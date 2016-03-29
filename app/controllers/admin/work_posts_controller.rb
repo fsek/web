@@ -1,7 +1,6 @@
 # encoding:UTF-8
-class Admin::WorkPostsController < ApplicationController
-  skip_authorization
-  before_action :authorize
+class Admin::WorkPostsController < Admin::BaseController
+  load_permissions_and_authorize_resource
 
   def index
     if params[:all].present?
@@ -56,10 +55,6 @@ class Admin::WorkPostsController < ApplicationController
   end
 
   private
-
-  def authorize
-    authorize!(:modify, WorkPost)
-  end
 
   def work_post_params
     params.require(:work_post).permit(:title, :description, :company, :deadline,

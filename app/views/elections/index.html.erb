@@ -10,7 +10,7 @@
   <%= link_to(model_name(Candidate), candidates_path, class: 'btn primary') %>
   <%= link_to(model_name(Nomination), new_nominations_path, class: 'btn primary') %><br>
 
-  <% if can? :manage, @election_view.election %>
+  <% if can_administrate?(:edit, @election_view.election) %>
     <hr>
     <%= link_to(t('election.edit'), admin_election_path(@election_view.election),
                 class: 'btn primary') %>

@@ -14,7 +14,7 @@
     <%= WorkPost.human_attribute_name(:updated_at) %>:
     <%= l(work_post.updated_at.to_date) %>,
     <%= user_link(work_post.user) %>
-    <% if can?(:manage, work_post) %>
+    <% if can_administrate?(:manage, work_post) %>
       <br>
       <%= link_to(edit_admin_work_post_path(work_post)) do %>
         <%= fa_icon('cog') %> <%= t(:edit) %>

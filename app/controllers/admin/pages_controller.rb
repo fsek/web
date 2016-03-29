@@ -1,7 +1,6 @@
 # encoding: UTF-8
-class Admin::PagesController < ApplicationController
+class Admin::PagesController < Admin::BaseController
   load_permissions_and_authorize_resource find_by: :url
-  before_action :authorize, except: [:edit, :update, :destroy_image]
 
   def index
     @page_grid = initialize_grid(Page, include: :council)
@@ -13,7 +12,6 @@ class Admin::PagesController < ApplicationController
 
   def edit
     @page = Page.find_by!(url: params[:id])
-    authorize!(:modify, @page)
   end
 
   def create
@@ -27,7 +25,6 @@ class Admin::PagesController < ApplicationController
 
   def update
     @page = Page.find_by!(url: params[:id])
-    authorize!(:modify, @page)
 
     if @page.update(page_params) && PageService.upload_images(@page)
       redirect_to edit_admin_page_path(@page), notice: alert_update(Page)
@@ -43,7 +40,6 @@ class Admin::PagesController < ApplicationController
   end
 
   def destroy_image
-    authorize!(:modify, @page)
     page = Page.find_by!(url: params[:id])
     page_image = page.page_images.find(params[:image_id])
 
@@ -52,10 +48,6 @@ class Admin::PagesController < ApplicationController
   end
 
   private
-
-  def authorize
-    authorize!(:modify, Page)
-  end
 
   def page_params
     params.require(:page).permit(:url, :visible, :title,

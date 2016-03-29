@@ -1,6 +1,5 @@
-class Admin::DocumentsController < ApplicationController
+class Admin::DocumentsController < Admin::BaseController
   load_permissions_and_authorize_resource
-  before_action :authorize
 
   def index
     documents = filter_documents(Document.all, params[:category])
@@ -55,10 +54,6 @@ class Admin::DocumentsController < ApplicationController
   end
 
   private
-
-  def authorize
-    authorize!(:manage, Document)
-  end
 
   def document_params
     params.require(:document).permit(:title, :pdf, :public, :category)

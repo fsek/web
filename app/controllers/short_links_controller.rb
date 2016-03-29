@@ -1,4 +1,4 @@
-class ShortLinksController < ApplicationController
+class ShortLinksController < Admin::BaseController
   load_permissions_and_authorize_resource :except => [ :go, :check ]
 
   def go

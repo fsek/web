@@ -222,10 +222,10 @@ Fsek::Application.routes.draw do
     end
   end
 
-  resources :mail_aliases, :only => [ :index ] do
+  resources :mail_aliases, only: [:index] do
     collection do
-      put 'update' => 'mail_aliases#update'
-      get 'search' => 'mail_aliases#search'
+      put :update, path: :update
+      get :search
     end
   end
 

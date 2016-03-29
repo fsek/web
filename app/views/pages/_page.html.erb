@@ -1,16 +1,12 @@
 <%= content_for :page_sidebar do %>
   <% page.side.each do |element| %>
-    <% cache(element) do %>
-      <%= render element.to_partial_path, page_element: element, page: page %>
-    <% end %>
+    <%= render element.to_partial_path, page_element: element, page: page %>
   <% end %>
 <% end %>
 
 <%= content_for :page_main do %>
   <% page.main.each do |element| %>
-    <% cache(element) do %>
-      <%= render element.to_partial_path, page_element: element, page: page %>
-    <% end %>
+    <%= render element.to_partial_path, page_element: element, page: page %>
   <% end %>
 <% end %>
 

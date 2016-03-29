@@ -3,12 +3,9 @@ require 'rails_helper'
 RSpec.describe 'promote_admin' do
   include_context 'rake'
 
-  before do
-    create(:user)
-  end
-
   it 'promotes the first user to admin' do
+    user = create(:user)
     subject.invoke
-    Ability.new(User.first).can?(:manage, :all).should eq(true)
+    AdminAbility.new(user).can?(:manage, :all).should eq(true)
   end
 end

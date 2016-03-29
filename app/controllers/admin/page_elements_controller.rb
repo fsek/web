@@ -1,5 +1,5 @@
 # encoding:UTF-8
-class Admin::PageElementsController < ApplicationController
+class Admin::PageElementsController < Admin::BaseController
   before_action :load_permissions
   load_and_authorize_resource :page, parent: true, find_by: :url
   load_and_authorize_resource :page_element, through: :page

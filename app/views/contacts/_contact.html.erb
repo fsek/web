@@ -23,7 +23,7 @@
     <div class="col-sm-12">
       <%= link_to(t('contact.contact'), contact_path(contact), class: 'btn primary pull-right') %>
 
-      <% if can?(:modify, contact) %>
+      <% if can_administrate?(:edit, contact) %>
         <span class="edit">
           <%= link_to(edit_admin_contact_path(contact)) do %>
             <%= fa_icon('cog') %> <%= t(:edit) %>

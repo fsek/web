@@ -4,7 +4,7 @@ RSpec.describe CafeController, type: :controller do
   include ActiveSupport::Testing::TimeHelpers
   let(:user) { create(:user) }
 
-  allow_user_to :ladybug, CafeShift
+  allow_user_to_admin(:ladybug, :cafe)
 
   before(:each) do
     allow(controller).to receive(:current_user).and_return(user)

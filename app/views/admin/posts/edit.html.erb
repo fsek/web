@@ -6,7 +6,7 @@
   <%= render 'form', council: @council, post: @post%>
   <hr>
 
-  <% if can? :modify, PermissionPost %>
+  <% if can_administrate?(:edit, PermissionPost) %>
     <%= link_to(t('permission.edit'), post_admin_permissions_path(@post),
                                       class: 'btn secondary') %>
   <% end %>

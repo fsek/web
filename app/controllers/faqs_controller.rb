@@ -1,5 +1,7 @@
 # encoding:UTF-8
-class FaqsController < ApplicationController
+class FaqsController < Admin::BaseController
+  # This is not used at the moment
+  # Will update when time comes around
   load_permissions_and_authorize_resource
   before_action :set_editor, only: [:new, :show, :edit, :index]
 

@@ -1,7 +1,6 @@
 # encoding:UTF-8
-class Admin::CafeController < ApplicationController
-  skip_authorization
-  before_action :authorize
+class Admin::CafeController < Admin::BaseController
+  authorize_resource class: false
 
   def index
     @cafe_shift_grid = initialize_grid(CafeShift,
@@ -21,9 +20,5 @@ class Admin::CafeController < ApplicationController
     else
       Time.zone.now.beginning_of_day
     end
-  end
-
-  def authorize
-    authorize! :manage, CafeShift
   end
 end

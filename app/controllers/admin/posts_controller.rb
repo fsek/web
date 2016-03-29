@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class Admin::PostsController < ApplicationController
+class Admin::PostsController < Admin::BaseController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :council, parent: true, find_by: :url
 

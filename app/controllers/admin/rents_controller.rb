@@ -1,4 +1,4 @@
-class Admin::RentsController < ApplicationController
+class Admin::RentsController < Admin::BaseController
   load_permissions_and_authorize_resource
   before_action :prepare, only: [:new, :show, :create, :update]
 
@@ -35,7 +35,7 @@ class Admin::RentsController < ApplicationController
   end
 
   def destroy
-    @rent.destroy
+    @rent.destroy!
     redirect_to :admin_rents, notice: alert_destroy(Rent)
   end
 

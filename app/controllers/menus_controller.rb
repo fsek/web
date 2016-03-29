@@ -1,5 +1,5 @@
 # encoding:UTF-8
-class MenusController < ApplicationController
+class MenusController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index

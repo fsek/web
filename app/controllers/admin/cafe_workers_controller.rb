@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class Admin::CafeWorkersController < ApplicationController
+class Admin::CafeWorkersController < Admin::BaseController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :cafe_shift, parent: true
 

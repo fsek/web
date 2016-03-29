@@ -33,7 +33,7 @@
   </div>
 </div>
 
-<% if can?(:manage, @event) %>
+<% if can_administrate?(:edit, @event) %>
   <div class="col-md-8 col-md-offset-2 col-xs-12">
     <%= link_to(t(:edit, attr: nil), edit_admin_event_path(@event), class: "btn btn-default") %>
     <%= link_to(t(:index, attr: nil), admin_events_path, class: "btn btn-default") %>

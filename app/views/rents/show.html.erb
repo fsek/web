@@ -2,14 +2,14 @@
 <div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <% if @rent %>
     <%= render @rent %>
-    <% if can? :edit, @rent && @rent.owner?(current_user) %>
+    <% if can?(:edit, @rent) %>
       <%= link_to(t(:edit_attr, attr: model_name(Rent)),
                   edit_rent_path(@rent), class: 'btn primary') %>
       <hr>
     <% end %>
     <%= link_to(t(:index_attr, attr: models_name(Rent)),
                 rents_path, class: 'btn secondary') %>
-    <% if can? :manage, Rent %>
+    <% if can_administrate?(:edit, @rent) %>
       <%= link_to(t('administrate'), admin_rent_path(@rent),
                   class: 'btn secondary') %>
     <% end %>

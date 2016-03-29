@@ -1,4 +1,4 @@
-class ConstantsController < ApplicationController
+class ConstantsController < Admin::BaseController
   load_permissions_and_authorize_resource
   before_action :set_constant, only: [:show, :edit, :update, :destroy]
 

@@ -1,6 +1,6 @@
 <div class="headline">
   <h3><%= notice.title %></h3>
-  <% if can?(:modify, notice) %>
+  <% if can_administrate?(:edit, notice) %>
     <%= link_to(edit_admin_notice_path(notice), class: 'pull-right') do %>
       <%= fa_icon('cog') %> <%= t(:edit) %>
     <% end %>
