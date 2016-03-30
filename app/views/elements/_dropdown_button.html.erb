@@ -1,4 +1,4 @@
-<% if collection.count > 0 %>
+<% if collection.present? && collection.count > 0 %>
   <div class="dropdown">
     <button class="btn primary dropdown-toggle"
             type="button" id="<%= dom_id(collection.first) %>"

@@ -11,7 +11,7 @@ class Admin::PostsController < ApplicationController
     @post_view = set_grids(@post_view)
 
     if PostUserService.create(@post_view.post_user)
-      redirect_to council_posts_path(@post_view.council),
+      redirect_to admin_council_posts_path(@post_view.council),
                   notice: I18n.t('post.added',
                                  u: @post_view.post_user.user,
                                  p: @post_view.post_user.post)
