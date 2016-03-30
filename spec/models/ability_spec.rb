@@ -21,7 +21,7 @@ RSpec.describe Ability do
     PageElement.new => { yes: [], no: standard },
     Page.new(visible: true) => { yes: [:show], no: [:index, :new, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
-    Post.new => { yes: [:collapse, :display], no: [:read, :create, :update] },
+    Post.new => { yes: [:collapse, :display], no: [:standard] },
     Rent.new => { yes: [:main], no: [:create, :update, :destroy] },
     WorkPost.new => { no: [:create, :update, :destroy], yes: [:index, :show] },
     static_pages: { yes: [:index,
@@ -50,8 +50,8 @@ RSpec.describe Ability do
     PageElement.new => { yes: [], no: standard },
     Page.new(visible: true) => { yes: [:show], no: [:new, :index, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
-    Post.new => { yes: [:collapse, :display, :show], no: [:index, :create, :update] },
-    Rent.new => { yes: [:main], no: [:index, :create] },
+    Post.new => { yes: [:collapse, :display], no: [:standard] },
+    Rent.new => { yes: [:main], no: [:index, :create] }
   }
 
   ab_member = {
@@ -71,7 +71,7 @@ RSpec.describe Ability do
     PageElement.new => { yes: [], no: standard },
     Page.new(visible: true) => { yes: [:show], no: [:index, :new, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
-    Post.new => { yes: [:collapse, :display, :show], no: [:index, :create, :update] },
+    Post.new => { yes: [:collapse, :display], no: [:standard] },
     Rent.new => { yes: [:main, :create, :index], no: [:update, :destroy] },
   }
 

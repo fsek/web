@@ -3,12 +3,12 @@ namespace :db do
   task(populate_test: :environment) do
     # Councils
     pryl = Council.find_or_create_by!(title: 'Prylmästeriet',
-                                      url: 'pryl', description: 'Detta är Prylmästeriet', public: true)
+                                      url: 'pryl', description: 'Detta är Prylmästeriet')
 
     sexm = Council.find_or_create_by!(title: 'Sexmästeriet',
-                                      url: 'sex', description: 'Detta är Sexmästeriet', public: true)
+                                      url: 'sex', description: 'Detta är Sexmästeriet')
     cafem = Council.find_or_create_by!(title: 'Cafemästeriet',
-                                       url: 'cafe', description: 'Detta är Cafemästeriet', public: true)
+                                       url: 'cafe', description: 'Detta är Cafemästeriet')
     # Posts
     # Prylmästeriet
     spindel = Post.find_or_create_by!(title: 'Spindelman', limit: 0, rec_limit: 10, description: 'En administratör',

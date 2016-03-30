@@ -1,6 +1,6 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h2><%= t('post.edit') %></h2>
+    <h1><%= t('post.edit') %></h1>
   </div>
 
   <%= render 'form', council: @council, post: @post%>
@@ -11,8 +11,8 @@
                                       class: 'btn secondary') %>
   <% end %>
 
-  <%= link_to(t('post.index'), council_posts_path(@council),
+  <%= link_to(t('post.index'), admin_council_posts_path(@council),
                                class: 'btn secondary') %>
-  <%= link_to(t('council.show'), edit_council_path(@council),
+  <%= link_to(t('council.show'), council_path(@council),
                                  class: 'btn secondary') %>
 </div>

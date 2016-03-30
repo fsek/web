@@ -8,7 +8,7 @@ class Ability
     can :read, [Council, Election, News, WorkPost]
     can :read, Document, public: true
     can [:mail, :read], Contact, public: true
-    can [:collapse, :display, :show], Post
+    can [:collapse, :display], Post
     can [:new, :create, :read], Faq
     can [:index, :feed], CafeShift
     can :main, Rent
@@ -29,7 +29,6 @@ class Ability
       can [:create, :update, :destroy], CafeWorker, user_id: user.id
       can [:show], CafeShift
       can [:show, :avatar], User
-      can [:show, :display, :hide], Post
 
       can [:read, :mail], Contact
       can :read, Document, public: true

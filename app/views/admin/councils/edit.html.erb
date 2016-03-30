@@ -1,12 +1,13 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h3><%= t('council.edit') %></h3>
+    <h1><%= t('council.edit') %></h1>
   </div>
+
   <%= render 'form', council: @council %>
   <hr>
-  <%= link_to(t('post.new'), new_council_post_path(@council),
+  <%= link_to(t('post.new'), new_admin_council_post_path(@council),
                              class: 'btn secondary') %>
-  <%= link_to(t('post.index'), council_posts_path(@council),
+  <%= link_to(t('post.index'), admin_council_posts_path(@council),
                                class: 'btn secondary') %>
 
   <% if @council.page.present?%>
@@ -17,6 +18,6 @@
   <%= link_to(t('council.show'), council_path(@council),
                                  class: 'btn secondary') %>
 
-  <%= link_to(t('council.index'), councils_path,
+  <%= link_to(t('council.admin_title'), admin_councils_path,
                                   class: 'btn secondary')%>
 </div>

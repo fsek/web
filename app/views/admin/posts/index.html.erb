@@ -1,21 +1,24 @@
 <% provide(:title, models_name(Post)) %>
+
 <div class="headline">
-  <h2><%= "#{models_name(Post)} - #{@post_view.council}" %></h2>
+  <h1><%= "#{models_name(Post)} - #{@post_view.council}" %></h1>
 </div>
+
 <div class="col-md-2 col-sm-12">
-  <%= link_to(t('post.new'), new_council_post_path(@post_view.council),
+  <%= link_to(t('post.new'), new_admin_council_post_path(@post_view.council),
                              class: 'btn secondary') %>
   <%= link_to(t('council.show'), council_path(@post_view.council),
                                  class: 'btn secondary') %>
-  <%= link_to(t('council.edit'), edit_council_path(@post_view.council),
+  <%= link_to(t('council.edit'), edit_admin_council_path(@post_view.council),
                                  class: 'btn secondary') %>
 </div>
+
 <div class="col-md-10 col-sm-12">
   <div class="col-sm-12 margin-bottom-20">
     <div class="headline">
       <h4><%= models_name(Post) %></h4>
     </div>
-    <%= render '/posts/post_grid', post_grid: @post_view.post_grid %>
+    <%= render '/admin/posts/post_grid', post_grid: @post_view.post_grid %>
   </div>
 
   <div class="col-sm-12 margin-bottom-20">
@@ -23,13 +26,13 @@
       <h4><%= models_name(PostUser) %></h4>
     </div>
     <span id="post-user-status"></span>
-    <%= render '/posts/post_user_grid', post_user_grid: @post_view.post_user_grid %>
+    <%= render '/admin/posts/post_user_grid', post_view: @post_view %>
   </div>
 
   <div class="col-sm-12">
     <div class="headline">
       <h4><%= "#{models_name(Post)} - #{@post_view.council}" %></h4>
     </div>
-    <%= render '/posts/post_user_form', post_view: @post_view %>
+    <%= render '/admin/posts/post_user_form', post_view: @post_view %>
   </div>
 </div>

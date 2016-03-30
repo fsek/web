@@ -1,14 +1,21 @@
 <% provide(:title, @council.to_s) %>
+<% provide(:description, @council.description) %>
 
-<div class="col-md-12">
-  <% if @council.page.present? %>
-    <div class="row">
-      <%= render @council.page %>
-    </div>
-  <% end %>
-  <% if @council.posts.present? %>
-    <div class="row">
-      <%= render 'posts/table', posts: @council.posts %>
-    </div>
-  <% end %>
+<div class="headline">
+  <h1><%= @council.to_s %></h1>
+  <span class="council dropdown">
+    <%= render('/elements/dropdown_button',
+               collection: @councils,
+               controller: :councils,
+               action: :show,
+               title: @council.to_s) %>
+  </span>
 </div>
+
+<% if @council.page.present? %>
+  <%= render @council.page, title: false %>
+<% end %>
+
+<% if @council.posts.present? %>
+  <%= render '/posts/table', posts: @council.posts %>
+<% end %>

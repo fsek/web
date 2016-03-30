@@ -4,7 +4,8 @@
   </div>
 
   <%= render 'form', council: @council %>
+
   <hr>
-  <%= link_to(t('council.index'), councils_path,
+  <%= link_to(t('council.admin_title'), admin_councils_path,
                                   class: 'btn secondary')%>
 </div>
