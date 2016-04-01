@@ -1,16 +1,16 @@
-<% title(model_name(Council)) %>
-<div class="col-md-8 col-md-offset-2 col-sm-12">
-  <div class="headline">
-    <h2><%= models_name(Council) %></h2>
-    <span class="council dropdown">
-      <%= render('/elements/dropdown_button',
-                 collection: @councils,
-                 controller: :councils,
-                 action: :show,
-                 title: models_name(Council)) %>
-    </span>
-  </div>
+<% provide(:title, model_name(Council)) %>
+<div class="headline">
+  <h1><%= models_name(Council) %></h1>
+  <span class="council dropdown">
+    <%= render('/elements/dropdown_button',
+               collection: @councils,
+               controller: :councils,
+               action: :show,
+               title: models_name(Council)) %>
+  </span>
+</div>
 
+<div class="col-md-8 col-md-offset-2 col-sm-12">
   <%= simple_format(t(:councils_first)) %>
   <%= simple_format(t(:councils_second)) %>
 

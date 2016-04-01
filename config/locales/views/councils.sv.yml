@@ -1,5 +1,7 @@
 sv:
   council:
+    admin_title: Administrera utskott
+    description_hint: Denna text kommer synas vid t.ex. länkar och vid sökningar i sökmotorer.
     destroy: Förinta utskott
     edit: Redigera utskott
     index: Alla utskott

@@ -33,6 +33,10 @@ sv:
   update_attr: Uppdatera %{attr}
   welcome: Välkommen
 
+  front: 
+    description: F-sektionen är en ideell förening för studenter som läser vid något av programmen Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap.
+    welcome: Välkommen till F-sektionen!
+
   "yes": Ja
   "no": Nej
 

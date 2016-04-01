@@ -1,16 +1,16 @@
-<% if election_view.present? && grid.present? %>
-  <%= grid(grid, html: { class: 'election-grid' }) do |g|
+<% if election_view.present? && post_grid.present? %>
+  <%= grid(post_grid, html: {class: 'election-grid'}) do |g|
     g.row_attributes do |post|
       if post.board
-        { class: "board-post #{post.elected_by}" }
+        {class: "board-post #{post.elected_by}"}
       else
-        { class: post.elected_by }
+        {class: post.elected_by}
       end
     end
 
     g.column(name: Post.human_attribute_name(:title),
              attribute: 'title') do |post|
-      link_to(post.title, posts_display_path(post), remote: true)
+      link_to(post.title, display_post_path(post), remote: true, method: :patch)
     end
 
     g.column name: Post.human_attribute_name(:limit), attribute: 'limit',

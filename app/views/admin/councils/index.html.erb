@@ -1,0 +1,33 @@
+<%= provide(:title, t('council.admin_title')) %>
+<div class="headline">
+  <h1><%= t('council.admin_title') %></h1>
+</div>
+
+<div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+
+  <hr>
+
+  <%= link_to(t('council.new'), new_admin_council_path, class: 'btn primary') %>
+  <%= link_to(t('council.index'), councils_path, class: 'btn secondary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@council_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: Council.human_attribute_name(:title), attribute: 'title') do |council|
+      link_to(council, council_path(council), target: :blank)
+    end
+    g.column(name: Council.human_attribute_name(:updated_at), attribute: 'updated_at',
+             filter: false)
+
+    g.column(name: t(:edit), filter: false) do |council|
+      link_to(t('council.edit'), edit_admin_council_path(council))
+    end
+  end -%>
+</div>

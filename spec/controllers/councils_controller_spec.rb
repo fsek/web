@@ -23,78 +23,14 @@ RSpec.describe CouncilsController, type: :controller do
     end
   end
 
-  describe 'GET #edit' do
-    it 'assigns given council as @council' do
+  describe 'GET #show' do
+    it 'sets council' do
       council = create(:council)
 
-      get(:edit, id: council.to_param)
+      get(:show, id: council.to_param)
+      response.status.should eq(200)
       assigns(:council).should eq(council)
     end
   end
 
-  describe 'GET #new' do
-    it 'assigns a new council as @council' do
-      get(:new)
-      assigns(:council).instance_of?(Council).should be_truthy
-      assigns(:council).new_record?.should be_truthy
-    end
-  end
-
-  describe 'POST #create' do
-    it 'valid parameters' do
-      attributes = { title: 'Prylmästeriet',
-                     url: 'pryl' }
-
-      lambda do
-        post :create, council: attributes
-      end.should change(Council, :count).by(1)
-
-      response.should redirect_to(edit_council_path(Council.last))
-      Council.last.title.should eq('Prylmästeriet')
-    end
-
-    it 'invalid parameters' do
-      lambda do
-        post :create, council: { title: '' }
-      end.should change(Council, :count).by(0)
-
-      response.status.should eq(422)
-      response.should render_template(:new)
-    end
-  end
-
-  describe 'PATCH #update' do
-    it 'valid parameters' do
-      council = create(:council, title: 'A Bad Title')
-
-      patch :update, id: council.to_param, council: { title: 'A Good Title' }
-      council.reload
-
-      response.should redirect_to(edit_council_path(council))
-      council.title.should eq('A Good Title')
-    end
-
-    it 'invalid parameters' do
-      council = create(:council, title: 'A Good Title')
-
-      patch :update, id: council.to_param, council: { title: '' }
-      council.reload
-
-      council.title.should eq('A Good Title')
-      response.status.should eq(422)
-      response.should render_template(:edit)
-    end
-  end
-
-  describe 'DELETE #destroy' do
-    it 'destroying' do
-      council = create(:council)
-
-      lambda do
-        delete :destroy, id: council.to_param
-      end.should change(Council, :count).by(-1)
-
-      response.should redirect_to(councils_path)
-    end
-  end
 end

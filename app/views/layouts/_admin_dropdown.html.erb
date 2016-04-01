@@ -99,14 +99,7 @@
 
     <% if can? :modify, Council %>
       <li class="dropdown-submenu">
-        <a href=""><%=model_name(Council)%></a>
-        <ul class="dropdown-menu">
-          <% Council.titles.each do |council| %>
-            <% if can? :manage, council %>
-              <%= content_tag(:li, link_to(council, edit_council_path(council))) %>
-            <% end %>
-          <% end %>
-        </ul>
+        <%= link_to(model_name(Council), admin_councils_path) %>
       </li>
     <% end %>
     <% if can? :modify, Post %>
@@ -115,7 +108,7 @@
         <ul class="dropdown-menu">
           <% Council.titles.each do |council| %>
             <% if can? :manage, council %>
-              <%= content_tag(:li, link_to(council, council_posts_path(council))) %>
+              <li><%= link_to(council, admin_council_posts_path(council)) %></li>
             <% end %>
           <% end %>
         </ul>

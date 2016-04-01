@@ -1,4 +1,4 @@
-<%= simple_form_for([council, post]) do |f| %>
+<%= simple_form_for([:admin, council, post]) do |f| %>
   <%= f.input :title %>
   <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :board %>
@@ -20,10 +20,11 @@
   <%= f.button :submit %>
 
   <% if post.persisted? %>
-    <%= link_to(t('post.destroy'), council_post_path(council, post),
+    <%= link_to(t('post.destroy'), admin_council_post_path(council, post),
                                    method: :delete,
                                    class: 'btn danger pull-right') %>
   <% end %>
+
   <div class="panel-body">
     <table class="table table-bordered">
       <tbody>

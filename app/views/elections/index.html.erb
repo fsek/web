@@ -27,7 +27,7 @@
 
 <div class="col-md-12 election">
   <h3><%= @election_view.posts_text %></h3>
-  <%= render 'posttab', election_view: @election_view, grid: @election_view.grid %>
+  <%= render 'posttab', election_view: @election_view, post_grid: @election_view.grid %>
 
   <ul class="list">
     <li><%= t('election.x_posts') %></li>
@@ -36,6 +36,6 @@
     <li><%= t('election.green_posts') %></li>
   </ul>
 
-  <%= render 'posttab', election_view: @election_view, grid: @election_view.rest_grid %>
+  <%= render 'posttab', election_view: @election_view, post_grid: @election_view.rest_grid %>
   <div class="display-post" id="views"></div>
 </div>

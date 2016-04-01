@@ -36,6 +36,10 @@ module ApplicationHelper
     end
   end
 
+  def description(content: I18n.t('description'))
+    content
+  end
+
   def form_group &block
     html = Nokogiri::HTML.fragment capture_haml &block
     html.xpath('input|textarea').each do |e|

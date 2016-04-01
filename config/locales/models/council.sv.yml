@@ -4,12 +4,9 @@ sv:
       council: Utskott
     attributes:
       council:
-        title: Titel
-        url: Url
+        created_at: Skapades
         description: Beskrivning
-        logo: Logga
-        public: Publik
-        contact_id: Kontakt
-        president_id: Ordförande
-  council:
-    new: Nytt Utskott
+        president: Ordförande
+        title: Titel
+        updated_at: Uppdaterades
+        url: Url
