@@ -7,7 +7,6 @@ RSpec.feature 'visitor visits paths' do
     councils: [:index, :show],
     documents: [:index, :show],
     elections: [:index],
-    faqs: [:index, :show, :new],
     gallery: [:index],
     menus: [:index, :new],
     news: [:index, :show],

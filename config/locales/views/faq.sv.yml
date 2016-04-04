@@ -1,3 +1,11 @@
 sv:
   faq:
-    new_question: Ställ ny fråga
+    admin: Administrera FAQ
+    answer: Besvara fråga
+    ask: Ställ ny fråga
+    description: Här finns svar på vanliga frågor på sektionen. Stäl gärna en egen fråga du funderar över.
+    destroy: Förinta fråga
+    edit: Redigera fråga
+    index: Alla frågor
+    new: Ställ ny fråga
+    title: FAQ

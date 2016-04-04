@@ -1,7 +1,9 @@
 sv:
   activerecord:
     models:
-      faq: Faq
+      faq:
+        one: FAQ-fråga
+        other: FAQ-frågor
     attributes:
       faq:
         question: Fråga

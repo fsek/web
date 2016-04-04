@@ -2,16 +2,12 @@
 
 <div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
   <div class="headline">
-    <h2><%= t('faq.new') %></h2>
+    <h2><%= t('faq.edit') %></h2>
   </div>
-
-  <%= simple_form_for(@faq) do |f| %>
-    <%= f.input :question %>
-    <%= f.button :submit %>
-  <% end %>
-
+  <%= render 'form', faq: @faq %>
   <hr>
-
   <%= link_to(t('faq.index'), faqs_path,
+              class: 'btn secondary') %>
+  <%= link_to(t('faq.admin'), admin_faqs_path,
               class: 'btn secondary') %>
 </div>

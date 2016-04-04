@@ -132,7 +132,11 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :faqs, path: :faq
+    namespace :admin do
+      resources :faqs, path: :faq, except: [:show]
+    end
+
+    resources :faqs, path: :faq, except: [:show]
 
     namespace :admin do
       resources :contacts, path: :kontakter, except: :show

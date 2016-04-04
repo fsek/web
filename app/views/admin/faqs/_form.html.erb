@@ -1,0 +1,11 @@
+<%= simple_form_for([:admin, faq]) do |f| %>
+  <%= f.input :question %>
+  <%= f.input :answer, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :category, collection: Faq.categories, input_html: { class: 'select2_tags' },
+              include_blank: false %>
+  <%= f.button :submit %>
+
+  <% if faq.persisted? %>
+    <%= link_to(t('faq.destroy'), faq_path(faq), method: :delete, class: 'btn danger pull-right') %>
+  <% end %>
+<% end %>

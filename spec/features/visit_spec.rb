@@ -16,7 +16,7 @@ RSpec.feature 'visits paths' do
     documents: [:index, :show],
     elections: [:index],
     events: [:show],
-    faqs: [:index, :show, :new],
+    faqs: [:index, :new],
     gallery: [:index],
     news: [:show],
     pages: [:show],
