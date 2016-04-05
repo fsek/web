@@ -1,0 +1,32 @@
+<% title(t('tool.title')) %>
+
+<div class="col-md-8 col-md-offset-2 col-sm-12">
+  <div class="headline">
+    <h1><%= @tool.title %></h1>
+  </div>
+  <%= link_to(t('tool.edit'), edit_admin_tool_path(@tool), class: 'btn primary pull-right') %>
+  <p><%= @tool.description %></p>
+  <p><b><%= t('tool.total_free') %>: </b><%= @tool.total %></p>
+  <p><b><%= t('tool.free') %>: </b><%= @tool.free %></p>
+
+  <%= if @tool.free > 0
+        link_to(t('tool.new_loan'), new_admin_tool_tool_renting_path(@tool), class: 'btn primary pull-right')
+      end %>
+
+  <div class="headline">
+    <h3><%= t('tool.borrowed') %></h3>
+  </div>
+
+  <ul class="list-group">
+    <% @rent.each do |rent| %>
+      <%= link_to(edit_admin_tool_tool_renting_path(rent.tool, rent), class: 'list-group-item') do %>
+        <h4 class="list-group-item-heading"><%= rent.renter %></h4>
+        <p class="list-group-item-text">
+          <b><%= t('tool.return_date') %>: </b><%= rent.return_date %>
+          <b><%= t('tool.purpose') %>: </b><%= rent.purpose %>
+        </p>
+      <% end %>
+    <% end %>
+  </ul>
+
+</div>

@@ -4,3 +4,9 @@ sv:
     edit: Redigera Verktyg
     new: Nytt Verktyg
     destroy: Ta bort Verktyg
+    total_free: Totalt antal
+    free: Lediga Verktyg
+    borrowed: Lånade
+    return_date: Retur
+    purpose: Syfte
+    new_loan: Nytt lån

@@ -1,0 +1,25 @@
+<% title(t('tool.title')) %>
+<div class="col-md-8 col-md-offset-2 col-sm-12">
+  <div class="headline">
+    <h1><%= @tool.title %></h1>
+  </div>
+  <p><%= @tool.description %></p>
+  <p><b><%= t('tool.total_free') %>: </b><%= @tool.total %></p>
+  <p><b><%= t('tool.free') %>: </b><%= @tool.free %></p>
+
+  <div class="headline">
+    <h3><%= t('tool.borrowed') %></h3>
+  </div>
+
+  <ul class="list-group">
+    <% @rent.each do |rent| %>
+      <li class="list-group-item">
+        <h4 class="list-group-item-heading"><%= rent.renter %></h4>
+        <p class="list-group-item-text">
+          <b><%= t('tool.return_date') %>: </b><%= rent.return_date %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+
+</div>
