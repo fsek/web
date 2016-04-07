@@ -4,14 +4,8 @@
   <div class="headline">
     <h2><%= t('faq.new') %></h2>
   </div>
-
-  <%= simple_form_for(@faq) do |f| %>
-    <%= f.input :question %>
-    <%= f.button :submit %>
-  <% end %>
-
+  <%= render 'form', faq: @faq %>
   <hr>
-
   <%= link_to(t('faq.index'), faqs_path,
               class: 'btn secondary') %>
 </div>
