@@ -20,6 +20,6 @@ class PageElement < ActiveRecord::Base
   end
 
   def to_s
-    name || id
+    headline || id
   end
 end

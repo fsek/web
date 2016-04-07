@@ -53,7 +53,7 @@ class Admin::PageElementsController < Admin::BaseController
 
   def page_element_params
     params.require(:page_element).permit(:index, :sidebar, :visible, :text,
-                                         :headline, :name, :element_type,
+                                         :headline, :element_type,
                                          :page_image_id)
   end
 end
