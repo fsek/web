@@ -1,6 +1,5 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   load_permissions_and_authorize_resource
-  before_action :authorize
 
   def index
   end
@@ -13,11 +12,5 @@ class Admin::UsersController < ApplicationController
   def unmember
     @destroyed = UserService.unmember(@user)
     render
-  end
-
-  private
-
-  def authorize
-    authorize! :manage, User
   end
 end

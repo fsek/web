@@ -1,5 +1,5 @@
 # encoding:UTF-8
-class Admin::CouncilsController < ApplicationController
+class Admin::CouncilsController < Admin::BaseController
   load_permissions_and_authorize_resource find_by: :url
 
   def index

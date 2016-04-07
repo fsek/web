@@ -1,6 +1,5 @@
 # encoding:UTF-8
-class Admin::Gallery::AlbumsController < ApplicationController
-  before_action :authorize
+class Admin::Gallery::AlbumsController < Admin::BaseController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :image, through: :album
 
@@ -47,10 +46,6 @@ class Admin::Gallery::AlbumsController < ApplicationController
   end
 
   private
-
-  def authorize
-    authorize! :manage, Album
-  end
 
   def album_params
     params.require(:album).permit(:title, :description, :location,

@@ -1,7 +1,6 @@
 # encoding:UTF-8
-class Admin::ContactsController < ApplicationController
-  skip_authorization
-  before_action :authorize
+class Admin::ContactsController < Admin::BaseController
+  load_permissions_and_authorize_resource
 
   def index
     @contact_grid = initialize_grid(Contact, include: :post)
@@ -44,10 +43,6 @@ class Admin::ContactsController < ApplicationController
   end
 
   private
-
-  def authorize
-    authorize!(:manage, Contact)
-  end
 
   def contact_params
     params.require(:contact).permit(:name, :email, :public, :text, :post_id, :slug)

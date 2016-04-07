@@ -1,5 +1,5 @@
 <% provide(:title, @page.to_s) %>
-<% if can? :manage, @page %>
+<% if can_administrate?(:edit, @page) %>
   <%= link_to(t('page_element.new'),
               new_admin_page_page_element_path(@page), class: 'btn primary') %>
   <%= link_to(t('page_element.index'),

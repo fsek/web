@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Admin::CafeController, type: :controller do
   let(:user) { create(:user) }
 
-  allow_user_to :manage, CafeShift
+  allow_user_to :manage, :cafe
 
   before(:each) do
     allow(controller).to receive(:current_user).and_return(user)

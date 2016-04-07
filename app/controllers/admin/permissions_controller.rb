@@ -1,9 +1,7 @@
 # encoding: UTF-8
-class Admin::PermissionsController < ApplicationController
+class Admin::PermissionsController < Admin::BaseController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :post
-  before_action :can_manage_permissions, only: \
-    [:index, :show_post]
   before_action :set_permissions
 
   def index
@@ -23,12 +21,10 @@ class Admin::PermissionsController < ApplicationController
     end
   end
 
+  private
+
   def permission_params
     params.require(:post).permit(permission_ids: [])
-  end
-
-  def can_manage_permissions
-    authorize!(:manage, PermissionPost)
   end
 
   def set_permissions

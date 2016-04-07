@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_devise_parameters, if: :devise_controller?
   before_action :set_locale
 
-  helper_method :alert_update, :alert_create, :alert_destroy
+  helper_method :alert_update, :alert_create, :alert_destroy,
+                :can_administrate?, :authorize_admin!
 
   rescue_from CanCan::AccessDenied do |ex|
     if current_user.nil?
@@ -66,6 +67,19 @@ class ApplicationController < ActionController::Base
 
   def current_ability
     @current_ability ||= Ability.new(current_user)
+  end
+
+  def current_admin_ability
+    @current_admin_ability ||= AdminAbility.new(current_user)
+  end
+
+  def can_administrate?(*args)
+    current_admin_ability.can?(*args)
+  end
+
+  def authorize_admin!(*args)
+    @_authorized = true
+    current_admin_ability.authorize!(*args)
   end
 
   # load the permissions for the current user so that UI can be manipulated

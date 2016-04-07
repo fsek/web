@@ -11,6 +11,8 @@ class Ability
     can [:collapse, :display], Post
     can [:new, :create, :read], Faq
     can [:index, :feed], CafeShift
+    can [:index, :competition], :cafe
+    cannot :ladybug, :cafe
     can :main, Rent
     cannot [:create, :destroy, :update], Rent
     can :show, Page, public: true, visible: true
@@ -46,19 +48,6 @@ class Ability
       can [:update, :show, :destroy], Candidate, user_id: user.id
       can [:create], Nomination
       can :show, Page, visible: true
-    end
-
-    # Note: Root access is given dynamically by having a post with permissions :manage, :all
-
-    # Add abilities gained from posts
-    user.posts.includes(:permissions).each do |post|
-      post.permissions.each do |permission|
-        if permission.subject_class == 'all'
-          can permission.action.to_sym, :all
-        else
-          can permission.action.to_sym, permission.subject_class.constantize
-        end
-      end
     end
   end
 end

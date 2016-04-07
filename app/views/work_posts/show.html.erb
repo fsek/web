@@ -26,7 +26,7 @@
     <%= user_link(@work_post.user) %>
     <hr>
     <%= link_to(t('work_post.title'), work_posts_path, class: 'btn secondary') %>
-    <% if can?(:manage, @work_post) %>
+    <% if can_administrate?(:manage, @work_post) %>
       <%= link_to(t('work_post.edit'), edit_admin_work_post_path(@work_post), class: 'btn secondary') %>
     <% end %>
   </div>

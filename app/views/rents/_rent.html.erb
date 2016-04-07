@@ -34,7 +34,7 @@
         </tr>
       <% end %>
 
-      <% if can?(:manage, rent) %>
+      <% if can?(:edit, rent) || can_administrate?(:edit, rent) %>
         <tr>
           <td><%=User.human_attribute_name(:email)%></td>
           <td><%= rent.user.email %></td>

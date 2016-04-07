@@ -14,7 +14,7 @@
 <% end %>
 
 <div class="headline">
-  <h2> <%= @event %> </h2>
+  <h2> <%= @event.to_s %> </h2>
 </div>
 <% if @event.image? %>
   <div class="col-md-8 col-xs-12">
@@ -27,9 +27,9 @@
   <%= yield :event_info %>
 <% end %>
 
-<% if can?(:manage, @event) %>
+<% if can_administrate?([:index, :edit], @event) %>
   <div class="col-md-12">
-    <%= link_to(t(:edit), edit_admin_event_path, class: 'btn primary') %>
+    <%= link_to(t(:edit), edit_admin_event_path(@event), class: 'btn primary') %>
     <%= link_to(t(:index), admin_events_path, class: 'btn secondary') %>
   </div>
 <% end %>

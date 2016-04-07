@@ -1,7 +1,6 @@
 # encoding:UTF-8
-class Admin::EventsController < ApplicationController
+class Admin::EventsController < Admin::BaseController
   load_permissions_and_authorize_resource
-  before_action :authorize
 
   def index
     @events = Event.order(starts_at: :desc)
@@ -54,9 +53,4 @@ class Admin::EventsController < ApplicationController
                                   :slots, :drink, :food, :cash,
                                   :short, :council_id, :dot)
   end
-
-  def authorize
-    authorize! :manage, Event
-  end
 end
-

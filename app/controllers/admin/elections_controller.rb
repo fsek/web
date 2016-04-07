@@ -1,7 +1,6 @@
 # encoding: UTF-8
-class Admin::ElectionsController < ApplicationController
+class Admin::ElectionsController < Admin::BaseController
   load_permissions_and_authorize_resource find_by: :url
-  before_action :authorize
 
   def new
     @posts = Post.title
@@ -54,12 +53,8 @@ class Admin::ElectionsController < ApplicationController
 
   private
 
-  def authorize
-    authorize! :manage, Election
-  end
-
   def election_params
-    params.fetch(:election).permit(:title, :description, :start, :end, :closing, :url,
+    params.require(:election).permit(:title, :description, :start, :end, :closing, :url,
                                    :visible, :mail_link, :mail_styrelse_link, :text_before,
                                    :text_during, :text_after, :nominate_mail, :candidate_mail,
                                    :extra_text, :candidate_mail_star, post_ids: [])

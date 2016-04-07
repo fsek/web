@@ -11,7 +11,7 @@ class CafeController < ApplicationController
   end
 
   def ladybug
-    authorize!(:ladybug, CafeShift)
+    authorize_admin!(:ladybug, :cafe)
 
     if date = ladybug_date
       @date = Time.zone.parse(date)

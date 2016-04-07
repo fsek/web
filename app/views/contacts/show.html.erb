@@ -22,7 +22,7 @@
       </ul>
     <% end %>
   </div>
-  <% if can?(:manage, @contact) %>
+  <% if can_administrate?(:edit, @contact) %>
     <div class="col-md-12">
       <span class="edit">
         <%= link_to(edit_admin_contact_path(@contact),

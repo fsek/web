@@ -3,7 +3,7 @@
   <h1><%= t('cafe.title') %></h1>
 </div>
 <div class="col-md-3 col-xs-12">
-  <% if can? :manage, CafeShift %>
+  <% if can_administrate?:modify, CafeShift %>
     <div class="headline">
       <h2><%= t(:tools) %></h2>
     </div>

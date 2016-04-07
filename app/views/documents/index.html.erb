@@ -11,7 +11,7 @@
   <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
     <%= t('wice_grid.reset_filter') %>
   </button>
-  <% if can?(:manage, Document) %>
+  <% if can_administrate?(:edit, Document) %>
     <hr>
     <%= link_to(t('document.admin.index'), admin_documents_path, class: 'btn secondary') %>
   <% end %>
