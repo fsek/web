@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330171025) do
+ActiveRecord::Schema.define(version: 20160407122322) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -319,7 +319,6 @@ ActiveRecord::Schema.define(version: 20160330171025) do
     t.boolean  "visible",                     default: true
     t.text     "text",          limit: 65535
     t.string   "headline",      limit: 255
-    t.string   "name",          limit: 255
     t.integer  "page_id",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -347,6 +346,7 @@ ActiveRecord::Schema.define(version: 20160330171025) do
     t.boolean  "visible"
     t.string   "title",      limit: 255
     t.boolean  "public",                 default: true, null: false
+    t.string   "namespace",  limit: 255
   end
 
   add_index "pages", ["council_id"], name: "index_pages_on_council_id", using: :btree

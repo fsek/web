@@ -10,10 +10,20 @@ class Page < ActiveRecord::Base
   validates :url, uniqueness: true,
                   presence: true,
                   format: { with: /\A[a-z0-9_-]+\z/ }
+  validates :namespace, format: { with: /\A[a-z0-9_-]+\z/,
+                                  allow_blank: true,
+                                  message: I18n.t('page.namespace_format') }
 
   scope :publik, -> { where(public: true) }
   scope :visible, -> { where(visible: true) }
   attr_accessor :image_upload
+
+  def self.namespaces
+    where.not(namespace: nil).
+      where.not(namespace: '').
+      order(:namespace).
+      pluck(:namespace).uniq
+  end
 
   def main
     page_elements.main

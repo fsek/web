@@ -15,10 +15,10 @@ RSpec.describe PageElement, type: :model do
 
   describe 'public methods' do
     it 'has valid to_s' do
-      page_element = build_stubbed(:page_element, id: 1337, name: 'Cool')
+      page_element = build_stubbed(:page_element, id: 1337, headline: 'Cool')
       page_element.to_s.should eq('Cool')
 
-      page_element.name = nil
+      page_element.headline = nil
       page_element.to_s.should eq(1337)
     end
 

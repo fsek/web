@@ -1,6 +1,8 @@
 <%= simple_form_for([:admin, page]) do |f| %>
   <%= f.input :title %>
   <%= f.input :url %>
+  <%= f.input :namespace, collection: Page.namespaces, input_html: { class: 'select2_tags' },
+              include_blank: false %>
   <%= f.input :visible, as: :boolean %>
   <%= f.input :public %>
   <% if page.persisted? %>
