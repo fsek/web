@@ -3,7 +3,8 @@ class Nollning::NollningsController < ApplicationController
   load_permissions_then_authorize_resource class: false
 
   def index
-    @page = Page.find_by(namespace: :nollning, title: 'Startsida')
+    @page = Page.find_by(namespace: 'nollning', url: 'start')
+    @constant = Constant.find_by_name('nollning-video')
   end
 
   def matrix
