@@ -1,0 +1,27 @@
+<div id="fos-carousel" class="carousel slide col-md-9 fos-carousel nollning" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#fos-carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#fos-carousel" data-slide-to="1"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <%= image_tag('nollning/Profilbild.jpg') %>
+    </div>
+    <div class="item">
+      <%= image_tag('nollning/Omslag.jpg') %>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#fos-carousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only"><%= t('nollning.previous') %></span>
+  </a>
+  <a class="right carousel-control" href="#fos-carousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only"><%= t('nollning.next') %></span>
+  </a>
+</div>
