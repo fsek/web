@@ -216,7 +216,14 @@ $outer: image-url("theme/frame.svg") 27% 15% 23% 15% repeat;
 }
 
 .nollning {
-  font-family: "diogenesregular";
+  .carousel-control.left,
+  .carousel-control.right {
+    background-image: none;
+  }
+
+  &.fos-carousel {
+    margin-bottom: 30px;
+  }
 
   .date {
     left: -1;
@@ -267,10 +274,6 @@ ul {
   float: right;
   font-size: 20px;
   font-weight: bold;
-}
-
-.nollning-video {
-  margin-left: 14px;
 }
 
 .nollning-matrix-footer {
