@@ -10,12 +10,8 @@ class CalendarsController < ApplicationController
   end
 
   def export
-    @calendar = Icalendar::Calendar.new
-    Event.calendar.each do |e|
-      @calendar.add_event(e.ical)
-    end
+    @calendar = CalendarService.export(Event.calendar)
 
-    @calendar.publish
     respond_to do |format|
       format.ics
     end

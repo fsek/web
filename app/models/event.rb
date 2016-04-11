@@ -1,5 +1,6 @@
 # encoding: UTF-8
 class Event < ActiveRecord::Base
+  TZID = 'Europe/Stockholm'.freeze
   has_attached_file(:image,
                     styles: { original: '800x800>',
                               medium: '300x300>',
@@ -54,18 +55,17 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def ical
-    e = Icalendar::Event.new
-    e.uid = id.to_json
-    e.dtstart = starts_at
-    e.dtend = ends_at
-    e.location = location
-    e.summary = title
-    e.description = %(#{category}  \n #{description})
-    e.created = created_at
-    e.url = Rails.application.routes.url_helpers.event_url(id, host: PUBLIC_URL)
-    e.last_modified = updated_at
-    e
+  def ical(event)
+    event.uid = id.to_json
+    event.dtstart = Icalendar::Values::DateTime.new(starts_at, 'tzid' => TZID)
+    event.dtend = Icalendar::Values::DateTime.new(ends_at, 'tzid' => TZID)
+    event.location = location
+    event.summary = title
+    event.description = %(#{category}  \n #{description})
+    event.created = Icalendar::Values::DateTime.new(created_at, 'tzid' => TZID)
+    event.url = Rails.application.routes.url_helpers.event_url(id, host: PUBLIC_URL)
+    event.last_modified = Icalendar::Values::DateTime.new(updated_at, 'tzid' => TZID)
+    event
   end
 
   def as_json(*)
