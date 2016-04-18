@@ -23,9 +23,6 @@
 
 <div class="col-md-10 col-sm-12">
   <%= grid(@element_grid, hide_submit_button: true, hide_reset_button: true) do |g|
-    g.column(name: PageElement.human_attribute_name(:name), attribute: 'name') do |page_element|
-      link_to(page_element, admin_page_page_element_path(@page, page_element), target: :blank)
-    end
     g.column(name: PageElement.human_attribute_name(:visible), attribute: 'visible') do |page_element|
       yes_no(page_element.visible)
     end
