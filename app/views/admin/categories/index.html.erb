@@ -1,0 +1,25 @@
+<% provide(:title, t('category.title')) %>
+
+<div class="col-md-2 col-sm-12 margin-bottom-20">
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+
+  <hr>
+
+  <%= link_to(t('category.new'), new_admin_category_path, class: 'btn primary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@category_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: Category.human_attribute_name(:title), attribute: 'title') do |category|
+      link_to(category, edit_admin_category_path(category))
+    end
+    g.column(name: Category.human_attribute_name(:slug), attribute: 'slug',
+             custom_filter: :auto)
+  end -%>
+</div>

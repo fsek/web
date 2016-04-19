@@ -53,6 +53,10 @@ Fsek::Application.routes.draw do
     resources :constants
 
     namespace :admin do
+      resources :categories, path: :kategorier, except: :show
+    end
+
+    namespace :admin do
       get :cafe, path: :hilbertcafe, controller: :cafe, action: :index
       get :overview_cafe, controller: :cafe, action: :overview, path: 'hilbertcafe/oversikt'
 

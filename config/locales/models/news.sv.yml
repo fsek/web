@@ -6,6 +6,7 @@ sv:
         other: Nyheter
     attributes:
       news:
+        categories: Kategorier
         content: Text
         created_at: Skapad
         image: Bild

@@ -1,0 +1,11 @@
+sv:
+  activerecord:
+    models:
+      category:
+        one: Kategori
+        many: Kategorier
+    attributes:
+      category:
+        titel: Titel
+        slug: Kortnamn
+

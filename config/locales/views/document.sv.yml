@@ -2,8 +2,6 @@ sv:
   document:
     admin:
       index: Administrera dokument
-    all_categories: Alla kategorier
-    categories: Kategorier
     destroy: Förinta dokument
     edit: Redigera dokument
     filter_explanation: Genom att fylla i fälten under rubrikerna kan dokumenten filtreras

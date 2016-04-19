@@ -3,6 +3,11 @@
   <h1><%= t('news.title') %></h1>
 </div>
 
-<div class="col-md-8 col-md-offset-2 col-xs-12">
+<div class="col-md-3 col-sm-12">
+  <%= news_dropdown_button(collection: Category.by_type(:news),
+                               current: @category) %>
+</div>
+
+<div class="col-md-9 col-sm-12">
   <%= render @news %>
 </div>

@@ -1,33 +1,26 @@
 module DocumentsHelper
-  def document_button_text(category)
-    if category.present?
-      category
-    else
-      I18n.t('document.categories')
-    end
-  end
+  include CategoriesHelper
 
+  # Uses category button from CategoriesHelper to render the whole button
   def document_dropdown_button(collection:, current:)
-    content = safe_join([document_button(current), document_collection(collection)])
+    content = safe_join([category_button(current), document_collection(collection)])
     content_tag(:div, content, class: 'dropdown')
   end
 
-  def document_button(current)
-    content = safe_join([document_button_text(current), ' ', content_tag(:span, '', class: 'caret')])
-    content_tag(:button, content, class: 'btn primary dropdown-toggle',
-                                  id: 'document_dropdown', type: 'button',
-                                  data: { toggle: 'dropdown' },
-                                  aria: { haspopup: 'true', expanded: 'true' })
-  end
 
+  # Returns the collection of links fomr the CategoriesHelper.category_collection
+  # Uses the index path to add a button for clearing query
   def document_collection(collection)
-    categories = [content_tag(:li, link_to(t('document.all_categories'), documents_path))]
-    collection.each { |c| categories << document_category_link(c) }
-    content_tag(:ul, safe_join(categories), class: 'dropdown-menu',
-                                            aria: { labelled_by: 'document_dropdown' })
+    categories = []
+    collection.each do |cat|
+      categories << document_category_link(cat)
+    end
+
+    category_collection(categories, documents_path)
   end
 
+  # Returns the link of a button based on CategoriesHelper.category_link
   def document_category_link(category)
-    content_tag(:li, link_to(category, documents_path(category: category)))
+    category_link(category, documents_path(category: category.to_param))
   end
 end

@@ -1,6 +1,8 @@
 # encoding: UTF-8
 class News < ActiveRecord::Base
   belongs_to :user
+  has_many :categorizations, as: :categorizable
+  has_many :categories, through: :categorizations
   mount_uploader :image, AttachedImageUploader
 
   # Validations

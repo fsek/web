@@ -11,6 +11,15 @@
 
    <%= news_url(news) %>
 
+   <% if news.categories.count > 0 %>
+     <span class="categories">
+       <%= fa_icon('hashtag') %> 
+       <% news.categories.each do |cat| %>
+         <%= link_to(cat.title, news_index_path(category: cat.to_param)) %> <%= ' ' %>
+       <% end %>
+     </span>
+   <% end %>
+
    <span class="date">
      <%= fa_icon('calendar') %> <%= l(news.created_at) %>
    </span>
