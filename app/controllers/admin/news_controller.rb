@@ -45,6 +45,7 @@ class Admin::NewsController < Admin::BaseController
   private
 
   def news_params
-    params.require(:news).permit(:title, :content, :image, :url, :remove_image)
+    params.require(:news).permit(:title, :content, :image, :url,
+                                 :remove_image, category_ids: [])
   end
 end

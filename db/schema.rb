@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407122322) do
+ActiveRecord::Schema.define(version: 20160412134341) do
 
   create_table "album_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -116,6 +116,27 @@ ActiveRecord::Schema.define(version: 20160407122322) do
   end
 
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id", using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title",      limit: 255, null: false
+    t.string   "slug",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "categories", ["slug"], name: "index_categories_on_slug", using: :btree
+
+  create_table "categorizations", force: :cascade do |t|
+    t.integer  "category_id",        limit: 4
+    t.string   "categorizable_type", limit: 255, null: false
+    t.integer  "categorizable_id",   limit: 4,   null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "categorizations", ["categorizable_id"], name: "index_categorizations_on_categorizable_id", using: :btree
+  add_index "categorizations", ["categorizable_type"], name: "index_categorizations_on_categorizable_type", using: :btree
+  add_index "categorizations", ["category_id"], name: "index_categorizations_on_category_id", using: :btree
 
   create_table "constants", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -502,5 +523,6 @@ ActiveRecord::Schema.define(version: 20160407122322) do
   add_index "work_posts", ["target_group"], name: "index_work_posts_on_target_group", using: :btree
   add_index "work_posts", ["user_id"], name: "index_work_posts_on_user_id", using: :btree
 
+  add_foreign_key "categorizations", "categories"
   add_foreign_key "page_images", "pages"
 end

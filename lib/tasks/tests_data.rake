@@ -50,12 +50,15 @@ namespace :db do
     PermissionPost.find_or_create_by!(permission: perm_nyckelpiga, post: nyckelpiga)
 
     u = User.find_or_initialize_by(email: 'admin@fsektionen.se',
-                                   firstname: 'David-Admin', lastname: 'Wessman',
-                                   program: 'Teknisk Fysik', start_year: 2013)
+                                   firstname: 'Hilbert-Admin', lastname: 'Älg',
+                                   program: 'Teknisk Fysik', start_year: 1996)
     u.password = 'passpass'
     u.confirmed_at = Time.zone.now
     u.member_at = Time.zone.now
     u.save!
+    puts 'You can sign in as ADMIN with'
+    puts 'email:        admin@fsektionen.se'
+    puts 'and password: passpass'
     if u.present?
       PostUser.find_or_create_by(post: spindel, user: u)
       PostUser.find_or_create_by(post: prylmast, user: u)
@@ -64,12 +67,16 @@ namespace :db do
     end
 
     a = User.find_or_initialize_by(email: 'user@fsektionen.se',
-                                   firstname: 'David', lastname: 'Wessman',
-                                   program: 'Teknisk Fysik', start_year: 2013)
+                                   firstname: 'Hilbert', lastname: 'Älg',
+                                   program: 'Teknisk Fysik', start_year: 1996)
     a.confirmed_at = Time.zone.now
     a.member_at = Time.zone.now
     a.password = 'passpass'
     a.save!
+
+    puts 'You can sign in as USER with'
+    puts 'email:        user@fsektionen.se'
+    puts 'and password: passpass'
     if a.present?
       PostUser.find_or_create_by(post: prylmast, user: a)
     end
@@ -92,8 +99,8 @@ namespace :db do
                             link: '/galleri', index: 40, visible: true, turbolinks: false)
 
     # Notice
-    FactoryGirl.create(:notice)
-    FactoryGirl.create(:notice)
+    FactoryGirl.create(:notice, user: u)
+    FactoryGirl.create(:notice, user: u)
 
     # Election
     election = Election.find_or_initialize_by(title: 'Vårterminsmöte',
@@ -107,8 +114,8 @@ namespace :db do
     election.save!
 
     # Contact
-    Contact.find_or_create_by(name: 'Spindelman - David', email: 'spindelman@fsektionen.se',
-                              public: true, text: 'Detta är en linte spindelman')
+    Contact.find_or_create_by(name: 'Spindelman', email: 'spindelman@fsektionen.se',
+                              public: true, text: 'Detta är en linte spindelman', post: spindel)
 
     # News
     News.find_or_create_by!(title: 'Ett helt nytt användarsystem',
@@ -141,5 +148,10 @@ namespace :db do
     # Documents
     FactoryGirl.create(:document)
     FactoryGirl.create(:document)
+
+    # Categories
+    Category.find_or_create_by!(title: 'Studier', slug: 'studie')
+    Category.find_or_create_by!(title: 'Sektionen', slug: 'sektion')
+    Category.find_or_create_by!(title: 'Fritid', slug: 'fritid')
   end
 end
