@@ -1,6 +1,7 @@
 sv:
   election:
     administrate: Administrera Val
+    already_closed: Valet har stängt
     closes_in: 'Stänger om:'
     confirm_delete: Valet raderas och kan inte återställas, är du säker?
     destroy: Förinta val
@@ -13,9 +14,9 @@ sv:
     no_information: Just nu finns det ingen information om valet.
     opens_in: 'Öppnar om:'
     orange_posts: Orangefärgade fält innebär att posten sitter i styrelsen.
-    posts_after: Poster som inte längre kan sökas
-    posts_before: Poster som kommer att kunna sökas
-    posts_during: Poster som kan sökas
+    posts_can_candidate: Poster som kan sökas
+    posts_cannot_candidate: Poster som inte längre kan sökas
+    posts_will_candidate: Poster som kommer att kunna sökas
     show: Visa val
     show_as_user: Visa valet (som användare ser det)
     show_candidates: Visa kandideringar

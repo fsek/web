@@ -8,6 +8,7 @@ sv:
     display_post: Tryck på postens namn för att visa mer information samt kunna redigera.
     do: Kandidera
     edit: Redigera kandidatur
+    error_create: Kandidering misslyckades, är valet för posten öppet?
     index: Alla kandidaturer
     new: Ny kandidatur
     no_candidates: Du har inte kandiderat till några poster.

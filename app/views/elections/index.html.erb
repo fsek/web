@@ -1,6 +1,6 @@
 <% provide(:title, @election_view.election) %>
 <div class="headline">
-  <h2 id="election-title"><%= @election_view.election %></h2>
+  <h1 id="election-title"><%= @election_view.election %></h1>
 </div>
 <div class="col-md-3 col-sm-12 election">
   <%= render 'countdown', election_view: @election_view %>
@@ -14,6 +14,7 @@
     <hr>
     <%= link_to(t('election.edit'), admin_election_path(@election_view.election),
                 class: 'btn primary') %>
+    <hr>
   <% end %>
 </div>
 
@@ -36,6 +37,7 @@
     <li><%= t('election.green_posts') %></li>
   </ul>
 
+  <h3><%= @election_view.rest_posts_text %></h3>
   <%= render 'posttab', election_view: @election_view, post_grid: @election_view.rest_grid %>
   <div class="display-post" id="views"></div>
 </div>

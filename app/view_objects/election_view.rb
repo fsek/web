@@ -23,15 +23,25 @@ class ElectionView
       I18n.t('election.opens_in')
     when :during
       I18n.t('election.closes_in')
+    when :closed
+      I18n.t('election.already_closed')
     end
   end
 
   def posts_text
     case @election.state
     when :before
-      I18n.t('election.posts_before')
-    when :during
-      I18n.t('election.posts_during')
+      I18n.t('election.posts_will_candidate')
+    when :during, :after
+      I18n.t('election.posts_can_candidate')
+    when :closed
+      I18n.t('election.posts_cannot_candidate')
+    end
+  end
+
+  def rest_posts_text
+    if @election.state == :after
+      I18n.t('election.posts_cannot_candidate')
     end
   end
 end

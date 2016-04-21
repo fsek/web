@@ -1,6 +1,6 @@
 sv:
   candidate:
-    time_error: tillåter inte att kandidaturer redigeras för tillfället.
+    time_error: kandidaturer för posten kan inte skapas eller redigeras, har valet stängt?
   activerecord:
     models:
       candidate: 
@@ -9,6 +9,8 @@ sv:
     attributes:
       candidate:
         created_at: Skapades
+        count: Antal kandiderande
+        closing: Valet stängs
         elected_by: Väljs av
         election_id: Val
         limit: Gräns
