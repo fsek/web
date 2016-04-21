@@ -30,6 +30,13 @@
       </li>
     <% end %>
 
+    <% if can_administrate?(:index, Category) %>
+      <li class="dropdown-submenu">
+        <%= link_to(models_name(Category), admin_categories_path) %>
+      </li>
+    <% end %>
+
+
     <% if can_administrate? :manage, Contact %>
       <li class="dropdown-submenu">
         <%= link_to(model_name(Contact), admin_contacts_path) %>
