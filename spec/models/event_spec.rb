@@ -11,9 +11,23 @@ RSpec.describe Event, type: :model do
   # Ref.: https://github.com/fsek/web/issues/99
   describe :json do
     it 'check date format is iso8601' do
-      event = build_stubbed(:event)
-      (event.as_json.to_json).should include(event.starts_at.iso8601.to_json)
-      (event.as_json.to_json).should include(event.ends_at.iso8601.to_json)
+      start = 1.day.from_now
+      stop = 3.days.from_now
+      event = build_stubbed(:event, starts_at: start,
+                                    ends_at: stop,
+                                    all_day: false)
+      event.as_json[:start].should eq(start.iso8601)
+      event.as_json[:end].should eq(stop.iso8601)
+    end
+
+    it 'adds one day if all_day' do
+      start = 1.day.from_now
+      stop = 3.days.from_now
+      event = build_stubbed(:event, starts_at: start,
+                                    ends_at: stop,
+                                    all_day: true)
+      event.as_json[:start].should eq(start.to_date.iso8601)
+      event.as_json[:end].should eq((stop + 1.day).to_date.iso8601)
     end
   end
 end
