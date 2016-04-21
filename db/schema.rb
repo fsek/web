@@ -11,20 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423214816) do
-
-  create_table "album_categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.text     "text",       limit: 65535
-    t.boolean  "visible"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "album_categories_albums", id: false, force: :cascade do |t|
-    t.integer "album_id",          limit: 4
-    t.integer "album_category_id", limit: 4
-  end
+ActiveRecord::Schema.define(version: 20160428130636) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -42,23 +29,11 @@ ActiveRecord::Schema.define(version: 20160423214816) do
     t.integer "image_id", limit: 4
   end
 
-  create_table "albums_subcategories", id: false, force: :cascade do |t|
-    t.integer "album_id",       limit: 4
-    t.integer "subcategory_id", limit: 4
-  end
-
   create_table "cafe_shifts", force: :cascade do |t|
     t.datetime "start",           null: false
     t.integer  "pass",  limit: 4, null: false
     t.integer  "lp",    limit: 4, null: false
     t.integer  "lv",    limit: 4, null: false
-  end
-
-  create_table "cafe_work_councils", force: :cascade do |t|
-    t.integer  "cafe_work_id", limit: 4
-    t.integer  "council_id",   limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
   end
 
   create_table "cafe_worker_councils", force: :cascade do |t|
@@ -81,24 +56,6 @@ ActiveRecord::Schema.define(version: 20160423214816) do
   add_index "cafe_workers", ["cafe_shift_id"], name: "index_cafe_workers_on_cafe_shift_id", using: :btree
   add_index "cafe_workers", ["group"], name: "index_cafe_workers_on_group", using: :btree
   add_index "cafe_workers", ["user_id"], name: "index_cafe_workers_on_user_id", using: :btree
-
-  create_table "cafe_works", force: :cascade do |t|
-    t.datetime "work_day"
-    t.integer  "pass",         limit: 4
-    t.integer  "lp",           limit: 4
-    t.integer  "lv",           limit: 4
-    t.string   "name",         limit: 255
-    t.string   "lastname",     limit: 255
-    t.string   "phone",        limit: 255
-    t.string   "email",        limit: 255
-    t.boolean  "utskottskamp"
-    t.string   "access_code",  limit: 255
-    t.integer  "d_year",       limit: 4
-    t.integer  "user_id",      limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "firstname",    limit: 255
-  end
 
   create_table "candidates", force: :cascade do |t|
     t.integer  "post_id",     limit: 4
@@ -389,14 +346,6 @@ ActiveRecord::Schema.define(version: 20160423214816) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "photo_categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "text",       limit: 255
-    t.boolean  "visible"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "post_users", force: :cascade do |t|
     t.integer  "post_id",    limit: 4
     t.integer  "user_id",    limit: 4
@@ -436,27 +385,12 @@ ActiveRecord::Schema.define(version: 20160423214816) do
     t.string   "firstname",  limit: 255
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string   "name",        limit: 255,   null: false
-    t.string   "title",       limit: 255,   null: false
-    t.text     "description", limit: 65535, null: false
-    t.text     "the_role",    limit: 65535, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "short_links", force: :cascade do |t|
     t.string "link",   limit: 255,   null: false
     t.text   "target", limit: 65535, null: false
   end
 
   add_index "short_links", ["link"], name: "index_short_links_on_link", using: :btree
-
-  create_table "subcategories", force: :cascade do |t|
-    t.string   "text",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "tools", force: :cascade do |t|
     t.string   "title",       limit: 255,               null: false
