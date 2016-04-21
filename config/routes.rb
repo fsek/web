@@ -232,7 +232,7 @@ Fsek::Application.routes.draw do
 
   resources :mail_aliases, only: [:index] do
     collection do
-      put :update, path: :update
+      put :update, path: :update, as: :update
       get :search
     end
   end

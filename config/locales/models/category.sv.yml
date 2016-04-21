@@ -3,7 +3,7 @@ sv:
     models:
       category:
         one: Kategori
-        many: Kategorier
+        other: Kategorier
     attributes:
       category:
         titel: Titel
