@@ -57,11 +57,17 @@ class Event < ActiveRecord::Base
 
   def ical(event)
     event.uid = id.to_json
-    event.dtstart = Icalendar::Values::DateTime.new(starts_at, 'tzid' => TZID)
-    event.dtend = Icalendar::Values::DateTime.new(ends_at, 'tzid' => TZID)
+    if all_day
+      event.dtstart = Icalendar::Values::Date.new(starts_at.to_date)
+      # The end date is set to beginning of day, therefore adding 1 day
+      event.dtend = Icalendar::Values::Date.new(ends_at.to_date + 1.day)
+    else
+      event.dtstart = Icalendar::Values::DateTime.new(starts_at, 'tzid' => TZID)
+      event.dtend = Icalendar::Values::DateTime.new(ends_at, 'tzid' => TZID)
+    end
+    event.description = %(#{category} \n#{description})
     event.location = location
     event.summary = title
-    event.description = %(#{category}  \n #{description})
     event.created = Icalendar::Values::DateTime.new(created_at, 'tzid' => TZID)
     event.url = Rails.application.routes.url_helpers.event_url(id, host: PUBLIC_URL)
     event.last_modified = Icalendar::Values::DateTime.new(updated_at, 'tzid' => TZID)
@@ -69,16 +75,30 @@ class Event < ActiveRecord::Base
   end
 
   def as_json(*)
-    {
-      id: id,
-      title: title,
-      description: description || '',
-      start: starts_at.iso8601,
-      end: ends_at.iso8601,
-      allDay: all_day,
-      recurring: false,
-      url: Rails.application.routes.url_helpers.event_path(id),
-      textColor: 'black'
-    }
+    if all_day
+      {
+        id: id,
+        title: title,
+        description: description || '',
+        start: starts_at.to_date.iso8601,
+        end: (ends_at + 1.day).to_date.iso8601,
+        allDay: true,
+        recurring: false,
+        url: Rails.application.routes.url_helpers.event_path(id),
+        textColor: 'black'
+      }
+    else
+      {
+        id: id,
+        title: title,
+        description: description || '',
+        start: starts_at.iso8601,
+        end: ends_at.iso8601,
+        allDay: false,
+        recurring: false,
+        url: Rails.application.routes.url_helpers.event_path(id),
+        textColor: 'black'
+      }
+    end
   end
 end
