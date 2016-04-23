@@ -30,12 +30,9 @@ class Candidate < ActiveRecord::Base
   end
 
   def check_edit
-    if !editable?
-      errors.add(:election, I18n.t('candidate.time_error'))
-      return false
+    unless editable?
+      errors.add(:post, I18n.t('candidate.time_error'))
     end
-
-    true
   end
 
   def p_url

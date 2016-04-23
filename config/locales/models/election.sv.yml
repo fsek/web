@@ -8,15 +8,15 @@ sv:
       election:
         candidate_mail: Text till kandideringsmail
         candidate_mail_star: Text till kandideringsmail för stjärnpost
-        closing: Stängning - allt
+        closing: Stänger - allt
         current_election: Aktuellt val
         description: Beskrivning
-        end: Stängning - teminsvalda poster
+        end: Stänger - inför sektionsmöte
         extra_text: Extra text
         mail_link: Länk i kandideringsmail
         mail_styrelse_link: Länk i kandideringsmail för styrelsepost
         nominate_mail: Text till nomineringsmail
-        start: Startdatum
+        start: Öppnar
         text_after: Text efter valet
         text_before: Text före valet
         text_during: Text under valet
