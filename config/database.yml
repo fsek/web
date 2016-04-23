@@ -1,0 +1,31 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  host: localhost
+
+development:
+  <<: *default
+  database: <%= ENV['DEV_DATABASE'] %>
+  username: <%= ENV['DEV_DATABASE_USER'] %>
+  password: <%= ENV['DEV_DATABASE_PASSWORD'] %>
+
+production:
+  <<: *default
+  database: <%= ENV['PRODUCTION_DATABASE'] %>
+  username: <%= ENV['PRODUCTION_DATABASE_USER'] %>
+  password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>
+
+staging:
+  <<: *default
+  database: <%= ENV['STAGING_DATABASE'] %>
+  username: <%= ENV['STAGING_DATABASE_USER'] %>
+  password: <%= ENV['STAGING_DATABASE_PASSWORD'] %>
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: <%= ENV['TEST_DATABASE'] %>
+  username: <%= ENV['TEST_DATABASE_USER'] %>
+  password: <%= ENV['TEST_DATABASE_PASSWORD'] %>
