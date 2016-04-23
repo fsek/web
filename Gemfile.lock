@@ -279,7 +279,7 @@ GEM
     ref (2.0.0)
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
-    rspec-core (3.4.3)
+    rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-example_steps (3.0.2)
       rspec-core (>= 3.0.0)

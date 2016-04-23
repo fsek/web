@@ -4,11 +4,11 @@ sv:
       document: Dokument
     attributes:
       document:
-        pdf: Pdf
-        title: Titel
-        public: Publik
         category: Kategori
-        download: Nerladdning
-        user_id: Uppladdad av
         created_at: Skapad
+        pdf: Pdf
+        public: Publik
+        slug: Kortnamn
+        title: Titel
         updated_at: Uppdaterad
+        user_id: Uppladdad av

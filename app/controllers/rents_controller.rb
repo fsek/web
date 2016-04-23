@@ -55,7 +55,6 @@ class RentsController < ApplicationController
   end
 
   def load_terms
-    constant = Constant.find_by(name: 'rent_terms')
-    @terms = Document.find_by(id: constant.try(:value))
+    @terms = Document.find_by(slug: 'rental-terms')
   end
 end
