@@ -4,7 +4,23 @@
 
 <%= render 'images' %>
 
-<div class="col-md-12">
+<% if @news.present? %>
+  <div class="col-md-7 nollning-news">
+    <div class="headline">
+      <h3><%= t('news.title') %></h3>
+    </div>
+
+    <% @news.each do |n| %>
+      <%= render '/news/news', news: n %>
+    <% end %>
+
+    <%= link_to news_index_path(category: :nollning) do%>
+      <%= fa_icon('plus') %> <%= t('news.more') %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="col-md-7">
   <% if @constant.present? %>
     <div class="headline">
       <h3><%= t('nollning.movie') %></h3>
