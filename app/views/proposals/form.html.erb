@@ -1,0 +1,65 @@
+<% title = 'Motionsmaskinen' %>
+<% provide(:title, title) %>
+<div class="headline">
+  <h1><%= title %></h1>
+</div>
+
+<div class="row">
+  <div class="col-lg-8 col-md-10">
+    <p>
+      Jag är en motionsmaskin. Här kan du enkelt fylla i dina åsikter så gör 
+      jag en fin motion åt dig. 
+    </p>
+    <p>
+      Glöm inte att kopiera din text då och då så att den inte försvinner om du 
+      skulle råka ladda om sidan.
+    </p>
+
+    <%= form_for(@proposal, url: proposals_generate_path(format: :pdf),
+                            html: {class: 'proposal-form'}) do |f| %>
+      <fieldset>
+        <legend>Grundläggande information</legend>
+        <%= form_group do %>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        <% end %>
+
+        <%= form_group do %>
+          <%= f.label :sign_name %>
+          <%= f.text_field :sign_name, value: current_user && current_user.to_s %>
+        <% end %>
+
+        <%= form_group do %>
+          <%= f.label :sign_title %>
+          <%= f.text_field :sign_title %>
+        <% end %>
+      </fieldset>
+
+      <fieldset>
+        <legend>Brödtext</legend>
+        <%= form_group do %>
+          <%= f.text_area :body, rows: 16 %>
+        <% end %>
+      </fieldset>
+
+      <fieldset>
+        <legend>Yrkanden</legend>
+        <div class="proposal-points">
+          <%= f.fields_for :points do |ff| %>
+            <div class="proposal-point">
+              <%= form_group do %>
+                <%= ff.label :'', 'ATT' %>
+                <%= ff.text_area :'', rows: 4 %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <%= link_to('Yrka mer!', 'javascript:void(0)', class: 'proposal-add btn secondary') %>
+        <%= link_to('Yrka mindre!', 'javascript:void(0)', class: 'proposal-remove btn secondary') %>
+      </fieldset>
+      <hr>
+      <%= f.submit 'Skapa motion!', class: 'btn primary' %>
+    <% end %>
+  </div>
+</div>
