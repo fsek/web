@@ -1,0 +1,54 @@
+- title = 'Motionsmaskinen'
+- title title
+%h1= title
+
+.row
+  .col-lg-8.col-md-10
+    %p 
+      Jag är en motionsmaskin. Här kan du enkelt fylla i dina åsikter så gör 
+      jag en fin motion åt dig. 
+
+    %p
+      Glöm inte att kopiera din text då och då så att den inte försvinner om du 
+      skulle råka ladda om sidan.
+
+    = form_for @proposal, :url => proposals_generate_path(:format => :pdf), 
+      :html => { class:  'proposal-form' }do |f|
+      %fieldset
+        %legend Grundläggande information
+
+        = form_group do
+          = f.label :title
+          = f.text_field :title
+
+        = form_group do
+          = f.label :sign_name
+          = f.text_field :sign_name,
+            :value => current_user && current_user.to_s
+
+        = form_group do
+          = f.label :sign_title
+          = f.text_field :sign_title
+
+      %fieldset
+        %legend Brödtext
+        = form_group do
+          = f.text_area :body, :rows => 16
+
+      %fieldset
+        %legend Yrkanden
+        .proposal-points
+          = f.fields_for :points do |ff|
+            .proposal-point
+              = form_group do
+                = ff.label :'', 'ATT'
+                = ff.text_area :'', :rows => 4
+
+        %a.proposal-add.btn.btn-default{ :href => 'javascript:void(0)' }
+          Yrka mer!
+        %a.proposal-remove.btn.btn-default{ :href => 'javascript:void(0)' }
+          Yrka mindre!
+      %hr
+
+      = f.submit 'Skapa motion!', class:  'btn btn-default'
+
