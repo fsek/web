@@ -41,7 +41,7 @@ module ApplicationHelper
   end
 
   def form_group &block
-    html = Nokogiri::HTML.fragment capture_haml &block
+    html = Nokogiri::HTML.fragment(capture(&block))
     html.xpath('input|textarea').each do |e|
       if e['class']
         e['class'] += ' form-control '
