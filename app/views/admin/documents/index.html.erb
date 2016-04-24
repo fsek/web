@@ -24,6 +24,7 @@
     end
     g.column(name: Document.human_attribute_name(:category), attribute: 'category',
              custom_filter: :auto)
+    g.column(name: Document.human_attribute_name(:slug), attribute: 'slug')
     g.column(name: Document.human_attribute_name(:public), attribute: 'public') do |document|
       yes_no(document.public)
     end

@@ -56,7 +56,7 @@ class Admin::DocumentsController < Admin::BaseController
   private
 
   def document_params
-    params.require(:document).permit(:title, :pdf, :public, :category)
+    params.require(:document).permit(:title, :pdf, :public, :category, :slug)
   end
 
   def filter_documents(documents, category)
