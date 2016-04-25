@@ -220,12 +220,12 @@ Fsek::Application.routes.draw do
         get '', action: :index, on: :collection, as: :index
       end
     end
-  end
 
-  resources :short_links, except: [:show, :update, :edit] do
-    collection do
-      get 'go' => 'short_links#go'
-      get 'check' => 'short_links#check'
+    resources :short_links, except: [:show, :update, :edit], path: :snabblankar do
+      collection do
+        get :go
+        get :check
+      end
     end
   end
 

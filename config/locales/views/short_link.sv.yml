@@ -1,0 +1,6 @@
+sv:
+  short_link:
+    already_exists: En snabblänk med det namnet finns redan. Du kommer att spara över den gamla länken.
+    destroy: Förinta snabblänk
+    new: Skapa ny snabblänk
+    title: Snabblänkar
