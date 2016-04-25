@@ -29,6 +29,7 @@ gem 'paperclip'
 gem 'pagedown-bootstrap-rails'
 gem 'prawn-rails'
 gem 'redcarpet'
+gem 'rollbar'
 gem 'sass-rails'
 gem 'select2-rails'
 gem 'simple_form'
@@ -51,6 +52,7 @@ group :development, :test do
   gem 'capistrano-rbenv', require: false
   gem 'capistrano-passenger', require: false
   gem 'capybara'
+  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'i18n-tasks'
   gem 'poltergeist'
