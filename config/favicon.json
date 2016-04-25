@@ -1,0 +1,38 @@
+{
+    "master_picture": "app/assets/images/layout/f.svg",
+    "favicon_design": {
+        "ios": {
+            "picture_aspect": "background_and_margin",
+            "background_color": "#ffffff",
+            "margin": "14%"
+        },
+        "desktop_browser": [
+
+        ],
+        "windows": {
+            "picture_aspect": "no_change",
+            "background_color": "#2d89ef",
+            "on_conflict": "override"
+        },
+        "android_chrome": {
+            "picture_aspect": "no_change",
+            "theme_color": "#ffffff",
+            "manifest": {
+                "name": "F-sektionen",
+                "display": "browser",
+                "orientation": "not_set",
+                "on_conflict": "override",
+                "declared": true
+            }
+        },
+        "safari_pinned_tab": {
+            "picture_aspect": "silhouette",
+            "theme_color": "#eb7125"
+        }
+    },
+    "settings": {
+        "compression": 2,
+        "scaling_algorithm": "Mitchell",
+        "error_on_image_too_small": false
+    }
+}
