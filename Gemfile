@@ -22,6 +22,7 @@ gem 'icalendar'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
+gem 'meta-tags'
 gem 'mini_magick'
 gem 'momentjs-rails'
 gem 'mysql2', '~> 0.3.20' # Rails 4 compatibility
