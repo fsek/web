@@ -13,12 +13,11 @@ Fsek::Application.routes.draw do
   get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
 
   # User-related routes
-  devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}
+  devise_for :users, skip: [:sessions, :registrations]
   devise_scope :user do
-    get 'avbryt_reg' => 'registrations#cancel', as: :cancel_user_registration
-    post 'anvandare/skapa' => 'registrations#create', as: :user_registration
-    get 'anvandare/registrera' => 'registrations#new', as: :new_user_registration
-    # delete 'anvandare/ta_bort/:id' => 'users#destroy', :as => :admin_destroy_user
+    get 'avbryt_reg' => 'devise/registrations#cancel', as: :cancel_user_registration
+    post 'anvandare/skapa' => 'devise/registrations#create', as: :user_registration
+    get 'anvandare/registrera' => 'devise/registrations#new', as: :new_user_registration
 
     #sessions
     get 'logga_in' => 'devise/sessions#new', as: :new_user_session

@@ -1,12 +1,17 @@
 require 'rails_helper'
-RSpec.feature 'Confirm account' do
-  let(:user) { create(:user, :unconfirmed) }
-
-  scenario 'confirm' do
-    page.visit(user_confirmation_url(confirmation_token: user.confirmation_token))
+RSpec.feature 'Sign up' do
+  scenario 'signs up' do
+    user = build(:user)
+    page.visit(new_user_registration_path)
     page.status_code.should eq(200)
 
-    find('div.alert.alert-info').text.should include(I18n.t('devise.confirmations.confirmed'))
-    user.reload.confirmed?.should be_truthy
+    fill_in 'user_firstname', with: user.firstname
+    fill_in 'user_lastname', with: user.lastname
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: '12345678'
+    fill_in 'user_password_confirmation', with: '12345678'
+    click_button('user-submit')
+
+    find('div.alert.alert-info').text.should include(I18n.t('devise.registrations.signed_up_but_unconfirmed'))
   end
 end
