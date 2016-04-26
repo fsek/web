@@ -1,8 +1,8 @@
 class ShortLinksController < Admin::BaseController
-  load_permissions_and_authorize_resource :except => [ :go, :check ]
+  load_permissions_and_authorize_resource except: [:go, :check]
 
   def go
-    redirect_to ShortLink.lookup(params[:link]).target, :status => 301
+    redirect_to ShortLink.lookup(params[:link]).target, status: 301
   end
 
   def index
@@ -11,33 +11,30 @@ class ShortLinksController < Admin::BaseController
 
   def check
     if ShortLink.where('link = ?', params[:link]).exists?
-      render :nothing => true, :status => :no_content
+      render nothing: true, status: :no_content
     else
-      render :nothing => true, :status => :not_found
+      render nothing: true, status: :not_found
     end
   end
 
   def create
     @short_link = ShortLink.find_or_initialize_by(
-      :link => short_link_params[:link]
+      link: short_link_params[:link]
     )
     @short_link.update! short_link_params
 
-    flash[:notice] = 'Snabblänken sparades'
-    redirect_to ShortLink
+    redirect_to short_links_path, notice: alert_create(ShortLink)
   end
 
   def destroy
     ShortLink.find(params[:id]).destroy!
 
-    flash[:notice] = 'Snabblänken togs bort'
-    redirect_to ShortLink
+    redirect_to short_links_path, notice: alert_destroy(ShortLink)
   end
 
   private
+
   def short_link_params
-    params.require(:short_link).permit(
-      :link, :target,
-    )
+    params.require(:short_link).permit(:link, :target)
   end
 end
