@@ -26,7 +26,7 @@
 
     <% if can_administrate?(:index, Permission) %>
       <li class="dropdown-submenu">
-        <%= link_to(models_name(Permission), index_admin_permissions_path) %>
+        <%= link_to(models_name(Permission), admin_permissions_path) %>
       </li>
     <% end %>
 

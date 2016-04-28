@@ -1,8 +1,9 @@
 <div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <div class="headline">
-    <h3><%= t('event.new') %></h3>
+    <h1><%= title(t('event.new')) %></h1>
   </div>
-  <%= render 'form'%>
-  <%= link_to(t(:index_attr, attr: models_name(Event)),
-              admin_events_path, class: 'btn secondary') %>
+  <%= render 'form' %>
+  <hr>
+  <%= link_to(t('event.index'), admin_events_path,
+                                class: 'btn secondary') %>
 </div>

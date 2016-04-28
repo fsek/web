@@ -1,6 +1,6 @@
 <div class="col-md-10 col-md-offset-1 col-sm-1+ col-sm-offset-1 reg-page">
   <div class="row">
-    <h2>Nomineringar</h2>
+  <h1><%= title(models_name(Nomination)) %></h1>
     <%= grid(@nominations_grid) do |g|
       g.column name: "Post", attribute: "post_id", filter: false do |nomination|
         nomination.post.title

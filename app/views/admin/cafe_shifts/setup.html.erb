@@ -1,7 +1,6 @@
-<% provide(:title, t('cafe.title')) %>
 <div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <div class="headline">
-    <h1><%= t('cafe_shift.setup') %></h1>
+    <h1><%= title(t('cafe_shift.setup')) %></h1>
   </div>
   <ul class="list">
     <li>
@@ -20,7 +19,7 @@
 
   <%= link_to(t('cafe_shift.single'), new_admin_cafe_shift_path, class: 'btn secondary') %>
   <hr>
-  <%= render 'setup_form' %>
+  <%= render 'setup_form', cafe_shift: @cafe_shift %>
   <hr>
   <%= link_to(t(:back), admin_cafe_shifts_path, class: 'btn secondary') %>
 </div>

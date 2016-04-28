@@ -2,3 +2,4 @@ sv:
   permission:
     all: allt
     edit: Redigera rättighet
+    index: Alla rättigheter

@@ -1,11 +1,9 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h2>
-      <%= t('page.new') %>
-    </h2>
+    <h1><%= title(t('page.new')) %></h1>
   </div>
   <%= render 'form', page: @page %>
   <hr>
   <%= link_to(t('page.index'), admin_pages_path,
-              class: 'btn secondary') %>
+                               class: 'btn secondary') %>
 </div>

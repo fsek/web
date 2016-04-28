@@ -1,9 +1,9 @@
 <div class="col-md-12">
   <div class="panel panel-orange margin-bottom-40">
     <div class="panel-heading">
-      <h3 class="panel-title">
-        <%= fa_icon('tasks') %> <%= models_name(Event) %>
-      </h3>
+      <h1 class="panel-title">
+        <%= fa_icon('tasks') %> <%= title(models_name(Event)) %>
+      </h1>
     </div>
     <table class="table">
       <thead>
@@ -17,7 +17,7 @@
           <th><%= Event.human_attribute_name(:all_day) %></th>
           <th><%= Event.human_attribute_name(:updated_at) %></th>
           <th>
-              <%= link_to(t(:new, attr: model_name(Event)),
+              <%= link_to(t('event.new'),
                           new_admin_event_path, class: 'btn primary small') %>
           </th>
         </tr>

@@ -1,7 +1,6 @@
-<% provide(:title, t('rent.admin.title')) %>
 <div class='col-md-8 col-md-offset-2 col-xs-12 reg-page'>
   <div class="headline">
-    <h2><%= t(:new_attr, attr: model_name(Rent)) %></h2>
+    <h1><%= title(t('rent.admin.title')) %></h1>
   </div>
   <%= render 'form' %>
   <hr>

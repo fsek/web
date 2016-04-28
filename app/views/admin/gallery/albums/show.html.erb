@@ -1,13 +1,18 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
-  <h3 class="headline headline-md">
-    <%= t(:edit, attr: Album.model_name.human) %>
-  </h3>
-  <%= render 'form'%>
+  <div class="headline">
+    <h1><%= title(t('album.edit')) %></h1>
+  </div>
+  <%= render 'form' %>
   <hr>
-  <%= link_to(t(:show_attr, attr: model_name(Album)), gallery_album_path(@album), data:{ no_turbolink: true }, class: 'btn secondary') %>
-  <%= link_to(t(:destroy_attr, attr: model_name(Album)), admin_gallery_album_path(@album), method: :delete, class: 'btn danger') %>
+  <%= link_to(t('album.show'), gallery_album_path(@album),
+                               data:{ no_turbolink: true }, class: 'btn secondary') %>
+  <%= link_to(t('album.destroy'), admin_gallery_album_path(@album),
+                                  method: :delete,
+                                  class: 'btn danger') %>
   <%= link_to(t('gallery.destroy_images'), destroy_images_admin_gallery_album_path(@album),
-              method: :delete, class: 'btn danger', data: { confirm: t('gallery.destroy_images')+ '?' }) %>
+                                           method: :delete,
+                                           class: 'btn danger',
+                                           data: { confirm: t('gallery.destroy_images')+ '?' }) %>
   <%= link_to(t('gallery.title'), admin_gallery_albums_path, class: 'btn secondary') %>
   <hr>
   <% @album.images.each do |img| %>

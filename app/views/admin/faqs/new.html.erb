@@ -1,11 +1,9 @@
-<% provide(:title, t('faq.title')) %>
-
 <div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
   <div class="headline">
-    <h2><%= t('faq.new') %></h2>
+    <h1><%= title(t('faq.new')) %></h1>
   </div>
   <%= render 'form', faq: @faq %>
   <hr>
   <%= link_to(t('faq.index'), faqs_path,
-              class: 'btn secondary') %>
+                              class: 'btn secondary') %>
 </div>

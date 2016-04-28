@@ -1,11 +1,13 @@
 <div class="headline">
-  <h1><%= @post.title %></h1>
+  <h1><%= title(@post.title) %></h1>
 </div>
 <div class="col-md-12">
   <%= simple_form_for(@post, url: update_admin_permissions_path(@post)) do |f| %>
     <%= f.button :submit %>
     <%= link_to(t('post.edit'), edit_admin_council_post_path(@post.council, @post),
                                 class: 'btn secondary') %>
+    <%= link_to(t('permission.index'), admin_permissions_path,
+                                        class: 'btn secondary') %>
 
     <div class="panel-body">
       <table class="table table-bordered">

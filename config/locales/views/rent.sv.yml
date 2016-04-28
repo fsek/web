@@ -10,7 +10,7 @@ sv:
     council: Utskottsbokning
     council_only: får endast göras åt utskottet
     council_overbook: kan boka över en bokning som börjar mer än 5 dagar fram i tiden
-    delete: Radera bokning
+    destroy: Radera bokning
     foreman: Bilförmannen
     marked_active: Markerad som aktiv
     marked_inactive: Markerad som inaktiv

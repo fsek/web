@@ -11,7 +11,7 @@ RSpec.feature 'admin create notice' do
 
     And 'visit notice index' do
       visit admin_notices_path
-      find('.headline.notice > h2').text.should include(I18n.t('notice.index'))
+      find('.headline.notice > h1').text.should include(I18n.t('notice.index'))
       within('.col-md-2.col-sm-12') do
         find(:linkhref, new_admin_notice_path).click
       end

@@ -1,10 +1,10 @@
 <div class="col-md-12">
   <div class="panel panel-orange margin-bottom-40">
     <div class="panel-heading">
-      <h3 class="panel-title">
+      <h1 class="panel-title">
         <%= fa_icon('tasks') %>
-        <%= model_name(Election) %>
-      </h3>
+        <%= title(model_name(Election)) %>
+      </h1>
     </div>
     <table class="table">
       <thead>
@@ -17,7 +17,7 @@
           <th><%= Election.human_attribute_name(:current_election) %></th>
           <th><%= Election.human_attribute_name(:updated_at) %></th>
           <th>
-            <%= link_to(t(:new_t_attr, attr: model_name(Election)),
+            <%= link_to(t('election.new'),
                         new_admin_election_path, class: 'btn secondary small') %>
           </th>
         </tr>

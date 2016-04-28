@@ -1,6 +1,9 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h2><%= link_to(%(#{model_name(Image)} #{@image.filename}), gallery_album_path(@album, image: @image)) %></h2>
+    <h1>
+      <%= link_to(gallery_album_path(@album, image: @image)) do %>
+        <%= title(%(#{model_name(Image)} #{@image.filename})) %>
+      <% end %>
   </div>
   <%= image_tag(@image.view, class: 'img-responsive') %>
   <ul class="list">
@@ -16,10 +19,10 @@
   </ul>
   <hr>
   <%= link_to(t('gallery.download'), download_admin_gallery_album_image_path(@album, @image),
-              class: 'btn secondary') %>
-  <%= link_to(t(:destroy_attr, attr: model_name(Image)), admin_gallery_album_image_path(@album, @image),
-              method: :delete, class: 'btn danger') %>
+                                     class: 'btn secondary') %>
+  <%= link_to(t('album.destroy'), admin_gallery_album_image_path(@album, @image),
+                                  method: :delete, class: 'btn danger') %>
   <hr>
-  <%= link_to(t(:show_attr, attr: model_name(Album)), admin_gallery_album_path(@album),
-              class: 'btn secondary') %>
+  <%= link_to(t('album.show'), admin_gallery_album_path(@album),
+                               class: 'btn secondary') %>
 </div>

@@ -1,10 +1,9 @@
-<%= title(t('gallery.title')) %>
 <div class="col-md-12">
   <div class="panel panel-orange margin-bottom-40">
     <div class="panel-heading">
-      <h3 class="panel-title">
-        <%= fa_icon('tasks') %> <%= t('gallery.title') %>
-      </h3>
+      <h1 class="panel-title">
+        <%= fa_icon('tasks') %> <%= title(t('gallery.title')) %>
+      </h1>
     </div>
     <table class="table">
       <thead>
@@ -15,8 +14,7 @@
           <th><%= Album.human_attribute_name(:start_date) %></th>
           <th><%= Album.human_attribute_name(:end_date) %></th>
           <th><%= Album.human_attribute_name(:updated_at) %></th>
-          <th><%= link_to(t('album.new'),
-                          new_admin_gallery_album_path,
+          <th><%= link_to(t('album.new'), new_admin_gallery_album_path,
                           class: 'btn primary') %></th>
         </tr>
       </thead>

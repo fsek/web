@@ -1,7 +1,6 @@
-<% provide(:title, t('tool.title')) %>
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h1><%= t('tool.title') %></h1>
+    <h1><%= title(t('tool.title')) %></h1>
   </div>
   <%= link_to(t('tool.new'), new_admin_tool_path, class: 'btn primary') %>
 
