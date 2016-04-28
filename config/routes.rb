@@ -214,10 +214,9 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
-      resources :permissions, only: [] do
+      resources :permissions, only: :index do
         get '/:post_id', action: :show_post, on: :collection, as: :post
         patch '(/:post_id)', action: :update_post, on: :collection, as: :update
-        get '', action: :index, on: :collection, as: :index
       end
     end
 

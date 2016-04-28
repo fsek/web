@@ -1,17 +1,17 @@
 <div class="col-md-8 col-sm-12">
   <div class="headline">
-    <h3><%= t('page_element.new') %></h3>
+    <h1><%= title(t('page_element.new')) %></h1>
   </div>
 
   <%= render 'form', page: @page, page_element: @page_element %>
   <hr>
 
-  <%= link_to(t('page_element.index'),
-              admin_page_page_elements_path(@page), class: 'btn secondary')%>
+  <%= link_to(t('page_element.index'), admin_page_page_elements_path(@page),
+                                       class: 'btn secondary')%>
   <%= link_to(t('page.edit'), edit_admin_page_path(@page),
-              class: 'btn secondary') %>
+                              class: 'btn secondary') %>
   <%= link_to(t('page.show'), page_path(@page),
-              class: 'btn secondary') %>
+                              class: 'btn secondary') %>
 
 </div>
 

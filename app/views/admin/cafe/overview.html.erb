@@ -1,10 +1,10 @@
-<%= provide(:title, models_name(User)) %>
 <div class="headline">
-  <h2><%= t('cafe.title') %> - <%= model_name(User) %></h2>
+  <h1><%= title("#{t('cafe.title')} - #{model_name(User)}") %></h1>
 </div>
-<%= simple_format(t('cafe_shift.all_shifts_with_worker'))%>
+
 <div class="col-md-12">
-  <%= link_to(t(:index_attr, attr: models_name(CafeShift)),
+<%= simple_format(t('cafe_shift.all_shifts_with_worker'))%>
+  <%= link_to(t('cafe_shift.index'),
               admin_cafe_shifts_path, class: 'btn secondary') %>
 </div>
 <div class="col-md-12">

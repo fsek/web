@@ -1,14 +1,14 @@
 <div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
   <div class="headline">
-    <h2><%= t(:edit_attr, attr: model_name(CafeShift)) %></h2>
+    <h1><%= title(t('cafe_shift.edit')) %></h1>
   </div>
-  <%= render 'form' %>
+  <%= render 'form', cafe_shift: @cafe_shift %>
   <hr>
-  <%= link_to(t(:show_attr, attr: model_name(CafeShift)),
+  <%= link_to(t('cafe_shift.show'),
               admin_cafe_shift_path(@cafe_shift),
               class: 'btn secondary') %>
-  <%= link_to(t(:destroy_attr, attr: model_name(CafeShift)),
+  <%= link_to(t('cafe_shift.destroy'),
                 admin_cafe_shift_path(@cafe_shift), method: :delete,
                 class: 'btn danger') %>
-  <%= link_to(t(:index), admin_cafe_shifts_path, class: 'btn secondary') %>
+  <%= link_to(t('cafe_shift.index'), admin_cafe_shifts_path, class: 'btn secondary') %>
 </div>

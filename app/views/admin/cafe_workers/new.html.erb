@@ -1,7 +1,7 @@
 <% provide(:title, t('cafe.title')) %>
 <div class="col-md-6 col-md-offset-3 col-sm-12">
   <div class="headline">
-    <h2><%= %(#{CafeShift.model_name.human} - ID #{@cafe_view.shift.id}) %></h2>
+    <h1><%= title(%(#{CafeShift.model_name.human} - ID #{@cafe_view.shift.id})) %></h1>
   </div>
   <table class="table">
     <tr>
@@ -24,6 +24,6 @@
   <hr>
   <%= link_to(t('cafe_shift.remove'), admin_cafe_shift_path(@cafe_shift),
               method: :delete, class: 'btn danger pull-right') %>
-  <%= link_to(t(:index_attr, attr: models_name(CafeShift)), admin_cafe_shifts_path,
+  <%= link_to(t('cafe_shift.index'), admin_cafe_shifts_path,
               class: 'btn secondary') %>
 </div>

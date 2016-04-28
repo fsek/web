@@ -1,7 +1,6 @@
-<% provide(:title, model_name(Election)) %>
 <div class="col-md-10 col-md-offset-1 col-xs-12 reg-page">
   <div class="headline">
-    <h3><%= t('election.edit') %></h3>
+    <h1><%= title(t('election.edit')) %></h1>
   </div>
 
   <%= render 'form', election: @election %>

@@ -3,10 +3,11 @@ sv:
     admin_index: Administrera Cafepass
     all_shifts_with_worker: Visar alla pass som har haft jobbare
     destroy: Förinta Cafepass
-    edit: Redigera Cafepass
+    edit: Redigera cafépass
+    index: Alla cafépass
     ladybug: Nyckelpiga
     lv_first: Första läsvecka
-    new: Nytt Cafépass
+    new: Nytt cafépass
     other_date: Sök från annat datum
     overview: Översikt
     remove: Ta bort Cafépass
@@ -17,6 +18,7 @@ sv:
     setup_single: Skapa ensklit pass
     setup_week: Vecka
     setup_week_explanation: Fyll i datum och tid för en läsveckas första pass samt första och sista läsveckan genereras pass för alla läsveckorna däremellan.
+    show: Visa cafépass
     single: Enskilt Cafepass
     title: Hilbert Café
 

@@ -14,7 +14,7 @@ RSpec.feature 'admin tries to create rent' do
     login.visit_page.login(user, '12345678')
 
     visit admin_rents_path
-    find('.headline.rents  h2').text.should include(Rent.model_name.human)
+    find('.headline.rents  h1').text.should include(Rent.model_name.human)
     first(:linkhref, new_admin_rent_path).click
     page.status_code.should eq(200)
 

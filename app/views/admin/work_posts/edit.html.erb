@@ -1,7 +1,6 @@
-<% provide(:title, t('work_post.admin_index')) %>
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h3><%= t('work_post.edit') %></h3>
+    <h1><%= title(t('work_post.edit')) %></h1>
   </div>
 
   <%= render 'form', work_portal: @work_portal %>

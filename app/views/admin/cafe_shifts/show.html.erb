@@ -1,7 +1,6 @@
-<% provide(:title, t('cafe.title')) %>
 <div class="col-md-6 col-md-offset-3 col-sm-12">
   <div class="headline">
-    <h2><%= %(#{CafeShift.model_name.human} - ID #{@cafe_view.shift.id}) %></h2>
+    <h1><%= title(%(#{CafeShift.model_name.human} - ID #{@cafe_view.shift.id})) %></h1>
   </div>
   <table class="table">
     <tr>
