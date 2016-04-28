@@ -65,7 +65,7 @@ class Event < ActiveRecord::Base
       event.dtstart = Icalendar::Values::DateTime.new(starts_at, 'tzid' => TZID)
       event.dtend = Icalendar::Values::DateTime.new(ends_at, 'tzid' => TZID)
     end
-    event.description = %(#{category} \n#{description})
+    event.description = %(#{category} \n#{description} \n)
     event.location = location
     event.summary = title
     event.created = Icalendar::Values::DateTime.new(created_at, 'tzid' => TZID)
