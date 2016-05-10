@@ -1,0 +1,12 @@
+sv:
+  admin:
+    cafe_shifts:
+      setup:
+        back_to_admin: Tillbaka till administration
+        day: Dag
+        day_explanation: Fyll i datum och tid för dagens första pass, fyll även i första läsvecka.
+        error: Någonting blev fel, kontrollera att alla fält fyllts i korrekt och att det inte överlappar med andra pass.
+        single: Skapa enskilt pass
+        title: Skapa cafépass
+        week: Vecka
+        week_explanation: Fyll i datum och tid för en läsveckas första pass samt första och sista läsveckan genereras pass för alla läsveckorna däremellan.

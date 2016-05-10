@@ -12,7 +12,7 @@
 
     <% if contact.users.present? %>
       <div class="col-sm-4 users">
-        <%= t('contact.users') %>
+        <%= t('.users') %>
         <ul class="list">
           <% contact.users.each do |user| %>
             <li><%= user_link(user) %></li>
@@ -21,7 +21,8 @@
       </div>
     <% end %>
     <div class="col-sm-12">
-      <%= link_to(t('contact.contact'), contact_path(contact), class: 'btn primary pull-right') %>
+      <%= link_to(t('.contact'), contact_path(contact),
+                              class: 'btn primary pull-right') %>
 
       <% if can_administrate?(:edit, contact) %>
         <span class="edit">

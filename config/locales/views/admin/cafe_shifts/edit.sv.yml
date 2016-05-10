@@ -1,0 +1,8 @@
+sv:
+  admin:
+    cafe_shifts:
+      edit:
+        title: Redigera cafépass
+        show: Visa cafépass
+        destroy: Förinta cafépass
+        index: Alla cafépass

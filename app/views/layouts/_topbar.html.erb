@@ -1,6 +1,14 @@
 <div class="top">
   <div class="container">
     <ul class="loginbar pull-right">
+      <li>
+        <% if I18n.locale == :sv %>
+        <%= link_to('English', locale: :en) %>
+        <% else %>
+        <%= link_to('Svenska', locale: :sv) %>
+      <% end %>
+      </li>
+      <li class="devider"> </li>
       <li><%= link_to(fa_icon('calendar'), calendars_path, data: { no_turbolink: false }) %></li>
       <li class="devider"></li>
       <% if user_signed_in? %>

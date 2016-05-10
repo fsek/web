@@ -1,10 +1,10 @@
 <%= simple_form_for(cafe_shift, method: :post, url: { action: :setup_create }) do |f| %>
-  <%= f.input :setup_mode, collection: [[t('cafe_shift.setup_week'), :week],
-                                        [t('cafe_shift.setup_day'), :day]],
+  <%= f.input :setup_mode, collection: [[t('.week'), :week],
+                                        [t('.day'), :day]],
                            include_blank: false %>
 <%= f.input :start, as: :datetime_picker %>
 <%= f.input :lp, as: :integer %>
-<%= f.input :lv, label: t('cafe_shift.lv_first'), as: :integer %>
+<%= f.input :lv, label: t('.lv_first'), as: :integer %>
 <%= f.input :lv_last, as: :integer %>
 <%= f.button :submit %>
 <% end %>

@@ -1,13 +1,13 @@
 # encoding: UTF-8
 class ElectionMailer < ActionMailer::Base
   helper MarkdownHelper, ElectionMailerHelper
-  default from: 'Valberedningen <valb@fsektionen.se>', parts_order: ["text/plain", "text/html"]
+  default from: 'Valberedningen <valb@fsektionen.se>'
 
   def nominate_email(nomination)
     set_message_id
     @nomination = nomination
     if @nomination && @nomination.email.present?
-      mail to: @nomination.email, subject: I18n.t('nomination.mailer.subject')
+      mail to: @nomination.email, subject: I18n.t('election_mailer.nominate_email.subject_nominated')
     end
   end
 
@@ -15,7 +15,7 @@ class ElectionMailer < ActionMailer::Base
     set_message_id
     @candidate = candidate
     if @candidate.present? && @candidate.user.email.present?
-      mail to: @candidate.user.print_email, subject: I18n.t('candidate.mailer.subject')
+      mail to: @candidate.user.print_email, subject: I18n.t('election_mailer.candidate_email.subject_candidated')
     end
   end
 

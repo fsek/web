@@ -1,0 +1,7 @@
+sv:
+  layouts:
+    admin_dropdown:
+      cafe: Hilbert Café
+      faq: FAQ
+      work_post: Jobbportal
+      notice: Notiser

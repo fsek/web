@@ -8,19 +8,19 @@
       <%= f.button :submit, id: 'candidate-submit' %>
     <% else %>
       <h4><%= candidate_view.current.post %></h4>
-      <%= simple_format(t('candidate.cannot_change_post')) %>
-      <%= link_to(t('candidate.destroy'), candidate_path(candidate_view.current),
-                                          method: :delete,
-                                          class: 'btn danger') %>
+      <%= simple_format(t('.cannot_change_post')) %>
+      <%= link_to(t('.destroy'), candidate_path(candidate_view.current),
+                                 method: :delete,
+                                 class: 'btn danger') %>
     <% end %>
   <% end %>
 
   <hr>
 
-  <%= simple_format(t('candidate.user_attributes')) %>
-  <%= link_to(t('user.edit'), edit_own_user_path,
-                              target: :blank,
-                              class: 'btn secondary') %>
+  <%= simple_format(t('.user_attributes')) %>
+  <%= link_to(t('.edit_user'), edit_own_user_path,
+                               target: :blank,
+                               class: 'btn secondary') %>
 
   <table class="table">
     <tbody>

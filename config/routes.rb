@@ -1,5 +1,5 @@
 Fsek::Application.routes.draw do
-  scope "(:locale)", locale: /en|sv/ do
+  filter :locale, exclude: /^\/admin/
   # Resources on the page
   get('/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=aeb6a02396'),
                    as: :vecktorn_signup, status: 301)
@@ -244,5 +244,4 @@ Fsek::Application.routes.draw do
   # Catch-all for short links.
   # This must be at the bottom!
   get '*link' => 'short_links#go'
-  end
 end

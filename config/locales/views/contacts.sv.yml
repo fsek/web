@@ -2,7 +2,6 @@ sv:
   contact:
     admin_index: Administration
     back_to_index: Tillbaka till Kontakter
-    contact: Kontakta
     destroy: Förinta kontakt
     edit: Redigera kontakt
     index: Kontaktsida
@@ -14,5 +13,3 @@ sv:
     show: Visa kontakt
     slug_description: Används för att kunna visa en särskild kontakt i vyer.
     something_wrong: Någonting blev fel, prova att skicka igen.
-    title: Kontaktsida
-    users: Till användare

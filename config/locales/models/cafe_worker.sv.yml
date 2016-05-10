@@ -14,7 +14,6 @@ sv:
         create: Arbeta på passet
         update: Uppdatera uppgifter
   cafe_worker:
-    destroy: Hoppa av passet
     created: Du arbetar nu på passet
     updated: Dina uppgifter uppdaterades
     destroyed: Du arbetar inte längre på passet

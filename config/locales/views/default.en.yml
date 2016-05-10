@@ -1,0 +1,59 @@
+en:
+  add: Add
+  admin: Administrato
+  administration: Administration
+  back: Back
+  close: Close
+  destroy: Destroy
+  edit: Edit
+  filter: Filter
+  hello: Hello
+  here: here
+  hide: Hide
+  index: All
+  new: New
+  read_more: Read more
+  reset: Reset
+  reset_filter: Reset filter
+  save: Save
+  search: Search
+  show: Show
+  sincerely: Sincerely
+  subscribe: Subscribe
+  update: Update
+  welcome: Welcome
+
+  front:
+    description: F-guild is a non profit for engineering students at the programs Physics, Mathematics and Nanoscience.
+    welcome: Welcome to the F-guild!
+
+  "yes": Yes
+  "no": No
+
+  back_to_root: Back to start page
+  back_to: Back to %{attr}
+  back: Back
+  for: "%{a} for %{b}"
+
+  link: Link
+  links: Links
+  about: About
+
+  choose:
+    date: Pick a date
+
+
+  about_us_first: "F-sektionen är en ideell förening för studenter som läser något av civilingenjörsprogrammen Teknisk Fysik, Teknisk Matematik eller Teknisk Nanovetenskap och har till ändamål att främja kamratskap bland medlemmarna och tillvarata medlemmarnas gemensamma intressen."
+  about_us_second: "Sektionen är belägen i Mattehuset och här hittar du bland annat uppehållsrum, Hilbert Café - här kan du köpa bland annat gott kaffe och goda baguetter, mikrovågsugnar och gött häng. F-sektionen har några olika utskott samt en grupp som kallas kärnstyrelsen som alla har hand om var sitt område. Varje sådant utskott leds av en utskottsordförande och de flesta utskottsordförandena sitter med i sektionens styrelse. Styrelsen tar beslut i frågor som rör hela sektionen centralt."
+  about_us_third: "Som medlem kan du välja att vara väldigt aktiv och engagerarad, lite lagom eller kanske bara delta på något enstaka event. Vi hoppas att du ska trivas på sektionen! Om du har några frågor är det bara att höra av sig, se fliken 'Kontakt', eller sväng förbi SK som ligger bredvid mikrorummet så hittar du nästan alltid någon från styrelsen där!"
+
+  councils: Sektionens utskott
+  councils_first: "F-sektionens verksamhet sträcker sig över flera stora områden.  F-sektionen har några olika utskott samt en grupp som kallas kärnstyrelsen som alla har hand om var sitt område. Varje sådant utskott leds av en utskottsordförande och de flesta utskottsordförandena sitter med i sektionens styrelse. Styrelsen tar beslut i frågor som rör hela sektionen centralt. På den här sidan kan du läsa om de olika utskotten och deras verksamhet."
+  councils_second: "Men man måste inte vara med i ett utskott för att göra något på sektionen. Du kan även starta upp projekt inom sektionen om du har en all idé du hade velat genomföra. Känner du att du behöver hjälp eller inte vet hur du ska gå till väga?"
+  councils_third: "Kontakta då "
+
+  today: today
+
+  alert:
+    error: Error
+

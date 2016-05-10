@@ -1,0 +1,6 @@
+sv:
+  helper:
+    cafe:
+      worker:
+        already_working_same_time: Du arbetar redan ett pass vid samma tid.
+        you_are_working: Du är uppskriven som jobbare på passet.

@@ -1,19 +1,4 @@
 sv:
   nomination:
-    a_fitting_person: Nominera någon som du tror skulle passa bra på en post.
-    before: Nomineringar har inte öppnat ännu.
-    closed: Nomineringar har stängt.
-    do: Nominera
-    for: Nominering till
     index: Alla nomineringar
-    mail_will_be_sent: Ett mejl skickas till den nominerade personen.
     new: Ny nominering
-    status_after: Det går endast att nominera till poster som inte väljs på Terminsmötet.
-    thank_you: Tack för din Nominering.
-    mailer:
-      accept_before_closing: "Tänk på att du måste tacka ja, kandidera, innan valet för posten stänger, %{date}."
-      sincerely: Mvh, Valberedningen
-      subject: Du har blivit nominerad till en post på Fsektionen.se
-      via_web: Du kandiderar till posten via sektionens webbsida
-      with_motivation: Med motiveringen
-      you_have_been_nominated: Du har blivit nominerad till sektionsposten

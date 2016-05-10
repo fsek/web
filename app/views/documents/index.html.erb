@@ -1,19 +1,19 @@
-<%= provide(:title, t('document.title')) %>
 <div class="headline">
-  <h3><%= t('document.title') %></h3>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 <div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
   <%= document_dropdown_button(collection: @documents.categories,
                                current: @documents.current_category) %>
   <button class="wg-external-submit-button btn secondary" data-grid-name="grid">
-    <%= t('wice_grid.filter') %>
+    <%= t('.filter') %>
   </button>
   <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
-    <%= t('wice_grid.reset_filter') %>
+    <%= t('.reset_filter') %>
   </button>
   <% if can_administrate?(:edit, Document) %>
     <hr>
-    <%= link_to(t('document.admin.index'), admin_documents_path, class: 'btn secondary') %>
+    <%= link_to(t('.administrate'), admin_documents_path,
+                                    class: 'btn secondary') %>
   <% end %>
 </div>
 
@@ -28,5 +28,5 @@
     g.column(name: Document.human_attribute_name(:updated_at), attribute: 'updated_at',
              filter: false)
   end -%>
-  <%= simple_format(t('document.filter_explanation')) %>
+  <%= simple_format(t('.filter_explanation')) %>
 </div>

@@ -1,0 +1,6 @@
+sv:
+  admin:
+    cafe_shifts:
+      new:
+        title: Nytt cafépass
+        admin_all_shifts: Administrera cafépass

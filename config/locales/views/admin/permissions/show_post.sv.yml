@@ -1,0 +1,6 @@
+sv:
+  admin:
+    permissions:
+      show_post:
+        edit_post: Redigera post
+        all_permissions: Visa alla rättigheter
