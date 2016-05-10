@@ -1,0 +1,5 @@
+sv:
+  admin:
+    permissions:
+      index:
+        title: 'Test'

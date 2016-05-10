@@ -1,9 +1,9 @@
 <div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
   <div class="headline">
-    <h3><%= t('menu.new') %></h3>
+    <h3><%= title(t('.title')) %></h3>
   </div>
 
   <%= render('form') %>
   <hr>
-  <%= link_to(t('menu.index'), menus_path, class: 'btn secondary') %>
+  <%= link_to(t('.all_menus'), menus_path, class: 'btn secondary') %>
 </div>

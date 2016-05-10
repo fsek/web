@@ -5,7 +5,7 @@
   </head>
   <body>
     <h3> <%= "#{t(:hello)} #{@candidate.user}" %></h3>
-    <p><%= "#{t('candidate.mailer.you_have_candidated')} #{@candidate.post}." %></p>
+    <p><%= "#{t('.you_have_candidated')} #{@candidate.post}." %></p>
 
     <% if @candidate.post.elected_by == Post::GENERAL %>
         <%= markdown(@candidate.election.candidate_mail) %>
@@ -14,12 +14,12 @@
       <%= markdown(@candidate.election.candidate_mail_star) %>
     <% end %>
     <p>
-      <%= t('candidate.mailer.election_closes_at',
+      <%= t('.election_closes_at',
             date: l(@candidate.election.post_closing(@candidate.post))) %>
       <br>
       <%= link_to(@candidate.p_url, @candidate.p_url) %>
     </p>
 
-    <%= simple_format(t('candidate.mailer.sincerely')) %>
+    <%= simple_format(t('.sincerely')) %>
   </body>
 </html>

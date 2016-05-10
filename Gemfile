@@ -5,6 +5,7 @@ ruby '2.3.0'
 
 gem 'rails', '4.2.5.2'
 
+
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 gem 'cancancan'
@@ -31,6 +32,7 @@ gem 'pagedown-bootstrap-rails'
 gem 'prawn-rails'
 gem 'redcarpet'
 gem 'rollbar', '~>2.8.3'
+gem 'routing-filter', '~> 0.5.1'
 gem 'sass-rails'
 gem 'select2-rails'
 gem 'simple_form'

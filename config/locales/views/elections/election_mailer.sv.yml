@@ -1,0 +1,14 @@
+sv:
+  election_mailer:
+    candidate_email:
+      election_closes_at: "Valet för posten stänger %{date}, fram tills dess kan kandidaturen redigeras på:"
+      sincerely: Mvh, Valberedningen
+      subject_candidated: Du har kandiderat till en post på Fsektionen.se
+      you_have_candidated: Du har kandiderat till sektionsposten
+    nominate_email:
+      accept_before_closing: "Tänk på att du måste tacka ja, kandidera, innan valet för posten stänger, %{date}."
+      sincerely: Mvh, Valberedningen
+      subject_nominated: Du har blivit nominerad till en post på Fsektionen.se
+      via_web: Du kandiderar till posten via sektionens webbsida
+      with_motivation: Med motiveringen
+      you_have_been_nominated: Du har blivit nominerad till sektionsposten

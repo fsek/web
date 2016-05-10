@@ -1,13 +1,25 @@
 sv:
+  menus:
+    edit:
+      title: Redigera meny
+      destroy: Förinta meny
+      index: Alla menyer
+
+    index:
+      title: Alla menyer
+      new: Ny meny
+      filter: Filtrera menyer
+      reset_filter: Återställ filter
+
+    new:
+      title: Ny meny
+      all_menus: Alla menyer
+
   menu:
     about: Om oss
-    companies: För företag
-    contact: Kontakt
     destroy: Förinta meny
     edit: Redigera meny
     farad: Arbetsmarknadsdagar
-    guild: Sektionen
     index: Alla menyer
-    members: För medlemmar
     new: Ny meny
     show: Visa meny

@@ -41,7 +41,7 @@ class Admin::CafeShiftsController < Admin::BaseController
     @id = shift.id
     shift.destroy!
     respond_to do |format|
-      format.html { redirect_to admin_cafe_shifts_path, noticnotice: alert_destroy(CafeShift) }
+      format.html { redirect_to admin_cafe_shifts_path, notice: alert_destroy(CafeShift) }
       format.js
     end
   end

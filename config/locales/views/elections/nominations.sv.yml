@@ -1,0 +1,8 @@
+sv:
+  elections:
+    nominations:
+      new:
+        a_fitting_person: Nominera någon som du tror skulle passa bra på en post.
+        mail_will_be_sent: Ett mejl skickas till den nominerade personen.
+        nominate_for: Nominera till %{election}
+        show_election: Visa val

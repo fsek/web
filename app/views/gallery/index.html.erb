@@ -1,20 +1,19 @@
-<%= title(t('gallery.title')) %>
 <div class="headline headline-md">
   <h1>
-    <%= t('gallery.title') %> - <%= @year %>
+    <%= title(%(#{t('.title')} - #{@year})) %>
   </h1>
 </div>
 <div class="col-md-2 col-xs-12">
   <% if @policy.present? %>
     <%= link_to( document_path(@policy), target: 'blank_p', class: 'btn primary') do %>
-      <%= fa_icon('paperclip') %> <%= t('gallery.policy') %>
+      <%= fa_icon('paperclip') %> <%= t('.policy') %>
     <% end %>
   <% end %>
 
   <% if @all_years.present? %>
     <div class="dropdown margin-bottom-20">
       <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <%= t('gallery.other_years') %>
+        <%= t('.other_years') %>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="oldies">

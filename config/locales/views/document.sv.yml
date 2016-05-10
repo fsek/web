@@ -1,11 +1,8 @@
 sv:
-  document:
-    admin:
-      index: Administrera dokument
-    destroy: Förinta dokument
-    edit: Redigera dokument
-    filter_explanation: Genom att fylla i fälten under rubrikerna kan dokumenten filtreras
-    index: Alla dokument
-    new: Nytt dokument
-    show: Visa dokument
-    title: Dokument
+  documents:
+    index:
+      administrate: Administrera dokument
+      filter: Filtrera
+      filter_explanation: Genom att fylla i fälten under rubrikerna kan dokumenten filtreras
+      reset_filter: Återställ filter
+      title: Dokument

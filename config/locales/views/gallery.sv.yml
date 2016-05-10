@@ -5,12 +5,8 @@ sv:
     destroy_images: Förinta alla bilder
     download: Ladda ner bild
     old: Gamla bildgalleriet
-    other_years: Andra år
-    photographers: Fotografer
-    policy: Policy för bilder
-    share: Dela
-    title: Bildgalleri
     uploaded: Uppladdade
+
   album:
     destroy: Förinta album
     edit: Redigera album

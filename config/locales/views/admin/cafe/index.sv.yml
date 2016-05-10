@@ -1,0 +1,12 @@
+sv:
+  admin:
+    cafe:
+      index:
+        back_to_userview: Tillbaka till vanlig vy
+        ladybug: Nyckelpiga
+        overview: Översikt
+        setup_shift: Skapa pass för dag eller vecka
+        setup_single_shift: Skapa enskilt pass
+        shift_other_date: Sök från annat datum
+        shift_with_workers: Visar alla pass som har jobbare
+        title: Administrera Hilbert Café

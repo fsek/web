@@ -1,12 +1,11 @@
-<% provide(:title, t('cafe.title')) %>
 <div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
   <div class="headline">
-    <h2><%= %(#{CafeShift.model_name.human} - ID #{@cafe_view.shift.id} - #{l(@cafe_view.shift.start, format: '%A')}) %></h2>
+    <h2><%= %(#{title(CafeShift.model_name.human)} - ID #{@cafe_view.shift.id} - #{l(@cafe_view.shift.start, format: '%A')}) %></h2>
   </div>
 
   <% # Renders table for shift and worker form %>
   <%= render '/cafe_shifts/shift_table', cafe_view: @cafe_view %>
 
   <hr>
-  <%= link_to(t('cafe.title'), cafe_path, data: { no_turbolink: true }, class: 'btn secondary') %>
+  <%= link_to(t('.back_to_hilbert'), cafe_path, data: { no_turbolink: true }, class: 'btn secondary') %>
 </div>

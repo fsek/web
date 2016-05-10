@@ -118,7 +118,8 @@ class ApplicationController < ActionController::Base
       end
     end
     I18n.locale = locale
-    redirect_to(:back) if params[:locale]
+    Rails.application.routes.default_url_options[:locale]= I18n.locale
+    #redirect_to(:back) if params[:locale]
   end
 
   def referring_action

@@ -1,14 +1,13 @@
-<% provide(:title, t('faq.title')) %>
-<% provide(:description, t('faq.description')) %>
+<% description(t('.description')) %>
 
 <div class="headline">
-  <h1><%= t('faq.title') %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-2 col-sm-12">
-  <%= link_to(t('faq.ask'), new_faq_path, class: 'btn primary') %>
+  <%= link_to(t('.ask_question'), new_faq_path, class: 'btn primary') %>
   <% if can_administrate?(:index, Faq) %>
-    <%= link_to(t('faq.admin'), admin_faqs_path, class: 'btn secondary') %>
+    <%= link_to(t('.administrate'), admin_faqs_path, class: 'btn secondary') %>
   <% end %>
 </div>
 
@@ -30,7 +29,7 @@
           <div class="panel-body">
             <%= markdown(faq.answer) %>
             <% if can_administrate?(:edit, faq) %>
-              <%= link_to(t('faq.edit'), edit_admin_faq_path(faq), class: 'btn primary pull-right') %>
+              <%= link_to(t('.edit_question'), edit_admin_faq_path(faq), class: 'btn primary pull-right') %>
             <% end %>
           </div>
         </div>
