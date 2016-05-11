@@ -8,7 +8,6 @@ RSpec.feature 'visitor visits paths' do
     documents: [:index, :show],
     elections: [:index],
     gallery: [:index],
-    menus: [:index, :new],
     news: [:index, :show],
     pages: [:show],
     rents: [:main, :index, :new],
@@ -25,7 +24,7 @@ RSpec.feature 'visitor visits paths' do
 
   paths.each do |key, value|
     value.each do |v|
-      Steps %(Controller: #{key}, action: #{v}) do
+      scenario %(controller: #{key}, action: #{v}) do
         if v == :show || v == :edit
           resource = create(key.to_s.split('/').last.singularize.to_sym)
           page.visit url_for(controller: key, action: v, id:
