@@ -1,13 +1,13 @@
 <div class="col-md-10 col-md-offset-1 col-sm-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('election.edit')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
 
   <%= render '/admin/elections/text_form', election: @election %>
   <hr>
-  <%= link_to(t('election.show'), elections_path, class: 'btn secondary') %>
-  <%= link_to(t('election.edit'), admin_election_path(@election), class: 'btn secondary') %>
-  <%= link_to(t('election.index'), admin_elections_path, class: 'btn secondary') %>
+  <%= link_to(t('.show_election'), elections_path, class: 'btn secondary') %>
+  <%= link_to(t('.edit'), admin_election_path(@election), class: 'btn secondary') %>
+  <%= link_to(t('.all_elections'), admin_elections_path, class: 'btn secondary') %>
   <hr>
   <%= render '/admin/elections/email_preview', election: @election %>
 </div>

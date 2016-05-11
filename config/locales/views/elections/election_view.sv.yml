@@ -1,0 +1,8 @@
+sv:
+  election_view:
+    already_closed: Valet har stängt
+    closes_in: 'Stänger om:'
+    opens_in: 'Öppnar om:'
+    posts_can_candidate: Poster som kan sökas
+    posts_cannot_candidate: Poster som inte längre kan sökas
+    posts_will_candidate: Poster som kommer att kunna sökas

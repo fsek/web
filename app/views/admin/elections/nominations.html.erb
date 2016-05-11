@@ -2,15 +2,17 @@
   <div class="row">
   <h1><%= title(models_name(Nomination)) %></h1>
     <%= grid(@nominations_grid) do |g|
-      g.column name: "Post", attribute: "post_id", filter: false do |nomination|
-        nomination.post.title
-      end
-      g.column name: "Namn", attribute: "name", filter: false
-      g.column name: "E-post", attribute: "email", filter: false
-      g.column name: "Skapad:", attribute: "created_at", filter: false do |nomination|
-        nomination.created_at
+      g.column name: model_name(Post), assoc: :post,
+               attribute: 'title', filter: false
+      g.column name: Nomination.human_attribute_name(:name),
+               attribute: 'name', filter: false
+      g.column name: Nomination.human_attribute_name(:email),
+               attribute: 'email', filter: false
+      g.column name: Nomination.human_attribute_name(:created_at),
+               attribute: 'created_at', filter: false do |nomination|
+        l(nomination.created_at)
       end
     end -%>
   </div>
-  <%=link_to('Tillbaka till valet',admin_election_path(@election), class:'btn btn-u')%>
+  <%=link_to(t('.back_to_election'), admin_election_path(@election), class:'btn btn-u')%>
 </div>

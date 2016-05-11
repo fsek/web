@@ -1,9 +1,12 @@
 sv:
-  candidate:
-    time_error: kandidaturer för posten kan inte skapas eller redigeras, har valet stängt?
+  model:
+    candidate:
+      add_user_information: Du måste fylla i dina användaruppgifter
+      time_error: kandidaturer för posten kan inte skapas eller redigeras, har valet stängt?
+      similar_candidate: har redan en likadan kandidatur.
   activerecord:
     models:
-      candidate: 
+      candidate:
         one: Kandidatur
         other: Kandidaturer
     attributes:

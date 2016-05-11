@@ -1,0 +1,20 @@
+sv:
+  elections:
+    index:
+      edit_election: Redigera val
+      green_posts: Grönfärgade fält innebär att posten väljs av studierådet.
+      orange_posts: Orangefärgade fält innebär att posten sitter i styrelsen.
+      star_posts: Poster med antal * har ingen bestämd gräns.
+      x_posts: Poster med antal markerat med (x) anger exakt maximalt antal.
+    no_election:
+      no_information: Just nu finns det ingen information om valet.
+
+
+    administrate: Administrera Val
+    edit_texts: Redigera övriga texter
+    get_in_touch: Ser något konstigt ut eller blir det fel? Hör av dig till
+    new: Nytt val
+    show: Visa val
+    show_as_user: Visa valet (som användare ser det)
+    show_candidates: Visa kandideringar
+    show_nominations: Visa nomineringar

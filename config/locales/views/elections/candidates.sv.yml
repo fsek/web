@@ -1,0 +1,24 @@
+sv:
+  elections:
+    candidates:
+      form:
+        cannot_change_post: Det går inte att byta post, har du valt fel får du ta bort kandidaturen och skapa en ny.
+        destroy: Förinta kandidatur
+        edit_user: Redigera användaruppgifter
+        user_attributes: Se till att dina uppgifter är uppdaterade, annars kan din kandidering inte antas.
+
+      index:
+        edit_candidate: Redigera kandidatur
+        new_candidate: Ny kandidatur
+        no_candidates: Du har inte kandiderat till några poster.
+        show_election: Visa val
+        title: Dina kandidaturer
+        you_have_candidated: Du har kandiderat till
+
+      new:
+        back_to_candidates: Tillbaka till kandidaturer
+        title: Ny kandidatur
+
+      show:
+        all_candidates: Alla kandidaturer
+        title: Kandidatur

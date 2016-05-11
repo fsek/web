@@ -3,7 +3,7 @@
     <div class="panel-heading">
       <h1 class="panel-title">
         <%= fa_icon('tasks') %>
-        <%= title(model_name(Election)) %>
+        <%= title(t('.title')) %>
       </h1>
     </div>
     <table class="table">
@@ -17,7 +17,7 @@
           <th><%= Election.human_attribute_name(:current_election) %></th>
           <th><%= Election.human_attribute_name(:updated_at) %></th>
           <th>
-            <%= link_to(t('election.new'),
+            <%= link_to(t('.new_election'),
                         new_admin_election_path, class: 'btn secondary small') %>
           </th>
         </tr>

@@ -11,13 +11,13 @@
   <%= f.button :submit %>
 
   <% if election.persisted? %>
-    <%= link_to(t('election.edit_texts'),
+    <%= link_to(t('.edit_texts'),
                 edit_admin_election_path(election),
                 class: 'btn secondary') %>
     <% if can_administrate? :manage, :all %>
-      <%= link_to(t('election.destroy'), admin_election_path(election),
+      <%= link_to(t('.destroy'), admin_election_path(election),
                   class: 'btn danger pull-right',
-                  data: { confirm: t('election.confirm_delete')},
+                  data: {confirm: t('.confirm_destroy')},
                   method: :delete) %>
     <% end %>
   <% end %>

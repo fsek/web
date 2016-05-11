@@ -10,7 +10,7 @@ RSpec.describe Candidate, type: :model do
     it do
       Candidate.new.should validate_uniqueness_of(:post_id).
         scoped_to(:user_id, :election_id).
-        with_message(I18n.t('candidate.similar_candidate')).
+        with_message(I18n.t('model.candidate.similar_candidate')).
         on(:create)
     end
   end
