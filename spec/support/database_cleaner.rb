@@ -1,21 +1,18 @@
-# encoding: UTF-8
 require 'database_cleaner'
 
 RSpec.configure do |config|
+  # Cleans out database before each test suite is run
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:deletion)
-  end
 
+  # Use transactions for normal tests
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
   end
 
-  config.before(:each, :js => true) do
-    DatabaseCleaner.strategy = :deletion
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each) do
