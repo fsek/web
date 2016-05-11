@@ -13,7 +13,7 @@
   <%= f.input :group %>
   <%= f.button :submit %>
   <% if cafe_shift.cafe_worker.persisted? %>
-    <%= link_to(t('cafe_worker.destroy'),
+    <%= link_to(t('.destroy'),
                 cafe_shift_cafe_worker_path(cafe_shift, cafe_shift.cafe_worker),
                 method: :delete, class: 'btn danger pull-right') %>
   <% end %>

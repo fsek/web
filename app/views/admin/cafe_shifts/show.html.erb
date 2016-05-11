@@ -25,12 +25,12 @@
   <hr>
   <%= render('admin/cafe_workers/form', cafe_view: @cafe_view) %>
   <hr>
-  <%= link_to(t('cafe_shift.destroy'), admin_cafe_shift_path(@cafe_view.shift),
+  <%= link_to(t('.destroy'), admin_cafe_shift_path(@cafe_view.shift),
                                       method: :delete,
                                       class: 'btn danger pull-right') %>
 
-  <%= link_to(t('cafe_shift.admin_index'), admin_cafe_shifts_path,
+  <%= link_to(t('.administrate'), admin_cafe_shifts_path,
                                      class: 'btn secondary') %>
-  <%= link_to(t('cafe_shift.edit'), edit_admin_cafe_shift_path(@cafe_view.shift),
+  <%= link_to(t('.edit'), edit_admin_cafe_shift_path(@cafe_view.shift),
                                     class: 'btn secondary') %>
 </div>

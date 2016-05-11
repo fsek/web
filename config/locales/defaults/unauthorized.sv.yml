@@ -4,17 +4,22 @@ sv:
     manage:
       all: Inte auktoriserad för att %{action} %{subject}.
       user: "Inte auktoriserad för att hantera användarkonton."
+
     update:
       project: "Inte tillåten att uppdatera projektet."
       rent: Bilbokning är endast till för sektionens medlemmar.
+
     new:
       candidate: Kandideringar till val är endast för medlemmar vid sektionen.
       nomination: Nomineringar till val är endast för medlemmar vid sektionen.
       rent: Bilbokning är endast till för sektionens medlemmar.
+
     show:
       album: Bildgalleriet är endast till för sektionens medlemmar.
       candidate: Kandideringar till val är endast för medlemmar vid sektionen.
       rent: Bilbokning är endast till för sektionens medlemmar.
+      cafe_shift: Måste vara inloggad för att skriva upp dig för att arbeta i Hilbert Café.
+
     index:
       candidate: Kandideringar till val är endast för medlemmar vid sektionen.
       rent: Bilbokning är endast till för sektionens medlemmar.

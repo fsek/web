@@ -1,7 +1,7 @@
 sv:
   add: Lägg till
   add_attr: Lägg till %{attr}
-  admin: Administratör
+  administrator: Administratör
   administration: Administration
   back: Tillbaka
   close: Stäng

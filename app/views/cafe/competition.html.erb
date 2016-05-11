@@ -1,15 +1,17 @@
-<%= provide(:title, t('cafe.title')) %>
 <div class="headline">
-  <h2>
-    <%= %(#{t('cafe.title')} - #{t('datetime.prompts.year')}: #{@competition.year},)%>
-    <%= %(#{CafeShift.human_attribute_name(:lp)}: #{@competition.lp})%>
-  </h2>
+  <h1>
+    <%= title(t('.title')) %>
+    <small>
+      <%= %(#{t('datetime.prompts.year')}: #{@competition.year},)%>
+      <%= %(#{CafeShift.human_attribute_name(:lp)}: #{@competition.lp})%>
+    </small>
+  </h1>
 </div>
 
 <div class="col-md-3 col-sm-12 cafe competition margin-bottom-20">
   <div class="dropdown">
     <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <%= t('cafe.other_years') %>
+      <%= t('.other_years') %>
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="oldies">
@@ -22,7 +24,7 @@
   </div>
   <div class="dropdown margin-bottom-20">
     <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <%= t('cafe.other_lps') %>
+      <%= t('.other_lps') %>
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="oldies">
@@ -34,24 +36,24 @@
     </ul>
   </div>
   <div class="headline">
-    <h4><%= t('cafe.chosen_study_period') %></h4>
+    <h4><%= t('.chosen_study_period') %></h4>
   </div>
   <span class="worker">
-    <%= t('cafe.worked_shifts') %>:
+    <%= t('.worked_shifts') %>:
   </span>
   <span class="worker count right">
     <%= @competition.count %>
   </span>
   <br>
   <span class="worker">
-    <%= t('cafe.working_users') %>:
+    <%= t('.working_users') %>:
   </span>
   <span class="worker count right">
     <%= @competition.user_count %>
   </span>
   <br>
   <span class="worker">
-    <%= t('cafe.free_shifts') %>:
+    <%= t('.free_shifts') %>:
   </span>
   <span class="worker count right">
     <%= @competition.free_shifts[:count] %>
@@ -59,7 +61,7 @@
 
   <% if @competition.free_shifts[:free].present? %>
     <hr>
-    <%= link_to(t('cafe.first_free_shift'),
+    <%= link_to(t('.first_free_shift'),
                 cafe_shift_path(@competition.free_shifts[:free]),
                 class: 'btn primary') %>
             <% end %>
@@ -67,15 +69,15 @@
 
 <div class="col-md-9 col-sm-12 cafe competition">
   <div class="headline">
-    <h3><%= t('cafe.highscore') %></h3>
+    <h3><%= t('.highscore') %></h3>
   </div>
   <% unless @competition.has_highscore? %>
-    <h3><%= t('cafe.highscore_missing') %></h3>
+    <h3><%= t('.highscore_missing') %></h3>
   <% else %>
   <table class="table">
     <tr>
       <th class="worker"><%= model_name(User) %></th>
-      <th class="score"><%= t('cafe.shifts_worked') %></th>
+      <th class="score"><%= t('.shifts_worked') %></th>
     </tr>
     <% @competition.highscore.each do |user| %>
       <tr>
@@ -95,12 +97,12 @@
 <% end %>
 
 <% unless @competition.has_highscore_group? %>
-  <h3><%= t('cafe.highscore_missing') %></h3>
+  <h3><%= t('.highscore_missing') %></h3>
 <% else %>
   <table class="table">
     <tr>
       <th class="worker"><%= model_name(Council) %></th>
-      <th class="score"><%= t('cafe.shifts_worked') %></th>
+      <th class="score"><%= t('.shifts_worked') %></th>
     </tr>
     <% @competition.highscore_group.each do |group| %>
       <tr>
