@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Document, type: :model do
   describe 'valid factory' do
     it 'has valid factory' do
-      build(:document).should be_valid
+      build_stubbed(:document).should be_valid
     end
   end
 

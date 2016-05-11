@@ -96,11 +96,11 @@ class RentValidator < ActiveModel::Validator
   end
 
   def overlap(record)
-    !record.has_council? && record.overlap.try(:count) > 0
+    !record.has_council? && !record.overlap.empty?
   end
 
   def overlap_council(record)
-    record.council.present? && record.overlap.present? && record.overlap.councils.count > 0
+    record.council.present? && record.overlap.present? && !record.overlap.councils.empty?
   end
 
   def overlap_overbook(record)

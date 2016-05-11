@@ -9,19 +9,19 @@ RSpec.describe CafeShift, type: :model do
 
   describe 'ActiveModel validations' do
     # Basic validations
-    it { shift.should validate_presence_of(:start) }
-    it { shift.should validate_presence_of(:pass) }
-    it { shift.should validate_presence_of(:lp) }
-    it { shift.should validate_presence_of(:lv) }
-    it { shift.should validate_inclusion_of(:pass).in_range(1..4) }
-    it { shift.should validate_inclusion_of(:lp).in_range(1..4) }
-    it { shift.should validate_inclusion_of(:lv).in_range(1..20) }
+    it { CafeShift.new.should validate_presence_of(:start) }
+    it { CafeShift.new.should validate_presence_of(:pass) }
+    it { CafeShift.new.should validate_presence_of(:lp) }
+    it { CafeShift.new.should validate_presence_of(:lv) }
+    it { CafeShift.new.should validate_inclusion_of(:pass).in_range(1..4) }
+    it { CafeShift.new.should validate_inclusion_of(:lp).in_range(1..4) }
+    it { CafeShift.new.should validate_inclusion_of(:lv).in_range(1..20) }
   end
 
   describe 'ActiveRecord associations' do
     # Associations
-    it { shift.should have_one(:user) }
-    it { shift.should have_one(:cafe_worker) }
+    it { CafeShift.new.should have_one(:user) }
+    it { CafeShift.new.should have_one(:cafe_worker) }
   end
 
   # This tests makes sure that dates are formatted into ISO8601 for
