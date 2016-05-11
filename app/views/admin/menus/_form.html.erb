@@ -1,4 +1,4 @@
-<%= simple_form_for(@menu) do |f| %>
+<%= simple_form_for([:admin, menu]) do |f| %>
   <%= f.input :location, collection: [[t('menu.guild'), Menu::GUILD],
                                       [t('menu.members'), Menu::MEMBER],
                                       [t('menu.companies'), Menu::COMPANY],
