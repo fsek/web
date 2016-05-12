@@ -69,13 +69,19 @@
 
     <% if can_administrate? :index, Rent %>
       <li class="dropdown-submenu">
-        <%= link_to(model_name(Rent),admin_rents_path)%>
+        <%= link_to(model_name(Rent), admin_rents_path)%>
+      </li>
+    <% end %>
+
+    <% if can_administrate? :index, Tool %>
+      <li class="dropdown-submenu">
+        <%= link_to(model_name(Tool), admin_tools_path)%>
       </li>
     <% end %>
 
     <% if can_administrate? :index, Election %>
       <li class="dropdown-submenu">
-        <%= link_to(model_name(Election),admin_elections_path)%>
+        <%= link_to(model_name(Election), admin_elections_path)%>
       </li>
     <% end %>
 

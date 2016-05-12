@@ -1,7 +1,0 @@
-sv:
-  tool_renting:
-    title: Låna Verktyg
-    edit: Redigera Lån
-    new: Nytt Lån
-    destroy: Ta bort Lån
-    already_returned: Redan returnerad

@@ -11,7 +11,7 @@
       <%= f.input :image_upload, as: :file, error: false, input_html: { multiple: true } %>
       <% if @album.errors[:image_upload].any? %>
         <div class="gallery has-error">
-          <%= t('gallery.already_uploaded') %><br>
+          <%= t('.already_uploaded') %><br>
           <%= @album.errors[:image_upload] %>
         </div>
         <hr>

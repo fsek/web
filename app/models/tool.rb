@@ -14,7 +14,7 @@ class Tool < ActiveRecord::Base
   def total_greater_than_rented
     rented = tool_rentings.where(returned: false).size
     if total.present? && total < rented
-      errors.add(:total, 'not allowed to change total below rented tools')
+      errors.add(:total, I18n.t('model.tool.not_allowed_change_total'))
     end
   end
 end

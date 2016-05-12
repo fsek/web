@@ -1,23 +1,23 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('council.edit')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
 
   <%= render 'form', council: @council %>
   <hr>
-  <%= link_to(t('post.new'), new_admin_council_post_path(@council),
-                             class: 'btn secondary') %>
-  <%= link_to(t('post.index'), admin_council_posts_path(@council),
+  <%= link_to(t('.new_post'), new_admin_council_post_path(@council),
+                              class: 'btn secondary') %>
+  <%= link_to(t('.all_posts'), admin_council_posts_path(@council),
                                class: 'btn secondary') %>
 
   <% if @council.page.present?%>
-    <%= link_to(t('page.edit'), edit_admin_page_path(@council.page),
-                                class: 'btn secondary') %>
+    <%= link_to(t('.edit_page'), edit_admin_page_path(@council.page),
+                                 class: 'btn secondary') %>
   <% end %>
   <hr>
-  <%= link_to(t('council.show'), council_path(@council),
-                                 class: 'btn secondary') %>
+  <%= link_to(t('.show_council'), council_path(@council),
+                                  class: 'btn secondary') %>
 
-  <%= link_to(t('council.admin_title'), admin_councils_path,
-                                  class: 'btn secondary')%>
+  <%= link_to(t('.administrate_councils'), admin_councils_path,
+                                           class: 'btn secondary')%>
 </div>

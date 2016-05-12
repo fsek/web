@@ -1,4 +1,10 @@
 sv:
+  pages:
+    show:
+      new_element: Nytt sidelement
+      element_index: Alla sidelement
+      edit_page: Redigera sida
+
   page:
     admin_title: Administrera sidor
     destroy: Förinta sida

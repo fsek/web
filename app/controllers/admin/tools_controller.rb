@@ -7,7 +7,7 @@ class Admin::ToolsController < Admin::BaseController
 
   def show
     @tool = Tool.find(params[:id])
-    @rent = ToolRenting.where(tool_id: params[:id], returned: false)
+    @rent = @tool.tool_rentings.where(returned: false)
   end
 
   def create

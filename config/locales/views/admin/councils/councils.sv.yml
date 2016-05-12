@@ -1,0 +1,23 @@
+sv:
+  admin:
+    councils:
+      form:
+        description_hint: Denna text kommer synas vid t.ex. länkar och vid sökningar i sökmotorer.
+        no_posts: Detta utskott saknar poster, lägg till en post för att välja utskottsordförande.
+
+      edit:
+        administrate_councils: Administrera utskott
+        all_posts: Alla poster
+        edit_page: Redigera sida
+        new_post: Ny post
+        show_council: Visa utskott
+        title: Redigera utskott
+
+      index:
+        title: Administrera utskott
+        new_council: Nytt utskott
+        council_start_page: Utskottsida
+
+      new:
+        title: Nytt utskott
+        administrate_councils: Administrera utskott

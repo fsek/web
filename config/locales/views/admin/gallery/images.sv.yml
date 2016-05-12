@@ -1,0 +1,7 @@
+sv:
+  admin:
+    gallery:
+      images:
+        download_image: Ladda ner bild
+        destroy_image: Förinta bild
+        administrate_album: Administrera album

@@ -1,13 +1,13 @@
 <div id="<%= dom_id(post) %>" class="collapsed">
   <div class="funny-boxes funny-boxes-left-orange left-text-align">
-    <%= link_to(t(:hide), collapse_posts_path, remote: true,
-                          class: 'btn secondary pull-right',
-                          method: :patch) %>
+    <%= link_to(t('.hide'), collapse_posts_path, remote: true,
+                            class: 'btn secondary pull-right',
+                            method: :patch) %>
     <% if election && election.can_candidate?(post) %>
-      <%= link_to(t('candidate.do'), new_candidate_path(post: post.id.to_s),
-                                     class: 'btn primary pull-right') %>
-      <%= link_to(t('nomination.do'), new_nominations_path(post: post.id.to_s),
-                                      class: 'btn primary pull-right') %>
+      <%= link_to(t('.candidate'), new_candidate_path(post: post.id.to_s),
+                                   class: 'btn primary pull-right') %>
+      <%= link_to(t('.nominate'), new_nominations_path(post: post.id.to_s),
+                                  class: 'btn primary pull-right') %>
     <% end %>
     <h2><%= post.to_s %></h2>
 
@@ -42,7 +42,7 @@
         <li>
           <%= fa_icon('cog') %>
           <%= Post.human_attribute_name(:elected_by) %>:
-          <%= t("post.#{post.elected_by}") %>
+          <%= t(".#{post.elected_by}") %>
         </li>
       <% end %>
     </ul>

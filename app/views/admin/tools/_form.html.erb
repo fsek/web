@@ -5,8 +5,9 @@
     <%= f.input :total, as: :integer %>
     <%= f.button :submit %>
     <% if tool.persisted? %>
-      <%= link_to(t('tool.destroy'), admin_tool_path(tool),
-                  method: :delete, class: 'btn danger pull-right') %>
+      <%= link_to(t('.destroy'), admin_tool_path(tool),
+                                 method: :delete,
+                                 class: 'btn danger pull-right') %>
     <% end %>
   <% end %>
 <% end %>

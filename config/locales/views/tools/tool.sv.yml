@@ -1,0 +1,11 @@
+sv:
+  tools:
+    index:
+      free: Lediga verktyg
+      title: Sektionens verktyg
+
+    show:
+      free: Lediga verktyg
+      rented: Lånade
+      return_date: Retur
+      title: Sektionens verktyg

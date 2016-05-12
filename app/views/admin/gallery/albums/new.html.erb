@@ -1,9 +1,10 @@
 <div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('album.new')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
-  <%= render 'form'%>
+
+  <%= render 'form', album: @album %>
   <hr>
-  <%= link_to(t('gallery.title'), admin_gallery_albums_path,
-                                  class: 'btn secondary') %>
+  <%= link_to(t('.administrate_albums'), admin_gallery_albums_path,
+                                         class: 'btn secondary') %>
 </div>

@@ -1,8 +1,7 @@
-<% provide(:title, @council.to_s) %>
-<% provide(:description, @council.description) %>
+<% description(@council.description) %>
 
 <div class="headline">
-  <h1><%= @council.to_s %></h1>
+  <h1><%= title(@council.to_s) %></h1>
   <span class="council dropdown">
     <%= render('/elements/dropdown_button',
                collection: @councils,

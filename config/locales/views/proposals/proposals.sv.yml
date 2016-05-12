@@ -1,0 +1,12 @@
+sv:
+  proposals:
+    form:
+      title: Motionsmaskin
+      i_am_proposal_machine: Jag är en motionsmaskin. Här kan du enkelt fylla i dina åsikter så gör jag en fin motion åt dig.
+      do_not_forget_to_copy: Glöm inte att kopiera din text då och då så att den inte försvinner om du skulle råka ladda om sidan.
+      pleas: Yrkanden
+      plea_more: Yrka mer!
+      plea_less: Yrka mindre!
+      create_motion: Skapa motion!
+      body: Brödtext
+

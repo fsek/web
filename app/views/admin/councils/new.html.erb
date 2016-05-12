@@ -1,11 +1,11 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('council.new')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
 
   <%= render 'form', council: @council %>
 
   <hr>
-  <%= link_to(t('council.admin_title'), admin_councils_path,
-                                        class: 'btn secondary')%>
+  <%= link_to(t('.administrate_councils'), admin_councils_path,
+                                           class: 'btn secondary')%>
 </div>

@@ -1,6 +1,5 @@
-<% provide(:title, model_name(Council)) %>
 <div class="headline">
-  <h1><%= models_name(Council) %></h1>
+<h1><%= title(t('.title')) %></h1>
   <span class="council dropdown">
     <%= render('/elements/dropdown_button',
                collection: @councils,
@@ -11,11 +10,11 @@
 </div>
 
 <div class="col-md-8 col-md-offset-2 col-sm-12">
-  <%= simple_format(t(:councils_first)) %>
-  <%= simple_format(t(:councils_second)) %>
+  <%= simple_format(t('.first_paragraph')) %>
+  <%= simple_format(t('.second_paragraph')) %>
 
   <p>
-    <%= t(:councils_third) %>
+    <%= t('.then_contact') %>
     <%= contact_from_slug(slug: 'viceordf') %>
   </p>
 </div>
