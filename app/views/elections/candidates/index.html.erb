@@ -1,17 +1,16 @@
-<%= provide(:title, @candidate_view.election) %>
 <div class="headline">
-  <h2><%= t('candidate.index') %></h2>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-2 col-sm-12">
-  <%= link_to(t('candidate.new'), new_candidate_path, class: 'btn primary') %>
-  <%= link_to(t('election.show'), elections_path, class: 'btn primary') %>
+  <%= link_to(t('.new_candidate'), new_candidate_path, class: 'btn primary') %>
+  <%= link_to(t('.show_election'), elections_path, class: 'btn primary') %>
 </div>
 
 <div class="col-md-10 col-sm-12 election">
   <% if @candidate_view.all.any? %>
     <div class="headline">
-      <h3><%= t('candidate.your_candidates') %></h3>
+      <h3><%= t('.you_have_candidated') %></h3>
     </div>
     <% @candidate_view.all.each do |candidate| %>
       <div class="col-md-4 col-sm-6 col-xs-12 candidate">
@@ -27,11 +26,11 @@
                   format: :short) %>
           </li>
         </ul>
-        <%= link_to(t('candidate.edit'), candidate_path(candidate),
+        <%= link_to(t('.edit_candidate'), candidate_path(candidate),
                                          class: 'btn secondary') %>
       </div>
     <% end %>
   <% else %>
-    <h3><%= t('candidate.no_candidates') %></h3>
+    <h3><%= t('.no_candidates') %></h3>
   <% end %>
 </div>

@@ -8,7 +8,7 @@ class Candidate < ActiveRecord::Base
 
   # Validations
   validates :post_id, uniqueness: { scope: [:user_id, :election_id],
-                                    message: I18n.t('candidate.similar_candidate') }
+                                    message: I18n.t('model.candidate.similar_candidate') }
   validates :post, :user, :election, presence: true
   validate :user_attributes, :check_edit
 
@@ -31,7 +31,7 @@ class Candidate < ActiveRecord::Base
 
   def check_edit
     unless editable?
-      errors.add(:post, I18n.t('candidate.time_error'))
+      errors.add(:post, I18n.t('model.candidate.time_error'))
     end
   end
 
@@ -50,7 +50,7 @@ class Candidate < ActiveRecord::Base
       return true
     end
 
-    errors.add(:user, I18n.t('user.add_information'))
+    errors.add(:user, I18n.t('model.candidate.add_user_information'))
     false
   end
 end

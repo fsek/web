@@ -5,23 +5,23 @@
   </head>
   <body>
     <h3> <%= "#{t(:hello)} #{@nomination.name}" %></h3>
-    <p><%= "#{t('nomination.mailer.you_have_been_nominated')}: #{@nomination.post}." %></p>
+    <p><%= "#{t('.you_have_been_nominated')}: #{@nomination.post}." %></p>
 
     <% if @nomination.motivation.present? %>
       <p>
-        <%= t('nomination.mailer.with_motivation') %>:<br>
+        <%= t('.with_motivation') %>:<br>
         <%= simple_format(@nomination.motivation) %>
       <p>
     <% end %>
 
   <%= markdown(@nomination.election.nominate_mail)%>
 
-  <%= simple_format(t('nomination.mailer.accept_before_closing',
+  <%= simple_format(t('.accept_before_closing',
                       date: l(@nomination.election.post_closing(@nomination.post)))) %>
-  <p><%= t('nomination.mailer.via_web') %>:<br>
+  <p><%= t('.via_web') %>:<br>
 
   <%= link_to(@nomination.candidate_url, @nomination.candidate_url) %>
 
-  <%= simple_format(t('nomination.mailer.sincerely')) %>
+  <%= simple_format(t('.sincerely')) %>
   </body>
 </html>

@@ -1,18 +1,17 @@
-<% provide(:title, model_name(Election)) %>
 <div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
   <div class="headline">
-    <h2><%= %(#{t('nomination.for')} #{@election.title}) %></h2>
+    <h2><%= title(t('.nominate_for', election: @election.title)) %></h2>
   </div>
 
   <div id="nomination-form">
     <div class="margin-bottom-20">
-      <%= simple_format(t('nomination.a_fitting_person')) %>
-      <%= simple_format(t('nomination.mail_will_be_sent')) %>
+      <%= simple_format(t('.a_fitting_person')) %>
+      <%= simple_format(t('.mail_will_be_sent')) %>
     </div>
 
       <%= render 'form', election: @election, nomination: @nomination%>
       <hr>
   </div>
 
-  <%= link_to t('election.show'), elections_path, class: 'btn secondary' %>
+  <%= link_to t('.show_election'), elections_path, class: 'btn secondary' %>
 </div>

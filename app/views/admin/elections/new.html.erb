@@ -1,10 +1,9 @@
-<% provide(:title, model_name(Election)) %>
 <div class="col-md-10 col-md-offset-1 col-xs-12 reg-page">
   <div class="headline">
-    <h2><%= t('election.new') %></h2>
+    <h2><%= title(t('.title')) %></h2>
   </div>
   <%= render 'form', election: @election %>
   <hr>
-  <%= link_to t('election.index'), admin_elections_path, class: 'btn secondary' %><br>
+  <%= link_to t('.all_elections'), admin_elections_path, class: 'btn secondary' %><br>
 </div>
 
