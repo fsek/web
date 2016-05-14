@@ -1,8 +1,9 @@
 <div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('cafe_shift.new')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
   <%= render 'form', cafe_shift: @cafe_shift %>
   <hr>
-  <%= link_to(t(:back), admin_cafe_shifts_path, class: 'btn secondary')%>
+  <%= link_to(t('.admin_all_shifts'), admin_cafe_shifts_path,
+                                      class: 'btn secondary') %>
 </div>

@@ -19,7 +19,7 @@ module CafeHelper
     if worker.present? && worker.errors[:cafe_shift].present?
       content_tag(:span, class: 'cafe danger') do
         safe_join([fa_icon('thumbs-o-down'), ' ',
-                   I18n.t('cafe_worker.already_working_same_time')])
+                   I18n.t('helper.cafe.worker.already_working_same_time')])
       end
     end
   end
@@ -28,7 +28,7 @@ module CafeHelper
     if user == worker.user && worker.persisted?
       content_tag(:span, class: 'cafe working') do
         safe_join([fa_icon('thumbs-o-up'), ' ',
-                   I18n.t('cafe.already_working')])
+                   I18n.t('helper.cafe.worker.you_are_working')])
       end
     end
   end

@@ -1,0 +1,6 @@
+sv:
+  admin:
+    cafe_workers:
+      new:
+        remove_shift: Förinta cafépass
+        administrate: Administrera cafépass

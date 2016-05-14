@@ -1,7 +1,7 @@
 sv:
   activerecord:
     models:
-      cafe_shift: Cafepass
+      cafe_shift: Cafépass
     attributes:
       cafe_shift:
         cafe_worker: Jobbare

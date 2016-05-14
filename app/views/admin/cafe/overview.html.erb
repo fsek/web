@@ -1,10 +1,15 @@
 <div class="headline">
-  <h1><%= title("#{t('cafe.title')} - #{model_name(User)}") %></h1>
+  <h1>
+    <%= title(t('.title'))%>
+    <small>
+      <%= t('.subtitle') %>
+    </small>
+  </h1>
 </div>
 
 <div class="col-md-12">
-<%= simple_format(t('cafe_shift.all_shifts_with_worker'))%>
-  <%= link_to(t('cafe_shift.index'),
+<%= simple_format(t('.shifts_with_workers'))%>
+  <%= link_to(t('.administrate_all'),
               admin_cafe_shifts_path, class: 'btn secondary') %>
 </div>
 <div class="col-md-12">

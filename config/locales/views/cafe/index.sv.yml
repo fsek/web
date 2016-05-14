@@ -1,0 +1,10 @@
+sv:
+  cafe:
+    index:
+      admin: Administrera
+      competition: Tävling
+      green_shift: Grön färg innebär att du jobbar.
+      ladybug: Nyckelpiga
+      orange_shift: Orange färg innebär att passet redan har en jobbare.
+      title: Hilbert Café
+      white_shift: Vit färg innebär att passet inte har någon jobbare.

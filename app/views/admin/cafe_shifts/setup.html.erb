@@ -1,25 +1,25 @@
 <div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('cafe_shift.setup')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
   <ul class="list">
     <li>
       <strong>
-        <%= t('cafe_shift.setup_week') %>
+        <%= t('.week') %>
       </strong><br>
-      <%= t('cafe_shift.setup_week_explanation') %>
+      <%= t('.week_explanation') %>
     </li>
     <li>
       <strong>
-        <%= t('cafe_shift.setup_day') %>
+        <%= t('.day') %>
       </strong><br>
-      <%= t('cafe_shift.setup_day_explanation') %>
+      <%= t('.day_explanation') %>
     </li>
   </ul>
 
-  <%= link_to(t('cafe_shift.single'), new_admin_cafe_shift_path, class: 'btn secondary') %>
+  <%= link_to(t('.single'), new_admin_cafe_shift_path, class: 'btn secondary') %>
   <hr>
   <%= render 'setup_form', cafe_shift: @cafe_shift %>
   <hr>
-  <%= link_to(t(:back), admin_cafe_shifts_path, class: 'btn secondary') %>
+  <%= link_to(t('.back_to_admin'), admin_cafe_shifts_path, class: 'btn secondary') %>
 </div>

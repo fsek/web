@@ -1,0 +1,7 @@
+sv:
+  admin:
+    cafe_shifts:
+      setup_form:
+        week: Vecka
+        day: Dag
+        lv_first: Första läsvecka
