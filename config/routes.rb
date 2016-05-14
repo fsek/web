@@ -82,10 +82,9 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :rents, path: :bilbokning, except: :index do
+    resources :rents, path: :bilbokning do
       collection do
-        get :oversikt, action: :index, as: :overview
-        get '', action: :main, as: :main
+        get :overview, path: :oversikt
         post :check_dates
       end
     end

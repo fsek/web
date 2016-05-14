@@ -1,5 +1,5 @@
 <%= content_for :title do %>
-  <%= Rent.model_name.human %>
+  <%= t('.title') %>
 <% end %>
 
 <%= content_for :greeting do %>
@@ -7,18 +7,18 @@
 <% end %>
 
 <%= content_for :main_content do %>
-  <p><%= t('rent.mailer.booking_status') %> <%= t(%(rent.#{@rent.status})) %>.</p>
+  <p><%= t('.booking_status') %> <%= t(%(model.rent.#{@rent.status})) %>.</p>
   <% if @rent.status == 'denied' %>
     <%= simple_format(Rent.human_attribute_name(:comment)) %>
     <%= simple_format(@rent.comment) %>
-    <%= t('rent.mailer.denied_appeal') %>
+    <%= t('.denied_appeal') %>
   <% end %>
 
   <%= render 'attributes', rent: @rent %>
 <% end %>
 
 <%= content_for :bottom_signature do %>
-  <%= simple_format(t('rent.mailer.signature_questions')) %>
+  <%= simple_format(t('rent_mailer.mailer.answer_with_questions')) %>
   <p><%= t(:sincerely) %>,<br>
-  <%= t('rent.foreman') %></p>
+  <%= t('rent_mailer.mailer.car_foreman') %></p>
 <% end %>

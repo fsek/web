@@ -18,7 +18,7 @@ RSpec.feature 'visits paths' do
     news: [:show],
     pages: [:show],
     proposals: [:form],
-    rents: [:main, :index, :new],
+    rents: [:overview, :index, :new],
     static_pages: [:about, :company_offer, :company_about]
   }
 

@@ -44,9 +44,9 @@ class Rent < ActiveRecord::Base
     if service == true
       str += %(#{Rent.human_attribute_name(:service)} - )
     elsif status.present?
-      str += I18n.t(%(rent.#{status})) + ' - '
+      str += I18n.t(%(model.rent.#{status})) + ' - '
     end
-    str += aktiv == true ? I18n.t('rent.active') : I18n.t('rent.inactive')
+    str += aktiv == true ? I18n.t('model.rent.active') : I18n.t('model.rent.inactive')
     str
   end
 

@@ -1,39 +1,34 @@
-<% provide(:title, model_name(Rent)) %>
-<div class='headline'>
-  <h1><%= model_name(Rent) %></h1>
+<div class='headline headline-md'>
+  <h1><%= title(t('.title')) %></h1>
 </div>
+
 <div class='col-md-3 col-xs-12'>
-  <%= link_to(t('rent.new'), new_rent_path, class: 'btn primary') %>
-  <%= link_to(t('rent.back_to_index'), rents_path, class: 'btn secondary') %>
-  <%= link_to(t('rent.contact'), contacts_path, class: 'btn secondary') %>
+  <% if @faqs.present? %>
+    <div class='row'>
+      <div class='headline headline-md'><h2>F.A.Q.</h2></div>
+      <div class='panel-group acc-v1' id='answered'>
+        <%= render @faqs %>
+        <ul class='list'>
+          <li><%= link_to(t('.ask_question'), new_faq_path(category: 'Bil')) %></li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  <div class='row'>
+    <% if user_signed_in? && current_user.member? %>
+      <%= link_to(t('.overview'), overview_rents_path,
+                  class: 'btn secondary') %>
+    <% end %>
+    <%= link_to(t('.new_rent'),
+                new_rent_path, class: 'btn primary') %>
   <% if @terms.present? %>
-    <%= link_to( document_path(@terms), target: 'blank_p', class: 'btn secondary') do %>
-      <%= fa_icon('paperclip') %> <%= t('rent.terms') %>
+    <%= link_to(document_path(@terms), target: 'blank_p', class: 'btn secondary') do %>
+      <%= fa_icon('paperclip') %> <%= t('.terms') %>
     <% end %>
   <% end %>
-</div>
-<div class='col-md-9 col-xs-12'>
-  <div class='headline headline-md'><h2><%= t('rent.your_bookings')%></h2></div>
-  <div class='panel-group acc-v1 margin-bottom-40' id='answered'>
-    <% @rents.each do |f| %>
-      <div class='panel panel-default'>
-        <%= link_to(%(#collapse#{dom_id(f)}), class: 'accordion-toggle',
-                    data: { toggle: 'collapse', parent: '#answered' }) do %>
-          <div class='panel-heading'>
-            <h4 class='panel-title'>
-              <%= f.p_time %>
-            </h4>
-          </div>
-        <% end %>
-        <div id='collapse<%= dom_id(f) %>' class='panel-collapse collapse'>
-          <div class='panel-body'>
-            <%= render f %>
-            <hr>
-              <%= link_to(t(:edit_attr, attr: model_name(Rent)),
-                          edit_rent_path(f), class: 'btn secondary') %>
-          </div>
-        </div>
-      </div>
-    <% end %>
   </div>
+</div>
+
+<div class='col-md-9 col-xs-12'>
+  <div id='bilkalender'></div>
 </div>

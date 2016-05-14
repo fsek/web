@@ -1,4 +1,4 @@
-<p><%= %(#{t('rent.mailer.attributes')} (ID: #{rent.id})) %>.</p>
+<p><%= %(#{t('.title')} (ID: #{rent.id})) %>.</p>
 <table class="table">
   <tbody>
     <tr>
@@ -35,7 +35,7 @@
     <% end %>
     <tr>
       <td><%= t(:link) %></td>
-      <td><%= link_to(t('rent.your_booking'), rent_url(rent)) %></td>
+      <td><%= link_to(t('.your_booking'), rent_url(rent)) %></td>
     </tr>
   </tbody>
 </table>

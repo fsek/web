@@ -1,12 +1,14 @@
-<%= simple_form_for(@rent, error_method: :to_sentence) do |f| %>
+<%= simple_form_for(rent, error_method: :to_sentence) do |f| %>
   <%= f.association :user, collection: [current_user], include_blank: false %>
-  <% if @rent.errors[:user].present? %>
-    <p><%= link_to(t('user.edit_information'), edit_own_user_path, target: :blank_p) %></p>
+  <% if rent.errors[:user].present? %>
+    <p><%= link_to(t('.edit_user_information'), edit_own_user_path,
+                                                target: :blank_p) %></p>
   <% end %>
-  <%= render 'renter_table', user: @rent.user, rent: @rent %>
 
-  <% if (overlap = @rent.overlap).present? && overlap.count > 0 %>
-    <span class='overlapping-date'><%= t('rent.overlaps_with') %></span>
+  <%= render 'renter_table', user: rent.user, rent: rent %>
+
+  <% if (overlap = rent.overlap).present? && overlap.count > 0 %>
+    <span class='overlapping-date'><%= t('.overlaps_with') %></span>
     <ul class='overlapping-date'>
       <% overlap.each do |o| %>
         <li>
@@ -21,27 +23,27 @@
   <%= f.input :purpose, as: :text, required: true %>
 
   <% if current_user.car_councils && current_user.car_councils.count > 0 %>
-    <strong><%= t('rent.council') %></strong>
+    <strong><%= t('.council_booking') %></strong>
     <ul class="list">
-      <li><%= t('rent.council_only') %></li>
-      <li><%= t('rent.council_overbook') %></li>
+      <li><%= t('.only_for_council') %></li>
+      <li><%= t('.allowed_to_overbook') %></li>
     </ul>
     <%= f.association :council, collection: current_user.car_councils %>
   <% end %>
 
   <% if @terms.present? %>
     <span class="rent terms">
-    <%= t('rent.terms_agree') %>
+    <%= t('.agree_to_terms') %>
     <%= link_to(document_path(@terms), target: 'blank_p') do %>
-      <%= fa_icon('paperclip') %> <%= t('rent.terms') %>.
+      <%= fa_icon('paperclip') %> <%= t('.terms') %>.
     <% end %>
     </span>
     <br>
   <% end %>
 
-  <% if @rent.edit?(current_user) %>
+  <% if rent.edit?(current_user) %>
     <%= f.button :submit %>
   <% else %>
-    <strong><%= t('rent.cannot_edit') %></strong>
+    <strong><%= t('.cannot_edit_rent') %></strong>
   <% end %>
 <% end %>

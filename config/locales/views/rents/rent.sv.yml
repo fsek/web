@@ -1,0 +1,49 @@
+sv:
+  rents:
+    form:
+      allowed_to_overbook: kan boka över en bokning som börjar mer än 5 dagar fram i tiden
+      cannot_edit_rent: Du kan inte längre redigera bokningen
+      council_booking: Utskottsbokning
+      edit_user_information: Redigera användaruppgifter
+      only_for_council: får endast göras åt utskottet
+      overlaps_with: 'Överlappar med:'
+      terms: Bokningsavtal
+
+    index:
+      ask_question: Ställ ny fråga
+      new_rent: Ny bokning
+      overview: Översikt
+      terms: Bokningsavtal
+      title: Bilbokning
+
+    rent:
+      title: Bilbokning
+
+    renter_table:
+      user_field_with_asterix: Fält markerade med * måste ifyllas i användarprofilen
+
+    show:
+      administrate: Administrera bokning
+      all_rents: Alla bilbokningar
+      edit_rent: Redigera bokning
+      title: Bilbokning
+
+    edit:
+      confirm_destroy: Din bokning kommer nu att tas bort
+      destroy: Förinta bilbokning
+      index: Startsida för bilbokning
+      overview: Dina bokningar
+      title: Redigera bilbokning
+
+    overview:
+      title: Bilbokning - Översikt
+      new_rent: Ny bilbokning
+      index: Startsida för bilbokning
+      contact_forman: Kontakta bilförman
+      terms: Bokningsavtal
+      your_rents: Dina bokningar
+      edit_rent: Redigera bilbokning
+
+    new:
+      index: Startsida för bilbokning
+      title: Ny bilbokning

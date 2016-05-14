@@ -16,7 +16,7 @@ SitemapGenerator::Sitemap.create do
   add cafe_path
   add competition_cafe_path
 
-  add main_rents_path
+  add rents_path
 
   add nollning_path
   add nollning_matrix_path

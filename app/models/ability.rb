@@ -13,7 +13,7 @@ class Ability
     can [:index, :feed], CafeShift
     can [:index, :competition], :cafe
     cannot :ladybug, :cafe
-    can :main, Rent
+    can :index, Rent
     cannot [:create, :destroy, :update], Rent
     can :show, Page, public: true, visible: true
     can :avatar, User
@@ -39,7 +39,7 @@ class Ability
     # Only for members of the Guild
     if user.member?
       can [:show], Album
-      can [:show, :index, :new, :create], Rent
+      can [:show, :overview, :new, :create], Rent
       can [:edit, :update, :destroy], Rent, user_id: user.id
       can [:read, :mail], Contact
       can :read, Document

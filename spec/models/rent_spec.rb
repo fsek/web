@@ -16,7 +16,7 @@ RSpec.describe Rent, type: :model do
           rent = build_stubbed(:rent, :over_48)
 
           rent.should_not be_valid
-          rent.errors.get(:d_from).should include(I18n.t('rent.validation.duration'))
+          rent.errors.get(:d_from).should include(I18n.t('model.rent.validation.duration'))
         end
 
         it 'do not add error if duration is under 48' do
@@ -39,7 +39,7 @@ RSpec.describe Rent, type: :model do
           rent = build_stubbed(:rent, d_from: 5.hours.from_now, d_til: 4.hours.from_now)
 
           rent.should_not be_valid
-          rent.errors.get(:d_til).should include(I18n.t('rent.validation.ascending'))
+          rent.errors.get(:d_til).should include(I18n.t('model.rent.validation.ascending'))
         end
       end
 
@@ -48,14 +48,14 @@ RSpec.describe Rent, type: :model do
           rent = build_stubbed(:rent, d_from: 5.hours.ago, d_til: 10.hours.ago, id: nil)
 
           rent.should_not be_valid
-          rent.errors.get(:d_from).should include(I18n.t('rent.validation.future'))
+          rent.errors.get(:d_from).should include(I18n.t('model.rent.validation.future'))
         end
 
         it 'add error if d_from < d_til' do
           rent = build_stubbed(:rent, d_from: 10.hours.ago, d_til: 5.hours.ago, id: nil)
 
           rent.should_not be_valid
-          rent.errors.get(:d_from).should include(I18n.t('rent.validation.future'))
+          rent.errors.get(:d_from).should include(I18n.t('model.rent.validation.future'))
         end
       end
     end
@@ -70,7 +70,7 @@ RSpec.describe Rent, type: :model do
                                    d_til: rent.d_til + 5.hours)
 
           new_rent.should_not be_valid
-          new_rent.errors.get(:d_from).should include(I18n.t('rent.validation.overlap'))
+          new_rent.errors.get(:d_from).should include(I18n.t('model.rent.validation.overlap'))
         end
 
         it 'overlaps with d_from' do
@@ -80,7 +80,7 @@ RSpec.describe Rent, type: :model do
                                    d_til: rent.d_from + 5.hours)
 
           new_rent.should_not be_valid
-          new_rent.errors.get(:d_from).should include(I18n.t('rent.validation.overlap'))
+          new_rent.errors.get(:d_from).should include(I18n.t('model.rent.validation.overlap'))
         end
 
         it 'overlaps with both d_from and d_til' do
@@ -90,7 +90,7 @@ RSpec.describe Rent, type: :model do
                                    d_til: rent.d_til + 5.hours)
 
           new_rent.should_not be_valid
-          new_rent.errors.get(:d_from).should include(I18n.t('rent.validation.overlap'))
+          new_rent.errors.get(:d_from).should include(I18n.t('model.rent.validation.overlap'))
         end
 
         it 'overlaps between d_from and d_til' do
@@ -100,7 +100,7 @@ RSpec.describe Rent, type: :model do
                                    d_til: rent.d_til - 5.hours)
 
           new_rent.should_not be_valid
-          new_rent.errors.get(:d_from).should include(I18n.t('rent.validation.overlap'))
+          new_rent.errors.get(:d_from).should include(I18n.t('model.rent.validation.overlap'))
         end
 
         it 'does not overlap' do
@@ -129,7 +129,7 @@ RSpec.describe Rent, type: :model do
                                    d_from: rent.d_from + 5.hours,
                                    d_til: rent.d_til - 5.hours)
           new_rent.should be_invalid
-          new_rent.errors.get(:d_from).should include(I18n.t('rent.validation.overlap_overbook'))
+          new_rent.errors.get(:d_from).should include(I18n.t('model.rent.validation.overlap_overbook'))
         end
       end
 
@@ -140,7 +140,7 @@ RSpec.describe Rent, type: :model do
                                    d_from: rent.d_from + 5.hours,
                                    d_til: rent.d_til - 5.hours)
           new_rent.should be_invalid
-          new_rent.errors.get(:d_from).should include(I18n.t('rent.validation.overlap'))
+          new_rent.errors.get(:d_from).should include(I18n.t('model.rent.validation.overlap'))
         end
 
         it 'does not allow new council booking to overlap' do
@@ -149,7 +149,7 @@ RSpec.describe Rent, type: :model do
                                    d_from: rent.d_from + 5.hours,
                                    d_til: rent.d_til - 5.hours)
           new_rent.should be_invalid
-          new_rent.errors.get(:d_from).should include(I18n.t('rent.validation.overlap_council'))
+          new_rent.errors.get(:d_from).should include(I18n.t('model.rent.validation.overlap_council'))
         end
       end
     end

@@ -1,8 +1,10 @@
 <div class='col-md-8 col-md-offset-2 col-xs-12 reg-page'>
   <div class="headline">
-    <h1><%= title(t('rent.admin.title')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
-  <%= render 'form' %>
+  <%= render('form', rent: @rent,
+                     users: @users,
+                     councils: @councils) %>
   <hr>
-  <%= link_to(t('rent.admin.index'), admin_rents_path, class: 'btn secondary') %>
+  <%= link_to(t('.index'), admin_rents_path, class: 'btn secondary') %>
 </div>

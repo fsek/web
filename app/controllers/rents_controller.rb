@@ -3,7 +3,7 @@ class RentsController < ApplicationController
   load_permissions_and_authorize_resource
   before_action :load_terms, only: [:new, :edit, :create, :update, :main, :index]
 
-  def main
+  def index
     @faqs = Faq.answered.category('Bil')
     respond_to do |format|
       format.html
@@ -43,7 +43,7 @@ class RentsController < ApplicationController
     redirect_to :rents, notice: alert_destroy(Rent)
   end
 
-  def index
+  def overview
     @rents = current_user.rents.order('d_from desc')
   end
 

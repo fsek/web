@@ -1,10 +1,12 @@
-<% provide(:title, model_name(Rent)) %>
 <div class='col-md-8 col-md-offset-2 col-sm-12 reg-page'>
   <div class="headline">
-    <h2><%= t(:new_attr, attr: model_name(Rent)) %></h2>
+    <h1><%= title(t('.title')) %></h1>
   </div>
-  <%= render 'form' %>
+
+  <%= render 'form', rent: @rent %>
+
   <hr>
-  <%= link_to(t('rent.back_to_index'), :rents, data: { no_turbolink: true },
-              class: 'btn secondary') %>
+  <%= link_to(t('.index'), rents_path,
+                           data: {no_turbolink: true},
+                           class: 'btn secondary') %>
 </div>
