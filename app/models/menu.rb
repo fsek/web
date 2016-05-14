@@ -6,6 +6,7 @@ class Menu < ActiveRecord::Base
   CONTACT = 'contact'.freeze
 
   scope :index, -> { order(index: :asc).where(visible: true) }
+  validates :name, :link, :location, presence: true
 
   def to_s
     name

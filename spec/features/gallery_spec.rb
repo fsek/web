@@ -1,38 +1,51 @@
 require 'rails_helper'
-RSpec.feature 'Gallery', js: true do
-  let(:user) { create(:user) }
-  let(:album) { create(:album_with_images) }
-  let(:old_album) do
-    create(:album_with_images, start_date: Time.zone.local(1994, 3, 25))
+RSpec.feature 'Gallery' do
+  include ControllerMacros
+
+  context 'index page' do
+    it 'visit index and album' do
+      user = create(:user)
+      album = create(:album_with_images)
+      sign_in_as(user, gallery_path)
+
+      page.status_code.should eq(200)
+
+      within('.album-preview') do
+        first(:linkhref, gallery_album_path(album)).click
+      end
+
+      page.status_code.should eq(200)
+    end
+
+    it 'visit old album' do
+      user = create(:user)
+      album = create(:album_with_images, start_date: Time.zone.local(1994, 3, 25))
+      sign_in_as(user, gallery_path)
+
+      page.status_code.should eq(200)
+
+      within('.album-preview') do
+        page.should have_no_selector(:linkhref, gallery_album_path(album))
+      end
+
+      first(:linkhref, gallery_path(year: album.start_date.year)).click
+      page.status_code.should eq(200)
+
+      within('.album-preview') do
+        first(:linkhref, gallery_album_path(album)).click
+      end
+
+      page.status_code.should eq(200)
+    end
   end
-  let(:login) { LoginPage.new }
 
-  background do
-    album.reload
-    old_album.reload
-    login.visit_page.login(user, '12345678')
-  end
+  context 'render album', js: true do
+    it 'shows album' do
+      user = create(:user)
+      album = create(:album_with_images)
+      sign_in_as(user, gallery_album_path(album))
 
-  it 'visit index and album' do
-    page.visit gallery_path
-
-    page.status_code.should eq(200)
-    first(:linkhref, gallery_album_path(album)).click
-
-    page.visit gallery_album_path(album, image: album.images.last.id)
-    page.status_code.should eq(200)
-  end
-
-  it 'visit old album' do
-    page.visit gallery_path
-    page.status_code.should eq(200)
-
-    page.should have_no_selector(:linkhref, gallery_album_path(old_album))
-
-    first(:linkhref, gallery_path(year: old_album.start_date.year)).click
-    page.status_code.should eq(200)
-
-    first(:linkhref, gallery_album_path(old_album)).click
-    page.status_code.should eq(200)
+      page.status_code.should eq(200)
+    end
   end
 end

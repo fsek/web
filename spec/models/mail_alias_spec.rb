@@ -4,12 +4,12 @@ describe MailAlias do
   describe '#validate!' do
     it 'requires all fields' do
       [ :username, :domain, :target ].each do |a|
-        build(:mail_alias, a => nil).should_not be_valid
+        build_stubbed(:mail_alias, a => nil).should_not be_valid
       end
     end
 
     it 'validates the provided example' do
-      build(:mail_alias).should be_valid
+      build_stubbed(:mail_alias).should be_valid
     end
 
     it 'rejects duplicate aliases on the same domain' do

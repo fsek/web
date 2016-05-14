@@ -14,7 +14,7 @@
 
     <% if can_administrate?(:index, Menu) %>
       <li class="dropdown-submenu">
-        <%= link_to(models_name(Menu), menus_path) %>
+        <%= link_to(models_name(Menu), admin_menus_path) %>
       </li>
     <% end %>
 

@@ -8,7 +8,7 @@ FactoryGirl.define do
 
     factory :album_with_images do
       transient do
-        image_count 5
+        image_count 2
       end
 
       after(:create) do |album, evaluator|

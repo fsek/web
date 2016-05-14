@@ -5,21 +5,18 @@ RSpec.describe Image, type: :model do
     build(:image).should be_valid
   end
 
-  subject(:image) { build(:image) }
-  let(:saved) { create(:image) }
-
   describe 'ActiveRecord associations' do
-    it { should belong_to(:album) }
-    it { should belong_to(:photographer) }
+    it { Image.new.should belong_to(:album) }
+    it { Image.new.should belong_to(:photographer) }
   end
 
   context 'callbacks' do
     describe 'public instance methods' do
       context 'responds to its methods' do
-        it { saved.should respond_to(:original) }
-        it { saved.should respond_to(:thumb) }
-        it { saved.should respond_to(:view) }
-        it { saved.should respond_to(:parent) }
+        it { Image.new.should respond_to(:original) }
+        it { Image.new.should respond_to(:thumb) }
+        it { Image.new.should respond_to(:view) }
+        it { Image.new.should respond_to(:parent) }
       end
     end
   end

@@ -7,7 +7,7 @@ RSpec.describe Page, type: :model do
 
   describe 'validations' do
     it 'validates url' do
-      page = build(:page, url: 'abc')
+      page = build_stubbed(:page, url: 'abc')
       page.should validate_presence_of(:url)
       page.should allow_value('abc_123-abc').for(:url)
       page.should_not allow_value('ABC').for(:url)

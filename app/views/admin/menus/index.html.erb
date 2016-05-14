@@ -1,10 +1,9 @@
-<%= provide(:title, t('menu.index')) %>
 <div class="headline title">
-  <h2><%= t('menu.index') %></h2>
+  <h1><%= title(t('menu.index')) %></h1>
 </div>
 
 <div class="col-md-2 col-sm-12">
-  <%= link_to(t('menu.new'), new_menu_path, class: 'btn primary') %>
+  <%= link_to(t('menu.new'), new_admin_menu_path, class: 'btn primary') %>
 
   <button class="wg-external-submit-button btn secondary"
           data-grid-name="grid">
@@ -45,7 +44,7 @@
     g.column(name: Menu.human_attribute_name(:updated_at), filter: false,
              attribute: 'updated_at')
     g.column(name: nil) do |menu|
-      link_to(t(:edit), edit_menu_path(menu), class: 'btn secondary')
+      link_to(t(:edit), edit_admin_menu_path(menu), class: 'btn secondary')
     end
   end -%>
 </div>

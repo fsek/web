@@ -1,5 +1,5 @@
 # encoding:UTF-8
-class MenusController < Admin::BaseController
+class Admin::MenusController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
@@ -20,7 +20,7 @@ class MenusController < Admin::BaseController
     @menu = Menu.new(menu_params)
     if @menu.save
       expire_fragment('main_menu')
-      redirect_to menus_path, notice: alert_create(Menu)
+      redirect_to admin_menus_path, notice: alert_create(Menu)
     else
       render :new, status: 422
     end
@@ -30,17 +30,18 @@ class MenusController < Admin::BaseController
     @menu = Menu.find(params[:id])
     if @menu.update(menu_params)
       expire_fragment('main_menu')
-      redirect_to edit_menu_path(@menu), notice: alert_update(Menu)
+      redirect_to edit_admin_menu_path(@menu), notice: alert_update(Menu)
     else
       render :edit, status: 422
     end
   end
 
   def destroy
-    @menu = Menu.find(params[:id])
-    @menu.destroy!
+    menu = Menu.find(params[:id])
+    menu.destroy!
     expire_fragment('main_menu')
-    redirect_to menus_url, notice: alert_destroy(Menu)
+
+    redirect_to admin_menus_path, notice: alert_destroy(Menu)
   end
 
   private
