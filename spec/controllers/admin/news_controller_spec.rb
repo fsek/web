@@ -32,7 +32,7 @@ RSpec.describe Admin::NewsController, type: :controller do
         post :create, news: attributes_for(:news)
       end.should change(News, :count).by(1)
 
-      response.should redirect_to(News.last)
+      response.should redirect_to(edit_admin_news_path(News.last))
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe Admin::NewsController, type: :controller do
       patch :update, id: news.to_param, news: { title: 'Hej' }
       news.reload
       news.title.should eq('Hej')
-      response.should redirect_to(news)
+      response.should redirect_to(edit_admin_news_path(news))
     end
   end
 end
