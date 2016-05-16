@@ -4,7 +4,7 @@ class Document < ActiveRecord::Base
   belongs_to :user
 
   validates :title, :category, presence: true
-  validates :slug, uniqueness: { allow_nil: true }
+  validates :slug, uniqueness: { allow_blank: true }
 
   mount_uploader :pdf, DocumentUploader, mount_on: :pdf_file_name
 
