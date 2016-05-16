@@ -2,13 +2,20 @@
   <%= f.input :title %>
   <%= f.input :content, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :url %>
-  <%= f.association :categories, collection: Category.all,
-                                 input_html: { class: 'select2' } %>
+
+
   <% if news.image.present? %>
     <%= image_tag(news.thumb) %>
     <%= f.input :remove_image, as: :boolean %>
   <% else %>
     <%= f.input :image, as: :file %>
+  <% end %>
+
+  <% if news.persisted? %>
+    <%= f.association :categories, collection: Category.all,
+                                   input_html: { class: 'select2' } %>
+  <% else %>
+    <p><%= t('.categories_after_save') %></p>
   <% end %>
   <%= f.button :submit %>
 

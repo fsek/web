@@ -1,0 +1,5 @@
+sv:
+  admin:
+    news:
+      form:
+        categories_after_save: Kategorier kan läggas till efter att nyheten sparas.
