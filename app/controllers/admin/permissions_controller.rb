@@ -2,20 +2,18 @@
 class Admin::PermissionsController < Admin::BaseController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :post
-  before_action :set_permissions
 
   def index
-    @posts = Post.title
+    @posts = Post.includes(:permissions).title
   end
 
   def show_post
     @permissions = Permission.subject
-    @post_permissions = @post.permissions.map(&:id)
   end
 
   def update_post
     if @post.set_permissions(permission_params)
-      redirect_to index_admin_permissions_path, notice: alert_update(Post)
+      redirect_to admin_permissions_path, notice: alert_update(Post)
     else
       render :show_post, status: 422
     end
@@ -25,9 +23,5 @@ class Admin::PermissionsController < Admin::BaseController
 
   def permission_params
     params.require(:post).permit(permission_ids: [])
-  end
-
-  def set_permissions
-    @permissions = Permission.all
   end
 end

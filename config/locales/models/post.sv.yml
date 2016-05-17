@@ -15,6 +15,7 @@ sv:
         board: Styrelsepost
         rec_limit: Rekommenderad gräns
         car_rent: Får hyra bil
+        permission_ids: Rättigheter
   post:
     added: "%{u} tilldelades %{p}"
     add_error: "Tilldelningen gick inte: %{errors}"
