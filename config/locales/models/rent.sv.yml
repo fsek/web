@@ -1,4 +1,21 @@
 sv:
+  model:
+    rent:
+      validation:
+        add_user_information: Du måste fylla i dina användaruppgifter
+        ascending: måste vara efter startdatumet
+        duration: får inte vara längre än 48 h
+        future: måste vara i framtiden
+        overlap: överlappar med en annan bokning
+        overlap_council: överlappar med en annan utskottsbokning
+        overlap_overbook: överlappar med en bokning som det är mindre än 5 dagar till
+
+      active: aktiv
+      confirmed: bekräftad
+      denied: nekad
+      inactive: inaktiv
+      unconfirmed: ej bekräftad
+
   activerecord:
     models:
       rent:
@@ -21,17 +38,3 @@ sv:
         status: Status
         updated_at: Redigerad
         user_id: Användare
-  rent:
-    validation:
-      future: måste vara i framtiden
-      ascending: måste vara efter startdatumet
-      duration: får inte vara längre än 48 h
-      overlap: överlappar med en annan bokning
-      overlap_council: överlappar med en annan utskottsbokning
-      overlap_overbook: överlappar med en bokning som det är mindre än 5 dagar till
-    denied_comment: Orsak vid nekad bokning
-    confirmed: bekräftad
-    unconfirmed: ej bekräftad
-    denied: nekad
-    active: aktiv
-    inactive: inaktiv

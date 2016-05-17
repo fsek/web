@@ -10,7 +10,7 @@ RSpec.feature 'visitor visits paths' do
     gallery: [:index],
     news: [:index, :show],
     pages: [:show],
-    rents: [:main, :index, :new],
+    rents: [:overview, :index, :new],
     static_pages: [:about, :company_offer, :company_about]
   }
 

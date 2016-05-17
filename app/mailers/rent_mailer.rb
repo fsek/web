@@ -1,44 +1,48 @@
 # encoding: UTF-8
 class RentMailer < ActionMailer::Base
-  default from: %(#{I18n.t('rent.foreman')} <bil@fsektionen.se>), parts_order: ['text/plain', 'text/html']
-  default subject: Rent.model_name.human
+  include RentMailerHelper
+  default from: %(#{I18n.t('rent_mailer.mailer.car_foreman')} <bil@fsektionen.se>)
 
   def rent_email(rent)
+    set_message_id
     @rent = rent
     if @rent.present? && @rent.user.email.present?
       mail(to: @rent.user.try(:print_email),
-           subject: %(#{Rent.model_name.human} #{@rent.p_time} (fsektionen.se)),
+           subject: email_subject(rent),
            sent_on: Time.zone.now) do |format|
              format.html { render layout: 'email.html.erb' }
-             format.text
            end
     end
   end
 
   def status_email(rent)
+    set_message_id
     @rent = rent
     if @rent.present? && @rent.user.email.present?
       mail(to: @rent.user.try(:print_email),
-           subject: %(#{Rent.model_name.human} #{@rent.p_time}: #{t('rent.' + @rent.status)}),
+           subject: email_subject(@rent),
            sent_on: Time.zone.now) do |format|
              format.html { render layout: 'email.html.erb' }
-             format.text
            end
     end
   end
 
   def active_email(rent)
+    set_message_id
     @rent = rent
     if @rent.present? && @rent.user.email.present?
-      if @rent.aktiv
-        sub = %(#{Rent.model_name.human} #{@rent.p_time} #{t('rent.mailer.marked_active')}.)
-      else
-        sub = %(#{Rent.model_name.human} #{@rent.p_time} #{t('rent.mailer.marked_inactive')}.)
-      end
-      mail(to: @rent.user.print_email, subject: sub, sent_on: Time.zone.now) do |format|
+      mail(to: @rent.user.print_email,
+           subject: active_email_subject(rent),
+           sent_on: Time.zone.now) do |format|
         format.html { render layout: 'email.html.erb' }
-        format.text
       end
     end
+  end
+
+  private
+
+  def set_message_id
+    str = Time.zone.now.to_i.to_s
+    headers['Message-ID'] = "<#{Digest::SHA2.hexdigest(str)}@fsektionen.se>"
   end
 end

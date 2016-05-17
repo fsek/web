@@ -8,7 +8,7 @@
 </tr>
 <tr>
   <td><%= fa_icon('check') %> <%= Rent.human_attribute_name(:status) %></td>
-  <td><%= t(%(rent.#{rent.status})) %></td>
+  <td><%= t(%(model.rent.#{rent.status})) %></td>
 </tr>
 <% if rent.council.present? %>
   <tr>

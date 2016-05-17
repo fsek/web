@@ -1,22 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe RentService do
-  let(:user) { create(:user) }
-  let(:council) { create(:council) }
-  let(:other) { build(:user) }
-  let(:rent) { build(:rent) }
-  let(:admin) { build(:admin) }
-  let(:overbook) { build(:rent) }
-  let(:council_rent) { build(:rent, council: council) }
-  let(:booked_council) { create(:rent, council: council, user: user) }
-
   describe :make_reservation do
     it :valid_reservation do
+      user = create(:user)
+      rent = build(:rent, user: user)
+
       RentService.reservation(user, rent).should be_truthy
     end
 
     it :invalid_reservation do
-      rent.d_from = nil
+      user = create(:user)
+      rent = build(:rent, user: nil, d_from: nil)
+
       begin
         RentService.reservation(user, rent)
       rescue ActiveRecord::RecordInvalid => error
@@ -27,76 +23,92 @@ RSpec.describe RentService do
   end
 
   describe :overbook do
-    before do
-      other.save!
-      overbook.save!
-    end
-
     it :overbook do
+      user = create(:user)
+      overbook = create(:rent, user: user)
+      council_rent = build(:rent, :with_council, user: user)
+
       RentService.reservation(user, council_rent).should be_truthy
+
       overbook.reload
       overbook.aktiv.should be_falsey
     end
 
     it :not_overbook do
+      user = create(:user)
+      overbook = create(:rent, user: user)
+      rent = build(:rent, user: user)
+
       begin
         RentService.reservation(user, rent)
       rescue ActiveRecord::RecordInvalid => error
-        error.message.should include(t('rent.validation.overlap'))
+        error.message.should include(t('model.rent.validation.overlap'))
       end
+
+      overbook.reload
+      overbook.aktiv.should be_truthy
     end
 
     it :not_overbook do
-      booked_council.reload
+      user = create(:user)
+      overbook = create(:rent, :with_council, user: user)
+      council_rent = build(:rent, :with_council, user: user)
+
       begin
         RentService.reservation(user, council_rent)
       rescue ActiveRecord::RecordInvalid => error
-        error.message.should include(t('rent.validation.overlap_council'))
+        error.message.should include(t('model.rent.validation.overlap_council'))
       end
+
+      overbook.reload
+      overbook.aktiv.should be_truthy
     end
   end
 
   describe :authorized_update do
-    before do
-      rent.user = user
-      rent.save!
-      other.save!
-    end
-
     it :valid_update do
+      user = create(:user)
+      rent = create(:rent, user: user, purpose: 'Nope')
+
       RentService.update({ purpose: 'A test' }, user, rent).should be_truthy
       Rent.first.purpose.should eq('A test')
     end
 
     it :invalid_update do
-      rent.owner?(other).should be_falsey
-      RentService.update({ purpose: 'A test' }, other, rent).should be_falsey
+      user = create(:user)
+      rent = create(:rent, purpose: 'Nope')
+
+      rent.owner?(user).should be_falsey
+      RentService.update({ purpose: 'A test' }, user, rent).should be_falsey
+      Rent.first.purpose.should eq('Nope')
     end
   end
 
   describe :admin_reservation do
-    before do
-      other.save!
+    it :valid_reservation do
+      rent = build(:rent)
+
+      lambda do
+        RentService.admin_reservation(rent).should be_truthy
+      end.should change(Rent, :count).by(1)
     end
 
-    it :valid_update do
-      RentService.admin_reservation(rent).should be_truthy
-    end
+    it :invalid_reservation do
+      rent = build(:rent, user: nil)
 
-    it :invalid_update do
-      rent.user = nil
       RentService.admin_reservation(rent).should be_falsey
     end
   end
 
   describe :administrate do
     it :valid_update do
+      rent = create(:rent, purpose: 'Nope')
       RentService.administrate(rent, purpose: 'A test').should be_truthy
       Rent.first.purpose.should eq('A test')
     end
 
     it :invalid_update do
-      rent.owner?(other).should be_falsey
+      rent = create(:rent)
       RentService.administrate(rent, user: nil).should be_falsey
     end
   end

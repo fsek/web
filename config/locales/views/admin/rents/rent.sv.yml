@@ -1,0 +1,23 @@
+sv:
+  admin:
+    rents:
+      form:
+        denied_comment: Orsak vid nekad bokning
+
+      new:
+        index: Alla bilbokningar
+        title: Ny bilbokning
+
+      index:
+        new_rent: Ny bilbokning
+        startpage: Startsida för bilbokning
+        title: Bilbokning - administration
+
+      show:
+        admin_index: Startsida administration
+        aktiv: sätts till falsk om bokningen t.ex. bokas över
+        comment: skickas med i mail om en boknings ändras till Nekad
+        confirm_destroy: Bokning kommer att raderas
+        destroy_rent: Förinta bilbokning
+        inactive: En bokning är inaktiverad om status är Nekad eller Aktiv är satt till falsk
+        status: säger om bokningen är bekräftad eller ej

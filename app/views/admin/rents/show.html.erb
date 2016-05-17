@@ -5,10 +5,13 @@
     </h1>
   </div>
   <div class='margin-bottom-20'>
-    <%= render 'form'%>
-    <%= link_to(admin_rent_path(@rent), method: :delete, class: 'btn danger pull-right',
-                data: { confirm: t('rent.admin.delete_confirm') } ) do %>
-      <%= t('rent.destroy') %>
+    <%= render('form', rent: @rent,
+                       users: @users,
+                       councils: @councils) %>
+    <%= link_to(admin_rent_path(@rent), method: :delete,
+                                        class: 'btn danger pull-right',
+                                        data: {confirm: t('.confirm_destroy')}) do %>
+      <%= t('.destroy_rent') %>
     <% end %>
   </div>
   <div class='margin-bottom-20'>
@@ -17,19 +20,19 @@
     <ul class='list'>
       <li>
         <strong><%= Rent.human_attribute_name(:status) %></strong>
-        <%= t('rent.admin.status') %>
+        <%= t('.status') %>
       </li>
       <li>
         <strong> <%= Rent.human_attribute_name(:aktiv) %> </strong>
-        <%= t('rent.admin.aktiv') %>
+        <%= t('.aktiv') %>
       </li>
       <li>
         <strong><%= Rent.human_attribute_name(:comment) %></strong>
-        <%= t('rent.admin.comment') %>
+        <%= t('.comment') %>
       </li>
-      <li><%= t('rent.admin.inactive') %></li>
+      <li><%= t('.inactive') %></li>
     </ul>
   </div>
   <hr>
-  <%= link_to(t('rent.admin.index'), admin_rents_path, class: 'btn secondary') %>
+  <%= link_to(t('.admin_index'), admin_rents_path, class: 'btn secondary') %>
 </div>

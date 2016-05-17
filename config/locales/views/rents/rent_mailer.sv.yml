@@ -1,0 +1,28 @@
+sv:
+  rent_mailer:
+    mailer:
+      subject: "Bilbokning %{date}: %{status}"
+      car_foreman: Bilförman
+      answer_with_questions: Har du några frågor så svarar du enklast direkt på detta e-post.
+
+    attributes:
+      title: Bokningens uppgifter
+      your_booking: Din bokning
+
+    active_email:
+      marked_active: markerats som aktiv
+      marked_active_text: Din bokning har markerats som aktiv igen.
+      marked_inactive: markerats som inaktiv
+      marked_inactive_text: Din bokning har bokats över utav ett utskott. Om du tror att någonting har gått fel eller om det är lätt att lösa, svara på detta e-post och kontakta bilförmannen.
+      title: Bilbokning
+
+    rent_email:
+      booked: Du har bokat F-sektionens bil med nedanstående uppgifter
+      car_foreman: Bilförman
+      confirm_foreman: Din bokning måste hanteras direkt av bilförmannen och ett e-post kommer skickas ut då bokningen är beräkftad eller nekad.
+      title: Bilbokning
+
+    status_email:
+      booking_status: Din bokningsstatus har ändrats till
+      denied_appeal: Överklagan kan göras till styrelsen
+      title: Bilbokning

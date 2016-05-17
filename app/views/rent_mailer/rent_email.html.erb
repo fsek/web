@@ -1,5 +1,5 @@
 <%= content_for :title do %>
-  <%= Rent.model_name.human %>
+  <%= t('.title') %>
 <% end %>
 
 <%= content_for :greeting do %>
@@ -7,16 +7,16 @@
 <% end %>
 
 <%= content_for :main_content do %>
-  <%= simple_format(t('rent.mailer.booked')) %>
+  <%= simple_format(t('.booked')) %>
   <%= render 'attributes', rent: @rent %>
 
   <% if @rent.status != 'confirmed' %>
-    <%= simple_format(t('rent.mailer.confirm_foreman')) %>
+    <%= simple_format(t('.confirm_foreman')) %>
   <% end %>
 <% end %>
 
 <%= content_for :bottom_signature do %>
-  <%= simple_format(t('rent.mailer.signature_questions')) %>
+  <%= simple_format(t('rent_mailer.mailer.answer_with_questions')) %>
   <p><%= t(:sincerely) %>,<br>
-  <%= t('rent.foreman') %></p>
+  <%= t('rent_mailer.mailer.car_foreman') %></p>
 <% end %>

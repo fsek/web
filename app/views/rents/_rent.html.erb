@@ -1,10 +1,8 @@
 <div class="margin-bottom-20">
   <div class="headline headline-md">
-    <h2>
-      <%= model_name(Rent) %>
-    </h2>
+    <h2><%= t('.title') %></h2>
     <span class="label rounded-2x  <%= rent.status %> pull-right">
-      <%= t(%(rent.#{rent.status})).capitalize %>
+      <%= t(%(model.rent.#{rent.status})).capitalize %>
     </span>
   </div>
   <table class="table">

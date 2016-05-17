@@ -1,0 +1,43 @@
+<div class='headline'>
+  <h1><%= title(t('.title')) %> <h1>
+</div>
+
+<div class='col-md-3 col-xs-12'>
+  <%= link_to(t('.new_rent'), new_rent_path, class: 'btn primary') %>
+  <%= link_to(t('.index'), rents_path, class: 'btn secondary') %>
+  <%= link_to(t('.contact_forman'), contacts_path, class: 'btn secondary') %>
+
+  <% if @terms.present? %>
+    <%= link_to(document_path(@terms), target: 'blank_p', class: 'btn secondary') do %>
+      <%= fa_icon('paperclip') %> <%= t('.terms') %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class='col-md-9 col-xs-12'>
+  <div class='headline headline-md'>
+    <h2><%= t('.your_rents')%></h2>
+  </div>
+
+  <div class='panel-group acc-v1 margin-bottom-40' id='answered'>
+    <% @rents.each do |f| %>
+      <div class='panel panel-default'>
+        <%= link_to(%(#collapse#{dom_id(f)}), class: 'accordion-toggle',
+                    data: {toggle: 'collapse', parent: '#answered'}) do %>
+          <div class='panel-heading'>
+            <h4 class='panel-title'>
+              <%= f.p_time %>
+            </h4>
+          </div>
+        <% end %>
+        <div id='collapse<%= dom_id(f) %>' class='panel-collapse collapse'>
+          <div class='panel-body'>
+            <%= render f %>
+            <hr>
+            <%= link_to(t('.edit_rent'), edit_rent_path(f), class: 'btn secondary') %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
