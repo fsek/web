@@ -1,0 +1,9 @@
+sv:
+  activerecord:
+    models:
+      tool_renting: Verktygslån
+    attributes:
+      tool_renting:
+        renter: Utlånad till
+        return_date: Returdatum
+        returned: Returnerad

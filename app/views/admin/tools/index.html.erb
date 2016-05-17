@@ -4,14 +4,13 @@
   </div>
   <%= link_to(t('tool.new'), new_admin_tool_path, class: 'btn primary') %>
 
-  <div class="list-group">
+  <p class="pull-right"><%= t('tool.free') %></p>
+  <br>
+
+  <ul class="list-group">
     <% @all_tools.each do |tool| %>
-        <a href="<%= edit_admin_tool_path(tool) %>" class="list-group-item">
-        <h4 class="list-group-item-heading"><%= tool.title %></h4>
-        <span class="badge"><%= tool.total %></span>
-        <p class="list-group-item-text"><%= tool.description %></p>
-      </a>
+      <%= tool_link(tool, admin_tool_path(tool)) %>
     <% end %>
-  </div>
+  </ul>
 
 </div>

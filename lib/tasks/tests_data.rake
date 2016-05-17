@@ -153,5 +153,11 @@ namespace :db do
     Category.find_or_create_by!(title: 'Studier', slug: 'studie')
     Category.find_or_create_by!(title: 'Sektionen', slug: 'sektion')
     Category.find_or_create_by!(title: 'Fritid', slug: 'fritid')
+
+    #Tool
+    tool = Tool.find_or_create_by!(title: 'Hammare', description: 'spikar spikar m.m.', total: 5)
+    #Tool Renting
+    ToolRenting.find_or_create_by!(renter: 'adrian', tool: tool, purpose: 'for home use', return_date: Time.zone.now)
+    ToolRenting.find_or_create_by!(renter: 'adrian2', tool: tool, purpose: 'for other use', return_date: Time.zone.now)
   end
 end

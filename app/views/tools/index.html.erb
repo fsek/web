@@ -1,16 +1,14 @@
-<% provide(:title, t('tool.title')) %>
 <div class="col-md-8 col-md-offset-2 col-sm-12">
   <div class="headline">
-  <h1><%= t('tool.title') %></h1>
+  <h1><%= title(t('tool.title')) %></h1>
   </div>
+
+  <p class="pull-right"><%= t('tool.free') %></p>
+  <br>
 
   <ul class="list-group">
     <% @all_tools.each do |tool| %>
-        <li class="list-group-item">
-        <h4 class="list-group-item-heading"><%= tool.title %></h4>
-        <span class="badge"><%= tool.total %></span>
-        <p class="list-group-item-text"> <%= tool.description %></p>
-      </a>
+      <%= tool_link(tool, tool_path(tool)) %>
     <% end %>
   </ul>
 

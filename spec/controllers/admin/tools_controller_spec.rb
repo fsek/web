@@ -16,6 +16,16 @@ RSpec.describe Admin::ToolsController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    it 'loads show view properly' do
+      tool = create(:tool)
+      create(:tool_renting, tool: tool)
+      create(:tool_renting, tool: tool)
+      get :show, id: tool.to_param
+      response.status.should eq(200)
+    end
+  end
+
   describe 'POST #create' do
     it 'valid parameters' do
       attributes = { title: 'Skruvmejsel',
@@ -26,7 +36,7 @@ RSpec.describe Admin::ToolsController, type: :controller do
         post :create, tool: attributes
       end.should change(Tool, :count).by(1)
 
-      response.should redirect_to(admin_tools_path)
+      response.should redirect_to(admin_tool_path(Tool.last))
       Tool.last.title.should eq('Skruvmejsel')
     end
 
@@ -65,10 +75,9 @@ RSpec.describe Admin::ToolsController, type: :controller do
 
       patch :update, id: tool.to_param, tool: attributes
 
-      response.should redirect_to(admin_tools_path)
       tool.reload
       tool.title.should eq('Hammare')
-      response.should redirect_to(admin_tools_path)
+      response.should redirect_to(admin_tool_path(tool))
     end
 
     it 'invalid parameters' do
