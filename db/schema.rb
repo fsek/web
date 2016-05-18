@@ -117,20 +117,16 @@ ActiveRecord::Schema.define(version: 20160428130636) do
   add_index "contacts", ["slug"], name: "index_contacts_on_slug", using: :btree
 
   create_table "councils", force: :cascade do |t|
-    t.string   "title",             limit: 255
-    t.string   "url",               limit: 255
-    t.text     "description",       limit: 65535
+    t.string   "title",        limit: 255
+    t.string   "url",          limit: 255
+    t.text     "description",  limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "president_id",      limit: 4
-    t.datetime "logo_updated_at"
-    t.integer  "vicepresident_id",  limit: 4
-    t.integer  "contact_id",        limit: 4
-    t.integer  "logo_file_size",    limit: 4
-    t.string   "logo_content_type", limit: 255
-    t.string   "logo_file_name",    limit: 255
-    t.boolean  "public"
+    t.integer  "president_id", limit: 4
   end
+
+  add_index "councils", ["president_id"], name: "index_councils_on_president_id", using: :btree
+  add_index "councils", ["url"], name: "index_councils_on_url", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "pdf_file_name",    limit: 255
@@ -400,7 +396,7 @@ ActiveRecord::Schema.define(version: 20160428130636) do
     t.string   "renter",      limit: 255,                 null: false
     t.string   "purpose",     limit: 255
     t.integer  "tool_id",     limit: 4,                   null: false
-    t.datetime "return_date",                             null: false
+    t.date     "return_date",                             null: false
     t.boolean  "returned",                default: false
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false

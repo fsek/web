@@ -12,12 +12,13 @@
     <div class="panel-body">
       <table class="table table-bordered">
         <tbody>
-          <% @permissions.group_by(&:action).each do |action, permissions| %>
+          <% @permissions.group_by(&:subject_class).each do |subject_class, permissions| %>
             <tr>
-              <td><%= action %></td>
+              <td><%= subject_class %></td>
               <td>
                 <%= f.input(:permission_ids, collection: permissions,
-                                             label_method: :subject_class,
+                                             label: false,
+                                             label_method: :action,
                                              value_method: :id,
                                              as: :check_boxes,
                                              item_wrapper_class: 'inline') %>
