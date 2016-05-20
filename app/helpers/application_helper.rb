@@ -34,4 +34,12 @@ module ApplicationHelper
     end
     content_tag :div, raw(html.to_html), class: 'form-group'
   end
+
+  def localized(date, options: {})
+    if date.present?
+      I18n.l(date, options)
+    else
+      fa_icon('cogs')
+    end
+  end
 end

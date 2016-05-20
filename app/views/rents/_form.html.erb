@@ -1,4 +1,4 @@
-<%= simple_form_for(rent, error_method: :to_sentence) do |f| %>
+<%= simple_form_for(rent) do |f| %>
   <%= f.association :user, collection: [current_user], include_blank: false %>
   <% if rent.errors[:user].present? %>
     <p><%= link_to(t('.edit_user_information'), edit_own_user_path,

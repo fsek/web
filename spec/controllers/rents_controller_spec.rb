@@ -1,13 +1,38 @@
 require 'rails_helper'
 
-RSpec.describe Admin::RentsController, type: :controller do
-  let(:admin) { create(:user) }
-
-  before(:each) do
-    allow(controller).to receive(:current_user).and_return(admin)
-  end
+RSpec.describe RentsController, type: :controller do
+  let(:user) { create(:user) }
 
   allow_user_to :manage, Rent
+
+  before(:each) do
+    allow(controller).to receive(:current_user).and_return(user)
+  end
+
+  describe 'GET #index' do
+    context 'html' do
+      it 'sets proper variables' do
+        create(:rent, d_from: 1.hour.from_now, d_til: 5.hour.from_now)
+        create(:rent, d_from: 6.hour.from_now, d_til: 10.hour.from_now)
+        create(:rent, d_from: 11.hour.from_now, d_til: 16.hour.from_now)
+        create(:faq, category: 'Bil', question: 'Vad kostar bilen?')
+
+        get :index
+        assigns(:faqs).map(&:question).should eq(['Vad kostar bilen?'])
+      end
+    end
+
+    context 'json' do
+      it 'sets proper variables' do
+        first = create(:rent, d_from: 1.hour.from_now, d_til: 5.hour.from_now)
+        second = create(:rent, d_from: 6.hour.from_now, d_til: 10.hour.from_now)
+        create(:rent, d_from: 11.hour.from_now, d_til: 16.hour.from_now)
+
+        get :index, format: :json, start: 1.hour.ago, end: 7.hours.from_now
+        response.body.should eq([first, second].to_json)
+      end
+    end
+  end
 
   describe 'GET #show' do
     it 'assigns the requested rent as @rent' do
@@ -30,7 +55,6 @@ RSpec.describe Admin::RentsController, type: :controller do
 
   describe 'POST #create' do
     it 'valid parameters' do
-      user = create(:user)
       attributes = { d_from: 1.hours.from_now,
                      d_til: 10.hours.from_now,
                      purpose: 'Åka till ikea',
@@ -39,7 +63,7 @@ RSpec.describe Admin::RentsController, type: :controller do
         post :create, rent: attributes
       end.should change(Rent, :count).by(1)
 
-      response.should redirect_to([:admin, Rent.last])
+      response.should redirect_to(Rent.last)
       assigns(:rent).user.should eq(user)
     end
 
@@ -55,36 +79,34 @@ RSpec.describe Admin::RentsController, type: :controller do
 
   describe 'PATCH #update' do
     it 'valid params' do
-      user = create(:user)
       rent = create(:rent, user: user, purpose: 'Not IKEA')
       attributes = { purpose: 'Indeed IKEA' }
       patch :update, id: rent.to_param, rent: attributes
 
       assigns(:rent).should eq(rent)
-      response.should redirect_to(admin_rent_path(rent))
+      response.should redirect_to(edit_rent_path(rent))
     end
 
     it 'invalid params' do
-      user = create(:user)
       rent = create(:rent, user: user, purpose: 'Not IKEA')
       attributes = { purpose: '' }
       patch :update, id: rent.to_param, rent: attributes
 
       assigns(:rent).should eq(rent)
       response.status.should eq(422)
-      response.should render_template(:show)
+      response.should render_template(:edit)
     end
   end
 
   describe 'DELETE #destroy' do
     it 'destroys the requested rent' do
-      rent = create(:rent)
+      rent = create(:rent, user: user)
 
       lambda do
-        delete :destroy, id: rent.to_param, format: :html
+        delete :destroy, id: rent.to_param
       end.should change(Rent, :count).by(-1)
 
-      response.should redirect_to(:admin_rents)
+      response.should redirect_to(rents_path)
     end
   end
 end
