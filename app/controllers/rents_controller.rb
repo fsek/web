@@ -4,9 +4,11 @@ class RentsController < ApplicationController
   before_action :load_terms, only: [:new, :edit, :create, :update, :main, :index]
 
   def index
-    @faqs = Faq.answered.category('Bil')
     respond_to do |format|
-      format.html
+      format.html do
+        @faqs = Faq.answered.category('Bil')
+      end
+
       format.json do
         render json: Rent.between(params[:start], params[:end]).active
       end
@@ -39,12 +41,13 @@ class RentsController < ApplicationController
   end
 
   def destroy
-    @rent.destroy
-    redirect_to :rents, notice: alert_destroy(Rent)
+    @rent.destroy!
+
+    redirect_to rents_path, notice: alert_destroy(Rent)
   end
 
   def overview
-    @rents = current_user.rents.order('d_from desc')
+    @rents = current_user.rents.order(d_from: :desc)
   end
 
   private

@@ -1,10 +1,10 @@
 <tr>
   <td><%= fa_icon('calendar') %> <%= Rent.human_attribute_name(:d_from) %></td>
-  <td><%= l(rent.d_from) %></td>
+  <td><%= localized(rent.d_from) %></td>
 </tr>
 <tr>
   <td><%= fa_icon('calendar-o') %> <%= Rent.human_attribute_name(:d_til) %></td>
-  <td><%= l(rent.d_til) %></td>
+  <td><%= localized(rent.d_til) %></td>
 </tr>
 <tr>
   <td><%= fa_icon('check') %> <%= Rent.human_attribute_name(:status) %></td>
