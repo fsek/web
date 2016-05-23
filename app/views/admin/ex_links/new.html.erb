@@ -1,0 +1,10 @@
+<div class="col-md-8 col-md-offset-2">
+  <h1>
+    <%= ExLink.human_attribute_name(:new_external_link) %>
+  </h1>
+</div>
+<%= render 'form' %>
+<div class="col-md-8 col-md-offset-2 margin-bottom-10">
+  <%= button_to ExLink.human_attribute_name(:back), admin_ex_links_path,
+                :method => 'get', class: 'btn primary' %>
+</div>

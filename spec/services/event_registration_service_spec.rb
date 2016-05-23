@@ -5,7 +5,7 @@ RSpec.describe EventRegistrationService do
   let(:user) { create(:user) }
   let(:event) { create(:event, :registration) }
 
-  it "works" do
+  it 'works' do
     
   end
 end

@@ -1,0 +1,26 @@
+sv:
+  activerecord:
+    models:
+      ex_link:
+        one: Extern länk
+        other: Externa länkar
+    attributes:
+      ex_link:
+        expiration: Utgångsdatum
+#        all_tags:
+#        image:
+#        url:
+#        tags:
+#        test_availability:
+#        active:
+#        note:
+#        action:
+#        show:
+#        destroy:
+#        edit:
+#        back:
+#        new_external_link:
+#        editing_external_link:
+#        delete_unused_tags:
+#        attribute:
+#        value:

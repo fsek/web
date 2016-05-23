@@ -1,0 +1,12 @@
+<div class="col-md-8 col-md-offset-2">
+  <h1>
+    <%= ExLink.human_attribute_name(:editing_external_link) %>
+  </h1>
+</div>
+<%= render 'form' %>
+<div class="col-md-8 col-md-offset-2">
+  <%= link_to ExLink.human_attribute_name(:show),
+              admin_ex_link_path(@ex_link), class: 'btn primary' %>
+  <%= link_to ExLink.human_attribute_name(:back),
+              admin_ex_links_path, class: 'btn primary' %>
+</div>

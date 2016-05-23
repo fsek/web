@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    models:
+      ex_link:
+        one: External link
+        other: External links

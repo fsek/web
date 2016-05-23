@@ -25,6 +25,17 @@ Fsek::Application.routes.draw do
     delete 'logga_ut' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
+  # tags and exlinks
+  resources :ex_links
+
+  namespace :admin do
+    resources :ex_links do
+      get :del_unused_tags, on: :collection
+      get :check_dead, on: :collection
+      get :check_expired, on: :collection
+    end
+  end
+
   # Scope to change urls to swedish
   scope path_names: {new: 'ny', edit: 'redigera'} do
     resources :tools, path: :verktyg, only: [:show, :index]

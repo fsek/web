@@ -26,6 +26,8 @@ class Ability
     can [:index, :matrix, :modal], :nollning
     can [:index, :about, :cookies_information, :company_about, :company_offer], :static_pages
 
+    can [:show, :index], ExLink
+
     # Abilities all signed in users get
     if user.id.present?
       can [:edit, :show, :update, :update_password, :update_account], User, id: user.id

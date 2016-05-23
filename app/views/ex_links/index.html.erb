@@ -1,0 +1,94 @@
+<div class="col-md-12 margin-bottom-20">
+  <h1>
+    <%= "Tags" %>
+  </h1>
+  <div class="row">
+    <div class="col-md-10 margin-bottom-20">
+      <ul class="list-inline badge-lists">
+          <%= link_to ExLink.human_attribute_name(:all_tags),
+                      class: 'btn secondary', action: 'index' %> |
+        <% @tags.each do |tagname, number| %>
+            <%= link_to "#{tagname} (#{number})", class: 'btn secondary',
+                        action: 'index', tag: tagname %> |
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <h1>
+        <%= models_name(ExLink) %>
+      </h1>
+      <div class="panel panel-orange">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>
+                <%= ExLink.human_attribute_name(:image) %>
+              </th>
+              <th>
+                <%= ExLink.human_attribute_name(:label) %>
+              </th>
+              <th>
+                <%= ExLink.human_attribute_name(:url) %>
+              </th>
+              <th>
+                <%= ExLink.human_attribute_name(:tags) %>
+              </th>
+              <th>
+                <%= ExLink.human_attribute_name(:test_availability) %>
+              </th>
+              <th>
+                <%= ExLink.human_attribute_name(:active) %>
+              </th>
+              <th>
+                <%= ExLink.human_attribute_name(:expiration) %>
+              </th>
+              <th>
+                <%= ExLink.human_attribute_name(:note) %>
+              </th>
+              <th>
+                <%= ExLink.human_attribute_name(:action) %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @ex_links.each do |ex_link| %>
+              <tr>
+                <td>
+                  <%= image_tag ex_link.image.url(:thumb), width: 30 %>
+                </td>
+                <td>
+                  <%= truncate(ex_link.label, :length => 30) %>
+                </td>
+                <td>
+                  <%= link_to truncate(ex_link.url, :length => 30),
+                              ex_link.url %>
+                </td>
+                <td>
+                  <%= tags2labs ex_link.get_tagnames %>
+                </td>
+                <td>
+                  <%= bool2icon ex_link.test_availability %>
+                </td>
+                <td>
+                  <%= bool2icon ex_link.active %>
+                </td>
+                <td>
+                  <%= ex_link.expiration %>
+                </td>
+                <td>
+                  <%= truncate(ex_link.note, :length => 30) %>
+                </td>
+                <td>
+                  <%= link_to ExLink.human_attribute_name(:show),
+                              ex_link, class:'btn primary' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
