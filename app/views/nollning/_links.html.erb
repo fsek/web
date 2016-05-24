@@ -1,38 +1,40 @@
-  <h3 class="headline"><%= t(:links) %></h3>
-  <ul class="list-unstyled check-style">
-    <li>
-      <%= link_to('http://www.tlth.se', target: '_blank') do %>
-        <%= fa_icon('angle-right') + 'Teknologkåren' %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to('http://www.studentlund.se', target: '_blank') do %>
-        <%= fa_icon('angle-right') + 'Studentlund' %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to('http://www.afbostader.se', target: '_blank') do %>
-        <%= fa_icon('angle-right') + 'Akademiska Bostäder' %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to('http://www.student.lth.se/tekniskfysik', target: '_blank') do %>
-        <%= fa_icon('angle-right') + 'Teknisk Fysik' %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to('http://www.student.lth.se/tekniskmatematik', target: '_blank') do %>
-        <%= fa_icon('angle-right') + 'Teknisk Matematik' %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to('http://www.student.lth.se/teknisknanovetenskap', target: '_blank') do %>
-        <%= fa_icon('angle-right') + 'Teknisk Nanovetenskap' %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to('http://www.csn.se', target: '_blank') do %>
-        <%= fa_icon('angle-right') + 'CSN' %>
-      <% end %>
-    </li>
-  </ul>
+<div class="headline">
+  <h3><%= t('.title') %></h3>
+</div>
+<ul class="list-unstyled check-style">
+  <li>
+    <%= link_to('https://www.tlth.se', target: '_blank') do %>
+      <%= fa_icon('angle-right') %> <%= t('.tlth') %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to('http://www.studentlund.se', target: '_blank') do %>
+      <%= fa_icon('angle-right') %> <%= t('.studentlund') %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to('http://www.afbostader.se', target: '_blank') do %>
+      <%= fa_icon('angle-right') %> <%= t('.af_accommodation') %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to('http://www.student.lth.se/tekniskfysik', target: '_blank') do %>
+      <%= fa_icon('angle-right') %> <%= t('.physics') %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to('http://www.student.lth.se/tekniskmatematik', target: '_blank') do %>
+      <%= fa_icon('angle-right') %> <%= t('.mathematics') %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to('http://www.student.lth.se/teknisknanovetenskap', target: '_blank') do %>
+      <%= fa_icon('angle-right') %> <%= t('.nanoscience') %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to('http://www.csn.se', target: '_blank') do %>
+      <%= fa_icon('angle-right') %> <%= t('.csn') %>
+    <% end %>
+  </li>
+</ul>

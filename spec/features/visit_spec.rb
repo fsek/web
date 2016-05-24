@@ -16,6 +16,7 @@ RSpec.feature 'visits paths' do
     faqs: [:index, :new],
     gallery: [:index],
     news: [:show],
+    'nollning/nollnings': [:index, :matrix],
     pages: [:show],
     proposals: [:form],
     rents: [:overview, :index, :new],

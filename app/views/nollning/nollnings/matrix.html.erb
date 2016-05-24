@@ -1,8 +1,10 @@
 <div class="row nollning nollning-top">
   <div class="col-md-12 nollning-grid">
     <div class="row matrix-grid-wrap">
-      <% (Date.new(2015,8,24)..Date.new(2015,9,20)).each do |date| %>
-        <%= link_to(nollning_event_path(date), data: { toggle: "modal", target: "#ajax-modal"} , remote: true) do %>
+      <% (Date.new(2016,8,22)..Date.new(2016,9,23)).each do |date| %>
+        <%= link_to(nollning_event_path(date), data: { toggle: 'modal',
+                                                       target: '#ajax-modal'},
+                                               remote: true) do %>
           <div class="col-md-1 col-xs-4 matrix-grid">
             <% events = @events.from_date(date) %>
             <span class="date">
@@ -24,9 +26,9 @@
                 <% end %>
               <% else %>
                 <span class="rest-title">
-                  <%= t('nollning.rest') %>
+                  <%= t('.rest') %>
                 </span>
-                <%= image_tag("theme/rest.svg", class: "rest-symbol") %>
+                <%= image_tag('theme/rest.svg', class: 'rest-symbol') %>
               <% end %>
             </div>
           </div>
@@ -35,5 +37,5 @@
     </div>
   </div>
 </div>
-<p class="nollning-matrix-footer">Tryck på en dag för att läsa mer</p>
+<p class="nollning-matrix-footer"><%= t('.click_day_to_read_more') %></p>
 <%= render 'modal' %>
