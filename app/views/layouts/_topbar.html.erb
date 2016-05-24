@@ -1,7 +1,8 @@
 <div class="top">
   <div class="container">
     <ul class="loginbar pull-right">
-      <li><%= link_to(fa_icon('calendar'), calendars_path, data: { no_turbolink: false }) %></li>
+      <li><%= link_to(fa_icon('calendar'), calendars_path,
+                                           data: { no_turbolink: false }) %></li>
       <li class="devider"></li>
       <% if user_signed_in? %>
         <% if current_user.permissions.count > 0 %>
@@ -10,12 +11,14 @@
         <% end %>
 
         <li class="dropdown">
-          <%= link_to(current_user, class: 'dropdown-toggle', data: { toggle: 'dropdown', delay: '0' }) do %>
-            <%= fa_icon("user") %> <%= current_user %>
+          <%= link_to(current_user, class: 'dropdown-toggle',
+                                    data: { toggle: 'dropdown', delay: '0' }) do %>
+            <%= fa_icon('user') %> <%= current_user %>
           <% end %>
           <ul class="dropdown-menu pull-right">
-            <li><%= link_to t('user.settings'), :own_user %></li>
-            <li><%= link_to t('devise.sign_out'), :destroy_user_session, method: :delete %></li>
+            <li><%= link_to t('.user_settings'), own_user_path %></li>
+            <li><%= link_to t('devise.sign_out'), destroy_user_session_path,
+                                                  method: :delete %></li>
           </ul>
         </li>
       <% else %>

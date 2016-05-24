@@ -5,12 +5,13 @@
       <%= notice %>
     </div>
   <% end %>
+
   <% if alert %>
     <div class="alert alert-danger fade-in">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <strong><%= t('alert.error') %> </strong> <%= alert %>
-  </div>
-<% end %>
+    </div>
+  <% end %>
 
 <%= yield %>
 

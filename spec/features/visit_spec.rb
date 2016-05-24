@@ -19,7 +19,7 @@ RSpec.feature 'visits paths' do
     pages: [:show],
     proposals: [:form],
     rents: [:overview, :index, :new],
-    static_pages: [:about, :company_offer, :company_about]
+    static_pages: [:about, :company_offer, :company_about, :cookies_information]
   }
 
   background do

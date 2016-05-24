@@ -4,8 +4,8 @@
       <div class="item active">
         <div class="start-background">
           <div class="container">
-            <h1><%= t('front.welcome') %></h1>
-            <p><%= t('front.description') %></p>
+            <h1><%= t('.welcome') %></h1>
+            <p><%= t('.description') %></p>
           </div>
         </div>
       </div>
@@ -25,6 +25,6 @@
   </div>
   <%= render @start_page.news %>
   <%= link_to news_index_path do%>
-    <%= fa_icon('plus') %> <%= t('news.more') %>
+    <%= fa_icon('plus') %> <%= t('.more_news') %>
   <% end %>
 </div>

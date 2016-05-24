@@ -1,6 +1,6 @@
 sv:
-  company:
-    about:
+  static_pages:
+    company_about:
       contact_if_interested: Är Ni intresserade av att få mer information om utbildingarna , F-sektionen och våra medlemmar, ser vi med glädje fram emot att Ni kontaktar oss via följande länk.
       first: I dagsläget har vi ungefär 950 medlemmar. Medlemmarna är talangfulla civilingenjörsstudenter från de högt ansedda civilingenjörsutbildningarna Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap.
       fourth: Ett möte med oss är en perfekt möjlighet för Er som företag, att handplocka just de studenterna som passar in på Ert företags profil.
@@ -10,7 +10,18 @@ sv:
       third: F-sektionen jobbar kontinuerligt för att skapa kontakt mellan våra medlemmar och näringslivet, detta för att ge studenterna de bäst tänkbara möjligheterna både under och efter studietiden. Vi vill att Ni som företag får chansen att möta våra blivande civilingenjörer med högklassiga analytiska och problemlösande kompetenser.
       title: Företag - Om
       we_offer: Våra erbjudande
-    offer:
+
+    company_programs:
+      programs: Program
+      math: Teknisk matematik
+      math_description: är utbildningen där studenterna läser mer matematik än på något annat civilingenjörsprogram. Programmet är unikt i Sverige och präglas av mottot ”Matematik som teknologi”. Den starka matematiska grunden kombinerad med data- och systemvetenskapligt kunnande gör att studenterna på Teknisk matematik får en otrolig spetskompetens inom valda specialiseringar.
+      nano: Tekinisk nanovetenskap
+      nano_description: Nanoteknologin är ett nyckelområde för den svenska industrins framtid och studenterna på programmet får gränsöverskridande kunskaper i områden som medicin, biologi, fysik, kemi, materialvetenskap och elektronik. Genom den tvärvetenskapliga grunden kan nanoteknologen koppla samman personer med helt olika vetenskaplig eller teknisk kompetens.
+      physics: Teknisk fysik
+      physics_description: är den första civilingenjörsutbildningen som startades på Lunds Tekniska Högskola. Studenterna genomgår traditionellt bred utbildning och får djupa teoretiska och experimentella kunskaper inom matematik, fysik och tekniska ämnen såsom mekanik, reglerteknik och elektronik.
+      specializations: Specialiseringar
+
+    company_offer:
       evening: Kvällsevenemang
       evening_first: Under en helkväll får ni tillfälle att, i en lugn och avslappnad atmosfär, träffa våra studenter. Här finns möjlighet att ge studenterna en helhetsbild av företaget och skapa en mer personlig kontakt med studenterna.
       evening_last: Förslagsvis inleder ni med att presentera ert företag och därefter drar kvällens event igång. Någon gång serveras mat till alla studenter och företagsrepresentanter. Kvällen kan till exempel avslutas med prisutdelning, vilket företaget i så fall får anordna. Kvällen är väldigt flexibel och vi är öppna för alla lösningar och idéer.
@@ -27,16 +38,7 @@ sv:
       sponsoring: Sponsring eller Give-aways
       sponsoring_description: Det finns naturligtvis alltid möjlighet att gå utanför ramen för dessa förslag, enbart fantasin sätter gränserna.
       third: Vill Ni boka, få mer information eller har Ni egna spännande idéer? Vänligen kontakta oss via länken nedan så kommer vi tillsammans fram till den bästa lösningen för just Er!<
-      title: Företag - Vi erbjuder
+      title: Vad vi erbjuder företag
       visits: Studiebesök
       visits_description: Tycker ni som företag att det hade varit kul att få visa upp er arbetsplats? Har ni något som gör er unika och som kan locka till er de bästa studenterna? Då kan ett studiebesök vara något för er. Vi ordnar logistik och studenterna.
       what_we_offer: Vad vi erbjuder Er
-    program:
-      math: Teknisk matematik
-      math_description: är utbildningen där studenterna läser mer matematik än på något annat civilingenjörsprogram. Programmet är unikt i Sverige och präglas av mottot ”Matematik som teknologi”. Den starka matematiska grunden kombinerad med data- och systemvetenskapligt kunnande gör att studenterna på Teknisk matematik får en otrolig spetskompetens inom valda specialiseringar.
-      nano: Tekinisk nanovetenskap
-      nano_description: Nanoteknologin är ett nyckelområde för den svenska industrins framtid och studenterna på programmet får gränsöverskridande kunskaper i områden som medicin, biologi, fysik, kemi, materialvetenskap och elektronik. Genom den tvärvetenskapliga grunden kan nanoteknologen koppla samman personer med helt olika vetenskaplig eller teknisk kompetens.
-      physics: Teknisk fysik
-      physics_description: är den första civilingenjörsutbildningen som startades på Lunds Tekniska Högskola. Studenterna genomgår traditionellt bred utbildning och får djupa teoretiska och experimentella kunskaper inom matematik, fysik och tekniska ämnen såsom mekanik, reglerteknik och elektronik.
-      specializations: Specialiseringar
-      title: Program

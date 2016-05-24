@@ -1,45 +1,45 @@
-<% provide(:title, t('company.offer.title')) %>
 <div class="col-md-12">
   <div class="headline">
-    <h1>Vad vi erbjuder er</h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
-  <%= simple_format(t('company.offer.first')) %>
-  <%= simple_format(t('company.offer.second')) %>
-  <%= simple_format(t('company.offer.third')) %>
+
+  <%= simple_format(t('.first')) %>
+  <%= simple_format(t('.second')) %>
+  <%= simple_format(t('.third')) %>
   <%= contact_from_slug(slug: 'naringsliv') %>
 </div>
 <div class="col-md-12">
   <div class="tab-v1">
     <div class="headline">
-      <%= simple_format(t('company.offer.our_offers')) %>
+      <%= simple_format(t('.our_offers')) %>
     </div>
 
     <ul class="nav nav-tabs">
       <li class="active">
-        <%= link_to(t('company.offer.evening'), '#kvall', data: {toggle: 'tab'}) %>
+        <%= link_to(t('.evening'), '#kvall', data: {toggle: 'tab'}) %>
       </li>
       <li>
-        <%= link_to(t('company.offer.lunch'), '#lunch', data: {toggle: 'tab'}) %>
+        <%= link_to(t('.lunch'), '#lunch', data: {toggle: 'tab'}) %>
       </li>
       <li>
-        <%= link_to(t('company.offer.marketing'), '#marknad', data: {toggle: 'tab'}) %>
+        <%= link_to(t('.marketing'), '#marknad', data: {toggle: 'tab'}) %>
       </li>
       <li>
-        <%= link_to(t('company.offer.visits'), '#studie', data: {toggle: 'tab'}) %>
+        <%= link_to(t('.visits'), '#studie', data: {toggle: 'tab'}) %>
       </li>
       <li>
-        <%= link_to(t('company.offer.nollning'), '#nollning', data: {toggle: 'tab'}) %>
+        <%= link_to(t('.nollning'), '#nollning', data: {toggle: 'tab'}) %>
       </li>
       <li>
-        <%= link_to(t('company.offer.sponsoring'), '#spons', data: {toggle: 'tab'}) %>
+        <%= link_to(t('.sponsoring'), '#spons', data: {toggle: 'tab'}) %>
       </li>
     </ul>
     <div class="tab-content">
       <div class="tab-pane  fade in active" id="kvall">
         <div class="col-md-12">
-          <%= simple_format(t('company.offer.evening_first')) %>
+          <%= simple_format(t('.evening_first')) %>
 
-          <p><%= t('company.offer.evening_may_contain') %>:</p>
+          <p><%= t('.evening_may_contain') %>:</p>
           <ul class="list">
             <li>Caselösning eller Workshop</li>
             <li>Pub</li>
@@ -48,32 +48,32 @@
             <li>Föreläsning</li>
           </ul>
 
-          <%= simple_format(t('company.offer.evening_last')) %>
+          <%= simple_format(t('.evening_last')) %>
         </div>
       </div>
       <div class="tab-pane fade in" id="lunch">
         <div class="col-md-12">
-          <%= simple_format(t('company.offer.lunch_description')) %>
+          <%= simple_format(t('.lunch_description')) %>
         </div>
       </div>
       <div class='tab-pane fade in' id='marknad'>
         <div class="col-md-12">
-          <%= simple_format(t('company.offer.marketing_description')) %>
+          <%= simple_format(t('.marketing_description')) %>
         </div>
       </div>
       <div class='tab-pane fade in' id='studie'>
         <div class="col-md-12">
-          <%= simple_format(t('company.offer.visits_description')) %>
+          <%= simple_format(t('.visits_description')) %>
         </div>
       </div>
       <div class='tab-pane fade in' id='nollning'>
         <div class="col-md-12">
-          <%= simple_format(t('company.offer.nollning_description')) %>
+          <%= simple_format(t('.nollning_description')) %>
         </div>
       </div>
       <div class='tab-pane fade in' id='spons'>
         <div class="col-md-12">
-          <%= simple_format(t('company.offer.sponsoring_description')) %>
+          <%= simple_format(t('.sponsoring_description')) %>
         </div>
       </div>
     </div>

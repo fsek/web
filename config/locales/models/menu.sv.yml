@@ -1,4 +1,11 @@
 sv:
+  model:
+    menus:
+      guild: Sektionen
+      members: För medlemmar
+      companies: För företag
+      contact: Kontakt
+
   activerecord:
     models:
       menu:

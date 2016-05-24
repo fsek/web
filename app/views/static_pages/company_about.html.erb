@@ -1,101 +1,20 @@
-<% provide(:title, t('company.about.title')) %>
 <div class="col-md-12">
   <div class="headline">
-    <h1><%= t('company.about.headline') %></h1>
+    <h1><%= title(t('.headline')) %></h1>
   </div>
 
-  <%= simple_format(t('company.about.first')) %>
-  <%= simple_format(t('company.about.second')) %>
-  <%= simple_format(t('company.about.third')) %>
-  <%= simple_format(t('company.about.fourth')) %>
-  <%= simple_format(t('company.about.contact_if_interested')) %>
+  <%= simple_format(t('.first')) %>
+  <%= simple_format(t('.second')) %>
+  <%= simple_format(t('.third')) %>
+  <%= simple_format(t('.fourth')) %>
+  <%= simple_format(t('.contact_if_interested')) %>
 
   <p>
     <%= contact_from_slug(slug: 'naringsliv') %>
   </p>
 
-  <%= simple_format(t('company.about.offer')) %>
-  <%= link_to(t('company.about.we_offer'), company_offer_path, class: 'btn secondary') %>
+  <%= simple_format(t('.offer')) %>
+  <%= link_to(t('.we_offer'), company_offer_path, class: 'btn secondary') %>
 </div>
-<div class="col-md-12">
-  <div class="tab-v1">
-    <div class="headline">
-      <h2>Program</h2>
-    </div>
 
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <%= link_to(t('company.program.physics'), '#fysik', data: {toggle: 'tab'}) %>
-      </li>
-      <li>
-        <%= link_to(t('company.program.math'), '#matte', data: {toggle: 'tab'}) %>
-      </li>
-      <li>
-        <%= link_to(t('company.program.nano'), '#nano', data: {toggle: 'tab'}) %>
-      </li>
-    </ul>
-
-    <div class="tab-content">
-      <div class="tab-pane fade in active" id="fysik">
-        <div class="col-md-12">
-          <p>
-          <strong><%= t('company.program.physics') %>:</strong>
-          <%= t('company.program.physics_description') %>
-          </p>
-          <strong><%= t('company.program.specializations') %>:</strong>
-          <ul class="list">
-            <li>Acceleratorer - fysik och teknik</li>
-            <li>Beräkning och simulering</li>
-            <li>Beräkningsmekanik</li>
-            <li>Bilder och grafik</li>
-            <li>Biologisk och medicinsk modellering</li>
-            <li>Energisystem</li>
-            <li>Finansiell modellering</li>
-            <li>Fotonik</li>
-            <li>Högfrekvens- och nanoelektronik</li>
-            <li>Medicinsk teknik</li>
-            <li>Nanofysik</li>
-            <li>Programvara</li>
-            <li>Signaler och sensorer</li>
-            <li>Teoretisk fysik</li>
-            <li>Reglersystem</li>
-          </ul>
-        </div>
-      </div>
-      <div class="tab-pane fade in" id="matte">
-        <div class="col-md-12">
-          <p>
-          <strong><%= t('company.program.math') %>:</strong>
-          <%= t('company.program.math_description') %>
-          </p>
-          <strong><%= t('company.program.specializations') %>:</strong>
-          <ul class="list">
-            <li>Beräkning och simulering</li>
-            <li>Beräkningsmekanik</li>
-            <li>Bilder och grafik</li>
-            <li>Biologisk, ekologisk och medicinsk modellering</li>
-            <li>Finansiell modellering</li>
-            <li>Miljö, risk och klimat</li>
-            <li>System, signaler och reglering</li>
-            <li>Programvara</li>
-          </ul>
-        </div>
-      </div>
-      <div class='tab-pane fade in' id='nano'>
-        <div class="col-md-12">
-          <p>
-          <strong><%= t('company.program.nano') %>.</strong>
-          <%= t('company.program.nano_description') %>
-          </p>
-          <strong><%= t('company.program.specializations') %></strong>
-          <ul class="list">
-            <li>Högfrekvens- och nanoelektronik</li>
-            <li>Material</li>
-            <li>Nanobiomedicin</li>
-            <li>Nanofysik</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render 'company_programs' %>

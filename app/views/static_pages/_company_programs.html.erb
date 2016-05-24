@@ -1,0 +1,83 @@
+<div class="col-md-12">
+  <div class="tab-v1">
+    <div class="headline">
+      <h2><%= t('.programs') %></h2>
+    </div>
+
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <%= link_to(t('.physics'), '#fysik', data: {toggle: 'tab'}) %>
+      </li>
+      <li>
+        <%= link_to(t('.math'), '#matte', data: {toggle: 'tab'}) %>
+      </li>
+      <li>
+        <%= link_to(t('.nano'), '#nano', data: {toggle: 'tab'}) %>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="fysik">
+        <div class="col-md-12">
+          <p>
+          <strong><%= t('.physics') %>:</strong>
+          <%= t('.physics_description') %>
+          </p>
+          <strong><%= t('.specializations') %>:</strong>
+          <ul class="list">
+            <li>Acceleratorer - fysik och teknik</li>
+            <li>Beräkning och simulering</li>
+            <li>Beräkningsmekanik</li>
+            <li>Bilder och grafik</li>
+            <li>Biologisk och medicinsk modellering</li>
+            <li>Energisystem</li>
+            <li>Finansiell modellering</li>
+            <li>Fotonik</li>
+            <li>Högfrekvens- och nanoelektronik</li>
+            <li>Medicinsk teknik</li>
+            <li>Nanofysik</li>
+            <li>Programvara</li>
+            <li>Signaler och sensorer</li>
+            <li>Teoretisk fysik</li>
+            <li>Reglersystem</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tab-pane fade in" id="matte">
+        <div class="col-md-12">
+          <p>
+          <strong><%= t('.math') %>:</strong>
+          <%= t('.math_description') %>
+          </p>
+          <strong><%= t('.specializations') %>:</strong>
+          <ul class="list">
+            <li>Beräkning och simulering</li>
+            <li>Beräkningsmekanik</li>
+            <li>Bilder och grafik</li>
+            <li>Biologisk, ekologisk och medicinsk modellering</li>
+            <li>Finansiell modellering</li>
+            <li>Miljö, risk och klimat</li>
+            <li>System, signaler och reglering</li>
+            <li>Programvara</li>
+          </ul>
+        </div>
+      </div>
+      <div class='tab-pane fade in' id='nano'>
+        <div class="col-md-12">
+          <p>
+          <strong><%= t('.nano') %>.</strong>
+          <%= t('.nano_description') %>
+          </p>
+          <strong><%= t('.specializations') %></strong>
+          <ul class="list">
+            <li>Högfrekvens- och nanoelektronik</li>
+            <li>Material</li>
+            <li>Nanobiomedicin</li>
+            <li>Nanofysik</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

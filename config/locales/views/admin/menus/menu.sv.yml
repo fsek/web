@@ -1,0 +1,17 @@
+sv:
+  admin:
+    menus:
+      edit:
+        title: Redigera meny
+        destroy: Förinta meny
+        all_menus: Alla menyer
+
+      index:
+        title: Alla menyer
+        new: Ny meny
+        filter: Filtrera menyer
+        reset_filter: Återställ filter
+
+      new:
+        title: Ny meny
+        all_menus: Alla menyer
