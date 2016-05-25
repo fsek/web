@@ -1,0 +1,8 @@
+sv:
+  static_pages:
+    cookies_information:
+      title: Cookies
+      what_a_cookie_is: Cookies är små textfiler som laddas ner till din dator, tablet eller mobiltelefon när du besöker webbsidor eller applikationer. Webbsidan eller applikationen kan sedan hämta dessa cookies från din webbläsare (t.ex. Google Chrome, Mozilla Firefox eller Microsoft Edge) varje gång du besöker sidan. Med hjälp av detta kan sidan känna igen dig, komma ihåg dina inställningar och ge dig en mer säker onlineupplevelse.
+      what_a_cookie_is_for: Generellt är cookies väldigt användbara och används av nästan varje webbsida du besöker för att göra din onlineupplevelse så smidig som möjlig. På grund av säkerhetsanledningar fungerar vissa webbsidor inte alls om använding av cookies inaktiverats.
+      not_used_to_identify_user: Cookies använder vanligen inte information för att identifiera en person, utan istället information för att identifiera en webbläsare på en specifik dator, tablet eller mobiltelefon.
+      you_may_block: Om du föredrar det, kan du begränsa, blockera eller radera cookies genom att ändra inställningar för webbläsaren. Detta kan leda till att webbsidor inte fungerar ordentligt. För att läsa mer om hur cookies påverkar dig och ditt webbanvändande, gå in på

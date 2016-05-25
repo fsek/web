@@ -3,16 +3,15 @@
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <p class="year">
-          <%= Time.current.year %> &copy; F-teknologsektionen inom TLTH.
+          <%= Time.current.year %> &copy; <%= t('.the_f_guild') %>.
         </p>
       </div>
       <div class="col-md-6 col-sm-12">
         <p class="contact">
-          <%= t('footer.control_the_web') %>:
+          <%= t('.control_the_web') %>:
           <%= contact_from_slug(slug: 'spindelman') %>
         </p>
       </div>
     </div>
   </div>
 </div>
-

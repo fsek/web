@@ -1,9 +1,12 @@
 <div class="headline">
-  <h1><%= t('cookies.title') %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
-<%= simple_format(t('cookies.general.first')) %>
-<%= simple_format(t('cookies.general.second')) %>
-<%= simple_format(t('cookies.general.third')) %>
+
+<%= simple_format(t('.what_a_cookie_is')) %>
+<%= simple_format(t('.what_a_cookie_is_for')) %>
+<%= simple_format(t('.not_used_to_identify_user')) %>
+
 <p>
-<%= t('cookies.general.fourth') %> <%= link_to('Mina Cookies', 'http://www.minacookies.se') %>.
+  <%= t('.you_may_block') %>
+  <%= link_to('Mina Cookies', 'http://www.minacookies.se') %>.
 </p>

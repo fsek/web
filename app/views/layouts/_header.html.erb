@@ -10,14 +10,17 @@
         </button>
         <%= link_to root_path do %>
           <div class="navbar-brand">
-            <%= image_tag("layout/f.svg", id: "logo-header", height: "60") %>
+            <%= image_tag('layout/f.svg', id: 'logo-header', height: '60') %>
           </div>
           <div class="navbar-brand-text pull-left">
-            <span>&mdash;</span>TEKNOLOGSEKTIONEN<br/>INOM TLTH
+            <span>&mdash;</span>
+            <%= t('.guild').upcase %>
+            <br/>
+            <%= t('.within_tlth').upcase %>
           </div>
         <% end %>
       </div>
-      <%= render "layouts/menu" %>
+      <%= render 'layouts/menu' %>
     </div>
   </div>
 </div>
