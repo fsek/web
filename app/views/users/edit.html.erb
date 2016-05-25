@@ -1,19 +1,20 @@
+<% title(t('.title')) %>
 <div class="col-md-8 col-md-offset-2 col-xs-12">
   <div class="profile-body margin-bottom-20 user">
     <div class="tab-v1">
       <ul class="nav nav-justified nav-tabs">
         <li class="<%=@tab == :profile ? 'active' : ''%>">
-          <%= link_to(t('user.profile'), '#profile', data: { toggle: :tab }) %>
+          <%= link_to(t('.profile'), '#profile', data: { toggle: :tab }) %>
         </li>
 
         <li class="<%=@tab == :account ? 'active' : ''%>">
           <%= link_to('#account', data: { toggle: :tab }) do %>
-            <%= t('user.account') %>
+            <%= t('.account') %>
           <% end %>
         </li>
 
         <li class="<%=@tab == :password ? 'active' : ''%>">
-          <%= link_to(t('user.password'), '#password', data: { toggle: :tab }) %>
+          <%= link_to(t('.password'), '#password', data: { toggle: :tab }) %>
         </li>
       </ul>
 
@@ -30,7 +31,7 @@
           <%= render 'password_form', user: current_user %>
         </div>
 
-        <%= link_to t('back_to_root'), :root %>
+        <%= link_to t('.back_to_root'), root_path %>
       </div>
     </div>
   </div>

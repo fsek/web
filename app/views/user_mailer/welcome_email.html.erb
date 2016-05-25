@@ -4,14 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= t('user.mailer.welcome') %></h1>
-    <p><%= t('user.mailer.registered') %></p>
-    <p>
-    <%= t('user.mailer.how_to_sign_in', url: @url, mail: @user.email) %>
-    </p>
-    <p><%= t('user.mailer.enjoy') %></p>
-    <p><%= t('user.mailer.problem') %></p>
-    <%= link_to(t('contact.index'), contacts_path) %>
-
+    <h1><%= t('.welcome') %></h1>
+    <%= simple_format(t('.registered')) %>
+    <%= simple_format(t('.how_to_sign_in', url: @url, mail: @user.email)) %>
+    <%= simple_format(t('.enjoy')) %></p>
+    <%= simple_format(t('.problem')) %></p>
+    <%= link_to(t('.all_contacts'), contacts_path) %>
   </body>
 </html>

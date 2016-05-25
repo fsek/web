@@ -2,6 +2,7 @@ class Admin::UsersController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
+    @user_grid = initialize_grid(@users)
   end
 
   def member
