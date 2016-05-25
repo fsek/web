@@ -14,10 +14,10 @@ $(loader).fadeToggle('fast', function() {
   $(content).html("");
   <% if @events.count > 0 %>
     <% @events.each do |e| %>
-        $(content).append("<%= j render("event_modal", event: e) %>");
+        $(content).append("<%= j render('event_modal', event: e) %>");
     <% end %>
   <% else %>
-    $(content).html("<h4><%= j t("nollning.rest") %></h4>");
+    $(content).html("<h4><%= j t('.rest') %></h4>");
   <% end %>
 
   $(modal).modal();

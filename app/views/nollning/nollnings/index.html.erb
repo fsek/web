@@ -1,5 +1,5 @@
 <div class="headline">
-  <h1>En Ridderlig Nollning</h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <%= render 'images' %>
@@ -7,7 +7,7 @@
 <% if @news.present? %>
   <div class="col-md-7 nollning-news">
     <div class="headline">
-      <h3><%= t('news.title') %></h3>
+      <h3><%= t('.news') %></h3>
     </div>
 
     <% @news.each do |n| %>
@@ -15,7 +15,7 @@
     <% end %>
 
     <%= link_to news_index_path(category: :nollning) do%>
-      <%= fa_icon('plus') %> <%= t('news.more') %>
+      <%= fa_icon('plus') %> <%= t('.more_news') %>
     <% end %>
   </div>
 <% end %>
@@ -23,7 +23,7 @@
 <div class="col-md-7">
   <% if @constant.present? %>
     <div class="headline">
-      <h3><%= t('nollning.movie') %></h3>
+      <h3><%= t('.theme_movie') %></h3>
     </div>
     <iframe width="560" height="315" src="<%= @constant.value %>" frameborder="0" allowfullscreen></iframe>
   <% end %>

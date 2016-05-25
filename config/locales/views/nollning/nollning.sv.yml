@@ -1,0 +1,41 @@
+sv:
+  nollning:
+    links:
+      title: Länkar
+      tlth: Teknologkåren
+      studentlund: Studentlund
+      af_accommodation: Akademiska Bostäder
+      physics: Teknisk Fysik
+      mathmatics: Teknisk Matematik
+      nanoscience: Teknisk Nanovetenskap
+      csn: CSN
+
+    sidebar:
+      sponsors: Sponsorer
+
+    nollnings:
+      event_modal:
+        drink: Dricka säljes
+        food: Mat serveras
+        cash: Kontanter behövs
+        signup: Kräver anmälan
+
+      images:
+        previous: Föregående
+        next: Nästa
+
+      index:
+        title: En Ridderlig Nollning
+        news: Nyheter
+        more_news: Fler nyheter
+        theme_movie: Temasläppsfilm
+
+      symbols:
+        drink: Dricka säljes
+        food: Mat serveras
+        cash: Kontanter behövs
+        signup: Kräver anmälan
+
+      matrix:
+        rest: Nollan vilar
+        click_day_to_read_more: Tryck på en dag för att läsa mer

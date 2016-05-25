@@ -1,33 +1,35 @@
 <div class="modal-event-body row">
   <div class="col-sm-8 col-xs-12">
     <h4 class="modal-title"><%= %(#{event.title} #{event.short}) %></h4>
-    <span class="time"><%= event.p_time %></span>
+    <span class="time"><%= time_range(event.starts_at, event.ends_at) %></span>
     <span class="location"><%= event.location %></span>
     <span class="description">
       <%= simple_format(event.description) %>
     </span>
     <% if :registration == true %>
     <span class="reminder">
-      <%= render("events/registration", event: event, reg: EventRegistration.get(event, current_user)) %>
+      <%= render('events/registration',
+                 event: event,
+                 reg: EventRegistration.get(event, current_user)) %>
     </span>
   <% end %>
   </div>
   <div class="col-sm-4 col-xs-12">
     <span class="symbols">
-      <%= render("symbols", event: event) %>
+      <%= render('symbols', event: event) %>
       <br>
       <ul class="symbol-list">
         <% if event.signup %>
-          <li><%= t('nollning.signup') %></li>
+          <li><%= t('.signup') %></li>
         <% end %>
         <% if event.food %>
-          <li><%= t('nollning.food') %></li>
+          <li><%= t('.food') %></li>
         <% end %>
         <% if event.drink %>
-          <li><%= t('nollning.drink') %></li>
+          <li><%= t('.drink') %></li>
         <% end %>
         <% if event.cash %>
-          <li><%= t('nollning.cash') %></li>
+          <li><%= t('.cash') %></li>
         <% end %>
       </ul>
     </span>
