@@ -17,7 +17,7 @@
       </strong>
     </p>
     <p>
-      <%= t('user.check_email_to_confirm', date: l(user.confirmation_sent_at)) %>
+      <%= t('.check_email_to_confirm', date: l(user.confirmation_sent_at)) %>
     </p>
   <% end %>
 
@@ -43,7 +43,7 @@
     </p>
     <br>
     <p>
-      <%= t('user.check_email_to_confirm', date: l(user.confirmation_sent_at)) %>
+      <%= t('.check_email_to_confirm', date: localized(user.confirmation_sent_at)) %>
       <%= link_to t('devise.not_receive_confirm'), new_confirmation_path(user) %>
     </p>
   <% end %>
@@ -67,12 +67,13 @@
   <% if user.member? %>
     <span class="control-label">
       <%= fa_icon('check', class: 'icon-background green round-icon') %>
-      <%= l(user.member_at) %>
+      <%= localized(user.member_at) %>
     </span>
   <% else %>
     <span class="control-label">
       <%= fa_icon('close', class: 'icon-background red round-icon') %>
-      <%= t('user.contact_for_membership') %>
+      <%= t('.contact_for_membership') %>
+      <%= contact_from_slug(slug: 'spindelman') %>
     </span>
   <% end %>
 <% end %>

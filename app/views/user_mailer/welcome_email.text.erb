@@ -1,10 +1,10 @@
-<%= t('user.mailer.welcome') %>
+<%= t('.welcome') %>
 ===============================================
-<%= t('user.mailer.registered') %>
+<%= t('.registered') %>
 
-<%= t('user.mailer.how_to_sign_in', url: @url, mail: @user.email) %>
+<%= t('.how_to_sign_in', url: @url, mail: @user.email) %>
 
-<%= t('user.mailer.enjoy') %>
+<%= t('.enjoy') %>
 
-<%= t('user.mailer.problem') %>
-<%= link_to(t('contact.index'), contacts_path) %>
+<%= t('.problem') %>
+<%= link_to(t('.all_contacts'), contacts_path) %>

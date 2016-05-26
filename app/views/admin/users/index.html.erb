@@ -1,53 +1,42 @@
-<div class="col-md-12 user">
-  <div class="panel panel-orange margin-bottom-40">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <%= fa_icon('tasks') %> <%= title(models_name(User)) %>
-      </h3>
-    </div>
-    <div class="col-md-12">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th><%= User.human_attribute_name(:name) %></th>
-            <th><%= User.human_attribute_name(:email) %></th>
-            <th><%= User.human_attribute_name(:program) %></th>
-            <th><%= User.human_attribute_name(:start_year) %></th>
-            <th><%= User.human_attribute_name(:confirmed_at) %></th>
-            <th><%= t('user.membership?') %></th>
-        </tr>
-        </thead>
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+<div class="col-md-12 col-sm-12 margin-bottom-20">
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
 
-        <tbody>
-          <% @users.each do |user| %>
-            <tr id="<%= dom_id(user) %>">
-              <td><%= user.id %></td>
-              <td><%= user %></td>
-              <td><%= user.email %></td>
-              <td><%= user.program %></td>
-              <td><%= user.start_year %></td>
-              <td>
-                <% if user.confirmed? %>
-                  <%= l(user.confirmed_at) %>
-                <% else %>
-                  <%= t(:no) %>
-                <% end %>
-              </td>
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+</div>
 
-              <td class="member-action">
-                <% if user.member? %>
-                  <%= link_to(t('user.unmake_member'), unmember_admin_user_path(user),
-                              class: 'btn danger', remote: true, method: :post) %>
-                <% else %>
-                  <%= link_to(t('user.make_member'), member_admin_user_path(user),
-                              class: 'btn secondary', remote: true, method: :post) %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<div class="col-md-12 col-sm-12 user">
+  <%= grid(@user_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.row_attributes do |user|
+      {id: dom_id(user)}
+    end
+    g.column(name: 'ID', attribute: 'id', filter: false) do |user|
+      link_to(user.id, user_path(user), target: :blank)
+    end
+    g.column(name: User.human_attribute_name(:firstname), attribute: 'firstname')
+    g.column(name: User.human_attribute_name(:lastname), attribute: 'lastname')
+    g.column(name: User.human_attribute_name(:email), attribute: 'email')
+    g.column(name: User.human_attribute_name(:confirmed_at), attribute: 'confirmed_at') do |user|
+      localized(user.confirmed_at)
+    end
+    g.column(name: User.human_attribute_name(:member_at), attribute: 'member_at',
+             class: 'member-confirmed') do |user|
+      localized(user.member_at)
+    end
+    g.column(name: t('.membership?'), filter: false, class: 'member-action') do |user|
+      if user.member?
+        link_to(t('.unmake_member'), unmember_admin_user_path(user),
+                    class: 'btn danger', remote: true, method: :post)
+      else
+        link_to(t('.make_member'), member_admin_user_path(user),
+                    class: 'btn secondary', remote: true, method: :post)
+      end
+    end
+  end -%>
 </div>

@@ -1,0 +1,9 @@
+sv:
+  user_mailer:
+    welcome_email:
+      all_contacts: Alla kontakter
+      enjoy: Hoppas att ni ska trivas här på hemsidan.
+      how_to_sign_in: Du loggar in på %{url} med hjälp av din e-postadress %{mail} och lösenordet du angav.
+      problem: Har ni några problem får ni kontakta Spindelmän via
+      registered: Du har lyckats att registrera en användare.
+      welcome: Välkommen till F-sektionens hemsida

@@ -1,6 +1,4 @@
 <% if @success %>
-  $('#<%= dom_id(@user) %> td.member-action').html('<%= j link_to(t('user.unmake_member'), unmember_admin_user_path(@user), class: 'btn danger', remote: true, method: :post) %>');
-  $('#<%= dom_id(@user) %> td.status').html('');
-<% else %>
-  $('#<%= dom_id(@user) %> td.status').html('');
+  $('#<%= dom_id(@user) %> td.member-action').html('<%= j link_to(t('.unmake_member'), unmember_admin_user_path(@user), class: 'btn danger', remote: true, method: :post) %>');
+  $('#<%= dom_id(@user) %> td.member-confirmed').html('<%= j localized(@user.member_at) %>');
 <% end %>
