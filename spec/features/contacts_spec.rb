@@ -12,7 +12,8 @@ feature 'fill out send_form' do
     end
 
     Then 'I see contacts' do
-      page.should have_css('#contacts_title', text: I18n.t('contact.title'))
+      page.should have_css('#contacts_title',
+                           text: I18n.t('contacts.index.title'))
     end
 
     When 'click on contact' do

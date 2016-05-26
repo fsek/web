@@ -1,0 +1,17 @@
+sv:
+  admin:
+    documents:
+      edit:
+        destroy: Förinta dokument
+        index: Alla dokument
+        show: Visa dokument
+        title: Redigera dokument
+
+      index:
+        all_documents: Alla dokument
+        new_document: Nytt dokument
+        title: Administrera dokument
+
+      new:
+        all_documents: Alla dokument
+        title: Nytt dokument

@@ -1,5 +1,5 @@
 <div class="headline">
-  <h1><%= title(t('news.admin_title')) %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-2 col-sm-12 margin-bottom-20">
@@ -13,8 +13,8 @@
 
   <hr>
 
-  <%= link_to(t('news.new'), new_admin_news_path, class: 'btn primary') %>
-  <%= link_to(t('news.index'), news_index_path, class: 'btn secondary') %>
+  <%= link_to(t('.new_news'), new_admin_news_path, class: 'btn primary') %>
+  <%= link_to(t('.all_news'), news_index_path, class: 'btn secondary') %>
 </div>
 
 <div class="col-md-10 col-sm-12">

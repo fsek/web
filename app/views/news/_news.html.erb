@@ -7,7 +7,7 @@
   </h4>
   <%= truncate(markdown_plain(news.content),
                length: 140,
-               separator: ''){ link_to(t(:read_more), news_path(news))} %>
+               separator: ''){ link_to(t('.read_more'), news_path(news))} %>
 
    <%= news_url(news) %>
 

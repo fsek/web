@@ -1,13 +1,19 @@
-<%= simple_form_for([:admin, @event]) do |f| %>
+<%= simple_form_for([:admin, event]) do |f| %>
   <div class="tab-v1">
     <%= f.error_notification %>
     <ul class="nav nav-justified nav-tabs">
-      <li class="<%=@tab == :info ? 'active' : ''%>"><a data-toggle="tab" href="#info"><%= t('event.info') %></a></li>
-      <li class="<%=@tab == :dates ? 'active' : ''%>"><a data-toggle="tab" href="#dates"><%= t('event.dates') %></a></li>
-      <li class="<%=@tab == :registration ? 'active' : ''%>"><a data-toggle="tab" href="#registration"><%= t('event.registration') %></a></li>
+      <li class="<%= tab == :info ? 'active' : ''%>">
+        <%= link_to(t('.info'), '#info', data: { toggle: :tab }) %>
+      </li>
+      <li class="<%= tab == :dates ? 'active' : ''%>">
+        <%= link_to(t('.dates'), '#dates', data: { toggle: :tab }) %>
+      </li>
+      <li class="<%= tab == :registration ? 'active' : ''%>">
+        <%= link_to(t('.registration'), '#registration', data: { toggle: :tab }) %>
+      </li>
     </ul>
     <div class="tab-content">
-      <div id="info" class="profile-edit tab-pane fade in <%=@tab == :info ? 'active' : ''%>">
+      <div id="info" class="profile-edit tab-pane fade in <%= tab == :info ? 'active' : ''%>">
         <%= f.input :title %>
         <%= f.input :short %>
         <%= f.input :description %>
@@ -17,13 +23,13 @@
         <%= f.input :category %>
       </div>
 
-      <div id="dates" class="profile-edit tab-pane fade in <%=@tab == :dates ? 'active' : ''%>">
+      <div id="dates" class="profile-edit tab-pane fade in <%= tab == :dates ? 'active' : ''%>">
         <%= f.input :starts_at, as: :datetime_picker %>
         <%= f.input :ends_at, as: :datetime_picker %>
         <%= f.input :all_day, as: :boolean %>
       </div>
 
-      <div id="registration" class="profile-edit tab-pane fade in <%=@tab == :registration ? 'active' : ''%>">
+      <div id="registration" class="profile-edit tab-pane fade in <%= tab == :registration ? 'active' : ''%>">
         <%= f.input :drink, as: :boolean %>
         <%= f.input :food, as: :boolean %>
         <%= f.input :cash, as: :boolean %>

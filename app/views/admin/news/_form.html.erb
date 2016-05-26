@@ -15,14 +15,14 @@
     <%= f.association :categories, collection: Category.all,
                                    input_html: { class: 'select2' } %>
   <% else %>
-    <p><%= t('.categories_after_save') %></p>
+    <%= simple_format(t('.categories_after_save')) %>
   <% end %>
   <%= f.button :submit %>
 
   <% if news.persisted? %>
-    <%= link_to(t('news.destroy'), admin_news_path(news),
-                                   method: :delete,
-                                   class: 'btn danger pull-right') %>
+    <%= link_to(t('.destroy'), admin_news_path(news),
+                               method: :delete,
+                               class: 'btn danger pull-right') %>
 
   <% end %>
 <% end %>

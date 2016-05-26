@@ -1,9 +1,11 @@
 <div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('contact.edit')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
+
   <%= render 'form', contact: @contact, posts: @posts %>
+
   <hr>
-  <%= link_to(t('contact.admin_index'), admin_contacts_path, class: 'btn secondary') %>
-  <%= link_to(t('contact.index'), contacts_path, class: 'btn secondary') %>
+  <%= link_to(t('.admin_index'), admin_contacts_path, class: 'btn secondary') %>
+  <%= link_to(t('.all_contacts'), contacts_path, class: 'btn secondary') %>
 </div>

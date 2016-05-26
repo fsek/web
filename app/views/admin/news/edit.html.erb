@@ -1,14 +1,14 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('news.edit')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
 
   <%= render 'form', news: @news %>
   <hr>
-  <%= link_to(t('news.show'), news_path(@news),
+  <%= link_to(t('.show'), news_path(@news),
+                          class: 'btn secondary') %>
+  <%= link_to(t('.admin_index'), admin_news_index_path(@news),
+                                 class: 'btn secondary') %>
+  <%= link_to(t('.all_news'), news_index_path(@news),
                               class: 'btn secondary') %>
-  <%= link_to(t('news.admin_title'), admin_news_index_path(@news),
-                                     class: 'btn secondary') %>
-  <%= link_to(t('news.index'), news_index_path(@news),
-                               class: 'btn secondary') %>
 </div>
