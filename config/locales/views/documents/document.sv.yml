@@ -1,0 +1,8 @@
+sv:
+  documents:
+    index:
+      administrate: Administrera dokument
+      filter: Filtrera
+      filter_explanation: Genom att fylla i fälten under rubrikerna kan dokumenten filtreras
+      reset_filter: Återställ filter
+      title: Dokument

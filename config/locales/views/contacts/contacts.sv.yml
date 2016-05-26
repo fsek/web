@@ -1,0 +1,15 @@
+sv:
+  contacts:
+    contact:
+      users: Till användare
+      contact: Kontakta
+
+    index:
+      title: Kontaktsida
+
+    send_form:
+      submit: Skicka meddelande
+
+    show:
+      back_to_contacts: Alla kontakter
+      users: Till användare

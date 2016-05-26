@@ -1,5 +1,5 @@
 <div class="headline">
-  <h1><%= title(t('contact.title')) %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-2 col-sm-12 margin-bottom-20">
@@ -13,8 +13,8 @@
 
   <hr>
 
-  <%= link_to(t('contact.new'), new_admin_contact_path, class: 'btn primary') %>
-  <%= link_to(t('contact.index'), contacts_path, class: 'btn secondary') %>
+  <%= link_to(t('.new_contact'), new_admin_contact_path, class: 'btn primary') %>
+  <%= link_to(t('.all_contacts'), contacts_path, class: 'btn secondary') %>
 </div>
 
 <div class="col-md-10 col-sm-12">
@@ -31,7 +31,7 @@
     g.column(name: Contact.human_attribute_name(:updated_at), attribute: 'updated_at',
              filter: false)
     g.column(name: t(:edit), filter: false) do |contact|
-      link_to(t('contact.edit'), edit_admin_contact_path(contact))
+      link_to(t(:edit), edit_admin_contact_path(contact))
     end
   end -%>
 </div>

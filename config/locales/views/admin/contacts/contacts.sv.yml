@@ -1,0 +1,21 @@
+sv:
+  admin:
+    contacts:
+      form:
+        destroy: Förinta kontakt
+        name_or_post: Välj en post eller fyll i ett namn.
+        slug_description: Används för att kunna visa en särskild kontakt i vyer.
+
+      edit:
+        admin_index: Administrera kontakter
+        all_contacts: Kontaktsida
+        title: Redigera kontakt
+
+      index:
+        all_contacts: Kontaktsida
+        new_contact: Ny kontakt
+        title: Administrera kontakter
+
+      new:
+        admin_index: Administrera kontakter
+        title: Ny kontakt

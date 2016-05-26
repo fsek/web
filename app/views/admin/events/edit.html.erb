@@ -1,14 +1,16 @@
 <div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('event.edit')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
-  <%= render 'form'%>
+
+  <%= render 'form', event: @event, tab: @tab %>
+
   <hr>
-  <%= link_to(t('event.destroy'),
-              admin_event_path(@event), method: :delete,
-              class: 'btn danger pull-right') %>
-  <%= link_to(t('event.show'),
-              event_path(@event), class: 'btn secondary') %>
-  <%= link_to(t('event.index'),
-              admin_events_path, class: 'btn secondary') %>
+  <%= link_to(t('.destroy'), admin_event_path(@event),
+                             method: :delete,
+                             class: 'btn danger pull-right') %>
+  <%= link_to(t('.show'), event_path(@event),
+                          class: 'btn secondary') %>
+  <%= link_to(t('.all_events'), admin_events_path,
+                                class: 'btn secondary') %>
 </div>

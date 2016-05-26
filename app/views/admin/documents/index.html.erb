@@ -1,5 +1,5 @@
 <div class="headline">
-  <h1><%= title(t('document.title')) %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 <div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
   <button class="wg-external-submit-button btn primary" data-grid-name="grid">
@@ -12,8 +12,10 @@
 
   <hr>
 
-  <%= link_to(t('document.new'), new_admin_document_path, class: 'btn primary') %>
-  <%= link_to(t('document.index'), documents_path, class: 'btn secondary') %>
+  <%= link_to(t('.new_document'), new_admin_document_path,
+                                  class: 'btn primary') %>
+  <%= link_to(t('.all_documents'), documents_path,
+                                   class: 'btn secondary') %>
 </div>
 
 <div class="col-md-10 col-sm-12">
@@ -33,7 +35,7 @@
       user_link(document.user)
     end
     g.column(name: t(:edit), filter: false) do |document|
-      link_to(t('document.edit'), edit_admin_document_path(document))
+      link_to(t(:edit), edit_admin_document_path(document))
     end
   end -%>
 </div>

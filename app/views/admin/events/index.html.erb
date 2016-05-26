@@ -17,8 +17,8 @@
           <th><%= Event.human_attribute_name(:all_day) %></th>
           <th><%= Event.human_attribute_name(:updated_at) %></th>
           <th>
-              <%= link_to(t('event.new'),
-                          new_admin_event_path, class: 'btn primary small') %>
+            <%= link_to(t('.new_event'), new_admin_event_path,
+                                         class: 'btn primary small') %>
           </th>
         </tr>
       </thead>

@@ -1,7 +1,8 @@
-<div class="col-md-12">
-	<div id='event_calendar'></div>
-	<hr>
-  <%= link_to(t('calendar.subscription'),
-              export_calendars_url(protocol: 'webcal',
-                                   format: 'ics'))%>
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
 </div>
+<div id='event_calendar'></div>
+<hr>
+<%= link_to(t('.subscription'), export_calendars_url(protocol: 'webcal',
+                                                     format: 'ics'),
+                                class: 'btn primary')%>

@@ -1,5 +1,5 @@
 <div class="headline">
-  <h1><%= @news.title %></h1>
+  <h1><%= title(@news.title) %></h1>
 </div>
 
 <%= content_for :info do %>
@@ -17,7 +17,8 @@
      <span class="categories">
        <%= fa_icon('hashtag') %> 
        <% @news.categories.each do |cat| %>
-         <%= link_to(cat.title, news_index_path(category: cat.to_param)) %> <%= ' ' %>
+         <%= link_to(cat.title, news_index_path(category: cat.to_param)) %>
+         <%= ' ' %>
        <% end %>
      </span>
    <% end %>
@@ -41,7 +42,7 @@
   <% end %>
   <hr>
 
-  <%= link_to(t('news.index'),
+  <%= link_to(t('.all_news'),
               news_index_path,
               class: 'btn secondary') %>
 <% end %>

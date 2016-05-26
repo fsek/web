@@ -1,14 +1,14 @@
 <%= simple_form_for([:admin, contact]) do |f| %>
   <%= f.association(:post, collection: posts, input_html: { class: 'select2' },
-                    hint: t('contact.name_or_post')) %>
+                    hint: t('.name_or_post')) %>
   <%= f.input :name %>
   <%= f.input :text, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :email %>
   <%= f.input :public %>
-  <%= f.input :slug, hint: t('contact.slug_description') %>
+  <%= f.input :slug, hint: t('.slug_description') %>
   <%= f.button :submit, id: 'contact-submit' %>
-  <% if !contact.new_record? %>
-    <%= link_to(t('contact.destroy'), admin_contact_path(contact),
+  <% if contact.persisted? %>
+    <%= link_to(t('.destroy'), admin_contact_path(contact),
                 method: :delete,
                 class: 'btn danger pull-right') %>
   <% end %>

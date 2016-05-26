@@ -1,4 +1,9 @@
 sv:
+  model:
+    contact:
+      message_sent: Meddelandet skickades.
+      something_wrong: Någonting blev fel, prova att skicka igen.
+
   activerecord:
     models:
       contact:

@@ -1,0 +1,20 @@
+sv:
+  admin:
+    events:
+      form:
+        info: Information
+        registration: Anmälan
+        dates: Datum
+
+      edit:
+        all_events: Alla evenemang
+        destroy: Förinta evenemang
+        show: Visa evenemang
+        title: Redigera evenemang
+
+      index:
+        new_event: Nytt evenemang
+
+      new:
+        title: Nytt evenemang
+        all_events: Alla evenemang
