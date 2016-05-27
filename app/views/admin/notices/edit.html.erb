@@ -1,9 +1,11 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('notice.edit')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
+
   <%= render 'form', notice: @notice %>
+
   <hr>
-  <%= link_to(t('notice.index'), admin_notices_path,
+  <%= link_to(t('.administrate_notices'), admin_notices_path,
                                  class: 'btn secondary') %>
 </div>

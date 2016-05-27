@@ -14,8 +14,8 @@
     <%= f.button :submit, id: 'submit-notice' %>
 
     <% if notice.persisted? %>
-      <%= link_to(t('notice.destroy'), admin_notice_path(notice), method: :delete,
-                  class: 'btn danger pull-right') %>
+      <%= link_to(t('.destroy'), admin_notice_path(notice), method: :delete,
+                                 class: 'btn danger pull-right') %>
     <% end %>
   <% end %>
 <% end %>
