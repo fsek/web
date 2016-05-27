@@ -1,6 +1,6 @@
 <% if work_post.present? %>
   <div class="headline">
-    <h4><%= t('work_post.info') %></h4>
+    <h4><%= t('.title') %></h4>
   </div>
 
   <%= work_post_info_title(WorkPost.human_attribute_name(:kind),
@@ -18,7 +18,8 @@
 
   <% if show_link.present? && work_post.link.present? %>
     <br>
-    <%= link_to(work_post.link, work_post.link, class: 'btn primary',
-               target: :blank_p) %>
+    <%= link_to(work_post.link, work_post.link,
+                                class: 'btn primary',
+                                target: :blank_p) %>
   <% end %>
 <% end %>

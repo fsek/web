@@ -6,8 +6,8 @@
   <div class="col-sm-6 col-sm-offset-2 col-xs-8">
     <%= render 'info', work_post: work_post, show_link: false %>
     <br>
-    <%= link_to(t('work_post.show'), work_post_path(work_post),
-                class: 'btn primary') %>
+    <%= link_to(t('.show_work_post'), work_post_path(work_post),
+                                      class: 'btn primary') %>
   </div>
 
   <span class="work-post updated-at">

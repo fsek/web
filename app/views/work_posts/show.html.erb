@@ -1,7 +1,6 @@
-<%= provide(:title, @work_post.to_s) %>
 <div class="work-post">
   <div class="headline">
-    <h2><%= @work_post.to_s %></h2>
+    <h1><%= title(@work_post.to_s) %></h1>
   </div>
 
   <div class="col-md-4 col-sm-12 bottom">
@@ -25,9 +24,10 @@
     <%= l(@work_post.updated_at.to_date) %>,
     <%= user_link(@work_post.user) %>
     <hr>
-    <%= link_to(t('work_post.title'), work_posts_path, class: 'btn secondary') %>
+    <%= link_to(t('.back_to_posts'), work_posts_path, class: 'btn secondary') %>
     <% if can_administrate?(:manage, @work_post) %>
-      <%= link_to(t('work_post.edit'), edit_admin_work_post_path(@work_post), class: 'btn secondary') %>
+      <%= link_to(t('.edit_post'), edit_admin_work_post_path(@work_post),
+                                   class: 'btn secondary') %>
     <% end %>
   </div>
 </div>

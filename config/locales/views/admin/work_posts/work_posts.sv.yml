@@ -1,0 +1,22 @@
+sv:
+  admin:
+    work_posts:
+      form:
+        destroy_post: Förinta jobbpost
+
+      edit:
+        administrate_posts: Administrera jobbportal
+        all_posts: Jobbportal
+        show: Visa jobbpost
+        title: Redigera jobbpost
+
+      index:
+        all_posts: Jobbportal
+        new_post: Ny jobbpost
+        show_all: Visa alla
+        title: Administrera jobbportal
+
+      new:
+        administrate_posts: Administrera jobbportal
+        all_posts: Jobbportal
+        title: Ny jobbpost

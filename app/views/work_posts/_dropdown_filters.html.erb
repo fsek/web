@@ -10,7 +10,7 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="oldies">
       <li>
-        <%= link_to(t('work_post.all'), work_portal.new_target_path(nil)) %>
+        <%= link_to(t('.show_all'), work_portal.new_target_path(nil)) %>
       </li>
       <% work_portal.target_groups.each do |target| %>
         <li>
@@ -31,7 +31,7 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="oldies">
       <li>
-        <%= link_to(t('work_post.all'), work_portal.new_kind_path(nil)) %>
+        <%= link_to(t('.show_all'), work_portal.new_field_path(nil)) %>
       </li>
       <% work_portal.fields.each do |field| %>
         <li>
@@ -51,7 +51,7 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="oldies">
       <li>
-        <%= link_to(t('work_post.all'), work_portal.new_kind_path(nil)) %>
+        <%= link_to(t('.show_all'), work_portal.new_kind_path(nil)) %>
       </li>
       <% work_portal.kinds.each do |kind| %>
         <li>
@@ -60,6 +60,6 @@
       <% end %>
     </ul>
   </div>
-  <%= link_to(t('work_post.reset_filter'), work_posts_path, class: 'btn secondary') %>
-  <%= t('work_post.filter_found', count: work_portal.work_posts.count) %>
+  <%= link_to(t('.reset_filter'), work_posts_path, class: 'btn secondary') %>
+  <%= t('.filter_found', count: work_portal.work_posts.count) %>
 <% end %>

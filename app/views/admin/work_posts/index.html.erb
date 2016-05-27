@@ -1,5 +1,5 @@
 <div class="headline">
-  <h1><%= title(t('work_post.admin_index')) %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-2 col-sm-12 margin-bottom-20">
@@ -10,12 +10,12 @@
   <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
     <%= t('wice_grid.reset_filter') %>
   </button>
-  <%= link_to(t('work_post.show_all'), admin_work_posts_path(all: true), class: 'btn secondary') %>
+  <%= link_to(t('.show_all'), admin_work_posts_path(all: true), class: 'btn secondary') %>
 
   <hr>
 
-  <%= link_to(t('work_post.new'), new_admin_work_post_path, class: 'btn primary') %>
-  <%= link_to(t('work_post.title'), work_posts_path, class: 'btn secondary') %>
+  <%= link_to(t('.new_post'), new_admin_work_post_path, class: 'btn primary') %>
+  <%= link_to(t('.all_posts'), work_posts_path, class: 'btn secondary') %>
 </div>
 
 <div class="col-md-10 col-sm-12 work-post">
@@ -23,7 +23,7 @@
            html: { class: 'work-post-grid' }) do |g|
     g.row_attributes do |post|
       if post.published?
-        { class: 'published' }
+        {class: 'published'}
       end
     end
     g.column(name: WorkPost.human_attribute_name(:title), attribute: 'title')
@@ -38,7 +38,7 @@
     g.column(name: WorkPost.human_attribute_name(:updated_at), attribute: 'updated_at',
              filter: false)
     g.column(name: t(:edit), filter: false) do |wp|
-      link_to(t('work_post.edit'), edit_admin_work_post_path(wp))
+      link_to(t(:edit), edit_admin_work_post_path(wp))
     end
   end -%>
 </div>
