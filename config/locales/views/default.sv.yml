@@ -1,41 +1,27 @@
 sv:
   add: Lägg till
-  add_attr: Lägg till %{attr}
   administrator: Administratör
   administration: Administration
   back: Tillbaka
   close: Stäng
   destroy: Förinta
-  destroy_attr: Förinta %{attr}
   edit: Redigera
-  edit_attr: Redigera %{attr}
   filter: Filtrera
   hello: Hej
   here: här
   hide: Dölj
   index: Alla
-  index_attr: Alla %{attr}
   new: Ny
-  new_attr: Ny %{attr}
-  new_t: Nytt
-  new_t_attr: Nytt %{attr}
   read_more: Läs mer
   reset: Återställ
   reset_filter: Återställ filter
   save: Spara
-  save_attr: Spara %{attr}
   search: Sök
   show: Visa
-  show_attr: Visa %{attr}
   sincerely: Med vänlig hälsning
   subscribe: Prenumerera
   update: Uppdatera
-  update_attr: Uppdatera %{attr}
   welcome: Välkommen
-
-  front: 
-    description: F-sektionen är en ideell förening för studenter som läser vid något av programmen Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap.
-    welcome: Välkommen till F-sektionen!
 
   "yes": Ja
   "no": Nej
@@ -51,11 +37,6 @@ sv:
 
   choose:
     date: Välj datum
-
-  councils: Sektionens utskott
-  councils_first: "F-sektionens verksamhet sträcker sig över flera stora områden.  F-sektionen har några olika utskott samt en grupp som kallas kärnstyrelsen som alla har hand om var sitt område. Varje sådant utskott leds av en utskottsordförande och de flesta utskottsordförandena sitter med i sektionens styrelse. Styrelsen tar beslut i frågor som rör hela sektionen centralt. På den här sidan kan du läsa om de olika utskotten och deras verksamhet."
-  councils_second: "Men man måste inte vara med i ett utskott för att göra något på sektionen. Du kan även starta upp projekt inom sektionen om du har en all idé du hade velat genomföra. Känner du att du behöver hjälp eller inte vet hur du ska gå till väga?"
-  councils_third: "Kontakta då "
 
   today: idag
 

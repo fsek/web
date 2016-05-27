@@ -19,7 +19,7 @@ class Admin::ToolRentingsController < Admin::BaseController
   def edit
     @rent = ToolRenting.includes(:tool).find(params[:id])
     if @rent.returned
-      redirect_to admin_tool_path(@rent.tool), alert: t('tool_renting.already_returned')
+      redirect_to admin_tool_path(@rent.tool), alert: t('model.tool_renting.already_returned')
     end
   end
 

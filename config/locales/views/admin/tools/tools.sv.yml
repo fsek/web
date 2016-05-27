@@ -1,0 +1,24 @@
+sv:
+  admin:
+    tools:
+      form:
+        destroy: Förinta verktyg
+
+      edit:
+        title: Redigera verktyg
+
+      index:
+        free_tools: Lediga verktyg
+        new_tool: Nytt verktyg
+        title: Alla verktyg
+
+      new:
+        title: Nytt verktyg
+
+      show:
+        administrate_tools: Adminstrera verktyg
+        edit_tool: Redigera verktyg
+        free: Antal lediga
+        new_renting: Nytt lån
+        rented: Lånade
+        title: Verktyg

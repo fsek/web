@@ -1,6 +1,5 @@
-<%= provide(:title, @album.title) %>
 <div class="headline">
-  <h3><%= @album.title %></h3>
+  <h3><%= title(@album.title) %></h3>
   <%= link_to(fa_icon('arrow-left'), gallery_path(year: @album.start_date.year.to_i),
               class: 'btn secondary pull-right small') %>
 </div>
@@ -15,26 +14,26 @@
                       data-startindex="<%= @start.to_s %>">
     <% @album.images.each do |p| %>
       <div data-img="<%= p.view %>" data-thumb="<%= p.thumb %>">
-        <%= link_to(t('gallery.share'), gallery_album_path(@album, start: @album.images.find_index(p)),
+        <%= link_to(t('.share'), gallery_album_path(@album, start: @album.images.find_index(p)),
                     data: { no_turbolink: true }) %>
     </div>
   <% end %>
 </div>
 <div class="span7 gallery center photographer">
-  <h3 class=""><%= t('gallery.photographers') %></h3>
+  <h3 class=""><%= t('.photographers') %></h3>
   <ul class="list">
     <% @album.photographers.each do |p| %>
       <li><%= link_to(p, p, target: 'blank_p') %></li>
     <% end %>
 
     <% @album.photographer_names.each do |p| %>
-      <li><%= p %></li>
+      <li><%= p.to_s %></li>
     <% end %>
   </ul>
   <% if @policy.present? %>
     <hr>
     <%= link_to(document_path(@policy), target: 'blank_p') do %>
-      <%= fa_icon('paperclip') %> <%= t('gallery.policy') %>
+      <%= fa_icon('paperclip') %> <%= t('.policy') %>
     <% end %>
   <% end %>
 </div>

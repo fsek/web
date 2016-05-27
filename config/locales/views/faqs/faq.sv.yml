@@ -1,0 +1,12 @@
+sv:
+  faqs:
+    index:
+      administrate: Administrera FAQ
+      ask_question: Ställ ny fråga
+      description: Här finns svar på vanliga frågor på sektionen. Ställ gärna en egen fråga du funderar över.
+      edit_question: Redigera fråga
+      title: FAQ
+
+    new:
+      all_faqs: Alla frågor
+      title: Ställ ny fråga

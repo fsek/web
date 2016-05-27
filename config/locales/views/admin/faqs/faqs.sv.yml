@@ -1,0 +1,19 @@
+sv:
+  admin:
+    faqs:
+      form:
+        destroy: Förinta fråga
+
+      edit:
+        administrate_questions: Administrera frågor
+        all_questions: Alla frågor
+        title: Redigera fråga
+
+      index:
+        all_questions: Alla frågor
+        new_question: Ny fråga
+        title: Administrera frågor
+
+      new:
+        title: Ny fråga
+        all_questions: Alla frågor

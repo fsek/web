@@ -4,12 +4,22 @@
       <%= link_to(gallery_album_path(@album, image: @image)) do %>
         <%= title(%(#{model_name(Image)} #{@image.filename})) %>
       <% end %>
+    </h1>
   </div>
+
   <%= image_tag(@image.view, class: 'img-responsive') %>
+
   <ul class="list">
-    <li><%= Image.human_attribute_name(:dimensions) %>: <%= %(#{@image.width}x#{@image.height}) %></li>
-    <li><%= Image.human_attribute_name(:created_at) %>: <%= l(@image.created_at) %></li>
-    <li><%= Image.human_attribute_name(:photographer) %>:
+    <li>
+      <%= Image.human_attribute_name(:dimensions) %>:
+      <%= %(#{@image.width}x#{@image.height}) %>
+    </li>
+    <li>
+      <%= Image.human_attribute_name(:created_at) %>:
+      <%= localized(@image.created_at) %>
+    </li>
+    <li>
+      <%= Image.human_attribute_name(:photographer) %>:
       <% if @image.photographer.present? %>
         <%= link_to(@image.photographer, user_path(@image.photographer)) %>
       <% else %>
@@ -18,11 +28,11 @@
     </li>
   </ul>
   <hr>
-  <%= link_to(t('gallery.download'), download_admin_gallery_album_image_path(@album, @image),
-                                     class: 'btn secondary') %>
-  <%= link_to(t('album.destroy'), admin_gallery_album_image_path(@album, @image),
-                                  method: :delete, class: 'btn danger') %>
+  <%= link_to(t('.download_image'), download_admin_gallery_album_image_path(@album, @image),
+                                    class: 'btn secondary') %>
+  <%= link_to(t('.destroy_image'), admin_gallery_album_image_path(@album, @image),
+                                   method: :delete, class: 'btn danger') %>
   <hr>
-  <%= link_to(t('album.show'), admin_gallery_album_path(@album),
-                               class: 'btn secondary') %>
+  <%= link_to(t('.administrate_album'), admin_gallery_album_path(@album),
+                                        class: 'btn secondary') %>
 </div>

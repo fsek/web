@@ -1,6 +1,12 @@
 sv:
+  model:
+    tool:
+      not_allowed_change_total: Inte tillåtet att ändra antalet verktyg lägre än antalet utlånade
+
   activerecord:
     models:
       tool: Verktyg
     attributes:
-      total: Antal verktyg
+      tool:
+        total: Antal
+        description: Beskrivning

@@ -8,7 +8,7 @@ class ToolRenting < ActiveRecord::Base
 
   def there_are_free_tools
     if !persisted? && tool.present? && tool.free == 0
-      errors.add(:returned, 'no more tools to rent')
+      errors.add(:returned, I18n.t('model.tool_renting.no_more_tools'))
     end
   end
 end

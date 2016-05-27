@@ -1,5 +1,5 @@
 <div class="headline">
-  <h1><%= title(t('council.admin_title')) %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
@@ -13,8 +13,10 @@
 
   <hr>
 
-  <%= link_to(t('council.new'), new_admin_council_path, class: 'btn primary') %>
-  <%= link_to(t('council.index'), councils_path, class: 'btn secondary') %>
+  <%= link_to(t('.new_council'), new_admin_council_path,
+                                 class: 'btn primary') %>
+  <%= link_to(t('.council_start_page'), councils_path,
+                                        class: 'btn secondary') %>
 </div>
 
 <div class="col-md-10 col-sm-12">
@@ -26,7 +28,7 @@
              filter: false)
 
     g.column(name: t(:edit), filter: false) do |council|
-      link_to(t('council.edit'), edit_admin_council_path(council))
+      link_to(t(:edit), edit_admin_council_path(council))
     end
   end -%>
 </div>

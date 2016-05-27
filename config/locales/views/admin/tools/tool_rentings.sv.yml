@@ -1,0 +1,11 @@
+sv:
+  admin:
+    tool_rentings:
+      form:
+        destroy: Förinta lån
+
+      edit:
+        title: Redigera verktygslån
+
+      new:
+        title: Nytt verktygslån

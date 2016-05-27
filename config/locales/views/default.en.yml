@@ -1,0 +1,44 @@
+en:
+  add: Add
+  administrator: Administrator
+  administration: Administration
+  back: Back
+  close: Close
+  destroy: Destroy
+  edit: Edit
+  filter: Filter
+  hello: Hello
+  here: here
+  hide: Hide
+  index: All
+  new: New
+  read_more: Read more
+  reset: Reset
+  reset_filter: Reset filter
+  save: Save
+  search: Search
+  show: Show
+  sincerely: Sincerely
+  subscribe: Subscribe
+  update: Update
+  welcome: Welcome
+
+  "yes": Yes
+  "no": No
+
+  back_to_root: Back to start page
+  back_to: Back to %{attr}
+  back: Back
+  for: "%{a} for %{b}"
+
+  link: Link
+  links: Links
+  about: About
+
+  choose:
+    date: Pick a date
+
+  today: today
+
+  alert:
+    error: Error
