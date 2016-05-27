@@ -15,7 +15,7 @@ class ShortLink < ActiveRecord::Base
         fail URI::InvalidURIError
       end
     rescue URI::InvalidURIError
-      errors.add :target, I18n.t('errors.invalid-url')
+      errors.add :target, I18n.t('model.short_link.invalid_url')
     end
   end
 

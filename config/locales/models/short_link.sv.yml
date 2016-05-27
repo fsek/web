@@ -1,6 +1,8 @@
 sv:
-  errors:
-    invalid-url: Felaktig adress.
+  model:
+    short_link:
+      invalid_url: felaktig adress
+
   activerecord:
     models:
       short_link:
