@@ -1,0 +1,14 @@
+sv:
+  admin:
+    categories:
+      edit:
+        all_categories: Alla kategorier
+        title: Redigera kategori
+
+      index:
+        new_category: Ny kategori
+        title: Administrera kategorier
+
+      new:
+        all_categories: Alla kategorier
+        title: Ny kategori
