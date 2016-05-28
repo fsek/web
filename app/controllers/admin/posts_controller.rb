@@ -11,10 +11,10 @@ class Admin::PostsController < Admin::BaseController
     @post_view = set_grids(@post_view)
 
     if PostUserService.create(@post_view.post_user)
-      redirect_to admin_council_posts_path(@post_view.council),
-                  notice: I18n.t('post.added',
+      redirect_to(admin_council_posts_path(@post_view.council),
+                  notice: I18n.t('model.post.added',
                                  u: @post_view.post_user.user,
-                                 p: @post_view.post_user.post)
+                                 p: @post_view.post_user.post))
     else
       render :index
     end

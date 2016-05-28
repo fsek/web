@@ -42,7 +42,7 @@
         <li>
           <%= fa_icon('cog') %>
           <%= Post.human_attribute_name(:elected_by) %>:
-          <%= t(".#{post.elected_by}") %>
+          <%= t("model.post.#{post.elected_by}") %>
         </li>
       <% end %>
     </ul>

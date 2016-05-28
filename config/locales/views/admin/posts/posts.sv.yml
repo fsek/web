@@ -1,0 +1,27 @@
+sv:
+  admin:
+    posts:
+      form:
+        destroy_post: Förinta post
+
+      post_grid:
+        edit_post: Redigera post
+
+      edit:
+        all_posts: Alla poster
+        edit_permissions: Redigera rättigheter
+        show_council: Visa utskott
+        title: Redigera post
+
+      index:
+        edit_council: Redigera utskott
+        new_post: Ny post
+        show_council: Visa utskott
+
+      new:
+        title: Ny post
+        show_council: Visa utskott
+        edit_council: Redigera utskott
+
+      remove_user:
+        destroy_error: Något blev fel vid förintningen
