@@ -1,0 +1,21 @@
+sv:
+  admin:
+    pages:
+      form:
+        destroy_page: Förinta sida
+        image_already_uploaded: En eller flera av bilderna kunde inte laddas upp
+
+      edit:
+        administrate_pages: Administrera sidor
+        all_page_elements: Alla sidelement
+        new_page_element: Nytt sidelement
+        show: Visa sida
+        title: Redigera sida
+
+      index:
+        new_page: Ny sida
+        title: Administrera sidor
+
+      new:
+        administrate_pages: Administrera sidor
+        title: Ny sida

@@ -4,14 +4,3 @@ sv:
       new_element: Nytt sidelement
       element_index: Alla sidelement
       edit_page: Redigera sida
-
-  page:
-    admin_title: Administrera sidor
-    destroy: Förinta sida
-    edit: Redigera sida
-    image_already_uploaded: En eller flera av bilderna kunde inte laddas upp
-    index: Alla sidor
-    namespace: Namespace
-    namespace_format: Får endast vara små bokstäver, a-z och 0-9
-    new: Ny sida
-    show: Visa sida

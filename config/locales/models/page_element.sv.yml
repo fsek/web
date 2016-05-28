@@ -1,4 +1,10 @@
 sv:
+  model:
+    page_element:
+      text: Text
+      image: Bild
+      main: Huvudfält
+
   activerecord:
     models:
       page_element: Sidelement

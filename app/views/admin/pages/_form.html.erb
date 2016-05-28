@@ -10,7 +10,7 @@
       <%= f.input :image_upload, as: :file, error: false, input_html: { multiple: true } %>
       <% if page.errors[:image_upload].any? %>
         <div class="gallery has-error">
-          <%= t('page.image_already_uploaded') %><br>
+          <%= t('.image_already_uploaded') %><br>
           <%= page.errors[:image_upload] %>
         </div>
         <hr>
@@ -20,7 +20,7 @@
   <%= f.button :submit %>
 
   <% if page.persisted? %>
-    <%= link_to(t('page.destroy'),
+    <%= link_to(t('.destroy_page'),
                 admin_page_path(@page), method: :delete,
                 class: 'btn danger pull-right') %>
 

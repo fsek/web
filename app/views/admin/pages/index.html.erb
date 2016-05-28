@@ -1,5 +1,5 @@
 <div class="headline">
-  <h1><%= title(t('page.admin_title')) %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
@@ -13,7 +13,7 @@
 
   <hr>
 
-  <%= link_to(t('page.new'), new_admin_page_path, class: 'btn primary') %>
+  <%= link_to(t('.new_page'), new_admin_page_path, class: 'btn primary') %>
 </div>
 
 <div class="col-md-10 col-sm-12">
@@ -32,7 +32,7 @@
     g.column(name: Page.human_attribute_name(:updated_at), attribute: 'updated_at',
              filter: false)
     g.column(name: t(:edit), filter: false) do |page|
-      link_to(t('page.edit'), edit_admin_page_path(page))
+      link_to(t(:edit), edit_admin_page_path(page))
     end
   end -%>
 </div>
