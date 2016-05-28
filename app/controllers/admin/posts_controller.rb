@@ -22,7 +22,7 @@ class Admin::PostsController < Admin::BaseController
 
   def remove_user
     post_user = PostUser.find(params[:post_user_id])
-    @status = I18n.t('post.user_removed',
+    @status = I18n.t('model.post.user_removed',
                      u: post_user.user,
                      p: post_user.post)
     @id = params[:post_user_id]

@@ -23,7 +23,7 @@ RSpec.feature 'Visit cafe' do
 
     Then 'Saved' do
       page.should have_css('div.alert.alert-info')
-      find('div.alert.alert-info').text.should include(I18n.t('cafe_worker.created'))
+      find('div.alert.alert-info').text.should include(I18n.t('model.cafe_worker.created'))
     end
   end
 end

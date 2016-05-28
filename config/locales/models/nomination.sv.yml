@@ -1,17 +1,20 @@
 sv:
+  model:
+    nomination:
+      invalid_email: E-postadressen har inte giltligt format.
+
   activerecord:
     models:
       nomination:
         one: Nominering
         other: Nomineringar
+
     attributes:
       nomination:
-        post_id: Post
         election_id: Val
-        name: Namn
         email: E-post
         motivation: Motivering
+        name: Namn
         phone: Telefon
+        post_id: Post
         stil_id: Stil-id
-  nomination:
-    invalid_email: E-postadressen har inte giltligt format.

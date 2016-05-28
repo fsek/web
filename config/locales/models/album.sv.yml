@@ -1,4 +1,8 @@
 sv:
+  model:
+    album:
+      uploaded: Uppladdade
+
   activerecord:
     models:
       album: Album

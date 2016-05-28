@@ -5,7 +5,7 @@ class Nomination < ActiveRecord::Base
 
   validates :name, :email, :post_id, presence: true
   validates :email, format: { with: /\A.+@.+\..+\z/i,
-                              message: I18n.t('nomination.invalid_email') }
+                              message: I18n.t('model.nomination.invalid_email') }
 
   after_create :send_email
 

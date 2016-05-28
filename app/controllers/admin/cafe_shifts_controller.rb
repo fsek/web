@@ -55,7 +55,7 @@ class Admin::CafeShiftsController < Admin::BaseController
     if CafeService.setup(@cafe_shift)
       redirect_to(admin_cafe_shifts_path, notice: alert_create(CafeShift))
     else
-      flash[:alert] = I18n.t('cafe_shift.setup_error')
+      flash[:alert] = I18n.t('model.cafe_shift.setup_error')
       render :setup, status: 422
     end
   end

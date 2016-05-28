@@ -18,7 +18,8 @@ class CafeWorkersController < ApplicationController
                                     councils: Council.titles)
 
     if cafe_shift.cafe_worker.save
-      redirect_to(cafe_shift_path(cafe_shift), notice: I18n.t('cafe_worker.created'))
+      redirect_to(cafe_shift_path(cafe_shift),
+                  notice: I18n.t('model.cafe_worker.created'))
     else
       render template: '/cafe_shifts/show', status: 422
     end
@@ -30,7 +31,8 @@ class CafeWorkersController < ApplicationController
     @cafe_view = CafeViewObject.new(shift: cafe_shift,
                                     councils: Council.titles)
     if cafe_worker.update(cafe_worker_params)
-      redirect_to(cafe_shift_path(cafe_shift), notice: I18n.t('cafe_worker.updated'))
+      redirect_to(cafe_shift_path(cafe_shift),
+                  notice: I18n.t('model.cafe_worker.updated'))
     else
       render template: '/cafe_shifts/show', status: 422
     end
@@ -40,7 +42,8 @@ class CafeWorkersController < ApplicationController
     cafe_shift = CafeShift.find(params[:cafe_shift_id])
     cafe_worker = CafeWorker.find(params[:id])
     if cafe_worker.destroy
-      redirect_to(cafe_shift_path(cafe_shift), notice: I18n.t('cafe_worker.destroyed'))
+      redirect_to(cafe_shift_path(cafe_shift),
+                  notice: I18n.t('model.cafe_worker.destroyed'))
     else
       redirect_to(cafe_shift_path(cafe_shift))
     end

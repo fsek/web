@@ -1,4 +1,8 @@
 sv:
+  model:
+    cafe_shift:
+      setup_error: Det gick inte att skapa passen, kontrollera uppgifterna.
+
   activerecord:
     models:
       cafe_shift: Cafépass
@@ -11,8 +15,3 @@ sv:
         pass: Pass
         start: Arbetsdag
         setup_mode: Skaparläge
-  cafe_shift:
-    authorize_failed: misslyckades, du har inte rättighet att redigera.
-    council_battle: Utskottskamp
-    has_worker: passet har redan en.
-    no_longer_editable: Går inte längre att redigera

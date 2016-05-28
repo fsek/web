@@ -33,7 +33,7 @@ class Admin::Gallery::AlbumsController < Admin::BaseController
     service = AlbumService.new
     if @album.update(album_params) && service.upload_images(@album)
       redirect_to(admin_gallery_album_path(@album),
-                  notice: %(#{alert_update(Album)} #{I18n.t('gallery.uploaded')}: #{service.uploaded}))
+                  notice: %(#{alert_update(Album)} #{I18n.t('model.album.uploaded')}: #{service.uploaded}))
     else
       render :show, status: 422
     end
