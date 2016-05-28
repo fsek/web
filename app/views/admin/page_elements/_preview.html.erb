@@ -17,7 +17,7 @@
     <% if page_element.page_image.present? %>
       <%= image_tag(page_element.page_image.show, class: 'img-responsive') %>
     <% else %>
-      <%= simple_format(t('page_element.image_missing')) %>
+      <%= simple_format(t('.image_missing')) %>
     <% end %>
 
   <% end %>

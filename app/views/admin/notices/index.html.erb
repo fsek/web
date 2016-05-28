@@ -1,9 +1,9 @@
 <div class="headline notice">
-  <h1><%= title(t('notice.index')) %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-2 col-sm-12">
-  <%= link_to(t('notice.new'), new_admin_notice_path, class: 'btn primary') %>
+  <%= link_to(t('.new_notice'), new_admin_notice_path, class: 'btn primary') %>
   <hr>
   <button class="wg-external-submit-button btn secondary" data-grid-name="grid">
     <%= t('wice_grid.filter') %>
@@ -18,7 +18,7 @@
            hide_reset_button: true, html: { class: 'notice' }) do |g|
     g.row_attributes do |notice|
       if notice.published?
-        { class: 'published' }
+        {class: 'published'}
       end
     end
     g.column(name: Notice.human_attribute_name(:title),

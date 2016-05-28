@@ -3,12 +3,12 @@
 </div>
 
 <div class="col-md-2 col-sm-12">
-  <%= link_to(t('post.new'), new_admin_council_post_path(@post_view.council),
-                             class: 'btn secondary') %>
-  <%= link_to(t('council.show'), council_path(@post_view.council),
-                                 class: 'btn secondary') %>
-  <%= link_to(t('council.edit'), edit_admin_council_path(@post_view.council),
-                                 class: 'btn secondary') %>
+  <%= link_to(t('.new_post'), new_admin_council_post_path(@post_view.council),
+                              class: 'btn secondary') %>
+  <%= link_to(t('.show_council'), council_path(@post_view.council),
+                                  class: 'btn secondary') %>
+  <%= link_to(t('.edit_council'), edit_admin_council_path(@post_view.council),
+                                  class: 'btn secondary') %>
 </div>
 
 <div class="col-md-10 col-sm-12">

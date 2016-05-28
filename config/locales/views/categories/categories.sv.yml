@@ -1,8 +1,0 @@
-sv:
-  category:
-    already_added: Kategorin har redan lagts till
-    edit: Redigera kategori
-    new: Ny kategori
-    title: Kategorier
-    index: Alla kategorier
-    slug_hint: Används i t.ex. länkar och liknande

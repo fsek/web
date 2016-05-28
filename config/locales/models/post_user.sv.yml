@@ -1,4 +1,8 @@
 sv:
+  model:
+    post_user:
+      already_have_post: har redan posten.
+
   activerecord:
     models:
       post_user:

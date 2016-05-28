@@ -1,4 +1,17 @@
 sv:
+  model:
+    post:
+      added: "%{u} tilldelades %{p}"
+      add_error: "Tilldelningen gick inte: %{errors}"
+      user_removed: "%{u} har inte längre posten %{p}"
+      board: Styrelse
+      general: Sektionsmöte
+      education: Studieråd
+      semester:
+        autumn: HT
+        both: HT och VT
+        spring: VT
+
   activerecord:
     models:
       post:
@@ -6,17 +19,13 @@ sv:
         other: Poster
     attributes:
       post:
-        title: Titel
-        limit: Gräns
-        description: Beskrivning
-        council_id: Utskott
-        elected_by: Väljs av
-        semester: Väljs på
         board: Styrelsepost
-        rec_limit: Rekommenderad gräns
         car_rent: Får hyra bil
+        council_id: Utskott
+        description: Beskrivning
+        elected_by: Väljs av
+        limit: Gräns
         permission_ids: Rättigheter
-  post:
-    added: "%{u} tilldelades %{p}"
-    add_error: "Tilldelningen gick inte: %{errors}"
-    user_removed: "%{u} har inte längre posten %{p}"
+        rec_limit: Rekommenderad gräns
+        semester: Väljs på
+        title: Titel

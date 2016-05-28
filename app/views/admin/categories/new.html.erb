@@ -1,10 +1,11 @@
 <div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('category.new')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
 
   <%= render 'form', category: @category %>
   <hr>
-  <%= link_to(t('category.index'), admin_categories_path, class: 'btn secondary') %>
+  <%= link_to(t('.all_categories'), admin_categories_path,
+                                    class: 'btn secondary') %>
 </div>
 

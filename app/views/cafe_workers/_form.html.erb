@@ -2,7 +2,6 @@
 
   <%= cafe_worker_working_thumbs(cafe_shift.cafe_worker,
                                  user: current_user) %>
-  <%= cafe_worker_shift_error(cafe_shift.cafe_worker) %>
 
   <%= f.association :user, collection: [current_user], include_blank: false %>
 

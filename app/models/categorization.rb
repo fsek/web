@@ -5,5 +5,5 @@ class Categorization < ActiveRecord::Base
   validates :category, :categorizable, presence: true
   validates :categorizable_id, uniqueness: { scope: [:category,
                                                      :categorizable_type],
-                                             message: I18n.t('category.already_added') }
+                                             message: I18n.t('model.category.already_added') }
 end

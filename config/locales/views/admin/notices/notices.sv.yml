@@ -1,0 +1,17 @@
+sv:
+  admin:
+    notices:
+      form:
+        destroy: Förinta notis
+
+      edit:
+        title: Redigera notis
+        administrate_notices: Administrera notiser
+
+      index:
+        title: Administrera notiser
+        new_notice: Ny notis
+
+      new:
+        administrate_notices: Administrera notiser
+        title: Ny notis

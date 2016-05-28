@@ -1,18 +1,18 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
-    <h1><%= title(t('post.edit')) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
 
   <%= render 'form', council: @council, post: @post%>
   <hr>
 
   <% if can_administrate?(:edit, PermissionPost) %>
-    <%= link_to(t('permission.edit'), post_admin_permissions_path(@post),
-                                      class: 'btn secondary') %>
+    <%= link_to(t('.edit_permissions'), post_admin_permissions_path(@post),
+                                        class: 'btn secondary') %>
   <% end %>
 
-  <%= link_to(t('post.index'), admin_council_posts_path(@council),
+  <%= link_to(t('.all_posts'), admin_council_posts_path(@council),
                                class: 'btn secondary') %>
-  <%= link_to(t('council.show'), council_path(@council),
-                                 class: 'btn secondary') %>
+  <%= link_to(t('.show_council'), council_path(@council),
+                                  class: 'btn secondary') %>
 </div>

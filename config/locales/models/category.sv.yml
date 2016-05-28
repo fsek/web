@@ -1,4 +1,9 @@
 sv:
+  model:
+    category:
+      already_added: Kategorin har redan lagts tillj
+      slug_format: endast a-z och 0-9.
+
   activerecord:
     models:
       category:
@@ -8,4 +13,3 @@ sv:
       category:
         titel: Titel
         slug: Kortnamn
-

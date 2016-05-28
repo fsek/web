@@ -9,7 +9,8 @@ module CategoriesHelper
   end
 
   def category_collection(categories, index_path)
-    categories = categories.unshift(content_tag(:li, link_to(t('category.index'), index_path)))
+    categories = categories.unshift(content_tag(:li, link_to(t('helper.categories.all'),
+                                                             index_path)))
     content_tag(:ul, safe_join(categories), class: 'dropdown-menu',
                                             aria: { labelled_by: 'category_dropdown' })
   end
@@ -18,7 +19,7 @@ module CategoriesHelper
     if category.present?
       category
     else
-      I18n.t('category.title')
+      I18n.t('helper.categories.title')
     end
   end
 

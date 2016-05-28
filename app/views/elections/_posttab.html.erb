@@ -26,7 +26,7 @@
 
     g.column(name: Post.human_attribute_name(:elected_by),
              attribute: 'elected_by', filter: false) do |post|
-      t("post.#{post.elected_by}")
+      t("model.post.#{post.elected_by}")
     end
 
     if election_view.election.state != :before

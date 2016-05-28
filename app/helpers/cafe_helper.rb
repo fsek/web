@@ -15,15 +15,6 @@ module CafeHelper
     end
   end
 
-  def cafe_worker_shift_error(worker)
-    if worker.present? && worker.errors[:cafe_shift].present?
-      content_tag(:span, class: 'cafe danger') do
-        safe_join([fa_icon('thumbs-o-down'), ' ',
-                   I18n.t('helper.cafe.worker.already_working_same_time')])
-      end
-    end
-  end
-
   def cafe_worker_working_thumbs(worker, user:)
     if user == worker.user && worker.persisted?
       content_tag(:span, class: 'cafe working') do
@@ -34,9 +25,12 @@ module CafeHelper
   end
 
   def cafe_worker_edit_user(worker)
-    if worker.present? && worker.errors[:user].present?
-      link_to(I18n.t('user.edit'), edit_own_user_path, class: 'btn danger small',
-                                                       target: :blank_p)
+    if worker.present? &&
+       worker.errors[:user].include?(I18n.t('model.user.attributes_missing'))
+      link_to(I18n.t('model.user.edit_information'),
+              edit_own_user_path,
+              class: 'btn danger small',
+              target: :blank_p)
     end
   end
 end

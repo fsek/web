@@ -1,6 +1,5 @@
-<%= title(t('short_link.title')) %>
 <div class="headline">
-  <h1><%= t('short_link.title') %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-8 col-sm-12">
@@ -18,7 +17,7 @@
         <tr>
           <td><%= sl.link %></td>
           <td><%= link_to(sl.target, sl.target) %></td>
-          <td><%= link_to(t('short_link.destroy'), sl, method: :delete) %></td>
+          <td><%= link_to(t('.destroy_link'), sl, method: :delete) %></td>
         </tr>
       <% end %>
     </tbody>

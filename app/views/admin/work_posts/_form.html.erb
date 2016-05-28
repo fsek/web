@@ -21,7 +21,7 @@
   <%= f.button :submit %>
 
   <% if work_portal.current_post.persisted? %>
-    <%= link_to(t('work_post.destroy'),
+    <%= link_to(t('.destroy_post'),
                 admin_work_post_path(work_portal.current_post),
                 method: :delete, class: 'btn danger pull-right') %>
   <% end %>

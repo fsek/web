@@ -12,7 +12,7 @@ class Page < ActiveRecord::Base
                   format: { with: /\A[a-z0-9_-]+\z/ }
   validates :namespace, format: { with: /\A[a-z0-9_-]+\z/,
                                   allow_blank: true,
-                                  message: I18n.t('page.namespace_format') }
+                                  message: I18n.t('model.page.namespace_format') }
 
   scope :publik, -> { where(public: true) }
   scope :visible, -> { where(visible: true) }
