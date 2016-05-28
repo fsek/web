@@ -11,19 +11,13 @@ class CafeWorker < ActiveRecord::Base
 
   def user_attributes?
     if !user.try(:has_attributes?)
-      errors.add(:user, I18n.t('user.attributes_missing'))
-      false
-    else
-      true
+      errors.add(:user, I18n.t('model.user.attributes_missing'))
     end
   end
 
   def multiple_shifts?
     if user.present? && cafe_shift.present? && !similar_shifts
-      errors.add(:cafe_shift, I18n.t('cafe_worker.already_working_same_time'))
-      false
-    else
-      true
+      errors.add(:user, I18n.t('model.cafe_worker.already_working_same_time'))
     end
   end
 

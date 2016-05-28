@@ -1,4 +1,8 @@
 sv:
+  model:
+    cafe_worker:
+      already_working_same_time: du arbetar redan ett pass vid samma tid
+
   activerecord:
     models:
       cafe_worker: Jobbare

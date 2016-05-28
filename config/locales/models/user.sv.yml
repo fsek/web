@@ -1,4 +1,9 @@
 sv:
+  model:
+    user:
+      attributes_missing: du måste fylla i dina användaruppgifter
+      edit_information: Redigera användaruppgifter
+
   activerecord:
     models:
       user: Användare
@@ -26,13 +31,9 @@ sv:
         unconfirmed_email: Obekräftad epost
         username: Användarnamn
   user:
-    attributes_missing: du måste fylla i dina användaruppgifter.
-    edit_information: Redigera användaruppgifter
-    settings: Kontoinställningar
     account_updated: Kontoinställningar uppdaterades
     password_required: Lösenord måste fyllas i för att ändra uppgifter
     password_required_update: Nuvarande lösenord måste fyllas i för att byta lösenord
     password_updated: Lösenordet uppdaterades.
     public_information: Publik information
     protected_information: Information som endast visas av funktionärer
-    add_information: Du måste fylla i dina användaruppgifter
