@@ -1,8 +1,8 @@
 # encoding: UTF-8
 require 'digest/sha2'
 class ContactMailer < ActionMailer::Base
-  default from: 'Spindelman <dirac@fsektionen.se>', parts_order: ['text/plain', 'text/html']
-  default subject: I18n.t('contact.message_sent_via')
+  default from: 'Kontaktformulär <dirac@fsektionen.se>', parts_order: ['text/plain', 'text/html']
+  default subject: I18n.t('contact_mailer.subject')
 
   def contact_email(contact)
     @contact = contact
