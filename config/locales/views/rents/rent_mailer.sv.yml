@@ -1,9 +1,11 @@
 sv:
   rent_mailer:
     mailer:
-      subject: "Bilbokning %{date}: %{status}"
-      car_foreman: Bilförman
       answer_with_questions: Har du några frågor så svarar du enklast direkt på detta e-post.
+      car_foreman: Bilförman
+      hello: "Hej %{user}!"
+      sincerely: Med vänliga hälsningar
+      subject: "Bilbokning %{date}: %{status}"
 
     attributes:
       title: Bokningens uppgifter

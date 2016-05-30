@@ -35,8 +35,8 @@
     g.column name: News.human_attribute_name(:updated_at), attribute: 'updated_at' do |news|
       l(news.updated_at)
     end
-    g.column name: t(:edit) do |link|
-      link_to(t(:edit), edit_admin_news_path(link))
+    g.column name: t('global.edit') do |link|
+      link_to(t('global.edit'), edit_admin_news_path(link))
     end
   end -%>
 </div>

@@ -1,7 +1,0 @@
-sv:
-  admin:
-    cafe_shifts:
-      show:
-        administrate: Administrera cafépass
-        destroy: Förinta cafépass
-        edit: Redigera cafépass

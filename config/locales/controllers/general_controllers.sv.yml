@@ -1,0 +1,5 @@
+sv:
+  global_controller:
+    success_create: har skapats
+    success_update: har uppdaterats
+    success_destroy: har raderats

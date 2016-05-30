@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3> <%= "#{t(:hello)} #{@nomination.name}" %></h3>
+    <h3><%= t('election_mailer.hello', name: @nomination.name) %></h3>
     <p><%= "#{t('.you_have_been_nominated')}: #{@nomination.post}." %></p>
 
     <% if @nomination.motivation.present? %>

@@ -10,3 +10,9 @@ sv:
         shift_other_date: Sök från annat datum
         shift_with_workers: Visar alla pass som har jobbare
         title: Administrera Hilbert Café
+
+      overview:
+        title: Hilbert Café
+        subtitle: översikt
+        shifts_with_workers: Visar alla pass som har jobbare
+        administrate_all: Administrera cafépass

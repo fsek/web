@@ -36,15 +36,15 @@ class ApplicationController < ActionController::Base
   end
 
   def alert_update(resource)
-    %(#{model_name(resource)} #{I18n.t(:success_update)}.)
+    %(#{model_name(resource)} #{I18n.t('global_controller.success_update')}.)
   end
 
   def alert_create(resource)
-    %(#{model_name(resource)} #{I18n.t(:success_create)}.)
+    %(#{model_name(resource)} #{I18n.t('global_controller.success_create')}.)
   end
 
   def alert_destroy(resource)
-    %(#{model_name(resource)} #{I18n.t(:success_destroy)}.)
+    %(#{model_name(resource)} #{I18n.t('global_controller.success_destroy')}.)
   end
 
   protected

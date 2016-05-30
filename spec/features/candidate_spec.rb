@@ -32,7 +32,7 @@ RSpec.feature 'Visit Election' do
 
     Then 'I see status updated' do
       page.should have_css('div.alert.alert-info')
-      find('div.alert.alert-info').text.should include(I18n.t(:success_create))
+      find('div.alert.alert-info').text.should include(I18n.t('global_controller.success_create'))
     end
   end
 end

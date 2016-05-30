@@ -1,6 +1,7 @@
 sv:
   errors:
     messages:
+      confirmation_period_expired: 'behöver bekräftas inom %{period}, var god begär ny'
       expired: "har löpt ut, var god begär en ny"
       not_found: "hittades inte"
       already_confirmed: "är redan bekräftad, vänligen logga in igen"
@@ -26,13 +27,15 @@ sv:
 
     failure:
       already_authenticated: 'Du har redan loggat in.'
-      unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'
-      unconfirmed: 'Du måste bekräfta din e-postadress till ditt konto innan du kan fortsätta.'
-      locked: 'Ditt konto är låst.'
+      inactive: 'Ditt konto har inte aktiverats ännu.'
       invalid: 'Ogiltig epost eller lösenord.'
       invalid_token: 'Ogiltig token för autentisering.'
+      last_attempt: "Du har ett försök till innan kontot låses."
+      locked: 'Ditt konto är låst.'
+      not_found_in_database: "Ogitlig epost eller lösenord."
       timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
-      inactive: 'Ditt konto har inte aktiverats ännu.'
+      unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'
+      unconfirmed: 'Du måste bekräfta din e-postadress till ditt konto innan du kan fortsätta.'
       user:
         not_found_in_database: 'Inget konto finns registrerat med angiven epostadress.'
     sessions:
@@ -44,10 +47,12 @@ sv:
       confirm_instructions: 'Skicka instruktioner för lösenordsåterställning'
       confirmation: 'Bekräfta lösenord'
       new: 'Nytt lösenord'
+      no_token: "Du kan inte komma in på denna sidan utan att komma från ett lösenordsåterställningsmail. Om du kommer från ett sådan, var god dubbelkolla att hela URLn används."
       reset: 'Återställ lösenord'
       send_instructions: 'Du kommer få epost med instruktioner om hur du kan återställa ditt lösenord inom några minuter.'
       send_paranoid_instructions: "Om din email är i vår databas, kommer du att få en lösenordslänk till din mail."
       updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
+      updated_not_active: "Ditt lösenord har uppdaterats."
 
     confirmations:
       confirmed: 'Ditt konto har bekräftats. Du kan nu logga in.'
@@ -55,11 +60,14 @@ sv:
       send_instructions: 'Du kommer att få epost med instruktioner om hur du kan bekräfta ditt konto inom några minuter.'
       send_paranoid_instructions: 'Om din email är i vår databas, kommer du att få ett mail med instruktioner om hur du ska aktivera ditt konto inom några minuter.'
     registrations:
-      signed_up_but_unconfirmed: 'Ett nytt konto har skapats, du har fått instruktioner via e-post om hur din e-postadress bekräftas.'
-      signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats till din epost.'
-      inactive_signed_up: 'Ett nytt konto har skapats. Du kunde inte logga in, för ditt konto är %{reason}.'
-      updated: 'Ditt konto har uppdaterats.'
       destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
+      inactive_signed_up: "Ett nytt konto har skapats. Du kunde inte logga in, för ditt konto är %{reason}."
+      signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats till din epost.'
+      signed_up_but_inactive: 'Ett nytt konto har skapats. Du kunde inte logga in, för ditt konto är inte aktiverat ännu.'
+      signed_up_but_locked: 'Ett nytt konto har skapats. Du kunde inte logga in, för ditt konto är inte låst.'
+      signed_up_but_unconfirmed: 'Ett nytt konto har skapats, du har fått instruktioner via e-post om hur din e-postadress bekräftas.'
+      update_needs_confirmation: 'Ditt konto har uppdaterats, men vi måste verifiera din nya epostadress. Var god kontrollera din epost och bekräfta via länken i meddelandet för att bekräfta din nya adress'
+      updated: 'Ditt konto har uppdaterats.'
       reasons:
         inactive: 'inaktivt'
         unconfirmed: 'inte aktiverat'

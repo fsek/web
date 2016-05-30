@@ -1,9 +1,9 @@
 module ApplicationHelper
   def yes_no(value)
     if value
-      I18n.t('yes')
+      I18n.t('global.yes')
     else
-      I18n.t('no')
+      I18n.t('global.no')
     end
   end
 

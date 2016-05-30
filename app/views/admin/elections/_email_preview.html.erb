@@ -1,6 +1,6 @@
 <div class="col-md-12 reg-page">
   <p>Mejl vid kandidatur av styrelsepost som intervjuas av valberedning</p>
-  <h3> <%= t(:hello) %> Hilbert</h3>
+  <h3><%= t('election_mailer.hello', name: 'Hilbert') %></h3>
   <p><%= t('election_mailer.candidate_email.you_have_candidated') %> Prylmästare.</p>
 
   <%= markdown(election.candidate_mail) %>
@@ -15,7 +15,7 @@
 
 <div class="col-md-12 reg-page">
   <p>Mejl vid kandidatur av vanlig post som väljs av valberedning</p>
-  <h3><%= t(:hello) %> Hilbert</h3>
+  <h3><%= t('election_mailer.hello', name: 'Hilbert') %></h3>
   <p><%= t('election_mailer.candidate_email.you_have_candidated') %> Bilförman.</p>
 
   <%= markdown(election.candidate_mail) %>
@@ -30,7 +30,7 @@
 
 <div class="col-md-12 reg-page">
   <p>Mejl vid kandidatur av post som väljs av nomineringsgrupp</p>
-  <h3><%= t(:hello) %> Hilbert</h3>
+  <h3><%= t('election_mailer.hello', name: 'Hilbert') %></h3>
   <p><%= t('election_mailer.candidate_email.you_have_candidated') %> Spindelman.</p>
 
   <%= markdown(election.candidate_mail_star) %>
@@ -45,7 +45,7 @@
 <div class="col-md-12 reg-page">
   <p>Mejl vid nominering</p>
 
-  <h3><%= t(:hello) %> Hilbert</h3>
+  <h3><%= t('election_mailer.hello', name: 'Hilbert') %></h3>
   <p><%= t('election_mailer.nominate_email.you_have_been_nominated') %>: Server</p>
 
       <p>

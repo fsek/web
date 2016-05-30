@@ -27,8 +27,8 @@
     g.column(name: Council.human_attribute_name(:updated_at), attribute: 'updated_at',
              filter: false)
 
-    g.column(name: t(:edit), filter: false) do |council|
-      link_to(t(:edit), edit_admin_council_path(council))
+    g.column(name: t('global.edit'), filter: false) do |council|
+      link_to(t('global.edit'), edit_admin_council_path(council))
     end
   end -%>
 </div>

@@ -1,5 +1,7 @@
 sv:
   election_mailer:
+    hello: "Hej %{name}!"
+
     candidate_email:
       election_closes_at: "Valet för posten stänger %{date}, fram tills dess kan kandidaturen redigeras på:"
       sincerely: Mvh, Valberedningen

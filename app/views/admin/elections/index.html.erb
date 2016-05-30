@@ -17,8 +17,8 @@
           <th><%= Election.human_attribute_name(:current_election) %></th>
           <th><%= Election.human_attribute_name(:updated_at) %></th>
           <th>
-            <%= link_to(t('.new_election'),
-                        new_admin_election_path, class: 'btn secondary small') %>
+            <%= link_to(t('.new_election'), new_admin_election_path,
+                                            class: 'btn secondary small') %>
           </th>
         </tr>
       </thead>
@@ -30,10 +30,10 @@
             <td><%= election.visible %></td>
             <td><%= l(election.start) %></td>
             <td><%= l(election.end) %></td>
-            <td><%= (election == Election.current) ? t(:yes) : t(:no) %></td>
-            <td><%= l(election.updated_at) %></td>
-            <td><%= link_to(t(:edit), admin_election_path(election),
-                            class: 'btn primary') %></td>
+            <td><%= yes_no(election == Election.current) %></td>
+            <td><%= localized(election.updated_at) %></td>
+            <td><%= link_to(t('global.edit'), admin_election_path(election),
+                                              class: 'btn primary') %></td>
           </tr>
         <% end %>
       </tbody>

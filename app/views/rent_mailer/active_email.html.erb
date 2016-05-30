@@ -3,7 +3,7 @@
 <% end %>
 
 <%= content_for :greeting do %>
-  <h3><%= %(#{t(:hello)} #{@rent.user}) %></h3>
+  <h3><%= t('rent_mailer.mailer.hello', user: @rent.user) %></h3>
 <% end %>
 
 <%= content_for :main_content do %>
@@ -18,6 +18,6 @@
 
 <%= content_for :bottom_signature do %>
   <%= simple_format(t('rent_mailer.mailer.answer_with_questions')) %>
-  <p><%= t(:sincerely) %>,<br>
+  <p><%= t('rent_mailer.mailer.sincerely') %>,<br>
   <%= t('rent_mailer.mailer.car_foreman') %></p>
 <% end %>
