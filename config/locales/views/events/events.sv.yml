@@ -15,6 +15,7 @@ sv:
     stream:
       coming_events: Kommande evenemang
       more_events: Fler evenemang
+      today: Idag
 
     show:
       edit_event: Redigera evenemang

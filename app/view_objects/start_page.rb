@@ -2,7 +2,7 @@ class StartPage
   attr_accessor :news, :events, :notices
 
   def initialize(member: false)
-    @news = News.order(created_at: :desc).limit(5).includes(:user) || []
+    @news = News.order(created_at: :desc).limit(5).includes(:user).includes(:categories) || []
     @events = Event.stream || []
     @notices = get_notices(member)
   end
