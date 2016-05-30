@@ -17,6 +17,8 @@ sv:
         index: Sorteringsindex
         link: Länk
         name: Namn
+        name_sv: Namn - svensk
+        name_en: Namn - engelsk
         visible: Synlig
         turbolinks: Turbolink
         blank_p: Öppna i ny flik

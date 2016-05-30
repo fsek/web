@@ -6,7 +6,8 @@
                          input_html: { class: 'select2' },
                          include_blank: false %>
   <%= f.input :index %>
-  <%= f.input :name %>
+  <%= f.input :name_sv, wrapper_html: { class: 'inline half' } %>
+  <%= f.input :name_en, wrapper_html: { class: 'inline half' } %>
   <%= f.input :link %>
   <%= f.input :visible %>
   <%= f.input :turbolinks %>

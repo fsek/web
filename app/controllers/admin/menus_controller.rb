@@ -48,6 +48,6 @@ class Admin::MenusController < Admin::BaseController
 
   def menu_params
     params.require(:menu).permit(:location, :index, :link,
-                                 :name, :visible, :turbolinks, :blank_p)
+                                 :name_sv, :name_en, :visible, :turbolinks, :blank_p)
   end
 end

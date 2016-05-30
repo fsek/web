@@ -37,7 +37,7 @@ RSpec.describe Admin::MenusController, type: :controller do
 
   describe 'POST #create' do
     it 'valid parameters' do
-      attributes = { name: 'Bildgalleri',
+      attributes = { name_sv: 'Bildgalleri',
                      location: 'guild',
                      index: 1337,
                      link: '/galleri',
@@ -55,7 +55,7 @@ RSpec.describe Admin::MenusController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, menu: { name: '' }
+        post :create, menu: { name_sv: '' }
       end.should change(Menu, :count).by(0)
 
       response.status.should eq(422)
@@ -67,7 +67,7 @@ RSpec.describe Admin::MenusController, type: :controller do
     it 'valid parameters' do
       menu = create(:menu, name: 'Aftonbladet')
 
-      patch :update, id: menu.to_param, menu: { name: 'Bildgalleri' }
+      patch :update, id: menu.to_param, menu: { name_sv: 'Bildgalleri' }
       menu.reload
 
       response.should redirect_to(edit_admin_menu_path(menu))
@@ -77,7 +77,7 @@ RSpec.describe Admin::MenusController, type: :controller do
     it 'invalid parameters' do
       menu = create(:menu, name: 'Bildgalleri')
 
-      patch :update, id: menu.to_param, menu: { name: '' }
+      patch :update, id: menu.to_param, menu: { name_sv: '' }
       menu.reload
 
       menu.name.should eq('Bildgalleri')
