@@ -45,7 +45,8 @@ class Admin::NoticesController < Admin::BaseController
   private
 
   def notice_params
-    params.require(:notice).permit(:title, :description,
+    params.require(:notice).permit(:title_sv, :description_sv,
+                                   :title_en, :description_en,
                                    :public, :d_publish, :d_remove,
                                    :sort, :image, :remove_image)
   end

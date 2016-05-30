@@ -1,7 +1,9 @@
 <% if notice.present? %>
   <%= simple_form_for([:admin, notice]) do |f| %>
-    <%= f.input :title %>
-    <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+    <%= f.input :title_sv, wrapper_html: { class: 'inline half' } %>
+    <%= f.input :title_en, wrapper_html: { class: 'inline half' } %>
+    <%= f.input :description_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+    <%= f.input :description_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
     <%= f.input :public %>
     <%= f.input :d_publish, as: :datetime_picker %>
     <%= f.input :d_remove, as: :datetime_picker %>

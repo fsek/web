@@ -39,8 +39,8 @@ RSpec.describe Admin::NoticesController, type: :controller do
 
   describe 'POST #create' do
     it 'valid parameters' do
-      attributes = { title: 'Spindelmän regerar',
-                     description: 'Blaha blaha *strong*',
+      attributes = { title_sv: 'Spindelmän regerar',
+                     description_sv: 'Blaha blaha *strong*',
                      public: true,
                      d_publish: 2.days.ago,
                      sort: 10 }
@@ -57,7 +57,7 @@ RSpec.describe Admin::NoticesController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, notice: { title: '' }
+        post :create, notice: { title_sv: '' }
       end.should change(Notice, :count).by(0)
 
       response.status.should eq(422)
@@ -70,7 +70,7 @@ RSpec.describe Admin::NoticesController, type: :controller do
       notice = create(:notice, title: 'A Bad Title')
       notice.user.should_not eq(user)
 
-      patch :update, id: notice.to_param, notice: { title: 'A Good Title' }
+      patch :update, id: notice.to_param, notice: { title_sv: 'A Good Title' }
       notice.reload
 
       response.should redirect_to(edit_admin_notice_path(notice))
@@ -82,7 +82,7 @@ RSpec.describe Admin::NoticesController, type: :controller do
     it 'invalid parameters' do
       notice = create(:notice, title: 'A Good Title')
 
-      patch :update, id: notice.to_param, notice: { title: '' }
+      patch :update, id: notice.to_param, notice: { title_sv: '' }
       notice.reload
 
       notice.title.should eq('A Good Title')
