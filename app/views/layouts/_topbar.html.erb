@@ -3,11 +3,11 @@
     <ul class="loginbar pull-right">
       <li><%= link_to(fa_icon('calendar'), calendars_path,
                                            data: { no_turbolink: false }) %></li>
-      <li class="devider"></li>
+      <li class="divider"></li>
       <% if user_signed_in? %>
         <% if current_user.permissions.count > 0 %>
           <%= render 'layouts/admin_dropdown' %>
-          <li class="devider"></li>
+          <li class="divider"></li>
         <% end %>
 
         <li class="dropdown">
@@ -27,7 +27,7 @@
             <%= fa_icon('sign-in') %> <%= t('devise.sign_in') %>
           <% end %>
         </li>
-        <li class="devider"> </li>
+        <li class="divider"> </li>
         <li>
           <%= link_to(new_user_registration_path) do %>
             <%= fa_icon('plus') %> <%= t('devise.sign_up') %>
