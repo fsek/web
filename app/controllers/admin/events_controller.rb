@@ -46,11 +46,12 @@ class Admin::EventsController < Admin::BaseController
   private
 
   def event_params
-    params.require(:event).permit(:title, :author, :description,
+    params.require(:event).permit(:title_sv, :title_en, :description_sv, :description_en,
+                                  :short_sv, :short_en, :author,
                                   :location, :starts_at, :ends_at,
                                   :all_day, :category, :image,
                                   :signup, :last_reg,
                                   :slots, :drink, :food, :cash,
-                                  :short, :council_id, :dot)
+                                  :council_id, :dot)
   end
 end

@@ -11,6 +11,8 @@ sv:
         council: Utskott
         created_at: Skapat
         description: Beskrivning
+        description_sv: Beskrivning - svensk
+        description_en: Beskrivning - engelsk
         dot: Prickar
         drink: Alkohol
         ends_at: Slutar
@@ -20,8 +22,12 @@ sv:
         last_unreg: Sista avanmälningsdatum
         location: Plats
         short: Kort titel
+        short_sv: Kort titel - svensk
+        short_en: Kort titel - engelsk
         signup: Med anmälan
         slots: Antal platser
         starts_at: Startar
         title: Titel
+        title_sv: Titel - svensk
+        title_en: Titel - engelsk
         updated_at: Uppdaterat

@@ -1,6 +1,10 @@
 # encoding: UTF-8
 class Event < ActiveRecord::Base
   TZID = 'Europe/Stockholm'.freeze
+  translates(:title, :description, :short)
+  globalize_accessors(locales: [:en, :sv],
+                      attributes: [:title, :description, :short])
+
   has_attached_file(:image,
                     styles: { original: '800x800>',
                               medium: '300x300>',
