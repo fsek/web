@@ -1,0 +1,12 @@
+sv:
+  global:
+    'yes': Ja
+    'no': Nej
+    close: Stäng
+    destroy: Förinta
+    edit: Redigera
+    link: Länk
+    reset: Återställ
+    search: Sök
+    show: Visa
+    title: F-sektionen

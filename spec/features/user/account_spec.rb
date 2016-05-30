@@ -18,7 +18,7 @@ RSpec.feature 'Update account' do
     click_button('user-info-submit')
     page.should have_css('div.alert.alert-info')
 
-    find('div.alert.alert-info').text.should include(I18n.t(:success_update))
+    find('div.alert.alert-info').text.should include(I18n.t('global_controller.success_update'))
     page.status_code.should eq(200)
 
     user.reload

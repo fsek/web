@@ -27,7 +27,7 @@
             <td><%= localized(album.start_date) %></td>
             <td><%= localized(album.end_date) %></td>
             <td><%= localized(album.updated_at) %></td>
-            <td><%= link_to(t(:edit), admin_gallery_album_path(album),
+            <td><%= link_to(t('global.edit'), admin_gallery_album_path(album),
                                       class: 'btn secondary') %></td>
           </tr>
         <% end %>

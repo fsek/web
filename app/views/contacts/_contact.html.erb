@@ -27,7 +27,7 @@
       <% if can_administrate?(:edit, contact) %>
         <span class="edit">
           <%= link_to(edit_admin_contact_path(contact)) do %>
-            <%= fa_icon('cog') %> <%= t(:edit) %>
+            <%= fa_icon('cog') %> <%= t('global.edit') %>
           <% end %>
         </span>
       <% end %>

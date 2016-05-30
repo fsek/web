@@ -35,8 +35,8 @@
              attribute: 'd_remove')
     g.column(name: Notice.human_attribute_name(:sort),
              attribute: 'sort')
-    g.column(name: t(:edit)) do |notice|
-      link_to(t(:edit), edit_admin_notice_path(notice))
+    g.column(name: t('global.edit')) do |notice|
+      link_to(t('global.edit'), edit_admin_notice_path(notice))
     end
   end -%>
 </div>

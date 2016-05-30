@@ -1,27 +1,4 @@
 en:
-  search: Search
-  default:
-    yes: Ja
-    no: No
-  success_create: was created.
-  success_update: was updated.
-  success_destroy: was deleted.
-  user_add_information: You need to fill in firstname and lastname.
-  your_user: Your user
-  not_allowed_update: not allowed to update
-  not_allowed_destroy: not allowed to delete
-  error: error
-  prevent_save: preventing the resource from being saved
-  try_login: try to sign in.
-  preview: Preview
-  show: Show
-  remove: Remove
-
-  administrate: Administrate
-
-  actions:
-    back: Back
-
   number:
     currency:
       format:
@@ -66,7 +43,6 @@ en:
     percentage:
       format:
         delimiter: ''
-        format: "%n%"
     precision:
       format:
         delimiter: ''

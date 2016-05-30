@@ -34,8 +34,8 @@
     g.column(name: model_name(User), assoc: :user, attribute: 'firstname') do |document|
       user_link(document.user)
     end
-    g.column(name: t(:edit), filter: false) do |document|
-      link_to(t(:edit), edit_admin_document_path(document))
+    g.column(name: t('global.edit'), filter: false) do |document|
+      link_to(t('global.edit'), edit_admin_document_path(document))
     end
   end -%>
 </div>

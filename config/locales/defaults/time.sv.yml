@@ -1,0 +1,12 @@
+sv:
+  time:
+    am: ''
+    formats:
+      default: '%H:%M, %e %b %Y'
+      long: '%H:%M, %e %B %Y'
+      short: '%H:%M, %e %b'
+      time: '%H:%M'
+      day_month: '%e %b'
+      month_year: '%b %Y'
+      weekday: '%A %H:%M, %e %b %Y'
+    pm: ''

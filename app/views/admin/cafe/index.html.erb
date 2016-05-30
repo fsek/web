@@ -13,8 +13,8 @@
   <hr>
   <%= simple_form_for(:cafe, url: admin_cafe_path, method: :get) do |f| %>
     <%= f.input :date, label: t('.shift_other_date'), as: :date_picker %>
-    <%= f.button :submit, t(:search) %>
-    <%= link_to(t(:reset), admin_cafe_path, class: 'btn secondary') %>
+    <%= f.button :submit, t('global.search') %>
+    <%= link_to(t('global.reset'), admin_cafe_path, class: 'btn secondary') %>
   <% end %>
 </div>
 
@@ -22,9 +22,9 @@
   <%= grid(@cafe_shift_grid) do |g|
     g.row_attributes do |shift|
       if shift.user.present?
-        { id: dom_id(shift), class: 'with-worker' }
+        {id: dom_id(shift), class: 'with-worker'}
       else
-        { id: dom_id(shift) }
+        {id: dom_id(shift)}
       end
     end
     g.column name: CafeShift.human_attribute_name(:start), attribute: 'start' do |shift|
@@ -34,18 +34,14 @@
     g.column name: CafeShift.human_attribute_name(:lp), attribute: 'lp'
     g.column name: CafeShift.human_attribute_name(:pass), attribute: 'pass'
     g.column name: model_name(CafeWorker), assoc: :user, attribute: 'id', filter: false do |shift|
-      if shift.user.present?
-        t(:yes)
-      else
-        t(:no)
-      end
+      yes_no(shift.user.present?)
     end
-    g.column name: t(:show) do |shift|
-      link_to(t('show'), admin_cafe_shift_path(shift))
+    g.column name: t('global.show') do |shift|
+      link_to(t('global.show'), admin_cafe_shift_path(shift))
     end
-    g.column name: t('remove') do |shift|
+    g.column name: t('global.destroy') do |shift|
       if shift.user.nil?
-        link_to(t('remove'), admin_cafe_shift_path(shift), remote: true,
+        link_to(t('global.destroy'), admin_cafe_shift_path(shift), remote: true,
                 method: :delete, html: { id: dom_id(shift) })
       end
     end

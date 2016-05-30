@@ -9,6 +9,7 @@ sv:
         title: Ny bilbokning
 
       index:
+        clear_search: Rensa sökning
         new_rent: Ny bilbokning
         startpage: Startsida för bilbokning
         title: Bilbokning - administration

@@ -5,7 +5,8 @@
   <%= simple_format(t('.instruction')) %>
   <div class='margin-bottom-20'>
     <%= simple_form_for(:ladybug, { url: ladybug_cafe_path, method: :get }) do |f| %>
-      <%= f.input :date, as: :date_picker, input_html: { value: @date.iso8601 }, label: t('choose.date') %>
+      <%= f.input :date, as: :date_picker, input_html: { value: @date.iso8601 },
+                         label: t('.choose_date') %>
       <%= f.button :submit, t('.submit') %>
     <% end %>
   </div>

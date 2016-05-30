@@ -32,8 +32,8 @@
     end
     g.column(name: PageElement.human_attribute_name(:updated_at), attribute: 'updated_at',
              filter: false)
-    g.column(name: t(:edit), filter: false) do |page_element|
-      link_to(t(:edit), edit_admin_page_page_element_path(@page, page_element))
+    g.column(name: t('global.edit'), filter: false) do |page_element|
+      link_to(t('global.edit'), edit_admin_page_page_element_path(@page, page_element))
     end
   end -%>
 </div>

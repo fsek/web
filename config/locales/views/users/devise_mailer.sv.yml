@@ -1,0 +1,19 @@
+sv:
+  devise:
+    mailer:
+      confirmation_instructions:
+        before_starting: Innan allting fungerar som det ska måste du bekräfta ditt konto via nedanstående länk.
+        enjoy: Hoppas att ni ska trivas här på webbplatsen.
+        hello: "Hej %{user}!"
+        please_confirm: Vänligen bekräfta ditt konto
+        problem: Har ni några problem får ni väldigt gärna kontakta Spindelmän via denna adress.
+        registered: Varmt välkommen till denna webbplats, du har lyckats registrera ett konto!
+
+
+      reset_password_instructions:
+        change_password: Byt lösenord
+        hello: "Hej %{user}!"
+        reset_not_you: Var det inte du som efterfrågade detta? Bortse från detta epost.
+        reset_problem: Har ni några andra problem får ni gärna kontakta Spindelmännen via denna adress, skriv ett nytt meddelande så att länken inte skickas runt mer än nödvändigt.
+        reset_requested: Någon skickade efter en återställning av ditt lösenord.
+        reset_until: "Fram till %{time} kan du ändra ditt lösenord via nedanstående länk"

@@ -1,9 +1,18 @@
-<p>
-  <%= t('welcome')%> <%= @email %>
-</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= t('.hello', user: @user.to_s) %></h1>
+    <%= simple_format(t('.registered')) %>
+    <%= simple_format(t('.before_starting')) %>
 
-<%= simple_format(t('devise.mailer.confirmation_instructions.description_link')) %>
-<p>
-<%= link_to(t('devise.mailer.confirmation_instructions.link'),
-            user_confirmation_url(confirmation_token: @token)) %>
-</p>
+    <p>
+      <%= link_to(t('.please_confirm'), user_confirmation_url(confirmation_token: @token)) %>
+    </p>
+
+    <%= simple_format(t('.enjoy')) %>
+    <%= simple_format(t('.problem')) %>
+  </body>
+</html>

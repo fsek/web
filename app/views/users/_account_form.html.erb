@@ -48,11 +48,8 @@
     </p>
   <% end %>
 
-  <div class="headline">
-    <h4>
-      <%= t(:update) %>
-    </h4>
-  </div>
+  <hr>
+
   <%= f.input :email %>
   <%= f.input :current_password, input_html: { class: 'account'} %>
   <%= f.button :submit, id: 'user-account-submit' %>

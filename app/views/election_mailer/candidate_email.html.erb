@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3> <%= "#{t(:hello)} #{@candidate.user}" %></h3>
+    <h3><%= t('election_mailer.hello', name: @candidate.user) %></h3>
     <p><%= "#{t('.you_have_candidated')} #{@candidate.post}." %></p>
 
     <% if @candidate.post.elected_by == Post::GENERAL %>

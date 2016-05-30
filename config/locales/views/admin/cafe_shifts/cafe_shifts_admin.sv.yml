@@ -1,6 +1,16 @@
 sv:
   admin:
     cafe_shifts:
+      edit:
+        title: Redigera cafépass
+        show: Visa cafépass
+        destroy: Förinta cafépass
+        index: Alla cafépass
+
+      new:
+        title: Nytt cafépass
+        admin_all_shifts: Administrera cafépass
+
       setup:
         back_to_admin: Tillbaka till administration
         day: Dag
@@ -10,3 +20,13 @@ sv:
         title: Skapa cafépass
         week: Vecka
         week_explanation: Fyll i datum och tid för en läsveckas första pass samt första och sista läsveckan genereras pass för alla läsveckorna däremellan.
+
+      show:
+        administrate: Administrera cafépass
+        destroy: Förinta cafépass
+        edit: Redigera cafépass
+
+      setup_form:
+        week: Vecka
+        day: Dag
+        lv_first: Första läsvecka

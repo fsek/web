@@ -1,5 +1,20 @@
 sv:
   layouts:
+    admin_dropdown:
+      administrate: Administrera
+      cafe: Hilbert Café
+      faq: FAQ
+      notice: Notiser
+      work_post: Jobbportal
+
+    content:
+      error: Fel
+
+    email:
+      footer:
+        fguild: F-teknologsektionen inom TLTH
+        you_get_this_because: Du får detta e-post eftersom du varit inne på F-teknologsektionen inom TLTHs webbplats och använt någon av våra tjänster.
+
     header:
       guild: teknologsektionen
       within_tlth: inom tlth
@@ -12,21 +27,21 @@ sv:
       the_f_guild: F-teknologsektionen inom TLTH
 
     footer:
-      short_about_guild: Kort om sektionen
-      physics: Teknisk Fysik
+      about_webpage: Om webbplatsen
+      contact_us: Kontakta oss
       mathmatics: Teknisk Matematik
       nanoscience: Teknisk Nanovetenskap
       non_profit_with_programs: F-sektionen är en ideell förening för studenter som läser vid något av programmen
-      purpose_members: och har till ändamål att främja kamratskap bland medlemmarna och tillvarata medlemmarnas gemensamma intressen.
-      about_webpage: Om webbplatsen
-      we_use_cookies: Vi använder Cookies.
-      read_more_cookies: Läs mer här.
-      weektorn: Vecktorn
-      weektorn_subscribe: Prenumerera på F-sektionens veckobrev som kommer ut varje läsvecka!
-      weektorn_send_in: Vill du skicka med en notis i Vecktorn? Skicka i så fall in den till
-      weektorn_before_deadline: senast söndag kl 17.
-      subscribe: Prenumerera
-      stay_connected: Håll dig uppdaterad
-      contact_us: Kontakta oss
+      physics: Teknisk Fysik
       post_address: Postadress
+      purpose_members: och har till ändamål att främja kamratskap bland medlemmarna och tillvarata medlemmarnas gemensamma intressen.
+      read_more_cookies: Läs mer här.
+      short_about_guild: Kort om sektionen
+      stay_connected: Håll dig uppdaterad
+      subscribe: Prenumerera
       visit_address: Besöksadress
+      we_use_cookies: Vi använder Cookies.
+      weektorn: Vecktorn
+      weektorn_before_deadline: senast söndag kl 17.
+      weektorn_send_in: Vill du skicka med en notis i Vecktorn? Skicka i så fall in den till
+      weektorn_subscribe: Prenumerera på F-sektionens veckobrev som kommer ut varje läsvecka!

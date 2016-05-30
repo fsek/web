@@ -45,7 +45,7 @@
     g.column(name: Menu.human_attribute_name(:updated_at), filter: false,
              attribute: 'updated_at')
     g.column(name: nil) do |menu|
-      link_to(t(:edit), edit_admin_menu_path(menu), class: 'btn secondary')
+      link_to(t('global.edit'), edit_admin_menu_path(menu), class: 'btn secondary')
     end
   end -%>
 </div>

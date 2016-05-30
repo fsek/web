@@ -1,8 +1,0 @@
-sv:
-  admin:
-    cafe:
-      overview:
-        title: Hilbert Café
-        subtitle: översikt
-        shifts_with_workers: Visar alla pass som har jobbare
-        administrate_all: Administrera cafépass
