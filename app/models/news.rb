@@ -1,5 +1,9 @@
 # encoding: UTF-8
 class News < ActiveRecord::Base
+  translates(:title, :content)
+  globalize_accessors(locales: [:en, :sv],
+                      attributes: [:title, :content])
+
   belongs_to :user
   has_many :categorizations, as: :categorizable
   has_many :categories, through: :categorizations
