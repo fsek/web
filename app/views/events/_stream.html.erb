@@ -10,7 +10,7 @@
       <span class="weekday-wrap">
         <span class='weekday'>
           <% if day.day == Time.zone.now.day %>
-            <%= t(:today).capitalize %>:
+            <%= t('.today').capitalize %>:
           <% else %>
             <%= l(day, format: '%A').capitalize %>:
           <% end %>
