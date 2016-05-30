@@ -102,6 +102,18 @@ ActiveRecord::Schema.define(version: 20160428130636) do
     t.datetime "updated_at"
   end
 
+  create_table "contact_translations", force: :cascade do |t|
+    t.integer  "contact_id", limit: 4,     null: false
+    t.string   "locale",     limit: 255,   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "name",       limit: 255
+    t.text     "text",       limit: 65535
+  end
+
+  add_index "contact_translations", ["contact_id"], name: "index_contact_translations_on_contact_id", using: :btree
+  add_index "contact_translations", ["locale"], name: "index_contact_translations_on_locale", using: :btree
+
   create_table "contacts", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "email",      limit: 255

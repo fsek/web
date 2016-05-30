@@ -45,6 +45,7 @@ class Admin::ContactsController < Admin::BaseController
   private
 
   def contact_params
-    params.require(:contact).permit(:name, :email, :public, :text, :post_id, :slug)
+    params.require(:contact).permit(:name_sv, :name_en, :email, :public,
+                                    :text_sv, :name_en, :post_id, :slug)
   end
 end

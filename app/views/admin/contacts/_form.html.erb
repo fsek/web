@@ -1,8 +1,10 @@
 <%= simple_form_for([:admin, contact]) do |f| %>
   <%= f.association(:post, collection: posts, input_html: { class: 'select2' },
                     hint: t('.name_or_post')) %>
-  <%= f.input :name %>
-  <%= f.input :text, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :name_sv, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :name_en, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :text_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :text_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :email %>
   <%= f.input :public %>
   <%= f.input :slug, hint: t('.slug_description') %>
