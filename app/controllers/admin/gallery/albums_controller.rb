@@ -48,8 +48,8 @@ class Admin::Gallery::AlbumsController < Admin::BaseController
   private
 
   def album_params
-    params.require(:album).permit(:title, :description, :location,
-                                  :public, :start_date, :end_date,
+    params.require(:album).permit(:title_sv, :title_en, :description_sv, :description_en,
+                                  :location, :public, :start_date, :end_date,
                                   :photographer_user, :photographer_name,
                                   image_upload: [])
   end

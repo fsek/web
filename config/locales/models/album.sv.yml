@@ -8,14 +8,19 @@ sv:
       album: Album
     attributes:
       album:
-        description: Beskrivning
         author: Upplagd av
-        location: Plats
-        public: Publik
-        start_date: Startdatum
+        created_at: Skapat
+        description: Beskrivning
+        description_en: Beskrivning - engelsk
+        description_sv: Beskrivning - svensk
         end_date: Slutdatum
         image_upload: Bilduppladdning
-        photographer_user: Fotograf
+        location: Plats
         photographer_name: Namn på fotograf (om ej medlem)
-        created_at: Skapat
+        photographer_user: Fotograf
+        public: Publik
+        start_date: Startdatum
+        title: Titel
+        title_en: Titel - engelsk
+        title_sv: Titel - svensk
         updated_at: Uppdaterat
