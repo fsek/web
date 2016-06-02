@@ -2,8 +2,12 @@ class StartPage
   attr_accessor :news, :events, :notices
 
   def initialize(member: false)
-    @news = News.order(created_at: :desc).limit(5).includes(:user).includes(:categories) || []
-    @events = Event.stream || []
+    @news = News.includes(:translations).
+      includes(:user).
+      includes(:categories).
+      order(created_at: :desc).
+      limit(5) || []
+    @events = Event.includes(:translations).stream || []
     @notices = get_notices(member)
   end
 
@@ -11,9 +15,9 @@ class StartPage
 
   def get_notices(member)
     if member
-      Notice.published
+      Notice.includes(:translations).published
     else
-      Notice.publik.published
+      Notice.includes(:translations).publik.published
     end
   end
 end

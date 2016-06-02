@@ -4,7 +4,7 @@
   </h1>
 </div>
 <div class="col-md-12">
-  <% cache(@contacts) do %>
+  <% cache([@contacts, I18n.locale]) do %>
     <%= render @contacts %>
   <% end %>
 </div>

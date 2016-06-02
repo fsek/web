@@ -28,7 +28,7 @@ class Admin::NewsController < Admin::BaseController
 
   def update
     @news = News.find(params[:id])
-    if @news.update(news_params)
+    if @news.update(news_params.merge!(updated_at: Time.zone.now))
       redirect_to edit_admin_news_path(@news), notice: alert_update(News)
     else
       render :edit, status: 422

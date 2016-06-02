@@ -1,6 +1,6 @@
 <div class="collapse navbar-collapse navbar-responsive-collapse">
   <ul class="nav navbar-nav navbar-right">
-    <% cache('main_menu', skip_digest: true) do %>
+    <% cache(['main_menu', I18n.locale]) do %>
       <% global_menus = GlobalMenus.new %>
       <%= menu_dropdown(menus: global_menus.guild_menus, title: t('model.menus.guild')) %>
       <%= menu_dropdown(menus: global_menus.member_menus, title: t('model.menus.members')) %>

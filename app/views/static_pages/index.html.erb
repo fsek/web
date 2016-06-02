@@ -14,17 +14,25 @@
 <% end %>
 
 <div class="col-md-7 col-sm-12">
-  <%= render @start_page.notices %>
+  <% cache_unless(can_administrate?(:manage, Notice),
+                  [@start_page.notices, I18n.locale]) do %>
+    <%= render @start_page.notices %>
+  <% end %>
 </div>
 
 <div class="col-md-5 col-sm-12">
-  <%= render '/events/stream', events: @start_page.events %>
+  <% cache([@start_page.events, I18n.locale]) do %>
+    <%= render '/events/stream', events: @start_page.events %>
+  <% end %>
 
   <div class="headline headline-md">
     <h3><%= models_name(News) %></h3>
   </div>
-  <%= render @start_page.news %>
-  <%= link_to news_index_path do%>
-    <%= fa_icon('plus') %> <%= t('.more_news') %>
+  <% cache_unless(can_administrate?(:manage, News),
+                  [@start_page.news, I18n.locale]) do %>
+    <%= render @start_page.news %>
+    <%= link_to news_index_path do%>
+      <%= fa_icon('plus') %> <%= t('.more_news') %>
+    <% end %>
   <% end %>
 </div>

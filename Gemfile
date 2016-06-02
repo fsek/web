@@ -67,6 +67,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'onesky-rails'
   gem 'quiet_assets'
   gem 'web-console'
