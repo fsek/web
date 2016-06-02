@@ -15,8 +15,12 @@ sv:
         email: E-post
         message: Meddelande
         name: Namn
+        name_sv: Namn - svenskt
+        name_en: Namn - engelskt
         post_id: Post
         public: Publik
         slug: Kortreferens
         text: Beskrivning
+        text_sv: Beskrivning - svensk
+        text_en: Beskrivning - engelsk
         updated_at: Uppdaterad

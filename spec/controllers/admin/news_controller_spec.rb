@@ -19,8 +19,10 @@ RSpec.describe Admin::NewsController, type: :controller do
   end
 
   describe 'GET #index' do
-    include Wice::Controller
     it 'assigns news sorted as @news' do
+      create(:news)
+      create(:news)
+
       get(:index)
       response.status.should eq(200)
     end
@@ -28,8 +30,11 @@ RSpec.describe Admin::NewsController, type: :controller do
 
   describe 'POST #create' do
     it 'posts new news' do
+      attributes = { title_sv: 'Sektionsmöte wohoo!',
+                     content_sv: 'Detta är en text om sektionsmötet',
+                     url: 'https://rostsystem.se' }
       lambda do
-        post :create, news: attributes_for(:news)
+        post :create, news: attributes
       end.should change(News, :count).by(1)
 
       response.should redirect_to(edit_admin_news_path(News.last))
@@ -38,9 +43,11 @@ RSpec.describe Admin::NewsController, type: :controller do
 
   describe 'PATCH #update' do
     it 'update news' do
-      patch :update, id: news.to_param, news: { title: 'Hej' }
+      news = create(:news, title: 'Vårterminsmöte')
+      patch :update, id: news.to_param, news: { title_sv: 'Höstterminsmöte' }
+
       news.reload
-      news.title.should eq('Hej')
+      news.title.should eq('Höstterminsmöte')
       response.should redirect_to(edit_admin_news_path(news))
     end
   end

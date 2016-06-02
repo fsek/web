@@ -48,9 +48,19 @@ Fsek::Application.configure do
   config.action_controller.asset_host = PUBLIC_URL
   config.action_mailer.asset_host = PUBLIC_URL
 
-  config.action_view.raise_on_missing_translations = true
+  config.action_view.raise_on_missing_translations = false
 
   # Don't log partials etc. in development.
   config.quiet_assets = true
   config.action_view.logger = nil
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = false
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.rollbar = true
+    Bullet.add_footer = true
+  end
 end

@@ -1,5 +1,9 @@
 # encoding: UTF-8
 class Menu < ActiveRecord::Base
+  translates(:name)
+  globalize_accessors(locales: [:en, :sv],
+                      attributes: [:name])
+
   GUILD = 'guild'.freeze
   MEMBER = 'members'.freeze
   COMPANY = 'companies'.freeze

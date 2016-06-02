@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428130636) do
+ActiveRecord::Schema.define(version: 20160530191925) do
+
+  create_table "album_translations", force: :cascade do |t|
+    t.integer  "album_id",    limit: 4,     null: false
+    t.string   "locale",      limit: 255,   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+  end
+
+  add_index "album_translations", ["album_id"], name: "index_album_translations_on_album_id", using: :btree
+  add_index "album_translations", ["locale"], name: "index_album_translations_on_locale", using: :btree
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -102,6 +114,18 @@ ActiveRecord::Schema.define(version: 20160428130636) do
     t.datetime "updated_at"
   end
 
+  create_table "contact_translations", force: :cascade do |t|
+    t.integer  "contact_id", limit: 4,     null: false
+    t.string   "locale",     limit: 255,   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "name",       limit: 255
+    t.text     "text",       limit: 65535
+  end
+
+  add_index "contact_translations", ["contact_id"], name: "index_contact_translations_on_contact_id", using: :btree
+  add_index "contact_translations", ["locale"], name: "index_contact_translations_on_locale", using: :btree
+
   create_table "contacts", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "email",      limit: 255
@@ -180,6 +204,19 @@ ActiveRecord::Schema.define(version: 20160428130636) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "event_translations", force: :cascade do |t|
+    t.integer  "event_id",    limit: 4,     null: false
+    t.string   "locale",      limit: 255,   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+    t.string   "short",       limit: 255
+  end
+
+  add_index "event_translations", ["event_id"], name: "index_event_translations_on_event_id", using: :btree
+  add_index "event_translations", ["locale"], name: "index_event_translations_on_locale", using: :btree
+
   create_table "events", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.string   "author",             limit: 255
@@ -245,6 +282,17 @@ ActiveRecord::Schema.define(version: 20160428130636) do
   add_index "mail_aliases", ["target"], name: "index_mail_aliases_on_target", using: :btree
   add_index "mail_aliases", ["username", "domain", "target"], name: "index_mail_aliases_on_username_and_domain_and_target", unique: true, using: :btree
 
+  create_table "menu_translations", force: :cascade do |t|
+    t.integer  "menu_id",    limit: 4,   null: false
+    t.string   "locale",     limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "name",       limit: 255
+  end
+
+  add_index "menu_translations", ["locale"], name: "index_menu_translations_on_locale", using: :btree
+  add_index "menu_translations", ["menu_id"], name: "index_menu_translations_on_menu_id", using: :btree
+
   create_table "menus", force: :cascade do |t|
     t.string   "location",   limit: 255
     t.integer  "index",      limit: 4
@@ -267,6 +315,18 @@ ActiveRecord::Schema.define(version: 20160428130636) do
     t.string   "image",      limit: 255
   end
 
+  create_table "news_translations", force: :cascade do |t|
+    t.integer  "news_id",    limit: 4,     null: false
+    t.string   "locale",     limit: 255,   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
+  end
+
+  add_index "news_translations", ["locale"], name: "index_news_translations_on_locale", using: :btree
+  add_index "news_translations", ["news_id"], name: "index_news_translations_on_news_id", using: :btree
+
   create_table "nominations", force: :cascade do |t|
     t.integer  "post_id",     limit: 4
     t.integer  "election_id", limit: 4
@@ -278,6 +338,18 @@ ActiveRecord::Schema.define(version: 20160428130636) do
     t.string   "phone",       limit: 255
     t.string   "stil_id",     limit: 255
   end
+
+  create_table "notice_translations", force: :cascade do |t|
+    t.integer  "notice_id",   limit: 4,     null: false
+    t.string   "locale",      limit: 255,   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+  end
+
+  add_index "notice_translations", ["locale"], name: "index_notice_translations_on_locale", using: :btree
+  add_index "notice_translations", ["notice_id"], name: "index_notice_translations_on_notice_id", using: :btree
 
   create_table "notices", force: :cascade do |t|
     t.string   "title",       limit: 255

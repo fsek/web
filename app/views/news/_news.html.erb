@@ -11,13 +11,15 @@
 
    <%= news_url(news) %>
 
-   <% if news.categories.count > 0 %>
-     <span class="categories">
-       <%= fa_icon('hashtag') %> 
-       <% news.categories.each do |cat| %>
-         <%= link_to(cat.title, news_index_path(category: cat.to_param)) %> <%= ' ' %>
-       <% end %>
-     </span>
+   <% cache([news.categories, I18n.locale]) do %>
+     <% if news.categories.any? %>
+       <span class="categories">
+         <%= fa_icon('hashtag') %>
+         <% news.categories.each do |cat| %>
+           <%= link_to(cat.title, news_index_path(category: cat.to_param)) %> <%= ' ' %>
+         <% end %>
+       </span>
+     <% end %>
    <% end %>
 
    <span class="date">

@@ -14,9 +14,12 @@
     </ul>
     <div class="tab-content">
       <div id="info" class="profile-edit tab-pane fade in <%= tab == :info ? 'active' : ''%>">
-        <%= f.input :title %>
-        <%= f.input :short %>
-        <%= f.input :description %>
+        <%= f.input :title_sv, wrapper_html: {class: 'inline half'} %>
+        <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>
+        <%= f.input :short_sv, wrapper_html: {class: 'inline half'} %>
+        <%= f.input :short_en, wrapper_html: {class: 'inline half'} %>
+        <%= f.input :description_sv, as: :text %>
+        <%= f.input :description_en, as: :text %>
         <%= f.input :location %>
         <%= f.input :image, as: :file %>
         <%= f.association :council, collection: Council.titles %>

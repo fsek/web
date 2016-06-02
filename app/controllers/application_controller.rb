@@ -108,17 +108,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    locale = 'sv'
-    langs = %w{ sv en }
-
-    if params[:locale]
-      lang = params[:locale]
-      if langs.include? lang
-        locale = lang
-      end
-    end
-    I18n.locale = locale
-    redirect_to(:back) if params[:locale]
+    I18n.locale = params[:locale] || I18n.default_locale
+    Rails.application.routes.default_url_options[:locale] = I18n.locale
   end
 
   def referring_action

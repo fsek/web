@@ -18,6 +18,8 @@ gem 'fancybox2-rails'
 gem 'font-awesome-rails'
 gem 'fotoramajs'
 gem 'fullcalendar-rails'
+gem 'globalize', '~> 5.0.0'
+gem 'globalize-accessors'
 gem 'icalendar'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
@@ -31,6 +33,7 @@ gem 'pagedown-bootstrap-rails'
 gem 'prawn-rails'
 gem 'redcarpet'
 gem 'rollbar', '~>2.8.3'
+gem 'routing-filter', '~> 0.5.1'
 gem 'sass-rails'
 gem 'select2-rails'
 gem 'simple_form'
@@ -64,8 +67,10 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console'
+  gem 'bullet'
+  gem 'onesky-rails'
   gem 'quiet_assets'
+  gem 'web-console'
 end
 
 group :test do

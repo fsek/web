@@ -1,5 +1,9 @@
 # encoding: UTF-8
 class Album < ActiveRecord::Base
+  translates(:title, :description)
+  globalize_accessors(locales: [:en, :sv],
+                      attributes: [:title, :description])
+
   has_many :images, -> { order(:filename) }, dependent: :destroy
 
   attr_accessor(:image_upload, :photographer_user,

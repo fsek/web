@@ -37,10 +37,10 @@ RSpec.describe Admin::ContactsController, type: :controller do
 
   describe 'POST #create' do
     it 'valid params' do
-      attributes = { name: 'David',
+      attributes = { name_sv: 'David',
                      email: 'test@test.se',
                      public: 1,
-                     text: 'Jag kan svara på mejl' }
+                     text_sv: 'Jag kan svara på mejl' }
 
       lambda do
         post :create, contact: attributes
@@ -52,7 +52,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
 
     it 'invalid params' do
       lambda do
-        post :create, contact: { name: nil }
+        post :create, contact: { name_sv: nil }
       end.should change(Contact, :count).by(0)
 
       response.should render_template(:new)
@@ -64,7 +64,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
     it 'valid params' do
       contact = create(:contact, name: 'David')
 
-      post :update, id: contact.to_param, contact: { name: 'Titel' }
+      post :update, id: contact.to_param, contact: { name_sv: 'Titel' }
 
       contact.reload
       response.should redirect_to(edit_admin_contact_path(contact))
@@ -74,7 +74,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
 
     it 'valid params' do
       contact = create(:contact, name: 'David')
-      post :update, id: contact.to_param, contact: { name: '' }
+      post :update, id: contact.to_param, contact: { name_sv: '' }
       contact.reload
 
       contact.name.should eq('David')

@@ -1,5 +1,8 @@
 # encoding: UTF-8
 class Notice < ActiveRecord::Base
+  translates(:title, :description)
+  globalize_accessors(locales: [:en, :sv], attributes: [:title, :description])
+
   belongs_to :user
   mount_uploader :image, AttachedImageUploader
 

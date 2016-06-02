@@ -1,6 +1,6 @@
 class Categorization < ActiveRecord::Base
   belongs_to :category
-  belongs_to :categorizable, polymorphic: true
+  belongs_to :categorizable, polymorphic: true, touch: true
 
   validates :category, :categorizable, presence: true
   validates :categorizable_id, uniqueness: { scope: [:category,

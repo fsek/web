@@ -9,6 +9,7 @@ base_locale: sv
 
 # Read and write translations.
 data:
+  router: pattern-router
   ## Translations are read from the file system. Supported format: YAML, JSON.
   ## Provide a custom adapter:
   # adapter: I18n::Tasks::Data::FileSystem
@@ -29,6 +30,7 @@ data:
     # - ['{devise, simple_form}.*', 'config/locales/\1.%{locale}.yml']
     ## Catch-all default:
     # - config/locales/%{locale}.yml
+    - ['{:}.*', 'config/locales/**/\1.%{locale}.yml']
 
   ## Specify the router (see Readme for details). Valid values: conservative_router, pattern_router, or a custom class.
   # router: convervative_router

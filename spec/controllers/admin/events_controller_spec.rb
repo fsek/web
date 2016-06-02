@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Admin::EventsController, type: :controller do
   let(:user) { create(:user) }
-  let(:event) { create(:event) }
 
   allow_user_to(:manage, Event)
 
@@ -20,6 +19,8 @@ RSpec.describe Admin::EventsController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns a edit event as @event' do
+      event = create(:event)
+
       get(:edit, id: event.to_param)
       assigns(:event).should eq(event)
     end
@@ -27,16 +28,25 @@ RSpec.describe Admin::EventsController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns events sorted as stat_date @events' do
+      create(:event, title: 'Second', starts_at: 5.days.ago)
+      create(:event, title: 'First', starts_at: 3.days.ago)
+      create(:event, title: 'Third', starts_at: 7.days.ago)
+
       get(:index)
-      assigns(:events).should match_array(Event.order(starts_at: :desc))
+      assigns(:events).map(&:title).should eq(['First', 'Second', 'Third'])
       response.status.should eq(200)
     end
   end
 
   describe 'POST #create' do
     it 'valid parameters' do
+      attributes = { title_sv: 'Välkomstgasque!',
+                     description_sv: 'Det blir mat och dryck, waow!',
+                     location: 'Kårhuset: Gasquesalen',
+                     starts_at: 5.days.from_now,
+                     ends_at: 7.days.from_now }
       lambda do
-        post :create, event: attributes_for(:event)
+        post :create, event: attributes
       end.should change(Event, :count).by(1)
 
       response.should redirect_to(edit_admin_event_path(Event.last))
@@ -44,7 +54,7 @@ RSpec.describe Admin::EventsController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, event: { title: 'Not enough' }
+        post :create, event: { title_sv: 'Not enough' }
       end.should change(Event, :count).by(0)
 
       response.should render_template(:new)
@@ -53,14 +63,16 @@ RSpec.describe Admin::EventsController, type: :controller do
 
   describe 'PATCH #update' do
     it 'valid parameters' do
-      patch :update, id: event.to_param, event: { title: 'Hej' }
+      event = create(:event, title: 'Välkomstgasque')
+      patch :update, id: event.to_param, event: { title_sv: 'Nollegasque' }
       event.reload
-      event.title.should eq('Hej')
+      event.title.should eq('Nollegasque')
       response.should redirect_to(edit_admin_event_path(event))
     end
 
     it 'valid parameters' do
-      patch :update, id: event.to_param, event: { title: '' }
+      event = create(:event, title: 'Välkomstgasque')
+      patch :update, id: event.to_param, event: { title_sv: '' }
       response.should render_template(:edit)
     end
   end

@@ -8,9 +8,13 @@ sv:
       news:
         categories: Kategorier
         content: Text
+        content_sv: Text - svensk
+        content_en: Text - engelsk
         created_at: Skapad
         image: Bild
         remove_image: Ta bort bild
         title: Titel
+        title_sv: Titel - svensk
+        title_en: Titel - engelsk
         updated_at: Uppdaterad
         user: Upplagd av

@@ -1,0 +1,6 @@
+api_key: <%= ENV['ONESKY_API_KEY'] %>
+api_secret: <%= ENV['ONESKY_API_SECRET'] %>
+project_id: <%= ENV['ONESKY_PROJECT_ID'] %>
+
+upload:
+  is_keeping_all_strings: true

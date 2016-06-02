@@ -1,7 +1,9 @@
 <%= simple_form_for([:admin,:gallery, @album]) do |f| %>
   <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :description %>
+    <%= f.input :title_sv, wrapper_html: {class: 'inline half'} %>
+    <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>
+    <%= f.input :description_sv %>
+    <%= f.input :description_en %>
     <%= f.input :location %>
     <%= f.input :start_date, as: :datetime_picker %>
     <%= f.input :end_date, as: :datetime_picker %>

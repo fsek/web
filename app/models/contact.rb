@@ -1,5 +1,9 @@
 # encoding: UTF-8
 class Contact < ActiveRecord::Base
+  translates(:name, :text)
+  globalize_accessors(locales: [:en, :sv],
+                      attributes: [:name, :text])
+
   belongs_to :post
   has_many :users, through: :post
 
