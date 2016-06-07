@@ -1,11 +1,13 @@
 @font-face {
-  font-family: "diogenesregular";
-  src: asset-url("assets/diogenes-webfont.eot");
-  src: asset-url("assets/diogenes-webfont.eot?#iefix") format("embedded-opentype"),
-  asset-url("assets/diogenes-webfont.woff2") format("woff2"),
-  asset-url("assets/diogenes-webfont.woff") format("woff"),
-  asset-url("assets/diogenes-webfont.ttf") format("truetype"),
-  asset-url("assets/diogenes-webfont.svg#diogenesregular") format("svg");
+  font-family: "questknight";
+  src: asset-url("assets/questknight.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ancient";
+  src: asset-url("assets/ancient.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

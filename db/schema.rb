@@ -318,8 +318,8 @@ ActiveRecord::Schema.define(version: 20160530191925) do
   create_table "news_translations", force: :cascade do |t|
     t.integer  "news_id",    limit: 4,     null: false
     t.string   "locale",     limit: 255,   null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
   end
