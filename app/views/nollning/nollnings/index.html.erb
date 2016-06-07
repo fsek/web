@@ -1,30 +1,33 @@
-<div class="headline">
-  <h1><%= title(t('.title')) %></h1>
-</div>
+ <div class="nollning">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
 
-<%= render 'images' %>
+  <div class="col-md-12 nollning-paragraph"><%= t('.info') %></div>
+  <div class="col-md-12 nollning-paragraph"><%= t('.info2') %></div>
 
-<% if @news.present? %>
-  <div class="col-md-7 nollning-news">
-    <div class="headline">
-      <h3><%= t('.news') %></h3>
+  <% if @news.present? %>
+    <div class="col-md-7 nollning-news">
+      <div class="headline">
+        <h2><%= t('.news') %></h2>
+      </div>
+
+      <% @news.each do |n| %>
+        <%= render '/news/news', news: n %>
+      <% end %>
+
+      <%= link_to news_index_path(category: :nollning) do%>
+        <%= fa_icon('plus') %> <%= t('.more_news') %>
+      <% end %>
     </div>
+  <% end %>
 
-    <% @news.each do |n| %>
-      <%= render '/news/news', news: n %>
-    <% end %>
-
-    <%= link_to news_index_path(category: :nollning) do%>
-      <%= fa_icon('plus') %> <%= t('.more_news') %>
+  <div class="col-md-7">
+    <% if @constant.present? %>
+      <div class="headline">
+        <h2><%= t('.theme_movie') %></h2>
+      </div>
+      <iframe width="560" height="315" src="<%= @constant.value %>" frameborder="0" allowfullscreen></iframe>
     <% end %>
   </div>
-<% end %>
-
-<div class="col-md-7">
-  <% if @constant.present? %>
-    <div class="headline">
-      <h3><%= t('.theme_movie') %></h3>
-    </div>
-    <iframe width="560" height="315" src="<%= @constant.value %>" frameborder="0" allowfullscreen></iframe>
-  <% end %>
 </div>
