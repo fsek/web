@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607090458) do
+ActiveRecord::Schema.define(version: 20160612224833) do
 
   create_table "album_translations", force: :cascade do |t|
     t.integer  "album_id",    limit: 4,     null: false
@@ -276,6 +276,26 @@ ActiveRecord::Schema.define(version: 20160607090458) do
   add_index "mail_aliases", ["target"], name: "index_mail_aliases_on_target", using: :btree
   add_index "mail_aliases", ["username", "domain", "target"], name: "index_mail_aliases_on_username_and_domain_and_target", unique: true, using: :btree
 
+  create_table "main_menu_translations", force: :cascade do |t|
+    t.integer  "main_menu_id", limit: 4,   null: false
+    t.string   "locale",       limit: 255, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "name",         limit: 255
+  end
+
+  add_index "main_menu_translations", ["locale"], name: "index_main_menu_translations_on_locale", using: :btree
+  add_index "main_menu_translations", ["main_menu_id"], name: "index_main_menu_translations_on_main_menu_id", using: :btree
+
+  create_table "main_menus", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "index",      limit: 4
+    t.boolean  "mega",                   default: true,  null: false
+    t.boolean  "fw",                     default: false, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
   create_table "menu_translations", force: :cascade do |t|
     t.integer  "menu_id",    limit: 4,   null: false
     t.string   "locale",     limit: 255, null: false
@@ -288,16 +308,20 @@ ActiveRecord::Schema.define(version: 20160607090458) do
   add_index "menu_translations", ["menu_id"], name: "index_menu_translations_on_menu_id", using: :btree
 
   create_table "menus", force: :cascade do |t|
-    t.string   "location",   limit: 255
-    t.integer  "index",      limit: 4
-    t.string   "link",       limit: 255
-    t.string   "name",       limit: 255
-    t.boolean  "visible"
-    t.boolean  "turbolinks",             default: true
+    t.integer  "index",        limit: 4
+    t.string   "link",         limit: 255
+    t.string   "name",         limit: 255
+    t.boolean  "visible",                  default: true
+    t.boolean  "turbolinks",               default: true
     t.boolean  "blank_p"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "header",                   default: false, null: false
+    t.integer  "column",       limit: 4,   default: 1,     null: false
+    t.integer  "main_menu_id", limit: 4
   end
+
+  add_index "menus", ["main_menu_id"], name: "index_menus_on_main_menu_id", using: :btree
 
   create_table "news", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -539,5 +563,6 @@ ActiveRecord::Schema.define(version: 20160607090458) do
   add_index "work_posts", ["user_id"], name: "index_work_posts_on_user_id", using: :btree
 
   add_foreign_key "categorizations", "categories"
+  add_foreign_key "menus", "main_menus"
   add_foreign_key "page_images", "pages"
 end

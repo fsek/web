@@ -81,33 +81,40 @@ namespace :db do
       PostUser.find_or_create_by(post: prylmast, user: a)
     end
 
-    # Menues
-    menu = Menu.find_or_create_by!(location: :guild, name: 'Om oss',
-                                   link: '/om', index: 10, visible: true, turbolinks: true)
+    # Main menus
+    sekt = MainMenu.find_or_create_by!(name: 'Sektionen', index: 10, mega: false)
+    sekt.update(name_en: 'Guild')
+    medl = MainMenu.find_or_create_by!(name: 'För medlemmar', index: 20, mega: true)
+
+    menu = Menu.find_or_create_by!(main_menu: sekt, name: 'Om oss',
+                            link: '/om', index: 10, visible: true, turbolinks: true)
     menu.update!(name_en: 'About us')
 
-    menu = Menu.find_or_create_by!(location: :guild, name: 'Utskott',
+    menu = Menu.find_or_create_by!(main_menu: sekt, name: 'Utskott',
                             link: '/utskott', index: 20, visible: true, turbolinks: true)
     menu.update!(name_en: 'Councils')
 
-    Menu.find_or_create_by!(location: :guild, name: 'Dokument',
+    menu = Menu.find_or_create_by!(main_menu: sekt, name: 'Dokument',
                             link: '/dokument', index: 30, visible: true, turbolinks: true)
-
     menu.update!(name_en: 'Documents')
 
-    Menu.find_or_create_by!(location: :members, name: 'Val',
+    menu = Menu.find_or_create_by!(main_menu: medl, name: 'För medlemmar',
+                            link: '#', index: 1, visible: true, turbolinks: true, header: true)
+    menu.update!(name_en: 'For members')
+
+    menu = Menu.find_or_create_by!(main_menu: medl, name: 'Val',
                             link: '/val', index: 10, visible: true, turbolinks: true)
     menu.update!(name_en: 'Election')
 
-    Menu.find_or_create_by!(location: :members, name: 'Bilbokning',
+    menu = Menu.find_or_create_by!(main_menu: medl, name: 'Bilbokning',
                             link: '/bilbokning', index: 20, visible: true, turbolinks: false)
     menu.update!(name_en: 'Car rental')
 
-    Menu.find_or_create_by!(location: :members, name: 'Hilbert Café',
+    menu = Menu.find_or_create_by!(main_menu: medl, name: 'Hilbertcafé',
                             link: '/hilbertcafe', index: 30, visible: true, turbolinks: false)
     menu.update!(name_en: 'Hilbert Café')
 
-    Menu.find_or_create_by!(location: :members, name: 'Bildgalleri',
+    menu = Menu.find_or_create_by!(main_menu: medl, name: 'Bildgalleri',
                             link: '/galleri', index: 40, visible: true, turbolinks: false)
     menu.update!(name_en: 'Image gallery')
 

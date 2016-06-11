@@ -97,6 +97,7 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :notices, path: :notiser, except: :show
       resources :menus, path: :meny, except: :show
+      resources :main_menus, path: :huvudmeny, except: :show
     end
 
     namespace :admin do

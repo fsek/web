@@ -1,16 +1,15 @@
 <%= simple_form_for([:admin, menu]) do |f| %>
-  <%= f.input :location, collection: [[t('model.menus.guild'), Menu::GUILD],
-                                      [t('model.menus.members'), Menu::MEMBER],
-                                      [t('model.menus.companies'), Menu::COMPANY],
-                                      [t('model.menus.contact'), Menu::CONTACT]],
-                         input_html: { class: 'select2' },
-                         include_blank: false %>
+  <%= f.association :main_menu, collection: MainMenu.all,
+                            input_html: { class: 'select2' },
+                            include_blank: false %>
   <%= f.input :index %>
   <%= f.input :name_sv, wrapper_html: { class: 'inline half' } %>
   <%= f.input :name_en, wrapper_html: { class: 'inline half' } %>
   <%= f.input :link %>
+  <%= f.input :column %>
   <%= f.input :visible %>
   <%= f.input :turbolinks %>
   <%= f.input :blank_p %>
+  <%= f.input :header %>
   <%= f.button :submit, id: :menu_id %>
 <% end %>

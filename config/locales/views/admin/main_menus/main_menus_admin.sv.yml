@@ -1,0 +1,16 @@
+sv:
+  admin:
+    main_menus:
+      edit:
+        title: Redigera huvudmeny
+        destroy: Förinta huvudmeny
+        all_menus: Alla huvudmenyer
+
+      index:
+        title: Huvudmenyer
+        new: Ny huvudmeny
+        menus: Menyer
+
+      new:
+        title: Ny huvudmeny
+        all_menus: Alla huvudmenyer

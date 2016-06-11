@@ -55,4 +55,10 @@ class ApplicationController < ActionController::Base
   def referring_action
     Rails.application.routes.recognize_path(request.referer)[:action]
   end
+
+  def recache_menu
+    I18n.available_locales.each do |loc|
+      expire_fragment("main_menu/#{loc}")
+    end
+  end
 end

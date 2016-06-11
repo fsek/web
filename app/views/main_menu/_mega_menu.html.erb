@@ -1,0 +1,14 @@
+<li class="dropdown menu-large">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <%= safe_join([main_menu, ' ', fa_icon('angle-down')]) %>
+  </a>
+  <ul class="dropdown-menu megamenu row <%= main_menu.fw ? 'full-width' : '' %>">
+    <% menu = main_menu.menus.includes(:translations).index %>
+    <% col = menu.select(:column).distinct(:column).count %>
+    <% menu.group_by(&:column).each do |column, menus| %>
+    <li class="<%= "col-sm-#{12/col}"%> column">
+      <%= menu_dropdown_render(menus) %>
+    </li>
+    <% end %>
+  </ul>
+</li>

@@ -8,7 +8,7 @@ bottom = function () {
     var footerPadding = parseInt($footer.css('padding-top')) +
                         parseInt($footer.css('padding-bottom'));
 
-    var diff = docHeight - copyrightBottom + footerPadding;
+    var diff = docHeight - copyrightBottom + footerPadding - 28;
 
 
     if (copyrightBottom < docHeight) {

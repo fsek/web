@@ -3,16 +3,14 @@
 </div>
 
 <div class="col-md-2 col-sm-12">
-  <%= link_to(t('.new'), new_admin_menu_path,
-                         class: 'btn primary') %>
+  <%= link_to(t('.new'), new_admin_menu_path, class: 'btn primary') %>
+  <%= link_to t('.main_menus'), admin_main_menus_path, class: 'btn primary' %>
 
-  <button class="wg-external-submit-button btn secondary"
-          data-grid-name="grid">
+  <button class="wg-external-submit-button btn secondary" data-grid-name="grid">
     <%= t('.filter') %>
   </button>
 
-  <button class="wg-external-reset-button btn secondary"
-          data-grid-name="grid">
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
     <%= t('.reset_filter') %>
   </button>
 </div>
@@ -20,32 +18,23 @@
 <div class="col-md-10 col-sm-12">
   <%= grid(@menus_grid, hide_submit_button: true,
                         hide_reset_button: true) do |g|
-    g.column(name: Menu.human_attribute_name(:name),
-             attribute: 'name', filter: false)
-    g.column(name: Menu.human_attribute_name(:location),
-             attribute: 'location', custom_filter: :auto)
-    g.column(name: Menu.human_attribute_name(:visible),
-             attribute: 'visible') do |menu|
+    g.column(name: Menu.human_attribute_name(:name), attribute: 'name', filter: false) do |menu|
+            link_to menu, edit_admin_menu_path(menu)
+    end
+    g.column(name: Menu.human_attribute_name(:main_menu_id), assoc: :main_menu, attribute: 'name')
+    g.column(name: Menu.human_attribute_name(:visible), attribute: 'visible') do |menu|
       yes_no(menu.visible)
     end
-    g.column(name: Menu.human_attribute_name(:index),
-             attribute: 'index', filter: false)
-    g.column(name: Menu.human_attribute_name(:turbolinks),
-             attribute: 'turbolinks') do |menu|
+    g.column(name: Menu.human_attribute_name(:index), attribute: 'index', filter: false)
+    g.column(name: Menu.human_attribute_name(:turbolinks), attribute: 'turbolinks') do |menu|
       yes_no(menu.turbolinks)
     end
-    g.column(name: Menu.human_attribute_name(:blank_p),
-             attribute: 'blank_p') do |menu|
+    g.column(name: Menu.human_attribute_name(:blank_p), attribute: 'blank_p') do |menu|
       yes_no(menu.blank_p)
     end
-    g.column(name: Menu.human_attribute_name(:link), filter: false,
-             attribute: 'link') do |menu|
+    g.column(name: Menu.human_attribute_name(:link), filter: false, attribute: 'link') do |menu|
       link_to(truncate(menu.link, length: 10), menu.link)
     end
-    g.column(name: Menu.human_attribute_name(:updated_at), filter: false,
-             attribute: 'updated_at')
-    g.column(name: nil) do |menu|
-      link_to(t('global.edit'), edit_admin_menu_path(menu), class: 'btn secondary')
-    end
+    g.column(name: Menu.human_attribute_name(:updated_at), filter: false, attribute: 'updated_at')
   end -%>
 </div>

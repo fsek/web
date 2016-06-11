@@ -1,0 +1,8 @@
+<%= simple_form_for([:admin, main_menu]) do |f| %>
+  <%= f.input :name_sv, wrapper_html: { class: 'inline half' } %>
+  <%= f.input :name_en, wrapper_html: { class: 'inline half' } %>
+  <%= f.input :index %>
+  <%= f.input :mega %>
+  <%= f.input :fw %>
+  <%= f.button :submit%>
+<% end %>
