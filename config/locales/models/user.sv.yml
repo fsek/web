@@ -16,6 +16,7 @@ sv:
         email: E-post
         first_post: Visningspost
         firstname: Namn
+        food_preference: Matpreferenser
         lastname: Efternamn
         member: Medlemskap
         member_at: Medlemskap bekräftades

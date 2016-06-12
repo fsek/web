@@ -516,6 +516,7 @@ ActiveRecord::Schema.define(version: 20160530191925) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email",      limit: 255
     t.datetime "member_at"
+    t.string   "food_preference",        limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
