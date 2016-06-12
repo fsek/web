@@ -8,7 +8,8 @@ sv:
       asterix_hidden: Fält markerade med * visas endast för funktionärer vid t.ex. Hilbert Café
 
     form:
-      protected_fields: Nedanstående fält används endast för sektionsval, bilbokning samt arbete i Hilbert Café. 
+      food_preference_hint: Matpreferenser kan endast ses av de som arrangerar evenemang som du anmält dig till.
+      protected_fields: Nedanstående fält används endast för sektionsval, bilbokning samt arbete i Hilbert Café.
       protected_fields_can_be_seen_by: Kan ses av styrelse, administratörer samt ansvariga för val, bokning eller caféet.
 
     edit:
@@ -17,5 +18,3 @@ sv:
       password: Lösenord
       profile: Användare
       title: Kontoinställningar
-      
-

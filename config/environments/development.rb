@@ -48,7 +48,7 @@ Fsek::Application.configure do
   config.action_controller.asset_host = PUBLIC_URL
   config.action_mailer.asset_host = PUBLIC_URL
 
-  config.action_view.raise_on_missing_translations = false
+  config.action_view.raise_on_missing_translations = true
 
   # Don't log partials etc. in development.
   config.quiet_assets = true

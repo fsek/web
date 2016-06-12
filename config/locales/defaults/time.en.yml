@@ -4,6 +4,10 @@ en:
     formats:
       default: "%a, %d %b %Y %H:%M:%S %z"
       long: "%B %d, %Y %H:%M"
+      long_dot: "%B %d, %Y %H:%M(.)"
+      long_ddot: "%B %d, %Y %H:%M(..)"
       short: "%d %b %H:%M"
+      short_dot: "%d %b %H:%M(.)"
+      short_ddot: "%d %b %H:%M(..)"
       time: '%H:%M'
     pm: pm

@@ -16,6 +16,8 @@
   <%= simple_format(t('.protected_fields_can_be_seen_by')) %>
   <%= f.input :stil_id %>
   <%= f.input :phone %>
+  <%= simple_format(t('.food_preference_hint')) %>
+  <%= f.input :food_preference %>
   <%= f.button :submit, id: 'user-info-submit' %>
 <% end %>
 

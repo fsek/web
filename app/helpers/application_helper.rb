@@ -11,6 +11,10 @@ module ApplicationHelper
     content_tag(:i, nil, class: "fa fa-#{icon_name}")
   end
 
+  def fa_lg_icon(icon_name)
+    content_tag(:i, nil, class: "fa fa-lg fa-#{icon_name}")
+  end
+
   def model_name(model)
     if model.instance_of?(Class)
       model.model_name.human
@@ -33,13 +37,5 @@ module ApplicationHelper
       end
     end
     content_tag :div, raw(html.to_html), class: 'form-group'
-  end
-
-  def localized(date, options: {})
-    if date.present?
-      I18n.l(date, options)
-    else
-      fa_icon('cogs')
-    end
   end
 end

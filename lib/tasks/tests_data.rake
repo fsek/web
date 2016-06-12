@@ -136,8 +136,8 @@ namespace :db do
     # Events
     date = Time.zone.now.middle_of_day
     (1..10).each do |i|
-      Event.find_or_create_by!(short: %(E#{i}), title: %(Event#{i}), starts_at: date, ends_at: date + 5.hours,
-                               description: "beskrivningen", food: true, drink: true)
+      Event.find_or_create_by!(short: %(E#{i}), title: %(Evenemang #{i}), starts_at: date, ends_at: date + 5.hours,
+                               description: "beskrivningen", food: true, drink: true, location: 'Gasquesalen')
       date = date + 1.days + [-3,-2,-1,0,1,2,3].sample.hours
     end
 
