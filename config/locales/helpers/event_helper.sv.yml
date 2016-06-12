@@ -1,0 +1,5 @@
+sv:
+  helper:
+    event:
+      membership_required: Du måste bekräfta ditt medlemskap för att kunna anmäla dig, kontakta
+      need_to_sign_in: Du måste logga in för att kunna anmäla dig

@@ -155,10 +155,14 @@ Fsek::Application.routes.draw do
       get :export, on: :collection
     end
 
-    resources :events, only: :show, path: :evenemang
+    resources :events, only: :show, path: :evenemang do
+      resources :event_registrations, path: :anmalan, only: [:create, :destroy]
+    end
 
     namespace :admin do
-      resources :events, path: :evenemang, except: :show
+      resources :events, path: :evenemang, except: :show do
+        resources :event_registrations, path: :anmalan, only: :index
+      end
     end
 
     namespace :admin do

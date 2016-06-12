@@ -1,9 +1,11 @@
 sv:
   events:
     info:
-      cash: Cash is king
+      cash: Endast kontanter
       drink: Alkohol serveras
       food: Mat serveras
+      registration: Kräver anmälan
+      for_members: Endast för medlemmar
 
     registration:
       attending: Du är anmäld!

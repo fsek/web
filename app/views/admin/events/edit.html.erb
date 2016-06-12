@@ -6,6 +6,10 @@
   <%= render 'form', event: @event, tab: @tab %>
 
   <hr>
+  <% if @event.signup? %>
+    <%= link_to(t('.show_registrations'), admin_event_event_registrations_path(@event),
+                                          class: 'btn primary') %>
+  <% end %>
   <%= link_to(t('.destroy'), admin_event_path(@event),
                              method: :delete,
                              class: 'btn danger pull-right') %>

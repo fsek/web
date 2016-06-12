@@ -1,0 +1,24 @@
+<%= grid(registration_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+  g.column(name: EventRegistration.human_attribute_name(:created_at),
+           attribute: 'created_at',
+           filter: false) do |reg|
+    localized(reg.created_at, format: :short)
+  end
+  g.column(name: User.human_attribute_name(:name), attribute: 'firstname', assoc: :user) do |reg|
+    user_link(reg.user)
+  end
+
+  if event.question.present? && show_answers(params)
+    g.column(name: Event.human_attribute_name(:question), attribute: 'answer') do |reg|
+      if reg.answer.present?
+        reg.answer.truncate(20)
+      end
+    end
+  end
+
+  if event.food && show_food_preferences(params)
+    g.column(name: User.human_attribute_name(:food_preference),
+             attribute: 'food_preference',
+             assoc: :user)
+  end
+end -%>

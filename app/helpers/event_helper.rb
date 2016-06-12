@@ -49,4 +49,18 @@ module EventHelper
       fa_lg_icon(icon) + ' ' + text
     end
   end
+
+  def event_reg_logged_in_or_member(event, user)
+    content = []
+    if event.try(:signup)
+      if user.nil?
+        content << I18n.t('helper.event.need_to_sign_in')
+      elsif !user.member? && event.for_members
+        content << I18n.t('helper.event.membership_required')
+        content << contact_from_slug(slug: :spindelman)
+      end
+
+      content_tag(:span, safe_join(content), class: 'event not-registered') if content.any?
+    end
+  end
 end

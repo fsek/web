@@ -61,4 +61,13 @@
       }
     }
   }
+
+  &.not-registered {
+    color: $unify-red;
+    font-size: 1.2em;
+
+    a {
+      margin-left: 10px;
+    }
+  }
 }

@@ -196,12 +196,10 @@ ActiveRecord::Schema.define(version: 20160607090458) do
   create_table "event_registrations", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "event_id",   limit: 4
-    t.boolean  "reserve"
-    t.datetime "removed_at"
-    t.integer  "remover_id", limit: 4
-    t.text     "comment",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.boolean  "reserve",                  default: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.text     "answer",     limit: 65535
   end
 
   create_table "event_translations", force: :cascade do |t|

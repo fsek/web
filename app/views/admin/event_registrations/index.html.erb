@@ -1,41 +1,58 @@
-<div class="row">
-  <h2 class="headline headline-md">
-    <%= @event.title %>
-  </h2>
-  <div class="col-md-8">
-    <div class="col-md-9 col-xs-12">
-      <div class="col-md-12">
-        <span class="time">
-          <%= @event.p_date %>
-        </span>
-        <span class="location">
-          <%= @event.location %>
-        </span>
-        <%= simple_format(@event.description) %>
-      </div>
-      <div class="col-md-12">
-        <%= render 'admin/events/info', event: @event %>
-      </div>
-      <div class="col-md-12">
-      <h3>Anmälda</h3>
-        <ol class="registrations-list">
-          <% @event.event_registrations.each do |reg| %>
-            <li><%= link_to(reg.user, user_path(reg.user)) %></li>
-          <% end %>
-        </ol>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <% if @event.image? %>
-      <%= image_tag(@event.image.url, class: "img-responsive event-image") %>
-    <% end %>
-  </div>
+<div class="headline">
+  <h1><%= title(@event.title) %></h1>
 </div>
 
-<% if can_administrate?(:edit, @event) %>
-  <div class="col-md-8 col-md-offset-2 col-xs-12">
-    <%= link_to(t(:edit, attr: nil), edit_admin_event_path(@event), class: "btn btn-default") %>
-    <%= link_to(t(:index, attr: nil), admin_events_path, class: "btn btn-default") %>
+<div class="col-md-3 col-sm-12">
+  <%= link_to(t('.edit_event'), edit_admin_event_path(@event),
+                                class: 'btn primary') %>
+  <%= link_to(t('.all_events'), admin_events_path,
+                                class: 'btn secondary') %>
+
+  <%= food_preferences_button(params, @event) %>
+  <%= answers_button(params, @event) %>
+
+  <hr>
+
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+</div>
+
+<div class="col-md-9 col-sm-12">
+  <div class="col-md-12">
+    <span class="time">
+      <%= time_range(@event.starts_at, @event.ends_at, format: :long) %>
+    </span>
+    <span class="location">
+      <%= @event.location %>
+    </span>
+    <%= markdown(@event.description) %>
   </div>
-<% end %>
+  <div class="col-md-12">
+    <%= render '/events/info', event: @event %>
+  </div>
+</div>
+<div class="col-md-12 col-sm-12">
+  <div class="headline">
+    <h2><%= t('.registered') %></h2>
+  </div>
+
+  <%= render('/admin/event_registrations/attending_grid',
+             registration_grid: @attending_grid,
+             event: @event) %>
+  <hr>
+  <div class="headline">
+    <h2><%= t('.reserves') %></h2>
+  </div>
+
+  <%= render('/admin/event_registrations/attending_grid',
+             registration_grid: @reserve_grid,
+             event: @event) %>
+
+
+</div>
+

@@ -12,18 +12,20 @@
 
     <hr>
 
-    <span class="event info">
-      <ul>
-        <li>
-          <%= fa_icon('cutlery') %>
-          <%= User.human_attribute_name(:food_preference) %>:
-          <%= current_user.food_preference %>
-          <%= link_to(t('.edit'), own_user_path, target: :blank_p) %>
-        </li>
-      </ul>
-    </span>
+    <% if event.food %>
+      <span class="event info">
+        <ul>
+          <li>
+            <%= fa_icon('cutlery') %>
+            <%= User.human_attribute_name(:food_preference) %>:
+            <%= current_user.food_preference %>
+            <%= link_to(t('.edit'), own_user_path, target: :blank_p) %>
+          </li>
+        </ul>
+      </span>
 
-    <hr>
+      <hr>
+    <% end %>
 
     <% if event_registration.persisted? %>
       <%= render '/event_registrations/registered', event: event,
@@ -33,4 +35,6 @@
                                               event_registration: event_registration %>
     <% end %>
   </div>
+<% else %>
+  <%= event_reg_logged_in_or_member(@event, current_user) %>
 <% end %>
