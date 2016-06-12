@@ -19,6 +19,8 @@ class Post < ActiveRecord::Base
   has_many :candidates
   has_many :permission_posts
   has_many :permissions, through: :permission_posts
+  has_many :accesses
+  has_many :doors, through: :accesses
 
   # Scopes
   scope :board, -> { where(elected_by: BOARD) }

@@ -1,0 +1,27 @@
+sv:
+  admin:
+    doors:
+      edit:
+        destroy: Förinta dörr
+        index: Visa alla dörrar
+        show_accesses: Visa accesser
+        title: Redigera dörr
+
+      new:
+        all_doors: Alla dörrar
+        title: Ny dörr
+
+      index:
+        new_door: Ny dörr
+        show_accesses: Visa accesser
+        title: Alla dörrar
+
+      accesses:
+        doors: Dörrar
+        edit_door: Redigera dörr
+        posts: Poster
+        title: Accesser för %{door}
+
+      post:
+        title: Access för %{post}
+        all_doors: Alla dörrar
