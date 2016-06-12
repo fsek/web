@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Do not forget to update in .ruby-version, Capfile and circle.yml
 ruby '2.3.0'
 
-gem 'rails', '4.2.5.2'
+gem 'rails', '4.2.6'
 
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
@@ -32,7 +32,7 @@ gem 'paperclip'
 gem 'pagedown-bootstrap-rails'
 gem 'prawn-rails'
 gem 'redcarpet'
-gem 'rollbar', '~>2.8.3'
+gem 'rollbar'
 gem 'routing-filter', '~> 0.5.1'
 gem 'sass-rails'
 gem 'select2-rails'
