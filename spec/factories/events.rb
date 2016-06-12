@@ -15,4 +15,9 @@ FactoryGirl.define do
     slots 10
     last_reg { Time.zone.now + 5.days }
   end
+
+  trait :timestamps do
+    created_at { Time.zone.now }
+    updated_at { Time.zone.now }
+  end
 end

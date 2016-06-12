@@ -15,6 +15,8 @@ class News < ActiveRecord::Base
   # Scopes
   scope :latest, -> { in_date.limit(5) }
   scope :by_date, -> { order(created_at: :desc) }
+  scope :slug, ->(slug) { joins(:categories).where(categories: { slug: slug }) }
+  scope :include_for_feed, -> { includes(:translations, :categories, :user) }
 
   def to_s
     title || id
