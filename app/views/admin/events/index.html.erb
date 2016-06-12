@@ -11,7 +11,6 @@
           <th>Id</th>
           <th><%= Event.human_attribute_name(:title) %></th>
           <th><%= Event.human_attribute_name(:location) %></th>
-          <th><%= Event.human_attribute_name(:category) %></th>
           <th><%= Event.human_attribute_name(:starts_at) %></th>
           <th><%= Event.human_attribute_name(:ends_at) %></th>
           <th><%= Event.human_attribute_name(:all_day) %></th>
@@ -28,9 +27,8 @@
             <td><%= event.id %></td>
             <td><%= link_to(event.title.try(:truncate, 20), event) %></td>
             <td><%= event.location.try(:truncate, 20) %></td>
-            <td><%= event.category %></td>
-            <td><%= l(event.starts_at) %></td>
-            <td><%= l(event.ends_at) %></td>
+            <td><%= localized(event.starts_at) %></td>
+            <td><%= localized(event.ends_at) %></td>
             <td><%= yes_no(event.all_day) %></td>
             <td><%= localized(event.updated_at) %></td>
             <td><%= link_to(t('global.edit'), edit_admin_event_path(event)) %></td>

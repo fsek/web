@@ -1,35 +1,50 @@
 <%= content_for :event_info do %>
   <div class="col-md-12">
-    <span class="time">
-      <%= time_range(@event.starts_at, @event.ends_at, format: :long) %>
+    <span class="event time">
+      <%= fa_icon('calendar') %>
+      <%= time_range(@event.starts_at, @event.ends_at, format: :long, dot: @event.dot.to_s.to_sym) %>
     </span>
-    <span class="location">
+
+    <span class="event location">
+      <%= fa_icon('map-marker') %>
       <%= @event.location %>
     </span>
-    <%= simple_format(@event.description) %>
-  </div>
-  <div class="col-md-12">
+
+    <%= markdown(@event.description) %>
+
+    <hr>
+
     <%= render 'info', event: @event %>
   </div>
 <% end %>
 
 <div class="headline">
-  <h2> <%= @event.to_s %> </h2>
+  <h1> <%= title(@event.to_s) %> </h1>
 </div>
-<% if @event.image? %>
+
+<% if @event.image.present? %>
+
   <div class="col-md-8 col-xs-12">
     <%= yield :event_info %>
   </div>
   <div class="col-md-4 col-xs-12">
-    <%= image_tag(@event.image.url, class: "img-responsive event-image") %>
+    <%= image_tag(@event.large, class: 'img-responsive event-image') %>
   </div>
+
 <% else %>
+
   <%= yield :event_info %>
+
 <% end %>
 
+<div class="col-md-12" id="registration">
+  <%= render '/events/registration', event: @event,
+                                     event_registration: @event_registration %>
+</div>
+
 <% if can_administrate?([:index, :edit], @event) %>
-  <div class="col-md-12">
-    <%= link_to(t('.edit_event'), edit_admin_event_path(@event), class: 'btn primary') %>
-    <%= link_to(t('.all_events'), admin_events_path, class: 'btn secondary') %>
-  </div>
+  <%= link_to(t('.edit_event'), edit_admin_event_path(@event),
+                                class: 'btn primary') %>
+  <%= link_to(t('.all_events'), admin_events_path,
+                                class: 'btn secondary') %>
 <% end %>

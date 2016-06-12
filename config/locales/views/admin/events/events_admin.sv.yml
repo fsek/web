@@ -2,9 +2,14 @@ sv:
   admin:
     events:
       form:
-        info: Information
-        registration: Anmälan
         dates: Datum
+        dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
+        for_members_hint: Påverkar endast evenemangsanmälan
+        info: Information
+        other: Övrigt
+        registration: Anmälan
+        question_hint: Ställ en fråga till deltagarna
+        categories_after_save: Kategorier kan läggas till efter att evenemanget sparas.
 
       edit:
         all_events: Alla evenemang
@@ -16,5 +21,5 @@ sv:
         new_event: Nytt evenemang
 
       new:
-        title: Nytt evenemang
         all_events: Alla evenemang
+        title: Nytt evenemang

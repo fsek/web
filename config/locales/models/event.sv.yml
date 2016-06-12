@@ -1,33 +1,42 @@
 sv:
+  model:
+    event:
+      attending: Anmälda
+      reserves: Reserver
+      single_dot: Prick (.)
+      double_dot: Prick-prick (..)
+
   activerecord:
     models:
       event: Evenemang
     attributes:
       event:
         all_day: Heldag
-        author: Upplagd av
         cash: Kontant
-        category: Kategori
+        categories: Kategorier
         council: Utskott
         created_at: Skapat
         description: Beskrivning
-        description_sv: Beskrivning - svensk
         description_en: Beskrivning - engelsk
+        description_sv: Beskrivning - svensk
         dot: Prickar
         drink: Alkohol
         ends_at: Slutar
         food: Mat
+        for_members: Endast för medlemmar
         image: Bild
         last_reg: Sista anmälningsdatum
         last_unreg: Sista avanmälningsdatum
         location: Plats
+        question: Fråga
+        remove_image: Förinta bild
         short: Kort titel
-        short_sv: Kort titel - svensk
         short_en: Kort titel - engelsk
+        short_sv: Kort titel - svensk
         signup: Med anmälan
         slots: Antal platser
         starts_at: Startar
         title: Titel
-        title_sv: Titel - svensk
         title_en: Titel - engelsk
+        title_sv: Titel - svensk
         updated_at: Uppdaterat

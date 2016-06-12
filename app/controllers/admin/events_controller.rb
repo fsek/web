@@ -3,7 +3,7 @@ class Admin::EventsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @events = Event.order(starts_at: :desc)
+    @events = Event.includes(:translations).order(starts_at: :desc)
   end
 
   def new
@@ -18,7 +18,6 @@ class Admin::EventsController < Admin::BaseController
 
   def create
     @event = Event.new(event_params)
-    @event.author = current_user
     if @event.save
       redirect_to edit_admin_event_path(@event), notice: alert_create(Event)
     else
@@ -39,7 +38,8 @@ class Admin::EventsController < Admin::BaseController
 
   def destroy
     @event = Event.find(params[:id])
-    @event.destroy
+    @event.destroy!
+
     redirect_to admin_events_path, notice: alert_destroy(Event)
   end
 
@@ -47,11 +47,11 @@ class Admin::EventsController < Admin::BaseController
 
   def event_params
     params.require(:event).permit(:title_sv, :title_en, :description_sv, :description_en,
-                                  :short_sv, :short_en, :author,
+                                  :short_sv, :short_en,
                                   :location, :starts_at, :ends_at,
-                                  :all_day, :category, :image,
-                                  :signup, :last_reg,
+                                  :all_day, :image, :remove_image,
+                                  :signup, :last_reg, :for_members,
                                   :slots, :drink, :food, :cash,
-                                  :council_id, :dot)
+                                  :council_id, :dot, :question, category_ids: [])
   end
 end

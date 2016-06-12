@@ -8,8 +8,8 @@
       <li class="<%= tab == :dates ? 'active' : ''%>">
         <%= link_to(t('.dates'), '#dates', data: { toggle: :tab }) %>
       </li>
-      <li class="<%= tab == :registration ? 'active' : ''%>">
-        <%= link_to(t('.registration'), '#registration', data: { toggle: :tab }) %>
+      <li class="<%= tab == :other ? 'active' : ''%>">
+        <%= link_to(t('.other'), '#other', data: { toggle: :tab }) %>
       </li>
     </ul>
     <div class="tab-content">
@@ -18,24 +18,50 @@
         <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>
         <%= f.input :short_sv, wrapper_html: {class: 'inline half'} %>
         <%= f.input :short_en, wrapper_html: {class: 'inline half'} %>
-        <%= f.input :description_sv, as: :text %>
-        <%= f.input :description_en, as: :text %>
-        <%= f.input :location %>
+        <%= f.input :description_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+        <%= f.input :description_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+        <%= f.input :location, collection: Event.locations,
+                               include_blank: false,
+                               input_html: {class: 'select2_tags'} %>
+
+        <% if event.image.present? %>
+          <%= image_tag(event.thumb, class: 'img-responsive') %>
+          <%= f.input :remove_image, as: :boolean %>
+        <% end %>
+
         <%= f.input :image, as: :file %>
-        <%= f.association :council, collection: Council.titles %>
-        <%= f.input :category %>
+        <%= f.association :council, collection: Council.titles,
+                                    input_html: {class: 'select2'} %>
+        <% if event.persisted? %>
+          <%= f.association :categories, collection: Category.all,
+                                         input_html: {class: 'select2'} %>
+        <% else %>
+          <%= simple_format(t('.categories_after_save')) %>
+        <% end %>
       </div>
 
       <div id="dates" class="profile-edit tab-pane fade in <%= tab == :dates ? 'active' : ''%>">
-        <%= f.input :starts_at, as: :datetime_picker %>
-        <%= f.input :ends_at, as: :datetime_picker %>
-        <%= f.input :all_day, as: :boolean %>
+        <%= f.input :starts_at, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
+        <%= f.input :ends_at, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
+        <%= f.input :all_day, as: :boolean, wrapper_html: {class: 'inline half'} %>
+        <%= f.input :dot, collection: [[t('model.event.single_dot'), Event::SINGLE],
+                                       [t('model.event.double_dot'), Event::DOUBLE]],
+                          input_html: {class: 'select2'},
+                          hint: t('.dot_hint') %>
       </div>
 
-      <div id="registration" class="profile-edit tab-pane fade in <%= tab == :registration ? 'active' : ''%>">
-        <%= f.input :drink, as: :boolean %>
-        <%= f.input :food, as: :boolean %>
-        <%= f.input :cash, as: :boolean %>
+      <div id="other" class="profile-edit tab-pane fade in <%= tab == :other ? 'active' : ''%>">
+        <%= f.input :drink, as: :boolean, wrapper_html: {class: 'inline third'} %>
+        <%= f.input :food, as: :boolean, wrapper_html: {class: 'inline third'} %>
+        <%= f.input :cash, as: :boolean, wrapper_html: {class: 'inline third'} %>
+        <div class="headline">
+          <h3><%= t('.registration') %></h3>
+        </div>
+        <%= f.input :signup %>
+        <%= f.input :for_members, hint: t('.for_members_hint') %>
+        <%= f.input :question, hint: t('.question_hint') %>
+        <%= f.input :last_reg, as: :datetime_picker %>
+        <%= f.input :slots %>
       </div>
     </div>
   </div>

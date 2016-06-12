@@ -218,30 +218,26 @@ ActiveRecord::Schema.define(version: 20160607090458) do
   add_index "event_translations", ["locale"], name: "index_event_translations_on_locale", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "title",              limit: 255
-    t.string   "author",             limit: 255
-    t.text     "description",        limit: 65535
-    t.string   "location",           limit: 255
+    t.string   "title",           limit: 255
+    t.text     "description",     limit: 65535
+    t.string   "location",        limit: 255
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.boolean  "all_day"
-    t.string   "category",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name",    limit: 255
-    t.string   "image_content_type", limit: 255
-    t.integer  "image_file_size",    limit: 4
-    t.datetime "image_updated_at"
-    t.integer  "council_id",         limit: 4
-    t.integer  "user_id",            limit: 4
-    t.string   "short",              limit: 255
+    t.string   "image_file_name", limit: 255
+    t.integer  "council_id",      limit: 4
+    t.string   "short",           limit: 255
     t.boolean  "signup"
     t.datetime "last_reg"
-    t.string   "dot",                limit: 255
-    t.integer  "slots",              limit: 4
+    t.string   "dot",             limit: 255
+    t.integer  "slots",           limit: 4
     t.boolean  "drink"
     t.boolean  "food"
     t.boolean  "cash"
+    t.string   "question",        limit: 255
+    t.boolean  "for_members",                   default: false, null: false
   end
 
   create_table "faqs", force: :cascade do |t|

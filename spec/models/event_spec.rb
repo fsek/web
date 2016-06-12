@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
   it 'has a valid factory' do
-    build(:event).should be_valid
+    build_stubbed(:event).should be_valid
   end
 
   # This tests makes sure that dates are formatted into ISO8601 for
