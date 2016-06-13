@@ -1,38 +1,33 @@
-<% if events.count > 0 %>
+<% if events.any? %>
   <div class="event stream">
     <div class="headline">
-      <h3>
-        <%= t('.coming_events') %>
-      </h3>
+      <h3><%= t('.coming_events') %></h3>
     </div>
 
-    <% events.group_by(&:day).each do |day, ev| %>
-      <span class="weekday-wrap">
-        <span class='weekday'>
-          <% if day.day == Time.zone.now.day %>
-            <%= t('.today').capitalize %>:
-          <% else %>
-            <%= l(day, format: '%A').capitalize %>:
-          <% end %>
-        </span>
-        <% ev.each do |e| %>
-          <span class="event-wrap">
-            <span class='date'>
-              <%= l(e.starts_at, format: :time) %>
-            </span>
-            <span class='title'>
-              <%= link_to(e.short_title.truncate(20), event_path(e)) %>
-            </span>
-          </span>
-        <% end %>
-      </span>
-      <br>
-    <% end %>
-    <span class="weekday-wrap">
-      <%= link_to(calendars_path) do %>
-        <%= fa_icon('calendar') %> <%= t('.more_events') %>
-      <% end%>
-    </span>
-  </div>
+    <table class="table">
+      <% events.group_by(&:day).each do |day, ev| %>
+        <tr>
+          <td class="weekday">
+            <% if day.day == Time.zone.now.day %>
+              <%= t('.today').capitalize %>:
+            <% else %>
+              <%= l(day, format: '%A').capitalize %>:
+            <% end %>
+          </td>
+          <td colspan=4>
+            <% ev.each do |e| %>
+              <span class="event-wrap">
+                <span class='date'>
+                  <%= l(e.starts_at, format: :time) %>
+                </span>
+                <span class='title'>
+                  <%= link_to(e.short_title.truncate(20), event_path(e)) %>
+                </span>
+              </span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   <hr>
 <% end %>
