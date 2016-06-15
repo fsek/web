@@ -82,21 +82,34 @@ namespace :db do
     end
 
     # Menues
-    Menu.find_or_create_by!(location: :guild, name: 'Om oss',
-                            link: '/om', index: 10, visible: true, turbolinks: true)
-    Menu.find_or_create_by!(location: :guild, name: 'Utskott',
+    menu = Menu.find_or_create_by!(location: :guild, name: 'Om oss',
+                                   link: '/om', index: 10, visible: true, turbolinks: true)
+    menu.update!(name_en: 'About us')
+
+    menu = Menu.find_or_create_by!(location: :guild, name: 'Utskott',
                             link: '/utskott', index: 20, visible: true, turbolinks: true)
+    menu.update!(name_en: 'Councils')
+
     Menu.find_or_create_by!(location: :guild, name: 'Dokument',
                             link: '/dokument', index: 30, visible: true, turbolinks: true)
 
+    menu.update!(name_en: 'Documents')
+
     Menu.find_or_create_by!(location: :members, name: 'Val',
                             link: '/val', index: 10, visible: true, turbolinks: true)
+    menu.update!(name_en: 'Election')
+
     Menu.find_or_create_by!(location: :members, name: 'Bilbokning',
                             link: '/bilbokning', index: 20, visible: true, turbolinks: false)
-    Menu.find_or_create_by!(location: :members, name: 'Hilbertcafé',
+    menu.update!(name_en: 'Car rental')
+
+    Menu.find_or_create_by!(location: :members, name: 'Hilbert Café',
                             link: '/hilbertcafe', index: 30, visible: true, turbolinks: false)
+    menu.update!(name_en: 'Hilbert Café')
+
     Menu.find_or_create_by!(location: :members, name: 'Bildgalleri',
                             link: '/galleri', index: 40, visible: true, turbolinks: false)
+    menu.update!(name_en: 'Image gallery')
 
     # Notice
     FactoryGirl.create(:notice, user: u)
@@ -136,8 +149,11 @@ namespace :db do
     # Events
     date = Time.zone.now.middle_of_day
     (1..10).each do |i|
-      Event.find_or_create_by!(short: %(E#{i}), title: %(Evenemang #{i}), starts_at: date, ends_at: date + 5.hours,
-                               description: "beskrivningen", food: true, drink: true, location: 'Gasquesalen')
+      event = Event.find_or_create_by!(short: %(E#{i}), title: %(Evenemang #{i}),
+                                       description: 'Detta kommer bli ett evenemang!',
+                                       starts_at: date, ends_at: date + 5.hours,
+                                       food: true, drink: true, location: 'Gasquesalen')
+      event.update!(short_en: event.short, title_en: %(Event #{i}), description_en: 'This will be an event!')
       date = date + 1.days + [-3,-2,-1,0,1,2,3].sample.hours
     end
 
