@@ -2,14 +2,16 @@
 
 <div class="headline">
   <h1><%= title(@council.to_s) %></h1>
-  <span class="council dropdown">
+</div>
+
+<% content_for(:council_sidebar) do %>
     <%= render('/elements/dropdown_button',
                collection: @councils,
                controller: :councils,
                action: :show,
                title: @council.to_s) %>
-  </span>
-</div>
+    <hr>
+<% end %>
 
 <% if @council.page.present? %>
   <%= render @council.page, title: false %>

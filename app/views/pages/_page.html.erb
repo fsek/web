@@ -16,9 +16,10 @@
   </div>
 <% end %>
 
-<% if content_for?(:page_sidebar) %>
+<% if content_for?(:page_sidebar) || content_for(:council_sidebar) %>
 
   <div class="col-md-3 col-sm-12">
+    <%= yield :council_sidebar if content_for(:council_sidebar) %>
     <%= yield :page_sidebar %>
   </div>
 

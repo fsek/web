@@ -1,15 +1,17 @@
 <div class="headline">
-<h1><%= title(t('.title')) %></h1>
-  <span class="council dropdown">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+
+<div class="col-md-3 col-sm-12">
     <%= render('/elements/dropdown_button',
                collection: @councils,
                controller: :councils,
                action: :show,
                title: models_name(Council)) %>
-  </span>
 </div>
 
-<div class="col-md-8 col-md-offset-2 col-sm-12">
+
+<div class="col-md-9 col-sm-12">
   <%= simple_format(t('.first_paragraph')) %>
   <%= simple_format(t('.second_paragraph')) %>
 

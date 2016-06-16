@@ -84,7 +84,7 @@ module PostHelper
         content = []
         content << content_tag(:div, class: :headline) do
           content_tag(:h4) do
-            t('post.who_currently')
+            t('helper.post.who_currently')
           end
         end
         content << post_users_list(post)
