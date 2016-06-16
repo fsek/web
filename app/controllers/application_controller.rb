@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   helper_method :alert_update, :alert_create, :alert_destroy,
                 :can_administrate?, :authorize_admin!
 
+  include Alerts
+  include InstanceAuthorization
+  extend ControllerAuthorization
+
   rescue_from CanCan::AccessDenied do |ex|
     if current_user.nil?
       redirect_to :new_user_session, alert: ex.message
@@ -29,24 +33,6 @@ class ApplicationController < ActionController::Base
     redirect_to :root
   end
 
-  def model_name(model)
-    if model.instance_of?(Class)
-      model.model_name.human
-    end
-  end
-
-  def alert_update(resource)
-    %(#{model_name(resource)} #{I18n.t('global_controller.success_update')}.)
-  end
-
-  def alert_create(resource)
-    %(#{model_name(resource)} #{I18n.t('global_controller.success_create')}.)
-  end
-
-  def alert_destroy(resource)
-    %(#{model_name(resource)} #{I18n.t('global_controller.success_destroy')}.)
-  end
-
   protected
 
   def configure_permitted_devise_parameters
@@ -59,52 +45,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update) do |u|
       u.permit(:password, :password_confirmation, :current_password)
     end
-  end
-
-  def self.permission
-    name.gsub('Controller', '').singularize.split('::').last.constantize.name rescue nil
-  end
-
-  def current_ability
-    @current_ability ||= Ability.new(current_user)
-  end
-
-  def current_admin_ability
-    @current_admin_ability ||= AdminAbility.new(current_user)
-  end
-
-  def can_administrate?(*args)
-    current_admin_ability.can?(*args)
-  end
-
-  def authorize_admin!(*args)
-    @_authorized = true
-    current_admin_ability.authorize!(*args)
-  end
-
-  # load the permissions for the current user so that UI can be manipulated
-  def load_permissions
-    return unless current_user
-    @current_permissions = current_user.permissions.map do |i|
-      [i.subject_class, i.action]
-    end
-  end
-
-  # Enables authentication and
-  def self.load_permissions_and_authorize_resource(*args)
-    load_and_authorize_resource(*args)
-    before_action(:load_permissions, *args)
-  end
-
-  # To be used with controllers without models as resource
-  def self.load_permissions_then_authorize_resource(*args)
-    authorize_resource(*args)
-    before_action(:load_permissions, *args)
-  end
-
-  def self.skip_authorization(*args)
-    skip_authorization_check(*args)
-    skip_before_filter(:load_permissions, *args)
   end
 
   def set_locale
