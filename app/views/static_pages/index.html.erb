@@ -13,19 +13,19 @@
   </div>
 <% end %>
 
-<div class="col-md-7 col-sm-12">
+<div class="col-md-7 col-sm-12 col-xs-12 start-page notices">
   <% cache_unless(can_administrate?(:manage, Notice),
                   [@start_page.notices, I18n.locale]) do %>
     <%= render @start_page.notices %>
   <% end %>
 </div>
 
-<div class="col-md-5 col-sm-12">
+<div class="col-md-5 col-sm-12 col-xs-12">
   <% cache([@start_page.events, I18n.locale]) do %>
     <%= render '/events/stream', events: @start_page.events %>
   <% end %>
 
-  <div class="headline headline-md">
+  <div class="headline">
     <h3><%= models_name(News) %></h3>
   </div>
   <% cache_unless(can_administrate?(:manage, News),
