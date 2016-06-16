@@ -1,0 +1,20 @@
+<span class="date">
+  <%= l(date, format: :day_month) %>
+</span> <br>
+<div class="nollning matrix-grid-text">
+  <% if events.present? && events.any? %>
+    <% events.each do |e| %>
+      <% if !e.all_day %>
+        <%= l(e.starts_at, format: :time) %>
+        <span class="event-title">
+          <%= e.short_title %>
+        </span><br>
+      <% end %>
+    <% end %>
+  <% else %>
+    <span class="rest-title">
+      <%= t('.rest') %>
+    </span>
+    <%= image_tag('theme/rest.svg', class: 'rest-symbol') %>
+  <% end %>
+</div>

@@ -23,7 +23,8 @@ class Event < ActiveRecord::Base
   # Validate only if signup is true
   validates(:last_reg, :slots, presence: true, if: Proc.new { |e| e.signup? })
 
-  scope :start, -> { order(starts_at: :asc) }
+  scope :view, -> { select(:starts_at, :ends_at, :all_day, :title, :short, :updated_at) }
+  scope :by_start, -> { order(starts_at: :asc) }
   scope :calendar, -> { all }
   scope :translations, -> { includes(:translations) }
   scope :slug, ->(slug) { joins(:categories).where(categories: { slug: slug }) }
@@ -34,7 +35,7 @@ class Event < ActiveRecord::Base
           start, stop, start, stop)
   end
   scope :stream, -> do
-    between(Time.zone.now.beginning_of_day, 6.days.from_now.end_of_day).start
+    between(Time.zone.now.beginning_of_day, 6.days.from_now.end_of_day).by_start
   end
 
   def self.locations
