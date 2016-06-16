@@ -28,7 +28,7 @@ RSpec.describe Ability do
                           :cookies_information,
                           :company_about,
                           :company_offer,
-                          :about],
+                          :about, :robots],
                     no: [] }
   }
 

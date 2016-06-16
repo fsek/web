@@ -15,6 +15,10 @@ class StaticPagesController < ApplicationController
   def company_about
   end
 
+  def robots
+    render :robots, content_type: 'text/plain'
+  end
+
   def index
     member = current_user.present? && current_user.member?
     @start_page = StartPage.new(member: member)

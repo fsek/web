@@ -12,6 +12,7 @@ Fsek::Application.routes.draw do
   get :about, controller: :static_pages, path: :om
   get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about
   get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
+  get 'robots.:format', controller: :static_pages, action: :robots, as: :robots
 
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations]
