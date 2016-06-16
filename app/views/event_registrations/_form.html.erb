@@ -1,3 +1,23 @@
-<%= simple_form_for(@event_registration, url: event_registration_path(@event)) do |f| %>
-  <%= f.submit "Test" %>
+<%= simple_form_for([event, event_registration], remote: true) do |f| %>
+  <ul>
+  <% event_registration.errors.each do |e| %>
+    <li><%= e.to_s %></li>
+  <% end %>
+  </ul>
+  <% if event.question.present? %>
+    <span class="event question">
+      <%= event.question %>
+    </span>
+    <%= f.input :answer, hint: t('.answer_hint') %>
+  <% else %>
+    <%= f.input :answer, as: :hidden %>
+  <% end %>
+  <%= f.button :submit %>
+   <% if event_registration.persisted? %>
+      <%= link_to(t('.cancel'), event_event_registration_path(event, event_registration),
+                                method: :delete,
+                                class: 'btn danger', 
+                                remote: true,
+                                data: { confirm: t('.confirm_cancel') }) %>
+   <% end %>
 <% end %>

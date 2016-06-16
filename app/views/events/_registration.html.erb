@@ -1,40 +1,40 @@
-<% if event.signup %>
-  <% if event.attending(current_user) %>
-    <span class="icon-lg attending-icon">
-      <%= fa_icon('check-circle-o') %>
-      <%= t('.is_attending') %><br>
-    </span><br>
-    <%= link_to(t('.cancel'), event_registration_path(event),
-                              method: :delete,
-                              class: 'btn danger',
-                              data: { confirm: t('.confirm_cancel') }) %>
-  <% elsif event.reserve(current_user) %>
-    <span class="icon-lg pending-icon">
-      <%= fa_icon('question-circle') %>
-      <%= t('.is_pending', count: event.reserves.count) %><br>
-      <% if event.last_reg.present? %>
-        <%= Event.human_attribute_name(:last_reg) %>: <%= event.last_reg %>
-        <br>
-      <% end %>
-      <%= link_to(t('.cancel'), event_registration_path(event),
-                                method: :delete,
-                                class: 'btn danger', 
-                                data: { confirm: t('.confirm_cancel') }) %>
-    </span>
-  <% else %>
-    <span class="icon-lg not-attending-icon">
-      <%= fa_icon('question-circle') %>
-      <%= t('.not_attending') %>
-      <% if event.last_reg.present? %>
-        <br>
-        <%= Event.human_attribute_name(:last_reg) %>: <%= event.last_reg %>
-      <% end %>
-      <br>
-      <%= simple_form_for(reg, url: event_registration_path(event)) do |f| %>
-        <%= f.submit t('.submit_signup') %>
-      <% end %>
-    </span>
-  <% end %>
-  <br>
-<% end %>
+<% if EventRegistration.eligible_user?(event, current_user) %>
+  <div class="headline">
+    <h2><%= t('.registration') %></h2>
+  </div>
 
+  <div class="col-md-6 col-sm-12">
+    <%= event_attendees(event) %>
+  </div>
+
+  <div class="col-md-6 col-sm-12">
+    <%= event_reg_status(event_registration) %>
+
+    <hr>
+
+    <% if event.food %>
+      <span class="event info">
+        <ul>
+          <li>
+            <%= fa_icon('cutlery') %>
+            <%= User.human_attribute_name(:food_preference) %>:
+            <%= current_user.food_preference %>
+            <%= link_to(t('.edit'), own_user_path, target: :blank_p) %>
+          </li>
+        </ul>
+      </span>
+
+      <hr>
+    <% end %>
+
+    <% if event_registration.persisted? %>
+      <%= render '/event_registrations/registered', event: event,
+                                                    event_registration: event_registration %>
+    <% else %>
+      <%= render '/event_registrations/form', event: event,
+                                              event_registration: event_registration %>
+    <% end %>
+  </div>
+<% else %>
+  <%= event_reg_logged_in_or_member(@event, current_user) %>
+<% end %>

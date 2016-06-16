@@ -1,16 +1,18 @@
 sv:
   events:
     info:
-      cash: Cash is king
+      cash: Endast kontanter
       drink: Alkohol serveras
       food: Mat serveras
+      registration: Kräver anmälan
+      for_members: Endast för medlemmar
 
     registration:
-      cancel: Avanmäl
-      is_attending: Du är anmäld!
-      is_pending: "Du är reserv, plats: %{count}"
+      attending: Du är anmäld!
+      edit: Redigera
       not_attending: Du är inte anmäld
-      submit_signup: Anmäl
+      registration: Anmälan
+      reserve: "Du är reserv, plats: %{count}"
 
     stream:
       coming_events: Kommande evenemang
@@ -18,5 +20,5 @@ sv:
       today: Idag
 
     show:
-      edit_event: Redigera evenemang
       all_events: Alla evenemang
+      edit_event: Redigera evenemang

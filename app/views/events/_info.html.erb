@@ -1,14 +1,27 @@
-<div class="event-info">
-  <ul class="event-info">
+<span class="event info">
+  <ul>
     <% if event.cash? %>
       <li><%= fa_icon('money')%> <%= t('.cash') %></li>
     <% end %>
+
     <% if event.food? %>
       <li><%= fa_icon('cutlery')%> <%= t('.food') %></li>
     <% end %>
+
     <% if event.drink? %>
       <li><%= fa_icon('flask')%> <%= t('.drink') %></li>
     <% end %>
-  </ul>
-</div>
 
+    <% if event.signup %>
+      <li><%= fa_icon('pencil-square-o') %> <%= t('.registration') %></li>
+
+      <% if event.for_members %>
+        <li><%= fa_icon('user') %> <%= t('.for_members') %></li>
+      <% end %>
+    <% end %>
+
+    <% if event.question.present? %>
+      <li><%= fa_icon('question') %> <%= event.question %></li>
+    <% end %>
+  </ul>
+</span>

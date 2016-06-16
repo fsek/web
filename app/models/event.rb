@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
 
   has_many :categorizations, as: :categorizable
   has_many :categories, through: :categorizations
+  has_many :event_registrations
   belongs_to :council
   belongs_to :user
 
@@ -24,7 +25,7 @@ class Event < ActiveRecord::Base
 
   scope :start, -> { order(starts_at: :asc) }
   scope :calendar, -> { all }
-  scope :nollning, -> { where(category: :nollning) }
+  scope :slug, ->(slug) { joins(:categories).where(categories: { slug: slug }) }
   scope :from_date, -> (date) { between(date.beginning_of_day, date.end_of_day) }
   scope :between, -> (start, stop) do
     where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
@@ -69,5 +70,14 @@ class Event < ActiveRecord::Base
 
   def as_json(*)
     CalendarJSON.event(self)
+  end
+
+  # For event registration
+  def attending?(user)
+    signup && event_registrations.attending?(user).any?
+  end
+
+  def reserve?(user)
+    signup && event_registrations.reserve?(user).any?
   end
 end

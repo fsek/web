@@ -31,6 +31,7 @@ class Ability
       can [:edit, :show, :update, :update_password, :update_account], User, id: user.id
       can [:create, :update, :destroy], CafeWorker, user_id: user.id
       can [:show], CafeShift
+      can [:create, :destroy], EventRegistration, user_id: user.id
       can [:show, :avatar], User
 
       can [:read, :mail], Contact

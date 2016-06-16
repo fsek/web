@@ -1,38 +1,35 @@
 require 'rails_helper'
 
-=begin
-RSpec.describe EventRegistrationsController, type: :controller, pending: true do
+RSpec.describe EventRegistrationsController, type: :controller do
   let(:user) { create(:user) }
-  let(:event) { create(:event) }
-  let(:reg) { create(:event_registration, user: user, event: event) }
 
-  allow_user_to [:show, :index, :create, :destroy], EventRegistration
-  before { allow(controller).to receive(:current_user).and_return(user) }
+  allow_user_to :manage, [Event, EventRegistration]
 
-  describe 'GET #index' do
-    it 'assigns the users event_registrations as @event_registrations' do
-      get(:index, event_id: event)
-      assigns(:event_registrations).should eq(user.event_registrations)
-    end
+  before(:each) do
+    allow(controller).to receive(:current_user).and_return(user)
+  end
 
-    it 'returns success' do
-      get(:index, event_id: event)
-      response.should render_template(:index)
-      response.should eq(success)
+  describe 'POST #create' do
+    it 'valid registration' do
+      event = create(:event, :registration)
+
+      lambda do
+        xhr(:post, :create, event_id: event.to_param, event_registration: { answer: nil })
+      end.should change(EventRegistration, :count).by(1)
+
+      EventRegistration.last.user.should eq(user)
+      assigns(:state).should be_truthy
     end
   end
 
-  describe 'GET #new' do
-    it 'assigns the users event_registrations as @event_registrations' do
-      get(:new, event_id: event)
-      assigns(:event_registration).should be_new_record
-    end
+  describe 'DELETE #destroy' do
+    it 'valid registration' do
+      event = create(:event, :registration)
+      reg = create(:event_registration, user: user, event: event)
 
-    it 'returns success' do
-      get(:new, event_id: event)
-      response.should render_template(:new)
-      response.should eq(success)
+      lambda do
+        xhr(:delete, :destroy, event_id: event.to_param, id: reg.to_param)
+      end.should change(EventRegistration, :count).by(-1)
     end
   end
 end
-=end

@@ -2,19 +2,25 @@ sv:
   admin:
     events:
       form:
-        info: Information
-        registration: Anmälan
+        categories_after_save: Kategorier kan läggas till efter att evenemanget sparas.
         dates: Datum
+        dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
+        for_members_hint: Påverkar endast evenemangsanmälan
+        info: Information
+        other: Övrigt
+        question_hint: Ställ en fråga till deltagarna
+        registration: Anmälan
 
       edit:
         all_events: Alla evenemang
         destroy: Förinta evenemang
         show: Visa evenemang
+        show_registrations: Visa anmälningar
         title: Redigera evenemang
 
       index:
         new_event: Nytt evenemang
 
       new:
-        title: Nytt evenemang
         all_events: Alla evenemang
+        title: Nytt evenemang

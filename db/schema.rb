@@ -196,12 +196,10 @@ ActiveRecord::Schema.define(version: 20160607090458) do
   create_table "event_registrations", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "event_id",   limit: 4
-    t.boolean  "reserve"
-    t.datetime "removed_at"
-    t.integer  "remover_id", limit: 4
-    t.text     "comment",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.boolean  "reserve",                  default: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.text     "answer",     limit: 65535
   end
 
   create_table "event_translations", force: :cascade do |t|
@@ -218,30 +216,26 @@ ActiveRecord::Schema.define(version: 20160607090458) do
   add_index "event_translations", ["locale"], name: "index_event_translations_on_locale", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "title",              limit: 255
-    t.string   "author",             limit: 255
-    t.text     "description",        limit: 65535
-    t.string   "location",           limit: 255
+    t.string   "title",           limit: 255
+    t.text     "description",     limit: 65535
+    t.string   "location",        limit: 255
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.boolean  "all_day"
-    t.string   "category",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name",    limit: 255
-    t.string   "image_content_type", limit: 255
-    t.integer  "image_file_size",    limit: 4
-    t.datetime "image_updated_at"
-    t.integer  "council_id",         limit: 4
-    t.integer  "user_id",            limit: 4
-    t.string   "short",              limit: 255
+    t.string   "image_file_name", limit: 255
+    t.integer  "council_id",      limit: 4
+    t.string   "short",           limit: 255
     t.boolean  "signup"
     t.datetime "last_reg"
-    t.string   "dot",                limit: 255
-    t.integer  "slots",              limit: 4
+    t.string   "dot",             limit: 255
+    t.integer  "slots",           limit: 4
     t.boolean  "drink"
     t.boolean  "food"
     t.boolean  "cash"
+    t.string   "question",        limit: 255
+    t.boolean  "for_members",                   default: false, null: false
   end
 
   create_table "faqs", force: :cascade do |t|

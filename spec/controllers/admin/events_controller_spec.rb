@@ -58,6 +58,7 @@ RSpec.describe Admin::EventsController, type: :controller do
       end.should change(Event, :count).by(0)
 
       response.should render_template(:new)
+      response.status.should eq(422)
     end
   end
 
@@ -70,10 +71,22 @@ RSpec.describe Admin::EventsController, type: :controller do
       response.should redirect_to(edit_admin_event_path(event))
     end
 
-    it 'valid parameters' do
+    it 'invalid parameters' do
       event = create(:event, title: 'Välkomstgasque')
       patch :update, id: event.to_param, event: { title_sv: '' }
+
       response.should render_template(:edit)
+      response.status.should eq(422)
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'removes event' do
+      event = create(:event)
+      lambda do
+        delete(:destroy, id: event.to_param)
+      end.should change(Event, :count).by(-1)
+      response.should redirect_to(admin_events_path)
     end
   end
 end
