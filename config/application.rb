@@ -24,6 +24,7 @@ module Fsek
     config.autoload_paths += Dir["#{config.root}/services/**/"]
     config.autoload_paths += Dir["#{config.root}/uploaders/**/"]
     config.autoload_paths += Dir["#{config.root}/validators/**/"]
+    config.autoload_paths += Dir["#{config.root}/app/mailers/concerns/**/"]
 
     config.time_zone ='Stockholm'
     config.filter_parameters += [:password, :password_confirmation, :message]

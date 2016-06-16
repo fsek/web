@@ -2,9 +2,9 @@
 class ElectionMailer < ActionMailer::Base
   helper MarkdownHelper, ElectionMailerHelper
   default from: 'Valberedningen <valb@fsektionen.se>'
+  include MessageIdentifier
 
   def nominate_email(nomination)
-    set_message_id
     @nomination = nomination
     if @nomination && @nomination.email.present?
       mail(to: @nomination.email,
@@ -13,7 +13,6 @@ class ElectionMailer < ActionMailer::Base
   end
 
   def candidate_email(candidate)
-    set_message_id
     @candidate = candidate
     if @candidate.present? && @candidate.user.email.present?
       mail(to: @candidate.user.print_email,
@@ -21,10 +20,4 @@ class ElectionMailer < ActionMailer::Base
     end
   end
 
-  private
-
-  def set_message_id
-    str = Time.zone.now.to_i.to_s
-    headers['Message-ID'] = "<#{Digest::SHA2.hexdigest(str)}@fsektionen.se>"
-  end
 end
