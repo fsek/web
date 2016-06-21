@@ -21,12 +21,14 @@ class Event < ActiveRecord::Base
             presence: true)
 
   # Validate only if signup is true
-  validates(:last_reg, :slots, presence: true, if: Proc.new { |e| e.signup })
+  validates(:last_reg, :slots, presence: true, if: Proc.new { |e| e.signup? })
 
   scope :start, -> { order(starts_at: :asc) }
   scope :calendar, -> { all }
+  scope :translations, -> { includes(:translations) }
   scope :slug, ->(slug) { joins(:categories).where(categories: { slug: slug }) }
   scope :from_date, -> (date) { between(date.beginning_of_day, date.end_of_day) }
+  scope :after_date, -> (date) { where('starts_at > :date', date: date || 2.weeks.ago) }
   scope :between, -> (start, stop) do
     where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
           start, stop, start, stop)
@@ -62,10 +64,6 @@ class Event < ActiveRecord::Base
     if image.present?
       image.thumb.url
     end
-  end
-
-  def ical(ical_event)
-    IcalService.event(ical_event, self)
   end
 
   def as_json(*)
