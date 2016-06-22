@@ -1,6 +1,10 @@
 namespace 'permissions' do
   desc 'Loading all models and their related controller methods inpermissions table.'
   task(:load => :environment) do
+    avoid_methods = ['can_administrate?', 'authorize_admin!',
+                     'load_permissions', 'model_name',
+                     'alert_create', 'alert_update',
+                     'alert_destroy', 'current_admin_ability']
     arr = []
     #load all the controllers
     controllers = Dir.new("#{Rails.root}/app/controllers").entries
@@ -20,10 +24,11 @@ namespace 'permissions' do
     arr.each do |controller|
       #only that controller which represents a model
       if controller.permission
+        puts "Permissions for: #{controller.permission}"
         #create a universal permission for that model. eg 'manage User' will allow all actions on User model.
         write_permission(controller.permission, 'manage') #add permission to do CRUD for every model.
         controller.action_methods.each do |method|
-          if method =~ /^([A-Za-z\d*]+)+([\w]*)+([A-Za-z\d*]+)$/ #add_user, add_user_info, Add_user, add_User
+          if !avoid_methods.include?(method) && method =~ /^([A-Za-z\d*]+)+([\w]*)+([A-Za-z\d*]+)$/ #add_user, add_user_info, Add_user, add_User
             _, cancan_action = eval_cancan_action(method)
             write_permission(controller.permission, cancan_action)
           end
