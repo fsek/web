@@ -3,7 +3,9 @@ class Admin::EventsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @events = Event.includes(:translations).order(starts_at: :desc)
+    @event_grid = initialize_grid(Event, include: :translations,
+                                         order: :starts_at,
+                                         order_direction: :desc)
   end
 
   def new

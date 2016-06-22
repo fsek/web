@@ -28,12 +28,10 @@ RSpec.describe Admin::EventsController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns events sorted as stat_date @events' do
-      create(:event, title: 'Second', starts_at: 5.days.ago)
-      create(:event, title: 'First', starts_at: 3.days.ago)
-      create(:event, title: 'Third', starts_at: 7.days.ago)
+      create(:event)
 
       get(:index)
-      assigns(:events).map(&:title).should eq(['First', 'Second', 'Third'])
+      assigns(:event_grid).should be_present
       response.status.should eq(200)
     end
   end

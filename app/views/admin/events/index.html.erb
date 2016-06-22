@@ -1,40 +1,47 @@
-<div class="col-md-12">
-  <div class="panel panel-orange margin-bottom-40">
-    <div class="panel-heading">
-      <h1 class="panel-title">
-        <%= fa_icon('tasks') %> <%= title(models_name(Event)) %>
-      </h1>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th><%= Event.human_attribute_name(:title) %></th>
-          <th><%= Event.human_attribute_name(:location) %></th>
-          <th><%= Event.human_attribute_name(:starts_at) %></th>
-          <th><%= Event.human_attribute_name(:ends_at) %></th>
-          <th><%= Event.human_attribute_name(:all_day) %></th>
-          <th><%= Event.human_attribute_name(:updated_at) %></th>
-          <th>
-            <%= link_to(t('.new_event'), new_admin_event_path,
-                                         class: 'btn primary small') %>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @events.each do |event| %>
-          <tr>
-            <td><%= event.id %></td>
-            <td><%= link_to(event.title.try(:truncate, 20), event) %></td>
-            <td><%= event.location.try(:truncate, 20) %></td>
-            <td><%= localized(event.starts_at) %></td>
-            <td><%= localized(event.ends_at) %></td>
-            <td><%= yes_no(event.all_day) %></td>
-            <td><%= localized(event.updated_at) %></td>
-            <td><%= link_to(t('global.edit'), edit_admin_event_path(event)) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<div class="headline">
+  <h1><%= title(models_name(Event)) %></h1>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+
+  <hr>
+
+  <%= link_to(t('.new_event'), new_admin_event_path,
+                               class: 'btn primary') %>
+  <%= link_to(t('.calendar'), calendars_path,
+                              class: 'btn secondary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@event_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: Event.human_attribute_name(:title), attribute: 'title') do |event|
+      link_to(event, event_path(event))
+    end
+    g.column(name: Event.human_attribute_name(:location), attribute: 'location') do |event|
+      event.location.try(:truncate, 20)
+    end
+    g.column(name: Event.human_attribute_name(:starts_at), attribute: 'starts_at') do |event|
+      localized(event.starts_at)
+    end
+    g.column(name: Event.human_attribute_name(:ends_at), attribute: 'ends_at') do |event|
+      localized(event.ends_at)
+    end
+    g.column(name: Event.human_attribute_name(:signup), attribute: 'signup') do |event|
+      yes_no(event.signup?)
+    end
+    g.column(name: Event.human_attribute_name(:updated_at), attribute: 'updated_at',
+            filter: false) do |event|
+      localized(event.updated_at)
+    end
+    g.column(name: t('global.edit')) do |event|
+      link_to(t('global.edit'), edit_admin_event_path(event))
+    end
+  end -%>
 </div>

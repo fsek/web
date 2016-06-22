@@ -19,6 +19,7 @@ sv:
         title: Redigera evenemang
 
       index:
+        calendar: Kalender
         new_event: Nytt evenemang
 
       new:
