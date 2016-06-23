@@ -1,0 +1,37 @@
+<div class="headline">
+  <h1>
+    <%= title(t('.title')) %>
+    <small>- <%= @introduction.try(:year) %></small>
+</h1>
+</div>
+
+<div class="col-md-2 col-xs-12">
+  <% if @introductions.present? %>
+    <div class="dropdown margin-bottom-20">
+      <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="true">
+        <%= t('.other') %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="oldies">
+        <% @introductions.each do |i| %>
+          <li>
+            <%= link_to(i.year, groups_path(introduction_id: i.id)) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-md-10 col-xs-12">
+  <%= grid(@grid, class: 'groups-grid') do |grid|
+    grid.row_attributes do |g|
+      {class: can?(:show, g) ? 'member' : ''}
+    end
+    grid.column(name: Group.human_attribute_name(:number), attribute: 'number', filter: false)
+    grid.column(name: Group.human_attribute_name(:name), attribute: 'name', filter: false) do |g|
+      can?(:show, g) ? link_to(g.name, group_path(g)) : g.name
+    end
+  end -%>
+</div>

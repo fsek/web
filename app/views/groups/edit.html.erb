@@ -1,0 +1,8 @@
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <div class="headline">
+    <h3><%= title(t('.title')) %></h3>
+  </div>
+  <%= render('form', group: @group) %>
+  <hr>
+  <%= link_to(t('.back'), group_path(@group), class: 'btn secondary') %>
+</div>

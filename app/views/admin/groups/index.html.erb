@@ -1,0 +1,19 @@
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+
+<div class="col-md-12 margin-bottom-20">
+  <%= link_to t('.new'), new_admin_group_path, class: 'btn primary' %>
+</div>
+
+<div class="col-md-12">
+  <%= grid(@grid) do |g|
+    g.column(name: Group.human_attribute_name(:number), attribute: 'number', filter: false)
+    g.column(name: Group.human_attribute_name(:name), attribute: 'name', filter: false) do |group|
+      link_to group.name, edit_admin_group_path(group)
+    end
+    g.column(filter: false) do |group|
+      link_to t('.manage_faddrar'), admin_group_group_users_path(group)
+    end
+  end -%>
+</div>

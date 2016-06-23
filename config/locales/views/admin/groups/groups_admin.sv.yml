@@ -1,0 +1,19 @@
+sv:
+  admin:
+    groups:
+      index:
+        title: Administrera faddergrupper
+        new: Ny grupp
+        manage_faddrar: Hantera faddrar
+
+      new:
+        title: Ny faddergrupp
+        all_groups: Alla grupper
+
+      edit:
+        title: Redigera faddergrupp
+        destroy: Förinta grupp
+        all_groups: Alla grupper
+
+      set_fadder:
+        failed: Misslyckades

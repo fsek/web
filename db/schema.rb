@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629204225) do
+ActiveRecord::Schema.define(version: 20160704214107) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -269,6 +269,31 @@ ActiveRecord::Schema.define(version: 20160629204225) do
 
   add_index "faqs", ["category"], name: "index_faqs_on_category", using: :btree
 
+  create_table "group_users", force: :cascade do |t|
+    t.integer  "group_id",   limit: 4
+    t.integer  "user_id",    limit: 4
+    t.boolean  "fadder",               default: false, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "group_users", ["deleted_at"], name: "index_group_users_on_deleted_at", using: :btree
+  add_index "group_users", ["group_id"], name: "index_group_users_on_group_id", using: :btree
+  add_index "group_users", ["user_id"], name: "index_group_users_on_user_id", using: :btree
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.integer  "number",          limit: 4
+    t.integer  "introduction_id", limit: 4
+    t.datetime "deleted_at"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "groups", ["deleted_at"], name: "index_groups_on_deleted_at", using: :btree
+  add_index "groups", ["introduction_id"], name: "index_groups_on_introduction_id", using: :btree
+
   create_table "images", force: :cascade do |t|
     t.integer  "album_id",          limit: 4
     t.datetime "created_at"
@@ -291,7 +316,7 @@ ActiveRecord::Schema.define(version: 20160629204225) do
     t.string   "locale",          limit: 255,   null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-    t.string   "title",           limit: 255,   null: false
+    t.string   "title",           limit: 255
     t.text     "description",     limit: 65535
   end
 
@@ -640,6 +665,9 @@ ActiveRecord::Schema.define(version: 20160629204225) do
   add_foreign_key "categorizations", "categories"
   add_foreign_key "election_posts", "elections"
   add_foreign_key "election_posts", "posts"
+  add_foreign_key "group_users", "groups"
+  add_foreign_key "group_users", "users"
+  add_foreign_key "groups", "introductions"
   add_foreign_key "menus", "main_menus"
   add_foreign_key "page_images", "pages"
 end

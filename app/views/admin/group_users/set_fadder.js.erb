@@ -1,0 +1,8 @@
+$('tr#<%= dom_id(@group_user) %> td.state_link').html('<%= j group_user_state_link(@group, @group_user) %>');
+
+<% if @success %>
+  $('tr#<%= dom_id(@group_user) %>').addClass('fadder');
+  $('tr#<%= dom_id(@group_user) %> td.yes_no').html('<%= j yes_no(@group_user.fadder) %>');
+<% else %>
+  $('tr#<%= dom_id(@group_user) %> td.state_link').append('<br><%= t('.failed') %>');
+<% end %>
