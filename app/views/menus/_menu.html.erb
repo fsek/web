@@ -1,4 +1,8 @@
-<% if menu.turbolinks && menu.blank_p %>
+<% if menu.header %>
+  <li class="menu-header">
+    <%= menu %>
+  </li>
+<% elsif menu.turbolinks && menu.blank_p %>
   <li class="menu blank">
     <%= link_to(menu_locale_link(menu.link, I18n.locale), target: :blank) do %>
       <%= menu %>

@@ -37,8 +37,9 @@ RSpec.describe Admin::MenusController, type: :controller do
 
   describe 'POST #create' do
     it 'valid parameters' do
+      main = create(:main_menu)
       attributes = { name_sv: 'Bildgalleri',
-                     location: 'guild',
+                     main_menu_id: main.id,
                      index: 1337,
                      link: '/galleri',
                      visible: true,

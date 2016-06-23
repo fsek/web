@@ -1,11 +1,4 @@
 sv:
-  model:
-    menus:
-      guild: Sektionen
-      members: För medlemmar
-      companies: För företag
-      contact: Kontakt
-
   activerecord:
     models:
       menu:
@@ -13,7 +6,7 @@ sv:
         other: Menyer
     attributes:
       menu:
-        location: Plats
+        main_menu_id: Huvudmeny
         index: Sorteringsindex
         link: Länk
         name: Namn
@@ -23,3 +16,5 @@ sv:
         turbolinks: Turbolink
         blank_p: Öppna i ny flik
         updated_at: Uppdaterades
+        column: Kolumn (1-4)
+        header: Rubrik

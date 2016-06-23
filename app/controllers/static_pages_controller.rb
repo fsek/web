@@ -3,7 +3,6 @@ class StaticPagesController < ApplicationController
   load_permissions_and_authorize_resource class: :static_pages
 
   def about
-    @menus = Menu.where(location: 'guild').index
   end
 
   def cookies_information

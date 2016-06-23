@@ -11,6 +11,7 @@ sv:
         new: Ny meny
         filter: Filtrera menyer
         reset_filter: Återställ filter
+        main_menus: Huvudmenyer
 
       new:
         title: Ny meny

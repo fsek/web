@@ -1,16 +1,13 @@
-# encoding: UTF-8
 class Menu < ActiveRecord::Base
+  belongs_to :main_menu
+
   translates(:name)
-  globalize_accessors(locales: [:en, :sv],
-                      attributes: [:name])
+  globalize_accessors(locales: [:en, :sv], attributes: [:name])
 
-  GUILD = 'guild'.freeze
-  MEMBER = 'members'.freeze
-  COMPANY = 'companies'.freeze
-  CONTACT = 'contact'.freeze
+  scope :index, -> { order(column: :asc, index: :asc).where(visible: true) }
 
-  scope :index, -> { order(index: :asc).where(visible: true) }
-  validates :name, :link, :location, presence: true
+  validates :name, :link, :main_menu_id, :column, presence: true
+  validates :column, inclusion: 1..4
 
   def to_s
     name

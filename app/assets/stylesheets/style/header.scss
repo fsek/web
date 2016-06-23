@@ -3,7 +3,6 @@
   position: relative;
   z-index: 999;
 
-
   .navbar-default {
     background: none;
     border: none;
@@ -57,7 +56,7 @@
   }
 
   .navbar-collapse {
-    padding: 0;
+    padding: 0 15px;
     position: relative;
   }
 
@@ -91,7 +90,6 @@
 
   .navbar-nav {
     margin-top: 10px;
-    position: relative;
     top: 1px;
   }
 
@@ -100,6 +98,7 @@
     border-left: 1px solid $light-gray-text;
     border-radius: 0;
     border-right: 1px solid $light-gray-text;
+    border-bottom: 1px solid $light-gray-text;
     border-top: 1px solid $main-color;
     box-shadow: none;
     margin-top: -1px;
@@ -108,7 +107,6 @@
     z-index: 9999;
 
     li a {
-      border-bottom: solid 1px $light-gray-text;
       font-size: 12px;
       font-weight: 400;
       padding: 8px 15px;
@@ -117,7 +115,6 @@
     .active > a,
     li > a:hover {
       background: $main-color;
-      border-bottom: 1px solid $light-gray-text;
       color: $white;
       filter: none;
     }
@@ -142,6 +139,18 @@
   .header .navbar {
     .navbar-nav {
       padding: 0 10px;
+
+      .dropdown-menu > li > a {
+        color: $footer-gray;
+        line-height: 1.42857143;
+        padding: 8px 15px 8px 25px;
+      }
+
+      .dropdown-menu > li > a:hover,
+      .dropdown-menu > li > a:focus {
+        background: $main-color;
+        color: $white;
+      }
     }
   }
 }
