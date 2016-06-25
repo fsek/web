@@ -1,5 +1,6 @@
 <%= simple_form_for(rent) do |f| %>
-  <%= f.association :user, collection: [current_user], include_blank: false %>
+  <%= f.association :user, collection: [current_user], include_blank: false,
+                           input_html: {class: 'select2'} %>
   <% if rent.errors[:user].present? %>
     <p><%= link_to(t('.edit_user_information'), edit_own_user_path,
                                                 target: :blank_p) %></p>
@@ -7,12 +8,13 @@
 
   <%= render 'renter_table', user: rent.user, rent: rent %>
 
-  <% if (overlap = rent.overlap).present? && overlap.count > 0 %>
+  <% if (overlap = rent.overlap).try(:any?) %>
     <span class='overlapping-date'><%= t('.overlaps_with') %></span>
     <ul class='overlapping-date'>
       <% overlap.each do |o| %>
         <li>
-          <%= link_to(%(#{o.user} #{o.council} - #{o.p_time}), rent_path(o), target: :blank_p) %>
+          <%= link_to(%(#{o.user} #{o.council} - #{o.p_time}), rent_path(o),
+                      target: :blank_p) %>
         </li>
       <% end %>
     </ul>
@@ -22,13 +24,14 @@
   <%= f.input :d_til, as: :datetime_picker, required: true %>
   <%= f.input :purpose, as: :text, required: true %>
 
-  <% if current_user.car_councils && current_user.car_councils.count > 0 %>
+  <% if current_user.car_councils.any? %>
     <strong><%= t('.council_booking') %></strong>
     <ul class="list">
       <li><%= t('.only_for_council') %></li>
       <li><%= t('.allowed_to_overbook') %></li>
     </ul>
-    <%= f.association :council, collection: current_user.car_councils %>
+    <%= f.association :council, collection: current_user.car_councils,
+                                input_html: {class: 'select2'} %>
   <% end %>
 
   <% if @terms.present? %>

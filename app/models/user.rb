@@ -25,7 +25,9 @@ class User < ActiveRecord::Base
                     styles: { medium: '300x300>', thumb: '100x100>' },
                     path: ':rails_root/storage/user/:id/:style/:filename')
 
-  scope :all_firstname, -> { order(firstname: :asc) }
+  scope :by_firstname, -> { order(firstname: :asc) }
+  scope :members, -> { where('member_at < ?', Time.zone.now) }
+  scope :confirmed, -> { where('confirmed_at < ?', Time.zone.now) }
 
   # Validations
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
@@ -33,11 +35,10 @@ class User < ActiveRecord::Base
   attr_accessor :remove_avatar
   before_save :delete_avatar, if: -> { remove_avatar == '1' && !avatar_updated_at_changed? }
 
-  scope :all_firstname, -> { order(firstname: :asc) }
   # Returns all councils the user belongs to with a Post who is
   # allowed to rent the car
   def car_councils
-    councils.merge(Post.renters).uniq.all_name
+    councils.merge(Post.renters).distinct.by_title
   end
 
   def member?
