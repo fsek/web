@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class ContactMailer < ActionMailer::Base
-  default from: 'Kontaktformulär <dirac@fsektionen.se>', parts_order: ['text/plain', 'text/html']
+  default from: 'Kontaktformulär <dirac@fsektionen.se>'
   default subject: I18n.t('contact_mailer.subject')
   include MessageIdentifier
 
@@ -11,7 +11,9 @@ class ContactMailer < ActionMailer::Base
       recipient = "#{contact.name} <#{contact.email}>"
       sender = "#{contact.message.name} <#{contact.message.email}>"
 
-      mail(to: recipient, cc: sender, reply_to: sender)
+      mail(to: recipient, cc: sender, reply_to: sender) do |format|
+        format.html { render layout: 'email.html.erb' }
+      end
     end
   end
 end

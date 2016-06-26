@@ -39,17 +39,7 @@ RSpec.describe ContactMailer, type: :mailer do
         contact = create(:contact, message: message)
         mail = ContactMailer.contact_email(contact)
 
-        mail.html_part.body.should include('What a wonderful day')
-      end
-    end
-
-    context 'plain text body' do
-      it 'includes the text' do
-        message = build(:contact_message, message: 'What a wonderful day')
-        contact = create(:contact, message: message)
-        mail = ContactMailer.contact_email(contact)
-
-        mail.text_part.body.should include('What a wonderful day')
+        mail.body.should include('What a wonderful day')
       end
     end
   end

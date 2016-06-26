@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h2><%= t('.message_sent_via') %> - <%= @contact.to_s %></h2>
-    <table>
-      <tr>
-        <td><%= ContactMessage.human_attribute_name(:name) %></td>
-        <td><%= @contact.message.name %></td>
-      </tr>
-      <tr>
-        <td><%= ContactMessage.human_attribute_name(:email) %></td>
-        <td><%= @contact.message.email %></td>
-      </tr>
-      <tr>
-        <td><%= ContactMessage.human_attribute_name(:message) %></td>
-        <td><%= simple_format(@contact.message.message) %></td>
-      </tr>
-    </table>
-  </body>
-</html>
+<% provide(:title, t('.title')) %>
+
+<%= content_for(:greeting) do %>
+  <h2><%= t('.message_sent_via') %> - <%= @contact.to_s %></h2>
+<% end %>
+
+<%= content_for(:main_content) do %>
+  <table>
+    <tr>
+      <td colspan=2><%= ContactMessage.human_attribute_name(:name) %>:</td>
+      <td><%= @contact.message.name %></td>
+    </tr>
+    <tr>
+      <td colspan=2><%= ContactMessage.human_attribute_name(:email) %>:</td>
+      <td><%= @contact.message.email %></td>
+    </tr>
+  </table>
+  <hr>
+  <h3><%= ContactMessage.human_attribute_name(:message) %></h3>
+  <%= simple_format(@contact.message.message) %>
+<% end %>
