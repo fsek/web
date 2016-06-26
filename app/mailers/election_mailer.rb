@@ -8,7 +8,9 @@ class ElectionMailer < ActionMailer::Base
     @nomination = nomination
     if @nomination && @nomination.email.present?
       mail(to: @nomination.email,
-           subject: I18n.t('election_mailer.nominate_email.subject_nominated'))
+           subject: I18n.t('election_mailer.nominate_email.subject_nominated')) do |format|
+        format.html { render(layout: 'email.html.erb') }
+      end
     end
   end
 
@@ -16,8 +18,9 @@ class ElectionMailer < ActionMailer::Base
     @candidate = candidate
     if @candidate.present? && @candidate.user.email.present?
       mail(to: @candidate.user.print_email,
-           subject: I18n.t('election_mailer.candidate_email.subject_candidated'))
+           subject: I18n.t('election_mailer.candidate_email.subject_candidated')) do |format|
+        format.html { render(layout: 'email.html.erb') }
+      end
     end
   end
-
 end
