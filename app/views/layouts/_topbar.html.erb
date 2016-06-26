@@ -1,6 +1,22 @@
 <div class="top">
   <div class="container">
     <ul class="loginbar pull-right">
+      <% if I18n.locale == :sv %>
+        <li>
+          <%= link_to(params.merge(locale: :en)) do %>
+            <%= image_tag('layout/gb.png') %>
+            ENGLISH
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to(params.merge(locale: :sv)) do %>
+            <%= image_tag('layout/se.png') %>
+            SVENSKA
+          <% end %>
+        </li>
+      <% end %>
+      <li class="divider"></li>
       <li><%= link_to(fa_icon('calendar'), calendars_path,
                                            data: { no_turbolink: false }) %></li>
       <li class="divider"></li>
