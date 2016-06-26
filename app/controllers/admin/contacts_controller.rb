@@ -8,17 +8,17 @@ class Admin::ContactsController < Admin::BaseController
 
   def new
     @contact = Contact.new
-    @posts = Post.title
+    @posts = Post.by_title
   end
 
   def edit
     @contact = Contact.find(params[:id])
-    @posts = Post.title
+    @posts = Post.by_title
   end
 
   def create
     @contact = Contact.new(contact_params)
-    @posts = Post.title
+    @posts = Post.by_title
     if @contact.save
       redirect_to edit_admin_contact_path(@contact), notice: alert_create(Contact)
     else
@@ -28,7 +28,7 @@ class Admin::ContactsController < Admin::BaseController
 
   def update
     @contact = Contact.find(params[:id])
-    @posts = Post.title
+    @posts = Post.by_title
     if @contact.update(contact_params)
       redirect_to edit_admin_contact_path(@contact), notice: alert_update(Contact)
     else

@@ -15,13 +15,13 @@
     g.column(name: Post.human_attribute_name(:elected_by),
              attribute: 'elected_by',
              filter: false) do |post|
-      t("post.#{post.elected_by}")
+      t("model.post.#{post.elected_by}")
     end
 
     g.column(name: Post.human_attribute_name(:semester),
              attribute: 'semester',
              filter: false) do |post|
-      t("post.#{post.semester}")
+      t("model.post.semester.#{post.semester}")
     end
 
     g.column do |post|

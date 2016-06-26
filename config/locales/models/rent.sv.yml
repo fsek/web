@@ -25,16 +25,15 @@ sv:
       rent:
         aktiv: Aktiv
         comment: Kommentar
-        council_id: Utskott
+        council: Utskott
         created_at: Skapad
         date: Datum
         d_from: Startdatum
         d_til: Slutdatum
         disclaimer: Bilbokningsavtal
-        email: E-post
         purpose: Syfte
         renter: Hyrs av
         service: Service
         status: Status
         updated_at: Redigerad
-        user_id: Användare
+        user: Användare

@@ -3,15 +3,15 @@ class Admin::ElectionsController < Admin::BaseController
   load_permissions_and_authorize_resource find_by: :url
 
   def new
-    @posts = Post.title
+    @posts = Post.by_title
   end
 
   def show
-    @posts = Post.title
+    @posts = Post.by_title
   end
 
   def edit
-    @posts = Post.title
+    @posts = Post.by_title
   end
 
   def index

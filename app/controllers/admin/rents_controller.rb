@@ -42,8 +42,8 @@ class Admin::RentsController < Admin::BaseController
   private
 
   def prepare
-    @councils = Council.all_name
-    @users = User.all_firstname
+    @councils = Council.by_title
+    @users = User.by_firstname
   end
 
   def rent_params

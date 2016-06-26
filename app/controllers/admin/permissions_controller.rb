@@ -4,7 +4,7 @@ class Admin::PermissionsController < Admin::BaseController
   load_and_authorize_resource :post
 
   def index
-    @posts = Post.includes(:permissions).title
+    @posts = Post.includes(:permissions).by_title
   end
 
   def show_post

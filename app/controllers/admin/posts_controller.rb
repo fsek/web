@@ -7,7 +7,7 @@ class Admin::PostsController < Admin::BaseController
     council = Council.find_by_url!(params[:council_id])
     @post_view = PostView.new(council: council,
                               post_user: PostUser.new(post_user_params),
-                              users: User.all_firstname)
+                              users: User.by_firstname)
     @post_view = set_grids(@post_view)
 
     if PostUserService.create(@post_view.post_user)
@@ -34,7 +34,7 @@ class Admin::PostsController < Admin::BaseController
     council = Council.find_by_url!(params[:council_id])
     @post_view = PostView.new(council: council,
                               post_user: PostUser.new,
-                              users: User.all_firstname)
+                              users: User.by_firstname)
     @post_view.post_grid = initialize_grid(council.posts,
                                            order: :title,
                                            name: 'posts')

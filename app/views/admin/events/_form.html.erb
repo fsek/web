@@ -30,7 +30,7 @@
         <% end %>
 
         <%= f.input :image, as: :file %>
-        <%= f.association :council, collection: Council.titles,
+        <%= f.association :council, collection: Council.by_title,
                                     input_html: {class: 'select2'} %>
         <% if event.persisted? %>
           <%= f.association :categories, collection: Category.all,

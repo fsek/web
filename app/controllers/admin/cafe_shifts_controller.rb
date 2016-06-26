@@ -5,8 +5,8 @@ class Admin::CafeShiftsController < Admin::BaseController
   def show
     cafe_shift = CafeShift.find(params[:id])
     cafe_shift.cafe_worker || cafe_shift.build_cafe_worker
-    @cafe_view = CafeViewObject.new(users: User.all_firstname,
-                                    councils: Council.titles,
+    @cafe_view = CafeViewObject.new(users: User.by_firstname,
+                                    councils: Council.by_title,
                                     shift: cafe_shift)
   end
 

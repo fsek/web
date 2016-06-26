@@ -21,7 +21,7 @@ sv:
       post:
         board: Styrelsepost
         car_rent: Får hyra bil
-        council_id: Utskott
+        council: Utskott
         description: Beskrivning
         elected_by: Väljs av
         limit: Gräns

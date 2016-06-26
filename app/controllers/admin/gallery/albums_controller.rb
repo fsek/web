@@ -8,11 +8,10 @@ class Admin::Gallery::AlbumsController < Admin::BaseController
   end
 
   def show
-    @users = User.all_firstname
+    @users = User.by_firstname.members.confirmed
   end
 
   def new
-    @users = User.all_firstname
   end
 
   def create
@@ -29,7 +28,7 @@ class Admin::Gallery::AlbumsController < Admin::BaseController
   end
 
   def update
-    @users = User.all_firstname
+    @users = User.by_firstname
     service = AlbumService.new
     if @album.update(album_params) && service.upload_images(@album)
       redirect_to(admin_gallery_album_path(@album),
