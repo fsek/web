@@ -1,27 +1,25 @@
 <div class="top">
   <div class="container">
     <ul class="loginbar pull-right">
+        <li class="locale-switcher">
       <% if I18n.locale == :sv %>
-        <li>
-          <%= link_to(params.merge(locale: :en)) do %>
-            <%= image_tag('layout/gb.png') %>
-            ENGLISH
-          <% end %>
-        </li>
+        <%= link_to(params.merge(locale: :en)) do %>
+          <%= image_tag('layout/gb.png', class: 'flag') %>
+          <span>ENGLISH</span>
+        <% end %>
       <% else %>
-        <li>
-          <%= link_to(params.merge(locale: :sv)) do %>
-            <%= image_tag('layout/se.png') %>
-            SVENSKA
-          <% end %>
-        </li>
+        <%= link_to(params.merge(locale: :sv)) do %>
+          <%= image_tag('layout/se.png', class: 'flag') %>
+          <span>SVENSKA</span>
+        <% end %>
       <% end %>
+      </li>
       <li class="divider"></li>
       <li><%= link_to(fa_icon('calendar'), calendars_path,
                                            data: { no_turbolink: false }) %></li>
       <li class="divider"></li>
       <% if user_signed_in? %>
-        <% if current_user.permissions.count > 0 %>
+        <% if current_user.permissions.any? %>
           <%= render 'layouts/admin_dropdown' %>
           <li class="divider"></li>
         <% end %>
