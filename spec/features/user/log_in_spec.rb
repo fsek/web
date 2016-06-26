@@ -29,4 +29,15 @@ RSpec.feature 'User sign in' do
     find('div.alert.alert-danger').text.should \
       include(I18n.t('devise.failure.user.not_found_in_database'))
   end
+
+  scenario 'redirected back to the right page' do
+    page.visit(new_rent_path)
+    find('div.alert.alert-danger').text.should include(I18n.t('unauthorized.new.rent'))
+    page.fill_in 'user_email', with: user.email
+    page.fill_in 'user_password', with: '12345678'
+    page.click_button I18n.t('devise.sign_in')
+    page.should have_css('div.alert.alert-info')
+    find('div.alert.alert-info').text.should include(I18n.t('devise.sessions.signed_in'))
+    page.current_path.should eq(new_rent_path)
+  end
 end

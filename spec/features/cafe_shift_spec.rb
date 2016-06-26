@@ -1,29 +1,17 @@
 require 'rails_helper'
-RSpec.feature 'Visit cafe' do
-  let(:user) { create(:user) }
-  let(:cafe_shift) { create(:cafe_shift) }
-  let(:login) { LoginPage.new }
+RSpec.feature 'Visit cafe', type: :feature do
+  scenario 'sign up to work' do
+    user = create(:user)
+    cafe_shift = create(:cafe_shift)
 
-  Steps 'sign up to work' do
-    And 'sign in' do
-      login.visit_page.login(user, '12345678')
-    end
+    sign_in_as(user, path: cafe_shift_path(cafe_shift))
 
-    When 'Visit cafe_shift_path' do
-      visit cafe_shift_path(cafe_shift)
-    end
+    check 'cafe_worker_competition'
+    click_button I18n.t('helpers.submit.cafe_worker.create')
+    page.should have_css('div.alert.alert-info')
+    find('div.alert.alert-info').text.should include(I18n.t('model.cafe_worker.created'))
 
-    And 'Fill out form' do
-      check 'cafe_worker_competition'
-    end
-
-    And 'Push button' do
-      click_button I18n.t('helpers.submit.cafe_worker.create')
-    end
-
-    Then 'Saved' do
-      page.should have_css('div.alert.alert-info')
-      find('div.alert.alert-info').text.should include(I18n.t('model.cafe_worker.created'))
-    end
+    cafe_shift.reload
+    cafe_shift.cafe_worker.user.should eq(user)
   end
 end
