@@ -1,18 +1,27 @@
 module MarkdownHelper
   require 'redcarpet/render_strip'
+
   def markdown(text)
+    MarkdownHelper.markdown(text)
+  end
+
+  def self.markdown(text)
     if text.present?
       sanitize(markdown_renderer.render(text))
     end
   end
 
   def markdown_plain(text)
+    MarkdownHelper.markdown_plain(text)
+  end
+
+  def self.markdown_plain(text)
     if text.present?
       sanitize(plain_renderer.render(text))
     end
   end
 
-  def markdown_renderer
+  def self.markdown_renderer
     Redcarpet::Markdown.new(Redcarpet::Render::HTML,
                             no_intra_emphasis: true,
                             fenced_code_blocks: true,
@@ -22,7 +31,7 @@ module MarkdownHelper
                             highlight: true)
   end
 
-  def plain_renderer
+  def self.plain_renderer
     Redcarpet::Markdown.new(Redcarpet::Render::StripDown,
                             no_intra_emphasis: true,
                             fenced_code_blocks: true,
@@ -32,7 +41,7 @@ module MarkdownHelper
                             highlight: true)
   end
 
-  def sanitize(input)
+  def self.sanitize(input)
     if input.present?
       ActionView::Base.new.sanitize(input.html_safe)
     end

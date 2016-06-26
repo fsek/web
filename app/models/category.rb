@@ -10,6 +10,10 @@ class Category < ActiveRecord::Base
       where(categorizations: { categorizable_type: type })
   end
 
+  def self.slugs
+    order(:slug).select(:slug).distinct.pluck(:slug)
+  end
+
   def to_s
     title || id
   end
