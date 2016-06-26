@@ -36,7 +36,7 @@ RSpec.feature 'Update account', type: :feature do
     page.should have_css('div.alert.alert-info')
 
     find('div.alert.alert-info').text.should \
-      include(I18n.t('user.account_updated'))
+      include(I18n.t('model.user.account_updated'))
     user.reload
 
     user.unconfirmed_email.should eq('new@fsektionen.se')
@@ -59,7 +59,7 @@ RSpec.feature 'Update account', type: :feature do
     page.should have_css('div.alert.alert-info')
 
     find('div.alert.alert-info').text.should \
-      include(I18n.t('user.password_updated'))
+      include(I18n.t('model.user.password_updated'))
     user.reload
 
     user.valid_password?('87654321').should be_truthy

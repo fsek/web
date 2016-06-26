@@ -3,6 +3,9 @@ sv:
     user:
       attributes_missing: du måste fylla i dina användaruppgifter
       edit_information: Redigera användaruppgifter
+      account_updated: Kontoinställningar uppdaterades
+      password_updated: Lösenordet uppdaterades.
+      password_required: Lösenord måste fyllas i för att ändra uppgifter
 
   activerecord:
     models:
@@ -31,10 +34,3 @@ sv:
         stil_id: Stil-id
         unconfirmed_email: Obekräftad epost
         username: Användarnamn
-  user:
-    account_updated: Kontoinställningar uppdaterades
-    password_required: Lösenord måste fyllas i för att ändra uppgifter
-    password_required_update: Nuvarande lösenord måste fyllas i för att byta lösenord
-    password_updated: Lösenordet uppdaterades.
-    public_information: Publik information
-    protected_information: Information som endast visas av funktionärer
