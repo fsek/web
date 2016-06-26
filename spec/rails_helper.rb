@@ -15,9 +15,6 @@ require 'devise'
 
 ActiveRecord::Migration.maintain_test_schema!
 
-# Loads page_objects which are used in feature test
-Dir[Rails.root.join('spec/page_objects/**/*.rb')].each { |f| require f }
-
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
@@ -44,7 +41,8 @@ RSpec.configure do |config|
     Warden.test_reset!
   end
 
-  config.extend ControllerMacros
+  config.extend ControllerMacros, type: :controller
+  config.include FeatureMacros, type: :feature
 
   # Clear uploaded files
   config.after(:each) do

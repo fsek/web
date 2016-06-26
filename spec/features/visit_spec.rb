@@ -31,7 +31,6 @@ RSpec.feature 'visits paths' do
     create(:election)
   end
 
-  include ControllerMacros
   before(:each) do
     sign_in_as(user)
   end

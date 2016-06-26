@@ -1,6 +1,5 @@
 require 'rails_helper'
 RSpec.feature 'Visit Election' do
-
   scenario 'visits during election' do
     postt = create(:post)
     election = create(:election)
