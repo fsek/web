@@ -2,6 +2,7 @@
 class ContactMailer < ActionMailer::Base
   default from: 'Kontaktformulär <dirac@fsektionen.se>'
   default subject: I18n.t('contact_mailer.subject')
+  layout('email')
   include MessageIdentifier
 
   def contact_email(contact)
@@ -11,9 +12,7 @@ class ContactMailer < ActionMailer::Base
       recipient = "#{contact.name} <#{contact.email}>"
       sender = "#{contact.message.name} <#{contact.message.email}>"
 
-      mail(to: recipient, cc: sender, reply_to: sender) do |format|
-        format.html { render layout: 'email.html.erb' }
-      end
+      mail(to: recipient, cc: sender, reply_to: sender)
     end
   end
 end

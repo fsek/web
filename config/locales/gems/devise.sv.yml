@@ -83,8 +83,8 @@ sv:
       confirmation_instructions:
         description_link: 'Du kan bekräfta kontot med länken nedan'
         link: 'Bekräfta mitt konto'
-        subject: 'Instruktioner om bekräftning av konto'
+        subject: 'Välkommen till F-sektionen - vänligen bekräfta ditt konto.'
       reset_password_instructions:
-        subject: 'Instruktioner om återställning av lösenord'
+        subject: 'F-sektionen - återställning av lösenord'
       unlock_instructions:
         subject: 'Instruktioner om upplåsning av konto'
