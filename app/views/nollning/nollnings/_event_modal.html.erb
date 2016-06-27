@@ -1,38 +1,38 @@
-<div class="modal-event-body row">
-  <div class="col-sm-8 col-xs-12">
-    <h4 class="modal-title"><%= %(#{event.title} #{event.short}) %></h4>
-    <span class="time"><%= time_range(event.starts_at, event.ends_at) %></span>
-    <span class="location"><%= event.location %></span>
-    <span class="description">
-      <%= simple_format(event.description) %>
-    </span>
-    <% if :registration == true %>
-    <span class="reminder">
-      <%= render('events/registration',
-                 event: event,
-                 reg: EventRegistration.get(event, current_user)) %>
-    </span>
-  <% end %>
+<% cache(event) do %>
+  <div class="modal-event-body row">
+    <div class="col-sm-8 col-xs-12">
+      <h4 class="modal-title"><%= %(#{event.title} #{event.short}) %></h4>
+      <span class="time"><%= time_range(event.starts_at, event.ends_at) %></span>
+      <span class="location"><%= event.location %></span>
+      <span class="description">
+        <%= markdown(event.description) %>
+      </span>
+      <% if event.signup? %>
+        <span class="reminder">
+          <%= link_to(t('.event_registration'), event_path(event)) %>
+        </span>
+      <% end %>
+    </div>
+    <div class="col-sm-4 col-xs-12">
+      <span class="symbols">
+        <%= render('symbols', event: event) %>
+        <br>
+        <ul class="symbol-list">
+          <% if event.signup %>
+            <li><%= t('.signup') %></li>
+          <% end %>
+          <% if event.food %>
+            <li><%= t('.food') %></li>
+          <% end %>
+          <% if event.drink %>
+            <li><%= t('.drink') %></li>
+          <% end %>
+          <% if event.cash %>
+            <li><%= t('.cash') %></li>
+          <% end %>
+        </ul>
+      </span>
+    </div>
   </div>
-  <div class="col-sm-4 col-xs-12">
-    <span class="symbols">
-      <%= render('symbols', event: event) %>
-      <br>
-      <ul class="symbol-list">
-        <% if event.signup %>
-          <li><%= t('.signup') %></li>
-        <% end %>
-        <% if event.food %>
-          <li><%= t('.food') %></li>
-        <% end %>
-        <% if event.drink %>
-          <li><%= t('.drink') %></li>
-        <% end %>
-        <% if event.cash %>
-          <li><%= t('.cash') %></li>
-        <% end %>
-      </ul>
-    </span>
-  </div>
-</div>
-<hr>
+  <hr>
+<% end %>

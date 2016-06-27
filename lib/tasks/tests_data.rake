@@ -176,6 +176,7 @@ namespace :db do
     Category.find_or_create_by!(title: 'Studier', slug: 'studie')
     Category.find_or_create_by!(title: 'Sektionen', slug: 'sektion')
     Category.find_or_create_by!(title: 'Fritid', slug: 'fritid')
+    Category.find_or_create_by!(title: 'Nollning', slug: 'nollning')
 
     #Tool
     tool = Tool.find_or_create_by!(title: 'Hammare', description: 'spikar spikar m.m.', total: 5)

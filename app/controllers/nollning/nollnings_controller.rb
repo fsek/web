@@ -7,7 +7,13 @@ class Nollning::NollningsController < ApplicationController
   end
 
   def matrix
-    @events = Event.includes(:translations).slug(:nollning)
+    @dates = Date.new(2016, 8, 22)..Date.new(2016, 9, 23)
+    @events = Event.includes(:translations).
+              slug(:nollning).
+              between(@dates.first, @dates.last). 
+              by_start.
+              view. 
+              group_by(&:day)
   end
 
   def modal

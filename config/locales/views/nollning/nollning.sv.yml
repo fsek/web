@@ -16,6 +16,7 @@ sv:
     nollnings:
       event_modal:
         drink: Dricka säljes
+        event_registration: Till evenemangsanmälan
         food: Mat serveras
         cash: Kontanter behövs
         signup: Kräver anmälan
@@ -25,12 +26,19 @@ sv:
         next: Nästa
 
       index:
-        title: En Ridderlig Nollning
-        news: Nyheter
-        more_news: Fler nyheter
-        theme_movie: Temasläppsfilm
-        info: "Välkommen till en ridderlig nollning på F-sektionen. Här hittar du all information som rör nollningen för studenter inom programmen teknisk fysik, teknisk matematik och teknisk nanovetenskap. Som blivande student på dessa program är du varmt välkommen till oss i höst. Denna sida kommer uppdateras med massvis med värdefull information för dig, så se till att kolla tillbaks hit senare i sommar."
+        description: En Ridderlig Nollning på F-sektionen 2016, för studenter vid teknisk fysik, teknisk matematik och teknisk nanovetenskap vid LTH.
         info2: Vi ser fram emot att träffa dig och välkomna dig till LTH och F-sektionen!
+        info: "Välkommen till en ridderlig nollning på F-sektionen. Här hittar du all information som rör nollningen för studenter inom programmen teknisk fysik, teknisk matematik och teknisk nanovetenskap. Som blivande student på dessa program är du varmt välkommen till oss i höst. Denna sida kommer uppdateras med massvis med värdefull information för dig, så se till att kolla tillbaks hit senare i sommar."
+        keywords:
+          - nollning
+          - teknisk fysik
+          - teknisk matematik
+          - teknisk nanovetenskap
+          - LTH
+        more_news: Fler nyheter
+        news: Nyheter
+        theme_movie: Temasläppsfilm
+        title: En Ridderlig Nollning
 
       symbols:
         drink: Dricka säljes
@@ -39,5 +47,17 @@ sv:
         signup: Kräver anmälan
 
       matrix:
-        rest: Nollan vilar
         click_day_to_read_more: Tryck på en dag för att läsa mer
+        description: Nollematrisen är ett schema för Nollningen vid F-sektionen inom TLTH. Här hittas tider, beskrivningar, eventuell anmälan och annat roligt för varje evenemang.
+        keywords:
+          - nollning
+          - schema
+          - nollematris
+          - TLTH
+        title: Nollematris
+
+      matrix_day:
+        rest: Nollan vilar
+
+      modal:
+        rest: Nollan vilar
