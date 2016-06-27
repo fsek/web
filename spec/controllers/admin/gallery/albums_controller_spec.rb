@@ -3,11 +3,7 @@ require 'rails_helper'
 RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
   let(:user) { create(:admin) }
 
-  allow_user_to(:manage, :all)
-
-  before(:each) do
-    allow(controller).to receive(:current_user) { user }
-  end
+  allow_user_to(:manage, [:gallery, Album, Image])
 
   describe 'GET #show' do
     it 'assigns the requested album as @album' do
@@ -21,8 +17,7 @@ RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
   describe 'GET #new' do
     it 'assigns a new album as @album' do
       get(:new)
-      assigns(:album).new_record?.should be_truthy
-      assigns(:album).instance_of?(Album).should be_truthy
+      assigns(:album).should be_a_new(Album)
     end
   end
 
@@ -38,7 +33,7 @@ RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
   end
 
   describe 'POST #create' do
-    it 'posts new album' do
+    it 'works with valid parameters' do
       attributes = { title_sv: 'Välkomstgasque',
                      description_sv: 'Detta är en välkomstgasque!',
                      location: 'Kårhuset: Gasquesalen',
@@ -51,10 +46,22 @@ RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
 
       response.should redirect_to(admin_gallery_album_path(Album.last))
     end
+
+    it 'does not work with invalid parameters' do
+      attributes = { title_sv: 'Välkomstgasque',
+                     end_date: 2.days.ago + 5.hours }
+
+      lambda do
+        post :create, album: attributes
+      end.should change(Album, :count).by(0)
+
+      response.should render_template(:new)
+      response.should have_http_status(422)
+    end
   end
 
   describe 'PATCH #update' do
-    it 'update album' do
+    it 'valid parameters' do
       album = create(:album, title: 'Välkomstgasque')
       patch(:update, id: album.to_param, \
                      album: { title_sv: 'Nollegasque',
@@ -67,6 +74,42 @@ RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
       album.images.count.should eq(1)
       album.images.last.photographer.should eq(user)
       album.images.last.photographer_name.should eq(user.firstname)
+    end
+
+    it 'invalid parameters' do
+      album = create(:album, title: 'Välkomstgasque')
+      patch(:update, id: album.to_param, \
+                     album: { title_sv: nil })
+
+      album.reload
+      album.title.should eq('Välkomstgasque')
+      response.should render_template(:show)
+      response.should have_http_status(422)
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'destroys record' do
+      album = create(:album)
+
+      lambda do
+        delete(:destroy, id: album.to_param)
+      end.should change(Album, :count).by(-1)
+
+      response.should redirect_to(admin_gallery_albums_path)
+    end
+  end
+
+  describe 'DELETE #destroy_images' do
+    it 'destroys all images' do
+      album = create(:album_with_images, image_count: 3)
+      album.images.size.should eq(3)
+
+      lambda do
+        delete(:destroy_images, id: album.to_param)
+      end.should change(Image, :count).by(-3)
+      album.reload
+      album.images.should be_empty
     end
   end
 end
