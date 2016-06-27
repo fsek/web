@@ -1,10 +1,9 @@
 require 'rails_helper'
-RSpec.feature 'Visit Election' do
+RSpec.feature 'Visit Election', type: :feature do
   scenario 'nominating successfully' do
     user = create(:user)
-    election = create(:election)
-    the_post = create(:post)
-    election.posts << the_post
+    create(:election, :autumn)
+    the_post = create(:post, :autumn)
     sign_in_as(user, path: new_nominations_path)
 
     fill_in 'nomination_name', with: 'David Wessman'

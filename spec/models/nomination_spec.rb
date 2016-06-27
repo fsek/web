@@ -2,23 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Nomination, type: :model do
   describe 'validations' do
-    it 'checks presence of name' do
-      nomination = Nomination.new
+    subject { Nomination.new }
 
-      nomination.should validate_presence_of(:name)
-    end
-
-    it 'checks presence of email' do
-      nomination = Nomination.new
-
-      nomination.should validate_presence_of(:email)
-    end
-
-    it 'checks presence of post_id' do
-      nomination = Nomination.new
-
-      nomination.should validate_presence_of(:post_id)
-    end
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:post) }
+    it { should validate_presence_of(:election) }
 
     it 'checks email format' do
       nomination = Nomination.new
