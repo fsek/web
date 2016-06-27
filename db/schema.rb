@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612211219) do
+ActiveRecord::Schema.define(version: 20160627102950) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -539,7 +539,6 @@ ActiveRecord::Schema.define(version: 20160612211219) do
     t.string   "firstname",              limit: 255
     t.string   "lastname",               limit: 255
     t.string   "phone",                  limit: 255
-    t.string   "stil_id",                limit: 255
     t.integer  "first_post_id",          limit: 4
     t.string   "avatar_file_name",       limit: 255
     t.string   "avatar_content_type",    limit: 255
@@ -553,6 +552,7 @@ ActiveRecord::Schema.define(version: 20160612211219) do
     t.string   "unconfirmed_email",      limit: 255
     t.datetime "member_at"
     t.string   "food_preference",        limit: 255
+    t.string   "student_id",             limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

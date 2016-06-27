@@ -5,7 +5,7 @@ FactoryGirl.define do
   sequence(:name) { |n| "David#{n}" }
   sequence(:firstname) { |n| "David#{n}" }
   sequence(:phone) { |n| "070#{n}606122" }
-  sequence(:stil_id) { |n| "tfy54dw#{n}" }
+  sequence(:student_id) { |n| "tfy54dw#{n}" }
   sequence(:title) { |n| "Titel#{n}" }
   sequence(:url) { |n| "url#{n}" }
   sequence(:username) { |n| "davidwessman#{n}" }

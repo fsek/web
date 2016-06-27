@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.feature 'Update account', type: :feature do
   scenario 'information' do
-    user = create(:user, stil_id: nil)
+    user = create(:user, student_id: nil)
     the_post = create(:post)
     create(:post_user, user: user, post: the_post)
 
@@ -9,7 +9,7 @@ RSpec.feature 'Update account', type: :feature do
     page.should have_http_status(200)
 
     select(the_post, from: 'user_first_post_id')
-    fill_in('user_stil_id', with: %(tfy#{Time.zone.now.year - 2000}ggg))
+    fill_in('user_student_id', with: %(tfy#{Time.zone.now.year - 2000}ggg))
     click_button('user-info-submit')
     page.should have_css('div.alert.alert-info')
 
@@ -17,7 +17,7 @@ RSpec.feature 'Update account', type: :feature do
     page.should have_http_status(200)
 
     user.reload
-    user.stil_id.should eq(%(tfy#{Time.zone.now.year - 2000}ggg))
+    user.student_id.should eq(%(tfy#{Time.zone.now.year - 2000}ggg))
   end
 
   scenario 'email' do
