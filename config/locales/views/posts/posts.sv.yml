@@ -1,5 +1,8 @@
 sv:
   posts:
+    show:
+      edit_post: Redigera post
+      edit_election: Redigera val
+
     post:
-      hide: Dölj
-      nominate: Nominera
+      candidates_for_post_closes: "%{post} kan sökas fram till %{date}."

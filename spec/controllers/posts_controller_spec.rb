@@ -10,22 +10,41 @@ RSpec.describe PostsController, type: :controller do
     allow(controller).to receive(:current_user) { user }
   end
 
-  describe 'PATCH #display' do
-    it 'sets variables' do
-      election = create(:election)
-      postt = create(:post)
+  describe 'GET #show' do
+    it 'sets election and post' do
+      election = create(:election, :autumn)
+      the_post = create(:post, :autumn)
 
-      xhr(:patch, :display, id: postt.to_param)
-      response.should be_success
-      assigns(:post).should eq(postt)
+      get(:show, id: the_post.to_param)
+      response.should have_http_status(200)
       assigns(:election).should eq(election)
+      assigns(:post).should eq(the_post)
+    end
+
+    it 'returns 404 if no election' do
+      Election.stub(:current) { nil }
+      the_post = create(:post)
+
+      get(:show, id: the_post.to_param)
+      response.should have_http_status(404)
+      response.should render_template('elections/no_election')
     end
   end
 
-  describe 'PATCH #collapse' do
-    it 'has valid response' do
-      xhr(:patch, :collapse)
-      response.should be_success
+  describe 'GET #modal' do
+    it 'renders modal' do
+      create(:election, :autumn)
+      the_post = create(:post, :autumn)
+
+      xhr(:get, :modal, id: the_post.to_param)
+      response.should have_http_status(200)
+    end
+
+    it 'renders error page' do
+      the_post = create(:post, :autumn)
+
+      xhr(:get, :modal, id: the_post.to_param)
+      response.should have_http_status(404)
     end
   end
 end

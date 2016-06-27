@@ -11,15 +11,17 @@
                                         [t("model.post.#{Post::BOARD}"), Post::BOARD],
                                         [t("model.post.#{Post::EDUCATION}"), Post::EDUCATION]],
                            include_blank: false,
-                           input_html: { class: 'select2' }) %>
+                           input_html: {class: 'select2'},
+                           wrapper_html: {class: 'inline half'}) %>
   <%= f.input(:semester, collection: [[t("model.post.semester.#{Post::AUTUMN}"), Post::AUTUMN],
                                       [t("model.post.semester.#{Post::SPRING}"), Post::SPRING],
                                       [t("model.post.semester.#{Post::BOTH}"), Post::BOTH],
                                       [t("model.post.semester.#{Post::OTHER}"), Post::OTHER]],
                          include_blank: false,
-                         input_html: { class: 'select2' }) %>
-  <%= f.input :rec_limit %>
-  <%= f.input :limit %>
+                         input_html: {class: 'select2'},
+                         wrapper_html: {class: 'inline half'}) %>
+  <%= f.input :rec_limit, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :limit, wrapper_html: {class: 'inline half'} %>
   <%= f.button :submit %>
 
   <% if post.persisted? %>
