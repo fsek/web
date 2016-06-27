@@ -1,5 +1,5 @@
 <div class="headline">
-  <h1><%= title(t('.title')) %></h1>
+  <h1><%= title(t('.title', election: @election_view.election.to_s)) %></h1>
 </div>
 
 <div class="col-md-2 col-sm-12">
@@ -8,29 +8,50 @@
 </div>
 
 <div class="col-md-10 col-sm-12 election">
-  <% if @candidate_view.all.any? %>
-    <div class="headline">
-      <h3><%= t('.you_have_candidated') %></h3>
-    </div>
-    <% @candidate_view.all.each do |candidate| %>
-      <div class="col-md-4 col-sm-6 col-xs-12 candidate">
-        <h4><%= candidate.post %></h4>
-        <ul class="list">
-          <li>
-            <%= Candidate.human_attribute_name(:count) %>:
-            <%= @candidate_view.election.candidate_count(candidate.post) %>
-          </li>
-          <li>
-            <%= Candidate.human_attribute_name(:closing) %>:
-            <%= l(@candidate_view.election.post_closing(candidate.post),
-                  format: :short) %>
-          </li>
-        </ul>
-        <%= link_to(t('.edit_candidate'), candidate_path(candidate),
-                                          class: 'btn secondary') %>
-      </div>
-    <% end %>
-  <% else %>
+  <%= simple_format(t('.cannot_change_post')) %>
+  <% if @election_view.grid.present? %>
+    <%= grid(@election_view.grid, html: {class: 'candidate grid'}) do |g|
+      g.row_attributes do |candidate|
+        if candidate.editable?
+          {class: 'editable'}
+        end
+      end
+
+      g.column(name: Post.human_attribute_name(:title), assoc: :post, filter: false,
+               attribute: 'title') do |candidate|
+        election_post_link(candidate.post)
+      end
+
+      g.column name: Candidate.human_attribute_name(:created_at), attribute: 'created_at',
+        filter: false do |candidate|
+        localized(candidate.created_at)
+      end
+
+      g.column(name: Post.human_attribute_name(:elected_by), assoc: :post,
+               attribute: 'elected_by', filter: false) do |candidate|
+        t("model.post.#{candidate.post.elected_by}")
+      end
+
+      g.column(name: Candidate.human_attribute_name(:editable_until)) do |candidate|
+        if candidate.editable?
+          localized(candidate.editable_until)
+        else
+          t('.no_longer_editable')
+        end
+      end
+
+      g.column(name: t('global.destroy')) do |candidate|
+        link_to(t('global.destroy'), candidate_path(candidate),
+                method: :delete,
+                class: 'btn danger super-small',
+                disabled: !candidate.editable?)
+      end
+    end -%>
+  <ul class="list">
+    <li><%= t('.normal_fields') %></li>
+    <li><%= t('.orange_fields') %></li>
+  </ul>
+<% else %>
     <h3><%= t('.no_candidates') %></h3>
-  <% end %>
+<% end %>
 </div>

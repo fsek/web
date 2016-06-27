@@ -2,9 +2,8 @@ require 'rails_helper'
 RSpec.feature 'Visit Election', type: :feature do
   scenario 'creates a candidate' do
     user = create(:user)
-    election = create(:election)
-    postt = create(:post, semester: Post::AUTUMN)
-    election.posts << postt
+    create(:election, :autumn)
+    postt = create(:post, :autumn)
 
     sign_in_as(user, path: candidates_path)
     find(:linkhref, new_candidate_path).click
