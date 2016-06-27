@@ -1,34 +1,31 @@
 require 'rails_helper'
 RSpec.feature 'Visit Election' do
-  scenario 'visits during election' do
-    postt = create(:post)
-    election = create(:election)
-    election.posts << postt
+  scenario 'visits election before_general' do
+    create(:post, :autumn)
+    election = create(:election, :before_general, :autumn)
 
     page.visit elections_path
-    page.status_code.should eq(200)
+    page.should have_http_status(200)
     page.should have_css('h1#election-title')
     find('h1#election-title').text.should include(election.title)
   end
 
-  scenario 'visits after election' do
-    postt = create(:post)
-    election = create(:election, end: 1.hour.ago)
-    election.posts << postt
+  scenario 'visits election after_general' do
+    create(:post, :autumn)
+    election = create(:election, :after_general, :autumn)
 
     page.visit elections_path
-    page.status_code.should eq(200)
+    page.should have_http_status(200)
     page.should have_css('h1#election-title')
     find('h1#election-title').text.should include(election.title)
   end
 
-  scenario 'visits after election is closed' do
-    postt = create(:post)
-    election = create(:election, end: 1.hour.ago, closing: 1.minute.ago)
-    election.posts << postt
+  scenario 'visits election closed' do
+    create(:post, :autumn)
+    election = create(:election, :closed, :autumn)
 
     page.visit elections_path
-    page.status_code.should eq(200)
+    page.should have_http_status(200)
     page.should have_css('h1#election-title')
     find('h1#election-title').text.should include(election.title)
   end

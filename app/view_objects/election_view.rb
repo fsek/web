@@ -1,5 +1,5 @@
 class ElectionView
-  attr_reader :election
+  attr_reader :election, :post_count
   attr_accessor :rest_grid, :grid, :candidate, :user, :nomination
 
   def initialize(election, candidate: nil)
@@ -39,5 +39,9 @@ class ElectionView
     if candidate.present? && candidate.post.present?
       election.post_closing(candidate.post)
     end
+  end
+
+  def post_count
+    @post_count ||= election.post_count
   end
 end

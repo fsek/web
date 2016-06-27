@@ -1,13 +1,25 @@
 <%= simple_form_for([:admin, election]) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :start, as: :datetime_picker %>
-  <%= f.input :end, as: :datetime_picker %>
-  <%= f.input :closing, as: :datetime_picker %>
-  <%= f.input :url %>
+  <%= f.input :title, wrapper_html: {class: 'inline third'} %>
+  <%= f.input :semester, collection: [[t("model.post.semester.#{Post::AUTUMN}"), Post::AUTUMN],
+                                      [t("model.post.semester.#{Post::SPRING}"), Post::SPRING],
+                                      [t("model.post.semester.#{Post::OTHER}"), Post::OTHER]],
+                         include_blank: false,
+                         input_html: {class: 'select2'},
+                         wrapper_html: {class: 'inline third'} %>
+  <%= f.input :url, wrapper_html: {class: 'inline third'} %>
+  <%= simple_format(t('.semester_hint_for_other')) %>
+  <%= f.input :open, as: :datetime_picker %>
+  <%= f.input :close_general, as: :datetime_picker %>
+  <%= f.input :close_all, as: :datetime_picker %>
   <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 } %>
-  <%= f.input :mail_styrelse_link %>
+  <%= f.input :board_mail_link %>
   <%= f.input :mail_link %>
   <%= f.input :visible %>
+  <% if election.semester == Post::OTHER %>
+    <%= f.association :extra_posts, collection: Post.by_title,
+                                    include_blank: false,
+                                    input_html: {class: 'select2_tags'} %>
+  <% end %>
   <%= f.button :submit %>
 
   <% if election.persisted? %>
@@ -21,9 +33,7 @@
                   method: :delete) %>
     <% end %>
   <% end %>
-  <% if @posts %>
-    <%= f.association :posts, collection: @posts,
-                              input_html: { multiple: true },
-                              as: :check_boxes %>
-  <% end %>
+
+  <hr>
+  <%= render '/admin/posts/post_grid', post_grid: @post_grid %>
 <% end %>

@@ -1,9 +1,8 @@
 <div class="col-md-10 col-md-offset-1 col-xs-12 reg-page">
   <div class="headline">
-    <h2><%= title(t('.title')) %></h2>
+    <h1><%= title(t('.title')) %></h1>
   </div>
   <%= render 'form', election: @election %>
   <hr>
   <%= link_to t('.all_elections'), admin_elections_path, class: 'btn secondary' %><br>
 </div>
-

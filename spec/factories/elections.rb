@@ -1,38 +1,51 @@
 FactoryGirl.define do
-  factory :election do |election|
+  factory :election do
     title
     url
-    start { Time.zone.now - 2.days }
-    election.end { Time.zone.now + 5.days }
-    closing { Time.zone.now + 7.days }
+    open { 2.days.ago }
+    close_general { 5.days.from_now }
+    close_all { 7.days.from_now }
     visible true
     description
     candidate_mail_star { generate(:email) }
     mail_link { generate(:email) }
-    mail_styrelse_link { generate(:email) }
+    board_mail_link { generate(:email) }
+    semester { [Post::AUTUMN, Post::SPRING].sample }
 
-    trait :before do |el|
-      start { Time.zone.now + 2.days }
-      el.end { Time.zone.now + 5.days }
-      closing { Time.zone.now + 7.days }
+    trait :not_opened do
+      open { 2.days.from_now }
+      close_general { 5.days.from_now }
+      close_all { 7.days.from_now }
     end
 
-    trait :during do |el|
-      start { Time.zone.now - 2.days }
-      el.end { Time.zone.now + 5.days }
-      closing { Time.zone.now + 7.days }
+    trait :before_general do
+      open { 2.days.ago }
+      close_general { 5.days.from_now }
+      close_all { 7.days.from_now }
     end
 
-    trait :after do |el|
-      start { Time.zone.now - 5.days }
-      el.end { Time.zone.now - 1.days }
-      closing { Time.zone.now + 7.days }
+    trait :after_general do
+      open { 5.days.ago }
+      close_general { 1.days.ago }
+      close_all { 7.days.from_now }
     end
 
-    trait :closed do |el|
-      start { Time.zone.now - 7.days }
-      el.end { Time.zone.now - 5.days }
-      closing { Time.zone.now - 2.days }
+    trait :closed do
+      open { 7.days.ago }
+      close_general { 5.days.ago }
+      close_all { 2.days.ago }
+    end
+
+    trait :autumn do
+      semester Post::AUTUMN
+    end
+
+    trait :spring do
+      semester Post::SPRING
+    end
+
+    trait :other do
+      semester Post::OTHER
     end
   end
 end

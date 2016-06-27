@@ -37,14 +37,14 @@ RSpec.describe ElectionService do
   describe '#destroy_candidate' do
     it 'destroys candidate if editable' do
       candidate = create(:candidate)
-      candidate.stub(:editable?) { true }
+      candidate.stub(:editable?).and_return(true)
 
       ElectionService.destroy_candidate(candidate).should be_truthy
     end
 
     it 'does not destroy candidate if not editable' do
       candidate = create(:candidate)
-      candidate.stub(:editable?) { false }
+      candidate.stub(:editable?).and_return(false)
 
       ElectionService.destroy_candidate(candidate).should be_falsey
     end

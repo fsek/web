@@ -1,28 +1,41 @@
 # encoding: UTF-8
 class Election < ActiveRecord::Base
   has_many :nominations, dependent: :destroy
-  has_many :candidates, dependent: :destroy
-  has_and_belongs_to_many :posts
+  has_many :candidates, dependent: :destroy, inverse_of: :election
+  has_many :election_posts, dependent: :destroy
+  has_many :extra_posts, class_name: Post, through: :election_posts, source: :post
 
   validates :url, uniqueness: true,
                   presence: true,
                   format: { with: /\A[a-z0-9_-]+\z/ }
 
-  validates :start, :end, :closing, presence: true
+  validates :title, :open, :close_general, :close_all, :semester, presence: true
 
   def self.current
-    self.order(start: :asc).where(visible: true).first || nil
+    order(open: :asc).where(visible: true).first || nil
   end
 
-  # Returns current status
+  def posts
+    case semester
+    when Post::AUTUMN
+      Post.autumn.by_title
+    when Post::SPRING
+      Post.spring.by_title
+    when Post::OTHER
+      extra_posts.by_title
+    else
+      Post.none
+    end
+  end
+
   def state
     t = Time.zone.now
-    if t < start
-      return :before
-    elsif t >= start && t < self.end
-      return :during
-    elsif t < closing
-      return :after
+    if t < open
+      return :not_opened
+    elsif t >= open && t < close_general
+      return :before_general
+    elsif t < close_all
+      return :after_general
     else
       return :closed
     end
@@ -30,55 +43,50 @@ class Election < ActiveRecord::Base
 
   # Returns the current posts
   def current_posts
-    if state == :after
-      posts.not_general
-    else
+    case state
+    when :not_opened, :before_general
       posts
+    when :after_general
+      posts.not_general
+    when :closed
+      Post.none
+    end
+  end
+
+  def searchable_posts
+    if state == :before_general || state == :after_general
+      current_posts
+    else
+      Post.none
     end
   end
 
   def after_posts
-    state == :after ? posts.general : nil
+    state == :after_general ? posts.general : Post.none
   end
 
   # Returns the start_date if before, the end_date if during and none if after.
   def countdown
     case state
-    when :before
-      start
-    when :during
-      self.end
-    when :after
-      closing || nil
+    when :not_opened
+      open
+    when :before_general
+      close_general
+    when :after_general
+      close_all
     end
   end
 
   def post_closing(post)
-    if post.present?
-      if post.elected_by == Post::GENERAL
-        self.end
-      else
-        closing
-      end
-    end
-  end
-
-  def candidate_count(post)
-    if post.present?
-      candidates.where(post_id: post.id).count
+    if post.elected_by == Post::GENERAL
+      close_general
     else
-      0
+      close_all
     end
   end
 
-  def can_candidate?(post)
-    if post.elected_by == Post::GENERAL && state == :during
-      return true
-    elsif post.elected_by != Post::GENERAL && state != :before
-      return true
-    end
-
-    false
+  def post_count
+    candidates.joins(:post).group('posts.id').size.to_h
   end
 
   def to_param
@@ -86,6 +94,6 @@ class Election < ActiveRecord::Base
   end
 
   def to_s
-    title || url
+    title || id
   end
 end

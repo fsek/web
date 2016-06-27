@@ -6,20 +6,18 @@ sv:
       election: Val
     attributes:
       election:
+        board_mail_link: Länk i kandideringsmail för styrelsepost
         candidate_mail: Text till kandideringsmail
         candidate_mail_star: Text till kandideringsmail för stjärnpost
-        closing: Stänger - allt
+        close_all: Stänger - allt
         current_election: Aktuellt val
         description: Beskrivning
-        end: Stänger - inför sektionsmöte
-        extra_text: Extra text
+        extra_posts: Poster vid ej ordinarie möte
         mail_link: Länk i kandideringsmail
-        mail_styrelse_link: Länk i kandideringsmail för styrelsepost
         nominate_mail: Text till nomineringsmail
-        start: Öppnar
-        text_after: Text efter valet
-        text_before: Text före valet
-        text_during: Text under valet
+        semester: Termin
+        open: Öppnar
+        close_general: Stänger - inför sektionsmöte
         title: Titel
         updated_at: Uppdaterad
         url: Url

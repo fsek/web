@@ -3,22 +3,24 @@ class Admin::ElectionsController < Admin::BaseController
   load_permissions_and_authorize_resource find_by: :url
 
   def new
-    @posts = Post.by_title
+    @election = Election.new
   end
 
   def show
-    @posts = Post.by_title
+    @election = Election.find_by_url!(params[:id])
+    @post_grid = initialize_grid(@election.posts, include: :council)
   end
 
   def edit
-    @posts = Post.by_title
+    @election = Election.find_by_url!(params[:id])
   end
 
   def index
-    @elections = Election.order(start: :desc)
+    @grid = initialize_grid(Election, order: :open)
   end
 
   def create
+    @election = Election.new(election_params)
     if @election.save
       redirect_to admin_election_path(@election), notice: alert_create(Election)
     else
@@ -27,6 +29,7 @@ class Admin::ElectionsController < Admin::BaseController
   end
 
   def update
+    @election = Election.find_by_url!(params[:id])
     if @election.update(election_params)
       redirect_to admin_election_path(@election), notice: alert_update(Election)
     else
@@ -35,7 +38,8 @@ class Admin::ElectionsController < Admin::BaseController
   end
 
   def destroy
-    @election.destroy!
+    election = Election.find_by_url!(params[:id])
+    election.destroy!
     redirect_to admin_elections_path, notice: alert_destroy(Election)
   end
 
@@ -54,9 +58,9 @@ class Admin::ElectionsController < Admin::BaseController
   private
 
   def election_params
-    params.require(:election).permit(:title, :description, :start, :end, :closing, :url,
-                                   :visible, :mail_link, :mail_styrelse_link, :text_before,
-                                   :text_during, :text_after, :nominate_mail, :candidate_mail,
-                                   :extra_text, :candidate_mail_star, post_ids: [])
+    params.require(:election).permit(:title, :description, :open, :close_general, :close_all,
+                                     :url, :visible, :mail_link, :board_mail_link,
+                                     :nominate_mail, :candidate_mail, :semester,
+                                     :candidate_mail_star, extra_post_ids: [])
   end
 end

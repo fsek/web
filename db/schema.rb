@@ -82,19 +82,14 @@ ActiveRecord::Schema.define(version: 20160629204225) do
   create_table "candidates", force: :cascade do |t|
     t.integer  "post_id",     limit: 4
     t.integer  "election_id", limit: 4
-    t.text     "motivation",  limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "stil_id",     limit: 255
-    t.string   "email",       limit: 255
-    t.string   "phone",       limit: 255
-    t.string   "name",        limit: 255
-    t.string   "lastname",    limit: 255
     t.integer  "user_id",     limit: 4
-    t.string   "firstname",   limit: 255
   end
 
+  add_index "candidates", ["election_id"], name: "index_candidates_on_election_id", using: :btree
   add_index "candidates", ["post_id"], name: "index_candidates_on_post_id", using: :btree
+  add_index "candidates", ["user_id"], name: "index_candidates_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "title",      limit: 255, null: false
@@ -185,9 +180,19 @@ ActiveRecord::Schema.define(version: 20160629204225) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "election_posts", force: :cascade do |t|
+    t.integer  "election_id", limit: 4
+    t.integer  "post_id",     limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "election_posts", ["election_id"], name: "index_election_posts_on_election_id", using: :btree
+  add_index "election_posts", ["post_id"], name: "index_election_posts_on_post_id", using: :btree
+
   create_table "elections", force: :cascade do |t|
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "open"
+    t.datetime "close_general"
     t.boolean  "visible"
     t.string   "url",                 limit: 255
     t.string   "title",               limit: 255
@@ -196,14 +201,11 @@ ActiveRecord::Schema.define(version: 20160629204225) do
     t.datetime "updated_at"
     t.text     "candidate_mail",      limit: 65535
     t.text     "nominate_mail",       limit: 65535
-    t.text     "text_before",         limit: 65535
-    t.text     "text_during",         limit: 65535
-    t.text     "text_after",          limit: 65535
-    t.text     "extra_text",          limit: 65535
     t.text     "candidate_mail_star", limit: 65535
     t.string   "mail_link",           limit: 255
-    t.string   "mail_styrelse_link",  limit: 255
-    t.datetime "closing"
+    t.string   "board_mail_link",     limit: 255
+    t.datetime "close_all"
+    t.string   "semester",            limit: 255,   default: "spring"
   end
 
   create_table "elections_posts", id: false, force: :cascade do |t|
@@ -632,7 +634,12 @@ ActiveRecord::Schema.define(version: 20160629204225) do
 
   add_foreign_key "accesses", "doors"
   add_foreign_key "accesses", "posts"
+  add_foreign_key "candidates", "elections"
+  add_foreign_key "candidates", "posts"
+  add_foreign_key "candidates", "users"
   add_foreign_key "categorizations", "categories"
+  add_foreign_key "election_posts", "elections"
+  add_foreign_key "election_posts", "posts"
   add_foreign_key "menus", "main_menus"
   add_foreign_key "page_images", "pages"
 end

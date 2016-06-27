@@ -6,15 +6,18 @@ class ElectionsController < ApplicationController
 
     if election.present?
       @election_view = ElectionView.new(election)
-      @election_view.grid = initialize_grid(election.current_posts)
-      if election.state == :after && election.after_posts.present?
+      @election_view.grid = initialize_grid(election.current_posts,
+                                            include: :council,
+                                            name: :main)
+      @count = election.post_count
+
+      if election.after_posts.any?
         @election_view.rest_grid = initialize_grid(election.after_posts,
-                                                   name: 'rest',
                                                    include: :council,
-                                                   order: 'title')
+                                                   name: :rest)
       end
     else
-      render '/elections/no_election', status: 422
+      render '/elections/no_election', status: 404
     end
   end
 end
