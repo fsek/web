@@ -11,11 +11,15 @@ module ElectionService
   end
 
   def self.destroy_candidate(candidate)
-    if candidate.editable?
-      candidate.destroy!
+    candidate.editable? && candidate.destroy
+  end
+
+  def self.create_nomination(nomination)
+    if nomination.save
+      ElectionMailer.nominate_email(nomination).deliver_now
       true
     else
-      return false
+      false
     end
   end
 end

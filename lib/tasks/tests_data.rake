@@ -35,7 +35,6 @@ namespace :db do
     nyckelpiga = Post.find_or_create_by!(title: 'Nyckelpiga', limit: 0, rec_limit: 10,
                                          description: 'Nyckelpigan!', council: cafem, elected_by: Post::BOARD, semester: Post::BOTH)
 
-
     # Set president!
     pryl.update(president: prylmast)
     sexm.update(president: sexmast)
@@ -124,14 +123,12 @@ namespace :db do
 
     # Election
     election = Election.find_or_initialize_by(title: 'Vårterminsmöte',
-                                              url: 'vt-15', visible: true )
-    election.update!(start: 2.days.ago,
-                     end: 5.days.from_now,
-                     closing: 7.days.from_now)
-    Post.all do |posten|
-      election.posts << posten
-    end
-    election.save!
+                                              url: 'vt-15',
+                                              visible: true,
+                                              semester: Post::SPRING)
+    election.update!(open: 2.days.ago,
+                     close_general: 5.days.from_now,
+                     close_all: 10.days.from_now)
 
     # Contact
     Contact.find_or_create_by(name: 'Spindelman', email: 'spindelman@fsektionen.se',

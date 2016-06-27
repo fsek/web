@@ -1,0 +1,5 @@
+sv:
+  helper:
+    election:
+      new_candidate: Kandidera
+      new_nomination: Nominera

@@ -21,7 +21,7 @@ RSpec.describe Ability do
     PageElement.new => { yes: [], no: standard },
     Page.new(visible: true) => { yes: [:show], no: [:index, :new, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
-    Post.new => { yes: [:collapse, :display], no: [:standard] },
+    Post.new => { yes: [:show, :modal], no: [:standard] },
     Rent.new => { yes: [:index], no: [:create, :update, :destroy] },
     WorkPost.new => { no: [:create, :update, :destroy], yes: [:index, :show] },
     static_pages: { yes: [:index,
@@ -50,7 +50,7 @@ RSpec.describe Ability do
     PageElement.new => { yes: [], no: standard },
     Page.new(visible: true) => { yes: [:show], no: [:new, :index, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
-    Post.new => { yes: [:collapse, :display], no: [:standard] },
+    Post.new => { yes: [:show, :modal], no: [:standard] },
     Rent.new => { yes: [:index], no: [:overview, :create] }
   }
 
@@ -71,7 +71,7 @@ RSpec.describe Ability do
     PageElement.new => { yes: [], no: standard },
     Page.new(visible: true) => { yes: [:show], no: [:index, :new, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
-    Post.new => { yes: [:collapse, :display], no: [:standard] },
+    Post.new => { yes: [:show, :modal], no: [:standard] },
     Rent.new => { yes: [:show, :overview, :create, :index], no: [:update, :destroy] },
   }
 
@@ -128,7 +128,7 @@ RSpec.describe Ability do
     # Extra cases which cannot be covered in loop
     it { member_ability.should have_abilities([:show, :update, :destroy], Rent.new(user: member)) }
     it do
-      member_ability.should have_abilities([:update, :show, :destroy],
+      member_ability.should have_abilities([:destroy],
                                            Candidate.new(user: member))
     end
   end

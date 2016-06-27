@@ -9,7 +9,7 @@ class Ability
     can :read, [Council, Election, News, WorkPost]
     can :read, Document, public: true
     can [:mail, :read], Contact, public: true
-    can [:collapse, :display], Post
+    can [:modal, :show], Post
     can [:new, :create, :read], Faq
     can [:index, :feed], CafeShift
     can [:index, :competition], :cafe
@@ -48,8 +48,8 @@ class Ability
       can [:read, :mail], Contact
       can :read, Document
 
-      can [:create, :index], Candidate
-      can [:update, :show, :destroy], Candidate, user_id: user.id
+      can [:create, :index, :new], Candidate
+      can [:destroy], Candidate, user_id: user.id
       can [:create], Nomination
       can :show, Page, visible: true
     end

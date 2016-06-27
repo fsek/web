@@ -193,7 +193,7 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :elections, path: :val do
         get :nominations, path: :nomineringar, on: :member
-        get :candidates, path: :kandideringar, on: :member, except: [:update]
+        get :candidates, path: :kandideringar, on: :member, except: [:update, :show]
       end
     end
 
@@ -205,6 +205,9 @@ Fsek::Application.routes.draw do
         end
         resources :candidates, controller: 'elections/candidates',
                                path: :kandidera, except: :edit
+        resources :posts, path: :poster, only: :show do
+          get :modal, on: :member
+        end
       end
     end
 
