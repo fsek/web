@@ -1,11 +1,12 @@
 sv:
   model:
     user:
+      account_updated: Kontoinställningar uppdaterades
       attributes_missing: du måste fylla i dina användaruppgifter
       edit_information: Redigera användaruppgifter
-      account_updated: Kontoinställningar uppdaterades
-      password_updated: Lösenordet uppdaterades.
       password_required: Lösenord måste fyllas i för att ändra uppgifter
+      password_updated: Lösenordet uppdaterades.
+      recaptcha_error: Något blev fel med recaptcha, vänligen fyll i igen.
 
   activerecord:
     models:

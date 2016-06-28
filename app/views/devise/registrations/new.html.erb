@@ -3,12 +3,22 @@
     <h2><%= t('devise.sign_up') %></h2>
   </div>
   <%= simple_form_for(resource, as: resource_name,
-                      url: registration_path(resource_name)) do |f| %>
-    <%= f.input :firstname %>
-    <%= f.input :lastname %>
+                                url: registration_path(resource_name)) do |f| %>
+    <%= f.input :firstname, wrapper_html: {class: 'inline half'} %>
+    <%= f.input :lastname, wrapper_html: {class: 'inline half'} %>
     <%= f.input :email, required: true %>
     <%= f.input :password, required: true %>
     <%= f.input :password_confirmation, required: true %>
+
+    <div class="form-group <%= "has-error" if resource.errors[:recaptcha] %>">
+        <%= recaptcha_tags %>
+        <% if resource.errors[:recaptcha] %>
+          <span class="help-block">
+            <%= resource.errors[:recaptcha].to_sentence %>
+          </span>
+        <% end %>
+    </div>
+
     <%= f.button :submit, id: 'user-submit' %>
     <hr>
     <%= render 'devise/shared/links' %>

@@ -18,7 +18,7 @@ Fsek::Application.routes.draw do
   devise_for :users, skip: [:sessions, :registrations]
   devise_scope :user do
     get 'avbryt_reg' => 'devise/registrations#cancel', as: :cancel_user_registration
-    post 'anvandare/skapa' => 'devise/registrations#create', as: :user_registration
+    post 'anvandare/skapa' => 'registrations#create', as: :user_registration
     get 'anvandare/registrera' => 'devise/registrations#new', as: :new_user_registration
 
     #sessions
