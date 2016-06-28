@@ -31,6 +31,7 @@ gem 'mysql2', '~> 0.3.20' # Rails 4 compatibility
 gem 'paperclip'
 gem 'pagedown-bootstrap-rails'
 gem 'prawn-rails'
+gem 'recaptcha', require: 'recaptcha/rails'
 gem 'redcarpet'
 gem 'rollbar'
 gem 'routing-filter', '~> 0.5.1'
