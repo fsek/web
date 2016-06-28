@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Image < ActiveRecord::Base
-  belongs_to :album
+  belongs_to :album, inverse_of: :images
   belongs_to :photographer, class_name: User
   scope :filename, -> { order(:filename) }
   mount_uploader :file, ImageUploader

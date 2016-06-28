@@ -4,7 +4,7 @@ class Admin::Gallery::AlbumsController < Admin::BaseController
   load_and_authorize_resource :image, through: :album
 
   def index
-    @albums = Album.start_date
+    @albums = Album.by_start
   end
 
   def show
@@ -23,7 +23,7 @@ class Admin::Gallery::AlbumsController < Admin::BaseController
   end
 
   def destroy
-    @album.destroy
+    @album.destroy!
     redirect_to admin_gallery_albums_path, notice: alert_destroy(Album)
   end
 
@@ -39,8 +39,10 @@ class Admin::Gallery::AlbumsController < Admin::BaseController
   end
 
   def destroy_images
-    @album.images.destroy_all
-    redirect_to(admin_gallery_album_path(@album),
+    album = Album.find(params[:id])
+    album.images.destroy_all
+
+    redirect_to(admin_gallery_album_path(album),
                 notice: alert_destroy(Image))
   end
 
