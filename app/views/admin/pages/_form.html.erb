@@ -1,5 +1,6 @@
 <%= simple_form_for([:admin, page]) do |f| %>
-  <%= f.input :title %>
+  <%= f.input :title_sv, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>
   <%= f.input :url %>
   <%= f.input :namespace, collection: Page.namespaces, input_html: { class: 'select2_tags' },
               include_blank: false %>

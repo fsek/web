@@ -14,6 +14,10 @@ class Page < ActiveRecord::Base
                                   allow_blank: true,
                                   message: I18n.t('model.page.namespace_format') }
 
+  translates(:title)
+  globalize_accessors(locales: [:en, :sv],
+                      attributes: [:title])
+
   scope :publik, -> { where(public: true) }
   scope :visible, -> { where(visible: true) }
   attr_accessor :image_upload

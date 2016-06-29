@@ -11,13 +11,17 @@ sv:
     attributes:
       page_element:
         created_at: Skapad
-        index: Visningsindex
+        element_type: Sort
         headline: Rubrik
+        headline_en: Rubrik - engelsk
+        headline_sv: Rubrik - svensk
+        index: Visningsindex
         page: Sida
+        page_image: Bild
         picture: Bild
         sidebar: Sidofält
         text: Text
+        text_en: Text - engelsk
+        text_sv: Text - svensk
         updated_at: Uppdaterad
         visible: Synlig
-        element_type: Sort
-        page_image: Bild

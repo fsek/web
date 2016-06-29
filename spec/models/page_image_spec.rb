@@ -7,7 +7,7 @@ RSpec.describe PageImage, type: :model do
 
   describe 'ActiveRecord associations' do
     it 'validates image and page_id present' do
-      PageImage.new.should validate_presence_of(:page_id)
+      PageImage.new.should validate_presence_of(:page)
       PageImage.new.should validate_presence_of(:image)
     end
   end

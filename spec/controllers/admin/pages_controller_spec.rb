@@ -19,9 +19,9 @@ RSpec.describe Admin::PagesController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns pages sorted as @pages' do
-      create(:page, title: 'First')
-      create(:page, title: 'Third')
-      create(:page, title: 'Second')
+      create(:page, title_sv: 'First')
+      create(:page, title_sv: 'Third')
+      create(:page, title_sv: 'Second')
       get(:index)
 
       response.should be_success
@@ -30,11 +30,11 @@ RSpec.describe Admin::PagesController, type: :controller do
 
   describe 'POST #create' do
     it 'valid params' do
-      attributes = {}
-      attributes[:title] = 'Projekt'
-      attributes[:url] = 'projekt-url'
-      attributes[:public] = true
-      attributes[:visible] = true
+      attributes = { title_sv: 'Projekt',
+                     title_en: 'Project',
+                     url: 'projekt-url',
+                     public: true,
+                     visible: true }
 
       lambda do
         post :create, page: attributes
@@ -44,9 +44,7 @@ RSpec.describe Admin::PagesController, type: :controller do
     end
 
     it 'invalid params' do
-      attributes = {}
-      attributes[:title] = 'Projekt'
-      attributes[:url] = ''
+      attributes = { title_sv: 'Projekt', url: '' }
       lambda do
         post :create, page: attributes
       end.should change(Page, :count).by(0)

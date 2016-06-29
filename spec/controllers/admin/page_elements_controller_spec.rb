@@ -49,9 +49,10 @@ RSpec.describe Admin::PageElementsController, type: :controller do
   describe 'POST #create' do
     it 'valid params' do
       page = create(:page)
-      attributes = { name: 'About',
-                     text: '## Remember remember',
-                     element_type: 'text',
+      attributes = { header_sv: 'About',
+                     text_sv: '## Kom ihåg mig',
+                     text_en: '## Remember remember',
+                     element_type: PageElement::TEXT,
                      visible: true,
                      index: 10 }
 
@@ -64,7 +65,7 @@ RSpec.describe Admin::PageElementsController, type: :controller do
 
     it 'invalid params' do
       page = create(:page)
-      attributes = { name: 'About',
+      attributes = { header: 'About',
                      element_type: '' }
 
       lambda do
@@ -79,13 +80,15 @@ RSpec.describe Admin::PageElementsController, type: :controller do
   describe 'PATCH #update' do
     it 'update page_element' do
       page = create(:page)
-      element = create(:page_element, page: page, headline: 'About')
+      element = create(:page_element, page: page,
+                                      headline_sv: 'Om',
+                                      headline_en: 'About')
 
       patch(:update, page_id: page.to_param, id: element.to_param,
-                     page_element: { headline: 'Not about' })
+                     page_element: { headline_sv: 'Inte om' })
 
       element.reload
-      element.headline.should eq('Not about')
+      element.headline.should eq('Inte om')
       response.should redirect_to(edit_admin_page_page_element_path(page, element))
     end
 

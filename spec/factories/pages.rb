@@ -3,7 +3,8 @@ FactoryGirl.define do
   factory :page do
     url
     visible { true }
-    title
+    title_sv { generate(:title) }
+    title_en { "English #{title_sv}" }
     public true
 
     factory :page_with_elements do
