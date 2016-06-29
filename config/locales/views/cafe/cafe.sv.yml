@@ -2,10 +2,16 @@ sv:
   cafe:
     competition:
       chosen_study_period: Vald läsperiod
+      description: I sektionens café sker varje termin en tävling i vem som arbetar flest pass - här kan ni se hur det ligger till.
       first_free_shift: Första lediga passet
       free_shifts: Lediga pass
       highscore: Topplista
       highscore_missing: Inga registrerade pass
+      keywords:
+        - Hilbert Café
+        - tävling
+        - caféfesten
+        - kleta mackor
       other_lps: Andra läsperioder
       other_years: Andra år
       shifts_worked: Arbetade pass
@@ -16,7 +22,15 @@ sv:
     index:
       admin: Administrera
       competition: Tävling
+      description: Hilbert Café är F-sektionens studentdrivna café, här säljs billigt kaffe, mackor och sallader.
       green_shift: Grön färg innebär att du jobbar.
+      keywords:
+        - café
+        - mattehuset
+        - kaffe
+        - mackor
+        - baguette
+        - sallad
       ladybug: Nyckelpiga
       orange_shift: Orange färg innebär att passet redan har en jobbare.
       title: Hilbert Café
