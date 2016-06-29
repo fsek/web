@@ -11,6 +11,11 @@ sv:
 
     index:
       ask_question: Ställ ny fråga
+      description: Sektionen har en bil till medlemmars förfogande, bokning sker via denna sida.
+      keywords:
+        - bil
+        - flytta
+        - köra bil
       new_rent: Ny bokning
       overview: Översikt
       terms: Bokningsavtal
