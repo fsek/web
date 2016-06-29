@@ -1,5 +1,11 @@
 sv:
   calendars:
     index:
+      description: Sektionen anordnar många evenemang och dessa kan ses i sektionens kalender. Det går enkelt att prenumerera på evenemangen för att t.ex. lägga in det i din telefon.
+      keywords:
+        - evenemang
+        - sitting
+        - kalender
+        - prenumerera
       subscription: Kalenderprenumeration
       title: Kalender
