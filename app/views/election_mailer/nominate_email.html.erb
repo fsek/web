@@ -1,18 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h3><%= t('election_mailer.hello', name: @nomination.name) %></h3>
-    <p><%= "#{t('.you_have_been_nominated')}: #{@nomination.post}." %></p>
+<% provide(:title, @nomination.election.to_s) %>
 
-    <% if @nomination.motivation.present? %>
-      <p>
-        <%= t('.with_motivation') %>:<br>
-        <%= simple_format(@nomination.motivation) %>
-      <p>
-    <% end %>
+<%= content_for(:greeting) do %>
+  <h3><%= t('election_mailer.hello', name: @nomination.name) %></h3>
+<% end %>
+
+<%= content_for(:main_content) do %>
+  <p><%= "#{t('.you_have_been_nominated')}: #{@nomination.post}." %></p>
+
+  <% if @nomination.motivation.present? %>
+    <p>
+    <%= t('.with_motivation') %>:<br>
+    <%= simple_format(@nomination.motivation) %>
+    <p>
+  <% end %>
 
   <%= markdown(@nomination.election.nominate_mail)%>
 
@@ -21,7 +21,8 @@
   <p><%= t('.via_web') %>:<br>
 
   <%= link_to(@nomination.candidate_url, @nomination.candidate_url) %>
+<% end %>
 
+<%= content_for(:bottom_signature) do %>
   <%= simple_format(t('.sincerely')) %>
-  </body>
-</html>
+<% end %>

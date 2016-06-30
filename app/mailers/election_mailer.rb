@@ -2,6 +2,7 @@
 class ElectionMailer < ActionMailer::Base
   helper MarkdownHelper, ElectionMailerHelper
   default from: 'Valberedningen <valb@fsektionen.se>'
+  layout('email')
   include MessageIdentifier
 
   def nominate_email(nomination)
@@ -19,5 +20,4 @@ class ElectionMailer < ActionMailer::Base
            subject: I18n.t('election_mailer.candidate_email.subject_candidated'))
     end
   end
-
 end

@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1><%= t('.hello', user: @user.to_s) %></h1>
-    <%= simple_format(t('.registered')) %>
-    <%= simple_format(t('.before_starting')) %>
+<% provide(:title, t('.welcome')) %>
 
-    <p>
-      <%= link_to(t('.please_confirm'), user_confirmation_url(confirmation_token: @token)) %>
-    </p>
+<%= content_for(:greeting) do %>
+  <h1><%= t('.hello', user: @user.to_s) %></h1>
+<% end %>
 
-    <%= simple_format(t('.enjoy')) %>
-    <%= simple_format(t('.problem')) %>
-  </body>
-</html>
+<%= content_for(:main_content) do %>
+  <%= simple_format(t('.registered')) %>
+  <%= simple_format(t('.before_starting')) %>
+
+  <p>
+    <%= link_to(t('.please_confirm'), user_confirmation_url(confirmation_token: @token)) %>
+  </p>
+<% end %>
+
+<%= content_for(:bottom_signature) do %>
+  <%= simple_format(t('.enjoy')) %>
+  <%= simple_format(t('.problem')) %>
+<% end %>

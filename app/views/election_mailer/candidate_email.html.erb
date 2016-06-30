@@ -1,25 +1,26 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h3><%= t('election_mailer.hello', name: @candidate.user) %></h3>
-    <p><%= "#{t('.you_have_candidated')} #{@candidate.post}." %></p>
+<% provide(:title, @candidate.election.to_s) %>
 
-    <% if @candidate.post.elected_by == Post::GENERAL %>
-        <%= markdown(@candidate.election.candidate_mail) %>
-        <%= candidate_mail_link_html(@candidate) %>
-    <% else %>
-      <%= markdown(@candidate.election.candidate_mail_star) %>
-    <% end %>
-    <p>
-      <%= t('.election_closes_at',
-            date: l(@candidate.election.post_closing(@candidate.post))) %>
+<%= content_for(:greeting) do %>
+  <h2><%= t('election_mailer.hello', name: @candidate.user) %></h2>
+<% end %>
+
+<%= content_for(:main_content) do %>
+  <p><%= "#{t('.you_have_candidated')} #{@candidate.post}." %></p>
+
+  <% if @candidate.post.elected_by == Post::GENERAL %>
+    <%= markdown(@candidate.election.candidate_mail) %>
+    <%= candidate_mail_link_html(@candidate) %>
+  <% else %>
+    <%= markdown(@candidate.election.candidate_mail_star) %>
+  <% end %>
+  <p>
+  <%= t('.election_closes_at',
+        date: l(@candidate.election.post_closing(@candidate.post))) %>
       <br>
       <%= link_to(@candidate.p_url, @candidate.p_url) %>
-    </p>
+  </p>
+<% end %>
 
-    <%= simple_format(t('.sincerely')) %>
-  </body>
-</html>
+<% content_for(:bottom_signature) do %>
+  <%= simple_format(t('.sincerely')) %>
+<% end %>
