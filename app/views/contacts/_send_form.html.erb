@@ -3,5 +3,13 @@
   <%= f.input :name, required: true %>
   <%= f.input :email, required: true %>
   <%= f.input :message, as: :text %>
+  <div class="form-group <%= "has-error" if contact.errors[:recaptcha] %>">
+    <%= recaptcha_tags %>
+    <% if contact.errors[:recaptcha] %>
+      <span class="help-block">
+        <%= contact.errors[:recaptcha].to_sentence %>
+      </span>
+    <% end %>
+  </div>
   <%= f.button :submit, t('.submit') %>
 <% end %>
