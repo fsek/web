@@ -2,9 +2,15 @@ sv:
   static_pages:
     company_about:
       contact_if_interested: Är Ni intresserade av att få mer information om utbildingarna , F-sektionen och våra medlemmar, ser vi med glädje fram emot att Ni kontaktar oss via följande länk.
+      description: F-sektionen värnar om att skapa kontakt mellan våra medlemmar och näringslivet.
       first: I dagsläget har vi ungefär 950 medlemmar. Medlemmarna är talangfulla civilingenjörsstudenter från de högt ansedda civilingenjörsutbildningarna Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap.
       fourth: Ett möte med oss är en perfekt möjlighet för Er som företag, att handplocka just de studenterna som passar in på Ert företags profil.
       headline: Om F-sektionen
+      keywords:
+        - näringsliv
+        - företag
+        - lunchföreläsning
+        - case
       offer: Vill Ni läsa mer om våra erbjudande? Följ nedanstående länk.
       second: Våra studenter utbildar sig främst inom generell, teknisk problemlösning med en bred och varierande bas i en eller ett par av områdena fysik, matematik, elektroteknik, medicin, materialteknik samt system- och datavetenskap. Detta ger dem ett stort försprång i att sätta sig in i nya problem, något som är väldigt värdefullt för mångsidiga organisationer och företag som värderar ombytliga medarbetare.
       third: F-sektionen jobbar kontinuerligt för att skapa kontakt mellan våra medlemmar och näringslivet, detta för att ge studenterna de bäst tänkbara möjligheterna både under och efter studietiden. Vi vill att Ni som företag får chansen att möta våra blivande civilingenjörer med högklassiga analytiska och problemlösande kompetenser.
@@ -22,11 +28,16 @@ sv:
       specializations: Specialiseringar
 
     company_offer:
+      description: F-sektionen anordnar gärna kvällsevenemang, lunchföreläsningar och case-evenemang tillsammans med företag.
       evening: Kvällsevenemang
       evening_first: Under en helkväll får ni tillfälle att, i en lugn och avslappnad atmosfär, träffa våra studenter. Här finns möjlighet att ge studenterna en helhetsbild av företaget och skapa en mer personlig kontakt med studenterna.
       evening_last: Förslagsvis inleder ni med att presentera ert företag och därefter drar kvällens event igång. Någon gång serveras mat till alla studenter och företagsrepresentanter. Kvällen kan till exempel avslutas med prisutdelning, vilket företaget i så fall får anordna. Kvällen är väldigt flexibel och vi är öppna för alla lösningar och idéer.
       evening_may_contain: Kvällen kan till exempel innehålla något av följande
       first: Hur kan Ni få våra studenter att söka sig till just ert företag i framtiden? Det är en fråga vi vill hjälpa till att besvara. Det finns en rad olika lösningar och möjligheter att komma i kontakt med våra studenter och här under finns en samling förslag som har använts med goda resultat tidigare. Det finns alltid möjlighet att gå utanför ramen för dessa erbjudanden, ta kontakt med oss så kommer vi tillsammans fram till den bästa lösningen för er.
+      keywords:
+        - näringsliv
+        - kvällsevenemang
+        - case
       lunch: Lunchföredrag
       lunch_description: Med ett föredrag under lunchtimmen når ert företag effektivt ut till studenterna och ni har möjlighet att ge en inblick i hur just ert företag är. Vi ordnar med mat till samtliga deltagare, såväl studenter som företagsrepresentanter samt annonserar i förväg om ert föredrag med affischer, annons i sektionens veckoblad och på sektionens webbsida. På tidigare lunchföredrag har oftast mellan 70 och 100 studenter deltagit.
       marketing: Marknadsföring

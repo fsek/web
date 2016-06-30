@@ -1,6 +1,10 @@
+<% description(t('.description')) %>
+<% keywords(t('.keywords')) %>
+
 <div class="headline">
   <h1><%= title(t('.title')) %></h1>
 </div>
+
 <div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
   <%= document_dropdown_button(collection: @documents.categories,
                                current: @documents.current_category) %>

@@ -5,6 +5,11 @@ sv:
       contact: Kontakta
 
     index:
+      description: Kontakta våra funktionärer om ni undrar eller behöver hjälp med något.
+      keywords:
+        - kontakt
+        - styrelse
+        - bil
       title: Kontaktsida
 
     send_form:

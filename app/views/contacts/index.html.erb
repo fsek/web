@@ -1,8 +1,12 @@
+<% description(t('.description')) %>
+<% keywords(t('.keywords')) %>
+
 <div class='headline'>
   <h1 id='contacts_title'>
     <%= title(t('.title')) %>
   </h1>
 </div>
+
 <div class="col-md-12">
   <% cache([@contacts, I18n.locale]) do %>
     <%= render @contacts %>
