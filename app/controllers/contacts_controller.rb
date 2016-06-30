@@ -15,7 +15,7 @@ class ContactsController < ApplicationController
   def mail
     @contact = Contact.find(params[:id])
     @contact.message ||= ContactMessage.new(message_params)
-    if @contact.send_email
+    if verify_recaptcha(model: @contact, attribute: :recaptcha) && @contact.send_email
       redirect_to contact_path(@contact), notice: t('model.contact.message_sent')
     else
       flash[:alert] = t('model.contact.something_wrong')
