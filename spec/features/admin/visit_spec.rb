@@ -10,6 +10,7 @@ RSpec.feature 'admin visits paths' do
     'admin/contacts': [:new, :edit, :index],
     'admin/councils': [:new, :edit, :index],
     'admin/documents': [:new, :edit, :index],
+    'admin/doors': [:new, :edit, :index],
     'admin/elections': [:new, :index, :show, :edit],
     'admin/events': [:edit, :new, :index],
     'admin/faqs': [:index, :edit, :new],
