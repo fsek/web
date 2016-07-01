@@ -6,7 +6,7 @@ FactoryGirl.define do
     firstname
     lastname
     phone
-    stil_id
+    student_id
     confirmed_at { 10.days.ago }
     member_at { 10.days.ago }
 
@@ -22,7 +22,7 @@ FactoryGirl.define do
     firstname
     lastname
     phone
-    stil_id
+    student_id
     confirmed_at { Time.zone.now }
     member_at { Time.zone.now }
     with_admin_post

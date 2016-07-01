@@ -1,0 +1,37 @@
+<div class="headline">
+  <h1><%= title(t('.title', door: @door.title)) %></h1>
+</div>
+
+<div class="col-md-3 col-sm-12">
+  <div class="headline">
+    <h3><%= t('.doors') %></h3>
+  </div>
+    <%= render('/elements/dropdown_button',
+               collection: @doors,
+               controller: :doors,
+               action: :accesses,
+               title: models_name(Door)) %>
+
+  <div class="headline">
+    <h3><%= t('.posts') %></h3>
+  </div>
+  <ul>
+    <% @door.posts.each do |post| %>
+      <li><%= post.to_s %></li>
+    <% end %>
+  </ul>
+  <%= link_to(t('.edit_door'), edit_admin_door_path(@door),
+                               class: 'btn primary') %>
+</div>
+
+<div class="col-md-9 col-sm-12">
+  <%= grid(@access_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: User.human_attribute_name(:name),
+             attribute: 'firstname') do |user|
+      user_link(user)
+    end
+    g.column(name: User.human_attribute_name(:student_id),
+             attribute: 'student_id',
+             filter: false)
+  end -%>
+</div>

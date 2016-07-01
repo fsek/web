@@ -1,0 +1,18 @@
+<div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+
+  <%= render 'form', door: @door %>
+
+  <hr>
+  <%= link_to(t('.destroy'), admin_door_path(@door),
+                             method: :delete,
+                             class: 'btn danger pull-right') %>
+  <%= link_to(t('.show_accesses'), accesses_admin_door_path(@door),
+                                   target: :blank, 
+                                   class: 'btn secondary') %>
+  <%= link_to(t('.index'), admin_doors_path,
+                           class: 'btn secondary') %>
+</div>
+

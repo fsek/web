@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612224833) do
+ActiveRecord::Schema.define(version: 20160627102950) do
+
+  create_table "accesses", force: :cascade do |t|
+    t.integer  "door_id",    limit: 4
+    t.integer  "post_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "accesses", ["door_id"], name: "index_accesses_on_door_id", using: :btree
+  add_index "accesses", ["post_id"], name: "index_accesses_on_post_id", using: :btree
 
   create_table "album_translations", force: :cascade do |t|
     t.integer  "album_id",    limit: 4,     null: false
@@ -165,6 +175,14 @@ ActiveRecord::Schema.define(version: 20160612224833) do
     t.datetime "updated_at"
     t.integer  "user_id",          limit: 4
     t.string   "slug",             limit: 255
+  end
+
+  create_table "doors", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.string   "slug",        limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "elections", force: :cascade do |t|
@@ -521,7 +539,6 @@ ActiveRecord::Schema.define(version: 20160612224833) do
     t.string   "firstname",              limit: 255
     t.string   "lastname",               limit: 255
     t.string   "phone",                  limit: 255
-    t.string   "stil_id",                limit: 255
     t.integer  "first_post_id",          limit: 4
     t.string   "avatar_file_name",       limit: 255
     t.string   "avatar_content_type",    limit: 255
@@ -535,6 +552,7 @@ ActiveRecord::Schema.define(version: 20160612224833) do
     t.string   "unconfirmed_email",      limit: 255
     t.datetime "member_at"
     t.string   "food_preference",        limit: 255
+    t.string   "student_id",             limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -562,6 +580,8 @@ ActiveRecord::Schema.define(version: 20160612224833) do
   add_index "work_posts", ["target_group"], name: "index_work_posts_on_target_group", using: :btree
   add_index "work_posts", ["user_id"], name: "index_work_posts_on_user_id", using: :btree
 
+  add_foreign_key "accesses", "doors"
+  add_foreign_key "accesses", "posts"
   add_foreign_key "categorizations", "categories"
   add_foreign_key "menus", "main_menus"
   add_foreign_key "page_images", "pages"

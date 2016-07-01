@@ -1,0 +1,12 @@
+sv:
+  activerecord:
+    models:
+      door: Dörr
+    attributes:
+      door:
+        created_at: Skapad
+        description: Beskrivning
+        posts: Poster
+        slug: Kortnamn
+        title: Titel
+        updated_at: Uppdaterad

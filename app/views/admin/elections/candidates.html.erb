@@ -15,8 +15,8 @@
       link_to(candidate.user, candidate.user)
     end
 
-    g.column name: User.human_attribute_name(:stil_id), assoc: :user,
-      attribute: 'stil_id', filter: false
+    g.column name: User.human_attribute_name(:student_id), assoc: :user,
+      attribute: 'student_id', filter: false
     g.column name: User.human_attribute_name(:email), assoc: :user,
       attribute: 'email', filter: false
     g.column name: User.human_attribute_name(:phone), assoc: :user,

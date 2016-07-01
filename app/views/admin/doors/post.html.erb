@@ -1,0 +1,19 @@
+<div class="headline">
+  <h1><%= title(t('.title', post: @post.title)) %></h1>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to(t('.all_doors'), admin_doors_path, class: 'btn primary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@post_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: Door.human_attribute_name(:title),
+             attribute: 'title') do |door|
+      link_to(door, edit_admin_door_path(door))
+    end
+    g.column(name: Door.human_attribute_name(:slug), attribute: 'slug',
+             filter: false)
+  end -%>
+</div>
+

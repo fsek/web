@@ -1,0 +1,31 @@
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+<div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+
+  <hr>
+
+  <%= link_to(t('.new_door'), new_admin_door_path,
+                              class: 'btn primary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@door_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: Door.human_attribute_name(:title), attribute: 'title')
+    g.column(name: Door.human_attribute_name(:title), attribute: 'slug')
+    g.column(name: models_name(Access)) do |door|
+      link_to(t('.show_accesses'), accesses_admin_door_path(door))
+    end
+    g.column(name: t('global.edit'), filter: false) do |door|
+      link_to(t('global.edit'), edit_admin_door_path(door))
+    end
+  end -%>
+</div>
+

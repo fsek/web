@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
 
   def has_attributes?
     has_name_data? && email.present? &&
-      phone.present? && stil_id.present?
+      phone.present? && student_id.present?
   end
 
   def print_id

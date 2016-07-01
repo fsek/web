@@ -226,6 +226,11 @@ Fsek::Application.routes.draw do
         get '/:post_id', action: :show_post, on: :collection, as: :post
         patch '(/:post_id)', action: :update_post, on: :collection, as: :update
       end
+
+      resources :doors, path: :dorrar, except: :show do
+        get :accesses, path: :accesser, on: :member
+        get :post, path: '/post/:post_id', on: :collection
+      end
     end
 
     resources :short_links, except: [:show, :update, :edit], path: :snabblankar do
