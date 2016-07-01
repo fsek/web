@@ -216,8 +216,7 @@ $outer: image-url("theme/frame.svg") 27% 15% 23% 15% repeat;
 }
 
 .nollning {
-  color: $gray-headline;
-  font-family: "ancient";
+  font-family: "modking";
   font-size: 18px;
 
   .carousel-control.left,
@@ -229,8 +228,11 @@ $outer: image-url("theme/frame.svg") 27% 15% 23% 15% repeat;
     margin-bottom: 30px;
   }
 
-  .headline {
-    font-family: "questknight";
+  .headline h1,
+  .headline h2,
+  .headline h3 {
+    color: $black;
+    font-family: "dearest";
   }
 }
 
