@@ -8,7 +8,7 @@ RSpec.describe PageElement, type: :model do
   describe 'ActiveRecord associations' do
     it 'validates element_type and page_id present' do
       page_element = build(:page_element)
-      page_element.should validate_presence_of(:page_id)
+      page_element.should validate_presence_of(:page)
       page_element.should validate_presence_of(:element_type)
     end
   end

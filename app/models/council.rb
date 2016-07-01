@@ -24,9 +24,9 @@ class Council < ActiveRecord::Base
 
   def check_page
     if page.nil?
-      build_page(url: page_url, visible: true, title: title).save!
+      build_page(url: page_url, visible: true, title_sv: title, title_en: title).save!
     elsif page.url.nil?
-      page.update!(url: page_url, visible: true, title: title)
+      page.update!(url: page_url, visible: true, title_sv: title, title_en: title)
     end
   end
 
