@@ -28,3 +28,13 @@
     background-color: rgba($orange-highlight, 0.5);
   }
 }
+
+.page {
+  &.nollning {
+    font-family: "modking";
+
+    &.title {
+      font-family: "dearest";
+    }
+  }
+}
