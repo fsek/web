@@ -23,12 +23,14 @@ module MarkdownHelper
 
   def self.markdown_renderer
     Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-                            no_intra_emphasis: true,
-                            fenced_code_blocks: true,
                             autolink: true,
+                            fenced_code_blocks: true,
+                            highlight: true,
+                            lax_spacing: true,
+                            no_intra_emphasis: true,
+                            quote: true,
                             tables: true,
-                            underline: true,
-                            highlight: true)
+                            underline: true)
   end
 
   def self.plain_renderer

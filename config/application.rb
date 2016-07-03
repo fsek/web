@@ -29,6 +29,8 @@ module Fsek
     config.time_zone ='Stockholm'
     config.filter_parameters += [:password, :password_confirmation, :message]
     config.active_record.raise_in_transactional_callbacks = true
+    WHITE_HTML_TAGS = %w( h1 h2 h3 h4 h5 p strong em ul ol li blockquote table tr th td img ).freeze
+    config.action_view.sanitized_allowed_tags = WHITE_HTML_TAGS
   end
 end
 Rack::Utils.multipart_part_limit = 512
