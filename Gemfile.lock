@@ -228,6 +228,8 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    paranoia (2.1.5)
+      activerecord (~> 4.0)
     parser (2.3.0.6)
       ast (~> 2.2)
     pdf-core (0.6.1)
@@ -428,6 +430,7 @@ DEPENDENCIES
   onesky-rails
   pagedown-bootstrap-rails
   paperclip
+  paranoia
   poltergeist
   prawn-rails
   pry-byebug

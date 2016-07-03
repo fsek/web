@@ -1,0 +1,10 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <%= title(t('.title')) %>
+  </div>
+
+  <%= render('form', introduction: @introduction) %>
+  <hr>
+  <%= link_to(t('.all_introductions'), admin_introductions_path,
+                                       class: 'btn secondary') %>
+</div>

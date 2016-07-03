@@ -1,0 +1,43 @@
+<div class="headline">
+  <%= title(t('.title')) %>
+</div>
+
+<div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+
+  <hr>
+
+  <%= link_to(t('.new_introduction'), new_admin_document_path,
+                                  class: 'btn primary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: Introduction.human_attribute_name(:title), attribute: 'title')
+    g.column(name: Introduction.human_attribute_name(:start), attribute: 'start',
+             filter: false) do |introduction|
+      localized(introduction.start)
+    end
+    g.column(name: Introduction.human_attribute_name(:stop), attribute: 'stop',
+             filter: false) do |introduction|
+      localized(introduction.stop)
+    end
+    g.column(name: Introduction.human_attribute_name(:slug), attribute: 'slug', filter: false)
+    g.column(name: Introduction.human_attribute_name(:current), filter: false) do |introduction|
+      yes_no(introduction.current)
+    end
+    g.column(name: Introduction.human_attribute_name(:updated_at), attribute: 'updated_at',
+             filter: false) do |introduction|
+      localized(introduction.updated_at)
+    end
+    g.column(name: t('global.edit'), filter: false) do |introduction|
+      link_to(t('global.edit'), edit_admin_introduction_path(introduction))
+    end
+  end -%>
+</div>
