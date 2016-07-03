@@ -30,6 +30,7 @@ gem 'momentjs-rails'
 gem 'mysql2', '~> 0.3.20' # Rails 4 compatibility
 gem 'paperclip'
 gem 'pagedown-bootstrap-rails'
+gem 'paranoia'
 gem 'prawn-rails'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'redcarpet'

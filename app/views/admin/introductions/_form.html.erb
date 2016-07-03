@@ -1,0 +1,13 @@
+<%= simple_form_for([:admin, introduction]) do |f| %>
+  <%= f.input :title_sv, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :start, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :stop, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :slug %>
+  <%= f.button :submit %>
+  <% if introduction.persisted? %>
+    <%= link_to(t('.destroy_introduction'), admin_introduction_path(introduction),
+                                            method: :delete,
+                                            class: 'btn danger') %>
+  <% end %>
+<% end %>

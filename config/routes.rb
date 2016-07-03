@@ -117,6 +117,10 @@ Fsek::Application.routes.draw do
       get "modal/:date", controller: :nollnings, action: :modal, as: :get_event
     end
 
+    namespace :admin do
+      resources :introductions, path: :nollning, except: :show
+    end
+
     resources :councils, path: :utskott, only: [:index, :show]
 
     resources :posts, path: :poster, only: [] do

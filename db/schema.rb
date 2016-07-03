@@ -284,6 +284,33 @@ ActiveRecord::Schema.define(version: 20160629204225) do
   add_index "images", ["filename"], name: "index_images_on_filename", using: :btree
   add_index "images", ["photographer_id"], name: "index_images_on_photographer_id", using: :btree
 
+  create_table "introduction_translations", force: :cascade do |t|
+    t.integer  "introduction_id", limit: 4,     null: false
+    t.string   "locale",          limit: 255,   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "title",           limit: 255,   null: false
+    t.text     "description",     limit: 65535
+  end
+
+  add_index "introduction_translations", ["introduction_id"], name: "index_introduction_translations_on_introduction_id", using: :btree
+  add_index "introduction_translations", ["locale"], name: "index_introduction_translations_on_locale", using: :btree
+
+  create_table "introductions", force: :cascade do |t|
+    t.string   "title",       limit: 255,   default: "",   null: false
+    t.datetime "start",                                    null: false
+    t.datetime "stop",                                     null: false
+    t.string   "slug",        limit: 255,                  null: false
+    t.text     "description", limit: 65535
+    t.boolean  "current",                   default: true, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "introductions", ["deleted_at"], name: "index_introductions_on_deleted_at", using: :btree
+  add_index "introductions", ["slug"], name: "index_introductions_on_slug", using: :btree
+
   create_table "mail_aliases", force: :cascade do |t|
     t.string   "username",   limit: 255, null: false
     t.string   "domain",     limit: 255, null: false

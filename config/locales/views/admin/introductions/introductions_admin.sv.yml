@@ -1,0 +1,17 @@
+sv:
+  admin:
+    introductions:
+      index:
+        new_introduction: Ny Nollning
+        title: Alla Nollningar
+
+      new:
+        all_introductions: Alla Nollningar
+        title: Ny Nollning
+
+      edit:
+        all_introductions: Alla Nollningar
+        title: Redigera Nollning
+
+      form:
+        destroy_introduction: Förinta Nollning
