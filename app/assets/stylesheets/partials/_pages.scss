@@ -1,0 +1,40 @@
+.page-element {
+  &.preview {
+    border-bottom: solid 1px $fsek-orange;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+
+  tr {
+    border-bottom: 1px solid $gray-headline;
+  }
+
+  tr:last-child {
+    border-bottom: none;
+  }
+
+  th:nth-child(odd),
+  td:nth-child(odd) {
+    border-right: 1px solid $gray-headline;
+  }
+
+  tr:hover {
+    background-color: rgba($orange-highlight, 0.5);
+  }
+}
+
+.page {
+  &.nollning {
+    font-family: "modking";
+
+    &.title {
+      font-family: "dearest";
+    }
+  }
+}
