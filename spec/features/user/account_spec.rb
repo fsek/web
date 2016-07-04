@@ -2,13 +2,10 @@ require 'rails_helper'
 RSpec.feature 'Update account', type: :feature do
   scenario 'information' do
     user = create(:user, student_id: nil)
-    the_post = create(:post)
-    create(:post_user, user: user, post: the_post)
 
     sign_in_as(user, path: edit_own_user_path)
     page.should have_http_status(200)
 
-    select(the_post, from: 'user_first_post_id')
     fill_in('user_student_id', with: %(tfy#{Time.zone.now.year - 2000}ggg))
     click_button('user-info-submit')
     page.should have_css('div.alert.alert-info')

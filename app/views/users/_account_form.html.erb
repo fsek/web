@@ -1,9 +1,12 @@
-<%= simple_form_for(user, url: account_own_user_path, method: :patch, html: { class: 'reg-page' }) do |f| %>
+<%= simple_form_for(user, url: account_own_user_path, method: :patch) do |f| %>
   <div class="headline">
-    <h2>
+    <h3><%= t('.title') %></h3>
+  </div>
+  <div class="headline">
+    <h4>
       <%= fa_icon('envelope') %>
       <%= User.human_attribute_name(:email) %>
-    </h2>
+    </h4>
   </div>
 
   <% if user.unconfirmed_email.present? %>
@@ -55,10 +58,10 @@
   <%= f.button :submit, id: 'user-account-submit' %>
   <hr>
   <div class="headline">
-    <h2>
+    <h4>
       <%= fa_icon('user') %>
       <%= User.human_attribute_name(:member) %>
-    </h2>
+    </h4>
   </div>
 
   <% if user.member? %>

@@ -1,15 +1,19 @@
+<% set_meta_tags(noindex: true) %>
+
 <div class="headline">
-  <h2><%= title(@user.to_s) %></h2>
+  <h1><%= title(@user.to_s) %></h1>
 </div>
-<% if @user.avatar? %>
+
+<% if @user.large_avatar.present? %>
   <div class="col-md-6 col-xs-12">
     <%= render '/users/user', user: @user, no_name: true %>
   </div>
   <div class="col-md-6 col-xs-12">
-    <%= image_tag(avatar_user_path(@user, style: 'original'),
-                  class: 'img-responsive') %>
+    <%= image_tag(@user.large_avatar, class: 'img-responsive') %>
 </div>
+
 <% else %>
+
   <div class="col-md-6 col-md-offset-3 col-xs-12">
     <%= render '/users/user', user: @user, no_name: true %>
   </div>
