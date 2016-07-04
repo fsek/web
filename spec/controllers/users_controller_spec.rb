@@ -1,45 +1,90 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:user) { create(:user) }
-  let(:other) { create(:user) }
-
-  before(:each) do
-    allow(controller).to receive(:current_user) { user }
-  end
-
   allow_user_to :manage, User
 
   describe 'GET #show' do
     it 'assigns the requested user as @user' do
-      get(:show, id: other.to_param)
-      assigns(:user).should eq(other)
+      user = create(:user)
+      get(:show, id: user.to_param)
+
+      response.should have_http_status(200)
+      assigns(:user).should eq(user)
     end
   end
 
   describe 'GET #edit' do
     it 'should render edit page' do
+      user = create(:user)
+      controller.stub(:current_user).and_return(user)
+
       get(:edit)
-      response.code.should eq('200')
+      response.should have_http_status(200)
+    end
+  end
+
+  describe 'PATCH #update' do
+    it 'valid parameters' do
+      user = create(:user, firstname: 'Hacke')
+      controller.stub(:current_user).and_return(user)
+      patch(:update, user: { firstname: 'Hilbert' })
+
+      user.reload
+      user.firstname.should eq('Hilbert')
+      response.should have_http_status(200)
+      response.should render_template(:edit)
     end
   end
 
   describe 'PATCH #update_account' do
-    it 'updates account' do
-      patch :update_account, user: { email: 'david@fsektionen.se',
-                                     current_password: '12345678' }
+    it 'valid parameters' do
+      user = create(:user, email: 'hilbert@fsektionen.se')
+      controller.stub(:current_user).and_return(user)
+      patch(:update_account, user: { email: 'alg@fsektionen.se',
+                                     current_password: '12345678' })
       user.reload
-      user.unconfirmed_email.should eq('david@fsektionen.se')
+      user.unconfirmed_email.should eq('alg@fsektionen.se')
+      response.should have_http_status(200)
+      response.should render_template(:edit)
+    end
+
+    it 'invalid parameters' do
+      user = create(:user, email: 'hilbert@fsektionen.se')
+      controller.stub(:current_user).and_return(user)
+      patch(:update_account, user: { email: 'alg@fsektionen.se',
+                                     current_password: 'not_valid' })
+      user.reload
+      user.unconfirmed_email.should be_nil
+      response.should have_http_status(422)
+      response.should render_template(:edit)
     end
   end
 
   describe 'PATCH #update_password' do
-    it 'updates passwordt' do
-      patch :update_password, user: { password: 'testatesta',
+    it 'valid parameters' do
+      user = create(:user)
+      controller.stub(:current_user).and_return(user)
+      patch(:update_password, user: { password: 'testatesta',
                                       password_confirmation: 'testatesta',
-                                      current_password: '12345678' }
+                                      current_password: '12345678' })
       user.reload
       user.valid_password?('testatesta').should be_truthy
+      response.should have_http_status(200)
+      response.should render_template(:edit)
+      assigns(:tab).should eq(:password)
+    end
+
+    it 'invalid parameters' do
+      user = create(:user)
+      controller.stub(:current_user).and_return(user)
+      patch(:update_password, user: { password: 'fail_testa',
+                                      password_confirmation: 'fail_fail',
+                                      current_password: '12345678' })
+      user.reload
+      user.valid_password?('fail_testa').should be_falsey
+      response.should have_http_status(422)
+      response.should render_template(:edit)
+      assigns(:tab).should eq(:password)
     end
   end
 end
