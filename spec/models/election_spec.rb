@@ -16,7 +16,7 @@ RSpec.describe Election, type: :model do
 
     it 'validates url format' do
       should validate_presence_of(:url)
-      should allow_value('abc_123-abc').for(:url)
+      should allow_value('abc-123').for(:url)
       should_not allow_value('ABC').for(:url)
     end
   end
@@ -24,7 +24,7 @@ RSpec.describe Election, type: :model do
   describe 'ActiveRecord associations' do
     it { should have_many(:nominations) }
     it { should have_many(:candidates) }
-    it { should have_many(:extra_posts) }
+    it { should have_many(:extra_positions) }
   end
 
   describe '#state' do
@@ -49,18 +49,18 @@ RSpec.describe Election, type: :model do
     end
   end
 
-  describe '#post_closing' do
-    it 'returns close_general for post elected at general' do
+  describe '#position_closing' do
+    it 'returns close_general for position elected at general' do
       close_general = 1.day.ago
       close_all = 1.day.from_now
       election = build_stubbed(:election, :autumn,
                                close_general: close_general,
                                close_all: close_all)
-      general_post = build_stubbed(:post, :autumn, :general)
-      after_general_post = build_stubbed(:post, :autumn, :board)
+      general_position = build_stubbed(:position, :autumn, :general)
+      after_general_position = build_stubbed(:position, :autumn, :board)
 
-      election.post_closing(general_post).should eq(close_general)
-      election.post_closing(after_general_post).should eq(close_all)
+      election.position_closing(general_position).should eq(close_general)
+      election.position_closing(after_general_position).should eq(close_all)
     end
   end
 
@@ -86,64 +86,64 @@ RSpec.describe Election, type: :model do
     end
   end
 
-  context 'post queries' do
-    describe '#posts' do
+  context 'position queries' do
+    describe '#positions' do
       it 'returns according to semester' do
         election = create(:election)
-        create(:post, :autumn, title: 'In the Autumn')
-        create(:post, :spring, title: 'In the Spring')
-        election.extra_posts << create(:post, semester: 'not_by_semester',
+        create(:position, :autumn, title: 'In the Autumn')
+        create(:position, :spring, title: 'In the Spring')
+        election.extra_positions << create(:position, semester: 'not_by_semester',
                                               title: 'An extra one')
 
-        election.stub(:semester).and_return(Post::AUTUMN)
-        election.posts.map(&:title).should eq(['In the Autumn'])
+        election.stub(:semester).and_return(Position::AUTUMN)
+        election.positions.map(&:title).should eq(['In the Autumn'])
 
-        election.stub(:semester).and_return(Post::SPRING)
-        election.posts.map(&:title).should eq(['In the Spring'])
+        election.stub(:semester).and_return(Position::SPRING)
+        election.positions.map(&:title).should eq(['In the Spring'])
 
-        election.stub(:semester).and_return(Post::OTHER)
-        election.posts.map(&:title).should eq(['An extra one'])
+        election.stub(:semester).and_return(Position::OTHER)
+        election.positions.map(&:title).should eq(['An extra one'])
       end
     end
 
-    describe '#current_posts' do
+    describe '#current_positions' do
       it 'returns according to state' do
         election = create(:election, :autumn)
-        create(:post, :autumn, :general, title: 'Elected at General')
-        create(:post, :autumn, :board, title: 'Elected by Board')
+        create(:position, :autumn, :general, title: 'Elected at General')
+        create(:position, :autumn, :board, title: 'Elected by Board')
 
         election.stub(:state).and_return(:not_opened)
-        election.current_posts.map(&:title).should eq(['Elected at General',
+        election.current_positions.map(&:title).should eq(['Elected at General',
                                                        'Elected by Board'])
 
         election.stub(:state).and_return(:before_general)
-        election.current_posts.map(&:title).should eq(['Elected at General',
+        election.current_positions.map(&:title).should eq(['Elected at General',
                                                        'Elected by Board'])
 
         election.stub(:state).and_return(:after_general)
-        election.current_posts.map(&:title).should eq(['Elected by Board'])
+        election.current_positions.map(&:title).should eq(['Elected by Board'])
 
         election.stub(:state).and_return(:closed)
-        election.current_posts.map(&:title).should eq([])
+        election.current_positions.map(&:title).should eq([])
       end
     end
 
-    describe '#current_posts' do
+    describe '#searchable_positions' do
       it 'returns according to state' do
         election = build_stubbed(:election)
-        election.stub(:current_posts).and_return('yeppyepp')
+        election.stub(:current_positions).and_return('yeppyepp')
 
         election.stub(:state).and_return(:not_opened)
-        election.searchable_posts.should eq(Post.none)
+        election.searchable_positions.should eq(Position.none)
 
         election.stub(:state).and_return(:closed)
-        election.searchable_posts.should eq(Post.none)
+        election.searchable_positions.should eq(Position.none)
 
         election.stub(:state).and_return(:before_general)
-        election.searchable_posts.should eq('yeppyepp')
+        election.searchable_positions.should eq('yeppyepp')
 
         election.stub(:state).and_return(:after_general)
-        election.searchable_posts.should eq('yeppyepp')
+        election.searchable_positions.should eq('yeppyepp')
       end
     end
   end

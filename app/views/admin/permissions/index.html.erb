@@ -8,17 +8,17 @@
     <table class="table">
       <thead>
         <tr>
-          <th><%= model_name(Post) %></th>
+          <th><%= model_name(Position) %></th>
           <th><%= models_name(Permission) %></th>
         </tr>
       </thead>
       <tbody>
-        <% @posts.each do |post| %>
+        <% @positions.each do |position| %>
           <tr>
             <td>
-              <%= link_to(post, post_admin_permissions_path(post)) %>
+              <%= link_to(position, position_admin_permissions_path(position)) %>
             <td>
-              <% post.permissions.each do |p| %>
+              <% position.permissions.each do |p| %>
                 <%= %(#{p.action} #{p.subject_class}) %><br>
               <% end %>
             </td>

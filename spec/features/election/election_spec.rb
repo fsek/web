@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.feature 'Visit Election' do
   scenario 'visits election before_general' do
-    create(:post, :autumn)
+    create(:position, :autumn)
     election = create(:election, :before_general, :autumn)
 
     page.visit elections_path
@@ -11,7 +11,7 @@ RSpec.feature 'Visit Election' do
   end
 
   scenario 'visits election after_general' do
-    create(:post, :autumn)
+    create(:position, :autumn)
     election = create(:election, :after_general, :autumn)
 
     page.visit elections_path
@@ -21,7 +21,7 @@ RSpec.feature 'Visit Election' do
   end
 
   scenario 'visits election closed' do
-    create(:post, :autumn)
+    create(:position, :autumn)
     election = create(:election, :closed, :autumn)
 
     page.visit elections_path

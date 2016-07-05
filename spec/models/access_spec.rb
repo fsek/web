@@ -7,14 +7,14 @@ RSpec.describe Access, type: :model do
 
   describe 'validations' do
     it { Access.new.should validate_presence_of(:door) }
-    it { Access.new.should validate_presence_of(:post) }
-    it 'checks uniqueness of door and post' do
+    it { Access.new.should validate_presence_of(:position) }
+    it 'checks uniqueness of door and position' do
       door = create(:door)
-      post = create(:post)
+      position = create(:position)
 
-      Access.new(door: door, post: post).should be_valid
-      create(:access, door: door, post: post)
-      Access.new(door: door, post: post).should be_invalid
+      Access.new(door: door, position: position).should be_valid
+      create(:access, door: door, position: position)
+      Access.new(door: door, position: position).should be_invalid
     end
   end
 end

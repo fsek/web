@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :access do
-    post
+    position
     door
   end
 end

@@ -3,22 +3,22 @@ class Admin::ContactsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @contact_grid = initialize_grid(Contact, include: :post)
+    @contact_grid = initialize_grid(Contact, include: :position)
   end
 
   def new
     @contact = Contact.new
-    @posts = Post.by_title
+    @positions = Position.by_title
   end
 
   def edit
     @contact = Contact.find(params[:id])
-    @posts = Post.by_title
+    @positions = Position.by_title
   end
 
   def create
     @contact = Contact.new(contact_params)
-    @posts = Post.by_title
+    @positions = Position.by_title
     if @contact.save
       redirect_to edit_admin_contact_path(@contact), notice: alert_create(Contact)
     else
@@ -28,7 +28,7 @@ class Admin::ContactsController < Admin::BaseController
 
   def update
     @contact = Contact.find(params[:id])
-    @posts = Post.by_title
+    @positions = Position.by_title
     if @contact.update(contact_params)
       redirect_to edit_admin_contact_path(@contact), notice: alert_update(Contact)
     else
@@ -46,6 +46,6 @@ class Admin::ContactsController < Admin::BaseController
 
   def contact_params
     params.require(:contact).permit(:name_sv, :name_en, :email, :public,
-                                    :text_sv, :name_en, :post_id, :slug)
+                                    :text_sv, :name_en, :position_id, :slug)
   end
 end

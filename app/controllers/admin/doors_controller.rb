@@ -37,18 +37,18 @@ class Admin::DoorsController < Admin::BaseController
 
   def accesses
     @doors = Door.by_title
-    @door = Door.includes(:posts).find(params[:id])
+    @door = Door.includes(:positions).find(params[:id])
     @access_grid = initialize_grid(@door.users, order: 'student_id')
   end
 
-  def post
-    @post = Post.includes(:doors).find(params[:post_id])
-    @post_grid = initialize_grid(@post.doors)
+  def position
+    @position = Position.includes(:doors).find(params[:position_id])
+    @position_grid = initialize_grid(@position.doors)
   end
 
   private
 
   def door_params
-    params.require(:door).permit(:title, :slug, :description, post_ids: [])
+    params.require(:door).permit(:title, :slug, :description, position_ids: [])
   end
 end

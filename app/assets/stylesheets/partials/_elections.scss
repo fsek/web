@@ -17,7 +17,7 @@
 
   &.grid {
     tr {
-      &.board-post {
+      &.board-position {
         td,
         &.even td,
         &.odd td {
@@ -33,10 +33,10 @@
         }
       }
     }
-  }
 
-  .links {
-    padding-right: 10px;
+    .links {
+      padding-right: 10px;
+    }
   }
 }
 

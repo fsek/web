@@ -1,0 +1,16 @@
+sv:
+  model:
+    position_user:
+      already_have_position: har redan posten.
+
+  activerecord:
+    models:
+      position_user:
+        one: Användare med post
+        other: Användare med poster
+    attributes:
+      position_user:
+        user: Användare
+        position: Post
+        created_at: Skapad
+        updated_at: Updated

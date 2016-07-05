@@ -23,7 +23,7 @@
       yes_no(election == Election.current)
     end
     g.column(name: Election.human_attribute_name(:semester)) do |election|
-      t("model.post.semester.#{election.semester}")
+      t("model.position.semester.#{election.semester}")
     end
     g.column(name: t('global.edit'), filter: false) do |election|
       link_to(t('global.edit'), admin_election_path(election))

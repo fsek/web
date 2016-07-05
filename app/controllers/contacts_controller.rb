@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
 
   def index
     # @contacts initially set by Cancancan
-    @contacts = @contacts.includes(:post).sort_by(&:to_s)
+    @contacts = @contacts.includes(:position).sort_by(&:to_s)
   end
 
   def show

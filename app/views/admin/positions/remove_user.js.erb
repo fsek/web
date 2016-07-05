@@ -1,0 +1,6 @@
+<% if @state %>
+  $('#position-user-status').html('<%= @status.to_s %>')
+  $('tr#<%= "position_user_#{@id}" %>').fadeOut();
+<% else %>
+  $('#position-user-status').html('<%= t('.destroy_error') %>')
+<% end %>

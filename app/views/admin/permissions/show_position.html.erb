@@ -1,0 +1,32 @@
+<div class="headline">
+  <h1><%= title(@position.title) %></h1>
+</div>
+<div class="col-md-12">
+  <%= simple_form_for(@position, url: update_admin_permissions_path(@position)) do |f| %>
+    <%= f.button :submit %>
+    <%= link_to(t('position.edit'), edit_admin_council_position_path(@position.council, @position),
+                                class: 'btn secondary') %>
+    <%= link_to(t('permission.index'), admin_permissions_path,
+                                        class: 'btn secondary') %>
+
+    <div class="panel-body">
+      <table class="table table-bordered">
+        <tbody>
+          <% @permissions.group_by(&:subject_class).each do |subject_class, permissions| %>
+            <tr>
+              <td><%= subject_class %></td>
+              <td>
+                <%= f.input(:permission_ids, collection: permissions,
+                                             label: false,
+                                             label_method: :action,
+                                             value_method: :id,
+                                             as: :check_boxes,
+                                             item_wrapper_class: 'inline') %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

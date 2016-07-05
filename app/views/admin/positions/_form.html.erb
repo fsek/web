@@ -1,0 +1,59 @@
+<%= simple_form_for([:admin, council, position]) do |f| %>
+  <%= f.input :title, wrapper_html: {class: 'inline half'} %>
+  <%= f.association :council, collection: Council.by_title,
+                              wrapper_html: {class: 'inline half'},
+                              input_html: {class: 'select2'},
+                              include_blank: false %>
+  <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :board %>
+  <%= f.input :car_rent %>
+  <%= f.input(:elected_by, collection: [[t("model.position.#{Position::GENERAL}"), Position::GENERAL],
+                                        [t("model.position.#{Position::BOARD}"), Position::BOARD],
+                                        [t("model.position.#{Position::EDUCATION}"), Position::EDUCATION]],
+                           include_blank: false,
+                           input_html: {class: 'select2'},
+                           wrapper_html: {class: 'inline half'}) %>
+  <%= f.input(:semester, collection: [[t("model.position.semester.#{Position::AUTUMN}"), Position::AUTUMN],
+                                      [t("model.position.semester.#{Position::SPRING}"), Position::SPRING],
+                                      [t("model.position.semester.#{Position::BOTH}"), Position::BOTH],
+                                      [t("model.position.semester.#{Position::OTHER}"), Position::OTHER]],
+                         include_blank: false,
+                         input_html: {class: 'select2'},
+                         wrapper_html: {class: 'inline half'}) %>
+  <%= f.input :rec_limit, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :limit, wrapper_html: {class: 'inline half'} %>
+  <%= f.button :submit %>
+
+  <% if position.persisted? %>
+    <%= link_to(t('.destroy_position'), admin_council_position_path(council, position),
+                                    method: :delete,
+                                    class: 'btn danger pull-right') %>
+  <% end %>
+
+  <div class="panel-body">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th><%= Position.human_attribute_name(:rec_limit) %></th>
+          <th><%= Position.human_attribute_name(:limit) %></th>
+          <th>==</th>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>*</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>5</td>
+          <td>5 (x)</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>5</td>
+          <td>4-5</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>

@@ -5,7 +5,7 @@
 <% end %>
 
 <%= content_for(:main_content) do %>
-  <p><%= "#{t('.you_have_been_nominated')}: #{@nomination.post}." %></p>
+  <p><%= "#{t('.you_have_been_nominated')}: #{@nomination.position}." %></p>
 
   <% if @nomination.motivation.present? %>
     <p>
@@ -17,7 +17,7 @@
   <%= markdown(@nomination.election.nominate_mail)%>
 
   <%= simple_format(t('.accept_before_closing',
-                      date: l(@nomination.election.post_closing(@nomination.post)))) %>
+                      date: l(@nomination.election.position_closing(@nomination.position)))) %>
   <p><%= t('.via_web') %>:<br>
 
   <%= link_to(@nomination.candidate_url, @nomination.candidate_url) %>

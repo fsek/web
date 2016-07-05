@@ -1,0 +1,33 @@
+<% if position_grid.present? %>
+  <%= grid(position_grid) do |g|
+    g.column(name: Position.human_attribute_name(:title),
+             attribute: 'title')
+
+    g.column(name: Position.human_attribute_name(:limit),
+             attribute: 'limit',
+             filter: false)
+
+    g.column(name: Position.human_attribute_name(:board),
+             attribute: 'board', filter: false) do |position|
+      yes_no(position.board)
+    end
+
+    g.column(name: Position.human_attribute_name(:elected_by),
+             attribute: 'elected_by',
+             filter: false) do |position|
+      t("model.position.#{position.elected_by}")
+    end
+
+    g.column(name: Position.human_attribute_name(:semester),
+             attribute: 'semester',
+             filter: false) do |position|
+      t("model.position.semester.#{position.semester}")
+    end
+
+    g.column do |position|
+      link_to(t('.edit_position'),
+              edit_admin_council_position_path(position.council, position))
+    end
+
+  end -%>
+<% end %>

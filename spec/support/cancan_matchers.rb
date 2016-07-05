@@ -4,12 +4,12 @@
 # Originally inspired by https://github.com/ryanb/cancan/wiki/Testing-Abilities
 #
 # Usage:
-#   should have_abilities(:create, Post.new)
-#   should have_abilities([:read, :update], post)
-#   should have_abilities({manage: false, destroy: true}, post)
-#   should have_abilities({create: false}, Post.new)
-#   should not_have_abilities(:update, post)
-#   should not_have_abilities([:update, :destroy], post)
+#   should have_abilities(:create, Notice.new)
+#   should have_abilities([:read, :update], notice)
+#   should have_abilities({manage: false, destroy: true}, notice)
+#   should have_abilities({create: false}, Notice.new)
+#   should not_have_abilities(:update, notice)
+#   should not_have_abilities([:update, :destroy], notice)
 #
 # WARNING: never use "should_not have_abilities" or you may get false positives
 # due to whitelisting/blacklisting issues. Use "should not_have_abilities"

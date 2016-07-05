@@ -3,7 +3,7 @@ FactoryGirl.define do
     name
     email
     motivation { generate(:description) }
-    association :election, semester: Post::AUTUMN
-    association :post, semester: Post::AUTUMN
+    association :election, semester: Position::AUTUMN
+    association :position, semester: Position::AUTUMN
   end
 end

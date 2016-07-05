@@ -1,0 +1,8 @@
+sv:
+  positions:
+    show:
+      edit_position: Redigera position
+      edit_election: Redigera val
+
+    position:
+      candidates_for_position_closes: "%{position} kan sökas fram till %{date}."

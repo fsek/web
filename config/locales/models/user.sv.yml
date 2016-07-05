@@ -19,7 +19,7 @@ sv:
         current_password: Nuvarande lösenord
         display_phone: Visa telefonnummer för gruppmedlemmar
         email: E-post
-        first_post: Visningspost
+        first_position: Visningspost
         firstname: Namn
         food_preference: Matpreferenser
         lastname: Efternamn

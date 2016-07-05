@@ -8,7 +8,7 @@ class Admin::ElectionsController < Admin::BaseController
 
   def show
     @election = Election.find_by_url!(params[:id])
-    @post_grid = initialize_grid(@election.posts, include: :council)
+    @position_grid = initialize_grid(@election.positions, include: :council)
   end
 
   def edit
@@ -46,13 +46,13 @@ class Admin::ElectionsController < Admin::BaseController
   def nominations
     @nominations_grid = initialize_grid(@election.nominations,
                                         name: 'nominations',
-                                        include: :post)
+                                        include: :position)
   end
 
   def candidates
     @candidates_grid = initialize_grid(@election.candidates,
                                        name: 'candidates',
-                                       include: [:post, :user])
+                                       include: [:position, :user])
   end
 
   private
@@ -61,6 +61,6 @@ class Admin::ElectionsController < Admin::BaseController
     params.require(:election).permit(:title, :description, :open, :close_general, :close_all,
                                      :url, :visible, :mail_link, :board_mail_link,
                                      :nominate_mail, :candidate_mail, :semester,
-                                     :candidate_mail_star, extra_post_ids: [])
+                                     :candidate_mail_star, extra_position_ids: [])
   end
 end

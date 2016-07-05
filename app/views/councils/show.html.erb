@@ -17,6 +17,6 @@
   <%= render @council.page, title: false %>
 <% end %>
 
-<% if @council.posts.present? %>
-  <%= render '/posts/table', posts: @council.posts %>
+<% if @council.positions.any? %>
+  <%= render '/positions/table', positions: @council.positions %>
 <% end %>

@@ -1,0 +1,38 @@
+<% if election_view.present? && position_grid.present? %>
+  <%= grid(position_grid, html: {class: 'election grid'}) do |g|
+    g.row_attributes do |position|
+      if position.board
+        {class: "board-position #{position.elected_by}"}
+      else
+        {class: position.elected_by}
+      end
+    end
+
+    g.column(name: Position.human_attribute_name(:title),
+             attribute: 'title') do |position|
+      election_position_link(position)
+    end
+
+    g.column name: Position.human_attribute_name(:limit), attribute: 'limit',
+      filter: false do |position|
+      print_position_limit(position)
+    end
+
+    g.column(name: model_name(Council), assoc: :council,
+                                        attribute: 'title',
+                                        custom_filter: :auto) do |position|
+      link_to(position.council, position.council, target: :blank_p)
+    end
+
+    g.column(name: Position.human_attribute_name(:elected_by),
+             attribute: 'elected_by', filter: false) do |position|
+      t("model.position.#{position.elected_by}")
+    end
+
+    if (election_view.election.state != :not_opened)
+      g.column name: models_name(Candidate), filter: false do |position|
+        election_view.position_count[position.id] || 0
+      end
+    end
+  end -%>
+<% end %>

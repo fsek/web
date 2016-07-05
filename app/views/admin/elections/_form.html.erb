@@ -1,8 +1,8 @@
 <%= simple_form_for([:admin, election]) do |f| %>
   <%= f.input :title, wrapper_html: {class: 'inline third'} %>
-  <%= f.input :semester, collection: [[t("model.post.semester.#{Post::AUTUMN}"), Post::AUTUMN],
-                                      [t("model.post.semester.#{Post::SPRING}"), Post::SPRING],
-                                      [t("model.post.semester.#{Post::OTHER}"), Post::OTHER]],
+  <%= f.input :semester, collection: [[t("model.position.semester.#{Position::AUTUMN}"), Position::AUTUMN],
+                                      [t("model.position.semester.#{Position::SPRING}"), Position::SPRING],
+                                      [t("model.position.semester.#{Position::OTHER}"), Position::OTHER]],
                          include_blank: false,
                          input_html: {class: 'select2'},
                          wrapper_html: {class: 'inline third'} %>
@@ -15,10 +15,10 @@
   <%= f.input :board_mail_link %>
   <%= f.input :mail_link %>
   <%= f.input :visible %>
-  <% if election.semester == Post::OTHER %>
-    <%= f.association :extra_posts, collection: Post.by_title,
-                                    include_blank: false,
-                                    input_html: {class: 'select2_tags'} %>
+  <% if election.semester == Position::OTHER %>
+    <%= f.association :extra_positions, collection: Position.by_title,
+                                        include_blank: false,
+                                        input_html: {class: 'select2_tags'} %>
   <% end %>
   <%= f.button :submit %>
 
@@ -28,12 +28,12 @@
                 class: 'btn secondary') %>
     <% if can_administrate? :manage, :all %>
       <%= link_to(t('.destroy'), admin_election_path(election),
-                  class: 'btn danger pull-right',
-                  data: {confirm: t('.confirm_destroy')},
-                  method: :delete) %>
+                                 class: 'btn danger pull-right',
+                                 data: {confirm: t('.confirm_destroy')},
+                                 method: :delete) %>
     <% end %>
   <% end %>
 
   <hr>
-  <%= render '/admin/posts/post_grid', post_grid: @post_grid %>
+  <%= render '/admin/positions/position_grid', position_grid: @position_grid %>
 <% end %>

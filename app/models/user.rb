@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
   validates :firstname, :lastname, presence: true
 
   # Associations
-  has_many :post_users
-  has_many :posts, through: :post_users
-  has_many :permissions, through: :posts
-  has_many :councils, through: :posts
+  has_many :position_users
+  has_many :positions, through: :position_users
+  has_many :permissions, through: :positions
+  has_many :councils, through: :positions
   has_many :event_registrations
   has_many :candidates
   has_many :cafe_workers
@@ -30,10 +30,10 @@ class User < ActiveRecord::Base
   scope :members, -> { where('member_at < ?', Time.zone.now) }
   scope :confirmed, -> { where('confirmed_at < ?', Time.zone.now) }
 
-  # Returns all councils the user belongs to with a Post who is
+  # Returns all councils the user belongs to with a Position who is
   # allowed to rent the car
   def car_councils
-    councils.merge(Post.renters).distinct.by_title
+    councils.merge(Position.renters).distinct.by_title
   end
 
   def member?

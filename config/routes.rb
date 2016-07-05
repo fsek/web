@@ -122,22 +122,22 @@ Fsek::Application.routes.draw do
 
     resources :councils, path: :utskott, only: [:index, :show]
 
-    resources :posts, path: :poster, only: [] do
+    resources :positions, path: :poster, only: [] do
       patch :display, on: :member, path: :visa
       patch :collapse, on: :collection, path: :dolj
     end
 
     namespace :admin do
       resources :councils, path: :utskott, except: :show do
-        resources :posts, path: :poster, except: :show do
+        resources :positions, path: :poster, except: :show do
           collection do
-            delete 'anvandare/:post_user_id', action: :remove_user, as: :remove_user
+            delete 'anvandare/:position_user_id', action: :remove_user, as: :remove_user
             patch :add_user
           end
         end
       end
 
-      resources :posts, path: :poster, only: [] do
+      resources :positions, path: :poster, only: [] do
         get :show_permissions, path: :rattigheter
       end
     end
@@ -204,7 +204,7 @@ Fsek::Application.routes.draw do
         end
         resources :candidates, controller: 'elections/candidates',
                                path: :kandidera, except: [:show, :update]
-        resources :posts, path: :poster, only: :show do
+        resources :positions, path: :poster, only: :show do
           get :modal, on: :member
         end
       end
@@ -229,13 +229,13 @@ Fsek::Application.routes.draw do
 
     namespace :admin do
       resources :permissions, only: :index do
-        get '/:post_id', action: :show_post, on: :collection, as: :post
-        patch '(/:post_id)', action: :update_post, on: :collection, as: :update
+        get '/:position_id', action: :show_position, on: :collection, as: :position
+        patch '(/:postition_id)', action: :update_position, on: :collection, as: :update
       end
 
       resources :doors, path: :dorrar, except: :show do
         get :accesses, path: :accesser, on: :member
-        get :post, path: '/post/:post_id', on: :collection
+        get :position, path: '/position/:position_id', on: :collection
       end
     end
 

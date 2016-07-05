@@ -1,0 +1,18 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+
+  <%= render 'form', council: @council, position: @position%>
+  <hr>
+
+  <% if can_administrate?(:edit, PermissionPosition) %>
+    <%= link_to(t('.edit_permissions'), position_admin_permissions_path(@position),
+                                        class: 'btn secondary') %>
+  <% end %>
+
+  <%= link_to(t('.all_positions'), admin_council_positions_path(@council),
+                               class: 'btn secondary') %>
+  <%= link_to(t('.show_council'), council_path(@council),
+                                  class: 'btn secondary') %>
+</div>

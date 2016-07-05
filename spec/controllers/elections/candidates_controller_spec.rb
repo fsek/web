@@ -21,7 +21,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
   describe 'GET #new' do
     it 'assigns candidate' do
       create(:election, :autumn, title: 'Terminsmötet')
-      create(:post, :autumn)
+      create(:position, :autumn)
 
       get :new
 
@@ -33,12 +33,12 @@ RSpec.describe Elections::CandidatesController, type: :controller do
   describe 'POST #create' do
     it 'valid params' do
       create(:election, :autumn)
-      postt = create(:post, :autumn)
+      position = create(:position, :autumn)
       attributes = { user_id: user.id,
-                     post_id: postt.id }
+                     position_id: position.id }
 
       lambda do
-        post :create, candidate: attributes
+        post(:create, candidate: attributes)
       end.should change(Candidate, :count).by(1)
 
       response.should redirect_to(candidates_path)
@@ -46,12 +46,12 @@ RSpec.describe Elections::CandidatesController, type: :controller do
 
     it 'invalid params' do
       create(:election, :autumn)
-      create(:post, :autumn)
+      create(:position, :autumn)
       attributes = { user_id: user.id,
-                     post_id: nil }
+                     position_id: nil }
 
       lambda do
-        post :create, candidate: attributes
+        post(:create, candidate: attributes)
       end.should change(Candidate, :count).by(0)
 
       response.status.should eq(422)

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   load_permissions_and_authorize_resource
 
   def show
-    @user = User.includes(posts: :council).find(params[:id])
+    @user = User.includes(positions: :council).find(params[:id])
   end
 
   def edit

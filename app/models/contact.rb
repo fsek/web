@@ -4,13 +4,13 @@ class Contact < ActiveRecord::Base
   globalize_accessors(locales: [:en, :sv],
                       attributes: [:name, :text])
 
-  belongs_to :post
-  has_many :users, through: :post
+  belongs_to :position
+  has_many :users, through: :position
 
-  validates :name, presence: true, if: 'post_id.nil?'
+  validates :name, presence: true, if: 'position_id.nil?'
   validates :email, :text, presence: true
   validates :email, uniqueness: true, format: { with: Devise::email_regexp }
-  validates :post_id, :slug, uniqueness: { allow_blank: true }
+  validates :position_id, :slug, uniqueness: { allow_blank: true }
 
   attr_accessor :message
 
@@ -26,20 +26,20 @@ class Contact < ActiveRecord::Base
   end
 
   def to_s
-    post.try(:title) || name
+    position.try(:title) || name
   end
 
   def full_string
-    post_name || name
+    position_name || name
   end
 
   private
 
-  def post_name
-    if post.present? && post.users.count == 1
-      "#{post.title} - #{post.users.first.firstname}"
-    elsif post.present?
-      post.title
+  def position_name
+    if position.present? && position.users.count == 1
+      "#{position.title} - #{position.users.first.firstname}"
+    elsif position.present?
+      position.title
     end
   end
 end

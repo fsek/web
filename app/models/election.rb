@@ -2,12 +2,14 @@
 class Election < ActiveRecord::Base
   has_many :nominations, dependent: :destroy
   has_many :candidates, dependent: :destroy, inverse_of: :election
-  has_many :election_posts, dependent: :destroy
-  has_many :extra_posts, class_name: Post, through: :election_posts, source: :post
+  has_many :election_positions, dependent: :destroy
+  has_many :extra_positions, class_name: Position,
+                             through: :election_positions,
+                             source: :position
 
   validates :url, uniqueness: true,
                   presence: true,
-                  format: { with: /\A[a-z0-9_-]+\z/ }
+                  format: { with: /\A[a-z0-9-]+\z/ }
 
   validates :title, :open, :close_general, :close_all, :semester, presence: true
 
@@ -15,16 +17,16 @@ class Election < ActiveRecord::Base
     order(open: :asc).where(visible: true).first || nil
   end
 
-  def posts
+  def positions
     case semester
-    when Post::AUTUMN
-      Post.autumn.by_title
-    when Post::SPRING
-      Post.spring.by_title
-    when Post::OTHER
-      extra_posts.by_title
+    when Position::AUTUMN
+      Position.autumn.by_title
+    when Position::SPRING
+      Position.spring.by_title
+    when Position::OTHER
+      extra_positions.by_title
     else
-      Post.none
+      Position.none
     end
   end
 
@@ -41,28 +43,28 @@ class Election < ActiveRecord::Base
     end
   end
 
-  # Returns the current posts
-  def current_posts
+  # Returns the current positions
+  def current_positions
     case state
     when :not_opened, :before_general
-      posts
+      positions
     when :after_general
-      posts.not_general
+      positions.not_general
     when :closed
-      Post.none
+      Position.none
     end
   end
 
-  def searchable_posts
+  def searchable_positions
     if state == :before_general || state == :after_general
-      current_posts
+      current_positions
     else
-      Post.none
+      Position.none
     end
   end
 
-  def after_posts
-    state == :after_general ? posts.general : Post.none
+  def after_positions
+    state == :after_general ? positions.general : Position.none
   end
 
   # Returns the start_date if before, the end_date if during and none if after.
@@ -77,16 +79,16 @@ class Election < ActiveRecord::Base
     end
   end
 
-  def post_closing(post)
-    if post.elected_by == Post::GENERAL
+  def position_closing(position)
+    if position.elected_by == Position::GENERAL
       close_general
     else
       close_all
     end
   end
 
-  def post_count
-    candidates.joins(:post).group('posts.id').size.to_h
+  def position_count
+    candidates.joins(:position).group('positions.id').size.to_h
   end
 
   def to_param

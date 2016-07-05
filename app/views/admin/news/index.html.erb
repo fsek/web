@@ -26,8 +26,8 @@
     g.column name: News.human_attribute_name(:image), attribute: 'image' do |news|
       yes_no(news.image.present?)
     end
-    g.column name: News.human_attribute_name(:user), assoc: :user, attribute: 'id' do |post|
-      user_link(post.user)
+    g.column name: News.human_attribute_name(:user), assoc: :user, attribute: 'id' do |news|
+      user_link(news.user)
     end
     g.column name: News.human_attribute_name(:created_at), attribute: 'created_at' do |news|
       l(news.created_at)

@@ -5,12 +5,12 @@
 
   <%= render 'form', council: @council %>
   <hr>
-  <%= link_to(t('.new_post'), new_admin_council_post_path(@council),
-                              class: 'btn secondary') %>
-  <%= link_to(t('.all_posts'), admin_council_posts_path(@council),
-                               class: 'btn secondary') %>
+  <%= link_to(t('.new_position'), new_admin_council_position_path(@council),
+                                  class: 'btn secondary') %>
+  <%= link_to(t('.all_positions'), admin_council_positions_path(@council),
+                                   class: 'btn secondary') %>
 
-  <% if @council.page.present?%>
+  <% if @council.page.present? %>
     <%= link_to(t('.edit_page'), edit_admin_page_path(@council.page),
                                  class: 'btn secondary') %>
   <% end %>

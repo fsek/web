@@ -17,7 +17,7 @@ sv:
         name: Namn
         name_sv: Namn - svenskt
         name_en: Namn - engelskt
-        post_id: Post
+        position: Post
         public: Publik
         slug: Kortreferens
         text: Beskrivning

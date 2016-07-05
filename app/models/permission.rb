@@ -1,10 +1,10 @@
 class Permission < ActiveRecord::Base
   CUSTOM = ['all', 'cafe'].freeze
-  has_many :posts, through: :permission_posts
-  has_many :permission_posts
+  has_many :positions, through: :permission_positions
+  has_many :permission_positions
   validates :subject_class, :action, presence: true
 
-  scope :subject, -> { order(subject_class: :asc) }
+  scope :by_subject, -> { order(subject_class: :asc) }
 
   def to_s
     %(#{subject_class} - #{action})

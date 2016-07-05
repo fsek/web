@@ -29,18 +29,18 @@
 </div>
 
 <div class="col-md-12 election">
-  <h3><%= @election_view.posts_text %></h3>
-  <%= render 'posttab', election_view: @election_view, post_grid: @election_view.grid %>
+  <h3><%= @election_view.positions_text %></h3>
+  <%= render 'position_tab', election_view: @election_view, position_grid: @election_view.grid %>
 
   <ul class="list">
-    <li><%= t('.x_posts') %></li>
-    <li><%= t('.star_posts') %></li>
-    <li><%= t('.orange_posts') %></li>
-    <li><%= t('.green_posts') %></li>
+    <li><%= t('.x_positions') %></li>
+    <li><%= t('.star_positions') %></li>
+    <li><%= t('.orange_positions') %></li>
+    <li><%= t('.green_positions') %></li>
   </ul>
 
-  <h3><%= @election_view.rest_posts_text %></h3>
-  <%= render 'posttab', election_view: @election_view, post_grid: @election_view.rest_grid %>
-  <div class="display-post" id="views"></div>
+  <h3><%= @election_view.rest_positions_text %></h3>
+  <%= render 'position_tab', election_view: @election_view, position_grid: @election_view.rest_grid %>
+  <div class="display-position" id="views"></div>
 </div>
-<%= render '/posts/modal' %>
+<%= render '/positions/modal' %>

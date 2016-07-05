@@ -12,7 +12,7 @@ FactoryGirl.define do
 
     trait :admin do
       password '12345678'
-      with_admin_post
+      with_admin_position
     end
   end
 
@@ -25,12 +25,12 @@ FactoryGirl.define do
     student_id
     confirmed_at { Time.zone.now }
     member_at { Time.zone.now }
-    with_admin_post
+    with_admin_position
   end
 
-  trait :with_admin_post do
+  trait :with_admin_position do
     after(:create) do |user|
-      create(:post_user, post: create(:post, :with_admin_permissions), user: user)
+      create(:position_user, position: create(:position, :with_admin_permissions), user: user)
     end
   end
 

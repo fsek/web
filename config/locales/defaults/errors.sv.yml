@@ -39,7 +39,7 @@ sv:
         blank: Förnamn måste anges
       lastname:
         blank: Efternamn måste anges
-      post_id:
+      position:
         blank: En post måste anges
 
     template:

@@ -13,11 +13,11 @@
                title: models_name(Door)) %>
 
   <div class="headline">
-    <h3><%= t('.posts') %></h3>
+    <h3><%= t('.positions') %></h3>
   </div>
   <ul>
-    <% @door.posts.each do |post| %>
-      <li><%= post.to_s %></li>
+    <% @door.positions.each do |position| %>
+      <li><%= position.to_s %></li>
     <% end %>
   </ul>
   <%= link_to(t('.edit_door'), edit_admin_door_path(@door),

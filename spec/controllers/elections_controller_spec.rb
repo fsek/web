@@ -12,8 +12,8 @@ RSpec.describe ElectionsController, type: :controller do
   describe 'GET #index' do
     it 'assigns current election' do
       election = create(:election)
-      election.posts << create(:post)
-      election.posts << create(:post)
+      election.positions << create(:position)
+      election.positions << create(:position)
 
       get(:index)
       response.status.should eq(200)

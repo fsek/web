@@ -11,6 +11,6 @@ RSpec.describe Contact, type: :model do
   end
 
   describe :associations do
-    it { should belong_to(:post) }
+    it { should belong_to(:position) }
   end
 end
