@@ -52,6 +52,8 @@ RSpec.describe Admin::PostsController, type: :controller do
       attributes = { title: 'Spindelman',
                      limit: 5,
                      rec_limit: 10,
+                     semster: Post::AUTUMN,
+                     elected_by: Post::BOARD,
                      description: 'En webbmästare' }
 
       lambda do

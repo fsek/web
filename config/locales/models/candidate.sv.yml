@@ -2,8 +2,10 @@ sv:
   model:
     candidate:
       add_user_information: Du måste fylla i dina användaruppgifter
-      time_error: kandidaturer för posten kan inte skapas eller redigeras, har valet stängt?
+      not_editable: kandidaturer för posten kan inte skapas eller redigeras just nu.
+      not_allowed_to_destroy: Inte tillåtet att radera kandidaturen.
       similar_candidate: har redan en likadan kandidatur.
+
   activerecord:
     models:
       candidate:
@@ -11,12 +13,11 @@ sv:
         other: Kandidaturer
     attributes:
       candidate:
-        created_at: Skapades
         count: Antal kandiderande
-        closing: Valet stängs
+        created_at: Skapades
+        editable_until: Kan redigeras till
         elected_by: Väljs av
-        election_id: Val
-        limit: Gräns
-        post_id: Post
+        election: Val
+        post: Post
         updated_at: Uppdaterades
-        user_id: Användare
+        user: Användare

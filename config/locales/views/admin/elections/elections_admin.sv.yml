@@ -14,9 +14,11 @@ sv:
         confirm_destroy: Valet raderas och kan inte återställas, är du säker?
         destroy: Förinta val
         edit_texts: Redigera texter
+        semester_hint_for_other: Om det ej är ett ordinarie val väljs Termin - Annat, efter att valet sparats kan poster läggas till.
 
       index:
         new_election: Nytt val
+        show_election: Visa val
         title: Administrera val
 
       new:

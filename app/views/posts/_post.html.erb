@@ -1,50 +1,34 @@
-<div id="<%= dom_id(post) %>" class="collapsed">
-  <div class="funny-boxes funny-boxes-left-orange left-text-align">
-    <%= link_to(t('.hide'), collapse_posts_path, remote: true,
-                            class: 'btn secondary pull-right',
-                            method: :patch) %>
-    <% if election && election.can_candidate?(post) %>
-      <%= link_to(t('.candidate'), new_candidate_path(post: post.id.to_s),
-                                   class: 'btn primary pull-right') %>
-      <%= link_to(t('.nominate'), new_nominations_path(post: post.id.to_s),
-                                  class: 'btn primary pull-right') %>
+<% cache(post) do %>
+  <%= markdown(post.description) %>
+
+  <ul class="list-unstyled">
+    <li>
+      <%= fa_icon('briefcase') %>
+      <%= Post.human_attribute_name(:limit)%>:
+      <%= print_post_limit(post) %>
+
+      <% if post.board? %>
+        , <%= Post.human_attribute_name(:board) %>
     <% end %>
-    <h2><%= post.to_s %></h2>
+    </li>
+    <li>
+      <%= fa_icon('users') %>
+      <%= model_name(Council) %>:
+      <%= link_to(post.council, post.council) %>
+    </li>
 
+    <li>
+      <%= fa_icon('cog') %>
+      <%= Post.human_attribute_name(:elected_by) %>:
+      <%= t("model.post.#{post.elected_by}") %>
+    </li>
+  </ul>
 
-    <% if post.description %>
-      <%= markdown(post.description) %>
-    <% end %>
+  <% if election.present? %>
+    <%= candidate_and_nominate_buttons(post) %>
+    <%= simple_format(t('.candidates_for_post_closes',
+                        post: post.to_s,
+                        date: localized(election.post_closing(post)))) %>
 
-    <ul class="list-unstyled">
-      <% if (post.limit) || (post.styrelse)%>
-        <li>
-          <%= fa_icon('briefcase') %>
-          <% if post.limit %>
-            <%= Post.human_attribute_name(:limit)%>:
-            <%= print_post_limit(post) %>
-          <% end %>
-
-          <% if post.board %>
-            , <%= Post.human_attribute_name(:board) %>
-          <% end %>
-        </li>
-      <% end %>
-
-      <% if post.council %>
-        <li>
-          <%= fa_icon('users') %>
-          <%= model_name(Council) %>: <%= link_to(post.council, post.council) %>
-        </li>
-      <% end %>
-
-      <% if post.elected_by %>
-        <li>
-          <%= fa_icon('cog') %>
-          <%= Post.human_attribute_name(:elected_by) %>:
-          <%= t("model.post.#{post.elected_by}") %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
+  <% end %>
+<% end %>

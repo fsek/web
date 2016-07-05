@@ -1,27 +1,17 @@
 class ElectionView
-  attr_reader :election
-  attr_accessor :grid, :rest_grid, :user, :nomination
+  attr_reader :election, :post_count
+  attr_accessor :rest_grid, :grid, :candidate, :user, :nomination
 
-  def initialize(election)
+  def initialize(election, candidate: nil)
     @election = election
-  end
-
-  def countdown
-    case @election.state
-    when :before
-      @election.start
-    when :during
-      @election.end
-    when :after
-      @election.closing
-    end
+    @candidate = candidate
   end
 
   def countdown_text
     case @election.state
-    when :before
+    when :not_opened
       I18n.t('election_view.opens_in')
-    when :during
+    when :before_general, :after_general
       I18n.t('election_view.closes_in')
     when :closed
       I18n.t('election_view.already_closed')
@@ -30,9 +20,9 @@ class ElectionView
 
   def posts_text
     case @election.state
-    when :before
+    when :not_opened
       I18n.t('election_view.posts_will_candidate')
-    when :during, :after
+    when :before_general, :after_general
       I18n.t('election_view.posts_can_candidate')
     when :closed
       I18n.t('election_view.posts_cannot_candidate')
@@ -40,8 +30,18 @@ class ElectionView
   end
 
   def rest_posts_text
-    if @election.state == :after
+    if @election.state == :after_general
       I18n.t('election_view.posts_cannot_candidate')
     end
+  end
+
+  def post_closing
+    if candidate.present? && candidate.post.present?
+      election.post_closing(candidate.post)
+    end
+  end
+
+  def post_count
+    @post_count ||= election.post_count
   end
 end

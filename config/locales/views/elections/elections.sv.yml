@@ -1,5 +1,8 @@
 sv:
   elections:
+    countdown:
+      days: dagar
+
     index:
       description: Val på F-sektionen är då funktionärer och förtroendevalda blir valda. Se vilka poster som finns och sök idag.
       edit_election: Redigera val
@@ -17,3 +20,4 @@ sv:
 
     no_election:
       no_information: Just nu finns det ingen information om valet.
+      to_root: Tillbaka till start

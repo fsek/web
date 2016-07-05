@@ -15,28 +15,40 @@
     }
   }
 
-  .candidate {
-    border: 1px solid $fsek-orange;
-    margin: 20px;
-    padding: 20px;
+  &.grid {
+    tr {
+      &.board-post {
+        td,
+        &.even td,
+        &.odd td {
+          background-color: rgba($orange-highlight, 0.5);
+        }
+      }
+
+      &.studierad {
+        td,
+        &.even td,
+        &.odd td {
+          background-color: rgba($green-highlight, 0.7);
+        }
+      }
+    }
+  }
+
+  .links {
+    padding-right: 10px;
   }
 }
 
-.election-grid {
-  tr {
-    &.board-post {
-      td,
-      &.even td,
-      &.odd td {
-        background-color: rgba($orange-highlight, 0.5);
-      }
-    }
-
-    &.studierad {
-      td,
-      &.even td,
-      &.odd td {
-        background-color: rgba($green-highlight, 0.7);
+.candidate {
+  &.grid {
+    tr {
+      &.editable {
+        td,
+        &.even td,
+        &.odd td {
+          background-color: rgba($orange-highlight, 0.5);
+        }
       }
     }
   }

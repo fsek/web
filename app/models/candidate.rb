@@ -1,37 +1,21 @@
 # encoding: UTF-8
 class Candidate < ActiveRecord::Base
-  # Associations
-  belongs_to :election
-  belongs_to :user
-  belongs_to :post
+  belongs_to :election, required: true, inverse_of: :candidates
+  belongs_to :user, required: true
+  belongs_to :post, required: true
   has_one :council, through: :post
 
-  # Validations
-  validates :post_id, uniqueness: { scope: [:user_id, :election_id],
-                                    message: I18n.t('model.candidate.similar_candidate') }
-  validates :post, :user, :election, presence: true
-  validate :user_attributes, :check_edit
+  validates :post, uniqueness: { scope: [:user, :election],
+                                 message: I18n.t('model.candidate.similar_candidate') }
 
-  def owner?(user)
-    self.user == user
-  end
+  validate :user_attributes
+  validate :check_edit, if: Proc.new { |o| o.election.present? && o.post.present? }
 
   def editable?
-    if election.present?
-      case election.state
-      when :during
-        return true
-      when :after
-        return !(post.elected_by == Post::GENERAL)
-      else
-        false
-      end
-    end
-  end
-
-  def check_edit
-    unless editable?
-      errors.add(:post, I18n.t('model.candidate.time_error'))
+    if election.present? && post.present?
+      election.searchable_posts.where(id: post.id).any?
+    else
+      false
     end
   end
 
@@ -39,18 +23,23 @@ class Candidate < ActiveRecord::Base
     Rails.application.routes.url_helpers.candidate_url(id, host: PUBLIC_URL)
   end
 
-  def p_path
-    Rails.application.routes.url_helpers.candidate_path(id)
+  def editable_until
+    if election.present? && post.present?
+      election.post_closing(post)
+    end
   end
 
-  protected
+  private
 
   def user_attributes
-    if user.present? && user.has_attributes?
-      return true
+    unless user.present? && user.has_attributes?
+      errors.add(:user, I18n.t('model.candidate.add_user_information'))
     end
+  end
 
-    errors.add(:user, I18n.t('model.candidate.add_user_information'))
-    false
+  def check_edit
+    unless editable?
+      errors.add(:post, I18n.t('model.candidate.not_editable'))
+    end
   end
 end

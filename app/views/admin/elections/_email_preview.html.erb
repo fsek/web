@@ -4,9 +4,9 @@
   <p><%= t('election_mailer.candidate_email.you_have_candidated') %> Prylmästare.</p>
 
   <%= markdown(election.candidate_mail) %>
-  <%= link_to(election.mail_styrelse_link, election.mail_styrelse_link) %>
+  <%= link_to(election.board_mail_link, election.board_mail_link) %>
   <p>
-  <%= t('election_mailer.candidate_email.election_closes_at', date: l(election.end)) %>
+  <%= t('election_mailer.candidate_email.election_closes_at', date: l(election.close_general)) %>
   <br>
   <%= link_to('redigeringslänk', '#') %>
   </p>
@@ -21,7 +21,7 @@
   <%= markdown(election.candidate_mail) %>
   <%= link_to(election.mail_link, election.mail_link) %>
   <p>
-  <%= t('election_mailer.candidate_email.election_closes_at', date: l(election.end)) %>
+  <%= t('election_mailer.candidate_email.election_closes_at', date: l(election.close_general)) %>
   <br>
   <%= link_to('redigeringslänk', '#') %>
   </p>
@@ -35,7 +35,7 @@
 
   <%= markdown(election.candidate_mail_star) %>
   <p>
-  <%= t('election_mailer.candidate_email.election_closes_at', date: l(election.end)) %>
+  <%= t('election_mailer.candidate_email.election_closes_at', date: l(election.close_general)) %>
   <br>
   <%= link_to('redigeringslänk', '#') %>
   </p>
@@ -56,7 +56,7 @@
   <%= markdown(election.nominate_mail)%>
 
   <%= simple_format(t('election_mailer.nominate_email.accept_before_closing',
-                      date: l(election.closing))) %>
+                      date: l(election.close_general))) %>
   <p><%= t('election_mailer.nominate_email.via_web') %>:<br>
 
   <%= link_to('redigeringslänk', '#') %></p>

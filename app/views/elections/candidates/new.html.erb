@@ -1,9 +1,29 @@
-<%= provide(:title, @candidate_view.election) %>
 <div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
   <div class="headline">
-    <h2><%= title(t('.title')) %></h2>
+    <h1><%= title(t('.title')) %></h1>
   </div>
-  <%= render 'form', candidate_view: @candidate_view %>
+  <%= simple_form_for(@election_view.candidate) do |f| %>
+    <%= f.association(:user, collection: [ current_user ],
+                             include_blank: false,
+                             input_html: {class: 'select2'}) %>
+    <%= f.association(:post, collection: @election_view.election.searchable_posts,
+                             include_blank: false,
+                             input_html: {class: 'select2'}) %>
+    <%= f.button :submit, id: 'candidate-submit' %>
+  <% end %>
+  <hr>
+
+  <%= simple_format(t('.user_attributes')) %>
+  <%= link_to(t('.edit_user'), edit_own_user_path,
+                               target: :blank,
+                               class: 'btn secondary') %>
+
+  <table class="table">
+    <tbody>
+      <%= render '/users/as_table', user: current_user, prot: true %>
+    </tbody>
+  </table>
+
   <hr>
   <%= link_to(t('.back_to_candidates'), candidates_path, class: 'btn secondary') %>
 </div>

@@ -11,12 +11,13 @@ class Post < ActiveRecord::Base
   EXTRA = 'extra'.freeze
 
   # Associations
-  belongs_to :council
+  belongs_to :council, required: true
   has_many :post_users
   has_many :users, through: :post_users
-  has_and_belongs_to_many :elections
+
   has_many :nominations
   has_many :candidates
+
   has_many :permission_posts
   has_many :permissions, through: :permission_posts
   has_many :accesses
@@ -33,7 +34,8 @@ class Post < ActiveRecord::Base
   scope :both, -> { where(semester: BOTH) }
 
   # Validations
-  validates :title, :description, :limit, :rec_limit, presence: true
+  validates(:title, :description, :limit,
+            :rec_limit, :elected_by, :semester, presence: true)
 
   # Scopes
   scope :renters, -> { where(car_rent: true) }

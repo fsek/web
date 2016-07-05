@@ -2,6 +2,7 @@ sv:
   model:
     nomination:
       invalid_email: E-postadressen har inte giltligt format.
+      not_valid_post: Det går inte att nominera till denna post just nu.
 
   activerecord:
     models:

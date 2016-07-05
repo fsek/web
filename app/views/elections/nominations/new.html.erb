@@ -1,6 +1,6 @@
 <div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
   <div class="headline">
-    <h2><%= title(t('.nominate_for', election: @election.title)) %></h2>
+    <h1><%= title(t('.nominate_for', election: @election_view.election.title)) %></h1>
   </div>
 
   <div id="nomination-form">
@@ -9,7 +9,15 @@
       <%= simple_format(t('.mail_will_be_sent')) %>
     </div>
 
-      <%= render 'form', election: @election, nomination: @nomination%>
+      <%= simple_form_for(@election_view.nomination) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :email %>
+        <%= f.association(:post, collection: @election_view.election.searchable_posts,
+                                 include_blank: false,
+                                 input_html: {class: 'select2'})%>
+        <%= f.input :motivation %>
+        <%= f.button :submit, id: 'nomination-submit' %>
+      <% end %>
       <hr>
   </div>
 

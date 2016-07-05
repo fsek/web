@@ -10,6 +10,7 @@ sv:
       semester:
         autumn: HT
         both: HT och VT
+        other: Annat
         spring: VT
 
   activerecord:
