@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
   validates :email, format: { with: Devise::email_regexp }
+  validates :firstname, :lastname, presence: true
 
   # Associations
   has_many :post_users
@@ -38,23 +39,11 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    if has_name_data?
-      %(#{firstname} #{lastname})
-    elsif firstname.present?
-      firstname
-    else
-      email
-    end
-  end
-
-  # Check if user has user data (name and lastname)
-  def has_name_data?
-    firstname.present? && lastname.present?
+    %(#{firstname} #{lastname})
   end
 
   def has_attributes?
-    has_name_data? && email.present? &&
-      phone.present? && student_id.present?
+    email.present? && phone.present? && student_id.present?
   end
 
   def print_id
