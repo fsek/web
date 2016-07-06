@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include CarrierWave::Compatibility::Paperclip
   devise(:database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable)
@@ -7,34 +8,24 @@ class User < ActiveRecord::Base
   validates :email, format: { with: Devise::email_regexp }
 
   # Associations
-  belongs_to :first_post, class_name: Post
-  has_many :candidates
-  has_many :councils, through: :posts
-  has_many :event_registrations
-  has_many :images
-  has_many :permissions, through: :posts
   has_many :post_users
   has_many :posts, through: :post_users
-  has_many :rents
+  has_many :permissions, through: :posts
+  has_many :councils, through: :posts
+  has_many :event_registrations
+  has_many :candidates
   has_many :cafe_workers
   has_many :cafe_shifts, through: :cafe_workers
+  has_many :images
+  has_many :rents
   has_many :group_users
   has_many :groups, through: :group_users
 
-  # Attachment
-  has_attached_file(:avatar,
-                    styles: { medium: '300x300>', thumb: '100x100>' },
-                    path: ':rails_root/storage/user/:id/:style/:filename')
+  mount_uploader :avatar, AttachedImageUploader, mount_on: :avatar_file_name
 
   scope :by_firstname, -> { order(firstname: :asc) }
   scope :members, -> { where('member_at < ?', Time.zone.now) }
   scope :confirmed, -> { where('confirmed_at < ?', Time.zone.now) }
-
-  # Validations
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-
-  attr_accessor :remove_avatar
-  before_save :delete_avatar, if: -> { remove_avatar == '1' && !avatar_updated_at_changed? }
 
   # Returns all councils the user belongs to with a Post who is
   # allowed to rent the car
@@ -74,9 +65,15 @@ class User < ActiveRecord::Base
     %(#{self} <#{email}>)
   end
 
-  private
+  def large_avatar
+    if avatar.present?
+      avatar.large.url
+    end
+  end
 
-  def delete_avatar
-    self.avatar = nil
+  def thumb_avatar
+    if avatar.present?
+      avatar.thumb.url
+    end
   end
 end

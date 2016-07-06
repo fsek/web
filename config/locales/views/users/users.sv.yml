@@ -3,6 +3,7 @@ sv:
     account_form:
       check_email_to_confirm: Vänlig kontrollera om du fått ett epost %{date} med en länk för att bekräfta din e-postadress.
       contact_for_membership: Kontakta Spindelmännen för att bli registrerad som medlem
+      title: Konto
 
     as_table:
       asterix_hidden: Fält markerade med * visas endast för funktionärer vid t.ex. Hilbert Café
@@ -12,6 +13,7 @@ sv:
       protected_fields: Nedanstående fält används endast för sektionsval, bilbokning samt arbete i Hilbert Café.
       protected_fields_can_be_seen_by: Kan ses av styrelse, administratörer samt ansvariga för val, bokning eller caféet.
       student_id_hint: På formen hi6122al, hittas på https://lucat.lu.se
+      title: Användare
 
     edit:
       account: Konto
@@ -19,3 +21,6 @@ sv:
       password: Lösenord
       profile: Användare
       title: Kontoinställningar
+
+    password_form:
+      title: Lösenord

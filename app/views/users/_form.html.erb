@@ -1,23 +1,26 @@
-<%= simple_form_for(user, url: own_user_path, html: { class: 'reg-page' }) do |f| %>
-  <%= f.input :firstname %>
-  <%= f.input :lastname %>
-  <%= f.input :program, collection: ['Oklart', 'Teknisk Fysik', 'Teknisk Matematik', 'Teknisk Nanovetenskap'] %>
-  <%= f.input :start_year, collection: (1954..(Time.zone.now.year+1)).to_a.reverse! %>
+<%= simple_form_for(user, url: own_user_path) do |f| %>
+  <div class="headline">
+    <h3><%= t('.title') %></h3>
+  </div>
+  <%= f.input :firstname, autofocus: true, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :lastname, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :program, collection: ['Oklart', 'Teknisk Fysik', 'Teknisk Matematik', 'Teknisk Nanovetenskap'],
+                        input_html: {class: 'select2'} %>
+  <%= f.input :start_year, collection: (1954..(Time.zone.now.year+1)).to_a.reverse!,
+                           input_html: {class: 'select2'} %>
   <div class="input-group margin-bottom-20">
-    <% if user.avatar?%>
-      <%= image_tag(avatar_user_path(user))%><br>
+    <% if user.thumb_avatar %>
+      <%= image_tag(user.thumb_avatar, class: 'img responsive', height: '200px')%><br>
       <%= f.input :remove_avatar, as: :boolean %>
     <% end %>
   </div>
-  <%= f.input :avatar, as: :file %>
-  <%= f.association :first_post, collection: user.posts %>
+      <%= f.input :avatar, as: :file %>
   <hr>
   <%= simple_format(t('.protected_fields')) %>
   <%= simple_format(t('.protected_fields_can_be_seen_by')) %>
   <%= f.input :student_id, hint: t('.student_id_hint') %>
   <%= f.input :phone %>
-  <%= simple_format(t('.food_preference_hint')) %>
-  <%= f.input :food_preference %>
+  <%= f.input :food_preference, hint: t('.food_preference_hint') %>
   <%= f.button :submit, id: 'user-info-submit' %>
 <% end %>
 

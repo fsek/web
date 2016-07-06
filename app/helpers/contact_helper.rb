@@ -13,7 +13,7 @@ module ContactHelper
 
   def contact_image(contact)
     if contact_single_user(contact)
-      image_tag(avatar_user_path(contact.post.users.first),
+      image_tag(contact.post.users.first.large_avatar,
                 class: 'img-responsive')
     else
       image_tag('missing_thumb.png', class: 'img-responsive')
