@@ -4,6 +4,7 @@
   <%= f.input :start, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
   <%= f.input :stop, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
   <%= f.input :slug %>
+  <%= f.input :current %>
   <%= f.button :submit %>
   <% if introduction.persisted? %>
     <%= link_to(t('.destroy_introduction'), admin_introduction_path(introduction),

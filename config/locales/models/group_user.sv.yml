@@ -1,0 +1,10 @@
+sv:
+  activerecord:
+    models:
+      group_user:
+        one: Gruppmedlem
+        other: Gruppmedlemmar
+    attributes:
+      group_user:
+        user: Användare
+        group: Grupp

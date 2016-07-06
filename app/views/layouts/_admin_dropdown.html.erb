@@ -145,5 +145,17 @@
         <%= link_to(model_name(Faq), admin_faqs_path)%>
       </li>
     <% end %>
+
+    <% if can_administrate?(:index, Introduction) %>
+      <li class="dropdown-submenu">
+        <%= link_to(model_name(Introduction), admin_introductions_path)%>
+      </li>
+    <% end %>
+
+    <% if can_administrate?(:index, Group) %>
+      <li class="dropdown-submenu">
+        <%= link_to(models_name(Group), admin_groups_path)%>
+      </li>
+    <% end %>
   </ul>
 </li>

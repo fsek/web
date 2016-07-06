@@ -34,7 +34,7 @@ class Ability
       can [:create, :update, :destroy], CafeWorker, user_id: user.id
       can [:show], CafeShift
       can [:create, :destroy], EventRegistration, user_id: user.id
-      can [:show, :avatar], User
+      can :show, User
 
       can [:read, :mail], Contact
       can :read, Document, public: true
@@ -52,6 +52,9 @@ class Ability
       can [:destroy], Candidate, user_id: user.id
       can [:create], Nomination
       can :show, Page, visible: true
+      can :index, Group
+      can :show, Group, users: { id: user.id }
+      can [:edit, :update], Group, group_users: { fadder: true, user: user }
     end
   end
 end

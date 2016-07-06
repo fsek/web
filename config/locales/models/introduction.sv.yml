@@ -1,0 +1,6 @@
+sv:
+  activerecord:
+    models:
+      introduction:
+        one: Nollning
+        other: Nollningar

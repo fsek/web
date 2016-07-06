@@ -1,0 +1,12 @@
+sv:
+  activerecord:
+    models:
+      group:
+        one: Faddergrupp
+        other: Faddergrupper
+    attributes:
+      group:
+        number: Nummer
+        name: Namn
+        introduction: Nollning
+        users: Medlemmar

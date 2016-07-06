@@ -1,0 +1,26 @@
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+
+<div class="col-md-12 margin-bottom-20">
+  <%= link_to t('.all_groups'), admin_groups_path, class: 'btn primary' %>
+</div>
+
+<div class="col-md-12">
+  <%= grid(@grid, class: 'group-users-grid') do |grid|
+    grid.row_attributes do |gu|
+      {id: dom_id(gu), class: gu.fadder ? 'fadder' : ''}
+    end
+    grid.column(name: GroupUser.human_attribute_name(:user), assoc: :user, attribute: 'firstname',
+                                                             filter: false) do |gu|
+      link_to gu.user, user_path(gu.user)
+    end
+    grid.column(name: GroupUser.human_attribute_name(:fadder), attribute: 'fadder', filter: false,
+                                                               html: { class: 'yes_no' }) do |gu|
+      yes_no(gu.fadder)
+    end
+    grid.column(filter: false, html: { class: 'state_link' }) do |gu|
+      group_user_state_link(@group, gu)
+    end
+  end -%>
+</div>

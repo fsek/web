@@ -81,7 +81,7 @@ RSpec.describe Admin::IntroductionsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'delets introduction' do
+    it 'deletes introduction' do
       introduction = create(:introduction)
 
       lambda do

@@ -1,4 +1,3 @@
-# encoding:UTF-8
 class User < ActiveRecord::Base
   devise(:database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -19,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :rents
   has_many :cafe_workers
   has_many :cafe_shifts, through: :cafe_workers
+  has_many :group_users
+  has_many :groups, through: :group_users
 
   # Attachment
   has_attached_file(:avatar,

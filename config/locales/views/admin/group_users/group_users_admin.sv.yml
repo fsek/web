@@ -1,0 +1,10 @@
+sv:
+  admin:
+    group_users:
+      index:
+        title: Hantera faddrar
+        all_groups: Alla grupper
+      set_fadder:
+        failed: Misslyckades
+      set_nolla:
+        failed: Misslyckades

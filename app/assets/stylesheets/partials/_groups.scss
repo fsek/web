@@ -1,0 +1,28 @@
+.group-user-list {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.group-users-grid {
+  tr {
+    &.fadder {
+      td,
+      &.even td,
+      &.odd td {
+        background-color: $grid-highlight;
+      }
+    }
+  }
+}
+
+.groups-grid {
+  tr {
+    &.member {
+      td,
+      &.even td,
+      &.odd td {
+        background-color: $grid-highlight;
+      }
+    }
+  }
+}
