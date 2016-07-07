@@ -45,6 +45,9 @@ gem 'uglifier'
 # Introduces feature needed in tables, no errors when updating
 gem 'wice_grid', '3.6.0.pre4'
 
+# Only enable for a short period to find N+1 in production
+gem 'bullet'
+
 # To have a working JVM on server
 group :staging, :production do
   gem 'therubyracer', platform: :ruby
