@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704214107) do
+ActiveRecord::Schema.define(version: 20160707064120) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -44,11 +44,6 @@ ActiveRecord::Schema.define(version: 20160704214107) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category",    limit: 255
-  end
-
-  create_table "albums_images", id: false, force: :cascade do |t|
-    t.integer "album_id", limit: 4
-    t.integer "image_id", limit: 4
   end
 
   create_table "cafe_shifts", force: :cascade do |t|
@@ -206,11 +201,6 @@ ActiveRecord::Schema.define(version: 20160704214107) do
     t.string   "board_mail_link",     limit: 255
     t.datetime "close_all"
     t.string   "semester",            limit: 255,   default: "spring"
-  end
-
-  create_table "elections_posts", id: false, force: :cascade do |t|
-    t.integer "election_id", limit: 4
-    t.integer "post_id",     limit: 4
   end
 
   create_table "event_registrations", force: :cascade do |t|
@@ -425,8 +415,6 @@ ActiveRecord::Schema.define(version: 20160704214107) do
     t.text     "motivation",  limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "phone",       limit: 255
-    t.string   "stil_id",     limit: 255
   end
 
   create_table "notice_translations", force: :cascade do |t|
@@ -555,9 +543,6 @@ ActiveRecord::Schema.define(version: 20160704214107) do
   create_table "rents", force: :cascade do |t|
     t.datetime "d_from"
     t.datetime "d_til"
-    t.string   "lastname",   limit: 255
-    t.string   "email",      limit: 255
-    t.string   "phone",      limit: 255
     t.text     "purpose",    limit: 65535
     t.boolean  "aktiv",                    default: true
     t.integer  "council_id", limit: 4
@@ -567,8 +552,10 @@ ActiveRecord::Schema.define(version: 20160704214107) do
     t.string   "status",     limit: 255,   default: "unconfirmed"
     t.boolean  "service",                  default: false
     t.integer  "user_id",    limit: 4
-    t.string   "firstname",  limit: 255
   end
+
+  add_index "rents", ["council_id"], name: "index_rents_on_council_id", using: :btree
+  add_index "rents", ["user_id"], name: "index_rents_on_user_id", using: :btree
 
   create_table "short_links", force: :cascade do |t|
     t.string "link",   limit: 255,   null: false
@@ -599,7 +586,6 @@ ActiveRecord::Schema.define(version: 20160704214107) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",               limit: 255
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
@@ -610,7 +596,6 @@ ActiveRecord::Schema.define(version: 20160704214107) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.integer  "role_id",                limit: 4,   default: 2,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "firstname",              limit: 255
@@ -670,4 +655,5 @@ ActiveRecord::Schema.define(version: 20160704214107) do
   add_foreign_key "groups", "introductions"
   add_foreign_key "menus", "main_menus"
   add_foreign_key "page_images", "pages"
+  add_foreign_key "rents", "users"
 end
