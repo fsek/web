@@ -40,7 +40,7 @@ RSpec.describe Admin::GroupsController, type: :controller do
       lambda do
         post(:create, group: attributes)
       end.should change(Group, :count).by(1)
-      response.should redirect_to(admin_groups_path)
+      response.should redirect_to(new_admin_group_path)
     end
 
     it 'unsuccessful with invalid params' do

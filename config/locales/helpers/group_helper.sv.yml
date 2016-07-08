@@ -1,5 +1,6 @@
 sv:
   helper:
     group:
-      set_fadder: Gör till fadder
+      set_fadder: Gör till fadder/uppdragsfös
       set_nolla: Gör till nolla
+      regular_title: Faddergrupp

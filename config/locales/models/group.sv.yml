@@ -2,11 +2,14 @@ sv:
   activerecord:
     models:
       group:
-        one: Faddergrupp
-        other: Faddergrupper
+        one: Grupp
+        other: Grupper
     attributes:
       group:
         number: Nummer
         name: Namn
         introduction: Nollning
         users: Medlemmar
+        group_type: Typ
+        regular: Faddergrupp
+        mission: Uppdragsgrupp

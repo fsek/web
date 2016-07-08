@@ -1,0 +1,14 @@
+<div class="dropdown margin-bottom-20">
+  <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true">
+    <%= t('.other') %>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="oldies">
+    <% introductions.each do |i| %>
+      <li>
+        <%= link_to(i.year, groups_path(introduction_id: i.id)) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   def index
     @introduction = Introduction.find_by(id: params[:introduction_id]) || Introduction.current
     @introductions = Introduction.all_except(@introduction)
-    @grid = initialize_grid(Group.where(introduction: @introduction))
+    @grid = initialize_grid(Group.regular.where(introduction: @introduction))
   end
 
   def show

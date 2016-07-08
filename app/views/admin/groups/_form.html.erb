@@ -1,7 +1,13 @@
 <%= simple_form_for([:admin, group]) do |f| %>
+  <%= f.input :group_type, collection: group_type_collection,
+                           input_html: { class: 'select2' },
+                           include_blank: false %>
+  <%= f.association :introduction, collection: Introduction.by_start,
+                                   input_html: { class: 'select2' },
+                                   include_blank: false,
+                                   label_method: :to_s %>
   <%= f.input :name %>
-  <%= f.input :number %>
-  <%= f.association :introduction, collection: Introduction.by_start, label_method: :to_s %>
+  <%= f.input :number, hint: t('.number_hint') %>
   <%= f.association :users, collection: User.by_firstname.confirmed,
                             input_html: { class: 'select2' },
                             include_blank: false %>

@@ -254,7 +254,7 @@ Fsek::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :groups, path: :faddergrupper, except: :show do
+    resources :groups, path: :grupper, except: :show do
       resources :group_users, path: :anvandare, only: :index do
         patch :set_fadder, on: :member
         patch :set_not_fadder, on: :member
@@ -262,7 +262,7 @@ Fsek::Application.routes.draw do
     end
   end
 
-  resources :groups, path: :faddergrupper, except: [:new, :create, :destroy]
+  resources :groups, path: :grupper, except: [:new, :create, :destroy]
 
   get 'proposals/form' => 'proposals#form'
   post 'proposals/generate' => 'proposals#generate'

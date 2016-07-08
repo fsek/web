@@ -2,7 +2,9 @@ class Admin::GroupsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @grid = initialize_grid(Group)
+    @grid = initialize_grid(Group.order(number: :asc),
+                            include: :introduction,
+                            order: 'introductions.start')
   end
 
   def new
@@ -16,7 +18,7 @@ class Admin::GroupsController < Admin::BaseController
   def create
     @group = Group.new(group_params)
     if @group.save
-      redirect_to admin_groups_path, notice: alert_create(Group)
+      redirect_to new_admin_group_path, notice: alert_create(Group)
     else
       render :new, status: 422
     end
@@ -41,6 +43,6 @@ class Admin::GroupsController < Admin::BaseController
   private
 
   def group_params
-    params.require(:group).permit(:name, :number, :introduction_id, user_ids: [])
+    params.require(:group).permit(:name, :number, :introduction_id, :group_type, user_ids: [])
   end
 end

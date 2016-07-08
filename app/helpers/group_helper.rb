@@ -21,7 +21,22 @@ module GroupHelper
 
   def group_title(group)
     if group.present?
-      model_name(Group) + ' ' + @group.number.to_s + ': ' + @group.name
+      if group.regular?
+        t('helper.group.regular_title') + ' ' + group.number.to_s + ': ' + group.to_s
+      else
+        group.to_s
+      end
     end
+  end
+
+  def group_type_str(group)
+    if group.present?
+      group.regular? ? Group.human_attribute_name('regular') : Group.human_attribute_name('mission')
+    end
+  end
+
+  def group_type_collection
+    [[Group.human_attribute_name('regular'), Group::REGULAR],
+     [Group.human_attribute_name('mission'), Group::MISSION]]
   end
 end
