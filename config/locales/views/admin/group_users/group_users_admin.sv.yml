@@ -2,7 +2,7 @@ sv:
   admin:
     group_users:
       index:
-        title: Hantera faddrar
+        title: Välj faddrar/uppdragsfös
         all_groups: Alla grupper
       set_fadder:
         failed: Misslyckades

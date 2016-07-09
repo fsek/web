@@ -6,7 +6,7 @@
 <% end %>
 
 <ul class="dropdown-menu pull-right">
-  <% current_user.groups.each do |g| %>
+  <% current_user.groups.includes(:introduction).each do |g| %>
     <li><%= link_to g, group_path(g) %></li>
   <% end %>
 </ul>

@@ -2,16 +2,24 @@
   <h1><%= title(t('.title')) %></h1>
 </div>
 
-<div class="col-md-12 margin-bottom-20">
+<div class="col-md-2 col-xs-12">
   <%= link_to t('.new'), new_admin_group_path, class: 'btn primary' %>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-10 col-xs-12">
   <%= grid(@grid) do |g|
-    g.column(name: Group.human_attribute_name(:number), attribute: 'number', filter: false)
     g.column(name: Group.human_attribute_name(:name), attribute: 'name', filter: false) do |group|
       link_to group.name, edit_admin_group_path(group)
     end
+    g.column(name: t('.year'), attribute: 'start', assoc: :introduction, filter: false) do |group|
+      group.introduction.year
+    end
+    g.column(name: Group.human_attribute_name(:group_type),
+             attribute: 'group_type',
+             filter: false) do |group|
+      group_type_str(group)
+    end
+    g.column(name: Group.human_attribute_name(:number), attribute: 'number', filter: false)
     g.column(filter: false) do |group|
       link_to t('.manage_faddrar'), admin_group_group_users_path(group)
     end

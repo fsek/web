@@ -2,9 +2,10 @@ sv:
   groups:
     index:
       title: Faddergrupper
-      other: Andra nollningar
     show:
       members: Medlemmar
     edit:
       title: Redigera Medlemmar
       back: Tillbaka
+    introduction_list:
+      other: Andra nollningar
