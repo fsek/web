@@ -1,6 +1,8 @@
+<% set_meta_tags noindex: true %>
+
 <div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
   <div class="headline">
-    <h2><%= t('devise.sign_in') %></h2>
+    <h2><%= title(t('devise.sign_in')) %></h2>
   </div>
 
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

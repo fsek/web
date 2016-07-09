@@ -22,9 +22,10 @@ Fsek::Application.routes.draw do
     get 'anvandare/registrera' => 'devise/registrations#new', as: :new_user_registration
 
     #sessions
-    get 'logga_in' => 'devise/sessions#new', as: :new_user_session
-    post 'logga_in' => 'devise/sessions#create', as: :user_session
-    delete 'logga_ut' => 'devise/sessions#destroy', as: :destroy_user_session
+    get 'logga-in' => 'devise/sessions#new', as: :new_user_session
+    get 'logga_in', to: redirect('logga-in'), status: 301
+    post 'logga-in' => 'devise/sessions#create', as: :user_session
+    delete 'logga-ut' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
   # Scope to change urls to swedish
