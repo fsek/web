@@ -251,10 +251,9 @@ Fsek::Application.routes.draw do
     end
 
     resources :groups, path: :grupper, except: [:new, :create, :destroy] do
-      resources :messages, only: [:new, :create, :destroy, :index], path: :meddelande do
-        resources :message_comments, path: :kommentarer, only: [:create, :destroy]
-      end
+      resources :messages, only: [:new, :create, :destroy, :index], path: :meddelande
     end
+
     namespace :admin do
       resources :groups, path: :grupper, except: :show do
         resources :group_users, path: :anvandare, only: :index do

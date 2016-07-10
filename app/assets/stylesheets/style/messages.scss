@@ -1,11 +1,7 @@
 .message {
-  border-top: 1px solid $light-gray-text;
+  border-bottom: 1px solid $light-gray-text;
   margin-top: 0;
   padding: 25px 0 20px;
-
-  &:first-child {
-    border-top: none;
-  }
 
   img {
     &.author {

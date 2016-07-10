@@ -1,0 +1,19 @@
+<div class="headline">
+  <h1><%= title("#{group_title(@group)} - #{t('.messages')}") %></h1>
+</div>
+
+<div class="col-md-3">
+  <%= link_to(@group, group_path(@group), class: 'btn primary') %>
+  <% if can?(:create, Message.new(user: current_user, groups: [@group])) %>
+    <hr>
+    <%= link_to(t('.new_message'), new_group_message_path(@group), class: 'btn primary') %>
+  <% end %>
+</div>
+
+<div class="col-md-9">
+  <div class="headline">
+    <h3><%= t('.messages') %></h3>
+  </div>
+  <%= render @messages %>
+</div>
+

@@ -1,9 +1,11 @@
 sv:
   messages:
     index:
-      title: Alla meddelanden
+      messages: Meddelanden
+      new_message: Nytt meddelande
 
     new:
+      all_messages: Alla meddelanden
       title: Nytt meddelande
 
     comments:

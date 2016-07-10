@@ -46,7 +46,7 @@ class Ability
         message.with_group(user)
       end
 
-      can(:create, Message, user_id: user.id)
+      can([:create, :destroy], Message, user_id: user.id)
 
       can(:destroy, MessageComment, MessageComment.by_user(user)) do |comment|
         comment.with_group(user)

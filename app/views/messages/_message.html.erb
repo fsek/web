@@ -14,6 +14,11 @@
       </small>
     </h4>
     <%= markdown(message.content) %>
+    <% if can?(:destroy, message) %>
+      <%= link_to(group_message_path(message.groups.first, message), method: :delete, class: '') do %>
+        <%= fa_icon('trash') %>
+      <% end %>
+    <% end %>
   </div>
   <div class="comments">
     <%= render '/messages/comments', message: message %>

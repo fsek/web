@@ -4,10 +4,11 @@ class MessagesController < ApplicationController
   load_and_authorize_resource :message
 
   def index
-    @messages = @group.messages.by_latest.includes(user: :first_post, message_comments: :user)
+    @messages = @group.messages.by_latest.includes(:user, message_comments: :user)
   end
 
   def new
+    @message.groups = [@group]
   end
 
   def create
@@ -18,6 +19,12 @@ class MessagesController < ApplicationController
     else
       render(:new, status: 422)
     end
+  end
+
+  def destroy
+    @group.messages.find(params[:id]).destroy!
+
+    redirect_to(group_path(@group))
   end
 
   private

@@ -401,11 +401,10 @@ ActiveRecord::Schema.define(version: 20160707164737) do
   create_table "message_comments", force: :cascade do |t|
     t.integer  "message_id", limit: 4
     t.integer  "user_id",    limit: 4
-    t.text     "content",    limit: 65535,                       null: false
-    t.string   "state",      limit: 255,   default: "published", null: false
+    t.text     "content",    limit: 65535, null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "message_comments", ["deleted_at"], name: "index_message_comments_on_deleted_at", using: :btree

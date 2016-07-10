@@ -1,16 +1,16 @@
 sv:
   model:
     message:
-      need_groups: Måste skickas till minst en grupp.
-      not_part_of_selected_groups: Du är inte med i alla grupper som valdes.
+      need_groups: måste skickas till minst en grupp
+      not_part_of_selected_groups: du är inte med i alla grupper som valdes
   activerecord:
     models:
       message:
         one: Meddelande
-        other: Meddelande
+        other: Meddelanden
     attributes:
       message:
-        content: Kommentar
+        content: Meddelande
         created_at: Skapad
         groups: Grupper
         message_comment_count: Antal kommentarer

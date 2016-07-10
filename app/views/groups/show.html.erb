@@ -25,4 +25,7 @@
     <h3><%= t('.messages') %></h3>
   </div>
   <%= render @messages %>
+  <%= link_to(group_messages_path(@group)) do %>
+    <%= fa_icon('plus') %> <%= t('.all_messages') %>
+  <% end %>
 </div>
