@@ -386,6 +386,35 @@ ActiveRecord::Schema.define(version: 20160707164737) do
 
   add_index "menus", ["main_menu_id"], name: "index_menus_on_main_menu_id", using: :btree
 
+<<<<<<< HEAD
+=======
+  create_table "message_comments", force: :cascade do |t|
+    t.integer  "message_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.text     "content",    limit: 65535,                       null: false
+    t.string   "state",      limit: 255,   default: "published", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+  end
+
+  add_index "message_comments", ["deleted_at"], name: "index_message_comments_on_deleted_at", using: :btree
+  add_index "message_comments", ["message_id"], name: "index_message_comments_on_message_id", using: :btree
+  add_index "message_comments", ["user_id"], name: "index_message_comments_on_user_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id",                limit: 4
+    t.text     "content",                limit: 65535,             null: false
+    t.datetime "deleted_at"
+    t.integer  "message_comments_count", limit: 4,     default: 0, null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
+  add_index "messages", ["deleted_at"], name: "index_messages_on_deleted_at", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
+>>>>>>> 26925a3... Messages
   create_table "news", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535

@@ -1,0 +1,14 @@
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+
+<div class="col-md-3 col-sm-12">
+</div>
+
+<div class="col-md-9 col-sm-12">
+  <%= simple_form_for([@group, @message]) do |f| %>
+    <%= f.input :content, as: :pagedown, input_html: {preview: true, rows: 10} %>
+    <%= f.association :groups, collection: [@group], input_html: {class: 'select2'}%>
+    <%= f.button :submit %>
+  <% end %>
+</div>

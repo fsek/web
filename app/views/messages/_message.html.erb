@@ -1,0 +1,21 @@
+<div class="message">
+  <% if message.user.avatar? %>
+    <%= link_to(user_path(message.user), class: 'pull-left') do %>
+      <%= image_tag(message.user.thumb_avatar, class: 'author img-responsive') %>
+    <% end %>
+  <% end %>
+  <div class="body">
+    <h4 class="heading">
+      <strong>
+        <%= user_link(message.user) %>
+      </strong>
+      <small>
+        <%= localized(message.created_at, format: :short) %>
+      </small>
+    </h4>
+    <%= markdown(message.content) %>
+  </div>
+  <div class="comments">
+    <%= render '/messages/comments', message: message %>
+  </div>
+</div>

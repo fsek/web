@@ -1,0 +1,62 @@
+.message {
+  border-top: 1px solid $light-gray-text;
+  margin-top: 0;
+  padding: 25px 0 20px;
+
+  &:first-child {
+    border-top: none;
+  }
+
+  img {
+    &.author {
+      height: 50px;
+      margin-right: 10px;
+      width: 50px;
+    }
+  }
+
+  .body {
+    overflow: hidden;
+
+    p {
+      color: $gray-text;
+      line-height: 1.4;
+    }
+  }
+
+  .heading {
+    font-size: 13px;
+    margin: 0 0 5px;
+    position: relative;
+
+    > a,
+    > a:hover {
+      color: $gray-headline;
+    }
+
+    > strong {
+      padding-right: 5px;
+    }
+
+    > small {
+      color: $gray-text;
+      font-size: 12px;
+      position: absolute;
+      right: 0;
+      top: 7px;
+    }
+  }
+
+  .comments {
+    font-size: 13px;
+    margin-left: 15%;
+    margin-top: 20px;
+    padding-bottom: 0;
+
+    .comment {
+      &.new {
+        margin-top: 10px;
+      }
+    }
+  }
+}

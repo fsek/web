@@ -1,0 +1,14 @@
+sv:
+  messages:
+    index:
+      title: Alla meddelanden
+
+    new:
+      title: Nytt meddelande
+
+    comments:
+      new_comment: Ny kommentar
+      title: Kommentarer
+
+    comment:
+      destroy_comment: Förinta kommentar
