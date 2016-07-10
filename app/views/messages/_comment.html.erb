@@ -1,0 +1,23 @@
+<div class="message comment">
+  <% if comment.user.avatar? %>
+    <%= link_to(user_path(comment.user), class: 'pull-left') do %>
+      <%= image_tag(comment.user.thumb_avatar, class: 'author img-responsive') %>
+    <% end %>
+  <% end %>
+  <div class="body">
+    <h4 class="heading">
+      <strong>
+        <%= user_link(comment.user) %>
+      </strong>
+      <small>
+        <%= localized(comment.created_at, format: :short) %>
+      </small>
+    </h4>
+    <%= simple_format(comment.content) %>
+    <% if can?(:destroy, comment) %>
+      <%= link_to(message_message_comment_path(comment.message, comment), method: :delete, class: '') do %>
+        <%= fa_icon('trash') %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
