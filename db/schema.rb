@@ -259,6 +259,18 @@ ActiveRecord::Schema.define(version: 20160707164737) do
 
   add_index "faqs", ["category"], name: "index_faqs_on_category", using: :btree
 
+  create_table "group_messages", force: :cascade do |t|
+    t.integer  "group_id",   limit: 4
+    t.integer  "message_id", limit: 4
+    t.datetime "deleted_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "group_messages", ["deleted_at"], name: "index_group_messages_on_deleted_at", using: :btree
+  add_index "group_messages", ["group_id"], name: "index_group_messages_on_group_id", using: :btree
+  add_index "group_messages", ["message_id"], name: "index_group_messages_on_message_id", using: :btree
+
   create_table "group_users", force: :cascade do |t|
     t.integer  "group_id",   limit: 4
     t.integer  "user_id",    limit: 4
@@ -386,8 +398,6 @@ ActiveRecord::Schema.define(version: 20160707164737) do
 
   add_index "menus", ["main_menu_id"], name: "index_menus_on_main_menu_id", using: :btree
 
-<<<<<<< HEAD
-=======
   create_table "message_comments", force: :cascade do |t|
     t.integer  "message_id", limit: 4
     t.integer  "user_id",    limit: 4
@@ -414,7 +424,6 @@ ActiveRecord::Schema.define(version: 20160707164737) do
   add_index "messages", ["deleted_at"], name: "index_messages_on_deleted_at", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
->>>>>>> 26925a3... Messages
   create_table "news", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
@@ -680,10 +689,15 @@ ActiveRecord::Schema.define(version: 20160707164737) do
   add_foreign_key "categorizations", "categories"
   add_foreign_key "election_posts", "elections"
   add_foreign_key "election_posts", "posts"
+  add_foreign_key "group_messages", "groups"
+  add_foreign_key "group_messages", "messages"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
   add_foreign_key "groups", "introductions"
   add_foreign_key "menus", "main_menus"
+  add_foreign_key "message_comments", "messages"
+  add_foreign_key "message_comments", "users"
+  add_foreign_key "messages", "users"
   add_foreign_key "page_images", "pages"
   add_foreign_key "rents", "users"
 end

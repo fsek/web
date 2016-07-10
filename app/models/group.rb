@@ -1,7 +1,12 @@
 class Group < ActiveRecord::Base
+  acts_as_paranoid
+
   belongs_to :introduction, required: true
+
   has_many :group_users, dependent: :destroy
   has_many :users, through: :group_users
+  has_many :group_messages, dependent: :destroy
+  has_many :messages, through: :group_messages
 
   REGULAR = 'regular'.freeze
   MISSION = 'mission'.freeze
@@ -13,8 +18,6 @@ class Group < ActiveRecord::Base
 
   scope :regular, -> { where(group_type: REGULAR) }
   scope :missions, -> { where(group_type: MISSION) }
-
-  acts_as_paranoid
 
   def regular?
     group_type == REGULAR

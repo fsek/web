@@ -2,8 +2,13 @@ sv:
   groups:
     index:
       title: Faddergrupper
+      other: Andra nollningar
+
     show:
       members: Medlemmar
+      messages: Meddelande
+      new_message: Nytt meddelande
+
     edit:
       title: Redigera Medlemmar
       back: Tillbaka

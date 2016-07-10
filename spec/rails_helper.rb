@@ -42,6 +42,7 @@ RSpec.configure do |config|
   end
 
   config.extend ControllerMacros, type: :controller
+  config.include ControllerMethods, type: :controller
   config.include FeatureMacros, type: :feature
 
   # Clear uploaded files

@@ -1,3 +1,4 @@
+# Adds controller macros callable outside of it-blocks
 module ControllerMacros
   RSpec.configure do |config|
     config.before :each, type: :controller do
