@@ -17,6 +17,7 @@ sv:
         confirmed_at: E-post bekräftades
         confirmed_email: Bekräftad epost
         current_password: Nuvarande lösenord
+        display_phone: Visa telefonnummer för gruppmedlemmar
         email: E-post
         first_post: Visningspost
         firstname: Namn

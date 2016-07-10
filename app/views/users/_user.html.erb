@@ -20,6 +20,16 @@
       <%= user.program %>
     </td>
   </tr>
+  <% if display_phone?(user: user, current_user: current_user) %>
+  <tr>
+    <td>
+      <%= fa_icon('phone') %> <%= User.human_attribute_name(:phone) %>
+    </td>
+    <td>
+      <%= user.phone %>
+    </td>
+  </tr>
+  <% end %>
   <tr>
     <td>
       <%= fa_icon('mortar-board') %> <%= Post.model_name.human(count: user.posts.count) %>

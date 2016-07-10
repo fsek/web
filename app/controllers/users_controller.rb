@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:firstname, :lastname, :program, :start_year,
-                                 :avatar, :student_id, :phone,
+                                 :avatar, :student_id, :phone, :display_phone,
                                  :remove_avatar, :food_preference)
   end
 

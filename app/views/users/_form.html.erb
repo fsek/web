@@ -20,6 +20,7 @@
   <%= simple_format(t('.protected_fields_can_be_seen_by')) %>
   <%= f.input :student_id, hint: t('.student_id_hint') %>
   <%= f.input :phone %>
+  <%= f.input :display_phone %>
   <%= f.input :food_preference, hint: t('.food_preference_hint') %>
   <%= f.button :submit, id: 'user-info-submit' %>
 <% end %>
