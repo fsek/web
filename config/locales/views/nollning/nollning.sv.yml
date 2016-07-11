@@ -27,8 +27,10 @@ sv:
 
       index:
         description: En Ridderlig Nollning på F-sektionen 2016, för studenter vid teknisk fysik, teknisk matematik och teknisk nanovetenskap vid LTH.
-        info2: Vi ser fram emot att träffa dig och välkomna dig till LTH och F-sektionen!
-        info: "Välkommen till en ridderlig nollning på F-sektionen. Här hittar du all information som rör nollningen för studenter inom programmen teknisk fysik, teknisk matematik och teknisk nanovetenskap. Som blivande student på dessa program är du varmt välkommen till oss i höst. Denna sida kommer uppdateras med massvis med värdefull information för dig, så se till att kolla tillbaks hit senare i sommar."
+        here: här
+        info: Välkommen till en ridderlig nollning på F-sektionen. Här hittar du all information som rör nollningen för studenter inom programmen teknisk fysik, teknisk matematik och teknisk nanovetenskap. Som blivande student på dessa program är du varmt välkommen till oss i höst. Innan ditt hälsningsanförande den 22a augusti rekommenderar vi att du kollar igenom %{checklist} som steg för steg tar dig igenom saker du bör ha förberett. Om du undrar vad nollningen är kan du läsa mer om det %{more_info}.
+        info2: Den här sidan kommer under sommaren och nollningen att kontinuerligt uppdateras med viktig och rolig information, så se till att bokmärka den och komma tillbaks hit innan allt drar igång.
+        info3: Vi ser fram emot att träffa dig och välkomna dig till LTH och F-sektionen!
         keywords:
           - nollning
           - teknisk fysik
@@ -38,6 +40,7 @@ sv:
         more_news: Fler nyheter
         news: Nyheter
         theme_movie: Temasläppsfilm
+        this_checklist: den här checklistan
         title: En Ridderlig Nollning
 
       symbols:
