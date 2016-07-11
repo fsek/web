@@ -33,6 +33,14 @@
   &.nollning {
     font-family: "modking";
 
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      color: $black;
+    }
+
     &.title {
       font-family: "dearest";
     }
