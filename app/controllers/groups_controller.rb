@@ -4,11 +4,12 @@ class GroupsController < ApplicationController
   def index
     @introduction = Introduction.find_by(id: params[:introduction_id]) || Introduction.current
     @introductions = Introduction.all_except(@introduction)
-    @grid = initialize_grid(Group.regular.where(introduction: @introduction))
+    @grid = initialize_grid(Group.regular.where(introduction: @introduction), include: :users)
   end
 
   def show
     @group = Group.find(params[:id])
+    @messages = @group.messages.includes(:user, message_comments: :user).by_latest.limit(5)
   end
 
   def edit

@@ -38,6 +38,23 @@ class Ability
 
       can [:read, :mail], Contact
       can :read, Document, public: true
+
+      can :index, Group
+      can :show, Group, users: { id: user.id }
+
+      can([:index, :show], Message, Message.for_user(user)) do |message|
+        message.with_group(user)
+      end
+
+      can([:create, :destroy], Message, user_id: user.id)
+
+      can(:destroy, MessageComment, MessageComment.by_user(user)) do |comment|
+        comment.with_group(user)
+      end
+
+      can(:create, MessageComment) do |comment|
+        comment.with_group(user) && comment.user == user
+      end
     end
 
     # Only for members of the Guild
@@ -52,8 +69,6 @@ class Ability
       can [:destroy], Candidate, user_id: user.id
       can [:create], Nomination
       can :show, Page, visible: true
-      can :index, Group
-      can :show, Group, users: { id: user.id }
       can [:edit, :update], Group, group_users: { fadder: true, user: user }
     end
   end

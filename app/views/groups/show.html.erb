@@ -13,7 +13,19 @@
       <%= fa_icon('cog') %> <%= t('global.edit') %>
     <% end %>
   <% end %>
+
+  <% if can?(:create, Message.new(user: current_user, groups: [@group])) %>
+    <hr>
+    <%= link_to(t('.new_message'), new_group_message_path(@group), class: 'btn primary') %>
+  <% end %>
 </div>
 
 <div class="col-md-9">
+  <div class="headline">
+    <h3><%= t('.messages') %></h3>
+  </div>
+  <%= render @messages %>
+  <%= link_to(group_messages_path(@group)) do %>
+    <%= fa_icon('plus') %> <%= t('.all_messages') %>
+  <% end %>
 </div>

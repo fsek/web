@@ -245,6 +245,23 @@ Fsek::Application.routes.draw do
         get :check
       end
     end
+
+    resources :messages, only: [], path: :meddelande do
+      resources :message_comments, path: :kommentarer, only: [:create, :destroy]
+    end
+
+    resources :groups, path: :grupper, except: [:new, :create, :destroy] do
+      resources :messages, only: [:new, :create, :destroy, :index], path: :meddelande
+    end
+
+    namespace :admin do
+      resources :groups, path: :grupper, except: :show do
+        resources :group_users, path: :anvandare, only: :index do
+          patch :set_fadder, on: :member
+          patch :set_not_fadder, on: :member
+        end
+      end
+    end
   end
 
   resources :mail_aliases, only: [:index] do
@@ -253,17 +270,6 @@ Fsek::Application.routes.draw do
       get :search
     end
   end
-
-  namespace :admin do
-    resources :groups, path: :grupper, except: :show do
-      resources :group_users, path: :anvandare, only: :index do
-        patch :set_fadder, on: :member
-        patch :set_not_fadder, on: :member
-      end
-    end
-  end
-
-  resources :groups, path: :grupper, except: [:new, :create, :destroy]
 
   get 'proposals/form' => 'proposals#form'
   post 'proposals/generate' => 'proposals#generate'

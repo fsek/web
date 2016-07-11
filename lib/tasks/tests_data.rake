@@ -48,36 +48,36 @@ namespace :db do
     PermissionPost.find_or_create_by!(permission: perm_admin, post: spindel)
     PermissionPost.find_or_create_by!(permission: perm_nyckelpiga, post: nyckelpiga)
 
-    u = User.find_or_initialize_by(email: 'admin@fsektionen.se',
-                                   firstname: 'Hilbert-Admin', lastname: 'Älg',
-                                   program: 'Teknisk Fysik', start_year: 1996)
-    u.password = 'passpass'
-    u.confirmed_at = Time.zone.now
-    u.member_at = Time.zone.now
-    u.save!
+    admin = User.find_or_initialize_by(email: 'admin@fsektionen.se',
+                                       firstname: 'Hilbert-Admin', lastname: 'Älg',
+                                       program: 'Teknisk Fysik', start_year: 1996)
+    admin.password = 'passpass'
+    admin.confirmed_at = Time.zone.now
+    admin.member_at = Time.zone.now
+    admin.save!
     puts 'You can sign in as ADMIN with'
     puts 'email:        admin@fsektionen.se'
     puts 'and password: passpass'
-    if u.present?
-      PostUser.find_or_create_by(post: spindel, user: u)
-      PostUser.find_or_create_by(post: prylmast, user: u)
-      PostUser.find_or_create_by(post: cafemast, user: u)
-      PostUser.find_or_create_by(post: sexmast, user: u)
+    if admin.present?
+      PostUser.find_or_create_by(post: spindel, user: admin)
+      PostUser.find_or_create_by(post: prylmast, user: admin)
+      PostUser.find_or_create_by(post: cafemast, user: admin)
+      PostUser.find_or_create_by(post: sexmast, user: admin)
     end
 
-    a = User.find_or_initialize_by(email: 'user@fsektionen.se',
-                                   firstname: 'Hilbert', lastname: 'Älg',
-                                   program: 'Teknisk Fysik', start_year: 1996)
-    a.confirmed_at = Time.zone.now
-    a.member_at = Time.zone.now
-    a.password = 'passpass'
-    a.save!
+    user = User.find_or_initialize_by(email: 'user@fsektionen.se',
+                                      firstname: 'Hilbert', lastname: 'Älg',
+                                      program: 'Teknisk Fysik', start_year: 1996)
+    user.confirmed_at = Time.zone.now
+    user.member_at = Time.zone.now
+    user.password = 'passpass'
+    user.save!
 
     puts 'You can sign in as USER with'
     puts 'email:        user@fsektionen.se'
     puts 'and password: passpass'
-    if a.present?
-      PostUser.find_or_create_by(post: prylmast, user: a)
+    if user.present?
+      PostUser.find_or_create_by(post: prylmast, user: user)
     end
 
     # Main menus
@@ -118,8 +118,8 @@ namespace :db do
     menu.update!(name_en: 'Image gallery')
 
     # Notice
-    FactoryGirl.create(:notice, user: u)
-    FactoryGirl.create(:notice, user: u)
+    FactoryGirl.create(:notice, user: admin)
+    FactoryGirl.create(:notice, user: admin)
 
     # Election
     election = Election.find_or_initialize_by(title: 'Vårterminsmöte',
@@ -137,19 +137,19 @@ namespace :db do
     # News
     News.find_or_create_by!(title: 'Ett helt nytt användarsystem',
                             content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
-                            user: User.first)
+                            user: admin)
     News.find_or_create_by!(title: 'Andra helt nytt användarsystem',
                             content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
-                            user: User.first)
+                            user: admin)
     News.find_or_create_by!(title: 'Tredje helt nytt användarsystem',
                             content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
-                            user: User.first)
+                            user: admin)
     News.find_or_create_by!(title: 'Fjärde helt nytt användarsystem',
                             content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
-                            user: User.first)
+                            user: admin)
     News.find_or_create_by!(title: 'Femte helt nytt användarsystem',
                             content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',
-                            user: User.first)
+                            user: admin)
     # Events
     date = Time.zone.now.middle_of_day
     (1..10).each do |i|
@@ -177,8 +177,15 @@ namespace :db do
 
     #Tool
     tool = Tool.find_or_create_by!(title: 'Hammare', description: 'spikar spikar m.m.', total: 5)
-    #Tool Renting
+    # Tool Renting
     ToolRenting.find_or_create_by!(renter: 'adrian', tool: tool, purpose: 'for home use', return_date: Time.zone.now)
     ToolRenting.find_or_create_by!(renter: 'adrian2', tool: tool, purpose: 'for other use', return_date: Time.zone.now)
+
+    # Introduction
+    introduction = Introduction.find_or_create_by!(title: 'En Ridderlig Nollning', start: 10.days.from_now, stop: 37.days.from_now,
+                                                   slug: :ridderlig, current: true)
+
+    group = Group.find_or_create_by!(group_type: Group::REGULAR, name: 'Black Knight', number: 1, introduction: introduction)
+    GroupUser.find_or_create_by!(group: group, user: user, fadder: true)
   end
 end

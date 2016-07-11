@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :rents
   has_many :group_users
   has_many :groups, through: :group_users
+  has_many :messages, dependent: :destroy
+  has_many :message_comments, dependent: :destroy
 
   mount_uploader :avatar, AttachedImageUploader, mount_on: :avatar_file_name
 

@@ -1,0 +1,13 @@
+sv:
+  activerecord:
+    models:
+      message_comment:
+        one: Kommentar
+        other: Kommentarer
+    attributes:
+      message_comment:
+        created_at: Skapad
+        content: Kommentar
+        user: Användare
+        message: Meddelande
+        updated_at: Uppdaterad
