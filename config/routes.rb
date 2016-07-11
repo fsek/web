@@ -115,7 +115,9 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
-      resources :introductions, path: :nollning, except: :show
+      resources :introductions, path: :nollning, except: :show do
+        resources :messages, path: :meddelanden, except: [:edit, :destroy, :update]
+      end
     end
 
     resources :councils, path: :utskott, only: [:index, :show]
@@ -244,12 +246,18 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :messages, only: [], path: :meddelande do
+    resources :messages, only: [:destroy], path: :meddelanden do
       resources :message_comments, path: :kommentarer, only: [:create, :destroy]
     end
 
+    namespace :admin do
+      resources :messages, path: :meddelanden, only: [:edit, :destroy, :update] do
+        resources :message_comments, path: :kommentarer, only: [:create, :destroy]
+      end
+    end
+
     resources :groups, path: :grupper, except: [:new, :create, :destroy] do
-      resources :messages, only: [:new, :create, :destroy, :index], path: :meddelande
+      resources :messages, only: [:new, :create, :index], path: :meddelanden
     end
 
     namespace :admin do

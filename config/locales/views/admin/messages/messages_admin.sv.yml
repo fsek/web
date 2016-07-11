@@ -1,0 +1,19 @@
+sv:
+  admin:
+    messages:
+      edit:
+        title: Redigera meddelande
+        all: Alla meddelanden
+
+      index:
+        title: Meddelanden
+        all_introductions: Alla nollningar
+
+      new:
+        title: Nytt meddelande
+        all: Alla meddelanden
+
+      new_dropdown:
+        new: Nytt meddelande
+        to_all_regular: Till alla faddergrupper
+        to_all_mission: Till alla uppdragsgrupper

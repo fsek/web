@@ -1,0 +1,12 @@
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+
+<div class="col-md-2 col-xs-12">
+  <%= render 'new_dropdown', introduction: @introduction %>
+  <%= link_to t('.all_introductions'), admin_introductions_path, class: 'btn secondary' %>
+</div>
+
+<div class="col-md-10 col-xs-12">
+  <%= render partial: '/messages/message', collection: @messages, locals: { admin: true } %>
+</div>

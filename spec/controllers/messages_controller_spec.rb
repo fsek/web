@@ -10,9 +10,12 @@ RSpec.describe MessagesController, type: :controller do
       user = create(:user)
       group = create(:group)
       GroupUser.create!(group: group, user: user)
-      Message.create!(content: 'Last', user: user, groups: [group], created_at: 5.minutes.ago)
-      Message.create!(content: 'Second', user: user, groups: [group], created_at: 2.minutes.ago)
-      Message.create!(content: 'First', user: user, groups: [group], created_at: 1.minute.ago)
+      Message.create!(content: 'Last', user: user, groups: [group], created_at: 5.minutes.ago,
+                      introduction: group.introduction)
+      Message.create!(content: 'Second', user: user, groups: [group], created_at: 2.minutes.ago,
+                      introduction: group.introduction)
+      Message.create!(content: 'First', user: user, groups: [group], created_at: 1.minute.ago,
+                      introduction: group.introduction)
 
       get(:index, group_id: group.to_param)
       response.should have_http_status(200)
@@ -66,7 +69,9 @@ RSpec.describe MessagesController, type: :controller do
       current_user(user)
       m = Message.create!(content: 'I got a text',
                           user: user,
-                          groups: [group])
+                          groups: [group],
+                          introduction: group.introduction)
+      request.env['HTTP_REFERER'] = group_path(group)
       lambda do
         delete(:destroy, group_id: group.to_param, id: m.to_param)
       end.should change(Message, :count).by(-1)

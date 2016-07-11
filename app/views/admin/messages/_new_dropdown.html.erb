@@ -1,0 +1,19 @@
+<div class="dropdown margin-bottom-20">
+  <button class="btn primary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true">
+    <%= t('.new') %>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="oldies">
+      <li><%= link_to t('.new'), new_admin_introduction_message_path(introduction) %></li>
+      <li class="divider"></li>
+      <li>
+        <%= link_to t('.to_all_regular'), new_admin_introduction_message_path(introduction,
+                                          preset: Group::REGULAR) %>
+      </li>
+      <li>
+        <%= link_to t('.to_all_mission'), new_admin_introduction_message_path(introduction,
+                                          preset: Group::MISSION) %>
+      </li>
+  </ul>
+</div>

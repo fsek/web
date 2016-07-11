@@ -1,0 +1,6 @@
+<%= form.input :content, as: :pagedown, input_html: {preview: true, rows: 10} %>
+<%= form.association :groups, collection: groups,
+                              input_html: { class: 'select2' },
+                              include_blank: false,
+                              label_method: :to_s %>
+<%= form.button :submit %>

@@ -1,6 +1,7 @@
 class Message < ActiveRecord::Base
   acts_as_paranoid
 
+  belongs_to :introduction, required: true
   belongs_to :user, required: true
 
   has_many :message_comments, dependent: :destroy
@@ -9,17 +10,22 @@ class Message < ActiveRecord::Base
 
   validates :content, presence: true
   validates :groups, length: { minimum: 1, message: I18n.t('model.message.need_groups') }
-  validate :in_group, unless: :is_admin
-  attr_accessor :is_admin
+  validate :in_group, unless: :by_admin
 
+  scope :by_admin, -> { where(by_admin: true) }
   scope :by_latest, -> { order(created_at: :desc) }
   scope :by_user, ->(user) { where(user: user) }
   scope :for_user, ->(user) { joins(groups: :users).merge(User.where(id: user.id)) }
+  scope :for_admin, -> { includes([:user, message_comments: :user]).by_admin.by_latest }
 
   def with_group(user)
     if user.present?
       groups.merge(user.groups).any?
     end
+  end
+
+  def group_names
+    groups.pluck(:name).join(', ');
   end
 
   private

@@ -4,6 +4,7 @@ sv:
       index:
         new_introduction: Ny Nollning
         title: Alla Nollningar
+        messages: Meddelanden
 
       new:
         all_introductions: Alla Nollningar

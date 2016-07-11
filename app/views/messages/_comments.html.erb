@@ -4,11 +4,11 @@
     <%= t('.title') %>
   </h4>
   <% message.message_comments.each do |comment| %>
-    <%= render '/messages/comment', comment: comment %>
+    <%= render '/messages/comment', comment: comment, admin: admin %>
   <% end %>
 <% end %>
 <div class="comment new">
-  <%= simple_form_for([message, message.message_comments.build]) do |f| %>
+  <%= simple_form_for(comment_form_for(message, admin)) do |f| %>
     <%= f.input :content, as: :string, required: false, label: t('.new_comment') %>
   <% end %>
 </div>
