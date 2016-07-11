@@ -1,0 +1,11 @@
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+
+<div class="col-md-12">
+  <ul>
+    <% @introductions.each do |introduction| %>
+      <li><%= link_to(introduction, introduction_path(introduction)) %></li>
+    <% end %>
+  </ul>
+</div>

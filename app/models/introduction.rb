@@ -1,26 +1,40 @@
 class Introduction < ActiveRecord::Base
+  acts_as_paranoid
+  translates(:title, :description)
+  globalize_accessors(locales: [:en, :sv],
+                      attributes: [:title, :description])
+
+  attr_reader :dates, :events_by_day
+
   has_many :groups, dependent: :destroy
 
   validates :title, :start, :stop, :slug, presence: true
   validates :slug, uniqueness: true,
                    presence: true,
-                   format: { with: /\A[a-z0-9_-]+\z/ }
+                   format: { with: /\A[a-z0-9-]+\z/ }
   validates :current, uniqueness: true, if: :current
-  translates(:title, :description)
-  globalize_accessors(locales: [:en, :sv],
-                      attributes: [:title, :description])
-
-  acts_as_paranoid
 
   scope :all_except, -> (introduction) { order(start: :desc).where.not(id: introduction) }
   scope :by_start, -> { order(start: :desc) }
 
-  def to_param
-    slug
-  end
-
   def self.current
     Introduction.where(current: true).first
+  end
+
+  def events
+    Event.slug(:nollning).between(start, stop).by_start
+  end
+
+  def events_by_day
+    @events_by_day ||= events.view.group_by(&:day)
+  end
+
+  def dates
+    @dates ||= start.to_date..stop.to_date
+  end
+
+  def to_param
+    slug
   end
 
   def year

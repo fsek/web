@@ -1,0 +1,51 @@
+.introduction {
+  font-family: "modking";
+  font-size: 18px;
+
+  &.header {
+    height: auto;
+    margin-bottom: 30px;
+    max-height: 400px;
+    max-width: 100%;
+    vertical-align: middle;
+  }
+
+  .paragraph {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .sign {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .news {
+    margin-bottom: 10px;
+
+    h4 {
+      font-size: 22px;
+    }
+  }
+
+  .carousel-control.left,
+  .carousel-control.right {
+    background-image: none;
+  }
+
+  &.fos-carousel {
+    margin-bottom: 30px;
+  }
+
+  .headline h1,
+  .headline h2,
+  .headline h3 {
+    color: $black;
+    font-family: "dearest";
+  }
+
+  .links {
+    margin-bottom: 20px;
+  }
+}
