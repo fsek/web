@@ -5,8 +5,13 @@
     <h1><%= title(t('.title')) %></h1>
   </div>
 
-  <div class="col-md-12 nollning-paragraph"><%= t('.info') %></div>
+  <div class="col-md-12 nollning-paragraph">
+    <%= t('.info',
+          checklist: link_to(t('.this_checklist'), '/sida/checklista'),
+          more_info: link_to(t('.here'), '/sida/vadarnollningen')).html_safe %>
+  </div>
   <div class="col-md-12 nollning-paragraph"><%= t('.info2') %></div>
+  <div class="col-md-12 nollning-paragraph"><%= t('.info3') %></div>
 
   <% if @news.present? %>
     <div class="col-md-7 nollning-news">
