@@ -1,3 +1,4 @@
+<% description(truncate(markdown_plain(@news.content), length: 160)) %>
 <div class="headline">
   <h1><%= title(@news.title) %></h1>
 </div>
@@ -49,6 +50,7 @@
 
 <%= content_for :image do %>
   <%= image_tag(@news.large, class: 'img-responsive') %>
+  <%= meta_image(@news.large) %>
 <% end %>
 
 <% if @news.image.present? %>

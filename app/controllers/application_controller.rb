@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_devise_parameters, if: :devise_controller?
   before_action :store_current_location, unless: :devise_controller?
   before_action :set_locale
+  before_action :prepare_meta_tags, if: 'request.get?'
 
   helper_method :alert_update, :alert_create, :alert_destroy,
                 :can_administrate?, :authorize_admin!
@@ -35,6 +36,37 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def prepare_meta_tags(options = {})
+    site_name = I18n.t('global.title')
+    description = options[:description] || I18n.t('global.description')
+    image = options[:image] || view_context.image_path('sektionsmarke.png')
+    current_url = request.url
+
+    defaults = {
+      site:        site_name,
+      image:       image,
+      description: description,
+      keywords:    I18n.t('global.keywords'),
+      twitter: {
+        site_name: site_name,
+        site: '@fsektionen',
+        card: 'summary',
+        description: description,
+        image: image
+      },
+      og: {
+        url: current_url,
+        site_name: site_name,
+        image: image,
+        description: description,
+        type: 'website'
+      }
+    }
+
+    options.reverse_merge!(defaults)
+    set_meta_tags(options)
+  end
 
   def configure_permitted_devise_parameters
     devise_parameter_sanitizer.permit(:sign_in) do |u|
