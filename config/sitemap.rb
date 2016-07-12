@@ -18,8 +18,7 @@ SitemapGenerator::Sitemap.create do
 
   add rents_path
 
-  add nollning_path
-  add nollning_matrix_path
+  add introductions_path
 
   add calendars_path
 
