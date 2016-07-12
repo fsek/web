@@ -5,6 +5,8 @@
   <%= f.input :stop, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
   <%= f.input :slug %>
   <%= f.input :current %>
+  <%= f.input :description_sv, as: :text, input_html: {maxlength: 160} %>
+  <%= f.input :description_en, as: :text, input_html: {maxlength: 160} %>
   <%= f.button :submit %>
   <% if introduction.persisted? %>
     <%= link_to(t('.destroy_introduction'), admin_introduction_path(introduction),

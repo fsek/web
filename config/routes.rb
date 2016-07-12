@@ -108,12 +108,8 @@ Fsek::Application.routes.draw do
 
     resources :pages, path: :sida, only: :show
 
-    # Namespace for Nollning
-    namespace :nollning do
-      get '', controller: :nollnings, action: :index
-      get :matrix, controller: :nollnings, action: :matrix, path: :matris
-      post "modal/:date", controller: :nollnings, action: :modal, as: :event
-      get "modal/:date", controller: :nollnings, action: :modal, as: :get_event
+    resources :introductions, path: :nollning, only: [:index, :show] do
+      get :archive, path: :arkiv, on: :collection
     end
 
     namespace :admin do

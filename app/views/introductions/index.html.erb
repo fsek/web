@@ -1,0 +1,52 @@
+<% description(@introduction.description) %>
+<% keywords(t('.keywords')) %>
+
+<div class="introduction">
+  <div class="headline">
+    <h1><%= title(@introduction.title) %></h1>
+    <small>
+      -
+      <%= date_range(@introduction.start, @introduction.stop) %>
+    </small>
+  </div>
+
+  <div class="col-md-12 paragraph">
+    <%= t('.info',
+          checklist: link_to(t('.this_checklist'), '/sida/checklista'),
+          more_info: link_to(t('global.here'), '/sida/vadarnollningen')).html_safe %>
+  </div>
+  <div class="col-md-12 paragraph"><%= t('.info2') %></div>
+  <div class="col-md-12 paragraph margin-bottom-20"><%= t('.info3') %></div>
+
+  <div class="col-md-3 col-sm-12 links">
+    <div class="headline">
+      <h2><%= t('.links') %></h2>
+    </div>
+    <ul>
+      <li><%= link_to(t('.checklist'), 'sida/checklista') %></li>
+      <li><%= link_to(t('.what_is_nollning'), 'sida/vadarnollning') %></li>
+  </div>
+
+  <% if @news.present? %>
+    <div class="col-md-9 col-sm-12 news">
+      <div class="headline">
+        <h2><%= t('.news') %></h2>
+      </div>
+
+      <%= render @news %>
+
+      <%= link_to news_index_path(category: :nollning) do%>
+        <%= fa_icon('plus') %> <%= t('.more_news') %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @constant.present? %>
+    <div class="col-sm-12">
+      <div class="headline">
+        <h2><%= t('.theme_movie') %></h2>
+      </div>
+      <iframe width="560" height="315" src="<%= @constant.value %>" frameborder="0" allowfullscreen></iframe>
+    </div>
+  <% end %>
+</div>
