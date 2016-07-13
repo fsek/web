@@ -50,7 +50,7 @@
 
 <%= content_for :image do %>
   <%= image_tag(@news.large, class: 'img-responsive') %>
-  <%= meta_image(@news.large) %>
+  <% meta_image(@news.large) %>
 <% end %>
 
 <% if @news.image.present? %>

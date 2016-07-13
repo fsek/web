@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
   def prepare_meta_tags(options = {})
     site_name = I18n.t('global.title')
     description = options[:description] || I18n.t('global.description')
-    image = options[:image] || view_context.image_path('sektionsmarke.png')
+    image = options[:image] || view_context.image_url('sektionsmarke.png')
     current_url = request.url
 
     defaults = {
