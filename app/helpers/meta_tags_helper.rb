@@ -19,9 +19,10 @@ module MetaTagsHelper
 
   def meta_image(image)
     if image.present?
-      set_meta_tags(image: image,
-                    twitter: { image: image },
-                    og: { image: image })
+      url = image_url(image)
+      set_meta_tags(image: url,
+                    twitter: { image: url },
+                    og: { image: url })
     end
     image
   end
