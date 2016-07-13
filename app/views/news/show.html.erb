@@ -1,4 +1,6 @@
 <% description(truncate(markdown_plain(@news.content), length: 160)) %>
+<% set_meta_tags(og: { type: 'article' }) %>
+
 <div class="headline">
   <h1><%= title(@news.title) %></h1>
 </div>
