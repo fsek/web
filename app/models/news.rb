@@ -4,13 +4,16 @@ class News < ActiveRecord::Base
   globalize_accessors(locales: [:en, :sv],
                       attributes: [:title, :content])
 
-  belongs_to :user
+  belongs_to :user, required: true
   has_many :categorizations, as: :categorizable
   has_many :categories, through: :categorizations
   mount_uploader :image, AttachedImageUploader
 
   # Validations
-  validates :title, :content, :user, presence: true
+  validates :title, :content, presence: true
+  validates :url, format: { with: /\A(http:\/\/|https:\/\/|\/)\b/,
+                            message: I18n.t('model.news.url_wrong_format') },
+                  if: 'url.present?'
 
   # Scopes
   scope :latest, -> { in_date.limit(5) }
