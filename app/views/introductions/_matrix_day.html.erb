@@ -1,0 +1,23 @@
+<span class="date">
+  <%= localized(date, format: :day_month) %>
+</span>
+
+<div class="text">
+  <% if events && events.any? %>
+    <% events.each do |e| %>
+      <span class="event">
+        <span class="time">
+        <% if !e.all_day %>
+          <%= localized(e.starts_at, format: dot_format(:time, dot: e.dot)) %>
+        <% else %>
+          <%= t('.all_day') %>
+        <% end %>
+        </span>
+        <%= e.short_title %>
+      </span>
+    <% end %>
+  <% else %>
+    <%= t('.rest') %>
+    <%= image_tag('theme/rest.svg', class: 'rest-symbol') %>
+  <% end %>
+</div>

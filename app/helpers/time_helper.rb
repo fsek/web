@@ -44,6 +44,7 @@ module TimeHelper
   end
 
   def dot_format(format, dot: nil)
+    dot = dot.to_s.to_sym
     if dot == :single
       "#{format}_dot".to_sym
     elsif dot == :double

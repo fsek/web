@@ -22,11 +22,11 @@ class Introduction < ActiveRecord::Base
   end
 
   def events
-    Event.slug(:nollning).between(start, stop).by_start
+    Event.slug(:nollning).includes(:translations).between(start, stop).by_start
   end
 
   def events_by_day
-    @events_by_day ||= events.view.group_by(&:day)
+    @events_by_day ||= events.group_by(&:day)
   end
 
   def dates
@@ -43,5 +43,9 @@ class Introduction < ActiveRecord::Base
 
   def to_s
     title + ' ' + year.to_s
+  end
+
+  def week(date)
+    date.to_date.cweek - start.to_date.cweek if date.present?
   end
 end

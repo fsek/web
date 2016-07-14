@@ -1,0 +1,32 @@
+var title       =   '.modal-title',
+    loader      =   '.ajax-loader',
+    content     =   '.modal-body-content',
+    dataRemote  =   'a[data-remote=true]',
+    toolbar     =   'div.modal-footer',
+    modal       =   '#ajax-modal';
+
+//i set the title through a helper function
+$(title).html("<%= localized(@date, format: :day_month) %>");
+$(".modal-title-date").html("<%= t('.week', week: @introduction.week(@date)) %> - <%= localized(@date, format: :weekday) %>");
+//hides the modal and shows the ajax content
+$(loader).fadeToggle('fast', function() {
+  $(loader).fadeOut('slow');
+  $(content).html("");
+  <% if @events.any? %>
+    <% @events.each do |e| %>
+        $(content).append("<%= j render('event_modal', event: e) %>");
+    <% end %>
+  <% else %>
+    $(content).html("<h4><%= j t('.rest') %></h4>");
+    $(content).append("<%=j image_tag('theme/rest.svg', class: 'img-responsive') %>");
+  <% end %>
+
+  $(modal).modal();
+});
+//brings the loader back up + gets rid of the content when linking to another controller method etc
+$(content).on('click', dataRemote, function(){
+  $(content).fadeOut('slow', function() {
+    $(content).empty();
+    $(loader).fadeIn('slow');
+  });
+});
