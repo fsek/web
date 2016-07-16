@@ -4,7 +4,7 @@ FactoryGirl.define do
     title
     content { generate(:description) }
     user
-    url
+    url { "/#{generate(:url)}" }
 
     trait :with_image do
       image Rack::Test::UploadedFile.new(File.open('spec/assets/image.jpg'))
