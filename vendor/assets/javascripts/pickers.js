@@ -1,4 +1,6 @@
-var default_picker_options = {
+$(document).on('ready page:change', function() {
+  $('.datetimepicker').datetimepicker({
+    // put here your custom picker options, that should be applied for all pickers
     icons: {
       date: 'fa fa-calendar',
       time: 'fa fa-clock-o',
@@ -7,17 +9,10 @@ var default_picker_options = {
       previous: 'fa fa-chevron-left',
       next: 'fa fa-chevron-right',
       today: 'fa fa-crosshairs',
-      clear: 'fa fa-trash-o'
+      clear: 'fa fa-trash-o',
+      close: 'fa fa-times'
     }
-
-}
-
-$(document).on('ready page:change', function() {
-  $('.datetimepicker').datetimepicker(default_picker_options);
-
-  $('.timepicker').datetimepicker(default_picker_options);
-
-  $('.datepicker').datetimepicker(default_picker_options);
+  });
 
   $('.datetimerange').each(function(){
     var $this = $(this)
