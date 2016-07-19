@@ -20,3 +20,118 @@
     font-url("glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 
+body,
+html {
+  font-size: 100%;
+}
+
+body,
+caption,
+th,
+td,
+input,
+textarea,
+select,
+option,
+legend,
+fieldset,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size-adjust: 0.5;
+}
+
+.content {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+@media (min-width: 43.75rem) {
+  .content {
+    font-size: 1rem;
+    line-height: 1.375;
+  }
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+@media (min-width: 43.75rem) {
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.125;
+  }
+}
+
+@media (min-width: 56.25rem) {
+  h1 {
+    font-size: 3rem;
+    line-height: 1.05;
+  }
+}
+
+h2 {
+  font-size: 1.625rem;
+  line-height: 1.15384615;
+}
+
+@media (min-width: 43.75rem) {
+  h2 {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+}
+
+@media (min-width: 56.25rem) {
+  h2 {
+    font-size: 2.25rem;
+    line-height: 1.25;
+  }
+}
+
+h3 {
+  font-size: 1.375rem;
+  line-height: 1.13636364;
+}
+
+@media (min-width: 43.75rem) {
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+}
+
+@media (min-width: 56.25rem) {
+  h3 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+}
+
+h4 {
+  font-size: 1.125rem;
+  line-height: 1.11111111;
+}
+
+@media (min-width: 43.75rem) {
+  h4 {
+    line-height: 1.22222222;
+  }
+}
+
+blockquote {
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+@media (min-width: 43.75rem) {
+  blockquote {
+    font-size: 1.5rem;
+    line-height: 1.45833333;
+  }
+}
