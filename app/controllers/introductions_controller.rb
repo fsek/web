@@ -1,5 +1,5 @@
 class IntroductionsController < ApplicationController
-  before_action :set_introduction, only: :index
+  before_action :set_introduction, only: [:index, :matrix]
   load_permissions_then_authorize_resource(find_by: :slug)
 
   def index
@@ -17,6 +17,19 @@ class IntroductionsController < ApplicationController
     @introductions = Introduction.by_start
   end
 
+  def matrix
+  end
+
+  def modal
+    @introduction = Introduction.find_by_slug!(params[:id])
+    @date = date
+    @events = @introduction.events.includes(:translations).from_date(@date)
+    respond_to do |format|
+      format.html { render :matrix, status: 303 }
+      format.js
+    end
+  end
+
   private
 
   def set_introduction
@@ -25,6 +38,14 @@ class IntroductionsController < ApplicationController
     if @introduction.nil?
       @introductions = Introduction.by_start
       render :archive, status: 404
+    end
+  end
+
+  def date
+    begin
+      Date.strptime(%({#{params[:date]}}), '{%Y-%m-%d}')
+    rescue
+      Date.today
     end
   end
 end

@@ -11,7 +11,7 @@
 }
 
 @mixin border-image($arg) {
-  @include prefix((border-image: $arg), webkit o);
+  @include prefix((border-image: $arg), webkit o moz);
 }
 
 @function calculate-rem($size) {

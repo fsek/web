@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <span class="event time">
       <%= fa_icon('calendar') %>
-      <%= time_range(@event.starts_at, @event.ends_at, format: :long, dot: @event.dot.to_s.to_sym) %>
+      <%= time_range(@event.starts_at, @event.ends_at, format: :long, dot: @event.dot) %>
     </span>
 
     <span class="event location">

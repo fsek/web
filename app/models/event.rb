@@ -52,7 +52,7 @@ class Event < ActiveRecord::Base
   end
 
   def short_title
-    short.present? ? short : title
+    short.blank? ? title : short
   end
 
   def large

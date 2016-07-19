@@ -1,0 +1,34 @@
+<% description(t('.description')) %>
+<% keywords(t('.keywords')) %>
+<% title(t('.title')) %>
+
+<div class="introduction">
+  <div class="headline gecko-title">
+    <h1>
+      <%= t('.gecko-title') %> -
+      <%= @introduction.title %>
+    </h1>
+    <span>
+      <%= t('.gecko-disclaimer') %>
+    </span>
+  </div>
+
+  <div class="row matrix">
+    <% cache([@introduction, @introduction.events_by_day]) do %>
+      <% @introduction.dates.each do |day| %>
+        <%= link_to(modal_introduction_path(@introduction, day), data: { toggle: 'modal',
+                                                                         target: '#ajax-modal'},
+                                                                 remote: true) do %>
+          <div class="grid-item">
+            <% cache([day, @introduction.events_by_day[day]]) do %>
+              <%= render 'matrix_day', date: day,
+                                       events: @introduction.events_by_day[day] %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <p class="matrix-footer"><%= t('.click_day_to_read_more') %></p>
+  <%= render 'modal' %>
+</div>

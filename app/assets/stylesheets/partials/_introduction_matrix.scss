@@ -1,246 +1,194 @@
-$inner: image-url("theme/border.svg") 10% 10% 10% 10% stretch;
-$outer-top: image-url("theme/top.svg") 27.5% 0% 13.1% 0% stretch;
-$outer: image-url("theme/frame.svg") 27% 15% 23% 15% repeat;
+$castle: image-url("round-table/castle.svg");
+$brown: #754c29;
 
-// Large desktops and laptops
-@media (min-width: 1200px) {
-  .nollning-grid {
-    @include border-image($outer);
-    border: 160px;
-  }
-
-  .matrix-grid-wrap {
-    margin: -95.9px -36.7px -35.7px -26.1px;
-  }
-
-  .matrix-grid {
-    @include border-image($inner);
-    border: 1px solid $black;
-    height: 150px;
-    overflow: auto;
-    padding: 0;
-    width: 14.26%;
-  }
-
-  .nollning-top {
-    @include border-image($outer-top);
-    border: solid transparent;
-    border-width: 160px 0 0;
-  }
-
-  .matrix-grid-text {
-    color: $black;
-    font-size: 12px;
-  }
-
-  .nollning-all-day {
-    font-size: 13px;
-  }
-
-  .rest-symbol {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    max-width: 50px;
-  }
-}
-
-// Landscape tablets and medium desktops
-@media (min-width: 992px) and (max-width: 1199px) {
-  .nollning-grid {
-    @include border-image($outer);
-    border: 120px;
-  }
-
-  .matrix-grid-wrap {
-    margin: -71.6px -31px -27px -23.6px;
-  }
-
-  .matrix-grid {
-    @include border-image($inner);
-    border: 1px solid $black;
-    height: 150px;
-    overflow: auto;
-    padding: 0;
-    width: 14.26%;
-  }
-
-  .nollning-top {
-    @include border-image($outer-top);
-    border: solid transparent;
-    border-width: 100px 0 0;
-  }
-
-  .matrix-grid-text {
-    color: $black;
-    font-size: 12px;
-    word-wrap: break-word;
-  }
-
-  .rest-symbol {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    max-width: 50px;
-  }
-}
-
-// Portrait tablets and small desktops
-@media (min-width: 768px) and (max-width: 991px) {
-  .nollning-grid {
-    @include border-image($outer);
-    border: 100px;
-  }
-
-  .matrix-grid-wrap {
-    margin: -59.6px -26.6px -22px -21.6px;
-  }
-
-  .matrix-grid {
-    @include border-image($inner);
-    border: 1px solid $black;
-    height: 100px;
-    overflow: auto;
-    padding: 0;
-    width: 25%;
-  }
-
-  .nollning-top {
-    @include border-image($outer-top);
-    border: solid transparent;
-    border-width: 120px 0 0;
-  }
-
-  .matrix-grid-text {
-    color: $black;
-    font-size: 12px;
-    word-wrap: break-word;
-  }
-
-  .rest-symbol {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 50px;
-  }
-
-  .rest-title {
-    display: none;
-  }
-}
-
-// Landscape phones and portrait tablets
-@media (max-width: 767px) {
-  .nollning-grid {
-    @include border-image($outer);
-    border: 100px;
-  }
-
-  .matrix-grid-wrap {
-    margin: -59.6px -26.9px -22px -21.6px;
-  }
-
-  .matrix-grid {
-    @include border-image($inner);
-    border: 1px solid $black;
-    height: 110px;
-    overflow: auto;
-    padding: 0;
-    width: 25%;
-  }
-
-  .nollning-top {
-    @include border-image($outer-top);
-    border: solid transparent;
-    border-width: 100px 0 0;
-  }
-
-  .matrix-grid-text {
-    color: $black;
-    font-size: 12px;
-    word-wrap: break-word;
-  }
-
-  .rest-symbol {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 50px;
-  }
-
-  .rest-title {
-    display: none;
-  }
-}
-
-// Portrait phones and smaller
-@media (max-width: 480px) {
-  .nollning-grid {
-    @include border-image($outer);
-    border: 70px;
-  }
-
-  .matrix-grid-wrap {
-    margin: -41px -23.6px -16px -20px;
-  }
-
-  .matrix-grid {
-    @include border-image($inner);
-    border: 1px solid $black;
-    height: 80px;
+.introduction {
+  .matrix {
+    border: 50px solid;
+    border-image-repeat: stretch repeat;
+    border-image-slice: 52.8% 9.9% 13% 9.9% fill;
+    border-image-source: $castle;
+    margin: 0 auto;
     overflow: hidden;
-    padding: 0;
+    padding-bottom: 1%;
+    padding-left: 0.5%;
+
+    .grid-item {
+      background: $white;
+      border: 10px solid $brown;
+      display: inline-block;
+      margin-bottom: 0;
+      margin-right: 0;
+      margin-top: 4px;
+      padding: 2px;
+      position: relative;
+
+      .date {
+        display: block;
+      }
+
+      .text {
+        color: $black;
+        display: block;
+        font-size: 12px;
+        height: 80%;
+        overflow-y: auto;
+        position: absolute;
+        width: 100%;
+
+        .event {
+          display: block;
+
+          .time {
+            color: $fsek-orange;
+          }
+        }
+      }
+
+      .rest-symbol {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        max-width: 50px;
+      }
+    }
+  }
+
+  .symbols {
+    display: table-cell;
     width: 25%;
+
+    img {
+      max-height: 32px;
+      width: auto;
+    }
   }
 
-  .nollning-top {
-    @include border-image($outer-top);
-    border: solid transparent;
-    border-width: 60px 0 0;
+  ul {
+    .symbol-list {
+      list-style-type: circle;
+      padding: 10px;
+    }
   }
 
-  .matrix-grid-text {
-    color: $black;
-    font-size: 10px;
+  .matrix-footer {
+    margin: auto;
+    text-align: center;
   }
 
-  .rest-symbol {
-    max-width: 25px;
+  .modal {
+    margin-top: 10%;
+    overflow: visible;
+    position: absolute;
+
+    .modal-dialog {
+      margin: auto;
+      width: 60%;
+    }
   }
 
-  .event-title {
+  .modal-event-body {
+    position: relative;
+  }
+
+  @media (min-width: 1200px) {
+    .matrix {
+      border-width: 350px 80px 10px;
+
+      .grid-item {
+        height: 200px;
+        width: calc(96.9% / 7);
+      }
+    }
+  }
+
+  // Landscape tablets and medium desktops
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .matrix {
+      border-width: 350px 80px 100px;
+
+      .grid-item {
+        height: 150px;
+        width: calc(96.5% / 7);
+      }
+    }
+  }
+
+  // Portrait tablets and small desktops
+  @media (min-width: 768px) and (max-width: 991px) {
+    .matrix {
+      border-width: 250px 40px 60px;
+
+      .grid-item {
+        height: 150px;
+        width: calc(96.9% / 5);
+      }
+    }
+  }
+
+  // Landscape phones and portrait tablets
+  @media (max-width: 767px) {
+    .matrix {
+      border-width: 200px 50px 40px;
+
+      .grid-item {
+        height: 150px;
+        width: calc(95.6% / 4);
+      }
+    }
+  }
+
+  // Portrait phones and smaller
+  @media (max-width: 480px) {
+    .matrix {
+      border-width: 150px 20px 25px;
+
+      .grid-item {
+        height: 100px;
+        width: calc(96% / 3);
+
+        .date {
+          font-size: 12px;
+        }
+
+        .text {
+          font-size: 10px;
+        }
+
+        .rest-symbol {
+          height: 25px;
+          width: 25px;
+        }
+      }
+    }
+    .modal {
+      .modal-dialog {
+        width: 95%;
+      }
+    }
+  }
+  .gecko-title {
     display: none;
   }
 }
 
-.symbols {
-  display: table-cell;
-  width: 25%;
+.modal-open {
+  overflow: visible;
+}
 
-  img {
-    max-height: 32px;
-    width: auto;
+body.gecko {
+  .introduction {
+    .matrix {
+      border-image: none;
+      border: none;
+    }
+
+    .gecko-title {
+      display: block;
+
+      span {
+        display: blocK;
+      }
+    }
   }
-}
-
-ul {
-  .symbol-list {
-    list-style-type: circle;
-    padding: 10px;
-  }
-}
-
-#ajax-modal {
-  margin-top: 6%;
-}
-
-.modal-event-body {
-  position: relative;
-}
-
-.nollning-matrix-footer {
-  margin: auto;
-  text-align: center;
 }

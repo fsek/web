@@ -7,6 +7,8 @@ sv:
       day_month: '%e %b'
       day: '%e'
       month_year: '%b %Y'
+      weekday: '%A'
+
     abbr_day_names:
     - sön
     - mån

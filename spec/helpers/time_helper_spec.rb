@@ -132,11 +132,13 @@ RSpec.describe TimeHelper do
     it 'appends dot' do
       format = :long
       helper.dot_format(format, dot: :single).should eq(:long_dot)
+      helper.dot_format(format, dot: 'single').should eq(:long_dot)
     end
 
     it 'appends ddot' do
       format = :long
       helper.dot_format(format, dot: :double).should eq(:long_ddot)
+      helper.dot_format(format, dot: 'double').should eq(:long_ddot)
     end
   end
 end
