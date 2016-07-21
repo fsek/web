@@ -13,7 +13,7 @@ class Admin::ToolsController < Admin::BaseController
   def create
     @tool = Tool.new(tool_params)
     if @tool.save
-      redirect_to admin_tool_path(@tool), notice: alert_create(Tool)
+      redirect_to admin_tools_path, notice: alert_create(Tool)
     else
       render :new, status: 422
     end

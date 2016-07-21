@@ -29,14 +29,14 @@ RSpec.describe Admin::ToolsController, type: :controller do
   describe 'POST #create' do
     it 'valid parameters' do
       attributes = { title: 'Skruvmejsel',
-                     description: 'Skruvar in skruvar',
+                     description: 'Skruvar skruvar',
                      total: 2 }
 
       lambda do
         post :create, tool: attributes
       end.should change(Tool, :count).by(1)
 
-      response.should redirect_to(admin_tool_path(Tool.last))
+      response.should redirect_to(admin_tools_path)
       Tool.last.title.should eq('Skruvmejsel')
     end
 

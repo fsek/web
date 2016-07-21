@@ -7,11 +7,6 @@ RSpec.describe Tool, type: :model do
       tool.should validate_presence_of(:title)
     end
 
-    it 'check presence description' do
-      tool = build(:tool)
-      tool.should validate_presence_of(:description)
-    end
-
     it 'check presence total' do
       tool = build(:tool)
       tool.should validate_presence_of(:total)
