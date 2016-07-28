@@ -7,6 +7,7 @@ class Group < ActiveRecord::Base
   has_many :users, through: :group_users
   has_many :group_messages, dependent: :destroy
   has_many :messages, through: :group_messages
+  has_many :adventure_groups, dependent: :destroy
 
   REGULAR = 'regular'.freeze
   MISSION = 'mission'.freeze

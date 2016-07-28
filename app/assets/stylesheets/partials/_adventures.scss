@@ -1,0 +1,36 @@
+.adventure {
+  .block {
+    display: inline-block;
+    float: none;
+    min-width: 180px;
+    text-align: center;
+  }
+
+  .part {
+    display: block;
+    margin: -7px auto;
+  }
+
+  .part:first-of-type {
+    margin-top: 0;
+  }
+
+  .part:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+}
+
+.adventure-item {
+  margin-bottom: 20px;
+}
+
+.adventure-item:last-of-type {
+  margin-bottom: 0;
+}

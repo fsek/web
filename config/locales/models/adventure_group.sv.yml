@@ -1,0 +1,11 @@
+sv:
+  activerecord:
+    attributes:
+      adventure_group:
+        points: poäng
+
+  model:
+    adventure_group:
+      wrong_group_type: endast faddergrupper kan väljas
+      not_same_introduction: grupper och äventyrsuppdrag måste tillhöra samma nollning
+      too_many_points: kan maximalt vara %{max}

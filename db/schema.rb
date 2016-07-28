@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801201234) do
+ActiveRecord::Schema.define(version: 20160804140230) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -22,6 +22,49 @@ ActiveRecord::Schema.define(version: 20160801201234) do
 
   add_index "accesses", ["door_id"], name: "index_accesses_on_door_id", using: :btree
   add_index "accesses", ["post_id"], name: "index_accesses_on_post_id", using: :btree
+
+  create_table "adventure_groups", force: :cascade do |t|
+    t.integer  "points",       limit: 4, default: 0, null: false
+    t.integer  "adventure_id", limit: 4
+    t.integer  "group_id",     limit: 4
+    t.datetime "deleted_at"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "adventure_groups", ["adventure_id"], name: "index_adventure_groups_on_adventure_id", using: :btree
+  add_index "adventure_groups", ["deleted_at"], name: "index_adventure_groups_on_deleted_at", using: :btree
+  add_index "adventure_groups", ["group_id"], name: "index_adventure_groups_on_group_id", using: :btree
+
+  create_table "adventure_translations", force: :cascade do |t|
+    t.integer  "adventure_id", limit: 4,     null: false
+    t.string   "locale",       limit: 255,   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "title",        limit: 255
+    t.text     "content",      limit: 65535
+  end
+
+  add_index "adventure_translations", ["adventure_id"], name: "index_adventure_translations_on_adventure_id", using: :btree
+  add_index "adventure_translations", ["locale"], name: "index_adventure_translations_on_locale", using: :btree
+
+  create_table "adventures", force: :cascade do |t|
+    t.string   "title",           limit: 255
+    t.text     "content",         limit: 65535
+    t.integer  "max_points",      limit: 4,                     null: false
+    t.integer  "introduction_id", limit: 4
+    t.boolean  "publish_results",               default: false, null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "adventures", ["deleted_at"], name: "index_adventures_on_deleted_at", using: :btree
+  add_index "adventures", ["end_date"], name: "index_adventures_on_end_date", using: :btree
+  add_index "adventures", ["introduction_id"], name: "index_adventures_on_introduction_id", using: :btree
+  add_index "adventures", ["start_date"], name: "index_adventures_on_start_date", using: :btree
 
   create_table "album_translations", force: :cascade do |t|
     t.integer  "album_id",    limit: 4,     null: false
@@ -715,6 +758,9 @@ ActiveRecord::Schema.define(version: 20160801201234) do
 
   add_foreign_key "accesses", "doors"
   add_foreign_key "accesses", "posts"
+  add_foreign_key "adventure_groups", "adventures"
+  add_foreign_key "adventure_groups", "groups"
+  add_foreign_key "adventures", "introductions"
   add_foreign_key "blog_posts", "users"
   add_foreign_key "candidates", "elections"
   add_foreign_key "candidates", "posts"

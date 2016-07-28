@@ -1,0 +1,36 @@
+.admin-grid {
+  .box {
+    border: 1px solid $fsek-orange;
+    border-radius: 10px;
+    display: block;
+    margin: 5px 15px;
+    padding: 25px 10px;
+  }
+
+  .interior {
+    font-size: 18px;
+    margin: 10px 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .admin-grid {
+    .box {
+      display: inline;
+      padding: 15px 10px;
+      width: 100%;
+    }
+
+    .interior {
+      display: inline-block;
+      margin: auto;
+      vertical-align: middle;
+
+      i {
+        font-size: 42px;
+        margin: 0 25px;
+      }
+    }
+  }
+}

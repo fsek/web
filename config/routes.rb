@@ -112,11 +112,17 @@ Fsek::Application.routes.draw do
       get :archive, path: :arkiv, on: :collection
       get :matrix, path: :matris, on: :collection
       get 'modal/:date', action: :modal, as: :modal, on: :member
+      resources :adventures, path: :aventyr, only: [:index, :show] do
+        get :archive, on: :collection, path: :arkiv
+      end
     end
 
     namespace :admin do
-      resources :introductions, path: :nollning, except: :show do
+      resources :introductions, path: :nollning do
         resources :messages, path: :meddelanden, except: [:edit, :destroy, :update]
+        resources :adventures, path: :aventyr do
+          get :set_points, on: :member, path: :poang
+        end
       end
     end
 

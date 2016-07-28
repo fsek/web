@@ -2,17 +2,17 @@ sv:
   admin:
     introductions:
       index:
-        new_introduction: Ny Nollning
-        title: Alla Nollningar
-        messages: Meddelanden
+        new_introduction: Ny nollning
+        title: Administrera nollningar
+        edit: Redigera
 
       new:
-        all_introductions: Alla Nollningar
-        title: Ny Nollning
+        all_introductions: Alla nollningar
+        title: Ny nollning
 
       edit:
-        all_introductions: Alla Nollningar
-        title: Redigera Nollning
+        all_introductions: Alla nollningar
+        title: Redigera nollning
 
       form:
-        destroy_introduction: Förinta Nollning
+        destroy_introduction: Förinta nollning

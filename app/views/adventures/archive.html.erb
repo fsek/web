@@ -1,0 +1,12 @@
+<div class="col-md-12 introduction">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+  <%= render @adventures %>
+</div>
+
+<div class="col-md-12">
+  <hr>
+  <%= link_to(@introduction.title, introductions_path, class: 'btn primary') %>
+  <%= link_to(t('.index'), introduction_adventures_path(@introduction), class: 'btn secondary') %>
+</div>
