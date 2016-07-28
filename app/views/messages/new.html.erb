@@ -10,7 +10,7 @@
 <div class="col-md-9 col-sm-12">
   <%= simple_form_for([@group, @message]) do |f| %>
     <%= f.input :content, as: :pagedown, input_html: {preview: true, rows: 10} %>
-    <% if @message.errors[:groups] %>
+    <% if @message.errors[:groups].present? %>
       <div class="form-group has-error">
         <span class="help-block">
           <%= fa_icon('exclamation-circle') %>

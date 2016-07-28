@@ -7,6 +7,7 @@ class Introduction < ActiveRecord::Base
   attr_reader :dates, :events_by_day
 
   has_many :groups, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   validates :title, :start, :stop, :slug, presence: true
   validates :slug, uniqueness: true,

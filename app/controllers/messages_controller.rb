@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :load_permissions
-  load_and_authorize_resource :group, parent: true
+  load_and_authorize_resource :group, parent: true, except: :destroy
   load_and_authorize_resource :message
 
   def index
@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
   def create
     @message.groups = [@group]
     @message.user = current_user
+    @message.introduction = @group.introduction
     if @message.save
       redirect_to(group_path(@group), notice: alert_create(Message))
     else
@@ -22,9 +23,10 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    @group.messages.find(params[:id]).destroy!
+    message = Message.find(params[:id])
+    message.destroy!
 
-    redirect_to(group_path(@group))
+    redirect_to(:back, notice: alert_destroy(Message))
   end
 
   private

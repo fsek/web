@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709213505) do
+ActiveRecord::Schema.define(version: 20160718202059) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -401,10 +401,11 @@ ActiveRecord::Schema.define(version: 20160709213505) do
   create_table "message_comments", force: :cascade do |t|
     t.integer  "message_id", limit: 4
     t.integer  "user_id",    limit: 4
-    t.text     "content",    limit: 65535, null: false
+    t.text     "content",    limit: 65535,                 null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "by_admin",                 default: false, null: false
   end
 
   add_index "message_comments", ["deleted_at"], name: "index_message_comments_on_deleted_at", using: :btree
@@ -413,14 +414,17 @@ ActiveRecord::Schema.define(version: 20160709213505) do
 
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id",                limit: 4
-    t.text     "content",                limit: 65535,             null: false
+    t.text     "content",                limit: 65535,                 null: false
     t.datetime "deleted_at"
-    t.integer  "message_comments_count", limit: 4,     default: 0, null: false
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.integer  "message_comments_count", limit: 4,     default: 0,     null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.boolean  "by_admin",                             default: false, null: false
+    t.integer  "introduction_id",        limit: 4
   end
 
   add_index "messages", ["deleted_at"], name: "index_messages_on_deleted_at", using: :btree
+  add_index "messages", ["introduction_id"], name: "index_messages_on_introduction_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "news", force: :cascade do |t|
@@ -697,6 +701,7 @@ ActiveRecord::Schema.define(version: 20160709213505) do
   add_foreign_key "menus", "main_menus"
   add_foreign_key "message_comments", "messages"
   add_foreign_key "message_comments", "users"
+  add_foreign_key "messages", "introductions"
   add_foreign_key "messages", "users"
   add_foreign_key "page_images", "pages"
   add_foreign_key "rents", "users"

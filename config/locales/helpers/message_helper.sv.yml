@@ -1,0 +1,6 @@
+sv:
+  helper:
+    message:
+      destroy_message: Är du säker på att du vill ta bort meddelandet?
+      destroy_comment: Är du säker på att du vill ta bort kommentaren?
+      to: "Till: "

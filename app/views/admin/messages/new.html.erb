@@ -1,0 +1,10 @@
+<div class="col-md-12">
+  <div class="headline">
+    <h3><%= title(t('.title')) %></h3>
+  </div>
+  <%= simple_form_for([:admin, @introduction, @message]) do |form| %>
+    <%= render 'form_fields', form: form, groups: @introduction.groups %>
+  <% end %>
+  <hr>
+  <%= link_to(t('.all'), admin_introduction_messages_path, class: 'btn secondary') %>
+</div>

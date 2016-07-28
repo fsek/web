@@ -1,4 +1,4 @@
-<div class="message comment">
+<div class="message comment <%= comment.by_admin ? 'by-admin' : '' %>">
   <% if comment.user.avatar? %>
     <%= link_to(user_path(comment.user), class: 'pull-left') do %>
       <%= image_tag(comment.user.thumb_avatar, class: 'author img-responsive') %>
@@ -14,10 +14,6 @@
       </small>
     </h4>
     <%= simple_format(comment.content) %>
-    <% if can?(:destroy, comment) %>
-      <%= link_to(message_message_comment_path(comment.message, comment), method: :delete, class: '') do %>
-        <%= fa_icon('trash') %>
-      <% end %>
-    <% end %>
+    <%= comment_destroy_link(comment, admin) %>
   </div>
 </div>

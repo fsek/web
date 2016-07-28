@@ -3,6 +3,7 @@ sv:
     message:
       need_groups: måste skickas till minst en grupp
       not_part_of_selected_groups: du är inte med i alla grupper som valdes
+      group_introduction_error: Grupp och meddelande måste tillhöra samma nollning
   activerecord:
     models:
       message:
