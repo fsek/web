@@ -19,9 +19,9 @@ sv:
       accesses:
         doors: Dörrar
         edit_door: Redigera dörr
-        posts: Poster
+        positions: Poster
         title: Accesser för %{door}
 
-      post:
-        title: Access för %{post}
+      position:
+        title: Access för %{position}
         all_doors: Alla dörrar

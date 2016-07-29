@@ -60,43 +60,43 @@ RSpec.describe ElectionMailer, type: :mailer do
       mail.message_id.should include('@fsektionen.se')
     end
 
-    it 'board post' do
+    it 'board position' do
       election = build_stubbed(:election,
                                candidate_mail: 'This is the general and board email',
                                candidate_mail_star: 'This is the not general email',
                                nominate_mail: 'This is the nomination email')
 
-      postt = build_stubbed(:post, elected_by: Post::GENERAL, board: true)
-      election.posts << postt
-      candidate = build_stubbed(:candidate, post: postt, election: election)
+      position = build_stubbed(:position, elected_by: Position::GENERAL, board: true)
+      election.positions << position
+      candidate = build_stubbed(:candidate, position: position, election: election)
 
       mail = ElectionMailer.candidate_email(candidate)
       mail.body.should include('This is the general and board email')
     end
 
-    it 'post elected at general meeting' do
+    it 'position elected at general meeting' do
       election = build_stubbed(:election,
                                candidate_mail: 'This is the general and board email',
                                candidate_mail_star: 'This is the not general email',
                                nominate_mail: 'This is the nomination email')
 
-      postt = build_stubbed(:post, elected_by: Post::GENERAL, board: false)
-      election.posts << postt
-      candidate = build_stubbed(:candidate, post: postt, election: election)
+      position = build_stubbed(:position, elected_by: Position::GENERAL, board: false)
+      election.positions << position
+      candidate = build_stubbed(:candidate, position: position, election: election)
 
       mail = ElectionMailer.candidate_email(candidate)
       mail.body.should include('This is the general and board email')
     end
 
-    it 'posts not elected at general meeting' do
+    it 'positions not elected at general meeting' do
       election = build_stubbed(:election,
                                candidate_mail: 'This is the general and board email',
                                candidate_mail_star: 'This is the not general email',
                                nominate_mail: 'This is the nomination email')
 
-      postt = build_stubbed(:post, elected_by: Post::BOARD, board: false)
-      election.posts << postt
-      candidate = build_stubbed(:candidate, post: postt, election: election)
+      position = build_stubbed(:position, elected_by: Position::BOARD, board: false)
+      election.positions << position
+      candidate = build_stubbed(:candidate, position: position, election: election)
 
       mail = ElectionMailer.candidate_email(candidate)
       mail.body.should include('This is the not general email')

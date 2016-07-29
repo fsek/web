@@ -1,0 +1,12 @@
+<% if position_view.present? %>
+  <%= simple_form_for(position_view.position_user, url: add_user_admin_council_positions_path(position_view.council),
+                                           method: :patch) do |f| %>
+    <%= f.association(:user, collection: position_view.users , label_method: :print_id,
+                      input_html: { class: 'select2' },
+                      include_blank: false) %>
+    <%= f.association(:position, collection: position_view.council.positions,
+                      input_html: { class: 'select2' },
+                      include_blank: false) %>
+    <%= f.button :submit %>
+  <% end %>
+<% end %>

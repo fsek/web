@@ -1,7 +1,7 @@
 module ElectionMailerHelper
   def candidate_mail_link(candidate)
-    if candidate.present? && candidate.post.present? && candidate.election.present?
-      if candidate.post.board
+    if candidate.present? && candidate.position.present? && candidate.election.present?
+      if candidate.position.board
         candidate.election.board_mail_link
       else
         candidate.election.mail_link

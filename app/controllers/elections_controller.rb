@@ -6,13 +6,12 @@ class ElectionsController < ApplicationController
 
     if election.present?
       @election_view = ElectionView.new(election)
-      @election_view.grid = initialize_grid(election.current_posts,
+      @election_view.grid = initialize_grid(election.current_positions,
                                             include: :council,
                                             name: :main)
-      @count = election.post_count
 
-      if election.after_posts.any?
-        @election_view.rest_grid = initialize_grid(election.after_posts,
+      if election.after_positions.any?
+        @election_view.rest_grid = initialize_grid(election.after_positions,
                                                    include: :council,
                                                    name: :rest)
       end

@@ -4,10 +4,10 @@
 
 <div class="col-sm-12">
   <%= grid(@candidates_grid) do |g|
-    g.column(name: model_name(Post),
-             assoc: :post,
+    g.column(name: model_name(Position),
+             assoc: :position,
              attribute: 'title') do |candidate|
-      candidate.post
+      candidate.position
     end
 
     g.column name: model_name(User), assoc: :user, attribute: 'firstname',
@@ -23,19 +23,19 @@
       attribute: 'phone', filter: false
     g.column name: Candidate.human_attribute_name(:created_at),
       attribute: 'created_at', filter:false
-    g.column name: model_name(Council), assoc: :post, attribute: 'council_id',
+    g.column name: model_name(Council), assoc: :position, attribute: 'council_id',
       filter: false do |candidate|
       link_to(candidate.council, candidate.council)
     end
-    g.column name: Post.human_attribute_name(:board),
+    g.column name: Position.human_attribute_name(:board),
       filter: false do |candidate|
-      yes_no(candidate.post.board)
+      yes_no(candidate.position.board)
     end
-    g.column(name: Candidate.human_attribute_name(:elected_by), assoc: :post,
+    g.column(name: Candidate.human_attribute_name(:elected_by), assoc: :position,
              attribute: 'elected_by', custom_filter: :auto) do |candidate|
-      t("post.#{candidate.post.elected_by}")
+      t("position.#{candidate.position.elected_by}")
     end
   end -%>
 <%= link_to(t('.edit_election'), admin_election_path(@election),
-                        class: 'btn secondary')%>
+                                 class: 'btn secondary')%>
 </div>

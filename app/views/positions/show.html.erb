@@ -1,0 +1,20 @@
+<% title("#{@position} - #{@election}") %>
+<div class="headline">
+  <h1><%= @position.to_s %></h1>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to(@election, elections_path, class: 'btn secondary') %>
+  <% if can_administrate?(:manage, @position) %>
+    <hr>
+    <%= link_to(t('.edit_position'), edit_admin_council_position_path(@position.council, @position), class: 'btn secondary') %>
+  <% end %>
+  <% if can_administrate?(:manage, @election) %>
+    <hr>
+    <%= link_to(t('.edit_election'), admin_election_path(@election), class: 'btn secondary') %>
+  <% end %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= render '/positions/position', position: @position, election: @election %>
+</div>

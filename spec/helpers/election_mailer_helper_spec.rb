@@ -2,22 +2,22 @@ require 'rails_helper'
 
 RSpec.describe ElectionMailerHelper do
   describe 'candidate_mail_link' do
-    it 'not a board post' do
+    it 'not a board position' do
       election = build_stubbed(:election, board_mail_link: 'http://board.com',
                                           mail_link: 'http://normal.com')
-      postt = build_stubbed(:post, board: false)
-      candidate = build_stubbed(:candidate, election: election, post: postt)
+      position = build_stubbed(:position, board: false)
+      candidate = build_stubbed(:candidate, election: election, position: position)
 
       result = helper.candidate_mail_link(candidate)
 
       result.should eq('http://normal.com')
     end
 
-    it 'a board post' do
+    it 'a board position' do
       election = build_stubbed(:election, board_mail_link: 'http://board.com',
                                           mail_link: 'http://normal.com')
-      postt = build_stubbed(:post, board: true)
-      candidate = build_stubbed(:candidate, election: election, post: postt)
+      position = build_stubbed(:position, board: true)
+      candidate = build_stubbed(:candidate, election: election, position: position)
 
       result = helper.candidate_mail_link(candidate)
 

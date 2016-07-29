@@ -1,7 +1,6 @@
 class Access < ActiveRecord::Base
-  belongs_to :door
-  belongs_to :post
+  belongs_to :door, required: true
+  belongs_to :position, required: true
 
-  validates(:door, :post, presence: true)
-  validates(:door, uniqueness: { scope: :post })
+  validates(:door, uniqueness: { scope: :position })
 end

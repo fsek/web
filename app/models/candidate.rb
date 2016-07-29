@@ -2,18 +2,18 @@
 class Candidate < ActiveRecord::Base
   belongs_to :election, required: true, inverse_of: :candidates
   belongs_to :user, required: true
-  belongs_to :post, required: true
-  has_one :council, through: :post
+  belongs_to :position, required: true
+  has_one :council, through: :position
 
-  validates :post, uniqueness: { scope: [:user, :election],
+  validates :position, uniqueness: { scope: [:user, :election],
                                  message: I18n.t('model.candidate.similar_candidate') }
 
   validate :user_attributes
-  validate :check_edit, if: Proc.new { |o| o.election.present? && o.post.present? }
+  validate :check_edit, if: Proc.new { |o| o.election.present? && o.position.present? }
 
   def editable?
-    if election.present? && post.present?
-      election.searchable_posts.where(id: post.id).any?
+    if election.present? && position.present?
+      election.searchable_positions.where(id: position.id).any?
     else
       false
     end
@@ -24,8 +24,8 @@ class Candidate < ActiveRecord::Base
   end
 
   def editable_until
-    if election.present? && post.present?
-      election.post_closing(post)
+    if election.present? && position.present?
+      election.position_closing(position)
     end
   end
 
@@ -39,7 +39,7 @@ class Candidate < ActiveRecord::Base
 
   def check_edit
     unless editable?
-      errors.add(:post, I18n.t('model.candidate.not_editable'))
+      errors.add(:position, I18n.t('model.candidate.not_editable'))
     end
   end
 end

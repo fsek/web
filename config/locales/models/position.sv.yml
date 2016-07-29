@@ -1,0 +1,32 @@
+sv:
+  model:
+    position:
+      added: "%{u} tilldelades %{p}"
+      add_error: "Tilldelningen gick inte: %{errors}"
+      user_removed: "%{u} har inte längre posten %{p}"
+      board: Styrelse
+      general: Sektionsmöte
+      education: Studieråd
+      semester:
+        autumn: HT
+        both: HT och VT
+        other: Annat
+        spring: VT
+
+  activerecord:
+    models:
+      position:
+        one: Post
+        other: Poster
+    attributes:
+      position:
+        board: Styrelsepost
+        car_rent: Får hyra bil
+        council: Utskott
+        description: Beskrivning
+        elected_by: Väljs av
+        limit: Gräns
+        permission_ids: Rättigheter
+        rec_limit: Rekommenderad gräns
+        semester: Väljs på
+        title: Titel

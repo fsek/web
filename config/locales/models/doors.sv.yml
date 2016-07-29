@@ -6,7 +6,7 @@ sv:
       door:
         created_at: Skapad
         description: Beskrivning
-        posts: Poster
+        positions: Poster
         slug: Kortnamn
         title: Titel
         updated_at: Uppdaterad

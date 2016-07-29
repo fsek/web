@@ -64,7 +64,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
     it 'valid params' do
       contact = create(:contact, name: 'David')
 
-      post :update, id: contact.to_param, contact: { name_sv: 'Titel' }
+      patch(:update, id: contact.to_param, contact: { name_sv: 'Titel' })
 
       contact.reload
       response.should redirect_to(edit_admin_contact_path(contact))
@@ -74,7 +74,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
 
     it 'valid params' do
       contact = create(:contact, name: 'David')
-      post :update, id: contact.to_param, contact: { name_sv: '' }
+      patch(:update, id: contact.to_param, contact: { name_sv: '' })
       contact.reload
 
       contact.name.should eq('David')

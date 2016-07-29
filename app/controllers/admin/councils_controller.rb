@@ -11,7 +11,7 @@ class Admin::CouncilsController < Admin::BaseController
   end
 
   def edit
-    @council = Council.includes(:posts).find_by_url!(params[:id])
+    @council = Council.includes(:positions).find_by_url!(params[:id])
   end
 
   def create
@@ -25,7 +25,7 @@ class Admin::CouncilsController < Admin::BaseController
   end
 
   def update
-    @council = Council.includes(:posts).find_by_url!(params[:id])
+    @council = Council.includes(:positions).find_by_url!(params[:id])
 
     if @council.update(council_params)
       redirect_to edit_admin_council_path(@council), notice: alert_update(Council)

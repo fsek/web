@@ -1,0 +1,36 @@
+<div class="headline">
+  <h1><%= title("#{models_name(Position)} - #{@position_view.council}") %></h1>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to(t('.new_position'), new_admin_council_position_path(@position_view.council),
+                              class: 'btn secondary') %>
+  <%= link_to(t('.show_council'), council_path(@position_view.council),
+                                  class: 'btn secondary') %>
+  <%= link_to(t('.edit_council'), edit_admin_council_path(@position_view.council),
+                                  class: 'btn secondary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <div class="col-sm-12 margin-bottom-20">
+    <div class="headline">
+      <h4><%= models_name(Position) %></h4>
+    </div>
+    <%= render '/admin/positions/position_grid', position_grid: @position_view.position_grid %>
+  </div>
+
+  <div class="col-sm-12 margin-bottom-20">
+    <div class="headline">
+      <h4><%= models_name(PositionUser) %></h4>
+    </div>
+    <span id="position-user-status"></span>
+    <%= render '/admin/positions/position_user_grid', position_view: @position_view %>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="headline">
+      <h4><%= "#{models_name(Position)} - #{@position_view.council}" %></h4>
+    </div>
+    <%= render '/admin/positions/position_user_form', position_view: @position_view %>
+  </div>
+</div>

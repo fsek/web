@@ -6,7 +6,7 @@ RSpec.describe Nomination, type: :model do
 
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:post) }
+    it { should validate_presence_of(:position) }
     it { should validate_presence_of(:election) }
 
     it 'checks email format' do
@@ -22,9 +22,9 @@ RSpec.describe Nomination, type: :model do
   describe 'public methods' do
     it 'has candidate_url' do
       nomination = build_stubbed(:nomination)
-      post = nomination.post
+      position = nomination.position
 
-      nomination.candidate_url.should eq(new_candidate_url(post: post.id, host: PUBLIC_URL))
+      nomination.candidate_url.should eq(new_candidate_url(position: position.id, host: PUBLIC_URL))
     end
   end
 end

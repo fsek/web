@@ -3,7 +3,7 @@ sv:
     contacts:
       form:
         destroy: Förinta kontakt
-        name_or_post: Välj en post eller fyll i ett namn.
+        name_or_position: Välj en post eller fyll i ett namn.
         slug_description: Används för att kunna visa en särskild kontakt i vyer.
 
       edit:

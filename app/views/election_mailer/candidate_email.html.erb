@@ -5,9 +5,9 @@
 <% end %>
 
 <%= content_for(:main_content) do %>
-  <p><%= "#{t('.you_have_candidated')} #{@candidate.post}." %></p>
+  <p><%= "#{t('.you_have_candidated')} #{@candidate.position}." %></p>
 
-  <% if @candidate.post.elected_by == Post::GENERAL %>
+  <% if @candidate.position.elected_by == Position::GENERAL %>
     <%= markdown(@candidate.election.candidate_mail) %>
     <%= candidate_mail_link_html(@candidate) %>
   <% else %>
@@ -15,7 +15,7 @@
   <% end %>
   <p>
   <%= t('.election_closes_at',
-        date: l(@candidate.election.post_closing(@candidate.post))) %>
+        date: l(@candidate.election.position_closing(@candidate.position))) %>
       <br>
       <%= link_to(@candidate.p_url, @candidate.p_url) %>
   </p>

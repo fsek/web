@@ -8,7 +8,7 @@ class Elections::CandidatesController < ApplicationController
     candidates = current_user.candidates.where(election: @election_view.election)
     if candidates.any?
       @election_view.grid = initialize_grid(candidates, order: :created_at,
-                                                        include: [:post, :election])
+                                                        include: [:position, :election])
     end
   end
 
@@ -16,8 +16,8 @@ class Elections::CandidatesController < ApplicationController
     candidate = @election.candidates.build(user: current_user)
     @election_view = ElectionView.new(@election, candidate: candidate)
 
-    if params[:post].present?
-      @election_view.candidate.post = Post.find_by_id(params[:post])
+    if params[:position].present?
+      @candidate_view.current.position = Position.find_by_id(params[:position])
     end
   end
 
@@ -55,6 +55,6 @@ class Elections::CandidatesController < ApplicationController
   end
 
   def candidate_params
-    params.require(:candidate).permit(:post_id)
+    params.require(:candidate).permit(:position_id)
   end
 end

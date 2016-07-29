@@ -7,25 +7,25 @@ module ElectionHelper
     end
   end
 
-  def candidate_and_nominate_buttons(post)
-    if post.present?
+  def candidate_and_nominate_buttons(position)
+    if position.present?
       candidate = link_to(I18n.t('helper.election.new_candidate'),
-                          new_candidate_path(post: post.id.to_s),
+                          new_candidate_path(position: position.id.to_s),
                           class: 'btn primary')
       nomination = link_to(I18n.t('helper.election.new_nomination'),
-                           new_nominations_path(post: post.id.to_s),
+                           new_nominations_path(position: position.id.to_s),
                            class: 'btn primary')
       safe_join([candidate, nomination])
     end
   end
 
-  def election_post_link(post)
-    if post.present?
-      title = content_tag(:span, post.title)
-      show = link_to(post_path(post), target: :blank, class: 'links') do
+  def election_position_link(position)
+    if position.present?
+      title = content_tag(:span, position.title)
+      show = link_to(position_path(position), target: :blank, class: 'links') do
         fa_icon('external-link')
       end
-      modal = link_to(modal_post_path(post), remote: true, class: 'links') do
+      modal = link_to(modal_position_path(position), remote: true, class: 'links') do
         fa_icon('object-group')
       end
       safe_join([show, modal, title])

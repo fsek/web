@@ -117,11 +117,11 @@
 
     <% if can_administrate? :manage, Council %>
       <li class="dropdown-submenu">
-        <%= link_to(models_name(Post), '#') %>
+        <%= link_to(models_name(Position), '#') %>
         <ul class="dropdown-menu">
           <% Council.by_title.each do |council| %>
             <% if can_administrate? :manage, council %>
-              <li><%= link_to(council, admin_council_posts_path(council)) %></li>
+              <li><%= link_to(council, admin_council_positions_path(council)) %></li>
             <% end %>
           <% end %>
         </ul>

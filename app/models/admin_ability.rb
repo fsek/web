@@ -4,9 +4,9 @@ class AdminAbility
   def initialize(user)
     user ||= User.new
 
-    # Add abilities gained from posts
-    user.posts.includes(:permissions).each do |post|
-      post.permissions.each do |permission|
+    # Add abilities gained from positions
+    user.positions.includes(:permissions).each do |position|
+      position.permissions.each do |permission|
         can(permission.action.to_sym, permission.subject)
       end
     end

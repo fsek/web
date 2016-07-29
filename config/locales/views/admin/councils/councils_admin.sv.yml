@@ -3,13 +3,13 @@ sv:
     councils:
       form:
         description_hint: Denna text kommer synas vid t.ex. länkar och vid sökningar i sökmotorer.
-        no_posts: Detta utskott saknar poster, lägg till en post för att välja utskottsordförande.
+        no_positions: Detta utskott saknar poster, lägg till en post för att välja utskottsordförande.
 
       edit:
         administrate_councils: Administrera utskott
-        all_posts: Alla poster
+        all_positions: Alla poster
         edit_page: Redigera sida
-        new_post: Ny post
+        new_position: Ny post
         show_council: Visa utskott
         title: Redigera utskott
 

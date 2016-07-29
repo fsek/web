@@ -3,12 +3,12 @@ RSpec.feature 'Visit Election', type: :feature do
   scenario 'nominating successfully' do
     user = create(:user)
     create(:election, :autumn)
-    the_post = create(:post, :autumn)
+    position = create(:position, :autumn)
     sign_in_as(user, path: new_nominations_path)
 
     fill_in 'nomination_name', with: 'David Wessman'
     fill_in 'nomination_email', with: 'd.wessman@fsektionen.se'
-    select(the_post, from: 'nomination_post_id')
+    select(position, from: 'nomination_position_id')
     fill_in 'nomination_motivation', with: 'Foo'
 
     find('#nomination-submit').click

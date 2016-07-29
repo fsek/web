@@ -1,6 +1,0 @@
-sv:
-  activerecord:
-    errors:
-      attributes:
-        post_id:
-          blank: Post måste väljas

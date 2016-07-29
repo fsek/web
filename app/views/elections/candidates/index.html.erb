@@ -8,8 +8,8 @@
 </div>
 
 <div class="col-md-10 col-sm-12 election">
-  <%= simple_format(t('.cannot_change_post')) %>
   <% if @election_view.grid.present? %>
+  <%= simple_format(t('.cannot_change_position')) %>
     <%= grid(@election_view.grid, html: {class: 'candidate grid'}) do |g|
       g.row_attributes do |candidate|
         if candidate.editable?
@@ -17,9 +17,9 @@
         end
       end
 
-      g.column(name: Post.human_attribute_name(:title), assoc: :post, filter: false,
+      g.column(name: Position.human_attribute_name(:title), assoc: :position, filter: false,
                attribute: 'title') do |candidate|
-        election_post_link(candidate.post)
+        election_position_link(candidate.position)
       end
 
       g.column name: Candidate.human_attribute_name(:created_at), attribute: 'created_at',
@@ -27,9 +27,9 @@
         localized(candidate.created_at)
       end
 
-      g.column(name: Post.human_attribute_name(:elected_by), assoc: :post,
+      g.column(name: Position.human_attribute_name(:elected_by), assoc: :position,
                attribute: 'elected_by', filter: false) do |candidate|
-        t("model.post.#{candidate.post.elected_by}")
+        t("model.position.#{candidate.position.elected_by}")
       end
 
       g.column(name: Candidate.human_attribute_name(:editable_until)) do |candidate|

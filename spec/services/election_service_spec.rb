@@ -5,9 +5,9 @@ RSpec.describe ElectionService do
     it 'creates a valid candidate' do
       election = create(:election, :before_general, :autumn)
       user = create(:user)
-      the_post = create(:post, :autumn)
+      the_position = create(:position, :autumn)
 
-      candidate = election.candidates.build(post: the_post)
+      candidate = election.candidates.build(position: the_position)
       lambda do
         ElectionService.create_candidate(candidate, user).should be_truthy
       end.should change(Candidate, :count).by(1)
@@ -25,9 +25,9 @@ RSpec.describe ElectionService do
     it 'returns false if candidate invalid' do
       election = create(:election, :before_general, :autumn)
       user = create(:user)
-      the_post = create(:post, :spring)
+      the_position = create(:position, :spring)
 
-      candidate = election.candidates.build(post: the_post)
+      candidate = election.candidates.build(position: the_position)
       lambda do
         ElectionService.create_candidate(candidate, user).should be_falsey
       end.should change(Candidate, :count).by(0)

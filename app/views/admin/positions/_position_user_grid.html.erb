@@ -1,0 +1,18 @@
+<% if position_view.present? %>
+  <%= grid(position_view.position_user_grid) do |g|
+    g.row_attributes do |position_user|
+      {id: dom_id(position_user)}
+    end
+
+    g.column(name: model_name(Position), assoc: :position, attribute: 'title')
+    g.column(name: model_name(User), assoc: :user, attribute: 'firstname') do |pu|
+      user_link(pu.user)
+    end
+
+    g.column(name: t(:destroy)) do |pu|
+      link_to(t(:destroy), remove_user_admin_council_positions_path(position_view.council, pu),
+                           remote: true,
+                           method: :delete)
+    end
+  end -%>
+<% end %>

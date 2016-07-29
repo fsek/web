@@ -3,12 +3,12 @@ class Council < ActiveRecord::Base
   # Associations
   has_one :page, dependent: :destroy
 
-  belongs_to :president, foreign_key: :president_id, class_name: :Post
-  belongs_to :vice_president, foreign_key: :vicepresident_id, class_name: :Post
+  belongs_to :president, foreign_key: :president_id, class_name: :Position
+  belongs_to :vice_president, foreign_key: :vicepresident_id, class_name: :Position
 
-  has_many :posts
-  has_many :users, through: :posts
-  has_many :post_users, through: :posts
+  has_many :positions
+  has_many :users, through: :positions
+  has_many :position_users, through: :positions
 
   has_many :cafe_worker_councils
   has_many :cafe_workers, through: :cafe_worker_councils

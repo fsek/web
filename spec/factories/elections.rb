@@ -10,7 +10,7 @@ FactoryGirl.define do
     candidate_mail_star { generate(:email) }
     mail_link { generate(:email) }
     board_mail_link { generate(:email) }
-    semester { [Post::AUTUMN, Post::SPRING].sample }
+    semester { [Position::AUTUMN, Position::SPRING].sample }
 
     trait :not_opened do
       open { 2.days.from_now }
@@ -37,15 +37,15 @@ FactoryGirl.define do
     end
 
     trait :autumn do
-      semester Post::AUTUMN
+      semester Position::AUTUMN
     end
 
     trait :spring do
-      semester Post::SPRING
+      semester Position::SPRING
     end
 
     trait :other do
-      semester Post::OTHER
+      semester Position::OTHER
     end
   end
 end

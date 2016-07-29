@@ -22,7 +22,7 @@
     g.column(name: Contact.human_attribute_name(:name), attribute: 'name') do |contact|
       link_to(contact, contact_path(contact), target: :blank)
     end
-    g.column(name: Contact.human_attribute_name(:post_id), assoc: :post, attribute: 'title',
+    g.column(name: Contact.human_attribute_name(:position), assoc: :position, attribute: 'title',
              custom_filter: :auto)
     g.column(name: Contact.human_attribute_name(:public), attribute: 'public') do |contact|
       yes_no(contact.public)

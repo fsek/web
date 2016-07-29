@@ -1,27 +1,27 @@
 # encoding: UTF-8
 class Admin::PermissionsController < Admin::BaseController
   load_permissions_and_authorize_resource
-  load_and_authorize_resource :post
+  load_and_authorize_resource :position
 
   def index
-    @posts = Post.includes(:permissions).by_title
+    @positions = Position.includes(:permissions).by_title
   end
 
-  def show_post
-    @permissions = Permission.subject
+  def show_position
+    @permissions = Permission.by_subject
   end
 
-  def update_post
-    if @post.set_permissions(permission_params)
-      redirect_to admin_permissions_path, notice: alert_update(Post)
+  def update_position
+    if @position.set_permissions(permission_params)
+      redirect_to admin_permissions_path, notice: alert_update(Position)
     else
-      render :show_post, status: 422
+      render :show_position, status: 422
     end
   end
 
   private
 
   def permission_params
-    params.require(:post).permit(permission_ids: [])
+    params.require(:position).permit(permission_ids: [])
   end
 end

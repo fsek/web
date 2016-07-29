@@ -6,9 +6,9 @@
     <%= f.association(:user, collection: [ current_user ],
                              include_blank: false,
                              input_html: {class: 'select2'}) %>
-    <%= f.association(:post, collection: @election_view.election.searchable_posts,
-                             include_blank: false,
-                             input_html: {class: 'select2'}) %>
+    <%= f.association(:position, collection: @election_view.election.searchable_positions,
+                                 include_blank: false,
+                                 input_html: {class: 'select2'}) %>
     <%= f.button :submit, id: 'candidate-submit' %>
   <% end %>
   <hr>

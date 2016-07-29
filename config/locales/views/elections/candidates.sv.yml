@@ -2,7 +2,7 @@ sv:
   elections:
     candidates:
       index:
-        cannot_change_post: Det går inte att byta post för en kandidatur, har du valt fel får du ta bort kandidaturen och skapa en ny.
+        cannot_change_position: Det går inte att byta post för en kandidatur, har du valt fel får du ta bort kandidaturen och skapa en ny.
         new_candidate: Ny kandidatur
         no_candidates: Du har inte kandiderat till några poster.
         show_election: Visa val

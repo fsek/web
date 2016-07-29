@@ -12,8 +12,8 @@
 
 <div class="col-md-10 col-xs-12">
   <%= grid(@rent_grid) do |g|
-    g.row_attributes do |post|
-      if (post.status == :unconfirmed)
+    g.row_attributes do |rent|
+      if (rent.status == :unconfirmed)
         {style: 'background: rgba(252, 155, 0,0.7);'}
       end
     end

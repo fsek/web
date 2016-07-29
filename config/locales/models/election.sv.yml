@@ -12,7 +12,7 @@ sv:
         close_all: Stänger - allt
         current_election: Aktuellt val
         description: Beskrivning
-        extra_posts: Poster vid ej ordinarie möte
+        extra_positions: Poster vid ej ordinarie möte
         mail_link: Länk i kandideringsmail
         nominate_mail: Text till nomineringsmail
         semester: Termin

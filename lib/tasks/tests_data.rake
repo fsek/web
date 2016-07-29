@@ -9,31 +9,31 @@ namespace :db do
                                       url: 'sex', description: 'Detta är Sexmästeriet')
     cafem = Council.find_or_create_by!(title: 'Cafemästeriet',
                                        url: 'cafe', description: 'Detta är Cafemästeriet')
-    # Posts
+    # Positions
     # Prylmästeriet
-    spindel = Post.find_or_create_by!(title: 'Spindelman', limit: 0, rec_limit: 10, description: 'En administratör',
-                                      council: pryl, elected_by: Post::BOARD, semester: Post::SPRING, car_rent: true)
+    spindel = Position.find_or_create_by!(title: 'Spindelman', limit: 0, rec_limit: 10, description: 'En administratör',
+                                      council: pryl, elected_by: Position::BOARD, semester: Position::SPRING, car_rent: true)
 
-    prylmast = Post.find_or_create_by!(title: 'Prylmästare', limit: 1, rec_limit: 1,
-                                       description: 'Prylmästarn', council: pryl, elected_by: Post::GENERAL,
-                                       board: true, semester: Post::SPRING, car_rent: true)
+    prylmast = Position.find_or_create_by!(title: 'Prylmästare', limit: 1, rec_limit: 1,
+                                       description: 'Prylmästarn', council: pryl, elected_by: Position::GENERAL,
+                                       board: true, semester: Position::SPRING, car_rent: true)
     # Sexmästeriet
 
-    sexmast = Post.find_or_create_by!(title: 'Sexmästare', limit: 1, rec_limit: 1,
-                                      description: 'Sexmästaren', council: sexm, elected_by: Post::GENERAL,
-                                      board: true, semester: Post::SPRING, car_rent: true)
+    sexmast = Position.find_or_create_by!(title: 'Sexmästare', limit: 1, rec_limit: 1,
+                                      description: 'Sexmästaren', council: sexm, elected_by: Position::GENERAL,
+                                      board: true, semester: Position::SPRING, car_rent: true)
 
     # Cafemästeriet
-    Post.find_or_create_by!(title: 'Vice cafemästare', limit: 1, rec_limit: 1, description: 'En vice cm',
-                            council: cafem, elected_by: Post::GENERAL,
-                            board: true, semester: Post::AUTUMN, car_rent: true)
+    Position.find_or_create_by!(title: 'Vice cafemästare', limit: 1, rec_limit: 1, description: 'En vice cm',
+                            council: cafem, elected_by: Position::GENERAL,
+                            board: true, semester: Position::AUTUMN, car_rent: true)
 
-    cafemast = Post.find_or_create_by!(title: 'Cafemästare', limit: 1, rec_limit: 1,
-                                       description: 'Cafemästaren', council: cafem, elected_by: Post::GENERAL,
-                                       board: true, semester: Post::AUTUMN, car_rent: true)
+    cafemast = Position.find_or_create_by!(title: 'Cafemästare', limit: 1, rec_limit: 1,
+                                       description: 'Cafemästaren', council: cafem, elected_by: Position::GENERAL,
+                                       board: true, semester: Position::AUTUMN, car_rent: true)
 
-    nyckelpiga = Post.find_or_create_by!(title: 'Nyckelpiga', limit: 0, rec_limit: 10,
-                                         description: 'Nyckelpigan!', council: cafem, elected_by: Post::BOARD, semester: Post::BOTH)
+    nyckelpiga = Position.find_or_create_by!(title: 'Nyckelpiga', limit: 0, rec_limit: 10,
+                                         description: 'Nyckelpigan!', council: cafem, elected_by: Position::BOARD, semester: Position::BOTH)
 
     # Set president!
     pryl.update(president: prylmast)
@@ -45,8 +45,8 @@ namespace :db do
     perm_admin = Permission.find_or_create_by!(subject_class: :all, action: :manage)
     perm_nyckelpiga = Permission.find_or_create_by!(subject_class: 'CafeWork', action: :nyckelpiga)
     # Give spindelman admin
-    PermissionPost.find_or_create_by!(permission: perm_admin, post: spindel)
-    PermissionPost.find_or_create_by!(permission: perm_nyckelpiga, post: nyckelpiga)
+    PermissionPosition.find_or_create_by!(permission: perm_admin, position: spindel)
+    PermissionPosition.find_or_create_by!(permission: perm_nyckelpiga, position: nyckelpiga)
 
     admin = User.find_or_initialize_by(email: 'admin@fsektionen.se',
                                        firstname: 'Hilbert-Admin', lastname: 'Älg',
@@ -59,10 +59,10 @@ namespace :db do
     puts 'email:        admin@fsektionen.se'
     puts 'and password: passpass'
     if admin.present?
-      PostUser.find_or_create_by(post: spindel, user: admin)
-      PostUser.find_or_create_by(post: prylmast, user: admin)
-      PostUser.find_or_create_by(post: cafemast, user: admin)
-      PostUser.find_or_create_by(post: sexmast, user: admin)
+      PositionUser.find_or_create_by(position: spindel, user: admin)
+      PositionUser.find_or_create_by(position: prylmast, user: admin)
+      PositionUser.find_or_create_by(position: cafemast, user: admin)
+      PositionUser.find_or_create_by(position: sexmast, user: admin)
     end
 
     user = User.find_or_initialize_by(email: 'user@fsektionen.se',
@@ -77,7 +77,7 @@ namespace :db do
     puts 'email:        user@fsektionen.se'
     puts 'and password: passpass'
     if user.present?
-      PostUser.find_or_create_by(post: prylmast, user: user)
+      PositionUser.find_or_create_by(position: prylmast, user: user)
     end
 
     # Main menus
@@ -125,14 +125,14 @@ namespace :db do
     election = Election.find_or_initialize_by(title: 'Vårterminsmöte',
                                               url: 'vt-15',
                                               visible: true,
-                                              semester: Post::SPRING)
+                                              semester: Position::SPRING)
     election.update!(open: 2.days.ago,
                      close_general: 5.days.from_now,
                      close_all: 10.days.from_now)
 
     # Contact
     Contact.find_or_create_by(name: 'Spindelman', email: 'spindelman@fsektionen.se',
-                              public: true, text: 'Detta är en linte spindelman', post: spindel)
+                              public: true, text: 'Detta är en linte spindelman', position: spindel)
 
     # News
     News.find_or_create_by!(title: 'Ett helt nytt användarsystem',

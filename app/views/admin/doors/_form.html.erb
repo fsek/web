@@ -2,6 +2,6 @@
   <%= f.input :title %>
   <%= f.input :slug %>
   <%= f.input :description %>
-  <%= f.association :posts, collection: Post.by_title, input_html: {class: 'select2_tags'} %>
+  <%= f.association :positions, collection: Position.by_title, input_html: {class: 'select2_tags'} %>
   <%= f.button :submit %>
 <% end %>

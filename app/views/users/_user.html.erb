@@ -32,12 +32,12 @@
   <% end %>
   <tr>
     <td>
-      <%= fa_icon('mortar-board') %> <%= Post.model_name.human(count: user.posts.count) %>
+      <%= fa_icon('mortar-board') %> <%= Position.model_name.human(count: user.positions.count) %>
     </td>
     <td>
-      <ul class="user post-list">
-        <% user.posts.each do |post| %>
-          <li><%= link_to(post, council_path(post.council), target: :blank_p) %></li>
+      <ul class="user position-list">
+        <% user.positions.each do |position| %>
+          <li><%= link_to(position, council_path(position.council), target: :blank_p) %></li>
         <% end %>
       </ul>
     </td>

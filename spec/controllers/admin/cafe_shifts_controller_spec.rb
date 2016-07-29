@@ -81,7 +81,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
     it 'valid params' do
       shift = create(:cafe_shift, pass: 3)
 
-      post :update, id: shift.to_param, cafe_shift: { pass: 4 }
+      patch :update, id: shift.to_param, cafe_shift: { pass: 4 }
       shift.reload
 
       response.should redirect_to([:admin, shift])
@@ -90,7 +90,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
 
     it 'invalid params' do
       shift = create(:cafe_shift, pass: 3)
-      post :update, id: shift.to_param, cafe_shift: { pass: nil }
+      patch :update, id: shift.to_param, cafe_shift: { pass: nil }
 
       response.should render_template(:edit)
       response.status.should eq(422)

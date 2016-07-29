@@ -11,27 +11,27 @@ RSpec.describe Elections::NominationsController, type: :controller do
   describe 'GET #new' do
     it 'valid election' do
       election = create(:election, :autumn)
-      create(:post, :autumn)
+      create(:position, :autumn)
 
       get :new
       assigns(:election_view).election.should eq(election)
       assigns(:election_view).nomination.should be_a_new(Nomination)
     end
 
-    it 'valid election with post' do
+    it 'valid election with position' do
       election = create(:election, :autumn)
-      postt = create(:post, :autumn)
+      position = create(:position, :autumn)
 
-      get :new, post: postt.id
+      get :new, position: position.id
 
       response.should be_success
       assigns(:election_view).election.should eq(election)
       assigns(:election_view).nomination.should be_a_new(Nomination)
-      assigns(:election_view).nomination.post.should eq(postt)
+      assigns(:election_view).nomination.position.should eq(position)
     end
 
     it 'no valid election' do
-      create(:post, :autumn)
+      create(:position, :autumn)
 
       get :new
       response.should render_template('elections/no_election', layout: :application)
@@ -42,11 +42,11 @@ RSpec.describe Elections::NominationsController, type: :controller do
   describe 'POST #create' do
     it 'valid params' do
       create(:election, :autumn)
-      postt = create(:post, :autumn)
+      position = create(:position, :autumn)
       attributes = { name: 'Hilbert Älg',
                      email: 'hilbert@fsektionen.se',
                      motivation: 'Underrum',
-                     post_id: postt.id }
+                     position_id: position.id }
 
       lambda do
         post :create, nomination: attributes
@@ -57,7 +57,7 @@ RSpec.describe Elections::NominationsController, type: :controller do
 
     it 'invalid params' do
       create(:election, :autumn)
-      create(:post, :autumn)
+      create(:position, :autumn)
       attributes = { name: 'Hilbert Älg',
                      motivation: 'Underrum' }
 

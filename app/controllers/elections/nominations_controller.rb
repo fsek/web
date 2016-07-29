@@ -7,8 +7,8 @@ class Elections::NominationsController < ApplicationController
     @election_view = ElectionView.new(@election)
     @election_view.nomination = @election_view.election.nominations.build
 
-    if params[:post].present?
-      @election_view.nomination.post = Post.find_by_id(params[:post])
+    if params[:position].present?
+      @election_view.nomination.position = Position.find_by_id(params[:position])
     end
   end
 
@@ -34,6 +34,6 @@ class Elections::NominationsController < ApplicationController
   end
 
   def nomination_params
-    params.require(:nomination).permit(:name, :email, :motivation, :post_id)
+    params.require(:nomination).permit(:name, :email, :motivation, :position_id)
   end
 end

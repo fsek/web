@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(version: 20160718202059) do
 
   create_table "accesses", force: :cascade do |t|
-    t.integer  "door_id",    limit: 4
-    t.integer  "post_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "door_id",     limit: 4
+    t.integer  "position_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   add_index "accesses", ["door_id"], name: "index_accesses_on_door_id", using: :btree
-  add_index "accesses", ["post_id"], name: "index_accesses_on_post_id", using: :btree
+  add_index "accesses", ["position_id"], name: "index_accesses_on_position_id", using: :btree
 
   create_table "album_translations", force: :cascade do |t|
     t.integer  "album_id",    limit: 4,     null: false
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20160718202059) do
   add_index "cafe_workers", ["user_id"], name: "index_cafe_workers_on_user_id", using: :btree
 
   create_table "candidates", force: :cascade do |t|
-    t.integer  "post_id",     limit: 4
+    t.integer  "position_id", limit: 4
     t.integer  "election_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20160718202059) do
   end
 
   add_index "candidates", ["election_id"], name: "index_candidates_on_election_id", using: :btree
-  add_index "candidates", ["post_id"], name: "index_candidates_on_post_id", using: :btree
+  add_index "candidates", ["position_id"], name: "index_candidates_on_position_id", using: :btree
   add_index "candidates", ["user_id"], name: "index_candidates_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
@@ -127,17 +127,17 @@ ActiveRecord::Schema.define(version: 20160718202059) do
   add_index "contact_translations", ["locale"], name: "index_contact_translations_on_locale", using: :btree
 
   create_table "contacts", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "email",      limit: 255
+    t.string   "name",        limit: 255
+    t.string   "email",       limit: 255
     t.boolean  "public"
-    t.text     "text",       limit: 65535
+    t.text     "text",        limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug",       limit: 255
-    t.integer  "post_id",    limit: 4
+    t.string   "slug",        limit: 255
+    t.integer  "position_id", limit: 4
   end
 
-  add_index "contacts", ["post_id"], name: "index_contacts_on_post_id", using: :btree
+  add_index "contacts", ["position_id"], name: "index_contacts_on_position_id", using: :btree
   add_index "contacts", ["slug"], name: "index_contacts_on_slug", using: :btree
 
   create_table "councils", force: :cascade do |t|
@@ -175,15 +175,15 @@ ActiveRecord::Schema.define(version: 20160718202059) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "election_posts", force: :cascade do |t|
+  create_table "election_positions", force: :cascade do |t|
     t.integer  "election_id", limit: 4
-    t.integer  "post_id",     limit: 4
+    t.integer  "position_id", limit: 4
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
 
-  add_index "election_posts", ["election_id"], name: "index_election_posts_on_election_id", using: :btree
-  add_index "election_posts", ["post_id"], name: "index_election_posts_on_post_id", using: :btree
+  add_index "election_positions", ["election_id"], name: "index_election_positions_on_election_id", using: :btree
+  add_index "election_positions", ["position_id"], name: "index_election_positions_on_position_id", using: :btree
 
   create_table "elections", force: :cascade do |t|
     t.datetime "open"
@@ -450,7 +450,7 @@ ActiveRecord::Schema.define(version: 20160718202059) do
   add_index "news_translations", ["news_id"], name: "index_news_translations_on_news_id", using: :btree
 
   create_table "nominations", force: :cascade do |t|
-    t.integer  "post_id",     limit: 4
+    t.integer  "position_id", limit: 4
     t.integer  "election_id", limit: 4
     t.string   "name",        limit: 255
     t.string   "email",       limit: 255
@@ -546,9 +546,9 @@ ActiveRecord::Schema.define(version: 20160718202059) do
   add_index "pages", ["council_id"], name: "index_pages_on_council_id", using: :btree
   add_index "pages", ["url"], name: "index_pages_on_url", using: :btree
 
-  create_table "permission_posts", force: :cascade do |t|
+  create_table "permission_positions", force: :cascade do |t|
     t.integer  "permission_id", limit: 4
-    t.integer  "post_id",       limit: 4
+    t.integer  "position_id",   limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
@@ -561,14 +561,14 @@ ActiveRecord::Schema.define(version: 20160718202059) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "post_users", force: :cascade do |t|
-    t.integer  "post_id",    limit: 4
-    t.integer  "user_id",    limit: 4
+  create_table "position_users", force: :cascade do |t|
+    t.integer  "position_id", limit: 4
+    t.integer  "user_id",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "positions", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.integer  "limit",       limit: 4,     default: 0
     t.text     "description", limit: 65535
@@ -686,13 +686,13 @@ ActiveRecord::Schema.define(version: 20160718202059) do
   add_index "work_posts", ["user_id"], name: "index_work_posts_on_user_id", using: :btree
 
   add_foreign_key "accesses", "doors"
-  add_foreign_key "accesses", "posts"
+  add_foreign_key "accesses", "positions"
   add_foreign_key "candidates", "elections"
-  add_foreign_key "candidates", "posts"
+  add_foreign_key "candidates", "positions"
   add_foreign_key "candidates", "users"
   add_foreign_key "categorizations", "categories"
-  add_foreign_key "election_posts", "elections"
-  add_foreign_key "election_posts", "posts"
+  add_foreign_key "election_positions", "elections"
+  add_foreign_key "election_positions", "positions"
   add_foreign_key "group_messages", "groups"
   add_foreign_key "group_messages", "messages"
   add_foreign_key "group_users", "groups"
