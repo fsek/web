@@ -1,7 +1,7 @@
 class Tool < ActiveRecord::Base
   has_many :tool_rentings
 
-  validates :title, :description, :total, presence: true
+  validates :title, :total, presence: true
   validates :total, numericality: { greater_than: 0 }
   validate :total_greater_than_rented
 
