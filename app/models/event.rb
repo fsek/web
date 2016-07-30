@@ -8,11 +8,9 @@ class Event < ActiveRecord::Base
   translates(:title, :description, :short)
   globalize_accessors(locales: [:en, :sv],
                       attributes: [:title, :description, :short])
-
   mount_uploader :image, AttachedImageUploader, mount_on: :image_file_name
+  include Categorizable
 
-  has_many :categorizations, as: :categorizable
-  has_many :categories, through: :categorizations
   has_many :event_registrations
   belongs_to :council
   belongs_to :user
@@ -27,7 +25,6 @@ class Event < ActiveRecord::Base
   scope :by_start, -> { order(starts_at: :asc) }
   scope :calendar, -> { all }
   scope :translations, -> { includes(:translations) }
-  scope :slug, ->(slug) { joins(:categories).where(categories: { slug: slug }) }
   scope :from_date, -> (date) { between(date.beginning_of_day, date.end_of_day) }
   scope :after_date, -> (date) { where('starts_at > :date', date: date || 2.weeks.ago) }
   scope :between, -> (start, stop) do
