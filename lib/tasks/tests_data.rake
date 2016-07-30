@@ -80,43 +80,6 @@ namespace :db do
       PostUser.find_or_create_by(post: prylmast, user: user)
     end
 
-    # Main menus
-    sekt = MainMenu.find_or_create_by!(name: 'Sektionen', index: 10, mega: false)
-    sekt.update(name_en: 'Guild')
-    medl = MainMenu.find_or_create_by!(name: 'För medlemmar', index: 20, mega: true)
-
-    menu = Menu.find_or_create_by!(main_menu: sekt, name: 'Om oss',
-                            link: '/om', index: 10, visible: true, turbolinks: true)
-    menu.update!(name_en: 'About us')
-
-    menu = Menu.find_or_create_by!(main_menu: sekt, name: 'Utskott',
-                            link: '/utskott', index: 20, visible: true, turbolinks: true)
-    menu.update!(name_en: 'Councils')
-
-    menu = Menu.find_or_create_by!(main_menu: sekt, name: 'Dokument',
-                            link: '/dokument', index: 30, visible: true, turbolinks: true)
-    menu.update!(name_en: 'Documents')
-
-    menu = Menu.find_or_create_by!(main_menu: medl, name: 'För medlemmar',
-                            link: '#', index: 1, visible: true, turbolinks: true, header: true)
-    menu.update!(name_en: 'For members')
-
-    menu = Menu.find_or_create_by!(main_menu: medl, name: 'Val',
-                            link: '/val', index: 10, visible: true, turbolinks: true)
-    menu.update!(name_en: 'Election')
-
-    menu = Menu.find_or_create_by!(main_menu: medl, name: 'Bilbokning',
-                            link: '/bilbokning', index: 20, visible: true, turbolinks: false)
-    menu.update!(name_en: 'Car rental')
-
-    menu = Menu.find_or_create_by!(main_menu: medl, name: 'Hilbertcafé',
-                            link: '/hilbertcafe', index: 30, visible: true, turbolinks: false)
-    menu.update!(name_en: 'Hilbert Café')
-
-    menu = Menu.find_or_create_by!(main_menu: medl, name: 'Bildgalleri',
-                            link: '/galleri', index: 40, visible: true, turbolinks: false)
-    menu.update!(name_en: 'Image gallery')
-
     # Notice
     FactoryGirl.create(:notice, user: admin)
     FactoryGirl.create(:notice, user: admin)
