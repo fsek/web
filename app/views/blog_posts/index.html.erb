@@ -1,0 +1,19 @@
+<% description(t('.description')) %>
+<% keywords(t('.keywords')) %>
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+
+<div class="col-md-2 col-sm-12 margin-bottom-20">
+  <%= blog_post_dropdown_button(collection: Category.by_title.by_type(BlogPost),
+                                current: @category) %>
+</div>
+
+<div class="col-md-10 col-sm-12 blog">
+  <% @blog_posts.each do |blog_post| %>
+    <div class="col-sm-12 index">
+      <%= render blog_post %>
+    </div>
+  <% end %>
+  <%= paginate(@blog_posts, left: 2, right: 2) %>
+</div>

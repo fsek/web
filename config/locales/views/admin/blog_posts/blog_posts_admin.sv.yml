@@ -1,0 +1,20 @@
+sv:
+  admin:
+    blog_posts:
+      index:
+        blog_posts: Alla blogginlägg
+        new_blog_post: Nytt blogginlägg
+        title: Administrera blogginlägg
+
+      new:
+        all_blog_posts: Alla blogginlägg
+        title: Nytt blogginlägg
+
+      edit:
+        all_blog_posts: Alla blogginlägg
+        title: Redigera blogginlägg
+        show_blog_post: Visa blogginlägg
+
+      form:
+        categories_after_save: Kategorier kan läggas till när blogginlägget sparats.
+        destroy: Förinta blogginlägg

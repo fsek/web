@@ -1,0 +1,24 @@
+sv:
+  model:
+    blog_post:
+      not_translated_yet: Detta blogginlägg har ännu inte översatts.
+  activerecord:
+    models:
+      blog_post: Blogginlägg
+    attributes:
+      blog_post:
+        categories: Kategorier
+        content: Innehåll
+        content_en: Innehåll - engelska
+        content_sv: Innehåll - svenska
+        cover_image: Visningsbild
+        created_at: Skapat
+        preamble: Förord
+        preamble_en: Förord - engelska
+        preamble_sv: Förord - svenska
+        remove_cover_image: Ta bort visningsbild
+        title: Titel
+        title_en: Titel - engelska
+        title_sv: Titel - svenska
+        updated_at: Uppdaterat
+        user: Skrivet av

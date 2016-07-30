@@ -1,0 +1,19 @@
+sv:
+  blog_posts:
+    blog_post:
+      read: Läs inlägget
+
+    show:
+      all_blog_posts: Alla blogginlägg
+      more_posts: Fler blogginlägg
+
+    index:
+      description: På vår blogg publiceras inlägg från en rad olika medlemmar om något som hänt på sektionen eller något helt annat.
+      keywords:
+        - blogg
+        - studentliv
+        - studera
+        - teknisk fysik
+        - teknisk matematik
+        - teknisk nanovetenskap
+      title: Blogg

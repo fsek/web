@@ -18,6 +18,7 @@ class Ability
     cannot [:create, :destroy, :update], Rent
     can :show, Page, public: true, visible: true
     can :avatar, User
+    can :read, BlogPost
 
     can :show, Event
     can [:index, :export], :calendar
