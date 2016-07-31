@@ -9,6 +9,7 @@ class Category < ActiveRecord::Base
     includes(:categorizations).
       where(categorizations: { categorizable_type: type })
   end
+  scope :by_title, -> { order(:title) }
 
   def self.slugs
     order(:slug).select(:slug).distinct.pluck(:slug)

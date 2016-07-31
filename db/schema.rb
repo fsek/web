@@ -46,6 +46,33 @@ ActiveRecord::Schema.define(version: 20160718202059) do
     t.string   "category",    limit: 255
   end
 
+  create_table "blog_post_translations", force: :cascade do |t|
+    t.integer  "blog_post_id", limit: 4,     null: false
+    t.string   "locale",       limit: 255,   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "title",        limit: 255
+    t.text     "preamble",     limit: 65535
+    t.text     "content",      limit: 65535
+  end
+
+  add_index "blog_post_translations", ["blog_post_id"], name: "index_blog_post_translations_on_blog_post_id", using: :btree
+  add_index "blog_post_translations", ["locale"], name: "index_blog_post_translations_on_locale", using: :btree
+
+  create_table "blog_posts", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.string   "title",       limit: 255
+    t.text     "preamble",    limit: 65535
+    t.text     "content",     limit: 65535
+    t.datetime "deleted_at"
+    t.string   "cover_image", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "blog_posts", ["deleted_at"], name: "index_blog_posts_on_deleted_at", using: :btree
+  add_index "blog_posts", ["user_id"], name: "index_blog_posts_on_user_id", using: :btree
+
   create_table "cafe_shifts", force: :cascade do |t|
     t.datetime "start",           null: false
     t.integer  "pass",  limit: 4, null: false
@@ -687,6 +714,7 @@ ActiveRecord::Schema.define(version: 20160718202059) do
 
   add_foreign_key "accesses", "doors"
   add_foreign_key "accesses", "posts"
+  add_foreign_key "blog_posts", "users"
   add_foreign_key "candidates", "elections"
   add_foreign_key "candidates", "posts"
   add_foreign_key "candidates", "users"

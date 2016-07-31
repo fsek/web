@@ -268,6 +268,12 @@ Fsek::Application.routes.draw do
         end
       end
     end
+
+    namespace :admin do
+      resources :blog_posts, path: :blogg
+    end
+
+    resources :blog_posts, path: :blogg, only: [:index, :show]
   end
 
   resources :mail_aliases, only: [:index] do

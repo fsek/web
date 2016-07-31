@@ -1,0 +1,140 @@
+.blog {
+  .blog-headline {
+    border-bottom: 1px dotted $fsek-pi-silver;
+    display: block;
+    margin: 0 0 15px;
+
+    h1,
+    h3 {
+      border-bottom: 2px solid $fsek-orange;
+      color: $gray-headline;
+      display: inline-block;
+      margin: 0 0 -2px;
+      padding-bottom: 5px;
+    }
+  }
+
+  .cover-image {
+    background-position: top center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    max-height: 400px;
+    min-height: 250px;
+    width: 100%;
+  }
+
+  .info {
+    padding: 10px 0 20px;
+
+    span {
+      border-right: 1px solid $dark-gray;
+      margin-right: 9px;
+      padding-right: 9px;
+    }
+  }
+
+  .preamble {
+    font-size: 20px;
+    font-style: italic;
+  }
+
+  .content {
+    font-size: 18px;
+
+    p {
+      color: $dark-gray;
+    }
+  }
+
+  .preview {
+    display: inline-block;
+    margin-bottom: 20px;
+
+    .cover-image {
+      max-height: 100px;
+      min-height: 50px;
+      padding-top: 20px;
+    }
+
+    .info {
+      span {
+        border-right: none;
+        display: inline-block;
+      }
+    }
+
+    .blog-headline {
+      h3 {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .index {
+    margin-bottom: 30px;
+    padding-left: 0;
+
+    .cover-image {
+      max-height: 400px;
+      min-height: 250px;
+    }
+
+    .blog-headline {
+      h3 {
+        font-size: 18px;
+      }
+    }
+
+    .preamble {
+      font-size: 16px;
+    }
+  }
+
+  .more-posts {
+    margin-top: 50px;
+  }
+
+  img {
+    max-height: 500px;
+    max-width: 95%;
+  }
+
+  @media (max-width: 767px) {
+    .blog-headline {
+      h1 {
+        font-size: 26px;
+      }
+    }
+
+    .content {
+      font-size: 16px;
+    }
+
+    .preamble {
+      font-size: 18px;
+    }
+
+    .preview {
+      .blog-headline {
+        h3 {
+          font-size: 18px;
+        }
+      }
+
+      .preamble {
+        font-size: 16px;
+      }
+    }
+
+    .index {
+      .blog-headline {
+        h3 {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

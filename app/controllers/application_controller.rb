@@ -60,7 +60,8 @@ class ApplicationController < ActionController::Base
         site_name: site_name,
         image: image,
         description: description,
-        type: 'website'
+        type: 'website',
+        locale: I18n.locale.to_s
       }
     }
 

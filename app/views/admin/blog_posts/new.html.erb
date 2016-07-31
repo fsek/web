@@ -1,0 +1,11 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+
+  <%= render 'form', blog_post: @blog_post, categories: @categories %>
+
+  <hr>
+  <%= link_to(t('.all_blog_posts'), admin_blog_posts_path,
+                                    class: 'btn secondary') %>
+</div>

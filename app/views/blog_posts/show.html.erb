@@ -1,0 +1,49 @@
+<% description(truncate(markdown_plain(@blog_post.content), length: 160)) %>
+<% set_meta_tags(og: { type: 'article' }) %>
+<div class="blog">
+  <% if @blog_post.cover_image.present? %> <div class="cover-image" style="background: url('<%= image_url(@blog_post.cover_image_large) %>'); background-size: cover;">
+    </div>
+    <% meta_image(@blog_post.cover_image_large) %>
+  <% end %>
+
+  <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+    <div class="blog-headline">
+      <h1><%= title(@blog_post.title) %></h1>
+    </div>
+
+    <% if @blog_post.preamble.present? %>
+      <div class="preamble">
+        <%= description(@blog_post.preamble) %>
+      </div>
+    <% end %>
+
+    <%= render '/blog_posts/info', blog_post: @blog_post %>
+
+    <div class="content page">
+      <%= markdown(@blog_post.content) %>
+    </div>
+
+   <% if can_administrate?(:edit, @blog_post) %>
+     <span class="edit">
+       <%= link_to(edit_admin_blog_post_path(@blog_post)) do %>
+         <%= fa_icon('cog') %> <%= t('global.edit') %>
+       <% end %>
+     </span>
+   <% end %>
+
+
+    <div class="more-posts">
+      <div class="headline">
+        <h3><%= t('.more_posts') %></h3>
+      </div>
+      <% @other_blog_posts.each do |blog_post| %>
+        <div class="col-md-4 col-sm-12 col-xs-12 preview">
+          <%= render blog_post %>
+        </div>
+      <% end %>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <%= link_to(t('.all_blog_posts'), blog_posts_path, class: 'btn primary') %>
+      </div>
+    </div>
+  </div>
+</div>

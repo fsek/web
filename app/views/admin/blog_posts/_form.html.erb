@@ -1,0 +1,29 @@
+<%= simple_form_for([:admin, blog_post], html: { class: 'blog' }) do |f| %>
+  <%= f.input :title_sv, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>
+
+  <%= f.input :preamble_sv, as: :string, input_html: {maxlength: 160} %>
+  <%= f.input :preamble_en, as: :string, input_html: {maxlength: 160} %>
+
+  <%= f.input :content_sv, as: :pagedown, input_html: {preview: true, rows: 10} %>
+  <%= f.input :content_en, as: :pagedown, input_html: {preview: true, rows: 10} %>
+
+  <% if blog_post.cover_image.present? %>
+    <%= image_tag(blog_post.cover_image_thumb, class: 'img-responsive') %>
+    <%= f.input :remove_cover_image, as: :boolean %>
+  <% end %>
+
+  <%= f.input :cover_image, as: :file %>
+
+  <% if blog_post.persisted? %>
+    <%= f.association :categories, collection: Category.by_title,
+                                   input_html: { class: 'select2' } %>
+    <%= link_to(t('.destroy'), admin_blog_post_path(@blog_post),
+                               method: :delete,
+                               class: 'btn danger pull-right') %>
+  <% else %>
+    <%= simple_format(t('.categories_after_save')) %>
+  <% end %>
+
+  <%= f.button :submit %>
+<% end %>

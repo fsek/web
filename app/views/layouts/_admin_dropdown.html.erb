@@ -157,5 +157,11 @@
         <%= link_to(models_name(Group), admin_groups_path)%>
       </li>
     <% end %>
+
+    <% if can_administrate?(:index, BlogPost) %>
+      <li class="dropdown-submenu">
+        <%= link_to(models_name(BlogPost), admin_blog_posts_path)%>
+      </li>
+    <% end %>
   </ul>
 </li>

@@ -1,0 +1,39 @@
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+
+<div class="col-md-3 col-sm-12">
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+
+  <hr>
+
+  <%= link_to(t('.new_blog_post'), new_admin_blog_post_path,
+                                   class: 'btn primary') %>
+  <%= link_to(t('.blog_posts'), admin_blog_posts_path,
+                                class: 'btn secondary') %>
+</div>
+
+<div class="col-md-9 col-sm-12">
+  <%= grid(@post_grid, hide_submit_button:  true, hide_reset_button: true) do |g|
+    g.column(name: BlogPost.human_attribute_name(:title), attribute: 'title') do |post|
+      link_to(post, edit_admin_blog_post_path(post), target: :blank)
+    end
+    g.column(name: BlogPost.human_attribute_name(:created_at)) do |post|
+      localized(post.created_at)
+    end
+    g.column(name: BlogPost.human_attribute_name(:user),
+             assoc: :user,
+             attribute: 'firstname') do |post|
+      user_link(post.user)
+    end
+    g.column(name: t('global.edit'), filter: false) do |post|
+      link_to(t('global.edit'), edit_admin_blog_post_path(post), target: :blank)
+    end
+  end -%>
+</div>
