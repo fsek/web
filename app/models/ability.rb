@@ -60,7 +60,12 @@ class Ability
 
     # Only for members of the Guild
     if user.member?
-      can [:show], Album
+      if user.summerchild?
+        can([:show], Album) { |album| album.start_date > User.summer }
+      else
+        can [:show], Album
+      end
+
       can [:show, :overview, :new, :create], Rent
       can [:edit, :update, :destroy], Rent, user_id: user.id
       can [:read, :mail], Contact

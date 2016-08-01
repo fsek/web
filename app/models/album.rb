@@ -17,6 +17,8 @@ class Album < ActiveRecord::Base
     by_start.where('start_date BETWEEN ? AND ?',
                      date.beginning_of_year, date.end_of_year)
   }
+  scope :include_for_gallery, -> { includes(:images, :translations) }
+  scope :summer, -> { where('start_date > ?', User.summer) }
 
   def self.unique_years
     by_start.select(:start_date).pluck('distinct year(start_date)')

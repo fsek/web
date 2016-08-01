@@ -67,4 +67,12 @@ class User < ActiveRecord::Base
       avatar.thumb.url
     end
   end
+
+  def summerchild?
+    member_at.present? && member_at >= User.summer
+  end
+
+  def self.summer
+    Time.current.change(month: 8, day: 1, hour: 0, minute: 0)
+  end
 end
