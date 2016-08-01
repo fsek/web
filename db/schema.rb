@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718202059) do
+ActiveRecord::Schema.define(version: 20160801201234) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -36,14 +36,15 @@ ActiveRecord::Schema.define(version: 20160718202059) do
   add_index "album_translations", ["locale"], name: "index_album_translations_on_locale", using: :btree
 
   create_table "albums", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.string   "location",    limit: 255
+    t.string   "title",        limit: 255
+    t.text     "description",  limit: 65535
+    t.string   "location",     limit: 255
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category",    limit: 255
+    t.string   "category",     limit: 255
+    t.integer  "images_count", limit: 4,     default: 0, null: false
   end
 
   create_table "blog_post_translations", force: :cascade do |t|
