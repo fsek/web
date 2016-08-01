@@ -35,7 +35,7 @@ RSpec.describe MessagesController, type: :controller do
 
   describe 'POST #create' do
     it 'valid parameters' do
-      current_user(user)
+      set_current_user(user)
       group = create(:group)
       group.users << user
       attributes = { content: 'Most amazing thing just happened!' }
@@ -48,7 +48,7 @@ RSpec.describe MessagesController, type: :controller do
     end
 
     it 'invalid parameters' do
-      current_user(user)
+      set_current_user(user)
       group = create(:group)
       group.users << user
       attributes = { content: nil }
@@ -66,7 +66,7 @@ RSpec.describe MessagesController, type: :controller do
       user = create(:user)
       group = create(:group)
       GroupUser.create!(group: group, user: user)
-      current_user(user)
+      set_current_user(user)
       m = Message.create!(content: 'I got a text',
                           user: user,
                           groups: [group],

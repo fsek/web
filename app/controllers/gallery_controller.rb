@@ -12,7 +12,8 @@ class GalleryController < ApplicationController
 
   private
 
+  # Only temporary from beginning of August
   def album(albums)
-   current_user.try(:summerchild?) ? albums.summer : albums
+    (current_user.nil? || current_user.summerchild?) ? albums.summer : albums
   end
 end
