@@ -158,6 +158,7 @@ Fsek::Application.routes.draw do
 
     resources :calendars, path: :kalender,  only: :index do
       get :export, on: :collection
+      get :introduction, on: :collection, path: :nollning
     end
 
     resources :events, only: :show, path: :evenemang do

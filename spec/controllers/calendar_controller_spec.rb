@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe CalendarsController, type: :controller do
   let(:user) { create(:user) }
 
-  allow_user_to([:index, :export], :calendar)
+  allow_user_to(:manage, :calendar)
 
   describe 'GET #index' do
     it 'loads the calendar' do
@@ -65,6 +65,33 @@ RSpec.describe CalendarsController, type: :controller do
         response.body.should_not include('SUMMARY:More than 14 days ago')
         response.should have_http_status(200)
       end
+    end
+  end
+
+  describe 'GET #introduction' do
+    it 'renders introduction' do
+      create(:introduction, current: true)
+      get(:introduction, format: :ics)
+      response.status.should eq(200)
+    end
+
+    it 'returns only introduction events category' do
+      create(:introduction, current: true, start: 10.days.from_now)
+      category = create(:category, slug: :nollning)
+      first_event = create(:event, title: 'Shown', starts_at: 15.days.from_now)
+      first_event.categories << category
+      first_event.save!
+      create(:event, title: 'Not shown', starts_at: 15.days.from_now)
+
+      get(:introduction, format: :ics)
+      response.body.should include('SUMMARY:Shown')
+      response.body.should_not include('SUMMARY:Not shown')
+      response.should have_http_status(200)
+    end
+
+    it 'redirects to export without Introduction' do
+      get(:introduction, format: :ics)
+      response.should have_http_status(404)
     end
   end
 end

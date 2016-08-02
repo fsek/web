@@ -18,6 +18,18 @@ class CalendarsController < ApplicationController
     end
   end
 
+  def introduction
+    introduction = Introduction.current
+    if introduction.present?
+      calendar = CalendarService.export(introduction.events, locale: locale)
+      respond_to do |format|
+        format.ics { render(text: calendar.to_ical) }
+      end
+    else
+      redirect_to(export_calendars_path, status: 404)
+    end
+  end
+
   private
 
   def locale

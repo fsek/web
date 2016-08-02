@@ -61,6 +61,7 @@ sv:
         - nollematris
         - TLTH
       title: Nollematris
+      subscription: Prenumerera på matrisen
 
     matrix_day:
       rest: Nollan vilar
