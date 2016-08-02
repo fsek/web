@@ -21,7 +21,7 @@ class Ability
     can :read, BlogPost
 
     can :show, Event
-    can [:index, :export], :calendar
+    can [:index, :export, :introduction], :calendar
     # But cannot view any albums
     can :index, :gallery
     can [:read, :archive, :matrix, :modal], Introduction
