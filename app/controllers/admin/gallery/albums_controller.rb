@@ -4,7 +4,7 @@ class Admin::Gallery::AlbumsController < Admin::BaseController
   load_and_authorize_resource :image, through: :album
 
   def index
-    @albums = Album.by_start
+    @albums = Album.by_start.includes(:translations)
   end
 
   def show
@@ -50,7 +50,7 @@ class Admin::Gallery::AlbumsController < Admin::BaseController
 
   def album_params
     params.require(:album).permit(:title_sv, :title_en, :description_sv, :description_en,
-                                  :location, :public, :start_date, :end_date,
+                                  :location, :start_date, :end_date,
                                   :photographer_user, :photographer_name,
                                   image_upload: [])
   end

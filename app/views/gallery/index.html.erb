@@ -32,8 +32,10 @@
 </div>
 <div class="col-md-10 col-xs-12">
   <div class="gallery album-preview">
-    <% @albums.each do |p| %>
-      <%= render 'gallery/albums/album_preview', album: p %>
+    <% cache([@albums, @year, I18n,locale]) do %>
+      <% @albums.each do |p| %>
+        <%= render 'gallery/albums/album_preview', album: p %>
+      <% end %>
     <% end %>
   </div>
 </div>

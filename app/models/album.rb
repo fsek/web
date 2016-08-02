@@ -4,7 +4,8 @@ class Album < ActiveRecord::Base
   globalize_accessors(locales: [:en, :sv],
                       attributes: [:title, :description])
 
-  has_many :images, -> { order(:filename) }, dependent: :destroy, inverse_of: :album
+  has_many :images, -> { order(:filename) }, dependent: :destroy,
+                                             inverse_of: :album
   has_many :photographers, -> { distinct }, through: :images
 
   attr_accessor(:image_upload, :photographer_user,
@@ -16,6 +17,8 @@ class Album < ActiveRecord::Base
     by_start.where('start_date BETWEEN ? AND ?',
                      date.beginning_of_year, date.end_of_year)
   }
+  scope :include_for_gallery, -> { includes(:images, :translations) }
+  scope :summer, -> { where('start_date > ?', User.summer) }
 
   def self.unique_years
     by_start.select(:start_date).pluck('distinct year(start_date)')

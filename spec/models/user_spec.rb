@@ -28,5 +28,13 @@ RSpec.describe User, type: :model do
         user.to_s.should eq(%(#{user.firstname} #{user.lastname}))
       end
     end
+
+    it 'checks if summerchild' do
+      user = build_stubbed(:user, member_at: User.summer + 10.days)
+      user.summerchild?.should be_truthy
+
+      user.member_at = User.summer - 10.days
+      user.summerchild?.should be_falsey
+    end
   end
 end

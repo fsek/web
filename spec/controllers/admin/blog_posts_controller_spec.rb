@@ -33,7 +33,7 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
 
   describe 'POST #create' do
     it 'valid parameters' do
-      current_user(user)
+      set_current_user(user)
       attributes = { title_sv: 'A marvellous journey!',
                      preamble_sv: 'Some lines of code and an idea!',
                      content_sv: 'There once was a time' }
@@ -46,7 +46,7 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
     end
 
     it 'invalid parameters' do
-      current_user(user)
+      set_current_user(user)
       attributes = { title_sv: nil,
                      content_sv: 'There once was a time' }
 
