@@ -1,0 +1,31 @@
+sv:
+  admin:
+    event_signups:
+      form:
+        categories_after_save: Kategorier kan läggas till efter att evenemanget sparas.
+        dates: Datum
+        destroy: Ta bort anmälan
+        dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
+        info: Information
+        other_parts: Övrigt
+        signup: Anmälan
+        question_hint: Ställ en fråga till deltagarna, besvarars vid anmälan
+        priorities: Prioriteringar
+        priorities_hint: Den med högst värde prioriteras först, lämnas fältet tomt påverkas inte prioriteten alls. Passar inte de första alternativen kan man välja att skapa en egen prioritering med eget namn. Två fält kan inte ha samma prioritet.
+        priority_example: "Nolla: 10, Fadder: 5, Special: 4, Special namn: Gamla fös. Detta gör nollor mest prioriterade, faddrar därefter och de som väljer sig vara gamla fös."
+
+      show:
+        hide_answer: Dölj svar
+        hide_food_preferences: Dölj matpreferenser
+        registered: Anmälda
+        show_answer: Visa svar
+        show_food_preferences: Visa matpreferenser
+
+      sidebar:
+        all_events: Alla evenemang
+        attendees: Deltagare
+        dates: Datum
+        save_before: Osparade ändringar går förlorade.
+        settings: Inställningar
+        signup: Anmälan
+        texts: Information

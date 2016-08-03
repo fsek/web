@@ -173,7 +173,8 @@ Fsek::Application.routes.draw do
 
     namespace :admin do
       resources :events, path: :evenemang, except: :show do
-        resources :event_registrations, path: :anmalan, only: :index
+        resources :event_signups, path: :anmalan, only: [:create, :update, :destroy]
+        resource :event_signup, path: :anmalan, only: :show, as: :signup
       end
     end
 
@@ -299,3 +300,5 @@ Fsek::Application.routes.draw do
   # This must be at the bottom!
   get '*link' => 'short_links#go'
 end
+
+

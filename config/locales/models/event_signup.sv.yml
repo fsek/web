@@ -1,0 +1,27 @@
+sv:
+  model:
+    event_signup:
+      no_signup: Evenemanget tillåter inte anmälan
+      too_late_to_signup: Sista anmälningsdag för evenemanget har redan varit
+      user_not_member: Användare är inte medlem
+
+  activerecord:
+    models:
+      event_signup: Evenemangsanmälan
+
+    attributes:
+      event_signup:
+        created_at: Skapades
+        custom: Special
+        custom_name: Namn special
+        event: Event
+        for_members: För medlemmar
+        last_reg: Sista anmälningsdatum
+        member: Medlem
+        mentor: Fadder
+        novice: Nolla
+        question: Fråga
+        question_en: Fråga - engelsk
+        question_sv: Fråga - svensk
+        slots: Antal platser
+        updated_at: Uppdaterades

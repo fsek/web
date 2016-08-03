@@ -24,10 +24,7 @@ sv:
         drink: Alkohol
         ends_at: Slutar
         food: Mat
-        for_members: Endast för medlemmar
         image: Bild
-        last_reg: Sista anmälningsdatum
-        last_unreg: Sista avanmälningsdatum
         location: Plats
         location_en: Plats - engelsk
         location_sv: Plats - svensk
@@ -36,8 +33,6 @@ sv:
         short: Kort titel
         short_en: Kort titel - engelsk
         short_sv: Kort titel - svensk
-        signup: Med anmälan
-        slots: Antal platser
         starts_at: Startar
         title: Titel
         title_en: Titel - engelsk

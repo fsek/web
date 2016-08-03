@@ -1,0 +1,32 @@
+<%= form.input :starts_at, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
+<%= form.input :ends_at, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
+<%= form.input :all_day, as: :boolean, wrapper_html: {class: 'inline half'} %>
+<%= form.input :dot, collection: [[t('model.event.single_dot'), Event::SINGLE],
+                                  [t('model.event.double_dot'), Event::DOUBLE]],
+                     input_html: {class: 'select2'},
+                     hint: t('.dot_hint') %>
+<%= form.input :location, collection: Event.locations,
+                          include_blank: false,
+                          input_html: {class: 'select2_tags'} %>
+
+<% if event.image.present? %>
+  <%= image_tag(event.thumb, class: 'img-responsive') %>
+  <%= f.input :remove_image, as: :boolean %>
+<% end %>
+
+<%= form.input :image, as: :file %>
+<%= form.association :council, collection: Council.by_title,
+                               input_html: {class: 'select2'} %>
+<% if event.persisted? %>
+  <%= form.association :categories, collection: Category.all,
+                                    input_html: {class: 'select2'} %>
+<% else %>
+  <%= simple_format(t('.categories_after_save')) %>
+<% end %>
+
+<%= form.input :drink, as: :boolean, wrapper_html: {class: 'inline third'} %>
+<%= form.input :food, as: :boolean, wrapper_html: {class: 'inline third'} %>
+<%= form.input :cash, as: :boolean, wrapper_html: {class: 'inline third'} %>
+
+<%= link_to('Ändra texter', '#texts', data: {toggle: :tab}, class: 'btn secondary') %>
+<%= form.button :submit %>
