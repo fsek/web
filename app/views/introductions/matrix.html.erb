@@ -15,16 +15,33 @@
 
   <div class="row matrix">
     <% cache([@introduction, @introduction.events_by_day]) do %>
-      <% @introduction.dates.each do |day| %>
-        <%= link_to(modal_introduction_path(@introduction, day), data: { toggle: 'modal',
-                                                                         target: '#ajax-modal'},
+      <% @introduction.dates_by_week.each do |week, days| %>
+        <%= link_to(modal_introduction_path(@introduction, days.first), data: { toggle: 'modal',
+                                                                                target: '#ajax-modal'},
                                                                  remote: true) do %>
           <div class="grid-item">
-            <% cache([day, @introduction.events_by_day[day]]) do %>
-              <%= render 'matrix_day', date: day,
-                                       events: @introduction.events_by_day[day] %>
+            <% cache([days.first, @introduction.events_by_day[days.first]]) do %>
+              <%= render 'matrix_day', date: days.first,
+                                       events: @introduction.events_by_day[days.first] %>
             <% end %>
+            <span class="week">
+              <%= @introduction.week(week) %>
+            </span>
           </div>
+        <% end %>
+
+
+        <% days.drop(1).each do |day| %>
+          <%= link_to(modal_introduction_path(@introduction, day), data: { toggle: 'modal',
+                                                                           target: '#ajax-modal'},
+                                                                   remote: true) do %>
+            <div class="grid-item">
+              <% cache([day, @introduction.events_by_day[day]]) do %>
+                <%= render 'matrix_day', date: day,
+                                         events: @introduction.events_by_day[day] %>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
