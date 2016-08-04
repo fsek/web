@@ -8,7 +8,6 @@ $brown: #754c29;
     border-image-slice: 52.8% 9.9% 13% 9.9% fill;
     border-image-source: $castle;
     margin: 0 auto;
-    overflow: hidden;
     padding-bottom: 1%;
     padding-left: 0.5%;
 
@@ -50,6 +49,17 @@ $brown: #754c29;
         margin-right: auto;
         margin-top: 10px;
         max-width: 50px;
+      }
+
+      .week {
+        background: $white;
+        border: 1px solid $brown;
+        font-size: 1.5rem;
+        left: -1.1em;
+        line-height: 1em;
+        padding: 0.2em 0.5em 0;
+        position: absolute;
+        top: 40%;
       }
     }
   }

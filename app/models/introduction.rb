@@ -4,7 +4,7 @@ class Introduction < ActiveRecord::Base
   globalize_accessors(locales: [:en, :sv],
                       attributes: [:title, :description])
 
-  attr_reader :dates, :events_by_day
+  attr_reader :dates, :events_by_day, :dates_by_week
 
   has_many :groups, dependent: :destroy
   has_many :messages, dependent: :destroy
@@ -34,6 +34,10 @@ class Introduction < ActiveRecord::Base
     @dates ||= start.to_date..stop.to_date
   end
 
+  def dates_by_week
+    @dates_by_week ||= dates.group_by(&:cweek)
+  end
+
   def to_param
     slug
   end
@@ -47,6 +51,10 @@ class Introduction < ActiveRecord::Base
   end
 
   def week(date)
-    date.to_date.cweek - start.to_date.cweek if date.present?
+    if date.is_a?(Integer)
+      date - start.to_date.cweek
+    elsif date.respond_to?(:to_date)
+      date.to_date.cweek - start.to_date.cweek
+    end
   end
 end
