@@ -10,9 +10,9 @@ RSpec.describe Introduction, type: :model do
       date = Time.current.beginning_of_week
       introduction = build_stubbed(:introduction, start: date)
 
-      introduction.week(3.days.from_now).should eq(0)
-      introduction.week(8.days.from_now).should eq(1)
-      introduction.week(15.days.from_now).should eq(2)
+      introduction.week(date + 3.days).should eq(0)
+      introduction.week(date + 8.days).should eq(1)
+      introduction.week(date + 15.days).should eq(2)
     end
 
     it 'gives introduction week for an integer' do
