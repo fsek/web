@@ -1,0 +1,13 @@
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+  <%= simple_form_for([:admin, @introduction, @adventure]) do |f| %>
+    <%= f.simple_fields_for(:adventure_groups) do |g| %>
+      <%= render 'adventure_group_fields', f: g %>
+    <% end %>
+    <%= f.input :publish_results %>
+    <%= f.button :submit %>
+    <%= link_to(t('.all'), admin_introduction_adventures_path, class: 'btn secondary') %>
+  <% end %>
+</div>

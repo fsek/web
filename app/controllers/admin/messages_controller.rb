@@ -53,6 +53,6 @@ class Admin::MessagesController < Admin::BaseController
   end
 
   def set_introduction
-    @introduction = Introduction.find_by(slug: params[:introduction_id])
+    @introduction = Introduction.find_by!(slug: params[:introduction_id])
   end
 end

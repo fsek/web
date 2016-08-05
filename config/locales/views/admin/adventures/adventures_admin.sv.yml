@@ -1,0 +1,18 @@
+sv:
+  admin:
+    adventures:
+      index:
+        title: Administrera äventyrsuppdrag
+        new: Nytt uppdrag
+        all_introductions: Alla nollningar
+        set_points: Sätt poäng
+      edit:
+        title: Redigera äventyrsuppdrag
+        destroy: Förinta äventyrsuppdrag
+        all: Alla äventyrsuppdrag
+      new:
+        title: Nytt äventyrsuppdrag
+        all: Alla äventyrsuppdrag
+      set_points:
+        title: Sätt poäng
+        all: Alla äventyrsuppdrag

@@ -15,6 +15,10 @@ module ApplicationHelper
     content_tag(:i, nil, class: "fa fa-lg fa-#{icon_name}")
   end
 
+  def fa_xl_icon(icon_name)
+    content_tag(:i, nil, class: "fa fa-4x fa-#{icon_name}")
+  end
+
   def model_name(model)
     if model.instance_of?(Class)
       model.model_name.human

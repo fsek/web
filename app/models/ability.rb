@@ -28,6 +28,7 @@ class Ability
     can [:index, :about,
          :cookies_information, :company_about,
          :company_offer, :robots], :static_pages
+    can [:read, :archive], Adventure
 
     # Abilities all signed in users get
     if user.id.present?

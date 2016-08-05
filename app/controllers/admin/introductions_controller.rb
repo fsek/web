@@ -5,6 +5,9 @@ class Admin::IntroductionsController < Admin::BaseController
     @grid = initialize_grid(Introduction.includes(:translations), order: :start)
   end
 
+  def show
+  end
+
   def new
     @introduction = Introduction.new
   end

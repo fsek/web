@@ -1,0 +1,25 @@
+<div class="col-md-12 introduction">
+  <div class="headline">
+    <h1><%= title(@adventure.title) %></h1>
+  </div>
+
+  <small><%= adventure_info(@adventure) %></small>
+  <%= markdown(@adventure.content) %>
+
+  <% if @adventure.publish_results %>
+    <div class="headline">
+      <h3><%= t('.results') %></h3>
+    </div>
+    
+    <div class="adventure">
+      <%= render @adventure.adventure_groups.includes(:group), max: @adventure.max_points %>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-md-12">
+  <hr>
+  <%= link_to(t('.index'), introduction_adventures_path(@introduction), class: 'btn primary') %>
+  <%= link_to(t('.archive'), archive_introduction_adventures_path(@introduction),
+                             class: 'btn secondary') %>
+</div>

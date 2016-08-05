@@ -1,0 +1,26 @@
+<div class="headline">
+  <h1><%= title(@introduction.to_s) %></h1>
+</div>
+
+<div class="col-md-12 admin-grid">
+  <%= link_to admin_groups_path(introduction: @introduction) do %>
+    <div class="col-md-2 col-sm-3 col-xs-12 box">
+      <div class="interior"><%= fa_xl_icon('users') %></div>
+      <div class="interior"><%= models_name(Group) %></div>
+    </div>
+  <% end %>
+
+  <%= link_to admin_introduction_messages_path(@introduction) do %>
+    <div class="col-md-2 col-sm-3 col-xs-12 box">
+      <div class="interior"><%= fa_xl_icon('envelope') %></div>
+      <div class="interior"><%= models_name(Message) %></div>
+    </div>
+  <% end %>
+
+  <%= link_to admin_introduction_adventures_path(@introduction) do %>
+    <div class="col-md-2 col-sm-3 col-xs-12 box">
+      <div class="interior"><%= fa_xl_icon('trophy') %></div>
+      <div class="interior"><%= models_name(Adventure) %></div>
+    </div>
+  <% end %>
+</div>

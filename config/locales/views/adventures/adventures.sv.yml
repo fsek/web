@@ -1,0 +1,14 @@
+sv:
+  adventures:
+    archive:
+      title: Alla äventyrsuppdrag
+      index: Senaste äventyrsuppdraget
+    adventure:
+      read_more: Läs mer
+    index:
+      archive: Alla äventyrsuppdrag
+      results: Totalt Resultat
+    show:
+      archive: Alla äventyrsuppdrag
+      index: Senaste äventyrsuppdraget
+      results: Resultat

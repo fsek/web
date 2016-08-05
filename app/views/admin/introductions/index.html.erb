@@ -20,7 +20,7 @@
 <div class="col-md-10 col-sm-12">
   <%= grid(@grid, hide_submit_button: true, hide_reset_button: true) do |g|
     g.column(name: Introduction.human_attribute_name(:title), attribute: 'title') do |introduction|
-      link_to(introduction.title, edit_admin_introduction_path(introduction))
+      link_to(introduction.title, admin_introduction_path(introduction))
     end
     g.column(name: Introduction.human_attribute_name(:start), attribute: 'start',
              filter: false) do |introduction|
@@ -38,8 +38,8 @@
              filter: false) do |introduction|
       localized(introduction.updated_at)
     end
-    g.column(name: t('.messages'), filter: false) do |introduction|
-      link_to(t('.messages'), admin_introduction_messages_path(introduction))
+    g.column(name: t('.edit'), filter: false) do |introduction|
+      link_to(t('.edit'), edit_admin_introduction_path(introduction))
     end
   end -%>
 </div>

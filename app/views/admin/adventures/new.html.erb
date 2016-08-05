@@ -1,0 +1,9 @@
+<div class="col-md-12">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+
+  <%= render('form', introduction: @introduction, adventure: @adventure) %>
+  <hr>
+  <%= link_to(t('.all'), admin_introduction_adventures_path, class: 'btn secondary') %>
+</div>
