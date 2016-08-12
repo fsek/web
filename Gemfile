@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Do not forget to update in .ruby-version, Capfile and circle.yml
 ruby '2.3.0'
 
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7.1'
 
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
@@ -44,8 +44,7 @@ gem 'simple_form'
 gem 'sitemap_generator'
 gem 'turbolinks'
 gem 'uglifier'
-# Introduces feature needed in tables, no errors when updating
-gem 'wice_grid', '3.6.0.pre4'
+gem 'wice_grid', github: 'leikind/wice_grid', branch: 'rails3'
 
 # Only enable for a short period to find N+1 in production
 gem 'bullet'
