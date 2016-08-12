@@ -24,12 +24,20 @@ class Introduction < ActiveRecord::Base
     Introduction.where(current: true).first
   end
 
-  def events
-    Event.slug(:nollning).includes(:translations).between(start, stop).by_start
+  def events(locale: 'sv')
+    locale = locale.to_s
+    if locale == 'sv'
+      get_events
+    elsif locale == 'en'
+      translation = Event::Translation.where(locale: 'en').where.not(title: nil)
+      get_events.joins(:translations).merge(translation)
+    else
+      Event.none
+    end
   end
 
-  def events_by_day
-    @events_by_day ||= events.group_by(&:day)
+  def events_by_day(locale: 'sv')
+    @events_by_day ||= events(locale: locale.to_s).group_by(&:day)
   end
 
   def dates
@@ -58,5 +66,11 @@ class Introduction < ActiveRecord::Base
     elsif date.respond_to?(:to_date)
       date.to_date.cweek - start.to_date.cweek
     end
+  end
+
+  private
+
+  def get_events
+    Event.slug(:nollning).translations.between(start, stop).by_start
   end
 end

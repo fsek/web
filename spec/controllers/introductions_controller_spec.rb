@@ -101,7 +101,7 @@ RSpec.describe IntroductionsController, type: :controller do
     end
 
     it 'renders matrix' do
-      introduction = create(:introduction,)
+      introduction = create(:introduction)
 
       get(:modal, id: introduction.to_param, date: 1.day.ago.to_date)
       response.should have_http_status(303)
@@ -109,10 +109,25 @@ RSpec.describe IntroductionsController, type: :controller do
     end
 
     it 'renders modal if js' do
-      introduction = create(:introduction,)
+      introduction = create(:introduction)
 
       xhr(:get, :modal, id: introduction.to_param, date: 1.day.ago.to_date)
       response.should have_http_status(200)
+    end
+
+    it 'only include translated events if other locale' do
+      introduction = create(:introduction, start: 3.day.ago, stop: 3.day.from_now)
+      category = create(:category, slug: :nollning)
+      swedish = create(:event, title: 'Svensk titel', starts_at: 1.day.ago)
+      swedish.categories << category
+      swedish.save!
+      english = create(:event, title: 'Översatt event', title_en: 'English title', starts_at: 1.day.ago)
+      english.title_en.should eq('English title')
+      english.categories << category
+      english.save!
+
+      get(:modal, id: introduction.to_param, date: 1.day.ago.to_date, locale: :en)
+      assigns(:events).map(&:title_en).should eq(['English title'])
     end
   end
 end

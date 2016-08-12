@@ -14,13 +14,14 @@
   </div>
 
   <div class="row matrix">
-    <% cache([@introduction, @introduction.events_by_day]) do %>
+    <% cache([@introduction, @introduction.events_by_day(locale: I18n.locale),
+              I18n.locale]) do %>
       <% @introduction.dates_by_week.each do |week, days| %>
         <%= link_to(modal_introduction_path(@introduction, days.first), data: { toggle: 'modal',
                                                                                 target: '#ajax-modal'},
                                                                  remote: true) do %>
           <div class="grid-item">
-            <% cache([days.first, @introduction.events_by_day[days.first]]) do %>
+            <% cache([days.first, @introduction.events_by_day[days.first], I18n.locale]) do %>
               <%= render 'matrix_day', date: days.first,
                                        events: @introduction.events_by_day[days.first] %>
             <% end %>
@@ -36,7 +37,7 @@
                                                                            target: '#ajax-modal'},
                                                                    remote: true) do %>
             <div class="grid-item">
-              <% cache([day, @introduction.events_by_day[day]]) do %>
+              <% cache([day, @introduction.events_by_day[day], I18n.locale]) do %>
                 <%= render 'matrix_day', date: day,
                                          events: @introduction.events_by_day[day] %>
               <% end %>

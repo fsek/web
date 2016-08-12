@@ -27,6 +27,7 @@ en:
       day_month: "%e %b"
       month_year: "%b %Y"
       weekday: "%A %H:%M, %e %b %Y"
-      weekday_dot: "%A %H:%M(.), %e %b %Y"
-      weekday_ddot: "%A %H:%M(..), %e %b %Y"
+      weekday_without: "%A %H, %e %b %Y"
+      weekday_dot: "%A %H(.), %e %b %Y"
+      weekday_ddot: "%A %H(..), %e %b %Y"
     pm: pm
