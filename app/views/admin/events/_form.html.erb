@@ -20,9 +20,12 @@
         <%= f.input :short_en, wrapper_html: {class: 'inline half'} %>
         <%= f.input :description_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
         <%= f.input :description_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
-        <%= f.input :location, collection: Event.locations,
-                               include_blank: false,
-                               input_html: {class: 'select2_tags'} %>
+        <%= f.input :location_sv, collection: Event.locations_sv,
+                                  include_blank: false,
+                                   input_html: {class: 'select2_tags'} %>
+        <%= f.input :location_en, collection: Event.locations_en,
+                                  include_blank: false,
+                                  input_html: {class: 'select2_tags'} %>
 
         <% if event.image.present? %>
           <%= image_tag(event.thumb, class: 'img-responsive') %>
@@ -44,7 +47,8 @@
         <%= f.input :starts_at, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
         <%= f.input :ends_at, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
         <%= f.input :all_day, as: :boolean, wrapper_html: {class: 'inline half'} %>
-        <%= f.input :dot, collection: [[t('model.event.single_dot'), Event::SINGLE],
+        <%= f.input :dot, collection: [[t('model.event.without_dot'), Event::WITHOUT],
+                                       [t('model.event.single_dot'), Event::SINGLE],
                                        [t('model.event.double_dot'), Event::DOUBLE]],
                           input_html: {class: 'select2'},
                           hint: t('.dot_hint') %>

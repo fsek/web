@@ -49,6 +49,8 @@ module TimeHelper
       "#{format}_dot".to_sym
     elsif dot == :double
       "#{format}_ddot".to_sym
+    elsif dot == :without
+      "#{format}_without".to_sym
     else
       format
     end

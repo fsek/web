@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804140230) do
+ActiveRecord::Schema.define(version: 20160812145757) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -291,6 +291,7 @@ ActiveRecord::Schema.define(version: 20160804140230) do
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
     t.string   "short",       limit: 255
+    t.string   "location",    limit: 255
   end
 
   add_index "event_translations", ["event_id"], name: "index_event_translations_on_event_id", using: :btree

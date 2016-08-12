@@ -140,5 +140,11 @@ RSpec.describe TimeHelper do
       helper.dot_format(format, dot: :double).should eq(:long_ddot)
       helper.dot_format(format, dot: 'double').should eq(:long_ddot)
     end
+
+    it 'appends without' do
+      format = :long
+      helper.dot_format(format, dot: :without).should eq(:long_without)
+      helper.dot_format(format, dot: 'without').should eq(:long_without)
+    end
   end
 end

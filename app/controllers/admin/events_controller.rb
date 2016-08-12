@@ -50,7 +50,7 @@ class Admin::EventsController < Admin::BaseController
   def event_params
     params.require(:event).permit(:title_sv, :title_en, :description_sv, :description_en,
                                   :short_sv, :short_en,
-                                  :location, :starts_at, :ends_at,
+                                  :location_sv, :location_en, :starts_at, :ends_at,
                                   :all_day, :image, :remove_image,
                                   :signup, :last_reg, :for_members,
                                   :slots, :drink, :food, :cash,

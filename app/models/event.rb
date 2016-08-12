@@ -4,10 +4,11 @@ class Event < ActiveRecord::Base
   TZID = 'Europe/Stockholm'.freeze
   SINGLE = 'single'.freeze
   DOUBLE = 'double'.freeze
+  WITHOUT = 'without'.freeze
 
-  translates(:title, :description, :short)
+  translates(:title, :description, :short, :location)
   globalize_accessors(locales: [:en, :sv],
-                      attributes: [:title, :description, :short])
+                      attributes: [:title, :description, :short, :location])
   mount_uploader :image, AttachedImageUploader, mount_on: :image_file_name
   include Categorizable
 
@@ -35,8 +36,12 @@ class Event < ActiveRecord::Base
     between(Time.zone.now.beginning_of_day, 6.days.from_now.end_of_day).by_start
   end
 
-  def self.locations
-    select(:location).order(:location).uniq.pluck(:location)
+  def self.locations_sv
+    Translation.where(locale: 'sv').select(:location).order(:location).uniq.pluck(:location)
+  end
+
+  def self.locations_en
+    Translation.where(locale: 'en').select(:location).order(:location).uniq.pluck(:location)
   end
 
   def to_s
