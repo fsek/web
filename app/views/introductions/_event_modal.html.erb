@@ -6,7 +6,7 @@
       </h3>
       <span class="event time">
         <%= fa_icon('calendar-o') %>
-        <%= time_range(event.starts_at, event.ends_at, format: :long,
+        <%= time_range(event.starts_at, event.ends_at, format: :default,
                                                        dot: event.dot) %>
       </span>
       <span class="event location">

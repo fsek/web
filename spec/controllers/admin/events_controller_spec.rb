@@ -40,7 +40,7 @@ RSpec.describe Admin::EventsController, type: :controller do
     it 'valid parameters' do
       attributes = { title_sv: 'Välkomstgasque!',
                      description_sv: 'Det blir mat och dryck, waow!',
-                     location: 'Kårhuset: Gasquesalen',
+                     location_sv: 'Kårhuset: Gasquesalen',
                      starts_at: 5.days.from_now,
                      ends_at: 7.days.from_now }
       lambda do
