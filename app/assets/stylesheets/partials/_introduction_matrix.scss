@@ -23,6 +23,7 @@ $brown: #754c29;
 
       .date {
         display: block;
+        text-align: center;
       }
 
       .text {
@@ -55,11 +56,11 @@ $brown: #754c29;
         background: $white;
         border: 1px solid $brown;
         font-size: 1.5rem;
-        left: -1.1em;
+        left: 0.3em;
         line-height: 1em;
-        padding: 0.2em 0.5em 0;
+        padding: 0.1em 0.4em 0;
         position: absolute;
-        top: 40%;
+        top: 0.3em;
       }
     }
   }

@@ -8,37 +8,68 @@ en:
   introductions:
     links:
       title: Links
-      tlth: "The student union at Lund University, Faculty of Engineering"
+      tlth: "The Student Union at Lund University, Faculty of Engineering"
       studentlund: Studentlund
-      af_accommodation: "Akademiska Bostäder"
-      physics: "Engineering physics"
-      mathmatics: "Engineering mathematics"
-      nanoscience: "Engineering nanoscience"
+      af_accommodation: "Akademiska Bostäder (Housing)"
+      physics: "Engineering Physics"
+      mathmatics: "Engineering Mathematics"
+      nanoscience: "Engineering Nanoscience"
       csn: CSN
     sidebar:
       sponsors: Sponsors
-
     event_modal:
-      drink: "Alcohol for sale"
-      food: "Food served"
-      cash: "Cash required"
-      signup: "Registration required"
+      drink: "Drinks for sale"
+      event_registration: "To event signup"
+      food: "Food is served"
+      cash: "Cash is needed"
+      signup: "Signup is needed"
     images:
       previous: Previous
       next: Next
     index:
-      title: "An Introduction Around The Round Table"
-      news: News
+      checklist: Checklist
+      info: |-
+          Welcome to an Introduction around the Round Table at the F-guild. Here you can find all information related to the introduction for students in the programmes Engineering physics, Engineering mathematics and Engineering nanoscience. As a prospective student of these programs, you are welcome to join us this autumn.
+
+          To prepare yourself you can look through the %{checklist} and if you want to know more about the Introduction you can read more about it %{more_info}.
+      info2: "This page will be updated during the summer and the Introduction with important and fun information, make sure to bookmark it to find your way back here."
+      info3: "We look forward to meeting you and welcome you to LTH and the F-guild."
+      keywords:
+        - introduction
+        - "engineering physics"
+        - "engineering mathematics"
+        - "engineering nanoscience"
+        - LTH
+      links: Links
+      matrix: "Introduction matrix"
       more_news: "More news"
-      theme_movie: "Theme announcement movie"
-      info: "Welcome to an Introduction around the Round Table at the F-guild. Here you can find all information relating to the introduction for students in the programmes Engineering physics, Engineering mathematics and Engineering nanoscience. As a prospective student of these programs, you are welcome to join this autumn. This page will be updated with tons of valuable information for you, so be sure to check back here later this summer."
-      info2: "We look forward to meeting you and welcoming you to LTH and the F-guild!"
-      info3: ""
+      news: News
+      theme_movie: "Theme movie"
+      this_checklist: "this checklist"
+      title: "An Introduction around the Round Table"
+      what_is_nollning: "What is Introduction?"
     symbols:
-      drink: "Alcohol for sale"
-      food: "Food served"
-      cash: "Cash required"
-      signup: "Requires registration"
+      drink: "Drinks for sale"
+      food: "Food is served"
+      cash: "Cash is needed"
+      signup: "Signup is needed"
     matrix:
+      click_day_to_read_more: "Click on a day to read more"
+      description: "The Introduction Matrix is a schedule for the Introduction at the F-guild within TLTH. Here you can find schedules, descriptions, event signup and other fun things for events."
+      gecko-disclaimer: "The Introduction Matrix looks way cooler in another web browser, i.e. Chrome or Safari."
+      gecko-title: "Introduction Matrix"
+      keywords:
+        - introduction
+        - schedule
+        - "introduction matrix"
+        - TLTH
+      title: "Introduction Matrix"
+      subscription: "Subscribe to the Matrix"
+    matrix_day:
       rest: "Resting day"
-      click_day_to_read_more: "Press a date to read more."
+      all_day: "All day"
+    modal:
+      rest: "Resting day"
+      week: "W: %{week}"
+    archive:
+      title: "Previous Introductions"

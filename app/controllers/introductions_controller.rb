@@ -23,7 +23,7 @@ class IntroductionsController < ApplicationController
   def modal
     @introduction = Introduction.find_by_slug!(params[:id])
     @date = date
-    @events = @introduction.events.includes(:translations).from_date(@date)
+    @events = @introduction.events(locale: I18n.locale).from_date(@date)
     respond_to do |format|
       format.html { render :matrix, status: 303 }
       format.js

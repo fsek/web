@@ -1,4 +1,5 @@
-<% cache(event) do %>
+<% cache_unless(can_administrate?(:edit, event),
+                [event, I18n.locale]) do %>
   <div class="modal-event-body row">
     <div class="col-sm-8 col-xs-12">
       <h3 class="modal-title">
@@ -6,8 +7,12 @@
       </h3>
       <span class="event time">
         <%= fa_icon('calendar-o') %>
-        <%= time_range(event.starts_at, event.ends_at, format: :default,
-                                                       dot: event.dot) %>
+        <% if event.all_day? %>
+          <%= t('.all_day') %>
+        <% else %>
+          <%= time_range(event.starts_at, event.ends_at, format: :default,
+                                                         dot: event.dot) %>
+        <% end %>
       </span>
       <span class="event location">
         <%=  fa_icon('map-marker') %>
@@ -43,5 +48,12 @@
       </span>
     </div>
   </div>
+  <% if can_administrate?(event, :edit) %>
+    <%= link_to(edit_admin_event_path(event), class: 'pull-right',
+                                              target: :blank_p) do %>
+      <%= fa_icon('cog') %> <%= t('global.edit')  %>
+    <% end %>
+    <br>
+  <% end %>
   <hr>
 <% end %>
