@@ -7,21 +7,27 @@
 en:
   elections:
     candidates:
-      form:
-        cannot_change_post: "You cannot change position, if you've chosen incorrectly you must delete the candidacy and make a new one."
-        destroy: "Delete candidacy"
-        edit_user: "Edit user details"
-        user_attributes: "Make sure your details are up-to-date, or else your candidacy cannot be accepted."
       index:
+        cannot_change_post: "Det går inte att byta post för en kandidatur, har du valt fel får du ta bort kandidaturen och skapa en ny."
         edit_candidate: "Edit candidacy"
         new_candidate: "New candidacy"
         no_candidates: "You have not applied to any positions."
         show_election: "Show election"
         title: "Your candidacies"
+        no_longer_editable: "Kan ej redigeras"
+        orange_fields: "Orangefärgade kandidaturer kan redigeras"
+        normal_fields: "Ofärgade kandidaturer kan inte redigeras"
         you_have_candidated: "You have applied to"
+      form:
+        cannot_change_post: "You cannot change position, if you've chosen incorrectly you must delete the candidacy and make a new one."
+        destroy: "Delete candidacy"
+        edit_user: "Edit user details"
+        user_attributes: "Make sure your details are up-to-date, or else your candidacy cannot be accepted."
       new:
         back_to_candidates: "Back to candidacies"
         title: "New candidacy"
+        edit_user: "Redigera användaruppgifter"
+        user_attributes: "Se till att dina uppgifter är uppdaterade, annars kan din kandidering inte antas."
       show:
         all_candidates: "All candidacies"
         title: Candidacy

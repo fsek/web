@@ -10,6 +10,11 @@ en:
       users: "To user"
       contact: Contact
     index:
+      description: "Kontakta våra funktionärer om ni undrar eller behöver hjälp med något."
+      keywords:
+        - contact
+        - board
+        - car
       title: "Contact Page"
     send_form:
       submit: "Send message"

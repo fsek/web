@@ -18,8 +18,10 @@ en:
         confirm_destroy: "The election is deleted and can not be recovered, are you sure?"
         destroy: "Delete election"
         edit_texts: "Edit texts"
+        semester_hint_for_other: "Om det ej är ett ordinarie val väljs Termin - Annat, efter att valet sparats kan poster läggas till."
       index:
         new_election: "New election"
+        show_election: "Visa val"
         title: "Administrate election"
       new:
         title: "New election"

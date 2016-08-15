@@ -16,6 +16,11 @@ en:
       terms: "Booking terms"
     index:
       ask_question: "Ask a question"
+      description: "Sektionen har en bil till medlemmars förfogande, bokning sker via denna sida."
+      keywords:
+        - bil
+        - flytta
+        - "köra bil"
       new_rent: "New booking"
       overview: Overview
       terms: "Booking terms"

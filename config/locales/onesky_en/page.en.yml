@@ -20,6 +20,8 @@ en:
         image_upload: "Upload image"
         namespace: Namespace
         title: Title
+        title_sv: "Title - swedish"
+        title_en: "Title - english"
         updated_at: Updated
         url: Url
         visible: Visible

@@ -8,10 +8,11 @@ en:
   model:
     user:
       account_updated: "Account settings were updated"
-      password_required: "Please enter password to update details"
-      password_updated: "Password updated."
       attributes_missing: "You need to enter your user details"
       edit_information: "Edit user details"
+      password_required: "Please enter password to update details"
+      password_updated: "Password updated."
+      recaptcha_error: "Something went wrong with recaptcha, please try again."
   activerecord:
     models:
       user: User
@@ -21,6 +22,7 @@ en:
         confirmed_at: "Email confirmed"
         confirmed_email: "Confirmed email"
         current_password: "Current password"
+        display_phone: "Show phone number for group members"
         email: Email
         first_post: "Visible post"
         firstname: Name
@@ -36,6 +38,7 @@ en:
         remember_me: "Remember me"
         remove_avatar: "Delete profile picture"
         start_year: "Started year"
+        student_id: LUCAT-id
         stil_id: Stil-id
         unconfirmed_email: "Unconfirmed email"
         username: Username

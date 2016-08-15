@@ -8,7 +8,14 @@ en:
   documents:
     index:
       administrate: "Administrate documents"
+      description: "F-sektionen har många viktiga dokument, allt från våra stadgar, reglemente till policyer och regler."
       filter: Filter
       filter_explanation: "By filling out the fields below the headlines the documents can be filtered"
+      keywords:
+        - document
+        - stadgar
+        - reglemente
+        - policy
+        - rules
       reset_filter: "Reset filter"
       title: Document

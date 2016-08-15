@@ -8,6 +8,8 @@ en:
   model:
     candidate:
       add_user_information: "You need to enter your user details"
+      not_editable: "kandidaturer för posten kan inte skapas eller redigeras just nu."
+      not_allowed_to_destroy: "Inte tillåtet att radera kandidaturen."
       time_error: "candidacies for the position cannot be created or edited, has the election closed?"
       similar_candidate: "already have an identical candidacy."
   activerecord:
@@ -17,13 +19,17 @@ en:
         other: Candidacies
     attributes:
       candidate:
-        created_at: Created
         count: "Number of candidacies"
+        created_at: Created
+        editable_until: "Kan redigeras till"
         closing: "The election is being closed."
         elected_by: "Elected by"
+        election: Election
+        post: Post
         election_id: Election
         limit: Limit
         post_id: Position
         stil_id: Stil-id
         updated_at: Updated
+        user: User
         user_id: User

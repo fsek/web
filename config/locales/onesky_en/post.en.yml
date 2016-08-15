@@ -5,24 +5,6 @@
 
 ---
 en:
-  activerecord:
-    attributes:
-      post:
-        council: Council
-        board: "Board position"
-        car_rent: "May rent car"
-        council_id: Council
-        description: Description
-        elected_by: "Elected by"
-        limit: Limit
-        permission_ids: Permissions
-        rec_limit: "Recommended limit"
-        semester: "Elected at"
-        title: Title
-    models:
-      post:
-        one: Position
-        other: Positions
   model:
     post:
       added: "%{u} was assigned %{p}"
@@ -34,4 +16,26 @@ en:
       semester:
         autumn: "Autumn semester"
         both: "Autumn and spring semesters"
+        ? ""
+        :
+          one: Annat
+          other: Annat
         spring: "Spring semester"
+  activerecord:
+    models:
+      post:
+        one: Position
+        other: Positions
+    attributes:
+      post:
+        board: "Board position"
+        car_rent: "May rent car"
+        council: Council
+        council_id: Council
+        description: Description
+        elected_by: "Elected by"
+        limit: Limit
+        permission_ids: Permissions
+        rec_limit: "Recommended limit"
+        semester: "Elected at"
+        title: Title

@@ -8,10 +8,16 @@ en:
   cafe:
     competition:
       chosen_study_period: "Chosen study period"
+      description: "I sektionens café sker varje termin en tävling i vem som arbetar flest pass - här kan ni se hur det ligger till."
       first_free_shift: "First free shift"
       free_shifts: "Free shifts"
       highscore: Highscore
       highscore_missing: "No registered shifts"
+      keywords:
+        - "Hilbert Café"
+        - competition
+        - caféfesten
+        - "daub sandwiches"
       other_lps: "Other study periods"
       other_years: "Other years"
       shifts_worked: "Worked shifts"
@@ -21,7 +27,15 @@ en:
     index:
       admin: Administrate
       competition: Competition
+      description: "Hilbert Café är F-sektionens studentdrivna café, här säljs billigt kaffe, mackor och sallader."
       green_shift: "Green colour means you're working."
+      keywords:
+        - café
+        - mattehuset
+        - coffee
+        - sandwiches
+        - baguette
+        - salad
       ladybug: Ladybug
       orange_shift: "Orange colour means the shift already has a worker."
       title: "Hilbert Café"

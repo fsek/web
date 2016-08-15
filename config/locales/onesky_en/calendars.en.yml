@@ -5,15 +5,13 @@
 
 ---
 en:
-  gallery:
+  calendars:
     index:
-      description: "F-sektionens bildgalleri visar bilder från vår verksamhet, evenemang, sittning och nollning. Endast för medlemmar."
+      description: "Sektionen anordnar många evenemang och dessa kan ses i sektionens kalender. Det går enkelt att prenumerera på evenemangen för att t.ex. lägga in det i din telefon."
       keywords:
-        - bilder
-        - bildgalleri
         - evenemang
-        - sittning
-        - nollning
-      title: "Image gallery"
-      other_years: "Other years"
-      policy: "Image policy"
+        - sitting
+        - kalender
+        - prenumerera
+      subscription: "Calendar subscriptions"
+      title: Calendar

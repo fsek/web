@@ -9,6 +9,7 @@ en:
     event:
       attending: Attending
       reserves: Reserves
+      without_dot: "Utan minut eller prick"
       single_dot: "Single dot (.)"
       double_dot: "Double dot (..)"
   activerecord:
@@ -35,6 +36,8 @@ en:
         last_reg: "Last signup date"
         last_unreg: "Last date to cancel"
         location: Location
+        location_en: "Plats - engelsk"
+        location_sv: "Plats - svensk"
         question: Question
         remove_image: "Delete image"
         short: "Short title"

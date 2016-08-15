@@ -7,7 +7,14 @@
 en:
   tools:
     index:
+      description: "Behöver du verktyg för att skruva ihop nya möbler? Sektionen har en uppsjö av verktyg för utlåning till medlemmar."
       free: "Free tools"
+      keywords:
+        - verktyg
+        - slagborr
+        - borrhammare
+        - ikeamöbler
+        - betongvägg
       title: "The guild's tools"
     show:
       free: "Free tools"
