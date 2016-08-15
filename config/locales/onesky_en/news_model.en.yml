@@ -5,6 +5,9 @@
 
 ---
 en:
+  model:
+    news:
+      url_wrong_format: "måste ha fullständig adress (med http eller https) eller endast slutet av adressen."
   activerecord:
     models:
       news:

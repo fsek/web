@@ -11,16 +11,22 @@ en:
       election: Election
     attributes:
       election:
+        board_mail_link: "Länk i kandideringsmail för styrelsepost"
         candidate_mail: "Text for candidacy email"
         candidate_mail_star: "Text for candidacy email for star-post"
+        close_all: "Closing - all"
         closing: "Closing - everything"
         current_election: "Current election"
         description: Description
+        extra_posts: "Poster vid ej ordinarie möte"
         end: "Closing - before general meeting"
         extra_text: "Extra text"
         mail_link: "Link in candidacy email"
         mail_styrelse_link: "Link in candidacy email for star-post"
         nominate_mail: "Text for nomination email"
+        semester: Term
+        open: Öppnar
+        close_general: "Stänger - inför sektionsmöte"
         start: Opens
         text_after: "Text after election"
         text_before: "Text before election"

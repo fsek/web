@@ -8,9 +8,15 @@ en:
   static_pages:
     company_about:
       contact_if_interested: "If you are intrested in more information regarding the programmes, the F-guild, and our members, we look forward to hearing from you at this link:"
+      description: "F-sektionen värnar om att skapa kontakt mellan våra medlemmar och näringslivet."
       first: "We currently have about 950 members. The members are talented engineering students from the highly regarded programmes Engineering physics, Engineering mathematics and Engineering nanoscience."
       fourth: "A meeting with us is a perfect oppurtunity for You as company to hand-pick the students suitable to your company profile."
       headline: "About the F-guild"
+      keywords:
+        - näringsliv
+        - företag
+        - lunchföreläsning
+        - case
       offer: "Do you want to read more about our offers? Follow the link below."
       second: "Our students primarily gets educated in general, technical problem solving with a broad and diverse base of one or a few of the fields of physics, mathematics, electrical engineering, medicine, materials, and computer science. This gives them a huge head start to understand new problems, something that is very valuable for diverse organizations and companies who value flexible employees."
       third: "The F-guild is continuously working to create contact between our members and the industry, in order to give students the best possible opportunities both during and after their studies. We want you as a company to get the chance to meet our future engineers with superior analytical and problem solving skills."
@@ -26,11 +32,16 @@ en:
       physics_description: "is the first engineering programme started at Lund University. Students traditionally undergo extensive education and receive deep theoretical and experimental knowledge in mathematics, physics and technical subjects such as mechanics, control engineering and electronics."
       specializations: Specializations
     company_offer:
+      description: "F-sektionen anordnar gärna kvällsevenemang, lunchföreläsningar och case-evenemang tillsammans med företag."
       evening: "Evening events"
       evening_first: "Over the course of an evening you will have the opportunity to, in a calm and relaxed atmosphere, meet our students. This is an opportunity to give students an overall picture of the company and create a more personal connection with the students."
       evening_last: "We suggest you begin by presenting your company and then the event gets started. Sometime during the evening food is served to all students and company representatives. The evening can , for example, end with an awards ceremony, organized by the company. The evening is very flexible and we are open to any and all solutions and ideas."
       evening_may_contain: "For instance, the evening could contain any of the following"
       first: "How can You get our students to seek out your particular company in the future? That's a question we want to help You answer. There are a variety of solutions and possibilities to get in contact with our students, and below you will find a set of proposals that have been used with good results in the past. There is always the opportunity to go beyond the scope of these offers, please contact us as we will work together to find for the best solution for you."
+      keywords:
+        - näringsliv
+        - kvällsevenemang
+        - case
       lunch: "Lunch lecture"
       lunch_description: "With a talk during the lunch hour your company will effectively reach the students and you have the opportunity to give an insight into what your particular business is like. We arrange food for all participants, both students and business representatives as well as advertising in advance of your presentation with posters, advertisement in the guild's weekly bulletin and on the guild website. In the past, lunchtime lectures usually have between 70 and 100 participants."
       marketing: Marketing

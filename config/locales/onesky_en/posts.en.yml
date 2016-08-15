@@ -6,6 +6,10 @@
 ---
 en:
   posts:
+    show:
+      edit_post: "Redigera post"
+      edit_election: "Redigera val"
     post:
+      candidates_for_post_closes: "%{post} kan sökas fram till %{date}."
       hide: Hide
       nominate: Nominate

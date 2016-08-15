@@ -8,6 +8,7 @@ en:
   model:
     nomination:
       invalid_email: "The email address format is not valid."
+      not_valid_post: "Det går inte att nominera till denna post just nu."
   activerecord:
     models:
       nomination:

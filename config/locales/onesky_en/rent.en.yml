@@ -5,30 +5,6 @@
 
 ---
 en:
-  activerecord:
-    attributes:
-      rent:
-        council: Council
-        user: User
-        aktiv: Active
-        comment: Comment
-        council_id: Council
-        created_at: Created
-        date: Date
-        d_from: "Start date"
-        d_til: "End date"
-        disclaimer: "Car booking terms"
-        email: Email
-        purpose: Purpose
-        renter: Renter
-        service: Service
-        status: Status
-        updated_at: Updated
-        user_id: User
-    models:
-      rent:
-        one: "Car booking"
-        other: "Car bookings"
   model:
     rent:
       validation:
@@ -44,3 +20,27 @@ en:
       denied: denied
       inactive: inactive
       unconfirmed: "not confirmed"
+  activerecord:
+    models:
+      rent:
+        one: "Car booking"
+        other: "Car bookings"
+    attributes:
+      rent:
+        aktiv: Active
+        comment: Comment
+        council: Council
+        council_id: Council
+        created_at: Created
+        date: Date
+        d_from: "Start date"
+        d_til: "End date"
+        disclaimer: "Car booking terms"
+        email: Email
+        purpose: Purpose
+        renter: Renter
+        service: Service
+        status: Status
+        updated_at: Updated
+        user: User
+        user_id: User

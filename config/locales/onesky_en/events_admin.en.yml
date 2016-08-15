@@ -8,12 +8,12 @@ en:
   admin:
     events:
       form:
-        other_parts: Other
         categories_after_save: "Categories can only be added once the event has been saved."
         dates: Date
         dot_hint: "Dots will not change any times, it will only be visible at the start time."
         for_members_hint: "Only affects event registrations"
         info: Information
+        other_parts: Other
         ? ""
         :
           one: "--"

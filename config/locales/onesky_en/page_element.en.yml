@@ -16,13 +16,17 @@ en:
     attributes:
       page_element:
         created_at: Created
-        index: "Page index"
+        element_type: Type
         headline: Headline
+        headline_en: "Headline - english"
+        headline_sv: "Headline - swedish"
+        index: "Page index"
         page: Page
+        page_image: Image
         picture: Image
         sidebar: Sidebar
         text: Text
+        text_en: "Text - english"
+        text_sv: "Text - swedish"
         updated_at: Updated
         visible: Visible
-        element_type: Type
-        page_image: Image
