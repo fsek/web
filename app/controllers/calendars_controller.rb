@@ -21,7 +21,7 @@ class CalendarsController < ApplicationController
   def introduction
     introduction = Introduction.current
     if introduction.present?
-      calendar = CalendarService.export(introduction.events, locale: locale)
+      calendar = CalendarService.export(introduction.events(locale: locale), locale: locale)
       respond_to do |format|
         format.ics { render(text: calendar.to_ical) }
       end
