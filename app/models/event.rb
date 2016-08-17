@@ -36,6 +36,18 @@ class Event < ActiveRecord::Base
     between(Time.zone.now.beginning_of_day, 6.days.from_now.end_of_day).by_start
   end
 
+  scope :by_locale, ->(locale: I18n.locale) do
+    locale = locale.to_s
+    if locale == 'sv'
+      includes(:translations).all
+    elsif locale == 'en'
+      translation = Translation.where(locale: 'en').where.not(title: [nil, ''])
+      includes(:translations).joins(:translations).merge(translation)
+    else
+      none
+    end
+  end
+
   def self.locations_sv
     Translation.where(locale: 'sv').select(:location).order(:location).uniq.pluck(:location)
   end

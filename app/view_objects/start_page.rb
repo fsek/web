@@ -3,7 +3,7 @@ class StartPage
 
   def initialize(member: false)
     @news = News.include_for_feed.by_date.limit(5) || []
-    @events = Event.includes(:translations).stream || []
+    @events = Event.by_locale(locale: I18n.locale).stream || []
     @notices = get_notices(member)
   end
 
