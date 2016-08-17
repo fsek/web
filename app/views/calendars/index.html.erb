@@ -5,6 +5,10 @@
   <h1><%= title(t('.title')) %></h1>
 </div>
 
-<div id='event_calendar'></div>
+<% if I18n.locale.to_s == 'en' %>
+  <div id='event_calendar_en'></div>
+<% else %>
+  <div id='event_calendar'></div>
+<% end %>
 <hr>
 <%= link_to(t('.subscription'), export_calendars_url(protocol: 'webcal', format: 'ics'), class: 'btn primary')%>

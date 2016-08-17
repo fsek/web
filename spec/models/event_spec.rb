@@ -6,6 +6,19 @@ RSpec.describe Event, type: :model do
     build_stubbed(:event).should be_valid
   end
 
+  describe 'by locale' do
+    it 'returns event depending on locale' do
+      create(:event, title: 'Ej översatt')
+      event_en = create(:event, title: 'Kommer att översättas')
+      event_en.update!(title_en: 'Translated')
+
+      Event.by_locale.map(&:title).should eq(['Ej översatt',
+                                              'Kommer att översättas'])
+      Event.by_locale(locale: 'en').map(&:title_en).should eq(['Translated'])
+      Event.by_locale(locale: 'nope').should be_empty
+    end
+  end
+
   # This tests makes sure that dates are formatted into ISO8601 for
   # Fullcalendars json-feed
   # Ref.: https://github.com/fsek/web/issues/99

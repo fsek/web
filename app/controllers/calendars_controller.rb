@@ -5,12 +5,16 @@ class CalendarsController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.json { render json: Event.translations.between(params[:start], params[:end]) }
+      format.json do
+        render(json: Event.by_locale(locale: I18n.locale).
+                           between(params[:start], params[:end]))
+      end
     end
   end
 
   def export
-    events = Event.translations.after_date(after_date)
+    events = Event.by_locale(locale: I18n.locale).
+                   after_date(after_date)
     calendar = CalendarService.export(events, locale: locale)
 
     respond_to do |format|
