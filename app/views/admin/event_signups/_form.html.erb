@@ -5,7 +5,8 @@
   <%= f.input :for_members %>
   <%= f.input :question_sv, hint: t('.question_hint') %>
   <%= f.input :question_en %>
-  <%= f.input :last_reg, as: :datetime_picker %>
+  <%= f.input :opens, as: :datetime_picker %>
+  <%= f.input :closes, as: :datetime_picker %>
   <%= f.input :slots %>
   <div class="headline">
     <h4><%= t('.priorities') %></h4>

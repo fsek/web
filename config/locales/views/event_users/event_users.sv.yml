@@ -1,7 +1,8 @@
 sv:
-  event_registrations:
+  event_users:
     form:
       answer_hint: Kan inte redigeras när anmälan skapats.
+      submit: Skicka anmälan
 
     registered:
       cancel: Avanmäl

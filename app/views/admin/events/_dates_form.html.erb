@@ -5,9 +5,12 @@
                                   [t('model.event.double_dot'), Event::DOUBLE]],
                      input_html: {class: 'select2'},
                      hint: t('.dot_hint') %>
-<%= form.input :location, collection: Event.locations,
-                          include_blank: false,
-                          input_html: {class: 'select2_tags'} %>
+<%= form.input :location_sv, collection: Event.locations_sv,
+                             include_blank: false,
+                             input_html: {class: 'select2_tags'} %>
+<%= form.input :location_en, collection: Event.locations_en,
+                             include_blank: false,
+                             input_html: {class: 'select2_tags'} %>
 
 <% if event.image.present? %>
   <%= image_tag(event.thumb, class: 'img-responsive') %>

@@ -168,13 +168,14 @@ Fsek::Application.routes.draw do
     end
 
     resources :events, only: :show, path: :evenemang do
-      resources :event_registrations, path: :anmalan, only: [:create, :destroy]
+      resources :event_users, path: :anmalan, only: [:create, :destroy]
     end
 
     namespace :admin do
       resources :events, path: :evenemang, except: :show do
         resources :event_signups, path: :anmalan, only: [:create, :update, :destroy]
         resource :event_signup, path: :anmalan, only: :show, as: :signup
+        resources :event_users, path: :anmalningar, only: [:edit, :update, :destroy]
       end
     end
 

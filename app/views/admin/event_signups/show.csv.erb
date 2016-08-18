@@ -1,0 +1,7 @@
+<% headers = [User.human_attribute_name(:name),
+              EventUser.human_attribute_name(:user_type),
+              EventUser.human_attribute_name(:group)] %>
+<%= CSV.generate_line headers %>
+<% @attending.each do |a| %>
+<%= CSV.generate_line([a.user, event_user_type(@event_signup, a.user_type), a.group]) %>
+<% end %>

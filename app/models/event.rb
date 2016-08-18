@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Event < ActiveRecord::Base
   include CarrierWave::Compatibility::Paperclip
   include Categorizable
@@ -13,8 +12,8 @@ class Event < ActiveRecord::Base
                       attributes: [:title, :description, :short, :location])
   mount_uploader :image, AttachedImageUploader, mount_on: :image_file_name
 
-  has_one :event_signup
-  has_many :event_users
+  has_one :event_signup, dependent: :destroy
+  has_many :event_users, dependent: :destroy
   has_many :users, through: :event_users
   belongs_to :council
 
@@ -90,10 +89,10 @@ class Event < ActiveRecord::Base
 
   # For event registration
   def attending?(user)
-    signup && event_signups.attending?(user).any?
+    signup.present? && EventUser.attending(self).where(user: user).any?
   end
 
   def reserve?(user)
-    signup && event_signups.reserve?(user).any?
+    signup.present? && EventUser.reserves(self).where(user: user).any?
   end
 end

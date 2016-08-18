@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :event_user do
-    user nil
-    event nil
+    user
+    user_type { EventSignup::MEMBER }
+    association(:event, :with_signup)
   end
 end

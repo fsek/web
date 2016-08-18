@@ -7,7 +7,7 @@ class EventSignup < ActiveRecord::Base
   #acts_as_paranoid
   belongs_to :event, required: true
 
-  validates(:last_reg, :slots, presence: true)
+  validates(:opens, :closes, :slots, presence: true)
   validates(:event, uniqueness: true)
   validate(:orders)
 
@@ -25,7 +25,27 @@ class EventSignup < ActiveRecord::Base
       CUSTOM => custom }.compact.sort_by(&:last).to_h.keys.reverse
   end
 
+  def selectable_types(user)
+    [highest_type(user), custom.present? ? CUSTOM : nil].compact
+  end
+
+  def open?
+    opens < Time.zone.now && closes > Time.zone.now
+  end
+
   private
+
+  def highest_type(user)
+    (order - [CUSTOM]).each do |type|
+      if type == NOVICE && user.novice?
+        return NOVICE
+      elsif type == MENTOR && user.mentor?
+        return MENTOR
+      elsif type == MEMBER && user.member?
+        return MEMBER
+      end
+    end
+  end
 
   def orders
     val = [novice, mentor, member, custom]
@@ -33,14 +53,14 @@ class EventSignup < ActiveRecord::Base
     val = val.compact
 
     unless val.uniq.length == val.length
-      errors.add(:novice, '..')
-      errors.add(:mentor, '..')
-      errors.add(:member, '..')
-      errors.add(:custom, '..')
+      errors.add(:novice, I18n.t('model.event_signup.same_priority'))
+      errors.add(:mentor, I18n.t('model.event_signup.same_priority'))
+      errors.add(:member, I18n.t('model.event_signup.same_priority'))
+      errors.add(:custom, I18n.t('model.event_signup.same_priority'))
     end
 
-    if custom.present? && custom_name.nil?
-      errors.add(:custom_name, '..')
+    if custom.present? && custom_name.blank?
+      errors.add(:custom_name, I18n.t('model.event_signup.custom_name_missing'))
     end
   end
 end

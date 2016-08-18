@@ -1,0 +1,20 @@
+<% if event.signup.question.present? %>
+  <span class="event question">
+    <%= fa_icon('question') %>
+    <%= event.signup.question %>
+  </span>
+
+  <span class="event answer">
+    <blockquote>
+      <%= event_user.answer %>
+    </blockquote>
+  </span>
+<% end %>
+
+<% if event.signup.open? %>
+  <%= link_to(t('.cancel'), event_event_user_path(event, event_user),
+                            method: :delete,
+                            class: 'btn danger',
+                            remote: true,
+                            data: { confirm: t('.confirm_cancel') }) %>
+<% end %>

@@ -1,24 +1,32 @@
-<%= grid(user_grid, hide_submit_button: true, hide_reset_button: true) do |g|
-  g.column(name: EventUser.human_attribute_name(:created_at),
-           attribute: 'created_at',
-           filter: false) do |reg|
-    localized(reg.created_at, format: :short)
-  end
-  g.column(name: User.human_attribute_name(:name), attribute: 'firstname', assoc: :user) do |reg|
-    user_link(reg.user)
-  end
+<table class="table table-bordered table-striped">
+      <tr>
+        <td><b><%= User.human_attribute_name(:name) %></b></td>
+        <td><b><%= EventUser.human_attribute_name(:user_type) %></b></td>
+        <td><b><%= EventUser.human_attribute_name(:created_at) %></b></td>
+        <td><b><%= EventUser.human_attribute_name(:group) %></b></td>
 
-  if event.signup.question.present? && show_answers(params)
-    g.column(name: EventSignup.human_attribute_name(:question), attribute: 'answer') do |reg|
-      if reg.answer.present?
-        reg.answer.truncate(20)
-      end
-    end
-  end
+        <% if event.signup.question.present? && show_answers(params) %>
+          <td><b><%= EventSignup.human_attribute_name(:question) %></b></td>
+        <% end %>
 
-  if event.food? && show_food_preferences(params)
-    g.column(name: User.human_attribute_name(:food_preference),
-             attribute: 'food_preference',
-             assoc: :user)
-  end
-end -%>
+        <% if event.food && show_food_preferences(params) %>
+          <td><b><%= User.human_attribute_name(:food_preference) %></b></td>
+        <% end %>
+      </tr>
+      <% grid.each do |event_user| %>
+        <tr>
+          <td><%= link_to event_user.user, edit_admin_event_event_user_path(event, event_user) %></td>
+          <td><%= event_user_type(@event_signup, event_user.user_type) %></td>
+          <td><%= event_user.created_at %></td>
+          <td><%= event_user.group %></td>
+
+          <% if event.signup.question.present? && show_answers(params) %>
+            <td>event_user.answer.truncate(20)</td>
+          <% end %>
+
+          <% if event.food && show_food_preferences(params) %>
+            <td><%= event_user.user.food_preference %></td>
+          <% end %>
+        </tr>
+      <% end %>
+</table>

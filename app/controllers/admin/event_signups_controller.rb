@@ -8,7 +8,7 @@ class Admin::EventSignupsController < Admin::BaseController
     if @event_signup.save
       redirect_to(admin_event_signup_path(@event), notice: alert_create(EventSignup))
     else
-      @attending_grid = set_grid(@event)
+      set_grids(@event)
       render :show, status: 422
     end
   end
@@ -17,7 +17,7 @@ class Admin::EventSignupsController < Admin::BaseController
     if @event_signup.update(event_signup_params)
       redirect_to(admin_event_signup_path(@event), notice: alert_update(EventSignup))
     else
-      @attending_grid = set_grid(@event)
+      set_grids(@event)
       render :show, status: 422
     end
   end
@@ -25,7 +25,14 @@ class Admin::EventSignupsController < Admin::BaseController
   def show
     @event_signup = @event.signup
     @event_signup ||= @event.build_event_signup
-    @attending_grid = set_grid(@event)
+    set_grids(@event)
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
   end
 
   def destroy
@@ -36,8 +43,8 @@ class Admin::EventSignupsController < Admin::BaseController
   private
 
   def event_signup_params
-    params.require(:event_signup).permit(:for_members, :last_reg, :slots, :question_sv, :question_en,
-                                        :novice, :mentor, :member, :custom, :custom_name)
+    params.require(:event_signup).permit(:for_members, :closes, :slots, :question_sv, :question_en,
+                                        :novice, :mentor, :member, :custom, :custom_name, :opens)
   end
 
   def set_tab
@@ -45,10 +52,8 @@ class Admin::EventSignupsController < Admin::BaseController
     params[:tab] = @tab
   end
 
-  def set_grid(event)
-      initialize_grid(EventUser.attending(event),
-                      include: :user,
-                      order: :created_at,
-                      name: :attending)
+  def set_grids(event)
+    @attending = EventUser.attending(event).for_grid
+    @reserves = EventUser.reserves(event).for_grid
   end
 end

@@ -1,26 +1,21 @@
 module EventRegistrationService
-  def self.make_reg(reg)
+  def self.make_reg(event_user)
     begin
-      reg.reserve = EventRegistration.full?(reg.event)
-      reg.validate!
-
-      reg.save!
+      event_user.save!
     rescue
       false
     end
   end
 
-  def self.remove_reg(reg)
-    EventRegistration.transaction do
-      if !reg.reserve
-        reserve = EventRegistration.reserves(reg.event).first
+  def self.remove_reg(event_user)
+    if event_user.event_signup.open?
+      begin
+        event_user.destroy!
+      rescue
+        false
       end
-
-      reg.destroy!
-
-      if reserve && reserve.present?
-        reserve.update!(reserve: false)
-      end
+    else
+      false
     end
   end
 end

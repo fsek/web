@@ -5,7 +5,8 @@ class CreateEventSignups < ActiveRecord::Migration
       t.boolean :for_members, default: true, null: false
       t.string :question
       t.integer :slots
-      t.datetime :last_reg
+      t.datetime :closes
+      t.datetime :opens
       t.integer :novice
       t.integer :mentor
       t.integer :member

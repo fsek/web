@@ -15,6 +15,7 @@ sv:
         priority_example: "Nolla: 10, Fadder: 5, Special: 4, Special namn: Gamla fös. Detta gör nollor mest prioriterade, faddrar därefter och de som väljer sig vara gamla fös."
 
       show:
+        export: Exportera till CSV
         hide_answer: Dölj svar
         hide_food_preferences: Dölj matpreferenser
         registered: Anmälda

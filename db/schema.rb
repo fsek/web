@@ -299,16 +299,19 @@ ActiveRecord::Schema.define(version: 20160812145757) do
     t.boolean  "for_members",             default: true, null: false
     t.string   "question",    limit: 255
     t.integer  "slots",       limit: 4
-    t.datetime "last_reg"
+    t.datetime "closes"
+    t.datetime "opens"
     t.integer  "novice",      limit: 4
     t.integer  "mentor",      limit: 4
     t.integer  "member",      limit: 4
     t.integer  "custom",      limit: 4
     t.string   "custom_name", limit: 255
+    t.datetime "deleted_at"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end
 
+  add_index "event_signups", ["deleted_at"], name: "index_event_signups_on_deleted_at", using: :btree
   add_index "event_signups", ["event_id"], name: "event_signups_unique_event_index", unique: true, using: :btree
   add_index "event_signups", ["event_id"], name: "index_event_signups_on_event_id", using: :btree
 
@@ -329,14 +332,17 @@ ActiveRecord::Schema.define(version: 20160812145757) do
   create_table "event_users", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "event_id",   limit: 4
-    t.boolean  "reserve",                  default: false, null: false
+    t.integer  "group_id",   limit: 4
     t.text     "answer",     limit: 65535
     t.string   "user_type",  limit: 255
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
+  add_index "event_users", ["deleted_at"], name: "index_event_users_on_deleted_at", using: :btree
   add_index "event_users", ["event_id"], name: "index_event_users_on_event_id", using: :btree
+  add_index "event_users", ["group_id"], name: "index_event_users_on_group_id", using: :btree
   add_index "event_users", ["user_id"], name: "index_event_users_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|

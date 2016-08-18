@@ -32,11 +32,22 @@
       <%= answers_button(params, @event) %>
 
       <div class="headline">
-        <h2><%= t('.registered') %></h2>
+        <h3><%= t('.registered') %></h3>
       </div>
 
       <%= render('/admin/event_users/attending_grid',
-                 user_grid: @attending_grid,
+                 grid: @attending,
+                 event: @event) %>
+
+      <%= link_to t('.export'), admin_event_signup_path(@event, format: :csv) %>
+      <hr>
+
+      <div class="headline">
+        <h3><%= 'Reserver' %></h3>
+      </div>
+
+      <%= render('/admin/event_users/attending_grid',
+                 grid: @reserves,
                  event: @event) %>
     </div>
   </div>
