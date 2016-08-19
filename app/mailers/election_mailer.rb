@@ -1,9 +1,6 @@
-# encoding: UTF-8
-class ElectionMailer < ActionMailer::Base
+class ElectionMailer < ApplicationMailer
   helper MarkdownHelper, ElectionMailerHelper
   default from: 'Valberedningen <valb@fsektionen.se>'
-  layout('email')
-  include MessageIdentifier
 
   def nominate_email(nomination)
     @nomination = nomination

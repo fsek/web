@@ -1,8 +1,5 @@
-# encoding: UTF-8
-class RentMailer < ActionMailer::Base
+class RentMailer < ApplicationMailer
   include RentMailerHelper
-  include MessageIdentifier
-  layout('email')
   default from: %(#{I18n.t('rent_mailer.mailer.car_foreman')} <bil@fsektionen.se>)
 
   def rent_email(rent)
