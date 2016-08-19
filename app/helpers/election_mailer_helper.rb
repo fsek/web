@@ -12,7 +12,7 @@ module ElectionMailerHelper
   def candidate_mail_link_html(candidate)
     text = candidate_mail_link(candidate)
     if text.present?
-      link_to(text, text)
+      link_to(t('model.candidate.book_interview'), text, class: 'btn primary')
     end
   end
 end

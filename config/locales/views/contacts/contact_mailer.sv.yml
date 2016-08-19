@@ -4,4 +4,4 @@ sv:
 
     contact_email:
       message_sent_via: Meddelande skickat via Fsektionen.se
-      title: Kontaktformulär
+      header_title: Kontaktformulär
