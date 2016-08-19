@@ -4,7 +4,7 @@ module Fsek
     # Version of your assets, change this if you want to expire all your assets.
     config.assets.version = '1.2'
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
-    config.assets.precompile += %w( application.scss )
+    config.assets.precompile += %w( application.scss email.scss )
     #
     # # Precompile additional assets.
     # # application.js, application.css, and all non-JS/CSS in app/assets folder are
