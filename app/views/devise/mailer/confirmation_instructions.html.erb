@@ -1,19 +1,16 @@
-<% provide(:title, t('.welcome')) %>
+<% provide(:header_title, t('.welcome')) %>
 
-<%= content_for(:greeting) do %>
-  <h1><%= t('.hello', user: @user.to_s) %></h1>
-<% end %>
+<h3><%= t('.hello', user: @user.to_s) %></h3>
 
-<%= content_for(:main_content) do %>
-  <%= simple_format(t('.registered')) %>
-  <%= simple_format(t('.before_starting')) %>
+<%= simple_format(t('.registered'), class: 'lead') %>
+<p>
+  <%= t('.before_starting') %>
+  <br>
+  <br>
+  <%= link_to(t('.please_confirm'),
+              user_confirmation_url(confirmation_token: @token),
+              class: 'btn primary center') %>
+</p>
 
-  <p>
-    <%= link_to(t('.please_confirm'), user_confirmation_url(confirmation_token: @token)) %>
-  </p>
-<% end %>
-
-<%= content_for(:bottom_signature) do %>
-  <%= simple_format(t('.enjoy')) %>
-  <%= simple_format(t('.problem')) %>
-<% end %>
+<%= simple_format(t('.enjoy')) %>
+<%= simple_format(t('.problem')) %>

@@ -255,4 +255,5 @@ end
 
 Rails.application.config.to_prepare do
   Devise::Mailer.layout('email')
+  Devise::Mailer.helper('email')
 end
