@@ -39,6 +39,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     Warden.test_reset!
+    I18n.locale = :sv
   end
 
   config.extend ControllerMacros, type: :controller
