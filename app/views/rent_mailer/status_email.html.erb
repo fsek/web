@@ -1,24 +1,20 @@
-<%= content_for :title do %>
-  <%= t('.title') %>
+<%= provide(:header_title, t('.header_title')) %>
+
+<h3><%= t('rent_mailer.mailer.hello', user: @rent.user) %></h3>
+
+<p class="lead"><%= t('.booking_status') %> <%= t(%(model.rent.#{@rent.status})) %>.</p>
+<% if @rent.status == 'denied' %>
+  <%= simple_format(Rent.human_attribute_name(:comment)) %>
+  <%= simple_format(@rent.comment) %>
+  <%= t('.denied_appeal') %>
 <% end %>
 
-<%= content_for :greeting do %>
-  <h3><%= t('rent_mailer.mailer.hello', user: @rent.user) %></h3>
-<% end %>
+<%= render 'attributes', rent: @rent %>
 
-<%= content_for :main_content do %>
-  <p><%= t('.booking_status') %> <%= t(%(model.rent.#{@rent.status})) %>.</p>
-  <% if @rent.status == 'denied' %>
-    <%= simple_format(Rent.human_attribute_name(:comment)) %>
-    <%= simple_format(@rent.comment) %>
-    <%= t('.denied_appeal') %>
-  <% end %>
+<br>
+<hr>
+<br>
 
-  <%= render 'attributes', rent: @rent %>
-<% end %>
-
-<%= content_for :bottom_signature do %>
-  <%= simple_format(t('rent_mailer.mailer.answer_with_questions')) %>
-  <p><%= t('rent_mailer.mailer.sincerely') %>,<br>
-  <%= t('rent_mailer.mailer.car_foreman') %></p>
-<% end %>
+<%= simple_format(t('rent_mailer.mailer.answer_with_questions')) %>
+<p><%= t('rent_mailer.mailer.sincerely') %>,<br>
+<%= t('rent_mailer.mailer.car_foreman') %></p>

@@ -1,9 +1,6 @@
-# encoding: UTF-8
-class ContactMailer < ActionMailer::Base
+class ContactMailer < ApplicationMailer
   default from: 'Kontaktformulär <dirac@fsektionen.se>'
   default subject: I18n.t('contact_mailer.subject')
-  layout('email')
-  include MessageIdentifier
 
   def contact_email(contact)
     @contact = contact

@@ -2,6 +2,7 @@ sv:
   model:
     candidate:
       add_user_information: Du måste fylla i dina användaruppgifter
+      book_interview: Boka intervju
       not_editable: kandidaturer för posten kan inte skapas eller redigeras just nu.
       not_allowed_to_destroy: Inte tillåtet att radera kandidaturen.
       similar_candidate: har redan en likadan kandidatur.

@@ -1,21 +1,19 @@
-<% provide(:title, t('.title')) %>
+<% provide(:header_title, t('.header_title')) %>
+<%= simple_format("#{t('.message_sent_via')} - #{@contact}", class: 'lead') %>
 
-<%= content_for(:greeting) do %>
-  <h2><%= t('.message_sent_via') %> - <%= @contact.to_s %></h2>
-<% end %>
+<table>
+  <tr>
+    <td colspan=2><%= ContactMessage.human_attribute_name(:name) %>:</td>
+    <td><%= @contact.message.name %></td>
+  </tr>
+  <tr>
+    <td colspan=2><%= ContactMessage.human_attribute_name(:email) %>:</td>
+    <td><%= @contact.message.email %></td>
+  </tr>
+</table>
+<br>
+<hr>
+<br>
 
-<%= content_for(:main_content) do %>
-  <table>
-    <tr>
-      <td colspan=2><%= ContactMessage.human_attribute_name(:name) %>:</td>
-      <td><%= @contact.message.name %></td>
-    </tr>
-    <tr>
-      <td colspan=2><%= ContactMessage.human_attribute_name(:email) %>:</td>
-      <td><%= @contact.message.email %></td>
-    </tr>
-  </table>
-  <hr>
-  <h3><%= ContactMessage.human_attribute_name(:message) %></h3>
-  <%= simple_format(@contact.message.message) %>
-<% end %>
+<h4><%= ContactMessage.human_attribute_name(:message) %></h4>
+<%= simple_format(@contact.message.message) %>

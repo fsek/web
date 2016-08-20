@@ -116,6 +116,8 @@ GEM
     cookies_eu (1.3.0)
       jquery-cookie-rails
       jquery-rails
+    css_parser (1.3.7)
+      addressable
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     devise (4.0.0)
@@ -297,6 +299,12 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    roadie (3.1.1)
+      css_parser (~> 1.3.4)
+      nokogiri (>= 1.5.0, < 1.7.0)
+    roadie-rails (1.1.1)
+      railties (>= 3.0, < 5.1)
+      roadie (~> 3.1)
     rollbar (2.11.5)
       multi_json
     routing-filter (0.5.1)
@@ -440,6 +448,7 @@ DEPENDENCIES
   rails (= 4.2.6)
   recaptcha
   redcarpet
+  roadie-rails (~> 1.0)
   rollbar
   routing-filter (~> 0.5.1)
   rspec-example_steps

@@ -1,28 +1,29 @@
-<% provide(:title, @nomination.election.to_s) %>
+<% provide(:header_title, @nomination.election.to_s) %>
 
-<%= content_for(:greeting) do %>
-  <h3><%= t('election_mailer.hello', name: @nomination.name) %></h3>
-<% end %>
+<h3><%= t('election_mailer.hello', name: @nomination.name) %></h3>
 
-<%= content_for(:main_content) do %>
-  <p><%= "#{t('.you_have_been_nominated')}: #{@nomination.post}." %></p>
+<p class="lead"><%= "#{t('.you_have_been_nominated')} #{@nomination.post}." %></p>
 
-  <% if @nomination.motivation.present? %>
-    <p>
+<% if @nomination.motivation.present? %>
+  <p>
     <%= t('.with_motivation') %>:<br>
-    <%= simple_format(@nomination.motivation) %>
-    <p>
-  <% end %>
-
-  <%= markdown(@nomination.election.nominate_mail)%>
-
-  <%= simple_format(t('.accept_before_closing',
-                      date: l(@nomination.election.post_closing(@nomination.post)))) %>
-  <p><%= t('.via_web') %>:<br>
-
-  <%= link_to(@nomination.candidate_url, @nomination.candidate_url) %>
+  </p>
+  <%= simple_format(@nomination.motivation, class: 'callout') %>
+  <p>
 <% end %>
 
-<%= content_for(:bottom_signature) do %>
-  <%= simple_format(t('.sincerely')) %>
-<% end %>
+<br>
+<hr>
+<br>
+
+<%= markdown(@nomination.election.nominate_mail)%>
+
+<%= simple_format(t('.accept_before_closing',
+                    date: l(@nomination.election.post_closing(@nomination.post)))) %>
+<br>
+
+<%= link_to(t('.candidate'), @nomination.candidate_url, class: 'btn primary') %>
+<br>
+<br>
+
+<%= simple_format(t('.sincerely')) %>
