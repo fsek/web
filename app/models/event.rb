@@ -1,6 +1,7 @@
-# encoding: UTF-8
 class Event < ActiveRecord::Base
   include CarrierWave::Compatibility::Paperclip
+  include Categorizable
+
   TZID = 'Europe/Stockholm'.freeze
   SINGLE = 'single'.freeze
   DOUBLE = 'double'.freeze
@@ -10,17 +11,14 @@ class Event < ActiveRecord::Base
   globalize_accessors(locales: [:en, :sv],
                       attributes: [:title, :description, :short, :location])
   mount_uploader :image, AttachedImageUploader, mount_on: :image_file_name
-  include Categorizable
 
-  has_many :event_registrations
+  has_one :event_signup, dependent: :destroy
+  has_many :event_users, dependent: :destroy
+  has_many :users, through: :event_users
   belongs_to :council
-  belongs_to :user
 
   validates(:title, :description, :starts_at, :ends_at, :location,
             presence: true)
-
-  # Validate only if signup is true
-  validates(:last_reg, :slots, presence: true, if: Proc.new { |e| e.signup? })
 
   scope :view, -> { select(:starts_at, :ends_at, :all_day, :title, :short, :updated_at) }
   scope :by_start, -> { order(starts_at: :asc) }
@@ -56,6 +54,10 @@ class Event < ActiveRecord::Base
     Translation.where(locale: 'en').select(:location).order(:location).uniq.pluck(:location)
   end
 
+  def signup
+    event_signup
+  end
+
   def to_s
     title
   end
@@ -87,10 +89,10 @@ class Event < ActiveRecord::Base
 
   # For event registration
   def attending?(user)
-    signup && event_registrations.attending?(user).any?
+    signup.present? && EventUser.attending(self).where(user: user).any?
   end
 
   def reserve?(user)
-    signup && event_registrations.reserve?(user).any?
+    signup.present? && EventUser.reserves(self).where(user: user).any?
   end
 end

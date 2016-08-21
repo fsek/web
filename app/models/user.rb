@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :posts, through: :post_users
   has_many :permissions, through: :posts
   has_many :councils, through: :posts
-  has_many :event_registrations
+  has_many :event_users
   has_many :candidates
   has_many :cafe_workers
   has_many :cafe_shifts, through: :cafe_workers
@@ -74,5 +74,13 @@ class User < ActiveRecord::Base
 
   def self.summer
     Time.current.change(month: 8, day: 1, hour: 0, minute: 0)
+  end
+
+  def novice?
+    group_users.includes(:group).where(fadder: false, groups: { introduction_id: Introduction.current }).any?
+  end
+
+  def mentor?
+    group_users.includes(:group).where(fadder: true, groups: { introduction_id: Introduction.current }).any?
   end
 end

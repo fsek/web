@@ -7,6 +7,8 @@ class Introduction < ActiveRecord::Base
   attr_reader :dates, :events_by_day, :dates_by_week
 
   has_many :groups, dependent: :destroy
+  has_many :group_users, through: :groups
+  has_many :users, through: :groups
   has_many :messages, dependent: :destroy
   has_many :adventures, dependent: :destroy
   has_many :adventure_groups, through: :adventures

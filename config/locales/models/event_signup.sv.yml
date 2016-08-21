@@ -1,0 +1,30 @@
+sv:
+    activerecord:
+        models:
+            event_signup: Evenemangsanmälan
+
+        attributes:
+            event_signup:
+                created_at: Skapades
+                custom: Special
+                custom_name: Namn special
+                event: Event
+                for_members: För medlemmar
+                closes: Anmälan stänger
+                member: Medlem
+                mentor: Fadder
+                novice: Nolla
+                opens: Anmälan öppnar
+                question: Fråga
+                question_en: Fråga - engelsk
+                question_sv: Fråga - svensk
+                slots: Antal platser
+                updated_at: Uppdaterades
+    model:
+        event_signup:
+            same_priority: Samma prioritet kan inte väljas för olika användartyper
+            custom_name_missing: Behöver fyllas i för att special ska kunna använas
+            user_types:
+                novice: Nolla
+                mentor: Fadder
+                member: Sektionsmedlem

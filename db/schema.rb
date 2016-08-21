@@ -283,6 +283,38 @@ ActiveRecord::Schema.define(version: 20160812145757) do
     t.text     "answer",     limit: 65535
   end
 
+  create_table "event_signup_translations", force: :cascade do |t|
+    t.integer  "event_signup_id", limit: 4,   null: false
+    t.string   "locale",          limit: 255, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "question",        limit: 255
+  end
+
+  add_index "event_signup_translations", ["event_signup_id"], name: "index_event_signup_translations_on_event_signup_id", using: :btree
+  add_index "event_signup_translations", ["locale"], name: "index_event_signup_translations_on_locale", using: :btree
+
+  create_table "event_signups", force: :cascade do |t|
+    t.integer  "event_id",    limit: 4
+    t.boolean  "for_members",             default: true, null: false
+    t.string   "question",    limit: 255
+    t.integer  "slots",       limit: 4
+    t.datetime "closes"
+    t.datetime "opens"
+    t.integer  "novice",      limit: 4
+    t.integer  "mentor",      limit: 4
+    t.integer  "member",      limit: 4
+    t.integer  "custom",      limit: 4
+    t.string   "custom_name", limit: 255
+    t.datetime "deleted_at"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "event_signups", ["deleted_at"], name: "index_event_signups_on_deleted_at", using: :btree
+  add_index "event_signups", ["event_id"], name: "event_signups_unique_event_index", unique: true, using: :btree
+  add_index "event_signups", ["event_id"], name: "index_event_signups_on_event_id", using: :btree
+
   create_table "event_translations", force: :cascade do |t|
     t.integer  "event_id",    limit: 4,     null: false
     t.string   "locale",      limit: 255,   null: false
@@ -297,6 +329,22 @@ ActiveRecord::Schema.define(version: 20160812145757) do
   add_index "event_translations", ["event_id"], name: "index_event_translations_on_event_id", using: :btree
   add_index "event_translations", ["locale"], name: "index_event_translations_on_locale", using: :btree
 
+  create_table "event_users", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "event_id",   limit: 4
+    t.integer  "group_id",   limit: 4
+    t.text     "answer",     limit: 65535
+    t.string   "user_type",  limit: 255
+    t.datetime "deleted_at"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "event_users", ["deleted_at"], name: "index_event_users_on_deleted_at", using: :btree
+  add_index "event_users", ["event_id"], name: "index_event_users_on_event_id", using: :btree
+  add_index "event_users", ["group_id"], name: "index_event_users_on_group_id", using: :btree
+  add_index "event_users", ["user_id"], name: "index_event_users_on_user_id", using: :btree
+
   create_table "events", force: :cascade do |t|
     t.string   "title",           limit: 255
     t.text     "description",     limit: 65535
@@ -309,15 +357,10 @@ ActiveRecord::Schema.define(version: 20160812145757) do
     t.string   "image_file_name", limit: 255
     t.integer  "council_id",      limit: 4
     t.string   "short",           limit: 255
-    t.boolean  "signup"
-    t.datetime "last_reg"
     t.string   "dot",             limit: 255
-    t.integer  "slots",           limit: 4
     t.boolean  "drink"
     t.boolean  "food"
     t.boolean  "cash"
-    t.string   "question",        limit: 255
-    t.boolean  "for_members",                   default: false, null: false
   end
 
   create_table "faqs", force: :cascade do |t|
@@ -769,6 +812,9 @@ ActiveRecord::Schema.define(version: 20160812145757) do
   add_foreign_key "categorizations", "categories"
   add_foreign_key "election_posts", "elections"
   add_foreign_key "election_posts", "posts"
+  add_foreign_key "event_signups", "events"
+  add_foreign_key "event_users", "events"
+  add_foreign_key "event_users", "users"
   add_foreign_key "group_messages", "groups"
   add_foreign_key "group_messages", "messages"
   add_foreign_key "group_users", "groups"

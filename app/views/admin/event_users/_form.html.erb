@@ -1,0 +1,6 @@
+<%= simple_form_for([:admin, event, event_user]) do |f| %>
+  <%= f.input :user_type, collection: admin_event_user_types(@event_user.event_signup),
+                          input_html: {class: 'select2'}  %>
+  <%= f.association :group, collection: Group.all, input_html: {class: 'select2'} %>
+  <%= f.button :submit%>
+<% end %>

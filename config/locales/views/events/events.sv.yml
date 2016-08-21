@@ -8,7 +8,7 @@ sv:
       for_members: Endast för medlemmar
 
     registration:
-      attending: Du är anmäld!
+      attending: "Du är anmäld! För tillfället har du plats %{count} / %{max}"
       edit: Redigera
       not_attending: Du är inte anmäld
       registration: Anmälan

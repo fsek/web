@@ -1,0 +1,8 @@
+<%= form.input :title_sv, wrapper_html: {class: 'inline half'} %>
+<%= form.input :title_en, wrapper_html: {class: 'inline half'} %>
+<%= form.input :short_sv, wrapper_html: {class: 'inline half'} %>
+<%= form.input :short_en, wrapper_html: {class: 'inline half'} %>
+<%= form.input :description_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+<%= form.input :description_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+<%= link_to('Ändra datum', '#dates', data: {toggle: :tab}, class: 'btn secondary') %>
+<%= form.button :submit %>

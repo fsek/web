@@ -1,9 +1,8 @@
-# encoding:UTF-8
 class EventsController < ApplicationController
   load_permissions_and_authorize_resource
 
   def show
-    @event_registration = @event.event_registrations.where(user: current_user).first
-    @event_registration ||= @event.event_registrations.build
+    @event_user = @event.event_users.where(user: current_user).first
+    @event_user ||= @event.event_users.build
   end
 end

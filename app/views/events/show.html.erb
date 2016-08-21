@@ -37,10 +37,12 @@
 
 <% end %>
 
-<div class="col-md-12" id="registration">
-  <%= render '/events/registration', event: @event,
-                                     event_registration: @event_registration %>
-</div>
+<% if @event.signup.present? %>
+  <div class="col-md-12" id="registration">
+    <%= render '/events/registration', event: @event,
+                                       event_user: @event_user %>
+  </div>
+<% end %>
 
 <% if can_administrate?([:index, :edit], @event) %>
   <%= link_to(t('.edit_event'), edit_admin_event_path(@event),

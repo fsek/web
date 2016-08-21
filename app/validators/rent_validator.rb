@@ -2,7 +2,7 @@ class RentValidator < ActiveModel::Validator
   def validate(record)
     if base(record)
       if user_attributes(record)
-        record.errors.add(:user, I18n.t('model.rent.validation.add_user_infromation'))
+        record.errors.add(:user, I18n.t('model.rent.validation.add_user_information'))
       end
 
       if date_future(record)
