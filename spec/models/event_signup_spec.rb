@@ -22,30 +22,44 @@ RSpec.describe EventSignup, type: :model do
     event_signup.order.should eq([EventSignup::MENTOR, EventSignup::NOVICE])
   end
 
-  it 'returns users highest priority type' do
-    event_signup = build_stubbed(:event_signup, novice: 37,
-                                                mentor: 27,
-                                                member: 17,
-                                                custom: 7,
-                                                custom_name: 'woop')
-    user = User.new
-    user.stub(:mentor?).and_return(false)
-    user.stub(:novice?).and_return(false)
+  describe '#selectable_types' do
+    it 'returns users highest priority type' do
+      event_signup = build_stubbed(:event_signup, novice: 37,
+                                                  mentor: 27,
+                                                  member: 17,
+                                                  custom: 7,
+                                                  custom_name: 'woop')
+      user = User.new
+      user.stub(:mentor?).and_return(false)
+      user.stub(:novice?).and_return(false)
 
-    user.stub(:member?).and_return(true)
-    event_signup.selectable_types(user).should eq([EventSignup::MEMBER,
-                                                   EventSignup::CUSTOM])
+      user.stub(:member?).and_return(true)
+      event_signup.selectable_types(user).should eq([EventSignup::MEMBER,
+                                                     EventSignup::CUSTOM])
 
-    user.stub(:mentor?).and_return(true)
-    event_signup.selectable_types(user).should eq([EventSignup::MENTOR,
-                                                   EventSignup::CUSTOM])
+      user.stub(:mentor?).and_return(true)
+      event_signup.selectable_types(user).should eq([EventSignup::MENTOR,
+                                                     EventSignup::CUSTOM])
 
-    user.stub(:novice?).and_return(true)
-    event_signup.selectable_types(user).should eq([EventSignup::NOVICE,
-                                                   EventSignup::CUSTOM])
+      user.stub(:novice?).and_return(true)
+      event_signup.selectable_types(user).should eq([EventSignup::NOVICE,
+                                                     EventSignup::CUSTOM])
 
-    event_signup.custom = nil
-    event_signup.selectable_types(user).should eq([EventSignup::NOVICE])
+      event_signup.custom = nil
+      event_signup.selectable_types(user).should eq([EventSignup::NOVICE])
+    end
+
+    it 'returns nil if no suiting type' do
+      event_signup = build_stubbed(:event_signup, novice: 10,
+                                                  mentor: nil,
+                                                  member: nil,
+                                                  custom: nil)
+      user = User.new
+      user.stub(:novice?).and_return(false)
+      user.stub(:mentor?).and_return(false)
+      user.stub(:member?).and_return(false)
+      event_signup.selectable_types(user).should eq([])
+    end
   end
 
   describe 'validations' do

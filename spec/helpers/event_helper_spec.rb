@@ -44,4 +44,23 @@ RSpec.describe EventHelper do
       response.should be_nil
     end
   end
+
+  describe 'event_user_type methods' do
+    it 'event_user_type returns correct values' do
+      signup = EventSignup.new(custom_name: 'Gammal och dryg')
+      helper.event_user_type(signup, EventSignup::CUSTOM).should eq('Gammal och dryg')
+      helper.event_user_type(signup, EventSignup::MEMBER).should eq(I18n.t('model.event_signup.user_types.member'))
+      helper.event_user_type(signup, nil).should eq('')
+    end
+
+    it 'maps event user_types' do
+      signup = EventSignup.new(custom_name: 'Gammal och dryg')
+      order = [EventSignup::CUSTOM, EventSignup::NOVICE, EventSignup::MENTOR]
+      expected = [['Gammal och dryg', EventSignup::CUSTOM],
+                  [I18n.t('model.event_signup.user_types.novice'), EventSignup::NOVICE],
+                  [I18n.t('model.event_signup.user_types.mentor'), EventSignup::MENTOR]]
+
+      helper.map_event_user_types(signup, order).should eq(expected)
+    end
+  end
 end

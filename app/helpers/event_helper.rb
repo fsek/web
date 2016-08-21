@@ -72,6 +72,8 @@ module EventHelper
   def event_user_type(event_signup, type)
     if type == EventSignup::CUSTOM
       event_signup.custom_name
+    elsif type.nil?
+      ''
     else
       I18n.t("model.event_signup.user_types.#{type}")
     end
@@ -87,11 +89,7 @@ module EventHelper
 
   def map_event_user_types(event_signup, types)
     types.map do |type|
-      if type == EventSignup::CUSTOM
-        [event_signup.custom_name, EventSignup::CUSTOM]
-      else
-        [I18n.t("model.event_signup.user_types.#{type}"), type]
-      end
+      [event_user_type(event_signup, type), type]
     end
   end
 end
