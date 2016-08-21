@@ -21,7 +21,7 @@
       <span class="description">
         <%= markdown(event.description) %>
       </span>
-      <% if event.signup? %>
+      <% if event.signup.present? %>
         <span class="reminder">
           <%= link_to(t('.event_registration'), event_path(event), class: 'btn primary') %>
         </span>
@@ -32,7 +32,7 @@
         <%= render('symbols', event: event) %>
         <br>
         <ul class="symbol-list">
-          <% if event.signup? %>
+          <% if event.signup.present? %>
             <li><%= t('.signup') %></li>
           <% end %>
           <% if event.food? %>
