@@ -1,4 +1,4 @@
-<% if event.signup? %>
+<% if event.signup.present? %>
   <%= image_tag('round-table/signup.svg', title: t('.signup')) %>
 <% end %>
 
