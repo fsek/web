@@ -20,4 +20,9 @@ FactoryGirl.define do
   trait :with_council do
     council
   end
+
+  trait :timestamps do
+    created_at { Time.zone.now }
+    updated_at { Time.zone.now }
+  end
 end

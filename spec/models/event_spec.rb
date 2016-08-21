@@ -6,6 +6,10 @@ RSpec.describe Event, type: :model do
     build_stubbed(:event).should be_valid
   end
 
+  it 'has valid factory with signup' do
+    build_stubbed(:event, :with_signup).should be_valid
+  end
+
   describe 'by locale' do
     it 'returns event depending on locale' do
       create(:event, title: 'Ej översatt')

@@ -1,0 +1,25 @@
+<%= simple_form_for([event, event_user], remote: true) do |f| %>
+  <ul>
+  <% event_user.errors.each do |e| %>
+    <li><%= e.to_s %></li>
+  <% end %>
+  </ul>
+  <% if event.signup.question.present? %>
+    <span class="event question">
+      <%= event.signup.question %>
+    </span>
+    <%= f.input :answer, hint: t('.answer_hint') %>
+  <% else %>
+    <%= f.input :answer, as: :hidden %>
+  <% end %>
+  <% if event.signup.order.any? %>
+    <%= f.input :user_type,
+                label: t('.user_type_label'),
+                collection: event_user_types(event.signup, current_user),
+                input_html: {class: 'select2'},
+                required: true %>
+  <% end %>
+  <%= f.association :group, collection: current_user.groups,
+                            input_html: {class: 'select2'} %>
+  <%= f.button :submit, t('.submit') %>
+<% end %>

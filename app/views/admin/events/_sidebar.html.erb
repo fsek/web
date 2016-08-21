@@ -1,0 +1,45 @@
+<ul class="list-group sidebar-nav">
+  <li class="list-group-item <%= tab == :texts ? 'active' : '' %>">
+    <%= link_to('#texts', data: { toggle: :tab }) do %>
+      <%= fa_icon('file-text') %> <%= t('.texts') %>
+    <% end %>
+  </li>
+
+  <li class="list-group-item <%= tab == :dates ? 'active' : '' %>">
+    <%= link_to('#dates', data: { toggle: :tab }) do %>
+      <%= fa_icon('calendar') %> <%= t('.dates') %>
+    <% end %>
+  </li>
+</ul>
+
+<%= link_to(t('.all_events'), admin_events_path, class: 'btn secondary') %>
+
+<% if event.persisted? %>
+  <div class="headline">
+    <h2><%= t('.signup') %></h2>
+  </div>
+
+  <ul class="list-group sidebar-nav">
+    <li class="list-group-item">
+      <%= link_to(admin_event_signup_path(event, tab: :settings),
+                                          data: {confirm: t('.save_before')}) do %>
+        <%= fa_icon('wrench') %> <%= t('.settings') %>
+      <% end %>
+    </li>
+
+    <% if event.signup.try(:persisted?) %>
+      <li class="list-group-item">
+        <%= link_to(admin_event_signup_path(event, tab: :attendees),
+                                            data: {confirm: t('.save_before')}) do %>
+          <%= fa_icon('users') %> <%= t('.attendees') %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to(t('.destroy'), admin_event_path(event),
+                             class: 'btn danger',
+                             method: :delete,
+                             data: { confirm: t('.destroy_confirmation') }) %>
+<% end %>
+

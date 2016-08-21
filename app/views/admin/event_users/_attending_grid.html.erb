@@ -1,0 +1,32 @@
+<table class="table table-bordered table-striped">
+      <tr>
+        <td><b><%= User.human_attribute_name(:name) %></b></td>
+        <td><b><%= EventUser.human_attribute_name(:user_type) %></b></td>
+        <td><b><%= EventUser.human_attribute_name(:created_at) %></b></td>
+        <td><b><%= EventUser.human_attribute_name(:group) %></b></td>
+
+        <% if event.signup.question.present? && show_answers(params) %>
+          <td><b><%= EventUser.human_attribute_name(:answer) %></b></td>
+        <% end %>
+
+        <% if event.food && show_food_preferences(params) %>
+          <td><b><%= User.human_attribute_name(:food_preference) %></b></td>
+        <% end %>
+      </tr>
+      <% grid.each do |event_user| %>
+        <tr>
+          <td><%= link_to event_user.user, edit_admin_event_event_user_path(event, event_user) %></td>
+          <td><%= event_user_type(@event_signup, event_user.user_type) %></td>
+          <td><%= event_user.created_at %></td>
+          <td><%= event_user.group %></td>
+
+          <% if event.signup.question.present? && show_answers(params) %>
+            <td><%= event_user.answer.try(:truncate, 20) %></td>
+          <% end %>
+
+          <% if event.food && show_food_preferences(params) %>
+            <td><%= event_user.user.food_preference %></td>
+          <% end %>
+        </tr>
+      <% end %>
+</table>

@@ -1,8 +1,0 @@
-sv:
-  event_registrations:
-    form:
-      answer_hint: Kan inte redigeras när anmälan skapats.
-
-    registered:
-      cancel: Avanmäl
-      confirm_cancel: Är du säker på att du vill avanmäla dig? Det finns inget sätt att få tillbaka platsen om evenemanget blivit fullt.

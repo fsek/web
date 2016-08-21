@@ -1,0 +1,33 @@
+<% if event.signup.question.present? %>
+  <span class="event block">
+    <%= fa_icon('question') %>
+    <%= event.signup.question %>
+  </span>
+
+  <% if event_user.answer.present? %>
+    <span class="event block">
+      <blockquote>
+        <%= event_user.answer %>
+      </blockquote>
+    </span>
+  <% end %>
+<% end %>
+
+<span class="event block">
+  <%= fa_icon('wrench') %>
+  <%= event_user_type(event.signup, event_user.user_type) %>
+</span>
+
+<span class="event block">
+  <%= fa_icon('users') %>
+  <%= link_to(event_user.group, group_path(event_user.group)) if event_user.group.present? %>
+</span>
+
+<% if event.signup.open? %>
+  <br>
+  <%= link_to(t('.cancel'), event_event_user_path(event, event_user),
+                            method: :delete,
+                            class: 'btn danger',
+                            remote: true,
+                            data: { confirm: t('.confirm_cancel') }) %>
+<% end %>

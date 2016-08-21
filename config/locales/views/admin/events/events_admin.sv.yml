@@ -5,18 +5,16 @@ sv:
         categories_after_save: Kategorier kan läggas till efter att evenemanget sparas.
         dates: Datum
         dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
-        for_members_hint: Påverkar endast evenemangsanmälan
         info: Information
         other_parts: Övrigt
-        question_hint: Ställ en fråga till deltagarna
-        registration: Anmälan
 
       edit:
         all_events: Alla evenemang
-        destroy: Förinta evenemang
         show: Visa evenemang
-        show_registrations: Visa anmälningar
         title: Redigera evenemang
+        dates: Datum
+        signup: Anmälan
+        texts: Information
 
       index:
         calendar: Kalender
@@ -25,3 +23,21 @@ sv:
       new:
         all_events: Alla evenemang
         title: Nytt evenemang
+        dates: Datum
+        signup: Anmälan
+        texts: Information
+
+      dates_form:
+        categories_after_save: Kategorier kan läggas till efter att evenemanget sparas.
+        dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
+
+      sidebar:
+        all_events: Alla evenemang
+        attendees: Deltagare
+        dates: Datum
+        destroy: Förinta evenemang
+        destroy_confirmation: Är du säker på att du vill förinta evenemanget?
+        save_before: Osparade ändringar går förlorade.
+        settings: Inställningar
+        signup: Anmälan
+        texts: Information

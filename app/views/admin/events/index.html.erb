@@ -33,8 +33,10 @@
     g.column(name: Event.human_attribute_name(:ends_at), attribute: 'ends_at') do |event|
       localized(event.ends_at)
     end
-    g.column(name: Event.human_attribute_name(:signup), attribute: 'signup') do |event|
-      yes_no(event.signup?)
+    g.column(name: Event.human_attribute_name(:event_signup),
+             assoc: :event_signup,
+             attribute: 'opens') do |event|
+      yes_no(event.signup.present?)
     end
     g.column(name: Event.human_attribute_name(:updated_at), attribute: 'updated_at',
             filter: false) do |event|

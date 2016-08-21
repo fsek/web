@@ -15,13 +15,13 @@
     <% if event.signup %>
       <li><%= fa_icon('pencil-square-o') %> <%= t('.registration') %></li>
 
-      <% if event.for_members %>
+      <% if event.signup.for_members %>
         <li><%= fa_icon('user') %> <%= t('.for_members') %></li>
       <% end %>
-    <% end %>
 
-    <% if event.question.present? %>
-      <li><%= fa_icon('question') %> <%= event.question %></li>
+      <% if event.signup.question.present? %>
+        <li><%= fa_icon('question') %> <%= event.signup.question %></li>
+      <% end %>
     <% end %>
   </ul>
 </span>

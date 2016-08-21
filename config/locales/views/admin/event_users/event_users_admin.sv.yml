@@ -1,0 +1,7 @@
+sv:
+  admin:
+    event_users:
+      edit:
+        all: Alla anmälningar
+        destroy: Förinta anmälan
+        title: Redigera anmälan
