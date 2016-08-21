@@ -145,7 +145,9 @@ namespace :db do
     ToolRenting.find_or_create_by!(renter: 'adrian2', tool: tool, purpose: 'for other use', return_date: Time.zone.now)
 
     # Introduction
-    introduction = Introduction.find_or_create_by!(title: 'En Ridderlig Nollning', start: 10.days.from_now, stop: 37.days.from_now,
+    introduction = Introduction.find_or_create_by!(title: 'En Ridderlig Nollning',
+                                                   start: Time.zone.now.change(month: 8, day: 22).beginning_of_day,
+                                                   stop: Time.zone.now.change(month: 9, day: 20).end_of_day,
                                                    slug: :ridderlig, current: true)
 
     group = Group.find_or_create_by!(group_type: Group::REGULAR, name: 'Black Knight', number: 1, introduction: introduction)
