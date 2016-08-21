@@ -8,7 +8,8 @@ function select2() {
 function select2Tags() {
   $('.select2_tags').select2({
     tags: true,
-    theme: 'bootstrap'
+    theme: 'bootstrap',
+    width: '100%'
   });
 }
 
