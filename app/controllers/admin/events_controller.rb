@@ -1,6 +1,7 @@
 # encoding:UTF-8
 class Admin::EventsController < Admin::BaseController
   load_permissions_and_authorize_resource
+  before_action :set_tab, only: [:new, :edit, :create, :update]
 
   def index
     @event_grid = initialize_grid(Event, include: :translations,
@@ -10,12 +11,10 @@ class Admin::EventsController < Admin::BaseController
 
   def new
     @event = Event.new
-    @tab = :info
   end
 
   def edit
     @event = Event.find(params[:id])
-    @tab = :info
   end
 
   def create
@@ -23,7 +22,6 @@ class Admin::EventsController < Admin::BaseController
     if @event.save
       redirect_to edit_admin_event_path(@event), notice: alert_create(Event)
     else
-      @tab = :info
       render :new, status: 422
     end
   end
@@ -33,7 +31,6 @@ class Admin::EventsController < Admin::BaseController
     if @event.update(event_params)
       redirect_to edit_admin_event_path(@event), notice: alert_update(Event)
     else
-      @tab = :info
       render :edit, status: 422
     end
   end
@@ -52,8 +49,12 @@ class Admin::EventsController < Admin::BaseController
                                   :short_sv, :short_en,
                                   :location_sv, :location_en, :starts_at, :ends_at,
                                   :all_day, :image, :remove_image,
-                                  :signup, :last_reg, :for_members,
-                                  :slots, :drink, :food, :cash,
-                                  :council_id, :dot, :question, category_ids: [])
+                                  :drink, :food, :cash,
+                                  :council_id, :dot,
+                                  category_ids: [])
+  end
+
+  def set_tab
+    @tab = params.fetch(:tab, :texts).to_sym
   end
 end
