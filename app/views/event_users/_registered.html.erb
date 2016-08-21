@@ -13,15 +13,19 @@
   <% end %>
 <% end %>
 
-<span class="event block">
-  <%= fa_icon('wrench') %>
-  <%= event_user_type(event.signup, event_user.user_type) %>
-</span>
+<% if event_user.user_type.present? %>
+  <span class="event block">
+    <%= fa_icon('wrench') %>
+    <%= event_user_type(event.signup, event_user.user_type) %>
+  </span>
+<% end %>
 
-<span class="event block">
-  <%= fa_icon('users') %>
-  <%= link_to(event_user.group, group_path(event_user.group)) if event_user.group.present? %>
-</span>
+<% if event_user.group.present? %>
+  <span class="event block">
+    <%= fa_icon('users') %>
+    <%= link_to(event_user.group, group_path(event_user.group)) if event_user.group.present? %>
+  </span>
+<% end %>
 
 <% if event.signup.open? %>
   <br>

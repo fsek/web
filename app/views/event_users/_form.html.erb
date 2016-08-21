@@ -12,7 +12,7 @@
   <% else %>
     <%= f.input :answer, as: :hidden %>
   <% end %>
-  <% if event.signup.order.any? %>
+  <% if event.signup.order.any? && event_user_types(event.signup, current_user).any? %>
     <%= f.input :user_type,
                 label: t('.user_type_label'),
                 collection: event_user_types(event.signup, current_user),

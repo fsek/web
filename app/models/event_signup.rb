@@ -35,6 +35,7 @@ class EventSignup < ActiveRecord::Base
 
   private
 
+  # Loops through options by order and checks if user fits
   def highest_type(user)
     (order - [CUSTOM]).each do |type|
       if type == NOVICE && user.novice?
@@ -45,6 +46,8 @@ class EventSignup < ActiveRecord::Base
         return MEMBER
       end
     end
+
+    nil
   end
 
   def orders

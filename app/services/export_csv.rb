@@ -1,4 +1,6 @@
-module ExportCSV
+class ExportCSV
+  extend EventHelper
+
   def self.event_users(attendees, signup)
     if attendees.present? && signup.present?
       CSV.generate(headers: true) do |csv|
@@ -18,14 +20,6 @@ module ExportCSV
                   a.user.email]
         end
       end
-    end
-  end
-
-  def self.event_user_type(event_signup, type)
-    if type == EventSignup::CUSTOM
-      event_signup.custom_name
-    else
-      I18n.t("model.event_signup.user_types.#{type}")
     end
   end
 end
