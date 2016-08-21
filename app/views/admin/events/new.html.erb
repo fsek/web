@@ -1,11 +1,22 @@
-<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
-  <div class="headline">
-    <h1><%= title(t('.title')) %></h1>
-  </div>
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+<div class="col-md-3 col-sm-12">
+  <%= render '/admin/events/sidebar', event: @event, tab: @tab %>
+</div>
 
-  <%= render 'form', event: @event, tab: @tab %>
+<div class="col-md-9 col-sm-12">
+  <%= simple_form_for([:admin, @event]) do |f| %>
+    <div class="tab-content">
+      <%= f.button :submit %>
+      <hr>
+      <div id="texts" class="profile-edit tab-pane fade in <%= @tab == :texts ? 'active' : '' %>">
+        <%= render 'texts_form', form: f, event: @event %>
+      </div>
 
-  <hr>
-  <%= link_to(t('.all_events'), admin_events_path,
-                                class: 'btn secondary') %>
+      <div id="dates" class="profile-edit tab-pane fade in <%= @tab == :dates ? 'active' : '' %>">
+        <%= render 'dates_form', form: f, event: @event %>
+      </div>
+    </div>
+  <% end %>
 </div>

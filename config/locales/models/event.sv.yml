@@ -23,6 +23,7 @@ sv:
         dot: Prickar
         drink: Alkohol
         ends_at: Slutar
+        event_signup: Anmälan
         food: Mat
         image: Bild
         location: Plats

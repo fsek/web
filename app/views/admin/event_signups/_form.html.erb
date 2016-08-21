@@ -1,0 +1,27 @@
+<%= simple_form_for([:admin, event, signup]) do |f| %>
+  <div class="headline">
+    <h3><%= t('.signup') %></h3>
+  </div>
+  <%= f.input :for_members %>
+  <%= f.input :question_sv, hint: t('.question_hint') %>
+  <%= f.input :question_en %>
+  <%= f.input :opens, as: :datetime_picker %>
+  <%= f.input :closes, as: :datetime_picker %>
+  <%= f.input :slots %>
+  <div class="headline">
+    <h4><%= t('.priorities') %></h4>
+  </div>
+  <%= simple_format(t('.priorities_hint')) %>
+  <%= simple_format(t('.priority_example')) %>
+  <%= f.input :novice, wrapper_html: {class: 'inline third'} %>
+  <%= f.input :mentor, wrapper_html: {class: 'inline third'} %>
+  <%= f.input :member, wrapper_html: {class: 'inline third'} %>
+  <%= f.input :custom_name, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :custom, wrapper_html: {class: 'inline half'} %>
+  <%= f.button :submit %>
+  <% if event.persisted? && signup.try(:persisted?) %>
+      <%= link_to(t('.destroy'), admin_event_signup_path(event, signup),
+                                 method: :delete,
+                                 class: 'btn danger pull-right') %>
+  <% end %>
+<% end %>

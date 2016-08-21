@@ -8,14 +8,14 @@ module EventHelper
   def event_attendees(event)
     content = []
     content << content_tag(:li) do
-      safe_join([fa_icon('user'), " #{I18n.t('model.event.attending')}: #{EventRegistration.attending_count(event)}"])
+      safe_join([fa_icon('user'), " #{I18n.t('model.event.attending')}: #{EventUser.attending_count(event)}"])
     end
 
     content << content_tag(:li) do
-      safe_join([fa_icon('users'), " #{Event.human_attribute_name(:slots)}: #{event.slots}"])
+      safe_join([fa_icon('users'), " #{EventSignup.human_attribute_name(:slots)}: #{event.signup.slots}"])
     end
 
-    reserves = EventRegistration.reserve_count(event)
+    reserves = EventUser.reserve_count(event)
     if reserves > 0
       content << content_tag(:li) do
         safe_join([fa_icon('user-times'), " #{I18n.t('model.event.reserves')}: #{reserves}"])
@@ -23,21 +23,26 @@ module EventHelper
     end
 
     content << content_tag(:li) do
-      safe_join([fa_icon('calendar-o'),
-                 " #{Event.human_attribute_name(:last_reg)} : #{l(event.last_reg, format: :short)}"])
+      safe_join([fa_icon('calendar-check-o'),
+                 " #{EventSignup.human_attribute_name(:opens)}: #{l(event.signup.opens, format: :short)}"])
+    end
+
+    content << content_tag(:li) do
+      safe_join([fa_icon('calendar-times-o'),
+                 " #{EventSignup.human_attribute_name(:closes)}: #{l(event.signup.closes, format: :short)}"])
     end
 
     content_tag(:span, content_tag(:ul, safe_join(content)), class: 'event info')
   end
 
-  def event_reg_status(registration)
-    if registration.persisted?
-      if !registration.reserve
-        # Attending
-        event_status_span('attending', 'check-circle-o', t('.attending'))
-      else
+  def event_reg_status(event_user)
+    if event_user.persisted?
+      if event_user.reserve?
         event_status_span('reserve', 'question-circle',
-                          t('.reserve', count: registration.reserve_position))
+                          t('.reserve', count: event_user.reserve_position))
+      else
+        event_status_span('attending', 'check-circle-o',
+                          t('.attending', count: event_user.position, max: event_user.event_signup.slots))
       end
     else
       event_status_span('not-attending', 'exclamation-circle', t('.not_attending'))
@@ -55,12 +60,38 @@ module EventHelper
     if event.try(:signup)
       if user.nil?
         content << I18n.t('helper.event.need_to_sign_in')
-      elsif !user.member? && event.for_members
+      elsif !user.member? && event.signup.for_members
         content << I18n.t('helper.event.membership_required')
         content << contact_from_slug(slug: :spindelman)
       end
 
       content_tag(:span, safe_join(content), class: 'event not-registered') if content.any?
+    end
+  end
+
+  def event_user_type(event_signup, type)
+    if type == EventSignup::CUSTOM
+      event_signup.custom_name
+    else
+      I18n.t("model.event_signup.user_types.#{type}")
+    end
+  end
+
+  def event_user_types(event_signup, user)
+    map_event_user_types(event_signup, event_signup.selectable_types(user))
+  end
+
+  def admin_event_user_types(event_signup)
+    map_event_user_types(event_signup, event_signup.order)
+  end
+
+  def map_event_user_types(event_signup, types)
+    types.map do |type|
+      if type == EventSignup::CUSTOM
+        [event_signup.custom_name, EventSignup::CUSTOM]
+      else
+        [I18n.t("model.event_signup.user_types.#{type}"), type]
+      end
     end
   end
 end
