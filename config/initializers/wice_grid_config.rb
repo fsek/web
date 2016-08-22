@@ -34,6 +34,9 @@ if defined?(Wice::Defaults)
   # Default CSV field separator
   Wice::Defaults::CSV_FIELD_SEPARATOR = ','
 
+  # Default CSV encoding (p.e. 'CP1252:UTF-8' to make Microsoft Excel(tm) happy)
+  Wice::Defaults::CSV_ENCODING = nil
+
   # The strategy when to show the filter.
   # * <tt>:when_filtered</tt> - when the table is the result of filtering
   # * <tt>:always</tt>        - show the filter always
@@ -178,6 +181,9 @@ if defined?(Wice::Defaults)
 
   # The name of the page method (should correspond to Kaminari.config.page_method_name)
   Wice::Defaults::PAGE_METHOD_NAME = :page
+
+  # The name of the theme to use for the pagination with Kaminari
+  Wice::Defaults::PAGINATION_THEME = :wice_grid
 
   # By default ActiveRecord calls are always executed inside Model.unscoped{}.
   # Setting <tt>USE_DEFAULT_SCOPE</tt> to true will use the default scope for all queries.
