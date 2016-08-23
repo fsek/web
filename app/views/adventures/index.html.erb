@@ -11,7 +11,11 @@
 
       <small><%= adventure_info(@adventure) %></small>
       <%= markdown(@adventure.content) %>
+
+      <%= responsive_video(@adventure.video) %>
+      <hr>
     </div>
+
   <% end %>
 
   <% if @total.present? %>

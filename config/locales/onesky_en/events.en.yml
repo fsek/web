@@ -21,6 +21,9 @@ en:
       not_attending: "You are not registered"
       registration: Registration
       reserve: "You are reserve, position: %{count}"
+      description_headline: "Viktigt om anmälan"
+      description: "Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är er plats garanterad först då **anmälan stängt** och ni fått **er plats bekräftad via ett e-postmeddelande**."
+      contact_if_problem: "Vid problem med anmälan, hör vänligen av er till:"
       submit_signup: Register
     stream:
       coming_events: "Upcoming events"

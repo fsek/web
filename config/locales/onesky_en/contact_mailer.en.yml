@@ -9,4 +9,5 @@ en:
     subject: "The F-guild: contact form"
     contact_email:
       message_sent_via: "Message sent via Fsektionen.se"
+      header_title: Kontaktformulär
       title: "Contact form"

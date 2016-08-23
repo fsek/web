@@ -42,4 +42,12 @@ module ApplicationHelper
     end
     content_tag :div, raw(html.to_html), class: 'form-group'
   end
+
+  def responsive_video(url)
+    if url.present?
+      content_tag(:div, class: 'responsive-video') do
+        content_tag(:iframe, '', src: url, frameborder: 0)
+      end
+    end
+  end
 end

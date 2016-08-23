@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823195703) do
+ActiveRecord::Schema.define(version: 20160823221453) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160823195703) do
     t.datetime "deleted_at"
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
+    t.string   "video",           limit: 255
   end
 
   add_index "adventures", ["deleted_at"], name: "index_adventures_on_deleted_at", using: :btree

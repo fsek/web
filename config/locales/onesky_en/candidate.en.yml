@@ -8,6 +8,7 @@ en:
   model:
     candidate:
       add_user_information: "You need to enter your user details"
+      book_interview: "Boka intervju"
       not_editable: "kandidaturer för posten kan inte skapas eller redigeras just nu."
       not_allowed_to_destroy: "Inte tillåtet att radera kandidaturen."
       time_error: "candidacies for the position cannot be created or edited, has the election closed?"

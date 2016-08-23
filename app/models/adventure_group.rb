@@ -3,6 +3,7 @@ class AdventureGroup < ActiveRecord::Base
 
   belongs_to :adventure, required: true, inverse_of: :adventure_groups
   belongs_to :group, required: true
+  has_one :introduction, through: :group
 
   validates :group, uniqueness: { scope: :adventure }
   validates :points, presence: true, numericality: { greater_than_or_equal_to: 0 }
@@ -12,6 +13,7 @@ class AdventureGroup < ActiveRecord::Base
   scope :total_points, -> { group(:group_id).select('group_id, sum(points) as points') }
   scope :for_index, -> { published_results.total_points.includes(:group).order('points desc') }
   scope :for_show, -> { includes(:group).order('points desc') }
+  scope :by_adventure_desc, -> { order('adventures.start_date DESC') }
 
   private
 

@@ -18,6 +18,7 @@ en:
     sidebar:
       sponsors: Sponsors
     event_modal:
+      all_day: "Hela dagen"
       drink: "Drinks for sale"
       event_registration: "To event signup"
       food: "Food is served"
