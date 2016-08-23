@@ -1,7 +1,6 @@
 sv:
   contact_mailer:
-    subject: "F-sektionen: kontaktformulär"
-    from: "Kontaktformulär - %{sender} <%{email}>"
+    subject: "F-sektionens kontaktformulär - %{sender}"
 
     contact_email:
       message_sent_via: Meddelande skickat via Fsektionen.se
