@@ -14,7 +14,9 @@
 
   <div class="col-md-9 col-sm-12">
     <% if @constant.present? %>
-      <iframe class="responsive-video" src="<%= @constant.value %>" frameborder="0" allowfullscreen></iframe>
+      <div class="responsive-video">
+        <iframe src="<%= @constant.value %>" frameborder="0" allowfullscreen></iframe>
+      </div>
     <% end %>
   </div>
 </div>
