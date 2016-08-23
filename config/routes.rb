@@ -110,6 +110,7 @@ Fsek::Application.routes.draw do
 
     resources :introductions, path: :nollning, only: [:index, :show] do
       get :archive, path: :arkiv, on: :collection
+      get :dance, path: :dans, on: :collection
       get :matrix, path: :matris, on: :collection
       get 'modal/:date', action: :modal, as: :modal, on: :member
       resources :adventures, path: :aventyr, only: [:index, :show] do

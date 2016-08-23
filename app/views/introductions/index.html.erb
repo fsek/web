@@ -26,6 +26,8 @@
       <li><%= link_to(t('.checklist'), 'sida/checklista') %></li>
       <li><%= link_to(t('.what_is_nollning'), 'sida/vadarnollning') %></li>
       <li><%= link_to(t('.matrix'), matrix_introductions_path) %></li>
+      <li><%= link_to(t('.adventures'), introduction_adventures_path(@introduction)) %></li>
+      <li><%= link_to(t('.dance'), dance_introductions_path) %></li>
   </div>
 
   <% if @news.present? %>
@@ -39,15 +41,6 @@
       <%= link_to news_index_path(category: :nollning) do%>
         <%= fa_icon('plus') %> <%= t('.more_news') %>
       <% end %>
-    </div>
-  <% end %>
-
-  <% if @constant.present? %>
-    <div class="col-sm-12">
-      <div class="headline">
-        <h2><%= t('.theme_movie') %></h2>
-      </div>
-      <iframe width="560" height="315" src="<%= @constant.value %>" frameborder="0" allowfullscreen></iframe>
     </div>
   <% end %>
 </div>

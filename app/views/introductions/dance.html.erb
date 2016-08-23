@@ -1,0 +1,20 @@
+<div class="introduction">
+  <div class="headline">
+    <h1>
+        <%= title(t('.title')) %> 
+        <small>
+          <%= @introduction.title %>
+        </small>
+    </h1>
+  </div>
+
+  <div class="col-md-3 col-sm-12">
+    <%= link_to(t('.to_introduction'), introductions_path, class: 'btn primary') %>
+  </div>
+
+  <div class="col-md-9 col-sm-12">
+    <% if @constant.present? %>
+      <iframe width="560" height="315" src="<%= @constant.value %>" frameborder="0" allowfullscreen></iframe>
+    <% end %>
+  </div>
+</div>

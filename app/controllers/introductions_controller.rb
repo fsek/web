@@ -1,10 +1,13 @@
 class IntroductionsController < ApplicationController
-  before_action :set_introduction, only: [:index, :matrix]
+  before_action :set_introduction, only: [:index, :matrix, :dance]
   load_permissions_then_authorize_resource(find_by: :slug)
 
   def index
-    @constant = Constant.find_by_name('nollning-video')
     @news = News.include_for_feed.slug(:nollning).by_date.limit(5)
+  end
+
+  def dance
+    @constant = Constant.find_by_name('nollning-video')
   end
 
   def show
