@@ -26,7 +26,9 @@ sv:
       next: Nästa
 
     index:
+      adventures: Äventyrsuppdrag
       checklist: Checklista
+      dance: Nolledans
       info: Välkommen till en ridderlig nollning på F-sektionen. Här hittar du all information som rör nollningen för studenter inom programmen teknisk fysik, teknisk matematik och teknisk nanovetenskap. Som blivande student på dessa program är du varmt välkommen till oss i höst. Innan ditt hälsningsanförande den 22a augusti rekommenderar vi att du kollar igenom %{checklist} som steg för steg tar dig igenom saker du bör ha förberett. Om du undrar vad nollningen är kan du läsa mer om det %{more_info}.
       info2: Den här sidan kommer under sommaren och nollningen att kontinuerligt uppdateras med viktig och rolig information, så se till att bokmärka den och komma tillbaks hit innan allt drar igång.
       info3: Vi ser fram emot att träffa dig och välkomna dig till LTH och F-sektionen!
@@ -40,7 +42,6 @@ sv:
       matrix: Nollematris
       more_news: Fler nyheter
       news: Nyheter
-      theme_movie: Temasläppsfilm
       this_checklist: denna checklista
       title: En Ridderlig Nollning
       what_is_nollning: Vad är Nollning?
@@ -74,3 +75,7 @@ sv:
 
     archive:
       title: Tidigare Nollningar
+
+    dance:
+      title: Nolledans
+      to_introduction: Till Nollning

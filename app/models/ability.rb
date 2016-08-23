@@ -24,7 +24,7 @@ class Ability
     can [:index, :export, :introduction], :calendar
     # But cannot view any albums
     can :index, :gallery
-    can [:read, :archive, :matrix, :modal], Introduction
+    can [:read, :archive, :matrix, :modal, :dance], Introduction
     can [:index, :about,
          :cookies_information, :company_about,
          :company_offer, :robots], :static_pages
