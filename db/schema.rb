@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160812145757) do
+ActiveRecord::Schema.define(version: 20160823195703) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -361,6 +361,7 @@ ActiveRecord::Schema.define(version: 20160812145757) do
     t.boolean  "drink"
     t.boolean  "food"
     t.boolean  "cash"
+    t.datetime "deleted_at"
   end
 
   create_table "faqs", force: :cascade do |t|

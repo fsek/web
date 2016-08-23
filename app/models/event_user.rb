@@ -1,10 +1,12 @@
 class EventUser < ActiveRecord::Base
+  acts_as_paranoid
   belongs_to :user, required: true
   belongs_to :event, required: true
   belongs_to :group
   has_one :event_signup, through: :event, required: true
 
-  validates :user, uniqueness: { scope: :event }
+  # validates :user, uniqueness: { scope: :event }
+  validate :uniqueness_validation
   validate :selected_type, :reg_open, :user_types, :membership, :groups, unless: :is_admin
 
   attr_accessor :is_admin
@@ -90,6 +92,12 @@ class EventUser < ActiveRecord::Base
   def groups
     if group.present? && !user.groups.include?(group)
       errors.add(:group_id, I18n.t('model.event_user.not_in_group'))
+    end
+  end
+
+  def uniqueness_validation
+    if EventUser.where(user: user, event: event).any?
+      errors.add(:user_id,  I18n.t('model.event_user.already_registered'))
     end
   end
 end

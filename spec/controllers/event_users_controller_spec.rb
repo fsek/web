@@ -42,6 +42,30 @@ RSpec.describe EventUsersController, type: :controller do
         xhr(:post, :create, event_id: event.to_param, event_user: attributes)
       end.should change(EventUser, :count).by(0)
     end
+
+    it 'fails if already signed up to same event' do
+      event = create(:event)
+      create(:event_signup, event: event)
+      create(:event_user, event: event, user: user)
+      attributes = { user_type: EventSignup::MEMBER }
+
+      lambda do
+        xhr(:post, :create, event_id: event.to_param, event_user: attributes)
+      end.should_not change(EventUser, :count)
+
+      assigns(:event_user).errors[:user_id].should include(I18n.t('model.event_user.already_registered'))
+    end
+
+    it 'succeeds even when user signup to another event' do
+      create(:event_user, user: user)
+
+      event = create(:event, :with_signup)
+      attributes = { user_type: EventSignup::MEMBER }
+
+      lambda do
+        xhr(:post, :create, event_id: event.to_param, event_user: attributes)
+      end.should change(EventUser, :count).by(1)
+    end
   end
 
   describe 'DELETE #destroy' do
