@@ -1,4 +1,5 @@
 class EventUser < ActiveRecord::Base
+  acts_as_paranoid
   belongs_to :user, required: true
   belongs_to :event, required: true
   belongs_to :group
