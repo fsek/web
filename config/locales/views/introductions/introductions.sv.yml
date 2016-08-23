@@ -79,3 +79,10 @@ sv:
     dance:
       title: Nolledans
       to_introduction: Till Nollning
+
+    hide_matrix:
+      hide_matrix_description: Matrisen är inte alltid snabb på t.ex. din telefon. Här kan du välja att dölja eller visa bakgrunden.
+      like_to_hide: Vill du dölja den?
+      like_to_show: Vill du visa den?
+      you_chose_to_hide: Du har valt att dölja bakgrunden på matrisen.
+      you_chose_to_show: Du har valt att visa bakgrunden på matrisen.

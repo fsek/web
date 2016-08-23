@@ -23,11 +23,10 @@
       <h2><%= t('.links') %></h2>
     </div>
     <ul>
-      <li><%= link_to(t('.checklist'), 'sida/checklista') %></li>
-      <li><%= link_to(t('.what_is_nollning'), 'sida/vadarnollning') %></li>
       <li><%= link_to(t('.matrix'), matrix_introductions_path) %></li>
       <li><%= link_to(t('.adventures'), introduction_adventures_path(@introduction)) %></li>
       <li><%= link_to(t('.dance'), dance_introductions_path) %></li>
+    </ul>
   </div>
 
   <% if @news.present? %>

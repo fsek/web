@@ -177,14 +177,33 @@ $brown: #754c29;
         }
       }
     }
+
     .modal {
       .modal-dialog {
         width: 95%;
       }
     }
   }
-  .gecko-title {
+
+  .matrix-headline,
+  .gecko-disclaimer {
     display: none;
+  }
+
+  &.hide-matrix {
+    .matrix-headline {
+      display: block;
+    }
+
+    .matrix {
+      border: none;
+    }
+  }
+
+  .hide-matrix-description {
+    margin: auto;
+    text-align: center;
+    width: 100%;
   }
 }
 
@@ -194,17 +213,17 @@ $brown: #754c29;
 
 body.gecko {
   .introduction {
-    .matrix {
-      border-image: none;
-      border: none;
+    .matrix-headline {
+      display: block;
     }
 
-    .gecko-title {
-      display: block;
+    .matrix {
+      border: none;
+      border-image: none;
+    }
 
-      span {
-        display: blocK;
-      }
+    .gecko-description {
+      display: block;
     }
   }
 }

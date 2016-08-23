@@ -1,0 +1,40 @@
+.banner {
+  background: $light-gray;
+  border-top: 1px solid $light-gray-text;
+  bottom: 0;
+  left: 0;
+  line-height: 40px;
+  padding-top: 20px;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 999;
+
+  .banner-content {
+    display: block;
+    line-height: 26px;
+    padding: 20px 0;
+  }
+
+  .banner-button {
+    display: inline-block;
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 767px){
+  .banner {
+    font-size: 12px;
+    line-height: 20px;
+    position: static;
+
+    .banner-content {
+      line-height: 16px;
+      padding: 5px 20px;
+    }
+
+    .banner-button {
+      padding-bottom: 5px;
+    }
+  }
+}

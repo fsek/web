@@ -1,0 +1,32 @@
+<% if cookies[:hide_matrix].nil? %>
+
+  <div class="banner">
+    <span class="banner-content">
+      <%= t('.hide_matrix_description') %>
+    </span>
+
+    <span class="banner-button">
+      <%= link_to(t('global.show'), params.merge(hide: false), class: 'btn primary') %>
+      <%= link_to(t('global.hide'), params.merge(hide: true), class: 'btn primary') %>
+    </span>
+  </div>
+
+<% elsif cookies[:hide_matrix] == 'true' %>
+
+  <p class="hide-matrix-description">
+    <%= t('.you_chose_to_hide') %>
+    <%= link_to(params.merge(hide: false)) do %>
+      <%= t('.like_to_show') %>
+    <% end %>
+  </p>
+
+<% elsif cookies[:hide_matrix] == 'false' %>
+
+  <p class="hide-matrix-description">
+    <%= t('.you_chose_to_show') %>
+    <%= link_to(params.merge(hide: true)) do %>
+      <%= t('.like_to_hide') %>
+    <% end %>
+  </p>
+
+<% end %>
