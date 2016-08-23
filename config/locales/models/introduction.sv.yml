@@ -1,4 +1,10 @@
 sv:
+  model:
+    introduction:
+      matrix:
+        hidden: Bakgrunden för matrisen döljs nu
+        shown: Bakgrunden för matrisen visas nu
+
   activerecord:
     models:
       introduction:

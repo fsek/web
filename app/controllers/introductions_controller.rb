@@ -21,6 +21,14 @@ class IntroductionsController < ApplicationController
   end
 
   def matrix
+    param = params.fetch(:hide, nil)
+    cookie = cookies[:hide_matrix]
+
+    if param.present? && param != cookie
+      cookies[:hide_matrix] = { value: param, expires_in: 20.days.from_now }
+      flash[:notice] = I18n.t('model.introduction.matrix.hidden') if param == 'true'
+      flash[:notice] ||= I18n.t('model.introduction.matrix.shown')
+    end
   end
 
   def modal

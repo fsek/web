@@ -2,13 +2,13 @@
 <% keywords(t('.keywords')) %>
 <% title(t('.title')) %>
 
-<div class="introduction">
-  <div class="headline gecko-title">
+<div class="introduction <%= display_matrix_class(cookies) %>">
+  <div class="headline matrix-headline">
     <h1>
       <%= t('.gecko-title') %> -
       <%= @introduction.title %>
     </h1>
-    <span>
+    <span class="gecko-disclaimer">
       <%= t('.gecko-disclaimer') %>
     </span>
   </div>
@@ -52,5 +52,6 @@
     <br>
     <%= link_to(t('.subscription'), introduction_calendars_url(protocol: 'webcal', format: 'ics'), class: 'btn primary')%>
   </p>
+  <%= render 'introductions/hide_matrix' %>
   <%= render 'modal' %>
 </div>
