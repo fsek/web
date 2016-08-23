@@ -9,7 +9,7 @@ RSpec.describe ContactMailer, type: :mailer do
       contact = create(:contact, message: message)
       mail = ContactMailer.contact_email(contact)
 
-      mail.subject.should eq(I18n.t('contact_mailer.subject'))
+      mail.subject.should eq(I18n.t('contact_mailer.subject', sender: 'Hilbert Älg'))
     end
 
     it 'sends to the given contact' do
