@@ -72,7 +72,7 @@ module EventHelper
   def event_user_type(event_signup, type)
     if type == EventSignup::CUSTOM
       event_signup.custom_name
-    elsif type.nil?
+    elsif type.blank?
       ''
     else
       I18n.t("model.event_signup.user_types.#{type}")
