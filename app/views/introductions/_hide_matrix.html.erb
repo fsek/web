@@ -6,8 +6,8 @@
     </span>
 
     <span class="banner-button">
-      <%= link_to(t('global.show'), params.merge(hide: false), class: 'btn primary') %>
-      <%= link_to(t('global.hide'), params.merge(hide: true), class: 'btn primary') %>
+      <%= link_to(t('global.show'), { hide: false }, class: 'btn primary') %>
+      <%= link_to(t('global.hide'), { hide: true }, class: 'btn primary') %>
     </span>
   </div>
 
@@ -15,7 +15,7 @@
 
   <p class="hide-matrix-description">
     <%= t('.you_chose_to_hide') %>
-    <%= link_to(params.merge(hide: false)) do %>
+    <%= link_to(hide: false) do %>
       <%= t('.like_to_show') %>
     <% end %>
   </p>
@@ -24,7 +24,7 @@
 
   <p class="hide-matrix-description">
     <%= t('.you_chose_to_show') %>
-    <%= link_to(params.merge(hide: true)) do %>
+    <%= link_to(hide: true) do %>
       <%= t('.like_to_hide') %>
     <% end %>
   </p>
