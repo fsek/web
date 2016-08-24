@@ -1,1 +1,1 @@
-$('#registration').html("<%= j render('/events/registration', event: @event, event_user: @event_user) %>");
+$('#registration').html("<%= j render('/events/registration', event: @event, event_user: @event.event_users.build) %>");
