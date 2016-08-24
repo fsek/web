@@ -53,7 +53,7 @@ class EventUser < ActiveRecord::Base
   end
 
   def position
-    self.class.priority(event_signup).pluck(:user_id).index(user.id) + 1
+    EventUser.where(event: event).priority(event_signup).pluck(:user_id).index(user.id) + 1
   end
 
   def reserve?
