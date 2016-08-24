@@ -96,8 +96,10 @@ class EventUser < ActiveRecord::Base
   end
 
   def uniqueness_validation
-    if EventUser.where(user: user, event: event).any?
-      errors.add(:user_id,  I18n.t('model.event_user.already_registered'))
+    if new_record? || user_id_changed?
+      if EventUser.where(user: user, event: event).any?
+        errors.add(:user_id,  I18n.t('model.event_user.already_registered'))
+      end
     end
   end
 end

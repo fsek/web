@@ -12,7 +12,12 @@ class EventUsersController < ApplicationController
 
   def destroy
     @event_user = current_user.event_users.find(params[:id])
-    @event_user.destroy! if @event_user.event_signup.open?
+
+    if @event_user.event_signup.open?
+      @event_user.destroy!
+      @event_user = @event.event_users.build
+    end
+
     render
   end
 
