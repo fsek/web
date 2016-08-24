@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe EventUser, type: :model do
-  it 'should have valid factory', pending: true do
-    build_stubbed(:event_user).should be_valid
+  it 'should have valid factory' do
+    create(:event_user).should be_valid
   end
 
   describe 'validations' do
@@ -25,6 +25,7 @@ RSpec.describe EventUser, type: :model do
 
     it 'checks user_type' do
       event_user = create(:event_user, user_type: nil)
+      event_user.should be_valid
       event_user.user_type = EventSignup::NOVICE
       event_user.event_signup.stub(:order).and_return([EventSignup::MEMBER])
 

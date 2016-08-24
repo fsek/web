@@ -20,7 +20,7 @@
   <%= f.input :custom, wrapper_html: {class: 'inline half'} %>
   <%= f.button :submit %>
   <% if event.persisted? && signup.try(:persisted?) %>
-      <%= link_to(t('.destroy'), admin_event_signup_path(event, signup),
+      <%= link_to(t('.destroy'), admin_event_event_signup_path(event, signup),
                                  method: :delete,
                                  class: 'btn danger pull-right') %>
   <% end %>
