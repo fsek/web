@@ -1,7 +1,8 @@
 <%= form.input :starts_at, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
 <%= form.input :ends_at, as: :datetime_picker, wrapper_html: {class: 'inline half'} %>
 <%= form.input :all_day, as: :boolean, wrapper_html: {class: 'inline half'} %>
-<%= form.input :dot, collection: [[t('model.event.single_dot'), Event::SINGLE],
+<%= form.input :dot, collection: [[t('model.event.without_dot'), Event::WITHOUT],
+                                  [t('model.event.single_dot'), Event::SINGLE],
                                   [t('model.event.double_dot'), Event::DOUBLE]],
                      input_html: {class: 'select2'},
                      hint: t('.dot_hint') %>
