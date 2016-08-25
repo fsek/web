@@ -11,7 +11,3 @@ deployment:
     branch: master
     commands:
       - bundle exec cap production deploy
-
-database:
-  override:
-    - bundle exec rake db:create db:migrate permissions:load db:populate_test --trace
