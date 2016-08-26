@@ -1,40 +1,40 @@
 @import "colors";
 
 //colors
-$color_curious_blue_approx: #2ba6cb;
-$color_storm_dust_approx: #666;
-$color_zumthor_approx: #ecf8ff;
-$color_cararra_approx: #ebebeb;
-$color_azure_approx: #3b5998;
-$color_dodger_blue_approx: #1daced;
-$color_valencia_approx: #db4a39;
-$color_iron_approx: rgb(215,215,215);
-$color_dove_gray_approx: #6f6f6f;
-$color_tundora_approx: #444;
-$color_tapa_approx: #777777;
+$color-curious-blue-approx: #2ba6cb;
+$color-storm-dust-approx: #666;
+$color-zumthor-approx: #ecf8ff;
+$color-cararra-approx: #ebebeb;
+$color-azure-approx: #3b5998;
+$color-dodger-blue-approx: #1daced;
+$color-valencia-approx: #db4a39;
+$color-iron-approx: #d7d7d7;
+$color-dove-gray-approx: #6f6f6f;
+$color-tundora-approx: #444;
+$color-tapa-approx: #777777;
 
 //fonts
-$font_0: Helvetica Neue;
-$font_1: Helvetica;
-$font_2: Arial;
-$font_3: sans-serif;
-$font_4: Helvetica Neue-Light;
-$font_5: Lucida Grande;
+$font-0: Helvetica Neue;
+$font-1: Helvetica;
+$font-2: Arial;
+$font-3: sans-serif;
+$font-4: Helvetica Neue-Light;
+$font-5: Lucida Grande;
 
 //@extend-elements
 //original selectors
 //h1, h2, h3, h4, h5, h6
-%extend_1 {
+%extend-1 {
   color: $black;
-  font-family: $font_0, $font_1, $font_2, $font_3;
+  font-family: $font-0, $font-1, $font-2, $font-3;
   line-height: 1.1;
   margin-bottom: 15px;
 }
 
 //original selectors
 //h1 small, h2 small, h3 small, h4 small, h5 small, h6 small
-%extend_2 {
-  color: $color_dove_gray_approx;
+%extend-2 {
+  color: $color-dove-gray-approx;
   font-size: 60%;
   line-height: 0;
   text-transform: none;
@@ -42,7 +42,7 @@ $font_5: Lucida Grande;
 
 //original selectors
 //p, ul
-%extend_3 {
+%extend-3 {
   font-size: 14px;
   font-weight: normal;
   line-height: 1.6;
@@ -50,7 +50,7 @@ $font_5: Lucida Grande;
 }
 
 * {
-  font-family: $font_0, $font_1, $font_2, $font_3;
+  font-family: $font-0, $font-1, $font-2, $font-3;
   margin: 0;
   padding: 0;
 }
@@ -75,18 +75,18 @@ body {
 }
 
 a {
-  color: $color_curious_blue_approx;
+  color: $color-curious-blue-approx;
 
   &.fb {
-    background-color: $color_azure_approx !important;
+    background-color: $color-azure-approx !important;
   }
 
   &.tw {
-    background-color: $color_dodger_blue_approx !important;
+    background-color: $color-dodger-blue-approx !important;
   }
 
   &.gp {
-    background-color: $color_valencia_approx !important;
+    background-color: $color-valencia-approx !important;
   }
 
   &.ms {
@@ -95,7 +95,7 @@ a {
 }
 
 .btn {
-  background-color: $color_storm_dust_approx;
+  background-color: $color-storm-dust-approx;
   color: $white;
   cursor: pointer;
   display: inline-block;
@@ -119,10 +119,10 @@ a {
 }
 
 p {
-  @extend %extend_3;
+  @extend %extend-3;
 
   &.callout {
-    background-color: $color_zumthor_approx;
+    background-color: $color-zumthor-approx;
     margin-bottom: 15px;
     padding: 15px;
   }
@@ -138,7 +138,7 @@ p {
 
 table {
   &.social {
-    background-color: $color_cararra_approx;
+    background-color: $color-cararra-approx;
   }
 
   &.head-wrap {
@@ -157,7 +157,7 @@ table {
   }
 
   &.table {
-    @extend %extend_3;
+    @extend %extend-3;
   }
 }
 
@@ -181,75 +181,75 @@ table {
 }
 
 h1 {
-  @extend %extend_1;
+  @extend %extend-1;
 
   font-size: 44px;
   font-weight: 200;
 
   small {
-    @extend %extend_2;
+    @extend %extend-2;
   }
 }
 
 h2 {
-  @extend %extend_1;
+  @extend %extend-1;
 
   font-size: 37px;
   font-weight: 200;
 
   small {
-    @extend %extend_2;
+    @extend %extend-2;
   }
 }
 
 h3 {
-  @extend %extend_1;
+  @extend %extend-1;
 
   font-size: 27px;
   font-weight: 200;
 
   small {
-    @extend %extend_2;
+    @extend %extend-2;
   }
 }
 
 h4 {
-  @extend %extend_1;
+  @extend %extend-1;
 
   font-size: 23px;
   font-weight: 200;
 
   small {
-    @extend %extend_2;
+    @extend %extend-2;
   }
 }
 
 h5 {
-  @extend %extend_1;
+  @extend %extend-1;
 
   font-size: 17px;
   font-weight: 500;
 
   small {
-    @extend %extend_2;
+    @extend %extend-2;
   }
 }
 
 h6 {
-  @extend %extend_1;
+  @extend %extend-1;
 
-  color: $color_tundora_approx;
+  color: $color-tundora-approx;
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
 
   small {
-    @extend %extend_2;
+    @extend %extend-2;
   }
 }
 
 ul {
-  @extend %extend_3;
+  @extend %extend-3;
 
   li {
     list-style-position: inside;
@@ -257,7 +257,7 @@ ul {
   }
 
   &.sidebar {
-    background: $color_cararra_approx;
+    background: $color-cararra-approx;
     display: block;
     list-style-type: none;
 
@@ -266,13 +266,12 @@ ul {
       margin: 0;
 
       a {
-        border-bottom: 1px solid $color_tapa_approx;
+        border-bottom: 1px solid $color-tapa-approx;
         border-top: 1px solid $white;
-        color: $color_storm_dust_approx;
+        color: $color-storm-dust-approx;
         cursor: pointer;
         display: block;
-        margin-right: 10px;
-        margin: 0;
+        margin: 0 10px 0 0;
         padding: 10px 16px;
         text-decoration: none;
 
@@ -336,25 +335,25 @@ ul {
 }
 
 @media only screen and(max-width: 600px) {
-  a[class="btn"] {
+  a.btn {
     background-image: none !important;
     display: block !important;
     margin-bottom: 10px !important;
     margin-right: 0 !important;
   }
 
-  div[class="column"] {
+  div.column {
     float: none !important;
     width: auto !important;
   }
 
-  table.social div[class="column"] {
+  table.social div.column {
     width: auto !important;
   }
 }
 
 .callout a {
-  color: $color_curious_blue_approx;
+  color: $color-curious-blue-approx;
   font-weight: bold;
 }
 
@@ -382,7 +381,7 @@ ul {
 }
 
 .footer-wrap .container td.content p {
-  border-top: 1px solid $color_iron_approx;
+  border-top: 1px solid $color-iron-approx;
   font-size: 10px;
   font-weight: bold;
   padding-top: 15px;
