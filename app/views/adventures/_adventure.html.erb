@@ -7,7 +7,7 @@
 
   <small><%= adventure_info(adventure) %></small>
   <%= simple_format(truncate(markdown_plain(adventure.content), length: 140)) %>
-  
+
   <%= link_to(t('.read_more'), introduction_adventure_path(adventure.introduction, adventure),
-                         class: 'btn primary') %>
+                               class: 'btn primary') %>
 </div>

@@ -5,8 +5,10 @@
 <div class="introduction <%= display_matrix_class(cookies) %>">
   <div class="headline matrix-headline">
     <h1>
-      <%= t('.gecko-title') %> -
-      <%= @introduction.title %>
+      <%= t('.gecko-title') %>
+      <small>
+        <%= @introduction.title %>
+      </small>
     </h1>
     <span class="gecko-disclaimer">
       <%= t('.gecko-disclaimer') %>

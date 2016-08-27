@@ -26,9 +26,28 @@ en:
         show: "Show event"
         show_registrations: "Show registrations"
         title: "Edit event"
+        dates: Datum
+        signup: Anmälan
+        texts: Information
       index:
         calendar: Calendar
         new_event: "New event"
       new:
         all_events: "All events"
         title: "New event"
+        dates: Datum
+        signup: Anmälan
+        texts: Information
+      dates_form:
+        categories_after_save: "Kategorier kan läggas till efter att evenemanget sparas."
+        dot_hint: "Prickar kommer ej att ändra någon tid, endast synas vid starttiden."
+      sidebar:
+        all_events: "Alla evenemang"
+        attendees: Deltagare
+        dates: Datum
+        destroy: "Förinta evenemang"
+        destroy_confirmation: "Är du säker på att du vill förinta evenemanget?"
+        save_before: "Osparade ändringar går förlorade."
+        settings: Inställningar
+        signup: Anmälan
+        texts: Information

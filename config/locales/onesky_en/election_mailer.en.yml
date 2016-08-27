@@ -12,8 +12,10 @@ en:
       sincerely: "Sincerely, The Nomination Commitee"
       subject_candidated: "You have applied to a postition on Fsektionen.se"
       you_have_candidated: "You have applied to the guild post"
+      show_your_candidacy: "Visa kandidatur"
     nominate_email:
       accept_before_closing: "Be aware that you must accept the nomination before the election for the position closes, %{date}."
+      candidate: Kandidera
       sincerely: "Sincerely, The Nomination Commitee"
       subject_nominated: "You have been nominated to a postition on Fsektionen.se"
       via_web: "You register your candidature on the guild's website"

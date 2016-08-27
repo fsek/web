@@ -45,7 +45,7 @@ class Admin::AdventuresController < Admin::BaseController
   def adventure_params
     params.require(:adventure).permit(:title_sv, :title_en, :content_sv, :content_en,
                                       :max_points, :start_date, :end_date,
-                                      :publish_results, group_ids: [],
+                                      :video, :publish_results, group_ids: [],
                                       adventure_groups_attributes: [:id, :points, :_destroy])
   end
 
