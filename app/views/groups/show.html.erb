@@ -6,7 +6,7 @@
   <div class="headline">
     <h4><%= t('.members') %></h4>
   </div>
-  <% cache(I18n.locale, @group_view.group.group_users) do %>
+  <% cache([I18n.locale, @group_view.group.group_users]) do %>
     <%= render @group_view.group.group_users.includes(:user) %>
   <% end %>
 
