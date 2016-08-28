@@ -1,7 +1,7 @@
 <%= simple_form_for([:admin, rent]) do |f| %>
   <h4><%= rent.print_status %> </h4>
   <%= f.input :service, as: :boolean %>
-  <%= f.association :user, collection: users %>
+  <%= f.association :user, collection: users, label_method: :print_email %>
 
   <% if rent.user.present? %>
     <table class="table">
