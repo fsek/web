@@ -10,6 +10,7 @@
   <%= f.input :number, hint: t('.number_hint') %>
   <%= f.association :users, collection: User.by_firstname.confirmed,
                             input_html: { class: 'select2' },
-                            include_blank: false %>
+                            include_blank: false,
+                            label_method: :print_email %>
   <%= f.button :submit %>
 <% end %>
