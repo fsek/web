@@ -3,7 +3,7 @@ function cafeCalendar() {
     events: '/hilbertcafe/feed',
     weekNumbers: true,
     minTime: '08:00:00',
-    maxTime: '13:00:00',
+    maxTime: '15:00:00',
     defaultView: 'agendaWeek',
     height: 'auto',
     weekends: false,
