@@ -1,8 +1,10 @@
 <%= simple_form_for([:admin, cafe_view.shift, cafe_view.shift.cafe_worker])  do |f| %>
-  <%= f.association :user, collection: cafe_view.users, label_method: :print_id %>
+  <%= f.association :user, collection: cafe_view.users,
+                           label_method: :print_email,
+                           input_html: {class: 'select2'} %>
   <%= f.input :competition, as: :boolean %>
   <%= f.association(:councils, collection: cafe_view.councils,
-                               input_html: { class: 'select2' }) %>
+                               input_html: {class: 'select2'}) %>
   <%= f.input :group %>
   <%= f.button :submit %>
   <% if cafe_view.shift.user.present? %>

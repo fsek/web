@@ -18,7 +18,7 @@
       <td><%= @cafe_view.shift.lp %></td>
     </tr>
     <tr>
-      <td><%= CafeShift.human_attribute_name(:user) %></td>
+      <td><%= CafeWorker.human_attribute_name(:user) %></td>
       <td><%= user_link(@cafe_view.shift.user) %></td>
     </tr>
   </table>
