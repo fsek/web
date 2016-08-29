@@ -27,6 +27,17 @@ RSpec.describe User, type: :model do
       it 'to_s' do
         user.to_s.should eq(%(#{user.firstname} #{user.lastname}))
       end
+
+      it 'program_year' do
+        user = User.new(program: User::PHYSICS, start_year: 1996)
+        user.program_year.should eq('F96')
+      end
+
+      it 'print_program' do
+        user = User.new(program: User::PHYSICS, start_year: 1996,
+                        firstname: 'Hilbert', lastname: 'Älg')
+        user.print_program.should eq('Hilbert Älg - F96')
+      end
     end
 
     it 'checks if summerchild' do

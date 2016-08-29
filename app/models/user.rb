@@ -1,5 +1,10 @@
 class User < ActiveRecord::Base
   include CarrierWave::Compatibility::Paperclip
+  PHYSICS = 'Teknisk Fysik'.freeze
+  MATH = 'Teknisk Matematik'.freeze
+  NANO = 'Teknisk Nanovetenskap'.freeze
+  OTHER = 'Oklart'.freeze
+
   devise(:database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable)
@@ -54,6 +59,19 @@ class User < ActiveRecord::Base
 
   def print_email
     %(#{self} <#{email}>)
+  end
+
+  def print_program
+    %(#{self} - #{program_year})
+  end
+
+  def program_year
+    str = ''
+    str = 'F' if program == PHYSICS
+    str = 'Pi' if program == MATH
+    str = 'N' if program == NANO
+    str += start_year.to_s.split(//).last(2).join if start_year.present?
+    str
   end
 
   def large_avatar

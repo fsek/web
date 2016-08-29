@@ -8,6 +8,12 @@ sv:
       password_updated: Lösenordet uppdaterades.
       recaptcha_error: Något blev fel med recaptcha, vänligen fyll i igen.
 
+      program:
+        physics: Teknisk Fysik
+        math: Teknisk Matematik
+        nano: Teknisk Nanovetenskap
+        other: Oklart
+
   activerecord:
     models:
       user: Användare

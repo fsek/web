@@ -1,7 +1,7 @@
 <% if post_view.present? %>
   <%= simple_form_for(post_view.post_user, url: add_user_admin_council_posts_path(post_view.council),
                                            method: :patch) do |f| %>
-    <%= f.association(:user, collection: post_view.users , label_method: :print_id,
+    <%= f.association(:user, collection: post_view.users , label_method: :print_email,
                       input_html: { class: 'select2' },
                       include_blank: false) %>
     <%= f.association(:post, collection: post_view.council.posts,
