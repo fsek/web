@@ -55,6 +55,6 @@ class Admin::EventSignupsController < Admin::BaseController
 
   def set_grids(event)
     @attending = EventUser.attending(event).for_grid
-    @reserves = EventUser.reserves(event).for_grid
+    @reserves = EventUser.reserves(event).includes([:user, group: :introduction])
   end
 end
