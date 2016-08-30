@@ -9,14 +9,14 @@
       <%= title %>
     <% end %>
   </div>
-  <% if ratio > 0.75 %>
+  <% if ratio > 0.90 %>
     <%= image_tag('round-table/mission4.svg', class: 'part') %>
     <%= image_tag('round-table/mission3.svg', class: 'part') %>
     <%= image_tag('round-table/mission2.svg', class: 'part') %>
-  <% elsif ratio > 0.5 %>
+  <% elsif ratio > 0.75 %>
     <%= image_tag('round-table/mission3.svg', class: 'part') %>
     <%= image_tag('round-table/mission2.svg', class: 'part') %>
-  <% elsif ratio > 0.25 %>
+  <% elsif ratio > 0.45 %>
     <%= image_tag('round-table/mission2.svg', class: 'part') %>
   <% end %>
   <%= image_tag('round-table/mission1.svg', class: 'part') %>
