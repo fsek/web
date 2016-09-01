@@ -54,14 +54,14 @@ RSpec.describe Admin::EventSignupsController, type: :controller do
     end
   end
 
-  describe 'GET #show as csv' do
-    it 'renders properly' do
+  describe 'GET #export as csv' do
+    it 'exports properly' do
       event = create(:event, :with_signup)
       create(:event_user, event: event)
       create(:event_user, event: event)
       create(:event_user, event: event)
 
-      get(:show, event_id: event, format: :csv)
+      get(:export, event_id: event, format: :csv)
       response.should have_http_status(200)
     end
   end

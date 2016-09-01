@@ -50,7 +50,7 @@ RSpec.describe EventHelper do
       signup = EventSignup.new(custom_name: 'Gammal och dryg')
       helper.event_user_type(signup, EventSignup::CUSTOM).should eq('Gammal och dryg')
       helper.event_user_type(signup, EventSignup::MEMBER).should eq(I18n.t('model.event_signup.user_types.member'))
-      helper.event_user_type(signup, nil).should eq('')
+      helper.event_user_type(signup, nil).should eq(I18n.t('model.event_signup.user_types.other'))
     end
 
     it 'maps event user_types' do

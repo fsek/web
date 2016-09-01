@@ -1,7 +1,7 @@
 sv:
   events:
     info:
-      cash: Endast kontanter
+      cash: Kostar pengar
       drink: Alkohol serveras
       food: Mat serveras
       registration: Kräver anmälan
@@ -14,7 +14,8 @@ sv:
       registration: Anmälan
       reserve: "Du är reserv, plats: %{count}"
       description_headline: Viktigt om anmälan
-      description: "Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är er plats garanterad först då **anmälan stängt** och ni fått **er plats bekräftad via ett e-postmeddelande**."
+      # description: "Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är er plats garanterad först då **anmälan stängt** och ni fått **er plats bekräftad via ett e-postmeddelande**."
+      description: "Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är er plats garanterad först då **anmälan har stängt**. Observera att det ej går att avanmäla sig när anmälan har stängt."
       contact_if_problem: 'Vid problem med anmälan, hör vänligen av er till:'
 
     stream:

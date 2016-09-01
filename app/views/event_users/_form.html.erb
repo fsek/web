@@ -16,6 +16,7 @@
     <%= f.input :user_type,
                 label: t('.user_type_label'),
                 collection: event_user_types(event.signup, current_user),
+                include_blank: t('model.event_signup.user_types.other'),
                 input_html: {class: 'select2'},
                 required: true %>
   <% end %>

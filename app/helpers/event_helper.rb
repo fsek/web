@@ -73,7 +73,7 @@ module EventHelper
     if type == EventSignup::CUSTOM
       event_signup.custom_name
     elsif type.blank?
-      ''
+      I18n.t('model.event_signup.user_types.other')
     else
       I18n.t("model.event_signup.user_types.#{type}")
     end
@@ -91,5 +91,17 @@ module EventHelper
     types.map do |type|
       [event_user_type(event_signup, type), type]
     end
+  end
+
+  def dress_codes(event)
+    event.dress_code.join(I18n.t('helper.event.or'))
+  end
+
+  def dress_code_collection
+    [I18n.t('model.event.dress_codes.overall'),
+     I18n.t('model.event.dress_codes.theme'),
+     I18n.t('model.event.dress_codes.formal'),
+     I18n.t('model.event.dress_codes.dark_suit'),
+     I18n.t('model.event.dress_codes.white_tie')]
   end
 end

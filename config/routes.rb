@@ -175,7 +175,9 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :events, path: :evenemang, except: :show do
         resources :event_signups, path: :anmalan, only: [:create, :update, :destroy]
-        resource :event_signup, path: :anmalan, only: :show, as: :signup
+        resource :event_signup, path: :anmalan, only: :show, as: :signup do
+          get 'export', on: :collection
+        end
         resources :event_users, path: :anmalningar, only: [:edit, :update, :destroy]
       end
     end
