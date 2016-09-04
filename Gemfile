@@ -46,9 +46,6 @@ gem 'turbolinks'
 gem 'uglifier'
 gem 'wice_grid', github: 'leikind/wice_grid', branch: 'rails3'
 
-# Only enable for a short period to find N+1 in production
-gem 'bullet'
-
 # To have a working JVM on server
 group :staging, :production do
   gem 'therubyracer', platform: :ruby
