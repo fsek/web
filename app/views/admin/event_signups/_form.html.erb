@@ -18,6 +18,12 @@
   <%= f.input :member, wrapper_html: {class: 'inline third'} %>
   <%= f.input :custom_name, wrapper_html: {class: 'inline half'} %>
   <%= f.input :custom, wrapper_html: {class: 'inline half'} %>
+  <div class="headline">
+    <h4><%= t('.groups') %></h4>
+  </div>
+  <%= f.input :group_types, input_html: {class: 'select2', multiple: true},
+                            collection: group_type_collection,
+                            include_hidden: false %>
   <%= f.button :submit %>
   <% if event.persisted? && signup.try(:persisted?) %>
       <%= link_to(t('.destroy'), admin_event_event_signup_path(event, signup),

@@ -15,7 +15,7 @@ class Group < ActiveRecord::Base
 
   validates :name, presence: true
   validates :number, presence: true, numericality: { greater_than: 0 }, if: :regular?
-  validates :number, absence: true, if: [:mission?, :other?]
+  validates :number, absence: true, unless: :regular?
   validates :group_type, presence: true, inclusion: { in: [REGULAR, MISSION, OTHER] }
 
   scope :regular, -> { where(group_type: REGULAR) }

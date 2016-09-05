@@ -2,7 +2,6 @@ class Admin::EventSignupsController < Admin::BaseController
   before_action :load_permissions, :set_tab
   load_and_authorize_resource :event, parent: true
   load_and_authorize_resource :event_signup, through: :event, singleton: true
-  include Admin::EventSignupsHelper
 
   def create
     @event_signup = @event.build_event_signup(event_signup_params)
@@ -54,7 +53,8 @@ class Admin::EventSignupsController < Admin::BaseController
 
   def event_signup_params
     params.require(:event_signup).permit(:for_members, :closes, :slots, :question_sv, :question_en,
-                                         :novice, :mentor, :member, :custom, :custom_name, :opens)
+                                         :novice, :mentor, :member, :custom, :custom_name, :opens,
+                                         group_types: [])
   end
 
   def set_tab

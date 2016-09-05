@@ -5,6 +5,7 @@ sv:
       not_open: Det går inte att anmäla sig till evenemanget just nu
       user_not_member: Användare är inte medlem
       unavailable_type: Felaktig användartyp vald
+      unallowed_type: Grupptypen är inte tillåten
       user_type_not_allowed: Användartypen tillåts inte
       not_in_group: Tillhör inte gruppen
 

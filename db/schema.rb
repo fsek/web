@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905111000) do
+ActiveRecord::Schema.define(version: 20160905113500) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -310,6 +310,7 @@ ActiveRecord::Schema.define(version: 20160905111000) do
     t.datetime "deleted_at"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.string   "group_types", limit: 255
   end
 
   add_index "event_signups", ["deleted_at"], name: "index_event_signups_on_deleted_at", using: :btree

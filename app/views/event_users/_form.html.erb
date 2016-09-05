@@ -20,7 +20,7 @@
                 input_html: {class: 'select2'},
                 required: true %>
   <% end %>
-  <%= f.association :group, collection: current_user.groups,
+  <%= f.association :group, collection: current_user.groups.merge(event.signup.selectable_groups),
                             input_html: {class: 'select2'} %>
   <%= f.button :submit, t('.submit') %>
 <% end %>

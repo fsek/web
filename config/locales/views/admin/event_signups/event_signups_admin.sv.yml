@@ -6,6 +6,7 @@ sv:
         dates: Datum
         destroy: Ta bort anmälan
         dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
+        groups: Grupper
         info: Information
         other_parts: Övrigt
         signup: Anmälan
