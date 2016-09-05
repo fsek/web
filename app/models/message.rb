@@ -1,7 +1,7 @@
 class Message < ActiveRecord::Base
   acts_as_paranoid
 
-  belongs_to :introduction, required: true
+  belongs_to :introduction
   belongs_to :user, required: true
 
   has_many :message_comments, dependent: :destroy

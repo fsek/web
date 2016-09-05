@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904223300) do
+ActiveRecord::Schema.define(version: 20160905111000) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -822,11 +822,9 @@ ActiveRecord::Schema.define(version: 20160904223300) do
   add_foreign_key "group_messages", "messages"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
-  add_foreign_key "groups", "introductions"
   add_foreign_key "menus", "main_menus"
   add_foreign_key "message_comments", "messages"
   add_foreign_key "message_comments", "users"
-  add_foreign_key "messages", "introductions"
   add_foreign_key "messages", "users"
   add_foreign_key "page_images", "pages"
   add_foreign_key "rents", "users"

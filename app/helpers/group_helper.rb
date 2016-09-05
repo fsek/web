@@ -31,12 +31,19 @@ module GroupHelper
 
   def group_type_str(group)
     if group.present?
-      group.regular? ? Group.human_attribute_name('regular') : Group.human_attribute_name('mission')
+      if group.regular?
+        Group.human_attribute_name('regular')
+      elsif group.mission?
+        Group.human_attribute_name('mission')
+      else
+        Group.human_attribute_name('other')
+      end
     end
   end
 
   def group_type_collection
     [[Group.human_attribute_name('regular'), Group::REGULAR],
-     [Group.human_attribute_name('mission'), Group::MISSION]]
+     [Group.human_attribute_name('mission'), Group::MISSION],
+     [Group.human_attribute_name('other'), Group::OTHER]]
   end
 end
