@@ -4,5 +4,8 @@
 <%= form.input :short_en, wrapper_html: {class: 'inline half'} %>
 <%= form.input :description_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
 <%= form.input :description_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+<%= form.input :dress_code, input_html: {class: 'select2', multiple: true},
+                            collection: dress_code_collection,
+                            include_hidden: false %>
 <%= link_to('Ändra datum', '#dates', data: {toggle: :tab}, class: 'btn secondary') %>
 <%= form.button :submit %>

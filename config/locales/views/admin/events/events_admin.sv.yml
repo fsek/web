@@ -30,6 +30,7 @@ sv:
       dates_form:
         categories_after_save: Kategorier kan läggas till efter att evenemanget sparas.
         dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
+        price_hint: Endast heltal. Anges alltid i SEK.
 
       sidebar:
         all_events: Alla evenemang

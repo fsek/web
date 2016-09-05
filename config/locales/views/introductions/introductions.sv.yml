@@ -18,7 +18,7 @@ sv:
       drink: Dricka säljes
       event_registration: Till evenemangsanmälan
       food: Mat serveras
-      cash: Kontanter behövs
+      cash: Kostar pengar
       signup: Kräver anmälan
 
     images:
@@ -49,7 +49,7 @@ sv:
     symbols:
       drink: Dricka säljes
       food: Mat serveras
-      cash: Kontanter behövs
+      cash: Kostar pengar
       signup: Kräver anmälan
 
     matrix:

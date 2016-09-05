@@ -18,6 +18,8 @@ class Event < ActiveRecord::Base
   has_many :users, through: :event_users
   belongs_to :council
 
+  serialize :dress_code, Array
+
   validates(:title, :description, :starts_at, :ends_at, :location,
             presence: true)
 

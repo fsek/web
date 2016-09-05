@@ -6,6 +6,12 @@ sv:
       without_dot: Utan minut eller prick
       single_dot: Prick (.)
       double_dot: Prick-prick (..)
+      dress_codes:
+        dark_suit: Mörk kostym
+        formal: Kavaj
+        overall: Overall
+        theme: Temaenligt
+        white_tie: Frack/Högtidsklädsel M.A.O
 
   activerecord:
     models:
@@ -13,7 +19,7 @@ sv:
     attributes:
       event:
         all_day: Heldag
-        cash: Kontant
+        cash: Kostar pengar
         categories: Kategorier
         council: Utskott
         created_at: Skapat
@@ -21,6 +27,7 @@ sv:
         description_en: Beskrivning - engelsk
         description_sv: Beskrivning - svensk
         dot: Prickar
+        dress_code: Klädkod
         drink: Alkohol
         ends_at: Slutar
         event_signup: Anmälan
@@ -29,6 +36,7 @@ sv:
         location: Plats
         location_en: Plats - engelsk
         location_sv: Plats - svensk
+        price: Pris
         question: Fråga
         remove_image: Förinta bild
         short: Kort titel

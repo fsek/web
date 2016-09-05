@@ -12,6 +12,18 @@
 
     <%= markdown(@event.description) %>
 
+    <% if @event.dress_code.present? %>
+      <div class="event">
+        <%= "#{Event.human_attribute_name('dress_code')}: #{dress_codes(@event)}" %>
+      </div>
+    <% end %>
+
+    <% if @event.price.present? %>
+      <div class="event">
+        <%= "#{Event.human_attribute_name('price')}: #{@event.price} kr" %>
+      </div>
+    <% end %>
+
     <hr>
 
     <%= render 'info', event: @event %>
@@ -45,8 +57,11 @@
 <% end %>
 
 <% if can_administrate?([:index, :edit], @event) %>
-  <%= link_to(t('.edit_event'), edit_admin_event_path(@event),
-                                class: 'btn primary') %>
-  <%= link_to(t('.all_events'), admin_events_path,
-                                class: 'btn secondary') %>
+  <div class="col-md-12">
+    <hr>
+    <%= link_to(t('.edit_event'), edit_admin_event_path(@event),
+                                  class: 'btn primary') %>
+    <%= link_to(t('.all_events'), admin_events_path,
+                                  class: 'btn secondary') %>
+</div>
 <% end %>

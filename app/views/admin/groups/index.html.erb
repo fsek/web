@@ -13,7 +13,9 @@
       link_to group.name, edit_admin_group_path(group)
     end
     g.column(name: t('.year'), attribute: 'start', assoc: :introduction, filter: false) do |group|
-      group.introduction.year
+      if group.introduction.present?
+        group.introduction.year
+      end
     end
     g.column(name: Group.human_attribute_name(:group_type),
              attribute: 'group_type',

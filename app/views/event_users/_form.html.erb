@@ -16,10 +16,11 @@
     <%= f.input :user_type,
                 label: t('.user_type_label'),
                 collection: event_user_types(event.signup, current_user),
+                include_blank: t('model.event_signup.user_types.other'),
                 input_html: {class: 'select2'},
                 required: true %>
   <% end %>
-  <%= f.association :group, collection: current_user.groups,
+  <%= f.association :group, collection: current_user.groups.merge(event.signup.selectable_groups),
                             input_html: {class: 'select2'} %>
   <%= f.button :submit, t('.submit') %>
 <% end %>

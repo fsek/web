@@ -90,8 +90,13 @@ class EventUser < ActiveRecord::Base
   end
 
   def groups
-    if group.present? && !user.groups.include?(group)
-      errors.add(:group_id, I18n.t('model.event_user.not_in_group'))
+    if group.present?
+      unless user.groups.include?(group)
+        errors.add(:group_id, I18n.t('model.event_user.not_in_group'))
+      end
+      unless event_signup.selectable_groups.include?(group)
+        errors.add(:group_id, I18n.t('model.event_user.unallowed_type'))
+      end
     end
   end
 

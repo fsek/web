@@ -15,6 +15,8 @@ class EventSignup < ActiveRecord::Base
   globalize_accessors(locales: [:en, :sv],
                       attributes: [:question])
 
+  serialize :group_types, Array
+
   # Returns the keys sorted by their value
   # Removes nil valued keys
   # Reverses to give the highest value first
@@ -31,6 +33,10 @@ class EventSignup < ActiveRecord::Base
 
   def open?
     opens < Time.zone.now && closes > Time.zone.now
+  end
+
+  def selectable_groups
+    group_types.present? ? Group.where(group_type: group_types) : Group.all
   end
 
   private

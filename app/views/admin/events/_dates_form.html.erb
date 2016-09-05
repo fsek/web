@@ -32,5 +32,7 @@
 <%= form.input :food, as: :boolean, wrapper_html: {class: 'inline third'} %>
 <%= form.input :cash, as: :boolean, wrapper_html: {class: 'inline third'} %>
 
+<%= form.input :price, hint: t('.price_hint') %>
+
 <%= link_to('Ändra texter', '#texts', data: {toggle: :tab}, class: 'btn secondary') %>
 <%= form.button :submit %>

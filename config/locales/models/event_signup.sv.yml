@@ -10,6 +10,7 @@ sv:
                 custom_name: Namn special
                 event: Event
                 for_members: För medlemmar
+                group_types: Tillåtna grupper
                 closes: Anmälan stänger
                 member: Medlem
                 mentor: Fadder
@@ -28,3 +29,4 @@ sv:
                 novice: Nolla
                 mentor: Fadder
                 member: Sektionsmedlem
+                other: Övrig

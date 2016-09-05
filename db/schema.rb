@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823221453) do
+ActiveRecord::Schema.define(version: 20160905113500) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -310,10 +310,10 @@ ActiveRecord::Schema.define(version: 20160823221453) do
     t.datetime "deleted_at"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.string   "group_types", limit: 255
   end
 
   add_index "event_signups", ["deleted_at"], name: "index_event_signups_on_deleted_at", using: :btree
-  add_index "event_signups", ["event_id"], name: "event_signups_unique_event_index", unique: true, using: :btree
   add_index "event_signups", ["event_id"], name: "index_event_signups_on_event_id", using: :btree
 
   create_table "event_translations", force: :cascade do |t|
@@ -363,6 +363,8 @@ ActiveRecord::Schema.define(version: 20160823221453) do
     t.boolean  "food"
     t.boolean  "cash"
     t.datetime "deleted_at"
+    t.integer  "price",           limit: 4
+    t.string   "dress_code",      limit: 255
   end
 
   create_table "faqs", force: :cascade do |t|
@@ -821,11 +823,9 @@ ActiveRecord::Schema.define(version: 20160823221453) do
   add_foreign_key "group_messages", "messages"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
-  add_foreign_key "groups", "introductions"
   add_foreign_key "menus", "main_menus"
   add_foreign_key "message_comments", "messages"
   add_foreign_key "message_comments", "users"
-  add_foreign_key "messages", "introductions"
   add_foreign_key "messages", "users"
   add_foreign_key "page_images", "pages"
   add_foreign_key "rents", "users"

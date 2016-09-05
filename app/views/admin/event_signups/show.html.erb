@@ -39,7 +39,7 @@
                  grid: @attending,
                  event: @event) %>
 
-      <%= link_to t('.export'), admin_event_signup_path(@event, format: :csv) %>
+      <%= link_to t('.export'), export_admin_event_signup_path(@event, format: :csv) %>
       <hr>
 
       <div class="headline">
@@ -49,6 +49,10 @@
       <%= render('/admin/event_users/attending_grid',
                  grid: @reserves,
                  event: @event) %>
+
+      <%= link_to t('.export'), export_admin_event_signup_path(@event,
+                                                               format: :csv,
+                                                               list: 'reserves') %>
     </div>
   </div>
 </div>

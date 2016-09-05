@@ -8,7 +8,7 @@ class Admin::EventSignupsController < Admin::BaseController
     if @event_signup.save
       redirect_to(admin_event_signup_path(@event), notice: alert_create(EventSignup))
     else
-      set_grids(@event)
+      set_grids
       render :show, status: 422
     end
   end
@@ -17,7 +17,7 @@ class Admin::EventSignupsController < Admin::BaseController
     if @event_signup.update(event_signup_params)
       redirect_to(admin_event_signup_path(@event), notice: alert_update(EventSignup))
     else
-      set_grids(@event)
+      set_grids
       render :show, status: 422
     end
   end
@@ -25,15 +25,7 @@ class Admin::EventSignupsController < Admin::BaseController
   def show
     @event_signup = @event.signup
     @event_signup ||= @event.build_event_signup(opens: Time.zone.now, closes: @event.starts_at)
-    set_grids(@event)
-
-    respond_to do |format|
-      format.html
-      format.csv do
-        send_data(ExportCSV.event_users(@attending, @event_signup),
-                  filename: "anmalda_till_#{@event.to_s.parameterize}.csv")
-      end
-    end
+    set_grids
   end
 
   def destroy
@@ -41,11 +33,28 @@ class Admin::EventSignupsController < Admin::BaseController
     redirect_to(edit_admin_event_path(@event), notice: alert_destroy(EventSignup))
   end
 
+  def export
+    respond_to do |format|
+      format.csv do
+        if params[:list] == 'reserves'
+          set_reserves
+          send_data(ExportCSV.event_users(@reserves, @event_signup),
+                    filename: "reserver_till_#{@event.to_s.parameterize}.csv")
+        else
+          set_attending
+          send_data(ExportCSV.event_users(@attending, @event_signup),
+                    filename: "anmalda_till_#{@event.to_s.parameterize}.csv")
+        end
+      end
+    end
+  end
+
   private
 
   def event_signup_params
     params.require(:event_signup).permit(:for_members, :closes, :slots, :question_sv, :question_en,
-                                         :novice, :mentor, :member, :custom, :custom_name, :opens)
+                                         :novice, :mentor, :member, :custom, :custom_name, :opens,
+                                         group_types: [])
   end
 
   def set_tab
@@ -53,8 +62,16 @@ class Admin::EventSignupsController < Admin::BaseController
     params[:tab] = @tab
   end
 
-  def set_grids(event)
-    @attending = EventUser.attending(event).for_grid
-    @reserves = EventUser.reserves(event).includes([:user, group: :introduction])
+  def set_grids
+    set_attending
+    set_reserves
+  end
+
+  def set_attending
+    @attending = EventUser.attending(@event).for_grid
+  end
+
+  def set_reserves
+    @reserves = EventUser.reserves(@event).includes([:user, group: :introduction])
   end
 end
