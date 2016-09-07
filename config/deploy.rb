@@ -23,6 +23,11 @@ set :rollbar_token, ENV['ROLLBAR_TOKEN']
 set :rollbar_env, Proc.new { fetch :stage }
 set :rollbar_role, Proc.new { :app }
 
-after 'deploy:publishing', 'passenger:restart'
-after 'deploy:publishing', 'deploy:sitemap:refresh'
-after 'deploy:publishing', 'deploy:permissions:load'
+set :pty, true
+
+before 'deploy:started', 'sidekiq:quiet'
+after  'deploy:publishing', 'sidekiq:stop'
+after 'deploy:published', 'passenger:restart'
+after 'deploy:published', 'deploy:sitemap:refresh'
+after 'deploy:published', 'deploy:permissions:load'
+after 'deploy:published', 'sidekiq:start'
