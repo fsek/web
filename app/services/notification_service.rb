@@ -6,7 +6,7 @@ class NotificationService
 
     begin
       notification.save!
-      NotificationMailer.notify(notification).deliver_later
+      #NotificationMailer.notify(notification).deliver_later
       true
     rescue
       false
