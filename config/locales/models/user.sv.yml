@@ -40,6 +40,7 @@ sv:
         member: Medlemskap
         member_at: Medlemskap bekräftades
         name: Namn
+        notification_count: Ej sedda notifikationer
         password: Lösenord
         password_confirmation: Bekräfta lösenord
         phone: Telefon

@@ -57,10 +57,12 @@ class Ability
       can(:create, MessageComment) do |comment|
         comment.with_group(user) && comment.user == user
       end
-
+      
       can :read, Meeting
 
       can [:read, :search], Song
+
+      can([:index, :look, :look_all], Notification, user_id: user.id)
     end
 
     # Only for members of the Guild

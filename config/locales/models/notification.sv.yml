@@ -1,0 +1,18 @@
+sv:
+  model:
+    notification:
+      mode_not_allowed: Läget tillåts ej
+      class_not_allowed: Denna klass får inte användas till notifikationer
+      all_marked_as_seen: Alla notfikationer markerades som sedda
+
+  activerecord:
+    models:
+      notification:
+        one: Notifikation
+        other: Notifikationer
+
+    attributes:
+      notification:
+        user: Användare
+        seen: Sedd
+        notifyable: Källa

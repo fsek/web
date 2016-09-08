@@ -33,11 +33,32 @@
           <%= link_to(current_user, class: 'dropdown-toggle',
                                     data: { toggle: 'dropdown', delay: '0' }) do %>
             <%= fa_icon('user') %> <%= current_user %>
+            <span id="notification-top-count">
+              <% if current_user.notifications_count > 0 %>
+                  <%= current_user.notifications_count %>
+              <% end %>
+            </span>
           <% end %>
           <ul class="dropdown-menu pull-right">
-            <li><%= link_to t('.user_settings'), own_user_path %></li>
-            <li><%= link_to t('devise.sign_out'), destroy_user_session_path,
-                                                  method: :delete %></li>
+            <li>
+              <%= link_to own_user_path do %>
+                <%= fa_icon('cog') %>
+                <%= t('.user_settings') %>
+              <% end %>
+            <li>
+              <%= link_to own_user_notifications_path do %>
+                <%= fa_icon('bell') %>
+                <%= models_name(Notification) %>
+                <span id="notification-dropdown-count">
+                  <%= current_user.notifications_count %>
+                </span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(destroy_user_session_path, method: :delete) do %>
+                <%= fa_icon('sign-out') %> <%= t('devise.sign_out') %>
+              <% end %>
+            </li>
           </ul>
         </li>
       <% else %>
