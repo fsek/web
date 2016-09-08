@@ -11,7 +11,12 @@
     <%= f.input :image, as: :file %>
     <% if notice.image? %>
       <%= image_tag(notice.image.thumb.url, class: 'img-responsive') %><br>
-      <%= f.input :remove_image, as: :boolean %>
+      <br>
+      <%= link_to(t('.remove_image'), admin_notice_path(notice, notice: {remove_image: '1'}),
+                                      method: :patch,
+                                      data: {confirm: t('.confirm_image_removal')},
+                                      class: 'btn secondary') %>
+      <hr>
     <% end %>
     <%= f.button :submit, id: 'submit-notice' %>
 

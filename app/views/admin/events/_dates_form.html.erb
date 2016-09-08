@@ -15,7 +15,11 @@
 
 <% if event.image.present? %>
   <%= image_tag(event.thumb, class: 'img-responsive') %>
-  <%= form.input :remove_image, as: :boolean %>
+  <br>
+  <%= link_to(t('.remove_image'), admin_event_path(event, event: {remove_image: '1'}),
+                                       method: :patch,
+                                       data: {confirm: t('.confirm_image_removal')},
+                                       class: 'btn secondary') %>
 <% end %>
 
 <%= form.input :image, as: :file %>

@@ -11,7 +11,11 @@
   <div class="input-group margin-bottom-20">
     <% if user.thumb_avatar %>
       <%= image_tag(user.thumb_avatar, class: 'img responsive', height: '200px')%><br>
-      <%= f.input :remove_avatar, as: :boolean %>
+      <br>
+      <%= link_to(t('.remove_avatar'), own_user_path(user: {remove_avatar: '1'}),
+                                       method: :patch,
+                                       data: {confirm: t('.confirm_avatar_removal')},
+                                       class: 'btn secondary') %>
     <% end %>
   </div>
       <%= f.input :avatar, as: :file %>

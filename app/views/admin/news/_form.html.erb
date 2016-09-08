@@ -8,7 +8,11 @@
 
   <% if news.image.present? %>
     <%= image_tag(news.thumb) %>
-    <%= f.input :remove_image, as: :boolean %>
+    <br>
+    <%= link_to(t('.remove_image'), admin_news_path(news, news: {remove_image: '1'}),
+                                    method: :patch,
+                                    data: {confirm: t('.confirm_image_removal')},
+                                    class: 'btn secondary') %>
   <% else %>
     <%= f.input :image, as: :file %>
   <% end %>

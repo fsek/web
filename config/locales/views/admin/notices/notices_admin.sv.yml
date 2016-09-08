@@ -2,7 +2,9 @@ sv:
   admin:
     notices:
       form:
+        confirm_image_removal: Vill du verkligen ta bort bilden? Ändringar i formuläret kommer inte att sparas.
         destroy: Förinta notis
+        remove_image: Ta bort bild
 
       edit:
         title: Redigera notis

@@ -10,7 +10,12 @@
 
   <% if blog_post.cover_image.present? %>
     <%= image_tag(blog_post.cover_image_thumb, class: 'img-responsive') %>
-    <%= f.input :remove_cover_image, as: :boolean %>
+      <br>
+      <%= link_to(t('.remove_image'),
+                  admin_blog_post_path(blog_post, blog_post: {remove_cover_image: '1'}),
+                  method: :patch,
+                  data: {confirm: t('.confirm_image_removal')},
+                  class: 'btn secondary') %>
   <% end %>
 
   <%= f.input :cover_image, as: :file %>
