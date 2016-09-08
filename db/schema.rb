@@ -839,12 +839,12 @@ ActiveRecord::Schema.define(version: 20170823132130) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",    null: false
-    t.string   "encrypted_password",     limit: 255, default: "",    null: false
+    t.string   "email",                  limit: 255,   default: "",      null: false
+    t.string   "encrypted_password",     limit: 255,   default: "",      null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
+    t.integer  "sign_in_count",          limit: 4,     default: 0,       null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -868,14 +868,18 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.datetime "member_at"
     t.string   "food_custom",            limit: 255
     t.string   "student_id",             limit: 255
-    t.boolean  "display_phone",                      default: false, null: false
-    t.integer  "notifications_count",    limit: 4,   default: 0,     null: false
+    t.boolean  "display_phone",                        default: false,   null: false
     t.string   "food_preferences",       limit: 255
+    t.string   "provider",               limit: 255,   default: "email", null: false
+    t.string   "uid",                    limit: 255,   default: "",      null: false
+    t.text     "tokens",                 limit: 65535
+    t.integer  "notifications_count",    limit: 4,     default: 0,       null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
   create_table "work_posts", force: :cascade do |t|
     t.string   "title",        limit: 255

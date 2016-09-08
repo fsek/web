@@ -14,6 +14,21 @@ class EventSignup < ActiveRecord::Base
 
   translates(:question)
   globalize_accessors(locales: [:en, :sv], attributes: [:question])
+  translates(:question)
+  globalize_accessors(locales: [:en, :sv],
+                      attributes: [:question])
+  # Schedules notifications if event_signup is created or updated
+  # This will lead to multiple notifications being queued if the event or signup
+  # is updated multiple times, but the task will only run once.
+  after_commit(:schedule_notifications)
+
+  translates(:question, :notification_message)
+  globalize_accessors(locales: [:en, :sv],
+                      attributes: [:question, :notification_message])
+
+  scope :reminder_not_sent, -> { where(sent_reminder: nil) }
+  scope :position_not_sent, -> { where(sent_position: nil) }
+  scope :closed, -> { where('closes < :current', current: Time.zone.now) }
 
   # Schedules notifications if event_signup is created or updated
   # This will lead to multiple notifications being queued if the event or signup
