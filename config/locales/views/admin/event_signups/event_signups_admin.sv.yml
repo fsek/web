@@ -14,6 +14,8 @@ sv:
         priorities: Prioriteringar
         priorities_hint: Den med högst värde prioriteras först, lämnas fältet tomt påverkas inte prioriteten alls. Passar inte de första alternativen kan man välja att skapa en egen prioritering med eget namn. Två fält kan inte ha samma prioritet.
         priority_example: "Nolla: 10, Fadder: 5, Special: 4, Special namn: Gamla fös. Detta gör nollor mest prioriterade, faddrar därefter och de som väljer sig vara gamla fös."
+        notifications: Notifikationer
+        notification_hint: Meddelandet skickas med då användaren får information om de fått en plats eller inte. Detta skickas i samband med att anmälan stänger.
 
       show:
         export: Exportera till CSV
@@ -29,5 +31,6 @@ sv:
         dates: Datum
         save_before: Osparade ändringar går förlorade.
         settings: Inställningar
+        show_event: Visa evenemang
         signup: Anmälan
         texts: Information

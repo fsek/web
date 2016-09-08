@@ -8,7 +8,7 @@
                                              signup: @event_signup %>
 </div>
 
-<div class="col-md-9 col-sm-12">
+<div class="col-md-9 col-sm-12 event-signup">
   <div class="tab-content">
     <div id="settings" class="profile-edit tab-pane fade in <%= @tab == :settings ? 'active' : '' %>">
       <%= render('form', event: @event, signup: @event_signup) %>
@@ -17,11 +17,16 @@
     <div id="attendees" class="profile-edit tab-pane fade in <%= @tab == :attendees ? 'active' : '' %>">
       <div class="col-md-12">
         <span class="time">
+          <%= fa_icon('calendar') %>
           <%= time_range(@event.starts_at, @event.ends_at, format: :long) %>
         </span>
         <span class="location">
+          <%= fa_icon('map-marker') %>
           <%= @event.location %>
         </span>
+        <%= event_signup_reminders_sent?(@event_signup) %>
+        <hr>
+
         <%= markdown(@event.description) %>
       </div>
       <div class="col-md-12">

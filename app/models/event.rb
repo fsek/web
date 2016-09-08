@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
   mount_uploader :image, AttachedImageUploader, mount_on: :image_file_name
 
   has_one :event_signup, dependent: :destroy
-  has_many :event_users, dependent: :destroy
+  has_many :event_users, dependent: :destroy, inverse_of: :event
   has_many :users, through: :event_users
   belongs_to :council
   belongs_to :contact
@@ -21,6 +21,11 @@ class Event < ActiveRecord::Base
   serialize :dress_code, Array
 
   validates(:title, :description, :starts_at, :ends_at, :location, presence: true)
+
+  # Schedules notifications if event_signup is created or updated
+  # This will lead to multiple notifications being queued if the event or signup
+  # is updated multiple times, but the task will only run once.
+  after_commit(:schedule_notifications)
 
   scope :view, -> { select(:starts_at, :ends_at, :all_day, :title, :short, :updated_at) }
   scope :by_start, -> { order(starts_at: :asc) }
@@ -35,7 +40,11 @@ class Event < ActiveRecord::Base
   scope :stream, -> do
     between(Time.zone.now.beginning_of_day, 6.days.from_now.end_of_day).by_start.includes(:event_signup)
   end
+  scope :starts_within, ->(time) { where('starts_at BETWEEN :first AND :second',
+                                         first: Time.zone.now,
+                                         second: time.from_now) }
 
+  scope :not_reminded, -> { joins(:event_signup).merge(EventSignup.reminder_not_sent) }
   scope :by_locale, ->(locale: I18n.locale) do
     locale = locale.to_s
     if locale == 'sv'
@@ -87,5 +96,11 @@ class Event < ActiveRecord::Base
 
   def as_json(*)
     CalendarJSON.event(self)
+  end
+
+  private
+
+  def schedule_notifications
+    NotificationService.event_schedule_notifications(self)
   end
 end

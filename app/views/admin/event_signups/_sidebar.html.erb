@@ -14,6 +14,7 @@
   </li>
 </ul>
 
+<%= link_to(t('.show_event'), event_path(event), class: 'btn secondary') %>
 <%= link_to(t('.all_events'), admin_events_path, class: 'btn secondary') %>
 
 <% if event.persisted? %>
