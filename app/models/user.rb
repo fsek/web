@@ -16,21 +16,22 @@ class User < ActiveRecord::Base
   validate :food_validation
 
   # Associations
-  has_many :post_users
+  has_many :post_users, dependent: :destroy
   has_many :posts, through: :post_users
   has_many :permissions, through: :posts
   has_many :councils, through: :posts
-  has_many :event_users, dependent: :destroy
+  has_many :event_users, dependent: :destroy, inverse_of: :user
   has_many :candidates
   has_many :cafe_workers
   has_many :cafe_shifts, through: :cafe_workers
   has_many :images
-  has_many :rents
-  has_many :group_users
+  has_many :rents, dependent: :destroy
+  has_many :group_users, dependent: :destroy
   has_many :groups, through: :group_users
   has_many :messages, dependent: :destroy
   has_many :message_comments, dependent: :destroy
   has_many :meetings
+  has_many :notifications, dependent: :destroy, inverse_of: :user
 
   mount_uploader :avatar, AttachedImageUploader, mount_on: :avatar_file_name
 

@@ -1,0 +1,54 @@
+.notification {
+  .notification-content {
+    display: block;
+    padding-bottom: 0.6em;
+
+    .fa {
+      color: $fsek-orange;
+      margin-right: 0.5em;
+      padding-bottom: 0.3em;
+      vertical-align: middle;
+    }
+
+    .text {
+      color: $black;
+      display: inline-block;
+      font-size: 1.4em;
+    }
+
+    .asterisk {
+      .fa {
+        margin-top: 1.5em;
+      }
+    }
+  }
+
+  .notification-time {
+    display: inline-block;
+
+    .fa {
+      margin-right: 0.2em;
+    }
+  }
+
+  &.seen {
+    .asterisk {
+      .fa {
+        color: $dark-gray;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .notification-content {
+      .text {
+        font-size: 1em;
+      }
+
+      .fa,
+      .asterix > .fa {
+        font-size: 2em;
+      }
+    }
+  }
+}

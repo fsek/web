@@ -1,0 +1,19 @@
+$('#<%= dom_id(@notification) %>').addClass('seen');
+count = <%= current_user.notifications_count %>
+if (count > 0) {
+  $('#notification-top-count').html(count);
+} else {
+  $('#notification-top-count').html('');
+}
+$('#notification-dropdown-count').html(count);
+
+var title = document.title;
+var ending = title.substring(title.length-3);
+
+reg = new RegExp('\([0-9]+\)');
+if (reg.test(ending)) {
+  document.title = title.slice(0, -3);
+  if (count > 0) {
+    document.title += ' (' + count + ')';
+  }
+}
