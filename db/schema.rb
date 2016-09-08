@@ -607,6 +607,20 @@ ActiveRecord::Schema.define(version: 20160912102500) do
     t.integer  "user_id",     limit: 4,     null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id",         limit: 4
+    t.boolean  "seen",                        default: false, null: false
+    t.string   "notifyable_type", limit: 255,                 null: false
+    t.integer  "notifyable_id",   limit: 4,                   null: false
+    t.string   "mode",            limit: 255,                 null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "notifications", ["notifyable_id"], name: "index_notifications_on_notifyable_id", using: :btree
+  add_index "notifications", ["notifyable_type"], name: "index_notifications_on_notifyable_type", using: :btree
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
   create_table "page_element_translations", force: :cascade do |t|
     t.integer  "page_element_id", limit: 4,     null: false
     t.string   "locale",          limit: 255,   null: false
@@ -781,6 +795,7 @@ ActiveRecord::Schema.define(version: 20160912102500) do
     t.string   "food_custom",            limit: 255
     t.string   "student_id",             limit: 255
     t.boolean  "display_phone",                      default: false, null: false
+    t.integer  "notifications_count",    limit: 4,   default: 0,     null: false
     t.string   "food_preferences",       limit: 255
   end
 
@@ -833,6 +848,7 @@ ActiveRecord::Schema.define(version: 20160912102500) do
   add_foreign_key "message_comments", "messages"
   add_foreign_key "message_comments", "users"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "page_images", "pages"
   add_foreign_key "rents", "users"
 end

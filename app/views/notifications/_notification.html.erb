@@ -1,0 +1,5 @@
+<div id="<%= dom_id(notification) %>"
+     class="notification <%= notification.seen? ? 'seen' : '' %>">
+  <%= render(notification.polymorphic_partial, notification: notification) %>
+  <hr>
+</div>

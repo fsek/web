@@ -1,0 +1,15 @@
+<% title(notification_page_title(t('.title'), current_user.notifications_count)) %>
+<div class="headline">
+  <h1><%= t('.title') %></h1>
+</div>
+
+<div class="col-md-3 col-sm-12">
+  <%= link_to(t('.mark_all_as_read'), look_all_own_user_notifications_path,
+                                      class: 'btn primary',
+                                      disabled: !(current_user.notifications_count > 0)) %>
+</div>
+
+<div class="col-md-9 col-sm-12 notifications">
+  <%= render(@notifications) %>
+  <%= paginate(@notifications, left: 2, right: 2) %>
+</div>

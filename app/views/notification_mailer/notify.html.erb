@@ -1,0 +1,7 @@
+<% provide(:header_title, t('notification_mailer.title')) %>
+
+<%= render(@notification.polymorphic_partial, notification: @notification) %>
+<br>
+<hr>
+<br>
+<%= link_to(t('notification_mailer.all_notifications'), own_user_notifications_url(@notification), class: 'btn secondary') %>
