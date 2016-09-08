@@ -1,0 +1,7 @@
+<% event_user = notification.notifyable %>
+
+<%= notification_context(event_user_notification(event_user),
+                         notification,
+                         icon: 'hashtag') %>
+<%= link_to(t('.read_more'), event_url(event_user.event), class: 'btn primary') %>
+<%= notification_created_at(notification.created_at) %>

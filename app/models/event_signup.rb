@@ -6,6 +6,7 @@ class EventSignup < ActiveRecord::Base
 
   acts_as_paranoid
   belongs_to :event, required: true
+  has_many :event_users, through: :event
 
   validates(:opens, :closes, :slots, presence: true)
   validates(:event, uniqueness: true)
@@ -13,6 +14,19 @@ class EventSignup < ActiveRecord::Base
 
   translates(:question)
   globalize_accessors(locales: [:en, :sv], attributes: [:question])
+
+  # Schedules notifications if event_signup is created or updated
+  # This will lead to multiple notifications being queued if the event or signup
+  # is updated multiple times, but the task will only run once.
+  after_commit(:schedule_notifications)
+
+  translates(:question, :notification_message)
+  globalize_accessors(locales: [:en, :sv],
+                      attributes: [:question, :notification_message])
+
+  scope :reminder_not_sent, -> { where(sent_reminder: nil) }
+  scope :position_not_sent, -> { where(sent_position: nil) }
+  scope :closed, -> { where('closes < :current', current: Time.zone.now) }
 
   serialize :group_types, Array
 
@@ -74,5 +88,9 @@ class EventSignup < ActiveRecord::Base
     if custom.present? && custom_name.blank?
       errors.add(:custom_name, I18n.t('model.event_signup.custom_name_missing'))
     end
+  end
+
+  def schedule_notifications
+    NotificationService.event_schedule_notifications(self.event)
   end
 end

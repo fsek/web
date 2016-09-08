@@ -1,7 +1,7 @@
 class EventUser < ActiveRecord::Base
   acts_as_paranoid
-  belongs_to :user, required: true
-  belongs_to :event, required: true
+  belongs_to :user, required: true, inverse_of: :event_users
+  belongs_to :event, required: true, inverse_of: :event_users
   belongs_to :group
   has_one :event_signup, through: :event, required: true
 

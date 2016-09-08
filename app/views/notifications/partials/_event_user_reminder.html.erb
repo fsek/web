@@ -1,0 +1,6 @@
+<% event_user = notification.notifyable %>
+<% text = t('.remind_soon_starting', event: event_user.event.to_s,
+                                      time: localize(event_user.event.starts_at)) %>
+<%= notification_context(text, notification, icon: 'calendar') %>
+<%= link_to(t('.read_more'), event_url(event_user.event), class: 'btn primary') %>
+<%= notification_created_at(notification.created_at) %>
