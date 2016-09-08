@@ -1,13 +1,6 @@
 sv:
   admin:
     events:
-      form:
-        categories_after_save: Kategorier kan läggas till efter att evenemanget sparas.
-        dates: Datum
-        dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
-        info: Information
-        other_parts: Övrigt
-
       edit:
         all_events: Alla evenemang
         show: Visa evenemang
@@ -29,8 +22,10 @@ sv:
 
       dates_form:
         categories_after_save: Kategorier kan läggas till efter att evenemanget sparas.
+        confirm_image_removal: Är du säker på att du vill ta bort bilden? Andra ändringar i formuläret sparas inte.
         dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
         price_hint: Endast heltal. Anges alltid i SEK.
+        remove_image: Ta bort bild
 
       sidebar:
         all_events: Alla evenemang
