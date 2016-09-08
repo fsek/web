@@ -285,32 +285,35 @@ ActiveRecord::Schema.define(version: 20160912102500) do
   end
 
   create_table "event_signup_translations", force: :cascade do |t|
-    t.integer  "event_signup_id", limit: 4,   null: false
-    t.string   "locale",          limit: 255, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "question",        limit: 255
+    t.integer  "event_signup_id",      limit: 4,   null: false
+    t.string   "locale",               limit: 255, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "question",             limit: 255
+    t.string   "notification_message", limit: 255
   end
 
   add_index "event_signup_translations", ["event_signup_id"], name: "index_event_signup_translations_on_event_signup_id", using: :btree
   add_index "event_signup_translations", ["locale"], name: "index_event_signup_translations_on_locale", using: :btree
 
   create_table "event_signups", force: :cascade do |t|
-    t.integer  "event_id",    limit: 4
-    t.boolean  "for_members",             default: true, null: false
-    t.string   "question",    limit: 255
-    t.integer  "slots",       limit: 4,                  null: false
-    t.datetime "closes",                                 null: false
-    t.datetime "opens",                                  null: false
-    t.integer  "novice",      limit: 4
-    t.integer  "mentor",      limit: 4
-    t.integer  "member",      limit: 4
-    t.integer  "custom",      limit: 4
-    t.string   "custom_name", limit: 255
+    t.integer  "event_id",      limit: 4
+    t.boolean  "for_members",               default: true, null: false
+    t.string   "question",      limit: 255
+    t.integer  "slots",         limit: 4,                  null: false
+    t.datetime "closes",                                   null: false
+    t.datetime "opens",                                    null: false
+    t.integer  "novice",        limit: 4
+    t.integer  "mentor",        limit: 4
+    t.integer  "member",        limit: 4
+    t.integer  "custom",        limit: 4
+    t.string   "custom_name",   limit: 255
     t.datetime "deleted_at"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "group_types", limit: 255
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "group_types",   limit: 255
+    t.datetime "sent_reminder"
+    t.datetime "sent_position"
   end
 
   add_index "event_signups", ["deleted_at"], name: "index_event_signups_on_deleted_at", using: :btree

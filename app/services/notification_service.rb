@@ -1,6 +1,8 @@
 class NotificationService
   def self.event_user(event_user, mode)
-    notification = Notification.new(notifyable: event_user, mode: mode, user: event_user.user)
+    notification = Notification.new(notifyable: event_user,
+                                    mode: mode,
+                                    user: event_user.user)
 
     begin
       notification.save!
@@ -11,36 +13,23 @@ class NotificationService
     end
   end
 
-  def self.event_user_reminders(time)
-    events = Event.starts_within(time).not_reminded
-    event_users = EventUser.joins(:event).merge(events)
-
-    event_users.each do |e|
-      self.event_user(e, 'reminder')
-    end
-
-    EventSignup.joins(:event).merge(events).update_all(sent_reminder: Time.zone.now)
-  end
-
-  def self.event_user_positions
-    signups = EventSignup.position_not_sent.closed
-    event_users = EventUser.joins(:event_signup).merge(signups)
-
-    event_users.each do |e|
-      self.event_user(e, 'position')
-    end
-
-    signups.update_all(sent_position: Time.zone.now)
-  end
-
+  # Schedule notification for users position on an event signup as well as
+  # a reminder half an hour before the event start.
   def self.event_schedule_notifications(event)
     return unless event.present?  && event.signup.present?
 
-    EventSignupPositionWorker.perform_at(event.signup.closes,
-                                         event.signup.id) if event.signup.closes > Time.zone.now
+    # Make sure that event already closed.
+    if event.signup.closes > Time.zone.now
+      EventSignupPositionWorker.perform_at(event.signup.closes + 5.minute,
+                                           event.signup.id)
+    end
 
-    EventSignupReminderWorker.perform_at(event.starts_at - 30.minutes,
-                                         event.signup.id) if event.starts_at > Time.zone.now
 
+    # Pass the diff between reminder and event start.
+    if event.starts_at > Time.zone.now
+      EventSignupReminderWorker.perform_at(event.starts_at - 30.minutes,
+                                           event.signup.id,
+                                           time_until: 30.minutes)
+    end
   end
 end
