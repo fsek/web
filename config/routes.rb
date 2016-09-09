@@ -14,6 +14,11 @@ Fsek::Application.routes.draw do
   get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
   get 'robots.:format', controller: :static_pages, action: :robots, as: :robots
 
+  require 'sidekiq/web'
+  constraints Constraints::Sidekiq.new do
+    mount(Sidekiq::Web => '/sidekiq', as: :sidekiq)
+  end
+
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations]
   devise_scope :user do

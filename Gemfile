@@ -40,7 +40,9 @@ gem 'rollbar'
 gem 'routing-filter', '~> 0.5.1'
 gem 'sass-rails'
 gem 'select2-rails'
+gem 'sidekiq'
 gem 'simple_form'
+gem 'sinatra', require: false
 gem 'sitemap_generator'
 gem 'turbolinks'
 gem 'uglifier'
@@ -61,7 +63,6 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'dotenv-rails'
-  gem 'i18n-tasks'
   gem 'poltergeist'
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -72,7 +73,6 @@ end
 group :development do
   gem 'bullet'
   gem 'onesky-rails'
-  gem 'quiet_assets'
   gem 'web-console'
 end
 

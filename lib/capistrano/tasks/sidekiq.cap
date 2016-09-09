@@ -1,0 +1,28 @@
+namespace :sidekiq do
+  desc "Start sidekiq workers"
+  task :start do
+    on roles(:web) do
+      sudo "systemctl start sidekiq-#{fetch(:rails_env)}"
+    end
+  end
+
+  desc "Stop sidekiq workers"
+  task :stop do
+    on roles(:web) do
+      sudo "systemctl stop sidekiq-#{fetch(:rails_env)}"
+    end
+  end
+
+  desc "Quiet Sidekiq workers and stop accepting jobs"
+  task :quiet do
+    on roles(:web) do
+      sudo "systemctl reload sidekiq-#{fetch(:rails_env)}"
+    end
+  end
+
+  desc "Restart sidekiq workers"
+  task :restart do
+    stop
+    start
+  end
+end

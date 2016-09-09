@@ -21,9 +21,6 @@ module Fsek
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :sv
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
-    config.autoload_paths += Dir["#{config.root}/services/**/"]
-    config.autoload_paths += Dir["#{config.root}/uploaders/**/"]
-    config.autoload_paths += Dir["#{config.root}/validators/**/"]
     config.autoload_paths += Dir["#{config.root}/app/mailers/concerns/**/"]
 
     config.time_zone ='Stockholm'
@@ -36,6 +33,8 @@ module Fsek
                                  h1 h2 h3 h4 h5 h6 ul ol li dl dt dd abbr
                                  acronym a img blockquote del ins table tr td th))
     config.action_view.sanitized_allowed_tags = WHITE_HTML_TAGS
+    config.active_job.queue_adapter = :sidekiq
   end
 end
+
 Rack::Utils.multipart_part_limit = 512
