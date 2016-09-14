@@ -25,7 +25,9 @@
   <%= f.input :student_id, hint: t('.student_id_hint') %>
   <%= f.input :phone %>
   <%= f.input :display_phone %>
-  <%= f.input :food_preference, hint: t('.food_preference_hint') %>
+  <%= f.input :food_preferences, collection: food_prefs_collection(user),
+                                 input_html: {class: 'select2', multiple: true} %>
+  <%= f.input :food_custom, hint: t('.food_preference_hint') %>
   <%= f.button :submit, id: 'user-info-submit' %>
 <% end %>
 

@@ -11,7 +11,7 @@ sv:
         formal: Kavaj
         overall: Overall
         theme: Temaenligt
-        white_tie: Frack/Högtidsklädsel M.A.O
+        white_tie: Frack/Högtidsklädsel M.A.O.
 
   activerecord:
     models:
@@ -22,6 +22,7 @@ sv:
         cash: Kostar pengar
         categories: Kategorier
         council: Utskott
+        contact: Kontakt / eventansvarig
         created_at: Skapat
         description: Beskrivning
         description_en: Beskrivning - engelsk

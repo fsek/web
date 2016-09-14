@@ -23,6 +23,6 @@ class Admin::EventUsersController < Admin::BaseController
   private
 
   def event_user_params
-    params.require(:event_user).permit(:user_type, :group_id)
+    params.require(:event_user).permit(:user_type, :group_id, :group_custom)
   end
 end

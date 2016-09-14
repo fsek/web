@@ -1,6 +1,10 @@
 <%= simple_form_for([:admin, event, event_user]) do |f| %>
   <%= f.input :user_type, collection: admin_event_user_types(@event_user.event_signup),
+                          include_blank: t('model.event_signup.user_types.other'),
                           input_html: {class: 'select2'}  %>
-  <%= f.association :group, collection: Group.all, input_html: {class: 'select2'} %>
-  <%= f.button :submit%>
+  <%= f.association :group, collection: Group.all,
+                            include_blank: t('model.event_user.other_group'),
+                            input_html: {class: 'select2'} %>
+  <%= f.input :group_custom %>
+  <%= f.button :submit, t('.update') %>
 <% end %>

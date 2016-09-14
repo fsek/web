@@ -23,7 +23,12 @@
 <% if event_user.group.present? %>
   <span class="event block">
     <%= fa_icon('users') %>
-    <%= link_to(event_user.group, group_path(event_user.group)) if event_user.group.present? %>
+    <%= link_to(event_user.group, group_path(event_user.group)) %>
+  </span>
+<% elsif event_user.group_custom.present? %>
+  <span class="event block">
+    <%= fa_icon('users') %>
+    <%= event_user.group_custom %>
   </span>
 <% end %>
 

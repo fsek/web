@@ -35,17 +35,23 @@ module EventHelper
     content_tag(:span, content_tag(:ul, safe_join(content)), class: 'event info')
   end
 
-  def event_reg_status(event_user)
+  def event_reg_status(event_signup, event_user)
     if event_user.persisted?
-      if event_user.reserve?
-        event_status_span('reserve', 'question-circle',
-                          t('.reserve', count: event_user.reserve_position))
-      else
-        event_status_span('attending', 'check-circle-o',
-                          t('.attending', count: event_user.position, max: event_user.event_signup.slots))
-      end
+      persisted_event_user_status(event_signup, event_user)
     else
       event_status_span('not-attending', 'exclamation-circle', t('.not_attending'))
+    end
+  end
+
+  def persisted_event_user_status(event_signup, event_user)
+    if event_signup.closed?
+      if event_user.reserve?
+        event_status_span('reserve', 'exclamation-circle', t('.reserve'))
+      else
+        event_status_span('attending', 'check-circle-o', t('.attending'))
+      end
+    else
+      event_status_span('registered', 'question-circle', t('.registered'))
     end
   end
 
@@ -103,5 +109,9 @@ module EventHelper
      I18n.t('model.event.dress_codes.formal'),
      I18n.t('model.event.dress_codes.dark_suit'),
      I18n.t('model.event.dress_codes.white_tie')]
+  end
+
+  def group_str(event_user)
+    event_user.group.present? ? event_user.group : event_user.group_custom
   end
 end

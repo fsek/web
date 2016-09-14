@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905113500) do
+ActiveRecord::Schema.define(version: 20160912102500) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -331,14 +331,15 @@ ActiveRecord::Schema.define(version: 20160905113500) do
   add_index "event_translations", ["locale"], name: "index_event_translations_on_locale", using: :btree
 
   create_table "event_users", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "event_id",   limit: 4
-    t.integer  "group_id",   limit: 4
-    t.text     "answer",     limit: 65535
-    t.string   "user_type",  limit: 255
+    t.integer  "user_id",      limit: 4
+    t.integer  "event_id",     limit: 4
+    t.integer  "group_id",     limit: 4
+    t.text     "answer",       limit: 65535
+    t.string   "user_type",    limit: 255
     t.datetime "deleted_at"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "group_custom", limit: 255
   end
 
   add_index "event_users", ["deleted_at"], name: "index_event_users_on_deleted_at", using: :btree
@@ -365,7 +366,10 @@ ActiveRecord::Schema.define(version: 20160905113500) do
     t.datetime "deleted_at"
     t.integer  "price",           limit: 4
     t.string   "dress_code",      limit: 255
+    t.integer  "contact_id",      limit: 4
   end
+
+  add_index "events", ["contact_id"], name: "fk_rails_76717d1c49", using: :btree
 
   create_table "faqs", force: :cascade do |t|
     t.string   "question",      limit: 255
@@ -774,9 +778,10 @@ ActiveRecord::Schema.define(version: 20160905113500) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email",      limit: 255
     t.datetime "member_at"
-    t.string   "food_preference",        limit: 255
+    t.string   "food_custom",            limit: 255
     t.string   "student_id",             limit: 255
     t.boolean  "display_phone",                      default: false, null: false
+    t.string   "food_preferences",       limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -819,6 +824,7 @@ ActiveRecord::Schema.define(version: 20160905113500) do
   add_foreign_key "event_signups", "events"
   add_foreign_key "event_users", "events"
   add_foreign_key "event_users", "users"
+  add_foreign_key "events", "contacts"
   add_foreign_key "group_messages", "groups"
   add_foreign_key "group_messages", "messages"
   add_foreign_key "group_users", "groups"

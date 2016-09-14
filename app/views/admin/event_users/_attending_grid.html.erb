@@ -18,14 +18,14 @@
           <td><%= link_to event_user.user, edit_admin_event_event_user_path(event, event_user) %></td>
           <td><%= event_user_type(@event_signup, event_user.user_type) %></td>
           <td><%= event_user.created_at %></td>
-          <td><%= event_user.group %></td>
+          <td><%= group_str(event_user) %></td>
 
           <% if event.signup.question.present? && show_answers(params) %>
             <td><%= event_user.answer.try(:truncate, 20) %></td>
           <% end %>
 
           <% if event.food && show_food_preferences(params) %>
-            <td><%= event_user.user.food_preference %></td>
+            <td><%= food_preferences_str(event_user.user) %></td>
           <% end %>
         </tr>
       <% end %>

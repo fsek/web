@@ -2,6 +2,21 @@
   <div class="headline">
     <h1><%= title(t('.title')) %></h1>
   </div>
+  <table class="table">
+    <tr>
+      <td><%= User.human_attribute_name(:firstname) %></td>
+      <td><%= link_to @event_user.user, user_path(@event_user.user) %></td>
+    </tr>
+    <tr>
+      <td><%= EventUser.human_attribute_name(:created_at) %></td>
+      <td><%= @event_user.created_at %></td>
+    </tr>
+    <tr>
+      <td><%= t('.position') %></td>
+      <td><%= "#{@event_user.position} / #{@event.signup.slots}" %></td>
+    </tr>
+  </table>
+
   <%= render 'form', event: @event, event_user: @event_user %>
   <hr>
   <%= link_to(t('.destroy'), admin_event_event_user_path(@event, @event_user),
