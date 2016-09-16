@@ -27,15 +27,19 @@
   }
 
   &.attending {
-    color: $fsek-orange;
+    color: $unify-green;
   }
 
   &.reserve {
-    color: $unify-yellow;
+    color: $unify-red;
   }
 
   &.not-attending {
     color: $unify-red;
+  }
+
+  &.registered {
+    color: $fsek-orange;
   }
 
   &.block {

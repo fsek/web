@@ -7,12 +7,19 @@ sv:
       password_required: Lösenord måste fyllas i för att ändra uppgifter
       password_updated: Lösenordet uppdaterades.
       recaptcha_error: Något blev fel med recaptcha, vänligen fyll i igen.
+      only_predefined_food_prefs: Enbart fördefinierade matpreferenser kan väljas.
 
       program:
         physics: Teknisk Fysik
         math: Teknisk Matematik
         nano: Teknisk Nanovetenskap
         other: Oklart
+      food_prefs:
+        vegetarian: Vegetarian
+        vegan: Vegan
+        pescetarian: Pescetarian
+        milk: Mjölkallergi
+        gluten: Glutenintolerant
 
   activerecord:
     models:
@@ -27,7 +34,8 @@ sv:
         email: E-post
         first_post: Visningspost
         firstname: Namn
-        food_preference: Matpreferenser
+        food_preferences: Matpreferenser
+        food_custom: Andra matpreferenser/allergier
         lastname: Efternamn
         member: Medlemskap
         member_at: Medlemskap bekräftades

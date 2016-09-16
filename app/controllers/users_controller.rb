@@ -1,4 +1,3 @@
-# encoding:UTF-8
 class UsersController < ApplicationController
   load_permissions_and_authorize_resource
 
@@ -54,7 +53,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:firstname, :lastname, :program, :start_year,
                                  :avatar, :student_id, :phone, :display_phone,
-                                 :remove_avatar, :food_preference)
+                                 :remove_avatar, :food_custom, food_preferences: [])
   end
 
   def account_params

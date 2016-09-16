@@ -8,14 +8,16 @@ sv:
       for_members: Endast för medlemmar
 
     registration:
-      attending: "Du är anmäld! För tillfället har du plats %{count} / %{max}"
+      attending: "Du är anmäld och har fått en plats till eventet!"
       edit: Redigera
       not_attending: Du är inte anmäld
+      registered: Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats.
       registration: Anmälan
-      reserve: "Du är reserv, plats: %{count}"
+      reserve: Du fick tyvärr ingen plats till eventet.
       description_headline: Viktigt om anmälan
-      description: "Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är er plats garanterad först då **anmälan har stängt**. Observera att det ej går att avanmäla sig när anmälan har stängt."
-      contact_if_problem: 'Vid problem med anmälan, hör vänligen av er till:'
+      description: "Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är din plats garanterad först då **anmälan har stängt**."
+      description2: Observera att anmälan är bindande och att du inte kan avanmäla dig när anmälan har stängt. Om anmälan är stängd och du verkligen inte kan komma ska du kontakta eventansvarig.
+      contact_if_problem: "Vid *tekniska problem* med anmälan, hör vänligen av dig till:"
 
     stream:
       coming_events: Kommande evenemang
@@ -25,3 +27,4 @@ sv:
     show:
       all_events: Alla evenemang
       edit_event: Redigera evenemang
+      contact_info: "Vid frågor om eventet, kontakta eventansvarig:"

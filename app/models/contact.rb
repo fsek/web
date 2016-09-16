@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Contact < ActiveRecord::Base
   translates(:name, :text)
   globalize_accessors(locales: [:en, :sv],
@@ -6,6 +5,7 @@ class Contact < ActiveRecord::Base
 
   belongs_to :post
   has_many :users, through: :post
+  has_many :events, dependent: :nullify
 
   validates :name, presence: true, if: 'post_id.nil?'
   validates :email, :text, presence: true
@@ -15,6 +15,7 @@ class Contact < ActiveRecord::Base
   attr_accessor :message
 
   scope :publik, -> { where(public: true) }
+  scope :with_post, -> { includes(:post, :translations) }
 
   def send_email
     if message.validate!

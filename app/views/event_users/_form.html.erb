@@ -21,6 +21,9 @@
                 required: true %>
   <% end %>
   <%= f.association :group, collection: current_user.groups.merge(event.signup.selectable_groups),
-                            input_html: {class: 'select2'} %>
-  <%= f.button :submit, t('.submit') %>
+                            include_blank: t('model.event_user.other_group'),
+                            input_html: {class: 'select2'},
+                            hint: t('.group_hint') %>
+  <%= f.input :group_custom %>
+  <%= f.button :submit, t('.submit'), data: { confirm: t('.confirm_registration') } %>
 <% end %>

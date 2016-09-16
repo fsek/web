@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   MATH = 'Teknisk Matematik'.freeze
   NANO = 'Teknisk Nanovetenskap'.freeze
   OTHER = 'Oklart'.freeze
+  FOOD_PREFS = ['vegetarian', 'vegan', 'pescetarian', 'milk', 'gluten'].freeze
 
   devise(:database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -12,6 +13,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :email, format: { with: Devise::email_regexp }
   validates :firstname, :lastname, presence: true
+  validate :food_validation
 
   # Associations
   has_many :post_users
@@ -34,6 +36,8 @@ class User < ActiveRecord::Base
   scope :by_firstname, -> { order(firstname: :asc) }
   scope :members, -> { where('member_at < ?', Time.zone.now) }
   scope :confirmed, -> { where('confirmed_at < ?', Time.zone.now) }
+
+  serialize :food_preferences, Array
 
   # Returns all councils the user belongs to with a Post who is
   # allowed to rent the car
@@ -101,5 +105,15 @@ class User < ActiveRecord::Base
 
   def mentor?
     GroupUser.mentors.merge(group_users).any?
+  end
+
+  private
+
+  def food_validation
+    if food_preferences.present?
+      unless (food_preferences - [""] - FOOD_PREFS).empty?
+        errors.add(:food_preferences, I18n.t('model.user.only_predefined_food_prefs'))
+      end
+    end
   end
 end

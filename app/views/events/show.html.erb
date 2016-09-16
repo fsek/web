@@ -24,6 +24,14 @@
       </div>
     <% end %>
 
+    <% if @event.contact.present? %>
+      <div class="event">
+        <br>
+        <%= t('.contact_info') %><br>
+        <%= contact_link(@event.contact) %>
+      </div>
+    <% end %>
+
     <hr>
 
     <%= render 'info', event: @event %>

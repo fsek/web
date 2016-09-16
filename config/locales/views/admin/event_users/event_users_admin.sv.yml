@@ -5,3 +5,6 @@ sv:
         all: Alla anmälningar
         destroy: Förinta anmälan
         title: Redigera anmälan
+        position: Plats
+      form:
+        update: Uppdatera anmälan

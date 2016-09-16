@@ -11,14 +11,15 @@
   </div>
   <span class="event description">
     <%= markdown(t('.description')) %>
-    <%= simple_format(t('.contact_if_problem')) %>
+    <%= simple_format(t('.description2')) %>
+    <%= markdown(t('.contact_if_problem')) %>
     <%= contact_from_slug(slug: 'spindelman') %>
   </span>
 </div>
 
 <div class="col-md-6 col-sm-12">
   <% if EventUser.eligible_user?(event, current_user) %>
-    <%= event_reg_status(event_user) %>
+    <%= event_reg_status(event.signup, event_user) %>
 
     <hr>
 
@@ -27,8 +28,8 @@
         <ul>
           <li>
             <%= fa_icon('cutlery') %>
-            <%= User.human_attribute_name(:food_preference) %>:
-            <%= current_user.food_preference %>
+            <%= User.human_attribute_name(:food_preferences) %>:
+            <%= food_preferences_str(current_user) %>
             <%= link_to(t('.edit'), own_user_path, target: :blank_p) %>
           </li>
         </ul>

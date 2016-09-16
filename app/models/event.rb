@@ -17,6 +17,7 @@ class Event < ActiveRecord::Base
   has_many :event_users, dependent: :destroy
   has_many :users, through: :event_users
   belongs_to :council
+  belongs_to :contact
 
   serialize :dress_code, Array
 

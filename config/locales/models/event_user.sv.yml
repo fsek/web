@@ -8,6 +8,7 @@ sv:
       unallowed_type: Grupptypen är inte tillåten
       user_type_not_allowed: Användartypen tillåts inte
       not_in_group: Tillhör inte gruppen
+      other_group: Annan
 
   activerecord:
     models:
@@ -19,3 +20,4 @@ sv:
         user_type: Användartyp
         created_at: Skapad
         group: Grupp
+        group_custom: Annan grupp

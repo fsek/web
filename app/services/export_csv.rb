@@ -1,5 +1,6 @@
 class ExportCSV
   extend EventHelper
+  extend UsersHelper
 
   def self.event_users(attendees, signup)
     if attendees.present? && signup.present?
@@ -14,8 +15,8 @@ class ExportCSV
         attendees.each do |a|
           csv << [a.user,
                   event_user_type(signup, a.user_type),
-                  a.group,
-                  a.user.food_preference,
+                  group_str(a),
+                  food_preferences_str(a.user),
                   a.answer,
                   a.user.email]
         end

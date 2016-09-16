@@ -35,6 +35,10 @@ class EventSignup < ActiveRecord::Base
     opens < Time.zone.now && closes > Time.zone.now
   end
 
+  def closed?
+    closes < Time.zone.now
+  end
+
   def selectable_groups
     group_types.present? ? Group.where(group_type: group_types) : Group.all
   end
