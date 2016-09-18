@@ -11,6 +11,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
   # Store dimensions of original
   process :store_dimensions
+  process :fix_exif_rotation
 
   # Resizes to width 1680px (if the image is larger)
   version :large do
@@ -61,13 +62,21 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def save_original_filename(file)
-    model.filename = file.filename
+    model.filename ||= file.original_filename if file.respond_to?(:original_filename)
   end
 
   # To store initial filesize and filename in model
   def store_dimensions
     if file && model
       model.width, model.height = ::MiniMagick::Image.open(file.file)[:dimensions]
+    end
+  end
+
+  def fix_exif_rotation
+    manipulate! do |img|
+      img.auto_orient
+      img = yield(img) if block_given?
+      img
     end
   end
 end

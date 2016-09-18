@@ -233,6 +233,7 @@ Fsek::Application.routes.draw do
           delete :destroy_images, on: :member
           resources :images, path: :bild, only: [:destroy, :show] do
             get :download, path: :hamta, on: :member
+            patch :reprocess, path: :omarbeta, on: :member
           end
         end
       end
