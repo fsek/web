@@ -15,7 +15,25 @@
   </div>
 <% end %>
 
+<% if @start_page.countdown > Time.zone.now %>
+  <div class="col-md-12 col-sm-12 col-xs-12 introduction countdown">
+    <div class="col-xs-3">
+      <%= image_tag('round-table/trumpet_flag_right.svg', class: 'img-responsive') %>
+    </div>
+    <div class="col-xs-6 text">
+      <h1>
+        <%= t('.introduction_countdown') %>
+      </h1>
+      <div class="timer"></div>
+    </div>
+    <div class="col-xs-3">
+      <%= image_tag('round-table/trumpet_flag_left.svg', class: 'img-responsive') %>
+    </div>
+  </div>
+<% end %>
+
 <div class="col-md-7 col-sm-12 col-xs-12 start-page notices">
+
   <% cache_unless(can_administrate?(:manage, Notice),
                   [@start_page.notices, I18n.locale]) do %>
     <%= render @start_page.notices %>
@@ -38,3 +56,9 @@
     <% end %>
   <% end %>
 </div>
+
+<%= javascript_tag do %>
+  $(".timer").countdown('<%= l(@start_page.countdown, format: '%Y/%m/%d %H:%M:%S %z') %>', function(event) {
+        $(this).html(event.strftime('%-d <%= t('.days') %> %H:%M:%S'));
+  });
+<% end %>

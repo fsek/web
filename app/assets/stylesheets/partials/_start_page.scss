@@ -74,3 +74,20 @@
     padding-left: 0;
   }
 }
+
+.introduction {
+  &.countdown {
+    color: $gray-headline;
+    padding-bottom: 1em;
+    text-align: center;
+
+    .timer {
+      font-size: 1.5em;
+      margin: auto;
+    }
+
+    .text {
+      padding-top: 5%;
+    }
+  }
+}
