@@ -2,6 +2,8 @@ sv:
   admin:
     gallery:
       images:
-        download_image: Ladda ner bild
-        destroy_image: Förinta bild
-        administrate_album: Administrera album
+        show:
+          administrate_album: Administrera album
+          destroy_image: Förinta bild
+          download_image: Ladda ner bild
+          reprocess_image: Ombehandla bild

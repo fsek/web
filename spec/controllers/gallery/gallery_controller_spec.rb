@@ -26,14 +26,5 @@ RSpec.describe GalleryController, type: :controller do
       get(:index, year: 1.year.ago.year)
       assigns(:albums).map(&:title).should eq(['Shown'])
     end
-
-    it 'hides summerchild' do
-      user.stub(:summerchild?).and_return(true)
-      create(:album, images_count: 5, title: 'Shown', start_date: User.summer + 5.days)
-      create(:album, images_count: 5, title: 'Not shown', start_date: User.summer - 5.days)
-
-      get(:index)
-      assigns(:albums).map(&:title).should eq(['Shown'])
-    end
   end
 end

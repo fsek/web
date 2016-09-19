@@ -1,4 +1,7 @@
 sv:
+  model:
+    image:
+      cannot_save_reprocess: Ombehandlingen av bilden kunde inte sparas.
   activerecord:
     models:
       image:

@@ -28,6 +28,8 @@
     </li>
   </ul>
   <hr>
+  <%= link_to(t('.reprocess_image'), reprocess_admin_gallery_album_image_path(@album, @image),
+                                    class: 'btn primary', method: :patch) %>
   <%= link_to(t('.download_image'), download_admin_gallery_album_image_path(@album, @image),
                                     class: 'btn secondary') %>
   <%= link_to(t('.destroy_image'), admin_gallery_album_image_path(@album, @image),

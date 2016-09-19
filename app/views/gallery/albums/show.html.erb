@@ -1,5 +1,8 @@
 <div class="headline">
-  <h3><%= title(@album.title) %></h3>
+  <h3>
+    <%= title(@album.title) %>
+    <small><%= date_range(@album.start_date, @album.end_date) %></small>
+  </h3>
   <%= link_to(fa_icon('arrow-left'), gallery_path(year: @album.start_date.year.to_i),
               class: 'btn secondary pull-right small') %>
 </div>
@@ -12,15 +15,24 @@
                       data-height="80%"
                       data-ratio="4/3"
                       data-startindex="<%= @start.to_s %>">
-    <% @album.images.each do |p| %>
-      <div data-img="<%= p.view %>" data-thumb="<%= p.thumb %>">
-        <%= link_to(t('.share'), gallery_album_path(@album, start: @album.images.find_index(p)),
-                    data: { no_turbolink: true }) %>
+  <% @album.images.each do |p| %>
+    <div data-img="<%= p.view %>" data-thumb="<%= p.thumb %>">
+      <%= link_to(t('.share'), gallery_album_path(@album, start: @album.images.find_index(p)),
+                  data: { no_turbolink: true }) %>
+      <% if can_administrate?(:manage, p) %>
+        <br>
+        <%= link_to(admin_gallery_album_image_path(@album, p)) do %>
+          <%= fa_icon('cog') %> <%= t('global.edit') %>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
 </div>
-<div class="span7 gallery center photographer">
-  <h3 class=""><%= t('.photographers') %></h3>
+<br>
+<div class="col-md-3">
+  <div class="headline">
+    <h4><%= t('.photographers') %></h4>
+  </div>
   <ul class="list">
     <% @album.photographers.each do |p| %>
       <li><%= link_to(p, p, target: 'blank_p') %></li>
@@ -36,4 +48,11 @@
       <%= fa_icon('paperclip') %> <%= t('.policy') %>
     <% end %>
   <% end %>
+</div>
+
+<div class="col-md-9">
+  <div class="headline">
+    <h4><%= Album.human_attribute_name(:description) %></h4>
+  </div>
+  <%= markdown(@album.description) %>
 </div>

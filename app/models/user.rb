@@ -90,6 +90,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Method used to control the gallery
   def summerchild?
     member_at.present? && member_at >= User.summer
   end
