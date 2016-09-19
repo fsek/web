@@ -15,7 +15,9 @@ sv:
 
     index:
       welcome: Välkommen till F-sektionen
+      days: dagar
       description: F-sektionen är en ideell förening för studenter som läser vid något av programmen Teknisk fysik, Teknisk matematik och Teknisk nanovetenskap.
+      introduction_countdown: Nollegasque
       keywords:
         - LTH
         - teknisk fysik
