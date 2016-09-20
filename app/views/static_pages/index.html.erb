@@ -58,7 +58,10 @@
 </div>
 
 <%= javascript_tag do %>
-  $(".timer").countdown('<%= l(@start_page.countdown, format: '%Y/%m/%d %H:%M:%S %z') %>', function(event) {
-        $(this).html(event.strftime('%-d <%= t('.days') %> %H:%M:%S'));
-  });
+  $(document).ready(
+    $(".timer").countdown('<%= l(@start_page.countdown, format: '%Y/%m/%d %H:%M:%S %z') %>',
+                          function(event) {
+      $(this).html(event.strftime('%-d <%= t('.days') %> %H:%M:%S'));
+    })
+  );
 <% end %>
