@@ -89,5 +89,12 @@
     .text {
       padding-top: 5%;
     }
+
+    @include max-screen(768px) {
+      h1,
+      .timer {
+        font-size: 1em;
+      }
+    }
   }
 }
