@@ -21,7 +21,7 @@
   <%= f.input :cover_image, as: :file %>
 
   <% if blog_post.persisted? %>
-    <%= f.association :categories, collection: Category.by_title,
+    <%= f.association :categories, collection: Category.by_title.for_use_case('BlogPost'),
                                    input_html: { class: 'select2' } %>
     <%= link_to(t('.destroy'), admin_blog_post_path(@blog_post),
                                method: :delete,

@@ -6,9 +6,6 @@ class BlogPostsController < ApplicationController
   end
 
   def show
-    unless @blog_post.is_translated?(I18n.locale)
-      flash[:notice] = I18n.t('model.blog_post.not_translated_yet')
-    end
     @other_blog_posts = BlogPost.by_created.include_for_index.other(@blog_post)
   end
 
