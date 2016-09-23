@@ -72,6 +72,7 @@ end
 
 group :development do
   gem 'bullet'
+  gem 'foreman'
   gem 'onesky-rails'
   gem 'web-console'
 end
