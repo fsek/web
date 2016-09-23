@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160912102500) do
+ActiveRecord::Schema.define(version: 20160923170248) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
