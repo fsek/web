@@ -1,5 +1,9 @@
 <%= simple_form_for([:admin, category]) do |f| %>
-  <%= f.input :title %>
+  <%= f.input :title_sv %>
+  <%= f.input :title_en %>
   <%= f.input :slug %>
+  <%= f.input :use_case, collection: category_use_cases,
+                         input_html: { class: 'select2' },
+                         include_blank: false %>
   <%= f.button :submit %>
 <% end %>

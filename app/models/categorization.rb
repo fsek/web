@@ -6,4 +6,13 @@ class Categorization < ActiveRecord::Base
   validates :categorizable_id, uniqueness: { scope: [:category,
                                                      :categorizable_type],
                                              message: I18n.t('model.category.already_added') }
+  validate :use_case
+
+  private
+
+  def use_case
+    if category.present? && !category.allowed_use_case?(categorizable_type)
+      errors.add(:categorizable, 'Not allowed use case')
+    end
+  end
 end

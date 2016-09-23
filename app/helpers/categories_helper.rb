@@ -26,4 +26,12 @@ module CategoriesHelper
   def category_link(category, path)
     content_tag(:li, link_to(category, path))
   end
+
+  def category_use_cases
+    Category::USE_CASES.map { |f| [category_use_case(f), f] }
+  end
+
+  def category_use_case(use_case)
+    I18n.t("model.category.use_cases.#{use_case.parameterize}")
+  end
 end
