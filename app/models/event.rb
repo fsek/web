@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
- # acts_as_paranoid
+  acts_as_paranoid
   include CarrierWave::Compatibility::Paperclip
   include Categorizable
 
