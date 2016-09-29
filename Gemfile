@@ -8,9 +8,8 @@ gem 'rails', '4.2.7.1'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 gem 'cancancan'
-# Need to use this for multiple file upload
-# https://github.com/carrierwaveuploader/carrierwave#multiple-file-uploads
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave', '~>0.11.2'
+gem 'carrierwave_backgrounder'
 gem 'cookies_eu'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'devise'

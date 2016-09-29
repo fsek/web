@@ -4,3 +4,4 @@
   - default
   - mailers
   - rollbar
+  - carrierwave
