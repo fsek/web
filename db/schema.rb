@@ -285,32 +285,35 @@ ActiveRecord::Schema.define(version: 20160923170248) do
   end
 
   create_table "event_signup_translations", force: :cascade do |t|
-    t.integer  "event_signup_id", limit: 4,   null: false
-    t.string   "locale",          limit: 255, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "question",        limit: 255
+    t.integer  "event_signup_id",      limit: 4,   null: false
+    t.string   "locale",               limit: 255, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "question",             limit: 255
+    t.string   "notification_message", limit: 255
   end
 
   add_index "event_signup_translations", ["event_signup_id"], name: "index_event_signup_translations_on_event_signup_id", using: :btree
   add_index "event_signup_translations", ["locale"], name: "index_event_signup_translations_on_locale", using: :btree
 
   create_table "event_signups", force: :cascade do |t|
-    t.integer  "event_id",    limit: 4
-    t.boolean  "for_members",             default: true, null: false
-    t.string   "question",    limit: 255
-    t.integer  "slots",       limit: 4,                  null: false
-    t.datetime "closes",                                 null: false
-    t.datetime "opens",                                  null: false
-    t.integer  "novice",      limit: 4
-    t.integer  "mentor",      limit: 4
-    t.integer  "member",      limit: 4
-    t.integer  "custom",      limit: 4
-    t.string   "custom_name", limit: 255
+    t.integer  "event_id",      limit: 4
+    t.boolean  "for_members",               default: true, null: false
+    t.string   "question",      limit: 255
+    t.integer  "slots",         limit: 4,                  null: false
+    t.datetime "closes",                                   null: false
+    t.datetime "opens",                                    null: false
+    t.integer  "novice",        limit: 4
+    t.integer  "mentor",        limit: 4
+    t.integer  "member",        limit: 4
+    t.integer  "custom",        limit: 4
+    t.string   "custom_name",   limit: 255
     t.datetime "deleted_at"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "group_types", limit: 255
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "group_types",   limit: 255
+    t.datetime "sent_reminder"
+    t.datetime "sent_position"
   end
 
   add_index "event_signups", ["deleted_at"], name: "index_event_signups_on_deleted_at", using: :btree
@@ -607,6 +610,20 @@ ActiveRecord::Schema.define(version: 20160923170248) do
     t.integer  "user_id",     limit: 4,     null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id",         limit: 4
+    t.boolean  "seen",                        default: false, null: false
+    t.string   "notifyable_type", limit: 255,                 null: false
+    t.integer  "notifyable_id",   limit: 4,                   null: false
+    t.string   "mode",            limit: 255,                 null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "notifications", ["notifyable_id"], name: "index_notifications_on_notifyable_id", using: :btree
+  add_index "notifications", ["notifyable_type"], name: "index_notifications_on_notifyable_type", using: :btree
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
   create_table "page_element_translations", force: :cascade do |t|
     t.integer  "page_element_id", limit: 4,     null: false
     t.string   "locale",          limit: 255,   null: false
@@ -781,6 +798,7 @@ ActiveRecord::Schema.define(version: 20160923170248) do
     t.string   "food_custom",            limit: 255
     t.string   "student_id",             limit: 255
     t.boolean  "display_phone",                      default: false, null: false
+    t.integer  "notifications_count",    limit: 4,   default: 0,     null: false
     t.string   "food_preferences",       limit: 255
   end
 
@@ -833,6 +851,7 @@ ActiveRecord::Schema.define(version: 20160923170248) do
   add_foreign_key "message_comments", "messages"
   add_foreign_key "message_comments", "users"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "page_images", "pages"
   add_foreign_key "rents", "users"
 end

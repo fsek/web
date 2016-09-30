@@ -3,11 +3,19 @@
     <h3><%= t('.signup') %></h3>
   </div>
   <%= f.input :for_members %>
-  <%= f.input :question_sv, hint: t('.question_hint') %>
-  <%= f.input :question_en %>
   <%= f.input :opens, as: :datetime_picker %>
   <%= f.input :closes, as: :datetime_picker %>
   <%= f.input :slots %>
+  <%= f.input :question_sv, hint: t('.question_hint') %>
+  <%= f.input :question_en %>
+  <div class="headline">
+    <h4><%= t('.notifications') %></h4>
+  </div>
+  <%= simple_format(t('.notification_hint')) %>
+  <%= f.input :notification_message_sv, as: :pagedown,
+                                        input_html: { preview: true, rows: 5 } %>
+  <%= f.input :notification_message_en, as: :pagedown,
+                                        input_html: { preview: true, rows: 5 } %>
   <div class="headline">
     <h4><%= t('.priorities') %></h4>
   </div>

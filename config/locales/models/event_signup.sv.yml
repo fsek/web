@@ -1,32 +1,38 @@
 sv:
-    activerecord:
-        models:
-            event_signup: Evenemangsanmälan
+  activerecord:
+    models:
+      event_signup: Evenemangsanmälan
 
-        attributes:
-            event_signup:
-                created_at: Skapades
-                custom: Special
-                custom_name: Namn special
-                event: Event
-                for_members: För medlemmar
-                group_types: Tillåtna grupper
-                closes: Anmälan stänger
-                member: Medlem
-                mentor: Fadder
-                novice: Nolla
-                opens: Anmälan öppnar
-                question: Fråga
-                question_en: Fråga - engelsk
-                question_sv: Fråga - svensk
-                slots: Antal platser
-                updated_at: Uppdaterades
-    model:
-        event_signup:
-            same_priority: Samma prioritet kan inte väljas för olika användartyper
-            custom_name_missing: Behöver fyllas i för att special ska kunna använas
-            user_types:
-                novice: Nolla
-                mentor: Fadder
-                member: Sektionsmedlem
-                other: Övrig
+    attributes:
+      event_signup:
+        created_at: Skapades
+        custom: Special
+        custom_name: Namn special
+        event: Event
+        for_members: Endast för medlemmar
+        group_types: Tillåtna grupper
+        closes: Anmälan stänger
+        member: Medlem
+        mentor: Fadder
+        novice: Nolla
+        notification_message: Notifikationsmeddelande
+        notification_message_sv: Notifikationsmeddelande - svenska
+        notification_message_en: Notifikationsmeddelande - engelska
+        opens: Anmälan öppnar
+        question: Fråga
+        question_en: Fråga - engelsk
+        question_sv: Fråga - svensk
+        slots: Antal platser
+        updated_at: Uppdaterades
+
+  model:
+    event_signup:
+      custom_name_missing: Behöver fyllas i för att special ska kunna användas
+      position_reminder_was_sent: "Meddelande om man fått plats eller ej skickades %{date}."
+      reminder_was_sent: "Påminnelse om att evenemanget börjar skickades %{date}."
+      same_priority: Samma prioritet kan inte väljas för olika användartyper
+      user_types:
+        novice: Nolla
+        mentor: Fadder
+        member: Sektionsmedlem
+        other: Övrig

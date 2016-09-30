@@ -24,7 +24,9 @@ class Admin::EventSignupsController < Admin::BaseController
 
   def show
     @event_signup = @event.signup
-    @event_signup ||= @event.build_event_signup(opens: Time.zone.now, closes: @event.starts_at)
+    @event_signup ||= @event.build_event_signup(opens: Time.zone.now,
+                                                closes: @event.starts_at,
+                                                for_members: false)
     set_grids
   end
 
@@ -53,6 +55,7 @@ class Admin::EventSignupsController < Admin::BaseController
 
   def event_signup_params
     params.require(:event_signup).permit(:for_members, :closes, :slots, :question_sv, :question_en,
+                                         :notification_message_sv, :notification_message_en,
                                          :novice, :mentor, :member, :custom, :custom_name, :opens,
                                          group_types: [])
   end

@@ -35,5 +35,6 @@ sv:
         destroy_confirmation: Är du säker på att du vill förinta evenemanget?
         save_before: Osparade ändringar går förlorade.
         settings: Inställningar
+        show_event: Visa evenemang
         signup: Anmälan
         texts: Information
