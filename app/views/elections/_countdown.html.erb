@@ -7,9 +7,15 @@
   </div>
   <% if election_view.election.countdown.present? %>
     <%= javascript_tag do %>
-      $(".timer").countdown('<%= l(election_view.election.countdown, format: '%Y/%m/%d %H:%M:%S %z') %>', function(event) {
-        $(this).html(event.strftime('%D <%= t('.days') %> %H:%M:%S'));
-      });
+      var ready;
+      ready = function() {
+        $(".timer").countdown('<%= l(election_view.election.countdown, format: '%Y/%m/%d %H:%M:%S %z') %>', function(event) {
+          $(this).html(event.strftime('%D <%= t('.days') %> %H:%M:%S'));
+        });
+      };
+
+    $(document).ready(ready);
+    $(document).on('page:load', ready);
     <% end %>
   <% end %>
 <% end %>
