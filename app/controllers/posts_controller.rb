@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def modal
     @post = @election.posts.includes(:council).find(params[:id])
     respond_to do |format|
-      format.html
+      format.html { render :show }
       format.js
     end
   end
