@@ -1,6 +1,6 @@
 class CafeWorker < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :cafe_shift
+  belongs_to :user, required: true
+  belongs_to :cafe_shift, required: true
   has_many :cafe_worker_councils, dependent: :destroy
   has_many :councils, through: :cafe_worker_councils
 
@@ -10,7 +10,7 @@ class CafeWorker < ActiveRecord::Base
   private
 
   def user_attributes?
-    if !user.try(:has_attributes?)
+    if user.present? && (user.email.blank? || user.phone.blank?)
       errors.add(:user, I18n.t('model.user.attributes_missing'))
     end
   end
