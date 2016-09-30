@@ -1,12 +1,15 @@
 class StartPage
-  attr_accessor :news, :events, :notices
-  attr_reader :countdown
+  attr_accessor :news, :events, :notices, :election_view
 
   def initialize(member: false)
     @news = News.include_for_feed.by_date.limit(5) || []
     @events = Event.by_locale(locale: I18n.locale).stream || []
     @notices = get_notices(member)
-    @countdown = Time.zone.now.change(month: 9, day: 22, hour: 16, minute: 0, second: 0)
+
+    election = Election.current
+    if(election.present? && election.state != :closed)
+      @election_view = ElectionView.new(election)
+    end
   end
 
   private

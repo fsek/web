@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Post < ActiveRecord::Base
   AUTUMN = 'autumn'.freeze
   SPRING = 'spring'.freeze
@@ -47,6 +46,10 @@ class Post < ActiveRecord::Base
 
   def limited?
     limit > 0 && users.count >= limit
+  end
+
+  def education?
+    elected_by == EDUCATION
   end
 
   def set_permissions(params)

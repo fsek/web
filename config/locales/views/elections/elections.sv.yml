@@ -14,7 +14,7 @@ sv:
         - terminsmöte
         - val
         - post
-      orange_posts: Orangefärgade fält innebär att posten sitter i styrelsen.
+      orange_posts: Orangefärgade fält innebär att postinnehavaren sitter i nämnden eller styrelsen.
       star_posts: Poster med antal * har ingen bestämd gräns.
       x_posts: Poster med antal markerat med (x) anger exakt maximalt antal.
 
