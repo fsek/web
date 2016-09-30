@@ -3,6 +3,8 @@
     g.row_attributes do |post|
       if post.board
         {class: "board-post #{post.elected_by}"}
+      elsif post.education?
+        {class: "education #{post.elected_by}"}
       else
         {class: post.elected_by}
       end

@@ -25,11 +25,11 @@
         }
       }
 
-      &.studierad {
+      &.education {
         td,
         &.even td,
         &.odd td {
-          background-color: rgba($green-highlight, 0.7);
+          background-color: rgba($green-highlight, 0.5);
         }
       }
     }
