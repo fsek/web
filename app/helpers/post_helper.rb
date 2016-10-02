@@ -8,7 +8,7 @@ module PostHelper
       elsif post.limit > 0 && post.rec_limit == 0
         post.limit
       elsif post.limit > post.rec_limit
-        %(#{post.recLimit} - #{post.limit})
+        %(#{post.rec_limit} - #{post.limit})
       end
     end
   end
