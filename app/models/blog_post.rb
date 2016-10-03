@@ -1,13 +1,12 @@
 class BlogPost < ActiveRecord::Base
+  include Categorizable
   acts_as_paranoid
   mount_uploader(:cover_image, CoverImageUploader)
-  translates(:title, :preamble, :content)
+  translates(:title, :preamble, :content, fallbacks_for_empty_translations: true)
   globalize_accessors(locales: [:en, :sv],
                       attributes: [:title, :preamble, :content])
-  include Categorizable
 
-  # pagination
-  paginates_per(10)
+  paginates_per(5)
 
   belongs_to(:user, required: true)
   validates(:title, :content, presence: true)

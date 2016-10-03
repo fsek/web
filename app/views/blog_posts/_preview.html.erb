@@ -1,0 +1,20 @@
+<div class="blog-headline">
+  <%= link_to(blog_post_path(blog_post)) do %>
+    <h3><%= blog_post.title %></h3>
+  <% end %>
+</div>
+
+<% if blog_post.preamble.present? %>
+  <div class="preamble">
+    <%= blog_post.preamble %>
+  </div>
+<% end %>
+
+<% if blog_post.cover_image.present? %>
+  <%= blog_cover_image(image_url(blog_post.cover_image_large)) %>
+<% end %>
+
+<%= simple_format(truncate(markdown_plain(blog_post.content), length: 160)) %>
+
+<%= render '/blog_posts/info', blog_post: blog_post %>
+<%= link_to(t('.read'), blog_post_path(blog_post), class: 'btn primary') %>

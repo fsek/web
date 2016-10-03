@@ -159,10 +159,10 @@ ActiveRecord::Schema.define(version: 20160923170248) do
   add_index "candidates", ["user_id"], name: "index_candidates_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.string   "title",      limit: 255, null: false
-    t.string   "slug",       limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "slug",       limit: 255,                     null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "use_case",   limit: 255, default: "general"
   end
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", using: :btree
@@ -178,6 +178,17 @@ ActiveRecord::Schema.define(version: 20160923170248) do
   add_index "categorizations", ["categorizable_id"], name: "index_categorizations_on_categorizable_id", using: :btree
   add_index "categorizations", ["categorizable_type"], name: "index_categorizations_on_categorizable_type", using: :btree
   add_index "categorizations", ["category_id"], name: "index_categorizations_on_category_id", using: :btree
+
+  create_table "category_translations", force: :cascade do |t|
+    t.integer  "category_id", limit: 4,   null: false
+    t.string   "locale",      limit: 255, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "title",       limit: 255
+  end
+
+  add_index "category_translations", ["category_id"], name: "index_category_translations_on_category_id", using: :btree
+  add_index "category_translations", ["locale"], name: "index_category_translations_on_locale", using: :btree
 
   create_table "constants", force: :cascade do |t|
     t.string   "name",       limit: 255

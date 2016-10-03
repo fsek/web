@@ -14,9 +14,11 @@
     }
   }
 
+  .blog-post {
+    padding-bottom: 30px;
+  }
+
   .cover-image {
-    background-position: top center;
-    background-repeat: no-repeat;
     box-sizing: border-box;
     display: block;
     margin: auto;
@@ -34,6 +36,15 @@
       margin-right: 9px;
       padding-right: 9px;
     }
+  }
+
+  &.margin {
+    margin-bottom: 50px;
+  }
+
+  &.no-padding {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .preamble {

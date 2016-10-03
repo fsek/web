@@ -1,6 +1,6 @@
 sv:
   blog_posts:
-    blog_post:
+    preview:
       read: Läs inlägget
 
     show:
@@ -8,7 +8,11 @@ sv:
       more_posts: Fler blogginlägg
 
     index:
+      administrate_blog_posts: Administrera
       description: På vår blogg publiceras inlägg från en rad olika medlemmar om något som hänt på sektionen eller något helt annat.
+      do_you_wanna_share: Vill du dela med dig av dina känslor och intryck från den senaste sittningen? Har du en massa tips om hur man klarar den där tentan som du vill förmedla till resten av sektionen? Kanske behöver du bara prata av dig lite?
+      here_you_can_find: Här hittar du inlägg om allt möjligt som rör sektionen; det kan röra sig om allt från styrelserapportering, till gågna aktiviteter, till löst prat om vad som helst som är orange of F-igt.
+      introduction: Vill du dela med dig av dina känslor och intryck från den senaste sittningen? Har du en massa tips om hur man klarar den där tentan som du vill förmedla till resten av sektionen? Kanske du bara behöver prata av dig lite? Skicka ett mail till %{contact} så ser vi till att ditt inlägg dyker upp här (var inte blyg)! 
       keywords:
         - blogg
         - studentliv
@@ -16,4 +20,6 @@ sv:
         - teknisk fysik
         - teknisk matematik
         - teknisk nanovetenskap
+      please_contact: "Skicka ett meddelande till %{contact} så ser vi till att ditt inlägg dyker upp här."
       title: Blogg
+      welcome: Välkommen till F-sektionens blogg!

@@ -1,8 +1,14 @@
 sv:
   model:
     category:
-      already_added: Kategorin har redan lagts tillj
+      already_added: Kategorin har redan lagts till
       slug_format: endast a-z och 0-9.
+      not_allowed_use_case: Användningsområdet är inte tillåtet.
+      use_cases:
+        blogpost: Bloggen
+        general: Allmän
+        news: Nyheter
+        event: Evenemang
 
   activerecord:
     models:
@@ -11,5 +17,8 @@ sv:
         other: Kategorier
     attributes:
       category:
-        titel: Titel
+        title: Titel
+        title_sv: Titel - svenska
+        title_en: Titel - engelska
         slug: Kortnamn
+        use_case: Användningsområde

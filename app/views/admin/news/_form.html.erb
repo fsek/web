@@ -18,7 +18,7 @@
   <% end %>
 
   <% if news.persisted? %>
-    <%= f.association :categories, collection: Category.all,
+    <%= f.association :categories, collection: Category.by_title.for_use_case('News'),
                                    input_html: { class: 'select2' } %>
   <% else %>
     <%= simple_format(t('.categories_after_save')) %>
