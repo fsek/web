@@ -4,6 +4,7 @@
 <div class="headline">
   <h1 id="election-title"><%= title(@election_view.election.to_s) %></h1>
 </div>
+
 <div class="col-md-3 col-sm-12 election">
   <%= render 'countdown', election_view: @election_view %>
 
@@ -37,7 +38,7 @@
   <% end %>
 </div>
 
-<div class="col-md-12 election">
+<div class="col-md-12 col-sm-12 election">
   <h3><%= @election_view.posts_text %></h3>
   <%= render 'posttab', election_view: @election_view, post_grid: @election_view.grid %>
 
