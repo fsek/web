@@ -1,5 +1,4 @@
 class ImageUploader < BaseImageUploader
-  include ::CarrierWave::Backgrounder::Delay
   before :cache, :save_original_filename
 
   storage :file
