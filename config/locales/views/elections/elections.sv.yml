@@ -6,7 +6,7 @@ sv:
     index:
       description: Val på F-sektionen är då funktionärer och förtroendevalda blir valda. Se vilka poster som finns och sök idag.
       edit_election: Redigera val
-      green_posts: Grönfärgade fält innebär att posten väljs av studierådet.
+      green_posts: Grönfärgade poster väljs av studierådet.
       keywords:
         - engagera
         - sektionsval
@@ -14,9 +14,10 @@ sv:
         - terminsmöte
         - val
         - post
-      orange_posts: Orangefärgade fält innebär att postinnehavaren sitter i nämnden eller styrelsen.
-      star_posts: Poster med antal * har ingen bestämd gräns.
-      x_posts: Poster med antal markerat med (x) anger exakt maximalt antal.
+      highlights: Vad betyder färger och markeringar?
+      orange_posts: Orangefärgade poster är nämnd- eller styrelseposter.
+      star_posts: Poster markerade med * har inte något rekommenderat antal
+      x_posts: anger exakt maximalt antal.
 
     no_election:
       no_information: Just nu finns det ingen information om valet.
