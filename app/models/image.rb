@@ -4,7 +4,6 @@ class Image < ActiveRecord::Base
   belongs_to :photographer, class_name: User
 
   mount_uploader :file, ImageUploader
-  process_in_background :file
 
   validates :file, :filename, presence: true
   validates :filename, uniqueness: { scope: :album_id, message: '%{value} är redan uppladdad' }

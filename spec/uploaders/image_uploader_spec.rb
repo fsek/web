@@ -20,13 +20,13 @@ RSpec.describe ImageUploader do
   end
 
   context 'the thumb version' do
-    it 'should scale down a landscape image to be exactly 350 by 350 pixels', pending: true do
+    it 'should scale down a landscape image to be exactly 350 by 350 pixels' do
       uploader.thumb.should have_dimensions(350, 350)
     end
   end
 
   context 'the small version' do
-    it 'should scale down a landscape image to fit within 1680 by 10000 pixels', pending: true do
+    it 'should scale down a landscape image to fit within 1680 by 10000 pixels' do
       uploader.large.should be_no_larger_than(1680, 10000)
     end
   end
