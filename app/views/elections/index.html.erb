@@ -24,6 +24,15 @@
   <% if @election_view.election.description.present? %>
     <div class="col-sm-12">
       <%= markdown(@election_view.election.description) %>
+      <p>
+        <strong><%= t('.highlights') %></strong>
+      </p>
+      <ul class="list">
+        <li><%= t('.star_posts') %></li>
+        <li><strong>(X)</strong> <%= t('.x_posts') %></li>
+        <li><%= t('.orange_posts') %></li>
+        <li><%= t('.green_posts') %></li>
+      </ul>
     </div>
   <% end %>
 </div>
@@ -31,13 +40,6 @@
 <div class="col-md-12 election">
   <h3><%= @election_view.posts_text %></h3>
   <%= render 'posttab', election_view: @election_view, post_grid: @election_view.grid %>
-
-  <ul class="list">
-    <li><%= t('.x_posts') %></li>
-    <li><%= t('.star_posts') %></li>
-    <li><%= t('.orange_posts') %></li>
-    <li><%= t('.green_posts') %></li>
-  </ul>
 
   <h3><%= @election_view.rest_posts_text %></h3>
   <%= render 'posttab', election_view: @election_view, post_grid: @election_view.rest_grid %>
