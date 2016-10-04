@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ElectionService do
+  include ActiveJob::TestHelper
+
   describe 'create_candidate' do
     it 'creates a valid candidate' do
       election = create(:election, :before_general, :autumn)
@@ -19,6 +21,7 @@ RSpec.describe ElectionService do
 
       lambda do
         ElectionService.create_candidate(candidate, user).should be_truthy
+        perform_enqueued_jobs { ActionMailer::DeliveryJob.perform_now(*enqueued_jobs.first[:args]) }
       end.should change(ActionMailer::Base.deliveries, :count).by(1)
     end
 
@@ -64,6 +67,7 @@ RSpec.describe ElectionService do
 
       lambda do
         ElectionService.create_nomination(nomination).should be_truthy
+        perform_enqueued_jobs { ActionMailer::DeliveryJob.perform_now(*enqueued_jobs.first[:args]) }
       end.should change(ActionMailer::Base.deliveries, :count).by(1)
     end
 
