@@ -1,7 +1,8 @@
 sv:
   model:
     blog_post:
-      not_translated_yet: Detta blogginlägg har ännu inte översatts.
+      not_translated: Detta blogginlägg har ännu inte översatts.
+
   activerecord:
     models:
       blog_post: Blogginlägg

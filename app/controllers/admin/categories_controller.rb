@@ -2,9 +2,7 @@ class Admin::CategoriesController < Admin::BaseController
   load_permissions_and_authorize_resource find_by: :slug
 
   def index
-    @category_grid = initialize_grid(@categories, include: :categorizations,
-                                                  order: :title,
-                                                  order_direction: :asc)
+    @categories = @categories.by_title
   end
 
   def new
@@ -40,6 +38,6 @@ class Admin::CategoriesController < Admin::BaseController
   private
 
   def category_params
-    params.require(:category).permit(:title, :slug)
+    params.require(:category).permit(:title_en, :title_sv, :slug, :use_case)
   end
 end

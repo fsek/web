@@ -39,7 +39,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
 
   describe 'POST #create' do
     it 'valid parameters' do
-      attributes = { title: 'Kategori 1', slug: 'kategori' }
+      attributes = { title_sv: 'Kategori 1', slug: 'kategori' }
 
       lambda do
         post :create, category: attributes
@@ -50,7 +50,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, category: { title: '' }
+        post :create, category: { slug: '' }
       end.should change(Category, :count).by(0)
 
       response.status.should eq(422)
@@ -60,21 +60,22 @@ RSpec.describe Admin::CategoriesController, type: :controller do
 
   describe 'PATCH #update' do
     it 'valid parameters' do
-      category = create(:category, title: 'A Bad Title')
+      category = create(:category, title_en: 'A Bad Title')
 
-      patch :update, id: category.to_param, category: { title: 'A Good Title' }
+      patch :update, id: category.to_param, category: { title_en: 'A Good Title' }
       category.reload
 
+      category.title_en.should eq('A Good Title')
       response.should redirect_to(edit_admin_category_path(category))
     end
 
     it 'invalid parameters' do
-      category = create(:category, title: 'A Good Title')
+      category = create(:category, slug: 'good')
 
-      patch :update, id: category.to_param, category: { title: '' }
+      patch :update, id: category.to_param, category: { slug: '' }
       category.reload
 
-      category.title.should eq('A Good Title')
+      category.slug.should eq('good')
       response.status.should eq(422)
       response.should render_template(:edit)
     end

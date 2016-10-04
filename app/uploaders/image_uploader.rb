@@ -1,6 +1,5 @@
-# encoding: utf-8
-class ImageUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick
+class ImageUploader < BaseImageUploader
+  include ::CarrierWave::Backgrounder::Delay
   before :cache, :save_original_filename
 
   storage :file
@@ -9,6 +8,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     %(#{Rails.root}/storage/#{model.parent.class.name.pluralize.downcase}/#{model.parent.id})
   end
+
   # Store dimensions of original
   process :store_dimensions
   process :fix_exif_rotation
@@ -30,28 +30,6 @@ class ImageUploader < CarrierWave::Uploader::Base
     def store_dir
       %(uploads/#{model.parent.class.name.pluralize.downcase}/#{model.parent.id}/thumb)
     end
-  end
-
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  def extension_white_list
-    %w(jpg jpeg gif png)
-  end
-
-  # Used for hashing filename
-  def filename
-    if original_filename
-      if model && model.read_attribute(mounted_as).present?
-        model.read_attribute(mounted_as)
-      else
-        @name ||= %(#{File.basename(super, File.extname(super))}_#{md5}#{File.extname(super)}) if super
-      end
-    end
-  end
-
-  def md5
-    chunk = model.send(mounted_as)
-    @md5 ||= Digest::MD5.hexdigest(chunk.read.to_s)
   end
 
   # Watermark should always be processed after thumbkit, ensuring that we always

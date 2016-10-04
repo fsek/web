@@ -4,16 +4,25 @@
   <h1><%= title(t('.title')) %></h1>
 </div>
 
-<div class="col-md-2 col-sm-12 margin-bottom-20">
+<div class="col-md-4 col-sm-3 col-xs-12 blog margin">
   <%= blog_post_dropdown_button(collection: Category.by_title.by_type(BlogPost),
                                 current: @category) %>
+
+  <% if can_administrate?(:index, BlogPost) %>
+    <hr>
+    <%= link_to(t('.administrate_blog_posts'), admin_blog_posts_path, class: 'btn secondary') %>
+  <% end %>
+</div>
+<div class="col-md-8 col-sm-9 col-xs-12 blog margin">
+  <div class="headline">
+    <h2><%= t('.welcome') %></h2>
+  </div>
+  <%= simple_format(t('.here_you_can_find')) %>
+  <%= simple_format(t('.do_you_wanna_share')) %>
+  <%= simple_format(t('.please_contact', contact: contact_from_slug(slug: 'sanning'))) %>
 </div>
 
-<div class="col-md-10 col-sm-12 blog">
-  <% @blog_posts.each do |blog_post| %>
-    <div class="col-sm-12 index">
-      <%= render blog_post %>
-    </div>
-  <% end %>
-  <%= paginate(@blog_posts, left: 2, right: 2) %>
+<div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 blog no-padding">
+  <%= render(@blog_posts, link: true) %>
 </div>
+<%= paginate(@blog_posts, left: 2, right: 2) %>
