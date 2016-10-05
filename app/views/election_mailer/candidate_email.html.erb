@@ -20,7 +20,7 @@
                     date: l(@candidate.election.post_closing(@candidate.post)))) %>
 <br>
 
-<%= link_to(t('.show_your_candidacy'), @candidate.p_url, class: 'btn') %>
+<%= link_to(t('.show_your_candidacies'), candidates_url(host: PUBLIC_URL), class: 'btn') %>
 <br>
 <br>
 

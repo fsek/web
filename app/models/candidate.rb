@@ -19,10 +19,6 @@ class Candidate < ActiveRecord::Base
     end
   end
 
-  def p_url
-    Rails.application.routes.url_helpers.candidate_url(id, host: PUBLIC_URL)
-  end
-
   def editable_until
     if election.present? && post.present?
       election.post_closing(post)
