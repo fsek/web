@@ -7,7 +7,7 @@ sv:
       sincerely: Mvh, Valberedningen
       subject_candidated: Du har kandiderat till en post på Fsektionen.se
       you_have_candidated: Du har kandiderat till sektionsposten
-      show_your_candidacy: Visa kandidatur
+      show_your_candidacies: Visa kandidaturer
 
     nominate_email:
       accept_before_closing: "Tänk på att du måste tacka ja, kandidera, innan valet för posten stänger, %{date}."
