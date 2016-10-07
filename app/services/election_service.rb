@@ -3,7 +3,7 @@ module ElectionService
     candidate.user = user
 
     if candidate.save
-      ElectionMailer.candidate_email(candidate).deliver_now
+      ElectionMailer.candidate_email(candidate.id).deliver_later
       true
     else
       false
@@ -16,7 +16,7 @@ module ElectionService
 
   def self.create_nomination(nomination)
     if nomination.save
-      ElectionMailer.nominate_email(nomination).deliver_now
+      ElectionMailer.nominate_email(nomination.id).deliver_later
       true
     else
       false

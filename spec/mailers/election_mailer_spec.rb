@@ -3,102 +3,102 @@ require 'rails_helper'
 RSpec.describe ElectionMailer, type: :mailer do
   describe 'nomination' do
     it 'has appropriate subject' do
-      nomination = build_stubbed(:nomination)
+      nomination = create(:nomination)
 
-      mail = ElectionMailer.nominate_email(nomination)
+      mail = ElectionMailer.nominate_email(nomination.id)
 
       mail.subject.should eq(I18n.t('election_mailer.nominate_email.subject_nominated'))
     end
 
     it 'sends from dirac' do
-      nomination = build_stubbed(:nomination)
+      nomination = create(:nomination)
 
-      mail = ElectionMailer.nominate_email(nomination)
+      mail = ElectionMailer.nominate_email(nomination.id)
 
       mail.from.should eq(['valb@fsektionen.se'])
     end
 
     it 'Message-ID has right domain' do
-      nomination = build_stubbed(:nomination)
+      nomination = create(:nomination)
 
-      mail = ElectionMailer.nominate_email(nomination)
+      mail = ElectionMailer.nominate_email(nomination.id)
 
       mail.message_id.should include('@fsektionen.se')
     end
 
     it 'includes the text' do
-      nomination = build_stubbed(:nomination,
-                                 motivation: 'What a wonderful day')
+      nomination = create(:nomination,
+                          motivation: 'What a wonderful day')
 
-      mail = ElectionMailer.nominate_email(nomination)
+      mail = ElectionMailer.nominate_email(nomination.id)
       mail.body.should include('What a wonderful day')
     end
   end
 
   describe 'candidate' do
     it 'has appropriate subject' do
-      candidate = build_stubbed(:candidate)
+      candidate = create(:candidate)
 
-      mail = ElectionMailer.candidate_email(candidate)
+      mail = ElectionMailer.candidate_email(candidate.id)
 
       mail.subject.should eq(I18n.t('election_mailer.candidate_email.subject_candidated'))
     end
 
     it 'sends from dirac' do
-      candidate = build_stubbed(:candidate)
+      candidate = create(:candidate)
 
-      mail = ElectionMailer.candidate_email(candidate)
+      mail = ElectionMailer.candidate_email(candidate.id)
 
       mail.from.should eq(['valb@fsektionen.se'])
     end
 
     it 'Message-ID has right domain' do
-      candidate = build_stubbed(:candidate)
+      candidate = create(:candidate)
 
-      mail = ElectionMailer.candidate_email(candidate)
+      mail = ElectionMailer.candidate_email(candidate.id)
 
       mail.message_id.should include('@fsektionen.se')
     end
 
     it 'board post' do
-      election = build_stubbed(:election,
-                               candidate_mail: 'This is the general and board email',
-                               candidate_mail_star: 'This is the not general email',
-                               nominate_mail: 'This is the nomination email')
+      election = create(:election, :before_general, :autumn,
+                        candidate_mail: 'This is the general and board email',
+                        candidate_mail_star: 'This is the not general email',
+                        nominate_mail: 'This is the nomination email')
 
-      postt = build_stubbed(:post, elected_by: Post::GENERAL, board: true)
+      postt = create(:post, :autumn, :general, board: true)
       election.posts << postt
-      candidate = build_stubbed(:candidate, post: postt, election: election)
+      candidate = create(:candidate, post: postt, election: election)
 
-      mail = ElectionMailer.candidate_email(candidate)
+      mail = ElectionMailer.candidate_email(candidate.id)
       mail.body.should include('This is the general and board email')
     end
 
     it 'post elected at general meeting' do
-      election = build_stubbed(:election,
-                               candidate_mail: 'This is the general and board email',
-                               candidate_mail_star: 'This is the not general email',
-                               nominate_mail: 'This is the nomination email')
+      election = create(:election, :before_general, :autumn,
+                        candidate_mail: 'This is the general and board email',
+                        candidate_mail_star: 'This is the not general email',
+                        nominate_mail: 'This is the nomination email')
 
-      postt = build_stubbed(:post, elected_by: Post::GENERAL, board: false)
+      postt = create(:post, :autumn, :general, board: false)
       election.posts << postt
-      candidate = build_stubbed(:candidate, post: postt, election: election)
+      candidate = create(:candidate, post: postt, election: election)
 
-      mail = ElectionMailer.candidate_email(candidate)
+      mail = ElectionMailer.candidate_email(candidate.id)
       mail.body.should include('This is the general and board email')
     end
 
     it 'posts not elected at general meeting' do
-      election = build_stubbed(:election,
-                               candidate_mail: 'This is the general and board email',
-                               candidate_mail_star: 'This is the not general email',
-                               nominate_mail: 'This is the nomination email')
+      election = create(:election, :before_general, :autumn,
+                        candidate_mail: 'This is the general and board email',
+                        candidate_mail_star: 'This is the not general email',
+                        nominate_mail: 'This is the nomination email')
 
-      postt = build_stubbed(:post, elected_by: Post::BOARD, board: false)
+      postt = create(:post, :autumn, :board, board: false)
       election.posts << postt
-      candidate = build_stubbed(:candidate, post: postt, election: election)
+      candidate = create(:candidate, post: postt, election: election)
 
-      mail = ElectionMailer.candidate_email(candidate)
+      mail = ElectionMailer.candidate_email(candidate.id)
       mail.body.should include('This is the not general email')
     end
   end
