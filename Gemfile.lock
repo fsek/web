@@ -1,6 +1,14 @@
 GIT
-  remote: git://github.com/leikind/wice_grid.git
-  revision: f3d6c462af2b1b8ddee849db1083d846ab8d3a58
+  remote: https://github.com/lardawge/carrierwave_backgrounder
+  revision: 38b381faaace6c75f7310ea726dcd1be2604d3fb
+  specs:
+    carrierwave_backgrounder (0.4.2)
+      carrierwave (~> 0.5)
+      mime-types (~> 2.3)
+
+GIT
+  remote: https://github.com/leikind/wice_grid
+  revision: 0d7348fa16d1041eea984987b752e735432728fd
   branch: rails3
   specs:
     wice_grid (3.6.3)
@@ -9,7 +17,7 @@ GIT
       kaminari (~> 0.16)
 
 GIT
-  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  remote: https://github.com/zpaulovics/datetimepicker-rails
   revision: 36d21cec5da7f5b214925804f60e63c61c747023
   branch: master
   submodules: true
@@ -103,8 +111,6 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
-    carrierwave_backgrounder (0.4.2)
-      carrierwave (~> 0.5)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cliver (0.3.2)
@@ -407,7 +413,7 @@ DEPENDENCIES
   capistrano-rbenv
   capybara
   carrierwave (~> 0.11.2)
-  carrierwave_backgrounder
+  carrierwave_backgrounder!
   codeclimate-test-reporter
   cookies_eu
   database_cleaner
@@ -460,5 +466,8 @@ DEPENDENCIES
   web-console
   wice_grid!
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.13.1
+   1.13.2

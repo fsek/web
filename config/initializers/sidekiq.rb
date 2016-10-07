@@ -1,4 +1,4 @@
-redis = { url: "redis://localhost:6379/#{ENV['REDIS_DB_NUMBER'] || 0}" }
+redis = { namespace: Rails.env, url: "redis://localhost:6379/#{ENV['REDIS_DB_NUMBER'] || 0}" }
 Sidekiq.configure_server do |config|
   config.redis = redis
 end

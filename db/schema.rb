@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923170248) do
+ActiveRecord::Schema.define(version: 20161006054301) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -441,6 +441,7 @@ ActiveRecord::Schema.define(version: 20160923170248) do
     t.string   "photographer_name", limit: 255
     t.integer  "width",             limit: 4
     t.integer  "height",            limit: 4
+    t.string   "file_tmp",          limit: 255
   end
 
   add_index "images", ["album_id"], name: "index_images_on_album_id", using: :btree

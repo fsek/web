@@ -9,9 +9,11 @@ gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 gem 'cancancan'
 gem 'carrierwave', '~>0.11.2'
-gem 'carrierwave_backgrounder'
+gem 'carrierwave_backgrounder', git: 'https://github.com/lardawge/carrierwave_backgrounder'
 gem 'cookies_eu'
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'datetimepicker-rails', git: 'https://github.com/zpaulovics/datetimepicker-rails',
+                            branch: 'master',
+                            submodules: true
 gem 'devise'
 gem 'fancybox2-rails'
 gem 'font-awesome-rails'
@@ -45,7 +47,7 @@ gem 'sinatra', require: false
 gem 'sitemap_generator'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'wice_grid', github: 'leikind/wice_grid', branch: 'rails3'
+gem 'wice_grid', git: 'https://github.com/leikind/wice_grid', branch: 'rails3'
 
 # To have a working JVM on server
 group :staging, :production do
