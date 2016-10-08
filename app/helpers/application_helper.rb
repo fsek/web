@@ -7,10 +7,6 @@ module ApplicationHelper
     end
   end
 
-  def fa_icon(icon_name)
-    content_tag(:i, nil, class: "fa fa-#{icon_name}")
-  end
-
   def fa_lg_icon(icon_name)
     content_tag(:i, nil, class: "fa fa-lg fa-#{icon_name}")
   end
@@ -48,6 +44,14 @@ module ApplicationHelper
       content_tag(:div, class: 'responsive-video') do
         content_tag(:iframe, '', src: url, frameborder: 0)
       end
+    end
+  end
+
+  def active_list_group(first, second)
+    if first == second
+      'list-group-item active'
+    else
+      'list-group-item'
     end
   end
 end
