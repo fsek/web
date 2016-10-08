@@ -1,14 +1,11 @@
-<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
-  <div class="headline">
-    <h1><%= title(t('.title')) %></h1>
-  </div>
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
 
+<div class="col-md-3 col-sm-12">
+  <%= render('/admin/news/sidebar', current: :edit, news: @news) %>
+</div>
+
+<div class="col-md-9 col-sm-12">
   <%= render 'form', news: @news %>
-  <hr>
-  <%= link_to(t('.show'), news_path(@news),
-                          class: 'btn secondary') %>
-  <%= link_to(t('.admin_index'), admin_news_index_path(@news),
-                                 class: 'btn secondary') %>
-  <%= link_to(t('.all_news'), news_index_path(@news),
-                              class: 'btn secondary') %>
 </div>

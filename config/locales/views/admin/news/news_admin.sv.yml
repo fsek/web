@@ -21,3 +21,8 @@ sv:
       new:
         all_news: Alla nyheter
         title: Ny nyhet
+
+      sidebar:
+        all_news: Alla nyheter
+        edit: Redigera nyhet
+        new: Ny nyhet
