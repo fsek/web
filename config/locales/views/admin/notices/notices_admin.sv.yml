@@ -17,3 +17,8 @@ sv:
       new:
         administrate_notices: Administrera notiser
         title: Ny notis
+
+      sidebar:
+        all_notices: Alla notiser
+        new: Ny notis
+        edit: Redigera notis

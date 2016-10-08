@@ -1,11 +1,12 @@
-<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
-  <div class="headline">
-    <h1><%= title(t('.title')) %></h1>
-  </div>
-
-  <%= render 'form', notice: @notice %>
-
-  <hr>
-  <%= link_to(t('.administrate_notices'), admin_notices_path,
-                                 class: 'btn secondary') %>
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
 </div>
+
+<div class="col-md-3 col-sm-12">
+  <%= render('/admin/notices/sidebar', current: :edit, notice: @notice) %>
+</div>
+
+<div class="col-md-9 col-sm-12">
+  <%= render 'form', notice: @notice %>
+</div>
+

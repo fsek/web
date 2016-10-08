@@ -2,7 +2,7 @@ class Admin::NoticesController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @notice_grid = initialize_grid(Notice)
+    @notice_grid = initialize_grid(Notice, include: :translations)
   end
 
   def new
