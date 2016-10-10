@@ -55,6 +55,6 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def set_tab
-    @tab = params.fetch(:tab, :texts).to_sym
+    @tab = params.fetch(:tab, :event_texts).to_sym
   end
 end

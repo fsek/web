@@ -2,7 +2,7 @@
   <h1><%= title(t('.title')) %></h1>
 </div>
 <div class="col-md-3 col-sm-12">
-  <%= render '/admin/events/sidebar', event: @event, tab: @tab %>
+  <%= render '/admin/events/sidebar', event: @event, current: @tab %>
 </div>
 
 <div class="col-md-9 col-sm-12">
@@ -10,11 +10,11 @@
     <div class="tab-content">
       <%= f.button :submit %>
       <hr>
-      <div id="texts" class="profile-edit tab-pane fade in <%= @tab == :texts ? 'active' : '' %>">
+      <div id="texts" class="profile-edit tab-pane fade in <%= @tab == :event_texts ? 'active' : '' %>">
         <%= render 'texts_form', form: f, event: @event %>
       </div>
 
-      <div id="dates" class="profile-edit tab-pane fade in <%= @tab == :dates ? 'active' : '' %>">
+      <div id="dates" class="profile-edit tab-pane fade in <%= @tab == :event_dates ? 'active' : '' %>">
         <%= render 'dates_form', form: f, event: @event %>
       </div>
     </div>

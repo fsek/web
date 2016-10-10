@@ -6,13 +6,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if @tab.nil?
-      if params[:tab].present?
-        @tab = params[:tab]
-      else
-        @tab = :profile
-      end
-    end
+    @tab = params.fetch(:tab, :profile).to_sym
   end
 
   def update

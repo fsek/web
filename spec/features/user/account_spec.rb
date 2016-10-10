@@ -22,13 +22,11 @@ RSpec.feature 'Update account', type: :feature do
     sign_in_as(user, path: edit_own_user_path)
     page.should have_http_status(200)
 
-    find(:linkhref, '#account').click
+    find(:linkhref, edit_own_user_path(tab: :account)).click
 
-    within('#account') do
-      fill_in('user_email', with: 'new@fsektionen.se')
-      fill_in('user_current_password', with: '12345678')
-      click_button('user-account-submit')
-    end
+    fill_in('user_email', with: 'new@fsektionen.se')
+    fill_in('user_current_password', with: '12345678')
+    click_button('user-account-submit')
 
     page.should have_css('div.alert.alert-info')
 
@@ -44,14 +42,12 @@ RSpec.feature 'Update account', type: :feature do
     sign_in_as(user, path: edit_own_user_path)
     page.should have_http_status(200)
 
-    find(:linkhref, '#password').click
+    find(:linkhref, edit_own_user_path(tab: :password)).click
 
-    within('#password') do
-      fill_in('user_password', with: '87654321')
-      fill_in('user_password_confirmation', with: '87654321')
-      fill_in('user_current_password', with: '12345678')
-      click_button('user-password-submit')
-    end
+    fill_in('user_password', with: '87654321')
+    fill_in('user_password_confirmation', with: '87654321')
+    fill_in('user_current_password', with: '12345678')
+    click_button('user-password-submit')
 
     page.should have_css('div.alert.alert-info')
 

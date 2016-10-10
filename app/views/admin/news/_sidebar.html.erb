@@ -1,0 +1,17 @@
+<% news ||= nil %>
+<div class="list-group sidebar-nav">
+  <%= link_to(admin_news_index_path, class: active_list_group(:index, current)) do %>
+    <%= fa_icon('list', text: t('.all_news')) %>
+  <% end %>
+
+  <%= link_to(new_admin_news_path, class: active_list_group(:new, current)) do %>
+    <%= fa_icon('plus', text: t('.new')) %>
+  <% end %>
+
+  <% if news.present? %>
+    <%= link_to(edit_admin_news_path(news), class: active_list_group(:edit, current)) do %>
+      <%= fa_icon('cog', text: t('.edit')) %>
+    <% end %>
+  <% end %>
+</div>
+

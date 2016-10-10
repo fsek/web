@@ -3,7 +3,7 @@ class Admin::NewsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @news_grid = initialize_grid(News, include: :user,
+    @news_grid = initialize_grid(News, include: [:user, :translations],
                                        order: 'news.created_at',
                                        order_direction: :desc)
   end

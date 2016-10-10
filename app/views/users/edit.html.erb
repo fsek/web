@@ -1,39 +1,28 @@
 <% title(t('.title')) %>
 <div class="col-md-3 col-sm-12">
-  <ul class="list-group sidebar-nav">
-    <li class="list-group-item <%=@tab == :profile ? 'active' : ''%>">
-      <%= link_to('#profile', data: { toggle: :tab }) do %>
-        <%= fa_icon('user') %> <%= t('.profile') %>
-      <% end %>
-    </li>
-
-    <li class="list-group-item <%=@tab == :account ? 'active' : ''%>">
-      <%= link_to('#account', data: { toggle: :tab }) do %>
-        <%= fa_icon('cog') %> <%= t('.account') %>
-      <% end %>
-    </li>
-
-    <li class="list-group-item <%=@tab == :password ? 'active' : ''%>">
-      <%= link_to('#password', data: { toggle: :tab }) do %>
-        <%= fa_icon('hashtag') %> <%= t('.password') %>
-      <% end %>
-    </li>
-  </ul>
+  <div class="list-group sidebar-nav">
+    <%= link_to(edit_own_user_path(tab: :profile),
+                class: active_list_group(@tab, :profile)) do %>
+      <%= fa_icon('user', text: t('.profile')) %>
+    <% end %>
+    <%= link_to(edit_own_user_path(tab: :account),
+                class: active_list_group(@tab, :account)) do %>
+      <%= fa_icon('cog', text: t('.account')) %>
+    <% end %>
+    <%= link_to(edit_own_user_path(tab: :password),
+                class: active_list_group(@tab, :password)) do %>
+      <%= fa_icon('hashtag', text: t('.password')) %>
+    <% end %>
+  </div>
 
   <%= link_to(t('.back_to_root'), root_path, class: 'btn secondary') %>
 </div>
 <div class="col-md-9 col-sm-12">
-  <div class="tab-content">
-    <div id="profile" class="profile-edit tab-pane fade in <%= @tab == :profile ? 'active' : '' %>">
-      <%= render 'form', user: current_user %>
-    </div>
-
-    <div id="account" class="profile-edit tab-pane fade in <%= @tab == :account ? 'active' : '' %>">
-      <%= render 'account_form', user: current_user %>
-    </div>
-
-    <div id="password" class="profile-edit tab-pane fade in <%= @tab == :password ? 'active' : '' %>">
-      <%= render 'password_form', user: current_user %>
-    </div>
-  </div>
+  <% if @tab == :profile %>
+    <%= render 'form', user: current_user %>
+  <% elsif @tab == :account %>
+    <%= render 'account_form', user: current_user %>
+  <% elsif @tab == :password %>
+    <%= render 'password_form', user: current_user %>
+  <% end %>
 </div>

@@ -1,36 +1,32 @@
 .sidebar-nav {
-  li a {
+  .list-group {
+    margin-bottom: 20px;
+    padding-left: 0;
+  }
+
+  .list-group-item {
+    border: 1px solid $border;
     display: block;
-    padding: 8px 30px 8px 10px;
-  }
+    margin-bottom: -1px;
 
-  a:hover {
-    text-decoration: none;
-  }
-
-  li:hover {
-    background: $fsek-pi-silver;
-  }
-
-  li {
-    padding: 0;
+    a {
+      display: block;
+      width: 100%;
+    }
 
     &.active,
     &.active:hover {
       background: $fsek-orange;
+
+      a {
+        color: $white;
+      }
     }
 
     &.active,
     &.active:hover,
     &.active:focus {
       border-color: $fsek-orange;
-    }
-
-    &.active,
-    &:hover {
-      > a {
-        color: $white;
-      }
     }
   }
 }

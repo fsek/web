@@ -1,28 +1,26 @@
-<% if notice.present? %>
-  <%= simple_form_for([:admin, notice]) do |f| %>
-    <%= f.input :title_sv, wrapper_html: { class: 'inline half' } %>
-    <%= f.input :title_en, wrapper_html: { class: 'inline half' } %>
-    <%= f.input :description_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
-    <%= f.input :description_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
-    <%= f.input :public %>
-    <%= f.input :d_publish, as: :datetime_picker %>
-    <%= f.input :d_remove, as: :datetime_picker %>
-    <%= f.input :sort %>
-    <%= f.input :image, as: :file %>
-    <% if notice.image? %>
-      <%= image_tag(notice.image.thumb.url, class: 'img-responsive') %><br>
-      <br>
-      <%= link_to(t('.remove_image'), admin_notice_path(notice, notice: {remove_image: '1'}),
-                                      method: :patch,
-                                      data: {confirm: t('.confirm_image_removal')},
-                                      class: 'btn secondary') %>
-      <hr>
-    <% end %>
-    <%= f.button :submit, id: 'submit-notice' %>
+<%= simple_form_for([:admin, notice]) do |f| %>
+  <%= f.input :title_sv, wrapper_html: { class: 'inline half' } %>
+  <%= f.input :title_en, wrapper_html: { class: 'inline half' } %>
+  <%= f.input :description_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :description_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :public %>
+  <%= f.input :d_publish, as: :datetime_picker %>
+  <%= f.input :d_remove, as: :datetime_picker %>
+  <%= f.input :sort %>
+  <%= f.input :image, as: :file %>
+  <% if notice.image? %>
+    <%= image_tag(notice.image.thumb.url, class: 'img-responsive') %><br>
+    <br>
+    <%= link_to(t('.remove_image'), admin_notice_path(notice, notice: {remove_image: '1'}),
+                                    method: :patch,
+                                    data: {confirm: t('.confirm_image_removal')},
+                                    class: 'btn secondary') %>
+    <hr>
+  <% end %>
+  <%= f.button :submit, id: 'submit-notice' %>
 
-    <% if notice.persisted? %>
-      <%= link_to(t('.destroy'), admin_notice_path(notice), method: :delete,
-                                 class: 'btn danger pull-right') %>
-    <% end %>
+  <% if notice.persisted? %>
+    <%= link_to(t('.destroy'), admin_notice_path(notice), method: :delete,
+                               class: 'btn danger pull-right') %>
   <% end %>
 <% end %>

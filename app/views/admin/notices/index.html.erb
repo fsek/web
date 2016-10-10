@@ -2,18 +2,20 @@
   <h1><%= title(t('.title')) %></h1>
 </div>
 
-<div class="col-md-2 col-sm-12">
-  <%= link_to(t('.new_notice'), new_admin_notice_path, class: 'btn primary') %>
+<div class="col-md-3 col-sm-12">
+  <%= render('/admin/notices/sidebar', current: :index) %>
   <hr>
-  <button class="wg-external-submit-button btn secondary" data-grid-name="grid">
+
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
     <%= t('wice_grid.filter') %>
   </button>
+
   <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
     <%= t('wice_grid.reset_filter') %>
   </button>
 </div>
 
-<div class="col-md-10 col-sm-12">
+<div class="col-md-9 col-sm-12">
   <%= grid(@notice_grid, hide_submit_button: true,
            hide_reset_button: true, html: { class: 'notice' }) do |g|
     g.row_attributes do |notice|

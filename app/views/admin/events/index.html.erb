@@ -2,7 +2,8 @@
   <h1><%= title(models_name(Event)) %></h1>
 </div>
 
-<div class="col-md-2 col-sm-12">
+<div class="col-md-3 col-sm-12">
+  <%= render('/admin/events/sidebar', current: :index) %>
   <button class="wg-external-submit-button btn primary" data-grid-name="grid">
     <%= t('wice_grid.filter') %>
   </button>
@@ -19,7 +20,7 @@
                               class: 'btn secondary') %>
 </div>
 
-<div class="col-md-10 col-sm-12">
+<div class="col-md-9 col-sm-12">
   <%= grid(@event_grid, hide_submit_button: true, hide_reset_button: true) do |g|
     g.column(name: Event.human_attribute_name(:title), attribute: 'title') do |event|
       link_to(event, event_path(event))
