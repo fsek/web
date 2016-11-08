@@ -17,7 +17,8 @@ RSpec.describe Event, type: :model do
 
       Event.by_locale.map(&:title).should eq(['Ej översatt',
                                               'Kommer att översättas'])
-      Event.by_locale(locale: 'en').map(&:title_en).should eq(['Not translated', 'Will be translated'])
+      Event.by_locale(locale: 'en').order(:created_at).map(&:title_en).should eq(['Not translated',
+                                                                                  'Will be translated'])
       Event.by_locale(locale: 'nope').should be_empty
     end
   end

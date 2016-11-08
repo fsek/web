@@ -246,7 +246,6 @@ GEM
     momentjs-rails (2.15.1)
       railties (>= 3.1)
     multi_json (1.12.1)
-    mysql2 (0.3.21)
     net-http-persistent (2.9.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -275,6 +274,7 @@ GEM
     paranoia (2.2.0)
       activerecord (>= 4.0, < 5.1)
     pdf-core (0.6.1)
+    pg (0.21.0)
     poltergeist (1.12.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -493,7 +493,6 @@ DEPENDENCIES
   meta-tags
   mini_magick
   momentjs-rails
-  mysql2 (~> 0.3.20)
   net-http-persistent (< 3.0)
   nokogiri (>= 1.7)
   omniauth
@@ -501,6 +500,7 @@ DEPENDENCIES
   pagedown-bootstrap-rails
   paperclip
   paranoia
+  pg
   poltergeist
   prawn-rails
   pry-byebug
