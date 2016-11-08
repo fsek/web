@@ -20,7 +20,7 @@ class Album < ApplicationRecord
   scope :summer, -> { where('start_date > ?', User.summer) }
 
   def self.unique_years
-    by_start.select(:start_date).pluck('distinct year(start_date)')
+    by_start.pluck('extract(year from start_date)::Integer').uniq
   end
 
   def self.locations
@@ -28,8 +28,6 @@ class Album < ApplicationRecord
   end
 
   def photographer_names
-    images.order(:photographer_name).select(:photograhper_name).
-      distinct.pluck(:photographer_name).
-      reject(&:blank?)
+    images.order(:photographer_name).pluck(:photographer_name).uniq.reject(&:blank?)
   end
 end

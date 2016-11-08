@@ -33,10 +33,10 @@ gem 'meta-tags'
 gem 'mail', '>= 2.6.6.rc1'
 gem 'mini_magick'
 gem 'momentjs-rails'
-gem 'mysql2', '~> 0.3.20' # Rails 4 compatibility
 gem 'net-http-persistent', '< 3.0' # Required for rpush
 gem 'nokogiri', '>=1.7'
 gem 'omniauth'
+gem 'pg'
 gem 'paperclip'
 gem 'pagedown-bootstrap-rails'
 gem 'paranoia'
