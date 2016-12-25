@@ -31,7 +31,7 @@ RSpec.configure do |config|
   # Allow for route-helpers in tests
   config.include Rails.application.routes.url_helpers
 
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers
   config.before(:suite) do
     Warden.test_mode!
