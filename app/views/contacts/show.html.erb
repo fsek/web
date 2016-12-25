@@ -9,6 +9,12 @@
 
   <div class="col-md-8 col-xs-12 description">
     <%= markdown(@contact.text) %>
+    <% if current_user.try(:member?) %>
+      <textfield readonly="" rows="1" wrap="off" resize="false"
+                 class="display-only">
+        <%= @contact.email %>
+      </textfield>
+    <% end %>
   </div>
 
   <div class="col-md-8 col-xs-12 users">

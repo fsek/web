@@ -1,4 +1,8 @@
 .contact {
+  p {
+    font-size: 18px;
+  }
+
   &.index {
     border-bottom: solid 1px $fsek-orange;
     margin-bottom: 50px;
@@ -9,7 +13,16 @@
   .description,
   .image,
   .users {
-    min-height: 100px;
     margin-bottom: 20px;
+    min-height: 100px;
+  }
+
+  .display-only {
+    background-image: none;
+    border: 1px solid $dark-gray;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 5px;
+    padding: 4px 8px;
   }
 }
