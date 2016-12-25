@@ -1,3 +1,4 @@
+# Introduction for new students and members of the guild
 class Introduction < ActiveRecord::Base
   acts_as_paranoid
   translates(:title, :description)
@@ -19,7 +20,9 @@ class Introduction < ActiveRecord::Base
                    format: { with: /\A[a-z0-9-]+\z/ }
   validates :current, uniqueness: true, if: :current
 
-  scope :all_except, -> (introduction) { order(start: :desc).where.not(id: introduction) }
+  scope :all_except, (lambda do |introduction|
+    order(start: :desc).where.not(id: introduction)
+  end)
   scope :by_start, -> { order(start: :desc) }
 
   def self.current
@@ -27,10 +30,10 @@ class Introduction < ActiveRecord::Base
   end
 
   def events(locale: 'sv')
-    Event.slug(:nollning).
-      by_locale(locale: locale).
-      between(start, stop).
-      by_start
+    Event.slug(:nollning)
+         .by_locale(locale: locale)
+         .between(start, stop)
+         .by_start
   end
 
   def events_by_day(locale: 'sv')
@@ -59,9 +62,15 @@ class Introduction < ActiveRecord::Base
 
   def week(date)
     if date.is_a?(Integer)
-      date - start.to_date.cweek
+      print_week(date)
     elsif date.respond_to?(:to_date)
-      date.to_date.cweek - start.to_date.cweek
+      print_week(date.to_date.cweek) if date.year == Time.current.year
     end
+  end
+
+  private
+
+  def print_week(current)
+    current - start.to_date.cweek
   end
 end
