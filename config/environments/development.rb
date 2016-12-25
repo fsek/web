@@ -43,6 +43,7 @@ Fsek::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.serve_static_files = true
+  config.assets.digest = false
 
   # Assets for mailers
   config.action_controller.asset_host = PUBLIC_URL
