@@ -8,7 +8,7 @@ gem 'rails', '4.2.7.1'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 gem 'cancancan'
-gem 'carrierwave', '~>0.11.2'
+gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave_backgrounder', git: 'https://github.com/lardawge/carrierwave_backgrounder'
 gem 'cookies_eu'
 gem 'datetimepicker-rails', git: 'https://github.com/zpaulovics/datetimepicker-rails',

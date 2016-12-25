@@ -277,7 +277,7 @@ Style/FrozenStringLiteralComment:
   Description: >-
                  Add the frozen_string_literal comment to the top of files
                  to help transition from Ruby 2.3.0 to Ruby 3.0.
-  Enabled: true
+  Enabled: false
 
 Style/InitialIndentation:
   Description: >-
@@ -842,7 +842,7 @@ Style/StabbyLambdaParentheses:
 Style/StringLiterals:
   Description: 'Checks if uses of quotes match the configured preference.'
   StyleGuide: '#consistent-string-literals'
-  Enabled: true
+  Enabled: false
 
 Style/StringLiteralsInInterpolation:
   Description: >-
