@@ -24,6 +24,12 @@
       <%= link_to(t('.contact'), contact_path(contact),
                               class: 'btn primary pull-right') %>
 
+      <% if current_user.try(:member?) %>
+        <textfield readonly="" rows="1" wrap="off" resize="false"
+                   class="display-only pull-right">
+          <%= contact.email %>
+        </textfield>
+      <% end %>
       <% if can_administrate?(:edit, contact) %>
         <span class="edit">
           <%= link_to(edit_admin_contact_path(contact)) do %>
