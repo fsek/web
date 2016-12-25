@@ -16,6 +16,8 @@ require 'capistrano/rails/migrations'
 require 'capistrano/passenger'
 require 'capistrano/sitemap_generator'
 require 'rollbar/capistrano3'
+require 'capistrano/scm/git'
+    install_plugin Capistrano::SCM::Git
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
