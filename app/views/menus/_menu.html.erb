@@ -1,28 +1,3 @@
-<% if menu.header %>
-  <li class="menu-header">
-    <%= menu %>
-  </li>
-<% elsif menu.turbolinks && menu.blank_p %>
-  <li class="menu blank">
-    <%= link_to(menu_locale_link(menu.link, I18n.locale), target: :blank) do %>
-      <%= menu %>
-      <%= fa_icon('external-link') %>
-    <% end %>
-  </li>
-<% elsif menu.turbolinks %>
-  <li><%= link_to(menu, menu_locale_link(menu.link, I18n.locale)) %></li>
-<% elsif menu.blank_p %>
-  <li class="menu blank">
-    <%= link_to(menu_locale_link(menu.link, I18n.locale),
-                'data-no-turbolink': true,
-                target: :blank) do %>
-      <%= menu %>
-      <%= fa_icon('external-link') %>
-    <% end %>
-  </li>
-<% else %>
-  <li>
-    <%= link_to(menu, menu_locale_link(menu.link, I18n.locale),
-                'data-no-turbolink': true) %>
-  </li>
-<% end %>
+<li class="<%= menu_class(menu.blank_p) %>">
+  <%= menu_link(menu, I18n.locale) %>
+</li>
