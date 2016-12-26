@@ -4,6 +4,9 @@ ruby:
     -"config/initializers/wice_grid_config.rb"
 java_script:
   config_file: .javascript-style.json
+  exclude:
+    -"app/assets/javascripts/app.js"
+    -"app/assets/javascripts/markdown.js"
 scss:
   config_file: .scss-lint.yml
   exclude:

@@ -1,5 +1,5 @@
-placeholder = function() {
+function placeholder() {
   $('#grid_f_title').attr('placeholder', 'Filter');
 };
 
-$(placeholder);
+$(document).on('turbolinks:load', placeholder);

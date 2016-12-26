@@ -1,6 +1,4 @@
-var eventCalendar;
-
-eventCalendar = function() {
+function eventCalendar() {
   return $('#event_calendar').fullCalendar({
     header: {
       left: 'today',
@@ -28,7 +26,7 @@ eventCalendar = function() {
   });
 };
 
-english = function() {
+function english() {
   return $('#event_calendar_en').fullCalendar({
     header: {
       left: 'today',
@@ -56,5 +54,5 @@ english = function() {
   });
 };
 
-$(document).ready(eventCalendar);
-$(document).ready(english);
+$(document).on('turbolinks:load', eventCalendar);
+$(document).on('turbolinks:load', english);

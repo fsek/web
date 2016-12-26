@@ -40,4 +40,4 @@ function cafeCalendar() {
   });
 };
 
-$(cafeCalendar);
+$(document).on('turbolinks:load', cafeCalendar);

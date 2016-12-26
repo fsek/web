@@ -16,7 +16,7 @@
       </li>
       <li class="divider"></li>
       <li><%= link_to(fa_icon('calendar'), calendars_path,
-                                           data: { no_turbolink: false }) %></li>
+                                           data: { turbolinks: :false }) %></li>
       <li class="divider"></li>
       <% if user_signed_in? %>
         <% if current_user.permissions.any? %>

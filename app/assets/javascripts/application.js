@@ -33,4 +33,3 @@
 //= require pickers
 //= require cookies_eu
 //= require pagedown_bootstrap
-//= require pagedown_init

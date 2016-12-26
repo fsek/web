@@ -13,5 +13,5 @@ function select2Tags() {
   });
 }
 
-$(select2);
-$(select2Tags);
+$(document).on('turbolinks:load', select2);
+$(document).on('turbolinks:load', select2Tags);

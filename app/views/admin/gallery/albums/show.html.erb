@@ -7,7 +7,7 @@
 
   <hr>
   <%= link_to(t('.show'), gallery_album_path(@album),
-                          data:{ no_turbolink: true }, class: 'btn secondary') %>
+                          data:{ turbolinks: false }, class: 'btn secondary') %>
   <%= link_to(t('.destroy'), admin_gallery_album_path(@album),
                              method: :delete,
                              class: 'btn danger') %>

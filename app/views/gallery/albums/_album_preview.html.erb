@@ -1,7 +1,7 @@
 <% if album.images.any? %>
   <% cache([album, album.images_count, I18n.locale]) do %>
     <div class="col-md-4 col-sm-6 col-xs-12">
-      <%= link_to(gallery_album_path(album), data: { no_turbolink: true }) do %>
+      <%= link_to(gallery_album_path(album), data: { turbolinks: :false }) do %>
         <div class="preview-wrap">
           <div class="thumb">
             <% sample = album.images.sample.try(:thumb) %>
