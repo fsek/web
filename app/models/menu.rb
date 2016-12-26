@@ -12,4 +12,12 @@ class Menu < ActiveRecord::Base
   def to_s
     name
   end
+
+  def to_partial_path
+    if header?
+      '/menus/menu_header'
+    else
+      super
+    end
+  end
 end
