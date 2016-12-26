@@ -12,7 +12,7 @@ var default_picker_options = {
 
 }
 
-$(document).on('ready page:change', function() {
+$(document).on('turbolinks:load', function() {
   $('.datetimepicker').datetimepicker(default_picker_options);
 
   $('.timepicker').datetimepicker(default_picker_options);

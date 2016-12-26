@@ -16,4 +16,4 @@ bottom = function () {
     }
 };
 
-$(document).ready(bottom)
+$(document).on('turbolinks:load', bottom);

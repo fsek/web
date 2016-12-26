@@ -7,5 +7,5 @@
   <%= render '/cafe_shifts/shift_table', cafe_view: @cafe_view %>
 
   <hr>
-  <%= link_to(t('.back_to_hilbert'), cafe_path, data: { no_turbolink: true }, class: 'btn secondary') %>
+  <%= link_to(t('.back_to_hilbert'), cafe_path, data: { turbolinks: :false }, class: 'btn secondary') %>
 </div>

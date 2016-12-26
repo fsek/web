@@ -1,6 +1,4 @@
-var carCalendar;
-
-carCalendar = function() {
+function carCalendar() {
   return $('#bilkalender').fullCalendar({
     events: '/bilbokning',
     weekNumbers: true,
@@ -34,4 +32,4 @@ carCalendar = function() {
   });
 };
 
-$('document').ready(carCalendar);
+$(document).on('turbolinks:load', carCalendar);

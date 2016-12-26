@@ -18,7 +18,7 @@
   <% @album.images.each do |p| %>
     <div data-img="<%= p.view %>" data-thumb="<%= p.thumb %>">
       <%= link_to(t('.share'), gallery_album_path(@album, start: @album.images.find_index(p)),
-                  data: { no_turbolink: true }) %>
+                  data: { turbolinks: :false }) %>
       <% if can_administrate?(:manage, p) %>
         <br>
         <%= link_to(admin_gallery_album_image_path(@album, p)) do %>
