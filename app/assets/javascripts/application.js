@@ -16,7 +16,6 @@
 //= require jquery-ui/effect.all
 //= require bootstrap-sprockets
 //= require_self
-//= require jquery-ui/datepicker
 //= require moment
 //= require moment/sv
 //= require fullcalendar
