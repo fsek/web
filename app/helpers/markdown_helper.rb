@@ -6,9 +6,7 @@ module MarkdownHelper
   end
 
   def self.markdown(text)
-    if text.present?
-      sanitize(markdown_renderer.render(text))
-    end
+    sanitize(markdown_renderer.render(text)) if text.present?
   end
 
   def markdown_plain(text)
@@ -16,21 +14,21 @@ module MarkdownHelper
   end
 
   def self.markdown_plain(text)
-    if text.present?
-      sanitize(plain_renderer.render(text))
-    end
+    sanitize(plain_renderer.render(text)) if text.present?
   end
 
   def self.markdown_renderer
-    Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-                            autolink: true,
-                            fenced_code_blocks: true,
-                            highlight: true,
-                            lax_spacing: true,
-                            no_intra_emphasis: true,
-                            quote: true,
-                            tables: true,
-                            underline: true)
+    options = {
+      link_attributes: { rel: 'nofollow', 'data-turbolinks': 'false' }
+    }
+    extensions = {
+      autolink: true, fenced_code_blocks: true, highlight: true,
+      lax_spacing: true, no_intra_emphasis: true, quote: true,
+      tables: true, underline: true
+    }
+
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(options),
+                            extensions)
   end
 
   def self.plain_renderer
@@ -44,8 +42,8 @@ module MarkdownHelper
   end
 
   def self.sanitize(input)
-    if input.present?
-      ActionView::Base.new.sanitize(input.html_safe)
-    end
+    return unless input.present?
+    ActionView::Base.new.sanitize(input.html_safe,
+                                  attributes: %w(href data-turbolinks rel))
   end
 end
