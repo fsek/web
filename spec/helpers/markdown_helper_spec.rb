@@ -17,6 +17,14 @@ RSpec.describe MarkdownHelper do
       result.should_not include('<script>')
       result.should_not include('</script>')
     end
+
+    it 'appends data-turbolinks false to links' do
+      input = '[Document](http://localhost:3000/dokument)'
+      result = helper.markdown(input)
+
+      expected = '<a href="http://localhost:3000/dokument" rel="nofollow" data-turbolinks="false">Document</a>'
+      result.should include(expected)
+    end
   end
 
   describe 'plain' do
