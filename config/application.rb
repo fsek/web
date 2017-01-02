@@ -25,7 +25,7 @@ module Fsek
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths += Dir["#{config.root}/app/mailers/concerns/**/"]
 
-    config.time_zone ='Stockholm'
+    config.time_zone = 'Stockholm'
     config.filter_parameters += [:password, :password_confirmation, :message]
     config.active_record.raise_in_transactional_callbacks = true
     # Set taken from
