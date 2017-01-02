@@ -1,3 +1,5 @@
+AllCops:
+  TargetRubyVersion: 2.3
 # These are all the cops that are enabled in the default configuration.
 
 Style/AccessModifierIndentation:
