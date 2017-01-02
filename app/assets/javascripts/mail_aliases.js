@@ -146,9 +146,8 @@
       )
     })
   }
-  $(function() {
+  $(document).on('turbolinks:load', function() {
     $('.js-hide').hide()
     bind_form()
   })
 }()
-
