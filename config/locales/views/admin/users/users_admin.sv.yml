@@ -16,3 +16,6 @@ sv:
 
       unmember:
         make_member: Ge medlemskap
+
+      edit:
+        title: Redigera användare

@@ -44,7 +44,7 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
-      resources :users, path: :anvandare, only: [:index] do
+      resources :users, path: :anvandare, only: [:index, :edit, :update] do
         post :member, on: :member
         post :unmember, on: :member
       end
