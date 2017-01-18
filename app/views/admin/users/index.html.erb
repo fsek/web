@@ -17,7 +17,7 @@
       {id: dom_id(user)}
     end
     g.column(name: 'ID', attribute: 'id', filter: false) do |user|
-      link_to(user.id, user_path(user), target: :blank)
+      link_to(user.id, edit_admin_user_path(user))
     end
     g.column(name: User.human_attribute_name(:firstname), attribute: 'firstname')
     g.column(name: User.human_attribute_name(:lastname), attribute: 'lastname')
