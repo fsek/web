@@ -1,0 +1,13 @@
+<div class='col-md-8 col-md-offset-2 col-xs-12 reg-page'>
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+
+  <%= render 'form', meeting: @meeting %>
+  <hr>
+  <%= link_to(t('.destroy'), meeting_path(@meeting),
+                                 method: :delete,
+                                 class: 'btn danger',
+                                 data: {confirm: t('.confirm_destroy')}) %>
+  <%= link_to(t('.index'), meetings_path(room: @meeting.room), class: 'btn secondary') %>
+</div>

@@ -1,0 +1,22 @@
+<% title(t('.title')) %>
+<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
+  <%= render @meeting %>
+
+  <% if can?(:edit, @meeting) %>
+    <%= link_to(t('.edit'), edit_meeting_path(@meeting), class: 'btn primary') %>
+    <hr>
+  <% end %>
+
+  <%= link_to(t('.all_meetings'), meetings_path, class: 'btn secondary') %>
+
+  <% if can_administrate?(:edit, @meeting) %>
+    <%= link_to(t('.administrate'), admin_meeting_path(@meeting), class: 'btn secondary') %>
+  <% end %>
+
+  <% if can?(:destroy, @meeting) %>
+    <%= link_to(t('.destroy'), meeting_path(@meeting),
+                               method: :delete,
+                               class: 'btn danger pull-right',
+                               data: {confirm: t('.confirm_destroy')}) %>
+  <% end %>
+</div>

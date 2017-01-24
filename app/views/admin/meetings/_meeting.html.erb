@@ -1,0 +1,58 @@
+<div class="margin-bottom-20">
+  <div class="headline headline-md">
+    <h3><%= meeting.title %></h3>
+    <span class="label rounded-2x  <%= meeting.status %> pull-right">
+      <%= t(%(model.meeting.#{meeting.status})).capitalize %>
+    </span>
+  </div>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td><%=Meeting.human_attribute_name(:room)%></td>
+        <td><%= Meeting.human_attribute_name(meeting.room) %></td>
+      </tr>
+      <tr>
+        <td><%=Meeting.human_attribute_name(:start_date)%></td>
+        <td><%= l(meeting.start_date) %></td>
+      </tr>
+      <tr>
+        <td><%=Meeting.human_attribute_name(:end_date)%></td>
+        <td><%= l(meeting.end_date) %></td>
+      </tr>
+      <tr>
+        <td><%=Meeting.human_attribute_name(:user)%></td>
+        <td><%= link_to(meeting.user, meeting.user, target: :blank_p) %></td>
+      </tr>
+      <% if meeting.council.present? %>
+        <tr>
+          <td><%=Council.model_name.human%></td>
+          <td><%= link_to(meeting.council, meeting.council, target: :blank_p) %></td>
+        </tr>
+      <% end %>
+      <% if meeting.denied? %>
+        <tr>
+          <td><%=Meeting.human_attribute_name(:comment)%></td>
+          <td><%= simple_format(meeting.comment) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><%=User.human_attribute_name(:email)%></td>
+        <td><%= meeting.user.email %></td>
+      </tr>
+      <tr>
+        <td><%=User.human_attribute_name(:phone)%></td>
+        <td><%= meeting.user.phone %></td>
+      </tr>
+      <tr>
+        <td><%=User.human_attribute_name(:student_id)%></td>
+        <td><%= meeting.user.student_id %></td>
+      </tr>
+      <% if meeting.purpose.present? %>
+        <tr>
+          <td><%= Meeting.human_attribute_name(:purpose) %></td>
+          <td><%= simple_format(meeting.purpose) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
