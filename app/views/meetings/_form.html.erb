@@ -1,0 +1,22 @@
+<%= render 'overlap', meeting: meeting %>
+
+<%= simple_form_for(meeting) do |f| %>
+  <%= f.association :user, collection: [current_user], include_blank: false,
+                           input_html: {class: 'select2'} %>
+
+  <% if meeting.errors[:user].present? %>
+    <p><%= link_to('Redigera användarinformation', edit_own_user_path, target: :blank_p) %></p>
+  <% end %>
+
+  <%= f.input :title %>
+
+  <%= f.input :start_date, as: :datetime_picker, required: true %>
+  <%= f.input :end_date, as: :datetime_picker, required: true %>
+  <%= f.input :room, collection: room_collection, include_blank: false,
+                     input_html: {class: 'select2'} %>
+  <%= f.input :purpose %>
+
+  <%= f.association :council, collection: current_user.councils.by_title.distinct,
+                              input_html: {class: 'select2'} %>
+  <%= f.button :submit %>
+<% end %>

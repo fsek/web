@@ -1,0 +1,32 @@
+sv:
+  model:
+    meeting:
+      confirmed: Bekräftad
+      unconfirmed: Obekräftad
+      denied: Nekad
+      add_user_information: Du behöver fylla i email, telefon och LUCAT-id i din profil
+      membership_needed: Medlemskap krävs för att kunna boka en lokal
+      end_after_start: Slutdatum måste vara efter startdatum
+      overlaps_confirmed: Överlappar med en bekräftad bokning. Byt tid eller spara som en obekräftad bokning.
+
+  activerecord:
+    models:
+      meeting:
+        one: Lokalbokning
+        other: Lokalbokningar
+    attributes:
+      meeting:
+        start_date: Startdatum
+        end_date: Slutdatum
+        user: Användare
+        sk: Styrelserummet
+        alumni: Alumnirummet
+        title: Titel
+        room: Rum
+        purpose: Syfte
+        council: Utskott
+        status: Status
+        confirmed: Bekräftad
+        unconfirmed: Obekräftad
+        denied: Nekad
+        comment: Kommentar

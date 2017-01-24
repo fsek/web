@@ -21,7 +21,7 @@ sv:
     rent_email:
       booked: Du har bokat F-sektionens bil med nedanstående uppgifter
       car_foreman: Bilförman
-      confirm_foreman: Din bokning måste hanteras direkt av bilförmannen och ett e-post kommer skickas ut då bokningen är beräkftad eller nekad.
+      confirm_foreman: Din bokning måste hanteras direkt av bilförmannen och ett e-post kommer skickas ut då bokningen är bekräftad eller nekad.
       header_title: Bilbokning
 
     status_email:

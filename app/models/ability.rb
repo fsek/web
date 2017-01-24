@@ -57,6 +57,8 @@ class Ability
       can(:create, MessageComment) do |comment|
         comment.with_group(user) && comment.user == user
       end
+
+      can :read, Meeting
     end
 
     # Only for members of the Guild
@@ -73,6 +75,9 @@ class Ability
       can [:create], Nomination
       can :show, Page, visible: true
       can [:edit, :update], Group, group_users: { fadder: true, user: user }
+      can [:create, :destroy], Meeting, user_id: user.id
+      can([:edit, :update], Meeting, user_id: user.id, by_admin: false,
+                                     status: Meeting.statuses[:unconfirmed])
     end
   end
 end

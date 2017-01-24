@@ -62,7 +62,7 @@ Menu.create!(main_menu: members, column: 2, index: 10, header: true,
 Menu.create!(main_menu: members, column: 2, index: 20,
              name_sv: 'Bildgalleri', name_en: 'Picture Gallery', link: '/galleri')
 Menu.create!(main_menu: members, column: 2, index: 30,
-             name_sv: 'Bilbokning', name_en: 'Car Rental', link: '/hilbertcafe')
+             name_sv: 'Bilbokning', name_en: 'Car Rental', link: '/bilbokning')
 Menu.create!(main_menu: members, column: 2, index: 40,
              name_sv: 'Verktyg', name_en: 'Tools', link: '/verktyg')
 
@@ -72,6 +72,8 @@ Menu.create!(main_menu: members, column: 3, index: 20,
              name_sv: 'Kalender', name_en: 'Calendar', link: '/kalender')
 Menu.create!(main_menu: members, column: 3, index: 30,
              name_sv: 'Likabehandling', name_en: 'Student Equality', link: '/utskott/libu')
+Menu.create!(main_menu: members, column: 3, index: 40,
+             name_sv: 'Lokalbokning', name_en: 'Facility Reservations', link: '/lokalbokning')
 
 # Nollning menu
 Menu.create!(main_menu: nollning, index: 10, name_sv: 'Nollning 2016',
