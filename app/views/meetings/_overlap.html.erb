@@ -1,0 +1,12 @@
+<% if (overlap = meeting.overlap).any? %>
+  <div class="alert alert-danger">
+    <span class='overlapping-date'><%= t('.overlap') %></span>
+    <ul class='overlapping-date'>
+      <% overlap.each do |o| %>
+        <li>
+          <%= link_to(meeting_str(o), meeting_path(o), target: :blank_p) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

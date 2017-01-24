@@ -1,0 +1,60 @@
+<p><%= %(#{t('.title')}) %></p>
+<table class="table">
+  <tbody>
+    <tr>
+      <td><%= User.human_attribute_name(:firstname) %></td>
+      <td><%= meeting.user %></td>
+    </tr>
+    <tr>
+      <td><%= User.human_attribute_name(:email) %></td>
+      <td><%= meeting.user.email %></td>
+    </tr>
+    <tr>
+      <td><%= User.human_attribute_name(:phone) %></td>
+      <td><%= meeting.user.phone %></td>
+    </tr>
+    <tr>
+      <td><%= Meeting.human_attribute_name(:room) %></td>
+      <td><%= Meeting.human_attribute_name(meeting.room) %></td>
+    </tr>
+    <tr>
+      <td><%= Meeting.human_attribute_name(:title) %></td>
+      <td><%= meeting.title %></td>
+    </tr>
+    <tr>
+      <td><%= Meeting.human_attribute_name(:start_date) %></td>
+      <td><%= l(meeting.start_date) %></td>
+    </tr>
+    <tr>
+      <td><%= Meeting.human_attribute_name(:end_date) %></td>
+      <td><%= l(meeting.end_date) %></td>
+    </tr>
+    <% if meeting.purpose.present? %>
+      <tr>
+        <td><%= Meeting.human_attribute_name(:purpose) %></td>
+        <td><%= simple_format(meeting.purpose) %></td>
+      </tr>
+    <% end %>
+    <% if meeting.council.present? %>
+      <tr>
+        <td><%= Council.model_name.human %></td>
+        <td><%= link_to(meeting.council, council_url(meeting.council)) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><%= Meeting.human_attribute_name(:status) %></td>
+      <td><%= Meeting.human_attribute_name(meeting.status) %></td>
+    </tr>
+    <% if meeting.denied? %>
+      <tr>
+        <td><%= Meeting.human_attribute_name(:comment) %></td>
+        <td><%= simple_format(meeting.comment) %></td>
+      </tr>
+    <% end %>
+    <tr>
+
+      <td><%= t('global.link') %></td>
+      <td><%= link_to(t('.your_booking'), meeting_url(meeting), class: 'btn') %></td>
+    </tr>
+  </tbody>
+</table>

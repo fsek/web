@@ -1,0 +1,23 @@
+<%= render 'overlap', meeting: meeting %>
+
+<%= simple_form_for([:admin, meeting]) do |f| %>
+  <%= f.association :user, collection: User.members, include_blank: false,
+                           input_html: {class: 'select2'} %>
+  <%= f.input :title %>
+
+  <%= f.input :start_date, as: :datetime_picker, required: true %>
+  <%= f.input :end_date, as: :datetime_picker, required: true %>
+  <%= f.input :room, collection: room_collection, include_blank: false,
+                     input_html: {class: 'select2'} %>
+  <%= f.input :purpose %>
+
+  <%= f.association :council, collection: current_user.councils.by_title.distinct,
+                              input_html: {class: 'select2'} %>
+
+  <%= f.input :status, collection: meeting_status_collection, include_blank: false,
+                       input_html: {class: 'select2'} %>
+
+  <%= f.input :comment, placeholder: t('.denied_comment') %>
+
+  <%= f.button :submit %>
+<% end %>
