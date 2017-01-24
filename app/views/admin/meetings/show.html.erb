@@ -1,0 +1,13 @@
+<% title(t('.title')) %>
+<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
+  <%= render @meeting %>
+
+  <%= link_to(t('.edit'), edit_admin_meeting_path(@meeting), class: 'btn primary') %>
+
+  <%= link_to(t('.index'), admin_meetings_path, class: 'btn secondary') %>
+
+  <%= link_to(t('.destroy'), admin_meeting_path(@meeting),
+                             method: :delete,
+                             class: 'btn danger pull-right',
+                             data: {confirm: t('.confirm_destroy')}) %>
+</div>

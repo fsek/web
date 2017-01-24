@@ -1,0 +1,20 @@
+<%= provide(:header_title, t('.header_title')) %>
+
+<h3><%= t('meeting_mailer.mailer.hello', user: @meeting.user) %></h3>
+
+<p class="lead">
+  <%= markdown(t('.booking_status',
+                  user: @user,
+                  status: Meeting.human_attribute_name(@meeting.status))) %>
+</p>
+
+
+<%= render 'attributes', meeting: @meeting %>
+
+<br>
+<hr>
+<br>
+
+<%= simple_format(t('meeting_mailer.mailer.answer_with_questions')) %>
+<p><%= t('meeting_mailer.mailer.sincerely') %>,<br>
+<%= t('meeting_mailer.mailer.executives') %></p>
