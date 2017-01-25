@@ -11,13 +11,6 @@
   <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
     <%= t('wice_grid.reset_filter') %>
   </button>
-
-  <hr>
-
-  <%= link_to(t('.new_event'), new_admin_event_path,
-                               class: 'btn primary') %>
-  <%= link_to(t('.calendar'), calendars_path,
-                              class: 'btn secondary') %>
 </div>
 
 <div class="col-md-9 col-sm-12">
@@ -35,8 +28,8 @@
       localized(event.ends_at)
     end
     g.column(name: Event.human_attribute_name(:event_signup),
-             assoc: :event_signup,
-             attribute: 'opens') do |event|
+             assoc: :event_signup, attribute: 'opens',
+             filter: false) do |event|
       yes_no(event.signup.present?)
     end
     g.column(name: Event.human_attribute_name(:updated_at), attribute: 'updated_at',
