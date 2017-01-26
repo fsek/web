@@ -175,7 +175,7 @@ Style/DefWithParentheses:
 
 Style/Documentation:
   Description: 'Document classes and non-namespace modules.'
-  Enabled: true
+  Enabled: false
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
@@ -314,7 +314,7 @@ Style/GlobalVars:
 Style/GuardClause:
   Description: 'Check for conditionals that can be replaced with guard clauses'
   StyleGuide: '#no-nested-conditionals'
-  Enabled: true
+  Enabled: false
 
 Style/HashSyntax:
   Description: >-
@@ -976,6 +976,7 @@ Metrics/AbcSize:
                  branches, and conditions.
   Reference: 'http://c2.com/cgi/wiki?AbcMetric'
   Enabled: true
+  Max: 17.5
 
 Metrics/BlockNesting:
   Description: 'Avoid excessive block nesting'
@@ -1006,6 +1007,7 @@ Metrics/MethodLength:
   Description: 'Avoid methods longer than 10 lines of code.'
   StyleGuide: '#short-methods'
   Enabled: true
+  Max: 15
 
 Metrics/BlockLength:
   Description: 'Avoid long blocks with many lines.'
