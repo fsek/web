@@ -1,4 +1,5 @@
 function cafeCalendar() {
+  $('#cafe-calendar').html(''); // Turbolinks 5 fix
   return $('#cafe-calendar').fullCalendar({
     events: '/hilbertcafe/feed',
     weekNumbers: true,

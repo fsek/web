@@ -1,4 +1,5 @@
 function eventCalendar() {
+  $('#event_calendar').html('');  // Turbolinks 5 fix
   return $('#event_calendar').fullCalendar({
     header: {
       left: 'today',
@@ -27,6 +28,7 @@ function eventCalendar() {
 };
 
 function english() {
+  $('#event_calendar_en').html('');
   return $('#event_calendar_en').fullCalendar({
     header: {
       left: 'today',
