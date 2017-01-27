@@ -1,4 +1,5 @@
 function carCalendar() {
+  $('#bilkalender').html(''); // Turbolinks 5 fix
   return $('#bilkalender').fullCalendar({
     events: '/bilbokning',
     weekNumbers: true,

@@ -1,4 +1,6 @@
 function markdown() {
+  $('[id^=wmd-button-bar]').html(''); // Turbolinks 5 fix
+
   return $('textarea.wmd-input').each(function(i, input) {
     var attr, converter, editor, help;
     attr = $(input).attr('id').split('wmd-input')[1];
