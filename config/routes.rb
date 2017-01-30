@@ -292,6 +292,12 @@ Fsek::Application.routes.draw do
     end
 
     resources :blog_posts, path: :blogg, only: [:index, :show]
+
+      resources :meetings, path: :lokalbokning
+
+    namespace :admin do
+      resources :meetings, path: :lokalbokning
+    end
   end
 
   resources :mail_aliases, only: [:index] do

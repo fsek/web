@@ -1,0 +1,40 @@
+<div class="headline rents">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+
+<div class="col-md-12">
+    <%= link_to(t('.new'), new_admin_meeting_path, class: 'btn primary') %>
+    <%= link_to(t('.startpage'), meetings_path, class: 'btn secondary') %>
+</div>
+
+<div class="col-md-12 highlight-grid">
+  <%= grid(@grid) do |g|
+    g.row_attributes do |meeting|
+      {class: meeting.unconfirmed? ? 'highlight' : ''}
+    end
+    g.column name: Meeting.human_attribute_name(:title), attribute: 'title', filter: false do |meeting|
+      link_to(meeting, admin_meeting_path(meeting))
+    end
+    g.column name: Meeting.human_attribute_name(:room), attribute: 'room', filter: false do |meeting|
+      Meeting.human_attribute_name(meeting.room)
+    end
+    g.column name: Meeting.human_attribute_name(:start_date), attribute: 'start_date', filter: false do |meeting|
+      l(meeting.start_date)
+    end
+    g.column name: Meeting.human_attribute_name(:end_date), attribute: 'end_date', filter: false do |meeting|
+      l(meeting.end_date)
+    end
+    g.column name: Meeting.human_attribute_name(:user), assoc: :user, attribute: 'firstname' do |meeting|
+      link_to(meeting.user, meeting.user, target: :blank_p)
+    end
+    g.column name: Meeting.human_attribute_name(:status), attribute: 'status' do |meeting|
+      t(%(model.meeting.#{meeting.status}))
+    end
+    g.column name: Meeting.human_attribute_name(:council), assoc: :council, attribute: 'title' do |meeting|
+      meeting.council_id.nil? ? '-' : link_to(meeting.council, meeting.council, target: :blank_p)
+    end
+    g.column name: t('global.edit') do |meeting|
+      link_to(t('global.edit'), edit_admin_meeting_path(meeting))
+    end
+  end -%>
+</div>

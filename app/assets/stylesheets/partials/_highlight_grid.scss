@@ -1,0 +1,11 @@
+.highlight-grid {
+  tr {
+    &.highlight {
+      td,
+      &.even td,
+      &.odd td {
+        background-color: $grid-highlight;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+sv:
+  meetings:
+    index:
+      new: Ny bokning
+      to_alumni: Till alumnirummet
+      to_sk: Till styrelserummet
+      administrate: Administrera
+
+    new:
+      title: Ny lokalbokning
+      admin-info1: Du har administrationsrättigheter och bör inte använda detta formulär.
+      admin-info2: Använd istället
+      admin-link: admin-formuläret.
+
+    edit:
+      title: Redigera bokning
+      destroy: Förinta bokning
+      index: Alla lokalbokningar
+      confirm_destroy: Är du säker på att du vill förinta bokningen?
+
+    show:
+      edit: Redigera bokning
+      all_meetings: Alla bokningar
+      administrate: Administrera
+      destroy: Förinta bokning
+      title: Lokalbokning
+      confirm_destroy: Är du säker på att du vill förinta bokningen?
+
+    overlap:
+      overlap: 'Notera att bokningen överlappar med:'
