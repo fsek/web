@@ -1,0 +1,21 @@
+<div class="headline headline-md">
+  <h1><%= title(Meeting.human_attribute_name(@room)) %></h1>
+</div>
+
+<div class="col-md-2 col-xs-12">
+  <%= link_to(t('.new'), new_meeting_path(room: @room), class: 'btn primary') %>
+
+  <% if @room == 'sk' %>
+    <%= link_to(t('.to_alumni'), meetings_path(room: :alumni), class: 'btn secondary') %>
+  <% else %>
+    <%= link_to(t('.to_sk'), meetings_path(room: :sk), class: 'btn secondary') %>
+  <% end %>
+
+  <% if can_administrate?(:index, Meeting) %>
+    <%= link_to(t('.administrate'), admin_meetings_path, class: 'btn secondary') %>
+  <% end %>
+</div>
+
+<div class="col-md-10 col-xs-12">
+  <div id="lokalbokning" data-room="<%= @room %>"></div>
+</div>

@@ -1,0 +1,30 @@
+sv:
+  admin:
+    meetings:
+      form:
+        denied_comment: Kommentar vid nekad bokning
+
+      index:
+        title: Administrera lokalbokningar
+        new: Ny bokning
+        startpage: Kalendervy
+
+      new:
+        administrate: Administrera bokningar
+        title: Ny lokalbokning
+
+      edit:
+        title: Redigera bokning
+        destroy: Förinta bokning
+        administrate: Administrera bokningar
+        confirm_destroy: Är du säker på att du vill förinta bokningen?
+
+      show:
+        title: Administrera lokalbokningar
+        edit: Redigera bokning
+        destroy: Förinta bokning
+        index: Alla bokningar
+        confirm_destroy: Är du säker på att du vill förinta bokningen?
+
+      overlap:
+        overlap: 'Notera att bokningen överlappar med:'

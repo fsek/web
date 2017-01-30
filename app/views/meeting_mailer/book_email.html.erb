@@ -1,0 +1,19 @@
+
+<%= provide(:header_title, t('.header_title')) %>
+
+<h3><%= t('meeting_mailer.mailer.hello', user: @meeting.user) %></h3>
+
+<%= simple_format(t('.booked'), class: 'lead') %>
+<%= render 'attributes', meeting: @meeting %>
+
+<% if @meeting.status != 'confirmed' %>
+  <%= simple_format(t('.confirm_foreman')) %>
+<% end %>
+
+<br>
+<hr>
+<br>
+
+<%= simple_format(t('meeting_mailer.mailer.answer_with_questions')) %>
+<p><%= t('meeting_mailer.mailer.sincerely') %>,<br>
+<%= t('meeting_mailer.mailer.executives') %></p>

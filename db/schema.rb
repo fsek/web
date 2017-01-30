@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006054301) do
+ActiveRecord::Schema.define(version: 20170126122700) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -506,6 +506,24 @@ ActiveRecord::Schema.define(version: 20161006054301) do
     t.datetime "updated_at",                             null: false
   end
 
+  create_table "meetings", force: :cascade do |t|
+    t.datetime "start_date",                               null: false
+    t.datetime "end_date",                                 null: false
+    t.string   "title",      limit: 255,                   null: false
+    t.text     "purpose",    limit: 65535
+    t.text     "comment",    limit: 65535
+    t.integer  "user_id",    limit: 4
+    t.integer  "council_id", limit: 4
+    t.boolean  "by_admin",                 default: false, null: false
+    t.integer  "status",     limit: 4,     default: 0
+    t.integer  "room",       limit: 4,     default: 0
+  end
+
+  add_index "meetings", ["council_id"], name: "index_meetings_on_council_id", using: :btree
+  add_index "meetings", ["end_date"], name: "index_meetings_on_end_date", using: :btree
+  add_index "meetings", ["start_date"], name: "index_meetings_on_start_date", using: :btree
+  add_index "meetings", ["user_id"], name: "index_meetings_on_user_id", using: :btree
+
   create_table "menu_translations", force: :cascade do |t|
     t.integer  "menu_id",    limit: 4,   null: false
     t.string   "locale",     limit: 255, null: false
@@ -841,6 +859,8 @@ ActiveRecord::Schema.define(version: 20161006054301) do
   add_foreign_key "group_messages", "messages"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
+  add_foreign_key "meetings", "councils"
+  add_foreign_key "meetings", "users"
   add_foreign_key "menus", "main_menus"
   add_foreign_key "message_comments", "messages"
   add_foreign_key "message_comments", "users"

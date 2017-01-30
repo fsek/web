@@ -63,6 +63,18 @@ module CalendarJSON
     end
   end
 
+  def self.meeting(meeting)
+    {
+      id: meeting.id,
+      title: meeting.title,
+      start: meeting.start_date.iso8601,
+      end: meeting.end_date.iso8601,
+      backgroundColor: meeting_color(meeting),
+      textColor: 'black',
+      url: meeting.p_path
+    }
+  end
+
   private_class_method
 
   def self.cafe_color(shift, owner)
@@ -84,6 +96,17 @@ module CalendarJSON
         'red'
       end
     else
+      'red'
+    end
+  end
+
+  def self.meeting_color(meeting)
+    case meeting.status
+    when 'confirmed'
+      'green'
+    when 'unconfirmed'
+      'yellow'
+    when 'denied'
       'red'
     end
   end
