@@ -10,17 +10,19 @@
       <%= @event.location %>
     </span>
 
-    <%= markdown(@event.description) %>
+    <div class="event event-description">
+        <%= markdown(@event.description) %>
+    </div>
 
     <% if @event.dress_code.present? %>
       <div class="event">
-        <%= "#{Event.human_attribute_name('dress_code')}: #{dress_codes(@event)}" %>
+        <b><%= "#{Event.human_attribute_name('dress_code')}: #{dress_codes(@event)}" %></b>
       </div>
     <% end %>
 
     <% if @event.price.present? %>
       <div class="event">
-        <%= "#{Event.human_attribute_name('price')}: #{@event.price} kr" %>
+        <b><%= "#{Event.human_attribute_name('price')}: #{@event.price} kr" %></b>
       </div>
     <% end %>
 
