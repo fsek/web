@@ -1,15 +1,11 @@
 <% title(@page.to_s) %>
-<% if can_administrate?(:edit, @page) %>
-  <%= link_to(t('.new_element'),
-              new_admin_page_page_element_path(@page),
-              class: 'btn primary') %>
-  <%= link_to(t('.element_index'),
-              admin_page_page_elements_path(@page),
-              class: 'btn secondary') %>
-  <%= link_to(t('.edit_page'),
-              edit_admin_page_path(@page),
-              class: 'btn secondary') %>
-  <hr>
-<% end %>
-
 <%= render(@page, title: true) %>
+
+<% if can_administrate?(:edit, @page) %>
+  <div class="col-md-12 col-sm-12">
+    <hr>
+    <%= link_to(t('.edit_page'), edit_admin_page_path(@page), class: 'btn primary') %>
+    <%= link_to(t('.new_element'), new_admin_page_page_element_path(@page), class: 'btn secondary') %>
+    <%= link_to(t('.element_index'), admin_page_page_elements_path(@page), class: 'btn secondary') %>
+  </div>
+<% end %>

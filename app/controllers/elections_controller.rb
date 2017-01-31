@@ -17,7 +17,7 @@ class ElectionsController < ApplicationController
                                                    name: :rest)
       end
     else
-      render '/elections/no_election', status: 404
+      render '/elections/no_election'
     end
   end
 end

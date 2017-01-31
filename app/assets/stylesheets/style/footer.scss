@@ -10,7 +10,7 @@
 
   background: $light-gray;
   border-top: 1px solid $light-gray-text;
-  color: $gray-text;
+  color: $medium-gray-text;
   margin-top: 40px;
   padding-bottom: 30px;
   padding-top: 20px;
@@ -35,8 +35,9 @@
     text-shadow: 0 1px 0 $white;
   }
 
-  p {
-    color: $gray-text;
+  p,
+  li {
+    color: $medium-gray-text;
     font-size: 14px;
   }
 
@@ -46,22 +47,6 @@
 
   .footer-subscribe {
     width: 85%;
-  }
-
-  .blog-list {
-    color: $gray-headline;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    li {
-      margin-bottom: 7px;
-      padding: 0;
-    }
-
-    li span {
-      color: $dark-gray;
-    }
   }
 
   .dl-horizontal,
