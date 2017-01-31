@@ -22,7 +22,7 @@ RSpec.describe ElectionsController, type: :controller do
 
     it 'redirects if no election' do
       get(:index)
-      response.status.should eq(404)
+      response.status.should eq(200)
       response.should render_template('no_election')
     end
   end

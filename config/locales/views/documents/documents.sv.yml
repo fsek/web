@@ -1,7 +1,7 @@
 sv:
   documents:
     index:
-      administrate: Administrera dokument
+      administrate: Administrera
       description: F-sektionen har många viktiga dokument, allt från våra stadgar, reglemente till policyer och regler.
       filter: Filtrera
       filter_explanation: Genom att fylla i fälten under rubrikerna kan dokumenten filtreras
