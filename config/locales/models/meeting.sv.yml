@@ -8,6 +8,7 @@ sv:
       membership_needed: Medlemskap krävs för att kunna boka en lokal
       end_after_start: Slutdatum måste vara efter startdatum
       overlaps_confirmed: Överlappar med en bekräftad bokning. Byt tid eller spara som en obekräftad bokning.
+      council_error: Du kan enbart välja utskott som du tillhör.
 
   activerecord:
     models:

@@ -12,7 +12,7 @@ class Meeting < ActiveRecord::Base
   validates :status, presence: true, inclusion: { in: statuses.keys }, if: :is_admin
   validates :room, presence: true, inclusion: { in: rooms.keys }
   validate :date_validation, :overlap_validation
-  validate :membership_validation, unless: :is_admin
+  validate :membership_validation, :council_validation, unless: :is_admin
 
   scope :between, ->(from, to) { where('? > start_date AND ? < end_date', to, from) }
   scope :date_overlap, ->(from, to, id) { between(from, to).where.not(id: id) }
@@ -61,6 +61,12 @@ class Meeting < ActiveRecord::Base
     if confirmed? && Meeting.date_overlap(start_date, end_date, id).confirmed.for_room(room).any?
       errors.add(:start_date, I18n.t('model.meeting.overlaps_confirmed'))
       errors.add(:end_date, I18n.t('model.meeting.overlaps_confirmed'))
+    end
+  end
+
+  def council_validation
+    if council.present? && user.present? && !user.councils.include?(council)
+      errors.add(:council, I18n.t('model.meeting.council_error'))
     end
   end
 end
