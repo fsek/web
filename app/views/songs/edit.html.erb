@@ -1,0 +1,11 @@
+<div class="headline">
+  <h1><%= title('Sångbok') %></h1>
+</div>
+
+<div class="col-md-12">
+  <%= grid(@songs) do |g|
+    g.column(name: 'Titel', attribute: 'title') do |song|
+      link_to(song, song_path(song))
+    end
+  end -%>
+</div>
