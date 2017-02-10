@@ -72,7 +72,7 @@
   }
 
   function handle_save_row(row) {
-    $.ajax('/mail_aliases/update',
+    $.ajax('/admin/mail_aliases/update',
            { method: 'PUT'
            , data: { mail_alias: { username: row.data('username')
                                  , domain: row.data('domain')
@@ -137,7 +137,7 @@
     form.submit(function(e) {
       e.preventDefault()
       var query = $('#alias-searchfield').val()
-      $.ajax('/mail_aliases/search',
+      $.ajax('admin/mail_aliases/search',
              { method: 'GET'
              , data: { q: query }
              , error: console.log

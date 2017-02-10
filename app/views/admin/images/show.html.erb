@@ -1,0 +1,40 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h1>
+      <%= link_to(gallery_album_path(@album, image: @image)) do %>
+        <%= title(%(#{model_name(Image)} #{@image.filename})) %>
+      <% end %>
+    </h1>
+  </div>
+
+  <%= image_tag(@image.view, class: 'img-responsive') %>
+
+  <ul class="list">
+    <li>
+      <%= Image.human_attribute_name(:dimensions) %>:
+      <%= %(#{@image.width}x#{@image.height}) %>
+    </li>
+    <li>
+      <%= Image.human_attribute_name(:created_at) %>:
+      <%= localized(@image.created_at) %>
+    </li>
+    <li>
+      <%= Image.human_attribute_name(:photographer) %>:
+      <% if @image.photographer.present? %>
+        <%= link_to(@image.photographer, user_path(@image.photographer)) %>
+      <% else %>
+        <%= @image.photographer_name %>
+      <% end %>
+    </li>
+  </ul>
+  <hr>
+  <%= link_to(t('.reprocess_image'), reprocess_admin_album_image_path(@album, @image),
+                                    class: 'btn primary', method: :patch) %>
+  <%= link_to(t('.download_image'), download_admin_album_image_path(@album, @image),
+                                    class: 'btn secondary') %>
+  <%= link_to(t('.destroy_image'), admin_album_image_path(@album, @image),
+                                   method: :delete, class: 'btn danger') %>
+  <hr>
+  <%= link_to(t('.administrate_album'), admin_album_path(@album),
+                                        class: 'btn secondary') %>
+</div>

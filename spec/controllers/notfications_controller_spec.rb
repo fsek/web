@@ -24,11 +24,13 @@ RSpec.describe(NotificationsController,
       first = create(:notification, :create, user: user)
       second = create(:notification, :create, user: user)
       # Another users notification
-      create(:notification, :create)
+      third = create(:notification, :create)
 
       get(:index)
       response.should have_http_status(200)
-      assigns(:notifications).should eq([first, second])
+      assigns(:notifications).should include(first)
+      assigns(:notifications).should include(second)
+      assigns(:notifications).should_not include(third)
     end
   end
 

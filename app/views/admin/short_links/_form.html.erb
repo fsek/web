@@ -1,0 +1,12 @@
+<%= simple_form_for([:admin, short_link], html: {class: 'form-inline shortlink-check'}) do |f| %>
+  <%= f.input(:link, label: false,
+              placeholder: ShortLink.human_attribute_name(:link)) %>
+  <span>
+    &#10230;
+  </span>
+  <%= f.input :target, as: :string, label: false,
+                       placeholder: ShortLink.human_attribute_name(:target) %>
+  <%= f.button :submit, class: 'no-margin' %>
+  <%= simple_format(t('.already_exists'), style: 'display: none', class: 'shortlink-notice') %>
+<% end %>
+

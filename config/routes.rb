@@ -68,7 +68,9 @@ Fsek::Application.routes.draw do
 
     resources :users, path: :anvandare, only: [:show]
 
-    resources :constants
+    namespace :admin do
+      resources :constants
+    end
 
     namespace :admin do
       resources :categories, path: :kategorier, except: :show
@@ -238,13 +240,11 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
-      namespace :gallery, path: :galleri do
-        resources :albums, path: :album, except: :edit do
-          delete :destroy_images, on: :member
-          resources :images, path: :bild, only: [:destroy, :show] do
-            get :download, path: :hamta, on: :member
-            patch :reprocess, path: :omarbeta, on: :member
-          end
+      resources :albums, path: :album, except: :edit do
+        delete :destroy_images, on: :member
+        resources :images, path: :bild, only: [:destroy, :show] do
+          get :download, path: :hamta, on: :member
+          patch :reprocess, path: :omarbeta, on: :member
         end
       end
     end
@@ -266,8 +266,12 @@ Fsek::Application.routes.draw do
         get :post, path: '/post/:post_id', on: :collection
       end
     end
+    namespace :admin do
+      resources :short_links, except: [:show, :update, :edit], path: :snabblankar do
+      end
+    end
 
-    resources :short_links, except: [:show, :update, :edit], path: :snabblankar do
+    resources :short_links, only: [], path: :snabblankar do
       collection do
         get :go
         get :check
@@ -318,10 +322,12 @@ Fsek::Application.routes.draw do
     end
   end
 
-  resources :mail_aliases, only: [:index] do
-    collection do
-      put :update, path: :update, as: :update
-      get :search
+  namespace :admin do
+    resources :mail_aliases, only: [:index] do
+      collection do
+        put :update, path: :update, as: :update
+        get :search
+      end
     end
   end
 

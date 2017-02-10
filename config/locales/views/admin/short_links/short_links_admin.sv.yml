@@ -1,0 +1,9 @@
+sv:
+  admin:
+    short_links:
+      index:
+        destroy_link: Förinta snabblänk
+        title: Snabblänkar
+
+      form:
+        already_exists: En snabblänk med det namnet finns redan. Du kommer att spara över den gamla länken.
