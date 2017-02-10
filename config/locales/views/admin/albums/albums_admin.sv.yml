@@ -1,0 +1,21 @@
+sv:
+  admin:
+    albums:
+      new:
+        administrate_albums: Administrera album
+        title: Nytt album
+
+      show:
+        administrate_gallery: Administrera gallery
+        confirm_image_destroy: Vill du verkligen förinta alla bilder?
+        destroy: Förinta album
+        destroy_images: Förinta alla bilder
+        show: Visa album
+        title: Redigera album
+
+      form:
+        already_uploaded: Redan uppladdade
+
+      index:
+        title: Administrera album
+        new_album: Nytt album

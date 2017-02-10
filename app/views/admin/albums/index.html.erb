@@ -1,0 +1,37 @@
+<div class="col-md-12">
+  <div class="panel panel-orange margin-bottom-40">
+    <div class="panel-heading">
+      <h1 class="panel-title">
+        <%= fa_icon('tasks') %> <%= title(t('.title')) %>
+      </h1>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th><%= Album.human_attribute_name(:title) %></th>
+          <th><%= Album.human_attribute_name(:location) %></th>
+          <th><%= Album.human_attribute_name(:start_date) %></th>
+          <th><%= Album.human_attribute_name(:end_date) %></th>
+          <th><%= Album.human_attribute_name(:updated_at) %></th>
+          <th><%= link_to(t('.new_album'), new_admin_album_path,
+                                           class: 'btn primary') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @albums.each do |album| %>
+          <tr>
+            <td><%= album.id %></td>
+            <td><%= album.title %></td>
+            <td><%= album.location %></td>
+            <td><%= localized(album.start_date) %></td>
+            <td><%= localized(album.end_date) %></td>
+            <td><%= localized(album.updated_at) %></td>
+            <td><%= link_to(t('global.edit'), admin_album_path(album),
+                                      class: 'btn secondary') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

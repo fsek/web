@@ -1,0 +1,31 @@
+<%= simple_form_for([:admin, @album]) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :title_sv, wrapper_html: {class: 'inline half'} %>
+    <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>
+    <%= f.input :description_sv, as: :pagedown,
+                                 input_html: {preview: true, rows: 10} %>
+    <%= f.input :description_en, as: :pagedown,
+                                 input_html: {preview: true, rows: 10} %>
+    <%= f.input :location, collection: Album.locations, input_html: {class: 'select2'} %>
+    <%= f.input :start_date, as: :datetime_picker %>
+    <%= f.input :end_date, as: :datetime_picker %>
+  </div>
+  <% unless @album.new_record? %>
+    <div class="form-files">
+      <%= f.input :image_upload, as: :file, error: false, input_html: {multiple: true} %>
+      <% if @album.errors[:image_upload].any? %>
+        <div class="gallery has-error">
+          <%= t('.already_uploaded') %><br>
+          <%= @album.errors[:image_upload] %>
+        </div>
+        <hr>
+      <% end %>
+      <%= f.input :photographer_user, as: :select, collection: @users, input_html: {class: 'select2'} %>
+      <%= f.input :photographer_name, as: :string %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.button :submit, id: 'submit-album' %>
+  </div>
+<% end %>

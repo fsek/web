@@ -1,11 +1,43 @@
 .top {
   padding-top: 8px;
 
+  .container {
+    position: relative;
+  }
+
+  .dropdown {
+    position: static;
+  }
+
   .dropdown-menu {
     border: 1px solid $light-gray-text;
     box-shadow: none;
     margin-top: -5px;
     padding: 0;
+    top: 150%;
+
+    .menu {
+      border-radius: 3px;
+
+      a {
+        font-size: 12px;
+        padding: 8px 15px;
+      }
+
+      &:hover {
+        background: $fsek-orange;
+
+        a {
+          color: $white;
+        }
+      }
+    }
+
+    .menu-header {
+      &.pryl {
+        margin-top: 10px;
+      }
+    }
 
     > li > a {
       font-size: 12px;
@@ -22,7 +54,7 @@
     &.loginbar {
       margin: 0;
       padding: 0;
-      position: relative;
+      position: static;
       z-index: 9999;
 
       > li {
@@ -108,4 +140,3 @@
     }
   }
 }
-

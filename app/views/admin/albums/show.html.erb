@@ -1,0 +1,30 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+
+  <%= render 'form', album: @album %>
+
+  <hr>
+  <%= link_to(t('.show'), gallery_album_path(@album),
+                          data:{ turbolinks: false }, class: 'btn secondary') %>
+  <%= link_to(t('.destroy'), admin_album_path(@album),
+                             method: :delete,
+                             class: 'btn danger') %>
+  <%= link_to(t('.destroy_images'), destroy_images_admin_album_path(@album),
+                                    method: :delete,
+                                    class: 'btn danger',
+                                    data: { confirm: t('.confirm_image_destroy')+ '?' }) %>
+  <%= link_to(t('.administrate_gallery'), admin_albums_path,
+                                          class: 'btn secondary') %>
+  <hr>
+  <% @album.images.each do |img| %>
+    <% if img.id.present? %>
+      <div class="col-md-2 col-xs-4">
+        <%= link_to(admin_album_image_path(@album, img)) do %>
+          <%= image_tag(img.thumb, class: 'img-resposive album-preview') %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

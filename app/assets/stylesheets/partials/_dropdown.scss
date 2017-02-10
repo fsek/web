@@ -10,6 +10,27 @@
           right: 100%;
         }
       }
+
+      .admin-menu-category {
+        display: inline;
+        float: left;
+      }
     }
+  }
+}
+
+
+@media (max-width: 991px) {
+  .dropdown.right .dropdown-menu .admin-menu-category {
+    display: block;
+    float: none;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+  }
+
+  .admin-menu-category li {
+    text-align: center;
   }
 }

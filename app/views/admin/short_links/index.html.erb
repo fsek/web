@@ -1,0 +1,25 @@
+<div class="headline">
+  <h1><%= title(t('.title')) %></h1>
+</div>
+
+<div class="col-md-8 col-sm-12">
+  <%= render 'form', short_link: @short_link %>
+  <br>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th><%= ShortLink.human_attribute_name(:link) %></th>
+        <th><%= ShortLink.human_attribute_name(:target) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% ShortLink.order(link: :asc).each do |sl| %>
+        <tr>
+          <td><%= sl.link %></td>
+          <td><%= link_to(sl.target, sl.target) %></td>
+          <td><%= link_to(t('.destroy_link'), admin_short_link_path(sl), method: :delete) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

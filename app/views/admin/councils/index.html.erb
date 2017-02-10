@@ -27,6 +27,10 @@
     g.column(name: Council.human_attribute_name(:updated_at), attribute: 'updated_at',
              filter: false)
 
+    g.column(name: t('.posts'), filter: false) do |council|
+      link_to(t('.posts'), admin_council_posts_path(council))
+    end
+
     g.column(name: t('global.edit'), filter: false) do |council|
       link_to(t('global.edit'), edit_admin_council_path(council))
     end
