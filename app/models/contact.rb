@@ -29,7 +29,11 @@ class Contact < ActiveRecord::Base
   end
 
   def to_s
-    name.present? ? name : post.try(:title)
+    if post.present? && name.blank?
+      post.title
+    else
+      name
+    end
   end
 
   def full_string
