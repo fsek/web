@@ -8,10 +8,21 @@
   <%= f.input :email %>
   <%= f.input :public %>
   <%= f.input :slug, hint: t('.slug_description') %>
+
+  <div class="input-group margin-bottom-20">
+    <% if contact.avatar.present? %>
+      <%= image_tag(contact.avatar.thumb.url, class: 'img responsive', height: '200px')%><br>
+      <br>
+      <%= link_to(t('.remove_avatar'), admin_contact_path(contact: {id: contact.id, remove_avatar: '1'}),
+                                       method: :patch,
+                                       data: {confirm: t('.confirm_avatar_removal')},
+                                       class: 'btn secondary') %>
+    <% end %>
+  </div>
+  <%= f.input :avatar, as: :file, hint: t('.avatar_hint') %>
+
   <%= f.button :submit, id: 'contact-submit' %>
   <% if contact.persisted? %>
-    <%= link_to(t('.destroy'), admin_contact_path(contact),
-                method: :delete,
-                class: 'btn danger pull-right') %>
+    <%= link_to(t('.destroy'), admin_contact_path(contact), method: :delete, class: 'btn danger pull-right') %>
   <% end %>
 <% end %>

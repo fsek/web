@@ -8,7 +8,7 @@ RSpec.feature 'fill out send_form', type: :feature do
     page.should have_css('#contacts_title',
                          text: I18n.t('contacts.index.title'))
 
-    find(:linkhref, contact_path(contact)).click
+    first(:linkhref, contact_path(contact)).click
     page.status_code.should eq(200)
     page.fill_in 'contact_message_name', with: message.name
     page.fill_in 'contact_message_email', with: message.email

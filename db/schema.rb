@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126122700) do
+ActiveRecord::Schema.define(version: 20170216160900) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 20170126122700) do
     t.datetime "updated_at"
     t.string   "slug",       limit: 255
     t.integer  "post_id",    limit: 4
+    t.string   "avatar",     limit: 255
   end
 
   add_index "contacts", ["post_id"], name: "index_contacts_on_post_id", using: :btree

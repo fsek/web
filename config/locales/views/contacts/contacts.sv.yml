@@ -1,7 +1,7 @@
 sv:
   contacts:
     contact:
-      users: Till användare
+      users: Posten innehas av
       contact: Kontakta
 
     index:
@@ -17,4 +17,4 @@ sv:
 
     show:
       back_to_contacts: Alla kontakter
-      users: Till användare
+      users: Posten innehas av

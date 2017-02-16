@@ -14,6 +14,8 @@ class Contact < ActiveRecord::Base
 
   attr_accessor :message
 
+  mount_uploader :avatar, AttachedImageUploader
+
   scope :publik, -> { where(public: true) }
   scope :with_post, -> { includes(:post, :translations) }
 
@@ -27,7 +29,7 @@ class Contact < ActiveRecord::Base
   end
 
   def to_s
-    post.try(:title) || name
+    name.present? ? name : post.try(:title)
   end
 
   def full_string

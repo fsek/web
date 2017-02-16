@@ -1,28 +1,78 @@
 .contact {
-  p {
-    font-size: 18px;
-  }
-
   &.index {
-    border-bottom: solid 1px $fsek-orange;
-    margin-bottom: 50px;
-    margin-top: 10px;
-    padding-bottom: 30px;
-  }
-
-  .description,
-  .image,
-  .users {
-    margin-bottom: 20px;
-    min-height: 100px;
+    padding-bottom: 37px;
   }
 
   .display-only {
     background-image: none;
-    border: 1px solid $dark-gray;
+    border: 3px double $fsek-pi-silver;
     display: inline-block;
-    font-size: 16px;
-    margin-right: 5px;
-    padding: 4px 8px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 4px 7px;
   }
+
+  .users {
+    margin-top: 10px;
+  }
+
+  .image {
+    display: inline-block;
+    height: 150px;
+    margin-bottom: 20px;
+
+    img {
+      max-height: 100%;
+    }
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+
+    a,
+    a:link,
+    a:visited {
+      color: $gray-text;
+    }
+
+    a:hover {
+      color: $fsek-pi-silver;
+      text-decoration: none;
+    }
+  }
+
+  @media(min-width: 1200px) {
+    .image {
+      height: 262px;
+    }
+  }
+
+  @media(max-width: 1199px) {
+    .image {
+      height: 212px;
+    }
+  }
+
+  @media(max-width: 767px) {
+    .image {
+      height: 220px;
+    }
+  }
+
+  @media(max-width: 575px) {
+    .image {
+      height: 150px;
+    }
+  }
+}
+
+.row-eqh {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row-eqh > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
 }
