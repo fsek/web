@@ -1,17 +1,34 @@
 <% if contact.present? %>
-  <div class="row contact index">
-    <h2><%= contact.to_s %></h2>
+  <div class="col-md-3 col-sm-4 col-xs-12 contact index">
+    <span class="title">
+      <%= link_to contact, contact_path(contact) %>
+    </span>
 
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <%= contact_image(contact) %>
+    <% if can_administrate?(:edit, contact) %>
+      <span class="edit">
+        <%= link_to(edit_admin_contact_path(contact)) do %>
+          <%= fa_icon('cog') %> <%= t('global.edit') %>
+        <% end %>
+      </span>
+    <% end %>
+
+    <div class="image">
+      <%= link_to(contact_path(contact)) do %>
+        <%= contact_image(contact) %>
+      <% end %>
     </div>
 
-    <div class="col-md-9 col-sm-6 col-xs-12 description">
-      <%= markdown(contact.text) %>
-    </div>
+    <% if current_user.try(:member?) %>
+      <textfield readonly="" rows="1" wrap="off" resize="false"
+                 class="display-only">
+        <%= contact.email %>
+      </textfield>
+    <% end %>
+
+    <b><%= link_to t('.contact'), contact_path(contact) %></b>
 
     <% if contact.users.present? %>
-      <div class="col-sm-4 users">
+      <div class="users">
         <%= t('.users') %>
         <ul class="list">
           <% contact.users.each do |user| %>
@@ -20,23 +37,5 @@
         </ul>
       </div>
     <% end %>
-    <div class="col-sm-12">
-      <%= link_to(t('.contact'), contact_path(contact),
-                              class: 'btn primary pull-right') %>
-
-      <% if current_user.try(:member?) %>
-        <textfield readonly="" rows="1" wrap="off" resize="false"
-                   class="display-only pull-right">
-          <%= contact.email %>
-        </textfield>
-      <% end %>
-      <% if can_administrate?(:edit, contact) %>
-        <span class="edit">
-          <%= link_to(edit_admin_contact_path(contact)) do %>
-            <%= fa_icon('cog') %> <%= t('global.edit') %>
-          <% end %>
-        </span>
-      <% end %>
-    </div>
   </div>
 <% end %>

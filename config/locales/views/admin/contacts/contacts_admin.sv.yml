@@ -5,6 +5,9 @@ sv:
         destroy: Förinta kontakt
         name_or_post: Välj en post eller fyll i ett namn.
         slug_description: Används för att kunna visa en särskild kontakt i vyer.
+        remove_avatar: Förinta avatar
+        confirm_avatar_removal: Är du säker på att du vill ta bort bilden? Andra ändringar i formuläret kommer inte att sparas.
+        avatar_hint: Profilbilder hämtas automatiskt från poster som enbart en användare innehar.
 
       edit:
         admin_index: Administrera kontakter

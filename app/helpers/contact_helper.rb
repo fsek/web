@@ -12,9 +12,10 @@ module ContactHelper
   end
 
   def contact_image(contact)
-    if contact_single_user(contact)
-      image_tag(contact.post.users.first.large_avatar,
-                class: 'img-responsive')
+    if contact.avatar.present?
+      image_tag(contact.avatar.large.url, class: 'img-responsive')
+    elsif contact_single_user(contact)
+      image_tag(contact.post.users.first.large_avatar, class: 'img-responsive')
     else
       image_tag('missing_thumb.png', class: 'img-responsive')
     end
