@@ -24,6 +24,7 @@
 //= require fotorama
 //= require select2
 //= require select2_locale_sv
+//= require cropper
 //= require_tree .
 //= require turbolinks
 //= require wice_grid

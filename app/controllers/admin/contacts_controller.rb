@@ -1,4 +1,3 @@
-# encoding:UTF-8
 class Admin::ContactsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
@@ -20,7 +19,11 @@ class Admin::ContactsController < Admin::BaseController
     @contact = Contact.new(contact_params)
     @posts = Post.by_title
     if @contact.save
-      redirect_to edit_admin_contact_path(@contact), notice: alert_create(Contact)
+      if params[:contact][:avatar].present?
+        render :crop
+      else
+        redirect_to edit_admin_contact_path(@contact), notice: alert_create(Contact)
+      end
     else
       render :new, status: 422
     end
@@ -30,7 +33,11 @@ class Admin::ContactsController < Admin::BaseController
     @contact = Contact.find(params[:id])
     @posts = Post.by_title
     if @contact.update(contact_params)
-      redirect_to edit_admin_contact_path(@contact), notice: alert_update(Contact)
+      if params[:contact][:avatar].present?
+        render :crop
+      else
+        redirect_to edit_admin_contact_path(@contact), notice: alert_update(Contact)
+      end
     else
       render :edit, status: 422
     end
@@ -46,6 +53,7 @@ class Admin::ContactsController < Admin::BaseController
 
   def contact_params
     params.require(:contact).permit(:name_sv, :name_en, :email, :public, :avatar,
-                                    :text_sv, :text_en, :post_id, :slug, :remove_avatar)
+                                    :text_sv, :text_en, :post_id, :slug, :remove_avatar,
+                                    :crop_x, :crop_y, :crop_w, :crop_h)
   end
 end

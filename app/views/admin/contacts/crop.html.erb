@@ -1,0 +1,16 @@
+<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page contact">
+  <div class="headline">
+    <h1><%= title('Beskär avatar') %></h1>
+  </div>
+
+  <div class="cropper">
+    <%= image_tag(@contact.avatar.url(:large), id: "cropbox") %>
+  </div>
+
+  <%= form_for [:admin, @contact] do |f| %>
+    <% %w[x y w h].each do |attribute| %>
+      <%= f.hidden_field "crop_#{attribute}" %>
+    <% end %>
+    <%= f.submit "Crop" %>
+  <% end %>
+</div>

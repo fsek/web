@@ -1,6 +1,7 @@
 .contact {
   &.index {
-    padding-bottom: 37px;
+    padding-top: 19px;
+    padding-bottom: 19px;
   }
 
   .display-only {
@@ -22,6 +23,7 @@
     margin-bottom: 20px;
 
     img {
+      border-radius:3px;
       max-height: 100%;
     }
   }
@@ -39,6 +41,14 @@
     a:hover {
       color: $fsek-pi-silver;
       text-decoration: none;
+    }
+
+    .cropper {
+      max-width: 100%;
+
+      img {
+        max-width: 100%;
+      }
     }
   }
 
@@ -73,6 +83,7 @@
 }
 
 .row-eqh > [class*='col-'] {
+  border-bottom: 3px double $fsek-pi-silver;
   display: flex;
   flex-direction: column;
 }

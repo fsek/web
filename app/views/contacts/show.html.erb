@@ -28,7 +28,7 @@
     <% end %>
   </div>
   <% if can_administrate?(:edit, @contact) %>
-    <div class="col-md-12">
+    <div class="col-md-12 col-xs-12">
       <span class="edit">
         <%= link_to(edit_admin_contact_path(@contact),
                     class: 'pull-right') do %>
@@ -37,7 +37,7 @@
       </span>
     </div>
   <% end %>
-  <div class="col-md-12">
+  <div class="col-md-12 col-xs-12">
     <%= render 'send_form', contact: @contact %>
     <hr>
     <%= link_to(t('.back_to_contacts'), contacts_path, class: 'btn secondary') %>
