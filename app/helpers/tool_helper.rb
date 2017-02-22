@@ -13,7 +13,7 @@ module ToolHelper
   private
 
   def make_link(tool, path, content)
-    class_str = 'list-group-item'
+    class_str = ['list-group-item', 'list-group-item-tools']
     if tool.free.zero?
       class_str << ' list-group-item-danger'
     end
