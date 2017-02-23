@@ -13,10 +13,10 @@ RSpec.describe Admin::PostsController, type: :controller do
   describe 'GET #edit' do
     it 'assigns the requested post as @post' do
       council = create(:council)
-      postt = create(:post, council: council)
+      post = create(:post, council: council)
 
-      get(:edit, id: postt.to_param, council_id: council.to_param)
-      assigns(:post).should eq(postt)
+      get(:edit, id: post.to_param, council_id: council.to_param)
+      assigns(:post).should eq(post)
       response.status.should eq(200)
     end
   end
@@ -49,12 +49,12 @@ RSpec.describe Admin::PostsController, type: :controller do
   describe 'POST #create' do
     it 'valid params' do
       council = create(:council)
-      attributes = { title: 'Spindelman',
+      attributes = { title_sv: 'Spindelman',
                      limit: 5,
                      rec_limit: 10,
                      semster: Post::AUTUMN,
                      elected_by: Post::BOARD,
-                     description: 'En webbmästare' }
+                     description_sv: 'En webbmästare' }
 
       lambda do
         post(:create, council_id: council.to_param, post: attributes)
@@ -65,8 +65,8 @@ RSpec.describe Admin::PostsController, type: :controller do
 
     it 'invalid params' do
       council = create(:council)
-      attributes = { title: '',
-                     description: 'En webbmästare' }
+      attributes = { title_sv: '',
+                     description_sv: 'En webbmästare' }
 
       lambda do
         post(:create, council_id: council.to_param, post: attributes)
@@ -80,27 +80,27 @@ RSpec.describe Admin::PostsController, type: :controller do
   describe 'PATCH #update' do
     it 'update post' do
       council = create(:council)
-      postt = create(:post, council: council, title: 'Spindelman')
+      post = create(:post, council: council, title: 'Spindelman')
 
       patch(:update, council_id: council.to_param,
-                     id: postt.to_param,
-                     post: { title: 'Deadpool' })
+                     id: post.to_param,
+                     post: { title_sv: 'Deadpool' })
 
-      postt.reload
-      postt.title.should eq('Deadpool')
-      response.should redirect_to(edit_admin_council_post_path(council, postt))
+      post.reload
+      post.title.should eq('Deadpool')
+      response.should redirect_to(edit_admin_council_post_path(council, post))
     end
 
     it 'invalid params' do
       council = create(:council)
-      postt = create(:post, council: council, title: 'Spindelman')
+      post = create(:post, council: council, title: 'Spindelman')
 
       patch(:update, council_id: council.to_param,
-                     id: postt.to_param,
-                     post: { title: '' })
+                     id: post.to_param,
+                     post: { title_sv: '' })
 
-      postt.reload
-      postt.title.should eq('Spindelman')
+      post.reload
+      post.title.should eq('Spindelman')
       response.should render_template(:edit)
       response.status.should eq(422)
     end
@@ -109,10 +109,10 @@ RSpec.describe Admin::PostsController, type: :controller do
   describe 'DELETE #destroy' do
     it 'works' do
       council = create(:council)
-      postt = create(:post, council: council)
+      post = create(:post, council: council)
 
       lambda do
-        delete(:destroy, council_id: council.to_param, id: postt.to_param)
+        delete(:destroy, council_id: council.to_param, id: post.to_param)
       end.should change(Post, :count).by(-1)
 
       response.should redirect_to(admin_council_posts_path(council))

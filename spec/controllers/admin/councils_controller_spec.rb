@@ -40,7 +40,7 @@ RSpec.describe Admin::CouncilsController, type: :controller do
 
   describe 'POST #create' do
     it 'valid parameters' do
-      attributes = { title: 'Prylmästeriet',
+      attributes = { title_sv: 'Prylmästeriet',
                      url: 'pryl' }
 
       lambda do
@@ -53,7 +53,7 @@ RSpec.describe Admin::CouncilsController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, council: { title: '' }
+        post :create, council: { title_sv: '' }
       end.should change(Council, :count).by(0)
 
       response.status.should eq(422)
@@ -65,7 +65,7 @@ RSpec.describe Admin::CouncilsController, type: :controller do
     it 'valid parameters' do
       council = create(:council, title: 'A Bad Title')
 
-      patch :update, id: council.to_param, council: { title: 'A Good Title' }
+      patch :update, id: council.to_param, council: { title_sv: 'A Good Title' }
       council.reload
 
       response.should redirect_to(edit_admin_council_path(council))
@@ -75,7 +75,7 @@ RSpec.describe Admin::CouncilsController, type: :controller do
     it 'invalid parameters' do
       council = create(:council, title: 'A Good Title')
 
-      patch :update, id: council.to_param, council: { title: '' }
+      patch :update, id: council.to_param, council: { title_sv: '' }
       council.reload
 
       council.title.should eq('A Good Title')

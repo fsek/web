@@ -1,9 +1,8 @@
-# encoding: UTF-8
 class Admin::PagesController < Admin::BaseController
   load_permissions_and_authorize_resource find_by: :url
 
   def index
-    @page_grid = initialize_grid(Page, include: :council)
+    @page_grid = initialize_grid(Page, include: [:translations, council: :translations])
   end
 
   def new

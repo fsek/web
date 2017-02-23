@@ -21,8 +21,9 @@
     g.column(name: Page.human_attribute_name(:url), attribute: 'url') do |page|
       link_to(page, page_path(page), target: :blank)
     end
-    g.column(name: Page.human_attribute_name(:council), assoc: :council, attribute: 'title',
-             filter: false)
+    g.column(name: Page.human_attribute_name(:council)) do |page|
+      page.council
+    end
     g.column(name: Page.human_attribute_name(:public), attribute: 'public') do |page|
       yes_no(page.public)
     end

@@ -21,7 +21,7 @@
 
 <div class="col-md-10 col-sm-12">
   <%= grid(@council_grid, hide_submit_button: true, hide_reset_button: true) do |g|
-    g.column(name: Council.human_attribute_name(:title), attribute: 'title') do |council|
+    g.column(name: Council.human_attribute_name(:title)) do |council|
       link_to(council, council_path(council), target: :blank)
     end
     g.column(name: Council.human_attribute_name(:updated_at), attribute: 'updated_at',

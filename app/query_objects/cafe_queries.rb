@@ -11,7 +11,7 @@ class CafeQueries
 
   def self.highscore_groups(lp, year)
     (score_group(lp, year).group('group') +
-     score_council(lp, year).group('council_id')).
+     score_council(lp, year).group('councils.id')).
       sort_by { |g| -g[:score] }
   end
 
@@ -64,7 +64,7 @@ class CafeQueries
   end
 
   def self.score_council(lp, year)
-    join_cafe_shifts(Council.select('councils.title,  count(*) as score').
-                     joins(:cafe_shifts), lp, year)
+    join_cafe_shifts(Council.includes(:translations).select('council_translations.title, count(*) as score').
+                     joins(:cafe_shifts).references(:translations), lp, year)
   end
 end

@@ -17,3 +17,4 @@ sv:
         motivation: Motivering
         name: Namn
         post_id: Post
+        created_at: Skapad

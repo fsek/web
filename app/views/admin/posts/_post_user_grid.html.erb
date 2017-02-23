@@ -4,7 +4,9 @@
       {id: dom_id(post_user)}
     end
 
-    g.column(name: model_name(Post), assoc: :post, attribute: 'title')
+    g.column(name: model_name(Post)) do |pu|
+      pu.post.title
+    end
     g.column(name: model_name(User), assoc: :user, attribute: 'firstname') do |pu|
       user_link(pu.user)
     end

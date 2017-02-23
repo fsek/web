@@ -4,9 +4,7 @@
 
 <div class="col-sm-12">
   <%= grid(@candidates_grid) do |g|
-    g.column(name: model_name(Post),
-             assoc: :post,
-             attribute: 'title') do |candidate|
+    g.column(name: model_name(Post), assoc: :post, attribute: 'id') do |candidate|
       candidate.post
     end
 
@@ -33,7 +31,7 @@
     end
     g.column(name: Candidate.human_attribute_name(:elected_by), assoc: :post,
              attribute: 'elected_by', custom_filter: :auto) do |candidate|
-      t("post.#{candidate.post.elected_by}")
+      t("model.post.#{candidate.post.elected_by}")
     end
   end -%>
 <%= link_to(t('.edit_election'), admin_election_path(@election),

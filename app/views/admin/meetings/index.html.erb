@@ -30,7 +30,7 @@
     g.column name: Meeting.human_attribute_name(:status), attribute: 'status' do |meeting|
       t(%(model.meeting.#{meeting.status}))
     end
-    g.column name: Meeting.human_attribute_name(:council), assoc: :council, attribute: 'title' do |meeting|
+    g.column name: Meeting.human_attribute_name(:council) do |meeting|
       meeting.council_id.nil? ? '-' : link_to(meeting.council, meeting.council, target: :blank_p)
     end
     g.column name: t('global.edit') do |meeting|

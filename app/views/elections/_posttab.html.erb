@@ -10,24 +10,19 @@
       end
     end
 
-    g.column(name: Post.human_attribute_name(:title),
-             attribute: 'title') do |post|
+    g.column(name: Post.human_attribute_name(:title)) do |post|
       election_post_link(post)
     end
 
-    g.column name: Post.human_attribute_name(:limit), attribute: 'limit',
-      filter: false do |post|
+    g.column name: Post.human_attribute_name(:limit), attribute: 'limit', filter: false do |post|
       print_post_limit(post)
     end
 
-    g.column(name: model_name(Council), assoc: :council,
-                                        attribute: 'title',
-                                        custom_filter: :auto) do |post|
+    g.column(name: model_name(Council)) do |post|
       link_to(post.council, post.council, target: :blank_p)
     end
 
-    g.column(name: Post.human_attribute_name(:elected_by),
-             attribute: 'elected_by', filter: false) do |post|
+    g.column(name: Post.human_attribute_name(:elected_by), attribute: 'elected_by', filter: false) do |post|
       t("model.post.#{post.elected_by}")
     end
 

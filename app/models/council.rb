@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Council < ActiveRecord::Base
   # Associations
   has_one :page, dependent: :destroy
@@ -14,19 +13,22 @@ class Council < ActiveRecord::Base
   has_many :cafe_workers, through: :cafe_worker_councils
   has_many :cafe_shifts, through: :cafe_workers
 
+  translates(:title)
+  globalize_accessors(locales: [:en, :sv], attributes: [:title])
+
   # Validation
   validates :title, :url, presence: true
   validates :url, uniqueness: true
 
-  scope :by_title, -> { order(:title) }
+  scope :by_title, -> { includes(:translations).order(:title).references(:translations) }
 
   after_update :check_page
 
   def check_page
     if page.nil?
-      build_page(url: page_url, visible: true, title_sv: title, title_en: title).save!
+      build_page(url: page_url, visible: true, title_sv: title_sv, title_en: title_en).save!
     elsif page.url.nil?
-      page.update!(url: page_url, visible: true, title_sv: title, title_en: title)
+      page.update!(url: page_url, visible: true, title_sv: title_sv, title_en: title_en)
     end
   end
 
