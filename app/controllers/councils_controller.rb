@@ -1,4 +1,3 @@
-# encoding:UTF-8
 class CouncilsController < ApplicationController
   load_permissions_and_authorize_resource find_by: :url
 
@@ -7,7 +6,7 @@ class CouncilsController < ApplicationController
   end
 
   def show
-    @council = Council.includes(posts: :users).find_by_url!(params[:id])
-    @councils = Council.by_title
+    @council = Council.includes(posts: [:users, :translations]).find_by_url!(params[:id])
+    @councils = Council.includes(:translations).by_title
   end
 end

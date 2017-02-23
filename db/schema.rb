@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216160900) do
+ActiveRecord::Schema.define(version: 20170823132130) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "door_id",    limit: 4
@@ -224,8 +224,18 @@ ActiveRecord::Schema.define(version: 20170216160900) do
   add_index "contacts", ["post_id"], name: "index_contacts_on_post_id", using: :btree
   add_index "contacts", ["slug"], name: "index_contacts_on_slug", using: :btree
 
+  create_table "council_translations", force: :cascade do |t|
+    t.integer  "council_id", limit: 4,   null: false
+    t.string   "locale",     limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "title",      limit: 255
+  end
+
+  add_index "council_translations", ["council_id"], name: "index_council_translations_on_council_id", using: :btree
+  add_index "council_translations", ["locale"], name: "index_council_translations_on_locale", using: :btree
+
   create_table "councils", force: :cascade do |t|
-    t.string   "title",        limit: 255
     t.string   "url",          limit: 255
     t.text     "description",  limit: 65535
     t.datetime "created_at"
@@ -715,6 +725,18 @@ ActiveRecord::Schema.define(version: 20170216160900) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "post_translations", force: :cascade do |t|
+    t.integer  "post_id",     limit: 4,     null: false
+    t.string   "locale",      limit: 255,   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+  end
+
+  add_index "post_translations", ["locale"], name: "index_post_translations_on_locale", using: :btree
+  add_index "post_translations", ["post_id"], name: "index_post_translations_on_post_id", using: :btree
+
   create_table "post_users", force: :cascade do |t|
     t.integer  "post_id",    limit: 4
     t.integer  "user_id",    limit: 4
@@ -723,16 +745,14 @@ ActiveRecord::Schema.define(version: 20170216160900) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.integer  "limit",       limit: 4,     default: 0
-    t.text     "description", limit: 65535
+    t.integer  "limit",      limit: 4,   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "council_id",  limit: 4
-    t.string   "elected_by",  limit: 255
-    t.string   "semester",    limit: 255,   default: "both"
+    t.integer  "council_id", limit: 4
+    t.string   "elected_by", limit: 255
+    t.string   "semester",   limit: 255, default: "both"
     t.boolean  "board"
-    t.integer  "rec_limit",   limit: 4,     default: 0
+    t.integer  "rec_limit",  limit: 4,   default: 0
     t.boolean  "car_rent"
   end
 

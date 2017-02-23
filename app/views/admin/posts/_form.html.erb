@@ -1,10 +1,12 @@
 <%= simple_form_for([:admin, council, post]) do |f| %>
-  <%= f.input :title, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :title_sv, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>
   <%= f.association :council, collection: Council.by_title,
                               wrapper_html: {class: 'inline half'},
                               input_html: {class: 'select2'},
                               include_blank: false %>
-  <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :description_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :description_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :board %>
   <%= f.input :car_rent %>
   <%= f.input(:elected_by, collection: [[t("model.post.#{Post::GENERAL}"), Post::GENERAL],

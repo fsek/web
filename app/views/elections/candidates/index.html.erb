@@ -17,8 +17,7 @@
         end
       end
 
-      g.column(name: Post.human_attribute_name(:title), assoc: :post, filter: false,
-               attribute: 'title') do |candidate|
+      g.column(name: Post.human_attribute_name(:title), filter: false) do |candidate|
         election_post_link(candidate.post)
       end
 

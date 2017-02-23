@@ -46,13 +46,14 @@ class Admin::ElectionsController < Admin::BaseController
   def nominations
     @nominations_grid = initialize_grid(@election.nominations,
                                         name: 'nominations',
-                                        include: :post)
+                                        include: [post: :translations])
   end
 
   def candidates
     @candidates_grid = initialize_grid(@election.candidates,
                                        name: 'candidates',
-                                       include: [:post, :user])
+                                       include: [:user, post: :translations, council: :translations],
+                                       custom_order: {'posts.id' => 'post_translations.title' } )
   end
 
   private

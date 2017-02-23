@@ -32,7 +32,7 @@
     g.column name: Rent.human_attribute_name(:aktiv), attribute: 'aktiv' do |rent|
       rent.aktiv == true ?  t('model.rent.active') : t('model.rent.inactive')
     end
-    g.column name: Rent.human_attribute_name(:council), assoc: :council, attribute: 'title' do |rent|
+    g.column name: Rent.human_attribute_name(:council) do |rent|
       rent.council_id.nil? ? '-' : link_to(rent.council, rent.council, target: :blank_p)
     end
     g.column name: t('global.show') do |rent|

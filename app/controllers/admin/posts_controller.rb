@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Admin::PostsController < Admin::BaseController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :council, parent: true, find_by: :url
@@ -22,9 +21,7 @@ class Admin::PostsController < Admin::BaseController
 
   def remove_user
     post_user = PostUser.find(params[:post_user_id])
-    @status = I18n.t('model.post.user_removed',
-                     u: post_user.user,
-                     p: post_user.post)
+    @status = I18n.t('model.post.user_removed', u: post_user.user, p: post_user.post)
     @id = params[:post_user_id]
 
     @state = post_user.destroy
@@ -32,15 +29,9 @@ class Admin::PostsController < Admin::BaseController
 
   def index
     council = Council.find_by_url!(params[:council_id])
-    @post_view = PostView.new(council: council,
-                              post_user: PostUser.new,
-                              users: User.by_firstname)
-    @post_view.post_grid = initialize_grid(council.posts,
-                                           order: :title,
-                                           name: 'posts')
-    @post_view.post_user_grid = initialize_grid(council.post_users,
-                                                include: [:post, :user],
-                                                name: 'post_users')
+    @post_view = PostView.new(council: council, post_user: PostUser.new, users: User.by_firstname)
+    @post_view.post_grid = initialize_grid(council.posts.by_title, name: 'posts')
+    @post_view.post_user_grid = initialize_grid(council.post_users, include: [:post, :user], name: 'post_users')
   end
 
   def new
@@ -85,9 +76,7 @@ class Admin::PostsController < Admin::BaseController
   private
 
   def set_grids(post_view)
-    post_view.post_grid = initialize_grid(post_view.council.posts,
-                                          order: :title,
-                                          name: 'posts')
+    post_view.post_grid = initialize_grid(post_view.council.posts.by_title, name: 'posts')
     post_view.post_user_grid = initialize_grid(post_view.council.post_users,
                                                include: [:post, :user],
                                                name: 'post_users')
@@ -96,9 +85,9 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def post_params
-    params.require(:post).permit(:title, :limit, :rec_limit,
-                                 :description, :elected_by, :semester,
-                                 :board, :car_rent, :council_id)
+    params.require(:post).permit(:title_sv, :title_en, :limit, :rec_limit,
+                                 :description_sv, :description_en, :elected_by,
+                                 :semester, :board, :car_rent, :council_id)
   end
 
   def post_user_params

@@ -24,9 +24,13 @@ sv:
         car_rent: Får hyra bil
         council: Utskott
         description: Beskrivning
+        description_sv: Beskrivning - svensk
+        description_en: Beskrivning - engelsk
         elected_by: Väljs av
         limit: Gräns
         permission_ids: Rättigheter
         rec_limit: Rekommenderad gräns
         semester: Väljs på
         title: Titel
+        title_sv: Titel - svensk
+        title_en: Titel - engelsk

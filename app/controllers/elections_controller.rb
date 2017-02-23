@@ -7,14 +7,16 @@ class ElectionsController < ApplicationController
     if election.present?
       @election_view = ElectionView.new(election)
       @election_view.grid = initialize_grid(election.current_posts,
-                                            include: :council,
-                                            name: :main)
+                                            name: :main,
+                                            per_page: 50,
+                                            include: [:translations, council: :translations])
       @count = election.post_count
 
       if election.after_posts.any?
         @election_view.rest_grid = initialize_grid(election.after_posts,
-                                                   include: :council,
-                                                   name: :rest)
+                                                   name: :rest,
+                                                   per_page: 50,
+                                                   include: [:translations, council: :translations])
       end
     else
       render '/elections/no_election'

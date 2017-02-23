@@ -3,7 +3,7 @@ class Admin::CouncilsController < Admin::BaseController
   load_permissions_and_authorize_resource find_by: :url
 
   def index
-    @council_grid = initialize_grid(Council, order: :title)
+    @council_grid = initialize_grid(Council.by_title, include: :translations)
   end
 
   def new
@@ -44,6 +44,6 @@ class Admin::CouncilsController < Admin::BaseController
   private
 
   def council_params
-    params.require(:council).permit(:title, :url, :description, :president)
+    params.require(:council).permit(:title_sv, :title_en, :url, :description, :president)
   end
 end

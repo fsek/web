@@ -9,6 +9,9 @@ class Post < ActiveRecord::Base
   GENERAL = 'general'.freeze
   EXTRA = 'extra'.freeze
 
+  translates(:title, :description)
+  globalize_accessors(locales: [:en, :sv], attributes: [:title, :description])
+
   # Associations
   belongs_to :council, required: true
   has_many :post_users
@@ -38,7 +41,7 @@ class Post < ActiveRecord::Base
 
   # Scopes
   scope :renters, -> { where(car_rent: true) }
-  scope :by_title, -> { order(title: :asc) }
+  scope :by_title, -> { includes(:translations).order(title: :asc).references(:translations) }
 
   def to_s
     title

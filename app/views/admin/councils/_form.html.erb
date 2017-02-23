@@ -1,5 +1,6 @@
 <%= simple_form_for([:admin, council]) do |f| %>
-  <%= f.input :title %>
+  <%= f.input :title_sv, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>
   <%= f.input :description, hint: t('.description_hint') %>
   <%= f.input :url %>
 

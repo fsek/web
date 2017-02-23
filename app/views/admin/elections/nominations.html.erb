@@ -2,8 +2,9 @@
   <div class="row">
   <h1><%= title(models_name(Nomination)) %></h1>
     <%= grid(@nominations_grid) do |g|
-      g.column name: model_name(Post), assoc: :post,
-               attribute: 'title', filter: false
+      g.column name: model_name(Post), filter: false do |nomination|
+        nomination.post
+      end
       g.column name: Nomination.human_attribute_name(:name),
                attribute: 'name', filter: false
       g.column name: Nomination.human_attribute_name(:email),
