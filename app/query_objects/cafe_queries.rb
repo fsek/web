@@ -64,7 +64,8 @@ class CafeQueries
   end
 
   def self.score_council(lp, year)
-    join_cafe_shifts(Council.includes(:translations).select('council_translations.title, count(*) as score').
-                     joins(:cafe_shifts).references(:translations), lp, year)
+    join_cafe_shifts(Council.select('count(*) as score').joins(:cafe_shifts), lp, year).joins(:translations).
+                     where('council_translations.locale = ?', I18n.locale).
+                     select('council_translations.title as title')
   end
 end

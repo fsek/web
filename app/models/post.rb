@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   GENERAL = 'general'.freeze
   EXTRA = 'extra'.freeze
 
-  translates(:title, :description)
+  translates(:title, :description, fallbacks_for_empty_translations: true)
   globalize_accessors(locales: [:en, :sv], attributes: [:title, :description])
 
   # Associations

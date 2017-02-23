@@ -53,7 +53,7 @@ class Admin::ElectionsController < Admin::BaseController
     @candidates_grid = initialize_grid(@election.candidates,
                                        name: 'candidates',
                                        include: [:user, post: :translations, council: :translations],
-                                       custom_order: { 'posts.id' => 'post_translations.title' } )
+                                       custom_order: { 'posts.id' => 'post_translations.title' })
   end
 
   private
