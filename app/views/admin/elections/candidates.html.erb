@@ -7,12 +7,10 @@
     g.column(name: model_name(Post), assoc: :post, attribute: 'id') do |candidate|
       candidate.post
     end
-
     g.column name: model_name(User), assoc: :user, attribute: 'firstname',
       filter: false do |candidate|
       link_to(candidate.user, candidate.user)
     end
-
     g.column name: User.human_attribute_name(:student_id), assoc: :user,
       attribute: 'student_id', filter: false
     g.column name: User.human_attribute_name(:email), assoc: :user,
