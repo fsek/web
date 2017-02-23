@@ -4,3 +4,5 @@ sv:
       new:
         remove_shift: Förinta cafépass
         administrate: Administrera cafépass
+      form:
+        remove: Ta bort från passet

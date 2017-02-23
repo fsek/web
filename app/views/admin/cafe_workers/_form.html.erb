@@ -8,7 +8,7 @@
   <%= f.input :group %>
   <%= f.button :submit %>
   <% if cafe_view.shift.user.present? %>
-    <%= link_to(t('cafe_worker.remove'),
+    <%= link_to(t('.remove'),
                 admin_cafe_shift_cafe_worker_path(cafe_view.shift, cafe_view.shift.cafe_worker),
                 method: :delete, class: 'btn danger pull-right') %>
   <% end %>
