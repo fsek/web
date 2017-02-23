@@ -8,4 +8,11 @@ sv:
         - kalender
         - prenumerera
       subscription: Kalenderprenumeration
+      subscribe_instructions_title: Instruktioner (Google Calendar)
+      step1: "Öppna **%{google_calendar}**."
+      step2: "Bredvid **&quot;Andra kalendrar&quot;** finns en pil nedåt. Klicka på denna."
+      step3: "Välj **&quot;Lägg till webbadress&quot;**"
+      step4: "Skriv in &quot;webcal://fsektionen.se/kalender/export.ics&quot; i det tomma fältet &quot;URL&quot;"
+      step5: "Klicka **&quot;Lägg till kalender&quot;**. Kalendern kommer visas till vänster under kategorin &quot;Andra kalendrar&quot;"
+      OBS: "**OBS!** Det kan ta upp till 12 timmar förrän kalendern visas i Google Calendar."
       title: Kalender

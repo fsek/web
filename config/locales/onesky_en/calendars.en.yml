@@ -15,3 +15,11 @@ en:
         - prenumerera
       subscription: "Calendar subscriptions"
       title: Calendar
+      subscription: Calendar subscription
+      subscribe_instructions_title: Instructions (Google Calendar)
+      step1: "Open **%{google_calendar}**."
+      step2: "Next to **&quot;Andra kalendrar&quot;** on the left, click the Down arrow"
+      step3: "Select **&quot;Add by URL&quot;**"
+      step4: "Enter &quot;webcal://fsektionen.se/kalender/export.ics&quot; in the field provided &quot;URL&quot;"
+      step5: "Click **&quot;Add Calendar&quot;**. The calendar will appear on the left side under &quot;Other calendars&quot;."
+      OBS: "**NOTE** It might take up to 12 hours for changes to show in your Google Calendar."
