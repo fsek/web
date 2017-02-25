@@ -1,8 +1,6 @@
-# encoding: UTF-8
 class News < ActiveRecord::Base
   translates(:title, :content)
-  globalize_accessors(locales: [:en, :sv],
-                      attributes: [:title, :content])
+  globalize_accessors(locales: [:en, :sv], attributes: [:title, :content])
 
   include Categorizable
   belongs_to :user, required: true
@@ -10,14 +8,19 @@ class News < ActiveRecord::Base
 
   # Validations
   validates :title, :content, presence: true
-  validates :url, format: { with: /\A(http:\/\/|https:\/\/|\/)\b/,
-                            message: I18n.t('model.news.url_wrong_format') },
-                  if: 'url.present?'
+  validate :pinned_validation
 
   # Scopes
-  scope :latest, -> { in_date.limit(5) }
-  scope :by_date, -> { order(created_at: :desc) }
-  scope :include_for_feed, -> { includes(:translations, :categories, :user) }
+  scope :for_feed, -> { includes(:translations, :categories, :user).order(created_at: :desc) }
+  scope :pinned, -> do
+    where('pinned_from <= ? AND (pinned_to > ? OR pinned_to IS NULL)',
+          Time.zone.now, Time.zone.now)
+  end
+
+  scope :unpinned, -> do
+    where('pinned_from IS NULL OR pinned_from > ? OR pinned_to < ?',
+          Time.zone.now, Time.zone.now)
+  end
 
   def to_s
     title || id
@@ -32,6 +35,14 @@ class News < ActiveRecord::Base
   def thumb
     if image.present?
       image.thumb.url
+    end
+  end
+
+  private
+
+  def pinned_validation
+    if pinned_from.present? && pined_to.present? && pinned_to < pinned_from
+      errors.add(:pinned_to, t('model.news.pinned_dates_error'))
     end
   end
 end

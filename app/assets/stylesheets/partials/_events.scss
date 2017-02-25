@@ -1,11 +1,32 @@
 .event {
   &.stream {
+    margin-bottom: 20px;
+
     .table {
       table-layout: fixed;
+      margin-bottom: 5px;
       width: 100%;
+
+      td,
+      th {
+        border: none;
+      }
 
       tbody > tr > td {
         padding: 4px;
+      }
+    }
+
+    .headline {
+      a,
+      a:link,
+      a:visited {
+        color: $gray-text;
+      }
+
+      a:hover {
+        color: $fsek-pi-silver;
+        text-decoration: none;
       }
     }
 
@@ -17,11 +38,23 @@
 
     .event-wrap {
       color: $black;
-      margin-right: 5px;
+      display: block;
 
       .date,
       .title {
         color: $black;
+      }
+
+      .open {
+        color: $unify-green;
+      }
+
+      .closed {
+        color: $unify-red;
+      }
+
+      .future {
+        color: $medium-gray-text;
       }
     }
   }
@@ -75,6 +108,22 @@
 
     a {
       margin-left: 10px;
+    }
+  }
+}
+
+@media(max-width: 400px) {
+  .event {
+    .event-wrap {
+      padding-left: 25px;
+    }
+  }
+}
+
+@media(max-width: 1200px) {
+  .event {
+    .event-wrap {
+      margin-left: 15px;
     }
   }
 }

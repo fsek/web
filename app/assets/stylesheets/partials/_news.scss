@@ -1,4 +1,22 @@
 .news {
+  .info {
+    margin-bottom: 15px;
+    margin-top: -5px;
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  &.start {
+    margin-bottom: 25px;
+  }
+
+  .image {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
   span {
     display: block;
     font-style: italic;
@@ -7,5 +25,12 @@
 
   p {
     margin-left: 5px;
+  }
+
+  .pinned {
+    color: $fsek-orange;
+    margin-left: 5px;
+    margin-top: 5px;
+    transform: rotate(37deg);
   }
 }

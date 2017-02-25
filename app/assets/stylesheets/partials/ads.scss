@@ -1,0 +1,73 @@
+.ads {
+  .carousel {
+    height: 100%;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .carousel-inner {
+    height: auto;
+    margin: auto;
+  }
+
+  .carousel-fade .carousel-inner .item {
+    opacity: 0;
+    transition-property: opacity;
+  }
+
+  .carousel-fade .carousel-inner .active {
+    opacity: 1;
+  }
+
+  .carousel-fade .carousel-inner .active.left,
+  .carousel-fade .carousel-inner .active.right {
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .carousel-fade .carousel-inner .next.left,
+  .carousel-fade .carousel-inner .prev.right {
+    opacity: 1;
+  }
+
+  .carousel-fade .carousel-control {
+    z-index: 2;
+  }
+
+  .item {
+    width: 100%;
+  }
+
+  .ad-image {
+    border-radius: 2px;
+  }
+
+  .headline {
+    a,
+    a:link,
+    a:visited {
+      color: $gray-text;
+    }
+
+    a:hover {
+      color: $fsek-pi-silver;
+      text-decoration: none;
+    }
+  }
+
+  @include min-screen(650px) {
+    .carousel-inner {
+      width: 75%;
+    }
+  }
+
+  @include min-screen(992px) {
+    .carousel-inner {
+      border: 2px solid $light-gray-text;
+      border-radius: 1px;
+      box-shadow: 0 0 3px $light-gray-text;
+      width: 100%;
+    }
+  }
+}

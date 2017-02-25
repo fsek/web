@@ -26,7 +26,7 @@ en:
       contact_if_problem: "Vid problem med anmälan, hör vänligen av er till:"
       submit_signup: Register
     stream:
-      coming_events: "Upcoming events"
+      coming_events: "Calendar"
       more_events: "More events"
       today: Today
     show:

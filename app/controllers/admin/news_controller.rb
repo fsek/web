@@ -1,4 +1,3 @@
-# encoding: utf-8
 class Admin::NewsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
@@ -46,6 +45,7 @@ class Admin::NewsController < Admin::BaseController
 
   def news_params
     params.require(:news).permit(:title_sv, :title_en, :content_sv, :content_en,
-                                 :image, :url, :remove_image, category_ids: [])
+                                 :image, :pinned_from, :pinned_to,
+                                 :remove_image, category_ids: [])
   end
 end

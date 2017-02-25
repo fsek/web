@@ -6,9 +6,9 @@
 </div>
 
 <% if I18n.locale.to_s == 'en' %>
-  <div id='event_calendar_en'></div>
+  <div id="event_calendar_en" class="calendar"></div>
 <% else %>
-  <div id='event_calendar'></div>
+  <div id="event_calendar" class="calendar"></div>
 <% end %>
 <hr>
 <%= link_to(t('.subscription'), export_calendars_url(protocol: 'webcal', format: 'ics'), class: 'btn primary')%>
@@ -20,4 +20,4 @@
   <li><%= markdown(t('.step4')) %></li>
   <li><%= markdown(t('.step5')) %></li>
 </ol>
-<%= markdown(t('.OBS')) =%>
+<%= markdown(t('.OBS')) %>

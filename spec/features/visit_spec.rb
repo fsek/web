@@ -15,7 +15,7 @@ RSpec.feature 'visits paths' do
     events: [:show],
     faqs: [:index, :new],
     gallery: [:index],
-    news: [:show],
+    news: [:index],
     pages: [:show],
     proposals: [:form],
     rents: [:overview, :index, :new],
@@ -23,7 +23,6 @@ RSpec.feature 'visits paths' do
   }
 
   background do
-    create(:notice)
     create(:news)
     create(:event)
     create(:council)

@@ -1,9 +1,8 @@
-<div class="col-sm-12 col-xs-12 margin-bottom-20">
+<div class="news start box">
   <div class="headline">
     <h3><%= election_view.election.to_s %></h3>
   </div>
-  <div class="col-sm-12 col-xs-12 start-page">
     <%= render '/elections/countdown', election_view: election_view %>
     <%= link_to t('.election_link'), elections_path %>
-  </div>
+    <br>
 </div>

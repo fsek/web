@@ -24,6 +24,8 @@ class Council < ActiveRecord::Base
 
   after_update :check_page
 
+  include TranslateFix
+
   def check_page
     if page.nil?
       build_page(url: page_url, visible: true, title_sv: title_sv, title_en: title_en).save!

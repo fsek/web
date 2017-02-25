@@ -4,3 +4,6 @@ sv:
       membership_required: Du måste bekräfta ditt medlemskap för att kunna anmäla dig, kontakta
       need_to_sign_in: Du måste logga in för att kunna anmäla dig
       or: " eller "
+      signup_open: Anmälan är öppen
+      signup_closed: Anmälan är stängd
+      signup_future: Anmälan har inte öppnat

@@ -33,3 +33,10 @@ en:
         - lund
         - civilingenjör
       more_news: "More news"
+    ads:
+      subscribe: Subscribe
+      weektorn: Weektorn
+      weektorn_before_deadline: "before Sunday at 17."
+      weektorn_send_in: "Want to submit a post to  Weektorn? Send it to"
+      weektorn_subscribe: "Subscribe for the F-guilds weekly newsletter which is sent out every week of studies."
+      weektorn_read_online: You can also read Weektorn here.

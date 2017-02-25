@@ -1,7 +1,8 @@
 .copyright {
   background: $footer-gray;
   font-size: 12px;
-  padding: 11px 0 7px;
+  padding: 12px 0 7px;
+  width: 100%;
 
   .year {
     color: $medium-gray-text;
@@ -13,23 +14,19 @@
     float: right;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 767px) {
     .contact,
     .year {
       float: none;
       margin-left: auto;
       margin-right: auto;
-      padding: 5px 0 0;
+      padding: 1px 0 0;
       text-align: center;
     }
   }
 
   p {
     color: none;
-
-    .copyright-space {
-      margin-top: 12px;
-    }
   }
 
   a {

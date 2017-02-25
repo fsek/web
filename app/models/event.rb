@@ -9,8 +9,7 @@ class Event < ActiveRecord::Base
   WITHOUT = 'without'.freeze
 
   translates(:title, :description, :short, :location)
-  globalize_accessors(locales: [:en, :sv],
-                      attributes: [:title, :description, :short, :location])
+  globalize_accessors(locales: [:en, :sv], attributes: [:title, :description, :short, :location])
   mount_uploader :image, AttachedImageUploader, mount_on: :image_file_name
 
   has_one :event_signup, dependent: :destroy
@@ -21,8 +20,7 @@ class Event < ActiveRecord::Base
 
   serialize :dress_code, Array
 
-  validates(:title, :description, :starts_at, :ends_at, :location,
-            presence: true)
+  validates(:title, :description, :starts_at, :ends_at, :location, presence: true)
 
   scope :view, -> { select(:starts_at, :ends_at, :all_day, :title, :short, :updated_at) }
   scope :by_start, -> { order(starts_at: :asc) }
@@ -35,7 +33,7 @@ class Event < ActiveRecord::Base
           start, stop, start, stop)
   end
   scope :stream, -> do
-    between(Time.zone.now.beginning_of_day, 6.days.from_now.end_of_day).by_start
+    between(Time.zone.now.beginning_of_day, 6.days.from_now.end_of_day).by_start.includes(:event_signup)
   end
 
   scope :by_locale, ->(locale: I18n.locale) do

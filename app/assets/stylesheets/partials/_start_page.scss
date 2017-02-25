@@ -2,46 +2,22 @@
   background: image-url("img/bg.jpg") 50% 0%;
   max-height: 500px;
 
-  h1 {
-    background: rgba($main-color, 0.75);
-    color: $white;
+  .container {
     display: inline-block;
     margin: 240px 0 0;
     padding: 5px;
   }
 
-  p {
-    background: rgba($fsek-pi-silver, 0.25);
-    color: $light-gray-text;
-    font-size: 15px;
-    margin: 5px 0 40px;
-    padding: 5px;
-  }
-
-  @include max-screen(319px) {
+  @include max-screen(479px) {
     display: none;
   }
 
-  @include min-screen(320px) {
-    background: image-url("img/bg.jpg") 50% 50%;
-    max-height: 100px;
-
-    h1 {
-      font-size: 20px;
-      margin: 50px 0 100px;
-    }
-
-    p {
-      display: none;
-    }
-  }
-
   @include min-screen(480px) {
-    background: image-url("img/bg.jpg") 50% 50%;
-    max-height: 150px;
+    background: image-url("img/bg.jpg") 68% 33%;
+    max-height: 270px;
 
-    h1 {
-      margin: 60px 0 15px;
+    .container {
+      margin: 185px 0 85px;
     }
 
     p {
@@ -51,19 +27,12 @@
   }
 
   @include min-screen(768px) {
-    background: image-url("img/bg.jpg") 50% 0%;
+    background: image-url("img/bg.jpg") 50% 10%;
     max-height: 500px;
 
-    h1 {
+    .container {
       font-size: 30px;
-      margin: 240px 0 0;
-      padding: 5px;
-    }
-
-    p {
-      display: inline-block;
-      font-size: 15px;
-      margin: 5px 0 40px;
+      margin: 280px 0 40px 15px;
       padding: 5px;
     }
   }
@@ -83,5 +52,9 @@
       font-size: 16px;
       font-weight: bold;
     }
+  }
+
+  &.left {
+    margin-bottom: 20px;
   }
 }

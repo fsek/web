@@ -12,8 +12,7 @@ class EventSignup < ActiveRecord::Base
   validate(:orders)
 
   translates(:question)
-  globalize_accessors(locales: [:en, :sv],
-                      attributes: [:question])
+  globalize_accessors(locales: [:en, :sv], attributes: [:question])
 
   serialize :group_types, Array
 

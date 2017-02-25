@@ -1,17 +1,33 @@
-<div class="news">
-  <h4>
-    <%= link_to(news, news_path(news)) %>
-    <% if news.image.present? %>
-      <%= fa_icon('image') %>
+<% pinned |= false %>
+<div class="news start box">
+  <div class="headline">
+    <h3><%= news.title %></h3>
+
+    <% if pinned %>
+      <div class="pinned pull-right">
+        <%= fa_icon('thumb-tack lg') %>
+      </div>
     <% end %>
-  </h4>
-  <%= truncate(markdown_plain(news.content),
-               length: 140,
-               separator: ''){ link_to(t('.read_more'), news_path(news))} %>
+  </div>
 
-   <%= news_url(news) %>
+  <div class="info">
+    <%= news_user(news) %>
+    <span class="date">
+      <%= l(news.created_at) %>
+    </span>
+  </div>
 
-   <% cache([news.categories, I18n.locale]) do %>
+  <div class="margin-bottom-20">
+    <%= markdown(news.content) %>
+  </div>
+
+  <% if news.image? %>
+    <div class="image margin-bottom-20">
+      <%= image_tag(news.image.large.url, class: 'img-responsive') %>
+    </div>
+  <% end %>
+
+<% cache([news.categories, I18n.locale]) do %>
      <% if news.categories.any? %>
        <span class="categories">
          <%= fa_icon('hashtag') %>
@@ -22,12 +38,6 @@
      <% end %>
    <% end %>
 
-   <span class="date">
-     <%= fa_icon('calendar') %> <%= l(news.created_at) %>
-   </span>
-
-   <%= news_user(news) %>
-
    <% if can_administrate?(:modify, news) %>
      <span class="edit">
        <%= link_to(edit_admin_news_path(news)) do %>
@@ -35,5 +45,4 @@
        <% end %>
      </span>
    <% end %>
-   <hr>
 </div>

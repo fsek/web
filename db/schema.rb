@@ -602,13 +602,14 @@ ActiveRecord::Schema.define(version: 20170823132130) do
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "news", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "content",    limit: 65535
+    t.string   "title",       limit: 255
+    t.text     "content",     limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",    limit: 4
-    t.string   "url",        limit: 255
-    t.string   "image",      limit: 255
+    t.integer  "user_id",     limit: 4
+    t.string   "image",       limit: 255
+    t.datetime "pinned_from"
+    t.datetime "pinned_to"
   end
 
   create_table "news_translations", force: :cascade do |t|

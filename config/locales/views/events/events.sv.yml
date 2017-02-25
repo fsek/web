@@ -20,7 +20,7 @@ sv:
       contact_if_problem: "Vid *tekniska problem* med anmälan, hör vänligen av dig till:"
 
     stream:
-      coming_events: Kommande evenemang
+      coming_events: Kalender
       more_events: Fler evenemang
       today: Idag
 

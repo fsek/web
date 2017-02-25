@@ -39,25 +39,25 @@ module EventHelper
     if event_user.persisted?
       persisted_event_user_status(event_signup, event_user)
     else
-      event_status_span('not-attending', 'exclamation-circle', t('.not_attending'))
+      event_status_span('not-attending lg', 'exclamation-circle', t('.not_attending'))
     end
   end
 
   def persisted_event_user_status(event_signup, event_user)
     if event_signup.closed?
       if event_user.reserve?
-        event_status_span('reserve', 'exclamation-circle', t('.reserve'))
+        event_status_span('reserve lg', 'exclamation-circle', t('.reserve'))
       else
-        event_status_span('attending', 'check-circle-o', t('.attending'))
+        event_status_span('attending lg', 'check-circle-o', t('.attending'))
       end
     else
-      event_status_span('registered', 'question-circle', t('.registered'))
+      event_status_span('registered lg', 'question-circle', t('.registered'))
     end
   end
 
   def event_status_span(status, icon, text)
     content_tag(:span, class: "event #{status}") do
-      fa_lg_icon(icon) + ' ' + text
+      fa_icon(icon) + ' ' + text
     end
   end
 
@@ -113,5 +113,26 @@ module EventHelper
 
   def group_str(event_user)
     event_user.group.present? ? event_user.group : event_user.group_custom
+  end
+
+  def event_signup_status(event)
+    if event.signup.present?
+      if event.signup.open?
+        content_tag(:span, fa_icon('dot-circle-o'),
+                    class: 'open',
+                    'data-toggle': 'tooltip',
+                    title: I18n.t('helper.event.signup_open'))
+      elsif event.signup.closed?
+        content_tag(:span, fa_icon('dot-circle-o'),
+                    class: 'closed',
+                    'data-toggle': 'tooltip',
+                    title: I18n.t('helper.event.signup_closed'))
+      else
+        content_tag(:spab, fa_icon('dot-circle-o'),
+                    class: 'future',
+                    'data-toggle': 'tooltip',
+                    title: I18n.t('helper.event.signup_future'))
+      end
+    end
   end
 end

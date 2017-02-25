@@ -3,6 +3,12 @@ Fsek::Application.routes.draw do
   # Resources on the page
   get('/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=aeb6a02396'),
                    as: :vecktorn_signup, status: 301)
+  get('/weektorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=3850d20a69'),
+                   as: :weektorn_signup, status: 301)
+  get('/vecktorn/arkiv', to: redirect('http://us11.campaign-archive2.com/home/?u=b115d5ab658a971e771610695&id=aeb6a02396'),
+                         as: :vecktorn_archive, status: 301)
+  get('/weektorn/archive', to: redirect('http://us11.campaign-archive2.com/home/?u=b115d5ab658a971e771610695&id=3850d20a69'),
+                           as: :weektorn_archive, status: 301)
   get '/farad', to: redirect('http://www.farad.nu'), as: :farad, status: 301
   get '/facebook', to: redirect('https://www.facebook.com/Fsektionen'), as: :facebook, status: 301
   get '/twitter', to: redirect('https://www.twitter.com/Fsektionen'), as: :twitter, status: 301
@@ -197,7 +203,7 @@ Fsek::Application.routes.draw do
       resources :news, path: :nyheter
     end
 
-    resources :news, path: :nyheter, only: [:index, :show]
+    resources :news, path: :nyheter, only: :index
 
     resources :documents, path: :dokument, only: [:index, :show]
 

@@ -3,7 +3,7 @@ class IntroductionsController < ApplicationController
   load_permissions_then_authorize_resource(find_by: :slug)
 
   def index
-    @news = News.include_for_feed.slug(:nollning).by_date.limit(5)
+    @news = News.for_feed.slug(:nollning).limit(5)
   end
 
   def dance

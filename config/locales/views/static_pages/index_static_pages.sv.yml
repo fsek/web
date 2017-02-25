@@ -30,3 +30,11 @@ sv:
         - lund
         - civilingenjör
       more_news: Fler nyheter
+
+    ads:
+      subscribe: Prenumerera
+      weektorn: Vecktorn
+      weektorn_before_deadline: senast söndag kl 17.
+      weektorn_send_in: Vill du skicka med en notis i Vecktorn? Skicka i så fall in den till
+      weektorn_subscribe: Prenumerera på F-sektionens veckobrev som kommer ut varje läsvecka!
+      weektorn_read_online: Du kan också läsa Vecktorn här.
