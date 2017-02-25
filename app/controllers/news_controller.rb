@@ -1,16 +1,11 @@
-# encoding: utf-8
 class NewsController < ApplicationController
   load_permissions_and_authorize_resource
 
   def index
-    @news = @news.include_for_feed.by_date
+    @news = @news.for_feed.page(params[:page])
     if params[:category].present?
       @news = category(@news)
     end
-  end
-
-  def show
-    @news = News.find(params[:id])
   end
 
   private

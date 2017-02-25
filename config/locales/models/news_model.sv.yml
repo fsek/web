@@ -1,7 +1,7 @@
 sv:
   model:
     news:
-      url_wrong_format: måste ha fullständig adress (med http eller https) eller endast slutet av adressen.
+      pinned_dates_error: slutdatum måste vara efter startdatum.
   activerecord:
     models:
       news:
@@ -21,3 +21,5 @@ sv:
         title_en: Titel - engelsk
         updated_at: Uppdaterad
         user: Upplagd av
+        pinned_from: Fastnålad från
+        pinned_to: Fastnålad till

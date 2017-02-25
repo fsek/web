@@ -3,8 +3,8 @@
   <%= f.input :content_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :title_en %>
   <%= f.input :content_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
-  <%= f.input :url %>
-
+  <%= f.input :pinned_from, as: :datetime_picker %>
+  <%= f.input :pinned_to, as: :datetime_picker %>
 
   <% if news.image.present? %>
     <%= image_tag(news.thumb) %>

@@ -8,7 +8,7 @@
 </div>
 
 <div class="contact row-eqh">
-  <% cache([@contacts, I18n.locale]) do %>
+  <% cache_unless(can_administrate?(:manage, Contact), [@contacts, I18n.locale]) do %>
     <%= render @contacts %>
   <% end %>
 </div>

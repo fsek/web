@@ -8,14 +8,13 @@ RSpec.feature 'visitor visits paths' do
     documents: [:index, :show],
     elections: [:index],
     gallery: [:index],
-    news: [:index, :show],
+    news: [:index],
     pages: [:show],
     rents: [:overview, :index, :new],
     static_pages: [:about, :company_offer, :company_about]
   }
 
   background do
-    create(:notice)
     create(:news)
     create(:event)
     create(:council)

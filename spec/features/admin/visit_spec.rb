@@ -17,7 +17,6 @@ RSpec.feature 'admin visits paths' do
     'admin/gallery/albums': [:index, :show],
     'admin/menus': [:index, :new, :edit],
     'admin/news': [:index, :new, :edit],
-    'admin/notices': [:index, :new, :edit],
     'admin/pages': [:index, :new, :edit],
     'admin/permissions': [:index],
     'admin/rents': [:index, :show, :new],

@@ -18,9 +18,8 @@
 <div class="col-md-9 col-sm-12">
   <%= grid(@news_grid, hide_submit_button: true, hide_reset_button: true) do |g|
     g.column name: News.human_attribute_name(:title), attribute: 'title' do |news|
-      link_to(news, news_path(news))
+      link_to(news, edit_admin_news_path(news))
     end
-    g.column name: News.human_attribute_name(:url), attribute: 'url'
     g.column name: News.human_attribute_name(:image), attribute: 'image' do |news|
       yes_no(news.image.present?)
     end
@@ -32,9 +31,6 @@
     end
     g.column name: News.human_attribute_name(:updated_at), attribute: 'updated_at' do |news|
       l(news.updated_at)
-    end
-    g.column name: t('global.edit') do |link|
-      link_to(t('global.edit'), edit_admin_news_path(link))
     end
   end -%>
 </div>

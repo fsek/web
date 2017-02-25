@@ -42,8 +42,4 @@ SitemapGenerator::Sitemap.create do
   Event.find_each do |event|
     add event_path(event), lastmod: event.updated_at
   end
-
-  News.find_each do |news|
-    add news_path(news), lastmod: news.updated_at
-  end
 end

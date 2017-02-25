@@ -10,13 +10,13 @@ function meetingCalendar() {
       }
     ],
     weekNumbers: true,
-    defaultView: calendarView(),
+    defaultView: meetingView(),
     header: {
       left: 'prev,next today',
       center: 'title',
       right: 'month,agendaWeek,listWeek'
     },
-    aspectRatio: calendarHeight(),
+    aspectRatio: meetingHeight(),
     weekNumberTitle: 'V ',
     allDaySlot: false,
     width: 'auto',
@@ -41,14 +41,14 @@ function meetingCalendar() {
   });
 }
 
-function calendarHeight() {
+function meetingHeight() {
   if ($(window).width() < 768) {
     return 0.8;
   }
   return 1.2;
 }
 
-function calendarView() {
+function meetingView() {
   if ($(window).width() < 768) {
     return 'listWeek';
   }
