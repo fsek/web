@@ -7,7 +7,7 @@
 en:
   date:
     formats:
-      default: "%e %b %Y"
+      default: "%-e %b %Y"
       long: "%e %B %Y"
       short: "%e %b"
       day_month: "%e %b"

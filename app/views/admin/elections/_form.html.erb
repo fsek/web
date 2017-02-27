@@ -1,17 +1,19 @@
 <%= simple_form_for([:admin, election]) do |f| %>
-  <%= f.input :title, wrapper_html: {class: 'inline third'} %>
+  <%= f.input :title_sv, wrapper_html: {class: 'inline half'} %>
+  <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>
   <%= f.input :semester, collection: [[t("model.post.semester.#{Post::AUTUMN}"), Post::AUTUMN],
                                       [t("model.post.semester.#{Post::SPRING}"), Post::SPRING],
                                       [t("model.post.semester.#{Post::OTHER}"), Post::OTHER]],
                          include_blank: false,
                          input_html: {class: 'select2'},
-                         wrapper_html: {class: 'inline third'} %>
-  <%= f.input :url, wrapper_html: {class: 'inline third'} %>
+                         wrapper_html: {class: 'inline half'} %>
+  <%= f.input :url, wrapper_html: {class: 'inline half'} %>
   <%= simple_format(t('.semester_hint_for_other')) %>
   <%= f.input :open, as: :datetime_picker %>
   <%= f.input :close_general, as: :datetime_picker %>
   <%= f.input :close_all, as: :datetime_picker %>
-  <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :description_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :description_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :board_mail_link %>
   <%= f.input :mail_link %>
   <%= f.input :visible %>

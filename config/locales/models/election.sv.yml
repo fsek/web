@@ -11,14 +11,16 @@ sv:
         candidate_mail_star: Text till kandideringsmail för stjärnpost
         close_all: Stänger - allt
         current_election: Aktuellt val
-        description: Beskrivning
+        description_sv: Beskrivning - svensk
+        description_en: Beskrivning - engelsk
         extra_posts: Poster vid ej ordinarie möte
         mail_link: Länk i kandideringsmail
         nominate_mail: Text till nomineringsmail
         semester: Termin
         open: Öppnar
         close_general: Stänger - inför sektionsmöte
-        title: Titel
+        title_sv: Titel - svensk
+        title_en: Titel - engelsk
         updated_at: Uppdaterad
         url: Url
         visible: Synlig

@@ -8,7 +8,7 @@ RSpec.describe MeetingMailer, type: :mailer do
 
       mail = MeetingMailer.book_email(meeting)
 
-      mail.subject.should include(date_range(meeting.start_date, meeting.end_date))
+      mail.subject.should include(time_range(meeting.start_date, meeting.end_date))
       mail.subject.should include(Meeting.human_attribute_name(meeting.room))
       mail.subject.should include(Meeting.human_attribute_name(meeting.status))
     end
@@ -43,7 +43,7 @@ RSpec.describe MeetingMailer, type: :mailer do
 
       mail = MeetingMailer.update_email(meeting, meeting.user)
 
-      mail.subject.should include(date_range(meeting.start_date, meeting.end_date))
+      mail.subject.should include(time_range(meeting.start_date, meeting.end_date))
       mail.subject.should include(Meeting.human_attribute_name(meeting.room))
       mail.subject.should include(Meeting.human_attribute_name(meeting.status))
     end

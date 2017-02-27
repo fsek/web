@@ -9,7 +9,9 @@
 
 <div class="col-md-10 col-sm-12">
   <%= grid(@grid, hide_submit_button: true, hide_reset_button: true) do |g|
-    g.column(name: Election.human_attribute_name(:title), attribute: 'title', filter: false)
+    g.column(name: Election.human_attribute_name(:title), filter: false) do |election|
+      election.title
+    end
     g.column(name: Election.human_attribute_name(:url), attribute: 'url', filter: false)
     g.column(name: Election.human_attribute_name(:open), attribute: 'open',
              filter: false) do |election|

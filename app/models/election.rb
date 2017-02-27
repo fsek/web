@@ -1,9 +1,11 @@
-# encoding: UTF-8
 class Election < ActiveRecord::Base
   has_many :nominations, dependent: :destroy
   has_many :candidates, dependent: :destroy, inverse_of: :election
   has_many :election_posts, dependent: :destroy
   has_many :extra_posts, class_name: Post, through: :election_posts, source: :post
+
+  translates(:title, :description, fallbacks_for_empty_translations: true)
+  globalize_accessors(locales: [:en, :sv], attributes: [:title, :description])
 
   validates :url, uniqueness: true,
                   presence: true,
@@ -18,11 +20,11 @@ class Election < ActiveRecord::Base
   def posts
     case semester
     when Post::AUTUMN
-      Post.autumn.by_title
+      Post.autumn
     when Post::SPRING
-      Post.spring.by_title
+      Post.spring
     when Post::OTHER
-      extra_posts.by_title
+      extra_posts
     else
       Post.none
     end
