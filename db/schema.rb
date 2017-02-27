@@ -279,13 +279,23 @@ ActiveRecord::Schema.define(version: 20170823132130) do
   add_index "election_posts", ["election_id"], name: "index_election_posts_on_election_id", using: :btree
   add_index "election_posts", ["post_id"], name: "index_election_posts_on_post_id", using: :btree
 
+  create_table "election_translations", force: :cascade do |t|
+    t.integer  "election_id", limit: 4,     null: false
+    t.string   "locale",      limit: 255,   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+  end
+
+  add_index "election_translations", ["election_id"], name: "index_election_translations_on_election_id", using: :btree
+  add_index "election_translations", ["locale"], name: "index_election_translations_on_locale", using: :btree
+
   create_table "elections", force: :cascade do |t|
     t.datetime "open"
     t.datetime "close_general"
     t.boolean  "visible"
     t.string   "url",                 limit: 255
-    t.string   "title",               limit: 255
-    t.text     "description",         limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "candidate_mail",      limit: 65535

@@ -17,6 +17,8 @@ en:
       second_paragraph: "The guild has its spaces in Mattehuset where you can find common rooms, microwave-ovens, and the guilds own Hilbert Café - where you can buy coffee and great baguettes. The F-guild have a councils in charge of different parts of guilds function. Each council is headed by a chairman who is also a part of the guilds Board. The Board are in charge of the central function of the guild."
       third_paragraph: "As a member of the guild you can choose to be active and committed or take part at some events. We hope that you will enjoy your time in the F-guild. If you have any questions you can always get in touch with someone from the board, via the Contact tab on the website or in Styrelserummet in the far left of the Hilbert corridor (behind Hilbert Café)!"
       title: "About us"
+    countdown:
+      election_link: Read more about the election here
     index:
       welcome: "Welcome to the F-guild"
       days: days

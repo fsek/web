@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Admin::ElectionsController < Admin::BaseController
   load_permissions_and_authorize_resource find_by: :url
 
@@ -8,7 +7,7 @@ class Admin::ElectionsController < Admin::BaseController
 
   def show
     @election = Election.find_by_url!(params[:id])
-    @post_grid = initialize_grid(@election.posts, include: :council)
+    @post_grid = initialize_grid(@election.posts, include: [:translations, :council])
   end
 
   def edit
@@ -16,7 +15,7 @@ class Admin::ElectionsController < Admin::BaseController
   end
 
   def index
-    @grid = initialize_grid(Election, order: :open)
+    @grid = initialize_grid(Election, include: :translations, order: :open)
   end
 
   def create
@@ -59,7 +58,8 @@ class Admin::ElectionsController < Admin::BaseController
   private
 
   def election_params
-    params.require(:election).permit(:title, :description, :open, :close_general, :close_all,
+    params.require(:election).permit(:title_sv, :title_en, :description_sv, :description_en,
+                                     :open, :close_general, :close_all,
                                      :url, :visible, :mail_link, :board_mail_link,
                                      :nominate_mail, :candidate_mail, :semester,
                                      :candidate_mail_star, extra_post_ids: [])

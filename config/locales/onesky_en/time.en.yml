@@ -8,7 +8,7 @@ en:
   time:
     am: am
     formats:
-      default: "%H:%M, %e %b %Y"
+      default: "%H:%M, %-e %b %Y"
       default_without: "%H, %e %b %Y"
       default_dot: "%H(.), %e %b %Y"
       default_ddot: "%H(..), %e %b %Y"

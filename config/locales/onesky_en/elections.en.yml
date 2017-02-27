@@ -8,10 +8,11 @@ en:
   elections:
     countdown:
       days: dagar
+      date_format: "%D days %H:%M:%S"
     index:
       description: "Val på F-sektionen är då funktionärer och förtroendevalda blir valda. Se vilka poster som finns och sök idag."
       edit_election: "Edit election"
-      green_posts: "Green rows means the position is chosen by the council of education"
+      green_posts: "Positions highlighted in green are chosen by the Council of Education."
       keywords:
         - engagera
         - sektionsval
@@ -19,9 +20,10 @@ en:
         - terminsmöte
         - val
         - post
-      orange_posts: "Orange boxes mean the postition is part of the board"
+      highlights: What do the colors and markings mean?
+      orange_posts: "Positions highlighted in orange are members of the Board or the Council of Executives."
       star_posts: "Positions with * have no set limit."
-      x_posts: "Posts with a number marked (x) denote a set maximum number."
+      x_posts: "denotes a set maximum number."
     no_election:
       no_information: "There is currently no information available regarding the election"
       to_root: "Tillbaka till start"
