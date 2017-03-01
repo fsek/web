@@ -35,6 +35,8 @@ class Post < ActiveRecord::Base
   scope :spring, -> { where('semester = ? OR semester = ?', SPRING, BOTH) }
   scope :both, -> { where(semester: BOTH) }
 
+  include TranslateFix
+
   # Validations
   validates(:title, :description, :limit,
             :rec_limit, :elected_by, :semester, presence: true)

@@ -6,7 +6,7 @@ class ElectionsController < ApplicationController
 
     if election.present?
       @election_view = ElectionView.new(election)
-      @election_view.grid = initialize_grid(election.current_posts,
+      @election_view.grid = initialize_grid(election.current_posts.with_fallback_translations,
                                             name: :main,
                                             per_page: 50,
                                             include: [:translations, council: :translations],
