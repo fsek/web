@@ -11,6 +11,9 @@ sv:
       index_preview:
         title: Visa alla sidelement
 
+      image_preview:
+        destroy: Förinta
+
       preview:
         image_missing: Bild saknas
 
