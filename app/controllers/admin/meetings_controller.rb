@@ -12,6 +12,7 @@ class Admin::MeetingsController < Admin::BaseController
   def new
     @meeting.user = current_user
     @meeting.status = :confirmed
+    @meeting.room = params.fetch(:room, 'sk')
   end
 
   def create

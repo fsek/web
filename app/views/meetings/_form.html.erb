@@ -5,7 +5,7 @@
                            input_html: {class: 'select2'} %>
 
   <% if meeting.errors[:user].present? %>
-    <p><%= link_to('Redigera användarinformation', edit_own_user_path, target: :blank_p) %></p>
+    <%= link_to(t('.user_info'), edit_own_user_path, target: :blank_p, class: 'btn primary') %>
   <% end %>
 
   <%= f.input :title %>

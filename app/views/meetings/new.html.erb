@@ -7,7 +7,7 @@
     <div class="alert alert-info">
       <%= t('.admin-info1') %>
       <%= t('.admin-info2') %>
-      <%= link_to(t('.admin-link'), new_admin_meeting_path) %>
+      <%= link_to(t('.admin-link'), new_admin_meeting_path(room: @room)) %>
     </div>
   <% end %>
 
