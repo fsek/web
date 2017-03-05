@@ -18,6 +18,9 @@ sv:
       index: Alla lokalbokningar
       confirm_destroy: Är du säker på att du vill förinta bokningen?
 
+    form:
+      user_info: Redigera användarinformation
+
     show:
       edit: Redigera bokning
       all_meetings: Alla bokningar

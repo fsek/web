@@ -10,16 +10,17 @@ function meetingCalendar() {
       }
     ],
     weekNumbers: true,
-    defaultView: 'agendaWeek',
+    defaultView: calendarView(),
     header: {
       left: 'prev,next today',
       center: 'title',
-      right: 'month,agendaWeek,agendaDay'
+      right: 'month,agendaWeek,listWeek'
     },
-    aspectRatio: 1.3,
+    aspectRatio: calendarHeight(),
     weekNumberTitle: 'V ',
     allDaySlot: false,
     width: 'auto',
+    scrollTime: '08:00:00',
     eventMouseover: function(calEvent, jsEvent) {
       var tooltip;
       tooltip = '<div class="tooltipevent" style="width:auto;height:auto;background:#eb7125;position:absolute;z-index:10001;padding:10px;paddin-top:0px;border:2px solid;">' + calEvent.title + '<br>' + calEvent.start.format('LLL') + '<br>till<br>' + calEvent.end.format('LLL') + '</div>';
@@ -38,6 +39,20 @@ function meetingCalendar() {
       return $('.tooltipevent').remove();
     }
   });
+}
+
+function calendarHeight() {
+  if ($(window).width() < 768) {
+    return 0.8;
+  }
+  return 1.2;
+}
+
+function calendarView() {
+  if ($(window).width() < 768) {
+    return 'listWeek';
+  }
+  return 'agendaWeek';
 }
 
 $(document).on('turbolinks:load', meetingCalendar);

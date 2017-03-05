@@ -1,6 +1,6 @@
 class Meeting < ActiveRecord::Base
   enum status: { unconfirmed: 0, confirmed: 1, denied: 2 }
-  enum room: { sk: 0, alumni: 1 }
+  enum room: { sk: 0, alumni: 1, sister_kent: 2 }
 
   belongs_to :user, required: true
   belongs_to :council

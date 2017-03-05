@@ -1,0 +1,12 @@
+<div class="dropdown">
+  <button class="btn secondary dropdown-toggle" type="button" id="rooms" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true">
+    <%= Meeting.human_attribute_name(@room) %>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="rooms">
+    <% Meeting.rooms.except(@room).keys.each do |r| %>
+      <li><%= link_to Meeting.human_attribute_name(r), meetings_path(room: r) %></li>
+    <% end %>
+  </ul>
+</div>
