@@ -59,6 +59,8 @@ class Ability
       end
 
       can :read, Meeting
+
+      can :read, Song
     end
 
     # Only for members of the Guild
