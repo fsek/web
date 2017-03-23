@@ -1,0 +1,9 @@
+<div class="col-md-6 col-md-offset-3 col-xs-12 reg-page">
+  <div class="headline">
+    <h3><%= title("Ny sång") %></h3>
+  </div>
+
+  <%= render('form', song: @song) %>
+  <hr>
+  <%= link_to("Alla sånger", admin_songs_path, class: 'btn secondary') %>
+</div>

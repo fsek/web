@@ -1,0 +1,8 @@
+<%= simple_form_for([:admin, song]) do |f| %>
+  <%= f.input :title, label: "Titel", required: true %>
+  <%= f.input :author, label: "Skriven av" %>
+  <%= f.input :melody, label: "Melodi" %>
+  <%= f.input :category, label: "Kategori" %>
+  <%= f.input :content, label: "Sångtext", as: :text, :input_html => {:rows => 10}, required: true %>
+  <%= f.button :submit%>
+<% end %>

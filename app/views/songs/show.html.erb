@@ -1,0 +1,29 @@
+<div class="col-md-2 col-sm-12 song-grid">
+  <div class="song-table-round">
+    <div class="song-table-header">
+      <h3>Låtsök</h3>
+      <input id="songSearch" type="text">
+    </div>
+    <table>
+      <% @songs.each do |s| %>
+        <tr class="song-row" data-link="<%= song_path(s) %>"><td><%= s.title %></td></tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <div class="headline">
+    <h1><%= @song %></h1>
+  </div>
+  <% if @song.category.present? %>
+    <%= simple_format("<span class=\"song-attr\">Kategori: </span>" + @song.category) %>
+  <% end %>
+  <% if @song.author.present? %>
+    <%= simple_format("<span class=\"song-attr\">Text: </span>" + @song.author) %>
+  <% end %>
+  <% if @song.melody.present? %>
+    <%= simple_format("<span class=\"song-attr\">Melodi: </span>" + @song.melody) %>
+  <% end %>
+  <%= simple_format(@song.content) %>
+</div>
