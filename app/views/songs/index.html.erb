@@ -1,0 +1,17 @@
+<div class="headline">
+  <h1><%= title('Sångbok') %></h1>
+</div>
+
+<div class="col-md-12">
+  <%= grid(@songs, hide_submit_button: true,
+                        hide_reset_button: true) do |g|
+    g.column(name: 'Titel', attribute: 'title') do |song|
+      link_to(song, song_path(song))
+    end
+    if can_administrate?(:index, Song)
+      g.column(name: 'Redigera') do |song|
+        link_to 'Redigera', edit_admin_song_path(song)
+      end
+    end
+  end -%>
+</div>
