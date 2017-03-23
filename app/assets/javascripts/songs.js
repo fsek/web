@@ -1,6 +1,5 @@
 // Run on load
-$(window).load(function() {
-  console.log("loaded");
+$(document).on("turbolinks:load", function() {
   // Check if search bar exists
   if($("#songSearch")[0]) {
     // Runs window resize
@@ -16,7 +15,7 @@ $(window).load(function() {
     adjShadow();
     // Handle click events and redirect to song
     $("tr[data-link]").click(function() {
-      window.location = $(this).data("link");
+      Turbolinks.visit($(this).data("link"));
     });
 
     // Update list when searching
