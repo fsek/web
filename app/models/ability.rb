@@ -60,7 +60,7 @@ class Ability
 
       can :read, Meeting
 
-      can :read, Song
+      can [:read, :search], Song
     end
 
     # Only for members of the Guild

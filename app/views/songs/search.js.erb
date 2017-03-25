@@ -1,0 +1,7 @@
+<% if @songs.present? %>
+  $('#song-status').html('');
+  $('#song-table').html('<%= j render('search_row', songs: @songs) %>');
+<% else %>
+  $('#song-status').html('<%= 'Inga sånger hittades' %>');
+  $('#song-table').html('');
+<% end %>
