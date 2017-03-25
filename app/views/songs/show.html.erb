@@ -1,18 +1,18 @@
-<div class="col-md-2 col-sm-12 song-grid">
+<div class="col-md-3 col-sm-12 song-grid">
   <div class="song-table-round">
     <div class="song-table-header">
       <h3>Låtsök</h3>
-      <input id="songSearch" type="text">
-    </div>
-    <table>
-      <% @songs.each do |s| %>
-        <tr class="song-row" data-link="<%= song_path(s) %>"><td><%= s.title %></td></tr>
+      <%= simple_form_for(:song, url: search_songs_path, remote: true) do |f| %>
+        <%= f.input(:title, required: false, label: false, input_html: {value: ''}, placeholder: 'Sök efter en låt') %>
       <% end %>
-    </table>
+    </div>
+
+    <p id="song-status"></p>
+    <table id="song-table"></table>
   </div>
 </div>
 
-<div class="col-md-10 col-sm-12">
+<div class="col-md-9 col-sm-12">
   <div class="headline">
     <h1><%= @song %></h1>
   </div>

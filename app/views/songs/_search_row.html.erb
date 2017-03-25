@@ -1,0 +1,5 @@
+<% songs.each do |song| %>
+  <tr class="song-row">
+    <td><%= link_to song, song_path(song) %></td>
+  </tr>
+<% end %>
