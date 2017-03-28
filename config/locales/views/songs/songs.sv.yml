@@ -1,0 +1,8 @@
+sv:
+  songs:
+    index:
+      title: Sångbok
+      edit: Redigera
+
+    form:
+      already_exists: En snabblänk med det namnet finns redan. Du kommer att spara över den gamla länken.

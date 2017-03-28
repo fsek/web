@@ -790,6 +790,15 @@ ActiveRecord::Schema.define(version: 20170823132130) do
 
   add_index "short_links", ["link"], name: "index_short_links_on_link", using: :btree
 
+  create_table "songs", force: :cascade do |t|
+    t.string  "title",    limit: 255,               null: false
+    t.string  "author",   limit: 255
+    t.string  "melody",   limit: 255
+    t.string  "category", limit: 255
+    t.text    "content",  limit: 65535
+    t.integer "visits",   limit: 4,     default: 0
+  end
+
   create_table "tool_rentings", force: :cascade do |t|
     t.string   "renter",      limit: 255,                 null: false
     t.string   "purpose",     limit: 255

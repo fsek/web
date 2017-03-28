@@ -10,7 +10,16 @@
     <p id="song-status"></p>
     <table id="song-table"></table>
   </div>
+  <div class="song-table-round hidden-sm hidden-sx">
+    <div class="song-table-header">
+      <h3>Populära låtar</h3>
+    </div>
+    <table>
+          <%= render('search_row', songs: @popular) %>
+        </table>
+  </div>
 </div>
+
 
 <div class="col-md-9 col-sm-12">
   <div class="headline">
@@ -25,5 +34,5 @@
   <% if @song.melody.present? %>
     <%= simple_format("<span class=\"song-attr\">Melodi: </span>" + @song.melody) %>
   <% end %>
-  <%= simple_format(@song.content) %>
+  <%= markdown(@song.content) %>
 </div>

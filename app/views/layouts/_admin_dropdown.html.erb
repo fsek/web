@@ -169,5 +169,10 @@
         <%= link_to(models_name(Meeting), admin_meetings_path) %>
       </li>
     <% end %>
+    <% if can_administrate?(:index, Song) %>
+      <li class="dropdown-submenu">
+        <%= link_to(models_name(Song), admin_songs_path) %>
+      </li>
+    <% end %>
   </ul>
 </li>
