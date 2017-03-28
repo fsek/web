@@ -6,6 +6,8 @@ class SongsController < ApplicationController
   end
 
   def show
+    Song.increment_counter(:visits, @song)
+    @popular = Song.by_visits
   end
 
   def search
