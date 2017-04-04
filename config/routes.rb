@@ -306,11 +306,6 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :songs, path: :sangbok
     end
-
-    namespace :admin do
-      get '', controller: :admins, action: :index
-    end
-
   end
 
   resources :mail_aliases, only: [:index] do

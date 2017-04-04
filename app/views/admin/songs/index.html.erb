@@ -1,18 +1,17 @@
 <div class="headline">
-  <h1><%= title('Sångbok') %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-2 col-sm-12">
-  <%= link_to("Ny sång", new_admin_song_path, class: 'btn primary') %>
+  <%= link_to(t('.new'), new_admin_song_path, class: 'btn primary') %>
 </div>
 
 <div class="col-md-10 col-sm-12">
-  <%= grid(@songs,  hide_submit_button: true,
-                        hide_reset_button: true) do |g|
-    g.column(name: 'Titel', attribute: 'title') do |song|
+  <%= grid(@songs) do |g|
+    g.column(name: Song.human_attribute_name(:title), attribute: 'title') do |song|
       link_to(song, edit_admin_song_path(song))
     end
-    g.column(name: 'Författare', attribute: 'author')
-    g.column(name: 'Kategori', attribute: 'category')
+    g.column(name: Song.human_attribute_name(:author), attribute: 'author')
+    g.column(name: Song.human_attribute_name(:category), attribute: 'category')
   end -%>
 </div>

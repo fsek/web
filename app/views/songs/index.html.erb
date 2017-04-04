@@ -1,16 +1,18 @@
 <div class="headline">
-  <h1><%= title('Sångbok') %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-12">
-  <%= grid(@songs, hide_submit_button: true,
-                        hide_reset_button: true) do |g|
-    g.column(name: 'Titel', attribute: 'title') do |song|
+  <%= grid(@songs) do |g|
+    g.column(name: t('.name'), attribute: 'title') do |song|
       link_to(song, song_path(song))
     end
+    g.column(name: Song.human_attribute_name(:author), attribute: 'author')
+    g.column(name: Song.human_attribute_name(:category), attribute: 'category')
+    g.column(name: Song.human_attribute_name(:visits), attribute: 'visits')
     if can_administrate?(:index, Song)
-      g.column(name: 'Redigera') do |song|
-        link_to 'Redigera', edit_admin_song_path(song)
+      g.column(name: t('.edit')) do |song|
+        link_to t('.edit'), edit_admin_song_path(song)
       end
     end
   end -%>

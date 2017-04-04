@@ -1,0 +1,16 @@
+sv:
+  admin:
+    songs:
+      index:
+        title: Sångbok
+        edit: Redigera
+        new: Ny sång
+
+      edit:
+        delete: Radera sång
+        all_songs: Alla sånger
+        title: Redigera sång
+
+      new:
+        all_songs: Alla sånger
+        title: Ny sång
