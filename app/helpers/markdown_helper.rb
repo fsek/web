@@ -19,6 +19,7 @@ module MarkdownHelper
 
   def self.markdown_renderer
     options = {
+      hard_wrap: true,
       link_attributes: { rel: 'nofollow', 'data-turbolinks': 'false' }
     }
     extensions = {
