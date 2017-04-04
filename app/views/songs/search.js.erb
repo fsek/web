@@ -2,6 +2,6 @@
   $('#song-status').html('');
   $('#song-table').html('<%= j render('search_row', songs: @songs) %>');
 <% else %>
-  $('#song-status').html("<%= t('.no_results') %>");
+  $('#song-status').html("<%= I18n.t('songs.search_bar.no_results') %>");
   $('#song-table').html('');
 <% end %>

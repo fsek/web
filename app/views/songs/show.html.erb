@@ -25,5 +25,8 @@
       </span> <%= @song.melody %>
     </span>
   <% end %>
-  <%= markdown(@song.content) %>
+
+  <div class="song-content">
+    <%= markdown(@song.content) %>
+  </div>
 </div>

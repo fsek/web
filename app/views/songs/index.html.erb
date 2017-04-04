@@ -8,8 +8,8 @@
       link_to(song, song_path(song))
     end
     g.column(name: Song.human_attribute_name(:author), attribute: 'author')
-    g.column(name: Song.human_attribute_name(:category), attribute: 'category')
-    g.column(name: Song.human_attribute_name(:visits), attribute: 'visits')
+    g.column(name: Song.human_attribute_name(:category), attribute: 'category', filter: false)
+    g.column(name: Song.human_attribute_name(:visits), attribute: 'visits', filter: false)
     if can_administrate?(:index, Song)
       g.column(name: t('.edit')) do |song|
         link_to t('.edit'), edit_admin_song_path(song)
