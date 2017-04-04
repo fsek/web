@@ -3,12 +3,9 @@ sv:
     index:
       title: Sångbok
       edit: Redigera
-      name: Titel
-      
-    show:
-      search: Låtsök
-      search_input: Sök efter en låt..
-      popular: Populära sånger
 
-    search:
+    search_bar:
+      popular: Populära sånger
       no_results: Inga sånger hittades
+      search: Låtsök
+      search_input: Sök efter en sång..

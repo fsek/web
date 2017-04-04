@@ -1,0 +1,21 @@
+<div class="col-md-3 col-sm-12 song-grid">
+  <div class="song-table-round">
+    <div class="song-table-header">
+      <h3><%= t('.search') %></h3>
+      <%= simple_form_for(:song, url: search_songs_path, remote: true) do |f| %>
+        <%= f.input(:title, required: false, label: false, input_html: {value: ''}, placeholder: t('.search_input')) %>
+      <% end %>
+    </div>
+
+    <p id="song-status" class="song-status"></p>
+    <table id="song-table"></table>
+  </div>
+  <div class="song-table-round hidden-sm hidden-sx">
+    <div class="song-table-header">
+      <h3><%= t('.popular') %></h3>
+    </div>
+    <table>
+          <%= render('search_row', songs: popular) %>
+        </table>
+  </div>
+</div>

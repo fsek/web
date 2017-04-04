@@ -1,6 +1,14 @@
-.song-attr,
+.song-attr-name,
 .song-grid > h3 {
   color: $fsek-orange;
+}
+
+.song-attr-name {
+  font-size: 1.2em;
+}
+
+.song-attr {
+  display: block;
 }
 
 .song-grid {
