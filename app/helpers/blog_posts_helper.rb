@@ -44,6 +44,6 @@ module BlogPostsHelper
 
   def blog_cover_image(url)
     content_tag(:div, '', class: 'cover-image',
-                style: "background: url('#{url}') no-repeat center center; background-size: cover;")
+                style: "background: url('#{url}') no-repeat center center; background-size: contain;")
   end
 end
