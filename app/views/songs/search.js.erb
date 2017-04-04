@@ -2,6 +2,6 @@
   $('#song-status').html('');
   $('#song-table').html('<%= j render('search_row', songs: @songs) %>');
 <% else %>
-  $('#song-status').html('<%= 'Inga sånger hittades' %>');
+  $('#song-status').html("<%= t('.no_results') %>");
   $('#song-table').html('');
 <% end %>

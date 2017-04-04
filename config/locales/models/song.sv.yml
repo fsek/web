@@ -4,6 +4,7 @@ sv:
       song:
         one: Sång
         other: Sånger
+        
     attributes:
       song:
         title: Titel
@@ -11,3 +12,4 @@ sv:
         content: Innehåll
         author: Författare
         melody: Melodi
+        visits: Visningar

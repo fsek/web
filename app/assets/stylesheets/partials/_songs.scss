@@ -1,25 +1,26 @@
-.song-attr, .song-grid > h3{
+.song-attr,
+.song-grid > h3 {
   color: $fsek-orange;
 }
 
 .song-grid {
+  overflow-y: auto;
+  padding-top: 10px;
 
   .form-group {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
-  padding-top: 10px;
-  overflow-y: auto;
 
   .song-table-round {
-    border-radius: 4px;
     border: 2px solid $fsek-orange;
+    border-radius: 4px;
     margin-bottom: 10px;
   }
 
   .song-table-header {
     background-color: $fsek-orange;
     color: $white;
-    padding: 7px 3px 4px 3px;
+    padding: 7px 3px 4px;
     text-shadow: 1px 1px 2px $black indent;
 
     h3 {
@@ -31,39 +32,44 @@
     background-color: $fsek-orange;
   }
 
-  #song-status {
+  .song-status {
     padding: 7px 0 0 7px;
   }
 
-  #song-status:empty {
+  .song-status:empty {
     display: none;
   }
 
   table {
-    width: 100%;
     display: block;
+    width: 100%;
+
     * {
-      width: 100%;
       display: block;
+      width: 100%;
     }
+
     td {
-      padding: 9px;
       color: $footer-gray;
+      overflow: hidden;
+      padding: 9px;
       text-overflow: ellipsis;
       white-space: nowrap;
-      overflow: hidden;
     }
 
     tr {
-      border-bottom: 1px solid gray;
+      border-bottom: 1px solid $light-gray-text;
+
       &:last-child {
         border-bottom: none;
       }
+
       &:nth-child(odd) {
         background-color: $light-gray;
       }
+
       &:hover {
-        @include box-shadow(inset 0px 0px 28px 0px rgba(0,0,0,0.12));
+        @include box-shadow(inset 0 0 28px 0 rgba(0, 0, 0, 0.12));
         cursor: pointer;
       }
     }

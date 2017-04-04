@@ -1,8 +1,8 @@
 <%= simple_form_for([:admin, song]) do |f| %>
-  <%= f.input :title, label: "Titel" %>
-  <%= f.input :author, label: "Skriven av" %>
-  <%= f.input :melody, label: "Melodi" %>
-  <%= f.input :category, label: "Kategori" %>
-  <%= f.input :content, label: "Sångtext", as: :pagedown, input_html: {preview: true, rows: 10} %>
+  <%= f.input :title %>
+  <%= f.input :author %>
+  <%= f.input :melody %>
+  <%= f.input :category %>
+  <%= f.input :content, as: :pagedown, input_html: {preview: true, rows: 10} %>
   <%= f.button :submit%>
 <% end %>

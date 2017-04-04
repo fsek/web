@@ -1,18 +1,18 @@
 <div class="col-md-3 col-sm-12 song-grid">
   <div class="song-table-round">
     <div class="song-table-header">
-      <h3>Låtsök</h3>
+      <h3><%= t('.search') %></h3>
       <%= simple_form_for(:song, url: search_songs_path, remote: true) do |f| %>
-        <%= f.input(:title, required: false, label: false, input_html: {value: ''}, placeholder: 'Sök efter en låt') %>
+        <%= f.input(:title, required: false, label: false, input_html: {value: ''}, placeholder: t('.search_input')) %>
       <% end %>
     </div>
 
-    <p id="song-status"></p>
+    <p id="song-status" class="song-status"></p>
     <table id="song-table"></table>
   </div>
   <div class="song-table-round hidden-sm hidden-sx">
     <div class="song-table-header">
-      <h3>Populära låtar</h3>
+      <h3><%= t('.popular') %></h3>
     </div>
     <table>
           <%= render('search_row', songs: @popular) %>
@@ -26,13 +26,13 @@
     <h1><%= @song %></h1>
   </div>
   <% if @song.category.present? %>
-    <%= simple_format("<span class=\"song-attr\">Kategori: </span>" + @song.category) %>
+    <%= simple_format('<span class="song-attr">' + Song.human_attribute_name(:category) + ':' + ' </span>' + @song.category) %>
   <% end %>
   <% if @song.author.present? %>
-    <%= simple_format("<span class=\"song-attr\">Text: </span>" + @song.author) %>
+    <%= simple_format('<span class="song-attr">' + Song.human_attribute_name(:author) + ':' + ' </span>' + @song.author) %>
   <% end %>
   <% if @song.melody.present? %>
-    <%= simple_format("<span class=\"song-attr\">Melodi: </span>" + @song.melody) %>
+    <%= simple_format('<span class="song-attr">' + Song.human_attribute_name(:melody) + ':' + ' </span>' + @song.melody) %>
   <% end %>
   <%= markdown(@song.content) %>
 </div>

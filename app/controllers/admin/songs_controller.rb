@@ -2,11 +2,11 @@ class Admin::SongsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def new
-  	@song = Song.new
+    @song = Song.new
   end
 
   def index
-  	@songs = initialize_grid(Song.all)
+    @songs = initialize_grid(Song.all)
   end
 
   def edit
@@ -25,7 +25,7 @@ class Admin::SongsController < Admin::BaseController
   def update
     @song = Song.find(params[:id])
     if @song.update(song_params)
-      redirect_to admin_songs_path, notice: alert_update(oång)
+      redirect_to admin_songs_path, notice: alert_update(Song)
     else
       render :edit, status: 422
     end
@@ -41,5 +41,4 @@ class Admin::SongsController < Admin::BaseController
 
     redirect_to admin_songs_path, notice: alert_destroy(Song)
   end
-
 end
