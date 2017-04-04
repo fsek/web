@@ -1,38 +1,29 @@
-<div class="col-md-3 col-sm-12 song-grid">
-  <div class="song-table-round">
-    <div class="song-table-header">
-      <h3><%= t('.search') %></h3>
-      <%= simple_form_for(:song, url: search_songs_path, remote: true) do |f| %>
-        <%= f.input(:title, required: false, label: false, input_html: {value: ''}, placeholder: t('.search_input')) %>
-      <% end %>
-    </div>
-
-    <p id="song-status" class="song-status"></p>
-    <table id="song-table"></table>
-  </div>
-  <div class="song-table-round hidden-sm hidden-sx">
-    <div class="song-table-header">
-      <h3><%= t('.popular') %></h3>
-    </div>
-    <table>
-          <%= render('search_row', songs: @popular) %>
-        </table>
-  </div>
-</div>
-
+<%= render('search_bar', popular: @popular) %>
 
 <div class="col-md-9 col-sm-12">
   <div class="headline">
     <h1><%= @song %></h1>
   </div>
   <% if @song.category.present? %>
-    <%= simple_format('<span class="song-attr">' + Song.human_attribute_name(:category) + ':' + ' </span>' + @song.category) %>
+    <span class="song-attr">
+      <span class="song-attr-name">
+        <%= Song.human_attribute_name(:category) %>:
+      </span> <%= @song.category %>
+    </span>
   <% end %>
   <% if @song.author.present? %>
-    <%= simple_format('<span class="song-attr">' + Song.human_attribute_name(:author) + ':' + ' </span>' + @song.author) %>
+    <span class="song-attr">
+      <span class="song-attr-name">
+        <%= Song.human_attribute_name(:author) %>:
+      </span> <%= @song.author %>
+    </span>
   <% end %>
   <% if @song.melody.present? %>
-    <%= simple_format('<span class="song-attr">' + Song.human_attribute_name(:melody) + ':' + ' </span>' + @song.melody) %>
+  <span class="song-attr">
+      <span class="song-attr-name">
+        <%= Song.human_attribute_name(:melody) %>:
+      </span> <%= @song.melody %>
+    </span>
   <% end %>
   <%= markdown(@song.content) %>
 </div>

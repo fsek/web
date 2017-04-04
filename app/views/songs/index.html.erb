@@ -4,7 +4,7 @@
 
 <div class="col-md-12">
   <%= grid(@songs) do |g|
-    g.column(name: t('.name'), attribute: 'title') do |song|
+    g.column(name: Song.human_attribute_name(:title), attribute: 'title') do |song|
       link_to(song, song_path(song))
     end
     g.column(name: Song.human_attribute_name(:author), attribute: 'author')
