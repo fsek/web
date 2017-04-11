@@ -1,178 +1,205 @@
-<li class="dropdown right">
+
+
+<li class="dropdown right large-menu">
   <%= link_to('#', class: 'dropdown-toggle', data: { toggle: 'dropdown', 'close-others' => 'false' }) do %>
     <%= fa_icon('cog') %>
     <span>
       <%= t('.administrate') %>
     </span>
   <% end %>
-  <ul class="dropdown-menu">
-    <% if can_administrate?(:index, User) %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(User), admin_users_path) %>
-      </li>
-    <% end %>
+  <ul class="dropdown-menu megamenu row">   
+    <li class="admin-menu-category">
+      <ul class="">
+      <% potential_privilegies = [[User, admin_users_path], [MailAlias, mail_aliases_path], [Group, admin_groups_path], [Permission, admin_permissions_path]] %>
+      <% privilegies = checkPrivilegies(potential_privilegies) %>
+      <% if privilegies[0][0] != nil %>
+        <li class="menu-header">
+          Användare
+        </li>
+      <% end %>
+      <% privilegies.each do |privilegie| %>
+        <li class="menu">
+          <%= link_to models_name(privilegie[0]), privilegie[1] %>
+        </li>
+      <% end %>
+      </ul>
+    </li>
 
-    <% if can_administrate?(:index, Menu) %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(Menu), admin_menus_path) %>
-      </li>
-    <% end %>
+    <li class="admin-menu-category">
+      <ul class="">
+        <li class="menu-header">
+          Poster 
+        </li>
 
-    <% if can_administrate?(:index, Constant) %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(Constant), constants_path) %>
-      </li>
-    <% end %>
+        <% if can_administrate?(:index, Election) %>
+          <li class="menu">
+            <%= link_to(model_name(Election), admin_elections_path)%>
+          </li>
+        <% end %>
 
-    <% if can_administrate?(:index, Permission) %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(Permission), admin_permissions_path) %>
-      </li>
-    <% end %>
-
-    <% if can_administrate?(:index, Category) %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(Category), admin_categories_path) %>
-      </li>
-    <% end %>
-
-
-    <% if can_administrate? :manage, Contact %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(Contact), admin_contacts_path) %>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :manage, Album %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(Album), admin_gallery_albums_path)%>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :manage, Page %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(Page), admin_pages_path)%>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :index, ShortLink %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(ShortLink), short_links_path) %>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :index, MailAlias %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(MailAlias), mail_aliases_path) %>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :index, Rent %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(Rent), admin_rents_path)%>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :index, Tool %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(Tool), admin_tools_path)%>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :index, Election %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(Election), admin_elections_path)%>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :index, Event %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(Event), admin_events_path) %>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :index, News %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(News), admin_news_index_path) %>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :index, Notice %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(Notice), admin_notices_path)%>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :index, Document %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(Document), admin_documents_path) %>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :index, Council %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(Council), admin_councils_path) %>
-      </li>
-    <% end %>
-
-    <% if can_administrate? :manage, Council %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(Post), '#') %>
-        <ul class="dropdown-menu">
-          <% Council.by_title.each do |council| %>
-            <% if can_administrate? :manage, council %>
-              <li><%= link_to(council, admin_council_posts_path(council)) %></li>
+        <% if can_administrate? :manage, Council %>
+            <% Council.by_title.each do |council| %>
+              <% if can_administrate? :manage, council %>
+                <li class="menu">
+                  <%= link_to(council, admin_council_posts_path(council)) %>
+                </li>
+              <% end %>
             <% end %>
-          <% end %>
-        </ul>
-      </li>
-    <% end %>
+        <% end %>
 
-    <% if can_administrate?(:index, CafeShift) %>
-      <li class="dropdown-submenu">
-        <%= link_to(t('.cafe'), admin_cafe_shifts_path)%>
-      </li>
-    <% end %>
+        <% if can_administrate? :index, Document %>
+          <li class="menu">
+            <%= link_to(model_name(Document), admin_documents_path) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
 
-    <% if can_administrate?(:index, WorkPost) %>
-      <li class="dropdown-submenu">
-        <%= link_to(t('.work_post'), admin_work_posts_path)%>
-      </li>
-    <% end %>
+    <li class="admin-menu-category">
+      <ul class="">
+        <li class="menu-header">
+          Information
+        </li>
 
-    <% if can_administrate?(:index, Faq) %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(Faq), admin_faqs_path)%>
-      </li>
-    <% end %>
+        <% if can_administrate? :index, Notice %>
+          <li class="menu">
+            <%= link_to(models_name(Notice), admin_notices_path)%>
+          </li>
+        <% end %>
 
-    <% if can_administrate?(:index, Introduction) %>
-      <li class="dropdown-submenu">
-        <%= link_to(model_name(Introduction), admin_introductions_path)%>
-      </li>
-    <% end %>
+        <% if can_administrate? :index, Event %>
+          <li class="menu">
+            <%= link_to(model_name(Event), admin_events_path) %>
+          </li>
+        <% end %>
 
-    <% if can_administrate?(:index, Group) %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(Group), admin_groups_path)%>
-      </li>
-    <% end %>
+        <% if can_administrate? :index, News %>
+          <li class="menu">
+            <%= link_to(model_name(News), admin_news_index_path) %>
+          </li>
+        <% end %>
 
-    <% if can_administrate?(:index, BlogPost) %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(BlogPost), admin_blog_posts_path)%>
-      </li>
-    <% end %>
+        <% if can_administrate? :index, BlogPost %>
+          <li class="menu">
+            <%= link_to(models_name(BlogPost), admin_blog_posts_path)%>
+          </li>
+        <% end %>
+      </ul>
+    </li>
 
-    <% if can_administrate?(:index, Meeting) %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(Meeting), admin_meetings_path) %>
-      </li>
-    <% end %>
-    <% if can_administrate?(:index, Song) %>
-      <li class="dropdown-submenu">
-        <%= link_to(models_name(Song), admin_songs_path) %>
-      </li>
-    <% end %>
+    <li class="admin-menu-category">
+      <ul class="">
+        <li class="menu-header">
+          Spindel
+        </li>
+
+        <% if can_administrate?(:index, Menu) %>
+          <li class="menu">
+            <%= link_to(models_name(Menu), admin_menus_path) %>
+          </li>
+        <% end %>
+
+        <% if can_administrate?(:index, ShortLink) %>
+          <li class="menu">
+            <%= link_to(models_name(ShortLink), short_links_path) %>
+          </li>
+        <% end %>
+
+        <% if can_administrate?(:index, Constant) %>
+          <li class="menu">
+            <%= link_to(models_name(Constant), constants_path) %>
+          </li>
+        <% end %>
+
+        <% if can_administrate?(:index, Category) %>
+          <li class="menu">
+            <%= link_to(models_name(Category), admin_categories_path) %>
+          </li>
+        <% end %>
+        <br>
+      </ul>
+    </li>
+
+    <li class="admin-menu-category">
+      <ul class="">
+        <li class="menu-header">
+          Pryl
+        </li>
+
+        <% if can_administrate?(:index, Rent) %>
+          <li class="menu">
+            <%= link_to(model_name(Rent), admin_rents_path)%>
+          </li>
+        <% end %>
+
+        <% if can_administrate?(:index, Tool) %>
+          <li class="menu blank">
+            <%= link_to(model_name(Tool), admin_tools_path)%>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+
+    <li class="admin-menu-category">
+      <ul class="">
+        <li class="menu-header">
+          Övrigt
+        </li>
+
+        <% if can_administrate? :index, CafeShift %>
+          <li class="menu">
+             <%= link_to(t('.cafe'), admin_cafe_shifts_path)%>
+          </li>
+        <% end %>
+
+        <% if can_administrate? :index, Introduction %>
+          <li class="menu">
+            <%= link_to(model_name(Introduction), admin_introductions_path)%>
+          </li>
+        <% end %>
+
+        <% if can_administrate? :index, WorkPost %>
+          <li class="menu">
+            <%= link_to(t('.work_post'), admin_work_posts_path)%>
+          </li>
+        <% end %>
+
+        <% if can_administrate? :index, Faq %>
+          <li class="menu">
+            <%= link_to(model_name(Faq), admin_faqs_path)%>
+          </li>
+        <% end %>
+
+        <% if can_administrate? :index, Page %>
+          <li class="menu">
+            <%= link_to(model_name(Page), admin_pages_path)%>
+          </li>
+        <% end %>
+
+        <% if can_administrate? :index, Album %>
+          <li class="menu">
+            <%= link_to(model_name(Album), admin_gallery_albums_path)%>
+          </li>
+        <% end %>
+
+        <% if can_administrate? :index, Contact %>
+          <li class="menu">
+            <%= link_to(model_name(Contact), admin_contacts_path) %>
+          </li>
+        <% end %>
+
+        <% if can_administrate? :index, Meeting %>
+          <li class="menu">
+            <%= link_to(models_name(Meeting), admin_meetings_path) %>
+          </li>
+        <% end %>
+
+        <% if can_administrate? :index, Song %>
+          <li class="menu">
+            <%= link_to(models_name(Song), admin_songs_path) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
   </ul>
 </li>
