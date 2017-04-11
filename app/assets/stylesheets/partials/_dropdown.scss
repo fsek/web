@@ -10,6 +10,23 @@
           right: 100%;
         }
       }
+
+      .admin-menu-category {
+        display: inline;
+        float: left;
+      }
     }
+  }
+}
+
+
+@media screen and (max-width: 643px) {
+  .admin-menu-category {
+    display: block !important;
+    float: none !important;
+  }
+
+  .dropdown-menu {
+    width: 100%;
   }
 }
