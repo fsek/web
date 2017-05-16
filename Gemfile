@@ -27,6 +27,7 @@ gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'meta-tags'
+gem 'mail', '>= 2.6.6.rc1'
 gem 'mini_magick'
 gem 'momentjs-rails'
 gem 'mysql2', '~> 0.3.20' # Rails 4 compatibility

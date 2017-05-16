@@ -8,7 +8,7 @@
     "immed": true,
     "latedef": "nofunc",
     "laxcomma": true,
-    "maxlen": 80,
+    "maxlen": 100,
     "newcap": true,
     "noarg": true,
     "noempty": true,
