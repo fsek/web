@@ -17,7 +17,7 @@ linters:
   DebugStatement:
     enabled: true
   DeclarationOrder:
-    enabled: true
+    enabled: false
   DuplicateProperty:
     enabled: true
   ElsePlacement:
@@ -94,7 +94,7 @@ linters:
     enabled: true
     convention: hyphenated_lowercase
   Shorthand:
-    enabled: true
+    enabled: false
     severity: warning
   SingleLinePerProperty:
     enabled: true
