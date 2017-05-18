@@ -1,10 +1,10 @@
 <%# Privilegies to check for each menu category %>
-<% anvandare = [[User], [MailAlias], [Group], [Permission]] %>
-<% post = [[Election], [Council], [Document]] %>
-<% info = [[Notice], [Event], [News], [BlogPost]] %>
-<% spindel = [[Menu], [ShortLink], [Constant], [Category]] %>
-<% pryl = [[Rent], [Tool]] %>
-<% ovrigt = [[CafeShift], [Introduction], [WorkPost], [Faq], [Page], [Album, admin_gallery_albums_path], [Contact], [Meeting], [Song]] %>
+<% anvandare = [["Användare"],[[User], [MailAlias], [Group], [Permission]]] %>
+<% post = [["Poster"], [[Election], [Council], [Document]]] %>
+<% info = [["Information"], [[Notice], [Event], [News], [BlogPost]]] %>
+<% spindel = [["Spindelman"], [[Menu], [ShortLink], [Constant], [Category]]] %>
+<% pryl = [["Pryl"], [[Rent], [Tool]]] %>
+<% ovrigt = [["Övrigt"], [[CafeShift], [Introduction], [WorkPost], [Faq], [Page], [Album, admin_gallery_albums_path], [Contact], [Meeting], [Song]]] %>
 <% all_privilegies = [anvandare, post, info, spindel, pryl, ovrigt] %>
 
 <li class="dropdown right large-menu">
@@ -19,12 +19,12 @@
     <li class="admin-menu-category">
       <ul class="">
         <% privilegies = checkPrivilegies(c) %>
-        <% if privilegies[0][0] != nil %>
+        <% if privilegies[1][0] != nil %>
           <li class="menu-header">
-            Användare
+            <%= privilegies[0][0] %>
           </li>
         <% end %>
-        <% privilegies.each do |privilegie| %>
+        <% privilegies[1].each do |privilegie| %>
           <li class="menu">
             <% if privilegie.length == 1 %>
               <%= link_to models_name(privilegie[0]), [:admin, privilegie[0]] %>
