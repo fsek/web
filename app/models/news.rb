@@ -41,7 +41,7 @@ class News < ActiveRecord::Base
   private
 
   def pinned_validation
-    if pinned_from.present? && pined_to.present? && pinned_to < pinned_from
+    if pinned_from.present? && pinned_to.present? && pinned_to < pinned_from
       errors.add(:pinned_to, t('model.news.pinned_dates_error'))
     end
   end
