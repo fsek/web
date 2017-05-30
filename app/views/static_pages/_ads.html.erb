@@ -26,7 +26,37 @@
       <%= t('.weektorn_send_in') %>
       <%= contact_from_slug(slug: 'sanningsminister') %>
       <%= t('.weektorn_before_deadline') %>
+    </p>
+    <p>
       <%= link_to(t('.weektorn_read_online'), weektorn_archive) %>
+    </p>
+  </div>
+
+  <div class="box">
+    <div class="headline">
+      <h3><%= link_to(t('.contact'), contacts_path) %></h3>
+    </div>
+    <p>
+      <%= t('.contact_info') %>
+      <%= link_to(t('.contact_info2'), contacts_path) %>
+      <%= t('.contact_info3') %>
+    </p>
+
+    <b><%= t('.visit_address') %></b>
+    <p>
+      Matematikhuset<br>
+      Sölvegatan 18, 223 62 Lund
+    </p>
+
+    <b><%= t('.post_address') %></b>
+    <p>
+      F-teknologsektionen inom TLTH<br>
+      Box 118, 221 00 Lund
+    </p>
+
+    <p>
+      <%= fa_icon('phone') %>
+      046 - 14 47 22
     </p>
   </div>
 </div>
