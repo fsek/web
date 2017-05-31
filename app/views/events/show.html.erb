@@ -62,7 +62,7 @@
 <% end %>
 
 <% if can_administrate?([:index, :edit], @event) %>
-  <div class="col-md-12 col-sm-12">
+  <div class="col-md-12 col-xs-12">
     <%= link_to(t('.edit_event'), edit_admin_event_path(@event), class: 'btn primary') %>
     <%= link_to(t('.all_events'), admin_events_path, class: 'btn secondary') %>
 </div>
