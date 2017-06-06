@@ -98,10 +98,6 @@ class Event < ApplicationRecord
     end
   end
 
-  def as_json(*)
-    CalendarJSON.event(self)
-  end
-
   private
 
   def schedule_notifications

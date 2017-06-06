@@ -331,6 +331,15 @@ Fsek::Application.routes.draw do
     end
   end
 
+  # API routes
+  namespace :api, constraints: { format: 'json' } do
+    mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :confirmations]
+
+    resources :events, only: [:index, :show] do
+      resources :event_users, only: [:create, :destroy]
+    end
+  end
+
   get 'proposals/form' => 'proposals#form'
   post 'proposals/generate' => 'proposals#generate'
 

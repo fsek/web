@@ -821,9 +821,13 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.boolean  "display_phone",          default: false, null: false
     t.string   "food_preferences"
     t.integer  "notifications_count",    default: 0,     null: false
+    t.string   "provider",               default: "email", null: false
+    t.string   "uid",                    default: "",      null: false
+    t.text     "tokens"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
 
   create_table "work_posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

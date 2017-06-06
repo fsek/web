@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class CalendarsController < ApplicationController
   load_permissions_then_authorize_resource class: false
 
@@ -6,8 +5,8 @@ class CalendarsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render(json: Event.by_locale(locale: I18n.locale).
-                           between(params[:start], params[:end]))
+        @events = Event.by_locale(locale: I18n.locale).between(params[:start], params[:end])
+        render json: @events, adapter: :attributes
       end
     end
   end

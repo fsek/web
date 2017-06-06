@@ -35,34 +35,6 @@ module CalendarJSON
     }
   end
 
-  def self.event(event)
-    if event.all_day
-      {
-        id: event.id,
-        title: event.title,
-        description: event.description || '',
-        start: event.starts_at.to_date.iso8601,
-        end: (event.ends_at + 1.day).to_date.iso8601,
-        allDay: true,
-        recurring: false,
-        url: Rails.application.routes.url_helpers.event_path(event.id),
-        textColor: 'black'
-      }
-    else
-      {
-        id: event.id,
-        title: event.title,
-        description: event.description || '',
-        start: event.starts_at.iso8601,
-        end: event.ends_at.iso8601,
-        allDay: false,
-        recurring: false,
-        url: Rails.application.routes.url_helpers.event_path(event.id),
-        textColor: 'black'
-      }
-    end
-  end
-
   def self.meeting(meeting)
     {
       id: meeting.id,

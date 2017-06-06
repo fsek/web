@@ -18,7 +18,13 @@ RSpec.describe CalendarsController, type: :controller do
         create(:event, starts_at: 5.day.from_now)
         get :index, format: :json, params: { start: 1.day.ago, end: 1.day.from_now }
         response.status.should eq(200)
-        response.body.should eq([event.as_json].to_json)
+
+        # Generate expected result
+        serializer = EventSerializer.new(event)
+        json = [ActiveModelSerializers::Adapter.create(serializer, adapter: :attributes)].to_json
+
+        # Compare
+        response.body.should eq(json)
       end
     end
   end
