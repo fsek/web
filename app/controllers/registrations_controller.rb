@@ -8,7 +8,13 @@ class RegistrationsController < Devise::RegistrationsController
       respond_with_navigational(resource) { render :new }
     else
       flash.delete :recaptcha_error
-      super
+      super do |resource|
+        if resource.persisted?
+          # Required for devise to send confirmation emails
+          # when used with the devise_token_auth gem
+          resource.send_confirmation_instructions
+        end
+      end
     end
   end
 end

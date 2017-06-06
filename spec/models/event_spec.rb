@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
@@ -33,8 +32,13 @@ RSpec.describe Event, type: :model do
       event = build_stubbed(:event, starts_at: start,
                                     ends_at: stop,
                                     all_day: false)
-      event.as_json[:start].should eq(start.iso8601)
-      event.as_json[:end].should eq(stop.iso8601)
+
+      # Export to JSON using EventSerializer, then parse the JSON
+      serializer = EventSerializer.new(event)
+      json = JSON.parse(ActiveModelSerializers::Adapter.create(serializer, adapter: :attributes).to_json)
+
+      json['start'].should eq(start.iso8601)
+      json['end'].should eq(stop.iso8601)
     end
 
     it 'adds one day if all_day' do
@@ -43,8 +47,13 @@ RSpec.describe Event, type: :model do
       event = build_stubbed(:event, starts_at: start,
                                     ends_at: stop,
                                     all_day: true)
-      event.as_json[:start].should eq(start.to_date.iso8601)
-      event.as_json[:end].should eq((stop + 1.day).to_date.iso8601)
+
+      # Export to JSON using EventSerializer, then parse the JSON
+      serializer = EventSerializer.new(event)
+      json = JSON.parse(ActiveModelSerializers::Adapter.create(serializer, adapter: :attributes).to_json)
+
+      json['start'].should eq(start.to_date.iso8601)
+      json['end'].should eq((stop + 1.day).to_date.iso8601)
     end
   end
 end

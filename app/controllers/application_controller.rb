@@ -1,6 +1,5 @@
-# encoding:UTF-8
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :exception, unless: :devise_token_controller
   before_action :configure_permitted_devise_parameters, if: :devise_controller?
   before_action :store_current_location, unless: 'devise_controller? || !request.format.html?'
   before_action :set_locale
@@ -70,15 +69,11 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_devise_parameters
-    devise_parameter_sanitizer.permit(:sign_in) do |u|
-      u.permit(:email, :password, :remember_me)
-    end
-    devise_parameter_sanitizer.permit(:sign_up) do |u|
-      u.permit(:firstname, :lastname, :email, :password, :password_confirmation)
-    end
-    devise_parameter_sanitizer.permit(:account_update) do |u|
-      u.permit(:password, :password_confirmation, :current_password)
-    end
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :remember_me])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:firstname, :lastname, :email,
+                                                       :password, :password_confirmation])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:password, :current_password,
+                                                              :password_confirmation])
   end
 
   def set_locale
@@ -99,5 +94,10 @@ class ApplicationController < ActionController::Base
     I18n.available_locales.each do |loc|
       expire_fragment("main_menu/#{loc}")
     end
+  end
+
+  # Ignore session cookies when we want to sign in with devise token auth!
+  def devise_token_controller
+    params[:controller].split('/')[0] == 'devise_token_auth'
   end
 end

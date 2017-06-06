@@ -20,7 +20,7 @@ class Ability
     can :avatar, User
     can :read, BlogPost
 
-    can :show, Event
+    can :read, Event
     can [:index, :export, :introduction], :calendar
     # But cannot view any albums
     can :index, :gallery

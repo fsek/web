@@ -5,6 +5,7 @@ ruby '2.3.0'
 
 gem 'rails', '5.0.4'
 
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 gem 'cancancan'
@@ -15,6 +16,7 @@ gem 'datetimepicker-rails', git: 'https://github.com/zpaulovics/datetimepicker-r
                             branch: 'master',
                             submodules: true
 gem 'devise'
+gem 'devise_token_auth'
 gem 'font-awesome-rails'
 gem 'fotoramajs'
 gem 'fullcalendar-rails'
@@ -32,6 +34,7 @@ gem 'mini_magick'
 gem 'momentjs-rails'
 gem 'mysql2', '~> 0.3.20' # Rails 4 compatibility
 gem 'nokogiri', '>=1.7'
+gem 'omniauth'
 gem 'paperclip'
 gem 'pagedown-bootstrap-rails'
 gem 'paranoia'

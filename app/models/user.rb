@@ -1,14 +1,17 @@
 class User < ApplicationRecord
+  # Must be on top!
+  devise(:database_authenticatable, :registerable,
+          :recoverable, :rememberable, :trackable, :validatable,
+          :confirmable)
+
+  include DeviseTokenAuth::Concerns::User
   include CarrierWave::Compatibility::Paperclip
+
   PHYSICS = 'Teknisk Fysik'.freeze
   MATH = 'Teknisk Matematik'.freeze
   NANO = 'Teknisk Nanovetenskap'.freeze
   OTHER = 'Oklart'.freeze
   FOOD_PREFS = ['vegetarian', 'vegan', 'pescetarian', 'milk', 'gluten'].freeze
-
-  devise(:database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable)
 
   validates :email, uniqueness: true
   validates :email, format: { with: Devise::email_regexp }
@@ -118,5 +121,12 @@ class User < ApplicationRecord
         errors.add(:food_preferences, I18n.t('model.user.only_predefined_food_prefs'))
       end
     end
+  end
+
+  def email_changed?
+    # devise_token_auth always sets this to false, and does not support
+    # email reconfirmation through the API routes. Since we use regular
+    # devise to handle all confirmations, we can enable this again!
+    super
   end
 end
