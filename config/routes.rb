@@ -266,12 +266,15 @@ Fsek::Application.routes.draw do
     end
     namespace :admin do
       resources :short_links, except: [:show, :update, :edit], path: :snabblankar do
+      end
+    end
+
+    resources :short_links, only: [], path: :snabblankar do
         collection do
           get :go
           get :check
         end
       end
-    end
 
     resources :messages, only: [:destroy], path: :meddelanden do
       resources :message_comments, path: :kommentarer, only: [:create, :destroy]

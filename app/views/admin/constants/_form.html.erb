@@ -1,4 +1,4 @@
-<%= form_for(@constant) do |f| %>
+<%= form_for([:admin, @constant]) do |f| %>
   <% if @constant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@constant.errors.count, "error") %> prohibited this constant from being saved:</h2>

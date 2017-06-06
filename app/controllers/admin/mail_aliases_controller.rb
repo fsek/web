@@ -1,4 +1,4 @@
-class MailAliasesController < Admin::BaseController
+class Admin::MailAliasesController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index

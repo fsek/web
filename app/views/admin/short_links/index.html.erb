@@ -17,7 +17,7 @@
         <tr>
           <td><%= sl.link %></td>
           <td><%= link_to(sl.target, sl.target) %></td>
-          <td><%= link_to(t('.destroy_link'), sl, method: :delete) %></td>
+          <td><%= link_to(t('.destroy_link'), admin_short_link_path(sl), method: :delete) %></td>
         </tr>
       <% end %>
     </tbody>

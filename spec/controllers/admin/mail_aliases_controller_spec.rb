@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe MailAliasesController, :type => :controller do
+describe Admin::MailAliasesController, :type => :controller do
   describe '#index' do
     allow_user_to :manage, MailAlias
     it 'doesn\'t crash when requesting index' do

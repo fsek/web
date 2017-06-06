@@ -1,4 +1,4 @@
-class ConstantsController < Admin::BaseController
+class Admin::ConstantsController < Admin::BaseController
   load_permissions_and_authorize_resource
   before_action :set_constant, only: [:show, :edit, :update, :destroy]
 
@@ -19,7 +19,7 @@ class ConstantsController < Admin::BaseController
   def create
     @constant = Constant.new(constant_params)
     if @constant.save
-      redirect_to @constant, notice: alert_create(Constant)
+      redirect_to admin_constant_path(@constant), notice: alert_create(Constant)
     else
       render :new, status: 422
     end
@@ -27,7 +27,7 @@ class ConstantsController < Admin::BaseController
 
   def update
     if @constant.update(constant_params)
-      redirect_to @constant, notice: alert_update(Constant)
+      redirect_to admin_constant_path(@constant), notice: alert_update(Constant)
     else
       render :edit, status: 422
     end
@@ -35,7 +35,7 @@ class ConstantsController < Admin::BaseController
 
   def destroy
     @constant.destroy!
-    redirect_to constants_url
+    redirect_to admin_constants_path
   end
 
   private

@@ -20,10 +20,10 @@
 }
 
 
-@media screen and (max-width: 643px) {
-  .admin-menu-category {
-    display: block !important;
-    float: none !important;
+@media (max-width: 991px) {
+  .dropdown.right .dropdown-menu .admin-menu-category {
+    display: block;
+    float: none;
   }
 
   .dropdown-menu {

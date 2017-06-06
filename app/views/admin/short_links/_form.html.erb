@@ -1,7 +1,6 @@
-<%= simple_form_for(short_link, html: {class: 'form-inline shortlink-check'}) do |f| %>
+<%= simple_form_for([:admin, short_link], html: {class: 'form-inline shortlink-check'}) do |f| %>
   <%= f.input(:link, label: false,
-              placeholder: ShortLink.human_attribute_name(:link))
-  %>
+              placeholder: ShortLink.human_attribute_name(:link)) %>
   <span>
     &#10230;
   </span>

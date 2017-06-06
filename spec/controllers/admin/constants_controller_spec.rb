@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ConstantsController, type: :controller do
+RSpec.describe Admin::ConstantsController, type: :controller do
   describe 'GET #index when not allowed' do
     it 'returns http forbidden' do
       get :index
