@@ -12,4 +12,3 @@ class EventSignupPositionWorker
     end
   end
 end
-

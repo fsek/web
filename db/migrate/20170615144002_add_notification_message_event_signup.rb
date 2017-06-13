@@ -1,6 +1,6 @@
 class AddNotificationMessageEventSignup < ActiveRecord::Migration
   def up
-    EventSignup.add_translation_fields!({ notification_message: :string })
+    EventSignup.add_translation_fields!(notification_message: :string)
   end
 
   def down

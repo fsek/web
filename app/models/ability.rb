@@ -57,7 +57,7 @@ class Ability
       can(:create, MessageComment) do |comment|
         comment.with_group(user) && comment.user == user
       end
-      
+
       can :read, Meeting
 
       can [:read, :search], Song

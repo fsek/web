@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe(NotificationsController, type: :controller) do
+RSpec.describe(NotificationsController,
+               type: :controller) do
   let(:user) { create(:user) }
   allow_user_to([:look, :index, :look_all], Notification)
 
