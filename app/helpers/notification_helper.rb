@@ -1,8 +1,8 @@
 module NotificationHelper
-  def notification_context(text, notification, icon: 'bell')
+  def notification_context(text, notification, icon: 'bell 4x')
     content_tag(:span, class: 'notification-content') do
       content = []
-      content << fa_xl_icon(icon)
+      content << fa_icon(icon)
       content << asterisk_link(notification)
       content << content_tag(:span, markdown(text), class: 'text')
       safe_join(content)
@@ -12,15 +12,14 @@ module NotificationHelper
   def asterisk_link(notification)
     content = []
     if notification.seen?
-      content << fa_lg_icon('asterisk')
+      content << fa_icon('asterisk 2x')
     else
       content << link_to(look_own_user_notification_path(notification), remote: true, method: :patch) do
-        fa_lg_icon('asterisk')
+        fa_icon('asterisk 2x')
       end
     end
     content_tag(:span, safe_join(content), class: 'asterisk pull-right')
   end
-
 
   def notification_created_at(time)
     content_tag(:span, class: 'notification-time pull-right') do
@@ -32,7 +31,7 @@ module NotificationHelper
   end
 
   def notification_page_title(title, count)
-    if count > 0
+    if count.positive?
       "#{title} (#{count})"
     else
       title
@@ -42,8 +41,7 @@ module NotificationHelper
   def event_user_notification(event_user)
     text = ''
     if event_user.reserve?
-      text << t('.reserve_position', event: event_user.event.to_s,
-                                     position: event_user.reserve_position)
+      text << t('.reserve_position', event: event_user.event.to_s)
     else
       text << t('.attending', event: event_user.event.to_s)
     end

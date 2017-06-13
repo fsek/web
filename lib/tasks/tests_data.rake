@@ -80,10 +80,6 @@ namespace :db do
       PostUser.find_or_create_by(post: prylmast, user: user)
     end
 
-    # Notice
-    FactoryGirl.create(:notice, user: admin)
-    FactoryGirl.create(:notice, user: admin)
-
     # Election
     election = Election.find_or_initialize_by(title: 'Vårterminsmöte',
                                               url: 'vt-15',

@@ -40,9 +40,12 @@ class Event < ActiveRecord::Base
   scope :stream, -> do
     between(Time.zone.now.beginning_of_day, 6.days.from_now.end_of_day).by_start.includes(:event_signup)
   end
-  scope :starts_within, ->(time) { where('starts_at BETWEEN :first AND :second',
-                                         first: Time.zone.now,
-                                         second: time.from_now) }
+
+  scope :starts_within, (lambda do |time|
+    where('starts_at BETWEEN :first AND :second',
+          first: Time.zone.now,
+          second: time.from_now)
+  end)
 
   scope :not_reminded, -> { joins(:event_signup).merge(EventSignup.reminder_not_sent) }
   scope :by_locale, ->(locale: I18n.locale) do

@@ -10,6 +10,6 @@ sv:
         read_more: Läs mer
 
       event_user_position:
-        reserve_position: "Anmälan till %{event} har nu stängt och du fick **tyvärr ingen plats till evenemanget**.<br> Du har just nu reservplats %{position}."
+        reserve_position: "Anmälan till %{event} har nu stängt och du fick **tyvärr ingen plats till evenemanget**.<br> Du ligger just nu på reservlistan."
         attending: "Anmälan till %{event} har nu stängt och du fick **en plats**."
         read_more: Läs mer

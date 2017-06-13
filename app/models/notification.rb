@@ -1,6 +1,6 @@
 class Notification < ActiveRecord::Base
   enum(event_users: [:reminder, :position])
-  ALLOWED = { 'EventUser' => event_users }
+  ALLOWED = { 'EventUser' => event_users }.freeze
 
   belongs_to :user, required: true, inverse_of: :notifications
   belongs_to :notifyable, polymorphic: true, required: true
