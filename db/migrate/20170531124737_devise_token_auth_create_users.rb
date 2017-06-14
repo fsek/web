@@ -6,7 +6,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
 
     User.update_all("uid=email")
 
-    add_index :users, [:uid, :provider],     unique: true
+    add_index :users, [:uid, :provider], unique: true
   end
 
   def down

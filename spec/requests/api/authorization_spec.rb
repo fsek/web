@@ -34,7 +34,7 @@ RSpec.describe 'Authentication', type: :request do
       # Mark email as confirmed
       User.last.update!(confirmed_at: Time.zone.now)
 
-      #Sign In
+      # Sign In
       post api_user_session_path(email: 'jakob@fsektionen.se', password: 'godtyckligt')
       response.should be_success
       response.should have_http_status(200)
@@ -49,7 +49,7 @@ RSpec.describe 'Authentication', type: :request do
       # Mark email as confirmed
       User.last.update!(confirmed_at: Time.zone.now)
 
-      #Sign In
+      # Sign In
       post api_user_session_path(email: 'jakob@fsektionen.se', password: 'ogodtyckligt')
       response.should_not be_success
       response.should have_http_status(401)
