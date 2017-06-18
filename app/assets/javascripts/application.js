@@ -20,7 +20,6 @@
 //= require moment/sv
 //= require fullcalendar
 //= require fullcalendar/lang/sv.js
-//= require fancybox
 //= require fotorama
 //= require select2
 //= require select2_locale_sv

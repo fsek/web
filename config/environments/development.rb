@@ -11,9 +11,21 @@ Fsek::Application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
-  # Show full error reports and disable caching.
+  # Show full error reports
   config.consider_all_requests_local = true
-  config.action_controller.perform_caching = false
+
+  # Enable/disable caching. By default caching is disabled.
+  if Rails.root.join('tmp/caching-dev.txt').exist?
+    config.action_controller.perform_caching = true
+
+    config.cache_store = :memory_store
+    config.public_file_server.headers = {
+      'Cache-Control' => 'public, max-age=172800'
+    }
+  else
+    config.action_controller.perform_caching = false
+    config.cache_store = :null_store
+  end
 
   # Don't care if the mailer can't send.
   # Send deprecation notices to registered listeners.
@@ -23,6 +35,7 @@ Fsek::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default charset: 'utf-8'
+  config.action_mailer.perform_caching = false
 
   config.action_mailer.smtp_settings = {
     address: '127.0.0.1',
@@ -42,7 +55,7 @@ Fsek::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-  config.serve_static_files = true
+  config.public_file_server.enabled = true
   config.assets.digest = false
 
   # Assets for mailers

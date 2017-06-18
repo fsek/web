@@ -2,7 +2,7 @@
 require 'pathname'
 
 # path to your application root.
-APP_ROOT = Pathname.new File.expand_path('../../',  __FILE__)
+APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
 
 Dir.chdir APP_ROOT do
   # This script is a starting point to setup your application.
@@ -15,16 +15,15 @@ Dir.chdir APP_ROOT do
   puts '== Setting up environment variables =='
   unless File.exist?('.env')
     system 'cp .env-sample .env'
-    system 'echo "SECRET_KEY_BASE=$(rake secret)" >> .env'
+    system 'echo "SECRET_KEY_BASE=$(rails secret)" >> .env'
   end
 
   puts '== Preparing database =='
-  system 'bin/rake db:setup permissions:load db:populate_test'
+  system 'bin/rails db:setup permissions:load db:populate_test'
 
   puts '== Removing old logs and tempfiles =='
-  system 'rm -f log/*'
-  system 'rm -rf tmp/cache'
+  system 'bin/rails log:clear tmp:clear'
 
   puts '== Restarting application server =='
-  system 'touch tmp/restart.txt'
+  system 'bin/rails restart'
 end

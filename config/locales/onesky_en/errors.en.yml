@@ -32,6 +32,7 @@ en:
       restrict_dependent_destroy:
         one: "Cannot delete record because a dependent %{record} exists"
         other: ""
+      required: "can't be empty"
       taken: "has already been taken"
       too_long: "is too long (maximum is %{count} characters)"
       too_short: "is too short (minimum is %{count} characters)"

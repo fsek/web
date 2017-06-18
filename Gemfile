@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Do not forget to update in .ruby-version, Capfile and circle.yml
 ruby '2.3.0'
 
-gem 'rails', '4.2.7.1'
+gem 'rails', '5.0.3'
 
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
@@ -15,11 +15,11 @@ gem 'datetimepicker-rails', git: 'https://github.com/zpaulovics/datetimepicker-r
                             branch: 'master',
                             submodules: true
 gem 'devise'
-gem 'fancybox2-rails'
 gem 'font-awesome-rails'
 gem 'fotoramajs'
 gem 'fullcalendar-rails'
-gem 'globalize', '~> 5.0.0'
+gem 'globalize', git: 'https://github.com/globalize/globalize' # For rails 5 support
+gem 'activemodel-serializers-xml'
 gem 'globalize-accessors'
 gem 'icalendar'
 gem 'jquery-rails'
@@ -31,6 +31,7 @@ gem 'mail', '>= 2.6.6.rc1'
 gem 'mini_magick'
 gem 'momentjs-rails'
 gem 'mysql2', '~> 0.3.20' # Rails 4 compatibility
+gem 'nokogiri', '>=1.7'
 gem 'paperclip'
 gem 'pagedown-bootstrap-rails'
 gem 'paranoia'
@@ -39,16 +40,15 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'redcarpet'
 gem 'roadie-rails', '~> 1.0'
 gem 'rollbar'
-gem 'routing-filter', '~> 0.5.1'
+gem 'routing-filter', '~> 0.6.0'
 gem 'sass-rails'
 gem 'select2-rails'
 gem 'sidekiq'
 gem 'simple_form'
-gem 'sinatra', require: false
 gem 'sitemap_generator'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'wice_grid', git: 'https://github.com/leikind/wice_grid', branch: 'rails3'
+gem 'wice_grid', git: 'https://github.com/navro/wice_grid', branch: 'rails5'
 
 # To have a working JVM on server
 group :staging, :production do
@@ -56,7 +56,7 @@ group :staging, :production do
 end
 
 group :development, :test do
-  gem 'better_errors'
+  gem 'better_errors', git: 'https://github.com/charliesome/better_errors' # For rails 5 support
   gem 'capistrano', require: false
   # Need 1.1.3 to load sprockets manifest file
   gem 'capistrano-rails', '~> 1.1.3', require: false
@@ -83,4 +83,5 @@ group :test do
   gem 'codeclimate-test-reporter', require: false
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
+  gem 'rails-controller-testing'
 end
