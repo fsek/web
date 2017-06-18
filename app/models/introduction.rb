@@ -1,5 +1,5 @@
 # Introduction for new students and members of the guild
-class Introduction < ActiveRecord::Base
+class Introduction < ApplicationRecord
   acts_as_paranoid
   translates(:title, :description)
   globalize_accessors(locales: [:en, :sv],

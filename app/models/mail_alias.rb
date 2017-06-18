@@ -1,4 +1,4 @@
-class MailAlias < ActiveRecord::Base
+class MailAlias < ApplicationRecord
   VALID_DOMAINS = [ 'fsektionen.se',
                     'fsek.lth.se',
                     'farad.nu' ]

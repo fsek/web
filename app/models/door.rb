@@ -1,4 +1,4 @@
-class Door < ActiveRecord::Base
+class Door < ApplicationRecord
   validates(:title, :slug, :description, presence: true)
   validates(:slug, uniqueness: true)
 

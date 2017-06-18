@@ -2,10 +2,10 @@ module Admin::EventSignupsHelper
   def food_preferences_button(parameters, event)
     if parameters.present? && event.try(:food?)
       if show_food_preferences(parameters)
-        link_to(t('.hide_food_preferences'), parameters.merge(food: false, tab: :attendees),
+        link_to(t('.hide_food_preferences'), allowed_params.merge(food: false, tab: :attendees),
                 class: 'btn secondary')
       else
-        link_to(t('.show_food_preferences'), parameters.merge(food: true, tab: :attendees),
+        link_to(t('.show_food_preferences'), allowed_params.merge(food: true, tab: :attendees),
                 class: 'btn secondary')
       end
     end
@@ -17,9 +17,11 @@ module Admin::EventSignupsHelper
        event.signup.present? &&
        event.signup.question.present?
       if show_answers(parameters)
-        link_to(t('.hide_answer'), parameters.merge(answer: false, tab: :attendees), class: 'btn secondary')
+        link_to(t('.hide_answer'), allowed_params.merge(answer: false, tab: :attendees),
+                class: 'btn secondary')
       else
-        link_to(t('.show_answer'), parameters.merge(answer: true, tab: :attendees), class: 'btn secondary')
+        link_to(t('.show_answer'), allowed_params.merge(answer: true, tab: :attendees),
+                class: 'btn secondary')
       end
     end
   end
@@ -53,5 +55,9 @@ module Admin::EventSignupsHelper
     end
 
     safe_join(content)
+  end
+
+  def allowed_params
+    params.permit(:tab, :food, :answer, :event_id)
   end
 end

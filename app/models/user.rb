@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include CarrierWave::Compatibility::Paperclip
   PHYSICS = 'Teknisk Fysik'.freeze
   MATH = 'Teknisk Matematik'.freeze

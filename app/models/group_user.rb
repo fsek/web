@@ -1,4 +1,4 @@
-class GroupUser < ActiveRecord::Base
+class GroupUser < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :user, required: true

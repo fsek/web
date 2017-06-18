@@ -9,7 +9,7 @@
 
 <div class="col-md-10 col-sm-12">
   <%= grid @grid do |g|
-    g.column(name: Adventure.human_attribute_name(:title), attribute: 'title', filter: false) do |a|
+    g.column(name: Adventure.human_attribute_name(:title), attribute: 'title', assoc: :translations, filter: false) do |a|
       link_to(a.title, edit_admin_introduction_adventure_path(@introduction, a))
     end
     g.column(name: Adventure.human_attribute_name(:start_date), attribute: 'start_date', filter: false)

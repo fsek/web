@@ -1,5 +1,4 @@
-# encoding: UTF-8
-class Album < ActiveRecord::Base
+class Album < ApplicationRecord
   translates(:title, :description)
   globalize_accessors(locales: [:en, :sv],
                       attributes: [:title, :description])

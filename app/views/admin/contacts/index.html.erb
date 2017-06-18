@@ -19,7 +19,7 @@
 
 <div class="col-md-10 col-sm-12">
   <%= grid(@contact_grid, hide_submit_button: true, hide_reset_button: true) do |g|
-    g.column(name: Contact.human_attribute_name(:name), attribute: 'name') do |contact|
+    g.column(name: Contact.human_attribute_name(:name), attribute: 'name', assoc: :translations) do |contact|
       link_to(contact, contact_path(contact), target: :blank)
     end
     g.column(name: Contact.human_attribute_name(:post_id)) do |contact|

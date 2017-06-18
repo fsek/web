@@ -3,7 +3,8 @@ class Admin::MenusController < Admin::BaseController
 
   def index
     @menus_grid = initialize_grid(Menu,
-                                  include: [:main_menu, :translations],
+                                  include: [main_menu: :translations],
+                                  locale: :sv,
                                   order: 'menus.main_menu_id',
                                   order_direction: 'asc')
   end

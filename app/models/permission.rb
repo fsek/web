@@ -1,4 +1,4 @@
-class Permission < ActiveRecord::Base
+class Permission < ApplicationRecord
   CUSTOM = ['all', 'cafe'].freeze
   has_many :posts, through: :permission_posts
   has_many :permission_posts

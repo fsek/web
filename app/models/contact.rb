@@ -1,4 +1,4 @@
-class Contact < ActiveRecord::Base
+class Contact < ApplicationRecord
   translates(:name, :text)
   globalize_accessors(locales: [:en, :sv],
                       attributes: [:name, :text])

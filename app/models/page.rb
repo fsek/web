@@ -1,5 +1,4 @@
-# encoding: UTF-8
-class Page < ActiveRecord::Base
+class Page < ApplicationRecord
   # Associations
   belongs_to :council
   has_many :page_elements, dependent: :destroy

@@ -1,4 +1,4 @@
-class PageImage < ActiveRecord::Base
+class PageImage < ApplicationRecord
   belongs_to :page, required: true
 
   validates :image, presence: true

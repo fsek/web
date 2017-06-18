@@ -3,7 +3,7 @@ class Admin::AdventuresController < Admin::BaseController
   load_permissions_and_authorize_resource through: :introduction
 
   def index
-    @grid = initialize_grid(@adventures.includes(:translations), order: :start_date)
+    @grid = initialize_grid(@adventures, order: :start_date, locale: :sv)
   end
 
   def new

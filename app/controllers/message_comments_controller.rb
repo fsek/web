@@ -8,9 +8,9 @@ class MessageCommentsController < ApplicationController
     authorize!(:create, @message_comment)
 
     if @message_comment.save
-      redirect_to(:back, notice: alert_create(MessageComment))
+      redirect_back(fallback_location: root_path, notice: alert_create(MessageComment))
     else
-      redirect_to(:back, alert: @message_comment.errors.to_h.to_s)
+      redirect_back(fallback_location: root_path, alert: @message_comment.errors.to_h.to_s)
     end
   end
 
@@ -18,7 +18,7 @@ class MessageCommentsController < ApplicationController
     comment = @message.message_comments.find(params[:id])
     authorize!(:destroy, comment)
     comment.destroy!
-    redirect_to(:back, notice: alert_destroy(MessageComment))
+    redirect_back(fallback_location: root_path, notice: alert_destroy(MessageComment))
   end
 
   private

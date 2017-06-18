@@ -1,4 +1,4 @@
-class Council < ActiveRecord::Base
+class Council < ApplicationRecord
   # Associations
   has_one :page, dependent: :destroy
 
@@ -20,11 +20,9 @@ class Council < ActiveRecord::Base
   validates :title, :url, presence: true
   validates :url, uniqueness: true
 
-  scope :by_title, -> { includes(:translations).order(:title).references(:translations) }
+  scope :by_title, -> { includes(:translations).order(:title) }
 
   after_update :check_page
-
-  include TranslateFix
 
   def check_page
     if page.nil?

@@ -11,9 +11,9 @@ class ShortLinksController < Admin::BaseController
 
   def check
     if ShortLink.where('link = ?', params[:link]).exists?
-      render nothing: true, status: :no_content
+      head :no_content
     else
-      render nothing: true, status: :not_found
+      head :not_found
     end
   end
 

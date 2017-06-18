@@ -30,7 +30,7 @@ class Admin::PostsController < Admin::BaseController
   def index
     council = Council.find_by_url!(params[:council_id])
     @post_view = PostView.new(council: council, post_user: PostUser.new, users: User.by_firstname)
-    @post_view.post_grid = initialize_grid(council.posts.by_title, name: 'posts')
+    @post_view.post_grid = initialize_grid(council.posts, name: 'posts', locale: :sv)
     @post_view.post_user_grid = initialize_grid(council.post_users, include: [:post, :user], name: 'post_users')
   end
 
@@ -76,7 +76,7 @@ class Admin::PostsController < Admin::BaseController
   private
 
   def set_grids(post_view)
-    post_view.post_grid = initialize_grid(post_view.council.posts.by_title, name: 'posts')
+    post_view.post_grid = initialize_grid(post_view.council.posts, name: 'posts', locale: :sv)
     post_view.post_user_grid = initialize_grid(post_view.council.post_users,
                                                include: [:post, :user],
                                                name: 'post_users')

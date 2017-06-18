@@ -1,5 +1,4 @@
-# encoding: UTF-8
-class Document < ActiveRecord::Base
+class Document < ApplicationRecord
   include CarrierWave::Compatibility::Paperclip
   belongs_to :user
 

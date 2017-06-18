@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   acts_as_paranoid
   include CarrierWave::Compatibility::Paperclip
   include Categorizable
@@ -61,11 +61,11 @@ class Event < ActiveRecord::Base
   end
 
   def self.locations_sv
-    Translation.where(locale: 'sv').select(:location).order(:location).uniq.pluck(:location)
+    Translation.where(locale: 'sv').select(:location).order(:location).distinct.pluck(:location)
   end
 
   def self.locations_en
-    Translation.where(locale: 'en').select(:location).order(:location).uniq.pluck(:location)
+    Translation.where(locale: 'en').select(:location).order(:location).distinct.pluck(:location)
   end
 
   def signup

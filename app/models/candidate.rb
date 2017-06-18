@@ -1,5 +1,4 @@
-# encoding: UTF-8
-class Candidate < ActiveRecord::Base
+class Candidate < ApplicationRecord
   belongs_to :election, required: true, inverse_of: :candidates
   belongs_to :user, required: true
   belongs_to :post, required: true

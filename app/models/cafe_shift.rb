@@ -1,5 +1,4 @@
-# encoding: UTF-8
-class CafeShift < ActiveRecord::Base
+class CafeShift < ApplicationRecord
   # Associations
   has_one :cafe_worker
   has_one :user, through: :cafe_worker

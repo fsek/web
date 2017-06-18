@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse navbar-responsive-collapse">
   <ul class="nav navbar-nav navbar-right">
     <% cache(['main_menu', I18n.locale], skip_digest: true) do %>
-      <% MainMenu.includes(:translations).index.each do |m| %>
+      <% MainMenu.includes(:translations).by_index.each do |m| %>
         <%= render(m.partial_path, main_menu: m) %>
       <% end %>
     <% end %>

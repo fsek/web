@@ -15,10 +15,10 @@
 
 <div class="col-md-9 col-sm-12">
   <%= grid(@event_grid, hide_submit_button: true, hide_reset_button: true) do |g|
-    g.column(name: Event.human_attribute_name(:title), attribute: 'title') do |event|
+    g.column(name: Event.human_attribute_name(:title), attribute: 'title', assoc: :translations) do |event|
       link_to(event, event_path(event))
     end
-    g.column(name: Event.human_attribute_name(:location), attribute: 'location') do |event|
+    g.column(name: Event.human_attribute_name(:location), attribute: 'location', assoc: :translations) do |event|
       event.location.try(:truncate, 20)
     end
     g.column(name: Event.human_attribute_name(:starts_at), attribute: 'starts_at') do |event|

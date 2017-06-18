@@ -1,4 +1,4 @@
-class Adventure < ActiveRecord::Base
+class Adventure < ApplicationRecord
   acts_as_paranoid
 
   translates(:title, :content)

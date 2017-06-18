@@ -1,4 +1,4 @@
-class WorkPost < ActiveRecord::Base
+class WorkPost < ApplicationRecord
   belongs_to :user
 
   validates :title, :description, :company,
@@ -17,19 +17,19 @@ class WorkPost < ActiveRecord::Base
   scope :kind, -> (kind) { where(kind: kind) }
 
   def self.companies
-    select(:company).order(:company).uniq.pluck(:company)
+    select(:company).order(:company).distinct.pluck(:company)
   end
 
   def self.target_groups
-    select(:target_group).order(:target_group).uniq.pluck(:target_group)
+    select(:target_group).order(:target_group).distinct.pluck(:target_group)
   end
 
   def self.fields
-    select(:field).order(:field).uniq.pluck(:field)
+    select(:field).order(:field).distinct.pluck(:field)
   end
 
   def self.kinds
-    select(:kind).order(:kind).uniq.pluck(:kind)
+    select(:kind).order(:kind).distinct.pluck(:kind)
   end
 
   def to_s

@@ -1,4 +1,4 @@
-class AdventureGroup < ActiveRecord::Base
+class AdventureGroup < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :adventure, required: true, inverse_of: :adventure_groups

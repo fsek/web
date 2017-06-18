@@ -1,4 +1,4 @@
-class CafeWorker < ActiveRecord::Base
+class CafeWorker < ApplicationRecord
   belongs_to :user, required: true
   belongs_to :cafe_shift, required: true
   has_many :cafe_worker_councils, dependent: :destroy

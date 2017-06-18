@@ -1,5 +1,4 @@
-# encoding: UTF-8
-class Notice < ActiveRecord::Base
+class Notice < ApplicationRecord
   translates(:title, :description)
   globalize_accessors(locales: [:en, :sv], attributes: [:title, :description])
 

@@ -1,4 +1,4 @@
-class MessageComment < ActiveRecord::Base
+class MessageComment < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :message, required: true, counter_cache: true

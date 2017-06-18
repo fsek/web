@@ -1,11 +1,11 @@
-class MainMenu < ActiveRecord::Base
+class MainMenu < ApplicationRecord
   has_many :menus, dependent: :destroy
 
   translates(:name)
   globalize_accessors(locales: [:en, :sv], attributes: [:name])
 
   validates :name, presence: true
-  scope :index, -> { order(index: :asc) }
+  scope :by_index, -> { order(index: :asc) }
 
   def to_s
     name

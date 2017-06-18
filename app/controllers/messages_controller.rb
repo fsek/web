@@ -26,7 +26,7 @@ class MessagesController < ApplicationController
     message = Message.find(params[:id])
     message.destroy!
 
-    redirect_to(:back, notice: alert_destroy(Message))
+    redirect_back(fallback_location: root_path, notice: alert_destroy(Message))
   end
 
   private

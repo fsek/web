@@ -1,4 +1,4 @@
-class ToolRenting < ActiveRecord::Base
+class ToolRenting < ApplicationRecord
   belongs_to :tool
 
   validates :renter, :tool, :return_date, presence: true

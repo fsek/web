@@ -1,5 +1,4 @@
-# encoding: UTF-8
-class Nomination < ActiveRecord::Base
+class Nomination < ApplicationRecord
   belongs_to :election, required: true
   belongs_to :post, required: true
 

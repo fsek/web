@@ -3,12 +3,12 @@
     <ul class="loginbar pull-right">
         <li class="locale-switcher">
       <% if I18n.locale == :sv %>
-        <%= link_to(params.merge(locale: :en)) do %>
+        <%= link_to(params.permit(:id).merge(locale: :en, only_path: true)) do %>
           <%= image_tag('layout/gb.png', class: 'flag') %>
           <span>ENGLISH</span>
         <% end %>
       <% else %>
-        <%= link_to(params.merge(locale: :sv)) do %>
+        <%= link_to(params.permit(:id).merge(locale: :sv, only_path: true)) do %>
           <%= image_tag('layout/se.png', class: 'flag') %>
           <span>SVENSKA</span>
         <% end %>

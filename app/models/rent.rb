@@ -1,5 +1,5 @@
 # encoding:UTF-8
-class Rent < ActiveRecord::Base
+class Rent < ApplicationRecord
   belongs_to :user
   belongs_to :council
 

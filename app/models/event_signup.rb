@@ -1,4 +1,4 @@
-class EventSignup < ActiveRecord::Base
+class EventSignup < ApplicationRecord
   NOVICE = 'novice'.freeze
   MENTOR = 'mentor'.freeze
   MEMBER = 'member'.freeze

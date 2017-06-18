@@ -1,6 +1,6 @@
 require 'uri'
 
-class ShortLink < ActiveRecord::Base
+class ShortLink < ApplicationRecord
   validates :link, :target, :presence => true
   validates :link, :uniqueness => true
   validates :link, :format => /\A[a-z0-9_-]+\z/
@@ -25,10 +25,10 @@ class ShortLink < ActiveRecord::Base
 
   def target= val
     # automatically tack on http:// if scheme is missing
-    self[:target] = 
+    self[:target] =
       if val.present? && val.to_s !~ /\A\w+:\/\//
-        "http://#{val}" 
-      else 
+        "http://#{val}"
+      else
         val
       end
   end

@@ -19,7 +19,7 @@
 
 <div class="col-md-10 col-sm-12">
   <%= grid(@grid, hide_submit_button: true, hide_reset_button: true) do |g|
-    g.column(name: Introduction.human_attribute_name(:title), attribute: 'title') do |introduction|
+    g.column(name: Introduction.human_attribute_name(:title), attribute: 'title', assoc: :translations) do |introduction|
       link_to(introduction.title, admin_introduction_path(introduction))
     end
     g.column(name: Introduction.human_attribute_name(:start), attribute: 'start',
