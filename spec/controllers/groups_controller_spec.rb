@@ -20,7 +20,7 @@ RSpec.describe GroupsController, type: :controller do
       introduction = create(:introduction, current: true)
       other_introduction = create(:introduction)
 
-      get(:index, introduction_id: other_introduction.id)
+      get :index, params: { introduction_id: other_introduction.id }
       response.should have_http_status(200)
 
       assigns(:introduction).should eq(other_introduction)
@@ -32,7 +32,7 @@ RSpec.describe GroupsController, type: :controller do
     it 'renders sucessfully' do
       group = create(:group)
 
-      get(:edit, id: group.to_param)
+      get :edit, params: { id: group.to_param }
       response.should have_http_status(200)
       assigns(:group).should eq(group)
     end
@@ -46,7 +46,7 @@ RSpec.describe GroupsController, type: :controller do
 
       user.groups.should_not include(group)
 
-      patch(:update, id: group.to_param, group: attributes)
+      patch :update, params: { id: group.to_param, group: attributes }
 
       user.reload
       response.should redirect_to(group_path(group))

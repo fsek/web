@@ -26,7 +26,7 @@ RSpec.describe Admin::GroupsController, type: :controller do
     it 'renders sucessfully' do
       group = create(:group)
 
-      get(:edit, id: group.to_param)
+      get :edit, params: { id: group.to_param }
       response.should have_http_status(200)
       assigns(:group).should eq(group)
     end
@@ -38,7 +38,7 @@ RSpec.describe Admin::GroupsController, type: :controller do
       attributes = { introduction_id: introduction.id, name: 'Rock the Knight', number: 7 }
 
       lambda do
-        post(:create, group: attributes)
+        post :create, params: { group: attributes }
       end.should change(Group, :count).by(1)
       response.should redirect_to(new_admin_group_path)
     end
@@ -47,7 +47,7 @@ RSpec.describe Admin::GroupsController, type: :controller do
       attributes = { number: 37 }
 
       lambda do
-        post(:create, group: attributes)
+        post :create, params: { group: attributes }
       end.should change(Group, :count).by(0)
       response.should have_http_status(422)
       response.should render_template(:new)
@@ -59,7 +59,7 @@ RSpec.describe Admin::GroupsController, type: :controller do
       group = create(:group, name: 'En ogodtycklig grupp', number: 36)
       attributes = { name: 'En Godtycklig grupp', number: 37 }
 
-      patch(:update, id: group.to_param, group: attributes)
+      patch :update, params: { id: group.to_param, group: attributes }
 
       group.reload
       response.should redirect_to(admin_groups_path)
@@ -71,7 +71,7 @@ RSpec.describe Admin::GroupsController, type: :controller do
       group = create(:group, number: 37)
       attributes = { number: -1 }
 
-      patch(:update, id: group.to_param, group: attributes)
+      patch :update, params: { id: group.to_param, group: attributes }
 
       group.reload
       group.number.should eq(37)
@@ -85,7 +85,7 @@ RSpec.describe Admin::GroupsController, type: :controller do
       group = create(:group)
 
       lambda do
-        delete(:destroy, id: group.to_param)
+        delete :destroy, params: { id: group.to_param }
       end.should change(Group, :count).by(-1)
       response.should redirect_to(admin_groups_path)
     end

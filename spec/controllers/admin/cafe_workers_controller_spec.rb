@@ -14,7 +14,7 @@ RSpec.describe Admin::CafeWorkersController, type: :controller do
     it 'assigns the requested cafe_view as @cafe_view' do
       shift = create(:cafe_shift)
 
-      get :new, cafe_shift_id: shift.to_param
+      get :new, params: { cafe_shift_id: shift.to_param }
       assigns(:cafe_view).shift.should eq(shift)
       assigns(:cafe_view).shift.cafe_worker.should be_a_new(CafeWorker)
       response.status.should eq(200)
@@ -22,7 +22,7 @@ RSpec.describe Admin::CafeWorkersController, type: :controller do
 
     it 'error cafe_shift is not found' do
       lambda do
-        get :new, cafe_shift_id: 9999
+        get :new, params: { cafe_shift_id: 9999 }
       end.should raise_error(ActionController::RoutingError)
     end
   end
@@ -37,11 +37,11 @@ RSpec.describe Admin::CafeWorkersController, type: :controller do
                      group: 'MUR' }
 
       lambda do
-        post(:create, cafe_shift_id: shift.to_param, cafe_worker: attributes)
+        post :create, params: { cafe_shift_id: shift.to_param, cafe_worker: attributes }
       end.should change(CafeWorker, :count).by(1)
 
       assigns(:cafe_view).shift.should eq(shift)
-      assigns(:cafe_view).shift.cafe_worker.user eq(user)
+      assigns(:cafe_view).shift.cafe_worker.user.should eq(user)
       assigns(:cafe_view).shift.cafe_worker.councils.should include(council)
       response.should redirect_to([:admin, shift])
     end
@@ -49,7 +49,7 @@ RSpec.describe Admin::CafeWorkersController, type: :controller do
     it 'invalid params' do
       shift = create(:cafe_shift)
       lambda do
-        post :create, cafe_shift_id: shift.to_param, cafe_worker: { user_id: nil }
+        post :create, params: { cafe_shift_id: shift.to_param, cafe_worker: { user_id: nil } }
       end.should change(CafeWorker, :count).by(0)
 
       assigns(:cafe_view).shift.should eq(shift)
@@ -66,8 +66,9 @@ RSpec.describe Admin::CafeWorkersController, type: :controller do
                       user: user,
                       competition: true)
 
-      patch(:update, cafe_shift_id: shift.to_param, id: worker.to_param,
-                     cafe_worker: { competition: false })
+      patch :update, params: { id: worker.to_param,
+                               cafe_shift_id: shift.to_param,
+                               cafe_worker: { competition: false } }
       shift.reload
       shift.cafe_worker.reload
 
@@ -79,8 +80,9 @@ RSpec.describe Admin::CafeWorkersController, type: :controller do
     it 'invalid_params' do
       shift = create(:cafe_shift)
       worker = create(:cafe_worker, cafe_shift: shift, competition: true)
-      patch(:update, cafe_shift_id: shift.to_param, id: worker.to_param,
-                     cafe_worker: { user_id: nil })
+      patch :update, params: { id: worker.to_param,
+                               cafe_shift_id: shift.to_param,
+                               cafe_worker: { user_id: nil } }
 
       assigns(:cafe_view).shift.should eq(shift)
       assigns(:cafe_view).shift.cafe_worker.should_not be_nil
@@ -96,7 +98,7 @@ RSpec.describe Admin::CafeWorkersController, type: :controller do
                       cafe_shift: shift,
                       user: user)
 
-      delete :destroy, cafe_shift_id: shift.to_param, id: worker.to_param
+      delete :destroy, params: { cafe_shift_id: shift.to_param, id: worker.to_param }
       response.should redirect_to([:admin, shift])
     end
   end

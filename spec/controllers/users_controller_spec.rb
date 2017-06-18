@@ -6,7 +6,7 @@ RSpec.describe UsersController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested user as @user' do
       user = create(:user)
-      get(:show, id: user.to_param)
+      get :show, params: { id: user.to_param }
 
       response.should have_http_status(200)
       assigns(:user).should eq(user)
@@ -27,7 +27,7 @@ RSpec.describe UsersController, type: :controller do
     it 'valid parameters' do
       user = create(:user, firstname: 'Hacke')
       controller.stub(:current_user).and_return(user)
-      patch(:update, user: { firstname: 'Hilbert' })
+      patch :update, params: { user: { firstname: 'Hilbert' } }
 
       user.reload
       user.firstname.should eq('Hilbert')
@@ -40,8 +40,7 @@ RSpec.describe UsersController, type: :controller do
     it 'valid parameters' do
       user = create(:user, email: 'hilbert@fsektionen.se')
       controller.stub(:current_user).and_return(user)
-      patch(:update_account, user: { email: 'alg@fsektionen.se',
-                                     current_password: '12345678' })
+      patch :update_account, params: { user: { email: 'alg@fsektionen.se', current_password: '12345678' } }
       user.reload
       user.unconfirmed_email.should eq('alg@fsektionen.se')
       response.should have_http_status(200)
@@ -51,8 +50,7 @@ RSpec.describe UsersController, type: :controller do
     it 'invalid parameters' do
       user = create(:user, email: 'hilbert@fsektionen.se')
       controller.stub(:current_user).and_return(user)
-      patch(:update_account, user: { email: 'alg@fsektionen.se',
-                                     current_password: 'not_valid' })
+      patch :update_account, params: { user: { email: 'alg@fsektionen.se', current_password: 'not_valid' } }
       user.reload
       user.unconfirmed_email.should be_nil
       response.should have_http_status(422)
@@ -64,9 +62,9 @@ RSpec.describe UsersController, type: :controller do
     it 'valid parameters' do
       user = create(:user)
       controller.stub(:current_user).and_return(user)
-      patch(:update_password, user: { password: 'testatesta',
-                                      password_confirmation: 'testatesta',
-                                      current_password: '12345678' })
+      patch :update_password, params: { user: { password: 'testatesta',
+                                                password_confirmation: 'testatesta',
+                                                current_password: '12345678' } }
       user.reload
       user.valid_password?('testatesta').should be_truthy
       response.should have_http_status(200)
@@ -77,9 +75,9 @@ RSpec.describe UsersController, type: :controller do
     it 'invalid parameters' do
       user = create(:user)
       controller.stub(:current_user).and_return(user)
-      patch(:update_password, user: { password: 'fail_testa',
-                                      password_confirmation: 'fail_fail',
-                                      current_password: '12345678' })
+      patch :update_password, params: { user: { password: 'fail_testa',
+                                                password_confirmation: 'fail_fail',
+                                                current_password: '12345678' } }
       user.reload
       user.valid_password?('fail_testa').should be_falsey
       response.should have_http_status(422)

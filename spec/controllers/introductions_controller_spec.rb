@@ -40,7 +40,7 @@ RSpec.describe IntroductionsController, type: :controller do
   describe 'GET #show' do
     it 'renders introduction' do
       introduction = create(:introduction, current: false)
-      get(:show, id: introduction.to_param)
+      get :show, params: { id: introduction.to_param }
 
       assigns(:introduction).should eq(introduction)
       response.should render_template(:index)
@@ -71,21 +71,21 @@ RSpec.describe IntroductionsController, type: :controller do
     it 'sets introduction by param' do
       introduction = create(:introduction)
 
-      get(:modal, id: introduction.to_param, date: 1.day.ago.to_date)
+      get :modal, params: { id: introduction.to_param, date: 1.day.ago.to_date }
       assigns(:introduction).should eq(introduction)
     end
 
     it 'sets date by param' do
       introduction = create(:introduction)
 
-      get(:modal, id: introduction.to_param, date: 1.day.ago.to_date)
+      get :modal, params: { id: introduction.to_param, date: 1.day.ago.to_date }
       assigns(:date).should eq(1.day.ago.to_date)
     end
 
     it 'sets date to today' do
       introduction = create(:introduction)
 
-      get(:modal, id: introduction.to_param, date: '--')
+      get :modal, params: { id: introduction.to_param, date: '--' }
       assigns(:date).should eq(Date.today)
     end
 
@@ -96,14 +96,14 @@ RSpec.describe IntroductionsController, type: :controller do
       event.save!
       create(:event, title: 'Not introduction', starts_at: 1.day.ago)
 
-      get(:modal, id: introduction.to_param, date: 1.day.ago.to_date)
+      get :modal, params: { id: introduction.to_param, date: 1.day.ago.to_date }
       assigns(:events).map(&:title).should eq(['Introduction event'])
     end
 
     it 'renders matrix' do
       introduction = create(:introduction)
 
-      get(:modal, id: introduction.to_param, date: 1.day.ago.to_date)
+      get :modal, params: { id: introduction.to_param, date: 1.day.ago.to_date }
       response.should have_http_status(303)
       response.should render_template(:matrix)
     end
@@ -111,7 +111,7 @@ RSpec.describe IntroductionsController, type: :controller do
     it 'renders modal if js' do
       introduction = create(:introduction)
 
-      xhr(:get, :modal, id: introduction.to_param, date: 1.day.ago.to_date)
+      get :modal, xhr: true, params: { id: introduction.to_param, date: 1.day.ago.to_date }
       response.should have_http_status(200)
     end
 
@@ -126,7 +126,7 @@ RSpec.describe IntroductionsController, type: :controller do
       english.categories << category
       english.save!
 
-      get(:modal, id: introduction.to_param, date: 1.day.ago.to_date, locale: :en)
+      get :modal, params: { id: introduction.to_param, date: 1.day.ago.to_date, locale: :en }
       assigns(:events).map(&:title_en).should eq(['English title'])
     end
   end

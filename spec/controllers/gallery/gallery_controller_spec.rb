@@ -23,7 +23,7 @@ RSpec.describe GalleryController, type: :controller do
       create(:album, images_count: 5, title: 'Not shown')
       create(:album, images_count: 5, title: 'Shown', start_date: 1.year.ago)
 
-      get(:index, year: 1.year.ago.year)
+      get :index, params: { year: 1.year.ago.year }
       assigns(:albums).map(&:title).should eq(['Shown'])
     end
   end

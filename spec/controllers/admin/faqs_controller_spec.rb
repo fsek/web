@@ -24,7 +24,7 @@ RSpec.describe Admin::FaqsController, type: :controller do
     it 'assigns given faq as @faq' do
       faq = create(:faq)
 
-      get(:edit, id: faq.to_param)
+      get :edit, params: { id: faq.to_param }
       assigns(:faq).should eq(faq)
     end
   end
@@ -44,7 +44,7 @@ RSpec.describe Admin::FaqsController, type: :controller do
                      category: 'Hilbert Café' }
 
       lambda do
-        post :create, faq: attributes
+        post :create, params: { faq: attributes }
       end.should change(Faq, :count).by(1)
 
       response.should redirect_to(edit_admin_faq_path(Faq.last))
@@ -52,7 +52,7 @@ RSpec.describe Admin::FaqsController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, faq: { question: '' }
+        post :create, params: { faq: { question: '' } }
       end.should change(Faq, :count).by(0)
 
       response.status.should eq(422)
@@ -64,7 +64,8 @@ RSpec.describe Admin::FaqsController, type: :controller do
     it 'valid parameters' do
       faq = create(:faq, question: 'A Bad Question')
 
-      patch :update, id: faq.to_param, faq: { question: 'A Good Question' }
+      attributes = { question: 'A Good Question' }
+      patch :update, params: { id: faq.to_param, faq: attributes }
       faq.reload
 
       response.should redirect_to(edit_admin_faq_path(faq))
@@ -74,7 +75,8 @@ RSpec.describe Admin::FaqsController, type: :controller do
     it 'invalid parameters' do
       faq = create(:faq, question: 'A Good Question')
 
-      patch :update, id: faq.to_param, faq: { question: '' }
+      attributes = { question: '' }
+      patch :update, params: { id: faq.to_param, faq: attributes }
       faq.reload
 
       faq.question.should eq('A Good Question')
@@ -88,7 +90,7 @@ RSpec.describe Admin::FaqsController, type: :controller do
       faq = create(:faq)
 
       lambda do
-        delete :destroy, id: faq.to_param
+        delete :destroy, params: { id: faq.to_param }
       end.should change(Faq, :count).by(-1)
 
       response.should redirect_to(admin_faqs_path)

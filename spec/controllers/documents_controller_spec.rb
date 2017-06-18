@@ -27,7 +27,7 @@ RSpec.describe DocumentsController, type: :controller do
       controller.stub(:render)
 
       controller.should_receive(:send_file).and_return(controller: :render, nothing: true)
-      get(:show, id: document.to_param)
+      get :show, params: { id: document.to_param }, format: :pdf
     end
   end
 end

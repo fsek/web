@@ -37,7 +37,7 @@ RSpec.describe Admin::PagesController, type: :controller do
                      visible: true }
 
       lambda do
-        post :create, page: attributes
+        post :create, params: { page: attributes }
       end.should change(Page, :count).by(1)
 
       response.should redirect_to(edit_admin_page_path(Page.last))
@@ -46,7 +46,7 @@ RSpec.describe Admin::PagesController, type: :controller do
     it 'invalid params' do
       attributes = { title_sv: 'Projekt', url: '' }
       lambda do
-        post :create, page: attributes
+        post :create, params: { page: attributes }
       end.should change(Page, :count).by(0)
 
       response.status.should eq(422)
@@ -59,7 +59,7 @@ RSpec.describe Admin::PagesController, type: :controller do
       page = create(:page, url: 'en_bra_url')
       attributes = { url: 'en_annan_url' }
 
-      patch :update, id: page.to_param, page: attributes
+      patch :update, params: { id: page.to_param, page: attributes }
 
       page.reload
       page.url.should eq('en_annan_url')
@@ -70,7 +70,7 @@ RSpec.describe Admin::PagesController, type: :controller do
       page = create(:page, url: 'en_bra_url')
       attributes = { url: '' }
 
-      patch :update, id: page.to_param, page: attributes
+      patch :update, params: { id: page.to_param, page: attributes }
 
       page.reload
       page.url.should eq('en_bra_url')
@@ -81,9 +81,10 @@ RSpec.describe Admin::PagesController, type: :controller do
     it 'uploads image' do
       page = create(:page)
       image = [Rack::Test::UploadedFile.new(File.open('app/assets/images/hilbert.jpg'))]
+      attributes = { image_upload: image }
 
       lambda do
-        patch :update, id: page.to_param, page: { image_upload: image }
+        patch :update, params: { id: page.to_param, page: attributes }
       end.should change(PageImage, :count).by(1)
 
       response.should redirect_to(edit_admin_page_path(page))
@@ -94,7 +95,7 @@ RSpec.describe Admin::PagesController, type: :controller do
     it 'delets page' do
       page = create(:page)
       lambda do
-        delete :destroy, id: page.to_param
+        delete :destroy, params: { id: page.to_param }
       end.should change(Page, :count).by(-1)
 
       response.should redirect_to(admin_pages_path)
@@ -108,7 +109,8 @@ RSpec.describe Admin::PagesController, type: :controller do
       image_id = image.id
 
       lambda do
-        xhr :delete, :destroy_image, id: page.to_param, image_id: image.to_param, format: :js
+        delete :destroy_image, xhr: true, format: :js, params: { id: page.to_param,
+                                                                 image_id: image.to_param }
       end.should change(PageImage, :count).by(-1)
 
       assigns(:id).should eq(image_id.to_s)

@@ -12,7 +12,7 @@ RSpec.describe AdventuresController, type: :controller do
       latest = create(:adventure, start_date: 1.days.ago, introduction: intro)
       create(:adventure, start_date: 2.days.ago, introduction: intro)
 
-      get(:index, introduction_id: intro)
+      get :index, params: { introduction_id: intro }
       response.should have_http_status(200)
       assigns(:adventure).should eq(latest)
     end
@@ -30,7 +30,7 @@ RSpec.describe AdventuresController, type: :controller do
       create(:adventure_group, adventure: adventure1, group: group2, points: 37)
       create(:adventure_group, adventure: adventure2, group: group2, points: 37)
 
-      get(:index, introduction_id: intro)
+      get :index, params: { introduction_id: intro }
       response.should have_http_status(200)
 
       assigns(:total).where(group: group1).first.points.should eq(37)
@@ -47,7 +47,7 @@ RSpec.describe AdventuresController, type: :controller do
       create(:adventure_group, adventure: adventure1, group: group, points: 37)
       create(:adventure_group, adventure: adventure2, group: group, points: 7)
 
-      get(:index, introduction_id: intro)
+      get :index, params: { introduction_id: intro }
       response.should have_http_status(200)
       assigns(:total).where(group: group).first.points.should eq(37)
     end
@@ -61,7 +61,7 @@ RSpec.describe AdventuresController, type: :controller do
       create(:adventure, introduction: intro)
       create(:adventure, introduction: intro)
 
-      get(:show, id: adventure.to_param, introduction_id: intro)
+      get :show, params: { id: adventure.to_param, introduction_id: intro }
 
       response.should have_http_status(200)
       assigns(:adventure).should eq(adventure)

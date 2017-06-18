@@ -21,7 +21,7 @@ RSpec.describe Admin::ToolsController, type: :controller do
       tool = create(:tool)
       create(:tool_renting, tool: tool)
       create(:tool_renting, tool: tool)
-      get :show, id: tool.to_param
+      get :show, params: { id: tool.to_param }
       response.status.should eq(200)
     end
   end
@@ -33,7 +33,7 @@ RSpec.describe Admin::ToolsController, type: :controller do
                      total: 2 }
 
       lambda do
-        post :create, tool: attributes
+        post :create, params: { tool: attributes }
       end.should change(Tool, :count).by(1)
 
       response.should redirect_to(admin_tools_path)
@@ -44,7 +44,7 @@ RSpec.describe Admin::ToolsController, type: :controller do
       attributes = { title: nil }
 
       lambda do
-        post :create, tool: attributes
+        post :create, params: { tool: attributes }
       end.should change(Tool, :count).by(0)
 
       response.status.should eq(422)
@@ -62,7 +62,7 @@ RSpec.describe Admin::ToolsController, type: :controller do
   describe 'GET #edit' do
     it 'loads edit view properly' do
       tool = create(:tool)
-      get :edit, id: tool.to_param
+      get :edit, params: { id: tool.to_param }
       assigns(:tool).should eq(tool)
       response.status.should eq(200)
     end
@@ -73,7 +73,7 @@ RSpec.describe Admin::ToolsController, type: :controller do
       tool = create(:tool, title: 'Skruvmejsel')
       attributes = { title: 'Hammare' }
 
-      patch :update, id: tool.to_param, tool: attributes
+      patch :update, params: { id: tool.to_param, tool: attributes }
 
       tool.reload
       tool.title.should eq('Hammare')
@@ -84,7 +84,7 @@ RSpec.describe Admin::ToolsController, type: :controller do
       tool = create(:tool, title: 'Skruvmejsel')
       attributes = { title: nil }
 
-      patch :update, id: tool.to_param, tool: attributes
+      patch :update, params: { id: tool.to_param, tool: attributes }
 
       tool.reload
       tool.title.should eq('Skruvmejsel')
@@ -98,7 +98,7 @@ RSpec.describe Admin::ToolsController, type: :controller do
       tool = create(:tool)
 
       lambda do
-        delete :destroy, id: tool.to_param
+        delete :destroy, params: { id: tool.to_param }
       end.should change(Tool, :count).by(-1)
 
       response.should redirect_to(admin_tools_path)

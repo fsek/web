@@ -15,7 +15,7 @@ RSpec.describe Admin::PostsController, type: :controller do
       council = create(:council)
       post = create(:post, council: council)
 
-      get(:edit, id: post.to_param, council_id: council.to_param)
+      get :edit, params: { id: post.to_param, council_id: council.to_param }
       assigns(:post).should eq(post)
       response.status.should eq(200)
     end
@@ -24,7 +24,7 @@ RSpec.describe Admin::PostsController, type: :controller do
   describe 'GET #new' do
     it 'assigns a new post as @post' do
       council = create(:council)
-      get(:new, council_id: council.to_param)
+      get :new, params: { council_id: council.to_param }
 
       assigns(:post).new_record?.should be_truthy
       assigns(:post).instance_of?(Post).should be_truthy
@@ -39,7 +39,7 @@ RSpec.describe Admin::PostsController, type: :controller do
       create(:post, council: council)
       create(:post, council: council)
 
-      get(:index, council_id: council.to_param)
+      get :index, params: { council_id: council.to_param }
       response.status.should eq(200)
 
       assigns(:posts).should eq(Post.all)
@@ -57,7 +57,7 @@ RSpec.describe Admin::PostsController, type: :controller do
                      description_sv: 'En webbmästare' }
 
       lambda do
-        post(:create, council_id: council.to_param, post: attributes)
+        post :create, params: { council_id: council.to_param, post: attributes }
       end.should change(Post, :count).by(1)
 
       response.should redirect_to(admin_council_posts_path(council))
@@ -69,7 +69,7 @@ RSpec.describe Admin::PostsController, type: :controller do
                      description_sv: 'En webbmästare' }
 
       lambda do
-        post(:create, council_id: council.to_param, post: attributes)
+        post :create, params: { council_id: council.to_param, post: attributes }
       end.should change(Post, :count).by(0)
 
       response.status.should eq(422)
@@ -82,9 +82,9 @@ RSpec.describe Admin::PostsController, type: :controller do
       council = create(:council)
       post = create(:post, council: council, title: 'Spindelman')
 
-      patch(:update, council_id: council.to_param,
-                     id: post.to_param,
-                     post: { title_sv: 'Deadpool' })
+      patch :update, params: { council_id: council.to_param,
+                               id: post.to_param,
+                               post: { title_sv: 'Deadpool' } }
 
       post.reload
       post.title.should eq('Deadpool')
@@ -95,9 +95,9 @@ RSpec.describe Admin::PostsController, type: :controller do
       council = create(:council)
       post = create(:post, council: council, title: 'Spindelman')
 
-      patch(:update, council_id: council.to_param,
-                     id: post.to_param,
-                     post: { title_sv: '' })
+      patch :update, params: { council_id: council.to_param,
+                               id: post.to_param,
+                               post: { title_sv: '' } }
 
       post.reload
       post.title.should eq('Spindelman')
@@ -112,7 +112,7 @@ RSpec.describe Admin::PostsController, type: :controller do
       post = create(:post, council: council)
 
       lambda do
-        delete(:destroy, council_id: council.to_param, id: post.to_param)
+        delete :destroy, params: { council_id: council.to_param, id: post.to_param }
       end.should change(Post, :count).by(-1)
 
       response.should redirect_to(admin_council_posts_path(council))

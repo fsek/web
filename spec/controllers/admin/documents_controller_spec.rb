@@ -24,7 +24,7 @@ RSpec.describe Admin::DocumentsController, type: :controller do
     it 'assigns given document as @document' do
       document = create(:document)
 
-      get(:edit, id: document.to_param)
+      get :edit, params: { id: document.to_param }
       assigns(:document).should eq(document)
     end
   end
@@ -42,7 +42,7 @@ RSpec.describe Admin::DocumentsController, type: :controller do
       attributes = attributes_for(:document)
 
       lambda do
-        post :create, document: attributes
+        post :create, params: { document: attributes }
       end.should change(Document, :count).by(1)
 
       response.should redirect_to(edit_admin_document_path(Document.last))
@@ -52,7 +52,7 @@ RSpec.describe Admin::DocumentsController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, document: { title: '' }
+        post :create, params: { document: { title: '' } }
       end.should change(Document, :count).by(0)
 
       response.status.should eq(422)
@@ -64,7 +64,8 @@ RSpec.describe Admin::DocumentsController, type: :controller do
     it 'valid parameters' do
       document = create(:document, title: 'A Bad Title', user_id: 99)
 
-      patch :update, id: document.to_param, document: { title: 'A Good Title' }
+      attributes = { title: 'A Good Title' }
+      patch :update, params: { id: document.to_param, document: attributes }
       document.reload
 
       response.should redirect_to(edit_admin_document_path(document))
@@ -75,7 +76,8 @@ RSpec.describe Admin::DocumentsController, type: :controller do
     it 'invalid parameters' do
       document = create(:document, title: 'A Good Title')
 
-      patch :update, id: document.to_param, document: { title: '' }
+      attributes = { title: '' }
+      patch :update, params: { id: document.to_param, document: attributes }
       document.reload
 
       document.title.should eq('A Good Title')
@@ -89,7 +91,7 @@ RSpec.describe Admin::DocumentsController, type: :controller do
       document = create(:document)
 
       lambda do
-        delete :destroy, id: document.to_param
+        delete :destroy, params: { id: document.to_param }
       end.should change(Document, :count).by(-1)
 
       response.should redirect_to(admin_documents_path)

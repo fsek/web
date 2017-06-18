@@ -24,7 +24,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
     it 'assigns given category as @category' do
       category = create(:category)
 
-      get(:edit, id: category.to_param)
+      get :edit, params: { id: category.to_param }
       assigns(:category).should eq(category)
     end
   end
@@ -42,7 +42,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
       attributes = { title_sv: 'Kategori 1', slug: 'kategori' }
 
       lambda do
-        post :create, category: attributes
+        post :create, params: { category: attributes }
       end.should change(Category, :count).by(1)
 
       response.should redirect_to(admin_categories_path)
@@ -50,7 +50,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, category: { slug: '' }
+        post :create, params: { category: { slug: '' } }
       end.should change(Category, :count).by(0)
 
       response.status.should eq(422)
@@ -62,7 +62,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
     it 'valid parameters' do
       category = create(:category, title_en: 'A Bad Title')
 
-      patch :update, id: category.to_param, category: { title_en: 'A Good Title' }
+      patch :update, params: { id: category.to_param, category: { title_en: 'A Good Title' } }
       category.reload
 
       category.title_en.should eq('A Good Title')
@@ -72,7 +72,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
     it 'invalid parameters' do
       category = create(:category, slug: 'good')
 
-      patch :update, id: category.to_param, category: { slug: '' }
+      patch :update, params: { id: category.to_param, category: { slug: '' } }
       category.reload
 
       category.slug.should eq('good')
@@ -86,7 +86,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
       category = create(:category)
 
       lambda do
-        delete :destroy, id: category.to_param
+        delete :destroy, params: { id: category.to_param }
       end.should change(Category, :count).by(-1)
 
       response.should redirect_to(admin_categories_path)

@@ -39,7 +39,9 @@ RSpec.describe CafeController, type: :controller do
     it 'loads ladybug page' do
       date = Time.zone.local(2015, 03, 25, 8)
 
-      get :ladybug, ladybug: { date: date }
+      attributes = { date: date }
+      get :ladybug, params: { ladybug: attributes }
+
       response.status.should eq(200)
       assigns(:date).should eq(date)
     end

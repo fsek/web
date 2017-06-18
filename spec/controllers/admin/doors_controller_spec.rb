@@ -24,7 +24,7 @@ RSpec.describe Admin::DoorsController, type: :controller do
     it 'assigns given door as @door' do
       door = create(:door)
 
-      get(:edit, id: door.to_param)
+      get :edit, params: { id: door.to_param }
       assigns(:door).should eq(door)
     end
   end
@@ -43,7 +43,7 @@ RSpec.describe Admin::DoorsController, type: :controller do
                      description: 'En beskrivning' }
 
       lambda do
-        post :create, door: attributes
+        post :create, params: { door: attributes }
       end.should change(Door, :count).by(1)
 
       response.should redirect_to(edit_admin_door_path(Door.last))
@@ -51,7 +51,7 @@ RSpec.describe Admin::DoorsController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, door: { title: '' }
+        post :create, params: { door: { title: '' } }
       end.should change(Door, :count).by(0)
 
       response.status.should eq(422)
@@ -63,7 +63,8 @@ RSpec.describe Admin::DoorsController, type: :controller do
     it 'valid parameters' do
       door = create(:door, title: 'A Bad Title')
 
-      patch :update, id: door.to_param, door: { title: 'A Good Title' }
+      attributes = { title: 'A Good Title' }
+      patch :update, params: { id: door.to_param, door: attributes }
       door.reload
 
       response.should redirect_to(edit_admin_door_path(door))
@@ -72,7 +73,8 @@ RSpec.describe Admin::DoorsController, type: :controller do
     it 'invalid parameters' do
       door = create(:door, title: 'A Good Title')
 
-      patch :update, id: door.to_param, door: { title: '' }
+      attributes = { title: '' }
+      patch :update, params: { id: door.to_param, door: attributes }
       door.reload
 
       door.title.should eq('A Good Title')
@@ -86,7 +88,7 @@ RSpec.describe Admin::DoorsController, type: :controller do
       door = create(:door)
 
       lambda do
-        delete :destroy, id: door.to_param
+        delete :destroy, params: { id: door.to_param }
       end.should change(Door, :count).by(-1)
 
       response.should redirect_to(admin_doors_path)

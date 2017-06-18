@@ -38,7 +38,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
                      post_id: postt.id }
 
       lambda do
-        post :create, candidate: attributes
+        post :create, params: { candidate: attributes }
       end.should change(Candidate, :count).by(1)
 
       response.should redirect_to(candidates_path)
@@ -51,7 +51,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
                      post_id: nil }
 
       lambda do
-        post :create, candidate: attributes
+        post :create, params: { candidate: attributes }
       end.should change(Candidate, :count).by(0)
 
       response.status.should eq(422)
@@ -64,7 +64,7 @@ RSpec.describe Elections::CandidatesController, type: :controller do
       candidate = create(:candidate)
 
       lambda do
-        delete :destroy, id: candidate.to_param
+        delete :destroy, params: { id: candidate.to_param }
       end.should change(Candidate, :count).by(-1)
 
       response.should redirect_to(candidates_path)

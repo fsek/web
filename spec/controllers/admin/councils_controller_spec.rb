@@ -33,7 +33,7 @@ RSpec.describe Admin::CouncilsController, type: :controller do
     it 'assigns given council as @council' do
       council = create(:council)
 
-      get(:edit, id: council.to_param)
+      get :edit, params: { id: council.to_param }
       assigns(:council).should eq(council)
     end
   end
@@ -44,7 +44,7 @@ RSpec.describe Admin::CouncilsController, type: :controller do
                      url: 'pryl' }
 
       lambda do
-        post :create, council: attributes
+        post :create, params: { council: attributes }
       end.should change(Council, :count).by(1)
 
       response.should redirect_to(edit_admin_council_path(Council.last))
@@ -53,7 +53,7 @@ RSpec.describe Admin::CouncilsController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, council: { title_sv: '' }
+        post :create, params: { council: { title_sv: '' } }
       end.should change(Council, :count).by(0)
 
       response.status.should eq(422)
@@ -65,7 +65,8 @@ RSpec.describe Admin::CouncilsController, type: :controller do
     it 'valid parameters' do
       council = create(:council, title: 'A Bad Title')
 
-      patch :update, id: council.to_param, council: { title_sv: 'A Good Title' }
+      attributes = { title_sv: 'A Good Title' }
+      patch :update, params: { id: council.to_param, council: attributes }
       council.reload
 
       response.should redirect_to(edit_admin_council_path(council))
@@ -75,7 +76,8 @@ RSpec.describe Admin::CouncilsController, type: :controller do
     it 'invalid parameters' do
       council = create(:council, title: 'A Good Title')
 
-      patch :update, id: council.to_param, council: { title_sv: '' }
+      attributes = { title_sv: '' }
+      patch :update, params: { id: council.to_param, council: attributes }
       council.reload
 
       council.title.should eq('A Good Title')
@@ -89,7 +91,7 @@ RSpec.describe Admin::CouncilsController, type: :controller do
       council = create(:council)
 
       lambda do
-        delete :destroy, id: council.to_param
+        delete :destroy, params: { id: council.to_param }
       end.should change(Council, :count).by(-1)
 
       response.should redirect_to(admin_councils_path)

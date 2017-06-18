@@ -14,7 +14,7 @@ RSpec.describe Admin::PageElementsController, type: :controller do
     it 'assigns a new page_element as @page_element' do
       page = create(:page)
 
-      get(:new, page_id: page.to_param)
+      get :new, params: { page_id: page.to_param }
 
       assigns(:page).should eq(page)
       assigns(:page_element).new_record?.should be_truthy
@@ -27,7 +27,7 @@ RSpec.describe Admin::PageElementsController, type: :controller do
       page = create(:page)
       page_element = create(:page_element, page: page)
 
-      get(:edit, page_id: page.to_param, id: page_element.to_param)
+      get :edit, params: { page_id: page.to_param, id: page_element.to_param }
 
       assigns(:page_element).should eq(page_element)
 
@@ -41,7 +41,7 @@ RSpec.describe Admin::PageElementsController, type: :controller do
       create(:page_element, page: page)
       create(:page_element, page: page)
 
-      get(:index, page_id: page.to_param)
+      get :index, params: { page_id: page.to_param }
       response.should be_success
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe Admin::PageElementsController, type: :controller do
                      index: 10 }
 
       lambda do
-        post :create, page_id: page, page_element: attributes
+        post :create, params: { page_id: page, page_element: attributes }
       end.should change(PageElement, :count).by(1)
 
       response.should redirect_to(edit_admin_page_page_element_path(page, PageElement.last))
@@ -69,7 +69,7 @@ RSpec.describe Admin::PageElementsController, type: :controller do
                      element_type: '' }
 
       lambda do
-        post :create, page_id: page, page_element: attributes
+        post :create, params: { page_id: page, page_element: attributes }
       end.should change(PageElement, :count).by(0)
 
       response.status.should eq(422)
@@ -84,8 +84,9 @@ RSpec.describe Admin::PageElementsController, type: :controller do
                                       headline_sv: 'Om',
                                       headline_en: 'About')
 
-      patch(:update, page_id: page.to_param, id: element.to_param,
-                     page_element: { headline_sv: 'Inte om' })
+      patch :update, params: { id: element.to_param,
+                               page_id: page.to_param,
+                               page_element: { headline_sv: 'Inte om' } }
 
       element.reload
       element.headline.should eq('Inte om')
@@ -96,8 +97,9 @@ RSpec.describe Admin::PageElementsController, type: :controller do
       page = create(:page)
       element = create(:page_element, page: page, element_type: PageElement::TEXT)
 
-      patch(:update, page_id: page.to_param, id: element.to_param,
-                     page_element: { element_type: '' })
+      patch :update, params: { id: element.to_param,
+                               page_id: page.to_param,
+                               page_element: { element_type: '' } }
 
       element.reload
       element.element_type.should eq(PageElement::TEXT)
@@ -112,7 +114,7 @@ RSpec.describe Admin::PageElementsController, type: :controller do
       element = create(:page_element, page: page)
 
       lambda do
-        delete :destroy, page_id: page, id: element
+        delete :destroy, params: { page_id: page, id: element }
       end.should change(PageElement, :count).by(-1)
 
       response.should redirect_to(edit_admin_page_path(page))

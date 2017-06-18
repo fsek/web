@@ -35,7 +35,7 @@ RSpec.describe FaqsController, type: :controller do
       attributes = { question: 'Vem var Hilbert?' }
 
       lambda do
-        post :create, faq: attributes
+        post :create, params: { faq: attributes }
       end.should change(Faq, :count).by(1)
 
       response.should redirect_to(faqs_path)
@@ -43,7 +43,7 @@ RSpec.describe FaqsController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, faq: { question: '' }
+        post :create, params: { faq: { question: '' } }
       end.should change(Faq, :count).by(0)
 
       response.status.should eq(422)

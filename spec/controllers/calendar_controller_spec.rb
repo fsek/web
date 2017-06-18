@@ -16,7 +16,7 @@ RSpec.describe CalendarsController, type: :controller do
       it 'shows events between from and end' do
         event = create(:event, starts_at: Time.zone.now)
         create(:event, starts_at: 5.day.from_now)
-        get(:index, format: :json, start: 1.day.ago, end: 1.day.from_now)
+        get :index, format: :json, params: { start: 1.day.ago, end: 1.day.from_now }
         response.status.should eq(200)
         response.body.should eq([event.as_json].to_json)
       end
@@ -25,14 +25,14 @@ RSpec.describe CalendarsController, type: :controller do
 
   describe 'GET #export' do
     it 'set calendar for export' do
-      get(:export, format: :ics)
+      get :export, format: :ics
       response.status.should eq(200)
     end
 
     context 'locale' do
       it 'returns given locale' do
         create(:event, title_sv: 'Not shown', title_en: 'English title')
-        get(:export, format: :ics, locale: 'en')
+        get :export, format: :ics, params: { locale: 'en' }
         response.body.should include('SUMMARY:English title')
         response.should have_http_status(200)
       end
@@ -41,7 +41,7 @@ RSpec.describe CalendarsController, type: :controller do
         create(:event, title_sv: 'Visa som standard',
                        title_en: 'Not shown English title')
 
-        get(:export, format: :ics)
+        get :export, format: :ics
         response.body.should include('SUMMARY:Visa som standard')
         response.should have_http_status(200)
       end
@@ -51,7 +51,10 @@ RSpec.describe CalendarsController, type: :controller do
       it 'returns event after given date' do
         create(:event, title_sv: 'After date', starts_at: 5.days.from_now)
         create(:event, title_sv: 'Before date', starts_at: 5.days.ago)
-        get(:export, format: :ics, calendar: { after_date: Time.zone.now.to_date.to_s })
+
+        attributes = { after_date: Time.zone.now.to_date.to_s }
+        get :export, format: :ics, params: { calendar: attributes }
+
         response.body.should include('SUMMARY:After date')
         response.body.should_not include('SUMMARY:Before date')
         response.should have_http_status(200)
@@ -60,7 +63,7 @@ RSpec.describe CalendarsController, type: :controller do
       it 'defaults to 2 weeks ago' do
         create(:event, title_sv: 'Less than 14 days ago', starts_at: 13.days.ago)
         create(:event, title_sv: 'More than 14 days ago', starts_at: 15.days.ago)
-        get(:export, format: :ics)
+        get :export, format: :ics
         response.body.should include('SUMMARY:Less than 14 days ago')
         response.body.should_not include('SUMMARY:More than 14 days ago')
         response.should have_http_status(200)
@@ -71,7 +74,7 @@ RSpec.describe CalendarsController, type: :controller do
   describe 'GET #introduction' do
     it 'renders introduction' do
       create(:introduction, current: true)
-      get(:introduction, format: :ics)
+      get :introduction, format: :ics
       response.status.should eq(200)
     end
 
@@ -83,14 +86,14 @@ RSpec.describe CalendarsController, type: :controller do
       first_event.save!
       create(:event, title: 'Not shown', starts_at: 15.days.from_now)
 
-      get(:introduction, format: :ics)
+      get :introduction, format: :ics
       response.body.should include('SUMMARY:Shown')
       response.body.should_not include('SUMMARY:Not shown')
       response.should have_http_status(200)
     end
 
     it 'redirects to export without Introduction' do
-      get(:introduction, format: :ics)
+      get :introduction, format: :ics
       response.should have_http_status(404)
     end
   end

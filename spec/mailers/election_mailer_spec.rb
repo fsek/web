@@ -67,7 +67,6 @@ RSpec.describe ElectionMailer, type: :mailer do
                         nominate_mail: 'This is the nomination email')
 
       postt = create(:post, :autumn, :general, board: true)
-      election.posts << postt
       candidate = create(:candidate, post: postt, election: election)
 
       mail = ElectionMailer.candidate_email(candidate.id)
@@ -81,7 +80,6 @@ RSpec.describe ElectionMailer, type: :mailer do
                         nominate_mail: 'This is the nomination email')
 
       postt = create(:post, :autumn, :general, board: false)
-      election.posts << postt
       candidate = create(:candidate, post: postt, election: election)
 
       mail = ElectionMailer.candidate_email(candidate.id)
@@ -95,7 +93,6 @@ RSpec.describe ElectionMailer, type: :mailer do
                         nominate_mail: 'This is the nomination email')
 
       postt = create(:post, :autumn, :board, board: false)
-      election.posts << postt
       candidate = create(:candidate, post: postt, election: election)
 
       mail = ElectionMailer.candidate_email(candidate.id)

@@ -27,7 +27,7 @@ RSpec.describe WorkPostsController, type: :controller do
     it 'assings work_post as @work_post' do
       work_post = create(:work_post)
 
-      get(:show, id: work_post.to_param)
+      get :show, params: { id: work_post.to_param }
 
       response.status.should eq(200)
       assigns(:work_post).should eq(work_post)

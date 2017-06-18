@@ -21,7 +21,7 @@ RSpec.describe Admin::EventsController, type: :controller do
     it 'assigns a edit event as @event' do
       event = create(:event)
 
-      get(:edit, id: event.to_param)
+      get :edit, params: { id: event.to_param }
       assigns(:event).should eq(event)
     end
   end
@@ -44,7 +44,7 @@ RSpec.describe Admin::EventsController, type: :controller do
                      starts_at: 5.days.from_now,
                      ends_at: 7.days.from_now }
       lambda do
-        post :create, event: attributes
+        post :create, params: { event: attributes }
       end.should change(Event, :count).by(1)
 
       response.should redirect_to(edit_admin_event_path(Event.last))
@@ -52,7 +52,7 @@ RSpec.describe Admin::EventsController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, event: { title_sv: 'Not enough' }
+        post :create, params: { event: { title_sv: 'Not enough' } }
       end.should change(Event, :count).by(0)
 
       response.should render_template(:new)
@@ -63,15 +63,20 @@ RSpec.describe Admin::EventsController, type: :controller do
   describe 'PATCH #update' do
     it 'valid parameters' do
       event = create(:event, title: 'Välkomstgasque')
-      patch :update, id: event.to_param, event: { title_sv: 'Nollegasque' }
+
+      attributes = { title_sv: 'Nollegasque' }
+      patch :update, params: { id: event.to_param, event: attributes }
       event.reload
+
       event.title.should eq('Nollegasque')
       response.should redirect_to(edit_admin_event_path(event))
     end
 
     it 'invalid parameters' do
       event = create(:event, title: 'Välkomstgasque')
-      patch :update, id: event.to_param, event: { title_sv: '' }
+
+      attributes = { title_sv: '' }
+      patch :update, params: { id: event.to_param, event: attributes }
 
       response.should render_template(:edit)
       response.status.should eq(422)
@@ -82,7 +87,7 @@ RSpec.describe Admin::EventsController, type: :controller do
     it 'removes event' do
       event = create(:event)
       lambda do
-        delete(:destroy, id: event.to_param)
+        delete :destroy, params: { id: event.to_param }
       end.should change(Event, :count).by(-1)
       response.should redirect_to(admin_events_path)
     end

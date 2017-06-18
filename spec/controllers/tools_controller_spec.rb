@@ -21,7 +21,7 @@ RSpec.describe ToolsController, type: :controller do
       tool = create(:tool)
       create(:tool_renting, tool: tool)
       create(:tool_renting, tool: tool)
-      get :show, id: tool.to_param
+      get :show, params: { id: tool.to_param }
       response.status.should eq(200)
     end
   end

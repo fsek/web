@@ -23,7 +23,7 @@ RSpec.describe Admin::PermissionsController, type: :controller do
       permission = create(:permission, name: 'First', subject_class: 'cafe')
       create(:permission_post, post: the_post, permission: permission)
 
-      get(:show_post, post_id: the_post.to_param)
+      get :show_post, params: { post_id: the_post.to_param }
       assigns(:permissions).map(&:name).should eq(['First', 'Second'])
     end
   end
@@ -38,8 +38,8 @@ RSpec.describe Admin::PermissionsController, type: :controller do
 
       other_permission = create(:permission, name: 'New')
 
-      patch(:update_post, post_id: the_post.to_param,
-                          post: { permission_ids: [other_permission.to_param] })
+      post_attributes = { permission_ids: [other_permission.to_param] }
+      patch :update_post, params: { post_id: the_post.to_param, post: post_attributes }
 
       response.should redirect_to(admin_permissions_path)
       the_post.reload

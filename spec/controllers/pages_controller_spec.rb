@@ -14,7 +14,7 @@ RSpec.describe PagesController, type: :controller do
       page = create(:page, public: true, visible: true)
       allow(user).to receive(:member?) { false }
 
-      get(:show, id: page.to_param)
+      get :show, params: { id: page.to_param }
       assigns(:page).should eq(page)
     end
 
@@ -23,7 +23,7 @@ RSpec.describe PagesController, type: :controller do
       allow(user).to receive(:member?) { false }
 
       lambda do
-        get(:show, id: page.to_param)
+        get :show, params: { id: page.to_param }
       end.should raise_error(ActionController::RoutingError)
     end
 
@@ -31,7 +31,7 @@ RSpec.describe PagesController, type: :controller do
       page = create(:page, public: false, visible: true)
       allow(user).to receive(:member?) { true }
 
-      get(:show, id: page.to_param)
+      get :show, params: { id: page.to_param }
       assigns(:page).should eq(page)
     end
 
@@ -40,7 +40,7 @@ RSpec.describe PagesController, type: :controller do
       allow(user).to receive(:member?) { true }
 
       lambda do
-        get(:show, id: page.to_param)
+        get :show, params: { id: page.to_param }
       end.should raise_error(ActionController::RoutingError)
     end
   end

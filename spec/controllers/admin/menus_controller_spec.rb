@@ -22,7 +22,7 @@ RSpec.describe Admin::MenusController, type: :controller do
     it 'assigns given menu as @menu' do
       menu = create(:menu)
 
-      get(:edit, id: menu.to_param)
+      get :edit, params: { id: menu.to_param }
       assigns(:menu).should eq(menu)
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe Admin::MenusController, type: :controller do
                      blank_p: false }
 
       lambda do
-        post :create, menu: attributes
+        post :create, params: { menu: attributes }
       end.should change(Menu, :count).by(1)
 
       response.should redirect_to(admin_menus_path)
@@ -56,7 +56,7 @@ RSpec.describe Admin::MenusController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, menu: { name_sv: '' }
+        post :create, params: { menu: { name_sv: '' } }
       end.should change(Menu, :count).by(0)
 
       response.status.should eq(422)
@@ -68,7 +68,8 @@ RSpec.describe Admin::MenusController, type: :controller do
     it 'valid parameters' do
       menu = create(:menu, name: 'Aftonbladet')
 
-      patch :update, id: menu.to_param, menu: { name_sv: 'Bildgalleri' }
+      attributes = { name_sv: 'Bildgalleri' }
+      patch :update, params: { id: menu.to_param, menu: attributes }
       menu.reload
 
       response.should redirect_to(edit_admin_menu_path(menu))
@@ -78,7 +79,8 @@ RSpec.describe Admin::MenusController, type: :controller do
     it 'invalid parameters' do
       menu = create(:menu, name: 'Bildgalleri')
 
-      patch :update, id: menu.to_param, menu: { name_sv: '' }
+      attributes = { name_sv: '' }
+      patch :update, params: { id: menu.to_param, menu: attributes }
       menu.reload
 
       menu.name.should eq('Bildgalleri')
@@ -92,7 +94,7 @@ RSpec.describe Admin::MenusController, type: :controller do
       menu = create(:menu)
 
       lambda do
-        delete :destroy, id: menu.to_param
+        delete :destroy, params: { id: menu.to_param }
       end.should change(Menu, :count).by(-1)
 
       response.should redirect_to(admin_menus_path)
