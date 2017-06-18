@@ -27,7 +27,6 @@ module Fsek
 
     config.time_zone = 'Stockholm'
     config.filter_parameters += [:password, :password_confirmation, :message]
-    config.active_record.raise_in_transactional_callbacks = true
     # Set taken from
     # https://github.com/rails/rails-html-sanitizer/blob/master/lib/rails/html/sanitizer.rb#L107
     WHITE_HTML_TAGS = Set.new(%w(strong em b i p code pre tt samp kbd var sub

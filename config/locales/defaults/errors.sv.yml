@@ -1,5 +1,5 @@
 sv:
-  errors:
+  errors: &errors
     format: "%{message}"
     messages:
       accepted: måste vara accepterad
@@ -25,6 +25,7 @@ sv:
       restrict_dependent_destroy:
         one: Kan inte förinta objektet då det finns ett beroende %{record}
         other: Kan inte förinta objektet då det finns beroende %{record}
+      required: måste anges
       taken: används redan
       too_long: är för lång (maximum är %{count} tecken)
       too_short: är för kort (minimum är %{count} tecken)
@@ -47,3 +48,11 @@ sv:
       header:
         one: Ett fel förhindrade denna %{model} från att sparas
         other: "%{count} fel förhindrade denna %{model} från att sparas"
+
+  activemodel:
+    errors:
+      <<: *errors
+
+  activerecord:
+    errors:
+      <<: *errors

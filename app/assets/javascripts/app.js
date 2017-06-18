@@ -16,10 +16,10 @@ var App = function () {
 
         /*Tooltips*/
         jQuery('.tooltips').tooltip();
-        jQuery('.tooltips-show').tooltip('show');      
-        jQuery('.tooltips-hide').tooltip('hide');       
-        jQuery('.tooltips-toggle').tooltip('toggle');       
-        jQuery('.tooltips-destroy').tooltip('destroy');       
+        jQuery('.tooltips-show').tooltip('show');
+        jQuery('.tooltips-hide').tooltip('hide');
+        jQuery('.tooltips-toggle').tooltip('toggle');
+        jQuery('.tooltips-destroy').tooltip('destroy');
 
         /*Popovers*/
         jQuery('.popovers').popover();
@@ -29,7 +29,7 @@ var App = function () {
         jQuery('.popovers-destroy').popover('destroy');
     }
 
-    function handleSearch() {    
+    function handleSearch() {
         jQuery('.search').click(function () {
             if(jQuery('.search-btn').hasClass('fa-search')){
                 jQuery('.search-open').fadeIn(500);
@@ -39,17 +39,17 @@ var App = function () {
                 jQuery('.search-open').fadeOut(500);
                 jQuery('.search-btn').addClass('fa-search');
                 jQuery('.search-btn').removeClass('fa-times');
-            }   
-        }); 
+            }
+        });
     }
 
     function handleToggle() {
         jQuery('.list-toggle').on('click', function() {
             jQuery(this).toggleClass('active');
-        });        
+        });
     }
 
-    function handleSwitcher() {    
+    function handleSwitcher() {
         var panel = jQuery('.style-switcher');
 
         jQuery('.style-switcher-btn').click(function () {
@@ -59,7 +59,7 @@ var App = function () {
         jQuery('.theme-close').click(function () {
             jQuery('.style-switcher').hide();
         });
-        
+
         jQuery('li', panel).click(function () {
             var color = jQuery(this).attr("data-style");
             var data_header = jQuery(this).attr("data-header");
@@ -108,38 +108,12 @@ var App = function () {
 
     return {
         init: function () {
-            handleBootstrap();            
+            handleBootstrap();
             handleSearch();
             handleToggle();
             handleSwitcher();
             handleBoxed();
             handleHeader();
-        },        
-
-        initFancybox: function () {
-            jQuery(".fancybox-button").fancybox({
-            groupAttr: 'data-rel',
-            prevEffect: 'none',
-            nextEffect: 'none',
-            closeBtn: true,
-            helpers: {
-                title: {
-                    type: 'inside'
-                    }
-                }
-            });
-
-            jQuery(".iframe").fancybox({
-                maxWidth    : 800,
-                maxHeight   : 600,
-                fitToView   : false,
-                width       : '70%',
-                height      : '70%',
-                autoSize    : false,
-                closeClick  : false,
-                openEffect  : 'none',
-                closeEffect : 'none'
-            });            
         },
 
         initBxSlider: function () {
@@ -148,21 +122,21 @@ var App = function () {
                 minSlides: 4,
                 slideWidth: 360,
                 slideMargin: 10,
-            });            
+            });
 
             jQuery('.bxslider1').bxSlider({
                 minSlides: 3,
                 maxSlides: 3,
                 slideWidth: 360,
                 slideMargin: 10
-            });            
+            });
 
             jQuery('.bxslider2').bxSlider({
                 minSlides: 2,
                 maxSlides: 2,
                 slideWidth: 360,
                 slideMargin: 10
-            });            
+            });
         },
 
         initCounter: function () {
