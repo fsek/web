@@ -9,7 +9,7 @@ RSpec.describe Admin::ElectionsController, type: :controller do
     it 'assigns the requested election as @election' do
       election = create(:election)
 
-      get(:show, id: election.to_param)
+      get :show, params: { id: election.to_param }
       assigns(:election).should eq(election)
       response.status.should eq(200)
     end

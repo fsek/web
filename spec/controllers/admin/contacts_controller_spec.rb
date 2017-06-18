@@ -28,7 +28,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
     it 'succeeds' do
       contact = create(:contact)
 
-      get :edit, id: contact.to_param
+      get :edit, params: { id: contact.to_param }
 
       response.should be_success
       assigns(:contact).should eq(contact)
@@ -43,7 +43,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
                      text_sv: 'Jag kan svara på mejl' }
 
       lambda do
-        post :create, contact: attributes
+        post :create, params: { contact: attributes }
       end.should change(Contact, :count).by(1)
 
       response.should redirect_to(edit_admin_contact_path(Contact.last))
@@ -52,7 +52,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
 
     it 'invalid params' do
       lambda do
-        post :create, contact: { name_sv: nil }
+        post :create, params: { contact: { name_sv: nil } }
       end.should change(Contact, :count).by(0)
 
       response.should render_template(:new)
@@ -64,7 +64,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
     it 'valid params' do
       contact = create(:contact, name: 'David')
 
-      post :update, id: contact.to_param, contact: { name_sv: 'Titel' }
+      post :update, params: { id: contact.to_param, contact: { name_sv: 'Titel' } }
 
       contact.reload
       response.should redirect_to(edit_admin_contact_path(contact))
@@ -74,7 +74,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
 
     it 'valid params' do
       contact = create(:contact, name: 'David')
-      post :update, id: contact.to_param, contact: { name_sv: '' }
+      post :update, params: { id: contact.to_param, contact: { name_sv: '' } }
       contact.reload
 
       contact.name.should eq('David')
@@ -88,7 +88,7 @@ RSpec.describe Admin::ContactsController, type: :controller do
       contact = create(:contact)
 
       lambda do
-        delete :destroy, id: contact.to_param
+        delete :destroy, params: { id: contact.to_param }
       end.should change(Contact, :count).by(-1)
 
       response.should redirect_to(admin_contacts_path)

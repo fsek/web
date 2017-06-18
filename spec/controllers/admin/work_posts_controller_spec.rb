@@ -24,7 +24,7 @@ RSpec.describe Admin::WorkPostsController, type: :controller do
     it 'assigns given work_post as @work_post' do
       work_post = create(:work_post)
 
-      get(:edit, id: work_post.to_param)
+      get :edit, params: { id: work_post.to_param }
       assigns(:work_portal).current_post.should eq(work_post)
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe Admin::WorkPostsController, type: :controller do
                      company: 'Axis' }
 
       lambda do
-        post :create, work_post: attributes
+        post :create, params: { work_post: attributes }
       end.should change(WorkPost, :count).by(1)
 
       response.should redirect_to(edit_admin_work_post_path(WorkPost.last))
@@ -57,7 +57,7 @@ RSpec.describe Admin::WorkPostsController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, work_post: { title: '' }
+        post :create, params: { work_post: { title: '' } }
       end.should change(WorkPost, :count).by(0)
 
       response.status.should eq(422)
@@ -68,8 +68,9 @@ RSpec.describe Admin::WorkPostsController, type: :controller do
   describe 'PATCH #update' do
     it 'valid parameters' do
       work_post = create(:work_post, title: 'A Bad Title', user_id: 99)
+      attributes = { title: 'A Good Title' }
 
-      patch :update, id: work_post.to_param, work_post: { title: 'A Good Title' }
+      patch :update, params: { id: work_post.to_param, work_post: attributes }
       work_post.reload
 
       response.should redirect_to(edit_admin_work_post_path(work_post))
@@ -79,8 +80,9 @@ RSpec.describe Admin::WorkPostsController, type: :controller do
 
     it 'invalid parameters' do
       work_post = create(:work_post, title: 'A Good Title')
+      attributes = { title: '' }
 
-      patch :update, id: work_post.to_param, work_post: { title: '' }
+      patch :update, params: { id: work_post.to_param, work_post: attributes }
       work_post.reload
 
       work_post.title.should eq('A Good Title')
@@ -94,7 +96,7 @@ RSpec.describe Admin::WorkPostsController, type: :controller do
       work_post = create(:work_post)
 
       lambda do
-        delete :destroy, id: work_post.to_param
+        delete :destroy, params: { id: work_post.to_param }
       end.should change(WorkPost, :count).by(-1)
 
       response.should redirect_to(admin_work_posts_path)

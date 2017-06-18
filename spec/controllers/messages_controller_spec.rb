@@ -17,7 +17,7 @@ RSpec.describe MessagesController, type: :controller do
       Message.create!(content: 'First', user: user, groups: [group], created_at: 1.minute.ago,
                       introduction: group.introduction)
 
-      get(:index, group_id: group.to_param)
+      get :index, params: { group_id: group.to_param }
       response.should have_http_status(200)
       assigns(:messages).map(&:content).should eq(['First', 'Second', 'Last'])
     end
@@ -26,7 +26,7 @@ RSpec.describe MessagesController, type: :controller do
   describe 'GET #new' do
     it 'sets new message' do
       group = create(:group)
-      get(:new, group_id: group.to_param)
+      get :new, params: { group_id: group.to_param }
 
       response.should have_http_status(200)
       assigns(:message).should be_a_new(Message)
@@ -40,7 +40,7 @@ RSpec.describe MessagesController, type: :controller do
       group.users << user
       attributes = { content: 'Most amazing thing just happened!' }
       lambda do
-        post(:create, group_id: group.to_param, message: attributes)
+        post :create, params: { group_id: group.to_param, message: attributes }
       end.should change(Message, :count).by(1)
 
       response.should redirect_to(group_path(group))
@@ -53,7 +53,7 @@ RSpec.describe MessagesController, type: :controller do
       group.users << user
       attributes = { content: nil }
       lambda do
-        post(:create, group_id: group.to_param, message: attributes)
+        post :create, params: { group_id: group.to_param, message: attributes }
       end.should change(Message, :count).by(0)
 
       response.should have_http_status(422)
@@ -73,7 +73,7 @@ RSpec.describe MessagesController, type: :controller do
                           introduction: group.introduction)
       request.env['HTTP_REFERER'] = group_path(group)
       lambda do
-        delete(:destroy, group_id: group.to_param, id: m.to_param)
+        delete :destroy, params: { group_id: group.to_param, id: m.to_param }
       end.should change(Message, :count).by(-1)
 
       response.should redirect_to(group_path(group))

@@ -17,7 +17,7 @@ RSpec.describe CafeShiftsController, type: :controller do
       create(:council, title: 'First')
       create(:council, title: 'Third')
 
-      get :show, id: shift.to_param
+      get :show, params: { id: shift.to_param }
 
       assigns(:cafe_view).shift.should eq(shift)
       assigns(:cafe_view).councils.map(&:title).should eq(['First', 'Second', 'Third'])
@@ -27,7 +27,7 @@ RSpec.describe CafeShiftsController, type: :controller do
 
     it 'error cafe_shift is not found' do
       lambda do
-        get :show, id: 9999777
+        get :show, params: { id: 9999777 }
       end.should raise_error(ActionController::RoutingError)
     end
   end

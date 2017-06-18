@@ -28,7 +28,7 @@ RSpec.describe RentsController, type: :controller do
         second = create(:rent, d_from: 6.hour.from_now, d_til: 10.hour.from_now)
         create(:rent, d_from: 11.hour.from_now, d_til: 16.hour.from_now)
 
-        get :index, format: :json, start: 1.hour.ago, end: 7.hours.from_now
+        get :index, format: :json, params: { start: 1.hour.ago, end: 7.hours.from_now }
         response.body.should eq([first, second].to_json)
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe RentsController, type: :controller do
     it 'assigns the requested rent as @rent' do
       rent = create(:rent)
 
-      get :show, id: rent.to_param
+      get :show, params: { id: rent.to_param }
       assigns(:rent).should eq(rent)
     end
   end
@@ -60,7 +60,7 @@ RSpec.describe RentsController, type: :controller do
                      purpose: 'Åka till ikea',
                      user_id: user.id }
       lambda do
-        post :create, rent: attributes
+        post :create, params: { rent: attributes }
       end.should change(Rent, :count).by(1)
 
       response.should redirect_to(Rent.last)
@@ -69,7 +69,7 @@ RSpec.describe RentsController, type: :controller do
 
     it 'invalid params' do
       lambda do
-        post :create, rent: { d_from: nil }
+        post :create, params: { rent: { d_from: nil } }
       end.should change(Rent, :count).by(0)
 
       response.status.should eq(422)
@@ -81,7 +81,7 @@ RSpec.describe RentsController, type: :controller do
     it 'valid params' do
       rent = create(:rent, user: user, purpose: 'Not IKEA')
       attributes = { purpose: 'Indeed IKEA' }
-      patch :update, id: rent.to_param, rent: attributes
+      patch :update, params: { id: rent.to_param, rent: attributes }
 
       assigns(:rent).should eq(rent)
       response.should redirect_to(edit_rent_path(rent))
@@ -90,7 +90,7 @@ RSpec.describe RentsController, type: :controller do
     it 'invalid params' do
       rent = create(:rent, user: user, purpose: 'Not IKEA')
       attributes = { purpose: '' }
-      patch :update, id: rent.to_param, rent: attributes
+      patch :update, params: { id: rent.to_param, rent: attributes }
 
       assigns(:rent).should eq(rent)
       response.status.should eq(422)
@@ -103,7 +103,7 @@ RSpec.describe RentsController, type: :controller do
       rent = create(:rent, user: user)
 
       lambda do
-        delete :destroy, id: rent.to_param
+        delete :destroy, params: { id: rent.to_param }
       end.should change(Rent, :count).by(-1)
 
       response.should redirect_to(rents_path)

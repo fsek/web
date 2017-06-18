@@ -22,7 +22,7 @@ RSpec.describe Elections::NominationsController, type: :controller do
       election = create(:election, :autumn)
       postt = create(:post, :autumn)
 
-      get :new, post: postt.id
+      get :new, params: { post: postt.id }
 
       response.should be_success
       assigns(:election_view).election.should eq(election)
@@ -49,7 +49,7 @@ RSpec.describe Elections::NominationsController, type: :controller do
                      post_id: postt.id }
 
       lambda do
-        post :create, nomination: attributes
+        post :create, params: { nomination: attributes }
       end.should change(Nomination, :count).by(1)
 
       response.should redirect_to(new_nominations_path)
@@ -62,7 +62,7 @@ RSpec.describe Elections::NominationsController, type: :controller do
                      motivation: 'Underrum' }
 
       lambda do
-        post :create, nomination: attributes
+        post :create, params: { nomination: attributes }
       end.should change(Nomination, :count).by(0)
 
       response.should render_template(:new)

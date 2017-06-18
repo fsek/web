@@ -19,7 +19,7 @@ RSpec.describe ShortLinksController, type: :controller do
       target = 'http://hej.se'
       sl = create(:short_link, link: link, target: target)
 
-      get(:go, link: link)
+      get :go, params: { link: link }
 
       response.status.should == 301
       response.location.should == sl.target
@@ -27,7 +27,7 @@ RSpec.describe ShortLinksController, type: :controller do
 
     it 'throws 404 when link is not found' do
       lambda do
-        get(:go, link: 'nonexistent')
+        get :go, params: { link: 'nonexistent' }
       end.should raise_error ActionController::RoutingError
     end
   end
@@ -37,14 +37,14 @@ RSpec.describe ShortLinksController, type: :controller do
       link = 'testlink'
       create :short_link, link: link
 
-      get :check, link: link
+      get :check, params: { link: link }
 
       response.status.should == 204
       response.body.should be_empty
     end
 
     it 'returns 404 when link doesn\' exist' do
-      get :check, link: 'nonexistent'
+      get :check, params: { link: 'nonexistent' }
 
       response.status.should == 404
       response.body.should be_empty
@@ -57,7 +57,7 @@ RSpec.describe ShortLinksController, type: :controller do
 
       sl = build :short_link
 
-      post :create, short_link: sl.attributes
+      post :create, params: { short_link: sl.attributes }
 
       response.status.should == 302
 
@@ -71,7 +71,7 @@ RSpec.describe ShortLinksController, type: :controller do
       old_sl = create :short_link
       new_sl = build :short_link, target: 'newurl.com'
 
-      post :create, short_link: new_sl.attributes
+      post :create, params: { short_link: new_sl.attributes }
 
       response.status.should == 302
 
@@ -85,7 +85,7 @@ RSpec.describe ShortLinksController, type: :controller do
     it 'removes short_link' do
       short_link = create(:short_link)
       lambda do
-        delete :destroy, id: short_link.to_param
+        delete :destroy, params: { id: short_link.to_param }
       end.should change(ShortLink, :count).by(-1)
 
       response.should redirect_to(short_links_path)

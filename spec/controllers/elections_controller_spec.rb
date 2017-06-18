@@ -11,13 +11,15 @@ RSpec.describe ElectionsController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns current election' do
-      election = create(:election)
-      election.posts << create(:post)
-      election.posts << create(:post)
+      election = create(:election, :autumn)
+      post1 = create(:post, :autumn)
+      post2 = create(:post, :autumn)
+      create(:post, :spring)
 
       get(:index)
       response.status.should eq(200)
       assigns(:election_view).election.should eq(election)
+      assigns(:election_view).election.posts.should eq([post1, post2])
     end
 
     it 'redirects if no election' do

@@ -28,7 +28,7 @@ RSpec.describe MeetingsController, type: :controller do
         meeting2 = create(:meeting, start_date: 6.hours.from_now, end_date: 10.hours.from_now)
         create(:meeting, start_date: 13.hours.from_now, end_date: 15.hours.from_now)
 
-        get :index, format: :json, start: 1.hour.ago, end: 7.hours.from_now
+        get :index, format: :json, params: { start: 1.hour.ago, end: 7.hours.from_now }
         response.body.should eq([meeting1, meeting2].to_json)
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe MeetingsController, type: :controller do
     it 'assigns the requested rent as @meeting' do
       meeting = create(:meeting)
 
-      get :show, id: meeting.to_param
+      get :show, params: { id: meeting.to_param }
       response.should have_http_status(200)
       assigns(:meeting).should eq(meeting)
     end
@@ -60,7 +60,7 @@ RSpec.describe MeetingsController, type: :controller do
                      title: 'Spider Meeting',
                      room: :sk }
       lambda do
-        post :create, meeting: attributes
+        post :create, params: { meeting: attributes }
       end.should change(Meeting, :count).by(1)
 
       response.should redirect_to(edit_meeting_path(Meeting.last))
@@ -74,7 +74,7 @@ RSpec.describe MeetingsController, type: :controller do
                      title: 'Spider Meeting',
                      room: :sk }
       lambda do
-        post :create, meeting: attributes
+        post :create, params: { meeting: attributes }
       end.should change(Meeting, :count).by(0)
 
       response.status.should eq(422)
@@ -86,7 +86,7 @@ RSpec.describe MeetingsController, type: :controller do
     it 'works with valid params' do
       meeting = create(:meeting, user: user, title: 'Wrong title')
       attributes = { title: 'Correct title' }
-      patch :update, id: meeting.to_param, meeting: attributes
+      patch :update, params: { id: meeting.to_param, meeting: attributes }
 
       meeting.reload
       meeting.title.should eq('Correct title')
@@ -99,7 +99,7 @@ RSpec.describe MeetingsController, type: :controller do
     it 'fails with invalid params' do
       meeting = create(:meeting, user: user, title: 'Wrong title')
       attributes = { title: '' }
-      patch :update, id: meeting.to_param, meeting: attributes
+      patch :update, params: { id: meeting.to_param, meeting: attributes }
 
       meeting.reload
       meeting.title.should eq('Wrong title')
@@ -113,7 +113,7 @@ RSpec.describe MeetingsController, type: :controller do
       meeting = create(:meeting, user: user, title: 'Wrong title',
                                  status: :confirmed, is_admin: true)
       attributes = { title: 'Correct title' }
-      patch :update, id: meeting.to_param, meeting: attributes
+      patch :update, params: { id: meeting.to_param, meeting: attributes }
 
       meeting.reload
       meeting.title.should eq('Wrong title')
@@ -125,7 +125,7 @@ RSpec.describe MeetingsController, type: :controller do
       meeting = create(:meeting, user: user, room: :sk)
 
       lambda do
-        delete :destroy, id: meeting.to_param
+        delete :destroy, params: { id: meeting.to_param }
       end.should change(Meeting, :count).by(-1)
 
       response.should redirect_to(meetings_path(room: :sk))

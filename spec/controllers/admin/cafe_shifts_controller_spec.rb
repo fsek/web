@@ -18,7 +18,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
       create(:user, firstname: 'Third')
       create(:user, firstname: 'Second')
 
-      get :show, id: shift.to_param
+      get :show, params: { id: shift.to_param }
 
       assigns(:cafe_view).shift.should eq(shift)
       assigns(:cafe_view).councils.map(&:title).should eq(['First', 'Second', 'Third'])
@@ -29,7 +29,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
 
     it 'error cafe_shift is not found' do
       lambda do
-        get :show, id: 9999777
+        get :show, params: { id: 9999777 }
       end.should raise_error(ActionController::RoutingError)
     end
   end
@@ -38,14 +38,14 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
     it 'assigns the requested cafe_shift as @cafe_shift' do
       shift = create(:cafe_shift)
 
-      get :edit, id: shift.to_param
+      get :edit, params: { id: shift.to_param }
       assigns(:cafe_shift).should eq(shift)
       response.status.should eq(200)
     end
 
     it 'error cafe_shift is not found' do
       lambda do
-        get :show, id: 9999777
+        get :show, params: { id: 9999777 }
       end.should raise_error(ActionController::RoutingError)
     end
   end
@@ -61,7 +61,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
   describe 'POST #create' do
     it 'valid params' do
       lambda do
-        post :create, cafe_shift: attributes_for(:cafe_shift)
+        post :create, params: { cafe_shift: attributes_for(:cafe_shift) }
       end.should change(CafeShift, :count).by(1)
 
       response.should redirect_to([:admin, CafeShift.last])
@@ -69,7 +69,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
 
     it 'invalid params' do
       lambda do
-        post :create, cafe_shift: { start: nil }
+        post :create, params: { cafe_shift: { start: nil } }
       end.should change(CafeShift, :count).by(0)
 
       response.should render_template(:new)
@@ -81,7 +81,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
     it 'valid params' do
       shift = create(:cafe_shift, pass: 3)
 
-      post :update, id: shift.to_param, cafe_shift: { pass: 4 }
+      post :update, params: { id: shift.to_param, cafe_shift: { pass: 4 } }
       shift.reload
 
       response.should redirect_to([:admin, shift])
@@ -90,7 +90,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
 
     it 'invalid params' do
       shift = create(:cafe_shift, pass: 3)
-      post :update, id: shift.to_param, cafe_shift: { pass: nil }
+      post :update, params: { id: shift.to_param, cafe_shift: { pass: nil } }
 
       response.should render_template(:edit)
       response.status.should eq(422)
@@ -104,7 +104,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
       shift = create(:cafe_shift)
 
       lambda do
-        delete :destroy, id: shift.to_param
+        delete :destroy, params: { id: shift.to_param }
       end.should change(CafeShift, :count).by(-1)
 
       response.should redirect_to(admin_cafe_shifts_path)
@@ -127,7 +127,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
                      lp: 4,
                      setup_mode: :week }
       lambda do
-        post(:setup_create, cafe_shift: attributes)
+        post :setup_create, params: { cafe_shift: attributes }
       end.should change(CafeShift, :count).by(20)
 
       response.should redirect_to(admin_cafe_shifts_path)
@@ -143,7 +143,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
                      lp: 4,
                      setup_mode: :day }
       lambda do
-        post(:setup_create, cafe_shift: attributes)
+        post :setup_create, params: { cafe_shift: attributes }
       end.should change(CafeShift, :count).by(4)
 
       response.should redirect_to(admin_cafe_shifts_path)
@@ -154,7 +154,7 @@ RSpec.describe Admin::CafeShiftsController, type: :controller do
 
     it 'invalid params' do
       lambda do
-        post(:setup_create, cafe_shift: { start: nil })
+        post :setup_create, params: { cafe_shift: { start: nil } }
       end.should change(CafeShift, :count).by(0)
 
       response.status.should eq(422)

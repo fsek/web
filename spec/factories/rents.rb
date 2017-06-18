@@ -10,7 +10,9 @@ FactoryGirl.define do
     status :confirmed
 
     # Override after_create callbacks.
-    after(:build) { |rent| rent.class.skip_callback(:create, :after, :send_email, :overbook_all) }
+    after(:build) do |rent|
+      rent.class.skip_callback(:create, :after, :send_email, :overbook_all, raise: false)
+    end
 
     # Trait to use while testing send_email after_create callback
     trait :with_send_email do

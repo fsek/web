@@ -15,7 +15,7 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
       attributes = attributes_for(:tool_renting, tool: tool)
 
       lambda do
-        post :create, tool_id: tool, tool_renting: attributes
+        post :create, params: { tool_id: tool, tool_renting: attributes }
       end.should change(ToolRenting, :count).by(1)
 
       response.should redirect_to(admin_tool_path(tool))
@@ -27,7 +27,7 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
       attributes = attributes_for(:tool_renting, renter: nil, tool: tool)
 
       lambda do
-        post :create, tool_id: tool, tool_renting: attributes
+        post :create, params: { tool_id: tool, tool_renting: attributes }
       end.should change(ToolRenting, :count).by(0)
 
       response.status.should eq(422)
@@ -39,7 +39,7 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
     it 'loads new view properly' do
       tool = create(:tool)
       rent = create(:tool_renting, tool: tool)
-      get :new, id: rent.to_param, tool_id: tool.to_param
+      get :new, params: { id: rent.to_param, tool_id: tool.to_param }
       response.status.should eq(200)
     end
   end
@@ -48,13 +48,13 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
     it 'loads edit view properly' do
       tool = create(:tool)
       rent = create(:tool_renting, tool: tool)
-      get :edit, id: rent.to_param, tool_id: tool.to_param
+      get :edit, params: { id: rent.to_param, tool_id: tool.to_param }
       response.status.should eq(200)
     end
     it 'error when loading returned tool_renting' do
       tool = create(:tool)
       rent = create(:tool_renting, tool: tool, returned: true)
-      get :edit, id: rent.to_param, tool_id: tool.to_param
+      get :edit, params: { id: rent.to_param, tool_id: tool.to_param }
       response.should redirect_to(admin_tool_path(tool))
     end
   end
@@ -65,7 +65,7 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
       rent = create(:tool_renting, tool: tool, renter: 'Adrian Roth')
       attributes = { renter: 'Rotharen' }
 
-      patch :update, tool_id: tool, id: rent, tool_renting: attributes
+      patch :update, params: { tool_id: tool, id: rent, tool_renting: attributes }
 
       rent.reload
       rent.renter.should eq('Rotharen')
@@ -78,7 +78,7 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
       renter_before = rent.renter
       attributes = attributes_for(:tool_renting, renter: nil, tool: tool)
 
-      patch :update, tool_id: tool, id: rent, tool_renting: attributes
+      patch :update, params: { tool_id: tool, id: rent, tool_renting: attributes }
 
       rent.reload
       rent.renter.should eq(renter_before)
@@ -93,7 +93,7 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
       rent = create(:tool_renting, tool: tool)
 
       lambda do
-        delete :destroy, tool_id: tool, id: rent
+        delete :destroy, params: { tool_id: tool, id: rent }
       end.should change(ToolRenting, :count).by(-1)
 
       response.should redirect_to(admin_tool_path(tool))

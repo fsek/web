@@ -16,7 +16,9 @@ RSpec.describe Message, type: :model do
       m.should be_invalid
       m.errors[:groups].should include(I18n.t('model.message.not_part_of_selected_groups'))
 
-      group.users << user
+      create(:group_user, group: group, user: user)
+      user.reload
+
       m.should be_valid
       m.groups << create(:group, introduction: intro)
 

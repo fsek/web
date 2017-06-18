@@ -27,7 +27,7 @@ RSpec.describe CouncilsController, type: :controller do
     it 'sets council' do
       council = create(:council)
 
-      get(:show, id: council.to_param)
+      get :show, params: { id: council.to_param }
       response.status.should eq(200)
       assigns(:council).should eq(council)
     end

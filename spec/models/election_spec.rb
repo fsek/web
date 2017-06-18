@@ -59,8 +59,10 @@ RSpec.describe Election, type: :model do
       general_post = build_stubbed(:post, :autumn, :general)
       after_general_post = build_stubbed(:post, :autumn, :board)
 
-      election.post_closing(general_post).should eq(close_general)
-      election.post_closing(after_general_post).should eq(close_all)
+      # We have to use "be_within(1.second).of" instead of "eq"
+      # because the precision is too low
+      election.post_closing(general_post).should be_within(1.second).of(close_general)
+      election.post_closing(after_general_post).should be_within(1.second).of(close_all)
     end
   end
 
@@ -72,14 +74,17 @@ RSpec.describe Election, type: :model do
       election = build_stubbed(:election, open: open,
                                           close_general: close_general,
                                           close_all: close_all)
+
+      # We have to use "be_within(1.second).of" instead of "eq"
+      # because the precision is too low
       election.stub(:state).and_return(:not_opened)
-      election.countdown.should eq(open)
+      election.countdown.should be_within(1.second).of(open)
 
       election.stub(:state).and_return(:before_general)
-      election.countdown.should eq(close_general)
+      election.countdown.should be_within(1.second).of(close_general)
 
       election.stub(:state).and_return(:after_general)
-      election.countdown.should eq(close_all)
+      election.countdown.should be_within(1.second).of(close_all)
 
       election.stub(:state).and_return(:closed)
       election.countdown.should be_nil

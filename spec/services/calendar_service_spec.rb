@@ -70,10 +70,13 @@ RSpec.describe CalendarService do
                             ends_at: ends_at)
 
       result = CalendarService.event(event)
-      result.dtstart.should eq(starts_at)
+
+      # We have to use "be_within(1.second).of" instead of "eq"
+      # because the precision in the DB is too low
+      result.dtstart.should be_within(1.second).of(starts_at)
       result.dtstart.time_zone.tzinfo.name.should eq(Event::TZID)
 
-      result.dtend.should eq(ends_at)
+      result.dtend.should be_within(1.second).of(ends_at)
       result.dtend.time_zone.tzinfo.name.should eq(Event::TZID)
     end
   end

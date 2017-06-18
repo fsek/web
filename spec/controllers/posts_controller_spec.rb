@@ -15,7 +15,7 @@ RSpec.describe PostsController, type: :controller do
       election = create(:election, :autumn)
       the_post = create(:post, :autumn)
 
-      get(:show, id: the_post.to_param)
+      get :show, params: { id: the_post.to_param }
       response.should have_http_status(200)
       assigns(:election).should eq(election)
       assigns(:post).should eq(the_post)
@@ -25,7 +25,7 @@ RSpec.describe PostsController, type: :controller do
       Election.stub(:current) { nil }
       the_post = create(:post)
 
-      get(:show, id: the_post.to_param)
+      get :show, params: { id: the_post.to_param }
       response.should have_http_status(404)
       response.should render_template('elections/no_election')
     end
@@ -36,14 +36,14 @@ RSpec.describe PostsController, type: :controller do
       create(:election, :autumn)
       the_post = create(:post, :autumn)
 
-      xhr(:get, :modal, id: the_post.to_param)
+      get :modal, xhr: true, params: { id: the_post.to_param }
       response.should have_http_status(200)
     end
 
     it 'renders error page' do
       the_post = create(:post, :autumn)
 
-      xhr(:get, :modal, id: the_post.to_param)
+      get :modal, xhr: true, params: { id: the_post.to_param }
       response.should have_http_status(404)
     end
   end

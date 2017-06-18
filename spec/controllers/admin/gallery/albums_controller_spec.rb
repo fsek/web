@@ -9,7 +9,7 @@ RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
     it 'assigns the requested album as @album' do
       album = create(:album)
 
-      get(:show, id: album.to_param)
+      get :show, params: { id: album.to_param }
       assigns(:album).should eq(album)
     end
   end
@@ -41,7 +41,7 @@ RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
                      end_date: 2.days.ago + 5.hours }
 
       lambda do
-        post :create, album: attributes
+        post :create, params: { album: attributes }
       end.should change(Album, :count).by(1)
 
       response.should redirect_to(admin_gallery_album_path(Album.last))
@@ -52,7 +52,7 @@ RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
                      end_date: 2.days.ago + 5.hours }
 
       lambda do
-        post :create, album: attributes
+        post :create, params: { album: attributes }
       end.should change(Album, :count).by(0)
 
       response.should render_template(:new)
@@ -63,10 +63,14 @@ RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
   describe 'PATCH #update' do
     it 'valid parameters' do
       album = create(:album, title: 'Välkomstgasque')
-      patch(:update, id: album.to_param, \
-                     album: { title_sv: 'Nollegasque',
-                              image_upload: [Rack::Test::UploadedFile.new(File.open('app/assets/images/hilbert.jpg'))],
-                              photographer_user: user.id, photographer_name: user.firstname })
+
+      img = 'app/assets/images/hilbert.jpg'
+      album_params = { title_sv: 'Nollegasque',
+                       photographer_user: user.id,
+                       photographer_name: user.firstname,
+                       image_upload: [Rack::Test::UploadedFile.new(File.open(img))] }
+
+      patch :update, params: { id: album.to_param, album: album_params }
 
       album.reload
       album.title.should eq('Nollegasque')
@@ -78,8 +82,7 @@ RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
 
     it 'invalid parameters' do
       album = create(:album, title: 'Välkomstgasque')
-      patch(:update, id: album.to_param, \
-                     album: { title_sv: nil })
+      patch :update, params: { id: album.to_param, album: { title_sv: nil } }
 
       album.reload
       album.title.should eq('Välkomstgasque')
@@ -93,7 +96,7 @@ RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
       album = create(:album)
 
       lambda do
-        delete(:destroy, id: album.to_param)
+        delete :destroy, params: { id: album.to_param }
       end.should change(Album, :count).by(-1)
 
       response.should redirect_to(admin_gallery_albums_path)
@@ -106,7 +109,7 @@ RSpec.describe Admin::Gallery::AlbumsController, type: :controller do
       album.images.size.should eq(3)
 
       lambda do
-        delete(:destroy_images, id: album.to_param)
+        delete :destroy_images, params: { id: album.to_param }
       end.should change(Image, :count).by(-3)
       album.reload
       album.images.should be_empty

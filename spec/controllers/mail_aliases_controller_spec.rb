@@ -9,10 +9,12 @@ describe MailAliasesController, :type => :controller do
     end
 
     it 'presents the correct list for an example query' do
-      m = create :mail_alias, :username => 'boss', :domain => 'fsektionen.se',
-        :target => 'johan@forberg.se'
+      m = create(:mail_alias,
+                 username: 'boss',
+                 domain: 'fsektionen.se',
+                 target: 'johan@forberg.se')
 
-      get :search, :format => :json, :q => 'boss'
+      get :search, format: :json, params: { q: 'boss' }
 
       response.status.should == 200
       assigns(:aliases).should == [ m ]
@@ -24,10 +26,9 @@ describe MailAliasesController, :type => :controller do
 
     it 'can destroy records' do
       c = create :mail_alias
+      attributes = { username: c.username, domain: c.domain, targets: [] }
 
-      put :update, :format => :json, :mail_alias => { :username => c.username,
-                                                      :domain => c.domain,
-                                                      :targets => [] }
+      put :update, format: :json, params: { mail_alias: attributes }
 
       response.status.should == 200
       MailAlias.count.should == 0

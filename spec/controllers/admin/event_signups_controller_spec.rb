@@ -46,7 +46,7 @@ RSpec.describe Admin::EventSignupsController, type: :controller do
       attend = [first, second, third, fourth, eu4, eu7, eu5]
       reserve = []
 
-      get(:show, event_id: event.to_param, event_signup: signup)
+      get :show, params: { event_id: event.to_param, event_signup: signup }
       assigns(:event_signup).should eq(signup)
       assigns(:attending).should eq(attend)
       assigns(:reserves).should eq(reserve)
@@ -61,7 +61,7 @@ RSpec.describe Admin::EventSignupsController, type: :controller do
       create(:event_user, event: event)
       create(:event_user, event: event)
 
-      get(:export, event_id: event, format: :csv)
+      get :export, format: :csv, params: { event_id: event }
       response.should have_http_status(200)
     end
   end

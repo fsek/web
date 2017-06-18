@@ -26,7 +26,7 @@ RSpec.describe Admin::IntroductionsController, type: :controller do
     it 'renders sucessfully' do
       introduction = create(:introduction, slug: 'spindel')
 
-      get(:edit, id: 'spindel')
+      get :edit, params: { id: 'spindel' }
       response.should have_http_status(200)
       assigns(:introduction).should eq(introduction)
     end
@@ -39,7 +39,7 @@ RSpec.describe Admin::IntroductionsController, type: :controller do
                      stop: 37.days.from_now, description: 'Spindlarna kommer!' }
 
       lambda do
-        post(:create, introduction: attributes)
+        post :create, params: { introduction: attributes }
       end.should change(Introduction, :count).by(1)
       response.should redirect_to(edit_admin_introduction_path(Introduction.last))
     end
@@ -48,7 +48,7 @@ RSpec.describe Admin::IntroductionsController, type: :controller do
       attributes = { title_sv: 'Spindelnollning - not enough' }
 
       lambda do
-        post(:create, introduction: attributes)
+        post :create, params: { introduction: attributes }
       end.should change(Introduction, :count).by(0)
       response.should have_http_status(422)
       response.should render_template(:new)
@@ -60,7 +60,7 @@ RSpec.describe Admin::IntroductionsController, type: :controller do
       introduction = create(:introduction, title_sv: 'Piratnollning')
       attributes = { title_sv: 'Spindelnollning' }
 
-      patch(:update, id: introduction.to_param, introduction: attributes)
+      patch :update, params: { id: introduction.to_param, introduction: attributes }
 
       introduction.reload
       response.should redirect_to(edit_admin_introduction_path(Introduction.last))
@@ -71,7 +71,7 @@ RSpec.describe Admin::IntroductionsController, type: :controller do
       introduction = create(:introduction, title_sv: 'Spindelnollning')
       attributes = { title_sv: nil }
 
-      patch(:update, id: introduction.to_param, introduction: attributes)
+      patch :update, params: { id: introduction.to_param, introduction: attributes }
 
       introduction.reload
       introduction.title_sv.should eq('Spindelnollning')
@@ -85,7 +85,7 @@ RSpec.describe Admin::IntroductionsController, type: :controller do
       introduction = create(:introduction)
 
       lambda do
-        delete(:destroy, id: introduction.to_param)
+        delete :destroy, params: { id: introduction.to_param }
       end.should change(Introduction, :count).by(-1)
       response.should redirect_to(admin_introductions_path)
     end

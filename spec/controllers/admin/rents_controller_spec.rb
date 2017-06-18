@@ -13,7 +13,7 @@ RSpec.describe Admin::RentsController, type: :controller do
     it 'assigns the requested rent as @rent' do
       rent = create(:rent)
 
-      get :show, id: rent.to_param
+      get :show, params: { id: rent.to_param }
       assigns(:rent).should eq(rent)
     end
   end
@@ -36,7 +36,7 @@ RSpec.describe Admin::RentsController, type: :controller do
                      purpose: 'Åka till ikea',
                      user_id: user.id }
       lambda do
-        post :create, rent: attributes
+        post :create, params: { rent: attributes }
       end.should change(Rent, :count).by(1)
 
       response.should redirect_to([:admin, Rent.last])
@@ -45,7 +45,7 @@ RSpec.describe Admin::RentsController, type: :controller do
 
     it 'invalid params' do
       lambda do
-        post :create, rent: { d_from: nil }
+        post :create, params: { rent: { d_from: nil } }
       end.should change(Rent, :count).by(0)
 
       response.status.should eq(422)
@@ -58,7 +58,7 @@ RSpec.describe Admin::RentsController, type: :controller do
       user = create(:user)
       rent = create(:rent, user: user, purpose: 'Not IKEA')
       attributes = { purpose: 'Indeed IKEA' }
-      patch :update, id: rent.to_param, rent: attributes
+      patch :update, params: { id: rent.to_param, rent: attributes }
 
       assigns(:rent).should eq(rent)
       response.should redirect_to(admin_rent_path(rent))
@@ -68,7 +68,7 @@ RSpec.describe Admin::RentsController, type: :controller do
       user = create(:user)
       rent = create(:rent, user: user, purpose: 'Not IKEA')
       attributes = { purpose: '' }
-      patch :update, id: rent.to_param, rent: attributes
+      patch :update, params: { id: rent.to_param, rent: attributes }
 
       assigns(:rent).should eq(rent)
       response.status.should eq(422)
@@ -81,7 +81,7 @@ RSpec.describe Admin::RentsController, type: :controller do
       rent = create(:rent)
 
       lambda do
-        delete :destroy, id: rent.to_param, format: :html
+        delete :destroy, format: :html, params: { id: rent.to_param }
       end.should change(Rent, :count).by(-1)
 
       response.should redirect_to(:admin_rents)

@@ -15,7 +15,7 @@ RSpec.describe EventUsersController, type: :controller do
 
       attributes = { user_type: EventSignup::MEMBER }
       lambda do
-        xhr(:post, :create, event_id: event.to_param, event_user: attributes)
+        post :create, xhr: true, params: { event_id: event.to_param, event_user: attributes }
       end.should change(EventUser, :count).by(1)
 
       EventUser.last.user.should eq(user)
@@ -28,7 +28,7 @@ RSpec.describe EventUsersController, type: :controller do
 
       attributes = { user_type: EventSignup::MEMBER }
       lambda do
-        xhr(:post, :create, event_id: event.to_param, event_user: attributes)
+        post :create, xhr: true, params: { event_id: event.to_param, event_user: attributes }
       end.should change(EventUser, :count).by(0)
     end
 
@@ -39,7 +39,7 @@ RSpec.describe EventUsersController, type: :controller do
 
       attributes = { user_type: EventSignup::MEMBER }
       lambda do
-        xhr(:post, :create, event_id: event.to_param, event_user: attributes)
+        post :create, xhr: true, params: { event_id: event.to_param, event_user: attributes }
       end.should change(EventUser, :count).by(0)
     end
 
@@ -50,7 +50,7 @@ RSpec.describe EventUsersController, type: :controller do
       attributes = { user_type: EventSignup::MEMBER }
 
       lambda do
-        xhr(:post, :create, event_id: event.to_param, event_user: attributes)
+        post :create, xhr: true, params: { event_id: event.to_param, event_user: attributes }
       end.should_not change(EventUser, :count)
 
       assigns(:event_user).errors[:user_id].should \
@@ -64,7 +64,7 @@ RSpec.describe EventUsersController, type: :controller do
       attributes = { user_type: EventSignup::MEMBER }
 
       lambda do
-        xhr(:post, :create, event_id: event.to_param, event_user: attributes)
+        post :create, xhr: true, params: { event_id: event.to_param, event_user: attributes }
       end.should change(EventUser, :count).by(1)
     end
   end
@@ -75,8 +75,8 @@ RSpec.describe EventUsersController, type: :controller do
       event_user = create(:event_user, event: event, user: user)
 
       lambda do
-        xhr(:delete, :destroy, event_id: event.to_param,
-                               id: event_user.to_param)
+        delete :destroy, xhr: true, params: { event_id: event.to_param,
+                                              id: event_user.to_param }
       end.should change(EventUser, :count).by(-1)
     end
 
@@ -87,8 +87,8 @@ RSpec.describe EventUsersController, type: :controller do
       signup.update(closes: Time.zone.now)
 
       lambda do
-        xhr(:delete, :destroy, event_id: event.to_param,
-                               id: event_user.to_param)
+        delete :destroy, xhr: true, params: { event_id: event.to_param,
+                                              id: event_user.to_param }
       end.should change(EventUser, :count).by(0)
     end
 
@@ -97,8 +97,8 @@ RSpec.describe EventUsersController, type: :controller do
       event_user = create(:event_user, event: event, user: create(:user))
 
       lambda do
-        xhr(:delete, :destroy, event_id: event_user.event.to_param,
-                               id: event_user.to_param)
+        delete :destroy, xhr: true, params: { event_id: event_user.event.to_param,
+                                              id: event_user.to_param }
       end.should raise_error(ActionController::RoutingError)
     end
   end

@@ -34,7 +34,7 @@ RSpec.describe Admin::NewsController, type: :controller do
                      content_sv: 'Detta är en text om sektionsmötet',
                      url: 'https://rostsystem.se' }
       lambda do
-        post :create, news: attributes
+        post :create, params: { news: attributes }
       end.should change(News, :count).by(1)
 
       response.should redirect_to(edit_admin_news_path(News.last))
@@ -44,7 +44,9 @@ RSpec.describe Admin::NewsController, type: :controller do
   describe 'PATCH #update' do
     it 'update news' do
       news = create(:news, title: 'Vårterminsmöte')
-      patch :update, id: news.to_param, news: { title_sv: 'Höstterminsmöte' }
+
+      attributes = { title_sv: 'Höstterminsmöte' }
+      patch :update, params: { id: news.to_param, news: attributes }
 
       news.reload
       news.title.should eq('Höstterminsmöte')

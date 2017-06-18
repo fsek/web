@@ -22,7 +22,7 @@ RSpec.describe ContactsController, type: :controller do
   describe 'GET #show' do
     it 'succeeds' do
       contact = create(:contact)
-      get :show, id: contact.to_param
+      get :show, params: { id: contact.to_param }
 
       response.should be_success
       assigns(:contact).should eq(contact)
@@ -35,7 +35,7 @@ RSpec.describe ContactsController, type: :controller do
       attributes = { name: 'David',
                      email: 'david@google.com',
                      message: 'Jag vill prova kontaktformuläret' }
-      post :mail, id: contact.to_param, contact_message: attributes
+      post :mail, params: { id: contact.to_param, contact_message: attributes }
 
       assigns(:contact).should eq(contact)
       response.should redirect_to(contact_path(contact))
@@ -46,7 +46,7 @@ RSpec.describe ContactsController, type: :controller do
       attributes = { name: 'David',
                      email: 'inte_en_epost',
                      message: 'Jag vill prova kontaktformuläret' }
-      post :mail, id: contact.to_param, contact_message: attributes
+      post :mail, params: { id: contact.to_param, contact_message: attributes }
 
       assigns(:contact).should eq(contact)
       response.status.should eq(422)

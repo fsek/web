@@ -24,7 +24,7 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
   describe 'GET #edit' do
     it 'sets blog_post' do
       blog_post = create(:blog_post)
-      get(:edit, id: blog_post.to_param)
+      get :edit, params: { id: blog_post.to_param }
 
       response.should have_http_status(200)
       assigns(:blog_post).should eq(blog_post)
@@ -39,7 +39,7 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
                      content_sv: 'There once was a time' }
 
       lambda do
-        post(:create, blog_post: attributes)
+        post :create, params: { blog_post: attributes }
       end.should change(BlogPost, :count).by(1)
 
       response.should redirect_to(edit_admin_blog_post_path(BlogPost.last))
@@ -51,7 +51,7 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
                      content_sv: 'There once was a time' }
 
       lambda do
-        post(:create, blog_post: attributes)
+        post :create, params: { blog_post: attributes }
       end.should change(BlogPost, :count).by(0)
 
       response.should have_http_status(422)
@@ -64,7 +64,7 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
       blog_post = create(:blog_post, title: 'Oh, summernight!')
       attributes = { title_sv: 'Not summer...' }
 
-      patch(:update, id: blog_post.to_param, blog_post: attributes)
+      patch :update, params: { id: blog_post.to_param, blog_post: attributes }
       blog_post.reload
 
       response.should redirect_to(edit_admin_blog_post_path(blog_post))
@@ -75,7 +75,7 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
       blog_post = create(:blog_post, title: 'Vad är väl en Nollning?')
       attributes = { title_sv: nil }
 
-      patch(:update, id: blog_post.to_param, blog_post: attributes)
+      patch :update, params: { id: blog_post.to_param, blog_post: attributes }
       blog_post.reload
       response.should have_http_status(422)
       response.should render_template(:edit)
@@ -87,7 +87,7 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
     it 'destroys blog_post' do
       blog_post = create(:blog_post)
       lambda do
-        delete(:destroy, id: blog_post.to_param)
+        delete :destroy, params: { id: blog_post.to_param }
       end.should change(BlogPost, :count).by(-1)
       response.should redirect_to(admin_blog_posts_path)
     end
