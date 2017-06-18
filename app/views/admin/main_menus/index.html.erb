@@ -7,10 +7,9 @@
   <%= link_to t('.menus'), admin_menus_path, class: 'btn primary' %>
 </div>
 
-
 <div class="col-md-10 col-sm-12">
   <%= grid @grid do |g|
-    g.column(name: MainMenu.human_attribute_name(:name), attribute: 'name') do |m|
+    g.column(name: MainMenu.human_attribute_name(:name), attribute: 'name', assoc: :translations) do |m|
       link_to m, edit_admin_main_menu_path(m)
     end
     g.column(name: MainMenu.human_attribute_name(:index), attribute: 'index', filter: false)

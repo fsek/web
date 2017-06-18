@@ -1,4 +1,4 @@
-class BlogPost < ActiveRecord::Base
+class BlogPost < ApplicationRecord
   include Categorizable
   acts_as_paranoid
   mount_uploader(:cover_image, CoverImageUploader)

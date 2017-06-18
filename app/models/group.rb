@@ -1,4 +1,4 @@
-class Group < ActiveRecord::Base
+class Group < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :introduction

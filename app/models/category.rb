@@ -1,4 +1,4 @@
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
   GENERAL = 'general'.freeze
   USE_CASES = [GENERAL, 'BlogPost', 'Event', 'News']
   has_many :categorizations, dependent: :destroy

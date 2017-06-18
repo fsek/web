@@ -1,5 +1,4 @@
-# encoding: UTF-8
-class Image < ActiveRecord::Base
+class Image < ApplicationRecord
   belongs_to :album, inverse_of: :images, counter_cache: true
   belongs_to :photographer, class_name: User
 

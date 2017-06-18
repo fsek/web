@@ -18,6 +18,6 @@ module ControllerAuthorization
 
   def skip_authorization(*args)
     skip_authorization_check(*args)
-    skip_before_filter(:load_permissions, *args)
+    skip_before_action(:load_permissions, *args, raise: false)
   end
 end

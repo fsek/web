@@ -1,6 +1,6 @@
 class MeetingsController < ApplicationController
-  before_filter :load_room, only: [:index, :new]
-  before_filter :set_room, only: :index
+  before_action :load_room, only: [:index, :new]
+  before_action :set_room, only: :index
   load_permissions_and_authorize_resource
 
   def index

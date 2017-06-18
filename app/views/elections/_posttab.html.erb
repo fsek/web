@@ -10,7 +10,7 @@
       end
     end
 
-    g.column(name: Post.human_attribute_name(:title), attribute: 'id', filter: false) do |post|
+    g.column(name: Post.human_attribute_name(:title), attribute: 'title', assoc: :translations, filter: false) do |post|
       election_post_link(post)
     end
 

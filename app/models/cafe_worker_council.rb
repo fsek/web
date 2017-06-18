@@ -1,4 +1,4 @@
-class CafeWorkerCouncil < ActiveRecord::Base
+class CafeWorkerCouncil < ApplicationRecord
   belongs_to :cafe_worker
   belongs_to :council
 

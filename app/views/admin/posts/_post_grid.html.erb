@@ -1,6 +1,8 @@
 <% if post_grid.present? %>
   <%= grid(post_grid) do |g|
-    g.column(name: Post.human_attribute_name(:title)) do |post|
+    g.column(name: Post.human_attribute_name(:title),
+             attribute: 'title',
+             assoc: :translations) do |post|
       post
     end
 

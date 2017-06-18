@@ -1,4 +1,4 @@
-class ElectionPost < ActiveRecord::Base
+class ElectionPost < ApplicationRecord
   belongs_to :election, required: true
   belongs_to :post, required: true
 

@@ -1,12 +1,13 @@
-# encoding:UTF-8
 class Admin::EventsController < Admin::BaseController
   load_permissions_and_authorize_resource
   before_action :set_tab, only: [:new, :edit, :create, :update]
 
   def index
-    @event_grid = initialize_grid(Event, include: :translations,
-                                         order: :starts_at,
-                                         order_direction: :desc)
+    @event_grid = initialize_grid(Event,
+                                  include: :event_signup,
+                                  locale: :sv,
+                                  order: :starts_at,
+                                  order_direction: :desc)
   end
 
   def new

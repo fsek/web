@@ -1,4 +1,4 @@
-class Election < ActiveRecord::Base
+class Election < ApplicationRecord
   has_many :nominations, dependent: :destroy
   has_many :candidates, dependent: :destroy, inverse_of: :election
   has_many :election_posts, dependent: :destroy

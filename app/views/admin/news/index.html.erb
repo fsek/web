@@ -17,8 +17,10 @@
 
 <div class="col-md-9 col-sm-12">
   <%= grid(@news_grid, hide_submit_button: true, hide_reset_button: true) do |g|
-    g.column name: News.human_attribute_name(:title), attribute: 'title' do |news|
-      link_to(news, edit_admin_news_path(news))
+    g.column name: News.human_attribute_name(:title), attribute: 'title', assoc: :translations do |news|
+      if news.title.present?
+        link_to(news, edit_admin_news_path(news))
+      end
     end
     g.column name: News.human_attribute_name(:image), attribute: 'image' do |news|
       yes_no(news.image.present?)

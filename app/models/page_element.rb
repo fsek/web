@@ -1,5 +1,4 @@
-# encoding: UTF-8
-class PageElement < ActiveRecord::Base
+class PageElement < ApplicationRecord
   TEXT = 'text'.freeze
   IMAGE = 'image'.freeze
 
@@ -15,9 +14,9 @@ class PageElement < ActiveRecord::Base
   validates :page_image, presence: true, if: :image_element?
 
   scope :visible, -> { where(visible: true) }
-  scope :main, -> { visible.where(sidebar: false).index }
-  scope :side, -> { visible.where(sidebar: true).index }
-  scope :index, -> { order(:index) }
+  scope :main, -> { visible.where(sidebar: false).by_index }
+  scope :side, -> { visible.where(sidebar: true).by_index }
+  scope :by_index, -> { order(:index) }
   scope :rest, -> { where(visible: false) }
 
   def to_partial_path

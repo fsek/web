@@ -1,4 +1,4 @@
-class Song < ActiveRecord::Base
+class Song < ApplicationRecord
   def to_s
     title
   end

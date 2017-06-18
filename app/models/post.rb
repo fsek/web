@@ -1,4 +1,4 @@
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
   AUTUMN = 'autumn'.freeze
   SPRING = 'spring'.freeze
   BOTH = 'both'.freeze
@@ -34,8 +34,6 @@ class Post < ActiveRecord::Base
   scope :autumn, -> { where('semester = ? OR semester = ?', AUTUMN, BOTH) }
   scope :spring, -> { where('semester = ? OR semester = ?', SPRING, BOTH) }
   scope :both, -> { where(semester: BOTH) }
-
-  include TranslateFix
 
   # Validations
   validates(:title, :description, :limit,

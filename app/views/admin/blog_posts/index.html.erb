@@ -21,7 +21,7 @@
 
 <div class="col-md-9 col-sm-12">
   <%= grid(@post_grid, hide_submit_button:  true, hide_reset_button: true) do |g|
-    g.column(name: BlogPost.human_attribute_name(:title), attribute: 'title') do |post|
+    g.column(name: BlogPost.human_attribute_name(:title), attribute: 'title', assoc: :translations) do |post|
       link_to(post, edit_admin_blog_post_path(post), target: :blank)
     end
     g.column(name: BlogPost.human_attribute_name(:created_at)) do |post|

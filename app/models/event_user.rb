@@ -1,4 +1,4 @@
-class EventUser < ActiveRecord::Base
+class EventUser < ApplicationRecord
   acts_as_paranoid
   belongs_to :user, required: true, inverse_of: :event_users
   belongs_to :event, required: true, inverse_of: :event_users

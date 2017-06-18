@@ -18,7 +18,7 @@ class CalendarsController < ApplicationController
     calendar = CalendarService.export(events, locale: locale)
 
     respond_to do |format|
-      format.ics { render(text: calendar.to_ical) }
+      format.ics { render(plain: calendar.to_ical) }
     end
   end
 
@@ -27,7 +27,7 @@ class CalendarsController < ApplicationController
     if introduction.present?
       calendar = CalendarService.export(introduction.events(locale: locale), locale: locale)
       respond_to do |format|
-        format.ics { render(text: calendar.to_ical) }
+        format.ics { render(plain: calendar.to_ical) }
       end
     else
       redirect_to(export_calendars_path, status: 404)

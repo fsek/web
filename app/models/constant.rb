@@ -1,4 +1,4 @@
-class Constant < ActiveRecord::Base
+class Constant < ApplicationRecord
   # Validations
   validates :name, :value, presence: true
   validates :name, uniqueness: true

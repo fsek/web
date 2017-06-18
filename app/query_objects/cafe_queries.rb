@@ -1,7 +1,7 @@
 class CafeQueries
   # returns: all users who worked during study period(lp) and year
   def self.working_users(lp, year)
-    join_cafe_shifts(User.joins(:cafe_shifts), lp, year).includes(:cafe_workers).uniq
+    join_cafe_shifts(User.joins(:cafe_shifts), lp, year).includes(:cafe_workers).distinct
   end
 
   # returns: all cafe_workers from study period and year

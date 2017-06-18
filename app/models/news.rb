@@ -1,4 +1,4 @@
-class News < ActiveRecord::Base
+class News < ApplicationRecord
   translates(:title, :content)
   globalize_accessors(locales: [:en, :sv], attributes: [:title, :content])
 

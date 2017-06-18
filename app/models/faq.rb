@@ -1,5 +1,4 @@
-# encoding: UTF-8
-class Faq < ActiveRecord::Base
+class Faq < ApplicationRecord
   validates :question, presence: true
 
   scope :answered, -> { where.not(answer: nil).where.not(answer: '') }

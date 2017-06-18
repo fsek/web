@@ -1,4 +1,4 @@
-class Tool < ActiveRecord::Base
+class Tool < ApplicationRecord
   has_many :tool_rentings
 
   validates :title, :total, presence: true

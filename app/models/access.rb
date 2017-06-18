@@ -1,4 +1,4 @@
-class Access < ActiveRecord::Base
+class Access < ApplicationRecord
   belongs_to :door
   belongs_to :post
 

@@ -1,4 +1,4 @@
-class GroupMessage < ActiveRecord::Base
+class GroupMessage < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :group, required: true

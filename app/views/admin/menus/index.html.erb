@@ -16,12 +16,15 @@
 </div>
 
 <div class="col-md-10 col-sm-12">
-  <%= grid(@menus_grid, hide_submit_button: true,
-                        hide_reset_button: true) do |g|
-    g.column(name: Menu.human_attribute_name(:name), attribute: 'name', filter: false) do |menu|
-            link_to menu, edit_admin_menu_path(menu)
+  <%= grid(@menus_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: Menu.human_attribute_name(:name), attribute: 'name', assoc: :translations) do |menu|
+      if menu.name.present?
+        link_to menu, edit_admin_menu_path(menu)
+      end
     end
-    g.column(name: Menu.human_attribute_name(:main_menu_id), assoc: :main_menu, attribute: 'name')
+    g.column(name: Menu.human_attribute_name(:main_menu_id)) do |menu|
+      menu.main_menu.name
+    end
     g.column(name: Menu.human_attribute_name(:visible), attribute: 'visible') do |menu|
       yes_no(menu.visible)
     end

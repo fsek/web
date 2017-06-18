@@ -1,9 +1,8 @@
-# encoding:UTF-8
 class Admin::ContactsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @contact_grid = initialize_grid(Contact, include: :post)
+    @contact_grid = initialize_grid(Contact, include: :post, locale: :sv)
   end
 
   def new

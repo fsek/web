@@ -7,6 +7,6 @@ class CouncilsController < ApplicationController
 
   def show
     @council = Council.includes(posts: [:users, :translations]).find_by_url!(params[:id])
-    @councils = Council.includes(:translations).by_title
+    @councils = Council.by_title
   end
 end
