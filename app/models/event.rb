@@ -20,7 +20,7 @@ class Event < ApplicationRecord
 
   serialize :dress_code, Array
 
-  validates(:title, :description, :starts_at, :ends_at, :location, presence: true)
+  validates(:title_sv, :title_en, :description_sv, :description_en, :starts_at, :ends_at, :location_sv, presence: true)
 
   # Schedules notifications if event_signup is created or updated
   # This will lead to multiple notifications being queued if the event or signup

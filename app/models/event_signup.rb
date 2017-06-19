@@ -8,7 +8,8 @@ class EventSignup < ApplicationRecord
   belongs_to :event, required: true
   has_many :event_users, through: :event
 
-  validates(:opens, :closes, :slots, presence: true)
+  validates(:opens, :closes, presence: true)
+  validates(:slots, presence: true, numericality: { greater_than: 0 })
   validates(:event, uniqueness: true)
   validate(:orders)
 

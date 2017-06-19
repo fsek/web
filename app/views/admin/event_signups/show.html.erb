@@ -39,10 +39,11 @@
       <div class="headline">
         <h3><%= t('.registered') %></h3>
       </div>
-
-      <%= render('/admin/event_users/attending_grid',
-                 grid: @attending,
-                 event: @event) %>
+      <% unless @attending.nil? %>
+        <%= render('/admin/event_users/attending_grid',
+                   grid: @attending,
+                   event: @event) %>
+      <% end %>
 
       <%= link_to t('.export'), export_admin_event_signup_path(@event, format: :csv) %>
       <hr>
@@ -51,10 +52,11 @@
         <h3><%= 'Reserver' %></h3>
       </div>
 
-      <%= render('/admin/event_users/attending_grid',
-                 grid: @reserves,
-                 event: @event) %>
-
+      <% unless @reserves.nil? %>
+        <%= render('/admin/event_users/attending_grid',
+                   grid: @reserves,
+                   event: @event) %>
+      <% end %>
       <%= link_to t('.export'), export_admin_event_signup_path(@event,
                                                                format: :csv,
                                                                list: 'reserves') %>

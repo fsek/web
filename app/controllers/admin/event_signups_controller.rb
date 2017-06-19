@@ -8,7 +8,6 @@ class Admin::EventSignupsController < Admin::BaseController
     if @event_signup.save
       redirect_to(admin_event_signup_path(@event), notice: alert_create(EventSignup))
     else
-      set_grids
       render :show, status: 422
     end
   end
@@ -17,7 +16,6 @@ class Admin::EventSignupsController < Admin::BaseController
     if @event_signup.update(event_signup_params)
       redirect_to(admin_event_signup_path(@event), notice: alert_update(EventSignup))
     else
-      set_grids
       render :show, status: 422
     end
   end
