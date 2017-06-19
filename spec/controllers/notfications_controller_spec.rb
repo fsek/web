@@ -10,7 +10,7 @@ RSpec.describe(NotificationsController,
       notification = create(:notification, :create, user: user, seen: false)
       set_current_user(user)
 
-      xhr(:post, :look, id: notification.to_param)
+      post :look, xhr: true, params: { id: notification.to_param }
       response.should have_http_status(200)
 
       notification.reload
