@@ -118,16 +118,17 @@ RSpec.describe IntroductionsController, type: :controller do
     it 'only include translated events if other locale' do
       introduction = create(:introduction, start: 3.day.ago, stop: 3.day.from_now)
       category = create(:category, slug: :nollning)
-      swedish = create(:event, title: 'Svensk titel', starts_at: 1.day.ago)
+      swedish = create(:event, title_sv: 'Svensk titel', title_en: 'Engelsk titel', starts_at: 1.day.ago)
       swedish.categories << category
       swedish.save!
       english = create(:event, title: 'Översatt event', title_en: 'English title', starts_at: 1.day.ago)
+      swedish.title_sv.should eq('Svensk titel')
       english.title_en.should eq('English title')
       english.categories << category
       english.save!
 
       get :modal, params: { id: introduction.to_param, date: 1.day.ago.to_date, locale: :en }
-      assigns(:events).map(&:title_en).should eq(['English title'])
+      assigns(:events).map(&:title_en).should eq(['Engelsk titel', 'English title'])
     end
   end
 end

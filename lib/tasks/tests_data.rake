@@ -112,11 +112,12 @@ namespace :db do
     # Events
     date = Time.zone.now.middle_of_day
     (1..10).each do |i|
-      event = Event.find_or_create_by!(short: %(E#{i}), title: %(Evenemang #{i}),
-                                       description: 'Detta kommer bli ett evenemang!',
-                                       starts_at: date, ends_at: date + 5.hours,
-                                       food: true, drink: true, location: 'Gasquesalen')
-      event.update!(short_en: event.short, title_en: %(Event #{i}), description_en: 'This will be an event!')
+      event = Event.create!(short_sv: %(E#{i}), title_sv: %(Evenemang #{i}),
+                            title_en: %(Event #{i}), description_sv: 'Detta kommer bli ett evenemang!',
+                            description_en: 'This will be an event!',
+                            starts_at: date, ends_at: date + 5.hours,
+                            food: true, drink: true, location: 'Gasquesalen')
+      event.update!(short_en: event.short)
       date = date + 1.days + [-3,-2,-1,0,1,2,3].sample.hours
     end
 

@@ -39,7 +39,9 @@ RSpec.describe Admin::EventsController, type: :controller do
   describe 'POST #create' do
     it 'valid parameters' do
       attributes = { title_sv: 'Välkomstgasque!',
+                     title_en: 'Welcome gasque!',
                      description_sv: 'Det blir mat och dryck, waow!',
+                     description_en: 'There will be food and drinks, waow!',
                      location_sv: 'Kårhuset: Gasquesalen',
                      starts_at: 5.days.from_now,
                      ends_at: 7.days.from_now }
