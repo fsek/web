@@ -297,30 +297,31 @@ ActiveRecord::Schema.define(version: 20170823132130) do
   end
 
   create_table "event_signup_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "event_signup_id", null: false
-    t.string   "locale",          null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "event_signup_id",      null: false
+    t.string   "locale",               null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "question"
+    t.string   "notification_message"
     t.index ["event_signup_id"], name: "index_event_signup_translations_on_event_signup_id", using: :btree
     t.index ["locale"], name: "index_event_signup_translations_on_locale", using: :btree
   end
 
   create_table "event_signups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "event_id"
-    t.boolean  "for_members", default: true, null: false
+    t.boolean  "for_members",   default: true, null: false
     t.string   "question"
-    t.integer  "slots",                      null: false
-    t.datetime "closes",                     null: false
-    t.datetime "opens",                      null: false
+    t.integer  "slots",                        null: false
+    t.datetime "closes",                       null: false
+    t.datetime "opens",                        null: false
     t.integer  "novice"
     t.integer  "mentor"
     t.integer  "member"
     t.integer  "custom"
     t.string   "custom_name"
     t.datetime "deleted_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "group_types"
     t.datetime "sent_reminder"
     t.datetime "sent_position"
@@ -620,19 +621,18 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.integer  "user_id",                   null: false
   end
 
-  create_table "notifications", force: :cascade do |t|
-    t.integer  "user_id",         limit: 4
-    t.boolean  "seen",                        default: false, null: false
-    t.string   "notifyable_type", limit: 255,                 null: false
-    t.integer  "notifyable_id",   limit: 4,                   null: false
-    t.string   "mode",            limit: 255,                 null: false
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.boolean  "seen",            default: false, null: false
+    t.string   "notifyable_type",                 null: false
+    t.integer  "notifyable_id",                   null: false
+    t.string   "mode",                            null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["notifyable_id"], name: "index_notifications_on_notifyable_id", using: :btree
+    t.index ["notifyable_type"], name: "index_notifications_on_notifyable_type", using: :btree
+    t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
   end
-
-  add_index "notifications", ["notifyable_id"], name: "index_notifications_on_notifyable_id", using: :btree
-  add_index "notifications", ["notifyable_type"], name: "index_notifications_on_notifyable_type", using: :btree
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "page_element_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "page_element_id",               null: false
@@ -819,7 +819,7 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.string   "student_id"
     t.boolean  "display_phone",          default: false, null: false
     t.string   "food_preferences"
-    t.integer  "notifications_count",    limit: 4,   default: 0,     null: false
+    t.integer  "notifications_count",    default: 0,     null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
