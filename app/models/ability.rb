@@ -59,10 +59,9 @@ class Ability
       end
 
       can :read, Meeting
-
       can [:read, :search], Song
-
-      can([:index, :look, :look_all], Notification, user_id: user.id)
+      can [:index, :look, :look_all], Notification, user_id: user.id
+      can [:create, :destroy], PushDevice
     end
 
     # Only for members of the Guild

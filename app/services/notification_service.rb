@@ -6,8 +6,6 @@ class NotificationService
 
     begin
       notification.save!
-      # NotificationMailer.notify(notification).deliver_later
-      # TODO -> Add push notices here
       true
     rescue
       false

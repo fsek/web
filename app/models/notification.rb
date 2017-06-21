@@ -1,4 +1,4 @@
-class Notification < ActiveRecord::Base
+class Notification < ApplicationRecord
   enum(event_users: [:reminder, :position])
   ALLOWED = { 'EventUser' => event_users }.freeze
 
@@ -14,6 +14,7 @@ class Notification < ActiveRecord::Base
 
   after_commit :update_counter_cache
   after_destroy :update_counter_cache
+  after_create :send_push
 
   def to_s
     "#{notifyable} #{notifyable.model_name.human}"
@@ -47,5 +48,9 @@ class Notification < ActiveRecord::Base
 
   def update_counter_cache
     user.update(notifications_count: user.notifications.not_seen.count)
+  end
+
+  def send_push
+    PushService.push(self)
   end
 end

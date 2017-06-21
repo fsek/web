@@ -338,6 +338,8 @@ Fsek::Application.routes.draw do
     resources :events, only: [:index, :show] do
       resources :event_users, only: [:create, :destroy]
     end
+
+    resources :push_devices, only: [:create, :destroy], param: :token
   end
 
   get 'proposals/form' => 'proposals#form'

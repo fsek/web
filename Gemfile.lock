@@ -97,6 +97,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     airbrussh (1.1.1)
       sshkit (>= 1.6.1, != 1.7.0)
+    ansi (1.5.0)
     arel (7.1.4)
     autoprefixer-rails (6.7.4)
       execjs
@@ -245,6 +246,7 @@ GEM
       railties (>= 3.1)
     multi_json (1.12.1)
     mysql2 (0.3.21)
+    net-http-persistent (2.9.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
@@ -351,6 +353,13 @@ GEM
     routing-filter (0.6.1)
       actionpack (>= 4.2, < 5.2)
       activesupport (>= 4.2, < 5.2)
+    rpush (2.7.0)
+      activesupport
+      ansi
+      multi_json (~> 1.0)
+      net-http-persistent
+      railties
+      thor (>= 0.18.1, < 2.0)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-example_steps (3.0.2)
@@ -482,6 +491,7 @@ DEPENDENCIES
   mini_magick
   momentjs-rails
   mysql2 (~> 0.3.20)
+  net-http-persistent (< 3.0)
   nokogiri (>= 1.7)
   omniauth
   onesky-rails
@@ -499,6 +509,7 @@ DEPENDENCIES
   roadie-rails (~> 1.0)
   rollbar
   routing-filter (~> 0.6.0)
+  rpush
   rspec-example_steps
   rspec-rails
   sass-rails
