@@ -737,6 +737,14 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.boolean  "car_rent"
   end
 
+  create_table "push_devices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "token",               null: false
+    t.integer "system",  default: 0, null: false
+    t.integer "user_id"
+    t.index ["token", "user_id"], name: "index_push_devices_on_token_and_user_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_push_devices_on_user_id", using: :btree
+  end
+
   create_table "rents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "d_from"
     t.datetime "d_til"
@@ -751,6 +759,66 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.integer  "user_id"
     t.index ["council_id"], name: "index_rents_on_council_id", using: :btree
     t.index ["user_id"], name: "index_rents_on_user_id", using: :btree
+  end
+
+  create_table "rpush_apps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                                              null: false
+    t.string   "environment"
+    t.text     "certificate",             limit: 65535
+    t.string   "password"
+    t.integer  "connections",                           default: 1, null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.string   "type",                                              null: false
+    t.string   "auth_key"
+    t.string   "client_id"
+    t.string   "client_secret"
+    t.string   "access_token"
+    t.datetime "access_token_expiration"
+  end
+
+  create_table "rpush_feedback", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "device_token", limit: 64, null: false
+    t.datetime "failed_at",               null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "app_id"
+    t.index ["device_token"], name: "index_rpush_feedback_on_device_token", using: :btree
+  end
+
+  create_table "rpush_notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "badge"
+    t.string   "device_token",      limit: 64
+    t.string   "sound",                              default: "default"
+    t.text     "alert",             limit: 65535
+    t.text     "data",              limit: 65535
+    t.integer  "expiry",                             default: 86400
+    t.boolean  "delivered",                          default: false,     null: false
+    t.datetime "delivered_at"
+    t.boolean  "failed",                             default: false,     null: false
+    t.datetime "failed_at"
+    t.integer  "error_code"
+    t.text     "error_description", limit: 65535
+    t.datetime "deliver_after"
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.boolean  "alert_is_json",                      default: false
+    t.string   "type",                                                   null: false
+    t.string   "collapse_key"
+    t.boolean  "delay_while_idle",                   default: false,     null: false
+    t.text     "registration_ids",  limit: 16777215
+    t.integer  "app_id",                                                 null: false
+    t.integer  "retries",                            default: 0
+    t.string   "uri"
+    t.datetime "fail_after"
+    t.boolean  "processing",                         default: false,     null: false
+    t.integer  "priority"
+    t.text     "url_args",          limit: 65535
+    t.string   "category"
+    t.boolean  "content_available",                  default: false
+    t.text     "notification",      limit: 65535
+    t.index ["app_id", "delivered", "failed", "deliver_after"], name: "index_rapns_notifications_multi", using: :btree
+    t.index ["delivered", "failed"], name: "index_rpush_notifications_multi", using: :btree
   end
 
   create_table "short_links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -820,10 +888,10 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.string   "student_id"
     t.boolean  "display_phone",                        default: false,   null: false
     t.string   "food_preferences"
+    t.integer  "notifications_count",                  default: 0,       null: false
     t.string   "provider",                             default: "email", null: false
     t.string   "uid",                                  default: "",      null: false
     t.text     "tokens",                 limit: 65535
-    t.integer  "notifications_count",                  default: 0,       null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
@@ -878,5 +946,6 @@ ActiveRecord::Schema.define(version: 20170823132130) do
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "page_images", "pages"
+  add_foreign_key "push_devices", "users"
   add_foreign_key "rents", "users"
 end

@@ -1,9 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe(NotificationsController,
-               type: :controller) do
+RSpec.describe(NotificationsController, type: :controller) do
   let(:user) { create(:user) }
   allow_user_to([:look, :index, :look_all], Notification)
+
+  before(:each) do
+    allow(Rpush::Gcm::App).to receive(:find_by!) { Rpush::Gcm::App.new }
+    allow(Rpush::Gcm::Notification).to receive(:create!) { Rpush::Gcm::Notification.new }
+  end
 
   describe 'POST #look' do
     it 'marks notification as seen' do

@@ -1,0 +1,6 @@
+sv:
+  service:
+    push:
+      attending: Du har fått en plats till eventet!
+      reserve_position: Du fick tyvärr ingen plats till eventet.
+      starts_soon: Du är anmäld till eventet som börjar %{time}.
