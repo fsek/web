@@ -42,4 +42,24 @@ class NotificationService
                                            30.minutes)
     end
   end
+
+  # Delete all notifications for a specific event
+  # This method will bypass callbacks to increase performance
+  def self.destroy_for(event)
+    notifications = Notification.where(notifyable: EventUser.where(event: event))
+    return if notifications.blank?
+
+    users = User.where(id: notifications.distinct.pluck(:user_id))
+
+    notifications.delete_all
+    update_counters(users)
+  end
+
+  # Updates the coutner caches
+  def self.update_counters(users)
+    counts = Notification.joins(:user).merge(users).group('users.id').select('users.id, count(*) as score')
+    counts.each do |c|
+      User.update(c.id, notifications_count: c.score)
+    end
+  end
 end
