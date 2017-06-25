@@ -1,5 +1,6 @@
 class EventSignupPositionWorker
   include Sidekiq::Worker
+  sidekiq_options unique: :while_executing, unique_expiration: 60 * 24
 
   def perform(event_signup_id)
     event_signup = EventSignup.includes(:event_users).find(event_signup_id)
