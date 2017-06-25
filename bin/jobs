@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'active_support/core_ext/class/attribute'
+require 'active_support/core_ext/string/inflections'
+require 'sidekiq-unique-jobs'
+
+SidekiqUniqueJobs::Cli.start(ARGV)

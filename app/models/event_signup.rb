@@ -16,7 +16,8 @@ class EventSignup < ApplicationRecord
   # Schedules notifications if event_signup is created or updated
   # This will lead to multiple notifications being queued if the event or signup
   # is updated multiple times, but the task will only run once.
-  after_commit(:schedule_notifications)
+  after_save(:schedule_notifications)
+  after_destroy(:destroy_event_users)
 
   translates(:question, :notification_message)
   globalize_accessors(locales: [:en, :sv],
@@ -90,5 +91,11 @@ class EventSignup < ApplicationRecord
 
   def schedule_notifications
     NotificationService.event_schedule_notifications(event)
+  end
+
+  def destroy_event_users
+    # Destroy the notifications first (avoids a lot of N+1 queries)
+    NotificationService.destroy_for(event)
+    event.event_users.destroy_all
   end
 end

@@ -137,7 +137,7 @@
     form.submit(function(e) {
       e.preventDefault()
       var query = $('#alias-searchfield').val()
-      $.ajax('admin/mail_aliases/search',
+      $.ajax('/admin/mail_aliases/search',
              { method: 'GET'
              , data: { q: query }
              , error: console.log

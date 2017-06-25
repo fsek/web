@@ -13,7 +13,7 @@ class Event < ApplicationRecord
   mount_uploader :image, AttachedImageUploader, mount_on: :image_file_name
 
   has_one :event_signup, dependent: :destroy
-  has_many :event_users, dependent: :destroy, inverse_of: :event
+  has_many :event_users, inverse_of: :event
   has_many :users, through: :event_users
   belongs_to :council
   belongs_to :contact
@@ -25,7 +25,8 @@ class Event < ApplicationRecord
   # Schedules notifications if event_signup is created or updated
   # This will lead to multiple notifications being queued if the event or signup
   # is updated multiple times, but the task will only run once.
-  after_commit(:schedule_notifications)
+  after_save(:schedule_notifications)
+  after_destroy(:destroy_event_users)
 
   scope :view, -> { select(:starts_at, :ends_at, :all_day, :title, :short, :updated_at) }
   scope :by_start, -> { order(starts_at: :asc) }
@@ -105,5 +106,11 @@ class Event < ApplicationRecord
 
   def schedule_notifications
     NotificationService.event_schedule_notifications(self)
+  end
+
+  def destroy_event_users
+    # Destroy the notifications first (avoids a lot of N+1 queries)
+    NotificationService.destroy_for(self)
+    event_users.destroy_all
   end
 end
