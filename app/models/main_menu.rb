@@ -5,7 +5,7 @@ class MainMenu < ApplicationRecord
   globalize_accessors(locales: [:en, :sv], attributes: [:name])
 
   validates :name, presence: true
-  scope :by_index, -> { order(index: :asc) }
+  scope :by_index, -> { order(index: :asc).where(visible: true) }
 
   def to_s
     name
