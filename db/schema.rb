@@ -494,6 +494,7 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.boolean  "fw",         default: false, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.boolean  "visible",    default: true,  null: false
   end
 
   create_table "meetings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

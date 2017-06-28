@@ -44,6 +44,6 @@ class Admin::MainMenusController < Admin::BaseController
   private
 
   def main_menu_params
-    params.require(:main_menu).permit(:name_sv, :name_en, :index, :mega, :fw)
+    params.require(:main_menu).permit(:name_sv, :name_en, :index, :mega, :fw, :visible)
   end
 end
