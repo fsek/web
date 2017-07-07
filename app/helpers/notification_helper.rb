@@ -1,10 +1,11 @@
 module NotificationHelper
-  def notification_context(text, notification, icon: 'bell 4x')
-    content_tag(:span, class: 'notification-content') do
-      content = []
-      content << fa_icon(icon)
+  def notification_context(notification, data)
+    content_tag(:div, class: 'notification-content') do
+      content = [fa_icon(data.icon)]
       content << asterisk_link(notification)
-      content << content_tag(:span, markdown(text), class: 'text')
+      content << content_tag(:span, markdown(data.title), class: 'title')
+      content << content_tag(:span, markdown(data.body), class: 'body')
+      content << content_tag(:span, markdown(data.extra), class: 'extra')
       safe_join(content)
     end
   end
@@ -36,19 +37,5 @@ module NotificationHelper
     else
       title
     end
-  end
-
-  def event_user_notification(event_user)
-    text = ''
-    if event_user.reserve?
-      text << t('.reserve_position', event: event_user.event.to_s)
-    else
-      text << t('.attending', event: event_user.event.to_s)
-    end
-
-    if event_user.event_signup.notification_message.present?
-      text << '<br>' << event_user.event_signup.notification_message
-    end
-    text
   end
 end

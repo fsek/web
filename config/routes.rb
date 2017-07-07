@@ -340,6 +340,11 @@ Fsek::Application.routes.draw do
     end
 
     resources :push_devices, only: [:create, :destroy], param: :token
+
+    resources :notifications, only: :index do
+      get :unread
+      patch :look, on: :member
+    end
   end
 
   get 'proposals/form' => 'proposals#form'

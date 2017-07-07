@@ -10,10 +10,18 @@
       vertical-align: middle;
     }
 
-    .text {
-      color: $black;
+    .title {
       display: inline-block;
       font-size: 1.4em;
+      font-weight: bold;
+    }
+
+    .body {
+      font-size: 1.2em;
+    }
+
+    .extra {
+      font-style: italic;
     }
 
     .asterisk {
@@ -43,6 +51,10 @@
     .notification-content {
       .text {
         font-size: 1em;
+      }
+
+      .body {
+        font-size: 0.8em;
       }
 
       .fa,
