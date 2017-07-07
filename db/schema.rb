@@ -888,10 +888,10 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.string   "student_id"
     t.boolean  "display_phone",                        default: false,   null: false
     t.string   "food_preferences"
-    t.integer  "notifications_count",                  default: 0,       null: false
     t.string   "provider",                             default: "email", null: false
     t.string   "uid",                                  default: "",      null: false
     t.text     "tokens",                 limit: 65535
+    t.integer  "notifications_count",                  default: 0,       null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

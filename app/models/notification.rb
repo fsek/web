@@ -6,22 +6,22 @@ class Notification < ApplicationRecord
   belongs_to :notifyable, polymorphic: true, required: true
   validate :valid_notifyable
 
-  paginates_per(5)
+  paginates_per(7)
 
   scope :seen, -> { where(seen: true) }
   scope :not_seen, -> { where(seen: false) }
   scope :by_latest, -> { order(created_at: :desc) }
+  scope :for_index, -> { includes(:notifyable).by_latest }
 
   after_commit :update_counter_cache
-  after_destroy :update_counter_cache
   after_create :send_push
 
   def to_s
     "#{notifyable} #{notifyable.model_name.human}"
   end
 
-  def polymorphic_partial
-    "/notifications/partials/#{notifyable.model_name.singular}_#{mode}"
+  def data
+    NotificationData.new(self)
   end
 
   private

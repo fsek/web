@@ -4,12 +4,5 @@ sv:
       title: Notifikationer
       mark_all_as_read: Markera alla som sedda
 
-    partials:
-      event_user_reminder:
-        remind_soon_starting: Du är anmäld till %{event} och det startar vid %{time}.
-        read_more: Läs mer
-
-      event_user_position:
-        reserve_position: "Anmälan till %{event} har nu stängt och du fick **tyvärr ingen plats till evenemanget**.<br> Du ligger just nu på reservlistan."
-        attending: "Anmälan till %{event} har nu stängt och du fick **en plats**."
-        read_more: Läs mer
+    notification:
+      read_more: Läs mer
