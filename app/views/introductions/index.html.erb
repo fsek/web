@@ -10,27 +10,17 @@
     </small>
   </div>
 
+  <div class="col-md-12 paragraph"><%= t('.info') %></div>
   <div class="col-md-12 paragraph">
-    <%= t('.info',
+    <%= t('.info2',
           checklist: link_to(t('.this_checklist'), '/sida/checklista'),
           more_info: link_to(t('global.here'), '/sida/vadarnollningen')).html_safe %>
   </div>
-  <div class="col-md-12 paragraph"><%= t('.info2') %></div>
-  <div class="col-md-12 paragraph margin-bottom-20"><%= t('.info3') %></div>
-
-  <div class="col-md-3 col-sm-12 links">
-    <div class="headline">
-      <h2><%= t('.links') %></h2>
-    </div>
-    <ul>
-      <li><%= link_to(t('.matrix'), matrix_introductions_path) %></li>
-      <li><%= link_to(t('.adventures'), introduction_adventures_path(@introduction)) %></li>
-      <li><%= link_to(t('.dance'), dance_introductions_path) %></li>
-    </ul>
-  </div>
+  <div class="col-md-12 paragraph"><%= t('.info3') %></div>
+  <div class="col-md-12 paragraph margin-bottom-20"><%= t('.info4') %></div>
 
   <% if @news.present? %>
-    <div class="col-md-9 col-sm-12 news">
+    <div class="col-md-12 news">
       <div class="headline">
         <h2><%= t('.news') %></h2>
       </div>
