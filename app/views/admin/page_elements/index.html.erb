@@ -23,7 +23,11 @@
 
 <div class="col-md-10 col-sm-12">
   <%= grid(@element_grid, hide_submit_button: true, hide_reset_button: true) do |g|
-    g.column(name: PageElement.human_attribute_name(:headline), attribute: 'headline')
+    g.column(name: PageElement.human_attribute_name(:headline),
+             attribute: 'headline',
+             assoc: :translations) do |page_element|
+      page_element.headline
+    end
     g.column(name: PageElement.human_attribute_name(:visible), attribute: 'visible') do |page_element|
       yes_no(page_element.visible)
     end
