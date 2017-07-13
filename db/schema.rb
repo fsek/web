@@ -609,19 +609,6 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.index ["notice_id"], name: "index_notice_translations_on_notice_id", using: :btree
   end
 
-  create_table "notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
-    t.text     "description", limit: 65535
-    t.boolean  "public"
-    t.datetime "d_publish"
-    t.datetime "d_remove"
-    t.integer  "sort"
-    t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id",                   null: false
-  end
-
   create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.boolean  "seen",            default: false, null: false
