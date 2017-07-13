@@ -4,6 +4,7 @@ class IntroductionsController < ApplicationController
 
   def index
     @news = News.for_feed.slug(:nollning).limit(5)
+    @contact = Contact.find_by(slug: 'foset')
   end
 
   def dance
