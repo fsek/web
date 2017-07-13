@@ -347,6 +347,8 @@ Fsek::Application.routes.draw do
     resources :messages, only: :edit do
       get :new_token, on: :collection
     end
+
+    resources :news, only: :index
   end
 
   get 'proposals/form' => 'proposals#form'
