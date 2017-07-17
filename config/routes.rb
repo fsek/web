@@ -278,18 +278,12 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :messages, only: [:destroy], path: :meddelanden do
-      resources :message_comments, path: :kommentarer, only: [:create, :destroy]
-    end
-
     namespace :admin do
-      resources :messages, path: :meddelanden, only: [:edit, :destroy, :update] do
-        resources :message_comments, path: :kommentarer, only: [:create, :destroy]
-      end
+      resources :messages, path: :meddelanden, only: [:edit, :destroy, :update]
     end
 
     resources :groups, path: :grupper, except: [:new, :create, :destroy] do
-      resources :messages, only: [:new, :create, :index], path: :meddelanden
+      resources :messages, only: [:index], path: :meddelanden
     end
 
     namespace :admin do

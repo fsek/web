@@ -32,7 +32,6 @@ class User < ApplicationRecord
   has_many :group_users, dependent: :destroy
   has_many :groups, through: :group_users
   has_many :messages, dependent: :destroy
-  has_many :message_comments, dependent: :destroy
   has_many :meetings
   has_many :notifications, dependent: :destroy, inverse_of: :user
   has_many :push_devices, dependent: :destroy

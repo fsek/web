@@ -12,7 +12,7 @@ class Api::PushDevicesController < Api::BaseController
   end
 
   def destroy
-    @push_device = current_user.push_devices.find_by(params[:token])
+    @push_device = current_user.push_devices.find_by(token: params[:token])
 
     if @push_device && @push_device.destroy
       render json: {}, status: :ok

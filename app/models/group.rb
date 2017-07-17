@@ -21,6 +21,7 @@ class Group < ApplicationRecord
   scope :regular, -> { where(group_type: REGULAR) }
   scope :missions, -> { where(group_type: MISSION) }
   scope :others, -> { where(group_type: OTHER) }
+  scope :for_show, -> { includes(:introduction) }
 
   def regular?
     group_type == REGULAR

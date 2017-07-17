@@ -712,7 +712,7 @@ Style/Semicolon:
 Style/SignalException:
   Description: 'Checks for proper usage of fail and raise.'
   StyleGuide: '#prefer-raise-over-fail'
-  Enabled: true
+  Enabled: false
 
 Style/SingleLineMethods:
   Description: 'Avoid single-line methods.'

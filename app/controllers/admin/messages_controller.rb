@@ -18,6 +18,7 @@ class Admin::MessagesController < Admin::BaseController
     @message.introduction = @introduction
 
     if @message.save
+      MessageService.broadcast_create(@message)
       redirect_to admin_introduction_messages_path, notice: alert_create(Message)
     else
       render :new, status: 422
@@ -32,8 +33,8 @@ class Admin::MessagesController < Admin::BaseController
     @message = Message.find(params[:id])
 
     if @message.update(message_params)
-      redirect_to(admin_introduction_messages_path(@message.introduction),
-                  notice: alert_update(Message))
+      MessageService.broadcast_update(@message)
+      redirect_to(admin_introduction_messages_path(@message.introduction), notice: alert_update(Message))
     else
       render :edit, status: 422
     end
@@ -41,8 +42,8 @@ class Admin::MessagesController < Admin::BaseController
 
   def destroy
     message = Message.by_admin.find(params[:id])
+    MessageService.destroy_message(message)
 
-    message.destroy!
     redirect_back(fallback_location: root_path, notice: alert_destroy(Message))
   end
 

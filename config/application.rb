@@ -35,6 +35,8 @@ module Fsek
                                  acronym a img blockquote del ins table tr td th))
     config.action_view.sanitized_allowed_tags = WHITE_HTML_TAGS
     config.active_job.queue_adapter = :sidekiq
+
+    config.action_cable.mount_path = '/cable'
   end
 end
 

@@ -539,19 +539,6 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.index ["main_menu_id"], name: "index_menus_on_main_menu_id", using: :btree
   end
 
-  create_table "message_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "message_id"
-    t.integer  "user_id"
-    t.text     "content",    limit: 65535,                 null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.boolean  "by_admin",                 default: false, null: false
-    t.index ["deleted_at"], name: "index_message_comments_on_deleted_at", using: :btree
-    t.index ["message_id"], name: "index_message_comments_on_message_id", using: :btree
-    t.index ["user_id"], name: "index_message_comments_on_user_id", using: :btree
-  end
-
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.text     "content",                limit: 65535,                 null: false
@@ -561,6 +548,7 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.datetime "updated_at",                                           null: false
     t.boolean  "by_admin",                             default: false, null: false
     t.integer  "introduction_id"
+    t.bigint   "sent_at",                                              null: false
     t.index ["deleted_at"], name: "index_messages_on_deleted_at", using: :btree
     t.index ["introduction_id"], name: "index_messages_on_introduction_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
@@ -928,8 +916,6 @@ ActiveRecord::Schema.define(version: 20170823132130) do
   add_foreign_key "meetings", "councils"
   add_foreign_key "meetings", "users"
   add_foreign_key "menus", "main_menus"
-  add_foreign_key "message_comments", "messages"
-  add_foreign_key "message_comments", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "page_images", "pages"

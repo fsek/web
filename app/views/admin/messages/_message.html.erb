@@ -1,5 +1,4 @@
-<div class="message <%= message.by_admin ? 'by-admin' : '' %>">
-  <% admin |= false %>
+<div class="message by-admin">
   <% if message.user.avatar? %>
     <%= link_to(user_path(message.user), class: 'pull-left') do %>
       <%= image_tag(message.user.thumb_avatar, class: 'author img-responsive') %>
@@ -11,17 +10,11 @@
         <%= user_link(message.user) %>
       </strong>
       <small>
+        <%= message_edit_link(message) %>
+        <%= message_destroy_link(message) %>
         <%= localized(message.created_at, format: :short) %>
       </small>
-      <strong>
-        <%= message_receivers(message, admin) %>
-      </strong>
     </div>
     <%= markdown(message.content) %>
-    <%= message_edit_link(message, admin) %>
-    <%= message_destroy_link(message, admin) %>
-  </div>
-  <div class="comments">
-    <%= render '/messages/comments', message: message, admin: admin %>
   </div>
 </div>

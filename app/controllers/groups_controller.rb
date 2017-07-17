@@ -10,8 +10,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    group = Group.includes(:introduction, adventure_groups: :adventure).
-            find(params[:id])
+    group = Group.for_show.find(params[:id])
     @group_view = GroupView.new(group)
   end
 
