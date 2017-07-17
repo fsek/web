@@ -17,6 +17,7 @@ gem 'datetimepicker-rails', git: 'https://github.com/zpaulovics/datetimepicker-r
                             submodules: true
 gem 'devise'
 gem 'devise_token_auth'
+gem 'ejs'
 gem 'font-awesome-rails'
 gem 'fotoramajs'
 gem 'fullcalendar-rails'
@@ -74,6 +75,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'puma'
   gem 'rspec-example_steps'
   gem 'rspec-rails'
 end

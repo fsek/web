@@ -100,4 +100,16 @@ class ApplicationController < ActionController::Base
   def devise_token_controller
     params[:controller].split('/')[0] == 'devise_token_auth'
   end
+
+  # Adds pagination meta data (from kaminari) to a serializer
+  # Usage: `render json: @collection, meta: pagination_dict(collection)`
+  def pagination_meta(collection)
+    {
+      current_page: collection.current_page,
+      next_page: collection.next_page,
+      prev_page: collection.prev_page,
+      total_pages: collection.total_pages,
+      total_count: collection.total_count
+    }
+  end
 end

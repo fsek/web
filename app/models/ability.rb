@@ -50,14 +50,6 @@ class Ability
 
       can([:create, :destroy], Message, user_id: user.id)
 
-      can(:destroy, MessageComment, MessageComment.by_user(user)) do |comment|
-        comment.with_group(user)
-      end
-
-      can(:create, MessageComment) do |comment|
-        comment.with_group(user) && comment.user == user
-      end
-
       can :read, Meeting
       can [:read, :search], Song
       can [:index, :look, :look_all], Notification, user_id: user.id

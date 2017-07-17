@@ -1,0 +1,6 @@
+<div>
+  <%= form_for([group, message], url: '#') do |f| %>
+    <%= f.text_area :content, input_html: {rows: 2}, class: 'form-control margin-bottom-10' %>
+    <%= f.submit 'Skicka', class: 'btn primary' %>
+  <% end %>
+</div>

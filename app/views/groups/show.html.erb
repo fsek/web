@@ -1,10 +1,6 @@
-<div class="headline">
-  <h2><%= title(group_title(@group_view.group)) %></h2>
-</div>
-
-<div class="col-md-3 col-sm-12">
+<div class="col-md-3 col-sm-12 col-xs-12">
   <div class="headline">
-    <h4><%= t('.members') %></h4>
+    <h2><%= title(@group_view.group.name) %></h2>
   </div>
   <% cache([I18n.locale, @group_view.group.group_users]) do %>
     <%= render @group_view.group.group_users.includes(:user) %>
@@ -16,41 +12,18 @@
     <% end %>
   <% end %>
 
-  <% if can?(:create, Message.new(user: current_user, groups: [@group_view.group])) %>
-    <hr>
-    <%= link_to(t('.new_message'), new_group_message_path(@group_view.group),
-                                   class: 'btn primary') %>
-  <% end %>
-
   <hr>
   <% if @group.introduction.present? %>
     <%= link_to(@group.introduction, introduction_path(@group_view.group.introduction),
                                      class: 'btn secondary') %>
     <%= link_to(t('.adventures'), introduction_adventures_path(@group_view.group.introduction),
                                   class: 'btn secondary') %>
+    <hr>
   <% end %>
 </div>
 
-<div class="col-md-9 col-sm-12">
-  <div class="headline">
-    <h3><%= t('.messages') %></h3>
+<div class="col-md-9 col-sm-12 col-xs-12 message-box">
+  <div class="messages" id="group-messages" data-group-id="<%= @group.id %>" data-user-id="<%= current_user.id %>">
   </div>
-  <%= render @group_view.messages %>
-  <%= link_to(group_messages_path(@group_view.group)) do %>
-    <%= fa_icon('plus') %> <%= t('.all_messages') %>
-  <% end %>
+  <%= render 'messages/new', group: @group, message: @group_view.message %>
 </div>
-
-<% if @group_view.adventures.any? %>
-  <div class="col-md-12">
-    <div class="adventure">
-      <div class="headline">
-        <h3><%= t('.adventures') %></h3>
-      </div>
-
-      <% @group_view.adventures.each do |result| %>
-        <%= render(result, title: result.adventure, do_link: true, max: result.adventure.max_points) %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
