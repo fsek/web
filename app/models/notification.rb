@@ -51,6 +51,6 @@ class Notification < ApplicationRecord
   end
 
   def send_push
-    PushService.push(self)
+    PushService.push(data, user)
   end
 end

@@ -22,6 +22,10 @@ class Message < ApplicationRecord
 
   before_create(:set_sent_at)
 
+  def data(group)
+    MessageData.new(self, group)
+  end
+
   def with_group(user)
     if user.present?
       groups.merge(user.groups).any?
