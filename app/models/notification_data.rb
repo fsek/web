@@ -14,12 +14,16 @@ class NotificationData
     { title: title, body: body, extra: extra }
   end
 
-  def for_android
-    { title: title, body: body, notId: notification.id}
+  def android_data
+    { title: title, body: body, notId: notification.id }
   end
 
-  def for_ios
+  def ios_notification
     { title: title, body: body }
+  end
+
+  def ios_data
+    { notification_id: notification.id }
   end
 
   private
