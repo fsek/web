@@ -1,10 +1,12 @@
-development:
+default: &default
   adapter: redis
-  url: redis://localhost:6379/1
+  url: <%= ENV['CABLE_DATABASE'] %>
+
+production: *default
+
+development: *default
+
+staging: *default
 
 test:
   adapter: async
-
-production:
-  adapter: redis
-  url: redis://localhost:6379/1
