@@ -51,4 +51,5 @@ DeviseTokenAuth.setup do |config|
   # the API. Since we let regular devise handle email confirmation, and have
   # disabled the confirmation routes for devise_token_auth, this can be set to anything.
   config.default_confirm_success_url = '/'
+  config.redirect_whitelist = ['/*', 'file://*']
 end
