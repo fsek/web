@@ -1,25 +1,25 @@
 <div class="message <%= message.by_admin ? 'by-admin' : '' %>" id="<%= message.id %>">
-  <% if (message.user.thumb_avatar != null) { %>
-    <a class="pull-left" href="<%= message.user.link %>">
-      <img class="author img-responsive" src="<%= message.user.thumb_avatar %>"></img>
+  <% if (message.avatar != null) { %>
+    <a class="pull-left" href="/anvandare/<%= message.user_id %>">
+      <img class="author img-responsive" src="<%= message.avatar %>"></img>
     </a>
   <% } %>
   <div class="body">
     <div class="heading">
       <strong>
-        <a href="<%= message.user.link %>"><%= message.user.name %></a>
+        <a href="/anvandare/<%= message.user_id %>"><%= message.name %></a>
       </strong>
       <small>
-        <% if (message.user.id == current_user ) { %>
+        <% if (message.user_id == current_user ) { %>
           <a href="#" class="destroy_button" data-turbolinks="false">
             <i class="fa fa-trash"></i>
           </a>
         <% } %>
-        <%= message.created_at %>
+        <%= message.day %> <%= message.time %>
       </small>
     </div>
     <div class="msg-content">
-      <%= message.content %>
+      <%= message.text %>
     </div>
     <div class="updated">
       <%= message.updated_at %>

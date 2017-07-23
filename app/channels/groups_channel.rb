@@ -25,4 +25,12 @@ class GroupsChannel < ApplicationCable::Channel
 
     MessageService.destroy_message(message)
   end
+
+  def update_message(data)
+    message = Message.find(data['message_id'])
+    return unless ability.can?(:update, message)
+
+    message.update!(content: data['content'])
+    MessageService.broadcast_update(message)
+  end
 end

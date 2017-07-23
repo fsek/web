@@ -7,7 +7,7 @@ class Message < ApplicationRecord
   has_many :group_messages, dependent: :destroy
   has_many :groups, through: :group_messages
 
-  paginates_per(10)
+  paginates_per(15)
 
   validates :content, presence: true
   validates :groups, length: { minimum: 1, message: I18n.t('model.message.need_groups') }
