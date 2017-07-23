@@ -44,7 +44,7 @@ function initGroupCable() {
     var msg = $('.message#' + message.id);
     if(!msg.length) return;
 
-    msg.find('.msg-content').html(message.content);
+    msg.find('.msg-content').html(message.text);
     msg.find('.updated').html(message.updated_at);
   };
 

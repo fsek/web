@@ -14,8 +14,16 @@ module ApplicationCable
     protected
 
     def find_verified_user
-      verified_user = env['warden'].user
-      verified_user ? verified_user : reject_unauthorized_connection
+      cookie_user = env['warden'].user
+      token = request.params[:token]
+
+      if cookie_user.present?
+        cookie_user
+      elsif token.present?
+        User.find(MessageToken.find(token))
+      else
+        reject_unauthorized_connection
+      end
     end
   end
 end

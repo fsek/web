@@ -339,6 +339,14 @@ Fsek::Application.routes.draw do
       get :unread
       patch :look, on: :member
     end
+
+    resources :groups, only: [:index, :show] do
+      resources :messages, only: :index
+    end
+
+    resources :messages, only: :edit do
+      get :new_token, on: :collection
+    end
   end
 
   get 'proposals/form' => 'proposals#form'

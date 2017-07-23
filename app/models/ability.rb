@@ -48,7 +48,7 @@ class Ability
         message.with_group(user)
       end
 
-      can([:create, :destroy], Message, user_id: user.id)
+      can([:create, :destroy, :edit, :update, :new_token], Message, user_id: user.id)
 
       can :read, Meeting
       can [:read, :search], Song
