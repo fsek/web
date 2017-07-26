@@ -21,7 +21,7 @@
                   data: { turbolinks: :false }) %>
       <% if can_administrate?(:manage, p) %>
         <br>
-        <%= link_to(admin_gallery_album_image_path(@album, p)) do %>
+        <%= link_to(admin_album_image_path(@album, p)) do %>
           <%= fa_icon('cog') %> <%= t('global.edit') %>
         <% end %>
       <% end %>
