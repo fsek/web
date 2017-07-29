@@ -2,7 +2,7 @@ class Api::EventsController < Api::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @events = Event.all
+    @events = Event.includes(:translations).between(params[:start], params[:end])
     render json: @events, namespace: '' # Use the same serializer as for the web calendar
   end
 
