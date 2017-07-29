@@ -1,6 +1,7 @@
 class EventSerializer < ActiveModel::Serializer
   attributes(:id, :title, :start, :end)
   attribute(:description) { object.description || '' }
+  attribute(:location)
   attribute(:allday) { object.all_day? }
   attribute(:recurring) { false }
   attribute(:url) { Rails.application.routes.url_helpers.event_path(object.id) }
