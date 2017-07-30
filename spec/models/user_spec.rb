@@ -14,6 +14,38 @@ RSpec.describe User, type: :model do
     it { new_user.should validate_presence_of(:lastname) }
   end
 
+  describe 'name validation' do
+    it 'accepts names with at least two characters' do
+      user.lastname = 'Pi'
+      user.should be_valid
+    end
+
+    it 'does not accept names with less than 2 characters' do
+      user.lastname = 'F'
+      user.should be_invalid
+    end
+
+    it 'accepts unicode names with accents' do
+      user.lastname = 'Ναβροζίδης'
+      user.should be_valid
+    end
+
+    it 'accepts spaces and hyphens' do
+      user.lastname = 'Älg-Älg Älg'
+      user.should be_valid
+    end
+
+    it 'does not accept numbers' do
+      user.lastname = 'Nisse37'
+      user.should be_invalid
+    end
+
+    it 'does not accept special characters' do
+      user.lastname = 'Ka$$ör'
+      user.should be_invalid
+    end
+  end
+
   describe 'public instance methods' do
     context 'printing' do
       it 'print_id' do

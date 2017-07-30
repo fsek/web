@@ -7,7 +7,8 @@ RSpec.describe 'Authentication', type: :request do
         post api_user_registration_path(firstname: 'Jakob',
                                         lastname: 'Navrozidis',
                                         email: 'jakob@fsektionen.se',
-                                        password: 'godtyckligt')
+                                        password: 'godtyckligt',
+                                        password_confirmation: 'godtyckligt')
       end.should change(User, :count).by(1)
 
       response.should have_http_status(200)
@@ -16,6 +17,18 @@ RSpec.describe 'Authentication', type: :request do
     it 'invalid parameters' do
       lambda do
         post api_user_registration_path(firstname: 'Jakob',
+                                        email: 'jakob@fsektionen.se',
+                                        password: 'godtyckligt',
+                                        password_confirmation: 'godtyckligt')
+      end.should change(User, :count).by(0)
+
+      response.should have_http_status(422)
+    end
+
+    it 'no password confirmation' do
+      lambda do
+        post api_user_registration_path(firstname: 'Jakob',
+                                        lastname: 'Navrozidis',
                                         email: 'jakob@fsektionen.se',
                                         password: 'godtyckligt')
       end.should change(User, :count).by(0)
@@ -30,7 +43,8 @@ RSpec.describe 'Authentication', type: :request do
       post api_user_registration_path(firstname: 'Jakob',
                                       lastname: 'Navrozidis',
                                       email: 'jakob@fsektionen.se',
-                                      password: 'godtyckligt')
+                                      password: 'godtyckligt',
+                                      password_confirmation: 'godtyckligt')
       # Mark email as confirmed
       User.last.update!(confirmed_at: Time.zone.now)
 
@@ -45,7 +59,8 @@ RSpec.describe 'Authentication', type: :request do
       post api_user_registration_path(firstname: 'Jakob',
                                       lastname: 'Navrozidis',
                                       email: 'jakob@fsektionen.se',
-                                      password: 'godtyckligt')
+                                      password: 'godtyckligt',
+                                      password_confirmation: 'godtyckligt')
       # Mark email as confirmed
       User.last.update!(confirmed_at: Time.zone.now)
 

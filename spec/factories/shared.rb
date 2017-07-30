@@ -1,9 +1,9 @@
 FactoryGirl.define do
   sequence(:description) { |n| "This describes the most impressive nr#{n}" }
   sequence(:email) { |n| "d.wessman#{n}@fsektionen.se" }
-  sequence(:lastname) { |n| "Wessman#{n}" }
+  sequence(:lastname, 'A') { |n| "Wessman#{n}" }
   sequence(:name) { |n| "David#{n}" }
-  sequence(:firstname) { |n| "David#{n}" }
+  sequence(:firstname, 'A') { |n| "David#{n}" }
   sequence(:phone) { |n| "070#{n}606122" }
   sequence(:student_id) { |n| "tfy54dw#{n}" }
   sequence(:title) { |n| "Titel#{n}" }

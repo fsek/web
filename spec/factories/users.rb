@@ -1,8 +1,8 @@
-# encoding: UTF-8
 FactoryGirl.define do
   factory :user do
     email
     password '12345678'
+    password_confirmation '12345678'
     firstname
     lastname
     phone
@@ -19,6 +19,7 @@ FactoryGirl.define do
   factory :admin, class: 'User' do
     email
     password '12345678'
+    password_confirmation '12345678'
     firstname
     lastname
     phone

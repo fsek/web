@@ -28,16 +28,16 @@ sv:
     failure:
       already_authenticated: 'Du har redan loggat in.'
       inactive: 'Ditt konto har inte aktiverats ännu.'
-      invalid: 'Ogiltig epost eller lösenord.'
+      invalid: 'Ogiltig e-post eller lösenord.'
       invalid_token: 'Ogiltig token för autentisering.'
       last_attempt: "Du har ett försök till innan kontot låses."
       locked: 'Ditt konto är låst.'
-      not_found_in_database: "Ogitlig epost eller lösenord."
+      not_found_in_database: "Ogitlig e-post eller lösenord."
       timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
       unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'
       unconfirmed: 'Du måste bekräfta din e-postadress till ditt konto innan du kan fortsätta.'
       user:
-        not_found_in_database: 'Inget konto finns registrerat med angiven epostadress.'
+        not_found_in_database: 'Ogiltig e-post eller lösenord.'
     sessions:
       signed_in: 'Loggade in.'
       signed_out: 'Loggade ut.'
