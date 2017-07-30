@@ -52,6 +52,7 @@ namespace :db do
                                        firstname: 'Hilbert-Admin', lastname: 'Älg',
                                        program: 'Teknisk Fysik', start_year: 1996)
     admin.password = 'passpass'
+    admin.password_confirmation = 'passpass'
     admin.confirmed_at = Time.zone.now
     admin.member_at = Time.zone.now
     admin.save!
@@ -71,6 +72,7 @@ namespace :db do
     user.confirmed_at = Time.zone.now
     user.member_at = Time.zone.now
     user.password = 'passpass'
+    user.password_confirmation = 'passpass'
     user.save!
 
     puts 'You can sign in as USER with'
