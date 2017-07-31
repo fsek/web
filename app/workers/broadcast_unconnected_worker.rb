@@ -4,7 +4,7 @@ class BroadcastUnconnectedWorker < ActiveJob::Base
     # Reset on visits to `group#show`
     message.groups.each do |group|
       connected = ConnectedList.connected(group.id)
-      users = group.users.where.not(id: connected)
+      users = group.users.where.not(id: connected).where(notify_messages: true)
 
       PushService.push(message.data(group), users)
     end

@@ -51,3 +51,5 @@ sv:
         student_id: LUCAT-id
         unconfirmed_email: Obekräftad epost
         username: Användarnamn
+        notify_event_users: Push-notiser för eventanmälan
+        notify_messages: Push-notiser för meddelanden

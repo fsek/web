@@ -28,6 +28,13 @@
   <%= f.input :food_preferences, collection: food_prefs_collection(user),
                                  input_html: {class: 'select2', multiple: true} %>
   <%= f.input :food_custom, hint: t('.food_preference_hint') %>
+  <hr>
+  <%= simple_format(t('.notification_settings')) %>
+  <div class="input-group margin-bottom-10">
+    <%= f.input :notify_event_users %>
+    <%= f.input :notify_messages %>
+  </div>
+
   <%= f.button :submit, id: 'user-info-submit' %>
 <% end %>
 

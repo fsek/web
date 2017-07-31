@@ -51,6 +51,8 @@ class Notification < ApplicationRecord
   end
 
   def send_push
-    PushService.push(data, user)
+    if notifyable_type == 'EventUser' && user.notify_event_users
+      PushService.push(data, user)
+    end
   end
 end
