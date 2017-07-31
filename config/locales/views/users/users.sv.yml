@@ -16,7 +16,7 @@ sv:
       remove_avatar: Ta bort profilbild
       student_id_hint: På formen hi6122al, hittas på https://lucat.lu.se
       title: Användare
-
+      notification_settings: Följande fält avgör vilka push-notiser som skickas till dina mobila enheter. Notifikationerna går alltid att se på webbsidan och i appen.
     edit:
       account: Konto
       back_to_root: Tillbaka till startsidan
