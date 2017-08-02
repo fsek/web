@@ -349,6 +349,7 @@ Fsek::Application.routes.draw do
     end
 
     resources :news, only: :index
+    resources :start, only: :index
   end
 
   get 'proposals/form' => 'proposals#form'
