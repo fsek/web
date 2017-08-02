@@ -54,6 +54,7 @@ class Ability
       can [:read, :search], Song
       can [:index, :look, :look_all], Notification, user_id: user.id
       can [:create, :destroy], PushDevice
+      can :index, :start
     end
 
     # Only for members of the Guild
