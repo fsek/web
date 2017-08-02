@@ -4,6 +4,10 @@ class Api::NewsSerializer < ActiveModel::Serializer
   has_many(:categories)
   belongs_to(:user)
 
+  def content
+    MarkdownHelper.markdown(object.content)
+  end
+
   def image
     PUBLIC_URL + object.image.large.url if object.image.present?
   end
