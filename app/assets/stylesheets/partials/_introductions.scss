@@ -20,12 +20,22 @@
     font-weight: bold;
   }
 
-  .news {
+  .news.start.box {
+    background-color: $white;
+    border: none;
+    box-shadow: none;
     margin-bottom: 10px;
+    margin-left: -17px;
 
-    h4 {
-      font-size: 22px;
+    h3 {
+      font-size: 35px;
     }
+
+    .info,
+    .categories {
+      display: none;
+    }
+
   }
 
   .carousel-control.left,
@@ -43,7 +53,7 @@
     color: $black;
     font-family: "hecationcheir";
     font-size: 44px;
-    padding-left: 12px;
+    padding-left: 5px;
   }
 
   .links {
