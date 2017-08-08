@@ -17,7 +17,9 @@
           more_info: link_to(t('global.here'), '/sida/vadarnollningen')).html_safe %>
   </div>
   <div class="col-md-12 paragraph">
-    <%= t('.info3', contact: link_to(t('.contact_us'), @contact)).html_safe %>
+    <%= t('.info3',
+          contact: link_to(t('.contact_us'), @contact),
+          foset: link_to(t('.foset'), '/utskott/fos')).html_safe %>
   </div>
   <div class="col-md-12 paragraph margin-bottom-20"><%= t('.info4') %></div>
 

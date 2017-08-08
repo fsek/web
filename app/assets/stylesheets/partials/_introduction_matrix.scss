@@ -1,19 +1,18 @@
-$castle: image-url("round-table/castle.svg");
-$brown: #754c29;
+$matrix: image-url("round-table/matrix.svg");
+$matrix-border: #9c887b;
+$matrix-item: rgba(255, 255, 255, 0.37);
 
 .introduction {
   .matrix {
-    border: 50px solid;
-    border-image-repeat: stretch repeat;
-    border-image-slice: 52.8% 9.9% 13% 9.9% fill;
-    border-image-source: $castle;
+    border: solid;
+    @include border-image($matrix 141 123 90 123 fill stretch round);
     margin: 0 auto;
     padding-bottom: 1%;
     padding-left: 0.5%;
 
     .grid-item {
-      background: $white;
-      border: 10px solid $brown;
+      background: $matrix-item;
+      border: 10px solid $matrix-border;
       display: inline-block;
       margin-bottom: 0;
       margin-right: 0;
@@ -58,7 +57,7 @@ $brown: #754c29;
 
       .week {
         background: $white;
-        border: 1px solid $brown;
+        border: 1px solid $matrix-border;
         font-size: 16px;
         left: -1em;
         line-height: 1em;
@@ -88,6 +87,7 @@ $brown: #754c29;
 
   .matrix-footer {
     margin: auto;
+    padding-top: 10px;
     text-align: center;
   }
 
@@ -108,7 +108,7 @@ $brown: #754c29;
 
   @media (min-width: 1200px) {
     .matrix {
-      border-width: 350px 80px 10px;
+      border-width: 135px 100px 80px;
 
       .grid-item {
         height: 200px;
@@ -120,7 +120,7 @@ $brown: #754c29;
   // Landscape tablets and medium desktops
   @media (min-width: 992px) and (max-width: 1199px) {
     .matrix {
-      border-width: 350px 80px 100px;
+      border-width: 130px 100px 70px;
 
       .grid-item {
         height: 150px;
@@ -132,7 +132,7 @@ $brown: #754c29;
   // Portrait tablets and small desktops
   @media (min-width: 768px) and (max-width: 991px) {
     .matrix {
-      border-width: 250px 40px 60px;
+      border-width: 120px 95px 70px;
 
       .grid-item {
         height: 150px;
@@ -144,7 +144,7 @@ $brown: #754c29;
   // Landscape phones and portrait tablets
   @media (max-width: 767px) {
     .matrix {
-      border-width: 200px 50px 40px;
+      border-width: 100px 85px 70px;
 
       .grid-item {
         height: 150px;
@@ -156,7 +156,8 @@ $brown: #754c29;
   // Portrait phones and smaller
   @media (max-width: 503px) {
     .matrix {
-      border-width: 150px 20px 25px;
+      border-width: 75px 0 45px;
+      padding-left: 7px;
 
       .grid-item {
         height: 100px;
@@ -185,8 +186,7 @@ $brown: #754c29;
     }
   }
 
-  .matrix-headline,
-  .gecko-disclaimer {
+  .matrix-headline {
     display: none;
   }
 
@@ -211,19 +211,3 @@ $brown: #754c29;
   overflow: visible;
 }
 
-body.gecko {
-  .introduction {
-    .matrix-headline {
-      display: block;
-    }
-
-    .matrix {
-      border: none;
-      border-image: none;
-    }
-
-    .gecko-description {
-      display: block;
-    }
-  }
-}
