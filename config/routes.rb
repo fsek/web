@@ -333,7 +333,7 @@ Fsek::Application.routes.draw do
       resources :event_users, only: [:create, :destroy]
     end
 
-    resources :push_devices, only: [:create, :destroy], param: :token
+    resource :push_devices, only: [:create, :destroy]
 
     resources :notifications, only: :index do
       get :unread
