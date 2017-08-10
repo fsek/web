@@ -13,6 +13,10 @@ class Api::EventSerializer < ActiveModel::Serializer
     EventUser.eligible_user?(object, scope)
   end
 
+  def description
+    MarkdownHelper.markdown(object.description)
+  end
+
   class Api::ContactSerializer < ActiveModel::Serializer
     attributes(:id, :name)
   end
