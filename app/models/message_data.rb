@@ -8,7 +8,7 @@ class MessageData
   end
 
   def android_data
-    { title: group.name, body: body, notId: -group.id, style: :inbox }
+    { title: group.name, body: body, notId: -group.id, style: :inbox, group_id: group.id }
   end
 
   def ios_notification
@@ -17,6 +17,6 @@ class MessageData
 
   def ios_data
     # Use negative notification id to distinguish from `Notifications`
-    { notification_id: -message.id }
+    { notification_id: -message.id, group_id: group.id }
   end
 end

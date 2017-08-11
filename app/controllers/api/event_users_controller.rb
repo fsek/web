@@ -18,9 +18,13 @@ class Api::EventUsersController < Api::BaseController
     @event_user = current_user.event_users.find(params[:id])
 
     if @event_user.event_signup.open?
-      @event_user.destroy!
-      @event_user = @event.event_users.build
-      render json: @event_user
+      if @event_user.destroy
+        render json: {}, status: :ok
+      else
+        render json: { errors: @event_user.errors.full_messages }, status: 500
+      end
+    else
+      render json: { errors: ['Signup is not open'], status: 422 }
     end
   end
 
