@@ -14,20 +14,12 @@ namespace 'event' do
 
     CSV.foreach(file, headers: true) do |row|
       event_hash = row.to_hash
-      english = {}
-      english['title_en'] = event_hash['title_en']
-      english['description_en'] = event_hash['description_en']
-      english['location_en'] = event_hash['location_en']
-      english.keys.each do |key|
-        event_hash.delete(key)
-      end
 
       starts_at = Time.zone.parse(event_hash['starts_at'])
       ends_at = Time.zone.parse(event_hash['ends_at'])
       event = Event.translations.slug(:nollning).find_or_initialize_by(starts_at: starts_at, ends_at: ends_at)
 
-      unless event.update(event_hash) &&
-          event.update(english)
+      unless event.update(event_hash)
         puts "#{event_hash[:title]} could not be saved because: #{event.errors.to_h.to_s}"
         puts "------------------"
       else
