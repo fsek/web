@@ -10,7 +10,9 @@ class Api::EventSerializer < ActiveModel::Serializer
   end
 
   has_many :groups do
-    scope.groups.merge(object.signup.selectable_groups)
+    if object.signup.present?
+      scope.groups.merge(object.signup.selectable_groups)
+    end
   end
 
   def event_user_count
