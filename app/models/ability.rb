@@ -25,7 +25,7 @@ class Ability
     # But cannot view any albums
     can :index, :gallery
     can [:read, :archive, :matrix, :modal, :dance], Introduction
-    can [:index, :about,
+    can [:index, :about, :privacy,
          :cookies_information, :company_about,
          :company_offer, :robots], :static_pages
     can [:read, :archive], Adventure
