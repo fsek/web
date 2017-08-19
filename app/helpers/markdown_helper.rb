@@ -45,6 +45,6 @@ module MarkdownHelper
   def self.sanitize(input)
     return unless input.present?
     ActionView::Base.new.sanitize(input.html_safe,
-                                  attributes: %w(href data-turbolinks rel))
+                                  attributes: %w(href data-turbolinks rel class target))
   end
 end
