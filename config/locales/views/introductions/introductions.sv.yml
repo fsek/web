@@ -58,6 +58,8 @@ sv:
     matrix:
       click_day_to_read_more: Tryck på en dag för att läsa mer
       description: Nollematrisen är ett schema för Nollningen vid F-sektionen inom TLTH. Här hittas tider, beskrivningar, eventuell anmälan och annat roligt för varje evenemang.
+      gecko-disclaimer: Nollematrisen ser ännu snyggare ut i en annan webbläsare, t.ex. Chrome och Safari.
+      gecko-title: Nollematris
       keywords:
         - nollning
         - schema

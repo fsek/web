@@ -186,7 +186,8 @@ $matrix-item: rgba(255, 255, 255, 0.37);
     }
   }
 
-  .matrix-headline {
+  .matrix-headline,
+  .gecko-disclaimer {
     display: none;
   }
 
@@ -211,3 +212,19 @@ $matrix-item: rgba(255, 255, 255, 0.37);
   overflow: visible;
 }
 
+body.gecko {
+  .introduction {
+    .matrix-headline {
+      display: block;
+    }
+
+    .matrix {
+      border: none;
+      border-image: none;
+    }
+
+    .gecko-disclaimer {
+      display: block;
+    }
+  }
+}
