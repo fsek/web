@@ -1,6 +1,8 @@
 class Api::EventSerializer < ActiveModel::Serializer
-  attributes(:id, :title, :description, :location, :starts_at, :ends_at, :all_day, :dot,
-             :drink, :food, :cash, :price, :dress_code, :can_signup, :event_user_count, :short)
+  include EventHelper
+
+  attributes(:id, :title, :description, :location, :starts_at, :ends_at, :all_day, :dot, :drink,
+             :food, :cash, :price, :dress_code, :can_signup, :event_user_count, :short, :user_types)
 
   belongs_to :contact
   has_one :event_signup
@@ -12,6 +14,12 @@ class Api::EventSerializer < ActiveModel::Serializer
   has_many :groups do
     if object.signup.present?
       scope.groups.merge(object.signup.selectable_groups)
+    end
+  end
+
+  def user_types
+    if object.signup.present? && object.signup.order.any?
+      event_user_types(object.signup, scope)
     end
   end
 
@@ -38,8 +46,14 @@ class Api::EventSerializer < ActiveModel::Serializer
   end
 
   class Api::EventUserSerializer < ActiveModel::Serializer
+    include EventHelper
+
     attributes(:id, :group_id, :answer, :user_type, :group_custom)
     attribute(:reserve) { object.reserve? }
+
+    def user_type
+      event_user_type(object.event_signup, object.user_type)
+    end
   end
 
   class Api::GroupSerializer < ActiveModel::Serializer
