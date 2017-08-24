@@ -32,7 +32,7 @@ class Api::EventSerializer < ActiveModel::Serializer
   end
 
   def description
-    MarkdownHelper.markdown(object.description)
+    MarkdownHelper.markdown_api(object.description)
   end
 
   class Api::ContactSerializer < ActiveModel::Serializer

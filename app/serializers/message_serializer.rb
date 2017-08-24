@@ -1,6 +1,6 @@
 class MessageSerializer < ActiveModel::Serializer
   attributes(:id, :by_admin, :updated_at)
-  attribute(:text) { MarkdownHelper.markdown(object.content) }
+  attribute(:text) { MarkdownHelper.markdown_api(object.content) }
   attribute(:day) { object.created_at.to_date }
   attribute(:time) { object.created_at.strftime('%H:%M') }
 

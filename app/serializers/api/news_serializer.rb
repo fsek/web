@@ -5,7 +5,7 @@ class Api::NewsSerializer < ActiveModel::Serializer
   belongs_to(:user)
 
   def content
-    MarkdownHelper.markdown(object.content)
+    MarkdownHelper.markdown_api(object.content)
   end
 
   def image
