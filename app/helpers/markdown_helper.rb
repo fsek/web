@@ -5,6 +5,10 @@ module MarkdownHelper
     MarkdownHelper.markdown(text)
   end
 
+  def self.markdown_api(text)
+    sanitize(api_renderer.render(text)) if text.present?
+  end
+
   def self.markdown(text)
     sanitize(markdown_renderer.render(text)) if text.present?
   end
@@ -40,6 +44,21 @@ module MarkdownHelper
                             tables: true,
                             underline: true,
                             highlight: true)
+  end
+
+  def self.api_renderer
+    options = {
+      hard_wrap: true,
+      link_attributes: { class: 'external', target: '_system' }
+    }
+    extensions = {
+      autolink: true, fenced_code_blocks: true, highlight: true,
+      lax_spacing: true, no_intra_emphasis: true, quote: true,
+      tables: true, underline: true
+    }
+
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(options),
+                            extensions)
   end
 
   def self.sanitize(input)
