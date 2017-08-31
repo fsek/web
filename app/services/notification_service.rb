@@ -7,7 +7,7 @@ class NotificationService
     begin
       notification.save!
       true
-    rescue Exception => e
+    rescue => e
       raise e if Rails.env.development?
       false
     end
