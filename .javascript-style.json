@@ -28,7 +28,9 @@
 
         "angular",
         "inject",
-        "module"
+        "module",
+        "console",
+        "alert"
     ],
     "quotmark": true,
     "trailing": true,

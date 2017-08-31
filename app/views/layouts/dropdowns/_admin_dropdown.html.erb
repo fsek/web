@@ -8,32 +8,32 @@
 
 <li class="dropdown right large-menu">
   <%= link_to('#', class: 'dropdown-toggle', data: { toggle: 'dropdown', 'close-others' => 'false' }) do %>
-    <span class="topbar_icon"><%= fa_icon('cog') %></span>
-    <span class="topbar_text">
+    <span class="topbar-icon"><%= fa_icon('cog') %></span>
+    <span class="topbar-text">
       <%= t('.administrate') %>
     </span>
   <% end %>
-  <ul class="dropdown-menu megamenu row">
-  <div class="dropdown_header"><%= t('.administrate') %></div>
-  <div class="admin_menu_categories">
-  <% all_privileges.each do |title, privileges| %>
-    <li class="admin-menu-category">
-      <ul class="">
-        <% privileges.delete_if { |p| !can_administrate?(:index, p) } %>
-        <% if privileges.present? %>
-          <li class="menu-header">
-            <%= title %>
-          </li>
-          <% privileges.each do |privilege| %>
-            <li class="menu">
-              <%= link_to models_name(privilege), [:admin, privilege] %>
+  <ul class="dropdown-menu megamenu row admin-dropdown-menu">
+    <div class="dropdown-header"><%= t('.administrate') %></div>
+    <div class="admin-menu-categories">
+    <% all_privileges.each do |title, privileges| %>
+      <li class="admin-menu-category">
+        <ul class="">
+          <% privileges.delete_if { |p| !can_administrate?(:index, p) } %>
+          <% if privileges.present? %>
+            <li class="menu-header">
+              <%= title %>
             </li>
+            <% privileges.each do |privilege| %>
+              <li class="menu">
+                <%= link_to models_name(privilege), [:admin, privilege] %>
+              </li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-  </div>
-  <div class="dropdown_bottom"></div>
+        </ul>
+      </li>
+    <% end %>
+    </div>
+    <div class="dropdown-bottom"></div>
   </ul>
 </li>

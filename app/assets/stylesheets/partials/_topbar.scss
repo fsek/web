@@ -12,9 +12,13 @@
   }
 }
 
-.admin_menu_categories {
-  width: 100%;
+.admin-dropdown-menu {
+  position: static;
+}
+
+.admin-menu-categories {
   display: flex;
+  width: 100%;
 
   li {
     list-style: none;
@@ -23,7 +27,7 @@
   a {
     border-radius: 3px;
     clear: both;
-    color: #333;
+    color: $footer-gray;
     display: block;
     font-weight: normal;
     line-height: 1.42857143;
@@ -36,19 +40,19 @@
   }
 }
 
-.language_switch {
+.language-switch {
   display: none;
 }
 
-.has_notifications {
+.has-notifications {
   color: $fsek-orange;
 }
 
-.has_notifications.topbar_icon {
-  animation: icon_highlight 1s linear infinite;
+.has-notifications.topbar-icon {
+  animation: icon-highlight 1s linear infinite;
 }
 
-.notification_icon {
+.notification-icon {
   position: relative;
 
   i {
@@ -56,13 +60,16 @@
   }
 }
 
-@keyframes icon_highlight {
+@keyframes icon-highlight {
+
   0% {
     top: 0;
   }
+
   50% {
     top: -2px;
   }
+
   100% {
     top: 0;
   }
@@ -73,7 +80,7 @@
     display: none;
   }
 
-  .admin_menu_categories {
+  .admin-menu-categories {
     display: block;
 
     .menu {
@@ -85,24 +92,24 @@
     }
   }
 
-  .topbar_text {
+  .topbar-text {
     display: none;
   }
 
-  .topbar_image {
+  .topbar-image {
     display: none;
   }
 
-  .language_switch {
+  .language-switch {
     display: block;
   }
 
-  .loginbar span.topbar_icon {
-    border-right: 1px solid white;
+  .loginbar span.topbar-icon {
+    border-right: 1px solid $white;
     color: $white;
     display: block;
     font-size: 20px;
-    padding: 3.5vw 5vw 3.5vw 5vw;
+    padding: 2.5vw 3vw 2.5vw 3vw;
 
     a {
       color: $white;
@@ -110,7 +117,7 @@
 
   }
 
-  .loginbar li:last-child span.topbar_icon {
+  .loginbar li:last-child span.topbar-icon {
     border-right: 0;
   }
 
@@ -120,8 +127,9 @@
     margin-bottom: 20px;
     padding-top: 0;
 
-    .dropdown_header, .dropdown_bottom {
-      border-radius: 0px;
+    .dropdown-header,
+    .dropdown-bottom {
+      border-radius: 0;
     }
 
     .dropdown {
@@ -135,8 +143,8 @@
 
     .dropdown-menu {
       border-radius: 0 0 4px 4px;
-      top: 100%;
       margin-top: 8px;
+      top: 100%;
       width: 100%;
     }
 
@@ -146,8 +154,6 @@
 
     .container {
       padding: 0;
-      display: flex;
-      justify-content: center;
     }
 
     ul.loginbar.pull-right {
@@ -155,11 +161,23 @@
         display: none;
       }
 
-      & > li {
+      > li {
         display: inline-block;
         list-style: none;
         padding-bottom: 0;
       }
     }
+  }
+}
+
+@media (max-width: 600px) {
+  div.top {
+    .container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .loginbar span.topbar-icon {
+    padding: 3.5vw 5vw 3.5vw 5vw;
   }
 }
