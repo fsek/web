@@ -16,7 +16,7 @@ class EventSignupReminderWorker
   end
 
   def notify(event_signup)
-    event_signup.event_users.attending.each do |event_user|
+    event_signup.event_users.attending(event_signup.event).each do |event_user|
       NotificationService.event_user(event_user, 'reminder')
     end
 

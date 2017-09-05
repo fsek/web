@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @user_grid = initialize_grid(@users)
+    @user_grid = initialize_grid(@users, order: :id)
   end
 
   def edit

@@ -8,12 +8,12 @@ sv:
       for_members: Endast för medlemmar
 
     registration:
-      attending: "Du är anmäld och har fått en plats till eventet!"
+      attending: "Du är anmäld och har fått en plats till evenemanget!"
       edit: Redigera
       not_attending: Du är inte anmäld
-      registered: Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats.
+      registered: Du är anmäld till evenemanget! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats.
       registration: Anmälan
-      reserve: Du fick tyvärr ingen plats till eventet.
+      reserve: Du fick tyvärr ingen plats till evenemanget.
       description_headline: Viktigt om anmälan
       description: "Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är din plats garanterad först då **anmälan har stängt**."
       description2: Observera att anmälan är bindande och att du inte kan avanmäla dig när anmälan har stängt. Om anmälan är stängd och du verkligen inte kan komma ska du kontakta eventansvarig.
@@ -27,4 +27,4 @@ sv:
     show:
       all_events: Alla evenemang
       edit_event: Redigera evenemang
-      contact_info: "Vid frågor om eventet, kontakta eventansvarig:"
+      contact_info: "Vid frågor om evenemanget, kontakta eventansvarig:"

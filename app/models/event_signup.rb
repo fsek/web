@@ -55,8 +55,6 @@ class EventSignup < ApplicationRecord
     group_types.present? ? Group.where(group_type: group_types) : Group.all
   end
 
-  private
-
   # Loops through options by order and checks if user fits
   def highest_type(user)
     (order - [CUSTOM]).each do |type|
@@ -71,6 +69,8 @@ class EventSignup < ApplicationRecord
 
     nil
   end
+
+  private
 
   def orders
     val = [novice, mentor, member, custom]

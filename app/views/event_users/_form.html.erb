@@ -13,17 +13,21 @@
     <%= f.input :answer, as: :hidden %>
   <% end %>
   <% if event.signup.order.any? && event_user_types(event.signup, current_user).any? %>
+    <% groups = event_user_groups(event.signup, current_user) %>
+    <% user_types = event_user_types(event.signup, current_user) %>
+
     <%= f.input :user_type,
+                collection: user_types,
+                as: :radio_buttons,
                 label: t('.user_type_label'),
-                collection: event_user_types(event.signup, current_user),
-                include_blank: t('model.event_signup.user_types.other'),
-                input_html: {class: 'select2'},
-                required: true %>
+                required: true,
+                checked: user_types.first %>
   <% end %>
-  <%= f.association :group, collection: current_user.groups.merge(event.signup.selectable_groups),
-                            include_blank: t('model.event_user.other_group'),
-                            input_html: {class: 'select2'},
-                            hint: t('.group_hint') %>
-  <%= f.input :group_custom %>
+  <%= f.association :group, collection: groups,
+                            as: :radio_buttons,
+                            input_html: {class: 'group-radio'},
+                            required: true,
+                            checked: groups.first %>
+  <%= f.input :group_custom, label: false, placeholder: 'Ange egen grupp', input_html: {class: 'group-custom'} %>
   <%= f.button :submit, t('.submit'), data: { confirm: t('.confirm_registration') } %>
 <% end %>

@@ -86,7 +86,8 @@ module EventHelper
   end
 
   def event_user_types(event_signup, user)
-    map_event_user_types(event_signup, event_signup.selectable_types(user))
+    types = map_event_user_types(event_signup, event_signup.selectable_types(user))
+    types << [t('model.event_signup.user_types.other'), '']
   end
 
   def admin_event_user_types(event_signup)
@@ -97,6 +98,11 @@ module EventHelper
     types.map do |type|
       [event_user_type(event_signup, type), type]
     end
+  end
+
+  def event_user_groups(event_signup, user)
+    groups = user.groups.merge(event_signup.selectable_groups).pluck(:name, :id)
+    groups << ['', nil]
   end
 
   def dress_codes(event)
