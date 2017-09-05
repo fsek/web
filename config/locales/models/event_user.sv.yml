@@ -1,7 +1,7 @@
 sv:
   model:
     event_user:
-      already_registered: Du är redan anmäld till eventet
+      already_registered: Du är redan anmäld till evenemanget
       not_open: Det går inte att anmäla sig till evenemanget just nu
       user_not_member: Användare är inte medlem
       unavailable_type: Felaktig användartyp vald

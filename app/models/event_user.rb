@@ -3,7 +3,7 @@ class EventUser < ApplicationRecord
   belongs_to :user, required: true, inverse_of: :event_users
   belongs_to :event, required: true, inverse_of: :event_users
   belongs_to :group
-  has_one :event_signup, through: :event, required: true
+  has_one :event_signup, through: :event, required: true, autosave: false
   has_many :notifications, as: :notifyable, dependent: :destroy
 
   # validates :user, uniqueness: { scope: :event }

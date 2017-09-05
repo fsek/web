@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823132130) do
+ActiveRecord::Schema.define(version: 20170905182100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -305,7 +305,7 @@ ActiveRecord::Schema.define(version: 20170823132130) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.string   "question",             limit: 255
-    t.string   "notification_message"
+    t.text     "notification_message"
     t.index ["event_signup_id"], name: "index_event_signup_translations_on_event_signup_id", using: :btree
     t.index ["locale"], name: "index_event_signup_translations_on_locale", using: :btree
   end
