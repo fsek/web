@@ -85,9 +85,14 @@ module EventHelper
     end
   end
 
-  def event_user_types(event_signup, user)
+  def event_user_types(event_signup, user, include_other: true)
     types = map_event_user_types(event_signup, event_signup.selectable_types(user))
-    types << [t('model.event_signup.user_types.other'), '']
+
+    if include_other
+      types << [t('model.event_signup.user_types.other'), '']
+    end
+
+    types
   end
 
   def admin_event_user_types(event_signup)

@@ -19,7 +19,7 @@ class Api::EventSerializer < ActiveModel::Serializer
 
   def user_types
     if object.signup.present? && object.signup.order.any?
-      event_user_types(object.signup, scope)
+      event_user_types(object.signup, scope, include_other: false)
     end
   end
 
