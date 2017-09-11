@@ -13,7 +13,6 @@
     <%= f.input :answer, as: :hidden %>
   <% end %>
   <% if event.signup.order.any? && event_user_types(event.signup, current_user).any? %>
-    <% groups = event_user_groups(event.signup, current_user) %>
     <% user_types = event_user_types(event.signup, current_user) %>
 
     <%= f.input :user_type,
@@ -23,6 +22,7 @@
                 required: true,
                 checked: user_types.first %>
   <% end %>
+  <% groups = event_user_groups(event.signup, current_user) %>
   <%= f.association :group, collection: groups,
                             as: :radio_buttons,
                             input_html: {class: 'group-radio'},
