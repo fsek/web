@@ -1,6 +1,6 @@
 <%= simple_form_for([:admin, @user]) do |f| %>
   <%= f.input :firstname %>
   <%= f.input :lastname %>
-  <%= f.input :student_id, disabled: true %>
+  <%= f.input :student_id %>
   <%= f.button :submit %>
 <% end %>
