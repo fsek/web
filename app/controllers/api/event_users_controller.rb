@@ -34,3 +34,4 @@ class Api::EventUsersController < Api::BaseController
     params.require(:event_user).permit(:answer, :user_type, :group_id, :group_custom)
   end
 end
+      

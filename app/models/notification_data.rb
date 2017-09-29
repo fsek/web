@@ -11,15 +11,15 @@ class NotificationData
   end
 
   def for_serializer
-    { title: title, body: body, extra: extra }
+    { title: title, body: MarkdownHelper.markdown(body), extra: extra }
   end
 
   def android_data
-    { title: title, body: body, notId: notification.id }
+    { title: title, body: MarkdownHelper.markdown_plain(body), notId: notification.id }
   end
 
   def ios_notification
-    { title: title, body: body }
+    { title: title, body: MarkdownHelper.markdown_plain(body) }
   end
 
   def ios_data

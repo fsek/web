@@ -1,13 +1,6 @@
 module NotificationHelper
   def notification_context(notification, data)
-    content_tag(:div, class: 'notification-content') do
-      content = [fa_icon(data.icon)]
-      content << asterisk_link(notification)
-      content << content_tag(:span, markdown(data.title), class: 'title')
-      content << content_tag(:span, markdown(data.body), class: 'body')
-      content << content_tag(:span, markdown(data.extra), class: 'extra')
-      safe_join(content)
-    end
+    content_tag(:div, markdown(data.body), class: 'body')
   end
 
   def asterisk_link(notification)
@@ -23,7 +16,7 @@ module NotificationHelper
   end
 
   def notification_created_at(time)
-    content_tag(:span, class: 'notification-time pull-right') do
+    content_tag(:span, class: 'notification-time') do
       content = []
       content << fa_icon('calendar')
       content << localize(time)

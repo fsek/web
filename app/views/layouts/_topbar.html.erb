@@ -4,75 +4,38 @@
         <li class="locale-switcher">
       <% if I18n.locale == :sv %>
         <%= link_to(params.permit(:id).merge(locale: :en, only_path: true)) do %>
-          <%= image_tag('layout/gb.png', class: 'flag') %>
-          <span>ENGLISH</span>
+          <span class="topbar_image"><%= image_tag('layout/gb.png', class: 'flag') %></span>
+          <span class="topbar_text">ENGLISH</span>
+          <span class="topbar_icon language_switch"><%= fa_icon('language')%></span>
         <% end %>
-      <% else %>
+      <% else %> 
         <%= link_to(params.permit(:id).merge(locale: :sv, only_path: true)) do %>
-          <%= image_tag('layout/se.png', class: 'flag') %>
-          <span>SVENSKA</span>
+          <span class="topbar_image"><%= image_tag('layout/se.png', class: 'flag') %></span>
+          <span class="topbar_text">SVENSKA</span>
+          <span class="topbar_icon language_switch"><%= fa_icon('language')%></span>
         <% end %>
       <% end %>
       </li>
       <li class="divider"></li>
-      <li><%= link_to(fa_icon('calendar'), calendars_path) %></li>
+      <li><%= link_to( calendars_path) do %>
+          <span class="topbar_icon"><%= fa_icon('calendar') %></span>
+          <% end %>
+      </li>
       <li class="divider"></li>
       <% if user_signed_in? %>
         <% if current_user.permissions.any? %>
-          <%= render 'layouts/admin_dropdown' %>
+          <%= render 'layouts/dropdowns/admin_dropdown' %>
           <li class="divider"></li>
         <% end %>
-
         <% if current_user.groups.count > 0 %>
-          <li class="dropdown">
-            <%= render 'layouts/groups_dropdown' %>
+          <%= render 'layouts/dropdowns/groups_dropdown' %>
           <li class="divider"></li>
         <% end %>
-
-        <li class="dropdown">
-          <%= link_to(current_user, class: 'dropdown-toggle',
-                                    data: { toggle: 'dropdown', delay: '0' }) do %>
-            <%= fa_icon('user') %> <%= current_user %>
-            <span id="notification-top-count">
-              <% if current_user.notifications_count > 0 %>
-                  <%= current_user.notifications_count %>
-              <% end %>
-            </span>
-          <% end %>
-          <ul class="dropdown-menu pull-right">
-            <li>
-              <%= link_to own_user_path do %>
-                <%= fa_icon('cog') %>
-                <%= t('.user_settings') %>
-              <% end %>
-            <li>
-              <%= link_to own_user_notifications_path do %>
-                <%= fa_icon('bell') %>
-                <%= models_name(Notification) %>
-                <span id="notification-dropdown-count">
-                  <%= current_user.notifications_count %>
-                </span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to(destroy_user_session_path, method: :delete) do %>
-                <%= fa_icon('sign-out') %> <%= t('devise.sign_out') %>
-              <% end %>
-            </li>
-          </ul>
-        </li>
+          <%= render 'layouts/dropdowns/user_dropdown' %>
+          <li class="divider"></li>
+          <%= render 'layouts/dropdowns/notifications_dropdown' %>
       <% else %>
-        <li>
-          <%= link_to(new_user_session_path) do %>
-            <%= fa_icon('sign-in') %> <%= t('devise.sign_in') %>
-          <% end %>
-        </li>
-        <li class="divider"></li>
-        <li>
-          <%= link_to(new_user_registration_path) do %>
-            <%= fa_icon('plus') %> <%= t('devise.sign_up') %>
-          <% end %>
-        </li>
+        <%= render 'layouts/signin_signup' %>
       <% end %>
     </ul>
   </div>
