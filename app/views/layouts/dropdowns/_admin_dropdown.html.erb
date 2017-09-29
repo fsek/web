@@ -8,12 +8,14 @@
 
 <li class="dropdown right large-menu">
   <%= link_to('#', class: 'dropdown-toggle', data: { toggle: 'dropdown', 'close-others' => 'false' }) do %>
-    <%= fa_icon('cog') %>
-    <span>
+    <span class="topbar_icon"><%= fa_icon('cog') %></span>
+    <span class="topbar_text">
       <%= t('.administrate') %>
     </span>
   <% end %>
   <ul class="dropdown-menu megamenu row">
+  <div class="dropdown_header"><%= t('.administrate') %></div>
+  <div class="admin_menu_categories">
   <% all_privileges.each do |title, privileges| %>
     <li class="admin-menu-category">
       <ul class="">
@@ -31,5 +33,7 @@
       </ul>
     </li>
   <% end %>
+  </div>
+  <div class="dropdown_bottom"></div>
   </ul>
 </li>

@@ -1,0 +1,36 @@
+<li class="dropdown">
+  <%= link_to(current_user, class: 'dropdown-toggle',
+                                      data: { toggle: 'dropdown', delay: '0' }) do %>
+    <% hasNotifs = current_user.notifications_count > 0 ? 'has_notifications' : '' %>
+    <span class="topbar_icon notification_icon <%= hasNotifs %>"><%= fa_icon('bell') %></span>
+    <span class="topbar_text notification_text <%= hasNotifs %>"><%= models_name(Notification) %></span>
+    <span id="notification-top-count">
+      <% if current_user.notifications_count > 0 %>
+          <span class="notifications_count"><%= current_user.notifications_count %></span>
+      <% end %>
+    </span>
+  <% end %>
+  <ul class="dropdown-menu pull-right notifications-dropdown">
+    <% notifications = current_user.notifications.includes(:notifyable) %>
+    <div class="notification-list-wrap">
+    <% if notifications.count == 0 %>
+      <div class="dropdown_header no-notifications">
+        <%=t('.no_notifications')%>
+      </div>
+    <% else %>
+      <div class="dropdown_header">
+        <% if current_user.notifications_count > 0 %>
+          <span info="<%=t('.mark_all_as_read')%>" class="notifications_look_all"><%= fa_icon("check") %></span>
+        <% end %>
+        <%=models_name(Notification)%>
+      </div>
+      <div class="notifications-list">
+      <% notifications.order(created_at: :desc).take(10).each do |notification| %>
+        <%= render partial: 'notifications/notification', object: notification %>
+      <% end %>
+      </div>
+      <div class="dropdown_bottom"></div>
+    <% end %>
+    </div>
+  </ul>
+</li>

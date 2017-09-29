@@ -1,6 +1,6 @@
 sv:
   model:
     notification_data:
-      attending: "Du har fått en plats till evenemanget!"
-      remind_soon_starting: "Du är anmäld till evenemanget som startar %{time}."
-      reserve_position: "Du fick tyvärr ingen plats till evenemanget. Du ligger just nu på reservlistan."
+      attending: "Du har fått en plats till **%{event}**!"
+      remind_soon_starting: "Du är anmäld till **%{event}** som startar **%{time}**."
+      reserve_position: "Du fick tyvärr ingen plats till **%{event}**. Du ligger just nu på reservlistan."
