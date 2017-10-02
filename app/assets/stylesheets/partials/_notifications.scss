@@ -1,66 +1,209 @@
-.notification {
-  .notification-content {
-    display: block;
-    padding-bottom: 0.6em;
+.top {
+  .dropdown-menu.notifications-dropdown {
+    border: none;
+  }
 
-    .fa {
+  .no-notifications {
+    border-radius: 4px 4px 4px 4px;
+
+    &.dropdown-header {
+      border-bottom: none;
+      border-radius: 4px 4px 4px 4px;
+    }
+  }
+}
+
+.notification-list-wrap {
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.notifications-list {
+  max-height: 600px;
+  overflow: auto;
+  position: relative;
+  width: 100%;
+
+  a:last-child .notification {
+    border-bottom: none;
+  }
+}
+
+.notifications-dropdown {
+  background: transparent;
+  border: none;
+  width: 280px;
+}
+
+.notifications-count {
+  color: $fsek-orange;
+}
+
+.notifications-look-all {
+  color: $white;
+  cursor: pointer;
+  font-size: 22px;
+  left: 10px;
+  position: absolute;
+  top: 10px;
+
+  &:hover {
+    &::before {
+      background: $white;
+      border: 1px solid $fsek-orange;
+      border-radius: 3px;
       color: $fsek-orange;
-      margin-right: 0.5em;
-      padding-bottom: 0.3em;
-      vertical-align: middle;
+      content: attr(info);
+      font-size: 14px;
+      padding: 5px 15px;
+      position: absolute;
+      right: 150%;
+      width: 220px;
+      z-index: 98;
     }
 
-    .title {
-      display: inline-block;
-      font-size: 1.4em;
-      font-weight: bold;
+    &::after {
+      border-bottom: 10px solid transparent;
+      border-left: 15px solid $white;
+      border-top: 10px solid transparent;
+      content: "";
+      position: absolute;
+      right: 110%;
+      top: 7px;
+      z-index: 99;
     }
+  }
+}
 
-    .body {
-      font-size: 1.2em;
-    }
+.extra {
+  background-color: $fsek-orange;
+  border-radius: 4px;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 90px;
+  padding: 6px;
+  position: absolute;
+  width: 186px;
+  z-index: 1000;
 
-    .extra {
-      font-style: italic;
-    }
+  &::after {
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid $fsek-orange;
+    border-top: 10px solid transparent;
+    content: "";
+    height: 0;
+    left: 100%;
+    position: absolute;
+    top: 30px;
+    width: 0;
+  }
+}
 
-    .asterisk {
-      .fa {
-        margin-top: 1.5em;
-      }
-    }
+.has-extra {
+  border-left: 2px solid $fsek-orange;
+  padding-left: 4px;
+}
+
+
+.notification {
+  background-color: $fsek-orange;
+  border-bottom: 2px solid $light-gray-text;
+  display: flex;
+  flex-direction: column;
+  height: 90px;
+  justify-content: center;
+  position: relative;
+
+  .fa {
+    margin-right: 0.3em;
+  }
+
+  strong {
+    color: $white;
+  }
+
+  .body p {
+    color: $white;
+    margin: 1px;
+  }
+
+  .body {
+    font-size: 1em;
+    padding: 6px 6px 0 6px;
   }
 
   .notification-time {
-    display: inline-block;
+    color: $white;
+    display: block;
+    padding: 0 6px 6px 6px;
+  }
 
-    .fa {
-      margin-right: 0.2em;
+  &:hover {
+    background-color: $white;
+    color: $black;
+    max-height: 140px;
+
+    strong {
+      color: $fsek-orange;
+    }
+
+    .notification-time {
+      color: $black;
+    }
+
+
+    .body p {
+      color: $black;
     }
   }
 
   &.seen {
-    .asterisk {
-      .fa {
-        color: $dark-gray;
+    background-color: $white;
+    color: $black;
+
+    strong {
+      color: $fsek-orange;
+    }
+
+    .notification-time {
+      color: $black;
+    }
+
+    .body p {
+      color: $black;
+    }
+
+    &:hover {
+      background-color: $fsek-orange;
+
+      strong {
+        color: $white;
+      }
+
+      .notification-time {
+        color: $white;
+      }
+
+      .body p {
+        color: $white;
       }
     }
   }
+}
 
-  @media (max-width: 767px) {
-    .notification-content {
-      .text {
-        font-size: 1em;
-      }
+@media (max-width: 767px) {
+  .notification-list-wrap {
+    box-shadow: none;
+  }
 
-      .body {
-        font-size: 0.8em;
-      }
+  .has-extra::after,
+  .has-extra::before {
+    display: none;
+  }
 
-      .fa,
-      .asterix > .fa {
-        font-size: 2em;
-      }
-    }
+  .top .dropdown-header.no-notifications {
+    border-radius: 0;
   }
 }

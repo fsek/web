@@ -7,7 +7,8 @@ class NotificationService
     begin
       notification.save!
       true
-    rescue
+    rescue => e
+      raise e if Rails.env.development?
       false
     end
   end
@@ -34,7 +35,7 @@ class NotificationService
   end
 
   def self.notify_start(event)
-    if event.starts_at > Time.zone.now
+    if event.starts_at - 30.minutes > Time.zone.now
       EventSignupReminderWorker.perform_at(event.starts_at - 30.minutes,
                                            event.signup.id,
                                            30.minutes)

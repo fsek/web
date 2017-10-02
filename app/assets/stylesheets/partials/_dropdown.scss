@@ -20,13 +20,14 @@
 }
 
 
-@media (max-width: 991px) {
+@media (max-width: 767px) {
   .dropdown.right .dropdown-menu .admin-menu-category {
     display: block;
     float: none;
   }
 
   .dropdown-menu {
+    left: 0 !important;
     width: 100%;
   }
 

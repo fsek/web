@@ -1,0 +1,21 @@
+<li class="dropdown">
+  <%= link_to(current_user, class: 'dropdown-toggle',
+                                      data: { toggle: 'dropdown', delay: '0' }) do %>
+    <span class="topbar-icon"><%= fa_icon('user') %></span>
+    <span class="topbar-text"><%= current_user %></span>
+  <% end %>
+  <ul class="dropdown-menu pull-right">
+  <div class="dropdown-header"><%= current_user %></div>
+    <li>
+      <%= link_to own_user_path do %>
+        <%= fa_icon('cog') %>
+        <%= t('.user_settings') %>
+      <% end %>
+    <li>
+      <%= link_to(destroy_user_session_path, method: :delete) do %>
+        <%= fa_icon('sign-out') %> <%= t('devise.sign_out') %>
+      <% end %>
+    </li>
+    <div class="dropdown-bottom"></div>
+  </ul>
+</li>

@@ -1,12 +1,5 @@
 sv:
   layouts:
-    admin_dropdown:
-      administrate: Administrera
-      cafe: Hilbert Café
-      faq: FAQ
-      notice: Notiser
-      work_post: Jobbportal
-
     content:
       error: Fel
 
@@ -19,9 +12,22 @@ sv:
       guild: teknologsektionen
       within_tlth: inom tlth
 
-    topbar:
-      user_settings: Kontoinställningar
-
     copyright:
       control_the_web: Kontrollerar detta nät
       the_f_guild: F-teknologsektionen inom TLTH
+
+    dropdowns:
+      admin_dropdown:
+        administrate: Administrera
+        cafe: Hilbert Café
+        faq: FAQ
+        notice: Notiser
+        work_post: Jobbportal
+
+      user_dropdown:
+        user_settings: Kontoinställningar
+
+      notifications_dropdown:
+        notifications: Notifikationer
+        mark_all_as_read: Markera alla som lästa
+        no_notifications: Inga notifikationer

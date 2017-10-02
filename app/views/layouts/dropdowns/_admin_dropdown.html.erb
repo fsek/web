@@ -1,0 +1,39 @@
+<%# Privilegies to check for each menu category %>
+<% all_privileges = { 'Användare' => [User, MailAlias, Group, Permission],
+                      'Poster' => [Election, Council, Document],
+                      'Information' => [News, Event, BlogPost],
+                      'Spindelman' => [Menu, ShortLink, Constant, Category],
+                      'Pryl' => [Rent, Tool],
+                      'Övrigt' => [CafeShift, Introduction, WorkPost, Faq, Page, Album, Contact, Meeting, Song] } %>
+
+<li class="dropdown right large-menu">
+  <%= link_to('#', class: 'dropdown-toggle', data: { toggle: 'dropdown', 'close-others' => 'false' }) do %>
+    <span class="topbar-icon"><%= fa_icon('cog') %></span>
+    <span class="topbar-text">
+      <%= t('.administrate') %>
+    </span>
+  <% end %>
+  <ul class="dropdown-menu megamenu row admin-dropdown-menu">
+    <div class="dropdown-header"><%= t('.administrate') %></div>
+    <div class="admin-menu-categories">
+    <% all_privileges.each do |title, privileges| %>
+      <li class="admin-menu-category">
+        <ul class="">
+          <% privileges.delete_if { |p| !can_administrate?(:index, p) } %>
+          <% if privileges.present? %>
+            <li class="menu-header">
+              <%= title %>
+            </li>
+            <% privileges.each do |privilege| %>
+              <li class="menu">
+                <%= link_to models_name(privilege), [:admin, privilege] %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+    </div>
+    <div class="dropdown-bottom"></div>
+  </ul>
+</li>

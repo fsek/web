@@ -1,0 +1,6 @@
+sv:
+  notifications:
+    notifications_dropdown:
+      signedup: "Du är anmäld till %{event} som startar %{time}."
+      attending: "Du har fått en plats till eventet %{event}!"
+      reserve: "Du fick tyvärr ingen plats till eventet %{event}. Du ligger just nu på reservlistan."

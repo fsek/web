@@ -11,3 +11,173 @@
     }
   }
 }
+
+.admin-dropdown-menu {
+  position: static;
+}
+
+.admin-menu-categories {
+  display: flex;
+  width: 100%;
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    border-radius: 3px;
+    clear: both;
+    color: $footer-gray;
+    display: block;
+    font-weight: normal;
+    line-height: 1.42857143;
+    padding: 3px 20px;
+    white-space: normal;
+  }
+
+  ul {
+    padding-left: 3px;
+  }
+}
+
+.language-switch {
+  display: none;
+}
+
+.has-notifications {
+  color: $fsek-orange;
+}
+
+.has-notifications.topbar-icon {
+  animation: icon-highlight 1s linear infinite;
+}
+
+.notification-icon {
+  position: relative;
+
+  i {
+    position: relative;
+  }
+}
+
+@keyframes icon-highlight {
+
+  0% {
+    top: 0;
+  }
+
+  50% {
+    top: -2px;
+  }
+
+  100% {
+    top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  #notification-top-count {
+    display: none;
+  }
+
+  .admin-menu-categories {
+    display: block;
+
+    .menu {
+      padding: 4px 8px;
+
+      a {
+        font-size: 17px;
+      }
+    }
+  }
+
+  .topbar-text {
+    display: none;
+  }
+
+  .topbar-image {
+    display: none;
+  }
+
+  .language-switch {
+    display: block;
+  }
+
+  .loginbar span.topbar-icon {
+    border-right: 1px solid $white;
+    color: $white;
+    display: block;
+    font-size: 20px;
+    padding: 2.5vw 3vw 2.5vw 3vw;
+
+    a {
+      color: $white;
+    }
+
+  }
+
+  .loginbar li:last-child span.topbar-icon {
+    border-right: 0;
+  }
+
+  div.top {
+    background-color: $fsek-orange;
+    display: inline-block;
+    margin-bottom: 20px;
+    padding-top: 0;
+
+    .dropdown-header,
+    .dropdown-bottom {
+      border-radius: 0;
+    }
+
+    .dropdown {
+      position: static;
+    }
+
+    .dropdown.open .megamenu {
+      left: 0;
+      right: 0;
+    }
+
+    .dropdown-menu {
+      border-radius: 0 0 4px 4px;
+      margin-top: 8px;
+      top: 100%;
+      width: 100%;
+    }
+
+    .dropdown.open .dropdown-menu {
+      display: block;
+    }
+
+    .container {
+      padding: 0;
+    }
+
+    ul.loginbar.pull-right {
+      .divider {
+        display: none;
+      }
+
+      > li {
+        display: inline-block;
+        list-style: none;
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  div.top {
+    .container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .loginbar span.topbar-icon {
+    padding: 3.5vw 5vw 3.5vw 5vw;
+  }
+}

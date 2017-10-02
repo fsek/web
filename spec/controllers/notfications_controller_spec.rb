@@ -51,8 +51,6 @@ RSpec.describe(NotificationsController, type: :controller) do
         get(:look_all)
       end.should change(user, :notifications_count).by(-3)
       user.notifications.not_seen.count.should eq(0)
-
-      response.should redirect_to(own_user_notifications_path)
     end
   end
 end

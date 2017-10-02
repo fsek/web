@@ -3,6 +3,8 @@ sv:
     index:
       title: Notifikationer
       mark_all_as_read: Markera alla som sedda
+      no_notifications: Inga notifikationer
+      all_notifications: Alla notifikationer
 
     notification:
       read_more: Läs mer

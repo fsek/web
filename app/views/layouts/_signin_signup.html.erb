@@ -1,0 +1,13 @@
+<li>
+  <%= link_to(new_user_session_path) do %>
+    <span class="topbar-icon"><%= fa_icon('sign-in') %></span>
+    <span class="topbar-text"><%= t('devise.sign_in') %></span>
+  <% end %>
+  </li>
+  <li class="divider"></li>
+  <li>
+  <%= link_to(new_user_registration_path) do %>
+    <span class="topbar-icon"><%= fa_icon('plus') %></span>
+    <span class="topbar-text"><%= t('devise.sign_up') %></span>
+  <% end %>
+</li>

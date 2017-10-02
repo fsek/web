@@ -1,0 +1,16 @@
+<li class="dropdown">
+  <%= link_to('#', class: 'dropdown-toggle', data: { toggle: 'dropdown', delay: '0' }) do %>
+    <span class="topbar-icon"><%= fa_icon('users') %></span>
+    <span class="topbar-text">
+      <%= models_name(Group) %>
+    </span>
+  <% end %>
+
+  <ul class="dropdown-menu pull-right">
+    <div class="dropdown-header"><%= models_name(Group) %></div>
+    <% current_user.groups.includes(:introduction).each do |g| %>
+      <li><%= link_to g, group_path(g) %></li>
+    <% end %>
+    <div class="dropdown-bottom"></div>
+  </ul>
+</li>
