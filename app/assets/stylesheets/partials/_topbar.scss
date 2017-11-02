@@ -76,7 +76,7 @@
 }
 
 @media (max-width: 767px) {
-  #notification-top-count {
+  .notification-top-count {
     display: none;
   }
 
@@ -104,7 +104,7 @@
     display: block;
   }
 
-  .loginbar span.topbar-icon {
+  .loginbar .topbar-icon {
     border-right: 1px solid $white;
     color: $white;
     display: block;
@@ -117,7 +117,7 @@
 
   }
 
-  .loginbar li:last-child span.topbar-icon {
+  .loginbar li:last-child .topbar-icon {
     border-right: 0;
   }
 
@@ -177,7 +177,8 @@
       justify-content: center;
     }
   }
-  .loginbar span.topbar-icon {
+
+  .loginbar .topbar-icon {
     padding: 3.5vw 5vw 3.5vw 5vw;
   }
 }

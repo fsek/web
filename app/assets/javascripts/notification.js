@@ -34,7 +34,7 @@ $(function() {
     if($(".notifications-list").find(".notification").not(".seen").length !== 0) {
       $.ajax({
         url: "/anvandare/notifikationer/look_all",
-        success: function(resp) {
+        success: function() {
           hideAll();
           $.each($(".notifications-list").find(".notification").not(".seen"), function() {
             $(this).addClass("seen");
@@ -46,10 +46,6 @@ $(function() {
       });
     }
   });
-
-  $(document).on("click", ".notifications-dropdown.dropdown-menu", function (e) {
-    e.stopPropagation();
-  });
 });
 
 function hideAll() {
@@ -59,6 +55,7 @@ function hideAll() {
 }
 
 function showExtra(notif, div) {
+  console.log("extra");
   var extra = notif.attr("extra");
   $(div).text(extra)
         .css({"top": notif.offset().top,
