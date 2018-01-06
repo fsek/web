@@ -41,3 +41,6 @@ sv:
         show_event: Visa evenemang
         signup: Anmälan
         texts: Information
+
+      event_error:
+        invalid_input: "Oifyllda fält! Fyll i alla obligatoriska fält"
