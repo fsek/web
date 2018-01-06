@@ -1,7 +1,11 @@
+<% event ||= @event %>
+<% errors = event.errors.any? %>
+
+<%= render 'event_error' if errors %>
 <div class="headline">
   <h1><%= title(t('.title')) %></h1>
 </div>
-<div class="col-md-3 col-sm-12">
+<div class="col-md-3 col-sm-12 <%= errors ? 'event-errors' : '' %>">
   <%= render '/admin/events/sidebar', event: @event, current: @tab %>
 </div>
 
