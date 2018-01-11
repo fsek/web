@@ -9,6 +9,7 @@ sv:
         overlap: överlappar med en annan bokning
         overlap_council: överlappar med en annan utskottsbokning
         overlap_overbook: överlappar med en bokning som det är mindre än 5 dagar till
+        terms: Du måste godkänna bokningsavtalet
 
       active: aktiv
       confirmed: bekräftad

@@ -4,9 +4,10 @@
   <% if rent.errors[:user].present? %>
     <p><%= link_to(t('.edit_user_information'), edit_own_user_path,
                                                 target: :blank_p) %></p>
+
+    <%= render 'renter_table', user: rent.user, rent: rent %>
   <% end %>
 
-  <%= render 'renter_table', user: rent.user, rent: rent %>
 
   <% if (overlap = rent.overlap).try(:any?) %>
     <span class='overlapping-date'><%= t('.overlaps_with') %></span>
@@ -35,11 +36,13 @@
   <% end %>
 
   <% if @terms.present? %>
+    <strong><%= t('.terms') %></strong>
     <span class="rent terms">
-    <%= t('.agree_to_terms') %>
-    <%= link_to(document_path(@terms), target: 'blank_p') do %>
-      <%= fa_icon('paperclip') %> <%= t('.terms') %>.
-    <% end %>
+      <%= t('.read_terms') %>
+      <strong>
+        <%= link_to(t('.the_terms'), document_path(@terms), target: 'blank_p') %>
+      </strong>
+      <%= f.input :terms, as: :boolean, required: true, label: t('.agree_to_terms') %>
     </span>
     <br>
   <% end %>

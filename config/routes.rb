@@ -102,6 +102,8 @@ Fsek::Application.routes.draw do
       resources :rents, path: :bilbokning, except: :edit do
         get :preview, path: :visa, on: :member
       end
+
+      resources :car_bans, path: :bilsparr, except: :show
     end
 
     resources :rents, path: :bilbokning do

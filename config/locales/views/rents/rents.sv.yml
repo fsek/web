@@ -8,6 +8,9 @@ sv:
       only_for_council: får endast göras åt utskottet
       overlaps_with: 'Överlappar med:'
       terms: Bokningsavtal
+      the_terms: bokningsavtalet.
+      read_terms: Läs igenom och godkänn
+      agree_to_terms: Jag godkänner bokningsavtalet
 
     index:
       ask_question: Ställ ny fråga
@@ -52,3 +55,8 @@ sv:
     new:
       index: Startsida för bilbokning
       title: Ny bilbokning
+
+    car_bans:
+      banned: Du är spärrad från bilbokningstjänsten.
+      reason: "Anledning: "
+      for_councils: Utskottsbokning kan fortfarande genomföras.

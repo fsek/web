@@ -1,16 +1,24 @@
 module RentService
-  def self.reservation(user, rent)
+  def self.reservation(user, rent, terms)
     begin
       Rent.transaction do
         rent.validate!
         rent.user = user
         rent.status = user.try(:member?) ? :confirmed : :unconfirmed
-        rent.save!
-        if rent.council.present?
-          rent.overlap.each(&:overbook)
+
+        if terms.present? && rent.terms != '1'
+          rent.errors.add(:terms, I18n.t('rent.validation.terms'))
+          false
+        else
+          rent.save!
+
+          if rent.council.present?
+            rent.overlap.each(&:overbook)
+          end
+
+          RentMailer.rent_email(rent).deliver_now
+          true
         end
-        RentMailer.rent_email(rent).deliver_now
-        true
       end
     rescue
       false
