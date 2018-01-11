@@ -1,0 +1,26 @@
+<div class="headline">
+  <h2><%= title(t('.title')) %></h2>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to t('.new'), new_admin_car_ban_path, class: 'btn primary' %>
+  <%= link_to t('.rents'), admin_rents_path, class: 'btn secondary' %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@grid, show_filters: :no) do |g|
+    g.column(name: CarBan.human_attribute_name(:user), attribute: 'firstname', assoc: :user) do |car_ban|
+      link_to car_ban.user, user_path(car_ban.user)
+    end
+    g.column(name: CarBan.human_attribute_name(:created_at), attribute: 'created_at')
+    g.column(name: CarBan.human_attribute_name(:creator), attribute: 'firstname', assoc: :creator) do |car_ban|
+      car_ban.creator
+    end
+    g.column(name: t('global.edit')) do |car_ban|
+      link_to t('global.edit'), edit_admin_car_ban_path(car_ban)
+    end
+    g.column(name: t('global.destroy')) do |car_ban|
+      link_to t('global.destroy'), admin_car_ban_path(car_ban), method: :delete
+    end
+  end -%>
+</div>

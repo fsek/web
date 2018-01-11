@@ -1,0 +1,12 @@
+sv:
+  activerecord:
+    models:
+      car_ban:
+        one: Spärr
+        other: Spärrar
+    attributes:
+      car_ban:
+        user: Användare
+        creator: Skapad av
+        reason: Anledning
+        created_at: Skapad

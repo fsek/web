@@ -7,7 +7,7 @@ RSpec.describe RentService do
       rent = build(:rent, user: user)
 
       lambda do
-        RentService.reservation(user, rent).should be_truthy
+        RentService.reservation(user, rent, true).should be_truthy
       end.should change(Rent, :count).by(1)
     end
 
@@ -16,7 +16,7 @@ RSpec.describe RentService do
       rent = build(:rent, user: nil, d_from: nil)
 
       lambda do
-        RentService.reservation(user, rent).should be_falsey
+        RentService.reservation(user, rent, true).should be_falsey
       end.should change(Rent, :count).by(0)
     end
   end
@@ -28,7 +28,7 @@ RSpec.describe RentService do
       council_rent = build(:rent, :with_council, user: user)
 
       lambda do
-        RentService.reservation(user, council_rent).should be_truthy
+        RentService.reservation(user, council_rent, true).should be_truthy
       end.should change(Rent, :count).by(1)
 
       overbook.reload
@@ -41,7 +41,7 @@ RSpec.describe RentService do
       rent = build(:rent, user: user)
 
       lambda do
-        RentService.reservation(user, rent).should be_falsey
+        RentService.reservation(user, rent, true).should be_falsey
       end.should change(Rent, :count).by(0)
 
       overbook.reload
@@ -54,7 +54,7 @@ RSpec.describe RentService do
       council_rent = build(:rent, :with_council, user: user)
 
       lambda do
-        RentService.reservation(user, council_rent).should be_falsey
+        RentService.reservation(user, council_rent, true).should be_falsey
       end.should change(Rent, :count).by(0)
 
       overbook.reload

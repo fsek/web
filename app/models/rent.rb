@@ -13,6 +13,8 @@ class Rent < ApplicationRecord
   scope :ascending, -> { order(d_from: :asc) }
   scope :from_date, ->(from) { where('d_from >= ?', from) }
 
+  attr_accessor :terms
+
   def member?
     user.try(:member?)
   end

@@ -9,11 +9,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <%= stylesheet_link_tag 'application',
-                            media: 'all',
-                            'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application',
-                               'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= csrf_meta_tags %>
     <%= render '/layouts/favicon' %>
   </head>
@@ -29,7 +26,13 @@
 
     <%= yield :pre_content %>
 
-    <%= render 'layouts/content' %>
+    <% if controller_name == 'static_pages' && action_name == 'index' %>
+      <div class="start-page">
+        <%= render 'layouts/content' %>
+      </div>
+    <% else %>
+      <%= render 'layouts/content' %>
+    <% end %>
 
     <%= render 'layouts/copyright' %>
 

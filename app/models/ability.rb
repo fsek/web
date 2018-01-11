@@ -63,6 +63,12 @@ class Ability
       can [:show], Album
 
       can [:show, :overview, :new, :create], Rent
+
+      if user.car_ban.present?
+        cannot(:create, Rent, council_id: nil)
+        can(:new, Rent, council_id: nil)
+      end
+
       can [:edit, :update, :destroy], Rent, user_id: user.id
       can [:read, :mail], Contact
       can :read, Document

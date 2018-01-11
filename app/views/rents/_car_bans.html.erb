@@ -1,0 +1,7 @@
+<% if car_ban.present? %>
+  <div class="alert alert-danger">
+    <b><%= t('.banned') %></b>
+    <%= t('.reason') %> <%= car_ban.reason %>
+    <%= t('.for_councils') %>
+  </div>
+<% end %>

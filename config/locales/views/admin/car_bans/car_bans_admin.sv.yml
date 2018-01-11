@@ -1,0 +1,17 @@
+sv:
+  admin:
+    car_bans:
+      index:
+        title: Bilbokning - Spärra användare
+        new: Ny spärr
+        rents: Alla bilbokningar
+
+      new:
+        title: Spärra användare
+
+      edit:
+        title: Redigera spärrning
+
+      form:
+        index: Alla bokningsspärrar
+        destroy: Förinta spärr

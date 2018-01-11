@@ -8,6 +8,7 @@ FactoryGirl.define do
     d_til { Time.zone.now + 10.days + 12.hours }
     aktiv true
     status :confirmed
+    terms '1'
 
     # Override after_create callbacks.
     after(:build) do |rent|

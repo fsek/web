@@ -1,0 +1,17 @@
+<%= simple_form_for([:admin, car_ban]) do |f| %>
+  <%= f.association :user, collection: User.members,
+                           label_method: :print_program,
+                           required: true,
+                           input_html: {class: 'select2'} %>
+
+  <%= f.input :reason, input_html: { rows: 3 } %>
+
+  <%= f.button :submit %>
+  <%= link_to t('.index'), admin_car_bans_path, class: 'btn secondary' %>
+
+  <% if car_ban.persisted? %>
+    <%= link_to(t('.destroy'), admin_car_ban_path(car_ban),
+                               method: :delete,
+                               class: 'btn danger pull-right') %>
+  <% end %>
+<% end %>

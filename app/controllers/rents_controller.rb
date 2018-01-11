@@ -1,4 +1,3 @@
-# encoding:UTF-8
 class RentsController < ApplicationController
   load_permissions_and_authorize_resource
   before_action :load_terms, only: [:new, :edit, :create, :update, :main, :index]
@@ -25,7 +24,7 @@ class RentsController < ApplicationController
   end
 
   def create
-    if RentService.reservation(current_user, @rent)
+    if RentService.reservation(current_user, @rent, @terms)
       redirect_to rent_path(@rent), notice: alert_create(Rent)
     else
       render :new, status: 422
@@ -54,7 +53,7 @@ class RentsController < ApplicationController
 
   def rent_params
     params.require(:rent).permit(:d_from, :d_til, :purpose,
-                                 :council_id, :user_id)
+                                 :council_id, :user_id, :terms)
   end
 
   def load_terms
