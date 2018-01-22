@@ -37,7 +37,7 @@ gem 'net-http-persistent', '< 3.0' # Required for rpush
 gem 'nokogiri', '>=1.7'
 gem 'omniauth'
 gem 'pg'
-gem 'paperclip'
+gem 'paperclip', '>= 5.1.0'
 gem 'pagedown-bootstrap-rails'
 gem 'paranoia'
 gem 'prawn-rails'
