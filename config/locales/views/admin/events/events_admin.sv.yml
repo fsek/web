@@ -43,4 +43,7 @@ sv:
         texts: Information
 
       event_error:
-        invalid_input: "Oifyllda fält! Fyll i alla obligatoriska fält"
+        invalid_input_html: {
+          one: "<b>Ett obligatoriskt fält har ej fyllts i!</b> Sidomenyn indikerar under vilka flikar fälten finns.",
+          other: "<b>%{count} obligatoriska fält har ej fyllts i!</b> Sidomenyn indikerar under vilka flikar fälten finns."
+        }
