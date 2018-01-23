@@ -113,17 +113,17 @@
 }
 
 .event-error::before {
-  height: 16px;
-  width: 16px;
-  color: #d44c4c;
+  border-radius: 8px;
+  color: $boot-danger;
+  content: "\f12a";
   font-family: FontAwesome;
   font-size: 20px;
-  content: "\f12a";
-  left: 0px;
-  position: absolute;
+  height: 16px;
+  left: 0;
   margin-left: -20px;
   margin-top: -5px;
-  border-radius: 8px;
+  position: absolute;
+  width: 16px;
 }
 
 @media(max-width: 400px) {
