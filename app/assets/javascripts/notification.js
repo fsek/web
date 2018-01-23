@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   var div = document.createElement("div");
   $(div).addClass("extra");
   $(".notification.has-extra").hover(
