@@ -15,7 +15,7 @@ class MailAlias < ApplicationRecord
       return where('(username = ? and domain = ?) or target = ?',
                    username, domain, str)
     elsif username.present?
-      return where('username like ?', "#{username}%")
+      return where('username like ?', "%#{username}%")
     else
       return all
     end

@@ -310,7 +310,7 @@ Fsek::Application.routes.draw do
       resources :meetings, path: :lokalbokning
     end
 
-    resources :songs, path: :sangbok do
+    resources :songs, path: :sangbok, only: [:index, :show]  do
       post :search, on: :collection
     end
 
