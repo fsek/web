@@ -68,4 +68,39 @@ module CafeService
     shifts << { start: start + 2.hours, lp: lp, pass: 2, lv: lv }
     shifts
   end
+
+  def self.group_cafe_shifts(date_start, date_end, shifts)
+    hash = Hash.new {
+      |h| h[:years] = Hash.new {
+        |h2, m| h2[m] = Hash.new {
+          |h3| h3[:months] = Hash.new {
+            |h4, a| h4[a] = Hash.new {
+              |h5| h5[:days] = {}
+            }
+          }
+        }
+      }
+    }
+
+    date = Time.parse(date_start)
+    end_day = Time.parse(date_end)
+    while date <= end_day
+      unless date.on_weekend?
+        hash[:years][date.year][:months][I18n.t('date.month_names')[date.month].capitalize][:days]["#{I18n.t('date.day_names')[date.wday].capitalize} - #{date.day}/#{date.month}"] = []
+      end
+      date += 1.day
+    end
+
+    shifts_by_ymd = shifts.each_with_object(hash) do |shift, h|
+      week_day = shift.start.wday # Returns the day of week (0-6, Sunday is zero)
+      month = shift.start.month
+      day_name = I18n.t('date.day_names')[week_day].capitalize
+      month_name = I18n.t('date.month_names')[month].capitalize
+      unless h[:years][shift.start.year][:months][month_name][:days]["#{day_name} - #{shift.start.day}/#{shift.start.month}"].nil?
+        h[:years][shift.start.year][:months][month_name][:days]["#{day_name} - #{shift.start.day}/#{shift.start.month}"].push(Api::CafeShiftSerializer.new(shift).as_json)
+      end
+    end
+
+    shifts_by_ymd
+  end
 end

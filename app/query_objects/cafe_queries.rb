@@ -47,6 +47,12 @@ class CafeQueries
       includes(:user)
   end
 
+  def self.between_by_start(start, stop)
+    CafeShift.where('start BETWEEN ? AND ?', start, stop).
+      order(start: :asc, pass: :asc).
+      includes(:user)
+  end
+
   # If past year, give end of year
   # If current year, give end of day
   def self.year_or_today(year)
