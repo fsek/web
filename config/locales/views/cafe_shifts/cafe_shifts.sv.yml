@@ -2,3 +2,4 @@ sv:
   cafe_shifts:
     show:
       back_to_hilbert: Hilbert Café
+      to_admin_shift: Administrera pass

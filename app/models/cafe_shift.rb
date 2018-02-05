@@ -5,9 +5,9 @@ class CafeShift < ApplicationRecord
 
   # Validations
   validates :start, :pass, :lp, :lv, presence: true
-  validates :pass, :lp, inclusion: { in: 1..4 }
-  validates :lv, inclusion: { in: 1..20 }
-  validates :pass, uniqueness: { scope: [:start, :lv, :lp] }
+  validates :lp, inclusion: { in: 1..4 }
+  validates :pass, inclusion: { in: 1..2 }
+  validates :lv, inclusion: { in: 0..8 }
 
   # Scopes
   scope :all_start, -> { order(start: :asc) }
@@ -18,9 +18,9 @@ class CafeShift < ApplicationRecord
 
   def to_s
     if user.present?
-      %(#{model_name.human} #{pass} - #{user})
+      %(#{user})
     else
-      %(#{model_name.human} #{pass})
+      %(#{I18n.t('model.cafe_shift.is_free')})
     end
   end
 
@@ -44,6 +44,6 @@ class CafeShift < ApplicationRecord
 
   # Duration of work
   def duration
-    ((pass == 1) || (pass == 2)) ? 2 : 3
+    pass == 1 ? 2 : 3
   end
 end

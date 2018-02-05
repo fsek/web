@@ -7,8 +7,9 @@
   <%= link_to(t('.show'),
               admin_cafe_shift_path(@cafe_shift),
               class: 'btn secondary') %>
+  <%= link_to(t('.index'), admin_cafe_shifts_path, class: 'btn secondary') %>
+  <%= link_to(t('.back_to_hilbert'), cafe_path, class: 'btn secondary') %>
   <%= link_to(t('.destroy'),
                 admin_cafe_shift_path(@cafe_shift), method: :delete,
-                class: 'btn danger') %>
-  <%= link_to(t('.index'), admin_cafe_shifts_path, class: 'btn secondary') %>
+                class: 'btn danger pull-right') %>
 </div>

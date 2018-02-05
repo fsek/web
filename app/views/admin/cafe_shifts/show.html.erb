@@ -28,9 +28,9 @@
   <%= link_to(t('.destroy'), admin_cafe_shift_path(@cafe_view.shift),
                                       method: :delete,
                                       class: 'btn danger pull-right') %>
-
   <%= link_to(t('.administrate'), admin_cafe_shifts_path,
                                      class: 'btn secondary') %>
   <%= link_to(t('.edit'), edit_admin_cafe_shift_path(@cafe_view.shift),
                                     class: 'btn secondary') %>
+  <%= link_to(t('.back_to_hilbert'), cafe_path, class: 'btn secondary') %>
 </div>
