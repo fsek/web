@@ -7,5 +7,8 @@
   <%= render '/cafe_shifts/shift_table', cafe_view: @cafe_view %>
 
   <hr>
-  <%= link_to(t('.back_to_hilbert'), cafe_path, data: { turbolinks: :false }, class: 'btn secondary') %>
+  <%= link_to(t('.back_to_hilbert'), cafe_path,  class: 'btn secondary') %>
+  <%if can_administrate?(:manage, CafeShift)%>
+    <%= link_to(t('.to_admin_shift'), admin_cafe_shift_path(@cafe_view.shift), class: 'btn secondary') %>
+  <%end%>
 </div>

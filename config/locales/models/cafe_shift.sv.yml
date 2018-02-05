@@ -2,6 +2,8 @@ sv:
   model:
     cafe_shift:
       setup_error: Det gick inte att skapa passen, kontrollera uppgifterna.
+      is_free: Ledigt pass
+
 
   activerecord:
     models:

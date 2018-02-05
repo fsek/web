@@ -21,5 +21,6 @@
   <hr>
   <%= render 'setup_form', cafe_shift: @cafe_shift %>
   <hr>
+  <%= link_to(t('.back_to_hilbert'), cafe_path, class: 'btn secondary') %>
   <%= link_to(t('.back_to_admin'), admin_cafe_shifts_path, class: 'btn secondary') %>
 </div>

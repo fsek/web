@@ -1,7 +1,7 @@
 <%= simple_form_for([:admin, cafe_shift]) do |f| %>
   <%= f.input :start, as: :datetime_picker %>
-  <%= f.input :pass %>
-  <%= f.input :lp %>
-  <%= f.input :lv %>
+  <%= f.input :pass, collection: pass_collection, input_html: {class:'select2'}, include_blank: false%>
+  <%= f.input :lp, input_html: {min:'1', max:'4'} %>
+  <%= f.input :lv, input_html: {min:'0', max:'8'}  %>
   <%= f.button :submit %>
 <% end %>

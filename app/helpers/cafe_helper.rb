@@ -33,4 +33,7 @@ module CafeHelper
               target: :blank_p)
     end
   end
+  def pass_collection
+    [['2 timmar', 1], ['3 timmar', 2]]
+  end
 end

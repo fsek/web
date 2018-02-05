@@ -5,11 +5,14 @@ sv:
         title: Redigera cafépass
         show: Visa cafépass
         destroy: Förinta cafépass
-        index: Alla cafépass
+        index: Administrera alla
+        back_to_hilbert: Hilbert Café
 
       new:
         title: Nytt cafépass
-        admin_all_shifts: Administrera cafépass
+        admin_all_shifts: Tillbaka till administrera
+        back_to_hilbert: Hilbert Café
+
 
       setup:
         back_to_admin: Tillbaka till administration
@@ -20,13 +23,16 @@ sv:
         title: Skapa cafépass
         week: Vecka
         week_explanation: Fyll i datum och tid för en läsveckas första pass samt första och sista läsveckan genereras pass för alla läsveckorna däremellan.
+        back_to_hilbert: Hilbert Café
 
       show:
-        administrate: Administrera cafépass
+        administrate: Administrera alla
         destroy: Förinta cafépass
         edit: Redigera cafépass
+        back_to_hilbert: Hilbert Café
 
       setup_form:
         week: Vecka
         day: Dag
         lv_first: Första läsvecka
+        back_to_hilbert: Hilbert Café

@@ -1,0 +1,14 @@
+
+<%= provide(:header_title, t('.title')) %>
+
+<h3><%= t('.hello') %></h3>
+
+<%= simple_format(t('.destroyed'), class: 'lead') %>
+<%= "#{@user} har hoppat av passet: #{I18n.l(@cafe_shift.start)}" %>
+
+<br>
+<hr>
+<br>
+
+<p><%= t('.sincerely') %>,<br>
+<%= t('.executives') %></p>

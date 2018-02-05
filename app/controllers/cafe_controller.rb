@@ -6,7 +6,8 @@ class CafeController < ApplicationController
   end
 
   def competition
-    lp = params[:lp] || '1'
+    lp_current = CafeShift.order(start: :desc).first.try(:lp) || 1
+    lp = params[:lp] || lp_current
     @competition = CafeCompetition.new(lp: lp, year: competition_year)
   end
 

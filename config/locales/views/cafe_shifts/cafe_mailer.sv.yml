@@ -1,0 +1,9 @@
+sv:
+  cafe_mailer:
+    destroy_email:
+      executives: Bokningssystemet
+      hello: "Hej Cafémästarna!"
+      sincerely: Med vänliga hälsningar
+      subject: "Avopp cafépass"
+      destroyed: "En jobbare har hoppat av :("
+      title: "Hejhej"

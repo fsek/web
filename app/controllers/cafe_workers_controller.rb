@@ -41,7 +41,9 @@ class CafeWorkersController < ApplicationController
   def destroy
     cafe_shift = CafeShift.find(params[:cafe_shift_id])
     cafe_worker = CafeWorker.find(params[:id])
+    user = cafe_worker.user
     if cafe_worker.destroy
+      CafeMailer.destroy_email(user, cafe_shift).deliver_now
       redirect_to(cafe_shift_path(cafe_shift),
                   notice: I18n.t('model.cafe_worker.destroyed'))
     else
