@@ -8,7 +8,7 @@ require 'capistrano/rbenv'
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 
 # Do not forget to update in .ruby-version, circle.yml and Gemfile
-set :rbenv_ruby, '2.3.0'
+set :rbenv_ruby, '2.5.0'
 
 require 'capistrano/bundler'
 require 'capistrano/rails/assets'

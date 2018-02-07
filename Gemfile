@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Do not forget to update in .ruby-version, Capfile and circle.yml
-ruby '2.3.0'
+ruby '2.5.0'
 
 gem 'rails', '5.0.4'
 
@@ -35,7 +35,6 @@ gem 'mini_magick'
 gem 'momentjs-rails'
 gem 'net-http-persistent', '< 3.0' # Required for rpush
 gem 'nokogiri', '>=1.7'
-gem 'omniauth'
 gem 'pg'
 gem 'paperclip', '>= 5.2.0'
 gem 'pagedown-bootstrap-rails'
@@ -43,6 +42,7 @@ gem 'paranoia'
 gem 'prawn-rails'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'redcarpet'
+gem 'redis', '< 4'
 gem 'roadie-rails', '~> 1.0'
 gem 'rollbar'
 gem 'rpush'
