@@ -355,6 +355,8 @@ Fsek::Application.routes.draw do
     resources :start, only: :index
 
     resources :songs, only: [:index, :show]
+
+    resources :users, only: :update
   end
 
   get 'proposals/form' => 'proposals#form'
