@@ -356,11 +356,8 @@ Fsek::Application.routes.draw do
 
     resources :songs, only: [:index, :show]
 
-<<<<<<< HEAD
     resources :users, only: :update
-=======
     resources :cafe, only: [:index, :create, :destroy]
->>>>>>> Cafe api
   end
 
   get 'proposals/form' => 'proposals#form'
