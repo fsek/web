@@ -6,7 +6,7 @@
   <%= f.input :lastname, wrapper_html: {class: 'inline half'} %>
   <%= f.input :program, collection: user_program_collection,
                         input_html: {class: 'select2'} %>
-  <%= f.input :start_year, collection: (1954..(Time.zone.now.year + 1)).to_a.reverse!,
+  <%= f.input :start_year, collection: (1961..(Time.zone.now.year)).to_a.reverse!,
                            input_html: {class: 'select2'} %>
   <div class="input-group margin-bottom-20">
     <% if user.thumb_avatar %>
