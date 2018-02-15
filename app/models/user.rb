@@ -17,6 +17,9 @@ class User < ApplicationRecord
   validates :email, format: { with: Devise::email_regexp }
   validates :firstname, :lastname, presence: true, format: { with: /\A[\p{L}\p{M}*\-\p{Zs}]{2,}\z/ }
   validates :password_confirmation, presence: true, on: :create
+  validates :start_year,
+            numericality: { greater_than_or_equal_to: 1961, less_than_or_equal_to: Time.current.year },
+            allow_nil: true
   validate :food_validation
 
   # Associations

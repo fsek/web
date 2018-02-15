@@ -7,6 +7,7 @@ FactoryBot.define do
     lastname
     phone
     student_id
+    start_year Time.now.year
     confirmed_at { 10.days.ago }
     member_at { 10.days.ago }
 
@@ -24,6 +25,7 @@ FactoryBot.define do
     lastname
     phone
     student_id
+    start_year Time.now.year
     confirmed_at { Time.zone.now }
     member_at { Time.zone.now }
     with_admin_post
