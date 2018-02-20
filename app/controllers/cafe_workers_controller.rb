@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class CafeWorkersController < ApplicationController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :cafe_shift, parent: true

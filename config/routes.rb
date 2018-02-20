@@ -357,7 +357,7 @@ Fsek::Application.routes.draw do
     resources :songs, only: [:index, :show]
 
     resources :users, only: :update
-    resources :cafe, only: [:index, :create, :destroy]
+    resources :cafes, only: [:index, :create, :destroy]
   end
 
   get 'proposals/form' => 'proposals#form'

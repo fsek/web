@@ -25,7 +25,7 @@ RSpec.describe('Songs', type: :request) do
     it 'returns song corresponding to id' do
       song = Api::SongSerializer::Show.new(@first)
       json_song = '{"song":' + song.to_json + '}'
-      get api_song_path(id: 1), headers: @headers
+      get api_song_path(id: @first.id), headers: @headers
       response.body.should eq(json_song)
     end
   end

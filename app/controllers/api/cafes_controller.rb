@@ -1,4 +1,4 @@
-class Api::CafeController < Api::BaseController
+class Api::CafesController < Api::BaseController
   before_action :load_permissions
   load_and_authorize_resource :cafe_worker, parent: false
 
@@ -14,14 +14,14 @@ class Api::CafeController < Api::BaseController
     if @cafe_worker.save
       render json: {}, status: :ok
     else
-      render json: { errors: @cafe_worker.errors.full_messages }, status: 422
+      render json: { errors: @cafe_worker.errors }, status: 422
     end
   end
 
   def destroy
-    @cafe_user = current_user.cafe_workers.find(params[:id])
-
-    if @cafe_user && @cafe_user.destroy
+    @cafe_worker = current_user.cafe_workers.find(params[:id])
+    
+    if @cafe_worker && @cafe_worker.destroy
       render json: {}, status: :ok
     else
       render json: { errors: 'Failed to destroy' }, status: 422
