@@ -3,8 +3,6 @@ sv:
     page_elements:
       form:
         destroy_element: Förinta sidelement
-        element_type_hint: Välj en elementtyp och uppdatera för att få fram nya fält.
-        headline_hint: En rubrik ovanför elementet.
         images_hint: Redigera sida för att lägga till bilder
         sidebar_hint: Placerar elementet i ett sidofält.
 
