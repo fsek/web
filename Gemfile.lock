@@ -229,7 +229,7 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    libv8 (3.16.14.17)
+    libv8 (3.16.14.19)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.7.0.rc1)
@@ -421,8 +421,8 @@ GEM
     sshkit (1.11.5)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
       ref
     thor (0.19.4)
     thread_safe (0.3.6)
@@ -433,7 +433,7 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
-    uglifier (3.0.4)
+    uglifier (4.1.6)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
