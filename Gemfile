@@ -66,7 +66,7 @@ group :development, :test do
   gem 'better_errors', git: 'https://github.com/charliesome/better_errors' # For rails 5 support
   gem 'capistrano', require: false
   # Need 1.1.3 to load sprockets manifest file
-  gem 'capistrano-rails', '~> 1.1.3', require: false
+  gem 'capistrano-rails', require: false
   gem 'capistrano-rbenv', require: false
   gem 'capistrano-passenger', require: false
   gem 'capybara'
