@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.7.1
-lock '3.7.1'
+lock '3.10.1'
 
 set :application, 'fsek'
 set :repo_url, 'https://github.com/fsek/web.git'
