@@ -28,6 +28,6 @@ set :pty, true
 before 'deploy:started', 'sidekiq:quiet'
 after 'deploy:publishing', 'sidekiq:stop'
 after 'deploy:published', 'passenger:restart'
-after 'deploy:published', 'deploy:sitemap:refresh'
+after 'deploy:published', 'sitemap:refresh'
 after 'deploy:published', 'deploy:permissions:load'
 after 'deploy:published', 'sidekiq:start'
