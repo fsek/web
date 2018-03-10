@@ -1,0 +1,78 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/fsek/web
+    parallelism: 4
+
+    docker:
+      - image: circleci/ruby:2.5.0-node-browsers
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
+          PGHOST: localhost
+          PGUSER: ubuntu
+
+      - image: circleci/postgres:9.6.8-alpine-postgis
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_DB: circle_test
+          POSTGRES_PASWORD: ""
+
+      - image: redis
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - gem-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-{{ .Branch }}
+            - gem-cache
+
+      - run: bundle install --path vendor/bundle --jobs=4 --retry=3
+
+      - save_cache:
+          key: gem-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Wait for DB
+          command: dockerize --wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Wait for Redis
+          command: dockerize -wait tcp://localhost:6379 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rails db:create db:schema:load --trace
+
+      - run:
+          name: Rspec
+          command: |
+            bundle exec rspec --profile 10 \
+                              --format RspecJunitFormatter \
+                              --out /tmp/test-results/rspec.xml \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+      # Deploy staging
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "stage" ];
+              then bundle exec cap staging deploy
+            fi
+
+      # Deploy production
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ];
+              then bundle exec cap production deploy
+            fi
