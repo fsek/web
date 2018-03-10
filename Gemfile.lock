@@ -384,6 +384,8 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
+    rspec_junit_formatter (0.3.0)
+      rspec-core (>= 2, < 4, != 2.12.0)
     sass (3.5.5)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -523,6 +525,7 @@ DEPENDENCIES
   rpush
   rspec-example_steps
   rspec-rails
+  rspec_junit_formatter
   sass-rails
   select2-rails
   shoulda-matchers

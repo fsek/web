@@ -92,4 +92,5 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
   gem 'rails-controller-testing'
+  gem 'rspec_junit_formatter'
 end
