@@ -18,11 +18,11 @@ GIT
 
 GIT
   remote: https://github.com/lardawge/carrierwave_backgrounder
-  revision: 38b381faaace6c75f7310ea726dcd1be2604d3fb
+  revision: 460394b0e2c0cf0c192be9c1a60bcf9dfb1f9e4d
   specs:
     carrierwave_backgrounder (0.4.2)
-      carrierwave (~> 0.5)
-      mime-types (~> 2.3)
+      carrierwave (>= 0.5, < 2.0)
+      mime-types (~> 2.99)
 
 GIT
   remote: https://github.com/navro/wice_grid
