@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/charliesome/better_errors
-  revision: 40cb4e6f6a4cdd0bc67a21a45bfadf9d325d1305
+  revision: 946281d441523c9a009657a1c658f5134c17b482
   specs:
-    better_errors (2.1.1)
+    better_errors (2.4.0)
       coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
+      erubi (>= 1.0.0)
       rack (>= 0.9.0)
 
 GIT
@@ -150,7 +150,7 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     codeclimate-test-reporter (1.0.3)
       simplecov
-    coderay (1.1.1)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -185,6 +185,7 @@ GEM
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
     ejs (1.1.1)
+    erubi (1.7.1)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.8.0)
