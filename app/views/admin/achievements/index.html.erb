@@ -1,0 +1,23 @@
+<div class="headline">
+  <h2><%= 'Achievements' %></h2>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to 'Ny', new_admin_achievement_path, class: 'btn primary' %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@grid, show_filters: :no) do |g|
+    g.column(name: Achievement.human_attribute_name(:name), attribute: 'name') do |achievement|
+      link_to achievement, admin_achievement_path(achievement)
+    end
+    g.column(name: Achievement.human_attribute_name(:created_at), attribute: 'created_at')
+    g.column(name: Achievement.human_attribute_name(:points), attribute: 'points')
+    g.column(name: t('global.edit')) do |achievement|
+      link_to t('global.edit'), edit_admin_achievement_path(achievement)
+    end
+    g.column(name: t('global.destroy')) do |achievement|
+      link_to t('global.destroy'), admin_achievement_path(achievement), method: :delete
+    end
+  end -%>
+</div>
