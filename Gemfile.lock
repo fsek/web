@@ -101,6 +101,7 @@ GEM
     autoprefixer-rails (6.7.4)
       execjs
     bcrypt (3.1.11)
+    bindex (0.5.0)
     bootstrap-datepicker-rails (1.6.4.1)
       railties (>= 3.0)
     bootstrap-sass (3.3.7)
@@ -165,7 +166,6 @@ GEM
     css_parser (1.6.0)
       addressable
     database_cleaner (1.5.3)
-    debug_inspector (0.0.2)
     devise (4.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -446,10 +446,11 @@ GEM
     uniform_notifier (1.11.0)
     warden (1.2.7)
       rack (>= 1.0)
-    web-console (3.3.0)
-      activemodel (>= 4.2)
-      debug_inspector
-      railties (>= 4.2)
+    web-console (3.5.1)
+      actionview (>= 5.0)
+      activemodel (>= 5.0)
+      bindex (>= 0.4.0)
+      railties (>= 5.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
