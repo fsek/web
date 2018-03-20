@@ -24,6 +24,22 @@ ActiveRecord::Schema.define(version: 20180220003700) do
     t.index ["post_id"], name: "index_accesses_on_post_id", using: :btree
   end
 
+  create_table "achievement_users", force: :cascade do |t|
+    t.integer  "achievement_id"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["achievement_id"], name: "index_achievement_users_on_achievement_id", using: :btree
+    t.index ["user_id"], name: "index_achievement_users_on_user_id", using: :btree
+  end
+
+  create_table "achievements", force: :cascade do |t|
+    t.string   "name",                   null: false
+    t.integer  "points",     default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "adventure_groups", force: :cascade do |t|
     t.integer  "points",       default: 0, null: false
     t.integer  "adventure_id"
@@ -909,6 +925,8 @@ ActiveRecord::Schema.define(version: 20180220003700) do
 
   add_foreign_key "accesses", "doors"
   add_foreign_key "accesses", "posts"
+  add_foreign_key "achievement_users", "achievements"
+  add_foreign_key "achievement_users", "users"
   add_foreign_key "adventure_groups", "adventures"
   add_foreign_key "adventure_groups", "groups"
   add_foreign_key "adventures", "introductions"

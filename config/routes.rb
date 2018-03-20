@@ -104,6 +104,7 @@ Fsek::Application.routes.draw do
       end
 
       resources :car_bans, path: :bilsparr, except: :show
+      resources :achievements, path: :prestationer
     end
 
     resources :rents, path: :bilbokning do
@@ -357,6 +358,8 @@ Fsek::Application.routes.draw do
     resources :songs, only: [:index, :show]
 
     resources :users, only: :update
+
+    resources :achievements, only: :index 
   end
 
   get 'proposals/form' => 'proposals#form'
