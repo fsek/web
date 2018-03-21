@@ -165,7 +165,7 @@ GEM
     crass (1.0.3)
     css_parser (1.6.0)
       addressable
-    database_cleaner (1.5.3)
+    database_cleaner (1.6.2)
     devise (4.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
