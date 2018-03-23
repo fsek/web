@@ -246,7 +246,8 @@ GEM
     momentjs-rails (2.20.1)
       railties (>= 3.1)
     multi_json (1.13.1)
-    net-http-persistent (2.9.4)
+    net-http-persistent (3.0.0)
+      connection_pool (~> 2.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
@@ -499,7 +500,7 @@ DEPENDENCIES
   meta-tags
   mini_magick
   momentjs-rails
-  net-http-persistent (< 3.0)
+  net-http-persistent (< 4.0)
   nokogiri (>= 1.7)
   onesky-rails
   pagedown-bootstrap-rails
