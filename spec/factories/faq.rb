@@ -1,5 +1,5 @@
 # encoding: UTF-8
-FactoryGirl.define do
+FactoryBot.define do
   factory :faq do
     question { generate(:description) }
     answer { generate(:description) }

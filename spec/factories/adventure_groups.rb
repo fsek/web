@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :adventure_group do
     adventure
     group

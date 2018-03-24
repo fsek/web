@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :menu do
     name
     main_menu

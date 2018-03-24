@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :permission do
     subject_class { ['News', 'CafeWork', 'Post', 'Rent', 'Event'].sample }
     action { ['read', 'create', 'update', 'manage', 'new'].sample }

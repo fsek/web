@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :election do
     title
     url

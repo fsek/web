@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :introduction do
     title_sv { generate(:title) }
     title_en { "English: #{title_sv}" }

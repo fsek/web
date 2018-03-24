@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :meeting do
     user
     start_date { 1.days.from_now }

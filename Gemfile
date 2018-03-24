@@ -70,7 +70,7 @@ group :development, :test do
   gem 'capistrano-rbenv', require: false
   gem 'capistrano-passenger', require: false
   gem 'capybara'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'dotenv-rails'
   gem 'poltergeist'
   gem 'pry-byebug'

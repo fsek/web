@@ -1,5 +1,5 @@
 # encoding: UTF-8
-FactoryGirl.define do
+FactoryBot.define do
   factory :contact_message do
     skip_create
     name 'Hilbert Älg'

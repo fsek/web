@@ -128,8 +128,8 @@ namespace :db do
                              start_date: Time.zone.now, category: 'Nollning', end_date: Time.zone.now + 10.hours)
 
     # Documents
-    FactoryGirl.create(:document)
-    FactoryGirl.create(:document)
+    FactoryBot.create(:document)
+    FactoryBot.create(:document)
 
     # Categories
     Category.find_or_create_by!(title: 'Studier', slug: 'studie')
