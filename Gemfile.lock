@@ -146,8 +146,6 @@ GEM
       activesupport
     climate_control (0.2.0)
     cliver (0.3.2)
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     codeclimate-test-reporter (1.0.8)
       simplecov (<= 0.13)
     coderay (1.1.2)
@@ -262,12 +260,12 @@ GEM
     orm_adapter (0.5.0)
     pagedown-bootstrap-rails (2.1.4)
       railties (> 3.1)
-    paperclip (5.2.0)
+    paperclip (6.0.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     paranoia (2.2.0)
       activerecord (>= 4.0, < 5.1)
     pdf-core (0.6.1)
@@ -426,6 +424,8 @@ GEM
     sshkit (1.16.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
