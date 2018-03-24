@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Do not forget to update in .ruby-version, Capfile and circle.yml
 ruby '2.5.0'
 
-gem 'rails', '5.0.4'
+gem 'rails', '5.0.6'
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootstrap-sass'
