@@ -1,5 +1,5 @@
 # encoding: UTF-8
-FactoryGirl.define do
+FactoryBot.define do
   factory :cafe_shift do
     pass 1
     lv 1

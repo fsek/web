@@ -1,5 +1,5 @@
 # encoding: UTF-8
-FactoryGirl.define do
+FactoryBot.define do
   factory :page do
     url
     visible { true }

@@ -1,5 +1,5 @@
 # encoding: UTF-8
-FactoryGirl.define do
+FactoryBot.define do
   factory :document do
     title
     pdf Rack::Test::UploadedFile.new(File.open('spec/assets/pdf.pdf'))

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   sequence(:description) { |n| "This describes the most impressive nr#{n}" }
   sequence(:email) { |n| "d.wessman#{n}@fsektionen.se" }
   sequence(:lastname, 'A') { |n| "Wessman#{n}" }

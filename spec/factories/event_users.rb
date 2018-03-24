@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :event_user do
     user
     user_type EventSignup::MEMBER
