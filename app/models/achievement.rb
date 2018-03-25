@@ -4,6 +4,6 @@ class Achievement < ApplicationRecord
 
   validates :name, :points, presence: true
   def to_s
-  	name
+    name
   end
 end
