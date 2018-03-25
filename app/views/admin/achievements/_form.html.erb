@@ -3,10 +3,10 @@
   <%= f.input :points %>
 
   <%= f.button :submit %>
-  <%= link_to 'Avbryt', admin_achievements_path, class: 'btn secondary' %>
+  <%= link_to t('.index'), admin_achievements_path, class: 'btn secondary' %>
 
   <% if achievement.persisted? %>
-    <%= link_to 'Förinta', admin_achievement_path(achievement),
+    <%= link_to t('.destroy'), admin_achievement_path(achievement),
                                method: :delete,
                                class: 'btn danger pull-right' %>
   <% end %>
