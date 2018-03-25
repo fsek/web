@@ -1,9 +1,9 @@
 <div class="headline">
-  <h2><%= 'Achievements' %></h2>
+  <h2><%= title(t('.title')) %></h2>
 </div>
 
 <div class="col-md-2 col-sm-12">
-  <%= link_to 'Ny', new_admin_achievement_path, class: 'btn primary' %>
+  <%= link_to t('.new'), new_admin_achievement_path, class: 'btn primary' %>
 </div>
 
 <div class="col-md-10 col-sm-12">

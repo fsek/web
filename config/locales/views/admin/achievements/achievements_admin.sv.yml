@@ -1,0 +1,16 @@
+sv:
+  admin:
+    achievements:
+      index:
+        title: Prestationer
+        new: Ny prestation
+
+      new:
+        title: Skapa prestation
+
+      edit:
+        title: Redigera prestation
+
+      form:
+        index: Alla prestationer
+        destroy: Förinta prestation
