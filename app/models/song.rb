@@ -7,7 +7,7 @@ class Song < ApplicationRecord
 
   def self.title_search(title)
     if title.present?
-      Song.where('title LIKE ?', "%#{title}%").limit(10)
+      Song.where('title ILIKE ?', "%#{title}%").limit(10)
     end
   end
 
