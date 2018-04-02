@@ -33,7 +33,6 @@ gem 'meta-tags'
 gem 'mail', '>= 2.6.6.rc1'
 gem 'mini_magick'
 gem 'momentjs-rails'
-gem 'net-http-persistent', '< 3.0' # Required for rpush
 gem 'nokogiri', '>=1.7'
 gem 'pg'
 gem 'paperclip', '>= 5.2.0'
