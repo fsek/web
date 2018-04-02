@@ -336,7 +336,7 @@ GEM
     recaptcha (4.0.1)
       json
     redcarpet (3.4.0)
-    redis (4.0.1)
+    redis (3.3.5)
     ref (2.0.0)
     request_store (1.3.2)
     responders (2.4.0)
@@ -519,7 +519,7 @@ DEPENDENCIES
   rails-controller-testing
   recaptcha
   redcarpet
-  redis (< 5)
+  redis (< 4)
   roadie-rails (~> 1.2)
   rollbar
   routing-filter (~> 0.6.0)
