@@ -205,6 +205,7 @@ GEM
       activesupport (>= 4.2.0)
     globalize-accessors (0.2.1)
       globalize (~> 5.0, >= 5.0.0)
+    http-2 (0.8.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.9.5)
@@ -245,6 +246,8 @@ GEM
       railties (>= 3.1)
     multi_json (1.13.1)
     net-http-persistent (2.9.4)
+    net-http2 (0.16.0)
+      http-2 (= 0.8.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
@@ -353,11 +356,12 @@ GEM
     routing-filter (0.6.1)
       actionpack (>= 4.2, < 5.2)
       activesupport (>= 4.2, < 5.2)
-    rpush (2.7.0)
+    rpush (3.0.2)
       activesupport
       ansi
       multi_json (~> 1.0)
       net-http-persistent
+      net-http2 (~> 0.14)
       railties
       thor (>= 0.18.1, < 2.0)
     rspec-core (3.7.1)
