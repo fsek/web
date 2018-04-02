@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220003700) do
+ActiveRecord::Schema.define(version: 20180402140722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20180220003700) do
     t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.index ["achievement_id", "user_id"], name: "index_achievement_users_on_achievement_id_and_user_id", unique: true, using: :btree
     t.index ["achievement_id"], name: "index_achievement_users_on_achievement_id", using: :btree
     t.index ["user_id"], name: "index_achievement_users_on_user_id", using: :btree
   end
@@ -793,34 +794,35 @@ ActiveRecord::Schema.define(version: 20180220003700) do
   create_table "rpush_notifications", force: :cascade do |t|
     t.integer  "badge"
     t.string   "device_token",      limit: 64
-    t.string   "sound",                        default: "default"
+    t.string   "sound"
     t.text     "alert"
     t.text     "data"
     t.integer  "expiry",                       default: 86400
-    t.boolean  "delivered",                    default: false,     null: false
+    t.boolean  "delivered",                    default: false, null: false
     t.datetime "delivered_at"
-    t.boolean  "failed",                       default: false,     null: false
+    t.boolean  "failed",                       default: false, null: false
     t.datetime "failed_at"
     t.integer  "error_code"
     t.text     "error_description"
     t.datetime "deliver_after"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.boolean  "alert_is_json",                default: false
-    t.string   "type",                                             null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.boolean  "alert_is_json",                default: false, null: false
+    t.string   "type",                                         null: false
     t.string   "collapse_key"
-    t.boolean  "delay_while_idle",             default: false,     null: false
+    t.boolean  "delay_while_idle",             default: false, null: false
     t.text     "registration_ids"
-    t.integer  "app_id",                                           null: false
+    t.integer  "app_id",                                       null: false
     t.integer  "retries",                      default: 0
     t.string   "uri"
     t.datetime "fail_after"
-    t.boolean  "processing",                   default: false,     null: false
+    t.boolean  "processing",                   default: false, null: false
     t.integer  "priority"
     t.text     "url_args"
     t.string   "category"
-    t.boolean  "content_available",            default: false
+    t.boolean  "content_available",            default: false, null: false
     t.text     "notification"
+    t.boolean  "mutable_content",              default: false, null: false
     t.index ["delivered", "failed"], name: "index_rpush_notifications_multi", where: "((NOT delivered) AND (NOT failed))", using: :btree
   end
 
