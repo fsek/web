@@ -346,11 +346,11 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    roadie (3.2.2)
+    roadie (3.3.0)
       css_parser (~> 1.4)
       nokogiri (~> 1.5)
-    roadie-rails (1.2.1)
-      railties (>= 3.0, < 5.2)
+    roadie-rails (1.3.0)
+      railties (>= 3.0, < 5.3)
       roadie (~> 3.1)
     rollbar (2.15.5)
       multi_json
@@ -520,7 +520,7 @@ DEPENDENCIES
   recaptcha
   redcarpet
   redis (< 4)
-  roadie-rails (~> 1.2)
+  roadie-rails (~> 1.3)
   rollbar
   routing-filter (~> 0.6.0)
   rpush
