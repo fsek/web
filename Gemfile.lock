@@ -270,8 +270,8 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
-    paranoia (2.2.0)
-      activerecord (>= 4.0, < 5.1)
+    paranoia (2.4.0)
+      activerecord (>= 4.0, < 5.2)
     pdf-core (0.6.1)
     pg (0.21.0)
     poltergeist (1.17.0)
