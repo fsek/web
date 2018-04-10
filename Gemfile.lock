@@ -160,7 +160,7 @@ GEM
     connection_pool (2.2.1)
     cookies_eu (1.6.3)
       js_cookie_rails
-    crass (1.0.3)
+    crass (1.0.4)
     css_parser (1.6.0)
       addressable
     database_cleaner (1.6.2)
@@ -177,10 +177,10 @@ GEM
     docile (1.1.5)
     domain_name (0.5.20161129)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.2.1)
-    dotenv-rails (2.2.1)
-      dotenv (= 2.2.1)
-      railties (>= 3.2, < 5.2)
+    dotenv (2.2.2)
+    dotenv-rails (2.2.2)
+      dotenv (= 2.2.2)
+      railties (>= 3.2, < 6.0)
     ejs (1.1.1)
     erubi (1.7.1)
     erubis (2.7.0)
