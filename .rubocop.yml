@@ -24,7 +24,7 @@ Style/GuardClause:
   StyleGuide: '#no-nested-conditionals'
   Enabled: false
 
- Metrics/AbcSize:
+Metrics/AbcSize:
   Description: >-
                  A calculated magnitude based on number of assignments,
                  branches, and conditions.
