@@ -151,5 +151,16 @@ namespace :db do
 
     group = Group.find_or_create_by!(group_type: Group::REGULAR, name: 'Black Knight', number: 1, introduction: introduction)
     GroupUser.find_or_create_by!(group: group, user: user, fadder: true)
+
+    # Songs
+    Song.find_or_create_by!(title: 'Hello World',
+                            author: 'Edwin',
+                            category: 'Absurda Visor',
+                            content: 'Det var en gång en liten Värld som utplånades! Skål!')
+
+    Song.find_or_create_by!(title: 'Hello Sweden',
+                            author: 'Gurra',
+                            category: 'Visor',
+                            content: 'Sverige är Sverige och Sverige är bra!')
   end
 end

@@ -65,6 +65,8 @@ Menu.create!(main_menu: members, column: 2, index: 30,
              name_sv: 'Bilbokning', name_en: 'Car Rental', link: '/bilbokning')
 Menu.create!(main_menu: members, column: 2, index: 40,
              name_sv: 'Verktyg', name_en: 'Tools', link: '/verktyg')
+Menu.create!(main_menu: members, column: 2, index: 50,
+             name_sv: 'Sångbok', name_en: 'Song Book', link: '/sangbok')
 
 Menu.create!(main_menu: members, column: 3, index: 10, header: true,
              name_sv: 'Övrigt', name_en: 'Other', link: '#')
