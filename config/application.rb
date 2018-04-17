@@ -24,6 +24,7 @@ module Fsek
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths += Dir["#{config.root}/app/mailers/concerns/**/"]
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
 
     config.time_zone = 'Stockholm'
     config.filter_parameters += [:password, :password_confirmation, :message]
