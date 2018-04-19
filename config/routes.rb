@@ -360,10 +360,13 @@ Fsek::Application.routes.draw do
     resources :users, only: :update
 
     resources :achievements, only: :index 
-    
+
     resources :contacts, only: [:index, :show] do
       post :mail, on: :member
-    end
+
+    resources :gallery, only: [:index, :show]
+
+    resources :albums, only: :show
   end
 
   get 'proposals/form' => 'proposals#form'
