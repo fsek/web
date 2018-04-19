@@ -352,7 +352,7 @@ GEM
     roadie-rails (1.3.0)
       railties (>= 3.0, < 5.3)
       roadie (~> 3.1)
-    rollbar (2.15.6)
+    rollbar (2.15.5)
       multi_json
     routing-filter (0.6.1)
       actionpack (>= 4.2, < 5.2)
