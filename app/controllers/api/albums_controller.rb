@@ -4,7 +4,6 @@ class Api::AlbumsController < Api::BaseController
   def show
     @album = Album.include_for_gallery.includes(:photographers).find(params[:id])
 
-    render json: @album,
-    serializer: Api::AlbumSerializer::Show
+    render json: @album, serializer: Api::AlbumSerializer::Show
   end
 end
