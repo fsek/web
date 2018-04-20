@@ -363,6 +363,7 @@ Fsek::Application.routes.draw do
 
     resources :contacts, only: [:index, :show] do
       post :mail, on: :member
+    end
 
     resources :gallery, only: [:index, :show]
 
