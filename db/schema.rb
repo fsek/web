@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402140722) do
+ActiveRecord::Schema.define(version: 20180421115600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -418,6 +418,13 @@ ActiveRecord::Schema.define(version: 20180402140722) do
     t.datetime "updated_at"
     t.string   "category",      limit: 255
     t.index ["category"], name: "index_faqs_on_category", using: :btree
+  end
+
+  create_table "grapes", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "color",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "group_messages", force: :cascade do |t|
@@ -903,6 +910,16 @@ ActiveRecord::Schema.define(version: 20180402140722) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
+  end
+
+  create_table "wines", force: :cascade do |t|
+    t.string   "name",                      null: false
+    t.integer  "year",       default: 2010, null: false
+    t.string   "country",                   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "grape_id",                  null: false
+    t.index ["grape_id"], name: "index_wines_on_grape_id", using: :btree
   end
 
   create_table "work_posts", force: :cascade do |t|
