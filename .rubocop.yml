@@ -43,3 +43,6 @@ Metrics/LineLength:
   StyleGuide: '#80-character-limits'
   Enabled: true
   Max: 110
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
