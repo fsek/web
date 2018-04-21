@@ -3,7 +3,7 @@ class Song < ApplicationRecord
     title
   end
 
-  validates :title, :content, presence: true
+  validates :title, :content
 
   def self.title_search(title)
     if title.present?
