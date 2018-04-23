@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402140722) do
+ActiveRecord::Schema.define(version: 20180421141800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -418,6 +418,24 @@ ActiveRecord::Schema.define(version: 20180402140722) do
     t.datetime "updated_at"
     t.string   "category",      limit: 255
     t.index ["category"], name: "index_faqs_on_category", using: :btree
+  end
+
+  create_table "game_highscores", force: :cascade do |t|
+    t.integer  "user_id",                null: false
+    t.integer  "points",     default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["user_id"], name: "index_game_highscores_on_user_id", using: :btree
+  end
+
+  create_table "game_questions", force: :cascade do |t|
+    t.string   "question",   null: false
+    t.string   "answer1",    null: false
+    t.string   "answer2",    null: false
+    t.string   "answer3",    null: false
+    t.integer  "correct",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "group_messages", force: :cascade do |t|
@@ -945,6 +963,7 @@ ActiveRecord::Schema.define(version: 20180402140722) do
   add_foreign_key "event_users", "events"
   add_foreign_key "event_users", "users"
   add_foreign_key "events", "contacts"
+  add_foreign_key "game_highscores", "users"
   add_foreign_key "group_messages", "groups"
   add_foreign_key "group_messages", "messages"
   add_foreign_key "group_users", "groups"

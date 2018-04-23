@@ -359,11 +359,13 @@ Fsek::Application.routes.draw do
 
     resources :users, only: :update
 
-    resources :achievements, only: :index 
-    
+    resources :achievements, only: :index
+
     resources :contacts, only: [:index, :show] do
       post :mail, on: :member
     end
+
+    resources :game_questions, only: [:new, :create]
   end
 
   get 'proposals/form' => 'proposals#form'

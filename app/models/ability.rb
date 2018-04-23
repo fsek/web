@@ -56,6 +56,7 @@ class Ability
       can [:create, :destroy], PushDevice
       can :index, :start
       can :read, :api_event
+      can [:new, :create], GameQuestion
     end
 
     # Only for members of the Guild
