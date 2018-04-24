@@ -39,6 +39,9 @@ class Ability
       can :show, User
 
       can [:read, :mail], Contact
+      # The api needs this symbol syntax (see comment in Api::ContactsController)
+      can [:read, :mail], :contact
+
       can :read, Document, public: true
 
       can :index, Group
