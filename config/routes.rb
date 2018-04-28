@@ -368,6 +368,8 @@ Fsek::Application.routes.draw do
     resources :gallery, only: [:index, :show]
 
     resources :albums, only: :show
+
+    resource :fredmansky, only: [:create, :destroy]
   end
 
   get 'proposals/form' => 'proposals#form'

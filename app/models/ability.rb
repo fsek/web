@@ -59,6 +59,7 @@ class Ability
       can [:create, :destroy], PushDevice
       can :index, :start
       can :read, :api_event
+      can [:create, :destroy], Fredmansky
     end
 
     # Only for members of the Guild
