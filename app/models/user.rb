@@ -37,6 +37,7 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy, inverse_of: :user
   has_many :push_devices, dependent: :destroy
   has_one :car_ban
+  has_one :fredmansky
   has_many :achievement_users
   has_many :achievements, through: :achievement_users
 
