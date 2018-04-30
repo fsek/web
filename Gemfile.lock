@@ -297,7 +297,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.2)
     puma (3.11.4)
-    rack (2.0.4)
+    rack (2.0.5)
     rack-protection (2.0.1)
       rack
     rack-test (0.6.3)
@@ -451,7 +451,7 @@ GEM
     uniform_notifier (1.11.0)
     warden (1.2.7)
       rack (>= 1.0)
-    web-console (3.5.1)
+    web-console (3.6.2)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
