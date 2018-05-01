@@ -26,6 +26,8 @@ Fsek::Application.routes.draw do
     mount(Sidekiq::Web => '/sidekiq', as: :sidekiq)
   end
 
+  require 'sidekiq/cron/web'
+
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations]
   devise_scope :user do
