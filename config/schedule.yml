@@ -1,0 +1,4 @@
+fredmansky_job:
+    cron: "00 15 * 1-5,9-12 FRI"
+    class: "FredmanskyWorker"
+    queue: default
