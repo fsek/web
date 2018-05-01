@@ -1,5 +1,7 @@
 AllCops:
   TargetRubyVersion: 2.5
+  Exclude:
+    - 'db/schema.rb'
 
 Style/ClassAndModuleChildren:
   Description: 'Checks style of children classes and modules.'
@@ -46,3 +48,6 @@ Metrics/LineLength:
 
 Style/SymbolArray:
   EnforcedStyle: brackets
+
+  Style/FrozenStringLiteralComment:
+    EnforcedStyle: never
