@@ -1,5 +1,5 @@
 class Api::GalleryController < Api::BaseController
-  load_permissions_then_authorize_resource
+  load_permissions_then_authorize_resource class: false
 
   def index
     @albums = Album.include_for_gallery.gallery(Time.zone.local(Time.zone.now.year, 3))
