@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:firstname, :lastname, :program, :start_year,
                                  :avatar, :student_id, :phone, :display_phone,
                                  :remove_avatar, :food_custom, :notify_messages,
-                                 :notify_event_users, food_preferences: [])
+                                 :notify_event_users, :notify_event_closing, food_preferences: [])
   end
 
   def account_params

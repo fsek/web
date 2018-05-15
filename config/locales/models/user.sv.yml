@@ -52,4 +52,5 @@ sv:
         unconfirmed_email: Obekräftad epost
         username: Användarnamn
         notify_event_users: Push-notiser för eventanmälan
+        notify_event_closing: Push-notiser två timmar före eventanmälan stänger
         notify_messages: Push-notiser för meddelanden

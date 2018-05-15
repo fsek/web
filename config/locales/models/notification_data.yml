@@ -3,4 +3,5 @@ sv:
     notification_data:
       attending: "Du har fått en plats till **%{event}**!"
       remind_soon_starting: "Du är anmäld till **%{event}** som startar **%{time}**."
+      remind_signup_soon_closing: "Anmälan till **%{event}** stänger **%{time}** och det finns fortfarande platser kvar."
       reserve_position: "Du fick tyvärr ingen plats till **%{event}**. Du ligger just nu på reservlistan."

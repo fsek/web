@@ -7,6 +7,7 @@ class EventSignup < ApplicationRecord
   acts_as_paranoid
   belongs_to :event, required: true
   has_many :event_users, through: :event
+  has_many :notifications, as: :notifyable, dependent: :destroy
 
   validates(:opens, :closes, presence: true)
   validates(:slots, presence: true, numericality: { greater_than: 0 })
@@ -25,6 +26,7 @@ class EventSignup < ApplicationRecord
 
   scope :reminder_not_sent, -> { where(sent_reminder: nil) }
   scope :position_not_sent, -> { where(sent_position: nil) }
+  scope :closing_not_sent, -> { where(sent_closing: nil) }
   scope :closed, -> { where('closes < :current', current: Time.zone.now) }
 
   serialize :group_types, Array

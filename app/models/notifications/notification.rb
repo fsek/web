@@ -1,6 +1,6 @@
 class Notification < ApplicationRecord
-  enum(event_users: [:reminder, :position])
-  ALLOWED = { 'EventUser' => event_users }.freeze
+  enum(event_users: [:reminder, :position], event_signup: [:closing])
+  ALLOWED = { 'EventUser' => event_users, 'EventSignup' => event_signups }.freeze
 
   belongs_to :user, required: true, inverse_of: :notifications
   belongs_to :notifyable, polymorphic: true, required: true
@@ -51,7 +51,7 @@ class Notification < ApplicationRecord
   end
 
   def send_push
-    if notifyable_type == 'EventUser' && user.notify_event_users
+    if (notifyable_type == 'EventUser' && user.notify_event_users) || notifyable_type == 'EventSignup'
       PushService.push(data, user)
     end
   end

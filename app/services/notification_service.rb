@@ -1,8 +1,6 @@
 class NotificationService
   def self.event_user(event_user, mode)
-    notification = Notification.new(notifyable: event_user,
-                                    mode: mode,
-                                    user: event_user.user)
+    notification = Notification.new(notifyable: event_user, mode: mode, user: event_user.user)
 
     begin
       notification.save!
@@ -13,8 +11,21 @@ class NotificationService
     end
   end
 
-  # Schedule notification for users position on an event signup as well as
-  # a reminder half an hour before the event start.
+  def self.event_signup(event_signup, mode, users)
+    notification = Notification.new(notifyable: event_signup, mode: mode, user: users)
+
+    begin
+      notification.save!
+      true
+    rescue => e
+      raise e if Rails.env.development?
+      false
+    end
+  end
+
+  # Schedule notification for users position on an event signup,
+  # a reminder half an hour before the event start as well as a
+  # reminder two hours before an event signup closes.
   def self.event_schedule_notifications(event)
     return unless event.present? && event.signup.present?
 
@@ -25,20 +36,27 @@ class NotificationService
     # Remind signed up user 30 min before event.
     # Pass the diff between reminder and event start.
     notify_start(event)
+
+    # Remind not signed up users 2 hours before event signup closing.
+    # Make sure that the event isen't full.
+    notify_closing(event)
   end
 
   def self.notify_position(event)
     if event.signup.closes > Time.zone.now
-      EventSignupPositionWorker.perform_at(event.signup.closes + 5.minutes,
-                                           event.signup.id)
+      EventSignupPositionWorker.perform_at(event.signup.closes + 5.minutes, event.signup.id)
     end
   end
 
   def self.notify_start(event)
     if event.starts_at - 30.minutes > Time.zone.now
-      EventSignupReminderWorker.perform_at(event.starts_at - 30.minutes,
-                                           event.signup.id,
-                                           30.minutes)
+      EventSignupReminderWorker.perform_at(event.starts_at - 30.minutes, event.signup.id, 30.minutes)
+    end
+  end
+
+  def self.notify_closing(event)
+    if event.signup.closes > Time.zone.now
+      EventSignupClosingReminderWorker.perform_at(event.signup.closes - 2.hours, event.signup.id, 2.hours)
     end
   end
 
