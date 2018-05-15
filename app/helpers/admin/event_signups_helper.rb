@@ -54,6 +54,14 @@ module Admin::EventSignupsHelper
       end
     end
 
+    if signup.sent_closing.present?
+      content << content_tag(:span, class: 'event-reminder') do
+        safe_join([fa_icon('bell'),
+                   I18n.t('model.event_signup.closing_was_sent',
+                          date: localize(signup.sent_closing))])
+      end
+    end
+
     safe_join(content)
   end
 

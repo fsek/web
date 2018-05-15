@@ -1,7 +1,6 @@
 class PushService
   def self.push(data_object, users)
     app = Rpush::Gcm::App.find_by!(name: "firebase")
-
     push_android(data_object, app, users)
     push_ios(data_object, app, users)
   end

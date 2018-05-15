@@ -162,5 +162,8 @@ namespace :db do
                             author: 'Gurra',
                             category: 'Visor',
                             content: 'Sverige är Sverige och Sverige är bra!')
+
+    # Notifications
+    Rpush::Gcm::App.find_or_create_by!(name: :firebase, auth_key: :test)
   end
 end
