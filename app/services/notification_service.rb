@@ -25,7 +25,7 @@ class NotificationService
 
   # Schedule notification for users position on an event signup,
   # a reminder half an hour before the event start as well as a
-  # reminder two hours before an event signup closes.
+  # reminder twelve hours before an event signup closes.
   def self.event_schedule_notifications(event)
     return unless event.present? && event.signup.present?
 
@@ -37,7 +37,7 @@ class NotificationService
     # Pass the diff between reminder and event start.
     notify_start(event)
 
-    # Remind not signed up users 2 hours before event signup closing.
+    # Remind not signed up users 12 hours before event signup close.
     # Make sure that the event isen't full.
     notify_closing(event)
   end
@@ -56,7 +56,7 @@ class NotificationService
 
   def self.notify_closing(event)
     if event.signup.closes > Time.zone.now
-      EventSignupClosingReminderWorker.perform_at(event.signup.closes - 2.hours, event.signup.id, 2.hours)
+      EventSignupClosingReminderWorker.perform_at(event.signup.closes - 12.hours, event.signup.id, 12.hours)
     end
   end
 

@@ -4,7 +4,7 @@ class EventSignupClosingReminderWorker
 
   def perform(event_signup_id, time_until)
     event_signup = EventSignup.includes(:event_users).find(event_signup_id)
-    notify(event_signup) if notifyable(event_signup, time_until)
+    notify(event_signup) if notifyable(event_signup)
   end
 
   private
