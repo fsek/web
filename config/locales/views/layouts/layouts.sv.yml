@@ -5,16 +5,16 @@ sv:
 
     email:
       footer:
-        fguild: F-teknologsektionen inom TLTH
-        you_get_this_because: Du får detta e-post eftersom du varit inne på F-teknologsektionen inom TLTHs webbplats och använt någon av våra tjänster.
+        fguild: F-sektionen inom TLTH
+        you_get_this_because: Du får detta e-post eftersom du varit inne på F-sektionen inom TLTHs webbplats och använt någon av våra tjänster.
 
     header:
-      guild: teknologsektionen
+      guild: sektionen
       within_tlth: inom tlth
 
     copyright:
       control_the_web: Kontrollerar detta nät
-      the_f_guild: F-teknologsektionen inom TLTH
+      the_f_guild: F-sektionen inom TLTH
 
     dropdowns:
       admin_dropdown:
