@@ -26,13 +26,13 @@ GIT
 
 GIT
   remote: https://github.com/navro/wice_grid
-  revision: a41117c5c75335740e9471e1726b80c6beb307b2
-  branch: rails5
+  revision: bd833172557e41ac770c937142d772c4025157b8
+  branch: rails51
   specs:
-    wice_grid (3.6.3)
-      activerecord (> 3.2)
+    wice_grid (4.0.1)
       coffee-rails (> 3.2)
       kaminari (~> 0.16)
+      rails (~> 5.0, < 5.2)
 
 GIT
   remote: https://github.com/zpaulovics/datetimepicker-rails
@@ -552,4 +552,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

@@ -55,7 +55,7 @@ gem 'simple_form'
 gem 'sitemap_generator'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'wice_grid', git: 'https://github.com/navro/wice_grid', branch: 'rails5'
+gem 'wice_grid', git: 'https://github.com/navro/wice_grid', branch: 'rails51'
 
 # To have a working JVM on server
 group :staging, :production do
