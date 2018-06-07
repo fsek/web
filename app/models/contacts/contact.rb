@@ -7,7 +7,7 @@ class Contact < ApplicationRecord
   has_many :users, through: :post
   has_many :events, dependent: :nullify
 
-  validates :name, presence: true, if: 'post_id.nil?'
+  validates :name, presence: true, if: -> { post_id.nil? }
   validates :email, :text, presence: true
   validates :email, uniqueness: true, format: { with: Devise::email_regexp }
   validates :post_id, :slug, uniqueness: { allow_blank: true }

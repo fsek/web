@@ -128,10 +128,28 @@ class User < ApplicationRecord
     end
   end
 
+  ##
+  # DEVISE / DEVISE TOKEN AUTH EMAIL CONFIRMATION PATCHES
+  #
+  # devise_token_auth sets these internal devise methods to `false` because
+  # it does not support email reconfirmation through the API routes.
+  # Since we use regular devise to handle all email confirmations
+  # and email updates, we can enable these again!
+  ##
+
   def email_changed?
-    # devise_token_auth always sets this to false, and does not support
-    # email reconfirmation through the API routes. Since we use regular
-    # devise to handle all confirmations, we can enable this again!
     super
   end
+
+  def email_required?
+    super
+  end
+
+  def will_save_change_to_email?
+    super
+  end
+
+  ##
+  # END DEVISE PATCHES
+  ##
 end

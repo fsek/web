@@ -1,6 +1,6 @@
 class Image < ApplicationRecord
   belongs_to :album, inverse_of: :images, counter_cache: true
-  belongs_to :photographer, class_name: User
+  belongs_to :photographer, class_name: :User
 
   mount_uploader :file, ImageUploader
   store_in_background :file, ImageWorker

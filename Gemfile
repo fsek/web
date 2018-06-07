@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Do not forget to update in .ruby-version, Capfile and circle.yml
 ruby '2.5.0'
 
-gem 'rails', '5.0.4'
+gem 'rails', '5.1.6'
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootstrap-sass'
@@ -21,7 +21,7 @@ gem 'ejs'
 gem 'font-awesome-rails'
 gem 'fotoramajs'
 gem 'fullcalendar-rails'
-gem 'globalize', git: 'https://github.com/globalize/globalize' # For rails 5 support
+gem 'globalize', git: 'https://github.com/globalize/globalize' # For rails 5.1 support
 gem 'activemodel-serializers-xml'
 gem 'globalize-accessors'
 gem 'icalendar'
@@ -72,6 +72,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'dotenv-rails'
+  gem 'listen'
   gem 'poltergeist'
   gem 'pry-byebug'
   gem 'pry-rails'
