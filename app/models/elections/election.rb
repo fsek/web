@@ -2,7 +2,7 @@ class Election < ApplicationRecord
   has_many :nominations, dependent: :destroy
   has_many :candidates, dependent: :destroy, inverse_of: :election
   has_many :election_posts, dependent: :destroy
-  has_many :extra_posts, class_name: Post, through: :election_posts, source: :post
+  has_many :extra_posts, class_name: :Post, through: :election_posts, source: :post
 
   translates(:title, :description, fallbacks_for_empty_translations: true)
   globalize_accessors(locales: [:en, :sv], attributes: [:title, :description])

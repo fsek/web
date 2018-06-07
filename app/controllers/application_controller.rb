@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, unless: :devise_token_controller
   before_action :configure_permitted_devise_parameters, if: :devise_controller?
-  before_action :store_current_location, unless: 'devise_controller? || !request.format.html?'
+  before_action :store_current_location, unless: -> { devise_controller? || !request.format.html? }
   before_action :set_locale
-  before_action :prepare_meta_tags, if: 'request.get?'
+  before_action :prepare_meta_tags, if: -> { request.get? }
 
   helper_method :alert_update, :alert_create, :alert_destroy,
                 :can_administrate?, :authorize_admin!
@@ -28,10 +28,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound do
     # translate record not found -> HTTP 404
     fail ActionController::RoutingError.new 'not found'
-  end
-
-  rescue_from ActionController::RedirectBackError do
-    redirect_to :root
   end
 
   protected

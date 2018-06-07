@@ -9,7 +9,7 @@ class EventUser < ApplicationRecord
   # validates :user, uniqueness: { scope: :event }
   validate :uniqueness_validation
   validate :selected_type, :reg_open, :user_types, :membership, :groups, unless: :is_admin
-  validates :group_custom, absence: true, if: "group.present?"
+  validates :group_custom, absence: true, if: -> { group.present? }
 
   attr_accessor :is_admin
 

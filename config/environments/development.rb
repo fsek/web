@@ -77,4 +77,8 @@ Fsek::Application.configure do
   end
 
   config.action_cable.allowed_request_origins = [PUBLIC_URL, 'file://', 'file:///']
+
+  # Use an evented file watcher to asynchronously detect changes in source code,
+  # routes, locales, etc. This feature depends on the listen gem.
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
