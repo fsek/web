@@ -5,7 +5,7 @@
 </div>
 
 <div class="col-md-4 col-sm-3 col-xs-12 blog margin">
-  <%= blog_post_dropdown_button(collection: Category.by_title.by_type(BlogPost),
+  <%= blog_post_dropdown_button(collection: Category.by_title.by_type(:BlogPost),
                                 current: @category) %>
 
   <% if can_administrate?(:index, BlogPost) %>
