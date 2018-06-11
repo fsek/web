@@ -158,8 +158,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
-    cookies_eu (1.6.3)
-      js_cookie_rails
+    cookies_eu (1.7.1)
+      js_cookie_rails (~> 2.2.0)
     crass (1.0.4)
     css_parser (1.6.0)
       addressable
@@ -221,7 +221,7 @@ GEM
       turbolinks
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    js_cookie_rails (2.1.4)
+    js_cookie_rails (2.2.0)
       railties (>= 3.1)
     json (2.1.0)
     jsonapi-renderer (0.1.2)
