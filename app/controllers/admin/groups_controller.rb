@@ -2,7 +2,8 @@ class Admin::GroupsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @grid = initialize_grid(Group.order(number: :asc),
+    set_groups
+    @grid = initialize_grid(@groups,
                             include: :introduction,
                             order: 'introductions.start')
   end
@@ -44,5 +45,14 @@ class Admin::GroupsController < Admin::BaseController
 
   def group_params
     params.require(:group).permit(:name, :number, :introduction_id, :group_type, user_ids: [])
+  end
+
+  def set_groups
+    if params[:introduction].present?
+      introduction = Introduction.find_by!(slug: params[:introduction])
+      @groups = introduction.groups.order(number: :asc)
+    else
+      @groups = Group.order(number: :asc)
+    end
   end
 end
