@@ -1,4 +1,34 @@
+# frozen_string_literal: true
+
 module MessageHelper
+  MARKDOWN_EXTENSIONS = {
+    quote: true,
+    autolink: true,
+    underline: true,
+    lax_spacing: true,
+    no_intra_emphasis: true,
+    fenced_code_blocks: true,
+    space_after_headers: true
+  }.freeze
+
+  API_OPTIONS = { link_attributes: { class: 'external', target: '_system' } }.freeze
+
+  def self.markdown(text)
+    MarkdownHelper.sanitize(renderer.render(text)) if text.present?
+  end
+
+  def self.markdown_api(text)
+    MarkdownHelper.sanitize(api_renderer.render(text)) if text.present?
+  end
+
+  def self.renderer
+    Redcarpet::Markdown.new(MessageRenderer.new({}), MARKDOWN_EXTENSIONS)
+  end
+
+  def self.api_renderer
+    Redcarpet::Markdown.new(MessageRenderer.new(API_OPTIONS), MARKDOWN_EXTENSIONS)
+  end
+
   def message_destroy_link(message)
     link_to(admin_message_path(message),
             method: :delete,
