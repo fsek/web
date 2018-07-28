@@ -15,6 +15,6 @@
         <%= localized(message.created_at, format: :short) %>
       </small>
     </div>
-    <%= markdown(message.content) %>
+    <%= MessageHelper.markdown(message.content) %>
   </div>
 </div>
