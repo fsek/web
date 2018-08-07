@@ -1,9 +1,13 @@
 class MessageService
-  def self.create_message(content, groups, user)
+  def self.create_message(params, groups, user)
     message = user.messages.new
     message.groups = groups
-    message.content = content
+    message.content = params[:content]
     message.introduction = groups.first.introduction
+
+    if params[:image].present?
+      message.image = params[:image]
+    end
 
     message.save!
     broadcast_create(message)

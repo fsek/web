@@ -297,11 +297,15 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
-      resources :messages, path: :meddelanden, only: [:edit, :destroy, :update]
+      resources :messages, path: :meddelanden, only: [:edit, :destroy, :update] do
+        get :download_image, on: :member
+      end
     end
 
     resources :groups, path: :grupper, except: [:new, :create, :destroy] do
-      resources :messages, only: [:index], path: :meddelanden
+      resources :messages, only: [:index], path: :meddelanden do
+        get :download_image, on: :member
+      end
     end
 
     namespace :admin do
@@ -364,7 +368,7 @@ Fsek::Application.routes.draw do
     end
 
     resources :groups, only: [:index, :show] do
-      resources :messages, only: :index
+      resources :messages, only: [:index, :create]
     end
 
     resources :messages, only: :edit do

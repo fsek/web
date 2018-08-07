@@ -15,6 +15,11 @@
         <%= localized(message.created_at, format: :short) %>
       </small>
     </div>
-    <%= MessageHelper.markdown(message.content) %>
+    <div class="msg-content">
+      <% if message.image.present? %>
+        <img class="img-responsive message-image" src="<%= admin_message_image_url(message) %>" />
+      <% end %>
+      <%= MessageHelper.markdown(message.content) %>
+    </div>
   </div>
 </div>

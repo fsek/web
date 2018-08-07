@@ -29,6 +29,10 @@ module MessageHelper
     Redcarpet::Markdown.new(MessageRenderer.new(API_OPTIONS), MARKDOWN_EXTENSIONS)
   end
 
+  def admin_message_image_url(message)
+    download_image_admin_message_url(message)
+  end
+
   def message_destroy_link(message)
     link_to(admin_message_path(message),
             method: :delete,

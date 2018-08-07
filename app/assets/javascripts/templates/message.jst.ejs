@@ -19,6 +19,9 @@
       </small>
     </div>
     <div class="msg-content">
+      <% if (message.image_url) { %>
+        <img class="img-responsive message-image" src="<%= message.image_url %>" />
+      <% } %>
       <%= message.text %>
     </div>
     <div class="updated">

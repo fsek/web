@@ -1,4 +1,5 @@
 <%= form.input :content, as: :pagedown, input_html: {preview: true, rows: 10} %>
+<%= form.input :image, as: :file %>
 <%= form.association :groups, collection: groups,
                               input_html: { class: 'select2' },
                               include_blank: false,
