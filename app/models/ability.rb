@@ -46,7 +46,7 @@ class Ability
       can :index, Group
       can :show, Group, users: { id: user.id }
 
-      can([:index, :show], Message, Message.for_user(user)) do |message|
+      can([:index, :show, :download_image], Message, Message.for_user(user)) do |message|
         message.with_group(user)
       end
 

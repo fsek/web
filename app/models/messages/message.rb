@@ -7,10 +7,11 @@ class Message < ApplicationRecord
   has_many :group_messages, dependent: :destroy
   has_many :groups, through: :group_messages
 
+  mount_uploader :image, MessageImageUploader
   paginates_per(30)
 
-  validates :content, presence: true
   validates :groups, length: { minimum: 1, message: I18n.t('model.message.need_groups') }
+  validates :content, presence: true, if: -> { image.blank? }
   validate :in_group, unless: :by_admin
 
   scope :by_admin, -> { where(by_admin: true) }

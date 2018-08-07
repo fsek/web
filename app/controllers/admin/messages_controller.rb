@@ -47,10 +47,20 @@ class Admin::MessagesController < Admin::BaseController
     redirect_back(fallback_location: root_path, notice: alert_destroy(Message))
   end
 
+  def download_image
+    if params[:size] == 'original'
+      send_file @message.image.url, disposition: 'inline'
+    elsif params[:size] == 'large'
+      send_file @message.image.large.url, disposition: 'inline'
+    else
+      send_file @message.image.thumb.url, disposition: 'inline'
+    end
+  end
+
   private
 
   def message_params
-    params.require(:message).permit(:content, group_ids: [])
+    params.require(:message).permit(:content, :image, group_ids: [])
   end
 
   def set_introduction
