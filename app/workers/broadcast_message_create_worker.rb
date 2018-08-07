@@ -1,9 +1,10 @@
 class BroadcastMessageCreateWorker < ActiveJob::Base
   def perform(message)
-    data = ActiveModelSerializers::SerializableResource.new(message).as_json
-
     message.groups.each do |group|
-      ActionCable.server.broadcast("groups_#{group.id}_channel", action: :create, message: data)
+      data = ActiveModelSerializers::SerializableResource.new(message)
+      data.serialization_scope = group.id
+
+      ActionCable.server.broadcast("groups_#{group.id}_channel", action: :create, message: data.as_json)
     end
   end
 end

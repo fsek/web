@@ -19,6 +19,9 @@
       </small>
     </div>
     <div class="msg-content">
+      <% if (message.image) { %>
+        <img class="img-responsive margin-bottom-10" src="<%= message.image %>?size=thumb" />
+      <% } %>
       <%= message.text %>
     </div>
     <div class="updated">

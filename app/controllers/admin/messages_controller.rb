@@ -50,7 +50,7 @@ class Admin::MessagesController < Admin::BaseController
   private
 
   def message_params
-    params.require(:message).permit(:content, group_ids: [])
+    params.require(:message).permit(:content, :image, group_ids: [])
   end
 
   def set_introduction
