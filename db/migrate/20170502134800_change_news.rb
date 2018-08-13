@@ -1,4 +1,4 @@
-class ChangeNews < ActiveRecord::Migration
+class ChangeNews < ActiveRecord::Migration[5.0]
   def up
     add_column(:news, :pinned_from, :datetime)
     add_column(:news, :pinned_to, :datetime)
