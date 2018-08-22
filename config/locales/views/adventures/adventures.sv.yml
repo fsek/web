@@ -1,14 +1,26 @@
 sv:
   adventures:
     archive:
-      title: Alla äventyrsuppdrag
-      index: Senaste äventyrsuppdraget
+      title: Alla äventyr
+      index: Senaste äventyret
     adventure:
       read_more: Läs mer
     index:
-      archive: Alla äventyrsuppdrag
+      archive: Alla äventyr
       results: Totalt Resultat
     show:
-      archive: Alla äventyrsuppdrag
-      index: Senaste äventyrsuppdraget
+      archive: Alla äventyr
+      index: Senaste äventyret
       results: Resultat
+    highscore:
+      position: Position
+      title: Highscore
+      group: Grupp
+      points: Poäng
+      finished_missions: Avklarade uppdrag
+    adventure_view:
+      max_points: Maxpoäng
+      your_group_points: Din grupps poäng
+      points: Poäng
+      finished: Avklarat
+      read_more: Läs mer/slutför uppdrag

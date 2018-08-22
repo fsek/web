@@ -1,17 +1,14 @@
-<%= simple_form_for([:admin, introduction, adventure]) do |f| %>
+<%= simple_form_for([:admin, adventure]) do |f| %>
   <%= f.input :title_sv, wrapper_html: {class: 'inline half'} %>
   <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>
 
   <%= f.input :content_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :content_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
 
+  <%= f.input :introduction_id, priority: Introduction.current, collection: Introduction.all, label: model_name(Introduction) %>
+  <%= f.input :publish_results %>
   <%= f.input :video %>
-  <%= f.input :max_points %>
   <%= f.input :start_date, as: :datetime_picker %>
   <%= f.input :end_date, as: :datetime_picker %>
-  <%= f.association :groups, collection: introduction.groups.regular,
-                             input_html: { class: 'select2' },
-                             include_blank: false,
-                             label_method: :to_s %>
   <%= f.button :submit%>
 <% end %>

@@ -1,0 +1,5 @@
+<div class="col-md-10 col-md-offset-1 col-sm-12">
+<h1><%= t('.title') %></h1>
+<%= render 'form', adventure: @adventure, adventure_mission: @adventure_mission, suggested_index: @suggested_index %>
+<%= link_to(t('admin.adventure_missions.all'), admin_adventure_adventure_missions_path(@adventure, @adventure_mission), class: 'btn secondary') %>
+</div>

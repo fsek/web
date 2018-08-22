@@ -2,8 +2,8 @@ sv:
   activerecord:
     models:
       adventure:
-        one: Äventyrsuppdrag
-        other: Äventyrsuppdrag
+        one: Äventyr
+        other: Äventyr
     attributes:
       adventure:
         title: Titel
@@ -12,7 +12,6 @@ sv:
         content: Beskrivning
         content_sv: Beskrivning - svenska
         content_en: Beskrivning - engelska
-        max_points: Maxpoäng
         start_date: Börjar
         end_date: Slutar
         publish_results: Publicera resultaten

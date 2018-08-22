@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180813125456) do
+ActiveRecord::Schema.define(version: 20180815132130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,16 +41,36 @@ ActiveRecord::Schema.define(version: 20180813125456) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "adventure_groups", id: :serial, force: :cascade do |t|
-    t.integer "adventure_id"
-    t.integer "group_id"
-    t.datetime "deleted_at"
+  create_table "adventure_mission_groups", id: :serial, force: :cascade do |t|
+    t.integer "points", null: false
+    t.datetime "finished"
+    t.integer "adventure_mission_id", null: false
+    t.integer "group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.jsonb "missions"
-    t.index ["adventure_id"], name: "index_adventure_groups_on_adventure_id"
-    t.index ["deleted_at"], name: "index_adventure_groups_on_deleted_at"
-    t.index ["group_id"], name: "index_adventure_groups_on_group_id"
+    t.index ["adventure_mission_id"], name: "index_adventure_mission_groups_on_adventure_mission_id"
+    t.index ["group_id"], name: "index_adventure_mission_groups_on_group_id"
+  end
+
+  create_table "adventure_mission_translations", force: :cascade do |t|
+    t.integer "adventure_mission_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "description"
+    t.index ["adventure_mission_id"], name: "index_adventure_mission_translations_on_adventure_mission_id"
+    t.index ["locale"], name: "index_adventure_mission_translations_on_locale"
+  end
+
+  create_table "adventure_missions", id: :serial, force: :cascade do |t|
+    t.integer "max_points"
+    t.boolean "variable_points", default: false
+    t.integer "index"
+    t.integer "adventure_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adventure_id"], name: "index_adventure_missions_on_adventure_id"
   end
 
   create_table "adventure_translations", id: :serial, force: :cascade do |t|
@@ -67,7 +87,6 @@ ActiveRecord::Schema.define(version: 20180813125456) do
   create_table "adventures", id: :serial, force: :cascade do |t|
     t.string "title", limit: 255
     t.text "content"
-    t.integer "max_points", null: false
     t.integer "introduction_id"
     t.boolean "publish_results", default: false, null: false
     t.datetime "start_date"
@@ -196,7 +215,7 @@ ActiveRecord::Schema.define(version: 20180813125456) do
     t.index ["category_id"], name: "index_categorizations_on_category_id"
   end
 
-  create_table "category_translations", force: :cascade do |t|
+  create_table "category_translations", id: :serial, force: :cascade do |t|
     t.integer "category_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -238,7 +257,7 @@ ActiveRecord::Schema.define(version: 20180813125456) do
     t.index ["slug"], name: "index_contacts_on_slug"
   end
 
-  create_table "council_translations", force: :cascade do |t|
+  create_table "council_translations", id: :serial, force: :cascade do |t|
     t.integer "council_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -290,7 +309,7 @@ ActiveRecord::Schema.define(version: 20180813125456) do
     t.index ["post_id"], name: "index_election_posts_on_post_id"
   end
 
-  create_table "election_translations", force: :cascade do |t|
+  create_table "election_translations", id: :serial, force: :cascade do |t|
     t.integer "election_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -409,7 +428,6 @@ ActiveRecord::Schema.define(version: 20180813125456) do
     t.integer "price"
     t.string "dress_code", limit: 255
     t.integer "contact_id"
-    t.index ["contact_id"], name: "index_events_on_contact_id"
   end
 
   create_table "faqs", id: :serial, force: :cascade do |t|
@@ -721,7 +739,7 @@ ActiveRecord::Schema.define(version: 20180813125456) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "post_translations", force: :cascade do |t|
+  create_table "post_translations", id: :serial, force: :cascade do |t|
     t.integer "post_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -775,7 +793,7 @@ ActiveRecord::Schema.define(version: 20180813125456) do
     t.index ["user_id"], name: "index_rents_on_user_id"
   end
 
-  create_table "rpush_apps", force: :cascade do |t|
+  create_table "rpush_apps", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.string "environment"
     t.text "certificate"
@@ -791,7 +809,7 @@ ActiveRecord::Schema.define(version: 20180813125456) do
     t.datetime "access_token_expiration"
   end
 
-  create_table "rpush_feedback", force: :cascade do |t|
+  create_table "rpush_feedback", id: :serial, force: :cascade do |t|
     t.string "device_token", limit: 64, null: false
     t.datetime "failed_at", null: false
     t.datetime "created_at", null: false
@@ -800,7 +818,7 @@ ActiveRecord::Schema.define(version: 20180813125456) do
     t.index ["device_token"], name: "index_rpush_feedback_on_device_token"
   end
 
-  create_table "rpush_notifications", force: :cascade do |t|
+  create_table "rpush_notifications", id: :serial, force: :cascade do |t|
     t.integer "badge"
     t.string "device_token", limit: 64
     t.string "sound"
@@ -939,8 +957,9 @@ ActiveRecord::Schema.define(version: 20180813125456) do
   add_foreign_key "accesses", "posts"
   add_foreign_key "achievement_users", "achievements"
   add_foreign_key "achievement_users", "users"
-  add_foreign_key "adventure_groups", "adventures"
-  add_foreign_key "adventure_groups", "groups"
+  add_foreign_key "adventure_mission_groups", "adventure_missions"
+  add_foreign_key "adventure_mission_groups", "groups"
+  add_foreign_key "adventure_missions", "adventures"
   add_foreign_key "adventures", "introductions"
   add_foreign_key "blog_posts", "users"
   add_foreign_key "candidates", "elections"

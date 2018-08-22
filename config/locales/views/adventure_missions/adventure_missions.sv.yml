@@ -1,0 +1,15 @@
+sv:
+  adventure_missions:
+    index:
+      archive: Alla äventyrsuppdrag
+      results: Totalt Resultat
+    show:
+      archive: Alla äventyrsuppdrag
+      index: Senaste äventyrsuppdraget
+      results: Resultat
+      finished: Avklarat
+      points: Poäng
+      finish_mission: Slutför uppdrag
+      update_points: Uppdatera poäng
+      reset_points: Återställ poäng
+      no_group: Du måste vara med i en faddergrupp för att göra detta

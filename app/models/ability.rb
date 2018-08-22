@@ -28,7 +28,6 @@ class Ability
     can [:index, :about, :privacy,
          :cookies_information, :company_about,
          :company_offer, :robots], :static_pages
-    can [:read, :archive], Adventure
 
     # Abilities all signed in users get
     if user.id.present?
@@ -85,6 +84,17 @@ class Ability
       can [:create, :destroy], Meeting, user_id: user.id
       can([:edit, :update], Meeting, user_id: user.id, by_admin: false,
                                      status: Meeting.statuses[:unconfirmed])
+      if Adventure.can_show?(user)
+        can [:read, :archive], Adventure
+        if user.mentor?
+          can [:finish_adventure_mission, :reset_adventure_mission], AdventureMission
+          can [:new, :create, :destroy, :edit, :update], AdventureMissionGroup
+        end
+        can [:show], AdventureMission
+
+      end
+      can :index, AdventureMissionGroup
+      can :highscore, Adventure
     end
   end
 end

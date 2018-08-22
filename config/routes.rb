@@ -136,17 +136,23 @@ Fsek::Application.routes.draw do
       get :dance, path: :dans, on: :collection
       get :matrix, path: :matris, on: :collection
       get 'modal/:date', action: :modal, as: :modal, on: :member
-      resources :adventures, path: :aventyr, only: [:index, :show] do
-        get :archive, on: :collection, path: :arkiv
-      end
     end
+
+    resources :adventures, path: :aventyr, only: [:index, :show] do
+      get :archive, on: :collection, path: :arkiv
+      get :highscore, on: :collection
+      resources :adventure_missions, only: [:index, :show], path: :aventyrsuppdrag
+    end
+
+    resources :adventure_mission_groups
 
     namespace :admin do
       resources :introductions, path: :nollning do
         resources :messages, path: :meddelanden, except: [:edit, :destroy, :update]
-        resources :adventures, path: :aventyr do
-          get :set_points, on: :member, path: :poang
-        end
+      end
+
+      resources :adventures, path: :aventyr do
+        resources :adventure_missions, path: :aventyrsuppdrag
       end
     end
 
@@ -320,6 +326,10 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :songs, path: :sangbok
     end
+
+    namespace :admin do
+
+    end
   end
 
   namespace :admin do
@@ -361,7 +371,7 @@ Fsek::Application.routes.draw do
 
     resources :users, only: :update
 
-    resources :achievements, only: :index 
+    resources :achievements, only: :index
 
     resources :contacts, only: [:index, :show] do
       post :mail, on: :member
@@ -372,6 +382,15 @@ Fsek::Application.routes.draw do
     resources :albums, only: :show
 
     resource :fredmansky, only: [:create, :destroy]
+
+    resources :adventures, only: :index
+
+    resources :adventure_missions, only: :show do
+      post :finish_adventure_mission, on: :collection
+      delete :reset_adventure_mission, on: :collection
+    end
+
+    resources :adventure_mission_groups, only: :index
   end
 
   get 'proposals/form' => 'proposals#form'

@@ -3,19 +3,18 @@
 </div>
 
 <div class="col-md-2 col-sm-12">
-  <%= link_to(t('.new'), new_admin_introduction_adventure_path, class: 'btn primary') %>
-  <%= link_to(t('.all_introductions'), admin_introductions_path, class: 'btn secondary') %>
+  <%= link_to(t('.new'), new_admin_adventure_path, class: 'btn primary') %>
 </div>
 
 <div class="col-md-10 col-sm-12">
   <%= grid @grid do |g|
+    g.column(name: model_name(Introduction), attribute: 'title', assoc: :translations, filter: true) do |a|
+        link_to(a.introduction.title, admin_introduction_path(a.introduction))
+      end
     g.column(name: Adventure.human_attribute_name(:title), attribute: 'title', assoc: :translations, filter: false) do |a|
-      link_to(a.title, edit_admin_introduction_adventure_path(@introduction, a))
+      link_to(a.title, edit_admin_adventure_path(a))
     end
     g.column(name: Adventure.human_attribute_name(:start_date), attribute: 'start_date', filter: false)
     g.column(name: Adventure.human_attribute_name(:end_date), attribute: 'end_date', filter: false)
-    g.column(name: t('.set_points'), filter: false) do |a|
-      link_to(t('.set_points'), set_points_admin_introduction_adventure_path(@introduction, a))
-    end
   end -%>
 </div>
