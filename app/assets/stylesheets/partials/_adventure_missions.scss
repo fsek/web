@@ -1,0 +1,22 @@
+h1.adventure-mission-heading {
+  span {
+    color: $fsek-orange;
+  }
+}
+
+.adventure-mission-form {
+  display: inline-block;
+}
+
+.adventure-mission-input {
+  width: 200px;
+  float: left;
+}
+
+.adventure-mission-button {
+  float: left;
+
+  &.btn.primary {
+    margin-left: 20px;
+  }
+}

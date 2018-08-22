@@ -1,0 +1,16 @@
+sv:
+  adventure_mission_groups:
+    new:
+      save: Spara poäng
+    edit:
+      update: Ändra poäng
+      save: Spara poäng
+    create:
+      success: Uppdrag slutfört
+      fail: Kunde inte slutföra uppdrag
+    update:
+      success: Uppdrag uppdaterat
+      fail: Kunde inte uppdatera uppdrag
+    destroy:
+      success: Uppdrag återställt
+      fail: Kunde inte återställa uppdrag

@@ -1,0 +1,19 @@
+sv:
+  activerecord:
+    models:
+      adventure_mission:
+        one: Äventyrsuppdrag
+        other: Äventyrsuppdrag
+    attributes:
+      adventure_mission:
+        title: Titel
+        title_sv: Titel - svenska
+        title_en: Titel - engelska
+        description: Beskrivning
+        description_sv: Beskrivning - svenska
+        description_en: Beskrivning - engelska
+        max_points: Maxpoäng
+        variable_points: Varierbar poäng
+        publish_results: Publicera resultaten
+        groups: Faddergrupper
+        index: Nummer

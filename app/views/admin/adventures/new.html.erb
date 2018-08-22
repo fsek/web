@@ -3,7 +3,7 @@
     <h1><%= title(t('.title')) %></h1>
   </div>
 
-  <%= render('form', introduction: @introduction, adventure: @adventure) %>
+  <%= render('form', adventure: @adventure) %>
   <hr>
-  <%= link_to(t('.all'), admin_introduction_adventures_path, class: 'btn secondary') %>
+  <%= link_to(t('.all'), admin_adventures_path, class: 'btn secondary') %>
 </div>

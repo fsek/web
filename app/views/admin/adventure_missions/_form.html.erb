@@ -1,0 +1,11 @@
+
+<%= simple_form_for([:admin, adventure, adventure_mission]) do |f| %>
+  <%= f.input :title_sv,  wrapper_html: {class: 'inline half'} %>
+  <%= f.input :title_en,  wrapper_html: {class: 'inline half'} %>
+  <%= f.input :description_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :description_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
+  <%= f.input :max_points %>
+  <%= f.input :variable_points %>
+  <%= f.input :index , input_html: { value: suggested_index } %>
+  <%= f.button :submit %>
+<% end %>

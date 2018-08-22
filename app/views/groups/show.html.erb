@@ -16,7 +16,7 @@
   <% if @group.introduction.present? %>
     <%= link_to(@group.introduction, introduction_path(@group_view.group.introduction),
                                      class: 'btn secondary') %>
-    <%= link_to(t('.adventures'), introduction_adventures_path(@group_view.group.introduction),
+    <%= link_to(t('.adventures'), adventures_path,
                                   class: 'btn secondary') %>
     <hr>
   <% end %>

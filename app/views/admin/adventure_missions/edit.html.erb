@@ -1,0 +1,8 @@
+<div class="col-md-10 col-md-offset-1 col-sm-12">
+<h1><%= t('.title') %></h1>
+<%= render 'form', adventure: @adventure, adventure_mission: @adventure_mission, suggested_index: @adventure_mission.index %>
+
+<%= link_to(t('.destroy'), admin_adventure_adventure_mission_path(@adventure, @adventure_mission), method: 'delete', class: 'btn danger') %>
+<hr>
+<%= link_to(t('.all'), admin_adventure_adventure_missions_path(@adventure, @adventure_mission), class: 'btn secondary') %>
+</div>

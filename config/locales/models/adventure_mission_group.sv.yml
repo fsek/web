@@ -1,0 +1,8 @@
+sv:
+  activerecord:
+    attributes:
+      adventure_mission_group:
+        points: Poäng
+  model:
+    adventure_mission_group:
+      invalid_points: "0 < Poäng <= %{max_points}"
