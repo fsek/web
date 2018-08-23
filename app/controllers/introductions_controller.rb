@@ -22,6 +22,9 @@ class IntroductionsController < ApplicationController
   end
 
   def matrix
+  end
+
+  def dynamic_matrix
     param = params.fetch(:hide, nil)
     cookie = cookies[:hide_matrix]
 

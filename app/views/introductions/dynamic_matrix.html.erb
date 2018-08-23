@@ -1,0 +1,59 @@
+<% description(t('.description')) %>
+<% keywords(t('.keywords')) %>
+<% title(t('.title')) %>
+
+<div class="introduction <%= display_matrix_class(cookies) %>">
+  <div class="headline matrix-headline">
+    <h1>
+      <%= t('.title') %>
+      <small>
+        <%= @introduction.title %>
+      </small>
+    </h1>
+    <span class="gecko-disclaimer">
+      <%= t('.gecko-disclaimer') %>
+    </span>
+  </div>
+
+  <div class="row matrix">
+    <% cache([@introduction, @introduction.events_by_day(locale: I18n.locale),
+              I18n.locale]) do %>
+      <% @introduction.dates_by_week.each do |week, days| %>
+        <%= link_to(modal_introduction_path(@introduction, days.first), data: { toggle: 'modal',
+                                                                                target: '#ajax-modal'},
+                                                                 remote: true) do %>
+          <div class="grid-item">
+            <% cache([days.first, @introduction.events_by_day[days.first], I18n.locale]) do %>
+              <%= render 'matrix_day', date: days.first,
+                                       events: @introduction.events_by_day[days.first] %>
+            <% end %>
+            <span class="week">
+              <%= @introduction.week(week) %>
+            </span>
+          </div>
+        <% end %>
+
+
+        <% days.drop(1).each do |day| %>
+          <%= link_to(modal_introduction_path(@introduction, day), data: { toggle: 'modal',
+                                                                           target: '#ajax-modal'},
+                                                                   remote: true) do %>
+            <div class="grid-item">
+              <% cache([day, @introduction.events_by_day[day], I18n.locale]) do %>
+                <%= render 'matrix_day', date: day,
+                                         events: @introduction.events_by_day[day] %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <p class="matrix-footer">
+    <%= t('.click_day_to_read_more') %>
+    <br>
+    <%= link_to(t('.subscription'), introduction_calendars_url(protocol: 'webcal', format: 'ics'), class: 'btn primary')%>
+  </p>
+  <%= render 'introductions/hide_matrix' %>
+  <%= render 'modal' %>
+</div>
