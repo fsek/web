@@ -59,4 +59,17 @@
   .links {
     margin-bottom: 20px;
   }
+
+  &.matrix-container {
+    background-color: #475a6c;
+    // A bit hacky, but does the job
+    flex: 2147483647;
+    margin-top: -40px;
+    width: 100%;
+  }
+
+  .matrix-image {
+    margin: 0 auto;
+    max-width: 1500px;
+  }
 }
