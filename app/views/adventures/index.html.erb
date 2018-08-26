@@ -13,7 +13,11 @@
   <div class="col-md-12">
     <hr>
     <%= link_to(@introduction.title, introductions_path, class: 'btn primary') %>
-    <%= link_to(t('.archive'), archive_adventures_path(@introduction),
+    <%= link_to(t('.archive'), archive_adventures_path,
                                class: 'btn secondary') %>
+
+    <%= link_to(t('.highscore'), highscore_adventures_path,
+                               class: 'btn secondary') %>
+
   </div>
 </div>
