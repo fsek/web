@@ -8,6 +8,8 @@ sv:
     index:
       archive: Alla äventyr
       results: Totalt Resultat
+      no_adventure: Det finns inget äventyr
+      highscore: Highscore
     show:
       archive: Alla äventyr
       index: Senaste äventyret

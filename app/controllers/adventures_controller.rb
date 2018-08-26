@@ -4,6 +4,9 @@ class AdventuresController < ApplicationController
 
   def index
     @adventure = @adventures.published.first
+
+    redirect_to root_path, notice: t('.no_adventure') and return if @adventure.nil?
+
     if @adventure.adventure_missions.present?
       set_mission_variables(@adventure)
     end
