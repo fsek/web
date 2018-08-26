@@ -1,0 +1,14 @@
+sv:
+  admin:
+    adventure_mission_groups:
+      edit:
+        title: Redigera slutföring
+        destroy: Förinta slutföring
+        all: Alla slutföringar
+        save: Spara
+      update:
+        success: Slutföring uppdaterad
+        fail: Kunde inte uppdatera slutföring
+      destroy:
+        success: Slutföring förintad
+        fail: Kunde inte förinta slutföring

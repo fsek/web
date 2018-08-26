@@ -41,6 +41,14 @@ class Admin::GroupsController < Admin::BaseController
     redirect_to admin_groups_path, notice: alert_destroy(Group)
   end
 
+  def adventures
+    @group = Group.find(params[:group_id])
+    @adventure_mission_groups = AdventureMissionGroup.where(group: @group)
+    @grid = initialize_grid(@adventure_mission_groups,
+                            include: :adventure_mission,
+                            order: 'adventure_mission_groups.updated_at')
+  end
+
   private
 
   def group_params
