@@ -4,6 +4,6 @@ class AdventureQueries
                          .joins({group: :introduction}, {adventure_mission: :adventure})
                          .where('introductions.current = true AND adventures.publish_results = true')
                          .group('groups.name')
-                         .order('total_points DESC, finished_missions DESC, groups.name DESC')
+                         .order('total_points DESC, finished_missions DESC, groups.name ASC')
   end
 end

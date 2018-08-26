@@ -26,5 +26,8 @@
     g.column(filter: false) do |group|
       link_to t('.manage_faddrar'), admin_group_group_users_path(group)
     end
+    g.column(filter: false) do |group|
+      link_to t('.adventures'), admin_group_adventures_path(group)
+    end
   end -%>
 </div>
