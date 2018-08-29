@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180815132130) do
+ActiveRecord::Schema.define(version: 20180829074900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180815132130) do
     t.datetime "updated_at", null: false
     t.index ["adventure_mission_id"], name: "index_adventure_mission_groups_on_adventure_mission_id"
     t.index ["group_id"], name: "index_adventure_mission_groups_on_group_id"
+    t.index ["adventure_mission_id", "group_id"], name: "index_adv_mission_groups_on_adm_mission_and_group", unique: true
   end
 
   create_table "adventure_mission_translations", force: :cascade do |t|
