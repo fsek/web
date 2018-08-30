@@ -9,7 +9,7 @@
 <div class="col-md-10 col-xs-12">
   <%= grid(@grid) do |g|
       g.column(name: t('.missions'), attribute: 'title', assoc: [:adventure_mission, :translations], filter: false) do |amg|
-        amg.adventure_mission.title.truncate(20)
+        amg.adventure_mission.title.truncate(40)
       end
       g.column(name: t('.last_updated'), attribute: 'updated_at', filter: false) do |amg|
         amg.updated_at

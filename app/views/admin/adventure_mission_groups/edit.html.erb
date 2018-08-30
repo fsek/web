@@ -1,9 +1,12 @@
 <div class="col-md-12">
   <h1><%= t('.title') %></h1>
    <ul class="list-group">
+      <li class="list-group-item">
+          <h3><%= @adventure_mission_group.adventure_mission.title %> </h3>
+        </li>
         <li class="list-group-item">
           <span class="badge"><%= @adventure_mission_group.adventure_mission.max_points %></span>
-          <%= Adventure.human_attribute_name(:max_points) %>
+          <%= AdventureMission.human_attribute_name(:max_points) %>
         </li>
         <li class="list-group-item">
           <%= simple_form_for([:admin, @group, @adventure_mission_group]) do |f| %>
