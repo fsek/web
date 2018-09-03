@@ -13,7 +13,7 @@ class Adventure < ApplicationRecord
 
   validates :title_sv, :start_date, :end_date, :introduction_id, presence: true
 
-  scope :published, -> { where('start_date <= ?', Time.zone.now).order(start_date: :desc) }
+  scope :published, -> { where('start_date <= ? AND end_date >= ?', Time.zone.now, Time.zone.now).order(start_date: :desc) }
   scope :published_asc, -> { where('start_date <= ?', Time.zone.now).order(start_date: :asc) }
 
   scope :published_results, -> { where(publish_results: true) }
