@@ -55,7 +55,7 @@ class Ability
 
       can :read, Meeting
       can [:read, :search], Song
-      can [:index, :look, :look_all], Notification, user_id: user.id
+      can [:index, :visit, :look, :look_all], Notification, user_id: user.id
       can [:create, :destroy], PushDevice
       can :index, :start
       can :read, :api_event

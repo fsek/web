@@ -64,8 +64,8 @@ Fsek::Application.routes.draw do
       patch :password, path: :losenord, action: :update_password
       patch :account, path: :konto, action: :update_account
       resources :notifications, path: :notifikationer, only: :index do
-        patch :look, on: :member
         get :look_all, on: :collection
+        patch :visit, on: :member
       end
     end
 
@@ -366,7 +366,9 @@ Fsek::Application.routes.draw do
 
     resources :notifications, only: :index do
       get :unread
+      get :look_all, on: :collection
       patch :look, on: :member
+      patch :visit, on: :member
     end
 
     resources :groups, only: [:index, :show] do

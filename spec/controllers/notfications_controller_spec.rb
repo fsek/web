@@ -2,23 +2,23 @@ require 'rails_helper'
 
 RSpec.describe(NotificationsController, type: :controller) do
   let(:user) { create(:user) }
-  allow_user_to([:look, :index, :look_all], Notification)
+  allow_user_to([:visit, :index, :look_all], Notification)
 
   before(:each) do
     allow(Rpush::Gcm::App).to receive(:find_by!) { Rpush::Gcm::App.new }
     allow(Rpush::Gcm::Notification).to receive(:create!) { Rpush::Gcm::Notification.new }
   end
 
-  describe 'POST #look' do
-    it 'marks notification as seen' do
-      notification = create(:notification, :create, user: user, seen: false)
+  describe 'PATCH #visit' do
+    it 'marks notification as visited' do
+      notification = create(:notification, :create, user: user, seen: false, visited: false)
       set_current_user(user)
 
-      post :look, xhr: true, params: { id: notification.to_param }
+      patch :visit, params: { id: notification.to_param }
       response.should have_http_status(200)
 
       notification.reload
-      notification.seen?.should be_truthy
+      notification.visited?.should be_truthy
     end
   end
 

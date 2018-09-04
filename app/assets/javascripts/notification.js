@@ -1,67 +1,50 @@
 $(document).on('turbolinks:load', function() {
-  var div = document.createElement("div");
-  $(div).addClass("extra");
-  $(".notification.has-extra").hover(
+  var div = document.createElement('div');
+  $(div).addClass('extra');
+  $('.notification.has-extra').hover(
     function() {showExtra($(this), div)},
     function() {hideExtra(div)}
   );
 
-  $(".notifications-list").on("scroll", function() {
+  $('.notifications-list').on('scroll', function() {
     hideExtra(div);
   });
 
-  $(".notification:not(.seen)").on("mouseenter", function() {
-    var id = $(this).attr("uid"), notification = $(this);
-    notification.addClass("seen");
+  $('.notification-toggle').on('click', function() {
     $.ajax({
-      url: "/anvandare/notifikationer/" + id + "/look",
-      type: "PATCH",
-      success: function(resp) {
-        if(resp.unread === 0) {
+      url: '/anvandare/notifikationer/look_all',
+      type: 'GET',
+      success: function() {
           hideAll();
-        } else {
-          $(".notifications-count").html(resp.unread);
-        }
-      },
-      error: function(resp) {
-        notification.removeClass("seen");
-        console.log(resp);
       }
     });
   });
 
-  $(".notifications-look-all").on("click", function() {
-    if($(".notifications-list").find(".notification").not(".seen").length !== 0) {
-      $.ajax({
-        url: "/anvandare/notifikationer/look_all",
-        success: function() {
-          hideAll();
-          $.each($(".notifications-list").find(".notification").not(".seen"), function() {
-            $(this).addClass("seen");
-          });
-        },
-        error: function(resp) {
-          console.log(resp);
-        }
-      });
-    }
+  $('.notification').on('click', function() {
+    var id = $(this).attr('uid')
+    $.ajax({
+      url: '/anvandare/notifikationer/' + id + '/visit',
+      type: 'PATCH',
+      success: function() {
+        hideAll();
+        TurboLinks.visit($(this).attr('href'))
+      }
+    });
   });
 });
 
 function hideAll() {
-  $(".notifications-look-all").hide();
-  $(".notifications-count").hide();
-  $(".has-notifications").removeClass("has-notifications");
+  $('.notifications-count').hide();
+  $('.has-notifications').removeClass('has-notifications');
 }
 
 function showExtra(notif, div) {
-  console.log("extra");
-  var extra = notif.attr("extra");
+  var extra = notif.attr('extra');
   $(div).text(extra)
-        .css({"top": notif.offset().top,
-              "left": notif.offset().left-200})
+        .css({'top': notif.offset().top,
+              'left': notif.offset().left-200})
         .show()
-        .appendTo("body");
+        .appendTo('body');
 }
 
 function hideExtra(div) {

@@ -30,7 +30,7 @@
 }
 
 .notifications-dropdown {
-  background: transparent;
+  background: $white;
   border: none;
   width: 280px;
 }
@@ -108,8 +108,8 @@
 
 
 .notification {
-  background-color: $fsek-orange;
-  border-bottom: 2px solid $light-gray-text;
+  background-color: rgba(144, 144, 144, 0.2);
+  border-bottom: 2px solid $border;
   display: flex;
   flex-direction: column;
   height: 90px;
@@ -121,11 +121,10 @@
   }
 
   strong {
-    color: $white;
+    color: $fsek-orange;
   }
 
   .body p {
-    color: $white;
     margin: 1px;
   }
 
@@ -135,31 +134,20 @@
   }
 
   .notification-time {
-    color: $white;
     display: block;
     padding: 0 6px 6px 6px;
   }
 
   &:hover {
-    background-color: $white;
-    color: $black;
+    background-color: rgba(144, 144, 144, 0.3);
     max-height: 140px;
 
-    strong {
-      color: $fsek-orange;
-    }
-
     .notification-time {
-      color: $black;
-    }
-
-
-    .body p {
-      color: $black;
+      color: $fsek-orange;
     }
   }
 
-  &.seen {
+  &.visited {
     background-color: $white;
     color: $black;
 
@@ -168,7 +156,7 @@
     }
 
     .notification-time {
-      color: $black;
+      color: $fsek-orange;
     }
 
     .body p {
@@ -176,19 +164,7 @@
     }
 
     &:hover {
-      background-color: $fsek-orange;
-
-      strong {
-        color: $white;
-      }
-
-      .notification-time {
-        color: $white;
-      }
-
-      .body p {
-        color: $white;
-      }
+      background-color: rgba(144, 144, 144, 0.1);
     }
   }
 }

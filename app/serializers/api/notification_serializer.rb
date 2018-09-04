@@ -1,5 +1,5 @@
 class Api::NotificationSerializer < ActiveModel::Serializer
-  attributes(:id, :created_at, :seen)
+  attributes(:id, :created_at, :seen, :visited)
   attribute(:data) { object.data.for_serializer }
   attribute(:event_id)
 

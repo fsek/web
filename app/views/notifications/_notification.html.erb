@@ -1,6 +1,6 @@
 <% data = notification.data %>
 <a href="<%= event_path(notification.notifyable.event)%>">
-<div extra="<%= data.extra %>" id="<%= dom_id(notification) %>" uid='<%= notification.id %>' class="notification <%= notification.seen? ? 'seen' : ''%> <%= data.extra.nil? ? '' : 'has-extra' %>">
+<div extra="<%= data.extra %>" id="<%= dom_id(notification) %>" uid='<%= notification.id %>' class="notification <%= notification.visited? ? 'visited' : ''%> <%= data.extra.nil? ? '' : 'has-extra' %>">
   <%= notification_context(notification, data) %>
 
   <%= notification_created_at(notification.created_at) %>

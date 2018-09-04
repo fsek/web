@@ -10,6 +10,8 @@ class Notification < ApplicationRecord
 
   scope :seen, -> { where(seen: true) }
   scope :not_seen, -> { where(seen: false) }
+  scope :visited, -> { where(visited: true) }
+  scope :not_visited, -> { where(visited: false) }
   scope :by_latest, -> { order(created_at: :desc) }
   scope :for_index, -> { includes(:notifyable).by_latest }
 
