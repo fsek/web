@@ -666,6 +666,7 @@ ActiveRecord::Schema.define(version: 20181128162700) do
     t.string "mode", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "visited", default: false
     t.index ["notifyable_id"], name: "index_notifications_on_notifyable_id"
     t.index ["notifyable_type"], name: "index_notifications_on_notifyable_type"
     t.index ["user_id"], name: "index_notifications_on_user_id"
