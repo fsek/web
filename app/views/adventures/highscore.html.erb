@@ -1,0 +1,23 @@
+<div class="col-md-12 introduction">
+  <div class="headline">
+    <h1><%= t('.title') %>
+    </h1>
+  </div>
+  <% tr_classes = ['adv-first', 'adv-second', 'adv-third'] %>
+  <table class="table">
+  <tr><th><%= t('.position')%></th><th><%= t('.group')%></th><th><%= t('.points')%></th><th><%= t('.finished_missions')%></th></tr>
+    <% @groups.each_with_index do |g, i| %>
+    <% if i < 3 %>
+      <% style_class = tr_classes[i] %>
+    <% else %>
+      <% style_class = '' %>
+    <% end %>
+      <tr class="<%= style_class %>">
+        <td><%= i + 1 %></td>
+        <td><%= g.name %></td>
+        <td><%= g.total_points %></td>
+        <td><%= g.finished_missions %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

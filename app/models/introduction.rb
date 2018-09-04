@@ -12,7 +12,6 @@ class Introduction < ApplicationRecord
   has_many :users, through: :groups
   has_many :messages, dependent: :destroy
   has_many :adventures, dependent: :destroy
-  has_many :adventure_groups, through: :adventures
 
   validates :title, :start, :stop, :slug, presence: true
   validates :slug, uniqueness: true,

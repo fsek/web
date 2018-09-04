@@ -1,0 +1,56 @@
+<small><%= adventure_info(@adventure) %></small>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="badge"><%= @max_points_sum ? @max_points_sum : 0 %></span>
+          <%= t('.max_points') %>
+        </li>
+        <li class="list-group-item">
+          <span class="badge"><%= @group_points_sum ? @group_points_sum : 0 %></span>
+          <%= t('.your_group_points') %>
+        </li>
+      </ul>
+
+      <% if @adventure.content.present? %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+          <h3 class="panel-title"><%= AdventureMission.human_attribute_name(:description) %></h3></div>
+          <div class="panel-body">
+            <%= markdown(@adventure.content) %>
+            <%= responsive_video(@adventure.video) %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @adventure.adventure_missions.present? %>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            <h3 class="panel-title"><%=title("Uppdrag")%></h3></div>
+            <div class="panel-body">
+              <%= grid @grid do |g|
+                g.column(name: AdventureMission.human_attribute_name(:index), attribute: 'index', filter: false, ordering: false) do |a|
+                  a.index
+                end
+                g.column(name: AdventureMission.human_attribute_name(:title), attribute: 'title', assoc: :translations, filter: false, ordering: false) do |a|
+                  a.title
+                end
+
+                g.column(name: AdventureMission.human_attribute_name(:max_points), attribute: 'max_points', filter: false, ordering: false)
+                g.column(name: t('.finished'), filter: true) do |a|
+                  if a.finished?(current_user.groups.regular.last)
+                    'Ja'
+                  else
+                    'Nej'
+                  end
+                end
+
+                g.column(name: t('.points'), filter: false) do |a|
+                  a.points(current_user.groups.regular.last)
+                end
+
+                g.column(name: '', filter: false) do |a|
+                  link_to t('.read_more'), adventure_adventure_mission_path(@adventure, a)
+                end
+              end -%>
+          </div>
+        </div>
+      <% end %>

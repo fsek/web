@@ -1,0 +1,26 @@
+<div class="headline">
+<h1 class="adventure-mission-heading"><%= t('.missions_for') %>: <span><%= @adventure.title %></span></h1>
+</div>
+<div class="col-md-3 col-sm-12">
+  <%= render 'sidebar', adventure: @adventure %>
+</div>
+
+<div class="col-md-9 col-sm-12">
+  <%= grid @grid do |g|
+    g.column(name: AdventureMission.human_attribute_name(:index), attribute: 'index', filter: false) do |a|
+      a.index
+    end
+    g.column(name: AdventureMission.human_attribute_name(:title), attribute: 'title', assoc: :translations, filter: false) do |a|
+      a.title
+    end
+
+    g.column(name: AdventureMission.human_attribute_name(:description), attribute: 'description', assoc: :translations, filter: false) do |a|
+      a.description.try(:truncate, 20)
+    end
+
+    g.column(name: AdventureMission.human_attribute_name(:max_points), attribute: 'max_points', filter: false)
+    g.column(name: t('global.edit')) do |a|
+      link_to t('global.edit'), edit_admin_adventure_adventure_mission_path(@adventure, a)
+    end
+  end -%>
+</div>

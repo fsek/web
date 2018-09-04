@@ -1,38 +1,23 @@
-<div class="introduction">
+<div class="introduction col-md-12">
   <div class="headline">
-    <h1><%= title(models_name(Adventure)) %></h1>
+    <h1><%= title(models_name(Adventure)) %>  <%= "- #{@adventure.title}" if @adventure.present? %>
+    </h1>
   </div>
 
   <% if @adventure.present? %>
-    <div class="col-md-12">
-      <div class="headline">
-        <h2><%= @adventure.title %></h2>
-      </div>
 
-      <small><%= adventure_info(@adventure) %></small>
-      <%= markdown(@adventure.content) %>
+      <%= render 'adventure_view' %>
 
-      <%= responsive_video(@adventure.video) %>
-      <hr>
-    </div>
-
-  <% end %>
-
-  <% if @total.present? %>
-    <div class="col-md-12">
-      <div class="adventure">
-        <div class="headline">
-          <h2><%= t('.results') %></h2>
-        </div>
-        <%= render @total, max: @adventures.published_results.sum(:max_points) %>
-      </div>
-    </div>
   <% end %>
 
   <div class="col-md-12">
     <hr>
     <%= link_to(@introduction.title, introductions_path, class: 'btn primary') %>
-    <%= link_to(t('.archive'), archive_introduction_adventures_path(@introduction),
+    <%= link_to(t('.archive'), archive_adventures_path,
                                class: 'btn secondary') %>
+
+    <%= link_to(t('.highscore'), highscore_adventures_path,
+                               class: 'btn secondary') %>
+
   </div>
 </div>

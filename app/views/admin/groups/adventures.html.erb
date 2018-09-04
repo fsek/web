@@ -1,0 +1,24 @@
+<div class="headline">
+  <h1><%= "#{title(t('.title'))} #{@group.name}" %> </h1>
+</div>
+
+<div class="col-md-2 col-xs-12">
+  <%= link_to t('.all_groups'), admin_groups_path, class: 'btn secondary' %>
+</div>
+
+<div class="col-md-10 col-xs-12">
+  <%= grid(@grid) do |g|
+      g.column(name: t('.missions'), attribute: 'title', assoc: [:adventure_mission, :translations], filter: false) do |amg|
+        amg.adventure_mission.title.truncate(40)
+      end
+      g.column(name: t('.last_updated'), attribute: 'updated_at', filter: false) do |amg|
+        amg.updated_at
+      end
+      g.column(name: t('.points'), attribute: 'points', filter: false) do |amg|
+        amg.points
+      end
+      g.column(filter: false) do |amg|
+        link_to t('.edit'), edit_admin_group_adventure_mission_group_path(@group, amg)
+      end
+    end -%>
+</div>

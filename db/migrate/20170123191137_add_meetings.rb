@@ -1,4 +1,4 @@
-class AddMeetings < ActiveRecord::Migration
+class AddMeetings < ActiveRecord::Migration[5.0]
   def change
     create_table :meetings do |t|
       t.datetime :start_date, index: true, null: false

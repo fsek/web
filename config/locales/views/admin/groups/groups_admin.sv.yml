@@ -7,6 +7,7 @@ sv:
         manage_faddrar: Välj faddrar/uppdragsfös
         year: År
         all_introductions: Alla nollningar
+        adventures: Äventyr
 
       new:
         title: Ny grupp
@@ -19,3 +20,11 @@ sv:
 
       form:
         number_hint: Endast för faddergrupper
+
+      adventures:
+        all_groups: Alla grupper
+        title: Äventyr för
+        missions: Uppdrag
+        last_updated: Senast uppdaterad
+        points: Poäng
+        edit: Redigera

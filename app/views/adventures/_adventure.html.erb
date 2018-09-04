@@ -1,13 +1,13 @@
 <div class="col-md-12 adventure-item">
   <div class="headline">
     <h3>
-      <%= link_to(adventure, introduction_adventure_path(adventure.introduction, adventure)) %>
+      <%= link_to(adventure, adventure_path(adventure)) %>
     </h3>
   </div>
 
   <small><%= adventure_info(adventure) %></small>
   <%= simple_format(truncate(markdown_plain(adventure.content), length: 140)) %>
 
-  <%= link_to(t('.read_more'), introduction_adventure_path(adventure.introduction, adventure),
+  <%= link_to(t('.read_more'), adventure_path(adventure),
                                class: 'btn primary') %>
 </div>

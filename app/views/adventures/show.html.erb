@@ -4,25 +4,15 @@
   </div>
 
   <small><%= adventure_info(@adventure) %></small>
-  <%= markdown(@adventure.content) %>
 
-  <% if @adventure.publish_results %>
-    <div class="headline">
-      <h3><%= t('.results') %></h3>
-    </div>
-
-    <div class="adventure">
-      <%= render @adventure.adventure_groups.includes(:group), max: @adventure.max_points %>
-    </div>
-  <% end %>
-  <hr>
-
-  <%= responsive_video(@adventure.video) %>
+<% if @adventure.published? %>
+    <%= render 'adventure_view' %>
+<% end %>
 </div>
 
 <div class="col-md-12">
   <hr>
-  <%= link_to(t('.index'), introduction_adventures_path(@introduction), class: 'btn primary') %>
-  <%= link_to(t('.archive'), archive_introduction_adventures_path(@introduction),
+  <%= link_to(t('.index'), adventures_path, class: 'btn primary') %>
+  <%= link_to(t('.archive'), archive_adventures_path,
                              class: 'btn secondary') %>
 </div>

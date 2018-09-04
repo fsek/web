@@ -1,0 +1,19 @@
+<ul class="list-group sidebar-nav">
+  <li class="list-group-item">
+    <%= link_to(admin_adventures_path) do %>
+      <%= fa_icon('list', text: t('.all')) %>
+    <% end %>
+  </li>
+
+  <li class="list-group-item">
+    <%= link_to(admin_adventure_adventure_missions_path(@adventure)) do %>
+      <%= fa_icon('list', text: t('.all_missions')) %>
+    <% end %>
+  </li>
+
+  <li class="list-group-item">
+    <%= link_to(new_admin_adventure_adventure_mission_path(adventure_id: @adventure.id)) do %>
+      <%= fa_icon('plus', text: t('.add_mission')) %>
+    <% end %>
+  </li>
+</ul>
