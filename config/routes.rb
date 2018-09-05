@@ -359,6 +359,7 @@ Fsek::Application.routes.draw do
     resources :versions, only: :index
 
     resources :events, only: [:index, :show] do
+      get :scroll, on: :collection
       resources :event_users, only: [:create, :destroy]
     end
 

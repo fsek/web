@@ -58,7 +58,7 @@ class Ability
       can [:index, :visit, :look, :look_all], Notification, user_id: user.id
       can [:create, :destroy], PushDevice
       can :index, :start
-      can :read, :api_event
+      can [:read, :scroll], :api_event
       can [:create, :destroy], Fredmansky
     end
 
