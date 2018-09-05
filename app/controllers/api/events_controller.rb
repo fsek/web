@@ -8,6 +8,19 @@ class Api::EventsController < Api::BaseController
     render json: @events, namespace: '' # Use the same serializer as for the web calendar
   end
 
+  def scroll
+    authorize!(:scroll, :api_event)
+
+    # Loads all events for each day and atleast 7 in total
+    @events = Event.includes(:translations).after_date(params[:start]).by_start.limit(7)
+    if @events.length == 7
+      last_day = Event.includes(:translations).from_date(@events[-1].starts_at).by_start
+      @events = (@events.to_a + last_day.to_a).uniq
+    end
+
+    render json: @events, namespace: ''
+  end
+
   def show
     authorize!(:show, :api_event)
 

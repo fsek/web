@@ -3,9 +3,16 @@ class EventSerializer < ActiveModel::Serializer
   attribute(:description) { object.description || '' }
   attribute(:location)
   attribute(:allday) { object.all_day? }
+  attribute(:has_signup) { object.signup.present? }
+  attribute(:signup_not_opened_yet) { object.signup.present? && object.signup.opens > Time.zone.now }
   attribute(:recurring) { false }
   attribute(:url) { Rails.application.routes.url_helpers.event_path(object.id) }
   attribute(:textColor) { 'black' }
+  has_one :event_signup
+
+  has_one :event_user do
+    object.event_users.where(user: scope).first
+  end
 
   def start
     if object.all_day?
@@ -21,5 +28,9 @@ class EventSerializer < ActiveModel::Serializer
     else
       object.ends_at.iso8601
     end
+  end
+
+  class EventUserSerializer < ActiveModel::Serializer
+    attribute(:reserve) { object.reserve? }
   end
 end
