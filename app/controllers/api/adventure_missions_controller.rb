@@ -1,5 +1,6 @@
 class Api::AdventureMissionsController < Api::BaseController
   load_permissions_and_authorize_resource
+  rescue_from ActiveRecord::RecordNotUnique, with: :notify_not_unique
 
   def show
     @adventure_mission = AdventureMission.find(params[:id])
@@ -19,6 +20,8 @@ class Api::AdventureMissionsController < Api::BaseController
       render json: { error: "You can't get 0 points"}, status: 422 and return
     end
 
+    # Doing both server and database auth to stop as soon as possible
+    # Only validating here can cause concurrency issues though
     if group.adventure_mission_groups.pluck(:adventure_mission_id).include?(adventure_mission.id)
       render json: { error: 'You can only finish a mission once' }, status: 422 and return
     end
@@ -53,5 +56,11 @@ class Api::AdventureMissionsController < Api::BaseController
     else
       render json: { error: adventure_mission_group.errors.full_messages }, status: 500
     end
+  end
+
+  private
+
+  def notify_not_unique
+    render json: { error: 'You can only finish a mission once' }, status: 422
   end
 end
