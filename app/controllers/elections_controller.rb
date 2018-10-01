@@ -8,7 +8,7 @@ class ElectionsController < ApplicationController
       @election_view = ElectionView.new(election)
       @election_view.grid = initialize_grid(election.current_posts,
                                             name: :main,
-                                            per_page: 50,
+                                            per_page: 70,
                                             locale: I18n.locale,
                                             include: [council: :translations],
                                             order: 'post_translations.title')
@@ -17,7 +17,7 @@ class ElectionsController < ApplicationController
       if election.after_posts.any?
         @election_view.rest_grid = initialize_grid(election.after_posts,
                                                    name: :rest,
-                                                   per_page: 50,
+                                                   per_page: 70,
                                                    locale: I18n.locale,
                                                    include: [council: :translations],
                                                    order: 'post_translations.title')
