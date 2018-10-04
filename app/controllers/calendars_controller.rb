@@ -3,7 +3,10 @@ class CalendarsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html
+      format.html do
+        authorize!(:index, Event)
+      end
+
       format.json do
         @events = Event.by_locale(locale: I18n.locale).between(params[:start], params[:end])
         render json: @events, adapter: :attributes

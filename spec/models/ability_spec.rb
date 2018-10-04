@@ -13,7 +13,7 @@ RSpec.describe Ability do
     Document.new(public: true) => { yes: [:read], no: [:create, :update, :destroy] },
     Document.new => { yes: [], no: standard },
     Election.new => { yes: [:index], no: [:create, :update, :destroy] },
-    Event.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Event.new => { yes: [], no: [:create, :update, :destroy, :read] },
     Faq.new => { yes: [:read, :new, :create], no: [:update, :destroy] },
     Menu.new => { yes: [], no: standard },
     News.new => { yes: [:read], no: [:create, :update, :destroy] },
