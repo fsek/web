@@ -20,7 +20,7 @@ class Ability
     can :avatar, User
     can :read, BlogPost
 
-    can :read, Event
+    # can :read, Event
     can [:index, :export, :introduction], :calendar
     # But cannot view any albums
     can :index, :gallery
@@ -36,6 +36,8 @@ class Ability
       can [:show], CafeShift
       can [:create, :destroy], EventUser, user_id: user.id
       can :show, User
+
+      can :read, Event
 
       can [:read, :mail], Contact
       # The api needs this symbol syntax (see comment in Api::ContactsController)

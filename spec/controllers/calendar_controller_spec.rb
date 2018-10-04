@@ -4,6 +4,7 @@ RSpec.describe CalendarsController, type: :controller do
   let(:user) { create(:user) }
 
   allow_user_to(:manage, :calendar)
+  allow_user_to(:manage, Event)
 
   describe 'GET #index' do
     it 'loads the calendar' do
