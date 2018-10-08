@@ -2,7 +2,7 @@ sv:
   unauthorized:
     default: Någonting blev fel (rättigheter)
     manage:
-      all: Inte auktoriserad för att %{action} %{subject}.
+      all: Inte auktoriserad.
       user: "Inte auktoriserad för att hantera användarkonton."
 
     update:

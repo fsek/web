@@ -1,11 +1,13 @@
-# encoding:UTF-8
 class CafeController < ApplicationController
   skip_authorization
 
   def index
+    authorize!(:index, :cafe)
   end
 
   def competition
+    authorize!(:index, :cafe)
+
     lp_current = CafeShift.order(start: :desc).first.try(:lp) || 1
     lp = params[:lp] || lp_current
     @competition = CafeCompetition.new(lp: lp, year: competition_year)
