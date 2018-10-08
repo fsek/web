@@ -5,15 +5,12 @@ class Ability
     user ||= User.new
 
     # Abilities that everyone get.
-    can [:index, :show], Tool
     can :read, [Council, Election, News, WorkPost]
     can :read, Document, public: true
     can [:mail, :read], Contact, public: true
     can [:modal, :show], Post
     can [:new, :create, :read], Faq
     cannot :ladybug, :cafe
-    can :index, Rent
-    cannot [:create, :destroy, :update], Rent
     can :show, Page, public: true, visible: true
     can :avatar, User
     can :read, BlogPost
@@ -35,6 +32,9 @@ class Ability
       can [:create, :update, :destroy], CafeWorker, user_id: user.id
       can [:create, :destroy], EventUser, user_id: user.id
       can :show, User
+
+      can :index, Rent
+      can [:index, :show], Tool
 
       can :read, Event
 

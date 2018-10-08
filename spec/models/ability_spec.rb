@@ -22,7 +22,7 @@ RSpec.describe Ability do
     Page.new(visible: true) => { yes: [:show], no: [:index, :new, :create, :update, :destroy] },
     Permission.new => { yes: [], no: standard },
     Post.new => { yes: [:show, :modal], no: [:standard] },
-    Rent.new => { yes: [:index], no: [:create, :update, :destroy] },
+    Rent.new => { yes: [], no: [:index, :create, :update, :destroy] },
     WorkPost.new => { no: [:create, :update, :destroy], yes: [:index, :show] },
     static_pages: { yes: [:index,
                           :cookies_information,
