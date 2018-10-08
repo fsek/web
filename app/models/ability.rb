@@ -11,8 +11,6 @@ class Ability
     can [:mail, :read], Contact, public: true
     can [:modal, :show], Post
     can [:new, :create, :read], Faq
-    can [:index, :feed], CafeShift
-    can [:index, :competition], :cafe
     cannot :ladybug, :cafe
     can :index, Rent
     cannot [:create, :destroy, :update], Rent
@@ -32,8 +30,9 @@ class Ability
     # Abilities all signed in users get
     if user.id.present?
       can [:edit, :show, :update, :update_password, :update_account], User, id: user.id
+      can [:index, :feed, :show], CafeShift
+      can [:index, :competition], :cafe
       can [:create, :update, :destroy], CafeWorker, user_id: user.id
-      can [:show], CafeShift
       can [:create, :destroy], EventUser, user_id: user.id
       can :show, User
 

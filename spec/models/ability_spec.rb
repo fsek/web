@@ -4,7 +4,7 @@ RSpec.describe Ability do
 
   ab_visitor = {
     Album.new => { yes: [], no: standard },
-    CafeShift.new => { yes: [:index, :feed], no: [] },
+    CafeShift.new => { yes: [], no: [:index, :feed, :show] },
     Candidate.new => { yes: [], no: standard },
     Constant.new => { yes: [], no: standard },
     Contact.new => { yes: [], no: [:mail, :create, :update, :destroy, :read] },
@@ -34,7 +34,7 @@ RSpec.describe Ability do
 
   ab_signed = {
     Album.new => { yes: [], no: standard },
-    CafeShift.new => { yes: [:index, :feed], no: [] },
+    CafeShift.new => { yes: [:index, :feed, :show], no: [] },
     :calendar => { yes: [:index, :export], no: [] },
     Candidate.new => { yes: [], no: standard },
     Constant.new => { yes: [], no: standard },
