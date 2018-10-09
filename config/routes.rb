@@ -302,7 +302,7 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :groups, path: :grupper, except: [:new, :create, :destroy] do
+    resources :groups, path: :grupper, only: [:index, :show] do
       resources :messages, only: [:index], path: :meddelanden do
         get :download_image, on: :member
       end
