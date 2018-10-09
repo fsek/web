@@ -6,12 +6,6 @@
     <%= render @group_view.group.group_users.includes(:user) %>
   <% end %>
 
-  <% if can?(:edit, @group_view.group) %>
-    <%= link_to edit_group_path(@group_view.group) do %>
-      <%= fa_icon('cog') %> <%= t('global.edit') %>
-    <% end %>
-  <% end %>
-
   <hr>
   <% if @group.introduction.present? %>
     <%= link_to(@group.introduction, introduction_path(@group_view.group.introduction),

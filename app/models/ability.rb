@@ -81,7 +81,6 @@ class Ability
       can [:destroy], Candidate, user_id: user.id
       can [:create], Nomination
       can :show, Page, visible: true
-      can [:edit, :update], Group, group_users: { fadder: true, user: user }
       can [:create, :destroy], Meeting, user_id: user.id
       can([:edit, :update], Meeting, user_id: user.id, by_admin: false,
                                      status: Meeting.statuses[:unconfirmed])
