@@ -356,6 +356,8 @@ Fsek::Application.routes.draw do
   namespace :api, constraints: { format: 'json' } do
     mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :confirmations]
 
+    resources :versions, only: :index
+
     resources :events, only: [:index, :show] do
       resources :event_users, only: [:create, :destroy]
     end
