@@ -10,7 +10,9 @@ class CafeController < ApplicationController
 
     lp_current = CafeShift.order(start: :desc).first.try(:lp) || 1
     lp = params[:lp] || lp_current
-    @competition = CafeCompetition.new(lp: lp, year: competition_year)
+
+    amount = params[:amount] || 10
+    @competition = CafeCompetition.new(lp: lp, year: competition_year, amount: amount)
   end
 
   def ladybug
