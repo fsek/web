@@ -14,7 +14,7 @@ RSpec.describe CafeCompetition do
     allow(CafeQueries).to receive(:cafe_workers) { CafeWorker.all }
     allow(CafeQueries).to receive(:working_users) { User.all }
 
-    @cafe_comp = CafeCompetition.new(lp: '3', year: Time.zone.now)
+    @cafe_comp = CafeCompetition.new(lp: '3', year: Time.zone.now, amount: 10)
   end
 
   describe :attributes do

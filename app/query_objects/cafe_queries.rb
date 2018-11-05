@@ -15,12 +15,12 @@ class CafeQueries
       sort_by { |g| -g[:score] }
   end
 
-  def self.highscore(lp, year)
+  def self.highscore(lp, year, amount)
     join_cafe_shifts(User.select('users.id, users.firstname, users.lastname, count(*) as score').
                      joins(:cafe_shifts), lp, year).
       group('users.id').
       order('score desc').
-      limit(10)
+      limit(amount)
   end
 
   # Currently only used from rails c
