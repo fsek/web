@@ -15,7 +15,7 @@ RSpec.describe CafeQueries do
   def shift_with_worker(user:, pass: 1, lp: 3, start: 7.days.ago)
     if pass == 2
       start += 2.hours
-    end 
+    end
     shift = shift(pass: pass, lp: lp, start: start)
     shift.build_cafe_worker(user: user).save!
     shift
@@ -65,7 +65,7 @@ RSpec.describe CafeQueries do
       shift_with_worker(user: second_user, pass: 1)
       shift_with_worker(user: second_user, pass: 2)
 
-      highscore = CafeQueries.highscore(3, Time.zone.now)
+      highscore = CafeQueries.highscore(3, Time.zone.now, 10)
 
       highscore.first.id.should eq(second_user.id)
       highscore.first[:score].should eq(2)

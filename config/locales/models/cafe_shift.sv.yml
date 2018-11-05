@@ -13,6 +13,7 @@ sv:
         cafe_worker: Jobbare
         lp: Läsperiod
         lv: Läsvecka
+        amount: Antal jobbare
         lv_last: Sista läsvecka
         pass: Pass
         start: Arbetsdag

@@ -7,6 +7,9 @@
     <small>
       <%= %(#{t('datetime.prompts.year')}: #{@competition.year},)%>
       <%= %(#{CafeShift.human_attribute_name(:lp)}: #{@competition.lp})%>
+      <% if can_administrate?(:edit, CafeShift) %>
+        <%= %(#{CafeShift.human_attribute_name(:amount)}: #{@competition.amount})%>
+      <% end %>
     </small>
   </h1>
 </div>
@@ -20,7 +23,7 @@
     <ul class="dropdown-menu" aria-labelledby="oldies">
       <% @competition.years.each do |year| %>
         <li>
-          <%= link_to(year, competition_cafe_path(lp:  @competition.lp, year: year)) %>
+          <%= link_to(year, competition_cafe_path(lp: @competition.lp, year: year, amount: @competition.amount)) %>
         </li>
       <% end %>
     </ul>
@@ -33,11 +36,28 @@
     <ul class="dropdown-menu" aria-labelledby="oldies">
       <% @competition.lps.each do |lp| %>
         <li>
-          <%= link_to(lp, competition_cafe_path(lp: lp, year: @competition.year)) %>
+          <%= link_to(lp, competition_cafe_path(lp: lp, year: @competition.year, amount: @competition.amount)) %>
         </li>
       <% end %>
     </ul>
   </div>
+
+  <% if can_administrate?(:edit, CafeShift) %>
+    <div class="dropdown margin-bottom-20">
+      <button class="btn secondary dropdown-toggle" type="button" id="oldies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <%= CafeShift.human_attribute_name(:amount) %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="oldies">
+        <li>
+          <%= link_to(10, competition_cafe_path(lp: @competition.lp, year: @competition.year, amount: 10)) %>
+        </li>
+        <li>
+          <%= link_to('Alla', competition_cafe_path(lp: @competition.lp, year: @competition.year, amount: @competition.count)) %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
 
 <!-- TODO: Lägg till knapp här så att man kan komma till schemasidan!  -->
 

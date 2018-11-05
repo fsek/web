@@ -1,13 +1,14 @@
 class CafeCompetition
-  attr_accessor :cafe_workers, :lp, :users, :lps, :year, :years
-  def initialize(lp:, year:)
+  attr_accessor :cafe_workers, :lp, :users, :lps, :year, :years, :amount
+  def initialize(lp:, year:, amount:)
     @cafe_workers = CafeQueries.cafe_workers(lp, year)
     @lp = lp
     @users = CafeQueries.working_users(lp, year)
     @lps = ['1', '2', '3', '4'] - [lp]
     @year = year.year
+    @amount = amount
     @free_shifts = CafeQueries.free_shifts(lp, year)
-    @highscore = CafeQueries.highscore(lp, year)
+    @highscore = CafeQueries.highscore(lp, year, amount)
     @highscore_group = CafeQueries.highscore_groups(lp, year)
   end
 
