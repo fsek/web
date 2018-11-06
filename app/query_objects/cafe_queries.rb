@@ -23,6 +23,14 @@ class CafeQueries
       limit(10)
   end
 
+  # Currently only used from rails c
+  def self.highscore_all(lp, year)
+    join_cafe_shifts(User.select('users.id, users.firstname, users.lastname, count(*) as score').
+                     joins(:cafe_shifts), lp, year).
+      group('users.id').
+      order('score desc')
+  end
+
   def self.free_shifts(lp, year)
     CafeShift.where(lp: lp).
       where('start > ? and extract(year from start) = ?', Time.zone.now, year.year).
