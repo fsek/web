@@ -8,7 +8,7 @@ class Image < ApplicationRecord
   validates :file, :filename, presence: true
   validates :filename, uniqueness: { scope: :album_id, message: '%{value} är redan uppladdad' }
 
-  scope :filename, -> { order(:filename) }
+  scope :by_filename, -> { order(:filename) }
 
   def original
     file.url

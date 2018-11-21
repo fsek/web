@@ -15,9 +15,9 @@
                       data-height="80%"
                       data-ratio="4/3"
                       data-startindex="<%= @start.to_s %>">
-  <% @album.images.each do |p| %>
+  <% @album.images.by_filename.each do |p| %>
     <div data-img="<%= p.view %>" data-thumb="<%= p.thumb %>">
-      <%= link_to(t('.share'), gallery_album_path(@album, start: @album.images.find_index(p)),
+      <%= link_to(t('.share'), gallery_album_path(@album, start: @album.images.by_filename.find_index(p)),
                   data: { turbolinks: :false }) %>
       <% if can_administrate?(:manage, p) %>
         <br>
