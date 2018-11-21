@@ -19,13 +19,8 @@ class Api::AlbumSerializer < ActiveModel::Serializer
     attributes(:id, :translations, :images, :photographers)
 
     def photographers
-      photographers = []
-      object.photographers.each do |p|
-        photographers.push(p.firstname + ' ' + p.lastname)
-      end
-      object.photographer_names do |p|
-        photographers.push(p.to_s)
-      end
+      names = AlbumQueries.photographer_names(object).map { |p| "#{p.firstname} #{p.lastname}" }
+      (names + object.photographer_names).uniq
     end
   end
 end
