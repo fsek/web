@@ -3,8 +3,7 @@ class Album < ApplicationRecord
   globalize_accessors(locales: [:en, :sv],
                       attributes: [:title, :description])
 
-  has_many :images, -> { order(:filename) }, dependent: :destroy,
-                                             inverse_of: :album
+  has_many :images, dependent: :destroy, inverse_of: :album
   has_many :photographers, -> { distinct }, through: :images
 
   attr_accessor(:image_upload, :photographer_user,

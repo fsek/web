@@ -18,7 +18,7 @@
   <%= link_to(t('.administrate_gallery'), admin_albums_path,
                                           class: 'btn secondary') %>
   <hr>
-  <% @album.images.each do |img| %>
+  <% @album.images.by_filename.each do |img| %>
     <% if img.id.present? %>
       <div class="col-md-2 col-xs-4">
         <%= link_to(admin_album_image_path(@album, img)) do %>
