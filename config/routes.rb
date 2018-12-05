@@ -413,6 +413,7 @@ Fsek::Application.routes.draw do
 
     resources :adventure_mission_groups, only: :index
     resources :cafe, only: [:index, :create, :destroy]
+    resources :councils, only: :index
   end
 
   get 'proposals/form' => 'proposals#form'
