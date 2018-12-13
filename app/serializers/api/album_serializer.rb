@@ -1,6 +1,7 @@
 class Api::AlbumSerializer < ActiveModel::Serializer
   class Api::AlbumSerializer::Index < ActiveModel::Serializer
-    attributes(:id, :title, :start_date, :location, :image_count, :thumb, :years)
+    attributes(:id, :start_date, :location, :image_count, :thumb, :years)
+    attribute(:title) { object.title_sv }
 
     def image_count
       object.images_count
@@ -16,7 +17,9 @@ class Api::AlbumSerializer < ActiveModel::Serializer
   end
 
   class Api::AlbumSerializer::Show < ActiveModel::Serializer
-    attributes(:id, :translations, :images, :photographers)
+    attributes(:id, :images, :photographers)
+    attribute(:title) { object.title_sv }
+    attribute(:description) { object.description_sv }
 
     def photographers
       names = AlbumQueries.photographer_names(object).map { |p| "#{p.firstname} #{p.lastname}" }
