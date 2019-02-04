@@ -14,6 +14,9 @@ class StaticPagesController < ApplicationController
   def company_about
   end
 
+  def influence
+  end
+
   def robots
     render :robots, content_type: 'text/plain'
   end

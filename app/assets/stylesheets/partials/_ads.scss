@@ -60,6 +60,16 @@
     margin-bottom: 20px;
   }
 
+  .influence-container {
+    border: 2px solid $border;
+    margin-bottom: 20px;
+
+    img {
+      position: relative;
+      width: 100%;
+    }
+  }
+
   @include min-screen(650px) {
     .carousel-inner {
       width: 75%;
