@@ -42,6 +42,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def accept_terms
+    current_user.update!(terms_version: Versions.get(:terms))
+    redirect_to root_path, notice: t('model.user.terms_accepted')
+  end
+
   private
 
   def user_params

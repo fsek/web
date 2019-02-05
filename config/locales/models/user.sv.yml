@@ -8,6 +8,7 @@ sv:
       password_updated: Lösenordet uppdaterades.
       recaptcha_error: Något blev fel med recaptcha, vänligen fyll i igen.
       only_predefined_food_prefs: Enbart fördefinierade matpreferenser kan väljas.
+      terms_accepted: Användarvillkor accepterade.
 
       program:
         physics: Teknisk Fysik

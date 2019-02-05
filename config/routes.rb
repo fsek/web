@@ -64,6 +64,7 @@ Fsek::Application.routes.draw do
       get '', action: :edit, as: :edit
       patch :password, path: :losenord, action: :update_password
       patch :account, path: :konto, action: :update_account
+      patch :accept_terms
       resources :notifications, path: :notifikationer, only: :index do
         get :look_all, on: :collection
         patch :visit, on: :member

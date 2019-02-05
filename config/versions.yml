@@ -1,0 +1,12 @@
+default: &default
+  terms: 1
+  api: 1.0
+development:
+  <<: *default
+production:
+  <<: *default
+staging:
+  <<: *default
+test:
+  terms: 1
+  api: 1.0

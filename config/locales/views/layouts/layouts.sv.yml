@@ -16,6 +16,12 @@ sv:
       control_the_web: Kontrollerar detta nät
       the_f_guild: F-sektionen inom TLTH
 
+    terms:
+      title: Sekretessvillkor
+      content: Du behöver läsa igenom och godkänna den senaste versionen av F-sektionens sekretessvillkor innan du kan fortsätta.
+      link_description: Sekretessvillkoren finns att läsa
+      accept: Jag accepterar
+
     dropdowns:
       admin_dropdown:
         administrate: Administrera
