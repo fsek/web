@@ -10,6 +10,7 @@ FactoryBot.define do
     start_year Time.now.year
     confirmed_at { 10.days.ago }
     member_at { 10.days.ago }
+    terms_version 1
 
     trait :admin do
       password '12345678'

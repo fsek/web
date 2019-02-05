@@ -26,7 +26,7 @@ class Ability
 
     # Abilities all signed in users get
     if user.id.present?
-      can [:edit, :show, :update, :update_password, :update_account], User, id: user.id
+      can [:edit, :show, :update, :update_password, :update_account, :accept_terms], User, id: user.id
       can [:index, :feed, :show], CafeShift
       can [:index, :competition], :cafe
       can [:create, :update, :destroy], CafeWorker, user_id: user.id

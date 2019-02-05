@@ -1,0 +1,17 @@
+<div class="terms-page">
+  <div class="overlay">
+    <div class="outer-container">
+      <div class="inner-container">
+        <h3><%= t('.title') %></h3>
+        <p><%= t('.content') %></p>
+        <p>
+          <%= t('.link_description') %>
+          <%= link_to 'här.', privacy_path, target: '_blank' %>
+        </p>
+        <%= link_to t('.accept'), accept_terms_own_user_path, method: :patch, class: 'btn primary' %>
+        <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, class: 'btn secondary' %>
+      </div>
+    </div>
+  </div>
+</div>
+

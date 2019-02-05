@@ -40,5 +40,14 @@
     <%= render 'layouts/copyright' %>
 
     <%= render 'layouts/google_analytics' %>
+
+    <% if current_user && current_user.terms_version != Versions.get(:terms) %>
+      <% unless controller_name == 'static_pages' && action_name == 'privacy' ||
+          controller_name == 'documents' ||
+          controller.class.name.split("::").first == 'Admin'
+      %>
+        <%= render 'layouts/terms' %>
+      <% end %>
+    <% end %>
   </body>
 </html>

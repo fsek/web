@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :store_current_location, unless: -> { devise_controller? || !request.format.html? }
   before_action :set_locale
   before_action :prepare_meta_tags, if: -> { request.get? }
+  before_action :verify_terms_version, if: -> { !request.get? }
 
   helper_method :alert_update, :alert_create, :alert_destroy,
                 :can_administrate?, :authorize_admin!
@@ -107,5 +108,16 @@ class ApplicationController < ActionController::Base
       total_pages: collection.total_pages,
       total_count: collection.total_count
     }
+  end
+
+  # Make sure the user terms are accepted before POST/PATCH/PUT/DELETE are alllowed
+  # We must still allow the user controllers so that the terms can be accepted and logouts allowed
+  # Get requests are handled in `applications.html`
+  def verify_terms_version
+    if current_user.present? && current_user.terms_version != Versions.get(:terms)
+      unless controller_name == 'users' || devise_controller?
+        redirect_to root_path
+      end
+    end
   end
 end
