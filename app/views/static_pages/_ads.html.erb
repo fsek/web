@@ -38,6 +38,20 @@
     <% end %>
   </div>
 
+  <div class="podcast box">
+    <div class="headline">
+      <h3><%= link_to(t('.podcast'), 'https://soundcloud.com/user-165272144', :target => '_blank') %></h3>
+    </div>
+    <p>
+      <%= t('.podcast_listen') %>
+      <%= contact_from_slug(slug: 'sanningsminister') %>
+    </p>
+    <p>
+      <%= link_to(t('.podcast_soundcloud'), 'https://soundcloud.com/user-165272144', :target => '_blank') %>
+    </p>
+    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/584893281&color=%23eb7125&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+  </div>
+
   <div class="box">
     <div class="headline">
       <h3><%= link_to(t('.contact'), contacts_path) %></h3>
