@@ -28,7 +28,7 @@
       <span class="event info">
         <ul>
           <li>
-            <%= fa_icon('cutlery') %>
+            <%= icon('fas', 'utensils') %>
             <%= User.human_attribute_name(:food_preferences) %>:
             <%= food_preferences_str(current_user) %>
             <%= link_to(t('.edit'), own_user_path, target: :blank_p) %>

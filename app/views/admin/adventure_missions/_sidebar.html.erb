@@ -1,13 +1,13 @@
 <ul class="list-group sidebar-nav">
   <li class="list-group-item">
     <%= link_to(edit_admin_adventure_path(adventure)) do %>
-      <%= fa_icon('list', text: t('.edit')) %>
+      <%= icon('fas', 'list', t('.edit')) %>
     <% end %>
   </li>
 
   <li class="list-group-item">
     <%= link_to(new_admin_adventure_adventure_mission_path(adventure: adventure)) do %>
-      <%= fa_icon('plus', text: t('.add')) %>
+      <%= icon('fas', 'plus', t('.add')) %>
     <% end %>
   </li>
 </ul>

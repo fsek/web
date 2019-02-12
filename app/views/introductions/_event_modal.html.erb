@@ -6,7 +6,7 @@
         <%= link_to(event.title, event_path(event), target: :blank_p) %>
       </h3>
       <span class="event time">
-        <%= fa_icon('calendar-o') %>
+        <%= icon('far', 'calendar') %>
         <% if event.all_day? %>
           <%= t('.all_day') %>
         <% else %>
@@ -15,7 +15,7 @@
         <% end %>
       </span>
       <span class="event location">
-        <%=  fa_icon('map-marker') %>
+        <%=  icon('fas', 'map-marker-alt') %>
         <%= event.location %>
       </span>
       <span class="description">
@@ -51,7 +51,7 @@
   <% if can_administrate?(event, :edit) %>
     <%= link_to(edit_admin_event_path(event), class: 'pull-right',
                                               target: :blank_p) do %>
-      <%= fa_icon('cog') %> <%= t('global.edit')  %>
+      <%= icon('fas', 'cog') %> <%= t('global.edit')  %>
     <% end %>
     <br>
   <% end %>

@@ -1,6 +1,6 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    <%= safe_join([main_menu, ' ', fa_icon('angle-down')]) %>
+    <%= safe_join([main_menu, ' ', icon('fas', 'angle-down')]) %>
   </a>
   <%= menu_dropdown_render(main_menu.menus.includes(:translations).in_order, cls: 'dropdown-menu') %>
 </li>

@@ -5,12 +5,12 @@
     </div>
 
     <span class="event time">
-      <%= fa_icon('calendar') %>
+      <%= icon('far', 'calendar-alt') %>
       <%= time_range(@event.starts_at, @event.ends_at, format: :long, dot: @event.dot) %>
     </span>
 
     <span class="event location">
-      <%= fa_icon('map-marker') %>
+      <%= icon('fas', 'map-marker-alt') %>
       <%= @event.location %>
     </span>
 

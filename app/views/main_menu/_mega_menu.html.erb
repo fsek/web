@@ -1,6 +1,6 @@
 <li class="dropdown menu-large">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    <%= safe_join([main_menu, ' ', fa_icon('angle-down')]) %>
+    <%= safe_join([main_menu, ' ', icon('fas', 'angle-down')]) %>
   </a>
   <ul class="dropdown-menu megamenu row <%= main_menu.fw ? 'full-width' : '' %>">
     <% menu = main_menu.menus.includes(:translations).in_order %>

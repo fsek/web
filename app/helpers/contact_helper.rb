@@ -1,7 +1,7 @@
 module ContactHelper
   def contact_link(contact)
     if contact.present?
-      text = safe_join([fa_icon('envelope'), ' ', contact.full_string])
+      text = safe_join([icon('fas', 'envelope'), ' ', contact.full_string])
       link_to(text, contact_path(contact))
     end
   end

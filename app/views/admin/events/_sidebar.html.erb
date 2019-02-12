@@ -2,20 +2,20 @@
 <ul class="list-group sidebar-nav">
   <li class="<%= active_list_group(:index, current) %>">
     <%= link_to(admin_events_path) do %>
-      <%= fa_icon('list', text: t('.index')) %>
+      <%= icon('fas','list', text: t('.index')) %>
     <% end %>
   </li>
 
   <li class="<%= active_list_group(:calendar, current) %>">
     <%= link_to(calendars_path) do %>
-      <%= fa_icon('calendar', text: t('.calendar')) %>
+      <%= icon('far','calendar', text: t('.calendar')) %>
     <% end %>
   </li>
 
   <% if event.nil? %>
     <li class="<%= active_list_group(:new_event, current) %>">
       <%= link_to(new_admin_event_path) do %>
-        <%= fa_icon('plus', text: t('.new_event')) %>
+        <%= icon('fas','plus', text: t('.new_event')) %>
       <% end %>
     </li>
   <% end %>
@@ -25,13 +25,13 @@
   <ul class="list-group sidebar-nav">
     <li class="<%= active_list_group(:event_texts, current) %>">
       <%= link_to('#texts', data: { toggle: :tab }) do %>
-        <%= fa_icon('file-text', text: t('.texts')) %>
+        <%= icon('fas','file-text', text: t('.texts')) %>
       <% end %>
     </li>
 
     <li class="<%= active_list_group(:event_dates, current) %>">
       <%= link_to('#dates', data: { toggle: :tab }) do %>
-        <%= fa_icon('calendar', text: t('.dates')) %>
+        <%= icon('far','calendar', text: t('.dates')) %>
       <% end %>
     </li>
   </ul>
@@ -46,7 +46,7 @@
     <li class="list-group-item">
       <%= link_to(admin_event_signup_path(event, tab: :settings),
                                           data: {confirm: t('.save_before')}) do %>
-        <%= fa_icon('wrench', text: t('.settings')) %>
+        <%= icon('fas','wrench', text: t('.settings')) %>
       <% end %>
     </li>
 
@@ -54,7 +54,7 @@
       <li class="list-group-item">
         <%= link_to(admin_event_signup_path(event, tab: :attendees),
                                             data: {confirm: t('.save_before')}) do %>
-          <%= fa_icon('users', text: t('.attendees')) %>
+          <%= icon('fas','users', text: t('.attendees')) %>
         <% end %>
       </li>
     <% end %>
@@ -65,4 +65,3 @@
                              method: :delete,
                              data: { confirm: t('.destroy_confirmation') }) %>
 <% end %>
-

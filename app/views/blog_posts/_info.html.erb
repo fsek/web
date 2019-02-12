@@ -1,15 +1,15 @@
 <div class="info">
   <span>
-    <%= fa_icon('calendar') %>
+    <%= icon('far', 'calendar-alt') %>
     <%= localized(blog_post.created_at.to_date) %>
   </span>
   <span>
-    <%= fa_icon('user') %>
+    <%= icon('fas', 'user') %>
     <%= user_link(blog_post.user) %>
   </span>
   <% if blog_post.categories.any? %>
     <span class="categories">
-      <%= fa_icon('hashtag') %>
+      <%= icon('fas', 'hashtag') %>
       <% blog_post.categories.each do |cat| %>
         <%= link_to(cat.title, blog_posts_path(category: cat.to_param)) %> <%= ' ' %>
       <% end %>

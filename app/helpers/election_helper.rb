@@ -23,10 +23,10 @@ module ElectionHelper
     if post.present?
       title = content_tag(:span, post.title)
       show = link_to(post_path(post), target: :blank, class: 'links') do
-        fa_icon('external-link')
+        icon('fas', 'external-link-alt')
       end
       modal = link_to(modal_post_path(post), remote: true, class: 'links') do
-        fa_icon('object-group')
+        icon('far', 'object-group')
       end
       safe_join([show, modal, title])
     end

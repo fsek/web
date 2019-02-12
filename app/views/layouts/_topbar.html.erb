@@ -6,19 +6,19 @@
         <%= link_to(params.permit(:id).merge(locale: :en, only_path: true)) do %>
           <span class="topbar-image"><%= image_tag('layout/gb.png', class: 'flag') %></span>
           <span class="topbar-text">ENGLISH</span>
-          <span class="topbar-icon language-switch"><%= fa_icon('language')%></span>
+          <span class="topbar-icon language-switch"><%= icon('fas', 'language')%></span>
         <% end %>
-      <% else %> 
+      <% else %>
         <%= link_to(params.permit(:id).merge(locale: :sv, only_path: true)) do %>
           <span class="topbar-image"><%= image_tag('layout/se.png', class: 'flag') %></span>
           <span class="topbar-text">SVENSKA</span>
-          <span class="topbar-icon language-switch"><%= fa_icon('language')%></span>
+          <span class="topbar-icon language-switch"><%= icon('fas', 'language')%></span>
         <% end %>
       <% end %>
       </li>
       <li class="divider"></li>
       <li><%= link_to( calendars_path) do %>
-          <span class="topbar-icon"><%= fa_icon('calendar') %></span>
+          <span class="topbar-icon"><%= icon('far', 'calendar-alt') %></span>
           <% end %>
       </li>
       <li class="divider"></li>

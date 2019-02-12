@@ -60,7 +60,7 @@ module TimeHelper
     if date.present?
       I18n.l(date, options)
     else
-      fa_icon('cogs')
+      icon('fas', 'cogs')
     end
   end
 

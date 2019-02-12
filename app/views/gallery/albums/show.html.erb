@@ -3,7 +3,7 @@
     <%= title(@album.title) %>
     <small><%= date_range(@album.start_date, @album.end_date) %></small>
   </h3>
-  <%= link_to(fa_icon('arrow-left'), gallery_path(year: @album.start_date.year.to_i),
+  <%= link_to(icon('fas', 'arrow-left'), gallery_path(year: @album.start_date.year.to_i),
               class: 'btn secondary pull-right small') %>
 </div>
 
@@ -22,7 +22,7 @@
       <% if can_administrate?(:manage, p) %>
         <br>
         <%= link_to(admin_album_image_path(@album, p)) do %>
-          <%= fa_icon('cog') %> <%= t('global.edit') %>
+          <%= icon('fas', 'cog') %> <%= t('global.edit') %>
         <% end %>
       <% end %>
     </div>
@@ -45,7 +45,7 @@
   <% if @policy.present? %>
     <hr>
     <%= link_to(document_path(@policy), target: 'blank_p') do %>
-      <%= fa_icon('paperclip') %> <%= t('.policy') %>
+      <%= icon('fas', 'paperclip') %> <%= t('.policy') %>
     <% end %>
   <% end %>
 </div>

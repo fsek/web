@@ -1,26 +1,26 @@
 <span class="event info">
   <ul>
     <% if event.cash? %>
-      <li><%= fa_icon('money')%> <%= t('.cash') %></li>
+      <li><%= icon('far', 'money-bill-alt')%> <%= t('.cash') %></li>
     <% end %>
 
     <% if event.food? %>
-      <li><%= fa_icon('cutlery')%> <%= t('.food') %></li>
+      <li><%= icon('fas', 'utensils')%> <%= t('.food') %></li>
     <% end %>
 
     <% if event.drink? %>
-      <li><%= fa_icon('flask')%> <%= t('.drink') %></li>
+      <li><%= icon('fas', 'flask')%> <%= t('.drink') %></li>
     <% end %>
 
     <% if event.signup %>
-      <li><%= fa_icon('pencil-square-o') %> <%= t('.registration') %></li>
+      <li><%= icon('fas', 'edit') %> <%= t('.registration') %></li>
 
       <% if event.signup.for_members %>
-        <li><%= fa_icon('user') %> <%= t('.for_members') %></li>
+        <li><%= icon('fas', 'user') %> <%= t('.for_members') %></li>
       <% end %>
 
       <% if event.signup.question.present? %>
-        <li><%= fa_icon('question') %> <%= event.signup.question %></li>
+        <li><%= icon('fas', 'question') %> <%= event.signup.question %></li>
       <% end %>
     <% end %>
   </ul>

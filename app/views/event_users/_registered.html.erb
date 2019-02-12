@@ -1,6 +1,6 @@
 <% if event.signup.question.present? %>
   <span class="event block">
-    <%= fa_icon('question') %>
+    <%= icon('fas', 'question') %>
     <%= event.signup.question %>
   </span>
 
@@ -15,19 +15,19 @@
 
 <% if event_user.user_type.present? %>
   <span class="event block">
-    <%= fa_icon('wrench') %>
+    <%= icon('fas', 'wrench') %>
     <%= event_user_type(event.signup, event_user.user_type) %>
   </span>
 <% end %>
 
 <% if event_user.group.present? %>
   <span class="event block">
-    <%= fa_icon('users') %>
+    <%= icon('fas', 'users') %>
     <%= link_to(event_user.group, group_path(event_user.group)) %>
   </span>
 <% elsif event_user.group_custom.present? %>
   <span class="event block">
-    <%= fa_icon('users') %>
+    <%= icon('fas', 'users') %>
     <%= event_user.group_custom %>
   </span>
 <% end %>

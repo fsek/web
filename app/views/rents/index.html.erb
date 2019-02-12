@@ -26,7 +26,7 @@
                 new_rent_path, class: 'btn primary') %>
   <% if @terms.present? %>
     <%= link_to(document_path(@terms), target: 'blank_p', class: 'btn secondary') do %>
-      <%= fa_icon('paperclip') %> <%= t('.terms') %>
+      <%= icon('fas', 'paperclip') %> <%= t('.terms') %>
     <% end %>
   <% end %>
   </div>

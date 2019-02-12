@@ -6,7 +6,7 @@
 <table class="user table">
   <tr>
     <td>
-      <%= fa_icon('space-shuttle') %> <%= User.human_attribute_name(:start_year) %>
+      <%= icon('fas', 'space-shuttle') %> <%= User.human_attribute_name(:start_year) %>
     </td>
     <td>
       <%= user.start_year %>
@@ -14,7 +14,7 @@
   </tr>
   <tr>
     <td>
-      <%= fa_icon('rocket') %> <%= User.human_attribute_name(:program) %>
+      <%= icon('fas', 'rocket') %> <%= User.human_attribute_name(:program) %>
     </td>
     <td>
       <%= user.program %>
@@ -23,7 +23,7 @@
   <% if display_phone?(user: user, current_user: current_user) %>
     <tr>
       <td>
-        <%= fa_icon('phone') %> <%= User.human_attribute_name(:phone) %>
+        <%= icon('fas', 'phone') %> <%= User.human_attribute_name(:phone) %>
       </td>
       <td>
         <%= user.phone %>
@@ -33,7 +33,7 @@
   <% if user.posts.any? %>
     <tr>
       <td>
-        <%= fa_icon('mortar-board') %> <%= Post.model_name.human(count: user.posts.count) %>
+        <%= icon('fas', 'graduation-cap') %> <%= Post.model_name.human(count: user.posts.count) %>
       </td>
       <td>
         <ul class="user post-list">

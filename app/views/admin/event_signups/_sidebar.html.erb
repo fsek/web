@@ -2,14 +2,14 @@
   <li class="list-group-item">
     <%= link_to(edit_admin_event_path(event, tab: :texts),
                                       data: {confirm: t('.save_before')}) do %>
-      <%= fa_icon('file-text') %> <%= t('.texts') %>
+      <%= icon('fas', 'file-alt') %> <%= t('.texts') %>
     <% end %>
   </li>
 
   <li class="list-group-item">
     <%= link_to(edit_admin_event_path(event, tab: :dates),
                                       data: {confirm: t('.save_before')}) do %>
-      <%= fa_icon('calendar') %> <%= t('.dates') %>
+      <%= icon('far', 'calendar-alt') %> <%= t('.dates') %>
     <% end %>
   </li>
 </ul>
@@ -25,14 +25,14 @@
   <ul class="list-group sidebar-nav">
     <li class="list-group-item <%= tab == :settings ? 'active' : '' %>">
       <%= link_to('#settings', data: { toggle: :tab }) do %>
-        <%= fa_icon('wrench') %> <%= t('.settings') %>
+        <%= icon('fas', 'wrench') %> <%= t('.settings') %>
       <% end %>
     </li>
 
   <% if signup.try(:persisted?) %>
     <li class="list-group-item <%= tab == :attendees ? 'active' : '' %>">
         <%= link_to('#attendees', data: { toggle: :tab }) do %>
-          <%= fa_icon('users') %> <%= t('.attendees') %>
+          <%= icon('fas', 'users') %> <%= t('.attendees') %>
         <% end %>
       </li>
   <% end %>
