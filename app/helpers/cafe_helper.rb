@@ -18,7 +18,7 @@ module CafeHelper
   def cafe_worker_working_thumbs(worker, user:)
     if user == worker.user && worker.persisted?
       content_tag(:span, class: 'cafe working') do
-        safe_join([fa_icon('thumbs-o-up'), ' ',
+        safe_join([icon('far', 'thumbs-up'), ' ',
                    I18n.t('helper.cafe.worker.you_are_working')])
       end
     end

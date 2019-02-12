@@ -29,7 +29,7 @@
   <% if can_administrate?(:edit, blog_post) %>
     <span class="edit">
       <%= link_to(edit_admin_blog_post_path(blog_post)) do %>
-        <%= fa_icon('cog') %> <%= t('global.edit') %>
+        <%= icon('fas', 'cog') %> <%= t('global.edit') %>
       <% end %>
     </span>
   <% end %>

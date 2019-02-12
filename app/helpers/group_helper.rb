@@ -1,6 +1,6 @@
 module GroupHelper
   def group_user_name(group_user)
-    group_user.fadder ? safe_join([group_user.user, ' ', fa_icon('graduation-cap')]) : group_user.user
+    group_user.fadder ? safe_join([group_user.user, ' ', icon('fas', 'graduation-cap')]) : group_user.user
   end
 
   def group_user_state_link(group, group_user)

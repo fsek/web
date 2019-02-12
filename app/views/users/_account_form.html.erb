@@ -4,14 +4,14 @@
   </div>
   <div class="headline">
     <h4>
-      <%= fa_icon('envelope') %>
+      <%= icon('fas', 'envelope') %>
       <%= User.human_attribute_name(:email) %>
     </h4>
   </div>
 
   <% if user.unconfirmed_email.present? %>
     <p class="control-label">
-      <%= fa_icon('close', class: 'icon-background red round-icon') %>
+      <%= icon('fas', 'close', class: 'icon-background red round-icon') %>
       <span>
         <%= User.human_attribute_name('unconfirmed_email') %>
       </span>
@@ -26,7 +26,7 @@
 
   <% if user.confirmed? %>
     <p class="control-label">
-      <%= fa_icon('check', class: 'icon-background green round-icon') %>
+      <%= icon('fas', 'check', class: 'icon-background green round-icon') %>
       <span>
         <%= User.human_attribute_name('confirmed_email') %>
       </span>
@@ -36,7 +36,7 @@
     </p>
   <% else %>
     <p class="control-label">
-      <%= fa_icon('close', class: 'icon-background red round-icon') %>
+      <%= icon('fas', 'close', class: 'icon-background red round-icon') %>
       <span>
         <%= User.human_attribute_name('unconfirmed_email') %>
       </span>
@@ -59,19 +59,19 @@
   <hr>
   <div class="headline">
     <h4>
-      <%= fa_icon('user') %>
+      <%= icon('fas', 'user') %>
       <%= User.human_attribute_name(:member) %>
     </h4>
   </div>
 
   <% if user.member? %>
     <span class="control-label">
-      <%= fa_icon('check', class: 'icon-background green round-icon') %>
+      <%= icon('fas', 'check', class: 'icon-background green round-icon') %>
       <%= localized(user.member_at) %>
     </span>
   <% else %>
     <span class="control-label">
-      <%= fa_icon('close', class: 'icon-background red round-icon') %>
+      <%= icon('fas', 'close', class: 'icon-background red round-icon') %>
       <%= t('.contact_for_membership') %>
       <%= contact_from_slug(slug: 'spindelman') %>
     </span>

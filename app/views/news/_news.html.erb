@@ -5,7 +5,7 @@
 
     <% if pinned %>
       <div class="pinned pull-right">
-        <%= fa_icon('thumb-tack lg') %>
+        <%= icon('fas', 'thumbtack fa-lg') %>
       </div>
     <% end %>
   </div>
@@ -30,7 +30,7 @@
 <% cache([news.categories, I18n.locale]) do %>
      <% if news.categories.any? %>
        <span class="categories">
-         <%= fa_icon('hashtag') %>
+         <%= icon('fas', 'hashtag') %>
          <% news.categories.each do |cat| %>
            <%= link_to(cat.title, news_index_path(category: cat.to_param)) %> <%= ' ' %>
          <% end %>
@@ -41,7 +41,7 @@
    <% if can_administrate?(:modify, news) %>
      <span class="edit">
        <%= link_to(edit_admin_news_path(news)) do %>
-         <%= fa_icon('cog') %> <%= t('global.edit') %>
+         <%= icon('fas', 'cog') %> <%= t('global.edit') %>
        <% end %>
      </span>
    <% end %>

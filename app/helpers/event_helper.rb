@@ -8,27 +8,27 @@ module EventHelper
   def event_attendees(event)
     content = []
     content << content_tag(:li) do
-      safe_join([fa_icon('user'), " #{I18n.t('model.event.attending')}: #{EventUser.attending_count(event)}"])
+      safe_join([icon('fas', 'user'), " #{I18n.t('model.event.attending')}: #{EventUser.attending_count(event)}"])
     end
 
     content << content_tag(:li) do
-      safe_join([fa_icon('users'), " #{EventSignup.human_attribute_name(:slots)}: #{event.signup.slots}"])
+      safe_join([icon('fas', 'users'), " #{EventSignup.human_attribute_name(:slots)}: #{event.signup.slots}"])
     end
 
     reserves = EventUser.reserve_count(event)
     if reserves > 0
       content << content_tag(:li) do
-        safe_join([fa_icon('user-times'), " #{I18n.t('model.event.reserves')}: #{reserves}"])
+        safe_join([icon('fas', 'user-times'), " #{I18n.t('model.event.reserves')}: #{reserves}"])
       end
     end
 
     content << content_tag(:li) do
-      safe_join([fa_icon('calendar-check-o'),
+      safe_join([icon('fas', 'calendar-check'),
                  " #{EventSignup.human_attribute_name(:opens)}: #{l(event.signup.opens, format: :short)}"])
     end
 
     content << content_tag(:li) do
-      safe_join([fa_icon('calendar-times-o'),
+      safe_join([icon('fas', 'calendar-times'),
                  " #{EventSignup.human_attribute_name(:closes)}: #{l(event.signup.closes, format: :short)}"])
     end
 
@@ -39,25 +39,25 @@ module EventHelper
     if event_user.persisted?
       persisted_event_user_status(event_signup, event_user)
     else
-      event_status_span('not-attending lg', 'exclamation-circle', t('.not_attending'))
+      event_status_span('not-attending lg', 'fas', 'exclamation-circle', t('.not_attending'))
     end
   end
 
   def persisted_event_user_status(event_signup, event_user)
     if event_signup.closed?
       if event_user.reserve?
-        event_status_span('reserve lg', 'exclamation-circle', t('.reserve'))
+        event_status_span('reserve lg', 'fas', 'exclamation-circle', t('.reserve'))
       else
-        event_status_span('attending lg', 'check-circle-o', t('.attending'))
+        event_status_span('attending lg', 'fas', 'check-circle', t('.attending'))
       end
     else
-      event_status_span('registered lg', 'question-circle', t('.registered'))
+      event_status_span('registered lg', 'fas', 'question-circle', t('.registered'))
     end
   end
 
-  def event_status_span(status, icon, text)
+  def event_status_span(status, icon_prefix, icon, text)
     content_tag(:span, class: "event #{status}") do
-      fa_icon(icon) + ' ' + text
+      icon(icon_prefix, icon) + ' ' + text
     end
   end
 
@@ -129,17 +129,17 @@ module EventHelper
   def event_signup_status(event)
     if event.signup.present?
       if event.signup.open?
-        content_tag(:span, fa_icon('dot-circle-o'),
+        content_tag(:span, icon('far', 'dot-circle'),
                     class: 'open',
                     'data-toggle': 'tooltip',
                     title: I18n.t('helper.event.signup_open'))
       elsif event.signup.closed?
-        content_tag(:span, fa_icon('dot-circle-o'),
+        content_tag(:span, icon('far', 'dot-circle'),
                     class: 'closed',
                     'data-toggle': 'tooltip',
                     title: I18n.t('helper.event.signup_closed'))
       else
-        content_tag(:spab, fa_icon('dot-circle-o'),
+        content_tag(:spab, icon('far', 'dot-circle'),
                     class: 'future',
                     'data-toggle': 'tooltip',
                     title: I18n.t('helper.event.signup_future'))

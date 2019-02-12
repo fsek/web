@@ -18,7 +18,7 @@ gem 'datetimepicker-rails', git: 'https://github.com/zpaulovics/datetimepicker-r
 gem 'devise'
 gem 'devise_token_auth'
 gem 'ejs'
-gem 'font-awesome-rails'
+gem 'font-awesome-sass', '~> 5.6.1'
 gem 'fotoramajs'
 gem 'fullcalendar-rails'
 gem 'globalize', git: 'https://github.com/globalize/globalize' # For rails 5.1 support

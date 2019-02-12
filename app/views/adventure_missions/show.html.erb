@@ -11,12 +11,14 @@
   <% if @adventure_mission_group.present? %>
     <% @class = 'success' %>
     <% @icon = 'check' %>
+    <% @icon_prefix = 'fas' %>
   <% else %>
     <% @class = 'danger' %>
     <% @icon = 'times' %>
+    <% @icon_prefix = 'fas' %>
   <% end %>
   <li class="list-group-item list-group-item-<%= @class %>">
-    <span class="badge"><%= fa_icon(@icon) %></span>
+    <span class="badge"><%= icon(@icon_prefix, @icon) %></span>
     <%= t('.finished') %>
   </li>
   <% if @adventure_mission_group.present? %>

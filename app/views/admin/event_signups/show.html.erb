@@ -17,11 +17,11 @@
     <div id="attendees" class="profile-edit tab-pane fade in <%= @tab == :attendees ? 'active' : '' %>">
       <div class="col-md-12">
         <span class="time">
-          <%= fa_icon('calendar') %>
+          <%= icon('far', 'calendar-alt') %>
           <%= time_range(@event.starts_at, @event.ends_at, format: :long) %>
         </span>
         <span class="location">
-          <%= fa_icon('map-marker') %>
+          <%= icon('fas', 'map-marker-alt') %>
           <%= @event.location %>
         </span>
         <%= event_signup_reminders_sent?(@event_signup) %>

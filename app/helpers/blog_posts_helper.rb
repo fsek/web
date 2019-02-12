@@ -21,7 +21,7 @@ module BlogPostsHelper
     unless blog_post.is_translated?(I18n.locale)
       content_tag(:div, class: 'alert alert-info') do
         content = []
-        content << content_tag(:button, fa_icon('times'),
+        content << content_tag(:button, icon('fas', 'times'),
                                type: 'button', class: 'close',
                                data: { dismiss: 'alert' })
         content << I18n.t('model.blog_post.not_translated')

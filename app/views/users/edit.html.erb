@@ -3,15 +3,15 @@
   <div class="list-group sidebar-nav">
     <%= link_to(edit_own_user_path(tab: :profile),
                 class: active_list_group(@tab, :profile)) do %>
-      <%= fa_icon('user', text: t('.profile')) %>
+      <%= icon('fas', 'user', t('.profile')) %>
     <% end %>
     <%= link_to(edit_own_user_path(tab: :account),
                 class: active_list_group(@tab, :account)) do %>
-      <%= fa_icon('cog', text: t('.account')) %>
+      <%= icon('fas', 'cog', t('.account')) %>
     <% end %>
     <%= link_to(edit_own_user_path(tab: :password),
                 class: active_list_group(@tab, :password)) do %>
-      <%= fa_icon('hashtag', text: t('.password')) %>
+      <%= icon('fas', 'hashtag', t('.password')) %>
     <% end %>
   </div>
 

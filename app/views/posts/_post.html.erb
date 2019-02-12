@@ -3,7 +3,7 @@
 
   <ul class="list-unstyled">
     <li>
-      <%= fa_icon('briefcase') %>
+      <%= icon('fas', 'briefcase') %>
       <%= Post.human_attribute_name(:limit)%>:
       <%= print_post_limit(post) %>
 
@@ -12,13 +12,13 @@
     <% end %>
     </li>
     <li>
-      <%= fa_icon('users') %>
+      <%= icon('fas', 'users') %>
       <%= model_name(Council) %>:
       <%= link_to(post.council, post.council) %>
     </li>
 
     <li>
-      <%= fa_icon('cog') %>
+      <%= icon('fas', 'cog') %>
       <%= Post.human_attribute_name(:elected_by) %>:
       <%= t("model.post.#{post.elected_by}") %>
     </li>

@@ -16,15 +16,15 @@
               <%= album.title %>
             </h3>
             <span class="date">
-              <%= fa_icon('calendar') %> <%= date_range(album.start_date, album.end_date) %>
+              <%= icon('far', 'calendar-alt') %> <%= date_range(album.start_date, album.end_date) %>
             </span>
             <% if album.location.present? %>
               <span class="location">
-                <%= fa_icon('map-marker') %> <%= album.location %>
+                <%= icon('fas', 'map-marker-alt') %> <%= album.location %>
               </span>
             <% end %>
             <span class="image-count">
-              <%= fa_icon('image') %> <%= album.images.count %>
+              <%= icon('far', 'image') %> <%= album.images.count %>
             </span>
           </div>
         </div>

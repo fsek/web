@@ -40,7 +40,7 @@ module Admin::EventSignupsHelper
 
     if signup.sent_position.present?
       content << content_tag(:span, class: 'position-reminder') do
-        safe_join([fa_icon('bell'),
+        safe_join([icon('fas', 'bell'),
                    I18n.t('model.event_signup.position_reminder_was_sent',
                           date: localize(signup.sent_position))])
       end
@@ -48,7 +48,7 @@ module Admin::EventSignupsHelper
 
     if signup.sent_reminder.present?
       content << content_tag(:span, class: 'event-reminder') do
-        safe_join([fa_icon('bell'),
+        safe_join([icon('fas', 'bell'),
                    I18n.t('model.event_signup.reminder_was_sent',
                           date: localize(signup.sent_reminder))])
       end
@@ -56,7 +56,7 @@ module Admin::EventSignupsHelper
 
     if signup.sent_closing.present?
       content << content_tag(:span, class: 'event-reminder') do
-        safe_join([fa_icon('bell'),
+        safe_join([icon('fas', 'bell'),
                    I18n.t('model.event_signup.closing_was_sent',
                           date: localize(signup.sent_closing))])
       end

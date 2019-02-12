@@ -38,13 +38,13 @@ module MessageHelper
             method: :delete,
             class: '',
             data: { confirm: t('helper.message.destroy_message') }) do
-      fa_icon('trash')
+      icon('fas', 'trash')
     end
   end
 
   def message_edit_link(message)
     link_to(edit_admin_message_path(message), class: '') do
-      fa_icon('pencil')
+      icon('fas', 'pencil-alt')
     end
   end
 

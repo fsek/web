@@ -17,7 +17,7 @@
     <% if can_administrate?(:manage, work_post) %>
       <br>
       <%= link_to(edit_admin_work_post_path(work_post)) do %>
-        <%= fa_icon('cog') %> <%= t('global.edit') %>
+        <%= icon('fas', 'cog') %> <%= t('global.edit') %>
       <% end %>
     <% end %>
   </span>
