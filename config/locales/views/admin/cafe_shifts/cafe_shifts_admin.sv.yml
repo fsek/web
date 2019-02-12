@@ -4,6 +4,7 @@ sv:
       edit:
         title: Redigera cafépass
         show: Visa cafépass
+        confirm_destroy: Vill du verkligen förinta cafépasset?
         destroy: Förinta cafépass
         index: Administrera alla
         back_to_hilbert: Hilbert Café
@@ -27,6 +28,7 @@ sv:
 
       show:
         administrate: Administrera alla
+        confirm_destroy: Vill du verkligen förinta cafépasset?
         destroy: Förinta cafépass
         edit: Redigera cafépass
         back_to_hilbert: Hilbert Café

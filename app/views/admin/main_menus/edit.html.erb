@@ -5,6 +5,8 @@
   <%= render('form', main_menu: @main_menu) %>
   <hr>
   <%= link_to(t('.destroy'), admin_main_menu_path(@main_menu),
-              method: :delete, class: 'btn danger pull-right') %>
+                             method: :delete,
+                             data: {confirm: t('.confirm_destroy')},
+                             class: 'btn danger pull-right') %>
   <%= link_to(t('.all_menus'), admin_main_menus_path, class: 'btn secondary') %>
 </div>

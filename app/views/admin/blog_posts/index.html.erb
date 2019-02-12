@@ -22,7 +22,7 @@
 <div class="col-md-9 col-sm-12">
   <%= grid(@post_grid, hide_submit_button:  true, hide_reset_button: true) do |g|
     g.column(name: BlogPost.human_attribute_name(:title), attribute: 'title', assoc: :translations) do |post|
-      link_to(post, edit_admin_blog_post_path(post), target: :blank)
+      link_to(post, edit_admin_blog_post_path(post))
     end
     g.column(name: BlogPost.human_attribute_name(:created_at)) do |post|
       localized(post.created_at)
@@ -33,7 +33,7 @@
       user_link(post.user)
     end
     g.column(name: t('global.edit'), filter: false) do |post|
-      link_to(t('global.edit'), edit_admin_blog_post_path(post), target: :blank)
+      link_to(t('global.edit'), edit_admin_blog_post_path(post))
     end
   end -%>
 </div>

@@ -7,6 +7,7 @@
     <% if tool.persisted? %>
       <%= link_to(t('.destroy'), admin_tool_path(tool),
                                  method: :delete,
+                                 data: {confirm: t('.confirm_destroy')},
                                  class: 'btn danger pull-right') %>
     <% end %>
   <% end %>

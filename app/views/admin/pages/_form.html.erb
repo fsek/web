@@ -20,9 +20,10 @@
   <%= f.button :submit %>
 
   <% if page.persisted? %>
-    <%= link_to(t('.destroy_page'),
-                admin_page_path(@page), method: :delete,
-                class: 'btn danger pull-right') %>
+    <%= link_to(t('.destroy_page'), admin_page_path(@page),
+                                    method: :delete,
+                                    data: {confirm: t('.confirm_destroy')},
+                                    class: 'btn danger pull-right') %>
 
   <% end %>
 <% end %>

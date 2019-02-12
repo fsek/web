@@ -23,6 +23,9 @@
 
   <%= f.button :submit, id: 'contact-submit' %>
   <% if contact.persisted? %>
-    <%= link_to(t('.destroy'), admin_contact_path(contact), method: :delete, class: 'btn danger pull-right') %>
+    <%= link_to(t('.destroy'), admin_contact_path(contact),
+                               method: :delete,
+                               data: { confirm: t('.confirm_destroy')},
+                               class: 'btn danger pull-right') %>
   <% end %>
 <% end %>

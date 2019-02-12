@@ -33,7 +33,9 @@
   <%= link_to(t('.download_image'), download_admin_album_image_path(@album, @image),
                                     class: 'btn secondary') %>
   <%= link_to(t('.destroy_image'), admin_album_image_path(@album, @image),
-                                   method: :delete, class: 'btn danger') %>
+                                   method: :delete,
+                                   data: {confirm: t('.confirm_destroy')},
+                                   class: 'btn danger') %>
   <hr>
   <%= link_to(t('.administrate_album'), admin_album_path(@album),
                                         class: 'btn secondary') %>

@@ -5,6 +5,8 @@
   <%= render('form', group: @group) %>
   <hr>
   <%= link_to(t('.destroy'), admin_group_path(@group),
-              method: :delete, class: 'btn danger pull-right') %>
+                             method: :delete,
+                             data: {confirm: t('.confirm_destroy')},
+                             class: 'btn danger pull-right') %>
   <%= link_to(t('.all_groups'), admin_groups_path, class: 'btn secondary') %>
 </div>

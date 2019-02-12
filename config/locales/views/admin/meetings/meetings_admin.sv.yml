@@ -15,16 +15,16 @@ sv:
 
       edit:
         title: Redigera bokning
+        confirm_destroy: Är du säker på att du vill förinta bokningen?
         destroy: Förinta bokning
         administrate: Administrera bokningar
-        confirm_destroy: Är du säker på att du vill förinta bokningen?
 
       show:
         title: Administrera lokalbokningar
         edit: Redigera bokning
+        confirm_destroy: Är du säker på att du vill förinta bokningen?
         destroy: Förinta bokning
         index: Alla bokningar
-        confirm_destroy: Är du säker på att du vill förinta bokningen?
 
       overlap:
         overlap: 'Notera att bokningen överlappar med:'

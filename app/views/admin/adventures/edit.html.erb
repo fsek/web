@@ -11,6 +11,7 @@
   <hr>
   <%= link_to(t('.destroy'), admin_adventure_path(@adventure),
                          method: :delete,
+                         data: { confirm: t('.confirm_destroy')},
                          class: 'btn danger pull-right') %>
   <%= link_to(t('.all'), admin_adventures_path, class: 'btn secondary') %>
 </div>

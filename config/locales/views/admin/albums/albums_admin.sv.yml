@@ -7,6 +7,7 @@ sv:
 
       show:
         administrate_gallery: Administrera gallery
+        confirm_album_destroy: Vill du verkligen ta bort albumet?
         confirm_image_destroy: Vill du verkligen förinta alla bilder?
         destroy: Förinta album
         destroy_images: Förinta alla bilder

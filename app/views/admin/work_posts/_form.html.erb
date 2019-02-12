@@ -23,6 +23,8 @@
   <% if work_portal.current_post.persisted? %>
     <%= link_to(t('.destroy_post'),
                 admin_work_post_path(work_portal.current_post),
-                method: :delete, class: 'btn danger pull-right') %>
+                method: :delete,
+                data: {confirm: t('.confirm_destroy')},
+                class: 'btn danger pull-right') %>
   <% end %>
 <% end %>

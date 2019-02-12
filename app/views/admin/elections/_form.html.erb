@@ -30,9 +30,9 @@
                 class: 'btn secondary') %>
     <% if can_administrate? :manage, :all %>
       <%= link_to(t('.destroy'), admin_election_path(election),
-                  class: 'btn danger pull-right',
+                  method: :delete,
                   data: {confirm: t('.confirm_destroy')},
-                  method: :delete) %>
+                  class: 'btn danger pull-right') %>
     <% end %>
   <% end %>
 

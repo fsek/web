@@ -7,6 +7,7 @@ sv:
         all_introductions: Alla nollningar
       edit:
         title: Redigera äventyr
+        confirm_destroy: Vill du verkligen förinta äventyret?
         destroy: Förinta äventyr
         all: Alla äventyr
       new:

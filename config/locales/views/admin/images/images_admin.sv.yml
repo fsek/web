@@ -3,6 +3,7 @@ sv:
     images:
       show:
         administrate_album: Administrera album
+        confirm_destroy: Vill du verkligen förinta bilden?
         destroy_image: Förinta bild
         download_image: Ladda ner bild
         reprocess_image: Ombehandla bild

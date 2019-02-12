@@ -15,6 +15,7 @@ sv:
 
       edit:
         title: Redigera grupp
+        confirm_destroy: Vill du verkligen förinta gruppen?
         destroy: Förinta grupp
         all_groups: Alla grupper
 

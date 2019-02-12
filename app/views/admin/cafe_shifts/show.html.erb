@@ -27,6 +27,7 @@
   <hr>
   <%= link_to(t('.destroy'), admin_cafe_shift_path(@cafe_view.shift),
                                       method: :delete,
+                                      data: { confirm: t('.confirm_destroy')},
                                       class: 'btn danger pull-right') %>
   <%= link_to(t('.administrate'), admin_cafe_shifts_path,
                                      class: 'btn secondary') %>

@@ -16,5 +16,5 @@
           <% end %>
         </li>
       </ul>
-    <%= link_to t('.destroy'), admin_group_adventure_mission_group_path(@group, @adventure_mission_group), method: :delete, class: 'btn danger'%>
+    <%= link_to t('.destroy'), admin_group_adventure_mission_group_path(@group, @adventure_mission_group), method: :delete, data: { confirm: t('.confirm_destroy'), class: 'btn danger'}%>
 </div>

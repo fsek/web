@@ -21,6 +21,7 @@
   <hr>
   <%= link_to(t('.destroy'), admin_event_event_user_path(@event, @event_user),
                              method: :delete,
+                             data: {confirm: t('.confirm_destroy')},
                              class: 'btn danger pull-right') %>
   <%= link_to(t('.all'), admin_event_signup_path(@event), class: 'btn secondary') %>
 </div>

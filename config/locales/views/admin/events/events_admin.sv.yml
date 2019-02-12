@@ -33,7 +33,7 @@ sv:
         calendar: Kalender
         dates: Datum
         destroy: Förinta evenemang
-        destroy_confirmation: Är du säker på att du vill förinta evenemanget?
+        confirm_destroy: Är du säker på att du vill förinta evenemanget?
         index: Alla evenemang
         new_event: Nytt evenemang
         save_before: Osparade ändringar går förlorade.

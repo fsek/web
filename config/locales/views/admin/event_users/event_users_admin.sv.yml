@@ -3,6 +3,7 @@ sv:
     event_users:
       edit:
         all: Alla anmälningar
+        confirm_destroy: Vill du verkligen ta bort anmälan?
         destroy: Förinta anmälan
         title: Redigera anmälan
         position: Plats

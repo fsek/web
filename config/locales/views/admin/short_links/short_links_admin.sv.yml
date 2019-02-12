@@ -2,6 +2,7 @@ sv:
   admin:
     short_links:
       index:
+        confirm_destroy: Vill du verkligen förinta snabblänken?
         destroy_link: Förinta snabblänk
         title: Snabblänkar
 

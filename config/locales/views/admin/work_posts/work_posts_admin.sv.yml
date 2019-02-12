@@ -2,6 +2,7 @@ sv:
   admin:
     work_posts:
       form:
+        confirm_destroy: Vill du verkligen förinta jobbposten?
         destroy_post: Förinta jobbpost
 
       edit:

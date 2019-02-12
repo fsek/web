@@ -4,6 +4,7 @@ sv:
       form:
         categories_after_save: Kategorier kan läggas till efter att evenemanget sparas.
         dates: Datum
+        confirm_destroy: Vill du verkligen förinta anmälan?
         destroy: Ta bort anmälan
         dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
         groups: Grupper

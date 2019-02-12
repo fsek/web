@@ -25,7 +25,9 @@
     <% if page_element.persisted? %>
       <%= link_to(t('.destroy_element'),
                   admin_page_page_element_path(page, page_element),
-                  method: :delete, class: 'btn danger pull-right') %>
+                  method: :delete,
+                  data: {confirm: t('.confirm_destroy')},
+                  class: 'btn danger pull-right') %>
 
     <% end %>
   <% end %>

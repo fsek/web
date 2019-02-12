@@ -15,4 +15,5 @@ sv:
         title: Redigera nollning
 
       form:
+        confirm_destroy: Vill du verkligen förinta nollningen?
         destroy_introduction: Förinta nollning
