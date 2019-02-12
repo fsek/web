@@ -12,6 +12,7 @@
   <% if car_ban.persisted? %>
     <%= link_to(t('.destroy'), admin_car_ban_path(car_ban),
                                method: :delete,
+                               data: { confirm: t('.confirm_destroy')},
                                class: 'btn danger pull-right') %>
   <% end %>
 <% end %>

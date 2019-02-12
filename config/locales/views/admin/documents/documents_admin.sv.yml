@@ -2,6 +2,7 @@ sv:
   admin:
     documents:
       edit:
+        confirm_destroy: Vill du verkligen förinta dokumentet?
         destroy: Förinta dokument
         index: Alla dokument
         show: Visa dokument

@@ -3,6 +3,7 @@ sv:
     menus:
       edit:
         title: Redigera meny
+        confirm_destroy: Vill du verkligen förinta menyn?
         destroy: Förinta meny
         all_menus: Alla menyer
 

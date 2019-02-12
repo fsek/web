@@ -25,6 +25,7 @@
                                    input_html: { class: 'select2' } %>
     <%= link_to(t('.destroy'), admin_blog_post_path(@blog_post),
                                method: :delete,
+                               data: { confirm: t('.confirm_post_destroy')},
                                class: 'btn danger pull-right') %>
   <% else %>
     <%= simple_format(t('.categories_after_save')) %>

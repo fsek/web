@@ -2,6 +2,7 @@ sv:
   admin:
     tool_rentings:
       form:
+        confirm_destroy: Vill du verkligen förinta lånet?
         destroy: Förinta lån
 
       edit:

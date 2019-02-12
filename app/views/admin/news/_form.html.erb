@@ -28,6 +28,7 @@
   <% if news.persisted? %>
     <%= link_to(t('.destroy'), admin_news_path(news),
                                method: :delete,
+                               data: {confirm: t('.confirm_destroy')},
                                class: 'btn danger pull-right') %>
 
   <% end %>

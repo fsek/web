@@ -11,6 +11,7 @@
   <% if introduction.persisted? %>
     <%= link_to(t('.destroy_introduction'), admin_introduction_path(introduction),
                                             method: :delete,
+                                            data: {confirm: t('.confirm_destroy')},
                                             class: 'btn danger') %>
   <% end %>
 <% end %>

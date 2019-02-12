@@ -9,8 +9,8 @@
                        users: @users,
                        councils: @councils) %>
     <%= link_to(admin_rent_path(@rent), method: :delete,
-                                        class: 'btn danger pull-right',
-                                        data: {confirm: t('.confirm_destroy')}) do %>
+                                        data: {confirm: t('.confirm_destroy')},
+                                        class: 'btn danger pull-right') do %>
       <%= t('.destroy_rent') %>
     <% end %>
   </div>

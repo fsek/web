@@ -11,7 +11,7 @@ sv:
         title: Redigera val - texter
 
       form:
-        confirm_destroy: Valet raderas och kan inte återställas, är du säker?
+        confirm_destroy: Vill du verkligen förinta valet?
         destroy: Förinta val
         edit_texts: Redigera texter
         semester_hint_for_other: Om det ej är ett ordinarie val väljs Termin - Annat, efter att valet sparats kan poster läggas till.

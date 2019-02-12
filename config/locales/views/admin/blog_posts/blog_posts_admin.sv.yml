@@ -18,5 +18,6 @@ sv:
       form:
         categories_after_save: Kategorier kan läggas till när blogginlägget sparats.
         confirm_image_removal: Vill du verkligen ta bort bilden? Ändringar i formuläret kommer inte att sparas.
+        confirm_post_destroy: Vill du verkligen förinta blogginlägget?
         destroy: Förinta blogginlägg
         remove_image: Ta bort bild

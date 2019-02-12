@@ -7,6 +7,7 @@ sv:
         new: Ny sång
 
       edit:
+        confirm_remove: Vill du verkligen förinta sången?
         delete: Radera sång
         all_songs: Alla sånger
         title: Redigera sång

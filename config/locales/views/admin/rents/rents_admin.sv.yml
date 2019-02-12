@@ -19,7 +19,7 @@ sv:
         admin_index: Startsida administration
         aktiv: sätts till falsk om bokningen t.ex. bokas över
         comment: skickas med i mail om en boknings ändras till Nekad
-        confirm_destroy: Bokning kommer att raderas
+        confirm_destroy: Vill du verkligen förinta bokningen?
         destroy_rent: Förinta bilbokning
         inactive: En bokning är inaktiverad om status är Nekad eller Aktiv är satt till falsk
         status: säger om bokningen är bekräftad eller ej

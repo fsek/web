@@ -2,13 +2,14 @@ sv:
   admin:
     adventure_mission_groups:
       edit:
-        title: Redigera slutföring
-        destroy: Förinta slutföring
-        all: Alla slutföringar
+        title: Redigera slutfört uppdrag
+        confirm_destroy: Vill du verkligen förinta det slutförda uppdraget?
+        destroy: Förinta
+        all: Alla slutförda uppdrag
         save: Spara
       update:
-        success: Slutföring uppdaterad
-        fail: Kunde inte uppdatera slutföring
+        success: Slutfört uppdrag uppdaterad
+        fail: Kunde inte uppdatera det slutförda uppdraget
       destroy:
-        success: Slutföring förintad
-        fail: Kunde inte förinta slutföring
+        success: Slutfört uppdrag förintat
+        fail: Kunde inte förinta det slutföra uppdraget

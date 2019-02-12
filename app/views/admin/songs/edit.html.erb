@@ -5,6 +5,8 @@
   <%= render('form', song: @song) %>
   <hr>
   <%= link_to(t('.delete'), admin_song_path(@song),
-              method: :delete, class: 'btn danger pull-right') %>
+                            method: :delete,
+                            data: {confirm: t('.confirm_destroy')},
+                            class: 'btn danger pull-right') %>
   <%= link_to(t('.all_songs'), admin_songs_path, class: 'btn secondary') %>
 </div>

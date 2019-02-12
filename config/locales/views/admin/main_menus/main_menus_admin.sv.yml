@@ -3,6 +3,7 @@ sv:
     main_menus:
       edit:
         title: Redigera huvudmeny
+        confirm_destroy: Vill du verkligen förinta huvudmenyn?
         destroy: Förinta huvudmeny
         all_menus: Alla huvudmenyer
 

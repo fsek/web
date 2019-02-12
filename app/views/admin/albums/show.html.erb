@@ -10,11 +10,12 @@
                           data:{ turbolinks: false }, class: 'btn secondary') %>
   <%= link_to(t('.destroy'), admin_album_path(@album),
                              method: :delete,
+                             data: { confirm: t('.confirm_album_destroy')},
                              class: 'btn danger') %>
   <%= link_to(t('.destroy_images'), destroy_images_admin_album_path(@album),
                                     method: :delete,
-                                    class: 'btn danger',
-                                    data: { confirm: t('.confirm_image_destroy')+ '?' }) %>
+                                    data: { confirm: t('.confirm_image_destroy')},
+                                    class: 'btn danger') %>
   <%= link_to(t('.administrate_gallery'), admin_albums_path,
                                           class: 'btn secondary') %>
   <hr>

@@ -7,7 +7,7 @@
   <hr>
   <%= link_to(t('.destroy'), admin_meeting_path(@meeting),
                                  method: :delete,
-                                 class: 'btn danger',
-                                 data: {confirm: t('.confirm_destroy')}) %>
+                                 data: {confirm: t('.confirm_destroy')},
+                                 class: 'btn danger') %>
   <%= link_to(t('.administrate'), admin_meetings_path, class: 'btn secondary') %>
 </div>

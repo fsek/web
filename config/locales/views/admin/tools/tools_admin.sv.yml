@@ -2,6 +2,7 @@ sv:
   admin:
     tools:
       form:
+        confirm_destroy: Vill du verkligen förinta verktyget?
         destroy: Förinta verktyg
 
       edit:

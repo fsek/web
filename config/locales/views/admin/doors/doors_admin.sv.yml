@@ -2,6 +2,7 @@ sv:
   admin:
     doors:
       edit:
+        confirm_destroy: Vill du verkligen förinta dörren?
         destroy: Förinta dörr
         index: Visa alla dörrar
         show_accesses: Visa accesser

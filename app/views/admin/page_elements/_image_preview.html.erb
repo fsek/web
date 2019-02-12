@@ -3,8 +3,11 @@
     <div class="col-xs-2" id="image_<%= image.id %>">
       <%= image_tag(image.thumb, class: 'img-responsive') %>
       <%= image.id %>
-      <%= link_to(t('.destroy'), destroy_image_admin_page_path(@page, image), remote: true,
-                 class: 'btn danger small', method: :delete) %>
+      <%= link_to(t('.destroy'), destroy_image_admin_page_path(@page, image),
+                                 remote: true,
+                                 method: :delete,
+                                 data: {confirm: t('.confirm_destroy')},
+                                 class: 'btn danger small') %>
     </div>
   <% end %>
 <% end %>

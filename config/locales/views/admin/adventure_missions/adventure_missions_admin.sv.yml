@@ -10,6 +10,7 @@ sv:
         missions_for: Uppdrag för äventyr
       edit:
         title: Redigera äventyrsuppdrag
+        confirm_destroy: Vill du verkligen förinta äventyrsuppdraget?
         destroy: Förinta äventyrsuppdrag
         all: Alla äventyrsuppdrag
       new:

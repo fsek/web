@@ -29,6 +29,7 @@
   <% if post.persisted? %>
     <%= link_to(t('.destroy_post'), admin_council_post_path(council, post),
                                     method: :delete,
+                                    data: {confirm: t('.confirm_destroy')},
                                     class: 'btn danger pull-right') %>
   <% end %>
 

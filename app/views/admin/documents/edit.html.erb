@@ -8,9 +8,10 @@
   <hr>
   <%= link_to(t('.destroy'), admin_document_path(@document),
                              method: :delete,
+                             data: { confirm: t('.confirm_destroy')},
                              class: 'btn danger pull-right') %>
   <%= link_to(t('.show'), document_path(@document),
-                          target: :blank, 
+                          target: :blank,
                           class: 'btn secondary') %>
   <%= link_to(t('.index'), admin_documents_path,
                            class: 'btn secondary') %>

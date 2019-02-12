@@ -5,4 +5,5 @@ sv:
         remove_shift: Förinta cafépass
         administrate: Administrera cafépass
       form:
+        confirm_destroy: Vill du verkligen ta bort jobbaren?
         remove: Ta bort från passet

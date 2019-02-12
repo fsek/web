@@ -2,6 +2,7 @@ sv:
   admin:
     pages:
       form:
+        confirm_destroy: Vill du verkligen förinta sidan?
         destroy_page: Förinta sida
         image_already_uploaded: En eller flera av bilderna kunde inte laddas upp
 
