@@ -2,7 +2,7 @@
   <%= link_to(current_user, class: 'dropdown-toggle notification-toggle',
                                       data: { toggle: 'dropdown', delay: '0' }) do %>
     <% hasNotifs = current_user.notifications_count > 0 ? 'has-notifications' : '' %>
-    <span class="topbar-icon notification-icon <%= hasNotifs %>"><%= fa_icon('bell') %></span>
+    <span class="topbar-icon notification-icon <%= hasNotifs %>"><%= icon('fas', 'bell') %></span>
     <span class="topbar-text notification-text <%= hasNotifs %>"><%= models_name(Notification) %></span>
     <span class="notification-top-count">
       <% if current_user.notifications_count > 0 %>

@@ -111,9 +111,7 @@
   background-color: rgba(144, 144, 144, 0.2);
   border-bottom: 2px solid $border;
   display: flex;
-  flex-direction: column;
-  height: 90px;
-  justify-content: center;
+  flex-direction: row;
   position: relative;
 
   .fa {
@@ -159,6 +157,10 @@
       color: $fsek-orange;
     }
 
+    .notification-list__icon {
+      color: rgba(144, 144, 144, 0.6);
+    }
+
     .body p {
       color: $black;
     }
@@ -167,6 +169,19 @@
       background-color: rgba(144, 144, 144, 0.1);
     }
   }
+}
+
+.notification-list__icon {
+  display: flex;
+  flex-direction: column;
+  font-size: 2em;
+  justify-content: center;
+  text-align: center;
+  width: 25%;
+}
+
+.notification-list__information {
+  width: 75%;
 }
 
 @media (max-width: 767px) {

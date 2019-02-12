@@ -3,22 +3,24 @@ module NotificationHelper
     content_tag(:div, markdown(data.body), class: 'body')
   end
 
-  def asterisk_link(notification)
-    content = []
-    if notification.seen?
-      content << fa_icon('asterisk 2x')
-    else
-      content << link_to(look_own_user_notification_path(notification), remote: true, method: :patch) do
-        fa_icon('asterisk 2x')
+  def  notification_icon(notification)
+    icon = ''
+    if notification.notifyable_type == 'EventUser'
+      if notification.mode == 'position'
+        icon = icon('fas', 'check')
+      else
+        icon = icon('fas', 'glass-cheers')
       end
+    else
+      icon = icon('far', 'clock')
     end
-    content_tag(:span, safe_join(content), class: 'asterisk pull-right')
+    icon
   end
 
   def notification_created_at(time)
     content_tag(:span, class: 'notification-time') do
       content = []
-      content << fa_icon('calendar')
+      content << icon('far', 'calendar-alt')
       content << localize(time)
       safe_join(content)
     end
