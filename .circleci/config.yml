@@ -11,6 +11,7 @@ jobs:
           RACK_ENV: test
           PGHOST: localhost
           PGUSER: ubuntu
+          BUNDLER_VERSION: 2.0.1
 
       - image: circleci/postgres:9.6.8-alpine-postgis
         environment:
@@ -22,6 +23,10 @@ jobs:
 
     steps:
       - checkout
+
+      - run:
+          name: Install bundler
+          command: gem install bundler
 
       - restore_cache:
           keys:
