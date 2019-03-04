@@ -30,6 +30,8 @@ sv:
       custom_name_missing: Behöver fyllas i för att special ska kunna användas
       position_reminder_was_sent: "Meddelande om man fått plats eller ej skickades %{date}."
       reminder_was_sent: "Påminnelse om att evenemanget börjar skickades %{date}."
+      closing_was_sent: "Påminnelse om att evenemangets anmälan snart stänger skickades %{date}."
+      open_was_sent: "Påminnelse om att evenemangets anmälan är öppen skickades %{date}."
       same_priority: Samma prioritet kan inte väljas för olika användartyper
       user_types:
         novice: Nolla

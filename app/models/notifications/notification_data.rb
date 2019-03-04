@@ -9,6 +9,7 @@ class NotificationData
       init_event_user
     elsif @notification.notifyable_type == 'EventSignup'
       init_closing
+      init_open
     end
   end
 
@@ -66,5 +67,11 @@ class NotificationData
     @body = I18n.t('model.notification_data.remind_signup_soon_closing',
                    event: @notifyable.event,
                    time: I18n.l(@notifyable.event.signup.closes))
+  end
+
+  def init_open
+    @icon = 'calendar-alt'
+    @body = I18n.t('model.notification_data.remind_signup_open',
+                   event: @notifyable.event)
   end
 end
