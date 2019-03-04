@@ -27,6 +27,7 @@ class EventSignup < ApplicationRecord
   scope :reminder_not_sent, -> { where(sent_reminder: nil) }
   scope :position_not_sent, -> { where(sent_position: nil) }
   scope :closing_not_sent, -> { where(sent_closing: nil) }
+  scope :open_not_sent, -> { where(sent_open: nil) }
   scope :closed, -> { where('closes < :current', current: Time.zone.now) }
 
   serialize :group_types, Array

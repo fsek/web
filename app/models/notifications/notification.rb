@@ -1,5 +1,5 @@
 class Notification < ApplicationRecord
-  enum(event_users: [:reminder, :position], event_signup: [:closing])
+  enum(event_users: [:reminder, :position], event_signup: [:closing, :open])
   ALLOWED = { 'EventUser' => event_users, 'EventSignup' => event_signups }.freeze
 
   belongs_to :user, required: true, inverse_of: :notifications

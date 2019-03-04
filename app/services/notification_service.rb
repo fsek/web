@@ -40,6 +40,9 @@ class NotificationService
     # Remind not signed up users 12 hours before event signup close.
     # Make sure that the event isen't full.
     notify_closing(event)
+
+    # Remind users when event signup opens
+    notify_open(event)
   end
 
   def self.notify_position(event)
@@ -57,6 +60,12 @@ class NotificationService
   def self.notify_closing(event)
     if event.signup.closes > Time.zone.now
       EventSignupClosingReminderWorker.perform_at(event.signup.closes - 12.hours, event.signup.id, 12.hours)
+    end
+  end
+
+  def self.notify_open(event)
+    if event.signup.opens > Time.zone.now
+      EventSignupOpenReminderWorker.perform_at(event.signup.opens, event.signup.id)
     end
   end
 

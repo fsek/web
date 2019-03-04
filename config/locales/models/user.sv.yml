@@ -54,4 +54,5 @@ sv:
         username: Användarnamn
         notify_event_users: Push-notiser för eventanmälan
         notify_event_closing: Push-notiser före eventanmälan stänger
+        notify_event_open: Push-notiser när eventanmälan öppnar
         notify_messages: Push-notiser för meddelanden
