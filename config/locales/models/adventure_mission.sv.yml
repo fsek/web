@@ -13,6 +13,7 @@ sv:
         description_sv: Beskrivning - svenska
         description_en: Beskrivning - engelska
         max_points: Maxpoäng
+        locked: Låst
         variable_points: Varierbar poäng
         publish_results: Publicera resultaten
         groups: Faddergrupper

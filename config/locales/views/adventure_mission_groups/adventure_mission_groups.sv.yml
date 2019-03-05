@@ -5,12 +5,15 @@ sv:
     edit:
       update: Ändra poäng
       save: Spara poäng
+      locked: Uppdraget är låst
     create:
       success: Uppdrag slutfört
       fail: Kunde inte slutföra uppdrag
+      locked: Uppdraget är låst
     update:
       success: Uppdrag uppdaterat
       fail: Kunde inte uppdatera uppdrag
+      locked: Uppdraget är låst
     destroy:
       success: Uppdrag återställt
       fail: Kunde inte återställa uppdrag

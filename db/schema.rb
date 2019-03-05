@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20190410192700) do
     t.integer "adventure_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "locked", default: true, null: false
     t.index ["adventure_id"], name: "index_adventure_missions_on_adventure_id"
   end
 
