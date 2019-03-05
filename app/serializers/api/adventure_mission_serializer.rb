@@ -1,6 +1,6 @@
 class Api::AdventureMissionSerializer < ActiveModel::Serializer
   class Api::AdventureMissionSerializer::Index < ActiveModel::Serializer
-    attributes :id, :title, :max_points, :index, :variable_points
+    attributes :id, :title, :max_points, :index, :variable_points, :locked
     attribute :finished, key: :is_finished
 
     def finished
@@ -10,6 +10,6 @@ class Api::AdventureMissionSerializer < ActiveModel::Serializer
   end
 
   class Api::AdventureMissionSerializer::Show < ActiveModel::Serializer
-    attributes :id, :title, :description, :max_points, :index
+    attributes :id, :title, :description, :max_points, :index, :locked
   end
 end
