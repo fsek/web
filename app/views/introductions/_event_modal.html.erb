@@ -6,7 +6,7 @@
         <%= link_to(event.title, event_path(event), target: :blank_p) %>
       </h3>
       <span class="event time">
-        <%= icon('far', 'calendar') %>
+        <%= icon('far', 'calendar-alt') %>
         <% if event.all_day? %>
           <%= t('.all_day') %>
         <% else %>

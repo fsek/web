@@ -55,14 +55,14 @@ class NotificationData
   end
 
   def init_reminder
-    @icon = 'calendar'
+    @icon = 'calendar-alt'
     @body = I18n.t('model.notification_data.remind_soon_starting',
                    event: @notifyable.event,
                    time: I18n.l(@notifyable.event.starts_at))
   end
 
   def init_closing
-    @icon = 'calendar'
+    @icon = 'calendar-alt'
     @body = I18n.t('model.notification_data.remind_signup_soon_closing',
                    event: @notifyable.event,
                    time: I18n.l(@notifyable.event.signup.closes))
