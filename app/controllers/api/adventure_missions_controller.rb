@@ -14,14 +14,15 @@ class Api::AdventureMissionsController < Api::BaseController
     group = current_user.groups.regular.last
 
     points = params[:points].to_i
-    if points > adventure_mission.max_points
+    if adventure_mission.locked?
+      render json: { error: 'Too late, the mission is locked..' }, status: 422 and return
+    elsif points > adventure_mission.max_points
       render json: { error: "You can't get more than max points which is: #{adventure_mission.max_points}"}, status: 422 and return
     elsif points == 0
-      render json: { error: "You can't get 0 points"}, status: 422 and return
+      render json: { error: 'You can\'t get 0 points'}, status: 422 and return
     end
 
     # Doing both server and database auth to stop as soon as possible
-    # Only validating here can cause concurrency issues though
     if group.adventure_mission_groups.pluck(:adventure_mission_id).include?(adventure_mission.id)
       render json: { error: 'You can only finish a mission once' }, status: 422 and return
     end
@@ -41,6 +42,10 @@ class Api::AdventureMissionsController < Api::BaseController
 
   def reset_adventure_mission
     adventure_mission = AdventureMission.find(params[:adventure_mission_id])
+
+    if adventure_mission.locked?
+      render json: { error: 'You can\'t reset a locked mission' }, status: 422 and return
+    end
 
     # fetch group from current_user so one can't specify other groups
     group = current_user.groups.regular.last

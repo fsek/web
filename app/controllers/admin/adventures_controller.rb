@@ -28,6 +28,24 @@ class Admin::AdventuresController < Admin::BaseController
     end
   end
 
+  def lock
+    @adventure = Adventure.find(params[:adventure_id])
+    if @adventure.adventure_missions.update_all(locked: true)
+      redirect_to admin_adventure_adventure_missions_path, notice: { text: t('.success'), type: 'success' }
+    else
+      redirect_to admin_adventure_adventure_missions_path, notice: { text: t('.failed'), type: 'danger' }
+    end
+  end
+
+  def unlock
+    @adventure = Adventure.find(params[:adventure_id])
+    if @adventure.adventure_missions.update_all(locked: false)
+      redirect_to admin_adventure_adventure_missions_path, notice: { text: t('.success'), type: 'success' }
+    else
+      redirect_to admin_adventure_adventure_missions_path, notice: { text: t('.failed'), type: 'danger' }
+    end
+  end
+
   def destroy
     @adventure.destroy!
     redirect_to(admin_adventures_path, notice: alert_destroy(Adventure))

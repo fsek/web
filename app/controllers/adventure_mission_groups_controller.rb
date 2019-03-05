@@ -11,7 +11,9 @@ class AdventureMissionGroupsController < ApplicationController
     @adventure_mission_group.group = @group
     @adventure_mission = AdventureMission.find(adventure_mission_group_params[:adventure_mission_id])
 
-    if @adventure_mission_group.save
+    if @adventure_mission.locked?
+      render :new, status: 422, notice: t('.locked')
+    elsif @adventure_mission_group.save
       redirect_to adventure_adventure_mission_path(@adventure_mission.adventure, @adventure_mission), notice: t('.success')
     else
       render :new, status: 422, notice: t('.fail')
@@ -24,7 +26,9 @@ class AdventureMissionGroupsController < ApplicationController
 
   def update
     @adventure_mission = AdventureMission.find(adventure_mission_group_params[:adventure_mission_id])
-    if @adventure_mission_group.update(adventure_mission_group_params)
+    if @adventure_mission.locked?
+      render :edit, status: 422, notice: t('.locked')
+    elsif @adventure_mission_group.update(adventure_mission_group_params)
       redirect_to adventure_adventure_mission_path(@adventure_mission.adventure, @adventure_mission), notice:  t('.success')
     else
       render :edit, status: 422, notice: t('.fail')
@@ -33,7 +37,10 @@ class AdventureMissionGroupsController < ApplicationController
 
   def destroy
     @adventure_mission = AdventureMission.find(params[:adventure_mission])
-    if @adventure_mission_group.destroy
+
+    if @adventure_mission.locked?
+      render :edit, status: 422, notice: t('.locked')
+    elsif @adventure_mission_group.destroy
       redirect_to adventure_adventure_mission_path(@adventure_mission.adventure, @adventure_mission), notice:  t('.success')
     else
       redirect_to adventure_mission_path(@adventure_mission), notice: t('.fail')

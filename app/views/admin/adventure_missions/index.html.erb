@@ -19,6 +19,10 @@
     end
 
     g.column(name: AdventureMission.human_attribute_name(:max_points), attribute: 'max_points', filter: false)
+    g.column(name: AdventureMission.human_attribute_name(:locked), attribute: 'locked', filter: false) do |a|
+      if a.locked? then t('global.yes') else t('global.no') end
+    end
+
     g.column(name: t('global.edit')) do |a|
       link_to t('global.edit'), edit_admin_adventure_adventure_mission_path(@adventure, a)
     end
