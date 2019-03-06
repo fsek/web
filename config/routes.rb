@@ -160,6 +160,8 @@ Fsek::Application.routes.draw do
       end
 
       resources :adventures, path: :aventyr do
+        get :lock
+        get :unlock
         resources :adventure_missions, path: :aventyrsuppdrag
       end
     end

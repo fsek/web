@@ -10,4 +10,16 @@
       <%= icon('fas', 'plus', t('.add')) %>
     <% end %>
   </li>
+
+  <li class="list-group-item">
+    <%= link_to(admin_adventure_lock_path(adventure)) do %>
+      <%= icon('fas', 'lock', 'Lock all missions') %>
+    <% end %>
+  </li>
+
+  <li class="list-group-item">
+    <%= link_to(admin_adventure_unlock_path(adventure)) do %>
+      <%= icon('fas', 'lock-open', 'Unlock all missions') %>
+    <% end %>
+  </li>
 </ul>
