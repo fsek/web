@@ -12,7 +12,11 @@ module NotificationHelper
         icon = icon('fas', 'glass-cheers')
       end
     else
-      icon = icon('far', 'clock')
+      if notification.mode == 'closing'
+        icon = icon('fas', 'user-clock')
+      else
+        icon = icon('fas', 'user-plus')
+      end
     end
     icon
   end
