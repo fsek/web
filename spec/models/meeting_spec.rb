@@ -39,7 +39,7 @@ RSpec.describe EventUser, type: :model do
     it 'does not allow users to create confirmed reservations' do
       meeting = build_stubbed(:meeting, status: :confirmed)
       meeting.should be_invalid
-      meeting.errors[:status].should include(I18n.t('errors.messages.inclusion'))
+      meeting.errors[:status].should include(I18n.t('errors.messages.inclusion', attribute: 'Status'))
     end
 
     it 'allows admins to create confirmed reservations' do
