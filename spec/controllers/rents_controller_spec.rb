@@ -80,7 +80,9 @@ RSpec.describe RentsController, type: :controller do
   describe 'PATCH #update' do
     it 'valid params' do
       rent = create(:rent, user: user, purpose: 'Not IKEA')
-      attributes = { purpose: 'Indeed IKEA' }
+      attributes = { purpose: 'Indeed IKEA', \
+                     d_from: 1.hours.from_now.strftime('%Y-%m-%d %H:%M'), \
+                     d_til: 10.hours.from_now.strftime('%Y-%m-%d %H:%M') }
       patch :update, params: { id: rent.to_param, rent: attributes }
 
       assigns(:rent).should eq(rent)
