@@ -5,7 +5,6 @@ class Api::MessagesController < Api::BaseController
 
   def index
     @messages = @group.messages.for_index.page(params[:page])
-    reset_counter unless params.has_key?(:page)
 
     render json: @messages,
            scope: @group.id,
