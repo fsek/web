@@ -1,0 +1,41 @@
+<% title(t('.title')) %>
+
+<div class="col-md-8 col-md-offset-2 col-sm-12">
+  <div class="headline">
+    <h1><%= @tool.title %></h1>
+  </div>
+  <%= link_to(t('.edit_tool'), edit_admin_tool_path(@tool),
+                               class: 'btn primary pull-right') %>
+  <%= simple_format(@tool.description) %>
+  <p>
+    <b><%= Tool.human_attribute_name(:total) %>: </b>
+    <%= @tool.total %>
+  </p>
+  <p><b><%= t('.free') %>: </b><%= @tool.free %></p>
+
+  <%= if @tool.free > 0
+        link_to(t('.new_renting'), new_admin_tool_tool_renting_path(@tool),
+                                   class: 'btn primary small pull-right')
+      end %>
+
+  <div class="headline">
+    <h3><%= t('.rented') %></h3>
+  </div>
+
+  <ul class="list-group">
+    <% @rent.each do |rent| %>
+      <%= link_to(edit_admin_tool_tool_renting_path(rent.tool, rent), class: 'list-group-item') do %>
+        <h4 class="list-group-item-heading"><%= rent.renter %></h4>
+        <p class="list-group-item-text">
+          <b><%= ToolRenting.human_attribute_name(:return_date) %>:</b>
+          <%= rent.return_date %>
+          <b><%= ToolRenting.human_attribute_name(:purpose) %>:</b>
+          <%= rent.purpose %>
+        </p>
+      <% end %>
+    <% end %>
+  </ul>
+  <hr>
+  <%= link_to(t('.administrate_tools'), admin_tools_path,
+                                        class: 'btn secondary') %>
+</div>

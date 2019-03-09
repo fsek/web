@@ -1,0 +1,14 @@
+<div class="col-md-12">
+  <div class="headline">
+    <h1>Vin</h1>
+  </div>
+
+  <%= link_to('Nytt vin', new_admin_wine_path, class: 'btn primary') %>
+
+  <% @wines.each do |wine| %>
+    <div class="box">
+      <%= wine.to_s %>
+      <%= wine.grape %>
+    </div>
+  <% end %>
+</div>

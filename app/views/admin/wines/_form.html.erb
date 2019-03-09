@@ -1,0 +1,9 @@
+<%= simple_form_for([:admin, @wine]) do |f|%>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :year %>
+  <%= f.input :alcohol %>
+  <%= f.input :grape %>
+
+  <%= f.button :submit %>
+<% end %>

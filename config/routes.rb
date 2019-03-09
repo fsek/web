@@ -322,6 +322,8 @@ Fsek::Application.routes.draw do
 
     namespace :admin do
       resources :blog_posts, path: :blogg
+
+      resources :wines, path: :vin, only: [:index, :new, :create, :destroy]
     end
 
     resources :blog_posts, path: :blogg, only: [:index, :show]
@@ -359,6 +361,8 @@ Fsek::Application.routes.draw do
     mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :confirmations]
 
     resources :versions, only: :index
+
+    resources :wines, only: :index
 
     resources :events, only: [:index, :show] do
       get :scroll, on: :collection
