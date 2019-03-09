@@ -20,7 +20,10 @@
       <% end %>
     </ul>
   <% end %>
-
+  <strong><%= t('.note') %></strong>
+  <ul class="list">
+    <li><%= t('.school_hours_warning') %></li>
+  </ul>
   <%= f.input :d_from, as: :datetime_picker, required: true %>
   <%= f.input :d_til, as: :datetime_picker, required: true %>
   <%= f.input :purpose, as: :text, required: true %>

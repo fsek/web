@@ -67,19 +67,24 @@ RSpec.describe RentService do
       user = create(:user)
       rent = create(:rent, user: user, purpose: 'Nope')
 
-      RentService.update({ purpose: 'A test' }, user, rent).should be_truthy
-
+      RentService.update({ purpose: 'A test', \
+                           d_from: 1.hours.from_now.strftime('%Y-%m-%d %H:%M'), \
+                           d_til: 10.hours.from_now.strftime('%Y-%m-%d %H:%M') }, \
+                         user, rent).should be_truthy
       rent.reload
       rent.purpose.should eq('A test')
     end
 
     it 'invalid parameters' do
       user = create(:user)
-      rent = create(:rent, purpose: 'Nope')
+      rent = create(:rent, purpose: 'Nope', d_from: 1.hours.from_now, d_til: 10.hours.from_now)
 
       rent.owner?(user).should be_falsey
 
-      RentService.update({ purpose: 'A test' }, user, rent).should be_falsey
+      RentService.update({ purpose: 'A test', \
+                           d_from: 1.hours.from_now.strftime('%Y-%m-%d %H:%M'), \
+                           d_til: 10.hours.from_now.strftime('%Y-%m-%d %H:%M') }, \
+                         user, rent).should be_falsey
       Rent.first.purpose.should eq('Nope')
     end
   end

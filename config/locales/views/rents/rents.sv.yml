@@ -11,6 +11,8 @@ sv:
       the_terms: bokningsavtalet.
       read_terms: Läs igenom och godkänn
       agree_to_terms: Jag godkänner bokningsavtalet
+      school_hours_warning: Bokning med start- eller sluttid utanför skoltimmar (vardagar 8-17) måste godkännas manuellt
+      note: OBS!
 
     index:
       ask_question: Ställ ny fråga
