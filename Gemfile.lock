@@ -157,7 +157,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
-    connection_pool (2.2.1)
+    connection_pool (2.2.2)
     cookies_eu (1.7.1)
       js_cookie_rails (~> 2.2.0)
     crass (1.0.4)
@@ -206,7 +206,7 @@ GEM
       activesupport (>= 4.2.0)
     globalize-accessors (0.2.1)
       globalize (~> 5.0, >= 5.0.0)
-    http-2 (0.8.4)
+    http-2 (0.10.1)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.6.0)
@@ -225,6 +225,7 @@ GEM
       railties (>= 3.1)
     json (2.1.0)
     jsonapi-renderer (0.1.2)
+    jwt (2.1.0)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -252,8 +253,8 @@ GEM
     multi_json (1.13.1)
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
-    net-http2 (0.16.0)
-      http-2 (= 0.8.4)
+    net-http2 (0.18.2)
+      http-2 (~> 0.10.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (5.0.1)
@@ -363,9 +364,10 @@ GEM
     routing-filter (0.6.1)
       actionpack (>= 4.2, < 5.2)
       activesupport (>= 4.2, < 5.2)
-    rpush (3.0.2)
+    rpush (4.0.0)
       activesupport
       ansi
+      jwt (>= 1.5.6)
       multi_json (~> 1.0)
       net-http-persistent
       net-http2 (~> 0.14)
