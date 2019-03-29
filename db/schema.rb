@@ -376,7 +376,6 @@ ActiveRecord::Schema.define(version: 20190410192700) do
     t.string "group_types"
     t.datetime "sent_reminder"
     t.datetime "sent_position"
-    t.datetime "sent_closing"
     t.datetime "sent_open"
     t.index ["deleted_at"], name: "index_event_signups_on_deleted_at"
     t.index ["event_id"], name: "index_event_signups_on_event_id"
@@ -873,6 +872,10 @@ ActiveRecord::Schema.define(version: 20190410192700) do
     t.index ["link"], name: "index_short_links_on_link"
   end
 
+  create_table "song_categories", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+  end
+
   create_table "songs", id: :serial, force: :cascade do |t|
     t.string "title", null: false
     t.string "author"
@@ -880,6 +883,8 @@ ActiveRecord::Schema.define(version: 20190410192700) do
     t.string "category"
     t.text "content"
     t.integer "visits", default: 0
+    t.integer "song_category_id"
+    t.index ["song_category_id"], name: "index_songs_on_song_category_id"
   end
 
   create_table "tool_rentings", id: :serial, force: :cascade do |t|
@@ -940,7 +945,6 @@ ActiveRecord::Schema.define(version: 20190410192700) do
     t.integer "notifications_count", default: 0, null: false
     t.boolean "notify_event_users", default: true, null: false
     t.boolean "notify_messages", default: true, null: false
-    t.boolean "notify_event_closing", default: false, null: false
     t.integer "terms_version", default: 0, null: false
     t.boolean "notify_event_open", default: false, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -1004,4 +1008,5 @@ ActiveRecord::Schema.define(version: 20190410192700) do
   add_foreign_key "page_images", "pages"
   add_foreign_key "push_devices", "users"
   add_foreign_key "rents", "users"
+  add_foreign_key "songs", "song_categories"
 end

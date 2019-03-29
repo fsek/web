@@ -1,0 +1,12 @@
+<div class="col-md-10 col-md-offset-1 col-sm-12 reg-page">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+  <%= render('form', song_category: @song_category) %>
+  <hr>
+  <%= link_to(t('.delete'), admin_song_category_path(@song_category),
+                            method: :delete,
+                            data: {confirm: t('.confirm_destroy')},
+                            class: 'btn danger pull-right') %>
+  <%= link_to(t('.all_song_categories'), admin_song_category_path, class: 'btn secondary') %>
+</div>
