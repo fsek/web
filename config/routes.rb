@@ -337,9 +337,7 @@ Fsek::Application.routes.draw do
 
     namespace :admin do
       resources :songs, path: :sangbok
-    end
-
-    namespace :admin do
+      resources :song_categories, path: :sangkategorier #only [:index, :edit, :show]
     end
   end
 

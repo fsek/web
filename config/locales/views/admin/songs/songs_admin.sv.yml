@@ -5,6 +5,7 @@ sv:
         title: Sångbok
         edit: Redigera
         new: Ny sång
+        song_categories: Kategorier
 
       edit:
         confirm_remove: Vill du verkligen förinta sången?

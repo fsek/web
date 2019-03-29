@@ -152,16 +152,22 @@ namespace :db do
     group = Group.find_or_create_by!(group_type: Group::REGULAR, name: 'Black Knight', number: 1, introduction: introduction)
     GroupUser.find_or_create_by!(group: group, user: user, fadder: true)
 
+    # Song Categories
+    absurda_visor = SongCategory.find_or_create_by!(name: 'Absurda Visor')
+    teknologvisor = SongCategory.find_or_create_by!(name: 'Teknologvisor')
+
     # Songs
     Song.find_or_create_by!(title: 'Hello World',
                             author: 'Edwin',
                             category: 'Absurda Visor',
-                            content: 'Det var en gång en liten Värld som utplånades! Skål!')
+                            content: 'Det var en gång en liten Värld som utplånades! Skål!',
+                            song_category: absurda_visor)
 
     Song.find_or_create_by!(title: 'Hello Sweden',
                             author: 'Gurra',
-                            category: 'Visor',
-                            content: 'Sverige är Sverige och Sverige är bra!')
+                            category: 'Teknologvisor',
+                            content: 'Sverige är Sverige och Sverige är bra!',
+                            song_category: teknologvisor)
 
     # Notifications
     Rpush::Gcm::App.find_or_create_by!(name: :firebase, auth_key: :test)

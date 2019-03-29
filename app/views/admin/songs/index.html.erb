@@ -6,6 +6,10 @@
   <%= link_to(t('.new'), new_admin_song_path, class: 'btn primary') %>
 </div>
 
+<div class="col-md-2 col-sm-12">
+  <%= link_to(t('.song_categories'), admin_song_categories_path, class: 'btn primary') %>
+</div>
+
 <div class="col-md-10 col-sm-12">
   <%= grid(@songs) do |g|
     g.column(name: Song.human_attribute_name(:title), attribute: 'title') do |song|

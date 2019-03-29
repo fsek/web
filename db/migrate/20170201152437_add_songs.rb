@@ -4,7 +4,7 @@ class AddSongs < ActiveRecord::Migration[5.0]
       t.string :title, null: false
       t.string :author
       t.string :melody
-      t.belongs_to :song_category
+      t.string :category
       t.text :content
     end
   end
