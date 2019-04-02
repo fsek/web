@@ -35,21 +35,3 @@ body {
   flex: 1;
   max-width: 100%;
 }
-
-img, .start-background {
-  //filter: hue-rotate(255deg);
-  animation: huerot 10s linear infinite;
-}
-
-@keyframes huerot {
-  0% {
-    filter: hue-rotate(0deg);
-}
-50% {
-filter: hue-rotate(180deg);
-}
-100% {
-filter: hue-rotate(360deg);
-}
-
-}
