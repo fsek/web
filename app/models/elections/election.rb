@@ -64,7 +64,14 @@ class Election < ApplicationRecord
   end
 
   def after_posts
-    state == :after_general ? posts.general : Post.none
+    case state
+    when :after_general
+      posts.general
+    when :closed
+      posts
+    else
+      Post.none
+    end
   end
 
   # Returns the start_date if before, the end_date if during and none if after.
