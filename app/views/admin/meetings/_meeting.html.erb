@@ -53,6 +53,16 @@
           <td><%= simple_format(meeting.purpose) %></td>
         </tr>
       <% end %>
+      <% if !meeting.recurring_meeting_id.nil? %>
+        <tr>
+          <td><%= Meeting.human_attribute_name(:every) %></td>
+          <td><%= simple_format(meeting.recurring_meeting.every.to_s) %></td>
+        </tr>
+        <tr>
+          <td><%= Meeting.human_attribute_name(:occurrences) %></td>
+          <td><%= simple_format(meeting.recurring_meeting.occurrences.to_s) %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

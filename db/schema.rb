@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190302120500) do
+ActiveRecord::Schema.define(version: 20190410192700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,7 +216,7 @@ ActiveRecord::Schema.define(version: 20190302120500) do
     t.index ["category_id"], name: "index_categorizations_on_category_id"
   end
 
-  create_table "category_translations", id: :serial, force: :cascade do |t|
+  create_table "category_translations", force: :cascade do |t|
     t.integer "category_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -258,7 +258,7 @@ ActiveRecord::Schema.define(version: 20190302120500) do
     t.index ["slug"], name: "index_contacts_on_slug"
   end
 
-  create_table "council_translations", id: :serial, force: :cascade do |t|
+  create_table "council_translations", force: :cascade do |t|
     t.integer "council_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -310,7 +310,7 @@ ActiveRecord::Schema.define(version: 20190302120500) do
     t.index ["post_id"], name: "index_election_posts_on_post_id"
   end
 
-  create_table "election_translations", id: :serial, force: :cascade do |t|
+  create_table "election_translations", force: :cascade do |t|
     t.integer "election_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -430,6 +430,7 @@ ActiveRecord::Schema.define(version: 20190302120500) do
     t.integer "price"
     t.string "dress_code", limit: 255
     t.integer "contact_id"
+    t.index ["contact_id"], name: "index_events_on_contact_id"
   end
 
   create_table "faqs", id: :serial, force: :cascade do |t|
@@ -567,8 +568,10 @@ ActiveRecord::Schema.define(version: 20190302120500) do
     t.boolean "by_admin", default: false, null: false
     t.integer "status", default: 0
     t.integer "room", default: 0
+    t.integer "recurring_meeting_id"
     t.index ["council_id"], name: "index_meetings_on_council_id"
     t.index ["end_date"], name: "index_meetings_on_end_date"
+    t.index ["recurring_meeting_id"], name: "index_meetings_on_recurring_meeting_id"
     t.index ["start_date"], name: "index_meetings_on_start_date"
     t.index ["user_id"], name: "index_meetings_on_user_id"
   end
@@ -744,7 +747,7 @@ ActiveRecord::Schema.define(version: 20190302120500) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "post_translations", id: :serial, force: :cascade do |t|
+  create_table "post_translations", force: :cascade do |t|
     t.integer "post_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -782,6 +785,11 @@ ActiveRecord::Schema.define(version: 20190302120500) do
     t.index ["user_id"], name: "index_push_devices_on_user_id"
   end
 
+  create_table "recurring_meetings", id: :serial, force: :cascade do |t|
+    t.integer "recurring_meetings", default: 0, null: false
+    t.integer "every", default: 0, null: false
+  end
+
   create_table "rents", id: :serial, force: :cascade do |t|
     t.datetime "d_from"
     t.datetime "d_til"
@@ -798,7 +806,7 @@ ActiveRecord::Schema.define(version: 20190302120500) do
     t.index ["user_id"], name: "index_rents_on_user_id"
   end
 
-  create_table "rpush_apps", id: :serial, force: :cascade do |t|
+  create_table "rpush_apps", force: :cascade do |t|
     t.string "name", null: false
     t.string "environment"
     t.text "certificate"
@@ -814,7 +822,7 @@ ActiveRecord::Schema.define(version: 20190302120500) do
     t.datetime "access_token_expiration"
   end
 
-  create_table "rpush_feedback", id: :serial, force: :cascade do |t|
+  create_table "rpush_feedback", force: :cascade do |t|
     t.string "device_token", limit: 64, null: false
     t.datetime "failed_at", null: false
     t.datetime "created_at", null: false
@@ -823,7 +831,7 @@ ActiveRecord::Schema.define(version: 20190302120500) do
     t.index ["device_token"], name: "index_rpush_feedback_on_device_token"
   end
 
-  create_table "rpush_notifications", id: :serial, force: :cascade do |t|
+  create_table "rpush_notifications", force: :cascade do |t|
     t.integer "badge"
     t.string "device_token", limit: 64
     t.string "sound"
@@ -987,6 +995,7 @@ ActiveRecord::Schema.define(version: 20190302120500) do
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
   add_foreign_key "meetings", "councils"
+  add_foreign_key "meetings", "recurring_meetings"
   add_foreign_key "meetings", "users"
   add_foreign_key "menus", "main_menus"
   add_foreign_key "messages", "users"

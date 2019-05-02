@@ -1,0 +1,10 @@
+sv:
+  activerecord:
+    models:
+      recurring_meeting:
+        one: Upprepande lokalbokning
+        other: Upprepande lokalbokningar
+    attributes:
+      recurring_meeting:
+        every: Var (dag)
+        occurrences: Förekomster

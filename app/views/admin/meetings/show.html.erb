@@ -2,12 +2,24 @@
 <div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
   <%= render @meeting %>
 
-  <%= link_to(t('.edit'), edit_admin_meeting_path(@meeting), class: 'btn primary') %>
+  <%= link_to(t('.edit'), edit_admin_meeting_path(@meeting, edit_type: 'one'), class: 'btn primary') %>
+
+  <% if !@meeting.recurring_meeting_id.nil? %>
+    <%= link_to(t('.edit_all'), edit_admin_meeting_path(@meeting, edit_type: 'all'), class: 'btn primary') %>
+    <%= link_to(t('.edit_after'), edit_admin_meeting_path(@meeting, edit_type: 'after'), class: 'btn primary') %>
+  <% end %>
 
   <%= link_to(t('.index'), admin_meetings_path, class: 'btn secondary') %>
-
+  <br>
   <%= link_to(t('.destroy'), admin_meeting_path(@meeting),
                              method: :delete,
                              data: {confirm: t('.confirm_destroy')},
                              class: 'btn danger pull-right') %>
+
+  <% if !@meeting.recurring_meeting_id.nil? %>
+      <%= link_to(t('.destroy_all'), admin_recurring_meeting_path(@meeting.recurring_meeting),
+                                 method: :delete,
+                                 data: {confirm: t('.confirm_destroy_all')},
+                                 class: 'btn danger pull-right') %>
+  <% end %>
 </div>

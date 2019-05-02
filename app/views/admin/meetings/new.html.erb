@@ -3,7 +3,7 @@
     <h1><%= title(t('.title')) %></h1>
   </div>
 
-  <%= render 'form', meeting: @meeting %>
+  <%= render 'form', meeting: @meeting, form_type: 'new' %>
 
   <hr>
   <%= link_to(t('.administrate'), admin_meetings_path, class: 'btn secondary') %>

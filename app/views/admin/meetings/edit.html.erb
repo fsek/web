@@ -3,7 +3,14 @@
     <h1><%= title(t('.title')) %></h1>
   </div>
 
-  <%= render 'form', meeting: @meeting %>
+  <% if params[:edit_type] == 'all' %>
+    <%= render 'form', meeting: @meeting, form_type: 'edit_all' %>
+  <% elsif params[:edit_type] == 'after' %>
+    <%= render 'form', meeting: @meeting, form_type: 'edit_after' %>
+  <% else %>
+    <%= render 'form', meeting: @meeting, form_type: 'edit_one' %>
+  <% end %>
+
   <hr>
   <%= link_to(t('.destroy'), admin_meeting_path(@meeting),
                                  method: :delete,

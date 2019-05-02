@@ -32,3 +32,5 @@ sv:
         unconfirmed: Obekräftad
         denied: Nekad
         comment: Kommentar
+        every: Var (dag)
+        occurrences: Förekomster

@@ -4,13 +4,17 @@ class Meeting < ApplicationRecord
 
   belongs_to :user, required: true
   belongs_to :council
+  belongs_to :recurring_meeting
 
   attr_accessor :is_admin
+  attr_accessor :every
+  attr_accessor :occurrences
 
   validates :title, presence: true
   validates :status, presence: true, inclusion: { in: ['unconfirmed'] }, unless: :is_admin
   validates :status, presence: true, inclusion: { in: statuses.keys }, if: :is_admin
   validates :room, presence: true, inclusion: { in: rooms.keys }
+
   validate :date_validation, :overlap_validation
   validate :membership_validation, :council_validation, unless: :is_admin
 

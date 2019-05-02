@@ -1,6 +1,6 @@
 <%= render 'overlap', meeting: meeting %>
 
-<%= simple_form_for([:admin, meeting]) do |f| %>
+<%= simple_form_for([:admin, meeting], html: {id: "meeting_form"}) do |f| %>
   <%= f.association :user, collection: User.members, include_blank: false, input_html: {class: 'select2'} %>
   <%= f.input :title %>
 
@@ -16,5 +16,24 @@
 
   <%= f.input :comment, placeholder: t('.denied_comment') %>
 
+  <hr>
+
+  <% if form_type == 'new' %>
+    <h4><%= t('.repeat_description') %></h4>
+    <%= f.input :every, as: :integer, placeholder: t('.every_comment'), required: false, default: 0, input_html: { min: 1 } %>
+    <%= f.input :occurrences, as: :integer, required: false, default: 1, input_html: { min: 1 } %>
+  <% elsif form_type == 'edit_one' %>
+    <%= f.hidden_field :edit_type, value: 'one' %>
+  <% elsif form_type == 'edit_all' || form_type == 'edit_after' %>
+    <% if form_type == 'edit_all' %>
+      <%= f.hidden_field :edit_type, value: 'all' %>
+    <% else %>
+      <%= f.hidden_field :edit_type, value: 'after' %>
+    <% end %>
+    <%= f.input :every, as: :integer, required: false, input_html: { min: 1, value: meeting.recurring_meeting.every } %>
+    <%= f.input :occurrences, as: :integer, required: false, input_html: { min: 1, value: meeting.recurring_meeting.occurrences } %>
+  <% end %>
+
   <%= f.button :submit %>
+
 <% end %>

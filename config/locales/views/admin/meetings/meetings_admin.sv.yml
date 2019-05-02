@@ -3,6 +3,8 @@ sv:
     meetings:
       form:
         denied_comment: Kommentar vid nekad bokning
+        repeat_description: Redigera endast fälten nedan om du vill upprepa bokningen
+        every_comment: Antal dagar mellan bokningarna
 
       index:
         title: Administrera lokalbokningar
@@ -22,8 +24,12 @@ sv:
       show:
         title: Administrera lokalbokningar
         edit: Redigera bokning
+        edit_all: Redigera alla bokningar
+        edit_after: Redigera denna och kommande bokningar
         confirm_destroy: Är du säker på att du vill förinta bokningen?
+        confirm_destroy_all: Är du säker på att du vill förinta alla bokningar?
         destroy: Förinta bokning
+        destroy_all: Förinta alla bokningar
         index: Alla bokningar
 
       overlap:
