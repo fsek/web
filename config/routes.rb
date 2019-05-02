@@ -109,6 +109,7 @@ Fsek::Application.routes.draw do
 
       resources :car_bans, path: :bilsparr, except: :show
       resources :achievements, path: :prestationer
+      resources :recurring_meetings, path: :upprepandelokalbokningar, only: :destroy
     end
 
     resources :rents, path: :bilbokning do
