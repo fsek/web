@@ -11,6 +11,10 @@ class Api::UsersController < Api::BaseController
     end
   end
 
+  def accept_terms
+    current_user.update!(terms_version: Versions.get(:terms))
+  end
+
   private
 
   def user_params

@@ -387,7 +387,9 @@ Fsek::Application.routes.draw do
 
     resources :songs, only: [:index, :show]
 
-    resources :users, only: :update
+    resources :users, only: :update do
+      patch :accept_terms
+    end
 
     resources :achievements, only: :index
 
