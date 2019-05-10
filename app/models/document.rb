@@ -10,7 +10,7 @@ class Document < ApplicationRecord
   # For caching pdf in form
   attr_accessor :pdf_cache
 
-  scope :publik, -> { where(public: true).order('category asc') }
+  scope :publik, -> { where(public: true) }
 
   def to_s
     title || id
