@@ -6,7 +6,6 @@ class DocumentsController < ApplicationController
     documents = set_documents(params[:category])
     grid = initialize_grid(documents, order: 'documents.updated_at',
                                       order_direction: 'desc')
-
     @documents = DocumentView.new(grid: grid,
                                   categories: Document.categories,
                                   current_category: params[:category])
