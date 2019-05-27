@@ -4,7 +4,7 @@ class Api::SongsController < Api::BaseController
   def index
     @songs = Song.order(title: :asc)
     render json: @songs,
-    each_serializer: Api::SongSerializer::Index # Returns id and
+    each_serializer: Api::SongSerializer::Index
   end
 
   def show
