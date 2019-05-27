@@ -4,13 +4,13 @@ class Api::SongsController < Api::BaseController
   def index
     @songs = Song.order(title: :asc)
     render json: @songs,
-    each_serializer: Api::SongSerializer::Index # Returns id and title
+    each_serializer: Api::SongSerializer::Index # Returns id and
   end
 
   def show
     @song = Song.find(params[:id])
     Song.increment_counter(:visits, @song)
     render json: @song,
-    serializer: Api::SongSerializer::Show # Returns all relevant fields
+    serializer: Api::SongSerializer::Show
   end
 end
