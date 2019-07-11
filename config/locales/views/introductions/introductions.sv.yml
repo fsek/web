@@ -31,10 +31,20 @@ sv:
       contact_us: kontakta oss
       dance: Nolledans
       foset: föset
-      info: Välkommen till Expedition Atlantis, en nollning på djupet på F-sektionen. Här hittar du all information som rör nollningen för studenter inom programmen teknisk fysik, teknisk matematik och teknisk nanovetenskap. Som blivande student på dessa program är du varmt välkommen till oss i höst.
-      info2: Innan ditt hälsningsanförande den 27 augusti rekommenderar vi att du kollar igenom %{checklist} som steg för steg tar dig igenom saker du bör ha förberett. Om du undrar vad nollningen är kan du läsa mer om det %{more_info}.
-      info3: Den här sidan kommer under sommaren och nollningen att kontinuerligt uppdateras med viktig och rolig information, så se till att bokmärka den och komma tillbaks hit innan allt drar igång. Vi som arrangerar nollningen heter %{foset}, har du frågor så tveka inte att %{contact}, vi har svar på det mesta!
-      info4: Vi ser fram emot att träffa dig och välkomna dig till LTH och F-sektionen!
+      info: |
+        Välkommen till F-sektionen och årets nollning: En Apokalyptisk nollning – Vid Ryttarnas Sida. Här hittar du all information du behöver om nollningen för de som börjar programmen teknisk fysik, teknisk matematik och teknisk nanovetenskap. Som blivande student på något av dessa program i höst är du varmt välkommen till oss!
+
+        Innan hälsningsanförandet den 26 augusti rekommenderar vi att du läser igenom %{checklist} som steg för steg tar dig igenom vad du bör ha förberett. Dessutom kan det vara bra att hålla koll på följande:
+        - Denna sidan uppdateras efter hand under sommaren, bokmärk den och kika in ibland så du inte missar något.
+        - F-sektionen har en facebook-sida som heter ”F-sektionen inom TLTH”, gå gärna in och gilla den.
+        - Invänta ett samtal från dina faddrar. Ett tag innan terminen börjar kommer de ringa upp dig och ge dig en del viktig information.
+        - Undrar du mer om vad nollningen är så hittar du mer info %{more_info}.
+
+        Vi som arrangerar nollningen är %{foset} och om du undrar något så tveka inte att kontakta oss! Du når oss antingen via vanliga %{contact} eller %{anonymous_contact} om du vill vara anonym.
+
+        Vi ser fram emot att få välkomna dig till F-sektionen och LTH!
+
+        Hjärtliga hälsningar från Föset
       keywords:
         - nollning
         - teknisk fysik

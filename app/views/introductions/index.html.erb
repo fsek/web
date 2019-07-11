@@ -10,18 +10,16 @@
     </small>
   </div>
 
-  <div class="col-md-12 paragraph"><%= t('.info') %></div>
-  <div class="col-md-12 paragraph">
-    <%= t('.info2',
+
+  <div class="col-md-12 paragraph margin-bottom-20">
+    <%= simple_format t('.info',
           checklist: link_to(t('.this_checklist'), '/sida/checklista'),
-          more_info: link_to(t('global.here'), '/sida/vadarnollningen')).html_safe %>
-  </div>
-  <div class="col-md-12 paragraph">
-    <%= t('.info3',
+          more_info: link_to(t('global.here'), '/sida/vadarnollningen'),
           contact: link_to(t('.contact_us'), @contact),
-          foset: link_to(t('.foset'), '/utskott/fos')).html_safe %>
+          foset: link_to(t('.foset'), '/utskott/fos'),
+          anonymous_contact: link_to(t('global.here'), 'https://contact.fsektionen.se/', target: '_blank')
+    ).html_safe %>
   </div>
-  <div class="col-md-12 paragraph margin-bottom-20"><%= t('.info4') %></div>
 
   <% if @news.present? %>
     <div class="col-md-12 news">
