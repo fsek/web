@@ -360,9 +360,9 @@ GEM
       roadie (~> 3.1)
     rollbar (2.15.5)
       multi_json
-    routing-filter (0.6.1)
-      actionpack (>= 4.2, < 5.2)
-      activesupport (>= 4.2, < 5.2)
+    routing-filter (0.6.2)
+      actionpack (>= 4.2, < 6)
+      activesupport (>= 4.2, < 6)
     rpush (3.0.2)
       activesupport
       ansi
@@ -533,7 +533,7 @@ DEPENDENCIES
   redis (< 4)
   roadie-rails (~> 1.3)
   rollbar
-  routing-filter (~> 0.6.0)
+  routing-filter (~> 0.6.2)
   rpush
   rspec-example_steps
   rspec-rails
