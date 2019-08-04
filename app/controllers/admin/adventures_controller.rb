@@ -9,7 +9,6 @@ class Admin::AdventuresController < Admin::BaseController
   end
 
   def create
-
     if @adventure.save
       redirect_to admin_adventures_path, notice: alert_create(Adventure)
     else
@@ -24,31 +23,36 @@ class Admin::AdventuresController < Admin::BaseController
     if @adventure.update(adventure_params)
       redirect_to(admin_adventures_path, notice: alert_update(Adventure))
     else
-      render :edit, status: 422
+      redirect_to edit_admin_adventure_path(@adventure),
+                  alert: alert_errors(@adventure.errors.full_messages)
     end
   end
 
   def lock
     @adventure = Adventure.find(params[:adventure_id])
     if @adventure.adventure_missions.update_all(locked: true)
-      redirect_to admin_adventure_adventure_missions_path, notice: { text: t('.success'), type: 'success' }
+      redirect_to admin_adventure_adventure_missions_path, notice: alert_success(t('.success'))
     else
-      redirect_to admin_adventure_adventure_missions_path, notice: { text: t('.failed'), type: 'danger' }
+      redirect_to admin_adventure_adventure_missions_path, alert: alert_danger(t('.fail'))
     end
   end
 
   def unlock
     @adventure = Adventure.find(params[:adventure_id])
     if @adventure.adventure_missions.update_all(locked: false)
-      redirect_to admin_adventure_adventure_missions_path, notice: { text: t('.success'), type: 'success' }
+      redirect_to admin_adventure_adventure_missions_path, notice: alert_success(t('.success'))
     else
-      redirect_to admin_adventure_adventure_missions_path, notice: { text: t('.failed'), type: 'danger' }
+      redirect_to admin_adventure_adventure_missions_path, notice: alert_danger(t('.fail'))
     end
   end
 
   def destroy
-    @adventure.destroy!
-    redirect_to(admin_adventures_path, notice: alert_destroy(Adventure))
+    if @adventure.destroy
+      redirect_to(admin_adventures_path, notice: alert_destroy(Adventure))
+    else
+      redirect_to edit_admin_adventure_path(@adventure),
+                  alert: alert_errors(@adventure.errors.full_messages)
+    end
   end
 
   private

@@ -14,35 +14,34 @@ class Admin::AdventureMissionsController < Admin::BaseController
 
   def create
     @adventure_mission = AdventureMission.new(adventure_mission_params)
-
-    AdventureMissionService.shift_index_on_create(@adventure, adventure_mission_params[:index].to_i)
-
     @adventure_mission.adventure = @adventure
 
     if @adventure_mission.save!
-      redirect_to admin_adventure_adventure_missions_path(@adventure), notice: alert_create(Adventure)
+      AdventureMissionService.shift_index_on_create(@adventure, adventure_mission_params[:index].to_i)
+      redirect_to admin_adventure_adventure_missions_path(@adventure), notice: alert_create(AdventureMission)
     else
       render :new, status: 422
     end
   end
 
   def update
-    AdventureMissionService.shift_index_on_update(@adventure, @adventure_mission.index, adventure_mission_params[:index].to_i)
-
     if @adventure_mission.update(adventure_mission_params)
-      redirect_to(admin_adventure_adventure_missions_path(@adventure), notice: alert_update(Adventure))
+      AdventureMissionService.shift_index_on_update(@adventure,
+                                                    @adventure_mission.index,
+                                                    adventure_mission_params[:index].to_i)
+      redirect_to admin_adventure_adventure_missions_path(@adventure), notice: alert_update(AdventureMission)
     else
       render :edit, status: 422
     end
   end
 
   def destroy
-    AdventureMissionService.shift_index_on_destroy(@adventure, @adventure_mission.index.to_i)
-
-    if @adventure_mission.destroy!
-      redirect_to(admin_adventure_adventure_missions_path(@adventure), notice: alert_destroy(Adventure))
+    if @adventure_mission.destroy
+      AdventureMissionService.shift_index_on_destroy(@adventure, @adventure_mission.index.to_i)
+      redirect_to admin_adventure_adventure_missions_path(@adventure), notice: alert_destroy(AdventureMission)
     else
-      render :edit, status: 422
+      redirect_to edit_admin_adventure_adventure_mission_path(@adventure, @adventure_mission),
+                  alert: alert_errors(@adventure_mission.errors.full_messages)
     end
   end
 

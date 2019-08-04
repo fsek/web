@@ -1,7 +1,5 @@
 class AdventureMissionsController < ApplicationController
-  before_action :load_permissions
-  load_and_authorize_resource :adventure
-  load_and_authorize_resource :adventure_mission, through: :adventure
+  load_permissions_and_authorize_resource
 
   def show
     @group = current_user.groups.regular.last

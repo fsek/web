@@ -11,12 +11,11 @@ class AdventureMissionGroupsController < ApplicationController
     @adventure_mission_group.group = @group
     @adventure_mission = AdventureMission.find(adventure_mission_group_params[:adventure_mission_id])
 
-    if @adventure_mission.locked?
-      render :new, status: 422, notice: t('.locked')
-    elsif @adventure_mission_group.save
-      redirect_to adventure_adventure_mission_path(@adventure_mission.adventure, @adventure_mission), notice: t('.success')
+    if @adventure_mission_group.save
+      redirect_to adventure_mission_path(@adventure_mission), notice: alert_success(t('.success'))
     else
-      render :new, status: 422, notice: t('.fail')
+      redirect_to new_adventure_mission_group_path(adventure_mission: @adventure_mission),
+                  alert: alert_errors(@adventure_mission_group.errors.full_messages)
     end
   end
 
@@ -26,24 +25,22 @@ class AdventureMissionGroupsController < ApplicationController
 
   def update
     @adventure_mission = AdventureMission.find(adventure_mission_group_params[:adventure_mission_id])
-    if @adventure_mission.locked?
-      render :edit, status: 422, notice: t('.locked')
-    elsif @adventure_mission_group.update(adventure_mission_group_params)
-      redirect_to adventure_adventure_mission_path(@adventure_mission.adventure, @adventure_mission), notice:  t('.success')
+    if @adventure_mission_group.update(adventure_mission_group_params)
+      redirect_to adventure_mission_path(@adventure_mission), notice: alert_success(t('.success'))
     else
-      render :edit, status: 422, notice: t('.fail')
+      redirect_to edit_adventure_mission_group_path(@adventure_mission_group),
+                  alert: alert_errors(@adventure_mission_group.errors.full_messages)
     end
   end
 
   def destroy
-    @adventure_mission = AdventureMission.find(params[:adventure_mission])
+    @adventure_mission = @adventure_mission_group.adventure_mission
 
-    if @adventure_mission.locked?
-      render :edit, status: 422, notice: t('.locked')
-    elsif @adventure_mission_group.destroy
-      redirect_to adventure_adventure_mission_path(@adventure_mission.adventure, @adventure_mission), notice:  t('.success')
+    if @adventure_mission_group.destroy
+      redirect_to adventure_mission_path(@adventure_mission), notice: alert_danger(t('.success'))
     else
-      redirect_to adventure_mission_path(@adventure_mission), notice: t('.fail')
+      redirect_to adventure_mission_path(@adventure_mission),
+                  alert: alert_errors(@adventure_mission_group.errors.full_messages)
     end
   end
 
@@ -52,5 +49,4 @@ class AdventureMissionGroupsController < ApplicationController
   def adventure_mission_group_params
     params.require(:adventure_mission_group).permit(:points, :adventure_mission_id)
   end
-
 end

@@ -8,22 +8,28 @@ class Admin::AdventureMissionGroupsController < Admin::BaseController
   end
 
   def edit
-    @group = Group.find(params[:group_id])
+    @group = @adventure_mission_group.group
   end
 
   def update
-    if @adventure_mission_group.update!(adventure_mission_group_params)
-      redirect_to admin_group_adventures_path(group: @group), notice: t('.success')
+    # No validation here since there are admins doing this
+    @adventure_mission_group.points = adventure_mission_group_params[:points]
+    if @adventure_mission_group.save(validate: false)
+      redirect_to admin_group_adventures_path(group_id: @adventure_mission_group.group.id),
+                  notice: alert_success(t('.success'))
     else
-      render :edit, alert: t('.failed')
+      redirect_to edit_admin_adventure_mission_group_path(group: @group),
+                  alert: alert_errors(@adventure_mission_group.errors.full_messages)
     end
   end
 
   def destroy
-    if @adventure_mission_group.destroy!
-      redirect_to admin_group_adventures_path(group: @group), notice: t('.success')
+    group = @adventure_mission_group.group
+    if @adventure_mission_group.delete
+      redirect_to admin_group_adventures_path(group_id: group.id), notice: alert_success(t('.success'))
     else
-      render :edit, alert: t('.failed')
+      redirect_to edit_admin_adventure_mission_group_path(group: @group),
+                  alert: alert_errors(@adventure_mission_group.errors.full_messages)
     end
   end
 

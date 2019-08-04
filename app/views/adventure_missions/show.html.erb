@@ -4,10 +4,23 @@
     <h1><%= title(@adventure_mission.title) %> - <%= @adventure_mission.index %></h1>
   </div>
 <ul class="list-group">
+<% if @adventure_mission.locked? %>
+    <li class="list-group-item list-group-item-danger">
+    <span class="badge"><%= icon('fa', 'lock') %></span>
+    <%= t('.locked') %>
+  </li>
+  <% else %>
+    <li class="list-group-item list-group-item-success">
+    <span class="badge"><%= icon('fa', 'lock-open') %></span>
+    <%= t('.not_locked') %>
+  <% end %>
+
   <li class="list-group-item">
     <span class="badge"><%= @adventure_mission.max_points %></span>
     <%= AdventureMission.human_attribute_name(:max_points) %>
   </li>
+
+
   <% if @adventure_mission_group.present? %>
     <% @class = 'success' %>
     <% @icon = 'check' %>
@@ -54,10 +67,12 @@
                                                   class: 'btn primary' %>
       <% end %>
     <% else %>
-      <% if @adventure_mission.variable_points? %>
-        <%= link_to t('.update_points'), edit_adventure_mission_group_path(@adventure_mission_group), method: 'get', class: 'btn primary' %>
+      <% if !@adventure_mission.locked? %>
+        <% if @adventure_mission.variable_points? %>
+          <%= link_to t('.update_points'), edit_adventure_mission_group_path(@adventure_mission_group), method: 'get', class: 'btn primary' %>
+        <% end %>
+        <%= link_to t('.reset_points'), adventure_mission_group_path(@adventure_mission_group), method: 'delete', class: 'btn danger' %>
       <% end %>
-      <%= link_to t('.reset_points'), adventure_mission_group_path(@adventure_mission_group, adventure_mission: @adventure_mission), method: 'delete', class: 'btn danger' %>
     <% end %>
     <% end %>
     <%= link_to(t('adventures.show.index'), adventures_path, class: 'btn secondary') %>

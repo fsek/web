@@ -12,14 +12,14 @@
   </li>
 
   <li class="list-group-item">
-    <%= link_to(admin_adventure_lock_path(adventure)) do %>
-      <%= icon('fas', 'lock', 'Lock all missions') %>
+    <%= link_to(admin_adventure_lock_path(adventure), method: :patch) do %>
+      <%= icon('fas', 'lock', t('.lock')) %>
     <% end %>
   </li>
 
   <li class="list-group-item">
-    <%= link_to(admin_adventure_unlock_path(adventure)) do %>
-      <%= icon('fas', 'lock-open', 'Unlock all missions') %>
+    <%= link_to(admin_adventure_unlock_path(adventure), method: :patch) do %>
+      <%= icon('fas', 'lock-open', t('.unlock')) %>
     <% end %>
   </li>
 </ul>

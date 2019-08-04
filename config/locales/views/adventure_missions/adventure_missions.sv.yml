@@ -13,3 +13,5 @@ sv:
       update_points: Uppdatera poäng
       reset_points: Återställ poäng
       no_group: Du måste vara med i en faddergrupp för att göra detta
+      locked: Äventyrsuppdraget är låst
+      not_locked: Äventyrsuppdraget går att slutföra

@@ -30,8 +30,8 @@ en:
       present: "must be blank"
       record_invalid: "Validation failed: %{errors}"
       restrict_dependent_destroy:
-        one: "Cannot delete record because a dependent %{record} exists"
-        other: ""
+        has_one: "Cannot delete record because a dependent %{record} exists"
+        has_many: ""
       required: "can't be empty"
       taken: "has already been taken"
       too_long: "is too long (maximum is %{count} characters)"

@@ -3,6 +3,11 @@ sv:
     attributes:
       adventure_mission_group:
         points: Poäng
+    models:
+      adventure_mission_group:
+        one: Avslutat äventyrsuppdrag
+        other: Avslutade äventyrsuppdrag
   model:
     adventure_mission_group:
       invalid_points: "0 < Poäng <= %{max_points}"
+      locked: Äventyrsuppdraget är låst

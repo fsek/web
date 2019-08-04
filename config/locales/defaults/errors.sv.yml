@@ -23,8 +23,8 @@ sv:
       present: '%{attribute} måste vara blankt'
       record_invalid: 'Ett fel uppstod: %{errors}'
       restrict_dependent_destroy:
-        one: Kan inte förinta objektet då det finns ett beroende %{record}
-        other: Kan inte förinta objektet då det finns beroende %{record}
+        has_one: Kan inte förinta objektet då det finns ett beroende %{record}
+        has_many: Kan inte förinta objektet då det finns beroende %{record}
       required: '%{attribute} måste anges'
       taken: '%{attribute} används redan'
       too_long: '%{attribute} är för lång (maximum är %{count} tecken)'

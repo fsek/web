@@ -18,3 +18,11 @@ sv:
         publish_results: Publicera resultaten
         groups: Faddergrupper
         index: Nummer
+
+    errors:
+      models:
+        adventure_mission:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                has_many: "Grupper har redan avslutat detta uppdrag. Uppdraget går därför inte att radera."

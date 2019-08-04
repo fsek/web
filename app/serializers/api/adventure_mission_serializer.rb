@@ -8,8 +8,4 @@ class Api::AdventureMissionSerializer < ActiveModel::Serializer
       object.finished?(@group)
     end
   end
-
-  class Api::AdventureMissionSerializer::Show < ActiveModel::Serializer
-    attributes :id, :title, :description, :max_points, :index, :locked
-  end
 end

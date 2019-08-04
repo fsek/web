@@ -1,17 +1,16 @@
 <div class="col-md-12 introduction">
   <h1><%= t('.update') %></h1>
    <ul class="list-group">
-        <li class="list-group-item">
-          <span class="badge"><%= @adventure_mission.max_points %></span>
-          <%= Adventure.human_attribute_name(:max_points) %>
-        </li>
-        <li class="list-group-item">
-          <%= simple_form_for(@adventure_mission_group) do |f| %>
-            <%= f.input :points %>
-            <%= f.input :adventure_mission_id, as: :hidden, input_html: { value: @adventure_mission.id }%>
-            <%= f.button :submit, value: t('.save') %>
-          <% end %>
-        </li>
-      </ul>
-  <p>
+      <li class="list-group-item">
+        <span class="badge"><%= @adventure_mission.max_points %></span>
+        <%= AdventureMission.human_attribute_name(:max_points) %>
+      </li>
+      <li class="list-group-item">
+        <%= simple_form_for(@adventure_mission_group) do |f| %>
+          <%= f.input :points %>
+          <%= f.input :adventure_mission_id, as: :hidden, input_html: { value: @adventure_mission.id }%>
+          <%= f.button :submit, value: t('.save') %>
+        <% end %>
+      </li>
+    </ul>
 </div>
