@@ -7,14 +7,29 @@ module Alerts
   end
 
   def alert_update(resource)
-    %(#{model_name(resource)} #{I18n.t('global_controller.success_update')}.)
+    { text: %(#{model_name(resource)} #{I18n.t('global_controller.success_update')}.),
+      type: 'success' }
   end
 
   def alert_create(resource)
-    %(#{model_name(resource)} #{I18n.t('global_controller.success_create')}.)
+    { text: %(#{model_name(resource)} #{I18n.t('global_controller.success_create')}.),
+      type: 'success' }
   end
 
   def alert_destroy(resource)
-    %(#{model_name(resource)} #{I18n.t('global_controller.success_destroy')}.)
+    { text: %(#{model_name(resource)} #{I18n.t('global_controller.success_destroy')}.),
+      type: 'danger' }
+  end
+
+  def alert_errors(errors)
+    { errors: errors, type: 'errors' }
+  end
+
+  def alert_success(message)
+    { text: message, type: 'success' }
+  end
+
+  def alert_danger(message)
+    { text: message, type: 'danger' }
   end
 end

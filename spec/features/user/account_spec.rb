@@ -8,9 +8,9 @@ RSpec.feature 'Update account', type: :feature do
 
     fill_in('user_student_id', with: %(tfy#{Time.zone.now.year - 2000}ggg))
     click_button('user-info-submit')
-    page.should have_css('div.alert.alert-info')
+    page.should have_css('div.alert.alert-success')
 
-    find('div.alert.alert-info').text.should include(I18n.t('global_controller.success_update'))
+    find('div.alert.alert-success').text.should include(I18n.t('global_controller.success_update'))
     page.should have_http_status(200)
 
     user.reload

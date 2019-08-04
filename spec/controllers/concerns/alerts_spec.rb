@@ -30,17 +30,20 @@ describe Alerts, type: :concern do
   describe 'alerts' do
     it '#alert_update' do
       alert.stub(:model_name) { 'Model' }
-      alert.alert_update(nil).should eq("Model #{I18n.t('global_controller.success_update')}.")
+      alert.alert_update(nil).should eq(text: "Model #{I18n.t('global_controller.success_update')}.",
+                                        type: 'success')
     end
 
     it '#alert_create' do
       alert.stub(:model_name) { 'Model' }
-      alert.alert_create(nil).should eq("Model #{I18n.t('global_controller.success_create')}.")
+      alert.alert_create(nil).should eq(text: "Model #{I18n.t('global_controller.success_create')}.",
+                                        type: 'success')
     end
 
     it '#alert_destroy' do
       alert.stub(:model_name) { 'Model' }
-      alert.alert_destroy(nil).should eq("Model #{I18n.t('global_controller.success_destroy')}.")
+      alert.alert_destroy(nil).should eq(text: "Model #{I18n.t('global_controller.success_destroy')}.",
+                                         type: 'danger')
     end
   end
 end
