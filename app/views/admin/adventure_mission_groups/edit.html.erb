@@ -9,12 +9,12 @@
           <%= AdventureMission.human_attribute_name(:max_points) %>
         </li>
         <li class="list-group-item">
-          <%= simple_form_for([:admin, @group, @adventure_mission_group]) do |f| %>
+          <%= simple_form_for([:admin, @adventure_mission_group]) do |f| %>
             <%= f.input :points %>
             <%= f.input :adventure_mission_id, as: :hidden, input_html: { value: @adventure_mission_group.adventure_mission.id }%>
             <%= f.button :submit, value: t('.save') %>
           <% end %>
         </li>
       </ul>
-    <%= link_to t('.destroy'), admin_group_adventure_mission_group_path(@group, @adventure_mission_group), method: :delete, data: { confirm: t('.confirm_destroy'), class: 'btn danger'}%>
+    <%= link_to t('.destroy'), admin_adventure_mission_group_path(@adventure_mission_group), method: :delete, data: { confirm: t('.confirm_destroy') } , class: 'btn danger' %>
 </div>

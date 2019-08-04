@@ -36,7 +36,7 @@ Fsek::Application.routes.draw do
     post 'anvandare/skapa' => 'registrations#create', as: :user_registration
     get 'anvandare/registrera' => 'devise/registrations#new', as: :new_user_registration
 
-    #sessions
+    # sessions
     get 'logga-in' => 'devise/sessions#new', as: :new_user_session
     get 'logga_in', to: redirect('logga-in'), status: 301
     post 'logga-in' => 'devise/sessions#create', as: :user_session
@@ -44,7 +44,7 @@ Fsek::Application.routes.draw do
   end
 
   # Scope to change urls to swedish
-  scope path_names: {new: 'ny', edit: 'redigera'} do
+  scope path_names: { new: 'ny', edit: 'redigera' } do
     resources :tools, path: :verktyg, only: [:show, :index]
 
     namespace :admin do
@@ -144,16 +144,11 @@ Fsek::Application.routes.draw do
     resources :adventures, path: :aventyr, only: [:index, :show] do
       get :archive, on: :collection, path: :arkiv
       get :highscore, on: :collection
-      resources :adventure_missions, only: [:index, :show], path: :aventyrsuppdrag
     end
 
-    resources :adventure_mission_groups
+    resources :adventure_missions, path: :aventyrsuppdrag
 
-    namespace :admin do
-      resources :groups do
-        resources :adventure_mission_groups
-      end
-    end
+    resources :adventure_mission_groups, path: :avslutade_aventyrsuppdrag
 
     namespace :admin do
       resources :introductions, path: :nollning do
@@ -161,10 +156,12 @@ Fsek::Application.routes.draw do
       end
 
       resources :adventures, path: :aventyr do
-        get :lock
-        get :unlock
+        patch :lock
+        patch :unlock
         resources :adventure_missions, path: :aventyrsuppdrag
       end
+
+      resources :adventure_mission_groups, path: :avslutade_aventyrsuppdrag
     end
 
     resources :councils, path: :utskott, only: [:index, :show]
@@ -203,7 +200,7 @@ Fsek::Application.routes.draw do
       post :mail, on: :member
     end
 
-    resources :calendars, path: :kalender,  only: :index do
+    resources :calendars, path: :kalender, only: :index do
       get :export, on: :collection
       get :introduction, on: :collection, path: :nollning
     end
@@ -239,7 +236,6 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :documents, path: :dokument, except: :show
     end
-
 
     namespace :admin do
       resources :elections, path: :val do
@@ -335,7 +331,7 @@ Fsek::Application.routes.draw do
       resources :meetings, path: :lokalbokning
     end
 
-    resources :songs, path: :sangbok, only: [:index, :show]  do
+    resources :songs, path: :sangbok, only: [:index, :show] do
       post :search, on: :collection
     end
 
@@ -344,7 +340,6 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
-
     end
   end
 

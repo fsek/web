@@ -36,11 +36,11 @@
 
                 g.column(name: AdventureMission.human_attribute_name(:max_points), attribute: 'max_points', filter: false, ordering: false)
                 g.column(name: t('.finished'), filter: true) do |a|
-                  if a.finished?(current_user.groups.regular.last)
-                    'Ja'
-                  else
-                    'Nej'
-                  end
+                  if a.finished?(current_user.groups.regular.last) then t('global.yes') else t('global.no') end
+                end
+
+                g.column(name: AdventureMission.human_attribute_name(:locked), filter: true) do |a|
+                  if a.locked? then t('global.yes') else t('global.no') end
                 end
 
                 g.column(name: t('.points'), filter: false) do |a|
@@ -48,7 +48,7 @@
                 end
 
                 g.column(name: '', filter: false) do |a|
-                  link_to t('.read_more'), adventure_adventure_mission_path(@adventure, a)
+                  link_to t('.read_more'), adventure_mission_path(a)
                 end
               end -%>
           </div>

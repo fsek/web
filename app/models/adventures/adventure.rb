@@ -1,15 +1,15 @@
 class Adventure < ApplicationRecord
   acts_as_paranoid
 
-  translates(:title, :content)
-  globalize_accessors(locales: [:en, :sv], attributes: [:title, :content])
-
   belongs_to :introduction, required: true
 
-  has_many :adventure_missions, dependent: :destroy, inverse_of: :adventure
+  has_many :adventure_missions, dependent: :restrict_with_error, inverse_of: :adventure
   has_many :adventure_mission_groups, through: :adventure_missions
 
   accepts_nested_attributes_for :adventure_missions, reject_if: :all_blank, allow_destroy: true
+
+  translates :title, :content
+  globalize_accessors locales: [:en, :sv], attributes: [:title, :content]
 
   validates :title_sv, :start_date, :end_date, :introduction_id, presence: true
 
@@ -24,7 +24,7 @@ class Adventure < ApplicationRecord
 
   def week_number
     # Just making sure the dates don't extend into another week
-    (end_date-3.days).strftime("%U").to_i
+    (end_date - 3.days).strftime('%U').to_i
   end
 
   def self.can_show?(user)

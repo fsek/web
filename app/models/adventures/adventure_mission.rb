@@ -1,6 +1,6 @@
 class AdventureMission < ApplicationRecord
   belongs_to :adventure, required: true
-  has_many :adventure_mission_groups, dependent: :destroy
+  has_many :adventure_mission_groups, dependent: :restrict_with_error
   has_many :groups, through: :adventure_mission_groups
 
   translates :title, :description

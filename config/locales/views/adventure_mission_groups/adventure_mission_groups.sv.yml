@@ -17,3 +17,4 @@ sv:
     destroy:
       success: Uppdrag återställt
       fail: Kunde inte återställa uppdrag
+      locked: Du kan inte återställa poängen då uppdraget är låst

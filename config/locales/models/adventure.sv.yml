@@ -16,3 +16,11 @@ sv:
         end_date: Slutar
         publish_results: Publicera resultaten
         groups: Faddergrupper
+
+    errors:
+      models:
+        adventure:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                has_many: "Detta äventyr har tillhörande uppdrag och kan därför inte raderas. Radera uppdragen först."

@@ -2,11 +2,6 @@ class Api::AdventureMissionsController < Api::BaseController
   load_permissions_and_authorize_resource
   rescue_from ActiveRecord::RecordNotUnique, with: :notify_not_unique
 
-  def show
-    @adventure_mission = AdventureMission.find(params[:id])
-    render json: @adventure_mission, serializer: Api::AdventureSerializer::Show
-  end
-
   def finish_adventure_mission
     adventure_mission = AdventureMission.find(params[:adventure_mission_id])
 
@@ -17,9 +12,10 @@ class Api::AdventureMissionsController < Api::BaseController
     if adventure_mission.locked?
       render json: { error: 'Too late, the mission is locked..' }, status: 422 and return
     elsif points > adventure_mission.max_points
-      render json: { error: "You can't get more than max points which is: #{adventure_mission.max_points}"}, status: 422 and return
-    elsif points == 0
-      render json: { error: 'You can\'t get 0 points'}, status: 422 and return
+      render json: { error: "You can't get more than max points which is: #{adventure_mission.max_points}" },
+             status: 422 and return
+    elsif points.zero?
+      render json: { error: 'You can\'t get 0 points' }, status: 422 and return
     end
 
     # Doing both server and database auth to stop as soon as possible
@@ -29,9 +25,9 @@ class Api::AdventureMissionsController < Api::BaseController
 
     # <finished> here is currently serving the exact same purpose as <created_at>
     adventure_mission_group = AdventureMissionGroup.new(adventure_mission: adventure_mission,
-                                                         group: group,
-                                                         points: points,
-                                                         finished: Time.now)
+                                                        group: group,
+                                                        points: points,
+                                                        finished: Time.now)
 
     if adventure_mission_group.save
       render json: :ok, status: 200
