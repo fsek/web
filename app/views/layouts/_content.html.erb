@@ -1,16 +1,37 @@
 <div class="container content">
   <% if notice %>
-    <div class="alert alert-info">
+    <% notice_type = 'info' %>
+    <% notice_text = '' %>
+    <% if notice.is_a? Hash %>
+      <% notice_type = notice.key?('type') || notice.key?(:type) ? notice['type'] || notice[:type] : 'info' %>
+      <% notice_text = notice['text'] || notice[:text] %>
+    <% else %>
+      <% notice_text = notice %>
+    <% end %>
+
+    <div class="alert alert-<%= notice_type %>">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= notice %>
+      <%= notice_text %>
     </div>
   <% end %>
 
   <% if alert %>
-    <div class="alert alert-danger fade-in">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong><%= t('.error') %> </strong> <%= alert %>
-    </div>
+
+    <% if alert['type'] == 'errors' %>
+        <div class="alert alert-danger">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+          <% for error in alert['errors'] %>
+            <strong><%= t('.error') %> </strong> <%= error %> <br>
+
+          <% end %>
+        </div>
+    <% else %>
+      <div class="alert alert-danger fade-in">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong><%= t('.error') %> </strong> <%= alert %>
+      </div>
+    <% end %>
   <% end %>
 
   <%= yield %>
