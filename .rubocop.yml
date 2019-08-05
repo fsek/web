@@ -49,5 +49,8 @@ Metrics/LineLength:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-  Style/FrozenStringLiteralComment:
-    EnforcedStyle: never
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/AndOr:
+  EnforcedStyle: conditionals
