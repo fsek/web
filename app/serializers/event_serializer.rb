@@ -8,6 +8,7 @@ class EventSerializer < ActiveModel::Serializer
   attribute(:recurring) { false }
   attribute(:url) { Rails.application.routes.url_helpers.event_path(object.id) }
   attribute(:textColor) { 'black' }
+  attribute(:dot)
   has_one :event_signup
 
   has_one :event_user do

@@ -360,6 +360,7 @@ Fsek::Application.routes.draw do
 
     resources :events, only: [:index, :show] do
       get :scroll, on: :collection
+      get :matrix, on: :collection
       resources :event_users, only: [:create, :destroy]
     end
 
