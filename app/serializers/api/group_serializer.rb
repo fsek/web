@@ -1,5 +1,5 @@
 class Api::GroupSerializer < ActiveModel::Serializer
-  attributes(:id, :name)
+  attributes(:id, :name, :group_type)
 
   has_many(:messages) do
     object.messages.includes(:user).by_latest.limit(3)

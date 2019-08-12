@@ -30,7 +30,7 @@
     <h4><%= t('.groups') %></h4>
   </div>
   <%= f.input :group_types, input_html: {class: 'select2', multiple: true},
-                            collection: group_type_collection,
+                            collection: group_type_event_collection,
                             include_hidden: false %>
   <%= f.button :submit %>
   <% if event.persisted? && signup.try(:persisted?) %>
