@@ -61,7 +61,7 @@
   }
 
   &.matrix-container {
-    background-color: #475a6c;
+    background-color: $light-gray;
     // A bit hacky, but does the job
     flex: 2147483647;
     margin-top: -40px;

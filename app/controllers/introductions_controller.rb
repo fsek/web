@@ -22,6 +22,8 @@ class IntroductionsController < ApplicationController
   end
 
   def matrix
+    @locale = I18n.locale
+    @matrix_img = "matrix_#{@locale}.png"
   end
 
   def dynamic_matrix
