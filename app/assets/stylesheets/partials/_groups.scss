@@ -26,3 +26,9 @@
     }
   }
 }
+
+.new_message textarea.disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+  pointer-events: none;
+}

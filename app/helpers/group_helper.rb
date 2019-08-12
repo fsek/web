@@ -35,15 +35,24 @@ module GroupHelper
         Group.human_attribute_name('regular')
       elsif group.mission?
         Group.human_attribute_name('mission')
+      elsif group.info?
+        Group.human_attribute_name('info')
       else
         Group.human_attribute_name('other')
       end
     end
   end
 
+  def group_type_event_collection
+    [[Group.human_attribute_name('regular'), Group::REGULAR],
+     [Group.human_attribute_name('mission'), Group::MISSION],
+     [Group.human_attribute_name('other'), Group::OTHER]]
+  end
+
   def group_type_collection
     [[Group.human_attribute_name('regular'), Group::REGULAR],
      [Group.human_attribute_name('mission'), Group::MISSION],
+     [Group.human_attribute_name('info'), Group::INFO],
      [Group.human_attribute_name('other'), Group::OTHER]]
   end
 end

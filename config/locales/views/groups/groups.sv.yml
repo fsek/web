@@ -9,6 +9,8 @@ sv:
       messages: Meddelanden
       all_messages: Alla meddelanden
       new_message: Nytt meddelande
+      send: Skicka
+      read_only: Chatten är skrivskyddad
 
     edit:
       back: Tillbaka

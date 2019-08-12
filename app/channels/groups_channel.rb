@@ -14,7 +14,7 @@ class GroupsChannel < ApplicationCable::Channel
 
   def send_message(data)
     group = Group.find(data['group_id'])
-    return unless ability.can?(:show, group)
+    return unless ability.can?(:show, group) && !group.info?
 
     params = { content: data['content'] }
     MessageService.create_message(params, [group], current_user)

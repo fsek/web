@@ -1,6 +1,14 @@
 <div>
-  <%= form_for([group, message], url: '#') do |f| %>
-    <%= f.text_area :content, input_html: {rows: 2}, class: 'form-control margin-bottom-10' %>
-    <%= f.submit 'Skicka', class: 'btn primary' %>
+  <% if @group.info? %>
+    <%= form_for([group, message], url: '#') do |f| %>
+      <%= f.text_area :content, input_html: {rows: 2}, value: I18n.t('groups.show.read_only'), class: 'form-control margin-bottom-10 disabled' %>
+      <%= f.submit I18n.t('groups.show.send'), class: 'btn primary disabled' %>
+    <% end %>
+  <% else %>
+    <%= form_for([group, message], url: '#') do |f| %>
+      <%= f.text_area :content, input_html: {rows: 2}, class: 'form-control margin-bottom-10' %>
+      <%= f.submit I18n.t('groups.show.send'), class: 'btn primary' %>
+    <% end %>
   <% end %>
+
 </div>

@@ -55,7 +55,7 @@ class EventSignup < ApplicationRecord
   end
 
   def selectable_groups
-    group_types.present? ? Group.where(group_type: group_types) : Group.all
+    group_types.present? ? Group.where(group_type: group_types) : Group.event_groups
   end
 
   # Loops through options by order and checks if user fits
