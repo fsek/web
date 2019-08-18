@@ -5,9 +5,10 @@ sv:
         title: Kategorier
         edit: Redigera
         new: Ny kategori
+        all_songs: Sångbok
 
       edit:
-        confirm_remove: Vill du verkligen förinta kategorin?
+        confirm_destroy: Vill du verkligen förinta kategorin?
         delete: Radera kategori
         all_song_categories: Alla kategorier
         title: Redigera kategori

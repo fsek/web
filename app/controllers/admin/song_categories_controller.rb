@@ -14,9 +14,9 @@ class Admin::SongCategoriesController < Admin::BaseController
   end
 
   def create
-    @song_category = SongCategory.new(:name)
+    @song_category = SongCategory.new(song_category_params)
     if @song_category.save
-      redirect_to admin_song_category_path, notice: alert_create(SongCategory)
+      redirect_to admin_song_categories_path, notice: alert_create(SongCategory)
     else
       render :new, status: 422
     end
@@ -24,8 +24,8 @@ class Admin::SongCategoriesController < Admin::BaseController
 
   def update
     @song_category = SongCategory.find(params[:id])
-    if @song_category.update(:name)
-      redirect_to admin_song_category_path, notice: alert_update(SongCategory)
+    if @song_category.update(song_category_params)
+      redirect_to admin_song_categories_path, notice: alert_update(SongCategory)
     else
       render :edit, status: 422
     end
@@ -35,6 +35,12 @@ class Admin::SongCategoriesController < Admin::BaseController
   def destroy
     song_category = SongCategory.find(params[:id])
     song_category.destroy!
-    redirect_to admin_songs_path, notice: alert_destroy(SongCategory)
+    redirect_to admin_song_categories_path, notice: alert_destroy(SongCategory)
+  end
+
+  private
+
+  def song_category_params
+    params.require(:song_category).permit(:name)
   end
 end

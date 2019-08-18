@@ -4,11 +4,11 @@ sv:
       song:
         one: Sång
         other: Sånger
-        
+
     attributes:
       song:
         title: Titel
-        category: Kategori
+        song_category: Kategori
         content: Innehåll
         author: Författare
         melody: Melodi

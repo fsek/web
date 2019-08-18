@@ -4,9 +4,6 @@
 
 <div class="col-md-2 col-sm-12">
   <%= link_to(t('.new'), new_admin_song_path, class: 'btn primary') %>
-</div>
-
-<div class="col-md-2 col-sm-12">
   <%= link_to(t('.song_categories'), admin_song_categories_path, class: 'btn primary') %>
 </div>
 
@@ -16,6 +13,6 @@
       link_to(song, edit_admin_song_path(song))
     end
     g.column(name: Song.human_attribute_name(:author), attribute: 'author')
-    g.column(name: Song.human_attribute_name(:category), attribute: 'category')
+    g.column(name: Song.human_attribute_name(:category), attribute: 'name', assoc: :song_category, custom_filter: :auto)
   end -%>
 </div>
