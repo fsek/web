@@ -333,11 +333,18 @@ Fsek::Application.routes.draw do
 
     resources :songs, path: :sangbok, only: [:index, :show] do
       post :search, on: :collection
+      resources :song_categories
+    end
+
+    resources :song_categories, path: :sangkategorier, only: [:index, :show]  do
+      post :search, on: :collection
     end
 
     namespace :admin do
-      resources :songs, path: :sangbok
-      resources :song_categories, path: :sangkategorier #only [:index, :edit, :show]
+      resources :songs, path: :sangbok do
+        resources :song_categories
+      end
+      resources :song_categories, path: :sangkategorier
     end
   end
 

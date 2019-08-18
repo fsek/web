@@ -2,7 +2,7 @@
   <%= f.input :title %>
   <%= f.input :author %>
   <%= f.input :melody %>
-  <%= f.input :category %>
+  <%= f.association :song_category, include_blank: false %>
   <%= f.input :content, as: :pagedown, input_html: {preview: true, rows: 10} %>
   <%= f.button :submit%>
 <% end %>

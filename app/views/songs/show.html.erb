@@ -29,4 +29,8 @@
   <div class="song-content">
     <%= markdown(@song.content) %>
   </div>
+
+  <div>
+  <%= link_to(t('.all_songs'), songs_path, class: 'btn primary') %>
+  </div>
 </div>
