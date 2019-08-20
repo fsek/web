@@ -31,7 +31,6 @@ class Admin::SongCategoriesController < Admin::BaseController
     end
   end
 
-#One can only destroy if song_category has no songs
   def destroy
     song_category = SongCategory.find(params[:id])
     song_category.destroy!

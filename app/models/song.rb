@@ -1,5 +1,5 @@
 class Song < ApplicationRecord
-  belongs_to :song_category
+  belongs_to :song_category # optional: false (to be added)
 
   def to_s
     title

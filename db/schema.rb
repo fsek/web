@@ -376,6 +376,7 @@ ActiveRecord::Schema.define(version: 20190410192700) do
     t.string "group_types"
     t.datetime "sent_reminder"
     t.datetime "sent_position"
+    t.datetime "sent_closing"
     t.datetime "sent_open"
     t.index ["deleted_at"], name: "index_event_signups_on_deleted_at"
     t.index ["event_id"], name: "index_event_signups_on_event_id"
@@ -945,6 +946,7 @@ ActiveRecord::Schema.define(version: 20190410192700) do
     t.integer "notifications_count", default: 0, null: false
     t.boolean "notify_event_users", default: true, null: false
     t.boolean "notify_messages", default: true, null: false
+    t.boolean "notify_event_closing", default: false, null: false
     t.integer "terms_version", default: 0, null: false
     t.boolean "notify_event_open", default: false, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

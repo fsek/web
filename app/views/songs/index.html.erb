@@ -8,7 +8,7 @@
       link_to(song, song_path(song))
     end
     g.column(name: Song.human_attribute_name(:author), attribute: 'author')
-    g.column(name: Song.human_attribute_name(:category), attribute: 'name', assoc: :song_category, custom_filter: :auto)
+    g.column(name: Song.human_attribute_name(:song_category), attribute: 'name', assoc: :song_category, custom_filter: :auto)
 
     if can_administrate?(:index, Song)
       g.column(name: Song.human_attribute_name(:visits), attribute: 'visits', filter: false)
