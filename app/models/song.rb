@@ -1,11 +1,10 @@
 class Song < ApplicationRecord
-  belongs_to :song_category # optional: false (to be added)
+  belongs_to :song_category, optional: false
+  validates :title, :content, presence: true
 
   def to_s
     title
   end
-
-  validates :title, :content, presence: true
 
   def self.title_search(title)
     if title.present?

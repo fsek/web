@@ -4,13 +4,11 @@
   <div class="headline">
     <h1><%= @song %></h1>
   </div>
-  <% if @song.category.present? %>
-    <span class="song-attr">
-      <span class="song-attr-name">
-        <%= Song.human_attribute_name(:category) %>:
-      </span> <%= @song.category %>
-    </span>
-  <% end %>
+  <span class="song-attr">
+    <span class="song-attr-name">
+      <%= Song.human_attribute_name(:song_category) %>:
+    </span> <%= @song.song_category %>
+  </span>
   <% if @song.author.present? %>
     <span class="song-attr">
       <span class="song-attr-name">
