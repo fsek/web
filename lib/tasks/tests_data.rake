@@ -155,6 +155,7 @@ namespace :db do
     # Song Categories
     absurda_visor = SongCategory.find_or_create_by!(name: 'Absurda Visor')
     teknologvisor = SongCategory.find_or_create_by!(name: 'Teknologvisor')
+    sektionsramsor = SongCategory.find_or_create_by!(name: 'Sektionsramsor', slug: 'chants')
 
     # Songs
     Song.find_or_create_by!(title: 'Hello World',
@@ -166,6 +167,11 @@ namespace :db do
                             author: 'Gurra',
                             content: 'Sverige är Sverige och Sverige är bra!',
                             song_category: teknologvisor)
+
+    Song.find_or_create_by!(title: 'F-sek är bäst',
+                            author: 'Stefan',
+                            content: 'F-sektionen, tjalalalala!!!',
+                            song_category: sektionsramsor)
 
     # Notifications
     Rpush::Gcm::App.find_or_create_by!(name: :firebase, auth_key: :test)

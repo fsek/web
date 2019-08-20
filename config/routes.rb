@@ -333,17 +333,10 @@ Fsek::Application.routes.draw do
 
     resources :songs, path: :sangbok, only: [:index, :show] do
       post :search, on: :collection
-      resources :song_categories
-    end
-
-    resources :song_categories, path: :sangkategorier, only: [:index, :show] do
-      post :search, on: :collection
     end
 
     namespace :admin do
-      resources :songs, path: :sangbok do
-        resources :song_categories
-      end
+      resources :songs, path: :sangbok
       resources :song_categories, path: :sangkategorier
     end
   end
@@ -389,7 +382,9 @@ Fsek::Application.routes.draw do
     resources :news, only: :index
     resources :start, only: :index
 
-    resources :songs, only: [:index, :show]
+    resources :songs, only: [:index, :show] do
+      get :chants, on: :collection
+    end
 
     resources :users, only: :update do
       patch :accept_terms

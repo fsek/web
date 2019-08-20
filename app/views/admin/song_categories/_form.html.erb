@@ -1,4 +1,5 @@
 <%= simple_form_for([:admin, song_category]) do |f| %>
   <%= f.input :name %>
+  <%= f.input :slug, disabled: true, hint: t('.disabled') %>
   <%= f.button :submit %>
 <% end %>

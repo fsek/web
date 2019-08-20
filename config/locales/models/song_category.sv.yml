@@ -8,3 +8,4 @@ sv:
     attributes:
       song_category:
         name: Kategorinamn
+        slug: Slug

@@ -6,7 +6,7 @@ class Admin::SongsController < Admin::BaseController
   end
 
   def index
-    @songs = initialize_grid(Song.all)
+    @songs = initialize_grid(Song.all, order: 'title', order_direction: 'asc')
   end
 
   def edit

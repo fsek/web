@@ -16,3 +16,6 @@ sv:
       new:
         all_song_categories: Alla kategorier
         title: Ny kategori
+
+      form:
+        disabled: Du kan inte ändra alias då det endast används av spindelmännen.
