@@ -13,6 +13,6 @@
       link_to(song, edit_admin_song_path(song))
     end
     g.column(name: Song.human_attribute_name(:author), attribute: 'author')
-    g.column(name: Song.human_attribute_name(:category), attribute: 'name', assoc: :song_category, custom_filter: :auto)
+    g.column(name: Song.human_attribute_name(:song_category), attribute: 'name', assoc: :song_category, custom_filter: :auto)
   end -%>
 </div>

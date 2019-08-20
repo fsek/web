@@ -336,7 +336,7 @@ Fsek::Application.routes.draw do
       resources :song_categories
     end
 
-    resources :song_categories, path: :sangkategorier, only: [:index, :show]  do
+    resources :song_categories, path: :sangkategorier, only: [:index, :show] do
       post :search, on: :collection
     end
 

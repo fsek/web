@@ -159,13 +159,11 @@ namespace :db do
     # Songs
     Song.find_or_create_by!(title: 'Hello World',
                             author: 'Edwin',
-                            category: 'Absurda Visor',
                             content: 'Det var en gång en liten Värld som utplånades! Skål!',
                             song_category: absurda_visor)
 
     Song.find_or_create_by!(title: 'Hello Sweden',
                             author: 'Gurra',
-                            category: 'Teknologvisor',
                             content: 'Sverige är Sverige och Sverige är bra!',
                             song_category: teknologvisor)
 

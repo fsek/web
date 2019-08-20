@@ -31,13 +31,15 @@ class Admin::SongsController < Admin::BaseController
     end
   end
 
-  def song_params
-    params.require(:song).permit(:title, :author, :melody, :song_category_id, :content)
-  end
-
   def destroy
     song = Song.find(params[:id])
     song.destroy!
     redirect_to admin_songs_path, notice: alert_destroy(Song)
+  end
+
+  private
+
+  def song_params
+    params.require(:song).permit(:title, :author, :melody, :song_category_id, :content)
   end
 end
