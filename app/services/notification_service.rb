@@ -64,7 +64,7 @@ class NotificationService
   end
 
   def self.notify_open(event)
-    if event.signup.opens <= Time.zone.now && event.event_signup.sent_open.nil?
+    if event.signup.opens <= Time.zone.now && event.signup.closes > Time.zone.now && event.event_signup.sent_open.nil?
       # Signup on creation already open
       EventSignupOpenReminderWorker.perform_at(Time.zone.now + 10.minutes, event.signup.id)
     elsif event.signup.opens > Time.zone.now && event.event_signup.sent_open.nil?

@@ -6,7 +6,7 @@ class Api::AdventureSerializer < ActiveModel::Serializer
               'current_user': :current_user
             }
 
-    attributes :title, :week_number, :missions_finished, :adventure_missions
+    attributes :title, :week_number, :video, :missions_finished, :adventure_missions
 
     def adventure_missions
       object.adventure_missions.order(index: 'asc')
