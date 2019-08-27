@@ -24,7 +24,7 @@ class Adventure < ApplicationRecord
 
   def week_number
     # Just making sure the dates don't extend into another week
-    (end_date - 3.days).strftime('%U').to_i
+    (end_date - 3.days).strftime('%U').to_i + 1
   end
 
   def self.can_show?(user)

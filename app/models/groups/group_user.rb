@@ -6,11 +6,19 @@ class GroupUser < ApplicationRecord
   validates :user, uniqueness: { scope: :group }
 
   scope :novices, -> (introduction: Introduction.current) do
-    includes(:group).where(fadder: false, groups: { introduction_id: introduction })
+    includes(:group).where(fadder: false,
+                           groups: {
+                             introduction_id: introduction,
+                             group_type: [Group::REGULAR, Group::MISSION]
+                           })
   end
 
   scope :mentors, -> (introduction: Introduction.current) do
-    includes(:group).where(fadder: true, groups: { introduction_id: introduction })
+    includes(:group).where(fadder: true,
+                           groups: {
+                             introduction_id: introduction,
+                             group_type: [Group::REGULAR, Group::MISSION]
+                           })
   end
 
   def to_partial_path
