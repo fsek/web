@@ -12,11 +12,14 @@ class Adventure < ApplicationRecord
   globalize_accessors locales: [:en, :sv], attributes: [:title, :content]
 
   validates :title_sv, :start_date, :end_date, :introduction_id, presence: true
+  validate :date_validation
 
   scope :published, -> { where('start_date <= ?', Time.zone.now).order(start_date: :desc) }
   scope :published_asc, -> { where('start_date <= ?', Time.zone.now).order(start_date: :asc) }
 
   scope :published_results, -> { where(publish_results: true) }
+
+  after_create(:schedule_locking)
 
   def published?
     start_date < Time.zone.now
@@ -35,5 +38,17 @@ class Adventure < ApplicationRecord
 
   def to_s
     title
+  end
+
+  private
+
+  def schedule_locking
+    AdventureService.schedule_locking(self)
+  end
+
+  def date_validation
+    unless start_date.present? && end_date.present? && start_date < end_date
+      errors.add(:end_date, I18n.t('errors.messages.end_after_start'))
+    end
   end
 end
