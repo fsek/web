@@ -20,7 +20,9 @@ class Admin::AdventuresController < Admin::BaseController
   end
 
   def update
+    old_adventure = @adventure.dup
     if @adventure.update(adventure_params)
+      AdventureService.update_locking(old_adventure, @adventure)
       redirect_to(admin_adventures_path, notice: alert_update(Adventure))
     else
       redirect_to edit_admin_adventure_path(@adventure),
