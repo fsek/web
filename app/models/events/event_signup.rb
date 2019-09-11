@@ -61,7 +61,7 @@ class EventSignup < ApplicationRecord
   # Loops through options by order and checks if user fits
   def highest_type(user)
     (order - [CUSTOM]).each do |type|
-      if type == NOVICE && user.novice?
+      if type == NOVICE && user.novice? && !user.mentor?
         return NOVICE
       elsif type == MENTOR && user.mentor?
         return MENTOR
