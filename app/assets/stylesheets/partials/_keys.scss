@@ -1,0 +1,11 @@
+.key {
+  word-break: break-word;
+
+  .content {
+    margin-top: 20px;
+
+    span {
+      color: $fsek-orange;
+    }
+  }
+}

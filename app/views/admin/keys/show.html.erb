@@ -1,0 +1,13 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page key">
+    <div class="headline">
+      <h1><%= @key.name %></h1>
+    </div>
+    <div class="content">
+      <p> <span>Beskrivning:</span> <%= @key.description %> </p>
+      <p> <span>Totalt antal nycklar:</span> <%= @key.total %> </p>
+      <p> <span>Totalt antal lediga nycklar:</span> <%= @key.free_count %> </p>
+      <p> <span>Utlånad till:</span> <%= @key.users %> </p>
+    </div>
+    <%= link_to(t('.edit'), edit_admin_key_path(@key),
+                                 class: 'btn primary pull-left') %>
+</div>

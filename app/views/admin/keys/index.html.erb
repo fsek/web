@@ -1,0 +1,58 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h1>Nycklar</h1>
+  </div>
+
+  <div class="col-md-2 col-sm-12">
+    <%= link_to(t('.new_key'), new_admin_key_path, class: 'btn primary') %>
+  </div>
+
+  <div class="col-md-12">
+    <%= grid(@keys) do |g|
+      g.column(name: Key.human_attribute_name(:namn)) do |key|
+        link_to(key.name , admin_key_path(key))
+
+      end
+      g.column(name: Key.human_attribute_name(:antal)) do |key|
+        key.total
+      end
+
+      g.column(name: t('.free')) do |key|
+        key.free_count
+      end
+
+    end %>
+  </div>
+</div>
+
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class= "headline">
+    <h1>Utlånade nycklar</h1>
+  </div>
+  <div class="col-md-2 col-sm-12">
+    <%= link_to(t('.new_key_user'), setup_admin_keys_path, class: 'btn primary') %>
+  </div>
+  <div class="col-md-12">
+    <%= grid(@key_users) do |g|
+      g.column(name: t('.key')) do |key_user|
+        key_user.key
+      end
+
+      g.column(name: 'Mail') do |key_user|
+        key_user.user.email
+      end
+
+      g.column(name: t('.renter')) do |key_user|
+        key_user.user
+      end
+
+      g.column() do |key_user|
+         link_to(t('.destroy'), admin_key_destroy_key_user_path(key_user),
+                                     method: :delete,
+                                     url: {action: :destroy_key_user},
+                                     data: {confirm: t('.confirm_destroy_key_user')},
+                                     class: 'btn danger pull-right')
+      end
+    end %>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+sv:
+  activerecord:
+    models:
+      key_user: Utlåning

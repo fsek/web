@@ -1,0 +1,17 @@
+sv:
+  activerecord:
+    models:
+      key: Nyckel
+    attributes:
+      key:
+        total: Antal
+        description: Beskrivning
+        name: Namn
+        free_count: Antal lediga nycklar
+    errors:
+      models:
+        key:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                has_many: "Denna nyckel är utlånad och kan därför inte raderas. Radera utlåningen först."
