@@ -36,17 +36,17 @@ RSpec.describe EventSignup, type: :model do
       user.stub(:member?).and_return(true)
       event_signup.selectable_types(user).should eq([EventSignup::MEMBER,
                                                      EventSignup::CUSTOM])
+      
+      user.stub(:novice?).and_return(true)
+      event_signup.selectable_types(user).should eq([EventSignup::NOVICE,
+                                                     EventSignup::CUSTOM])
 
       user.stub(:mentor?).and_return(true)
       event_signup.selectable_types(user).should eq([EventSignup::MENTOR,
                                                      EventSignup::CUSTOM])
 
-      user.stub(:novice?).and_return(true)
-      event_signup.selectable_types(user).should eq([EventSignup::NOVICE,
-                                                     EventSignup::CUSTOM])
-
       event_signup.custom = nil
-      event_signup.selectable_types(user).should eq([EventSignup::NOVICE])
+      event_signup.selectable_types(user).should eq([EventSignup::MENTOR])
     end
 
     it 'returns nil if no suiting type' do
