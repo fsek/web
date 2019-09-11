@@ -1,0 +1,21 @@
+sv:
+  admin:
+    keys:
+      index:
+        destroy: Förinta
+        confirm_destroy: Vill du ta bort nyckeln?
+        confirm_destroy_key_user: Vill du ta bort utlåningen?
+        free: Antal lediga nycklar
+        key: Nyckel
+        new_key: Ny nyckel
+        new_key_user: Ny utlåning
+        renter: Lånare
+      show:
+        edit: Redigera
+      form:
+        destroy: Förinta
+        confirm_destroy: Vill du ta bort nyckeln?
+      new:
+        title: Ny nyckel
+      edit:
+        title: Redigera nyckel

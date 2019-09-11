@@ -1,0 +1,22 @@
+---
+en:
+  admin:
+    keys:
+      index:
+        destroy: Destroy
+        confirm_destroy_key_user: "Do you want to remove the renting?"
+        confirm_destroy: "Do you want to remove the key?"
+        free: "Number of free keys"
+        key: Key
+        new_key: "New key"
+        new_key_user: "New renting"
+        renter: Renter
+      show:
+        edit: Edit
+      form:
+        destroy: Destroy
+        confirm_destroy: "Do you want to remove the key?"
+      new:
+        title: "New key"
+      edit:
+        title: "Edit key"

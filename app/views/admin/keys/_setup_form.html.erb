@@ -1,0 +1,14 @@
+<%= simple_form_for(key_user, method: :post, url: {action: :setup_create}) do |f|%>
+    <%= f.input :user_id,label: "Lånare" , collection: User.by_firstname.confirmed,
+                            input_html: { class: 'select2' },
+                            include_blank: true,
+                            prompt: "Välj en person som nyckel ska lånas till",
+                            label_method: :print_email %>
+
+    <%= f.input :key_id, label: "Nyckel", collection: Key.free,
+                            input_html: { class: 'select2' },
+                            include_blank: false,
+                            prompt: "Välj en nyckel som ska lånas ut",
+                            label_method: :to_s_and_free %>
+    <%= f.button :submit %>
+<% end %>

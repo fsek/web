@@ -1,0 +1,16 @@
+<% if key.present? %>
+  <%= simple_form_for([:admin, key]) do |f|%>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :total, as: :integer %>
+    <% if key.persisted? %>
+        <%= link_to(t('.destroy'), admin_key_path(key),
+                                 method: :delete,
+                                 data: {confirm: t('.confirm_destroy')},
+                                 class: 'btn danger pull-right') %>
+    <% end %>
+    <%= f.button :submit %>
+
+
+  <% end %>
+<% end %>

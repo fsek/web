@@ -1,0 +1,5 @@
+---
+en:
+  activerecord:
+    models:
+      key_user: Renting

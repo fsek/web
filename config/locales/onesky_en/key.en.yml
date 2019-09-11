@@ -1,0 +1,10 @@
+---
+en:
+  activerecord:
+    models:
+      key: Key
+    attributes:
+      key:
+        total: Total
+        description: Description
+        name: Name

@@ -82,6 +82,14 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
+      resources :keys, path: :nycklar do
+        get :setup, as: :setup, on: :collection
+        post :setup_create, on: :collection
+        delete :destroy_key_user, action: :destroy_key_user
+      end
+    end
+
+    namespace :admin do
       get :cafe, path: :hilbertcafe, controller: :cafe, action: :index
       get :overview_cafe, controller: :cafe, action: :overview, path: 'hilbertcafe/oversikt'
 
