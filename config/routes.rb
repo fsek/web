@@ -400,7 +400,9 @@ Fsek::Application.routes.draw do
 
     resources :albums, only: :show
 
-    resource :fredmansky, only: [:create, :destroy]
+    resource :fredmansky, only: [:create, :destroy] do
+      patch :toggle
+    end
 
     resources :adventures, only: :index
 
