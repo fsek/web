@@ -35,6 +35,9 @@
       <li>
         <%= link_to(t('.sponsoring'), '#spons', data: {toggle: 'tab'}) %>
       </li>
+      <li>
+        <%= link_to(t('.farad'), '#farad', data: {toggle: 'tab'}) %>
+      </li>
     </ul>
     <div class="tab-content">
       <div class="tab-pane  fade in active" id="kvall">
@@ -76,6 +79,13 @@
       <div class='tab-pane fade in' id='spons'>
         <div class="col-md-12">
           <%= simple_format(t('.sponsoring_description')) %>
+        </div>
+      </div>
+      <div class='tab-pane fade in' id='farad'>
+        <div class="col-md-12">
+          <%= simple_format(t('.farad_first')) %>
+
+          <%= simple_format(auto_link(t('.farad_last')))%>
         </div>
       </div>
     </div>

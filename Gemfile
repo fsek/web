@@ -18,6 +18,7 @@ gem 'datetimepicker-rails', git: 'https://github.com/zpaulovics/datetimepicker-r
 gem 'devise'
 gem 'devise_token_auth'
 gem 'ejs'
+gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'fotoramajs'
 gem 'fullcalendar-rails'
