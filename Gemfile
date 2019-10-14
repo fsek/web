@@ -15,8 +15,8 @@ gem 'cookies_eu'
 gem 'datetimepicker-rails', git: 'https://github.com/zpaulovics/datetimepicker-rails',
                             branch: 'master',
                             submodules: true
-gem 'devise'
-gem 'devise_token_auth'
+gem 'devise', '~> 4.7.1'
+gem 'devise_token_auth', '~> 1.1.3'
 gem 'ejs'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'fotoramajs'
