@@ -2,6 +2,11 @@
 sv:
   static_pages:
     company_offer:
+      farad: FARAD
+      farad_description: |-
+          FARAD är vår arbetsmarknadsmässa som inträffar i januari. En mässplats innebär ett utmärkt tillfälle för er att mingla med studenter från alla årskurser under en heldag i Mattehuset. Vi anordnar även pi- och nano-FARAD vilket är två kvällsevenemang där ni som företag får chansen att pitcha ert företag specifikt för pi- eller nanostudenter, vilket följs utav mingel i form av exempelvis en pub. Vi kan även anordna andra evenemang i samband med mässan såsom lunchföreläsningar eller case-kvällar, det är bara att höra av sig!
+
+          Mer information finns på hemsidan www.farad.nu, eller via mail till farad@fsektionen.se.
       sittning: Sittning
       case_workshop: "Caselösning eller workshop"
       pub: Pub

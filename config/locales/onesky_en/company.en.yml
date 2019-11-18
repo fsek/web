@@ -2,20 +2,25 @@
 en:
   static_pages:
     company_offer:
+      farad: FARAD
+      farad_description: |-
+          FARAD is our career fair which occurs in January. This fair is an extraordinary opportunity for you to get in touch with all our students from first to fifth grade, during a day in Mattehuset. We also set up pi- and nano-FARAD which takes place during two different evenings, where you as a company get a chance to pitch yourselves in front of pi- or nano-students. This will be followed by some mingling and for example a pub. We can also organize other events during the FARAD-week, as for example lunch lectures or case evenings, just let us know what suits you best!
+
+          For more information, send an email to farad@fsektionen.se.
       sittning: Sittning
       case_workshop: "Case solving or workshop"
       pub: Pub
       sport_event: "Sport event"
       lecture: Lecture
-      description: "F-sektionen anordnar gärna kvällsevenemang, lunchföreläsningar och case-evenemang tillsammans med företag."
+      description: "The F-guild organizes evening events, lunch lectures and case events with companies."
       evening: "Evening events"
       evening_first: "Over the course of an evening you will have the opportunity to, in a calm and relaxed atmosphere, meet our students. This is an opportunity to give students an overall picture of the company and create a more personal connection with the students."
       evening_last: "We suggest you begin by presenting your company and then the event gets started. Sometime during the evening food is served to all students and company representatives. The evening can , for example, end with an awards ceremony, organized by the company. The evening is very flexible and we are open to any and all solutions and ideas."
       evening_may_contain: "For instance, the evening could contain any of the following"
       first: "How can You get our students to seek out your particular company in the future? That's a question we want to help You answer. There are a variety of solutions and possibilities to get in contact with our students, and below you will find a set of proposals that have been used with good results in the past. There is always the opportunity to go beyond the scope of these offers, please contact us as we will work together to find for the best solution for you."
       keywords:
-        - näringsliv
-        - kvällsevenemang
+        - industry
+        - "evening event"
         - case
       lunch: "Lunch lecture"
       lunch_description: "With a talk during the lunch hour your company will effectively reach the students and you have the opportunity to give an insight into what your particular business is like. We arrange food for all participants, both students and business representatives as well as advertising in advance of your presentation with posters, advertisement in the guild's weekly bulletin and on the guild website. In the past, lunchtime lectures usually have between 70 and 100 participants."
@@ -35,7 +40,7 @@ en:
     company_programs:
       nano:
         name: "Engineering Nanoscience"
-        description: "Nanotechnology is a key area for the future of Swedish industry and the students of the programme receives cross-border skills in areas such as medicine, biology, physics, chemistry, material science and electronics. Through their interdisciplinary foundation the nanoengineer can connect people with very different scientific or technical expertise."
+        description: "Nanotechnology is a key area for the future of Swedish industry and the students of the program receives cutting edge skills in areas such as medicine, biology, physics, chemistry, material science and electronics. Through their interdisciplinary foundation the nanoengineer can connect people with very different scientific or technical expertise."
         specializations:
           hn: "High-frequency and Nanoelectronics"
           m: Materials
@@ -51,7 +56,7 @@ en:
           ssr: "Systems, Signals and Control"
           bem: "Computational Mechanics"
         name: "Engineering Mathematics"
-        description: "is the programme where students study more mathematics than in any other engineering programme. The programme is unique in Sweden and is characterized by the motto \"Mathematics as technology\". The strong mathematical foundation combined with data- and system scientific knowledge enables students at Engineering mathematics to get an incredible expertise in selected specializations."
+        description: "is the program where students study more mathematics than at any other engineering program. The program is unique in Sweden and is characterized by the motto \"Mathematics as technology\". The strong mathematical foundation combined with data- and system scientific knowledge enables students at Engineering mathematics to develop an incredible expertise within their selected field of specialization."
       physics:
         specializations:
           mt: "Biomedical Engineering"
@@ -76,14 +81,14 @@ en:
       specializations: Specializations
     company_about:
       contact_if_interested: "If you are intrested in more information regarding the programmes, the F-guild, and our members, we look forward to hearing from you at this link:"
-      description: "F-sektionen värnar om att skapa kontakt mellan våra medlemmar och näringslivet."
+      description: "The F-guild values creating connections between our members and the industry."
       first: "We currently have about 950 members. The members are talented engineering students from the highly regarded programmes Engineering physics, Engineering mathematics and Engineering nanoscience."
       fourth: "A meeting with us is a perfect oppurtunity for You as company to hand-pick the students suitable to your company profile."
       headline: "About the F-guild"
       keywords:
-        - näringsliv
-        - företag
-        - lunchföreläsning
+        - industry
+        - company
+        - "lunch lecture"
         - case
       offer: "Do you want to read more about our offers? Follow the link below."
       second: "Our students primarily gets educated in general, technical problem solving with a broad and diverse base of one or a few of the fields of physics, mathematics, electrical engineering, medicine, materials, and computer science. This gives them a huge head start to understand new problems, something that is very valuable for diverse organizations and companies who value flexible employees."
