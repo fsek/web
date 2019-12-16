@@ -412,7 +412,7 @@ Fsek::Application.routes.draw do
     end
 
     resources :adventure_mission_groups, only: :index
-    resources :cafe, only: [:index, :create, :destroy]
+    resources :cafe, only: [:index, :show, :create, :destroy]
     resources :councils, only: :index
   end
 
