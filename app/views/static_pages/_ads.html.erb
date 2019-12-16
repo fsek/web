@@ -1,4 +1,12 @@
 <div class="ads">
+  <div class="main-partner box ">
+    <div class="headline">
+      <h3><%= link_to(t('.main_partner'), 'https://www.cellavision.com/en/', :target => '_blank') %></h3>
+    </div>
+    <%= link_to 'https://www.cellavision.com/en/', :target => '_blank' do %>
+      <%= image_tag('main_partner.jpg') %>
+    <% end %>
+  </div>
   <div id="adCarou" class="carousel slide carousel-fade" data-ride="carou" data-interval="8000">
     <div class="carousel-inner" role="listbox">
       <div class="item active">

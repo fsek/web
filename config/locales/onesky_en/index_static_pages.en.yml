@@ -1,6 +1,24 @@
 ---
 en:
   static_pages:
+    ads:
+      main_partner: "Main sponsor"
+      subscribe: Subscribe
+      weektorn: Weektorn
+      weektorn_before_deadline: "before Sunday at 17."
+      weektorn_send_in: "Want to submit a post to  Weektorn? Send it to"
+      weektorn_subscribe: "Subscribe for the F-guilds weekly newsletter which is sent out every week of studies."
+      weektorn_read_online: "You can also read Weektorn here."
+      podcast: "Hilbert's Corner"
+      podcast_listen: "Listen to the F-guild's podcast here! Questions and comments about the podcast can be sent to"
+      podcast_spotify: "You can also listen to Hilbert's Corner here on Spotify."
+      contact: "Contact us"
+      contact_info: "Please contact us using"
+      contact_info2: "this contact page,"
+      contact_info3: "or by visiting the guild's board room, located at the first floor of the Math house."
+      post_address: "Post address"
+      visit_address: "Visit address"
+      introduction_partner: "Main sponsor for the introduction"
     about:
       description: "The F-guild primary works with study surveillance, corporate relations and arranging fun activities for the students of the guild."
       keywords:
@@ -21,27 +39,10 @@ en:
       description: "The F-guild is a non-profit student association for students studying Engineering physics, Engineering mathematics or Engineering nanoscience."
       keywords:
         - LTH
-        - "teknisk fysik"
-        - "teknisk matematik"
-        - "teknisk nanovetenskap"
+        - "engineering physics"
+        - "engineering mathematics"
+        - "engineering nanoscience"
         - TLTH
         - Lund
-        - civilingenjör
+        - engineer
       more_news: "More news"
-    ads:
-      subscribe: Subscribe
-      weektorn: Weektorn
-      weektorn_before_deadline: "before Sunday at 17."
-      weektorn_send_in: "Want to submit a post to  Weektorn? Send it to"
-      weektorn_subscribe: "Subscribe for the F-guilds weekly newsletter which is sent out every week of studies."
-      weektorn_read_online: "You can also read Weektorn here."
-      podcast: "Hilbert's Corner"
-      podcast_listen: "Listen to the F-guild's podcast here! Questions and comments about the podcast can be sent to"
-      podcast_spotify: "You can also listen to Hilbert's Corner here on Spotify."
-      contact: "Contact us"
-      contact_info: "Please contact us using"
-      contact_info2: "this contact page,"
-      contact_info3: "or by visiting the guild's board room, located at the first floor of the Math house."
-      post_address: "Post address"
-      visit_address: "Visit address"
-      introduction_partner: "Main sponsor for the introduction"
