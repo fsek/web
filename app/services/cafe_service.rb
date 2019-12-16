@@ -97,7 +97,7 @@ module CafeService
       day_name = I18n.t('date.day_names')[week_day].capitalize
       month_name = I18n.t('date.month_names')[month].capitalize
       unless h[:years][shift.start.year][:months][month_name][:days]["#{day_name} - #{shift.start.day}/#{shift.start.month}"].nil?
-        h[:years][shift.start.year][:months][month_name][:days]["#{day_name} - #{shift.start.day}/#{shift.start.month}"].push(Api::CafeShiftSerializer.new(shift).as_json)
+        h[:years][shift.start.year][:months][month_name][:days]["#{day_name} - #{shift.start.day}/#{shift.start.month}"].push(Api::CafeShiftSerializer::Index.new(shift).as_json)
       end
     end
 
