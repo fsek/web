@@ -21,7 +21,7 @@ class Api::CafeController < Api::BaseController
     if cafe_worker.save
       render json: {}, status: :ok
     else
-      render json: { errors: @cafe_worker.errors.full_messages }, status: 422
+      render json: { errors: cafe_worker.errors.full_messages }, status: 422
     end
   end
 

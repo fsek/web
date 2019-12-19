@@ -11,22 +11,16 @@ class Api::CafeShiftSerializer < ActiveModel::Serializer
     def isme
       shift_user = object.user
 
-      if shift_user.nil?
-        false
-      else
-        @instance_options[:current_user] == shift_user
-      end
+      @instance_options[:current_user] == shift_user
     end
 
     def councils
       councils = object.cafe_worker&.councils
 
-      council_map = { chosen: [], available: [] }
-
-      council_map[:chosen] = councils.map { |c| [c.title, c.id] }.to_h unless councils.nil? else []
-      council_map[:available] = @instance_options[:current_user].councils.map{ |c| [c.title, c.id] }.to_h
-
-      council_map
+      council_map = {
+        chosen: councils&.map { |c| [c.title, c.id] }.to_h,
+        available: @instance_options[:current_user].councils.map { |c| [c.title, c.id] }.to_h
+      }
     end
 
     def group
