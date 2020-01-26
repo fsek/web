@@ -92,4 +92,25 @@ class NotificationService
       User.update(c.id, notifications_count: c.score)
     end
   end
+
+  # Send notification to all event signup users that have the notification setting set to true
+  # that an album connected to this event has been created.
+  def self.notify_album(album)
+    event = Event.find(album.event_id)
+    return if event.event_signup.nil?
+
+    EventSignupAlbumWorker.perform_at(Time.zone.now + 20.seconds, event.event_signup.id, album.id)
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+<%= simple_form_for(album, method: :post, url: { action: :setup_create }) do |f| %>
+  <%= f.input :event_id, collection: Event.all, input_html: { class: 'select2'}, prompt: 'Välj evenemang', label_method: :title_date %>
+  <hr>
+  <%= f.button :submit, id: 'submit-album' %>
+<% end %>

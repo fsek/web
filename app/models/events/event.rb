@@ -13,6 +13,7 @@ class Event < ApplicationRecord
   mount_uploader :image, AttachedImageUploader, mount_on: :image_file_name
 
   has_one :event_signup, dependent: :destroy
+  has_one :album
   has_many :event_users, inverse_of: :event
   has_many :users, through: :event_users
   belongs_to :council
@@ -96,6 +97,10 @@ class Event < ApplicationRecord
     if image.present?
       image.thumb.url
     end
+  end
+
+  def title_date
+    to_s + ' (' + day.to_s + ')'
   end
 
   private

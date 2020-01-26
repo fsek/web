@@ -273,6 +273,8 @@ Fsek::Application.routes.draw do
           get :download, path: :hamta, on: :member
           patch :reprocess, path: :omarbeta, on: :member
         end
+        get :setup, as: :setup, on: :collection
+        post :setup_create, on: :collection
       end
     end
 
@@ -281,6 +283,8 @@ Fsek::Application.routes.draw do
     namespace :gallery, path: :galleri do
       resources :albums, path: :album, only: [:show]
     end
+
+    resources :albums, path: :album, only: [:show]
 
     namespace :admin do
       resources :permissions, only: :index do

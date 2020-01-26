@@ -3,11 +3,13 @@ module NotificationHelper
     content_tag(:div, markdown(data.body), class: 'body')
   end
 
-  def  notification_icon(notification)
+  def notification_icon(notification)
     icon = ''
     if notification.notifyable_type == 'EventUser'
       if notification.mode == 'position'
         icon = icon('fas', 'check')
+      elsif notification.mode == 'album'
+        icon = icon('fas', 'images')
       else
         icon = icon('fas', 'glass-cheers')
       end

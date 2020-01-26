@@ -1,5 +1,12 @@
 <% data = notification.data %>
-<a href="<%= event_path(notification.notifyable.event)%>">
+<% if data.link.is_a?(Album) %>
+  <% url = url_for(data.link).split('/') %>
+  <% url.insert(-3, 'galleri') %>
+  <% url = url.join('/') %>
+<% else %>
+  <% url = url_for(data.link) %>
+<% end %>
+<a href="<%= url %>">
 <div extra="<%= data.extra %>"
      id="<%= dom_id(notification) %>"
      uid='<%= notification.id %>'

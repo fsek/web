@@ -1,4 +1,18 @@
 <%= simple_form_for([:admin, @album]) do |f| %>
+  <% unless @album.persisted? %>
+    <ul class="list">
+      <li>
+        <strong>
+          <%= "Evenemang" %>
+        </strong><br>
+        <%= "Här kan du direkt koppla ett album till ett evenemang " %>
+      </li>
+    </ul>
+
+    <%= link_to("Skapa album från evenemang", setup_admin_albums_path, class: 'btn secondary') %>
+    <hr>
+  <% end %>
+
   <div class="form-inputs">
     <%= f.input :title_sv, wrapper_html: {class: 'inline half'} %>
     <%= f.input :title_en, wrapper_html: {class: 'inline half'} %>

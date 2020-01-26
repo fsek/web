@@ -6,3 +6,4 @@ sv:
       remind_signup_soon_closing: "Anmälan till **%{event}** stänger **%{time}** och det finns fortfarande platser kvar."
       remind_signup_open: "Anmälan till **%{event}** är nu öppen."
       reserve_position: "Du fick tyvärr ingen plats till **%{event}**. Du ligger just nu på reservlistan."
+      album: "Bilderna från **%{event}** är nu tillgängliga i bildgalleriet."

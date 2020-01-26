@@ -38,6 +38,8 @@ class NotificationData
       init_position
     elsif @notification.mode == 'reminder'
       init_reminder
+    elsif @notification.mode == 'album'
+      init_album
     end
   end
 
@@ -69,7 +71,13 @@ class NotificationData
                      time: I18n.l(@notifyable.event.signup.closes))
     elsif @notification.mode == 'open'
       @body = I18n.t('model.notification_data.remind_signup_open',
-                     event: @notifyable.event)
+                      event: @notifyable.event)
     end
+  end
+
+  def init_album
+    @icon = 'images'
+    @link = @notifyable.event.album
+    @body = I18n.t('model.notification_data.album', event: @notifyable.event)
   end
 end

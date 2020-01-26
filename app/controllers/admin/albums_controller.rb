@@ -22,17 +22,30 @@ class Admin::AlbumsController < Admin::BaseController
     end
   end
 
+  def setup
+    @album = Album.new
+  end
+
+  def setup_create
+    service = AlbumService.new
+    @album = service.create_from_event(event_params)
+    unless @album.nil?
+      redirect_to admin_album_path(@album), notice: alert_create(Album)
+    else
+      render 'setup'
+    end
+  end
+
   def destroy
     @album.destroy!
     redirect_to admin_albums_path, notice: alert_destroy(Album)
   end
 
   def update
-    @users = User.by_firstname
     service = AlbumService.new
     if @album.update(album_params) && service.upload_images(@album)
       redirect_to(admin_album_path(@album),
-                  notice: %(#{alert_update(Album)} #{I18n.t('model.album.uploaded')}: #{service.uploaded}))
+                  notice: %(#alert_update(Album)} #{I18n.t('model.album.uploaded')}: #{service.uploaded}))
     else
       render :show, status: 422
     end
@@ -51,7 +64,11 @@ class Admin::AlbumsController < Admin::BaseController
   def album_params
     params.require(:album).permit(:title_sv, :title_en, :description_sv, :description_en,
                                   :location, :start_date, :end_date,
-                                  :photographer_user, :photographer_name,
+                                  :photographer_user, :photographer_name, :event_id,
                                   image_upload: [])
+  end
+
+  def event_params
+    params.require(:album).permit(:event_id)
   end
 end

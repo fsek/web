@@ -24,4 +24,28 @@ class AlbumService
 
     state
   end
+
+  def create_from_event(params)
+    event_id = params[:event_id]
+    event = Event.find(event_id)
+
+    params_from_event = {
+      title_sv: event.title_sv,
+      title_en: event.title_en,
+      description_sv: event.description_sv,
+      description_en: event.description_en,
+      location: event.location,
+      start_date: event.starts_at,
+      end_date: event.ends_at
+    }
+
+    @album = Album.new(params_from_event)
+    @album.event_id = event_id.to_i
+
+    if @album.save
+      @album
+    else
+      nil
+    end
+  end
 end
