@@ -1,0 +1,19 @@
+<div class="headline">
+  <h1><%= title('Produkter') %></h1>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to('Ny produkt', new_admin_store_product_path, class: 'btn primary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@store_products) do |g|
+    g.column(name: 'Namn', attribute: 'name') do |product|
+      link_to(product, edit_admin_store_product_path(product))
+    end
+    g.column(name: 'Pris', attribute: 'price', filter: false)
+    g.column(name: 'I lager', attribute: 'in_stock', filter: false) do |product|
+      if product.in_stock? then t('global.yes') else t('global.no') end
+    end
+  end -%>
+</div>

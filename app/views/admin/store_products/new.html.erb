@@ -1,0 +1,9 @@
+<div class="col-md-10 col-md-offset-1 col-sm-12 reg-page">
+  <div class="headline">
+    <h3><%= title('Ny produkt') %></h3>
+  </div>
+
+  <%= render('form', store_product: @store_product) %>
+  <hr>
+  <%= link_to('Alla produkter', admin_store_products_path, class: 'btn secondary') %>
+</div>

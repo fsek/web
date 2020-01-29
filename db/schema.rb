@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190911162000) do
+ActiveRecord::Schema.define(version: 20200126132600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(version: 20190911162000) do
     t.datetime "updated_at"
     t.string "category", limit: 255
     t.integer "images_count", default: 0, null: false
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_albums_on_event_id"
   end
 
   create_table "blog_post_translations", id: :serial, force: :cascade do |t|
@@ -378,6 +380,7 @@ ActiveRecord::Schema.define(version: 20190911162000) do
     t.datetime "sent_position"
     t.datetime "sent_closing"
     t.datetime "sent_open"
+    t.datetime "sent_album_created"
     t.index ["deleted_at"], name: "index_event_signups_on_deleted_at"
     t.index ["event_id"], name: "index_event_signups_on_event_id"
   end
@@ -901,6 +904,15 @@ ActiveRecord::Schema.define(version: 20190911162000) do
     t.index ["song_category_id"], name: "index_songs_on_song_category_id"
   end
 
+  create_table "store_products", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", default: 0, null: false
+    t.text "image_url"
+    t.boolean "in_stock", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tool_rentings", id: :serial, force: :cascade do |t|
     t.string "renter", limit: 255, null: false
     t.string "purpose", limit: 255
@@ -962,6 +974,7 @@ ActiveRecord::Schema.define(version: 20190911162000) do
     t.boolean "notify_event_closing", default: false, null: false
     t.integer "terms_version", default: 0, null: false
     t.boolean "notify_event_open", default: false, null: false
+    t.boolean "notify_event_album", default: false, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -996,6 +1009,7 @@ ActiveRecord::Schema.define(version: 20190911162000) do
   add_foreign_key "adventure_mission_groups", "groups"
   add_foreign_key "adventure_missions", "adventures"
   add_foreign_key "adventures", "introductions"
+  add_foreign_key "albums", "events"
   add_foreign_key "blog_posts", "users"
   add_foreign_key "candidates", "elections"
   add_foreign_key "candidates", "posts"

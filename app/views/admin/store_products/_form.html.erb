@@ -1,0 +1,7 @@
+<%= simple_form_for([:admin, store_product]) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <%= f.input :in_stock %>
+  <%= f.input :image_url %>
+  <%= f.button :submit %>
+<% end %>

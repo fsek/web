@@ -1,0 +1,12 @@
+<div class="col-md-10 col-md-offset-1 col-sm-12 reg-page">
+  <div class="headline">
+    <h1><%= 'Redigera produkt' %></h1>
+  </div>
+  <%= render('form', store_product: @store_product) %>
+  <hr>
+  <%= link_to('Förinta', admin_store_product_path(@store_product),
+                            method: :delete,
+                            data: {confirm: 'Är du säker på att du vill förinta produkten?'},
+                            class: 'btn danger pull-right') %>
+  <%= link_to('Alla produkter', admin_store_products_path, class: 'btn secondary') %>
+</div>
