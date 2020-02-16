@@ -358,6 +358,10 @@ Fsek::Application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :wines, path: :vin, only: [:index, :new, :create, :destroy]
+  end
+
   # API routes
   namespace :api, constraints: { format: 'json' } do
     mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :confirmations]
@@ -422,6 +426,7 @@ Fsek::Application.routes.draw do
     resources :adventure_mission_groups, only: :index
     resources :cafe, only: [:index, :show, :create, :destroy]
     resources :councils, only: :index
+    resources :wines, only: :index
   end
 
   get 'proposals/form' => 'proposals#form'

@@ -1,0 +1,20 @@
+<div class="headline">
+  <h1><%= 'Vin' %></h1>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to('Nytt vin', new_admin_wine_path, class: 'btn primary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@wines) do |g|
+    g.column(name: 'Namn', attribute: 'name')
+    g.column(name: 'Årtal', attribute: 'year')
+    g.column(name: 'Druva', attribute: 'grape')
+    g.column(name: 'Förinta') do |wine|
+      link_to('Förinta', admin_wines_path + '/' + wine.id.to_s,
+              method: :delete,
+              data: { confirm: 'Är du säker på att du vill förinta vinet?' })
+    end
+  end -%>
+</div>

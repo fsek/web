@@ -60,6 +60,7 @@ class Ability
       can :index, :start
       can [:read, :scroll, :matrix], :api_event
       can [:create, :destroy, :toggle], Fredmansky
+      can :index, Wine
     end
 
     # Only for members of the Guild

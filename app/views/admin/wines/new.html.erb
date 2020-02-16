@@ -1,0 +1,10 @@
+<div class="col-md-10 col-md-offset-1 col-sm-12 reg-page">
+  <div class="headline">
+    <h3><%= 'Nytt vin' %></h3>
+  </div>
+
+  <%= render('form', wine: @wine) %>
+
+  <hr>
+  <%= link_to('Alla viner', admin_wines_path, class: 'btn secondary') %>
+</div>
