@@ -1,0 +1,4 @@
+sv:
+  service:
+    post_user:
+      limited: Begränsad
