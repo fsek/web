@@ -427,6 +427,7 @@ Fsek::Application.routes.draw do
     resources :cafe, only: [:index, :show, :create, :destroy]
     resources :councils, only: :index
     resources :store_products, only: :index
+    resources :store_orders, only: :create
   end
 
   get 'proposals/form' => 'proposals#form'
