@@ -1,0 +1,31 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+
+  <div class="headline">
+    <h1>Skåp</h1>
+  </div>
+
+  <div class="col-md-2 col-sm-12">
+    <%= link_to(('Nytt skåp'), new_admin_locker_path, class: 'btn primary') %>
+    <%= link_to(('Ny utlåning'), setup_admin_lockers_path, class: 'btn primary') %>
+    <%= link_to(('Visa utlåningar'), rented_admin_lockers_path, class: 'btn primary') %>
+  </div>
+
+  <div class="col-md-12 col-sm-12">
+    <%= grid(@lockers) do |g|
+      g.column(name: Locker.human_attribute_name(:namn)) do |locker|
+        link_to(locker.name , admin_locker_path(locker))
+      end
+      g.column(name: Locker.human_attribute_name(:rum)) do |locker|
+        locker.room
+      end
+      g.column(name: Locker.human_attribute_name(:status)) do |locker|
+        if locker.occupied
+          LockerRenter.find_by(locker_id: locker.id).user
+        else
+          "Ledigt"
+        end
+      end
+    end %>
+  </div>
+
+</div>

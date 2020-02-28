@@ -1,0 +1,17 @@
+sv:
+  admin:
+    lockers:
+      index:
+        locker: skåp
+        new_locker: Nytt skåp
+        new_renting: Nytt utlån
+        show_rentings: Visa utlån
+        destroy: Förinta
+        confirm_destroy: Vill du ta bort skåpet?
+      new:
+        title: Nytt skåp
+      rented:
+        make_reserved: inte reserverad (Gör reserverad)
+        make_unreserved: Reserverad (Gör icke reserverad)
+        make_payed_for: Obetald (Gör obetald)
+        make_unpayed_for: betald (Gör betald)

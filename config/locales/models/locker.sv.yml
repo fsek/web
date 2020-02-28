@@ -1,0 +1,7 @@
+sv:
+  activerecord:
+    models:
+      locker: Skåp
+    attributes:
+      name: Namn
+      room: Rum

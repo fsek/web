@@ -77,6 +77,7 @@ class Ability
       can [:read, :mail], Contact
       can :read, Document
 
+      can [:index, :setup, :setup_create, :rented, :show], Locker
       can [:create, :index, :new], Candidate
       can [:destroy], Candidate, user_id: user.id
       can [:create], Nomination

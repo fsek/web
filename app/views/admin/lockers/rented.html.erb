@@ -1,0 +1,156 @@
+<div class="col-md-10 col-md-offset-1 col-sm-8 reg-page">
+
+  <div class="headline">
+    <h1>Icke reserverade Skåp</h1>
+  </div>
+
+  <div class="col-md-12">
+    <%= grid(@locker_renters) do |g|
+      g.column(name: 'Skåp') do |locker_renter|
+        locker_renter.locker.name
+      end
+      g.column(name: 'Rum') do |locker_renter|
+        locker_renter.locker.room
+      end
+      g.column(name: 'Användare') do |locker_renter|
+        locker_renter.user.email
+      end
+      g.column(name: 'Termin') do |locker_renter|
+        locker_renter.semester
+      end
+      g.column(name: 'Reserverad') do |locker_renter|
+        if !locker_renter.reserved
+        link_to(t('.make_reserved'), 
+          admin_locker_locker_toggle_reserved_path(locker_renter),
+          method: :patch)
+        else
+        link_to(t('.make_unreserved'),
+          admin_locker_locker_toggle_reserved_path(locker_renter),
+          method: :patch)
+        end
+      end
+      g.column(name: 'Betald') do |locker_renter|
+        if !locker_renter.payed_for
+        link_to(t('.make_payed_for'), 
+          admin_locker_locker_toggle_payed_for_path(locker_renter),
+          method: :patch)
+        else
+        link_to(t('.make_unpayed_for'),
+          admin_locker_locker_toggle_payed_for_path(locker_renter),
+          method: :patch)
+        end 
+      end
+      g.column(name: 'Förinta utlåning') do |locker_renter|
+        link_to(('.destroy'),  admin_locker_destroy_locker_renter_path(locker_renter),
+                                   method: :delete,
+                                   url: {action: :destroy_locker_renter},
+                                   data: {confirm: ('bruh?')},
+                                   class: 'btn danger pull-right')
+      end
+    end %>
+  </div>
+
+
+  <div class="headline">
+    <h1>Icke betalda skåp</h1>
+  </div>
+
+  <div class="col-md-12">
+    <%= grid(@locker_renters_reserved) do |g|
+      g.column(name: 'Skåp') do |locker_renter|
+        locker_renter.locker.name
+      end
+      g.column(name: 'Rum') do |locker_renter|
+        locker_renter.locker.room
+      end
+      g.column(name: 'Användare') do |locker_renter|
+        locker_renter.user.email
+      end
+      g.column(name: 'Termin') do |locker_renter|
+        locker_renter.semester
+      end
+      g.column(name: 'Reserverad') do |locker_renter|
+        if !locker_renter.reserved
+        link_to(t('.make_reserved'), 
+          admin_locker_locker_toggle_reserved_path(locker_renter),
+          method: :patch)
+        else
+        link_to(t('.make_unreserved'),
+          admin_locker_locker_toggle_reserved_path(locker_renter),
+          method: :patch)
+        end
+      end
+      g.column(name: 'Betald') do |locker_renter|
+         if !locker_renter.payed_for
+        link_to(t('.make_payed_for'), 
+          admin_locker_locker_toggle_payed_for_path(locker_renter),
+          method: :patch)
+        else
+        link_to(t('.make_unpayed_for'),
+          admin_locker_locker_toggle_payed_for_path(locker_renter),
+          method: :patch)
+        end
+      end
+      g.column(name: 'Förinta utlåning') do |locker_renter|
+        link_to(('.destroy'),  admin_locker_destroy_locker_renter_path(locker_renter),
+                                   method: :delete,
+                                   url: {action: :destroy_locker_renter},
+                                   data: {confirm: ('bruh?')},
+                                   class: 'btn danger pull-right')
+      end
+    end %>
+  </div>
+
+
+  
+  <div class="headline">
+    <h1>Reserverade och betalda skåp</h1>
+  </div>
+  
+  <div class="col-md-12">
+    <%= grid(@locker_renters_payed_for) do |g|
+      g.column(name: 'Skåp') do |locker_renter|
+        locker_renter.locker.name
+      end
+      g.column(name: 'Rum') do |locker_renter|
+        locker_renter.locker.room
+      end
+      g.column(name: 'Användare') do |locker_renter|
+        locker_renter.user.email
+      end
+      g.column(name: 'Termin') do |locker_renter|
+        locker_renter.semester
+      end
+      g.column(name: 'Reserverad') do |locker_renter|
+        if !locker_renter.reserved
+        link_to(t('.make_reserved'), 
+          admin_locker_locker_toggle_reserved_path(locker_renter),
+          method: :patch)
+        else
+        link_to(t('.make_unreserved'),
+          admin_locker_locker_toggle_reserved_path(locker_renter),
+          method: :patch)
+        end
+      end
+      g.column(name: 'Betald') do |locker_renter|
+         if !locker_renter.payed_for
+        link_to(t('.make_payed_for'), 
+          admin_locker_locker_toggle_payed_for_path(locker_renter),
+          method: :patch)
+        else
+        link_to(t('.make_unpayed_for'),
+          admin_locker_locker_toggle_payed_for_path(locker_renter),
+          method: :patch)
+        end 
+      end
+      g.column(name: 'Förinta utlåning') do |locker_renter|
+        link_to(('.destroy'),  admin_locker_destroy_locker_renter_path(locker_renter),
+                                   method: :delete,
+                                   url: {action: :destroy_locker_renter},
+                                   data: {confirm: ('bruh?')},
+                                   class: 'btn danger pull-right')
+      end
+    end %>
+  </div>
+</div>
+

@@ -1,0 +1,31 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+
+  <div class="headline">
+    <h1>Mina lånade skåp</h1>
+  </div>
+
+  <div class="col-md-12">
+    <%= grid(@users_rented_lockers) do |g|
+      g.column(name: 'Skåp') do |locker_renter|
+        locker_renter.locker.name
+      end
+      g.column(name: 'Room') do |locker_renter|
+        locker_renter.locker.room
+      end
+      g.column(name: 'Termin') do |locker_renter|
+        locker_renter.semester
+      end
+      g.column(name: 'Betalad') do |locker_renter|
+        locker_renter.reserved
+      end
+      g.column(name: 'Förinta utlåning') do |locker_renter|
+        link_to(('.destroy'),  admin_locker_destroy_locker_renter_path(locker_renter),
+                                   method: :delete,
+                                   url: {action: :destroy_locker_renter},
+                                   data: {confirm: ('bruh?')},
+                                   class: 'btn danger pull-right')
+      end
+    end %>
+  </div>
+
+</div>

@@ -1,0 +1,14 @@
+<%= simple_form_for(locker_renter, method: :post, url: {action: :setup_create}) do |f|%>
+    <%= f.input :user_id,label: "Lånare" , collection: [current_user],
+                            input_html: { class: 'select2' },
+                            include_blank: false %>
+    <%= f.input :locker_id, label: "Skåp", collection: Locker.free,
+                            input_html: { class: 'select2' },
+                            include_blank: false,
+                            label_method: :name %>
+   <%= f.input :semester, label: "Termin", collection: ["VT "+ Date.today.year.to_s,
+                                                        "HT " + Date.today.year.to_s,
+                                                        "VT " + (Date.today.year + 1).to_s,
+                                                        "HT " + (Date.today.year + 1).to_s] %>
+    <%= f.button :submit %>
+<% end %>

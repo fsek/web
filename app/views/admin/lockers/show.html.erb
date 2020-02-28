@@ -1,0 +1,17 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page key">
+    <div class="headline">
+      <h1><%= @locker.name %></h1>
+    </div>
+    <div class="content">
+      <p> <span>Rum:</span> <%= @locker.room %> </p>
+      <p> <span> Status:</span> <%=
+        if @locker.occupied
+         LockerRenter.find_by(locker_id: @locker.id).user
+        else
+         "Ledigt"
+        end%>
+      </p>
+    </div>
+    <%= link_to(('.edit'), edit_admin_locker_path(@locker),
+                                 class: 'btn primary pull-left') %>
+</div>

@@ -544,6 +544,22 @@ ActiveRecord::Schema.define(version: 20200729173400) do
     t.text "description"
   end
 
+  create_table "locker_renters", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "locker_id"
+    t.string "semester", null: false
+    t.boolean "payed_for", default: false
+    t.boolean "reserved", default: false
+    t.index ["locker_id"], name: "index_locker_renters_on_locker_id"
+    t.index ["user_id"], name: "index_locker_renters_on_user_id"
+  end
+
+  create_table "lockers", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "room", null: false
+    t.boolean "occupied", default: false
+  end
+
   create_table "mail_aliases", id: :serial, force: :cascade do |t|
     t.string "username", limit: 255, null: false
     t.string "domain", limit: 255, null: false
@@ -799,6 +815,12 @@ ActiveRecord::Schema.define(version: 20200729173400) do
     t.integer "user_id"
     t.index ["token", "user_id"], name: "index_push_devices_on_token_and_user_id", unique: true
     t.index ["user_id"], name: "index_push_devices_on_user_id"
+  end
+
+  create_table "queued_renters", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.string "semester", null: false
+    t.index ["user_id"], name: "index_queued_renters_on_user_id"
   end
 
   create_table "recurring_meetings", id: :serial, force: :cascade do |t|

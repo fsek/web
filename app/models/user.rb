@@ -43,6 +43,7 @@ class User < ApplicationRecord
   has_one :fredmansky
   has_many :achievement_users
   has_many :achievements, through: :achievement_users
+  has_many :locker_renters
 
   mount_uploader :avatar, AttachedImageUploader, mount_on: :avatar_file_name
 

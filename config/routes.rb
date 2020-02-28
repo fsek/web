@@ -48,6 +48,25 @@ Fsek::Application.routes.draw do
     resources :tools, path: :verktyg, only: [:show, :index]
 
     namespace :admin do
+      resources :lockers, path: :skåp do
+        get :rented, on: :collection
+        get :setup, as: :setup, on: :collection
+        post :setup_create, on: :collection
+        delete :destroy_locker_renter, action: :destroy_locker_renter
+        resources :lockers, path: :rented do
+          patch :toggle_reserved, action: :toggle_reserved
+          patch :toggle_payed_for, action: :toggle_payed_for
+        end
+      end
+    end
+
+    resources :lockers, path: :skåp, only: [:show, :index] do
+      get :rented, on: :collection
+      get :setup, as: :setup, on: :collection
+      post :setup_create, on: :collection
+    end
+
+    namespace :admin do
       resources :tools, path: :verktyg do
         resources :tool_rentings, path: :låna, except: [:index, :show]
       end

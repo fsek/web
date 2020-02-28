@@ -1,0 +1,21 @@
+<%= simple_form_for(locker_renter, method: :post, url: {action: :setup_create}) do |f|%>
+    <%= f.input :user_id,label: "Lånare" , collection: User.by_firstname.confirmed,
+                            input_html: { class: 'select2' },
+                            include_blank: true,
+                            prompt: "Välj en person som skåpet ska lånas till",
+                            label_method: :print_email %>
+
+    <%= f.input :locker_id, label: "Skåp", collection: Locker.free,
+                            input_html: { class: 'select2' },
+                            include_blank: false,
+                            prompt: "Välj ett skåp som ska lånas ut",
+                            label_method: :name %>
+    <%= f.input :semester, label: "Termin", collection: ["VT "+ Date.today.year.to_s,
+                                                         "HT " + Date.today.year.to_s,
+                                                         "VT " + (Date.today.year + 1).to_s,
+                                                         "HT " + (Date.today.year + 1).to_s] %>
+    <%= f.input :reserved, label: "Reserverad"%>
+    <%= f.input :payed_for, label: "Betald"%>
+
+    <%= f.button :submit %>
+<% end %>

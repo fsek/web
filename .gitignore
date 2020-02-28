@@ -19,6 +19,7 @@ rerun.txt
 pickle-email-*.html
 /storage/
 *.rdb
+node_modules
 
 ## Environment normalisation:
 /.bundle

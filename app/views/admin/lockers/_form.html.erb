@@ -1,0 +1,13 @@
+<% if locker.present? %>
+    <%= simple_form_for([:admin, locker]) do |f|%>
+        <%= f.input :name, label: "Skåp" %>
+        <%= f.input :room, label: "Rum" %>
+        <% if locker.persisted? %>
+            <%= link_to(('.destroy'), admin_locker_path(locker),
+                                 method: :delete,
+                                 data: {confirm: ('.confirm_destroy')},
+                                 class: 'btn danger pull-right') %>
+        <% end %>
+        <%= f.button :submit %>
+        <% end %>
+<% end %>
