@@ -76,7 +76,7 @@ Fsek::Application.configure do
     Bullet.add_footer = true
   end
 
-  config.action_cable.allowed_request_origins = [PUBLIC_URL, 'file://', 'file:///']
+  config.action_cable.allowed_request_origins = [PUBLIC_URL, 'file://', 'file:///', '/http:\/\/*/', '/https:\/\/*/', 'http://localhost:3001']
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.

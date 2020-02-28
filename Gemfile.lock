@@ -303,6 +303,8 @@ GEM
     public_suffix (3.0.2)
     puma (3.11.4)
     rack (2.0.7)
+    rack-cors (1.1.0)
+      rack (>= 2.0.0)
     rack-protection (2.0.1)
       rack
     rack-test (1.1.0)
@@ -526,6 +528,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  rack-cors
   rails (= 5.1.6.2)
   rails-controller-testing
   recaptcha

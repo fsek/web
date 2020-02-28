@@ -24,6 +24,8 @@ class Ability
          :cookies_information, :company_about,
          :company_offer, :robots, :influence], :static_pages
 
+    can :read, Meeting
+
     # Abilities all signed in users get
     if user.id.present?
       can [:edit, :show, :update, :update_password, :update_account, :accept_terms], User, id: user.id

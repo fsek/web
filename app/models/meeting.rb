@@ -22,6 +22,28 @@ class Meeting < ApplicationRecord
   scope :date_overlap, ->(from, to, id) { between(from, to).where.not(id: id) }
   scope :for_room, ->(room) { where(room: rooms[room]) }
   scope :from_date, ->(from) { where('start_date >= ?', from) }
+  scope :tablet_feed, ->(limit) {where('start_date >= ?', Time.now).limit(limit).order(:start_date)}
+
+  after_create :broadcast_create
+  after_update :broadcast_update
+  after_destroy :broadcast_destroy
+
+  def broadcast_create
+    puts '--------------- broadcasting create ------------------'
+    serialized_meeting = Api::MeetingSerializer.new(self)
+    ActionCable.server.broadcast 'meetings_channel', { meeting: serialized_meeting, method: 'CREATE' }
+  end
+
+  def broadcast_update
+    puts '--------------- broadcasting update ------------------'
+    serialized_meeting = Api::MeetingSerializer.new(self)
+    ActionCable.server.broadcast 'meetings_channel', { meeting: serialized_meeting, method: 'UPDATE' }
+  end
+
+  def broadcast_destroy
+    serialized_meeting = Api::MeetingSerializer.new(self)
+    ActionCable.server.broadcast 'meetings_channel', { meeting: serialized_meeting, method: 'DESTROY' }
+  end
 
   def as_json(*)
     CalendarJSON.meeting(self)
