@@ -22,7 +22,7 @@ class Meeting < ApplicationRecord
   scope :date_overlap, ->(from, to, id) { between(from, to).where.not(id: id) }
   scope :for_room, ->(room) { where(room: rooms[room]) }
   scope :from_date, ->(from) { where('start_date >= ?', from) }
-  scope :tablet_feed, ->(limit) {where('start_date >= ?', Time.now).limit(limit).order(:start_date)}
+  scope :tablet_feed, ->(limit) {where('end_date >= ?', Time.now).limit(limit).order(:start_date)}
 
   after_create :broadcast_create
   after_update :broadcast_update
