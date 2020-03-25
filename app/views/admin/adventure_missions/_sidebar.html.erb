@@ -11,15 +11,17 @@
     <% end %>
   </li>
 
-  <li class="list-group-item">
-    <%= link_to(admin_adventure_lock_path(adventure), method: :patch) do %>
-      <%= icon('fas', 'lock', t('.lock')) %>
-    <% end %>
-  </li>
+  <% if not adventure.adventure_missions.empty? %>
+    <li class="list-group-item">
+      <%= link_to(admin_adventure_lock_path(adventure), method: :patch) do %>
+        <%= icon('fas', 'lock', t('.lock')) %>
+      <% end %>
+    </li>
 
-  <li class="list-group-item">
-    <%= link_to(admin_adventure_unlock_path(adventure), method: :patch) do %>
-      <%= icon('fas', 'lock-open', t('.unlock')) %>
-    <% end %>
-  </li>
+    <li class="list-group-item">
+      <%= link_to(admin_adventure_unlock_path(adventure), method: :patch) do %>
+        <%= icon('fas', 'lock-open', t('.unlock')) %>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
