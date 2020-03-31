@@ -16,6 +16,7 @@
         font-weight: 400;
         padding: 10px 20px;
         text-transform: uppercase;
+        transform: rotate(2deg);
 
         &,
         &:focus {
@@ -65,6 +66,19 @@
     padding: 0 0 0 10px;
     position: relative;
     z-index: 2;
+    animation: spinny 3s linear infinite;
+  }
+
+  @keyframes spinny {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   .navbar-right {
@@ -110,6 +124,7 @@
       font-size: 12px;
       font-weight: 400;
       padding: 8px 15px;
+      transform: rotate(180deg);
     }
 
     .active > a,
