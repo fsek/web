@@ -343,6 +343,8 @@ Fsek::Application.routes.draw do
       post :search, on: :collection
     end
 
+    resources :favorite_songs, path: :favorite_songs, only: [:index, :create, :destroy]
+
     namespace :admin do
       resources :songs, path: :sangbok
       resources :song_categories, path: :sangkategorier

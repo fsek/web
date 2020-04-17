@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190911162000) do
+ActiveRecord::Schema.define(version: 20200403141800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -442,6 +442,13 @@ ActiveRecord::Schema.define(version: 20190911162000) do
     t.datetime "updated_at"
     t.string "category", limit: 255
     t.index ["category"], name: "index_faqs_on_category"
+  end
+
+  create_table "favorite_songs", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "song_id"
+    t.index ["song_id"], name: "index_favorite_songs_on_song_id"
+    t.index ["user_id"], name: "index_favorite_songs_on_user_id"
   end
 
   create_table "fredmanskies", id: :serial, force: :cascade do |t|
@@ -899,6 +906,16 @@ ActiveRecord::Schema.define(version: 20190911162000) do
     t.integer "visits", default: 0
     t.integer "song_category_id", null: false
     t.index ["song_category_id"], name: "index_songs_on_song_category_id"
+  end
+
+  create_table "store_products", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", default: 0, null: false
+    t.string "image_url"
+    t.boolean "in_stock", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_store_products_on_name"
   end
 
   create_table "tool_rentings", id: :serial, force: :cascade do |t|

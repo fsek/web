@@ -4,6 +4,12 @@
   <div class="headline">
     <h1><%= @song %></h1>
   </div>
+
+  <div>
+  <%= button_to('Favvo!', {:controller => "favorite_songs", :action => "create", :user_id => session[:user_id], :song_id => @song.id},
+                        {:method => :post}) %> 
+  </div>
+
   <span class="song-attr">
     <span class="song-attr-name">
       <%= Song.human_attribute_name(:song_category) %>:

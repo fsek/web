@@ -1,5 +1,6 @@
 class Song < ApplicationRecord
   belongs_to :song_category, optional: false
+  has_many :favorite_songs
   validates :title, :content, presence: true
 
   def to_s

@@ -19,4 +19,5 @@ class SongsController < ApplicationController
   def search_params
     params.require(:song).permit(:title)
   end
+
 end
