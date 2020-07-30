@@ -6,7 +6,7 @@
   </li>
 
   <li class="list-group-item">
-    <%= link_to(new_admin_adventure_adventure_mission_path(adventure: adventure)) do %>
+    <%= link_to(new_admin_adventure_adventure_mission_path(adventure)) do %>
       <%= icon('fas', 'plus', t('.add')) %>
     <% end %>
   </li>
@@ -24,4 +24,16 @@
       <% end %>
     </li>
   <% end %>
+
+  <li class="list-group-item">
+    <%= link_to(admin_adventure_adventure_mission_groups_path(adventure)) do %>
+      <%= icon('fas', 'list', t('.acceptance')) %>
+    <% end %>
+  </li>
+
+  <li class="list-group-item">
+    <%= link_to(admin_groups_path(introduction: @adventure.introduction)) do %>
+      <%= icon('fas', 'list', t('.groups')) %>
+    <% end %>
+  </li>
 </ul>

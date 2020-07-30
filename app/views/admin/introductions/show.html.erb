@@ -17,7 +17,7 @@
     </div>
   <% end %>
 
-  <%= link_to admin_adventures_path do %>
+  <%= link_to admin_adventures_path(introduction: @introduction) do %>
     <div class="col-md-2 col-sm-3 col-xs-12 box">
       <div class="interior"><%= icon('fas', 'trophy fa-4x') %></div>
       <div class="interior"><%= models_name(Adventure) %></div>

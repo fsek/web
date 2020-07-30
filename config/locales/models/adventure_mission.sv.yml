@@ -15,6 +15,7 @@ sv:
         max_points: Maxpoäng
         locked: Låst
         variable_points: Varierbar poäng
+        require_acceptance: Kräver godkännande
         publish_results: Publicera resultaten
         groups: Faddergrupper
         index: Nummer

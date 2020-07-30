@@ -27,7 +27,8 @@ class Api::AdventureMissionsController < Api::BaseController
     adventure_mission_group = AdventureMissionGroup.new(adventure_mission: adventure_mission,
                                                         group: group,
                                                         points: points,
-                                                        finished: Time.now)
+                                                        finished: Time.now,
+                                                        pending: adventure_mission.require_acceptance?)
 
     if adventure_mission_group.save
       render json: :ok, status: 200

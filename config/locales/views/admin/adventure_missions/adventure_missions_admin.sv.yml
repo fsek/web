@@ -21,3 +21,5 @@ sv:
         add: Lägg till uppdrag
         lock: Lås alla uppdrag
         unlock: Lås upp alla uppdrag
+        acceptance: Godkännande
+        groups: Grupper

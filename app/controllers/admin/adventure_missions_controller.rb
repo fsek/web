@@ -54,6 +54,6 @@ class Admin::AdventureMissionsController < Admin::BaseController
   def adventure_mission_params
     params.require(:adventure_mission).permit(:title_sv, :title_en, :description_sv,
                                               :description_en, :max_points, :variable_points,
-                                              :index, :locked)
+                                              :index, :locked, :require_acceptance)
   end
 end

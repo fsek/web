@@ -43,7 +43,8 @@ class Admin::GroupsController < Admin::BaseController
 
   def adventures
     @group = Group.find(params[:group_id])
-    @adventure_mission_groups = AdventureMissionGroup.where(group: @group)
+    @introduction = @group.introduction
+    @adventure_mission_groups = AdventureMissionGroup.where(group: @group, pending: false)
     @grid = initialize_grid(@adventure_mission_groups,
                             include: :adventure_mission,
                             order: 'adventure_mission_groups.updated_at')

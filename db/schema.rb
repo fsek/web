@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190911162000) do
+ActiveRecord::Schema.define(version: 20200729173400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20190911162000) do
     t.integer "group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "pending", default: false, null: false
     t.index ["adventure_mission_id", "group_id"], name: "index_adv_mission_groups_on_adm_mission_and_group", unique: true
     t.index ["adventure_mission_id"], name: "index_adventure_mission_groups_on_adventure_mission_id"
     t.index ["group_id"], name: "index_adventure_mission_groups_on_group_id"
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 20190911162000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "locked", default: true, null: false
+    t.boolean "require_acceptance", default: true, null: false
     t.index ["adventure_id"], name: "index_adventure_missions_on_adventure_id"
   end
 
