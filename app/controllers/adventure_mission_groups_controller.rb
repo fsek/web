@@ -11,6 +11,9 @@ class AdventureMissionGroupsController < ApplicationController
     @adventure_mission_group.group = @group
     @adventure_mission = AdventureMission.find(adventure_mission_group_params[:adventure_mission_id])
 
+    # If acceptance is not required, pending defaults to false
+    @adventure_mission_group.pending = true if @adventure_mission.require_acceptance?
+
     if @adventure_mission_group.save
       redirect_to adventure_mission_path(@adventure_mission), notice: alert_success(t('.success'))
     else

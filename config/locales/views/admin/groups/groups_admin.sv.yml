@@ -24,8 +24,12 @@ sv:
 
       adventures:
         all_groups: Alla grupper
-        title: Äventyr för
+        all_adventures: Alla äventyr
+        title: Avklarade uppdrag av
         missions: Uppdrag
+        completed_at: Avklarat
         last_updated: Senast uppdaterad
         points: Poäng
         edit: Redigera
+        adventure: Äventyr
+        introduction: Nollning

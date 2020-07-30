@@ -5,6 +5,9 @@ class AdventureMissionGroup < ApplicationRecord
   before_destroy :not_locked
 
   validate :point_validity, :not_locked
+  validates :require_acceptance, null: false
+
+  attr_accessor :require_acceptance
 
   scope :by_group, ->(group) { where(group: group) }
 

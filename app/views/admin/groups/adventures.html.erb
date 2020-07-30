@@ -3,13 +3,20 @@
 </div>
 
 <div class="col-md-2 col-xs-12">
-  <%= link_to t('.all_groups'), admin_groups_path, class: 'btn secondary' %>
+  <%= link_to t('.all_groups'), admin_groups_path(introduction: @introduction), class: 'btn secondary' %>
+  <%= link_to t('.all_adventures'), admin_adventures_path(introduction: @introduction), class: 'btn secondary' %>
 </div>
 
 <div class="col-md-10 col-xs-12">
   <%= grid(@grid) do |g|
+      g.column(name: t('.adventure'), attribute: 'title', assoc: [:adventure_mission, :adventure, :translations], filter: false) do |amg|
+        amg.adventure_mission.adventure.title.truncate(40)
+      end
       g.column(name: t('.missions'), attribute: 'title', assoc: [:adventure_mission, :translations], filter: false) do |amg|
         amg.adventure_mission.title.truncate(40)
+      end
+      g.column(name: t('.completed_at'), attribute: 'created_at', filter: false) do |amg|
+        amg.created_at
       end
       g.column(name: t('.last_updated'), attribute: 'updated_at', filter: false) do |amg|
         amg.updated_at
@@ -21,7 +28,7 @@
         if amg.adventure_mission.locked? then t('global.yes') else t('global.no') end
       end
       g.column(filter: false) do |amg|
-        link_to t('.edit'), edit_admin_adventure_mission_group_path(amg)
+        link_to t('.edit'), edit_admin_group_adventure_mission_group_path(@group, amg)
       end
     end -%>
 </div>

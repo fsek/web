@@ -5,5 +5,5 @@
 
   <%= render('form', adventure: @adventure) %>
   <hr>
-  <%= link_to(t('.all'), admin_adventures_path, class: 'btn secondary') %>
+  <%= link_to(t('.all'), admin_adventures_path(introduction: @introduction), class: 'btn secondary') %>
 </div>

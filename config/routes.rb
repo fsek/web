@@ -167,9 +167,10 @@ Fsek::Application.routes.draw do
         patch :lock
         patch :unlock
         resources :adventure_missions, path: :aventyrsuppdrag
+        resources :adventure_mission_groups, path: :vantande_aventyrsuppdrag do
+          patch :accept
+        end
       end
-
-      resources :adventure_mission_groups, path: :avslutade_aventyrsuppdrag
     end
 
     resources :councils, path: :utskott, only: [:index, :show]
@@ -320,6 +321,7 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :groups, path: :grupper, except: :show do
         get :adventures, path: :aventyr
+        resources :adventure_mission_groups
         resources :group_users, path: :anvandare, only: :index do
           patch :set_fadder, on: :member
           patch :set_not_fadder, on: :member

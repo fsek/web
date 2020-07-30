@@ -1,15 +1,22 @@
 sv:
   admin:
     adventure_mission_groups:
+      index:
+        accept_missions_for: Acceptera uppdrag för äventyr
+        accept: Acceptera
       edit:
         title: Redigera slutfört uppdrag
         confirm_destroy: Vill du verkligen förinta det slutförda uppdraget?
         destroy: Förinta
         all: Alla slutförda uppdrag
         save: Spara
+        pending: Behöver fortfarande godkännas
       update:
         success: Slutfört uppdrag uppdaterad
         fail: Kunde inte uppdatera det slutförda uppdraget
       destroy:
         success: Slutfört uppdrag förintat
         fail: Kunde inte förinta det slutföra uppdraget
+      accept:
+        success: Uppdrag godkänt
+        fail: Godkännande misslyckades

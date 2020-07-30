@@ -1,0 +1,24 @@
+<div class="headline">
+<h1 class="adventure-missions-groups-heading"><%= t('.accept_missions_for') %>: <span><%= @adventure.title %></span></h1>
+</div>
+
+<div class="col-md-3 col-sm-12">
+  <%= link_to model_name(AdventureMission), admin_adventure_adventure_missions_path(@adventure), class: 'btn secondary' %>
+</div> 
+
+
+<div class="col-md-9 col-sm-12">
+  <%= grid @grid do |g|
+    g.column(name: model_name(Group), attribute: 'name', assoc: :group, filter: false)
+    
+    g.column(name: model_name(AdventureMission), attribute: 'title', assoc: [:adventure_mission, :translations], filter: false) do |amg|
+      amg.adventure_mission.title.truncate(40)
+    end
+
+    g.column(name: AdventureMission.human_attribute_name(:max_points), attribute: 'max_points', assoc: :adventure_mission, filter: false)
+
+    g.column(name: t('.accept'), attribute: 'pending', filter: false) do |amg|
+      link_to t('.accept'), admin_adventure_adventure_mission_group_accept_path(@adventure, amg), method: :patch
+    end
+  end -%>
+</div>

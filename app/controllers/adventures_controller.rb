@@ -3,7 +3,7 @@ class AdventuresController < ApplicationController
   load_permissions_and_authorize_resource
 
   def index
-    @adventure = @adventures.published.first
+    @adventure = @introduction.adventures.published.first
 
     redirect_to root_path, notice: t('.no_adventure') and return if @adventure.nil?
 

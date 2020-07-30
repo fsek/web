@@ -2,6 +2,7 @@ class Admin::AdventuresController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
+    set_adventures
     @grid = initialize_grid(@adventures, order: :start_date, locale: :sv)
   end
 
@@ -58,6 +59,15 @@ class Admin::AdventuresController < Admin::BaseController
   end
 
   private
+
+  def set_adventures
+    if params[:introduction].present?
+      introduction = Introduction.find_by!(slug: params[:introduction])
+      @adventures = introduction.adventures
+    else
+      @adventures = Adventure.all
+    end
+  end
 
   def adventure_params
     params.require(:adventure).permit(:title_sv, :title_en, :content_sv, :content_en,
