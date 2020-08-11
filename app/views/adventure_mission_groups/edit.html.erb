@@ -9,7 +9,12 @@
         <%= simple_form_for(@adventure_mission_group) do |f| %>
           <%= f.input :points %>
           <%= f.input :adventure_mission_id, as: :hidden, input_html: { value: @adventure_mission.id }%>
-          <%= f.button :submit, value: t('.save') %>
+          <%= f.input :pending, as: :hidden, input_html: { value: @adventure_mission.require_acceptance }%>
+          <% if @adventure_mission.require_acceptance? and @adventure_mission.accepted?(@adventure_mission_group.group) %>
+            <%= f.button :submit, value: t('.save'), data: { confirm: t('.confirm_update') } %>
+          <% else %>
+            <%= f.button :submit, value: t('.save') %>
+          <% end %>
         <% end %>
       </li>
     </ul>

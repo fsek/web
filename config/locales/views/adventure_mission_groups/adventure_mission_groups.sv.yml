@@ -6,6 +6,7 @@ sv:
       update: Ändra poäng
       save: Spara poäng
       locked: Uppdraget är låst
+      confirm_update: Vill du verkligen uppdatera det slutförda uppdraget? Detta gör att uppdraget måste godkännas igen
     create:
       success: Uppdrag slutfört
       fail: Kunde inte slutföra uppdrag

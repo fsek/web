@@ -20,20 +20,28 @@
     <%= AdventureMission.human_attribute_name(:max_points) %>
   </li>
 
-
-  <% if @adventure_mission_group.present? %>
+  <% if @adventure_mission.accepted?(@group) %>
     <% @class = 'success' %>
     <% @icon = 'check' %>
     <% @icon_prefix = 'fas' %>
+    <% @text = t('.finished') %>
+  <% elsif @adventure_mission_group.present? %>
+    <% @class = 'warning' %>
+    <% @icon = 'clock' %>
+    <% @icon_prefix = 'fas' %>
+    <% @text = t('.await_approval') %>
   <% else %>
     <% @class = 'danger' %>
     <% @icon = 'times' %>
     <% @icon_prefix = 'fas' %>
+    <% @text = t('.finished') %>
   <% end %>
+
   <li class="list-group-item list-group-item-<%= @class %>">
     <span class="badge"><%= icon(@icon_prefix, @icon) %></span>
-    <%= t('.finished') %>
+    <%= @text %>
   </li>
+
   <% if @adventure_mission_group.present? %>
     <li class="list-group-item">
       <span class="badge"><%= @adventure_mission_group.points %></span>
@@ -55,7 +63,9 @@
   <% if current_user.mentor? %>
     <% if @adventure_mission_group.nil? %>
       <% if @adventure_mission.variable_points? %>
-        <%= link_to t('.finish_mission'), new_adventure_mission_group_path(adventure_mission: @adventure_mission), method: 'get', class: 'btn primary' %>
+        <%= link_to t('.finish_mission'), new_adventure_mission_group_path(adventure_mission: @adventure_mission),
+                                          method: 'get',
+                                          class: 'btn primary' %>
       <% else %>
         <%= link_to t('.finish_mission'),
                     adventure_mission_groups_path(adventure_mission_group:
@@ -69,12 +79,17 @@
     <% else %>
       <% if !@adventure_mission.locked? %>
         <% if @adventure_mission.variable_points? %>
-          <%= link_to t('.update_points'), edit_adventure_mission_group_path(@adventure_mission_group), method: 'get', class: 'btn primary' %>
+          <%= link_to t('.update_points'), edit_adventure_mission_group_path(@adventure_mission_group),
+                                           method: 'get',
+                                           class: 'btn primary' %>
         <% end %>
-        <%= link_to t('.reset_points'), adventure_mission_group_path(@adventure_mission_group), method: 'delete', class: 'btn danger' %>
+        <%= link_to t('.reset'), adventure_mission_group_path(@adventure_mission_group),
+                                   method: 'delete',
+                                   class: 'btn danger pull-right',
+                                   data: { confirm: t('.confirm_destroy') } %>
       <% end %>
     <% end %>
-    <% end %>
+  <% end %>
     <%= link_to(t('adventures.show.index'), adventures_path, class: 'btn secondary') %>
 
 </div>

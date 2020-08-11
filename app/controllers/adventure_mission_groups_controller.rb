@@ -50,6 +50,6 @@ class AdventureMissionGroupsController < ApplicationController
   private
 
   def adventure_mission_group_params
-    params.require(:adventure_mission_group).permit(:points, :adventure_mission_id)
+    params.require(:adventure_mission_group).permit(:points, :adventure_mission_id, :pending)
   end
 end
