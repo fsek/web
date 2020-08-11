@@ -167,8 +167,8 @@ Fsek::Application.routes.draw do
         patch :lock
         patch :unlock
         resources :adventure_missions, path: :aventyrsuppdrag
-        resources :adventure_mission_groups, path: :vantande_aventyrsuppdrag do
-          patch :accept
+        resources :adventure_mission_groups, path: :godkannande do
+          patch :accept, :decline
         end
       end
     end

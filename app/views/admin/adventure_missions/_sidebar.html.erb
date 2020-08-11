@@ -11,6 +11,18 @@
     <% end %>
   </li>
 
+  <li class="list-group-item">
+    <%= link_to(admin_adventure_adventure_mission_groups_path(adventure)) do %>
+      <%= icon('fas', 'list', t('.acceptance')) %>
+    <% end %>
+  </li>
+
+  <li class="list-group-item">
+    <%= link_to(admin_groups_path(introduction: @adventure.introduction)) do %>
+      <%= icon('fas', 'list', t('.groups')) %>
+    <% end %>
+  </li>
+
   <% if not adventure.adventure_missions.empty? %>
     <li class="list-group-item">
       <%= link_to(admin_adventure_lock_path(adventure), method: :patch) do %>
@@ -24,16 +36,4 @@
       <% end %>
     </li>
   <% end %>
-
-  <li class="list-group-item">
-    <%= link_to(admin_adventure_adventure_mission_groups_path(adventure)) do %>
-      <%= icon('fas', 'list', t('.acceptance')) %>
-    <% end %>
-  </li>
-
-  <li class="list-group-item">
-    <%= link_to(admin_groups_path(introduction: @adventure.introduction)) do %>
-      <%= icon('fas', 'list', t('.groups')) %>
-    <% end %>
-  </li>
 </ul>

@@ -4,6 +4,9 @@ sv:
       index:
         accept_missions_for: Acceptera uppdrag för äventyr
         accept: Acceptera
+        await_acceptance: Väntar godkännande
+        accepted: Godkända
+        decline: Avböj
       edit:
         title: Redigera slutfört uppdrag
         confirm_destroy: Vill du verkligen förinta det slutförda uppdraget?
@@ -20,3 +23,6 @@ sv:
       accept:
         success: Uppdrag godkänt
         fail: Godkännande misslyckades
+      decline:
+        success: Uppdrag avböjt
+        fail: Kunde inte uppdatera det slutförda uppdraget

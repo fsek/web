@@ -4,14 +4,14 @@ class Admin::AdventureMissionGroupsController < Admin::BaseController
   load_and_authorize_resource :group, :only => [:index]
 
   def index
-    if adventure_mission_group_params[:pending].nil?
-      @adventure_mission_group.pending = false
-    else
-      @adventure_mission_group.pending = adventure_mission_group_params[:pending]
-    end
-    @grid = initialize_grid(@adventure_mission_groups,
-                            include: [:group, :adventure_mission],
-                            per_page: 30)
+    adventure_mission_groups_pending = @adventure.adventure_mission_groups.where(pending: true)
+    adventure_mission_groups_accepted = @adventure.adventure_mission_groups.where(pending: false)
+    @grid_pending = initialize_grid(adventure_mission_groups_pending,
+                                    include: [:group, :adventure_mission],
+                                    per_page: 30)
+    @grid_accepted = initialize_grid(adventure_mission_groups_accepted,
+                                    include: [:group, :adventure_mission],
+                                    per_page: 30)
   end
 
   def edit
@@ -21,7 +21,11 @@ class Admin::AdventureMissionGroupsController < Admin::BaseController
   def update
     # No validation here since there are admins doing this
     @adventure_mission_group.points = adventure_mission_group_params[:points]
-    @adventure_mission_group.pending = adventure_mission_group_params[:pending]
+    if adventure_mission_group_params[:pending].nil?
+      @adventure_mission_group.pending = false
+    else
+      @adventure_mission_group.pending = adventure_mission_group_params[:pending]
+    end
     if @adventure_mission_group.save(validate: false)
       redirect_to admin_group_adventures_path(group_id: @adventure_mission_group.group.id),
                   notice: alert_success(t('.success'))
@@ -44,6 +48,17 @@ class Admin::AdventureMissionGroupsController < Admin::BaseController
   def accept
     @adventure_mission_group = AdventureMissionGroup.find(params[:adventure_mission_group_id])
     if @adventure_mission_group.update_attribute(:pending, false)
+      redirect_to admin_adventure_adventure_mission_groups_path(@adventure),
+                  notice: alert_success(t('.success'))
+    else
+      redirect_to admin_adventure_adventure_mission_groups_path(@adventure),
+                  alert: alert_danger(t('.fail'))
+    end
+  end
+
+  def decline
+    @adventure_mission_group = AdventureMissionGroup.find(params[:adventure_mission_group_id])
+    if @adventure_mission_group.update_attribute(:pending, true)
       redirect_to admin_adventure_adventure_mission_groups_path(@adventure),
                   notice: alert_success(t('.success'))
     else
