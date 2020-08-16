@@ -6,7 +6,7 @@ class Api::AdventureSerializer < ActiveModel::Serializer
               'current_user': :current_user
             }
 
-    attributes :title, :week_number, :video, :missions_finished, :adventure_missions
+    attributes :title, :week_number, :video, :missions_accepted, :adventure_missions
 
     def adventure_missions
       object.adventure_missions.order(index: 'asc')
@@ -16,9 +16,9 @@ class Api::AdventureSerializer < ActiveModel::Serializer
       scope[:current_user]
     end
 
-    def missions_finished
+    def missions_accepted
       @group = scope[:current_user].groups.regular.last
-      @amg = object.adventure_mission_groups.where(group: @group)
+      @amg = object.adventure_mission_groups.where(group: @group).where(pending: false)
       @amg.count
     end
   end
