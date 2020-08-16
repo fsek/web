@@ -53,16 +53,10 @@ class Group < ApplicationRecord
   end
 
   def total_published_adventure_points
-    Adventure.joins(adventure_mission_groups: :group).
-      where(publish_results: true, adventure_mission_groups: { group: self }).sum('adventure_mission_groups.points')
+    adventure_mission_groups.where(pending: false).sum('points')
   end
 
-  def total_published_adventure_missions_finished
-    Adventure.joins(adventure_mission_groups: :group).
-      where(publish_results: true, adventure_mission_groups: { group: self }).count
-  end
-
-  def self.by_adventure_points
-    self.sort(:total_published_adventure_points)
+  def total_published_adventure_missions_accepted
+    adventure_mission_groups.where(pending: false).count
   end
 end

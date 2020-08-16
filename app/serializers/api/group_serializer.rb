@@ -23,14 +23,14 @@ class Api::GroupSerializer < ActiveModel::Serializer
   end
 
   class Api::GroupSerializer::Adventure < ActiveModel::Serializer
-    attributes :name, :finished_missions, :total_points
+    attributes :name, :accepted_missions, :total_points
 
     def total_points
       object.total_published_adventure_points
     end
 
-    def finished_missions
-      object.total_published_adventure_missions_finished
+    def accepted_missions
+      object.total_published_adventure_missions_accepted
     end
   end
 end
