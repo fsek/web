@@ -1,6 +1,6 @@
 default: &default
   terms: 1
-  api: 1.0
+  api: 1.1
 development:
   <<: *default
 production:
