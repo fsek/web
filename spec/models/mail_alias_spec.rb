@@ -50,8 +50,6 @@ describe MailAlias do
       MailAlias.fulltext_search('jo').should == [ m1 ]
       MailAlias.fulltext_search('johannes').should == [ ]
       MailAlias.fulltext_search('erik').should == [ m2 ]
-      MailAlias.fulltext_search('johan@fsektionen.se').should == [ m1 ]
-      MailAlias.fulltext_search('jaforberg@gmail.com').should == [ m1 ]
     end
   end
 
