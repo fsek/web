@@ -12,8 +12,8 @@ class MailAlias < ApplicationRecord
   scope :fulltext_search, -> (str) do
     (username, domain) = str.split('@', 2)
     if domain.present?
-      return where('(username = ? and domain = ?) or target = ?',
-                   username, domain, str)
+      return where('username = ? and domain = ?',
+                   username, domain)
     elsif username.present?
       return where('username like ?', "%#{username}%")
     else
