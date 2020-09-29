@@ -1,0 +1,13 @@
+<div class="col-md-10 col-sm-12">
+  <%= grid(@door_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: Door.human_attribute_name(:title)) do |door|
+    	door.title
+    end
+    g.column(name: models_name(Access)) do |door|
+      	link_to(('Visa accesser'), accesses_door_path(door))
+    end
+    g.column(name: Door.human_attribute_name(:id)) do |door|
+    	door.id
+    end
+  end -%>
+</div>
