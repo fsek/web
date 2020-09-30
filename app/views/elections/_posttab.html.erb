@@ -14,6 +14,12 @@
       election_post_link(post)
     end
 
+    if (election_view.election.state != :not_opened)
+      g.column name: models_name(Candidate), filter: false do |post|
+        election_view.post_count[post.id] || 0
+      end
+    end
+
     g.column name: Post.human_attribute_name(:limit), attribute: 'limit', filter: false do |post|
       print_post_limit(post)
     end
@@ -24,12 +30,6 @@
 
     g.column(name: Post.human_attribute_name(:elected_by), attribute: 'elected_by', filter: false) do |post|
       t("model.post.#{post.elected_by}")
-    end
-
-    if (election_view.election.state != :not_opened)
-      g.column name: models_name(Candidate), filter: false do |post|
-        election_view.post_count[post.id] || 0
-      end
     end
   end -%>
 <% end %>
