@@ -1,4 +1,5 @@
+<pre style= "word-wrap: break-word; white-space: pre-wrap;">
 <% @door.users.pluck(:student_id).each do |a| %>
-  <%= a %> 
-  <br>
+<%=a + "\n" -%>
 <% end %>
+</pre>
