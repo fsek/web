@@ -1,0 +1,17 @@
+<%= simple_form_for([:admin, access_user]) do |f|%>
+    <%= f.input :user_id,label: "Användare" , collection: User.by_firstname.confirmed,
+                            input_html: { class: 'select2' },
+                            include_blank: true,
+                            prompt: "Välj användare",
+                            label_method: :print_email %>
+
+    <%= f.input :door_id, label: "Dörr", collection: Door.all,
+                            input_html: { class: 'select2' },
+                            include_blank: false,
+                            prompt: "Välj dörr",
+                            label_method: :to_s %>
+    <%= f.input :purpose, label: "Hur länge och varför ska denna access gälla?" %>
+    <%= f.button :submit %> 
+    <%= link_to("Gå tillbaka", admin_access_users_path,
+                           class: 'btn secondary') %>
+<% end %>

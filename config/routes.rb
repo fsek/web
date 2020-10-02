@@ -295,9 +295,12 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :doors, path: :dorrar, except: :show do
+    namespace :admin do
+      resources :access_users, path: :manuell_access, except: :show
+    end
+
+    resources :doors, path: :dorrar, only: [:index, :accesser] do
       get :accesses, path: :accesser, on: :member
-      get :post, path: '/post/:post_id', on: :collection
     end
 
     namespace :admin do

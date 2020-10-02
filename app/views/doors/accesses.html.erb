@@ -4,4 +4,9 @@
     a + "\n"
     end -%>
 <% end %>
+<% @temp.each do |b| %>
+<%= if b != nil && b != ""
+User.find(b). student_id + "\n"
+end -%>
+<% end %>
 </pre>

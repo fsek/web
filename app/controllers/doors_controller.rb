@@ -6,6 +6,7 @@ class DoorsController < ApplicationController
   def accesses
     @doors = Door.by_title
     @door = Door.includes(:posts).find(params[:id])
+    @temp = @door.access_users.pluck(:user_id)
     render layout: false
   end
 

@@ -1,0 +1,50 @@
+<div class="col-md-12 col-sm-12 access-padding">
+  <div class= "headline">
+    <h2>Skapa ny access</h2>
+  </div>
+  <%= link_to('Ny access', new_admin_access_user_path,
+                                class: 'btn primary') %>
+</div>
+
+<div class="col-md-12 col-sm-12 reg-page">
+  <div class= "headline">
+    <h1>Befintlig access</h1>
+  </div>
+  <div class="col-md-12">
+    <%= grid(@access_users, hide_submit_button: true, hide_reset_button: true) do |g|
+      g.column(name: 'Användare', attribute: 'user_id') do |access_user|
+        access_user.user
+      end
+
+      g.column(name: 'Dörr', attribute: 'door_id') do |access_user|
+        access_user.door
+      end
+
+      g.column(name: 'Beskrivning') do |access_user|
+        access_user.purpose
+      end
+
+      g.column(name: 'Uppdatera') do |access_user|
+        link_to('Uppdatera access', edit_admin_access_user_path(access_user),
+                                     url: {action: :edit},
+                                     class: 'btn secondary')
+      end
+
+      g.column(name: 'Radera') do |access_user|
+        link_to('Ta bort access', admin_access_user_path(access_user),
+                                     method: :delete,
+                                     data: {confirm: 'Vill du ta bort denna access?'},
+                                     class: 'btn danger')
+      end
+    end %>
+
+    <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+      <%= t('wice_grid.filter') %>
+    </button>
+
+    <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+      <%= t('wice_grid.reset_filter') %>
+    </button>
+    
+  </div>
+</div>
