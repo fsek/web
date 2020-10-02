@@ -1,0 +1,9 @@
+sv:
+  activerecord:
+    models:
+      access_user: Access
+    attributes:
+      access_user:
+        user: Användare
+        door: Dörr
+        purpose: Beskrivning
