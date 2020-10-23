@@ -34,6 +34,6 @@ module CafeHelper
     end
   end
   def pass_collection
-    [['2 timmar', 1], ['3 timmar', 2]]
+    [['1 timme', 1], ['2 timmar', 2], ['3 timmar', 3]]
   end
 end

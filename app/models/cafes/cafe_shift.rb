@@ -6,7 +6,7 @@ class CafeShift < ApplicationRecord
   # Validations
   validates :start, :pass, :lp, :lv, presence: true
   validates :lp, inclusion: { in: 1..4 }
-  validates :pass, inclusion: { in: 1..2 }
+  validates :pass, inclusion: { in: 1..3 }
   validates :lv, inclusion: { in: 0..8 }
 
   # Scopes
@@ -44,6 +44,6 @@ class CafeShift < ApplicationRecord
 
   # Duration of work
   def duration
-    pass == 1 ? 2 : 3
+    pass
   end
 end
