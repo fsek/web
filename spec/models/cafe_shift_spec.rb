@@ -13,7 +13,7 @@ RSpec.describe CafeShift, type: :model do
     it { CafeShift.new.should validate_presence_of(:pass) }
     it { CafeShift.new.should validate_presence_of(:lp) }
     it { CafeShift.new.should validate_presence_of(:lv) }
-    it { CafeShift.new.should validate_inclusion_of(:pass).in_range(1..2)}
+    it { CafeShift.new.should validate_inclusion_of(:pass).in_range(1..3) }
     it { CafeShift.new.should validate_inclusion_of(:lp).in_range(1..4) }
     it { CafeShift.new.should validate_inclusion_of(:lv).in_range(0..8) }
   end
