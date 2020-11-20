@@ -19,12 +19,12 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
       end.should change(ToolRenting, :count).by(1)
 
       response.should redirect_to(admin_tool_path(tool))
-      ToolRenting.last.renter.should eq(attributes[:renter])
+      ToolRenting.last.user_id.should eq(attributes[:user_id])
     end
 
     it 'invalid parameters' do
       tool = create(:tool)
-      attributes = attributes_for(:tool_renting, renter: nil, tool: tool)
+      attributes = attributes_for(:tool_renting, user_id: nil, tool: tool)
 
       lambda do
         post :create, params: { tool_id: tool, tool_renting: attributes }
@@ -51,37 +51,31 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
       get :edit, params: { id: rent.to_param, tool_id: tool.to_param }
       response.status.should eq(200)
     end
-    it 'error when loading returned tool_renting' do
-      tool = create(:tool)
-      rent = create(:tool_renting, tool: tool, returned: true)
-      get :edit, params: { id: rent.to_param, tool_id: tool.to_param }
-      response.should redirect_to(admin_tool_path(tool))
-    end
   end
 
   describe 'PATCH #update' do
     it 'valid parameters' do
       tool = create(:tool)
-      rent = create(:tool_renting, tool: tool, renter: 'Adrian Roth')
-      attributes = { renter: 'Rotharen' }
+      rent = create(:tool_renting, tool: tool, user_id: 1)
+      attributes = { user_id: 2 }
 
       patch :update, params: { tool_id: tool, id: rent, tool_renting: attributes }
 
       rent.reload
-      rent.renter.should eq('Rotharen')
+      rent.user_id.should eq(2)
       response.should redirect_to(admin_tool_path(tool))
     end
 
     it 'invalid parameters' do
       tool = create(:tool)
       rent = create(:tool_renting, tool: tool)
-      renter_before = rent.renter
-      attributes = attributes_for(:tool_renting, renter: nil, tool: tool)
+      user_id_before = rent.user_id
+      attributes = attributes_for(:tool_renting, user_id: nil, tool: tool)
 
       patch :update, params: { tool_id: tool, id: rent, tool_renting: attributes }
 
       rent.reload
-      rent.renter.should eq(renter_before)
+      rent.user_id.should eq(user_id_before)
       response.status.should eq(422)
       response.should render_template(:edit)
     end

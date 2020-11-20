@@ -3,6 +3,7 @@ sv:
     tool_renting:
       already_returned: Redan returnerad
       no_more_tools: Det finns inga fler verktyg att låna
+      return_date_lesser_than_today: Returdatumet har passerat
 
   activerecord:
     models:
@@ -11,5 +12,7 @@ sv:
     attributes:
       tool_renting:
         renter: Utlånad till
+        lend_date: Utlåningsdatum
         return_date: Returdatum
+        purpose: Syfte
         returned: Returnerad

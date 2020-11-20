@@ -1,5 +1,5 @@
 class Tool < ApplicationRecord
-  has_many :tool_rentings
+  has_many :tool_rentings, dependent: :restrict_with_error
 
   validates :title, :total, presence: true
   validates :total, numericality: { greater_than: 0 }

@@ -19,7 +19,8 @@ sv:
       show:
         administrate_tools: Adminstrera verktyg
         edit_tool: Redigera verktyg
-        free: Antal lediga
+        free: Antal lediga verktyg
         new_renting: Nytt lån
         rented: Lånade
+        history: Historik
         title: Verktyg

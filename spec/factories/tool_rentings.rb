@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tool_renting do
-    renter 'Adrian Roth'
+    user_id 1
     purpose 'to use'
     tool
     return_date { Time.zone.now + 10.days }

@@ -1,9 +1,13 @@
 <% if rent.present? %>
   <%= simple_form_for([:admin, rent.tool, rent]) do |f|%>
     <%= f.input :returned, as: :boolean %>
-    <%= f.input :renter %>
+    <%= f.input :user_id, collection: User.by_firstname.confirmed,
+                  input_html: { class: 'select2' },
+                  include_blank: true,
+                  prompt: "Välj en person som verktyget ska lånas ut till",
+                  label_method: :print_email %>
     <%= f.input :purpose %>
-    <%= f.input :return_date, as: :datetime_picker%>
+    <%= f.input :return_date, as: :datetime_picker, input_html: { data: { date_format: "YYYY-MM-DD"} }%>
     <%= f.button :submit %>
     <% if rent.persisted? %>
       <%= link_to(t('.destroy'), admin_tool_tool_renting_path(rent.tool, rent),

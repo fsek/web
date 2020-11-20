@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ToolRenting, type: :model do
   describe :Validations do
-    it 'check presence renter' do
-      ToolRenting.new.should validate_presence_of(:renter)
+    it 'check presence user_id' do
+      ToolRenting.new.should validate_presence_of(:user_id)
     end
 
     it 'check presence tool' do
@@ -17,15 +17,15 @@ RSpec.describe ToolRenting, type: :model do
     context 'free tools' do
       it 'valid with free tool' do
         tool = create(:tool, total: 1)
-        rent = create(:tool_renting, renter: 'Adrian', tool_id: tool.id)
+        rent = create(:tool_renting, user_id: 1, tool_id: tool.id)
 
-        rent.renter = 'Roth'
+        rent.user_id = 2
         rent.valid?.should eq(true)
       end
 
       it 'invalid without free tool' do
         tool = create(:tool, total: 1)
-        create(:tool_renting, renter: 'Adrian', tool_id: tool.id)
+        create(:tool_renting, user_id: 1, tool_id: tool.id)
 
         tool.reload
         tool.free.should eq(0)
