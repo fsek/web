@@ -3,7 +3,7 @@ module ToolHelper
     if tool.present?
       content = []
       content << content_tag(:h4, tool.title, class: 'list-group-item-heading')
-      content << content_tag(:span, tool.free.to_s, class: 'badge')
+      content << content_tag(:span, tool.free.to_s + '/' + tool.total.to_s, class: 'badge')
       content << content_tag(:p, tool.description, class: 'list-group-item-text')
 
       make_link(tool, path, content)

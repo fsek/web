@@ -1,10 +1,11 @@
-<% description(t('.description')) %>
-<% keywords(t('.keywords')) %>
-
-<div class="col-md-8 col-md-offset-2 col-sm-12">
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
   <div class="headline">
     <h1><%= title(t('.title')) %></h1>
   </div>
+
+  <p><%= t('.description') %>
+    <a href="/kontakter/2"> <%= t('.contact_head') + '.' %></a>
+  </p>
 
   <p class="pull-right"><%= t('.free') %></p>
   <br>

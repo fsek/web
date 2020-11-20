@@ -51,12 +51,6 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
       get :edit, params: { id: rent.to_param, tool_id: tool.to_param }
       response.status.should eq(200)
     end
-    it 'error when loading returned tool_renting' do
-      tool = create(:tool)
-      rent = create(:tool_renting, tool: tool, returned: true)
-      get :edit, params: { id: rent.to_param, tool_id: tool.to_param }
-      response.should redirect_to(admin_tool_path(tool))
-    end
   end
 
   describe 'PATCH #update' do

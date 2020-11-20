@@ -26,3 +26,10 @@ en:
     copyright:
       control_the_web: "Controlling this web"
       the_f_guild: "F-guild at TLTH"
+    dropdowns:
+      admin_dropdown:
+        administrate: Administrate
+      user_dropdown:
+        user_settings: "Account settings"
+      notifications_dropdown:
+        no_notifications: Inga notifikationer 

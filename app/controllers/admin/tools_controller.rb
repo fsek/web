@@ -8,6 +8,7 @@ class Admin::ToolsController < Admin::BaseController
   def show
     @tool = Tool.find(params[:id])
     @rent = @tool.tool_rentings.where(returned: false)
+    @rent_history = @tool.tool_rentings.where(returned: true)
   end
 
   def create
@@ -39,8 +40,11 @@ class Admin::ToolsController < Admin::BaseController
   def destroy
     tool = Tool.find(params[:id])
 
-    tool.destroy!
-    redirect_to admin_tools_path, notice: alert_destroy(Tool)
+    if tool.destroy
+      redirect_to admin_tools_path, notice: alert_destroy(Tool)
+    else
+      redirect_to admin_tools_path, notice: alert_danger(t('model.tool.could_not_destroy'))
+    end
   end
 
   private
