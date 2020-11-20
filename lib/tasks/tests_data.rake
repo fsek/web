@@ -140,8 +140,8 @@ namespace :db do
     #Tool
     tool = Tool.find_or_create_by!(title: 'Hammare', description: 'spikar spikar m.m.', total: 5)
     # Tool Renting
-    ToolRenting.find_or_create_by!(renter: 'adrian', tool: tool, purpose: 'for home use', return_date: Time.zone.now)
-    ToolRenting.find_or_create_by!(renter: 'adrian2', tool: tool, purpose: 'for other use', return_date: Time.zone.now)
+    ToolRenting.find_or_create_by!(user_id: 1, tool: tool, purpose: 'for home use', return_date: Time.zone.now)
+    ToolRenting.find_or_create_by!(user_id: 2, tool: tool, purpose: 'for other use', return_date: Time.zone.now)
 
     # Introduction
     introduction = Introduction.find_or_create_by!(title: 'En Ridderlig Nollning',

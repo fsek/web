@@ -25,17 +25,42 @@
   <ul class="list-group">
     <% @rent.each do |rent| %>
       <%= link_to(edit_admin_tool_tool_renting_path(rent.tool, rent), class: 'list-group-item') do %>
-        <h4 class="list-group-item-heading"><%= rent.renter %></h4>
+        <h4 class="list-group-item-heading"><%= User.find(rent.user_id) %></h4>
         <p class="list-group-item-text">
-          <b><%= ToolRenting.human_attribute_name(:return_date) %>:</b>
+          <i><%= ToolRenting.human_attribute_name(:lend_date) %>:</i>
+          <%= rent.created_at.strftime(("%Y-%m-%d")) %>
+          <i><%= ToolRenting.human_attribute_name(:return_date) %>:</i>
           <%= rent.return_date %>
-          <b><%= ToolRenting.human_attribute_name(:purpose) %>:</b>
+          <i><%= ToolRenting.human_attribute_name(:purpose) %>:</i>
           <%= rent.purpose %>
         </p>
       <% end %>
     <% end %>
   </ul>
+
+  <div class="headline">
+    <h3><%= t('.history') %></h3>
+  </div>
+
+  <ul class="list-group">
+    <% @rent_history.each do |rent| %>
+      <%= link_to(edit_admin_tool_tool_renting_path(rent.tool, rent), class: 'list-group-item') do %>
+        <h4 class="list-group-item-heading"><%= User.find(rent.user_id) %></h4>
+        <p class="list-group-item-text">
+          <i><%= ToolRenting.human_attribute_name(:lend_date) %>:</i>
+          <%= rent.created_at.strftime(("%Y-%m-%d")) %>
+          <i><%= ToolRenting.human_attribute_name(:return_date) %>:</i>
+          <%= rent.return_date %>
+          <i><%= ToolRenting.human_attribute_name(:purpose) %>:</i>
+          <%= rent.purpose %>
+          
+        </p>
+      <% end %>
+    <% end %>
+  </ul>
+
   <hr>
   <%= link_to(t('.administrate_tools'), admin_tools_path,
                                         class: 'btn secondary') %>
 </div>
+  

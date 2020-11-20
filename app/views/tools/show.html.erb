@@ -18,14 +18,16 @@
   <ul class="list-group">
     <% @rent.each do |rent| %>
       <li class="list-group-item">
-        <h4 class="list-group-item-heading">
-          <%= rent.renter %>
-        </h4>
         <p class="list-group-item-text">
-          <b><%= t('.return_date') %>:</b>
-          <%= localized(rent.return_date) %>
+          <i><%= ToolRenting.human_attribute_name(:lend_date) %>:</i>
+          <%= rent.created_at.strftime(("%Y-%m-%d")) %>
+          <i><%= ToolRenting.human_attribute_name(:return_date) %>:</i>
+          <%= rent.return_date %>
         </p>
       </li>
     <% end %>
   </ul>
+
+  <hr>
+  <%= link_to(t('.all_tools'), tools_path, class: 'btn secondary') %>
 </div>

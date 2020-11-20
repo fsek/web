@@ -1,8 +1,10 @@
 sv:
   tools:
     index:
-      description: Behöver du verktyg för att skruva ihop nya möbler? Sektionen har en uppsjö av verktyg för utlåning till medlemmar.
+      description: Prylmästeriet har en uppsjö av olika verktyg som du kan hitta i listan nedanför. Som sektionsmedlem är du välkommen att låna dessa. För detta tar du lämpligen kontakt med en fixare, exempelvis via fixare@fsektionen.se. Annars kan du 
+      contact_head: kontakta Prylmästaren
       free: Lediga verktyg
+      total: Totalt antal
       keywords:
         - verktyg
         - slagborr
@@ -13,7 +15,9 @@ sv:
       title: Sektionens verktyg
 
     show:
-      free: Lediga verktyg
+      free: Antal lediga verktyg
       rented: Lånade
-      return_date: Retur
+      lend_date: Utlåningsdatum
+      return_date: Returdatum
       title: Sektionens verktyg
+      all_tools: Alla verktyg
