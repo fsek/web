@@ -8,6 +8,7 @@ en:
   admin:
     tool_rentings:
       form:
+        confirm_destroy: "Are you sure you want to destoy the loan? To save the loan to the history, press Returned and then update loan"
         destroy: "Delete tool loan"
       edit:
         title: "Delete tool loan"

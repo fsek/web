@@ -8,10 +8,11 @@ en:
   model:
     tool:
       not_allowed_change_total: "Prohibited to change number of tools lower than number on loan"
+      could_not_destroy: "The tool is rented and could not be destroyed"
   activerecord:
     models:
       tool: Tools
     attributes:
       tool:
-        total: Total
+        total: Total number of tools
         description: Description

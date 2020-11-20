@@ -9,6 +9,7 @@ en:
     index:
       description: "Behöver du verktyg för att skruva ihop nya möbler? Sektionen har en uppsjö av verktyg för utlåning till medlemmar."
       free: "Free tools"
+      total: Total amount
       keywords:
         - verktyg
         - slagborr
@@ -17,7 +18,8 @@ en:
         - betongvägg
       title: "The guild's tools"
     show:
-      free: "Free tools"
+      free: "Number of free tools"
       rented: Loaned
+      lend_date: "Lending date"
       return_date: "Return date"
       title: "The guild's tools"

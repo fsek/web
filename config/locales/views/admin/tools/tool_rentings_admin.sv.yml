@@ -2,7 +2,7 @@ sv:
   admin:
     tool_rentings:
       form:
-        confirm_destroy: Vill du verkligen förinta lånet?
+        confirm_destroy: Vill du verkligen förinta lånet? För att spara lånet till historiken, klicka i Returnerad och uppdatera lån
         destroy: Förinta lån
 
       edit:

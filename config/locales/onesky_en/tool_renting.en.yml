@@ -9,11 +9,13 @@ en:
     tool_renting:
       already_returned: "Already returned"
       no_more_tools: "There are no more tools to borrow"
+      return_date_lesser_than_today: "The return date has passed"
   activerecord:
     models:
       tool_renting: "Tool loans"
     attributes:
       tool_renting:
         renter: "On loan to"
+        lend_date: "Lending date"
         return_date: "Return date"
         returned: Returned

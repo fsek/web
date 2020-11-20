@@ -3,6 +3,7 @@ sv:
     index:
       description: Behöver du verktyg för att skruva ihop nya möbler? Sektionen har en uppsjö av verktyg för utlåning till medlemmar.
       free: Lediga verktyg
+      total: Totalt antal
       keywords:
         - verktyg
         - slagborr
@@ -13,7 +14,8 @@ sv:
       title: Sektionens verktyg
 
     show:
-      free: Lediga verktyg
+      free: Antal lediga verktyg
       rented: Lånade
+      lend_date: Utlåningsdatum
       return_date: Retur
       title: Sektionens verktyg
