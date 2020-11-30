@@ -462,6 +462,13 @@ ActiveRecord::Schema.define(version: 20201220144612) do
     t.index ["user_id"], name: "index_fredmanskies_on_user_id"
   end
 
+  create_table "fruits", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name", null: false
+    t.boolean "isMoldy", default: false, null: false
+    t.index ["user_id"], name: "index_fruits_on_user_id"
+  end
+
   create_table "group_messages", id: :serial, force: :cascade do |t|
     t.integer "group_id"
     t.integer "message_id"

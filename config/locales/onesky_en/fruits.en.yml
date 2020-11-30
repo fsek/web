@@ -1,0 +1,36 @@
+---
+en:
+  fruits:
+      index:
+        title: All fruits
+        name: Name
+        mold: Moldy?
+        user: Owner
+        edit: Edit
+        edit_fruit: Edit fruit
+        delete: Delete
+        delete_fruit: Delete fruit
+        confirm_delete: Are you sure you want to delete the fruit?
+        new: Create new fruit
+        new_fruit: New fruit
+      edit:
+        title: Edit fruit
+      new:
+        title: New Fruit
+      form:
+        name: Name
+        mold: Moldy?
+        user: Owner
+        user_prompt: Choose user
+        all: All fruits
+  activerecord:
+    models:
+      fruit:
+        one: Fruit
+        other: Fruits
+    attributes:
+      fruit:
+        user: User
+        name: Name
+        isMoldy: Moldy?
+

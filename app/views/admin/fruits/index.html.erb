@@ -1,0 +1,48 @@
+<div class="col-md-12 col-sm-12 fruit-padding">
+  <div class= "headline">
+    <h2><%= title(t('.new')) %></h2>
+  </div>
+  <%= link_to(t('.new_fruit'), new_admin_fruit_path, class: 'btn primary')%>
+</div>
+
+<div class="col-md-12 col-sm-12 reg-page">
+  <div class= "headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+  <div class="col-md-12">
+    <%= grid(@fruits, hide_submit_button: true, hide_reset_button: true) do |g|
+      g.column(name: t('.user'), attribute: 'user_id') do |fruit|
+        fruit.user
+      end
+
+      g.column(name: t('.name')) do |fruit|
+        fruit.name
+      end
+
+      g.column(name: t('.mold')) do |fruit|
+        fruit.isMoldy
+      end
+
+      g.column(name: t('.edit')) do |fruit|
+        link_to(t('.edit_fruit'), edit_admin_fruit_path(fruit),
+                                     url: {action: :edit},
+                                     class: 'btn secondary')
+      end
+
+      g.column(name: t('.delete')) do |fruit|
+        link_to(t('.delete_fruit'), admin_fruit_path(fruit),
+                                     method: :delete,
+                                     data: {confirm: t('.confirm_delete')},
+                                     class: 'btn danger')
+      end
+    end %>
+
+    <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+      <%= t('wice_grid.filter') %>
+    </button>
+
+    <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+      <%= t('wice_grid.reset_filter') %>
+    </button>
+  </div>
+</div>

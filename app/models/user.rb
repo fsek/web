@@ -23,6 +23,7 @@ class User < ApplicationRecord
   validate :food_validation
 
   # Associations
+  has_many :fruits, dependent: :destroy
   has_many :access_users, dependent: :destroy
   has_many :post_users, dependent: :destroy
   has_many :posts, through: :post_users

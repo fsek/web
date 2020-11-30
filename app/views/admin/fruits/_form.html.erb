@@ -1,0 +1,12 @@
+<%= simple_form_for([:admin, fruit]) do |fruit|%>
+    <%= fruit.input :user_id,
+                label: t('.user'),
+                collection: User.by_firstname.confirmed,
+                input_html: { class: 'select2' },
+                include_blank: true, prompt: t('.user_prompt'),
+                label_method: :print_email %>
+    <%= fruit.input :name, label: t('.name')%>
+    <%= fruit.input :isMoldy, label: t('.mold'), as: :radio_buttons %>
+    <%= fruit.button :submit %> 
+    <%= link_to(t('.all'), admin_fruits_path, class: 'btn secondary') %>
+<% end %>

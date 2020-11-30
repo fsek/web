@@ -369,6 +369,13 @@ Fsek::Application.routes.draw do
     end
   end
 
+  resources :fruits, path: :frukter, only: [:index, :show]
+
+  namespace :admin do
+    resources :fruits, path: :frukter, except: :show
+  end
+
+
   # API routes
   namespace :api, constraints: { format: 'json' } do
     mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :confirmations]

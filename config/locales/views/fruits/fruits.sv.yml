@@ -1,0 +1,9 @@
+sv:
+  fruits:
+    index:
+      title: Dina frukter
+      name: Namn
+      mold: Möglig?
+    show:
+      moldy: Den här frukten är möglig.
+      notMoldy: Den här frukten är inte möglig.

@@ -1,0 +1,11 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h1> <%= @fruit.name%> </h1>
+  </div>
+
+  <%= if @fruit.isMoldy
+  t('.moldy')
+  else
+  t('.notMoldy')
+  end -%>
+</div>

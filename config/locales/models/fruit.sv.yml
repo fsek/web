@@ -1,0 +1,11 @@
+sv:
+  activerecord:
+    models:
+      fruit:
+        one: Frukt
+        other: Frukter
+    attributes:
+      fruit:
+        user: Användare
+        name: Namn
+        isMoldy: Möglig?
