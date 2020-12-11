@@ -14,7 +14,7 @@ class Post < ApplicationRecord
 
   # Associations
   belongs_to :council, required: true
-  has_many :post_users
+  has_many :post_users, dependent: :destroy
   has_many :users, through: :post_users
 
   has_many :nominations
@@ -22,7 +22,7 @@ class Post < ApplicationRecord
 
   has_many :permission_posts
   has_many :permissions, through: :permission_posts
-  has_many :accesses
+  has_many :accesses, dependent: :destroy
   has_many :doors, through: :accesses
 
   # Scopes
