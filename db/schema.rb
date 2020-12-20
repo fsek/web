@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201127144000) do
+ActiveRecord::Schema.define(version: 20201220144612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20201127144000) do
   create_table "access_users", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "door_id"
-    t.string "purpose"
+    t.string "purpose", null: false
     t.index ["door_id"], name: "index_access_users_on_door_id"
     t.index ["user_id"], name: "index_access_users_on_user_id"
   end
@@ -265,6 +265,7 @@ ActiveRecord::Schema.define(version: 20201127144000) do
     t.string "slug", limit: 255
     t.integer "post_id"
     t.string "avatar"
+    t.string "phone"
     t.index ["post_id"], name: "index_contacts_on_post_id"
     t.index ["slug"], name: "index_contacts_on_slug"
   end
@@ -912,14 +913,13 @@ ActiveRecord::Schema.define(version: 20201127144000) do
   end
 
   create_table "tool_rentings", id: :serial, force: :cascade do |t|
-    t.string "renter", limit: 255, null: false
     t.string "purpose", limit: 255
     t.integer "tool_id", null: false
     t.date "return_date", null: false
     t.boolean "returned", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["renter"], name: "index_tool_rentings_on_renter"
+    t.integer "user_id", null: false
     t.index ["tool_id"], name: "index_tool_rentings_on_tool_id"
   end
 

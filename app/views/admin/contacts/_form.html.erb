@@ -6,6 +6,7 @@
   <%= f.input :text_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :text_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :email %>
+  <%= f.input :phone, hint: t('.phone_description') %>
   <%= f.input :public %>
   <%= f.input :slug, hint: t('.slug_description') %>
 

@@ -11,6 +11,10 @@ module ContactHelper
     contact_link(contact)
   end
 
+  def number_from_slug(slug:)
+    Contact.find_by(slug: slug)&.phone
+  end
+
   def contact_image(contact)
     if contact.avatar.present?
       image_tag(contact.avatar.large.url, class: 'img-responsive')
