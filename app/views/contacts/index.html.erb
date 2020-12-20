@@ -7,8 +7,38 @@
   </h1>
 </div>
 
-<div class="contact row-eqh">
-  <% cache_unless(can_administrate?(:manage, Contact), [@contacts, I18n.locale]) do %>
-    <%= render @contacts %>
-  <% end %>
+<div class="panel panel-danger">
+<div class="panel-heading">
+    <h3 class="panel-title">
+      <%= t('.emergency') %>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <%= t('.emergency_body') %>
+    <div class="row">
+      <div class="col-md-4">
+        <%= t('.emergency_general') %><br>
+        <%= contact_from_slug(slug: "ordf") %> - <%= number_from_slug(slug: "ordf") %>
+      </div>
+      <div class="col-md-4">
+        <%= t('.emergency_introduction_html') %><br>
+        <%= contact_from_slug(slug: "foset") %> - <%= number_from_slug(slug: "foset") %>
+      </div>
+      <div class="col-md-4">
+        <%= t('.emergency_car_html') %><br>
+        <%= contact_from_slug(slug: "bilförman") %> - <%= number_from_slug(slug: "bilförman") %><br>
+        <%= contact_from_slug(slug: "prylm") %> - <%= number_from_slug(slug: "prylm") %><br>
+        <%= contact_from_slug(slug: "ordf") %> - <%= number_from_slug(slug: "ordf") %>
+      </div>
+    </div>
+  </div>
 </div>
+
+<% @councils.each do |council| %>
+  <h3>
+    <%= council[0] %>
+  </h3>
+  <div class="contact row-eqh">
+    <%= render council[1] %>
+  </div>
+<% end %>

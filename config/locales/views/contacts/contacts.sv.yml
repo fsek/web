@@ -11,6 +11,12 @@ sv:
         - styrelse
         - bil
       title: Kontaktsida
+      contact: Kontakta
+      emergency: Nödsituation
+      emergency_body: En av följande personer skall kontaktas vid nödsituation.
+      emergency_general: "Vid allmäna nödsituationer:"
+      emergency_introduction_html: "Vid nödsituationer under <strong>nollningen</strong>:"
+      emergency_car_html: "Vid nödsituationer med <strong>F-bilen</strong>:"
 
     send_form:
       submit: Skicka meddelande
