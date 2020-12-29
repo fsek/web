@@ -1,0 +1,158 @@
+.offers{
+  position: absolute;
+  left: 0px;
+  width: 300px;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+.columncomp {
+  float: left;
+  width: 33.33%;
+}
+
+.compcarou { /*Radera ej (se media queries längre ned) */
+
+}
+
+.comppic {
+	height:30vw;
+	width:53vw;
+	margin-left:20px;
+	
+}
+
+.comppic2 {
+	height:30vw;
+	width:45vw;
+	margin-bottom:20px;
+	float: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.wrapper {
+    width:100%;
+    height:100%;
+    margin: 0 auto;
+    /*margin: 10 px; */
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.container {
+	
+    /*position: relative;*/
+    heigth: 100%;
+}
+
+.block2 {
+	overflow: auto;
+	float: left;
+    height: 700px; /*Anpassa efter text. OBS: Se media queries längre ned. */
+    width: 33%;
+    min-width: 240px;
+    right: 10 px;
+    top: 10 px;
+    background-color: #F5F5F5;
+    
+}
+
+.mobileButton { /*Radera ej (se media queries längre ned) */
+	
+}
+
+.block3 {
+	overflow: auto;
+	float: left;
+    height: 475px; /* Anpassa efter vad som skrivs. OBS: Se media queries längre ned. */
+    width:  24%;
+    min-width: 210px;
+    right: 10 px;
+    top: 10 px;
+    background-color: #F5F5F5;
+    
+}
+.hBlock {
+	position: relative;
+	bottom: 20 px;
+}
+
+/* margin: 10px 20px;
+    padding: 20px;
+    width: 48%; */
+
+    /* For Mobile */
+
+@media screen and (max-width: 700px) {
+    .comppic{
+    	float: right;
+    	height:45vw;
+		width:80vw;
+		margin-left:0px;
+		margin-right:20px;
+    }
+
+    
+    
+}
+
+@media screen and (max-width: 321px) {
+	.comppic{
+	   	height: 40vw;
+		width: 70vw;
+		margin-left: 25px;
+		margin-right: 0px;
+	}
+	.comppic2{
+    	height:54vw;
+		width:81vw;
+		margin-bottom:20px;
+    }
+}
+
+@media screen and (min-width: 701px) {
+    .compcarou {
+    	float: right;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .block2 {
+        width: 100%;
+        height: 100%;
+    }
+
+    .block3{
+    	width: 100%;
+    	height: 100%;
+    }
+}
+
+@media screen and (min-width: 1001px) {
+    .mobileButton {
+    	display: none;
+    	visibility: hidden;
+    }
+}
+
+@media screen and (min-width: 1441px) {
+    .comppic{
+    	float: right;
+    	height:14vw;
+		width:25vw;
+		margin-left:0px;
+		margin-right:20px;
+    }
+    .comppic2 {
+    	height:10vw;
+		width:15vw;
+		margin-bottom:20px;
+		float: top;
+    }
+}
