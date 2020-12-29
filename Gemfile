@@ -6,6 +6,7 @@ ruby '2.5.0'
 gem 'rails', '5.1.6.2'
 
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'bcrypt_pbkdf', '~> 1.0.0.alpha1'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 gem 'cancancan'
@@ -17,6 +18,7 @@ gem 'datetimepicker-rails', git: 'https://github.com/zpaulovics/datetimepicker-r
                             submodules: true
 gem 'devise', '~> 4.7.1'
 gem 'devise_token_auth', '~> 1.1.3'
+gem 'ed25519', '~> 1.2', '>= 1.2.4'
 gem 'ejs'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'fotoramajs'
