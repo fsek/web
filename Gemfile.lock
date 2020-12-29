@@ -101,7 +101,7 @@ GEM
     autoprefixer-rails (9.4.9)
       execjs
     bcrypt (3.1.13)
-    bcrypt_pbkdf (1.0.0.alpha1)
+    bcrypt_pbkdf (1.1.0.rc1)
     bindex (0.5.0)
     bootstrap-datepicker-rails (1.8.0.1)
       railties (>= 3.0)
@@ -480,7 +480,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   activemodel-serializers-xml
-  bcrypt_pbkdf (~> 1.0.0.alpha1)
+  bcrypt_pbkdf (~> 1.1.0.rc1)
   better_errors!
   bootstrap-datepicker-rails
   bootstrap-sass
