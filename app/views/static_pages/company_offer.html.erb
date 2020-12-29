@@ -1,91 +1,90 @@
-<% description(t('.description')) %>
-<% keywords(t('.keywords')) %>
 <div class="col-md-12">
   <div class="headline">
     <h1><%= title(t('.title')) %></h1>
   </div>
+  <div id="compCarou" class="carousel slide carousel-fade" data-ride="carou" data-interval="6000", style="float: right">
+      <div class="carousel-inner" role="listbox">
 
-  <%= simple_format(t('.first')) %>
-  <%= simple_format(t('.second')) %>
+        <div class="item active comppic">
+            <%= image_tag('case1.jpg') %> 
+        </div>
+
+        <div class="item comppic">
+            <%= image_tag('Lunchf.jpg') %>
+        </div>
+
+        <div class="item comppic">
+            <%= image_tag('farad3.jpg') %> 
+        </div>
+
+        <div class="item comppic">
+            <%= image_tag('case2.jpg') %>
+        </div>
+
+        <div class="item comppic">
+            <%= image_tag('farad4.jpg') %> 
+        </div>
+      </div>
+    </div>
+  <b><%= simple_format(t('.more_information')) %></b>
   <%= simple_format(t('.third')) %>
-  <%= contact_from_slug(slug: 'naringsliv') %>
+  <%= simple_format(t('.first')) %>
+  <%= simple_format(t('.contact_info')) %>
+  <%= link_to(t('.contact_us'), href="/kontakter/56", class: 'btn secondary') %>
 </div>
 <div class="col-md-12">
   <div class="tab-v1">
     <div class="headline">
-      <%= simple_format(t('.our_offers')) %>
+      <h2><%= t('.proposals') %></h2>
     </div>
 
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <%= link_to(t('.farad'), '#farad', data: {toggle: 'tab'}) %>
-      </li>
-      <li>
-        <%= link_to(t('.evening'), '#kvall', data: {toggle: 'tab'}) %>
-      </li>
-      <li>
-        <%= link_to(t('.lunch'), '#lunch', data: {toggle: 'tab'}) %>
-      </li>
-      <li>
-        <%= link_to(t('.marketing'), '#marknad', data: {toggle: 'tab'}) %>
-      </li>
-      <li>
-        <%= link_to(t('.visits'), '#studie', data: {toggle: 'tab'}) %>
-      </li>
-      <li>
-        <%= link_to(t('.nollning'), '#nollning', data: {toggle: 'tab'}) %>
-      </li>
-      <li>
-        <%= link_to(t('.sponsoring'), '#spons', data: {toggle: 'tab'}) %>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane fade in active" id="farad">
-        <div class="col-md-12">
-          <%= simple_format(t('.farad_description')) %>
-        </div>
-      </div>
-      <div class="tab-pane fade in" id="kvall">
-        <div class="col-md-12">
-          <%= simple_format(t('.evening_first')) %>
+    <b><%= simple_format(t('.second')) %></b>
 
-          <p><%= t('.evening_may_contain') %>:</p>
-          <ul class="list">
-            <li><%= t('.case_workshop') %></li>
-            <li><%= t('.pub') %></li>
-            <li><%= t('.sittning') %></li>
-            <li><%= t('.sport_event') %></li>
-            <li><%= t('.lecture') %></li>
+    <div> <!-- Dessa är osynliga ifall stor skärm -->
+          <ul class="nav nav-tabs mobileButton">
+            <li>
+              <%= link_to(t('.lunch'), '#lunch') %>
+            </li>
+            <li>
+              <%= link_to(t('.marketing'), '#marknad') %>
+            </li>
+            <li>
+              <%= link_to(t('.evening'), '#kvall') %>
+            </li>
+            <li>
+              <%= link_to(t('.stand'), '#monter') %>
+            </li>
           </ul>
+    </div>
 
-          <%= simple_format(t('.evening_last')) %>
-        </div>
+    <div class="box block3" id="lunch">
+      <div class="headline">
+        <h3><%= link_to(t('.lunch')) %></h3>
+        <%= simple_format(t('.lunch_description')) %>
       </div>
-      <div class="tab-pane fade in" id="lunch">
-        <div class="col-md-12">
-          <%= simple_format(t('.lunch_description')) %>
-        </div>
+    </div>
+    
+    <div class="box block3" id="marknad">
+      <div class="headline">
+        <h3><%= link_to(t('.marketing')) %></h3>
+        <%= simple_format(t('.marketing_description')) %>
       </div>
-      <div class='tab-pane fade in' id='marknad'>
-        <div class="col-md-12">
-          <%= simple_format(t('.marketing_description')) %>
-        </div>
+    </div>
+
+    <div class="box block3" id="kvall">
+      <div class="headline">
+        <h3><%= link_to(t('.evening')) %></h3>
+        <%= simple_format(t('.evening_first')) %>
       </div>
-      <div class='tab-pane fade in' id='studie'>
-        <div class="col-md-12">
-          <%= simple_format(t('.visits_description')) %>
-        </div>
+    </div>
+
+    <div class="box block3" id="monter">
+      <div class="headline">
+        <h3><%= link_to(t('.stand')) %></h3>
+        <%= simple_format(t('.stand_description')) %>
       </div>
-      <div class='tab-pane fade in' id='nollning'>
-        <div class="col-md-12">
-          <%= simple_format(t('.nollning_description')) %>
-        </div>
-      </div>
-      <div class='tab-pane fade in' id='spons'>
-        <div class="col-md-12">
-          <%= simple_format(t('.sponsoring_description')) %>
-        </div>
-      </div>
+    </div>
+
     </div>
   </div>
 </div>

@@ -1,70 +1,61 @@
----
-en:
-  static_pages:
-    company_offer:
-      farad: FARAD
-      farad_description: |-
-          FARAD is our career fair which occurs in January. This fair is an extraordinary opportunity for you to get in touch with all our students from first to fifth grade, during a day in Mattehuset. We also set up pi- and nano-FARAD which takes place during two different evenings, where you as a company get a chance to pitch yourselves in front of pi- or nano-students. This will be followed by some mingling and for example a pub. We can also organize other events during the FARAD-week, as for example lunch lectures or case evenings, just let us know what suits you best!
-
-          For more information, send an email to farad@fsektionen.se.
-      sittning: Sittning
-      case_workshop: "Case solving or workshop"
-      pub: Pub
-      sport_event: "Sport event"
-      lecture: Lecture
-      description: "The F-guild organizes evening events, lunch lectures and case events with companies."
-      evening: "Evening events"
-      evening_first: "Over the course of an evening you will have the opportunity to, in a calm and relaxed atmosphere, meet our students. This is an opportunity to give students an overall picture of the company and create a more personal connection with the students."
-      evening_last: "We suggest you begin by presenting your company and then the event gets started. Sometime during the evening food is served to all students and company representatives. The evening can , for example, end with an awards ceremony, organized by the company. The evening is very flexible and we are open to any and all solutions and ideas."
-      evening_may_contain: "For instance, the evening could contain any of the following"
-      first: "How can You get our students to seek out your particular company in the future? That's a question we want to help You answer. There are a variety of solutions and possibilities to get in contact with our students, and below you will find a set of proposals that have been used with good results in the past. There is always the opportunity to go beyond the scope of these offers, please contact us as we will work together to find for the best solution for you."
-      keywords:
-        - industry
-        - "evening event"
-        - case
+--- 
+en: 
+  static_pages: 
+    company_about: 
+      contact_us: "Contact us"
+      first: "The F-guild currently consists of around 950 members who are talented students from the highly regarded master's degree programs in Engineering Physics, Engineering Mathematics and Engineering Nanoscience."
+      fourth: "Below you will find information about the specializations offered in our programs."
+      headline: "For business: About the F-guild"
+      second: "Our students are primarily educated in general, technical problem solving with a broad and varied base in areas such as physics, mathematics, electrical engineering, medicine, materials technology as well as systems and computer science. The students are trained in the ability to familiarize themselves with new and different problems. This could be interesting for diverse organizations and companies that value flexible employees."
+      third: "The F-guild's business relations committee work with the goal to provide their students with insight into their future labor market as well as connections with potential employers. If you are interested in marketing yourself for or want to get in touch with our students, please refer to the following links:"
+      title: "Companies - About"
+      we_offer: "Our offers"
+    company_offer: 
+      contact_info: "If you are interested in cooperating with us, please use the following link:"
+      contact_us: "Contact us"
+      evening: "Evening event"
+      evening_first: "Evening events are flexible and can be adapted to your company's preferences. Some examples include: lectures, case solving, pubs and workshops etc. The flexibility of our evening events makes it possible to give students a general understanding of your company while simultaneously creating a personal connection to them."
+      first: "We offer many options for companies wishing to market themselves to our students. Some examples include lunch lectures, emails, case solving, sponsorship and exhibition stand space in the Math House. More alternatives are offered in combination with FARAD (our labor market fair, see <a href=\"//www.farad.nu\">farad</a>), our introductory period for new students and at the guild's jubilee."
       lunch: "Lunch lecture"
-      lunch_description: "With a talk during the lunch hour your company will effectively reach the students and you have the opportunity to give an insight into what your particular business is like. We arrange food for all participants, both students and business representatives as well as advertising in advance of your presentation with posters, advertisement in the guild's weekly bulletin and on the guild website. In the past, lunchtime lectures usually have between 70 and 100 participants."
-      marketing: Marketing
-      marketing_description: "In case you'd like to reach out with concrete information to all members of the guild quickly and easily, we also offer graphic marketing. This way your brand is guaranteed attention as long as you wish at any time. The various options are posters in crowded places in our premises, space on the TV monitor in our café, newsletter and information on our website and facebook."
-      nollning: "Introduction activity"
-      nollning_description: "During the introduction your possibilities to be visible to the approximately 200 new students differs from the rest of the year. Which reflects that this is a very special period to all students."
-      our_offers: "Below, there's a number of suggestions which have been used before with great success."
-      second: "Our goal is for You as company to get to know our students, get maximum exposure and at the same time give You the possibility for our students to seek out Your company in the future."
-      sponsoring: "Sponsorship or giveaways"
-      sponsoring_description: "There's of course always the possibility to go outside the framework for these proposals, only your imaginations sets the limit."
-      third: "Would You like to book, get more information, or do You have your own exciting ideas? Feel free to contact us at the link below and we'll work together to find the best solution for You!"
-      title: "What we offer companies"
-      visits: Visits
-      visits_description: "Do you as a company think it'd be fun to show off your workplace? Do you have something to make you unique and attract the best students? In that case a visit might be something to consider. We will work out the logistics and the students."
-      what_we_offer: "What we offer You:"
-    company_programs:
-      nano:
+      lunch_description: "Lunch lectures attract students from all grades and offer a perfect opportunity for you to give them an insight into your business operations during 45 minutes. We provide lecture halls and lunch for registered students as well as company representatives. We also market the lunch lecture through the guild's media channels. Lunch lectures usually have an attendance of 90-120 students."
+      marketing: "E-mail and social media"
+      marketing_description: "We offer digital marketing through both email and posts on the F-guild's social media pages (Facebook, Instagram and Linkedin). Regardless of which form of digital marketing you choose, a post on Linkedin is included for free. These alternatives are perfect if you at a certain time want to distribute information to our students, where you for example market master thesis work, summer jobs and/or internships."
+      more_information: "For information about the F-guild and the programs Engineering Physics, Engineering Mathematics and Engineering Nanoscience, please visit <a href=\"om\">About the F-guild</a>\n\
+          \x20  "
+      proposals: "Proposals for collaborations"
+      second: "Please note that more options are offered in connection with FARAD and our introductory period. For information about these opportunities as well as other offers, please see <a href=\"/web/app/assets/images/Erbjudandelista.pdf\">this pdf</a>. If you wish to collaborate with us, woud like further information or have your own suggestions for collaborations, please email <a href=\"mailto:naringsliv@fsektionen.se\">naringsliv@fsektionen.se</a> or use this <a href=\"//www.fsektionen.se\">form</a>"
+      stand: "Exhibition stand space"
+      stand_description: |-
+          During 4 hours, you will have access to an exhibition stand adjacent to, or inside, the Math House. If you want to offer coffe to students, we can provide facilities. Please contact us for information regarding when different grades and programs have lectures in the Math House.
+          
+          The Math House (Mattehuset) is the location of the F-guild's headquarters and is also where many of our students' lectures are held. In addition, the guild's students often choose to study in the building's premises.
+      third: "The F-guild's corporate relations committee is responsible for the guild's business collaborations. The committee consists of students from the guild whose aim is to provide its members with a clear understanding of future career opportunities. The comittee strives to create contact between students and potential employers."
+      title: "For business: What we offer"
+    company_programs: 
+      math: 
+        description: "This is the program where students study more mathematics compared to any other engineering program. The program is unique in Sweden and is characterized by the motto \"Mathematics as a form of technology\". The strong mathematical foundation combined with data- and system scientific knowledge enables students at this programme to develop an incredible expertise within their selected field of specialization."
+        name: "Engineering Mathematics"
+        specializations: 
+          bam: "Image Analysis and Machine Intelligence"
+          bem: "Computational Mechanics"
+          biek: "Biological, Ecological and Medical Modelling"
+          bs: "Computation and Simulation"
+          fm: "Financial Modelling"
+          pv: Software
+          ssr: "Systems, Signals and Control"
+      nano: 
+        description: "Nanotechnology is a key area for the future of Swedish industry and the students of the program recive hiqh quality interdisciplinary education in areas such as medicine, biology, physics, chemistry, material science and electronics. In addition to gaining a strong specialist competence, the students also learn to bridge the boundaries between traditional areas of knowledge."
         name: "Engineering Nanoscience"
-        description: "Nanotechnology is a key area for the future of Swedish industry and the students of the program receives cutting edge skills in areas such as medicine, biology, physics, chemistry, material science and electronics. Through their interdisciplinary foundation the nanoengineer can connect people with very different scientific or technical expertise."
-        specializations:
+        specializations: 
           hn: "High-frequency and Nanoelectronics"
           m: Materials
           nbm: Nanobiomedicine
           nf: Nanophysics
-      math:
-        specializations:
-          bs: "Computation and Simulation"
-          biek: "Biological, Ecological and Medical Modelling"
-          bam: "Image Analysis and Machine Intelligence"
-          fm: "Financial Modelling"
-          pv: Software
-          ssr: "Systems, Signals and Control"
-          bem: "Computational Mechanics"
-        name: "Engineering Mathematics"
-        description: "is the program where students study more mathematics than at any other engineering program. The program is unique in Sweden and is characterized by the motto \"Mathematics as technology\". The strong mathematical foundation combined with data- and system scientific knowledge enables students at Engineering mathematics to develop an incredible expertise within their selected field of specialization."
-      physics:
-        specializations:
-          mt: "Biomedical Engineering"
-          nf: Nanophysics
-          pv: Software
-          r: "Control Systems"
-          ss: "Signals and Sensors"
-          tf: "Theoretical Physics"
+      physics: 
+        description: "This is the first engineering programme started at Lund University. Students undergo extensive education and receive deep theoretical as well as experimental knowledge in mathematics, physics in addition to technical subjects such as mechanics, control engineering and electronics."
+        name: "Engineering Physics"
+        specializations: 
+          aft: "Accelerators - Physics and Technology"
           bem: "Computational Mechanics"
           bg: "Images and Computer Graphics"
           bm: "Biological and Medical Modelling"
@@ -74,24 +65,11 @@ en:
           fm: "Financial Modelling"
           hn: "High-frequency and Nanoelectronics"
           mai: "Machine Intelligence"
-          aft: "Accelerators - Physics and Technology"
-        name: "Engineering Physics"
-        description: "is the first engineering programme started at Lund University. Students traditionally undergo extensive education and receive deep theoretical and experimental knowledge in mathematics, physics and technical subjects such as mechanics, control engineering and electronics."
+          mt: "Biomedical Engineering"
+          nf: Nanophysics
+          pv: Software
+          r: "Control Systems"
+          ss: "Signals and Sensors"
+          tf: "Theoretical Physics"
       programs: Programmes
       specializations: Specializations
-    company_about:
-      contact_if_interested: "If you are intrested in more information regarding the programmes, the F-guild, and our members, we look forward to hearing from you at this link:"
-      description: "The F-guild values creating connections between our members and the industry."
-      first: "We currently have about 950 members. The members are talented engineering students from the highly regarded programmes Engineering physics, Engineering mathematics and Engineering nanoscience."
-      fourth: "A meeting with us is a perfect oppurtunity for You as company to hand-pick the students suitable to your company profile."
-      headline: "About the F-guild"
-      keywords:
-        - industry
-        - company
-        - "lunch lecture"
-        - case
-      offer: "Do you want to read more about our offers? Follow the link below."
-      second: "Our students primarily gets educated in general, technical problem solving with a broad and diverse base of one or a few of the fields of physics, mathematics, electrical engineering, medicine, materials, and computer science. This gives them a huge head start to understand new problems, something that is very valuable for diverse organizations and companies who value flexible employees."
-      third: "The F-guild is continuously working to create contact between our members and the industry, in order to give students the best possible opportunities both during and after their studies. We want you as a company to get the chance to meet our future engineers with superior analytical and problem solving skills."
-      title: "Companies - About"
-      we_offer: "Our offers"
