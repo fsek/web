@@ -1,57 +1,58 @@
 <div class="col-md-12">
-  <div class="tab-v1">
+
     <div class="headline">
       <h2><%= t('.programs') %></h2>
     </div>
 
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <%= link_to(t('.physics.name'), '#fysik', data: {toggle: 'tab'}) %>
-      </li>
-      <li>
-        <%= link_to(t('.math.name'), '#matte', data: {toggle: 'tab'}) %>
-      </li>
-      <li>
-        <%= link_to(t('.nano.name'), '#nano', data: {toggle: 'tab'}) %>
-      </li>
-    </ul>
-
-    <div class="tab-content">
-      <div class="tab-pane fade in active" id="fysik">
-        <div class="col-md-12">
-          <p>
-          <strong><%= t('.physics.name') %>:</strong>
-          <%= t('.physics.description') %>
-          </p>
-          <strong><%= t('.specializations') %>:</strong>
-          <ul class="list">
-            <li><%= t('.physics.specializations.aft') %></li>
-            <li><%= t('.physics.specializations.bem') %></li>
-            <li><%= t('.physics.specializations.bg') %></li>
-            <li><%= t('.physics.specializations.bm') %></li>
-            <li><%= t('.physics.specializations.bs') %></li>
-            <li><%= t('.physics.specializations.es') %></li>
-            <li><%= t('.physics.specializations.f') %></li>
-            <li><%= t('.physics.specializations.fm') %></li>
-            <li><%= t('.physics.specializations.hn') %></li>
-            <li><%= t('.physics.specializations.mai') %></li>
-            <li><%= t('.physics.specializations.mt') %></li>
-            <li><%= t('.physics.specializations.nf') %></li>
-            <li><%= t('.physics.specializations.pv') %></li>
-            <li><%= t('.physics.specializations.r') %></li>
-            <li><%= t('.physics.specializations.ss') %></li>
-            <li><%= t('.physics.specializations.tf') %></li>
+        <div> <!-- Dessa är osynliga ifall stor skärm -->
+          <ul class="nav nav-tabs mobileButton">
+            <li>
+              <%= link_to(t('.physics.name'), '#physics') %>
+            </li>
+            <li>
+              <%= link_to(t('.math.name'), '#math') %>
+            </li>
+            <li>
+              <%= link_to(t('.nano.name'), '#nano') %>
+            </li>
           </ul>
         </div>
-      </div>
-      <div class="tab-pane fade in" id="matte">
-        <div class="col-md-12">
+
+        <div class="block2 box" id="physics">
           <p>
-          <strong><%= t('.math.name') %>:</strong>
-          <%= t('.math.description') %>
+            <strong><%= t('.physics.name') %> <a href="http://www.lth.se/utbildning/teknisk-fysik/" class="fas fa-external-link-alt" target="_blank"></a>:</strong>
+            <%= t('.physics.description') %>
           </p>
-          <strong><%= t('.specializations') %>:</strong>
-          <ul class="list">
+          <strong><%= t('.specializations') %> <a href="http://www.lth.se/utbildning/teknisk-fysik/specialiseringar/" class="fas fa-external-link-alt" target="_blank"></a>:</strong>
+          <ul> 
+            <li><%= t('.physics.specializations.aft') %> </li>
+            <li><%= t('.physics.specializations.bs') %> </li>
+            <li><%= t('.physics.specializations.bem') %> </li>
+            <li><%= t('.physics.specializations.bg') %> </li>
+            <li><%= t('.physics.specializations.bm') %> </li>
+            <li><%= t('.physics.specializations.es') %> </li>
+            <li><%= t('.physics.specializations.fm') %> </li>
+            <li><%= t('.physics.specializations.f') %> </li>
+            <li><%= t('.physics.specializations.hn') %> </li>
+            <li><%= t('.physics.specializations.mai') %> </li>
+            <li><%= t('.physics.specializations.mt') %> </li>
+            <li><%= t('.physics.specializations.nf') %> </li>
+            <li><%= t('.physics.specializations.pv') %> </li>
+            <li><%= t('.physics.specializations.r') %> </li>
+            <li><%= t('.physics.specializations.ss') %> </li>
+            <li><%= t('.physics.specializations.tf') %> </li>
+          </ul>
+
+        </div>
+
+        <div class="block2 box" id="math">
+          <p>
+            <strong><%= t('.math.name') %><a href="http://www.lth.se/utbildning/teknisk-matematik/" class="fas fa-external-link-alt" target="_blank"></a>:</strong>
+            <%= t('.math.description') %>
+          </p>
+
+          <strong><%= t('.specializations') %><a href="http://www.lth.se/utbildning/teknisk-matematik/specialiseringar/" class="fas fa-external-link-alt" target="_blank"></a>:</strong>
+          <ul>
             <li><%= t('.math.specializations.bam') %></li>
             <li><%= t('.math.specializations.bem') %></li>
             <li><%= t('.math.specializations.biek') %></li>
@@ -61,23 +62,20 @@
             <li><%= t('.math.specializations.ssr') %></li>
           </ul>
         </div>
-      </div>
-      <div class='tab-pane fade in' id='nano'>
-        <div class="col-md-12">
+
+        <div class="block2 box" id="nano">
           <p>
-          <strong><%= t('.nano.name') %>.</strong>
-          <%= t('.nano.description') %>
+            <strong><%= t('.nano.name') %><a href="http://www.lth.se/utbildning/teknisk-nanovetenskap/" class="fas fa-external-link-alt" target="_blank"></a>:</strong>
+            <%= t('.nano.description') %>
           </p>
-          <strong><%= t('.specializations') %></strong>
-          <ul class="list">
-            <li><%= t('.nano.specializations.hn') %></li>
-            <li><%= t('.nano.specializations.m') %></li>
-            <li><%= t('.nano.specializations.nbm') %></li>
-            <li><%= t('.nano.specializations.nf') %></li>
+
+          <strong><%= t('.specializations') %><a href="http://www.lth.se/utbildning/teknisk-nanovetenskap/specialiseringar/" class="fas fa-external-link-alt" target="_blank"></a>:</strong>
+          <ul>
+            <li><%= t('.nano.specializations.hn') %></li> 
+            <li><%= t('.nano.specializations.m') %></li> 
+            <li><%= t('.nano.specializations.nbm') %></li> 
+            <li><%= t('.nano.specializations.nf') %></li> 
           </ul>
         </div>
-      </div>
-    </div>
-  </div>
 </div>
 
