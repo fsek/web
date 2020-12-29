@@ -3,22 +3,22 @@
 }
 
 .comppic {
-	height:30vw;
-	width:53vw;
-	margin-left:20px;
-	
+    height:30vw;
+    width:53vw;
+    margin-left:20px;
+    
 }
 
 .comppic2 {
-	height:30vw;
-	width:45vw;
-	margin-bottom:20px;
-	float: right;
+    height:30vw;
+    width:45vw;
+    margin-bottom:20px;
+    float: right;
 }
 
 .block2 {
-	overflow: auto;
-	float: left;
+    overflow: auto;
+    float: left;
     height: 700px; /*Anpassa efter text. OBS: Se media queries längre ned. */
     width: 33%;
     min-width: 240px;
@@ -29,8 +29,8 @@
 }
 
 .block3 {
-	overflow: auto;
-	float: left;
+    overflow: auto;
+    float: left;
     height: 475px; /* Anpassa efter vad som skrivs. OBS: Se media queries längre ned. */
     width:  24%;
     min-width: 210px;
@@ -41,22 +41,22 @@
 }
 
 .mobileButton { /*Radera ej (se media queries längre ned) */
-	
+    
 }
 
 
 .hBlock {
-	position: relative;
-	bottom: 20 px;
+    position: relative;
+    bottom: 20 px;
 }
 
 @media screen and (max-width: 700px) {
     .comppic{
-    	float: right;
-    	height:45vw;
-		width:80vw;
-		margin-left:0px;
-		margin-right:20px;
+        float: right;
+        height:45vw;
+        width:80vw;
+        margin-left:0px;
+        margin-right:20px;
     }
 
     
@@ -64,22 +64,22 @@
 }
 
 @media screen and (max-width: 321px) {
-	.comppic{
-	   	height: 40vw;
-		width: 70vw;
-		margin-left: 25px;
-		margin-right: 0px;
-	}
-	.comppic2{
-    	height:54vw;
-		width:81vw;
-		margin-bottom:20px;
+    .comppic{
+        height: 40vw;
+        width: 70vw;
+        margin-left: 25px;
+        margin-right: 0px;
+    }
+    .comppic2{
+        height:54vw;
+        width:81vw;
+        margin-bottom:20px;
     }
 }
 
 @media screen and (min-width: 701px) {
     .compcarou {
-    	float: right;
+        float: right;
     }
 }
 
@@ -90,31 +90,31 @@
     }
 
     .block3 {
-    	width: 100%;
-    	height: 100%;
+        width: 100%;
+        height: 100%;
     }
 }
 
 @media screen and (min-width: 1001px) {
     .mobileButton {
-    	display: none;
-    	visibility: hidden;
+        display: none;
+        visibility: hidden;
     }
 }
 
 @media screen and (min-width: 1441px) {
     .comppic {
-    	float: right;
-    	height: 14vw;
-		width: 25vw;
-		margin-left: 0px;
-		margin-right: 20px;
+        float: right;
+        height: 14vw;
+        width: 25vw;
+        margin-left: 0px;
+        margin-right: 20px;
     }
 
     .comppic2 {
-    	height: 10vw;
-		width: 15vw;
-		margin-bottom: 20px;
-		float: top;
+        height: 10vw;
+        width: 15vw;
+        margin-bottom: 20px;
+        float: top;
     }
 }
