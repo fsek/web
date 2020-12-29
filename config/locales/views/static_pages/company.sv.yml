@@ -1,70 +1,60 @@
----
-sv:
-  static_pages:
-    company_offer:
-      farad: FARAD
-      farad_description: |-
-          FARAD är vår arbetsmarknadsmässa som inträffar i januari. En mässplats innebär ett utmärkt tillfälle för er att mingla med studenter från alla årskurser under en heldag i Mattehuset. Vi anordnar även pi- och nano-FARAD vilket är två kvällsevenemang där ni som företag får chansen att pitcha ert företag specifikt för pi- eller nanostudenter, vilket följs utav mingel i form av exempelvis en pub. Vi kan även anordna andra evenemang i samband med mässan såsom lunchföreläsningar eller case-kvällar, det är bara att höra av sig!
-
-          Mer information finns på hemsidan www.farad.nu, eller via mail till farad@fsektionen.se.
-      sittning: Sittning
-      case_workshop: "Caselösning eller workshop"
-      pub: Pub
-      sport_event: Sportevent
-      lecture: Föreläsning
-      description: "F-sektionen anordnar gärna kvällsevenemang, lunchföreläsningar och case-evenemang tillsammans med företag."
+--- 
+sv: 
+  static_pages: 
+    company_about: 
+      contact_us: "Kontakta oss"
+      first: "F-sektionen består i dagsläget av ca 950 medlemmar vilka är talangfulla studenter från de högt ansedda civilingenjörsutbildningarna Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap."
+      fourth: "Nedan finner ni information om vilka specialiseringar som erbjuds på våra program och vad dessa innefattar."
+      headline: "För företag: Om F-sektionen"
+      second: "Våra studenter utbildar sig främst inom generell, teknisk problemlösning med en bred och varierande bas i en eller ett par av områdena fysik, matematik, elektroteknik, medicin, materialteknik samt system- och datavetenskap. Detta ger dem en stor förmåga i att sätta sig in i nya problem, något som är väldigt värdefullt för mångsidiga organisationer och företag som värderar flexibla medarbetare."
+      third: "Vi på F-sektionens näringslivsutskott arbetar med målet att våra studenter ska få insyn i sin framtida arbetsmarknad och kunna komma i kontakt med potentiella arbetsgivare. Ifall ni som företag är intresserade av att marknadsföra er för eller vill komma i kontakt med våra studenter hänvisar vi till följande länkar:"
+      title: "Företag - Om"
+      we_offer: "Våra erbjudanden"
+    company_offer: 
+      contact_info: "Ifall ni är intresserade av samarbete kan ni kontakta oss via följande länk:"
+      contact_us: "Kontakta oss"
       evening: Kvällsevenemang
-      evening_first: "Under en helkväll får ni tillfälle att, i en lugn och avslappnad atmosfär, träffa våra studenter. Här finns möjlighet att ge studenterna en helhetsbild av företaget och skapa en mer personlig kontakt med studenterna."
-      evening_last: "Förslagsvis inleder ni med att presentera ert företag och därefter drar kvällens event igång. Någon gång serveras mat till alla studenter och företagsrepresentanter. Kvällen kan till exempel avslutas med prisutdelning, vilket företaget i så fall får anordna. Kvällen är väldigt flexibel och vi är öppna för alla lösningar och idéer."
-      evening_may_contain: "Kvällen kan till exempel innehålla något av följande"
-      first: "Hur kan Ni få våra studenter att söka sig till just ert företag i framtiden? Det är en fråga vi vill hjälpa till att besvara. Det finns en rad olika lösningar och möjligheter att komma i kontakt med våra studenter och här under finns en samling förslag som har använts med goda resultat tidigare. Det finns alltid möjlighet att gå utanför ramen för dessa erbjudanden, ta kontakt med oss så kommer vi tillsammans fram till den bästa lösningen för er."
-      keywords:
-        - näringsliv
-        - kvällsevenemang
-        - case
+      evening_first: "Ett kvällsevenemang är ett flexibelt evenemang som ert företag får friheten att anpassa efter egna preferenser. Typiska exempel på kvällsevenemang inkluderar: föredrag, case, pub, och workshops mm. Kvällsevenemangets flexibilitet möjliggör att studenterna kan få en god helhetsbild av företaget samt att skapa en mer personlig kontakt med studenterna."
+      first: "Vi erbjuder många olika alternativ för företag som vill marknadsföra sig för våra studenter. Några exempel inkluderar lunchföredrag, mailutskick, case-event, sponsring och monterplats i Mattehuset. Fler alternativ erbjuds i samband med FARAD (vår arbetsmarknadsmässa, se <a href=\"//www.farad.nu\">farad</a>), nollningen (introduktionsperiod för nya studenter) samt vid sektionens jubileum."
       lunch: Lunchföredrag
-      lunch_description: "Med ett föredrag under lunchtimmen når ert företag effektivt ut till studenterna och ni har möjlighet att ge en inblick i hur just ert företag är. Vi ordnar med mat till samtliga deltagare, såväl studenter som företagsrepresentanter samt annonserar i förväg om ert föredrag med affischer, annons i sektionens veckoblad och på sektionens webbsida. På tidigare lunchföredrag har oftast mellan 70 och 100 studenter deltagit."
-      marketing: Marknadsföring
-      marketing_description: "Vill ni nå ut med konkret information till alla sektionens medlemmar snabbt och enkelt så erbjuder vi också grafisk marknadsföring. På så sätt får ert varumärke garanterat uppmärksamhet så länge ni helst önskar. De olika alternativen är affischering på välbesökta platser i våra lokaler, plats på TV-monitor i vårt café, mailutskick samt information på vår webbsida och facebook."
-      nollning: Nollningsaktivitet
-      nollning_description: "Under introduktionen är möjligheterna för er att synas mot de ca 200 nyantagna studenterna annorlunda mot resten av året. Det speglar att detta är en mycket speciell period för alla studenter."
-      our_offers: "Nedan finns en samling förslag som har använts med goda resultat tidigare."
-      second: "Vårt mål är att Ni som företag ska få lära känna våra studenter, få maximal exponering och samtidigt ge Er möjligheten att få våra studenter att söka sig till just Ert företag i framtiden."
-      sponsoring: "Sponsring eller Give-aways"
-      sponsoring_description: "Det finns naturligtvis alltid möjlighet att gå utanför ramen för dessa förslag, enbart fantasin sätter gränserna."
-      third: "Vill Ni boka, få mer information eller har Ni egna spännande idéer? Vänligen kontakta oss via länken nedan så kommer vi tillsammans fram till den bästa lösningen för just Er!<"
-      title: "Vad vi erbjuder företag"
-      visits: Studiebesök
-      visits_description: "Tycker ni som företag att det hade varit kul att få visa upp er arbetsplats? Har ni något som gör er unika och som kan locka till er de bästa studenterna? Då kan ett studiebesök vara något för er. Vi ordnar logistik och studenterna."
-      what_we_offer: "Vad vi erbjuder Er"
-    company_programs:
-      nano:
+      lunch_description: "Lunchföredrag attraherar studenter från alla årskurser och är ett perfekt tillfälle för er att under ca 45 minuter ge dessa en inblick i ert företag. Vi ordnar föreläsningssal samt lunch åt både anmälda studenter och företagsrepresentanter. Vi ser dessutom till att i god tid marknadsföra lunchföredraget via sektionens mediekanaler. Vanligtvis brukar ca 90-120 studenter delta under en lunchföreläsning."
+      marketing: "Mailutskick och sociala medier"
+      marketing_description: "Vi erbjuder digital marknadsföring i form av mailutskick samt via inlägg på F-sektionens sociala medier (Facebook, Instagram och Linkedin). Oavsett vilken form av digital marknadsöring ni väljer följer ett inlägg på Linkedin gratis. Dessa alternativ är perfekta om ni vid en viss tidpunkt vill få ut information till våra studenter, där ni exempelvis marknadsför examensarbete, sommarjobb och/eller praktiktjänst."
+      more_information: "För information om F-sektionen samt om programmen Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap, se <a href=\"om\">Om F-sektionen</a>"
+      proposals: "Förslag på samarbeten"
+      second: "Observera att fler alternativ erbjuds i samband med FARAD och vår nollning. För information om dessa tillfällen samt andra erbjudanden, var god se <a href=\"/web/app/assets/images/Erbjudandelista.pdf\">denna pdf</a>. Ifall ni önskar samarbeta med oss, söker ytterligare information eller har egna förslag på samarbeten ber vi er att maila <a href=\"mailto:naringsliv@fsektionen.se\"> näringslivsansvarig</a> eller att ni använder <a href=\"/kontakter/56\">detta formulär</a>."
+      stand: Monterplats
+      stand_description: |-
+          Under 4 timmar förses ni med en monter i anslutning till eller i Mattehuset samt vid förfrågan kaffe som ni kan dela ut till studenter. Inför bokning kan vi förse er med information om vid vilka tider olika årskurser/program har föreläsning i Mattehuset. 
+          
+          I Mattehuset ligger F-sektionens högkvarter och är dessutom huset där många av våra studenters föreläsningar hålls. Sektionens studenter väljer dessutom ofta att plugga i husets lokaler.
+      third: "F-sektionens näringslivsutskott ansvarar för sektionens företagssamarbeten. Utskottet består av studenter från sektionen vars mål är att ge sektionens medlemmar en tydlig bild av framtida karriärsmöjligheter samt skapa kontakt mellan studenter och potentiella arbetsgivare."
+      title: "För företag: Våra erbjudanden"
+    company_programs: 
+      math: 
+        description: "I detta program läser studenterna mer matematik än på något annat civilingenjörsprogram. Programmet är unikt i Sverige och präglas av mottot ”Matematik som teknologi”. Den starka matematiska grunden kombinerad med data- och systemvetenskapligt kunnande gör att studenterna på Teknisk matematik får en otrolig spetskompetens inom valda specialiseringar."
+        name: "Teknisk matematik"
+        specializations: 
+          bam: "Bildanalys och maskinintelligens"
+          bem: Beräkningsmekanik
+          biek: "Biologisk, ekologisk och medicinsk modellering"
+          bs: "Beräkning och simulering"
+          fm: "Finansiell modellering"
+          pv: Programvara
+          ssr: "System, signaler och reglering"
+      nano: 
+        description: "Nanoteknologin är ett nyckelområde för den svenska industrins framtid och studenterna på programmet får gränsöverskridande kunskaper i områden som medicin, biologi, fysik, kemi, materialvetenskap och elektronik. Utöver att få en stark specialistkompetens lär sig studenterna samtidigt att sudda gränserna mellan traditionella kunskapsområden."
         name: "Teknisk nanovetenskap"
-        description: "Nanoteknologin är ett nyckelområde för den svenska industrins framtid och studenterna på programmet får gränsöverskridande kunskaper i områden som medicin, biologi, fysik, kemi, materialvetenskap och elektronik. Genom den tvärvetenskapliga grunden kan nanoteknologen koppla samman personer med helt olika vetenskaplig eller teknisk kompetens."
-        specializations:
+        specializations: 
           hn: "Högfrekvens- och nanoelektronik"
           m: Material
           nbm: Nanobiomedicin
           nf: Nanofysik
-      math:
-        specializations:
-          bs: "Beräkning och simulering"
-          biek: "Biologisk, ekologisk och medicinsk modellering"
-          bam: "Bildanalys och maskinintelligens"
-          fm: "Finansiell modellering"
-          pv: Programvara
-          ssr: "System, signaler och reglering"
-          bem: Beräkningsmekanik
-        name: "Teknisk matematik"
-        description: "är utbildningen där studenterna läser mer matematik än på något annat civilingenjörsprogram. Programmet är unikt i Sverige och präglas av mottot ”Matematik som teknologi”. Den starka matematiska grunden kombinerad med data- och systemvetenskapligt kunnande gör att studenterna på Teknisk matematik får en otrolig spetskompetens inom valda specialiseringar."
-      physics:
-        specializations:
-          mt: "Medicinsk teknik"
-          nf: Nanofysik
-          pv: Programvara
-          r: Reglersystem
-          ss: "Signaler och sensorer"
-          tf: "Teoretisk fysik"
+      physics: 
+        description: "Detta program är den första civilingenjörsutbildningen som startades på Lunds Tekniska Högskola. Studenterna läser en traditionellt bred utbildning där de får djupa teoretiska och experimentella kunskaper inom matematik, fysik samt tekniska ämnen såsom mekanik, reglerteknik och elektronik."
+        name: "Teknisk fysik"
+        specializations: 
+          aft: "Acceleratorer - fysik och teknik"
           bem: Beräkningsmekanik
           bg: "Bilder och grafik"
           bm: "Biologisk och medicinsk modellering"
@@ -74,24 +64,11 @@ sv:
           fm: "Finansiell modellering"
           hn: "Högfrekvens- och nanoelektronik"
           mai: Maskinintelligens
-          aft: "Acceleratorer - fysik och teknik"
-        name: "Teknisk fysik"
-        description: "är den första civilingenjörsutbildningen som startades på Lunds Tekniska Högskola. Studenterna genomgår traditionellt bred utbildning och får djupa teoretiska och experimentella kunskaper inom matematik, fysik och tekniska ämnen såsom mekanik, reglerteknik och elektronik."
+          mt: "Medicinsk teknik"
+          nf: Nanofysik
+          pv: Programvara
+          r: Reglersystem
+          ss: "Signaler och sensorer"
+          tf: "Teoretisk fysik"
       programs: Program
       specializations: Specialiseringar
-    company_about:
-      contact_if_interested: "Är Ni intresserade av att få mer information om utbildingarna , F-sektionen och våra medlemmar, ser vi med glädje fram emot att Ni kontaktar oss via följande länk."
-      description: "F-sektionen värnar om att skapa kontakt mellan våra medlemmar och näringslivet."
-      first: "I dagsläget har vi ungefär 950 medlemmar. Medlemmarna är talangfulla civilingenjörsstudenter från de högt ansedda civilingenjörsutbildningarna Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap."
-      fourth: "Ett möte med oss är en perfekt möjlighet för Er som företag, att handplocka just de studenterna som passar in på Ert företags profil."
-      headline: "Om F-sektionen"
-      keywords:
-        - näringsliv
-        - företag
-        - lunchföreläsning
-        - case
-      offer: "Vill Ni läsa mer om våra erbjudande? Följ nedanstående länk."
-      second: "Våra studenter utbildar sig främst inom generell, teknisk problemlösning med en bred och varierande bas i en eller ett par av områdena fysik, matematik, elektroteknik, medicin, materialteknik samt system- och datavetenskap. Detta ger dem ett stort försprång i att sätta sig in i nya problem, något som är väldigt värdefullt för mångsidiga organisationer och företag som värderar ombytliga medarbetare."
-      third: "F-sektionen jobbar kontinuerligt för att skapa kontakt mellan våra medlemmar och näringslivet, detta för att ge studenterna de bäst tänkbara möjligheterna både under och efter studietiden. Vi vill att Ni som företag får chansen att möta våra blivande civilingenjörer med högklassiga analytiska och problemlösande kompetenser."
-      title: "Företag - Om"
-      we_offer: "Våra erbjudande"

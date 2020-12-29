@@ -1,23 +1,26 @@
-<% description(t('.description')) %>
-<% keywords(t('.keywords')) %>
-
 <div class="col-md-12">
   <div class="headline">
     <h1><%= title(t('.headline')) %></h1>
   </div>
 
-  <%= simple_format(t('.first')) %>
-  <%= simple_format(t('.second')) %>
-  <%= simple_format(t('.third')) %>
-  <%= simple_format(t('.fourth')) %>
-  <%= simple_format(t('.contact_if_interested')) %>
+  <div id="compCarou" class="carousel slide carousel-fade" data-ride="carou" data-interval="6000", style="float: right">
+      <div class="carousel-inner" role="listbox">
 
-  <p>
-    <%= contact_from_slug(slug: 'naringsliv') %>
-  </p>
+        <div class="item active comppic2">
+            <%= image_tag('Regattan.jpg') %> 
+        </div>
+      </div>
+    </div>
 
-  <%= simple_format(t('.offer')) %>
-  <%= link_to(t('.we_offer'), company_offer_path, class: 'btn secondary') %>
+  <div style="max width: 24px""max-height: 35px" >
+    <%= simple_format(t('.first')) %>
+    <%= simple_format(t('.second')) %>
+    <%= simple_format(t('.third')) %>
+    <%= link_to(t('.we_offer'), company_offer_path, class: 'btn secondary') %>
+    <%= link_to(t('.contact_us'), href="/kontakter/56", class: 'btn secondary') %>
+    <%= simple_format(t('.fourth')) %>
+  </div>
+  
 </div>
 
 <%= render 'company_programs' %>
