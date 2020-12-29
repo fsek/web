@@ -6,6 +6,7 @@ ruby '2.5.0'
 gem 'rails', '5.1.6.2'
 
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'bcrypt_pbkdf', '~> 1.0.0.alpha1'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 gem 'cancancan'
