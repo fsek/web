@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201220144612) do
+ActiveRecord::Schema.define(version: 20210220220000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -465,7 +465,7 @@ ActiveRecord::Schema.define(version: 20201220144612) do
   create_table "fruits", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.string "name", null: false
-    t.boolean "isMoldy", default: false, null: false
+    t.boolean "is_moldy", default: false, null: false
     t.index ["user_id"], name: "index_fruits_on_user_id"
   end
 
