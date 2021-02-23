@@ -8,4 +8,4 @@ sv:
       fruit:
         user: Användare
         name: Namn
-        isMoldy: Möglig?
+        is_moldy: Möglig?

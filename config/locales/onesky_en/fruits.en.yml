@@ -32,5 +32,5 @@ en:
       fruit:
         user: User
         name: Name
-        isMoldy: Moldy?
+        is_moldy: Moldy?
 

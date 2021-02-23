@@ -35,7 +35,7 @@ class Admin::FruitsController < Admin::BaseController
 	private
 
 	def fruit_params
-		params.require(:fruit).permit(:name, :isMoldy, :user_id)
+		params.require(:fruit).permit(:name, :is_moldy, :user_id)
 	end
 
 end
