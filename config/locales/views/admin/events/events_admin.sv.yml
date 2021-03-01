@@ -41,6 +41,7 @@ sv:
         show_event: Visa evenemang
         signup: Anmälan
         texts: Information
+        contact_reserves: Kontakta reserver
 
       event_error:
         invalid_input_html: {

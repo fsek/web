@@ -29,12 +29,18 @@
       <% end %>
     </li>
 
-  <% if signup.try(:persisted?) %>
-    <li class="list-group-item <%= tab == :attendees ? 'active' : '' %>">
+    <% if signup.try(:persisted?) %>
+      <li class="list-group-item <%= tab == :attendees ? 'active' : '' %>">
         <%= link_to('#attendees', data: { toggle: :tab }) do %>
           <%= icon('fas', 'users') %> <%= t('.attendees') %>
         <% end %>
       </li>
-  <% end %>
+
+      <li class="list-group-item <%= tab == :contact_reserves ? 'active' : '' %>">
+        <%= link_to('#contact_reserves', data: { toggle: :tab }) do %>
+          <%= icon('fas', 'users') %> <%= t('.contact_reserves') %>
+        <% end %>
+      </li>
+    <% end %>
   </ul>
 <% end %>

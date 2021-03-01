@@ -1,0 +1,23 @@
+<%= form_with url: admin_contact_reserves_path, local: true, method: :post do %>
+	 <div>
+   	<%= label_tag "contact_number_reserves" %>
+   	<%= text_field_tag "contact_number_reserves", feedback.fetch(:contact_number_reserves, nil) %>
+ 	</div>
+
+ 	<div>
+  	<%= label_tag "subject" %>
+  	<%= text_field_tag "subject", feedback.fetch(:subject, nil) %>
+ 	</div>
+
+ 	<div>
+  	<%= label_tag "message" %><br>
+  	<%= text_area_tag "message", feedback.fetch(:message, nil) %>
+ 	</div>
+
+  <div>
+  	<%= label_tag "sender_email" %>
+  	<%= email_field_tag "sender_email", feedback.fetch(:sender_email, nil) %>
+ 	</div>
+
+ 	<%= submit_tag "Skicka" %>
+<% end %>

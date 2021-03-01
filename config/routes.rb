@@ -226,6 +226,7 @@ Fsek::Application.routes.draw do
         end
         resources :event_users, path: :anmalningar, only: [:edit, :update, :destroy]
       end
+      post 'evenemang/:event_id/edit', to: 'events#contact_reserves', as: 'contact_reserves'
     end
 
     namespace :admin do

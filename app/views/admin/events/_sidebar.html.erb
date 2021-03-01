@@ -57,6 +57,13 @@
           <%= icon('fas','users', t('.attendees')) %>
         <% end %>
       </li>
+
+      <li class="list-group-item">
+        <%= link_to(admin_event_signup_path(event, tab: :contact_reserves),
+                                            data: {confirm: t('.save_before')}) do %>
+          <%= icon('fas','users', t('.contact_reserves')) %>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 

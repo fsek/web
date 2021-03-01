@@ -61,5 +61,17 @@
                                                                format: :csv,
                                                                list: 'reserves') %>
     </div>
+
+    <div id="contact_reserves" class="profile-edit tab-pane fade in <%= @tab == :contact_reserves ? 'active' : '' %>">
+      <div class="headline">
+        <h1><%= "Kontakta reserver" %></h1>
+      </div>
+
+      <% if local_assigns.has_key? :status_msg %>
+        <p><%= status_msg %></p>
+      <% end %>
+
+      <%= render '/admin/contact_reserves/contact_reserves', event: @event %>
+    </div>
   </div>
 </div>
