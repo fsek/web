@@ -1,0 +1,4 @@
+<%= simple_form_for(:event, url: contact_reserves_admin_events_path, remote: true) do |f| %>
+        <%= f.input(:amount, required: true, label: false, input_html: {value: ''}, placeholder: "amount" )%>
+		<%= f.button :submit, "panga" %>
+<% end %>

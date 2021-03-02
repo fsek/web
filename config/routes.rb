@@ -220,13 +220,13 @@ Fsek::Application.routes.draw do
 
     namespace :admin do
       resources :events, path: :evenemang, except: :show do
+        post :contact_reserves, on: :collection
         resources :event_signups, path: :anmalan, only: [:create, :update, :destroy]
         resource :event_signup, path: :anmalan, only: :show, as: :signup do
           get 'export', on: :collection
         end
         resources :event_users, path: :anmalningar, only: [:edit, :update, :destroy]
       end
-      post 'evenemang/:event_id/edit', to: 'events#contact_reserves', as: 'contact_reserves'
     end
 
     namespace :admin do

@@ -48,35 +48,9 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def contact_reserves
-    required = [:contact_number_reserves, :subject, :message, :sender_email]
-    form_complete = true
-    required.each do |f|
-      if params.has_key? f and not params[f].blank?
-        # that's good news. do nothing
-      else
-        form_complete = false
-      end
-    end
-
-    contact_number_reserves = feedback.fetch(:contact_number_reserves, nil)
-    subject = feedback.fetch(:subject, nil)
-    message = feedback.fetch(:message, nil)
-    sender_email = feedback.fetch(:sender_email, nil)
-
-    puts contact_number_reserves
-    puts subject
-    puts message
-    puts sender_email + 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-
-    if form_complete
-      form_status_msg = 'Mejlen har skickats!'
-    else
-      form_status_msg = 'Var vänlig och fyll i de blanka rutorna och klicka sedan på "Skicka".'
-    end
-
-    respond_to do |format|
-      format.html { render :edit, locals: { status_msg: form_status_msg, feedback: params } } 
-    end
+    @amount = contact_reserves_params[:amount]
+    puts @amount
+    redirect_to admin_events_path
   end
 
   private
@@ -94,4 +68,9 @@ class Admin::EventsController < Admin::BaseController
   def set_tab
     @tab = params.fetch(:tab, :event_texts).to_sym
   end
+
+  def contact_reserves_params
+    params.require(:event).permit(:amount)
+  end
+
 end
