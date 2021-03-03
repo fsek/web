@@ -1,0 +1,34 @@
+<div class="headline">
+  <h1><%= title(t(".title")) %></h1>
+</div>
+
+<div class="cart cart-items">
+  <%= grid(@order_items, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: "Föremål") do |item|
+    	@shop_item = ShopItem.find(item.shop_item_id)
+    	link_to(@shop_item, shop_item_path(@shop_item))
+    end
+    g.column(name: t(".color")) do |item|
+      item.color
+    end
+    g.column(name: t(".size")) do |item|
+      item.size
+    end
+    g.column(name: t(".amount")) do |item|
+      item.amount
+    end
+    g.column(name: t(".comment")) do |item|
+    	item.comment
+    end
+    g.column(name: t(".created")) do |item|
+    	@order.created_at
+    end
+  end -%>
+</div>
+
+<%= link_to(t(".cancel"), order_path(@order),
+                           method: :delete,
+                           data: { confirm: t(".confirm")},
+                           class: 'btn danger') %>
+<%= link_to(t(".return"), cart_items_path,
+                         class: 'btn secondary') %>

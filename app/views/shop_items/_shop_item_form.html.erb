@@ -1,0 +1,15 @@
+<%= link_to(shop_item_path(shop_item), data: { turbolinks: :false}) do %>
+  <div class="image">
+    <% if shop_item.avatar? %>
+      <%= image_tag(shop_item.avatar.thumb.url) %>
+    <% else %>
+      <%= image_tag('missing_thumb') %>
+    <% end %>
+  </div>
+  <h3 class= "title" style="text-align: center; color: #666666">
+    <%= shop_item.name %>
+  </h3>
+  <div class= "price">
+    <%= number_to_currency(shop_item.price, {:unit => '', :separator => ',', :delimiter => '.', :precision => 2}) %> <%="kr"%>
+  </div>
+<% end %>

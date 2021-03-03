@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201220144612) do
+ActiveRecord::Schema.define(version: 20210303171900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,6 +206,17 @@ ActiveRecord::Schema.define(version: 20201220144612) do
     t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_car_bans_on_creator_id"
     t.index ["user_id"], name: "index_car_bans_on_user_id"
+  end
+
+  create_table "cart_items", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "shop_item_id"
+    t.integer "amount", null: false
+    t.string "size"
+    t.string "color"
+    t.text "comment"
+    t.index ["shop_item_id"], name: "index_cart_items_on_shop_item_id"
+    t.index ["user_id"], name: "index_cart_items_on_user_id"
   end
 
   create_table "categories", id: :serial, force: :cascade do |t|
@@ -462,6 +473,13 @@ ActiveRecord::Schema.define(version: 20201220144612) do
     t.index ["user_id"], name: "index_fredmanskies_on_user_id"
   end
 
+  create_table "fruits", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name", null: false
+    t.boolean "isMoldy", default: false, null: false
+    t.index ["user_id"], name: "index_fruits_on_user_id"
+  end
+
   create_table "group_messages", id: :serial, force: :cascade do |t|
     t.integer "group_id"
     t.integer "message_id"
@@ -538,6 +556,14 @@ ActiveRecord::Schema.define(version: 20201220144612) do
     t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_introductions_on_deleted_at"
     t.index ["slug"], name: "index_introductions_on_slug"
+  end
+
+  create_table "inventories", id: :serial, force: :cascade do |t|
+    t.integer "shop_item_id"
+    t.integer "stock", default: 0, null: false
+    t.string "size"
+    t.string "color"
+    t.index ["shop_item_id"], name: "index_inventories_on_shop_item_id"
   end
 
   create_table "key_users", id: :serial, force: :cascade do |t|
@@ -698,6 +724,28 @@ ActiveRecord::Schema.define(version: 20201220144612) do
     t.index ["notifyable_id"], name: "index_notifications_on_notifyable_id"
     t.index ["notifyable_type"], name: "index_notifications_on_notifyable_type"
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "order_items", id: :serial, force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "shop_item_id"
+    t.integer "amount", null: false
+    t.string "size"
+    t.string "color"
+    t.text "comment"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["shop_item_id"], name: "index_order_items_on_shop_item_id"
+  end
+
+  create_table "orders", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "order_item_id"
+    t.boolean "packaged", default: false, null: false
+    t.boolean "paid", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_item_id"], name: "index_orders_on_order_item_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "page_element_translations", id: :serial, force: :cascade do |t|
@@ -889,6 +937,20 @@ ActiveRecord::Schema.define(version: 20201220144612) do
     t.text "notification"
     t.boolean "mutable_content", default: false, null: false
     t.index ["delivered", "failed"], name: "index_rpush_notifications_multi", where: "((NOT delivered) AND (NOT failed))"
+  end
+
+  create_table "shop_items", id: :serial, force: :cascade do |t|
+    t.integer "order_item_id"
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string "name", null: false
+    t.string "sizes", default: [], null: false, array: true
+    t.string "colors", default: [], null: false, array: true
+    t.text "description", null: false
+    t.float "price", default: 0.0, null: false
+    t.index ["order_item_id"], name: "index_shop_items_on_order_item_id"
   end
 
   create_table "short_links", id: :serial, force: :cascade do |t|

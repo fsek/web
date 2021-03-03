@@ -1,0 +1,10 @@
+sv:
+  activerecord:
+    models:
+      order_item: Vara
+    attributes:
+      order_item:
+        amount: Antal
+        size: Storlek
+        color: Färg
+        comment: Kommentar

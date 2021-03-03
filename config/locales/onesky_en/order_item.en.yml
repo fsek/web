@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    models:
+      order_item: Product
+    attributes:
+      order_item:
+        amount: Amount
+        size: Size
+        color: Color
+        comment: Comment

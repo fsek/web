@@ -1,0 +1,26 @@
+
+  <div class= "headline">
+    <h2>Meny</h2>
+  </div>
+  <%= link_to('Ny produkt', new_admin_shop_item_path,
+                                class: 'btn primary') %>
+  <%= link_to('Se beställningar', admin_orders_path,
+                                class: 'btn primary') %>
+  <%= link_to('Hantera inventarier', admin_inventories_path,
+                                class: 'btn primary') %>
+
+<hr>
+
+<div class="headline">
+  <h1><%= title("F-shop") %></h1>
+</div>
+
+<div class="shop-index">
+  <div class="products-container">
+    <% @shop_items.each do |s| %>
+      <div class="product">
+        <%= render 'shop_item_form', shop_item: s %>
+      </div>
+    <% end %>
+  </div>
+</div>

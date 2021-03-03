@@ -1,0 +1,12 @@
+en:
+  orders:
+    show:
+      title: Order
+      return: Return
+      cancel: Cancel order
+      color: Color
+      size: Size
+      amount: Amount
+      comment: Comment
+      confirm: Are you sure?
+      created: Added

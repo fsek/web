@@ -1,0 +1,29 @@
+en:
+  cart_items:
+    show:
+      buy: Buy
+      return: Return
+      add-to-cart: Add to cart
+      
+    index:
+      title: Your cart
+      product: Product
+      amount: Amount
+      comment: Comment
+      empty-cart: Your cart is empty!
+      remove-from-cart: Remove from cart
+      remove: Remove
+      make-order: Make order
+      return: Return
+      orders: Your orders
+      cart-size: Number of products
+      sum: Sum
+      created: Created at
+      active: Active
+      is_active: "Yes"
+      not_active: "No"
+      order-is-inactive: Your order is inactive
+      cancel-order: Cancel order
+      cancel: Cancel
+      view: View products
+      products: Products

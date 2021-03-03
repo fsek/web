@@ -1,0 +1,44 @@
+<div class="headline">
+  <h1><%= title("Beställningar") %></h1>
+</div>
+
+<%= link_to("Gå tillbaka", admin_shop_items_path, class: "btn secondary") %>
+
+<div class="orders-container">
+  <%= grid(@orders) do |g|
+    g.column(name: "Beställare", attribute: 'user_id') do |order|
+      link_to(User.find(order.user_id), admin_order_path(order))
+    end
+    g.column(name: "Skapad") do |order|
+      order.created_at
+    end
+    g.column(name: "Förpackad", attribute: 'packaged') do |order|
+      if order.packaged
+        "Ja"
+      else
+        "Nej"
+      end
+    end
+    g.column(name: "Betalad", attribute: 'paid') do |order|
+      if order.paid
+        "Ja"
+      else 
+        "Nej"
+      end
+    end
+    g.column(name: "Ändra status") do |order|
+      if !order.paid && !order.packaged
+        link_to("Beställning förpackad", admin_order_package_path(order), method: :post, url: {action: :package}, class: 'btn primary')
+      elsif !order.paid && order.packaged
+        link_to("Beställning betalad", admin_order_pay_path(order), method: :post, url: {action: :pay}, class: 'btn primary')
+      elsif order.paid
+        link_to("Ångra betalning", admin_order_pay_path(order), method: :post, url: {action: :pay}, class: 'btn primary')
+      end
+    end
+    g.column(name: "Avbryt beställning") do |order|
+      link_to(t("Avbryt"), admin_order_path(order),
+                                method: :delete,
+                                class: 'btn danger')
+    end
+  end -%>
+</div>

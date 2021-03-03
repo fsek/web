@@ -1,0 +1,9 @@
+sv:
+  activerecord:
+    models:
+      inventory: Inventarie
+    attributes:
+      inventory:
+        stock: Lager
+        size: Storlek
+        color: Färg

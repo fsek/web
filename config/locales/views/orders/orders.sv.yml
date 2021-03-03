@@ -1,0 +1,12 @@
+sv:
+  orders:
+    show:
+      title: Beställning
+      return: Gå tillbaka
+      cancel: Avbryt beställning
+      color: Färg
+      size: Storlek
+      amount: Antal
+      comment: Kommentar
+      confirm: Är du säker?
+      created: Tillagt

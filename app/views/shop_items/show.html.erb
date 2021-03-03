@@ -1,0 +1,47 @@
+<div class="headline">
+  <h1><%= title(@shop_item.name) %></h1>
+</div>
+
+<div class="product-container">
+  <div class="image">
+    <% if @shop_item.avatar? %>
+      <%= image_tag(@shop_item.avatar.large.url, class: 'img-responsive') %>
+    <% else %>
+      <%= image_tag('missing_thumb') %>
+    <% end %>
+  </div>
+
+  <div class="info">
+    <div class="price"> 
+      <strong> 
+        <%= number_to_currency(@shop_item.price, {:unit => '', :separator => ',', :delimiter => '.', :precision => 2}) %> kr
+      </strong>
+    </div>
+    <%= markdown(@shop_item.description) %>
+  </div>
+  <div class="back-button">
+    <%= link_to(t('.buy'), "#cart",
+                              class: 'btn primary') %>
+    <%= link_to(t('.return'), shop_items_path,
+                              class: 'btn secondary') %>
+  </div>
+</div>
+
+<hr>
+<div class="add-to-cart">
+  <div style="font-size: 20px; padding-bottom: 20px; color: #666666;">
+    <strong id="cart"><%= t".add-to-cart" %></strong>
+  </div>
+
+  <%= simple_form_for(@cart_item) do |f| %>
+    <%= f.input :amount, collection: 1..10 %>
+    <%= f.input :size, collection: @shop_item.sizes %>
+    <%= f.input :color, collection: @shop_item.colors %>
+    <%= f.input :comment %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :shop_item_id, value: @shop_item.id %>
+    <%= f.button :submit %> 
+  <% end %>
+</div>
+
+

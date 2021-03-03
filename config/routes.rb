@@ -369,6 +369,31 @@ Fsek::Application.routes.draw do
     end
   end
 
+  resources :shop_items, path: :butik, only: [:index, :show] do
+    collection do
+        post 'cart_items/create'
+        resources :orders, path: :bestallningar, only: [:index, :show, :new, :destroy] do
+          resources :order_items, path: :varor, only: :index
+        end
+        resources :cart_items, path: :varukorg, only: [:index, :destroy, :create_order, :create] do
+          post :create_order
+        end
+      end
+  end
+
+  namespace :admin do
+    resources :shop_items, path: :butik do
+      collection do
+        resources :orders, path: :bestallningar, except: :new do
+          post 'pay'
+          post 'package'
+          resources :order_items, path: :varor, only: :index
+        end
+        resources :inventories, path: :lager
+      end
+    end
+  end
+
   # API routes
   namespace :api, constraints: { format: 'json' } do
     mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :confirmations]

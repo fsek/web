@@ -1,0 +1,24 @@
+<div class="headline">
+  <h1><%= title("F-shop") %></h1>
+</div>
+
+<div class="shop-index">
+  <div class="description">
+    <%= t('.description') %>
+  </div>
+  
+  <hr>
+
+  <div class="cart cart-btn">
+  	<%= link_to(t('.your-cart'), cart_items_path, class: 'btn secondary') %>
+  </div>
+
+  <div class="products-container">
+    <% @shop_items = @shop_items.sort_by(&:name) %>
+    <% @shop_items.each do |s| %>
+      <div class="product">
+        <%= render 'shop_item_form', shop_item: s %>
+      </div>
+    <% end %>
+  </div>
+</div>

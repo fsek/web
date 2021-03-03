@@ -1,0 +1,9 @@
+<%= simple_form_for([:admin, shop_item]) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :price %>
+  <%= f.input :sizes, as: :array %>
+  <%= f.input :colors, as: :array %>
+  <%= f.input :avatar, as: :file %>
+  <%= f.button :submit %>
+<% end %>

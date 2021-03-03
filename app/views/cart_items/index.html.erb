@@ -1,0 +1,89 @@
+<div class="headline">
+  <h1><%= title(t".title") %></h1>
+</div>
+
+<div class="cart">
+  <div class="cart-items">
+    <%= if(@cart.size == 0)
+      t(".empty-cart")
+    else
+
+      grid(@cartGrid, hide_submit_button: true, hide_reset_button: true) do |g|
+        g.column(name: t('.product')) do |item|
+        	ShopItem.find(item.shop_item_id)
+        end
+        g.column(name: t('.amount')) do |item|
+          item.amount
+        end
+        g.column(name: t('.comment')) do |item|
+        	item.comment
+        end
+        g.column(name: t('.remove-from-cart')) do |item|
+        	link_to(t('.remove'), cart_item_path(item),
+        													method: :delete,
+                                  class: 'btn danger')
+        end
+      end
+    end -%>
+  </div>
+
+  <%= if(@cart.size > 0)
+    link_to(t('.make-order'), cart_item_create_order_path(@cart),
+                                  method: :post,
+                                  class: 'btn primary')
+  end -%>
+  <%= link_to(t('.return'), shop_items_path,
+                                class: 'btn secondary') %>
+
+  <div class="orders">
+    <h3> <%= t('.orders') %> </h3>
+
+    <%= grid(@orderGrid, hide_submit_button: true, hide_reset_button: true) do |g|
+      g.column(name: t('.cart-size')) do |order|
+        @items = OrderItem.where(order_id: order.id)
+        @total = 0
+
+        @items.each do |item|
+          @amount = item.amount
+          @total = @total + @amount
+        end
+
+        @total
+      end
+      g.column(name: t('.sum')) do |order|
+        @items = OrderItem.where(order_id: order.id)
+        @sum = 0
+
+        @items.each do |item|
+          @price = ShopItem.find(item.shop_item_id).price*item.amount
+          @sum = @sum + @price
+        end
+
+        number_to_currency(@sum, {:unit => '', :separator => ',', :delimiter => '.', :precision => 2})
+      end
+      g.column(name: t('.created')) do |order|
+        order.created_at
+      end
+      g.column(name: t('.active')) do |order|
+        if order.paid
+          t('.not_active')
+        else
+          t('.is_active')
+        end
+      end
+      g.column(name: t('.cancel-order')) do |order|
+        if !order.paid
+          link_to(t('.cancel'), order_path(order),
+                                method: :delete,
+                                class: 'btn danger')
+        else
+          t('.order-is-inactive')
+        end
+      end
+      g.column(name: t('.view')) do |order|
+        link_to(t('.products'), order_path(order),
+                                class: 'btn secondary')
+      end
+    end -%>
+  </div>
+</div>

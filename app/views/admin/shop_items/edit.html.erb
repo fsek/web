@@ -1,0 +1,18 @@
+<div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
+  <div class="headline">
+    <h1><%= title("Redigera vara") %></h1>
+  </div>
+
+  <%= render 'form', shop_item: @shop_item %>
+
+  <hr>
+
+  <div>
+  <%= link_to('Gå tillbaka', admin_shop_items_path,
+                                class: 'btn secondary') %>
+  <%= link_to('Radera', admin_shop_item_path(@shop_item),
+                               method: :delete,
+                               data: { confirm: 'Är du säker?'},
+                               class: 'btn danger') %>
+  </div>
+</div>

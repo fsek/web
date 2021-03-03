@@ -1,0 +1,29 @@
+sv:
+  cart_items:
+    show:
+      buy: Köp
+      return: Gå tillbaka
+      add-to-cart: Lägg i varukorg
+      
+    index:
+      title: Din varukorg
+      product: Vara
+      amount: Antal
+      comment: Kommentar
+      empty-cart: Din varukorg är tom!
+      remove-from-cart: Ta bort från varukorg
+      remove: Ta bort
+      make-order: Lägg beställning
+      return: Gå tillbaka
+      orders: Dina beställningar
+      cart-size: Antal varor
+      sum: Summa
+      created: Skapad
+      active: Aktiv
+      is_active: Ja
+      not_active: Nej
+      order-is-inactive: Din beställning är inaktiv
+      cancel-order: Avbryt beställning
+      cancel: Avbryt
+      view: Se varor
+      products: Varor

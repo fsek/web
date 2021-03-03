@@ -1,0 +1,10 @@
+sv:
+  activerecord:
+    models:
+      cart_item: Varukorgsvara
+    attributes:
+      cart_item:
+        amount: Antal
+        size: Storlek
+        color: Färg
+        comment: Kommentar

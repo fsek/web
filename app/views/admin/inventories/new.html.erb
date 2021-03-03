@@ -1,0 +1,9 @@
+<div class="headline">
+	<h2> Skapa nytt inventarie </h2>
+</div>
+
+<p> Vara: <%= @shop_item.name %> </p>
+
+<div class="inventory-new">
+	<%= render 'form', inventory: @inventory, shop_item: @shop_item %>
+</div>

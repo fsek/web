@@ -1,0 +1,11 @@
+sv:
+  activerecord:
+    models:
+      shop_item: Merch
+    attributes:
+      shop_item:
+        name: Namn
+        description: Beskrivning
+        price: Pris
+        sizes: Storlekar
+        colors: Färger

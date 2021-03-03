@@ -1,0 +1,10 @@
+sv:
+  shop_items:
+    show:
+      buy: Köp
+      return: Gå tillbaka
+      add-to-cart: Lägg i varukorg
+      
+    index:
+      description: Det här är F-sektionens butik.
+      your-cart: Din varukorg

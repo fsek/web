@@ -1,0 +1,48 @@
+<div class="headline">
+  <h1><%= title("Butikslager") %></h1>
+</div>
+
+<div class="inventory-index">
+
+  <div class="inventory-grid">
+    <%= grid(@inventories) do |g|
+      g.column(name: "Vara", attribute: 'shop_item_id') do |inventory|
+        ShopItem.find(inventory.shop_item_id)
+      end
+      g.column(name: "Storlek") do |inventory|
+        inventory.size
+      end
+      g.column(name: "Färg") do |inventory|
+        inventory.color
+      end
+      g.column(name: "Antal i lager") do |inventory|
+        inventory.stock
+      end
+      g.column(name: "Uppdatera status") do |inventory|
+        link_to('Uppdatera', edit_admin_inventory_path(inventory),
+                                  class: 'btn primary')
+      end
+    end -%>
+  </div>
+
+  <div class="back-button">
+    <%= link_to('Gå tillbaka', admin_shop_items_path,
+                                class: 'btn secondary') %>
+  </div>
+</div>
+
+<div class="inventory-menu">
+  <div class="headline">
+    <h3>Skapa nytt inventarie</h3>
+  </div>
+  
+  <%= grid(@shop_items) do |g|
+    g.column(name: "Vara") do |item|
+      item
+    end
+    g.column(name: "Skapa nytt inventarie") do |item|
+    	link_to('Skapa ny', new_admin_inventory_path(:shop_item_id => item.id),
+                                class: 'btn primary')
+    end
+  end -%>
+</div>

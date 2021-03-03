@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    models:
+      order: Order
+    attributes:
+      order:
+        paid: Paid
+        packaged: Packaged

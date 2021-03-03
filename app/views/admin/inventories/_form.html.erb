@@ -1,0 +1,8 @@
+<%= simple_form_for([:admin, @inventory]) do |f| %>
+    <%= f.input :size, label: "Storlek", collection: @shop_item.sizes %>
+    <%= f.input :color, label: "Färg", collection: @shop_item.colors %>
+    <%= f.input :stock, label: "Antal" %>
+    <%= f.hidden_field :shop_item_id, value: @shop_item.id %>
+    <%= f.button :submit %> 
+    <%= link_to("Gå tillbaka", admin_inventories_path, class: "btn secondary") %>
+<% end %>

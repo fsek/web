@@ -1,0 +1,32 @@
+<div class="headline">
+  <h1><%= title("Beställning") %></h1>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= grid(@order_items, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: "Föremål") do |item|
+    	ShopItem.find(item.shop_item_id)
+    end
+    g.column(name: "Färg") do |item|
+      item.color
+    end
+    g.column(name: "Storlek") do |item|
+      item.size
+    end
+    g.column(name: "Antal") do |item|
+      item.amount
+    end
+    g.column(name: "Kommentar") do |item|
+    	item.comment
+    end
+  end -%>
+</div>
+
+<div>
+  <%= link_to("Ta bort beställning", admin_order_path(@order),
+                            method: :delete,
+                            data: { confirm: "Är du säker?"},
+                            class: 'btn danger') %>
+  <%= link_to("Gå tillbaka", admin_orders_path,
+                          class: 'btn secondary') %>
+</div>

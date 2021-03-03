@@ -1,0 +1,8 @@
+sv:
+  activerecord:
+    models:
+      order: Beställning
+    attributes:
+      order:
+        paid: Betalad
+        packaged: Behandlad

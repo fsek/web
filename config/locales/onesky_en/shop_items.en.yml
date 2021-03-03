@@ -1,0 +1,10 @@
+en:
+  shop_items:
+    show:
+      buy: Buy
+      return: Return
+      add-to-cart: Add to cart
+      
+    index:
+      description: This is the F-guild's shop.
+      your-cart: Your cart
