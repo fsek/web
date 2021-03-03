@@ -27,7 +27,7 @@ module MenuHelper
 
   def menu_content(menu)
     content = [menu.to_s]
-    content << icon('fas', 'external-link-alt') if menu.blank_p
+    content << ' ' << icon('fas', 'external-link-alt') if menu.blank_p
     safe_join(content)
   end
 
