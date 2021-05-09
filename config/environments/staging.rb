@@ -68,11 +68,11 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.smtp_settings = {
-    address: '127.0.0.1',
+    address: '130.235.143.164',
     port: 25,
-    domain: PUBLIC_URL,
+    domain: 'fsektionen.se',
     authentication: 'plain',
-    enable_starttls_auto: false
+    tls: true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
