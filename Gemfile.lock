@@ -249,7 +249,7 @@ GEM
       rake
     mini_magick (4.9.5)
     mini_mime (1.0.1)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.5.1)
     minitest (5.13.0)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
@@ -263,8 +263,9 @@ GEM
     net-ssh (5.2.0)
     netrc (0.11.0)
     nio4r (2.3.1)
-    nokogiri (1.10.4)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.11.3)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     onesky-rails (1.4.0)
       i18n (>= 0.5.0)
       onesky-ruby (~> 1.0.0)
@@ -306,6 +307,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.2)
     puma (3.11.4)
+    racc (1.5.2)
     rack (2.0.7)
     rack-protection (2.0.1)
       rack
