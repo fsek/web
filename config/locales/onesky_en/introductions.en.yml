@@ -28,11 +28,16 @@ en:
       previous: Previous
       next: Next
     index:
+      contact_us: contact us
+      foset: Föset  
       checklist: Checklist
-      info: |-
-          Welcome to an Introduction around the Round Table at the F-guild. Here you can find all information related to the introduction for students in the programmes Engineering physics, Engineering mathematics and Engineering nanoscience. As a prospective student of these programs, you are welcome to join us this autumn.
+      info: "Welcome to the F-guild and the introduction of the year: An introduction through the Times. Here you can find all the information you need regarding the Introduction for new students in the programmes Engineering Physics, Engineering Mathematics and Engineering Nanoscience, which exchange students and Master Students also are more than welcome to participate in! 
 
-          To prepare yourself you can look through the %{checklist} and if you want to know more about the Introduction you can read more about it %{more_info}.
+      This page will be updated with more information as the start of the semester closes in, so Bookmark this page and check in once in a while so you don’t miss anything. If you want to know a bit more generally what an Introduction is, you can find information %{more_info} and if you wonder how the Introduction has been adapted in order to prevent the spread of infection you can read about it %{corona}.
+      
+      We, the ones arranging the Introduction, are called %{foset} and don’t hesitate to contact us if you have any questions.You can reach us via %{contact} or %{anonymous_contact} if you want to be anonymous.
+      
+      We are looking forward to welcoming you to the F-guild and LTH!Best regards, Föset"
       info2: "This page will be updated during the summer and the Introduction with important and fun information, make sure to bookmark it to find your way back here."
       info3: "We look forward to meeting you and welcome you to LTH and the F-guild."
       keywords:
