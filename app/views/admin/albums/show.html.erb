@@ -23,7 +23,11 @@
     <% if img.id.present? %>
       <div class="col-md-2 col-xs-4">
         <%= link_to(admin_album_image_path(@album, img)) do %>
-          <%= image_tag(img.thumb, class: 'img-resposive album-preview') %>
+          <% if img.file.present? %>
+            <%= image_tag(img.thumb, class: 'img-resposive album-preview') %>
+          <% else %>
+            <% image_tag('smol_file_missing.png') %>
+          <% end %>
         <% end %>
       </div>
     <% end %>
