@@ -1,10 +1,19 @@
+def next?
+  File.basename(__FILE__) == "Gemfile.next"
+end
+
 source 'https://rubygems.org'
 
 # Do not forget to update in .ruby-version, Capfile and circle.yml
 ruby '2.5.0'
 
-gem 'rails', '5.1.6.2'
+if next?
+  gem 'rails', '~> 5.2'
+else
+  gem 'rails', '5.1.6.2'
+end
 
+gem 'sprockets', '~> 3.7'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bcrypt_pbkdf', '~> 1.1.0.rc1'
 gem 'bootstrap-sass'
@@ -30,7 +39,7 @@ gem 'icalendar'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
-gem 'kaminari'
+gem 'kaminari', '~>1.1'
 gem 'meta-tags'
 gem 'mail', '>= 2.6.6.rc1'
 gem 'mini_magick'
@@ -57,7 +66,7 @@ gem 'simple_form'
 gem 'sitemap_generator'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'wice_grid', git: 'https://github.com/navro/wice_grid', branch: 'rails51'
+gem 'wice_grid', git: 'https://github.com/patricklindsay/wice_grid'
 
 # To have a working JVM on server
 group :staging, :production do
@@ -65,7 +74,6 @@ group :staging, :production do
 end
 
 group :development, :test do
-  gem 'better_errors', git: 'https://github.com/charliesome/better_errors' # For rails 5 support
   gem 'capistrano', require: false
   # Need 1.1.3 to load sprockets manifest file
   gem 'capistrano-rails', require: false
