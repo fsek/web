@@ -1,4 +1,3 @@
-# encoding: UTF-8
 FactoryBot.define do
   factory :faq do
     question { generate(:description) }

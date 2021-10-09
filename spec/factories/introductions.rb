@@ -6,6 +6,6 @@ FactoryBot.define do
     start { 2.days.from_now }
     stop { 26.days.from_now }
     slug { generate(:url) }
-    current false
+    current { false }
   end
 end

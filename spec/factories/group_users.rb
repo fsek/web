@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :group_user do
     user
     group
-    fadder false
+    fadder { false }
   end
 end

@@ -1,4 +1,3 @@
-# encoding: UTF-8
 FactoryBot.define do
   factory :council do
     title
@@ -12,7 +11,7 @@ FactoryBot.define do
 
     trait :with_posts do
       transient do
-        post_count 3
+        post_count { 3 }
       end
 
       after(:create) do |council, evaluator|

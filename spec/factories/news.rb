@@ -1,4 +1,3 @@
-# encoding: UTF-8
 FactoryBot.define do
   factory :news do
     title
@@ -6,7 +5,7 @@ FactoryBot.define do
     user
 
     trait :with_image do
-      image Rack::Test::UploadedFile.new(File.open('spec/assets/image.jpg'))
+      image { Rack::Test::UploadedFile.new(File.open('spec/assets/image.jpg')) }
     end
   end
 end

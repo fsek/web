@@ -1,4 +1,3 @@
-# encoding: UTF-8
 FactoryBot.define do
   factory :post do
     title
@@ -10,11 +9,11 @@ FactoryBot.define do
     rec_limit { rand(3..7) }
 
     trait :board_member do
-      board true
+      board { true }
     end
 
     trait :allowed_rental do
-      car_rent true
+      car_rent { true }
     end
 
     trait :with_admin_permissions do
@@ -24,27 +23,27 @@ FactoryBot.define do
     end
 
     trait :autumn do
-      semester Post::AUTUMN
+      semester { Post::AUTUMN }
     end
 
     trait :spring do
-      semester Post::SPRING
+      semester { Post::SPRING }
     end
 
     trait :both do
-      semester Post::BOTH
+      semester { Post::BOTH }
     end
 
     trait :general do
-      elected_by Post::GENERAL
+      elected_by { Post::GENERAL }
     end
 
     trait :board do
-      elected_by Post::BOARD
+      elected_by { Post::BOARD }
     end
 
     trait :education do
-      elected_by Post::EDUCATION
+      elected_by { Post::EDUCATION }
     end
   end
 end

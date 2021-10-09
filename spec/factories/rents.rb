@@ -1,14 +1,12 @@
-# encoding: UTF-8
 FactoryBot.define do
-
   factory :rent do
     user
-    purpose 'Handla möbler på IKEA'
+    purpose { 'Handla möbler på IKEA' }
     d_from { Time.zone.now + 10.days }
     d_til { Time.zone.now + 10.days + 12.hours }
-    aktiv true
-    status :confirmed
-    terms '1'
+    aktiv { true }
+    status { :confirmed }
+    terms { '1' }
 
     # Override after_create callbacks.
     after(:build) do |rent|
@@ -35,10 +33,10 @@ FactoryBot.define do
   end
 
   trait :purpose do
-    purpose 'Handla möbler på IKEA'
+    purpose { 'Handla möbler på IKEA' }
   end
 
   trait :comment do
-    comment 'Du har uppebarligen inget körkort'
+    comment { 'Du har uppebarligen inget körkort' }
   end
 end

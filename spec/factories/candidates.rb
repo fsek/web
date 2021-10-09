@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :candidate do |c|
+  factory :candidate do |_c|
     association :election, semester: Post::AUTUMN
     association :post, semester: Post::AUTUMN
     user

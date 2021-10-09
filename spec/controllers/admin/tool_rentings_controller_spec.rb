@@ -12,7 +12,12 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
   describe 'POST #create' do
     it 'valid parameters' do
       tool = create(:tool)
-      attributes = attributes_for(:tool_renting, tool: tool)
+      user = create(:user)
+      attributes = {
+        user_id: user.id,
+        purpose: "To build a house",
+        return_date: 10.days.from_now
+      }
 
       lambda do
         post :create, params: { tool_id: tool, tool_renting: attributes }
@@ -56,13 +61,14 @@ RSpec.describe Admin::ToolRentingsController, type: :controller do
   describe 'PATCH #update' do
     it 'valid parameters' do
       tool = create(:tool)
-      rent = create(:tool_renting, tool: tool, user_id: 1)
-      attributes = { user_id: 2 }
+      rent = create(:tool_renting, tool: tool)
+      new_user = create(:user)
+      attributes = { user_id: new_user.id }
 
       patch :update, params: { tool_id: tool, id: rent, tool_renting: attributes }
 
       rent.reload
-      rent.user_id.should eq(2)
+      rent.user.should eq(new_user)
       response.should redirect_to(admin_tool_path(tool))
     end
 

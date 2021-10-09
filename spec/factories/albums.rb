@@ -1,4 +1,3 @@
-# encoding: UTF-8
 FactoryBot.define do
   factory :album do
     title
@@ -8,7 +7,7 @@ FactoryBot.define do
 
     factory :album_with_images do
       transient do
-        image_count 2
+        image_count { 2 }
       end
 
       after(:create) do |album, evaluator|

@@ -5,7 +5,7 @@ FactoryBot.define do
     open { 2.days.ago }
     close_general { 5.days.from_now }
     close_all { 7.days.from_now }
-    visible true
+    visible { true }
     description
     candidate_mail_star { generate(:email) }
     mail_link { generate(:email) }
@@ -37,15 +37,15 @@ FactoryBot.define do
     end
 
     trait :autumn do
-      semester Post::AUTUMN
+      semester { Post::AUTUMN }
     end
 
     trait :spring do
-      semester Post::SPRING
+      semester {Post::SPRING}
     end
 
     trait :other do
-      semester Post::OTHER
+      semester {Post::OTHER}
     end
   end
 end
