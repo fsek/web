@@ -43,7 +43,7 @@ class AdventuresController < ApplicationController
       am.points = am.points(@group)
     end
 
-    @grid = initialize_grid(@adventure_missions, locale: :sv, order: 'adventure_missions.index')
+    @grid = initialize_grid(@adventure_missions, order: 'adventure_missions.index')
   end
 
   private

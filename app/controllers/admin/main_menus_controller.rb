@@ -2,7 +2,7 @@ class Admin::MainMenusController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @grid = initialize_grid(MainMenu, locale: :sv)
+    @grid = initialize_grid(MainMenu)
   end
 
   def new

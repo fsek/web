@@ -5,7 +5,6 @@ class Admin::EventsController < Admin::BaseController
   def index
     @event_grid = initialize_grid(Event,
                                   include: :event_signup,
-                                  locale: :sv,
                                   order: :starts_at,
                                   order_direction: :desc)
   end

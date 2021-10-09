@@ -4,7 +4,6 @@ class Admin::BlogPostsController < Admin::BaseController
   def index
     @post_grid = initialize_grid(BlogPost,
                                  include: :user,
-                                 locale: :sv,
                                  order: :created_at)
   end
 

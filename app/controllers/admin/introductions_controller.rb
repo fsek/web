@@ -2,7 +2,7 @@ class Admin::IntroductionsController < Admin::BaseController
   load_permissions_and_authorize_resource(find_by: :slug)
 
   def index
-    @grid = initialize_grid(Introduction, order: :start, locale: :sv)
+    @grid = initialize_grid(Introduction, order: :start)
   end
 
   def show

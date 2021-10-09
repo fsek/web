@@ -5,7 +5,6 @@ class Admin::NewsController < Admin::BaseController
     @news_grid = initialize_grid(News,
                                  include: :user,
                                  order: 'news.created_at',
-                                 locale: 'sv',
                                  order_direction: :desc)
   end
 

@@ -3,7 +3,7 @@ class Admin::AdventuresController < Admin::BaseController
 
   def index
     set_adventures
-    @grid = initialize_grid(@adventures, order: :start_date, locale: :sv)
+    @grid = initialize_grid(@adventures, order: :start_date)
   end
 
   def new

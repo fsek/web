@@ -4,7 +4,7 @@ class Admin::AdventureMissionsController < Admin::BaseController
   load_and_authorize_resource :adventure_mission, through: :adventure
 
   def index
-    @grid = initialize_grid(@adventure_missions, locale: :sv, order: 'adventure_missions.index')
+    @grid = initialize_grid(@adventure_missions, order: 'adventure_missions.index')
   end
 
   def new

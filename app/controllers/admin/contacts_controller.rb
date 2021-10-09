@@ -2,7 +2,7 @@ class Admin::ContactsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @contact_grid = initialize_grid(Contact, include: :post, locale: :sv)
+    @contact_grid = initialize_grid(Contact, include: :post)
   end
 
   def new
