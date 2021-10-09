@@ -1,7 +1,8 @@
 class ToolRenting < ApplicationRecord
-  belongs_to :tool
+  belongs_to :tool, required: true
+  belongs_to :user, required: true
 
-  validates :user_id, :tool, :return_date, presence: true
+  validates :return_date, presence: true
   validate :there_are_free_tools
   validate :return_date_lesser_than_today
 
