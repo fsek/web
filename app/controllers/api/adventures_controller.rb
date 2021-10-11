@@ -7,6 +7,8 @@ class Api::AdventuresController < Api::BaseController
       render json: { error: 'No introduction exists' } and return
     elsif current_user.groups.regular.last.nil?
       render json: { error: 'No group exists' } and return
+    elsif @introduction.adventures.published_asc.empty?
+      render json: { error: 'No adventures avaliable' } and return
     end
 
     @adventures = @introduction.adventures.published_asc

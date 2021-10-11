@@ -28,23 +28,27 @@ sv:
     index:
       adventures: Äventyrsuppdrag
       checklist: Checklista
-      contact_us: kontakta oss
+      contact_us: mejl
+      contact: mejl
       dance: Nolledans
-      foset: föset
+      foset: Föset
       info: |
-        Välkommen till F-sektionen och årets nollning: Årets Nollning - Ett Äventyr Runt Solen. Här hittar du all information du behöver om nollningen för de som börjar programmen teknisk fysik, teknisk matematik och teknisk nanovetenskap. Som blivande student på något av dessa program i höst är du varmt välkommen till oss!
+        Välkommen till F-sektionen och årets nollning: En Nollning genom Tiderna. Här hittar du all information du behöver om nollningen för de som börjar programmen Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap. Som blivande student på något av dessa program i höst är du varmt välkommen till oss!
 
-        Innan hälsningsanförandet den 24 augusti rekommenderar vi att du läser igenom %{checklist} som steg för steg tar dig igenom vad du bör ha förberett. Dessutom kan det vara bra att hålla koll på följande:
-        - Denna sidan uppdateras efter hand under sommaren, bokmärk den och kika in ibland så du inte missar något.
-        - F-sektionen har en Facebook-sida som heter ”F-sektionen inom TLTH”, gå gärna in och gilla den.
-        - Invänta ett samtal från dina faddrar. Ett tag innan terminen börjar kommer de ringa upp dig och ge dig en del viktig information.
-        - Undrar du mer om vad nollningen är så hittar du mer info %{more_info}, om du har funderingar på hur nollningen har anpassats för att hindra smittspridning kan du hitta mer info %{corona}.
+        Denna sida kommer att uppdateras med mer information när terminsstarten börjar närma sig, så bokmärk och kika in då och då så att du inte missar något. Men om du redan nu vill veta mer om vad en nollning är hittar du mer info %{more_info} och vill du veta hur nollningen anpassats för att förhindra smittspridning kan du läsa om det %{corona}.
 
-        Vi som arrangerar nollningen är %{foset} och om du undrar något så tveka inte att kontakta oss! Du når oss antingen via vanliga %{contact} eller %{anonymous_contact} om du vill vara anonym.
+        <br>
+        <li>Läs igenom %{checklist}</li>
+        <li>En av faddrarna i det som kommer att vara din faddergrupp under nollningen kommer snart att ringa dig och försöka svara på alla frågor du kan tänkas ha inför skolstarten och nollningen. Om ingen hört av sig till dig innan 19/8, kontakta oss.</li>
+        <li>Föreningen FREJA anordnar en tjejträff för tjejer och ickebinära den 22/8 kl. 15:00 med samling utanför Kårhusets entré. Mer information på deras <a href="https://www.frejalth.se/evenemang/Tjejtr%C3%A4ff">hemsida</a></li>
+        <li>För en djupdykning i F-sektionen och nollning i synnerhet kan du läsa <a href="https://fsektionen.se/dokument/896">Nolleguiden</a>!</li>
+        <br>
+
+        Vi som arrangerar nollningen är %{foset} och om du undrar något så tveka inte att kontakta oss! Du når oss antingen via %{contact} eller %{anonymous_contact} om du vill vara anonym.
 
         Vi ser fram emot att få välkomna dig till F-sektionen och LTH!
 
-        Hjärtliga hälsningar från Föset
+        Varma hälsningar, Föset
       keywords:
         - nollning
         - teknisk fysik
