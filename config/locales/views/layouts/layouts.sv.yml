@@ -37,3 +37,6 @@ sv:
         notifications: Notifikationer
         mark_all_as_read: Markera alla som lästa
         no_notifications: Inga notifikationer
+
+    topbar:
+      calendar: Kalender
