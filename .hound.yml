@@ -1,7 +1,6 @@
-ruby:
-  config_file: .rubocop.yml
-  exclude:
-    -"config/initializers/wice_grid_config.rb"
+# Run as commit-hook instead
+rubocop:
+  enabled: false
 java_script:
   config_file: .javascript-style.json
   exclude:

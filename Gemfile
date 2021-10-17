@@ -87,6 +87,7 @@ group :development do
   gem "bullet"
   gem "foreman"
   gem "onesky-rails"
+  gem "overcommit", "~> 0.58.0"
   gem "standard", "~> 1.4"
   gem "web-console"
 end
