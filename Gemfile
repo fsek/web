@@ -87,6 +87,7 @@ group :development do
   gem 'bullet'
   gem 'foreman'
   gem 'onesky-rails'
+  gem 'standard', '~> 1.4'
   gem 'web-console'
 end
 
