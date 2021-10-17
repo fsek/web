@@ -24,7 +24,7 @@ RSpec.describe Nomination, type: :model do
       nomination = build_stubbed(:nomination)
       post = nomination.post
 
-      nomination.candidate_url.should eq(new_candidate_url(post: post.id, host: PUBLIC_URL))
+      nomination.candidate_url.should eq(new_candidate_url(post: post.id, host: Rails.application.config.public_url))
     end
   end
 end

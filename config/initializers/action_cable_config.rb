@@ -3,7 +3,8 @@ module ActionCableConfig
   def self.[](key)
     unless @config
       template = ERB.new(File.read(Rails.root + "config/cable.yml"))
-      @config = YAML.load(template.result(binding))[Rails.env].symbolize_keys
+      # TODO: Use safe_load switched to ruby 2.6
+      @config = YAML.load(template.result(binding))[Rails.env].symbolize_keys # rubocop:disable Security/YAMLLoad
     end
 
     @config[key]

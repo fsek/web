@@ -5,8 +5,6 @@ class Introduction < ApplicationRecord
   globalize_accessors(locales: [:en, :sv],
     attributes: [:title, :description])
 
-  attr_reader :dates, :events_by_day, :dates_by_week
-
   has_many :groups, dependent: :destroy
   has_many :group_users, through: :groups
   has_many :users, through: :groups

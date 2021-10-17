@@ -23,7 +23,7 @@ class CafeController < ApplicationController
   def ladybug
     authorize_admin!(:ladybug, :cafe)
 
-    @date = if date = ladybug_date
+    @date = if (date = ladybug_date)
       Time.zone.parse(date)
     else
       Time.zone.now

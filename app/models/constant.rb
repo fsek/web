@@ -5,6 +5,6 @@ class Constant < ApplicationRecord
 
   def self.get(name)
     c = Constant.where(name: name).first
-    c && c.value || ""
+    c&.value.presence || ""
   end
 end

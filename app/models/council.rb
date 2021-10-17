@@ -41,7 +41,7 @@ class Council < ApplicationRecord
   end
 
   def p_url
-    Rails.application.routes.url_helpers.council_url(id, host: PUBLIC_URL)
+    Rails.application.routes.url_helpers.council_url(id, host: Rails.application.config.public_url)
   end
 
   def p_path

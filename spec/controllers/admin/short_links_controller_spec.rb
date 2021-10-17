@@ -28,7 +28,7 @@ RSpec.describe Admin::ShortLinksController, type: :controller do
     end
 
     it "updates old shortlink for old link" do
-      old_sl = create :short_link
+      create :short_link
       new_sl = build :short_link, target: "newurl.com"
 
       post :create, params: {short_link: new_sl.attributes}

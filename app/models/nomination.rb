@@ -9,7 +9,7 @@ class Nomination < ApplicationRecord
 
   def candidate_url
     Rails.application.routes.url_helpers.new_candidate_url(post: post,
-      host: PUBLIC_URL)
+      host: Rails.application.config.public_url)
   end
 
   private

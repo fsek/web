@@ -88,7 +88,7 @@ class User < ApplicationRecord
     str = "F" if program == PHYSICS
     str = "Pi" if program == MATH
     str = "N" if program == NANO
-    str += start_year.to_s.split("").last(2).join if start_year.present?
+    str += start_year.to_s.chars.last(2).join if start_year.present?
     str
   end
 

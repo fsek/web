@@ -33,14 +33,14 @@ RSpec.describe Admin::EventSignupsController, type: :controller do
       fourth = new_event_user(event, EventSignup::MEMBER, group1)
 
       # Group 2
-      eu1 = new_event_user(event, EventSignup::MEMBER, group2)
+      _eu1 = new_event_user(event, EventSignup::MEMBER, group2)
       eu4 = new_event_user(event, EventSignup::NOVICE, group2)
       eu7 = new_event_user(event, EventSignup::NOVICE, group2)
 
       # Group 3
-      eu2 = new_event_user(event, EventSignup::MEMBER, group3)
+      _eu2 = new_event_user(event, EventSignup::MEMBER, group3)
       eu5 = new_event_user(event, EventSignup::CUSTOM, group3)
-      eu8 = new_event_user(event, EventSignup::MEMBER, group3)
+      _eu8 = new_event_user(event, EventSignup::MEMBER, group3)
 
       # Expected results
       attend = [first, second, third, fourth, eu4, eu7, eu5]

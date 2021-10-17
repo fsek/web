@@ -4,7 +4,6 @@ module NotificationHelper
   end
 
   def notification_icon(notification)
-    icon = ""
     if notification.notifyable_type == "EventUser"
       if notification.mode == "position"
         icon("fas", "check")

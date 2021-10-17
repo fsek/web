@@ -46,10 +46,10 @@ describe MailAlias do
       m2 = create(:mail_alias, username: "erik", domain: "fsektionen.se",
                   target: "erikhenrikssn@gmail.com")
 
-      MailAlias.fulltext_search("johan").should == [m1]
-      MailAlias.fulltext_search("jo").should == [m1]
-      MailAlias.fulltext_search("johannes").should == []
-      MailAlias.fulltext_search("erik").should == [m2]
+      MailAlias.fulltext_search("johan").should eq([m1])
+      MailAlias.fulltext_search("jo").should eq([m1])
+      MailAlias.fulltext_search("johannes").should eq([])
+      MailAlias.fulltext_search("erik").should eq([m2])
     end
   end
 
@@ -57,7 +57,7 @@ describe MailAlias do
     it "can set empty target list (clear)" do
       c = create :mail_alias
       MailAlias.insert_aliases! c.username, c.domain, []
-      MailAlias.count.should == 0
+      MailAlias.count.should eq(0)
     end
 
     it "can create new alias" do
@@ -70,7 +70,7 @@ describe MailAlias do
     it "touches existing records" do
       c = create :mail_alias, updated_at: 1.month.ago
       MailAlias.insert_aliases! c.username, c.domain, [c.target]
-      MailAlias.count.should == 1
+      MailAlias.count.should eq(1)
       MailAlias.first.updated_at.to_date.should == Time.zone.now.to_date
     end
   end

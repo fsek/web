@@ -23,9 +23,7 @@ module MeetingService
     begin
       RecurringMeeting.transaction do
         # If old recurring is specified destroy it
-        if !old_recurring.nil?
-          old_recurring.destroy!
-        end
+        old_recurring&.destroy!
         recurring_meeting = RecurringMeeting.new(every: every)
         recurring_meeting.save!
         meetings.each do |meeting|

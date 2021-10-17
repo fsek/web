@@ -39,7 +39,7 @@ module CalendarService
     ical_event.created = date_time(resource.created_at.utc, tzid: "UTC")
     ical_event.last_modified = date_time(resource.updated_at.utc, tzid: "UTC")
     ical_event.url = Rails.application.routes.url_helpers.event_url(resource.id,
-      host: PUBLIC_URL)
+      host: Rails.application.config.public_url)
     ical_event.ip_class = "PUBLIC"
     ical_event
   end

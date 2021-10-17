@@ -62,7 +62,7 @@ class Rent < ApplicationRecord
 
   # Requests route-helper to print url and path
   def p_url
-    Rails.application.routes.url_helpers.rent_url(id, host: PUBLIC_URL)
+    Rails.application.routes.url_helpers.rent_url(id, host: Rails.application.config.public_url)
   end
 
   def p_path

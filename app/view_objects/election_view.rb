@@ -1,5 +1,5 @@
 class ElectionView
-  attr_reader :election, :post_count
+  attr_reader :election
   attr_accessor :rest_grid, :grid, :candidate, :user, :nomination
 
   def initialize(election, candidate: nil)

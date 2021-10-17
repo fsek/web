@@ -41,11 +41,11 @@ class Notification < ApplicationRecord
   end
 
   def allowed_class?(notifyable)
-    ALLOWED.keys.include?(notifyable.class.name)
+    ALLOWED.key?(notifyable.class.name)
   end
 
   def allowed_mode?(notifyable, mode)
-    ALLOWED[notifyable.class.name].keys.include?(mode)
+    ALLOWED[notifyable.class.name].key?(mode)
   end
 
   def update_counter_cache

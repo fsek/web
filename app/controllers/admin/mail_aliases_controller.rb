@@ -20,7 +20,7 @@ class Admin::MailAliasesController < Admin::BaseController
       @aliases = MailAlias.insert_aliases! mail_alias_params[:username],
         mail_alias_params[:domain],
         mail_alias_params[:targets] || []
-    rescue ActiveRecord::RecordInvalid => ex
+    rescue ActiveRecord::RecordInvalid
       render nothing: true, status: :unprocessable_entity
       return
     end

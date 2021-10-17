@@ -17,7 +17,7 @@ class Api::CafeShiftSerializer < ActiveModel::Serializer
     def councils
       councils = object.cafe_worker&.councils
 
-      council_map = {
+      {
         chosen: councils&.map { |c| [c.title, c.id] }.to_h,
         available: @instance_options[:current_user].councils.map { |c| [c.title, c.id] }.to_h
       }

@@ -35,12 +35,12 @@ class AdventuresController < ApplicationController
     @group = current_user.groups.regular.last
 
     @adventure_missions.each do |am|
-      @group_points_sum += am.points(@group)
+      @group_points_sum += am.points_per_group(@group)
     end
 
     @adventure_missions.map do |am|
       am.finished = am.finished?(@group)
-      am.points = am.points(@group)
+      am.points = am.points_per_group(@group)
     end
 
     @grid = initialize_grid(@adventure_missions, locale: :sv, order: "adventure_missions.index")

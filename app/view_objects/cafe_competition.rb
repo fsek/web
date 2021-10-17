@@ -1,5 +1,5 @@
 class CafeCompetition
-  attr_accessor :cafe_workers, :lp, :users, :lps, :year, :years, :amount
+  attr_accessor :cafe_workers, :lp, :users, :lps, :year, :amount
   def initialize(lp:, year:, amount:)
     @cafe_workers = CafeQueries.cafe_workers(lp, year)
     @lp = lp
