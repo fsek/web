@@ -2,8 +2,8 @@ class Admin::KeysController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    @keys = initialize_grid(Key.all, order: 'name', order_direction: 'asc')
-    @key_users = initialize_grid(KeyUser.all, order_direction: 'asc')
+    @keys = initialize_grid(Key.all, order: "name", order_direction: "asc")
+    @key_users = initialize_grid(KeyUser.all, order_direction: "asc")
   end
 
   def new
@@ -19,7 +19,7 @@ class Admin::KeysController < Admin::BaseController
     if @key.save
       redirect_to admin_keys_path
     else
-      render 'new'
+      render "new"
     end
   end
 

@@ -7,7 +7,7 @@ class Api::UsersController < Api::BaseController
     if @user.update(user_params)
       render json: {}, status: :ok
     else
-      render json: { errors: @user.errors.full_messages }, status: 422
+      render json: {errors: @user.errors.full_messages}, status: 422
     end
   end
 
@@ -19,9 +19,9 @@ class Api::UsersController < Api::BaseController
 
   def user_params
     params.require(:user).permit(:firstname, :lastname, :program, :start_year,
-                                 :avatar, :student_id, :phone, :display_phone,
-                                 :remove_avatar, :food_custom, :notify_messages,
-                                 :notify_event_users, :notify_event_closing,
-                                 :notify_event_open, food_preferences: [])
+      :avatar, :student_id, :phone, :display_phone,
+      :remove_avatar, :food_custom, :notify_messages,
+      :notify_event_users, :notify_event_closing,
+      :notify_event_open, food_preferences: [])
   end
 end

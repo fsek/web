@@ -1,4 +1,3 @@
-# encoding: utf-8
 module TimeHelper
   # Expecting two dates
   def date_range(from_date, until_date, format: :default)
@@ -60,7 +59,7 @@ module TimeHelper
     if date.present?
       I18n.l(date, options)
     else
-      icon('fas', 'cogs')
+      icon("fas", "cogs")
     end
   end
 

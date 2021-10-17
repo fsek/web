@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe CafeCompetition do
   let(:first_user) { create(:user) }
@@ -14,42 +14,42 @@ RSpec.describe CafeCompetition do
     allow(CafeQueries).to receive(:cafe_workers) { CafeWorker.all }
     allow(CafeQueries).to receive(:working_users) { User.all }
 
-    @cafe_comp = CafeCompetition.new(lp: '3', year: Time.zone.now, amount: 10)
+    @cafe_comp = CafeCompetition.new(lp: "3", year: Time.zone.now, amount: 10)
   end
 
   describe :attributes do
-    it 'should give workers' do
+    it "should give workers" do
       @cafe_comp.cafe_workers.should eq(CafeWorker.all)
     end
 
-    it 'should give users' do
+    it "should give users" do
       @cafe_comp.users.should eq(User.all)
     end
 
-    it 'should give lp' do
-      @cafe_comp.lp.should eq('3')
+    it "should give lp" do
+      @cafe_comp.lp.should eq("3")
     end
 
-    it 'should give lps' do
-      @cafe_comp.lps.should eq(['1', '2', '4'])
+    it "should give lps" do
+      @cafe_comp.lps.should eq(["1", "2", "4"])
     end
 
-    it 'should give year' do
+    it "should give year" do
       @cafe_comp.year.should eq(Time.zone.now.year)
     end
 
-    it 'should give years' do
+    it "should give years" do
       @cafe_comp.years.should
       eq((2015..Time.zone.now.year + 1).to_a - [Time.zone.now.year])
     end
   end
 
   describe :methods do
-    it 'should give count of cafe workers' do
+    it "should give count of cafe workers" do
       @cafe_comp.count.should eq(CafeWorker.count)
     end
 
-    it 'should give user count' do
+    it "should give user count" do
       @cafe_comp.user_count.should eq(User.count)
     end
   end

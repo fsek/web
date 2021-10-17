@@ -3,8 +3,8 @@ module MetaTagsHelper
     if text.present?
       tag_text = truncate(text, length: 155)
       set_meta_tags(description: tag_text,
-                    twitter: { description: tag_text },
-                    og: { description: tag_text })
+        twitter: {description: tag_text},
+        og: {description: tag_text})
     end
     text
   end
@@ -12,8 +12,8 @@ module MetaTagsHelper
   def title(text)
     if text.present?
       set_meta_tags(title: text,
-                    twitter: { title: text },
-                    og: { title: text })
+        twitter: {title: text},
+        og: {title: text})
     end
     text
   end
@@ -22,8 +22,8 @@ module MetaTagsHelper
     if image.present?
       url = image_url(image)
       set_meta_tags(image: url,
-                    twitter: { image: url },
-                    og: { image: url })
+        twitter: {image: url},
+        og: {image: url})
     end
     image
   end

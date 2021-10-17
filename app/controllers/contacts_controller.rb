@@ -5,12 +5,12 @@ class ContactsController < ApplicationController
   def index
     # @contacts initially set by Cancancan
     @councils = {}
-    @councils['Styrelsen'] = []
-    @councils['Övriga'] = []
+    @councils["Styrelsen"] = []
+    @councils["Övriga"] = []
     @contacts = @contacts.includes(:post).sort_by(&:to_s)
     @contacts.each do |contact|
       if contact.post.nil?
-        @councils['Övriga'].push(contact)
+        @councils["Övriga"].push(contact)
       else
         @councils[contact.post.council.title] = [] if @councils[contact.post.council.title].nil?
 
@@ -25,9 +25,9 @@ class ContactsController < ApplicationController
     # Hacky shit to move 'Ovriga' to last
     # This whole thing should have a proper sort method
     # But too much effort for too little gain for me atm
-    misc = @councils['Övriga']
-    @councils = @councils.except('Övriga')
-    @councils['Övriga'] = misc
+    misc = @councils["Övriga"]
+    @councils = @councils.except("Övriga")
+    @councils["Övriga"] = misc
   end
 
   def show
@@ -39,9 +39,9 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
     @contact.message ||= ContactMessage.new(message_params)
     if verify_recaptcha(model: @contact, attribute: :recaptcha) && @contact.send_email
-      redirect_to contact_path(@contact), notice: t('model.contact.message_sent')
+      redirect_to contact_path(@contact), notice: t("model.contact.message_sent")
     else
-      flash[:alert] = t('model.contact.something_wrong')
+      flash[:alert] = t("model.contact.something_wrong")
       render :show, status: 422
     end
   end

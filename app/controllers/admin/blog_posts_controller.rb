@@ -3,9 +3,9 @@ class Admin::BlogPostsController < Admin::BaseController
 
   def index
     @post_grid = initialize_grid(BlogPost,
-                                 include: :user,
-                                 locale: :sv,
-                                 order: :created_at)
+      include: :user,
+      locale: :sv,
+      order: :created_at)
   end
 
   def new
@@ -41,9 +41,9 @@ class Admin::BlogPostsController < Admin::BaseController
 
   def blog_post_params
     params.require(:blog_post).permit(:title_sv, :title_en,
-                                      :content_sv, :content_en,
-                                      :preamble_sv, :preamble_en,
-                                      :cover_image, :remove_cover_image,
-                                      category_ids: [])
+      :content_sv, :content_en,
+      :preamble_sv, :preamble_en,
+      :cover_image, :remove_cover_image,
+      category_ids: [])
   end
 end

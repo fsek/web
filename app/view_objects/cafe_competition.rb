@@ -4,7 +4,7 @@ class CafeCompetition
     @cafe_workers = CafeQueries.cafe_workers(lp, year)
     @lp = lp
     @users = CafeQueries.working_users(lp, year)
-    @lps = ['1', '2', '3', '4'] - [lp]
+    @lps = ["1", "2", "3", "4"] - [lp]
     @year = year.year
     @amount = amount
     @free_shifts = CafeQueries.free_shifts(lp, year)
@@ -20,9 +20,7 @@ class CafeCompetition
     users.count
   end
 
-  def highscore
-    @highscore
-  end
+  attr_reader :highscore
 
   def has_highscore?
     @highscore.exists?
@@ -32,12 +30,10 @@ class CafeCompetition
     @highscore_group.count > 0
   end
 
-  def highscore_group
-    @highscore_group
-  end
+  attr_reader :highscore_group
 
   def study_periods
-    ['1', '2', '3', '4'] - [lp]
+    ["1", "2", "3", "4"] - [lp]
   end
 
   def years
@@ -45,6 +41,6 @@ class CafeCompetition
   end
 
   def free_shifts
-    { count: @free_shifts.count, free: @free_shifts.first }
+    {count: @free_shifts.count, free: @free_shifts.first}
   end
 end

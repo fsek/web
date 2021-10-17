@@ -1,25 +1,25 @@
 class User < ApplicationRecord
   # Must be on top!
   devise(:database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable)
+    :recoverable, :rememberable, :trackable, :validatable,
+    :confirmable)
 
   include DeviseTokenAuth::Concerns::User
   include CarrierWave::Compatibility::Paperclip
 
-  PHYSICS = 'Teknisk Fysik'.freeze
-  MATH = 'Teknisk Matematik'.freeze
-  NANO = 'Teknisk Nanovetenskap'.freeze
-  OTHER = 'Oklart'.freeze
-  FOOD_PREFS = ['vegetarian', 'vegan', 'pescetarian', 'milk', 'gluten'].freeze
+  PHYSICS = "Teknisk Fysik".freeze
+  MATH = "Teknisk Matematik".freeze
+  NANO = "Teknisk Nanovetenskap".freeze
+  OTHER = "Oklart".freeze
+  FOOD_PREFS = ["vegetarian", "vegan", "pescetarian", "milk", "gluten"].freeze
 
   validates :email, uniqueness: true
-  validates :email, format: { with: Devise::email_regexp }
-  validates :firstname, :lastname, presence: true, format: { with: /\A[\p{L}\p{M}*\-\p{Zs}]{2,}\z/ }
+  validates :email, format: {with: Devise.email_regexp}
+  validates :firstname, :lastname, presence: true, format: {with: /\A[\p{L}\p{M}*\-\p{Zs}]{2,}\z/}
   validates :password_confirmation, presence: true, on: :create
   validates :start_year,
-            numericality: { greater_than_or_equal_to: 1961, less_than_or_equal_to: Time.current.year },
-            allow_nil: true
+    numericality: {greater_than_or_equal_to: 1961, less_than_or_equal_to: Time.current.year},
+    allow_nil: true
   validate :food_validation
 
   # Associations
@@ -48,8 +48,8 @@ class User < ApplicationRecord
   mount_uploader :avatar, AttachedImageUploader, mount_on: :avatar_file_name
 
   scope :by_firstname, -> { order(firstname: :asc) }
-  scope :members, -> { where('member_at < ?', Time.zone.now) }
-  scope :confirmed, -> { where('confirmed_at < ?', Time.zone.now) }
+  scope :members, -> { where("member_at < ?", Time.zone.now) }
+  scope :confirmed, -> { where("confirmed_at < ?", Time.zone.now) }
 
   serialize :food_preferences, Array
 
@@ -84,11 +84,11 @@ class User < ApplicationRecord
   end
 
   def program_year
-    str = ''
-    str = 'F' if program == PHYSICS
-    str = 'Pi' if program == MATH
-    str = 'N' if program == NANO
-    str += start_year.to_s.split(//).last(2).join if start_year.present?
+    str = ""
+    str = "F" if program == PHYSICS
+    str = "Pi" if program == MATH
+    str = "N" if program == NANO
+    str += start_year.to_s.split("").last(2).join if start_year.present?
     str
   end
 
@@ -127,7 +127,7 @@ class User < ApplicationRecord
   def food_validation
     if food_preferences.present?
       unless (food_preferences - [""] - FOOD_PREFS).empty?
-        errors.add(:food_preferences, I18n.t('model.user.only_predefined_food_prefs'))
+        errors.add(:food_preferences, I18n.t("model.user.only_predefined_food_prefs"))
       end
     end
   end

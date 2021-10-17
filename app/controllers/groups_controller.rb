@@ -5,8 +5,8 @@ class GroupsController < ApplicationController
     @introduction = Introduction.find_by(id: params[:introduction_id]) || Introduction.current
     @introductions = Introduction.all_except(@introduction)
     @grid = initialize_grid(Group.regular.where(introduction: @introduction),
-                            include: :users,
-                            order: 'number')
+      include: :users,
+      order: "number")
   end
 
   def show

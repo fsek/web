@@ -3,7 +3,7 @@ module PostUserService
     post_user.validate
 
     if post_user.post.try(:limited?)
-      post_user.errors.add(:post, I18n.t('service.post_user.limited'))
+      post_user.errors.add(:post, I18n.t("service.post_user.limited"))
       return false
     end
 

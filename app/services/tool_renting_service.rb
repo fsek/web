@@ -9,7 +9,7 @@ class ToolRentingService
     scheduled = Sidekiq::ScheduledSet.new.select
 
     scheduled.map do |job|
-      if job.klass == 'ToolRentingReminderWorker'
+      if job.klass == "ToolRentingReminderWorker"
         if job.args.include? rent.id
           job.delete
         end

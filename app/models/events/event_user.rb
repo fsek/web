@@ -66,38 +66,38 @@ class EventUser < ApplicationRecord
 
   def reg_open
     if event_signup.present? && !event_signup.open?
-      errors.add(:event, I18n.t('model.event_signup.not_open'))
+      errors.add(:event, I18n.t("model.event_signup.not_open"))
     end
   end
 
   def membership
     if event_signup.present? && event_signup.for_members? &&
-       user.present? && !user.member?
-      errors.add(:user, I18n.t('model.event_user.user_not_member'))
+        user.present? && !user.member?
+      errors.add(:user, I18n.t("model.event_user.user_not_member"))
     end
   end
 
   def user_types
     if user_type.present? && !event_signup.order.include?(user_type)
-      errors.add(:user_type, I18n.t('model.event_user.unavailable_type'))
+      errors.add(:user_type, I18n.t("model.event_user.unavailable_type"))
     end
   end
 
   def selected_type
     if (user_type == EventSignup::NOVICE && !user.novice?) ||
-       (user_type == EventSignup::MENTOR && !user.mentor?) ||
-       (user_type == EventSignup::MEMBER && !user.member?)
-      errors.add(:user_type, I18n.t('model.event_user.user_type_not_allowed'))
+        (user_type == EventSignup::MENTOR && !user.mentor?) ||
+        (user_type == EventSignup::MEMBER && !user.member?)
+      errors.add(:user_type, I18n.t("model.event_user.user_type_not_allowed"))
     end
   end
 
   def groups
     if group.present?
       unless user.groups.include?(group)
-        errors.add(:group_id, I18n.t('model.event_user.not_in_group'))
+        errors.add(:group_id, I18n.t("model.event_user.not_in_group"))
       end
       unless event_signup.selectable_groups.include?(group)
-        errors.add(:group_id, I18n.t('model.event_user.unallowed_type'))
+        errors.add(:group_id, I18n.t("model.event_user.unallowed_type"))
       end
     end
   end
@@ -105,7 +105,7 @@ class EventUser < ApplicationRecord
   def uniqueness_validation
     if new_record? || user_id_changed?
       if EventUser.where(user: user, event: event).any?
-        errors.add(:user_id,  I18n.t('model.event_user.already_registered'))
+        errors.add(:user_id, I18n.t("model.event_user.already_registered"))
       end
     end
   end

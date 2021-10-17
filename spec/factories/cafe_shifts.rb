@@ -1,4 +1,3 @@
-# encoding: UTF-8
 FactoryBot.define do
   factory :cafe_shift do
     pass 1
@@ -13,7 +12,7 @@ FactoryBot.define do
     end
 
     trait :invalid do
-      pass -5
+      pass(-5)
       lv 1337
       lp 6122
     end

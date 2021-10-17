@@ -1,14 +1,14 @@
 module MeetingHelper
   def room_collection
-    [[Meeting.human_attribute_name('sk'), :sk],
-     [Meeting.human_attribute_name('alumni'), :alumni],
-     [Meeting.human_attribute_name('sister_kent'), :sister_kent]]
+    [[Meeting.human_attribute_name("sk"), :sk],
+      [Meeting.human_attribute_name("alumni"), :alumni],
+      [Meeting.human_attribute_name("sister_kent"), :sister_kent]]
   end
 
   def meeting_status_collection
-    [[Meeting.human_attribute_name('confirmed'), :confirmed],
-     [Meeting.human_attribute_name('unconfirmed'), :unconfirmed],
-     [Meeting.human_attribute_name('denied'), :denied]]
+    [[Meeting.human_attribute_name("confirmed"), :confirmed],
+      [Meeting.human_attribute_name("unconfirmed"), :unconfirmed],
+      [Meeting.human_attribute_name("denied"), :denied]]
   end
 
   def meeting_str(meeting)

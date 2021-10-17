@@ -3,28 +3,28 @@ class DatePickerInput < SimpleForm::Inputs::StringInput
     set_html_options
     set_value_html_option
 
-    template.content_tag :div, class: 'input-group date datetimepicker' do
+    template.content_tag :div, class: "input-group date datetimepicker" do
       input = super(wrapper_options) # leave StringInput do the real rendering
       input + input_button
     end
   end
 
   def input_html_classes
-    super.push '' # 'form-control'
+    super.push "" # 'form-control'
   end
 
   private
 
   def input_button
-    template.content_tag :span, class: 'input-group-btn' do
-      template.content_tag :button, class: 'btn btn-default', type: 'button' do
-        template.content_tag :span, '', class: 'fa fa-calendar'
+    template.content_tag :span, class: "input-group-btn" do
+      template.content_tag :button, class: "btn btn-default", type: "button" do
+        template.content_tag :span, "", class: "fa fa-calendar"
       end
     end
   end
 
   def set_html_options
-    input_html_options[:type] = 'text'
+    input_html_options[:type] = "text"
     input_html_options[:data] ||= {}
     input_html_options[:data].merge!(date_options: date_options)
   end
@@ -39,15 +39,15 @@ class DatePickerInput < SimpleForm::Inputs::StringInput
   end
 
   def display_pattern
-    I18n.t('datepicker.dformat', default: '%Y/%m/%d')
+    I18n.t("datepicker.dformat", default: "%Y/%m/%d")
   end
 
   def picker_pattern
-    I18n.t('datepicker.pformat', default: 'YYYY-MM-DD')
+    I18n.t("datepicker.pformat", default: "YYYY-MM-DD")
   end
 
   def date_view_header_format
-    I18n.t('dayViewHeaderFormat', default: 'MMMM YYYY')
+    I18n.t("dayViewHeaderFormat", default: "MMMM YYYY")
   end
 
   def date_options_base

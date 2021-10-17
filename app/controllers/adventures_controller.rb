@@ -5,7 +5,7 @@ class AdventuresController < ApplicationController
   def index
     @adventure = @introduction.adventures.published.first
 
-    redirect_to root_path, notice: t('.no_adventure') and return if @adventure.nil?
+    redirect_to root_path, notice: t(".no_adventure") and return if @adventure.nil?
 
     if @adventure.adventure_missions.present?
       set_mission_variables(@adventure)
@@ -43,7 +43,7 @@ class AdventuresController < ApplicationController
       am.points = am.points(@group)
     end
 
-    @grid = initialize_grid(@adventure_missions, locale: :sv, order: 'adventure_missions.index')
+    @grid = initialize_grid(@adventure_missions, locale: :sv, order: "adventure_missions.index")
   end
 
   private

@@ -43,7 +43,7 @@ class Admin::ToolsController < Admin::BaseController
     if tool.destroy
       redirect_to admin_tools_path, notice: alert_destroy(Tool)
     else
-      redirect_to admin_tools_path, notice: alert_danger(t('model.tool.could_not_destroy'))
+      redirect_to admin_tools_path, notice: alert_danger(t("model.tool.could_not_destroy"))
     end
   end
 

@@ -4,17 +4,17 @@ class BlogPost < ApplicationRecord
   mount_uploader(:cover_image, CoverImageUploader)
   translates(:title, :preamble, :content, fallbacks_for_empty_translations: true)
   globalize_accessors(locales: [:en, :sv],
-                      attributes: [:title, :preamble, :content])
+    attributes: [:title, :preamble, :content])
 
   paginates_per(5)
 
   belongs_to(:user, required: true)
   validates(:title, :content, presence: true)
-  validates(:preamble_sv, :preamble_en, length: { maximum: 160 })
+  validates(:preamble_sv, :preamble_en, length: {maximum: 160})
 
   scope :by_created, -> { order(created_at: :desc) }
   scope :include_for_index, -> { includes(:translations, :categories, :user) }
-  scope :other, -> (blog_post) { where.not(id: blog_post.id).limit(3) }
+  scope :other, ->(blog_post) { where.not(id: blog_post.id).limit(3) }
 
   def cover_image_thumb
     if cover_image.present?
@@ -38,9 +38,9 @@ class BlogPost < ApplicationRecord
 
   def is_translated?(locale)
     locale = locale.to_s
-    if locale == 'en'
+    if locale == "en"
       title_en.present? && content_en.present?
-    elsif locale == 'sv'
+    elsif locale == "sv"
       title_sv.present? && content_sv.present?
     end
   end

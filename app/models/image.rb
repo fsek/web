@@ -6,7 +6,7 @@ class Image < ApplicationRecord
   store_in_background :file, ImageWorker
 
   validates :file, :filename, presence: true
-  validates :filename, uniqueness: { scope: :album_id, message: '%{value} är redan uppladdad' }
+  validates :filename, uniqueness: {scope: :album_id, message: "%{value} är redan uppladdad"}
 
   scope :by_filename, -> { order(:filename) }
 

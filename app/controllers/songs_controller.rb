@@ -2,7 +2,7 @@ class SongsController < ApplicationController
   load_permissions_and_authorize_resource
 
   def index
-    @songs = initialize_grid(Song.all, order: 'title', order_direction: 'asc')
+    @songs = initialize_grid(Song.all, order: "title", order_direction: "asc")
   end
 
   def show

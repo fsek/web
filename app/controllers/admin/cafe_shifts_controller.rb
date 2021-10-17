@@ -6,8 +6,8 @@ class Admin::CafeShiftsController < Admin::BaseController
     cafe_shift = CafeShift.find(params[:id])
     cafe_shift.cafe_worker || cafe_shift.build_cafe_worker
     @cafe_view = CafeViewObject.new(users: User.by_firstname,
-                                    councils: Council.by_title,
-                                    shift: cafe_shift)
+      councils: Council.by_title,
+      shift: cafe_shift)
   end
 
   def edit
@@ -55,7 +55,7 @@ class Admin::CafeShiftsController < Admin::BaseController
     if CafeService.setup(@cafe_shift)
       redirect_to(admin_cafe_shifts_path, notice: alert_create(CafeShift))
     else
-      flash[:alert] = I18n.t('model.cafe_shift.setup_error')
+      flash[:alert] = I18n.t("model.cafe_shift.setup_error")
       render :setup, status: 422
     end
   end

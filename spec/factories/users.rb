@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :user do
     email
-    password '12345678'
-    password_confirmation '12345678'
+    password "12345678"
+    password_confirmation "12345678"
     firstname
     lastname
     phone
@@ -13,15 +13,15 @@ FactoryBot.define do
     terms_version 1
 
     trait :admin do
-      password '12345678'
+      password "12345678"
       with_admin_post
     end
   end
 
-  factory :admin, class: 'User' do
+  factory :admin, class: "User" do
     email
-    password '12345678'
-    password_confirmation '12345678'
+    password "12345678"
+    password_confirmation "12345678"
     firstname
     lastname
     phone
@@ -40,12 +40,12 @@ FactoryBot.define do
 
   trait :unconfirmed do
     confirmed_at nil
-    confirmation_token 'confirmmyaccount'
+    confirmation_token "confirmmyaccount"
     confirmation_sent_at { Time.zone.now }
   end
 
   trait :reset_password do
-    reset_password_token 'resetmypassword'
+    reset_password_token "resetmypassword"
     reset_password_sent_at { Time.zone.now }
   end
 

@@ -10,17 +10,17 @@ class MessagesController < ApplicationController
     reset_counter unless params.has_key?(:page)
 
     render json: @messages,
-           scope: @group.id,
-           meta: pagination_meta(@messages)
+      scope: @group.id,
+      meta: pagination_meta(@messages)
   end
 
   def download_image
-    if params[:size] == 'original'
-      send_file @message.image.url, disposition: 'inline'
-    elsif params[:size] == 'large'
-      send_file @message.image.large.url, disposition: 'inline'
+    if params[:size] == "original"
+      send_file @message.image.url, disposition: "inline"
+    elsif params[:size] == "large"
+      send_file @message.image.large.url, disposition: "inline"
     else
-      send_file @message.image.thumb.url, disposition: 'inline'
+      send_file @message.image.thumb.url, disposition: "inline"
     end
   end
 

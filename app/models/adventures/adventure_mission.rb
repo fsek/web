@@ -9,8 +9,8 @@ class AdventureMission < ApplicationRecord
   attr_accessor :finished, :points
 
   validates :title_sv, presence: true
-  validates :index, numericality: { greater_than_or_equal: 0 }, presence: true
-  validates :max_points, numericality: { greater_than: 0 }, presence: true
+  validates :index, numericality: {greater_than_or_equal: 0}, presence: true
+  validates :max_points, numericality: {greater_than: 0}, presence: true
   validates :require_acceptance, null: false
 
   scope :by_group, ->(group) { where(group: group) }

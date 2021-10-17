@@ -16,7 +16,7 @@ class EventSignupOpenReminderWorker
   def notify(event_signup)
     notify_users = User.where(notify_event_open: true)
     notify_users.each do |user|
-      NotificationService.event_signup(event_signup, 'open', user)
+      NotificationService.event_signup(event_signup, "open", user)
     end
     event_signup.update!(sent_open: Time.zone.now)
   end

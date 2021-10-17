@@ -3,7 +3,7 @@ class Document < ApplicationRecord
   belongs_to :user
 
   validates :title, :category, presence: true
-  validates :slug, uniqueness: { allow_blank: true }
+  validates :slug, uniqueness: {allow_blank: true}
 
   mount_uploader :pdf, DocumentUploader, mount_on: :pdf_file_name
 
@@ -13,13 +13,13 @@ class Document < ApplicationRecord
   scope :publik, -> { where(public: true) }
 
   def to_s
-    title || id
+    title ||  id
   end
 
   def self.categories
-    where.not(category: nil).
-      where.not(category: '').
-      order(:category).
-      pluck(:category).uniq
+    where.not(category: nil)
+      .where.not(category: "")
+      .order(:category)
+      .pluck(:category).uniq
   end
 end

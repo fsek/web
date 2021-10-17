@@ -1,9 +1,9 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe CafeQueries do
   include ActiveSupport::Testing::TimeHelpers
   before do
-    travel_to Time.zone.local(2014, 03, 25, 8)
+    travel_to Time.zone.local(2014, 0o3, 25, 8)
     # Travel back to the spring of 2014.
     # It is the end of the third study period
   end
@@ -28,26 +28,26 @@ RSpec.describe CafeQueries do
   end
 
   describe :working_users do
-    it 'should give all working users' do
-      first_user = create(:user, firstname: 'First')
+    it "should give all working users" do
+      first_user = create(:user, firstname: "First")
       shift_with_worker(user: first_user, pass: 1)
 
-      second_user = create(:user, firstname: 'Second')
+      second_user = create(:user, firstname: "Second")
       shift_with_worker(user: second_user, pass: 2)
 
-      create(:user, firstname: 'Third')
+      create(:user, firstname: "Third")
 
       CafeQueries.working_users(3, Time.zone.now).map(&:firstname).should
-      eq(['First', 'Second'])
+      eq(["First", "Second"])
     end
   end
 
   describe :cafe_workers do
-    it 'should give all working users' do
-      first_user = create(:user, firstname: 'First')
+    it "should give all working users" do
+      first_user = create(:user, firstname: "First")
       first_shift = shift_with_worker(user: first_user, pass: 1)
 
-      second_user = create(:user, firstname: 'Second')
+      second_user = create(:user, firstname: "Second")
       second_shift = shift_with_worker(user: second_user, pass: 2)
 
       workers = CafeQueries.cafe_workers(3, Time.zone.now)
@@ -57,11 +57,11 @@ RSpec.describe CafeQueries do
   end
 
   describe :highscore do
-    it 'gives the highscore of working users' do
-      first_user = create(:user, firstname: 'First')
+    it "gives the highscore of working users" do
+      first_user = create(:user, firstname: "First")
       shift_with_worker(user: first_user, pass: 1)
 
-      second_user = create(:user, firstname: 'Second')
+      second_user = create(:user, firstname: "Second")
       shift_with_worker(user: second_user, pass: 1)
       shift_with_worker(user: second_user, pass: 2)
 
@@ -78,11 +78,11 @@ RSpec.describe CafeQueries do
       first_shift = CafeShift.new(start: 7.days.ago, lp: 3, pass: 1, lv: 6)
       first_shift.save!
 
-      first_user = create(:user, firstname: 'First')
+      first_user = create(:user, firstname: "First")
       first_shift.build_cafe_worker(user: first_user).save!
     end
 
-    it 'should give free shift' do
+    it "should give free shift" do
       free_shift = shift(pass: 1, start: 2.days.from_now)
       shift_with_worker(pass: 2, start: 2.days.from_now, user: create(:user))
 
@@ -92,7 +92,7 @@ RSpec.describe CafeQueries do
       free.count.should eq(1)
     end
 
-    it 'should not contain old free shift' do
+    it "should not contain old free shift" do
       old_free_shift = shift(start: 2.days.ago)
 
       free = CafeQueries.free_shifts(3, Time.zone.now)

@@ -1,5 +1,5 @@
 class MessageToken
-  KEY_BASE = 'message_token_'.freeze
+  KEY_BASE = "message_token_".freeze
 
   def self.redis
     @redis ||= ::Redis.new(url: ActionCableConfig[:url])
@@ -15,7 +15,7 @@ class MessageToken
     expires = 30.seconds.from_now.to_i
     redis.expireat(KEY_BASE + token, expires)
 
-    data = { token: token, expires: expires }
+    data = {token: token, expires: expires}
   end
 
   # Finds the user_id for a token and removes the token

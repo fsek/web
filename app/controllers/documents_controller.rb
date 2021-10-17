@@ -4,20 +4,20 @@ class DocumentsController < ApplicationController
 
   def index
     documents = set_documents(params[:category])
-    grid = initialize_grid(documents, order: 'documents.updated_at',
-                                      order_direction: 'desc')
+    grid = initialize_grid(documents, order: "documents.updated_at",
+                                      order_direction: "desc")
     @documents = DocumentView.new(grid: grid,
-                                  categories: Document.categories,
-                                  current_category: params[:category])
+      categories: Document.categories,
+      current_category: params[:category])
   end
 
   def show
     document = Document.find(params[:id])
     send_file(document.pdf.path,
-              filename: document.pdf_file_name,
-              type: 'application/pdf',
-              disposition: 'inline',
-              x_sendfile: true)
+      filename: document.pdf_file_name,
+      type: "application/pdf",
+      disposition: "inline",
+      x_sendfile: true)
   end
 
   private

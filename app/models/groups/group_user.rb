@@ -3,25 +3,25 @@ class GroupUser < ApplicationRecord
 
   belongs_to :user, required: true
   belongs_to :group, required: true
-  validates :user, uniqueness: { scope: :group }
+  validates :user, uniqueness: {scope: :group}
 
-  scope :novices, -> (introduction: Introduction.current) do
+  scope :novices, ->(introduction: Introduction.current) do
     includes(:group).where(fadder: false,
-                           groups: {
-                             introduction_id: introduction,
-                             group_type: [Group::REGULAR, Group::MISSION]
-                           })
+      groups: {
+        introduction_id: introduction,
+        group_type: [Group::REGULAR, Group::MISSION]
+      })
   end
 
-  scope :mentors, -> (introduction: Introduction.current) do
+  scope :mentors, ->(introduction: Introduction.current) do
     includes(:group).where(fadder: true,
-                           groups: {
-                             introduction_id: introduction,
-                             group_type: [Group::REGULAR, Group::MISSION]
-                           })
+      groups: {
+        introduction_id: introduction,
+        group_type: [Group::REGULAR, Group::MISSION]
+      })
   end
 
   def to_partial_path
-    '/groups/group_user'
+    "/groups/group_user"
   end
 end

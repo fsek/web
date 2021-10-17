@@ -3,7 +3,7 @@ class Introduction < ApplicationRecord
   acts_as_paranoid
   translates(:title, :description)
   globalize_accessors(locales: [:en, :sv],
-                      attributes: [:title, :description])
+    attributes: [:title, :description])
 
   attr_reader :dates, :events_by_day, :dates_by_week
 
@@ -16,7 +16,7 @@ class Introduction < ApplicationRecord
   validates :title, :start, :stop, :slug, presence: true
   validates :slug, uniqueness: true,
                    presence: true,
-                   format: { with: /\A[a-z0-9-]+\z/ }
+                   format: {with: /\A[a-z0-9-]+\z/}
   validates :current, uniqueness: true, if: :current
 
   scope :all_except, (lambda do |introduction|
@@ -28,14 +28,14 @@ class Introduction < ApplicationRecord
     Introduction.where(current: true).first
   end
 
-  def events(locale: 'sv')
+  def events(locale: "sv")
     Event.slug(:nollning)
-         .by_locale(locale: locale)
-         .between(start, stop)
-         .by_start
+      .by_locale(locale: locale)
+      .between(start, stop)
+      .by_start
   end
 
-  def events_by_day(locale: 'sv')
+  def events_by_day(locale: "sv")
     @events_by_day ||= events(locale: locale).group_by(&:day)
   end
 
@@ -56,7 +56,7 @@ class Introduction < ApplicationRecord
   end
 
   def to_s
-    title + ' ' + year.to_s
+    title + " " + year.to_s
   end
 
   def week(date)

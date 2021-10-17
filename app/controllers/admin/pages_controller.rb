@@ -50,6 +50,6 @@ class Admin::PagesController < Admin::BaseController
 
   def page_params
     params.require(:page).permit(:url, :visible, :title_sv, :title_en,
-                                 :public, :namespace, image_upload: [])
+      :public, :namespace, image_upload: [])
   end
 end

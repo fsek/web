@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
     if !verify_recaptcha
       build_resource(sign_up_params)
       resource.valid?
-      resource.errors.add(:recaptcha, t('model.user.recaptcha_error'))
+      resource.errors.add(:recaptcha, t("model.user.recaptcha_error"))
       clean_up_passwords(resource)
       respond_with_navigational(resource) { render :new }
     else

@@ -1,6 +1,6 @@
 # Simple Role Syntax
 set :stage, :production
-set :branch, 'master'
+set :branch, "master"
 set :rails_env, :production
 # ==================
 # Supports bulk-adding hosts to roles, the primary
@@ -8,9 +8,9 @@ set :rails_env, :production
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
 
-role :app, %w{dirac@fsektionen.se}
-role :web, %w{dirac@fsektionen.se}
-role :db,  %w{dirac@fsektionen.se}
+role :app, %w[dirac@fsektionen.se]
+role :web, %w[dirac@fsektionen.se]
+role :db, %w[dirac@fsektionen.se]
 
 # Extended Server Syntax
 # ======================
@@ -18,7 +18,7 @@ role :db,  %w{dirac@fsektionen.se}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'fsektionen.se', user: 'dirac', roles: %w{web app}
+server "fsektionen.se", user: "dirac", roles: %w[web app]
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}/#{fetch(:stage)}"
 set :tmp_dir, "/home/#{fetch(:user)}/tmp/#{fetch(:stage)}"
 
@@ -26,11 +26,11 @@ set :tmp_dir, "/home/#{fetch(:user)}/tmp/#{fetch(:stage)}"
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
 # you can see them in [net/ssh documentation](http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start)
 # set it globally
-#set :ssh_options, {
+# set :ssh_options, {
 #  keys: %w(/home/rlisowski/.ssh/id_rsa),
 #  forward_agent: false,
 #  auth_methods: %w(password)
-#}
+# }
 # and/or per server
 # server 'example.com',
 #   user: 'user_name',

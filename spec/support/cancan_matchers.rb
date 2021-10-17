@@ -30,15 +30,15 @@ RSpec::Matchers.define :have_abilities do |actions, obj|
 
   description do
     obj_name = @obj.class.name
-    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol].
-      include?(@obj.class)
-    "have abilities #{@expected_hash.keys.join(', ')} on #{obj_name}"
+    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol]
+      .include?(@obj.class)
+    "have abilities #{@expected_hash.keys.join(", ")} on #{obj_name}"
   end
 
   failure_message do
     obj_name = @obj.class.name
-    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol].
-      include?(@obj.class)
+    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol]
+      .include?(@obj.class)
     "expected user to have abilities: #{@expected_hash} for " \
     "#{obj_name}, but got #{@actual_hash}"
   end
@@ -50,8 +50,8 @@ RSpec::Matchers.define :not_have_abilities do |actions, obj|
   match do |ability|
     verify_ability_type(ability)
     if actions.is_a?(Hash)
-      fail ArgumentError, 'You cannot pass a hash to not_have_abilities. ' \
-        'Use have_abilities instead.'
+      fail ArgumentError, "You cannot pass a hash to not_have_abilities. " \
+        "Use have_abilities instead."
     end
     @expected_hash = build_expected_hash(actions, default_expectation: false)
     @obj = obj
@@ -64,17 +64,19 @@ RSpec::Matchers.define :not_have_abilities do |actions, obj|
 
   description do
     obj_name = @obj.class.name
-    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol].
-      include?(@obj.class)
-    "not have abilities #{@expected_hash.keys.join(', ')} " \
-      "on #{obj_name}" if @expected_hash.present?
+    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol]
+      .include?(@obj.class)
+    if @expected_hash.present?
+      "not have abilities #{@expected_hash.keys.join(", ")} " \
+        "on #{obj_name}"
+    end
   end
 
   failure_message do
     obj_name = @obj.class.name
-    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol].
-      include?(@obj.class)
-    "expected user NOT to have abilities #{@expected_hash.keys.join(', ')} " \
+    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol]
+      .include?(@obj.class)
+    "expected user NOT to have abilities #{@expected_hash.keys.join(", ")} " \
       "for #{obj_name}, but got #{@actual_hash}"
   end
 end
@@ -89,14 +91,14 @@ module HaveAbilitiesMixin
       actions.each { |action| expected_hash[action] = default_expectation }
     elsif actions.is_a?(Symbol)
       # Build a hash if it's just a symbol.
-      expected_hash = { actions => default_expectation }
+      expected_hash = {actions => default_expectation}
     end
     expected_hash
   end
 
   def verify_ability_type(ability)
     return if ability.class.ancestors.include?(CanCan::Ability)
-    fail TypeError, 'subject must mixin CanCan::Ability, got a ' \
+    fail TypeError, "subject must mixin CanCan::Ability, got a " \
       "#{ability.class.name} class."
   end
 end

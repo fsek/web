@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Constant, type: :model do
   subject(:constant) { build(:constant) }
@@ -8,14 +8,14 @@ RSpec.describe Constant, type: :model do
     it { should validate_uniqueness_of(:name) }
   end
 
-  it 'is valid with a name and a value' do
-    c = Constant.new(name: 'foo', value: 'bar')
+  it "is valid with a name and a value" do
+    c = Constant.new(name: "foo", value: "bar")
     c.should be_valid
   end
 
-  it 'can return value by calling the get() function' do
-    Constant.create(name: 'foo', value: 'bar')
-    val = Constant.get 'foo'
-    val.should eq('bar')
+  it "can return value by calling the get() function" do
+    Constant.create(name: "foo", value: "bar")
+    val = Constant.get "foo"
+    val.should eq("bar")
   end
 end

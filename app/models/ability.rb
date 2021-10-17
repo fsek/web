@@ -21,8 +21,8 @@ class Ability
     can :index, :gallery
     can [:read, :archive, :matrix, :modal, :dance], Introduction
     can [:index, :about, :privacy,
-         :cookies_information, :company_about,
-         :company_offer, :robots, :influence], :static_pages
+      :cookies_information, :company_about,
+      :company_offer, :robots, :influence], :static_pages
 
     # Abilities all signed in users get
     if user.id.present?
@@ -45,7 +45,7 @@ class Ability
       can :read, Document, public: true
 
       can :index, Group
-      can :show, Group, users: { id: user.id }
+      can :show, Group, users: {id: user.id}
 
       can([:index, :show, :download_image], Message, Message.for_user(user)) do |message|
         message.with_group(user)

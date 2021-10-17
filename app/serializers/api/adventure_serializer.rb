@@ -1,15 +1,15 @@
 class Api::AdventureSerializer < ActiveModel::Serializer
   class Api::AdventureSerializer::Index < ActiveModel::Serializer
     has_many :adventure_missions,
-             serializer: Api::AdventureMissionSerializer::Index,
-             scope: {
-              'current_user': :current_user
-            }
+      serializer: Api::AdventureMissionSerializer::Index,
+      scope: {
+        current_user: :current_user
+      }
 
     attributes :title, :week_number, :video, :missions_accepted, :adventure_missions
 
     def adventure_missions
-      object.adventure_missions.order(index: 'asc')
+      object.adventure_missions.order(index: "asc")
     end
 
     def current_user

@@ -1,6 +1,6 @@
 class Notification < ApplicationRecord
   enum(event_users: [:reminder, :position], event_signup: [:closing, :open])
-  ALLOWED = { 'EventUser' => event_users, 'EventSignup' => event_signups }.freeze
+  ALLOWED = {"EventUser" => event_users, "EventSignup" => event_signups}.freeze
 
   belongs_to :user, required: true, inverse_of: :notifications
   belongs_to :notifyable, polymorphic: true, required: true
@@ -33,10 +33,10 @@ class Notification < ApplicationRecord
 
     if allowed_class?(notifyable)
       unless allowed_mode?(notifyable, mode)
-        errors.add(:mode, I18n.t('model.notification.mode_not_allowed'))
+        errors.add(:mode, I18n.t("model.notification.mode_not_allowed"))
       end
     else
-      errors.add(:notifyable, I18n.t('model.notification.class_not_allowed'))
+      errors.add(:notifyable, I18n.t("model.notification.class_not_allowed"))
     end
   end
 
@@ -53,7 +53,7 @@ class Notification < ApplicationRecord
   end
 
   def send_push
-    if (notifyable_type == 'EventUser' && user.notify_event_users) || notifyable_type == 'EventSignup'
+    if (notifyable_type == "EventUser" && user.notify_event_users) || notifyable_type == "EventSignup"
       PushService.push(data, user)
     end
   end

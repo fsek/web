@@ -37,7 +37,7 @@ class Council < ApplicationRecord
   end
 
   def to_param
-    (url.present?) ? url : id
+    url.present? ? url : id
   end
 
   def p_url

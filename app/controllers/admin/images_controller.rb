@@ -5,7 +5,7 @@ class Admin::ImagesController < Admin::BaseController
 
   def download
     if @image.file
-      send_file(@image.file.path, filename: @image.filename, type: 'image/jpg',
+      send_file(@image.file.path, filename: @image.filename, type: "image/jpg",
                                   x_sendfile: true)
     end
   end
@@ -15,7 +15,7 @@ class Admin::ImagesController < Admin::BaseController
     if @image.save
       redirect_to(admin_album_image_path(@album, @image))
     else
-      render(:show, notice: I18n.t('model.image.cannot_save_reprocess'))
+      render(:show, notice: I18n.t("model.image.cannot_save_reprocess"))
     end
   end
 

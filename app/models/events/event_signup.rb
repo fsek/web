@@ -1,8 +1,8 @@
 class EventSignup < ApplicationRecord
-  NOVICE = 'novice'.freeze
-  MENTOR = 'mentor'.freeze
-  MEMBER = 'member'.freeze
-  CUSTOM = 'custom'.freeze
+  NOVICE = "novice".freeze
+  MENTOR = "mentor".freeze
+  MEMBER = "member".freeze
+  CUSTOM = "custom".freeze
 
   acts_as_paranoid
   belongs_to :event, required: true
@@ -10,7 +10,7 @@ class EventSignup < ApplicationRecord
   has_many :notifications, as: :notifyable, dependent: :destroy
 
   validates(:opens, :closes, presence: true)
-  validates(:slots, presence: true, numericality: { greater_than: 0 })
+  validates(:slots, presence: true, numericality: {greater_than: 0})
   validates(:event, uniqueness: true)
   validate(:orders)
 
@@ -22,13 +22,13 @@ class EventSignup < ApplicationRecord
 
   translates(:question, :notification_message)
   globalize_accessors(locales: [:en, :sv],
-                      attributes: [:question, :notification_message])
+    attributes: [:question, :notification_message])
 
   scope :reminder_not_sent, -> { where(sent_reminder: nil) }
   scope :position_not_sent, -> { where(sent_position: nil) }
   scope :closing_not_sent, -> { where(sent_closing: nil) }
   scope :open_not_sent, -> { where(sent_open: nil) }
-  scope :closed, -> { where('closes < :current', current: Time.zone.now) }
+  scope :closed, -> { where("closes < :current", current: Time.zone.now) }
 
   serialize :group_types, Array
 
@@ -36,10 +36,10 @@ class EventSignup < ApplicationRecord
   # Removes nil valued keys
   # Reverses to give the highest value first
   def order
-    { NOVICE => novice,
-      MENTOR => mentor,
-      MEMBER => member,
-      CUSTOM => custom }.compact.sort_by(&:last).to_h.keys.reverse
+    {NOVICE => novice,
+     MENTOR => mentor,
+     MEMBER => member,
+     CUSTOM => custom}.compact.sort_by(&:last).to_h.keys.reverse
   end
 
   def selectable_types(user)
@@ -81,14 +81,14 @@ class EventSignup < ApplicationRecord
     val = val.compact
 
     unless val.uniq.length == val.length
-      errors.add(:novice, I18n.t('model.event_signup.same_priority'))
-      errors.add(:mentor, I18n.t('model.event_signup.same_priority'))
-      errors.add(:member, I18n.t('model.event_signup.same_priority'))
-      errors.add(:custom, I18n.t('model.event_signup.same_priority'))
+      errors.add(:novice, I18n.t("model.event_signup.same_priority"))
+      errors.add(:mentor, I18n.t("model.event_signup.same_priority"))
+      errors.add(:member, I18n.t("model.event_signup.same_priority"))
+      errors.add(:custom, I18n.t("model.event_signup.same_priority"))
     end
 
     if custom.present? && custom_name.blank?
-      errors.add(:custom_name, I18n.t('model.event_signup.custom_name_missing'))
+      errors.add(:custom_name, I18n.t("model.event_signup.custom_name_missing"))
     end
   end
 

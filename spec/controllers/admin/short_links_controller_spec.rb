@@ -1,24 +1,24 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Admin::ShortLinksController, type: :controller do
   allow_user_to(:manage, ShortLink)
 
-  describe '#index' do
-    it 'renders page succesfully' do
-      create(:short_link, link: 'test')
+  describe "#index" do
+    it "renders page succesfully" do
+      create(:short_link, link: "test")
       get(:index)
 
       response.status.should eq(200)
-      assigns(:short_links).map(&:link).should eq(['test'])
+      assigns(:short_links).map(&:link).should eq(["test"])
     end
   end
 
-  describe '#create' do
+  describe "#create" do
     allow_user_to :manage, ShortLink
-    it 'creates new shortlink for new link' do
+    it "creates new shortlink for new link" do
       sl = build :short_link
 
-      post :create, params: { short_link: sl.attributes }
+      post :create, params: {short_link: sl.attributes}
 
       response.status.should eq(302)
 
@@ -27,11 +27,11 @@ RSpec.describe Admin::ShortLinksController, type: :controller do
       created_sl.target.should eq(sl.target)
     end
 
-    it 'updates old shortlink for old link' do
+    it "updates old shortlink for old link" do
       old_sl = create :short_link
-      new_sl = build :short_link, target: 'newurl.com'
+      new_sl = build :short_link, target: "newurl.com"
 
-      post :create, params: { short_link: new_sl.attributes }
+      post :create, params: {short_link: new_sl.attributes}
 
       response.status.should eq(302)
 
@@ -41,11 +41,11 @@ RSpec.describe Admin::ShortLinksController, type: :controller do
     end
   end
 
-  describe '#destroy' do
-    it 'removes short_link' do
+  describe "#destroy" do
+    it "removes short_link" do
       short_link = create(:short_link)
       lambda do
-        delete :destroy, params: { id: short_link.to_param }
+        delete :destroy, params: {id: short_link.to_param}
       end.should change(ShortLink, :count).by(-1)
 
       response.should redirect_to(admin_short_links_path)

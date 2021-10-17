@@ -11,7 +11,7 @@ module MessageHelper
     space_after_headers: true
   }.freeze
 
-  API_OPTIONS = { link_attributes: { class: 'external', target: '_system' } }.freeze
+  API_OPTIONS = {link_attributes: {class: "external", target: "_system"}}.freeze
 
   def self.markdown(text)
     MarkdownHelper.sanitize(renderer.render(text)) if text.present?
@@ -35,21 +35,21 @@ module MessageHelper
 
   def message_destroy_link(message)
     link_to(admin_message_path(message),
-            method: :delete,
-            class: '',
-            data: { confirm: t('helper.message.destroy_message') }) do
-      icon('fas', 'trash')
+      method: :delete,
+      class: "",
+      data: {confirm: t("helper.message.destroy_message")}) do
+      icon("fas", "trash")
     end
   end
 
   def message_edit_link(message)
-    link_to(edit_admin_message_path(message), class: '') do
-      icon('fas', 'pencil-alt')
+    link_to(edit_admin_message_path(message), class: "") do
+      icon("fas", "pencil-alt")
     end
   end
 
   def message_receivers(message)
-    tag(:br) + t('helper.message.to') + message.group_names
+    tag(:br) + t("helper.message.to") + message.group_names
   end
 
   def message_form_params(edit, message)

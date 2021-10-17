@@ -7,7 +7,7 @@ class Api::PushDevicesController < Api::BaseController
     if @push_device
       render json: {}, status: :ok
     else
-      render json: { errors: 'Failed to create push device' }, status: 422
+      render json: {errors: "Failed to create push device"}, status: 422
     end
   end
 
@@ -17,7 +17,7 @@ class Api::PushDevicesController < Api::BaseController
     if @push_device && @push_device.destroy
       render json: {}, status: :ok
     else
-      render json: { errors: 'Failed to destroy push device' }, status: 422
+      render json: {errors: "Failed to destroy push device"}, status: 422
     end
   end
 

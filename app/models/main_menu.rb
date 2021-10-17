@@ -12,6 +12,6 @@ class MainMenu < ApplicationRecord
   end
 
   def partial_path
-    mega ? '/main_menu/mega_menu' : '/main_menu/small_menu'
+    mega ? "/main_menu/mega_menu" : "/main_menu/small_menu"
   end
 end

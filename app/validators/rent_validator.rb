@@ -2,32 +2,32 @@ class RentValidator < ActiveModel::Validator
   def validate(record)
     if base(record)
       if user_attributes(record)
-        record.errors.add(:user, I18n.t('model.rent.validation.add_user_information'))
+        record.errors.add(:user, I18n.t("model.rent.validation.add_user_information"))
       end
 
       if date_future(record)
-        record.errors.add(:d_from, I18n.t('model.rent.validation.future'))
+        record.errors.add(:d_from, I18n.t("model.rent.validation.future"))
       end
 
       if dates_ascending(record)
-        record.errors.add(:d_til, I18n.t('model.rent.validation.ascending'))
+        record.errors.add(:d_til, I18n.t("model.rent.validation.ascending"))
       end
 
       if duration(record)
-        record.errors.add(:d_from, I18n.t('model.rent.validation.duration'))
-        record.errors.add(:d_til, I18n.t('model.rent.validation.duration'))
+        record.errors.add(:d_from, I18n.t("model.rent.validation.duration"))
+        record.errors.add(:d_til, I18n.t("model.rent.validation.duration"))
       end
 
       if overlap(record)
-        record.errors.add(:d_from, I18n.t('model.rent.validation.overlap'))
+        record.errors.add(:d_from, I18n.t("model.rent.validation.overlap"))
       end
 
       if overlap_council(record)
-        record.errors.add(:d_from, I18n.t('model.rent.validation.overlap_council'))
+        record.errors.add(:d_from, I18n.t("model.rent.validation.overlap_council"))
       end
 
       if overlap_overbook(record)
-        record.errors.add(:d_from, I18n.t('model.rent.validation.overlap_overbook'))
+        record.errors.add(:d_from, I18n.t("model.rent.validation.overlap_overbook"))
       end
     end
   end

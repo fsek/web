@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe CafeService do
   describe :setup_week do
@@ -55,11 +55,11 @@ RSpec.describe CafeService do
   end
 
   describe :setup do
-    it 'creates week' do
+    it "creates week" do
       cafe_shift = build(:cafe_shift, lv: 1)
       cafe_shift.pass = nil
       cafe_shift.lv_last = 3
-      cafe_shift.setup_mode = 'week'
+      cafe_shift.setup_mode = "week"
       check = false
 
       lambda do
@@ -69,10 +69,10 @@ RSpec.describe CafeService do
       check.should be_truthy
     end
 
-    it 'creates day' do
+    it "creates day" do
       cafe_shift = build(:cafe_shift, lv: 1)
       cafe_shift.pass = nil
-      cafe_shift.setup_mode = 'day'
+      cafe_shift.setup_mode = "day"
       check = false
 
       lambda do

@@ -1,12 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Election, type: :model do
   subject { build_stubbed(:election) }
-  it 'has a valid factory' do
+  it "has a valid factory" do
     should be_valid
   end
 
-  describe 'ActiveModel validations' do
+  describe "ActiveModel validations" do
     it { should validate_presence_of(:url) }
     it { should validate_presence_of(:open) }
     it { should validate_presence_of(:close_general) }
@@ -14,20 +14,20 @@ RSpec.describe Election, type: :model do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:semester) }
 
-    it 'validates url format' do
+    it "validates url format" do
       should validate_presence_of(:url)
-      should allow_value('abc_123-abc').for(:url)
-      should_not allow_value('ABC').for(:url)
+      should allow_value("abc_123-abc").for(:url)
+      should_not allow_value("ABC").for(:url)
     end
   end
 
-  describe 'ActiveRecord associations' do
+  describe "ActiveRecord associations" do
     it { should have_many(:nominations) }
     it { should have_many(:candidates) }
     it { should have_many(:extra_posts) }
   end
 
-  describe '#state' do
+  describe "#state" do
     it :not_opened do
       e = build_stubbed(:election, :not_opened)
       e.state.should equal(:not_opened)
@@ -49,13 +49,13 @@ RSpec.describe Election, type: :model do
     end
   end
 
-  describe '#post_closing' do
-    it 'returns close_general for post elected at general' do
+  describe "#post_closing" do
+    it "returns close_general for post elected at general" do
       close_general = 1.day.ago
       close_all = 1.day.from_now
       election = build_stubbed(:election, :autumn,
-                               close_general: close_general,
-                               close_all: close_all)
+        close_general: close_general,
+        close_all: close_all)
       general_post = build_stubbed(:post, :autumn, :general)
       after_general_post = build_stubbed(:post, :autumn, :board)
 
@@ -66,8 +66,8 @@ RSpec.describe Election, type: :model do
     end
   end
 
-  describe '#countdown' do
-    it 'returns countdowns for different states' do
+  describe "#countdown" do
+    it "returns countdowns for different states" do
       open = 5.days.ago
       close_general = 3.days.ago
       close_all = 2.days.from_now
@@ -91,52 +91,52 @@ RSpec.describe Election, type: :model do
     end
   end
 
-  context 'post queries' do
-    describe '#posts' do
-      it 'returns according to semester' do
+  context "post queries" do
+    describe "#posts" do
+      it "returns according to semester" do
         election = create(:election)
-        create(:post, :autumn, title: 'In the Autumn')
-        create(:post, :spring, title: 'In the Spring')
-        election.extra_posts << create(:post, semester: 'not_by_semester',
-                                              title: 'An extra one')
+        create(:post, :autumn, title: "In the Autumn")
+        create(:post, :spring, title: "In the Spring")
+        election.extra_posts << create(:post, semester: "not_by_semester",
+                                              title: "An extra one")
 
         election.stub(:semester).and_return(Post::AUTUMN)
-        election.posts.map(&:title).should eq(['In the Autumn'])
+        election.posts.map(&:title).should eq(["In the Autumn"])
 
         election.stub(:semester).and_return(Post::SPRING)
-        election.posts.map(&:title).should eq(['In the Spring'])
+        election.posts.map(&:title).should eq(["In the Spring"])
 
         election.stub(:semester).and_return(Post::OTHER)
-        election.posts.map(&:title).should eq(['An extra one'])
+        election.posts.map(&:title).should eq(["An extra one"])
       end
     end
 
-    describe '#current_posts' do
-      it 'returns according to state' do
+    describe "#current_posts" do
+      it "returns according to state" do
         election = create(:election, :autumn)
-        create(:post, :autumn, :general, title: 'Elected at General')
-        create(:post, :autumn, :board, title: 'Elected by Board')
+        create(:post, :autumn, :general, title: "Elected at General")
+        create(:post, :autumn, :board, title: "Elected by Board")
 
         election.stub(:state).and_return(:not_opened)
-        election.current_posts.map(&:title).should eq(['Elected at General',
-                                                       'Elected by Board'])
+        election.current_posts.map(&:title).should eq(["Elected at General",
+          "Elected by Board"])
 
         election.stub(:state).and_return(:before_general)
-        election.current_posts.map(&:title).should eq(['Elected at General',
-                                                       'Elected by Board'])
+        election.current_posts.map(&:title).should eq(["Elected at General",
+          "Elected by Board"])
 
         election.stub(:state).and_return(:after_general)
-        election.current_posts.map(&:title).should eq(['Elected by Board'])
+        election.current_posts.map(&:title).should eq(["Elected by Board"])
 
         election.stub(:state).and_return(:closed)
         election.current_posts.map(&:title).should eq([])
       end
     end
 
-    describe '#current_posts' do
-      it 'returns according to state' do
+    describe "#current_posts" do
+      it "returns according to state" do
         election = build_stubbed(:election)
-        election.stub(:current_posts).and_return('yeppyepp')
+        election.stub(:current_posts).and_return("yeppyepp")
 
         election.stub(:state).and_return(:not_opened)
         election.searchable_posts.should eq(Post.none)
@@ -145,10 +145,10 @@ RSpec.describe Election, type: :model do
         election.searchable_posts.should eq(Post.none)
 
         election.stub(:state).and_return(:before_general)
-        election.searchable_posts.should eq('yeppyepp')
+        election.searchable_posts.should eq("yeppyepp")
 
         election.stub(:state).and_return(:after_general)
-        election.searchable_posts.should eq('yeppyepp')
+        election.searchable_posts.should eq("yeppyepp")
       end
     end
   end

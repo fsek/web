@@ -23,7 +23,7 @@ class Admin::AccessUsersController < Admin::BaseController
       redirect_to(admin_access_users_path, notice: alert_update(AccessUser))
     else
       redirect_to(edit_admin_access_user_path(@access_user),
-                  notice: alert_danger(@access_user.errors.full_messages))
+        notice: alert_danger(@access_user.errors.full_messages))
     end
   end
 

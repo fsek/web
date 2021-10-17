@@ -5,22 +5,22 @@ class CafeShift < ApplicationRecord
 
   # Validations
   validates :start, :pass, :lp, :lv, presence: true
-  validates :lp, inclusion: { in: 1..4 }
-  validates :pass, inclusion: { in: 1..3 }
-  validates :lv, inclusion: { in: 0..8 }
+  validates :lp, inclusion: {in: 1..4}
+  validates :pass, inclusion: {in: 1..3}
+  validates :lv, inclusion: {in: 0..8}
 
   # Scopes
   scope :all_start, -> { order(start: :asc) }
   scope :with_worker, -> { joins(:cafe_worker).includes(:cafe_worker) }
-  scope :without_worker, -> { where('id NOT IN (SELECT cafe_shift_id FROM cafe_workers)') }
+  scope :without_worker, -> { where("id NOT IN (SELECT cafe_shift_id FROM cafe_workers)") }
 
   attr_accessor :lv_first, :lv_last, :setup_mode
 
   def to_s
     if user.present?
-      %(#{user})
+      user.to_s
     else
-      %(#{I18n.t('model.cafe_shift.is_free')})
+      I18n.t("model.cafe_shift.is_free").to_s
     end
   end
 

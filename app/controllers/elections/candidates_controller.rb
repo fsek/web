@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Elections::CandidatesController < ApplicationController
   load_permissions_and_authorize_resource
   before_action :set_election
@@ -27,7 +26,7 @@ class Elections::CandidatesController < ApplicationController
 
     if ElectionService.create_candidate(@election_view.candidate, current_user)
       redirect_to candidates_path,
-                  notice: alert_create(Candidate)
+        notice: alert_create(Candidate)
     else
       render :new, status: 422
     end
@@ -39,7 +38,7 @@ class Elections::CandidatesController < ApplicationController
       redirect_to candidates_path, notice: alert_destroy(Candidate)
     else
       redirect_to candidates_path,
-                  notice: %(#{model_name(Candidate)} #{t('model.candidate.not_allowed_to_destroy')}.)
+        notice: %(#{model_name(Candidate)} #{t("model.candidate.not_allowed_to_destroy")}.)
     end
   end
 
@@ -48,7 +47,7 @@ class Elections::CandidatesController < ApplicationController
   def set_election
     @election = Election.current
     if @election.nil?
-      render '/elections/no_election', status: 404
+      render "/elections/no_election", status: 404
     else
       @election
     end

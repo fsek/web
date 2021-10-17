@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class PostsController < ApplicationController
   load_permissions_and_authorize_resource
   before_action :set_election
@@ -20,7 +19,7 @@ class PostsController < ApplicationController
   def set_election
     @election = Election.current
     if @election.nil?
-      render '/elections/no_election', status: 404
+      render "/elections/no_election", status: 404
     else
       @election
     end

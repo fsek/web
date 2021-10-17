@@ -38,7 +38,7 @@ class Admin::DoorsController < Admin::BaseController
   def accesses
     @doors = Door.by_title
     @door = Door.includes(:posts).find(params[:id])
-    @access_grid = initialize_grid(@door.users, order: 'student_id')
+    @access_grid = initialize_grid(@door.users, order: "student_id")
   end
 
   def post

@@ -1,13 +1,13 @@
 class EventSerializer < ActiveModel::Serializer
   attributes(:id, :title, :start, :end)
-  attribute(:description) { object.description || '' }
+  attribute(:description) { object.description || "" }
   attribute(:location)
   attribute(:allday) { object.all_day? }
   attribute(:has_signup) { object.signup.present? }
   attribute(:signup_not_opened_yet) { object.signup.present? && object.signup.opens > Time.zone.now }
   attribute(:recurring) { false }
   attribute(:url) { Rails.application.routes.url_helpers.event_path(object.id) }
-  attribute(:textColor) { 'black' }
+  attribute(:textColor) { "black" }
   attribute(:dot)
   has_one :event_signup
 

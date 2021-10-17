@@ -1,5 +1,4 @@
 class Api::SongSerializer < ActiveModel::Serializer
-
   class Api::SongSerializer::Index < ActiveModel::Serializer
     attributes(:id, :title, :author)
   end

@@ -3,10 +3,10 @@ class Admin::NewsController < Admin::BaseController
 
   def index
     @news_grid = initialize_grid(News,
-                                 include: :user,
-                                 order: 'news.created_at',
-                                 locale: 'sv',
-                                 order_direction: :desc)
+      include: :user,
+      order: "news.created_at",
+      locale: "sv",
+      order_direction: :desc)
   end
 
   def new
@@ -47,7 +47,7 @@ class Admin::NewsController < Admin::BaseController
 
   def news_params
     params.require(:news).permit(:title_sv, :title_en, :content_sv, :content_en,
-                                 :image, :pinned_from, :pinned_to,
-                                 :remove_image, category_ids: [])
+      :image, :pinned_from, :pinned_to,
+      :remove_image, category_ids: [])
   end
 end

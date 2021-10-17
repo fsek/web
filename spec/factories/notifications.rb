@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :notification do
     user
     seen false
-    mode Notification::ALLOWED['EventUser'].keys.first
+    mode Notification::ALLOWED["EventUser"].keys.first
 
     # To be able to use the same user for an event_user this hack is used.
     # Callable as build(:notification, :build)

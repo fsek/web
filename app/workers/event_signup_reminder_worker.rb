@@ -17,7 +17,7 @@ class EventSignupReminderWorker
 
   def notify(event_signup)
     event_signup.event_users.attending(event_signup.event).each do |event_user|
-      NotificationService.event_user(event_user, 'reminder')
+      NotificationService.event_user(event_user, "reminder")
     end
 
     event_signup.update!(sent_reminder: Time.zone.now)

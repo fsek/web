@@ -7,14 +7,14 @@
 fail "No! Don't run this code. It's for reference only."
 
 # Pull in the rails app environment
-require './config/environment'
+require "./config/environment"
 
 # Establish connection to the database
 conn = ActiveRecord::Base.connection
 
 # Load items and item attributes
 # Note: we are loading from an external database, not the app DB.
-items_and_attributes = conn.execute <<-sql
+items_and_attributes = conn.execute <<-SQL
   select I.g_id, I.g_canContainChildren, I.g_summary, I.g_title,
          A.g_parentSequence, F.g_pathComponent
     from gallery.g2_Item I
@@ -22,13 +22,13 @@ items_and_attributes = conn.execute <<-sql
       join gallery.g2_FileSystemEntity F on I.g_id = F.g_id
     order by A.g_parentSequence asc
   ;
-sql
+SQL
 
 # Guess the root node
 root_id = items_and_attributes.first[0]
 
 # Build tree structure
-tree = { root_id => { :title => 'ROOT', :children => { } } }
+tree = {root_id => {title: "ROOT", children: {}}}
 
 items_and_attributes.each do |vals|
   id, ccc, summary, title, parents, pathcomp = vals
@@ -36,7 +36,7 @@ items_and_attributes.each do |vals|
   next if id == root_id
 
   # Find parent node
-  parent_ids = parents.split('/').map(&:to_i)
+  parent_ids = parents.split("/").map(&:to_i)
   parent_ids.shift # remove root id
   parent = tree[root_id]
 
@@ -47,9 +47,9 @@ items_and_attributes.each do |vals|
 
   # Add this node to the tree
   parent[:children][id] = {
-    :title => title,
-    :summary => summary,
-    :path => "#{parent[:path]}/#{pathcomp}",
+    title: title,
+    summary: summary,
+    path: "#{parent[:path]}/#{pathcomp}"
   }
 end
 
@@ -63,17 +63,17 @@ def recursive_collect node, album_acc, pictures_acc = nil, name_acc = nil, year 
   elsif level == 1
     year = node[:title].to_i
   elsif level >= 2 && node[:children]
-    if name_acc
-      name_acc = "#{name_acc} - #{node[:title]}"
+    name_acc = if name_acc
+      "#{name_acc} - #{node[:title]}"
     else
-      name_acc = node[:title]
+      node[:title]
     end
 
     album = {
-      :year => year,
-      :title => name_acc,
-      :summary => node[:summary],
-      :pictures => []
+      year: year,
+      title: name_acc,
+      summary: node[:summary],
+      pictures: []
     }
 
     album_acc << album
@@ -94,11 +94,11 @@ end
 album_table = []
 recursive_collect tree[root_id], album_table
 
-puts sprintf('Found %d pictures in %d albums.', @picture_counter, @album_counter)
+puts sprintf("Found %d pictures in %d albums.", @picture_counter, @album_counter)
 
 # Insert all the found albums into the database.
 
-BASE = '/oldroot/var/www/gallery_data/albums'
+BASE = "/oldroot/var/www/gallery_data/albums"
 
 album_table.each do |ia|
   # No empty albums
@@ -107,7 +107,7 @@ album_table.each do |ia|
   end
 
   # Ensure we don't create any duplicates
-  result = conn.execute <<-sql
+  result = conn.execute <<-SQL
     select 1 from albums a, album_translations t
       where a.id = t.album_id
       and t.locale = 'sv'
@@ -115,20 +115,20 @@ album_table.each do |ia|
       and t.title = #{ActiveRecord::Base.sanitize(ia[:title])}
       limit 1
     ;
-  sql
+  SQL
 
   if result.any?
     next
   end
 
-  description = ia[:summary].present?? ia[:summary] : '_'
+  description = ia[:summary].present? ? ia[:summary] : "_"
 
-  a = Album.new :title_sv => ia[:title],
-  		:title_en => ia[:title],
-		:description_sv => description,
-		:description_en => description,
-	        :start_date => Date.parse("#{ia[:year]}-01-02"),
-	        :end_date => Date.parse("#{ia[:year]}-12-30")
+  a = Album.new title_sv: ia[:title],
+    title_en: ia[:title],
+    description_sv: description,
+    description_en: description,
+    start_date: Date.parse("#{ia[:year]}-01-02"),
+    end_date: Date.parse("#{ia[:year]}-12-30")
   begin
     a.save!
   rescue ActiveRecord::RecordInvalid => ex
@@ -145,19 +145,19 @@ album_table.each do |ia|
     end
 
     # A small attempt to reformat the "summary" to fit the new system.
-    photographer_name = ip[:summary] || ''
-    photograhper_name = photographer_name.gsub(/Fotografe?r?:? /, '')
+    photographer_name = ip[:summary] || ""
+    photograhper_name = photographer_name.gsub(/Fotografe?r?:? /, "")
 
-    i = Image.new :album_id => a.id,
-                  :file => File.new(File.join(BASE, ip[:path])),
-		  :photographer_name => photographer_name
+    i = Image.new album_id: a.id,
+      file: File.new(File.join(BASE, ip[:path])),
+      photographer_name: photographer_name
     begin
       i.save!
     rescue ActiveRecord::RecordInvalid => ex
       binding.pry
     end
 
-    print '.'
+    print "."
     $stdout.flush
   end
 
@@ -165,9 +165,8 @@ album_table.each do |ia|
   a.images_count = ia[:pictures].count
   a.save!
 
-  puts ' done'
+  puts " done"
 end
 
 # The cache doesn't work when we insert albums manually, so just nuke it.
 Rails.cache.clear
-

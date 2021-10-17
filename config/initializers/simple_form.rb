@@ -42,8 +42,8 @@ SimpleForm.setup do |config|
 
     ## Inputs
     b.use :label_input
-    b.use :hint, wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :hint, wrap_with: {tag: :span, class: :hint}
+    b.use :error, wrap_with: {tag: :span, class: :error}
 
     ## full_messages_for
     # If you want to display the full error message for the attribute, you can
@@ -62,7 +62,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   # Default class for buttons
-  config.button_class = 'btn'
+  config.button_class = "btn"
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -73,7 +73,7 @@ SimpleForm.setup do |config|
   config.error_notification_tag = :div
 
   # CSS class to add for error notification helper.
-  config.error_notification_class = 'error_notification'
+  config.error_notification_class = "error_notification"
 
   # ID to add for error notification helper.
   # config.error_notification_id = nil
@@ -156,7 +156,7 @@ SimpleForm.setup do |config|
   # config.input_class = nil
 
   # Define the default class of the input wrapper of the boolean input.
-  config.boolean_label_class = 'checkbox'
+  config.boolean_label_class = "checkbox"
 
   # Defines if the default input wrapper class should be included in radio
   # collection wrappers.
@@ -165,15 +165,15 @@ SimpleForm.setup do |config|
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
 
-  config.wrappers :with_devise, tag: 'div', class: 'form-group', error_class: 'error' do |b|
+  config.wrappers :with_devise, tag: "div", class: "form-group", error_class: "error" do |b|
     b.use :html5
-    b.use :label, class: 'control-label col-md-4'
-    b.wrapper tag: 'div', class: 'col-md-8' do |ba|
+    b.use :label, class: "control-label col-md-4"
+    b.wrapper tag: "div", class: "col-md-8" do |ba|
       ba.use :placeholder
       ba.use :input
 
-      ba.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
-      ba.use :hint, wrap_with: { tag: 'p', class: 'help-block' }
+      ba.use :error, wrap_with: {tag: "span", class: "help-inline"}
+      ba.use :hint, wrap_with: {tag: "p", class: "help-block"}
     end
   end
 end

@@ -1,6 +1,5 @@
-# encoding: UTF-8
 Fsek::Application.configure do
-  PUBLIC_URL = 'http://localhost:3000'.freeze
+  PUBLIC_URL = "http://localhost:3000".freeze
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -15,12 +14,12 @@ Fsek::Application.configure do
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => 'public, max-age=172800'
+      "Cache-Control" => "public, max-age=172800"
     }
   else
     config.action_controller.perform_caching = false
@@ -30,18 +29,18 @@ Fsek::Application.configure do
   # Don't care if the mailer can't send.
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
-  config.action_mailer.default_url_options = { host: PUBLIC_URL }
+  config.action_mailer.default_url_options = {host: PUBLIC_URL}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default charset: 'utf-8'
+  config.action_mailer.default charset: "utf-8"
   config.action_mailer.perform_caching = false
 
   config.action_mailer.smtp_settings = {
-    address: '127.0.0.1',
+    address: "127.0.0.1",
     port: 1025,
     domain: PUBLIC_URL,
-    authentication: 'plain',
+    authentication: "plain",
     enable_starttls_auto: false
   }
 
@@ -76,7 +75,7 @@ Fsek::Application.configure do
     Bullet.add_footer = true
   end
 
-  config.action_cable.allowed_request_origins = [PUBLIC_URL, 'file://', 'file:///']
+  config.action_cable.allowed_request_origins = [PUBLIC_URL, "file://", "file:///"]
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.

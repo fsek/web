@@ -1,13 +1,13 @@
 class Post < ApplicationRecord
-  AUTUMN = 'autumn'.freeze
-  SPRING = 'spring'.freeze
-  BOTH = 'both'.freeze
-  OTHER = 'other'.freeze
+  AUTUMN = "autumn".freeze
+  SPRING = "spring".freeze
+  BOTH = "both".freeze
+  OTHER = "other".freeze
 
-  BOARD = 'board'.freeze
-  EDUCATION = 'education'.freeze
-  GENERAL = 'general'.freeze
-  EXTRA = 'extra'.freeze
+  BOARD = "board".freeze
+  EDUCATION = "education".freeze
+  GENERAL = "general".freeze
+  EXTRA = "extra".freeze
 
   translates(:title, :description, fallbacks_for_empty_translations: true)
   globalize_accessors(locales: [:en, :sv], attributes: [:title, :description])
@@ -31,13 +31,13 @@ class Post < ApplicationRecord
   scope :general, -> { where(elected_by: GENERAL) }
   scope :not_general, -> { where.not(elected_by: GENERAL) }
 
-  scope :autumn, -> { where('semester = ? OR semester = ?', AUTUMN, BOTH) }
-  scope :spring, -> { where('semester = ? OR semester = ?', SPRING, BOTH) }
+  scope :autumn, -> { where("semester = ? OR semester = ?", AUTUMN, BOTH) }
+  scope :spring, -> { where("semester = ? OR semester = ?", SPRING, BOTH) }
   scope :both, -> { where(semester: BOTH) }
 
   # Validations
   validates(:title, :description, :limit,
-            :rec_limit, :elected_by, :semester, presence: true)
+    :rec_limit, :elected_by, :semester, presence: true)
 
   # Scopes
   scope :renters, -> { where(car_rent: true) }

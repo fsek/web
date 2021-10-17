@@ -9,7 +9,7 @@ class Election < ApplicationRecord
 
   validates :url, uniqueness: true,
                   presence: true,
-                  format: { with: /\A[a-z0-9_-]+\z/ }
+                  format: {with: /\A[a-z0-9_-]+\z/}
 
   validates :title, :open, :close_general, :close_all, :semester, presence: true
 
@@ -33,13 +33,13 @@ class Election < ApplicationRecord
   def state
     t = Time.zone.now
     if t < open
-      return :not_opened
+      :not_opened
     elsif t >= open && t < close_general
-      return :before_general
+      :before_general
     elsif t < close_all
-      return :after_general
+      :after_general
     else
-      return :closed
+      :closed
     end
   end
 
@@ -95,11 +95,11 @@ class Election < ApplicationRecord
   end
 
   def post_count
-    candidates.joins(:post).group('posts.id').size.to_h
+    candidates.joins(:post).group("posts.id").size.to_h
   end
 
   def to_param
-    (url.present?) ? url : id
+    url.present? ? url : id
   end
 
   def to_s

@@ -21,7 +21,7 @@ class Api::CafeController < Api::BaseController
     if cafe_worker.save
       render json: {}, status: :ok
     else
-      render json: { errors: cafe_worker.errors.full_messages }, status: 422
+      render json: {errors: cafe_worker.errors.full_messages}, status: 422
     end
   end
 
@@ -31,7 +31,7 @@ class Api::CafeController < Api::BaseController
     if cafe_user&.destroy
       render json: {}, status: :ok
     else
-      render json: { errors: 'Failed to destroy' }, status: 422
+      render json: {errors: "Failed to destroy"}, status: 422
     end
   end
 

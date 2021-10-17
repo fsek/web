@@ -3,7 +3,7 @@ class AddTranslationsToAdventureMissions < ActiveRecord::Migration[5.0]
     reversible do |dir|
       dir.up do
         AdventureMission.create_translation_table!({title: :string, description: :text},
-                                          {migrate_data: true, remove_source_columns: true})
+          {migrate_data: true, remove_source_columns: true})
       end
 
       dir.down do

@@ -5,7 +5,7 @@ class RentsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @faqs = Faq.answered.category('Bil')
+        @faqs = Faq.answered.category("Bil")
       end
 
       format.json do
@@ -53,10 +53,10 @@ class RentsController < ApplicationController
 
   def rent_params
     params.require(:rent).permit(:d_from, :d_til, :purpose,
-                                 :council_id, :user_id, :terms)
+      :council_id, :user_id, :terms)
   end
 
   def load_terms
-    @terms = Document.find_by(slug: 'rental-terms')
+    @terms = Document.find_by(slug: "rental-terms")
   end
 end

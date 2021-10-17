@@ -4,16 +4,16 @@ module UsersHelper
   end
 
   def user_program_collection
-    [[I18n.t('model.user.program.physics'), User::PHYSICS],
-     [I18n.t('model.user.program.math'), User::MATH],
-     [I18n.t('model.user.program.nano'), User::NANO],
-     [I18n.t('model.user.program.other'), User::OTHER]]
+    [[I18n.t("model.user.program.physics"), User::PHYSICS],
+      [I18n.t("model.user.program.math"), User::MATH],
+      [I18n.t("model.user.program.nano"), User::NANO],
+      [I18n.t("model.user.program.other"), User::OTHER]]
   end
 
   def food_preferences_str(user)
     ary = user.food_preferences.delete_if(&:blank?).map { |f| I18n.t("model.user.food_prefs.#{f}") }
     ary << user.food_custom if user.food_custom.present?
-    ary.join(', ')
+    ary.join(", ")
   end
 
   def food_prefs_collection(user)

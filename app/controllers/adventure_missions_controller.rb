@@ -5,7 +5,7 @@ class AdventureMissionsController < ApplicationController
     @group = current_user.groups.regular.last
 
     if @group.blank?
-      redirect_to adventures_path, alert: t('.no_group')
+      redirect_to adventures_path, alert: t(".no_group")
     else
       @adventure_mission_group = @group.adventure_mission_groups.find_by(adventure_mission: @adventure_mission)
     end

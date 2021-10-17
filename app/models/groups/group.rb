@@ -9,15 +9,15 @@ class Group < ApplicationRecord
   has_many :messages, through: :group_messages
   has_many :adventure_mission_groups, dependent: :destroy
 
-  REGULAR = 'regular'.freeze
-  MISSION = 'mission'.freeze
-  INFO = 'info'.freeze
-  OTHER = 'other'.freeze
+  REGULAR = "regular".freeze
+  MISSION = "mission".freeze
+  INFO = "info".freeze
+  OTHER = "other".freeze
 
   validates :name, presence: true
-  validates :number, presence: true, numericality: { greater_than: 0 }, if: :regular?
+  validates :number, presence: true, numericality: {greater_than: 0}, if: :regular?
   validates :number, absence: true, unless: :regular?
-  validates :group_type, presence: true, inclusion: { in: [REGULAR, MISSION, INFO, OTHER] }
+  validates :group_type, presence: true, inclusion: {in: [REGULAR, MISSION, INFO, OTHER]}
 
   scope :regular, -> { where(group_type: REGULAR) }
   scope :missions, -> { where(group_type: MISSION) }
@@ -46,14 +46,14 @@ class Group < ApplicationRecord
 
   def to_s
     if introduction.present?
-      name + ' (' + introduction.year.to_s + ')'
+      name + " (" + introduction.year.to_s + ")"
     else
       name
     end
   end
 
   def total_published_adventure_points
-    adventure_mission_groups.where(pending: false).sum('points')
+    adventure_mission_groups.where(pending: false).sum("points")
   end
 
   def total_published_adventure_missions_accepted

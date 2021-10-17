@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe RentService do
   describe :make_reservation do
@@ -22,7 +22,7 @@ RSpec.describe RentService do
   end
 
   describe :overbook do
-    it 'should let council overbook normal' do
+    it "should let council overbook normal" do
       user = create(:user)
       overbook = create(:rent, user: user)
       council_rent = build(:rent, :with_council, user: user)
@@ -35,7 +35,7 @@ RSpec.describe RentService do
       overbook.aktiv.should be_falsey
     end
 
-    it 'should not let normal overbook council' do
+    it "should not let normal overbook council" do
       user = create(:user)
       overbook = create(:rent, user: user)
       rent = build(:rent, user: user)
@@ -48,7 +48,7 @@ RSpec.describe RentService do
       overbook.aktiv.should be_truthy
     end
 
-    it 'should not let council overbook council' do
+    it "should not let council overbook council" do
       user = create(:user)
       overbook = create(:rent, :with_council, user: user)
       council_rent = build(:rent, :with_council, user: user)
@@ -63,34 +63,34 @@ RSpec.describe RentService do
   end
 
   describe :authorized_update do
-    it 'valid parameters' do
+    it "valid parameters" do
       user = create(:user)
-      rent = create(:rent, user: user, purpose: 'Nope')
+      rent = create(:rent, user: user, purpose: "Nope")
 
-      RentService.update({ purpose: 'A test', \
-                           d_from: 1.hours.from_now.strftime('%Y-%m-%d %H:%M'), \
-                           d_til: 10.hours.from_now.strftime('%Y-%m-%d %H:%M') }, \
-                         user, rent).should be_truthy
+      RentService.update({purpose: "A test", \
+                           d_from: 1.hours.from_now.strftime("%Y-%m-%d %H:%M"), \
+                           d_til: 10.hours.from_now.strftime("%Y-%m-%d %H:%M")}, \
+        user, rent).should be_truthy
       rent.reload
-      rent.purpose.should eq('A test')
+      rent.purpose.should eq("A test")
     end
 
-    it 'invalid parameters' do
+    it "invalid parameters" do
       user = create(:user)
-      rent = create(:rent, purpose: 'Nope', d_from: 1.hours.from_now, d_til: 10.hours.from_now)
+      rent = create(:rent, purpose: "Nope", d_from: 1.hours.from_now, d_til: 10.hours.from_now)
 
       rent.owner?(user).should be_falsey
 
-      RentService.update({ purpose: 'A test', \
-                           d_from: 1.hours.from_now.strftime('%Y-%m-%d %H:%M'), \
-                           d_til: 10.hours.from_now.strftime('%Y-%m-%d %H:%M') }, \
-                         user, rent).should be_falsey
-      Rent.first.purpose.should eq('Nope')
+      RentService.update({purpose: "A test", \
+                           d_from: 1.hours.from_now.strftime("%Y-%m-%d %H:%M"), \
+                           d_til: 10.hours.from_now.strftime("%Y-%m-%d %H:%M")}, \
+        user, rent).should be_falsey
+      Rent.first.purpose.should eq("Nope")
     end
   end
 
   describe :admin_reservation do
-    it 'valid parameters' do
+    it "valid parameters" do
       rent = build(:rent)
 
       lambda do
@@ -98,7 +98,7 @@ RSpec.describe RentService do
       end.should change(Rent, :count).by(1)
     end
 
-    it 'invalid parameters' do
+    it "invalid parameters" do
       rent = build(:rent, user: nil)
 
       lambda do
@@ -108,13 +108,13 @@ RSpec.describe RentService do
   end
 
   describe :administrate do
-    it 'valid parameters' do
-      rent = create(:rent, purpose: 'Nope')
-      RentService.administrate(rent, purpose: 'A test').should be_truthy
-      Rent.first.purpose.should eq('A test')
+    it "valid parameters" do
+      rent = create(:rent, purpose: "Nope")
+      RentService.administrate(rent, purpose: "A test").should be_truthy
+      Rent.first.purpose.should eq("A test")
     end
 
-    it 'invalid parameters' do
+    it "invalid parameters" do
       rent = create(:rent)
       RentService.administrate(rent, user: nil).should be_falsey
     end

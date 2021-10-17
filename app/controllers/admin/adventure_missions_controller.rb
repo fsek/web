@@ -4,7 +4,7 @@ class Admin::AdventureMissionsController < Admin::BaseController
   load_and_authorize_resource :adventure_mission, through: :adventure
 
   def index
-    @grid = initialize_grid(@adventure_missions, locale: :sv, order: 'adventure_missions.index')
+    @grid = initialize_grid(@adventure_missions, locale: :sv, order: "adventure_missions.index")
   end
 
   def new
@@ -27,8 +27,8 @@ class Admin::AdventureMissionsController < Admin::BaseController
   def update
     if @adventure_mission.update(adventure_mission_params)
       AdventureMissionService.shift_index_on_update(@adventure,
-                                                    @adventure_mission.index,
-                                                    adventure_mission_params[:index].to_i)
+        @adventure_mission.index,
+        adventure_mission_params[:index].to_i)
       redirect_to admin_adventure_adventure_missions_path(@adventure), notice: alert_update(AdventureMission)
     else
       render :edit, status: 422
@@ -41,7 +41,7 @@ class Admin::AdventureMissionsController < Admin::BaseController
       redirect_to admin_adventure_adventure_missions_path(@adventure), notice: alert_destroy(AdventureMission)
     else
       redirect_to edit_admin_adventure_adventure_mission_path(@adventure, @adventure_mission),
-                  alert: alert_errors(@adventure_mission.errors.full_messages)
+        alert: alert_errors(@adventure_mission.errors.full_messages)
     end
   end
 
@@ -53,7 +53,7 @@ class Admin::AdventureMissionsController < Admin::BaseController
 
   def adventure_mission_params
     params.require(:adventure_mission).permit(:title_sv, :title_en, :description_sv,
-                                              :description_en, :max_points, :variable_points,
-                                              :index, :locked, :require_acceptance)
+      :description_en, :max_points, :variable_points,
+      :index, :locked, :require_acceptance)
   end
 end
