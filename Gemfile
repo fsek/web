@@ -10,7 +10,6 @@ gem 'bcrypt_pbkdf', '~> 1.1.0.rc1'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 gem 'cancancan'
-gem 'capistrano-passenger', '~> 0.2.1'
 gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave_backgrounder', git: 'https://github.com/lardawge/carrierwave_backgrounder'
 gem 'cookies_eu'
@@ -71,7 +70,7 @@ group :development, :test do
   # Need 1.1.3 to load sprockets manifest file
   gem 'capistrano-rails', require: false
   gem 'capistrano-rbenv', require: false
-  gem 'capistrano-passenger', require: false
+  gem 'capistrano-passenger', '>= 0.2.1', require: false
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'dotenv-rails'
