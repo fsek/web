@@ -121,7 +121,7 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-bundler (1.6.0)
       capistrano (~> 3.1)
-    capistrano-passenger (0.2.0)
+    capistrano-passenger (0.2.1)
       capistrano (~> 3.0)
     capistrano-rails (1.4.0)
       capistrano (~> 3.1)
@@ -491,7 +491,7 @@ DEPENDENCIES
   bullet
   cancancan
   capistrano
-  capistrano-passenger
+  capistrano-passenger (>= 0.2.1)
   capistrano-rails
   capistrano-rbenv
   capybara
@@ -564,4 +564,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   2.0.1
+   2.2.6
