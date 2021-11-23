@@ -1,0 +1,27 @@
+<% if broadcast.present? %>
+  <%= simple_form_for([:admin, broadcast]) do |f|%>
+    <%= f.association :user, collection: [current_user], include_blank: false,
+                           input_html: {class: 'select2'} %>
+    <%= f.input :content %>
+    <%= f.input :title %>
+
+    <% if broadcast.image.present? %>
+    <%= image_tag(broadcast.thumb) %>
+    <br>
+    <% else %>
+        <%= f.input :image, as: :file %>
+    <% end %>
+
+    <% if broadcast.persisted? %>
+        <%= link_to('förinta', admin_broadcast_path(broadcast),
+                                 method: :delete,
+                                 data: {confirm: '.confirm_destroy'},
+                                 class: 'btn danger pull-right') %>
+    <% end %>
+
+
+    <%= f.button :submit %>
+
+
+  <% end %>
+<% end %>

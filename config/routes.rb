@@ -369,6 +369,12 @@ Fsek::Application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :broadcasts, path: :teleskarm
+  end
+
+  resources :broadcasts, path: :teleskarm, only: :index
+
   # API routes
   namespace :api, constraints: { format: 'json' } do
     mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :confirmations]
