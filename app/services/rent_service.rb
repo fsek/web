@@ -41,6 +41,7 @@ module RentService
         false
       end
     rescue
+ 
       false
     end
   end
