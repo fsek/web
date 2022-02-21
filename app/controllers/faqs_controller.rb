@@ -1,5 +1,5 @@
 # encoding:UTF-8
-class FaqsController < Admin::BaseController
+class FaqsController < ApplicationController
   load_permissions_and_authorize_resource
 
   def index

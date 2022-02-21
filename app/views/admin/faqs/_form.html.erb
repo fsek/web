@@ -6,7 +6,7 @@
   <%= f.button :submit %>
 
   <% if faq.persisted? %>
-    <%= link_to(t('.destroy'), faq_path(faq), method: :delete,
+    <%= link_to(t('.destroy'), admin_faq_path(faq), method: :delete,
                                data: {confirm: t('.confirm_destroy')},
                                class: 'btn danger pull-right') %>
   <% end %>
