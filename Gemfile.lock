@@ -18,11 +18,11 @@ GIT
 
 GIT
   remote: https://github.com/lardawge/carrierwave_backgrounder
-  revision: 38b381faaace6c75f7310ea726dcd1be2604d3fb
+  revision: 460394b0e2c0cf0c192be9c1a60bcf9dfb1f9e4d
   specs:
     carrierwave_backgrounder (0.4.2)
-      carrierwave (~> 0.5)
-      mime-types (~> 2.3)
+      carrierwave (>= 0.5, < 2.0)
+      mime-types (~> 2.99)
 
 GIT
   remote: https://github.com/navro/wice_grid
@@ -156,8 +156,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.5)
-    connection_pool (2.2.1)
+    concurrent-ruby (1.1.9)
+    connection_pool (2.2.5)
     cookies_eu (1.7.1)
       js_cookie_rails (~> 2.2.0)
     crass (1.0.5)
@@ -185,7 +185,7 @@ GEM
     ed25519 (1.2.4)
     ejs (1.1.1)
     erubi (1.9.0)
-    et-orbi (1.1.0)
+    et-orbi (1.1.7)
       tzinfo
     execjs (2.7.0)
     factory_bot (4.8.2)
@@ -200,6 +200,9 @@ GEM
       thor (~> 0.19.1)
     fotoramajs (4.6.4)
       sprockets (>= 2)
+    fugit (1.1.8)
+      et-orbi (~> 1.1, >= 1.1.7)
+      raabro (~> 1.1)
     fullcalendar-rails (3.9.0.0)
       jquery-rails (>= 4.0.5, < 5.0.0)
       jquery-ui-rails (>= 5.0.2)
@@ -208,7 +211,7 @@ GEM
       activesupport (>= 4.2.0)
     globalize-accessors (0.2.1)
       globalize (~> 5.0, >= 5.0.0)
-    http-2 (0.8.4)
+    http-2 (0.10.1)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.7.0)
@@ -225,8 +228,9 @@ GEM
       railties (>= 3.2.16)
     js_cookie_rails (2.2.0)
       railties (>= 3.1)
-    json (2.1.0)
+    json (2.6.1)
     jsonapi-renderer (0.1.2)
+    jwt (2.1.0)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -249,22 +253,22 @@ GEM
       rake
     mini_magick (4.9.5)
     mini_mime (1.0.1)
-    mini_portile2 (2.5.1)
+    mini_portile2 (2.6.1)
     minitest (5.13.0)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
     multi_json (1.13.1)
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
-    net-http2 (0.16.0)
-      http-2 (= 0.8.4)
-    net-scp (2.0.0)
-      net-ssh (>= 2.6.5, < 6.0.0)
-    net-ssh (5.2.0)
+    net-http2 (0.18.2)
+      http-2 (~> 0.10.1)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (5.0.1)
     netrc (0.11.0)
     nio4r (2.3.1)
-    nokogiri (1.11.4)
-      mini_portile2 (~> 2.5.0)
+    nokogiri (1.12.5)
+      mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     onesky-rails (1.4.0)
       i18n (>= 0.5.0)
@@ -282,16 +286,16 @@ GEM
       terrapin (~> 0.6.0)
     paranoia (2.4.1)
       activerecord (>= 4.0, < 5.3)
-    pdf-core (0.6.1)
+    pdf-core (0.7.0)
     pg (0.21.0)
     poltergeist (1.18.1)
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
-    prawn (2.1.0)
-      pdf-core (~> 0.6.1)
-      ttfunk (~> 1.4.0)
-    prawn-rails (0.1.1)
+    prawn (2.2.2)
+      pdf-core (~> 0.7.0)
+      ttfunk (~> 1.5)
+    prawn-rails (1.2.0)
       prawn
       prawn-table
       rails (>= 3.1.0)
@@ -306,10 +310,12 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (4.0.6)
-    puma (3.11.4)
+    puma (5.6.2)
+      nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.5.2)
-    rack (2.0.7)
-    rack-protection (2.0.1)
+    rack (2.2.3)
+    rack-protection (2.1.0)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -344,9 +350,9 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    recaptcha (4.0.1)
+    recaptcha (4.13.1)
       json
-    redcarpet (3.4.0)
+    redcarpet (3.5.1)
     redis (3.3.5)
     ref (2.0.0)
     request_store (1.4.1)
@@ -369,9 +375,10 @@ GEM
     routing-filter (0.6.2)
       actionpack (>= 4.2, < 6)
       activesupport (>= 4.2, < 6)
-    rpush (3.0.2)
+    rpush (4.0.0)
       activesupport
       ansi
+      jwt (>= 1.5.6)
       multi_json (~> 1.0)
       net-http-persistent
       net-http2 (~> 0.14)
@@ -399,8 +406,6 @@ GEM
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
     ruby_dep (1.5.0)
-    rufus-scheduler (3.4.2)
-      et-orbi (~> 1.0)
     sassc (2.0.0)
       ffi (~> 1.9.6)
       rake
@@ -414,13 +419,13 @@ GEM
       thor (~> 0.14)
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
-    sidekiq (5.1.3)
-      concurrent-ruby (~> 1.0)
-      connection_pool (~> 2.2, >= 2.2.0)
+    sidekiq (5.2.9)
+      connection_pool (~> 2.2, >= 2.2.2)
+      rack (~> 2.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
-    sidekiq-cron (0.6.3)
-      rufus-scheduler (>= 3.3.0)
+    sidekiq-cron (1.1.0)
+      fugit (~> 1.1)
       sidekiq (>= 4.2.1)
     sidekiq-unique-jobs (5.0.10)
       sidekiq (>= 4.0, <= 6.0)
@@ -453,7 +458,7 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.9)
-    ttfunk (1.4.0)
+    ttfunk (1.5.1)
     turbolinks (5.1.1)
       turbolinks-source (~> 5.1)
     turbolinks-source (5.1.0)
@@ -564,4 +569,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   2.2.6
+   2.2.27
