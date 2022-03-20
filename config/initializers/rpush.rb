@@ -93,13 +93,17 @@ Rpush.reflect do |on|
 
   # Called when the GCM returns a canonical registration ID.
   # You will need to replace old_id with canonical_id in your records.
-  # on.gcm_canonical_id do |old_id, canonical_id|
-  # end
+  on.gcm_canonical_id do |old_id, canonical_id|
+    push_device = PushDevice.find_by(token: old_id)
+    push_device.update(token: canonical_id) if push_device.present?
+  end
 
   # Called when the GCM returns a failure that indicates an invalid registration id.
   # You will need to delete the registration_id from your records.
-  # on.gcm_invalid_registration_id do |app, error, registration_id|
-  # end
+  on.gcm_invalid_registration_id do |app, error, registration_id|
+    push_device = PushDevice.find_by(token: registration_id)
+    push_device.destroy if push_device.present?
+  end
 
   # Called when an SSL certificate will expire within 1 month.
   # Implement on.error to catch errors raised when the certificate expires.

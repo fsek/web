@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220320151553) do
+ActiveRecord::Schema.define(version: 20201220144612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -462,13 +462,6 @@ ActiveRecord::Schema.define(version: 20220320151553) do
     t.index ["user_id"], name: "index_fredmanskies_on_user_id"
   end
 
-  create_table "fruits", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.string "name", null: false
-    t.boolean "is_moldy", default: false, null: false
-    t.index ["user_id"], name: "index_fruits_on_user_id"
-  end
-
   create_table "group_messages", id: :serial, force: :cascade do |t|
     t.integer "group_id"
     t.integer "message_id"
@@ -852,14 +845,10 @@ ActiveRecord::Schema.define(version: 20220320151553) do
     t.string "client_secret"
     t.string "access_token"
     t.datetime "access_token_expiration"
-    t.text "apn_key"
-    t.string "apn_key_id"
-    t.string "team_id"
-    t.string "bundle_id"
   end
 
   create_table "rpush_feedback", force: :cascade do |t|
-    t.string "device_token"
+    t.string "device_token", limit: 64, null: false
     t.datetime "failed_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -869,7 +858,7 @@ ActiveRecord::Schema.define(version: 20220320151553) do
 
   create_table "rpush_notifications", force: :cascade do |t|
     t.integer "badge"
-    t.string "device_token"
+    t.string "device_token", limit: 64
     t.string "sound"
     t.text "alert"
     t.text "data"
@@ -899,9 +888,7 @@ ActiveRecord::Schema.define(version: 20220320151553) do
     t.boolean "content_available", default: false, null: false
     t.text "notification"
     t.boolean "mutable_content", default: false, null: false
-    t.string "external_device_id"
-    t.string "thread_id"
-    t.index ["delivered", "failed", "processing", "deliver_after", "created_at"], name: "index_rpush_notifications_multi", where: "((NOT delivered) AND (NOT failed))"
+    t.index ["delivered", "failed"], name: "index_rpush_notifications_multi", where: "((NOT delivered) AND (NOT failed))"
   end
 
   create_table "short_links", id: :serial, force: :cascade do |t|
