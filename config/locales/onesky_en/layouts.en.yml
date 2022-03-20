@@ -32,4 +32,6 @@ en:
       user_dropdown:
         user_settings: "Account settings"
       notifications_dropdown:
-        no_notifications: Inga notifikationer 
+        no_notifications: "No notifications" 
+    topbar:
+      calendar: Calendar

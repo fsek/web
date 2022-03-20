@@ -13,9 +13,11 @@ class Admin::FaqsController < Admin::BaseController
   end
 
   def destroy
-    @faq.destroy!
-
-    redirect_to admin_faqs_path, notice: alert_destroy(Faq)
+    if @faq.destroy!
+      redirect_to admin_faqs_path, notice: alert_destroy(Faq)
+    else
+      redirect_to admin_faqs_path, notice: alert_danger(@faq.errors.full_messages)
+    end
   end
 
   def update
