@@ -1,7 +1,7 @@
 class Contact < ApplicationRecord
   translates(:name, :text)
   globalize_accessors(locales: [:en, :sv],
-                      attributes: [:name, :text])
+    attributes: [:name, :text])
 
   belongs_to :post
   has_many :users, through: :post
@@ -9,8 +9,8 @@ class Contact < ApplicationRecord
 
   validates :name, presence: true, if: -> { post_id.nil? }
   validates :email, :text, presence: true
-  validates :email, uniqueness: true, format: { with: Devise::email_regexp }
-  validates :post_id, :slug, uniqueness: { allow_blank: true }
+  validates :email, uniqueness: true, format: {with: Devise.email_regexp}
+  validates :post_id, :slug, uniqueness: {allow_blank: true}
 
   attr_accessor :message
 

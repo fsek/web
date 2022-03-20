@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe(NotificationsController, type: :controller) do
   let(:user) { create(:user) }
@@ -9,12 +9,12 @@ RSpec.describe(NotificationsController, type: :controller) do
     allow(Rpush::Gcm::Notification).to receive(:create!) { Rpush::Gcm::Notification.new }
   end
 
-  describe 'PATCH #visit' do
-    it 'marks notification as visited' do
+  describe "PATCH #visit" do
+    it "marks notification as visited" do
       notification = create(:notification, :create, user: user, seen: false, visited: false)
       set_current_user(user)
 
-      patch :visit, params: { id: notification.to_param }
+      patch :visit, params: {id: notification.to_param}
       response.should have_http_status(200)
 
       notification.reload
@@ -22,8 +22,8 @@ RSpec.describe(NotificationsController, type: :controller) do
     end
   end
 
-  describe 'GET #index' do
-    it 'renders users notifications' do
+  describe "GET #index" do
+    it "renders users notifications" do
       set_current_user(user)
       first = create(:notification, :create, user: user)
       second = create(:notification, :create, user: user)
@@ -38,8 +38,8 @@ RSpec.describe(NotificationsController, type: :controller) do
     end
   end
 
-  describe 'GET #look_all' do
-    it 'sets all notifications as seen' do
+  describe "GET #look_all" do
+    it "sets all notifications as seen" do
       set_current_user(user)
       create(:notification, :create, user: user, seen: false)
       create(:notification, :create, user: user, seen: false)

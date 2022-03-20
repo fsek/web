@@ -1,0 +1,4 @@
+PreCommit:
+  StandardRb:
+    enabled: true
+    command: ['bundle', 'exec', 'standardrb', '--fix'] # Invoke within Bundler context

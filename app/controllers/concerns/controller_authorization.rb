@@ -1,7 +1,9 @@
 # Module for controller authorzation methods
 module ControllerAuthorization
   def permission
-    name.gsub('Controller', '').singularize.split('::').last.constantize.name rescue nil
+    name.gsub("Controller", "").singularize.split("::").last.constantize.name
+  rescue
+    nil
   end
 
   # Enables authentication and

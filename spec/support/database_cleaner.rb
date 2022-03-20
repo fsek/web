@@ -1,4 +1,4 @@
-require 'database_cleaner'
+require "database_cleaner"
 
 RSpec.configure do |config|
   # Cleans out database before each test suite is run

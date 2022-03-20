@@ -18,7 +18,7 @@ class EventSignupClosingReminderWorker
       attending_user_id = event_signup.event_users.pluck(:user_id)
       notify_users = User.where(notify_event_closing: true).where.not(id: attending_user_id)
       notify_users.each do |user|
-        NotificationService.event_signup(event_signup, 'closing', user)
+        NotificationService.event_signup(event_signup, "closing", user)
       end
       event_signup.update!(sent_closing: Time.zone.now)
     end

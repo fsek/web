@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ElectionPost, type: :model do
-  it 'has a valid factory' do
+  it "has a valid factory" do
     build_stubbed(:election_post).should be_valid
   end
   subject { ElectionPost.new }
@@ -12,7 +12,7 @@ RSpec.describe ElectionPost, type: :model do
   it { should validate_presence_of(:election) }
   it { should validate_presence_of(:post) }
 
-  it 'validates uniqueness of post and election' do
+  it "validates uniqueness of post and election" do
     post = create(:post)
     election = create(:election)
 

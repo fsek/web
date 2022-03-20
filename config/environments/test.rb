@@ -1,5 +1,5 @@
 Fsek::Application.configure do
-  PUBLIC_URL = 'http://localhost:3000'.freeze
+  config.public_url = "https://fsektionen.se".freeze
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's
@@ -17,10 +17,10 @@ Fsek::Application.configure do
 
   config.public_file_server.enabled = true
 
-  config.public_file_server.headers = { 'Cache-Control' => 'public, max-age=3600' }
+  config.public_file_server.headers = {"Cache-Control" => "public, max-age=3600"}
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates.
@@ -38,9 +38,9 @@ Fsek::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  config.action_controller.asset_host = PUBLIC_URL
-  config.action_mailer.default_url_options = { host: PUBLIC_URL }
-  config.action_mailer.asset_host = PUBLIC_URL
+  config.action_controller.asset_host = config.public_url
+  config.action_mailer.default_url_options = {host: config.public_url}
+  config.action_mailer.asset_host = config.public_url
 
   config.action_view.raise_on_missing_translations = true
 end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 # Dummy class for testing module
 class Alert
@@ -9,17 +9,17 @@ describe Alerts, type: :concern do
   let(:alert) { Alert.new }
   subject { alert }
 
-  describe '#model_name' do
-    it 'returns human model name' do
+  describe "#model_name" do
+    it "returns human model name" do
       model = double(:model)
       model.stub(:model_name) { model }
-      model.stub(:human) { 'ModelName' }
+      model.stub(:human) { "ModelName" }
       model.stub(:instance_of?) { true }
 
-      alert.model_name(model).should eq('ModelName')
+      alert.model_name(model).should eq("ModelName")
     end
 
-    it 'returns nil if not Class' do
+    it "returns nil if not Class" do
       model = double(:model)
       model.stub(:instance_of?) { false }
 
@@ -27,23 +27,23 @@ describe Alerts, type: :concern do
     end
   end
 
-  describe 'alerts' do
-    it '#alert_update' do
-      alert.stub(:model_name) { 'Model' }
-      alert.alert_update(nil).should eq(text: "Model #{I18n.t('global_controller.success_update')}.",
-                                        type: 'success')
+  describe "alerts" do
+    it "#alert_update" do
+      alert.stub(:model_name) { "Model" }
+      alert.alert_update(nil).should eq(text: "Model #{I18n.t("global_controller.success_update")}.",
+        type: "success")
     end
 
-    it '#alert_create' do
-      alert.stub(:model_name) { 'Model' }
-      alert.alert_create(nil).should eq(text: "Model #{I18n.t('global_controller.success_create')}.",
-                                        type: 'success')
+    it "#alert_create" do
+      alert.stub(:model_name) { "Model" }
+      alert.alert_create(nil).should eq(text: "Model #{I18n.t("global_controller.success_create")}.",
+        type: "success")
     end
 
-    it '#alert_destroy' do
-      alert.stub(:model_name) { 'Model' }
-      alert.alert_destroy(nil).should eq(text: "Model #{I18n.t('global_controller.success_destroy')}.",
-                                         type: 'danger')
+    it "#alert_destroy" do
+      alert.stub(:model_name) { "Model" }
+      alert.alert_destroy(nil).should eq(text: "Model #{I18n.t("global_controller.success_destroy")}.",
+        type: "danger")
     end
   end
 end

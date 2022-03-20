@@ -1,50 +1,50 @@
 Fsek::Application.routes.draw do
   filter :locale, exclude: /^\/admin/
   # Resources on the page
-  get('/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=aeb6a02396'),
+  get("/vecktorn", to: redirect("http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=aeb6a02396"),
                    as: :vecktorn_signup, status: 301)
-  get('/weektorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=3850d20a69'),
+  get("/weektorn", to: redirect("http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=3850d20a69"),
                    as: :weektorn_signup, status: 301)
-  get('/vecktorn/arkiv', to: redirect('http://us11.campaign-archive2.com/home/?u=b115d5ab658a971e771610695&id=aeb6a02396'),
+  get("/vecktorn/arkiv", to: redirect("http://us11.campaign-archive2.com/home/?u=b115d5ab658a971e771610695&id=aeb6a02396"),
                          as: :vecktorn_archive, status: 301)
-  get('/weektorn/archive', to: redirect('http://us11.campaign-archive2.com/home/?u=b115d5ab658a971e771610695&id=3850d20a69'),
+  get("/weektorn/archive", to: redirect("http://us11.campaign-archive2.com/home/?u=b115d5ab658a971e771610695&id=3850d20a69"),
                            as: :weektorn_archive, status: 301)
-  get '/farad', to: redirect('http://www.farad.nu'), as: :farad, status: 301
-  get '/facebook', to: redirect('https://www.facebook.com/Fsektionen'), as: :facebook, status: 301
-  get '/twitter', to: redirect('https://www.twitter.com/Fsektionen'), as: :twitter, status: 301
-  get '/youtube', to: redirect('https://www.youtube.com/user/fsektionen'), as: :youtube, status: 301
+  get "/farad", to: redirect("http://www.farad.nu"), as: :farad, status: 301
+  get "/facebook", to: redirect("https://www.facebook.com/Fsektionen"), as: :facebook, status: 301
+  get "/twitter", to: redirect("https://www.twitter.com/Fsektionen"), as: :twitter, status: 301
+  get "/youtube", to: redirect("https://www.youtube.com/user/fsektionen"), as: :youtube, status: 301
 
   get :cookies_information, controller: :static_pages, as: :cookies, path: :cookies
   get :about, controller: :static_pages, path: :om
   get :privacy, controller: :static_pages, path: :sekretess
   get :influence, controller: :static_pages, path: :jagvill
-  get 'foretag/om', controller: :static_pages, action: :company_about, as: :company_about
-  get 'foretag/vi-erbjuder', controller: :static_pages, action: :company_offer, as: :company_offer
-  get 'robots.:format', controller: :static_pages, action: :robots, as: :robots
+  get "foretag/om", controller: :static_pages, action: :company_about, as: :company_about
+  get "foretag/vi-erbjuder", controller: :static_pages, action: :company_offer, as: :company_offer
+  get "robots.:format", controller: :static_pages, action: :robots, as: :robots
 
-  require 'sidekiq/web'
+  require "sidekiq/web"
   constraints Constraints::Sidekiq.new do
-    mount(Sidekiq::Web => '/sidekiq', as: :sidekiq)
+    mount(Sidekiq::Web => "/sidekiq", :as => :sidekiq)
   end
 
-  require 'sidekiq/cron/web'
+  require "sidekiq/cron/web"
 
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations]
   devise_scope :user do
-    get 'avbryt_reg' => 'devise/registrations#cancel', as: :cancel_user_registration
-    post 'anvandare/skapa' => 'registrations#create', as: :user_registration
-    get 'anvandare/registrera' => 'devise/registrations#new', as: :new_user_registration
+    get "avbryt_reg" => "devise/registrations#cancel", :as => :cancel_user_registration
+    post "anvandare/skapa" => "registrations#create", :as => :user_registration
+    get "anvandare/registrera" => "devise/registrations#new", :as => :new_user_registration
 
     # sessions
-    get 'logga-in' => 'devise/sessions#new', as: :new_user_session
-    get 'logga_in', to: redirect('logga-in'), status: 301
-    post 'logga-in' => 'devise/sessions#create', as: :user_session
-    delete 'logga-ut' => 'devise/sessions#destroy', as: :destroy_user_session
+    get "logga-in" => "devise/sessions#new", :as => :new_user_session
+    get "logga_in", to: redirect("logga-in"), status: 301
+    post "logga-in" => "devise/sessions#create", :as => :user_session
+    delete "logga-ut" => "devise/sessions#destroy", :as => :destroy_user_session
   end
 
   # Scope to change urls to swedish
-  scope path_names: { new: 'ny', edit: 'redigera' } do
+  scope path_names: {new: "ny", edit: "redigera"} do
     resources :tools, path: :verktyg, only: [:show, :index]
 
     namespace :admin do
@@ -61,7 +61,7 @@ Fsek::Application.routes.draw do
     end
 
     resource :user, path: :anvandare, as: :own_user, only: [:update] do
-      get '', action: :edit, as: :edit
+      get "", action: :edit, as: :edit
       patch :password, path: :losenord, action: :update_password
       patch :account, path: :konto, action: :update_account
       patch :accept_terms
@@ -91,7 +91,7 @@ Fsek::Application.routes.draw do
 
     namespace :admin do
       get :cafe, path: :hilbertcafe, controller: :cafe, action: :index
-      get :overview_cafe, controller: :cafe, action: :overview, path: 'hilbertcafe/oversikt'
+      get :overview_cafe, controller: :cafe, action: :overview, path: "hilbertcafe/oversikt"
 
       resources :cafe_shifts, path: :hilbertcafe, except: :index do
         resources :cafe_workers, path: :jobba, only: [:create, :update, :destroy, :new]
@@ -100,9 +100,9 @@ Fsek::Application.routes.draw do
       end
     end
 
-    get :ladybug_cafe, controller: :cafe, action: :ladybug, path: 'hilbertcafe/nyckelpiga'
+    get :ladybug_cafe, controller: :cafe, action: :ladybug, path: "hilbertcafe/nyckelpiga"
     get :cafe, path: :hilbertcafe, controller: :cafe, action: :index
-    get :competition_cafe, controller: :cafe, action: :competition, path: 'hilbertcafe/tavling'
+    get :competition_cafe, controller: :cafe, action: :competition, path: "hilbertcafe/tavling"
 
     resources :cafe_shifts, path: :hilbertcafe, only: :show do
       get :feed, on: :collection
@@ -136,7 +136,7 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :pages, path: :sida, except: :show do
         resources :page_elements, path: :element, except: :show
-        delete 'destroy_image/:image_id', on: :member, action: :destroy_image, as: :destroy_image
+        delete "destroy_image/:image_id", on: :member, action: :destroy_image, as: :destroy_image
       end
     end
 
@@ -146,7 +146,7 @@ Fsek::Application.routes.draw do
       get :archive, path: :arkiv, on: :collection
       get :dance, path: :dans, on: :collection
       get :matrix, path: :matris, on: :collection
-      get 'modal/:date', action: :modal, as: :modal, on: :member
+      get "modal/:date", action: :modal, as: :modal, on: :member
     end
 
     resources :adventures, path: :aventyr, only: [:index, :show] do
@@ -184,7 +184,7 @@ Fsek::Application.routes.draw do
       resources :councils, path: :utskott, except: :show do
         resources :posts, path: :poster, except: :show do
           collection do
-            delete 'anvandare/:post_user_id', action: :remove_user, as: :remove_user
+            delete "anvandare/:post_user_id", action: :remove_user, as: :remove_user
             patch :add_user
           end
         end
@@ -222,7 +222,7 @@ Fsek::Application.routes.draw do
       resources :events, path: :evenemang, except: :show do
         resources :event_signups, path: :anmalan, only: [:create, :update, :destroy]
         resource :event_signup, path: :anmalan, only: :show, as: :signup do
-          get 'export', on: :collection
+          get "export", on: :collection
         end
         resources :event_users, path: :anmalningar, only: [:edit, :update, :destroy]
       end
@@ -255,11 +255,11 @@ Fsek::Application.routes.draw do
 
     resources :elections, path: :val, only: :index do
       collection do
-        resources :nominations, controller: 'elections/nominations',
+        resources :nominations, controller: "elections/nominations",
                                 path: :nominera, only: [:create] do
-          get '', action: :new, on: :collection, as: :new
+          get "", action: :new, on: :collection, as: :new
         end
-        resources :candidates, controller: 'elections/candidates',
+        resources :candidates, controller: "elections/candidates",
                                path: :kandidera, except: [:show, :update]
         resources :posts, path: :poster, only: :show do
           get :modal, on: :member
@@ -285,13 +285,13 @@ Fsek::Application.routes.draw do
 
     namespace :admin do
       resources :permissions, only: :index do
-        get '/:post_id', action: :show_post, on: :collection, as: :post
-        patch '(/:post_id)', action: :update_post, on: :collection, as: :update
+        get "/:post_id", action: :show_post, on: :collection, as: :post
+        patch "(/:post_id)", action: :update_post, on: :collection, as: :update
       end
 
       resources :doors, path: :dorrar, except: :show do
         get :accesses, path: :accesser, on: :member
-        get :post, path: '/post/:post_id', on: :collection
+        get :post, path: "/post/:post_id", on: :collection
       end
     end
 
@@ -370,8 +370,8 @@ Fsek::Application.routes.draw do
   end
 
   # API routes
-  namespace :api, constraints: { format: 'json' } do
-    mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :confirmations]
+  namespace :api, constraints: {format: "json"} do
+    mount_devise_token_auth_for "User", at: "auth", skip: [:omniauth_callbacks, :confirmations]
 
     resources :versions, only: :index
 
@@ -435,12 +435,12 @@ Fsek::Application.routes.draw do
     resources :councils, only: :index
   end
 
-  get 'proposals/form' => 'proposals#form'
-  post 'proposals/generate' => 'proposals#generate'
+  get "proposals/form" => "proposals#form"
+  post "proposals/generate" => "proposals#generate"
 
-  root 'static_pages#index'
+  root "static_pages#index"
 
   # Catch-all for short links.
   # This must be at the bottom!
-  get '*link' => 'short_links#go'
+  get "*link" => "short_links#go"
 end

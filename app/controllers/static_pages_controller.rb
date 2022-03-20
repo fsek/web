@@ -18,7 +18,7 @@ class StaticPagesController < ApplicationController
   end
 
   def robots
-    render :robots, content_type: 'text/plain'
+    render :robots, content_type: "text/plain"
   end
 
   def privacy

@@ -3,16 +3,16 @@ class Admin::WorkPostsController < Admin::BaseController
   load_permissions_and_authorize_resource
 
   def index
-    if params[:all].present?
-      posts = WorkPost.all
+    posts = if params[:all].present?
+      WorkPost.all
     else
-      posts = WorkPost.by_deadline
+      WorkPost.by_deadline
     end
 
     @work_portal = WorkPortal.new(grid: initialize_grid(posts,
-                                                        include: :user,
-                                                        order: 'updated_at',
-                                                        order_direction: 'desc'))
+      include: :user,
+      order: "updated_at",
+      order_direction: "desc"))
   end
 
   def new
@@ -29,7 +29,7 @@ class Admin::WorkPostsController < Admin::BaseController
 
     if @work_portal.current_post.save
       redirect_to(edit_admin_work_post_path(@work_portal.current_post),
-                  notice: alert_create(WorkPost))
+        notice: alert_create(WorkPost))
     else
       render :new, status: 422
     end
@@ -41,7 +41,7 @@ class Admin::WorkPostsController < Admin::BaseController
 
     if @work_portal.current_post.update(work_post_params)
       redirect_to(edit_admin_work_post_path(@work_portal.current_post),
-                  notice: alert_update(WorkPost))
+        notice: alert_update(WorkPost))
     else
       render :edit, status: 422
     end
@@ -58,7 +58,7 @@ class Admin::WorkPostsController < Admin::BaseController
 
   def work_post_params
     params.require(:work_post).permit(:title, :description, :company, :deadline,
-                                      :field, :target_group, :visible, :publish,
-                                      :image, :remove_image, :link, :kind)
+      :field, :target_group, :visible, :publish,
+      :image, :remove_image, :link, :kind)
   end
 end

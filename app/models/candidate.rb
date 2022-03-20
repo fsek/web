@@ -4,11 +4,11 @@ class Candidate < ApplicationRecord
   belongs_to :post, required: true
   has_one :council, through: :post
 
-  validates :post, uniqueness: { scope: [:user, :election],
-                                 message: I18n.t('model.candidate.similar_candidate') }
+  validates :post, uniqueness: {scope: [:user, :election],
+                                message: I18n.t("model.candidate.similar_candidate")}
 
   validate :user_attributes
-  validate :check_edit, if: Proc.new { |o| o.election.present? && o.post.present? }
+  validate :check_edit, if: proc { |o| o.election.present? && o.post.present? }
 
   def editable?
     if election.present? && post.present?
@@ -28,13 +28,13 @@ class Candidate < ApplicationRecord
 
   def user_attributes
     unless user.present? && user.has_attributes?
-      errors.add(:user, I18n.t('model.candidate.add_user_information'))
+      errors.add(:user, I18n.t("model.candidate.add_user_information"))
     end
   end
 
   def check_edit
     unless editable?
-      errors.add(:post, I18n.t('model.candidate.not_editable'))
+      errors.add(:post, I18n.t("model.candidate.not_editable"))
     end
   end
 end

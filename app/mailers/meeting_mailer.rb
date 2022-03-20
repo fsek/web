@@ -1,15 +1,17 @@
 class MeetingMailer < ApplicationMailer
-  include MeetingMailerHelper, MeetingHelper, TimeHelper
+  include TimeHelper
+  include MeetingHelper
+  include MeetingMailerHelper
   add_template_helper MarkdownHelper
-  default from: %(#{I18n.t('meeting_mailer.mailer.executives')} <lokalbokning@fsektionen.se>)
+  default from: %(#{I18n.t("meeting_mailer.mailer.executives")} <lokalbokning@fsektionen.se>)
 
   def book_email(meeting)
     @meeting = meeting
     if @meeting.present? && @meeting.user.email.present?
       mail(to: @meeting.user.try(:print_email),
-           bcc: 'lokalbokning@fsektionen.se',
-           subject: email_subject(meeting),
-           sent_on: Time.zone.now)
+        bcc: "lokalbokning@fsektionen.se",
+        subject: email_subject(meeting),
+        sent_on: Time.zone.now)
     end
   end
 
@@ -18,9 +20,9 @@ class MeetingMailer < ApplicationMailer
     @user = user
     if @meeting.present? && @meeting.user.email.present?
       mail(to: @meeting.user.try(:print_email),
-           bcc: 'lokalbokning@fsektionen.se',
-           subject: email_subject(meeting),
-           sent_on: Time.zone.now)
+        bcc: "lokalbokning@fsektionen.se",
+        subject: email_subject(meeting),
+        sent_on: Time.zone.now)
     end
   end
 end

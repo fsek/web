@@ -7,7 +7,7 @@ class StartPage
     @events = Event.by_locale(locale: I18n.locale).stream || []
 
     election = Election.current
-    if(election.present? && election.state != :closed)
+    if election.present? && election.state != :closed
       @election_view = ElectionView.new(election)
     end
   end

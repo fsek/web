@@ -23,8 +23,8 @@ class Admin::EventSignupsController < Admin::BaseController
   def show
     @event_signup = @event.signup
     @event_signup ||= @event.build_event_signup(opens: Time.zone.now,
-                                                closes: @event.starts_at,
-                                                for_members: false)
+      closes: @event.starts_at,
+      for_members: false)
     set_grids
   end
 
@@ -36,14 +36,14 @@ class Admin::EventSignupsController < Admin::BaseController
   def export
     respond_to do |format|
       format.csv do
-        if params[:list] == 'reserves'
+        if params[:list] == "reserves"
           set_reserves
           send_data(ExportCSV.event_users(@reserves, @event_signup),
-                    filename: "reserver_till_#{@event.to_s.parameterize}.csv")
+            filename: "reserver_till_#{@event.to_s.parameterize}.csv")
         else
           set_attending
           send_data(ExportCSV.event_users(@attending, @event_signup),
-                    filename: "anmalda_till_#{@event.to_s.parameterize}.csv")
+            filename: "anmalda_till_#{@event.to_s.parameterize}.csv")
         end
       end
     end
@@ -53,9 +53,9 @@ class Admin::EventSignupsController < Admin::BaseController
 
   def event_signup_params
     params.require(:event_signup).permit(:for_members, :closes, :slots, :question_sv, :question_en,
-                                         :notification_message_sv, :notification_message_en,
-                                         :novice, :mentor, :member, :custom, :custom_name, :opens,
-                                         group_types: [])
+      :notification_message_sv, :notification_message_en,
+      :novice, :mentor, :member, :custom, :custom_name, :opens,
+      group_types: [])
   end
 
   def set_tab

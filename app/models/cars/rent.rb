@@ -8,10 +8,10 @@ class Rent < ApplicationRecord
   # Scopes
   scope :councils, -> { where.not(council_id: nil) }
   scope :active, -> { where(aktiv: true).where.not(status: :denied) }
-  scope :between, ->(from, to) { where('? >= d_from AND ? <= d_til', to, from) }
+  scope :between, ->(from, to) { where("? >= d_from AND ? <= d_til", to, from) }
   scope :date_overlap, ->(from, to, id) { between(from, to).where.not(id: id) }
   scope :ascending, -> { order(d_from: :asc) }
-  scope :from_date, ->(from) { where('d_from >= ?', from) }
+  scope :from_date, ->(from) { where("d_from >= ?", from) }
 
   attr_accessor :terms
 
@@ -42,27 +42,27 @@ class Rent < ApplicationRecord
   # Methods for printing
 
   def print_status
-    str = ''
+    str = ""
     if service == true
       str += %(#{Rent.human_attribute_name(:service)} - )
     elsif status.present?
-      str += I18n.t(%(model.rent.#{status})) + ' - '
+      str += I18n.t(%(model.rent.#{status})) + " - "
     end
-    str += aktiv == true ? I18n.t('model.rent.active') : I18n.t('model.rent.inactive')
+    str += aktiv == true ? I18n.t("model.rent.active") : I18n.t("model.rent.inactive")
     str
   end
 
   def p_time
-    if (d_from.day == d_til.day)
-      %(#{I18n.l(d_from, format: '%H:%M')} - #{I18n.l(d_til, format: '%H:%M')}, #{I18n.l(d_from, format: '%d/%m')})
+    if d_from.day == d_til.day
+      %(#{I18n.l(d_from, format: "%H:%M")} - #{I18n.l(d_til, format: "%H:%M")}, #{I18n.l(d_from, format: "%d/%m")})
     else
-      %(#{I18n.l(d_from, format: '%H:%M %d/%m')} - #{I18n.l(d_til, format: '%H:%M %d/%m')})
+      %(#{I18n.l(d_from, format: "%H:%M %d/%m")} - #{I18n.l(d_til, format: "%H:%M %d/%m")})
     end
   end
 
   # Requests route-helper to print url and path
   def p_url
-    Rails.application.routes.url_helpers.rent_url(id, host: PUBLIC_URL)
+    Rails.application.routes.url_helpers.rent_url(id, host: Rails.application.config.public_url)
   end
 
   def p_path
@@ -72,8 +72,6 @@ class Rent < ApplicationRecord
   def overlap
     if d_from.present? && d_til.present?
       Rent.active.date_overlap(d_from, d_til, id)
-    else
-      nil
     end
   end
 

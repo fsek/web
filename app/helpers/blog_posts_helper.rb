@@ -1,7 +1,7 @@
 module BlogPostsHelper
   def blog_post_dropdown_button(collection:, current:)
     content = safe_join([category_button(current), blog_posts_collection(collection)])
-    content_tag(:div, content, class: 'dropdown')
+    content_tag(:div, content, class: "dropdown")
   end
 
   def blog_posts_collection(collection)
@@ -19,12 +19,12 @@ module BlogPostsHelper
 
   def blog_post_translated?(blog_post)
     unless blog_post.is_translated?(I18n.locale)
-      content_tag(:div, class: 'alert alert-info') do
+      content_tag(:div, class: "alert alert-info") do
         content = []
-        content << content_tag(:button, icon('fas', 'times'),
-                               type: 'button', class: 'close',
-                               data: { dismiss: 'alert' })
-        content << I18n.t('model.blog_post.not_translated')
+        content << content_tag(:button, icon("fas", "times"),
+          type: "button", class: "close",
+          data: {dismiss: "alert"})
+        content << I18n.t("model.blog_post.not_translated")
         safe_join(content)
       end
     end
@@ -43,7 +43,7 @@ module BlogPostsHelper
   end
 
   def blog_cover_image(url)
-    content_tag(:div, '', class: 'cover-image',
+    content_tag(:div, "", class: "cover-image",
                 style: "background: url('#{url}') no-repeat center center; background-size: contain;")
   end
 end

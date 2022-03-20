@@ -1,10 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ElectionService do
   include ActiveJob::TestHelper
 
-  describe 'create_candidate' do
-    it 'creates a valid candidate' do
+  describe "create_candidate" do
+    it "creates a valid candidate" do
       election = create(:election, :before_general, :autumn)
       user = create(:user)
       the_post = create(:post, :autumn)
@@ -15,7 +15,7 @@ RSpec.describe ElectionService do
       end.should change(Candidate, :count).by(1)
     end
 
-    it 'sends mail' do
+    it "sends mail" do
       user = create(:user)
       candidate = build(:candidate, user: nil)
 
@@ -25,7 +25,7 @@ RSpec.describe ElectionService do
       end.should change(ActionMailer::Base.deliveries, :count).by(1)
     end
 
-    it 'returns false if candidate invalid' do
+    it "returns false if candidate invalid" do
       election = create(:election, :before_general, :autumn)
       user = create(:user)
       the_post = create(:post, :spring)
@@ -37,15 +37,15 @@ RSpec.describe ElectionService do
     end
   end
 
-  describe '#destroy_candidate' do
-    it 'destroys candidate if editable' do
+  describe "#destroy_candidate" do
+    it "destroys candidate if editable" do
       candidate = create(:candidate)
       candidate.stub(:editable?).and_return(true)
 
       ElectionService.destroy_candidate(candidate).should be_truthy
     end
 
-    it 'does not destroy candidate if not editable' do
+    it "does not destroy candidate if not editable" do
       candidate = create(:candidate)
       candidate.stub(:editable?).and_return(false)
 
@@ -53,8 +53,8 @@ RSpec.describe ElectionService do
     end
   end
 
-  describe '#create_nomination' do
-    it 'valid parameters' do
+  describe "#create_nomination" do
+    it "valid parameters" do
       nomination = build(:nomination)
 
       lambda do
@@ -62,7 +62,7 @@ RSpec.describe ElectionService do
       end.should change(Nomination, :count).by(1)
     end
 
-    it 'should send email' do
+    it "should send email" do
       nomination = build(:nomination)
 
       lambda do
@@ -71,7 +71,7 @@ RSpec.describe ElectionService do
       end.should change(ActionMailer::Base.deliveries, :count).by(1)
     end
 
-    it 'invalid_parameters' do
+    it "invalid_parameters" do
       nomination = build(:nomination, email: nil)
 
       lambda do

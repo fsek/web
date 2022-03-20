@@ -5,7 +5,7 @@ module NewsHelper
     if news.present? && news.user.present?
       content_tag(:span, class: :link) do
         link_to(news.user, target: :blank) do
-          icon('fas', 'user') + ' ' + news.user
+          icon("fas", "user") + " " + news.user
         end
       end
     end
@@ -13,7 +13,7 @@ module NewsHelper
 
   def news_dropdown_button(collection:, current:)
     content = safe_join([category_button(current), news_collection(collection)])
-    content_tag(:div, content, class: 'dropdown')
+    content_tag(:div, content, class: "dropdown")
   end
 
   def news_collection(collection)

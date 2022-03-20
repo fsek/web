@@ -1,5 +1,5 @@
 module MeetingService
-  def self.create_recurring_meeting(meeting_params, old_recurring=nil)
+  def self.create_recurring_meeting(meeting_params, old_recurring = nil)
     occurrences = meeting_params[:occurrences].to_i
     every = meeting_params[:every].to_i
     start_date = Time.parse(meeting_params[:start_date])
@@ -7,10 +7,10 @@ module MeetingService
     meetings = Array.new(occurrences)
 
     # Create meetings and add them to an array
-    for i in 0..occurrences - 1
+    (0..occurrences - 1).each do |i|
       temp_params = meeting_params
-      new_start_date = (start_date + (i * every).day).strftime('%Y-%m-%d %H:%M:%S')
-      new_end_date = (end_date + (i * every).day).strftime('%Y-%m-%d %H:%M:%S')
+      new_start_date = (start_date + (i * every).day).strftime("%Y-%m-%d %H:%M:%S")
+      new_end_date = (end_date + (i * every).day).strftime("%Y-%m-%d %H:%M:%S")
       temp_params[:start_date] = new_start_date
       temp_params[:end_date] = new_end_date
       meeting = Meeting.new(temp_params)
@@ -23,9 +23,7 @@ module MeetingService
     begin
       RecurringMeeting.transaction do
         # If old recurring is specified destroy it
-        if !old_recurring.nil?
-          old_recurring.destroy!
-        end
+        old_recurring&.destroy!
         recurring_meeting = RecurringMeeting.new(every: every)
         recurring_meeting.save!
         meetings.each do |meeting|
@@ -33,9 +31,9 @@ module MeetingService
           meeting.save!
         end
       end
-      return meetings[0]
+      meetings[0]
     rescue
-      return nil
+      nil
     end
   end
 
@@ -55,8 +53,8 @@ module MeetingService
     elsif every != recurring_meeting.every
       # Remove current recurring meeting including its meetings, and create a new recurring meeting
       meeting = Meeting.where(recurring_meeting_id: recurring_meeting.id)[0]
-      meeting_params[:start_date] = meeting.start_date.strftime('%Y-%m-%d %H:%M:%S')
-      meeting_params[:end_date] = meeting.end_date.strftime('%Y-%m-%d %H:%M:%S')
+      meeting_params[:start_date] = meeting.start_date.strftime("%Y-%m-%d %H:%M:%S")
+      meeting_params[:end_date] = meeting.end_date.strftime("%Y-%m-%d %H:%M:%S")
 
       create_recurring_meeting(meeting_params, recurring_meeting)
     else
@@ -120,20 +118,20 @@ module MeetingService
     end_date = Time.parse(meeting_params[:end_date])
 
     # Update the time of all meetings if it has changed
-    if start_date.strftime('%H:%M:%S') != meeting.start_date.strftime('%H:%M:%S') || end_date.strftime('%H:%M:%S') != meeting.end_date.strftime('%H:%M:%S')
+    if start_date.strftime("%H:%M:%S") != meeting.start_date.strftime("%H:%M:%S") || end_date.strftime("%H:%M:%S") != meeting.end_date.strftime("%H:%M:%S")
       # Get time for start and end
-      start_time_hh = start_date.strftime('%H')
-      start_time_mm = start_date.strftime('%M')
-      end_time_hh = end_date.strftime('%H')
-      end_time_mm = end_date.strftime('%M')
+      start_time_hh = start_date.strftime("%H")
+      start_time_mm = start_date.strftime("%M")
+      end_time_hh = end_date.strftime("%H")
+      end_time_mm = end_date.strftime("%M")
       begin
         Meeting.transaction do
           meetings.each do |m|
             m.is_admin = true
             new_start_date = m.start_date
             new_end_date = m.end_date
-            m.start_date = new_start_date.change({ hour: start_time_hh, min: start_time_mm })
-            m.end_date = new_end_date.change({ hour: end_time_hh, min: end_time_mm })
+            m.start_date = new_start_date.change({hour: start_time_hh, min: start_time_mm})
+            m.end_date = new_end_date.change({hour: end_time_hh, min: end_time_mm})
             m.save!
           end
         end
@@ -143,8 +141,8 @@ module MeetingService
     end
 
     # Update only meeting information
-    meeting_params.delete('start_date')
-    meeting_params.delete('end_date')
+    meeting_params.delete("start_date")
+    meeting_params.delete("end_date")
     begin
       Meeting.transaction do
         meetings.each do |m|
@@ -196,10 +194,10 @@ module MeetingService
       start_date = meetings[-1].start_date
       end_date = meetings[-1].end_date
       new_meetings = Array.new(diff.abs)
-      for i in 1..diff.abs
+      (1..diff.abs).each do |i|
         temp_params = meeting_params
-        new_start_date = (start_date + (i * every).day).strftime('%Y-%m-%d %H:%M:%S')
-        new_end_date = (end_date + (i * every).day).strftime('%Y-%m-%d %H:%M:%S')
+        new_start_date = (start_date + (i * every).day).strftime("%Y-%m-%d %H:%M:%S")
+        new_end_date = (end_date + (i * every).day).strftime("%Y-%m-%d %H:%M:%S")
         temp_params[:start_date] = new_start_date
         temp_params[:end_date] = new_end_date
         m = Meeting.new(temp_params)

@@ -6,8 +6,8 @@ module CalendarJSON
         title: %(Service -\n #{rent.purpose}),
         start: rent.d_from.iso8601,
         end: rent.d_til.iso8601,
-        backgroundColor: 'black',
-        textColor: 'white'
+        backgroundColor: "black",
+        textColor: "white"
       }
     else
       {
@@ -17,7 +17,7 @@ module CalendarJSON
         end: rent.d_til.iso8601,
         url: rent.p_path,
         backgroundColor: rent_color(rent),
-        textColor: 'black'
+        textColor: "black"
       }
     end
   end
@@ -29,9 +29,9 @@ module CalendarJSON
       start: shift.start.iso8601,
       end: shift.stop.iso8601,
       url: Rails.application.routes.url_helpers.cafe_shift_path(shift),
-      color: 'black',
+      color: "black",
       backgroundColor: cafe_color(shift, user),
-      textColor: 'black'
+      textColor: "black"
     }
   end
 
@@ -42,7 +42,7 @@ module CalendarJSON
       start: meeting.start_date.iso8601,
       end: meeting.end_date.iso8601,
       backgroundColor: meeting_color(meeting),
-      textColor: 'black',
+      textColor: "black",
       url: meeting.p_path
     }
   end
@@ -51,35 +51,35 @@ module CalendarJSON
 
   def self.cafe_color(shift, owner)
     if shift.cafe_worker.present?
-      owner ? 'green' : 'orange'
+      owner ? "green" : "orange"
     else
-      'white'
+      "white"
     end
   end
 
   def self.rent_color(rent)
     if rent.aktiv
       case rent.status
-      when 'confirmed'
-        'green'
-      when 'unconfirmed'
-        'yellow'
-      when 'denied'
-        'red'
+      when "confirmed"
+        "green"
+      when "unconfirmed"
+        "yellow"
+      when "denied"
+        "red"
       end
     else
-      'red'
+      "red"
     end
   end
 
   def self.meeting_color(meeting)
     case meeting.status
-    when 'confirmed'
-      'green'
-    when 'unconfirmed'
-      'yellow'
-    when 'denied'
-      'red'
+    when "confirmed"
+      "green"
+    when "unconfirmed"
+      "yellow"
+    when "denied"
+      "red"
     end
   end
 end

@@ -55,11 +55,11 @@ class MeetingsController < ApplicationController
 
   def meeting_params
     params.require(:meeting).permit(:start_date, :end_date, :title, :purpose,
-                                    :room, :council_id)
+      :room, :council_id)
   end
 
   def load_room
-    @room = params.fetch(:room, 'sk')
+    @room = params.fetch(:room, "sk")
   end
 
   def set_room

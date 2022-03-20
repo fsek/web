@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Admin::RentsController, type: :controller do
   let(:admin) { create(:user) }
@@ -9,16 +9,16 @@ RSpec.describe Admin::RentsController, type: :controller do
 
   allow_user_to :manage, Rent
 
-  describe 'GET #show' do
-    it 'assigns the requested rent as @rent' do
+  describe "GET #show" do
+    it "assigns the requested rent as @rent" do
       rent = create(:rent)
 
-      get :show, params: { id: rent.to_param }
+      get :show, params: {id: rent.to_param}
       assigns(:rent).should eq(rent)
     end
   end
 
-  describe 'GET #new' do
+  describe "GET #new" do
     it :succeeds do
       get :new
 
@@ -28,24 +28,24 @@ RSpec.describe Admin::RentsController, type: :controller do
     end
   end
 
-  describe 'POST #create' do
-    it 'valid parameters' do
+  describe "POST #create" do
+    it "valid parameters" do
       user = create(:user)
-      attributes = { d_from: 1.hours.from_now,
-                     d_til: 10.hours.from_now,
-                     purpose: 'Åka till ikea',
-                     user_id: user.id }
+      attributes = {d_from: 1.hours.from_now,
+                    d_til: 10.hours.from_now,
+                    purpose: "Åka till ikea",
+                    user_id: user.id}
       lambda do
-        post :create, params: { rent: attributes }
+        post :create, params: {rent: attributes}
       end.should change(Rent, :count).by(1)
 
       response.should redirect_to([:admin, Rent.last])
       assigns(:rent).user.should eq(user)
     end
 
-    it 'invalid params' do
+    it "invalid params" do
       lambda do
-        post :create, params: { rent: { d_from: nil } }
+        post :create, params: {rent: {d_from: nil}}
       end.should change(Rent, :count).by(0)
 
       response.status.should eq(422)
@@ -53,22 +53,22 @@ RSpec.describe Admin::RentsController, type: :controller do
     end
   end
 
-  describe 'PATCH #update' do
-    it 'valid params' do
+  describe "PATCH #update" do
+    it "valid params" do
       user = create(:user)
-      rent = create(:rent, user: user, purpose: 'Not IKEA')
-      attributes = { purpose: 'Indeed IKEA' }
-      patch :update, params: { id: rent.to_param, rent: attributes }
+      rent = create(:rent, user: user, purpose: "Not IKEA")
+      attributes = {purpose: "Indeed IKEA"}
+      patch :update, params: {id: rent.to_param, rent: attributes}
 
       assigns(:rent).should eq(rent)
       response.should redirect_to(admin_rent_path(rent))
     end
 
-    it 'invalid params' do
+    it "invalid params" do
       user = create(:user)
-      rent = create(:rent, user: user, purpose: 'Not IKEA')
-      attributes = { purpose: '' }
-      patch :update, params: { id: rent.to_param, rent: attributes }
+      rent = create(:rent, user: user, purpose: "Not IKEA")
+      attributes = {purpose: ""}
+      patch :update, params: {id: rent.to_param, rent: attributes}
 
       assigns(:rent).should eq(rent)
       response.status.should eq(422)
@@ -76,12 +76,12 @@ RSpec.describe Admin::RentsController, type: :controller do
     end
   end
 
-  describe 'DELETE #destroy' do
-    it 'destroys the requested rent' do
+  describe "DELETE #destroy" do
+    it "destroys the requested rent" do
       rent = create(:rent)
 
       lambda do
-        delete :destroy, format: :html, params: { id: rent.to_param }
+        delete :destroy, format: :html, params: {id: rent.to_param}
       end.should change(Rent, :count).by(-1)
 
       response.should redirect_to(:admin_rents)

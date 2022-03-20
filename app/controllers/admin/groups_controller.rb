@@ -4,8 +4,8 @@ class Admin::GroupsController < Admin::BaseController
   def index
     set_groups
     @grid = initialize_grid(@groups,
-                            include: :introduction,
-                            order: 'introductions.start')
+      include: :introduction,
+      order: "introductions.start")
   end
 
   def new
@@ -45,8 +45,8 @@ class Admin::GroupsController < Admin::BaseController
     @group = Group.find(params[:group_id])
     @adventure_mission_groups = AdventureMissionGroup.where(group: @group, pending: false)
     @grid = initialize_grid(@adventure_mission_groups,
-                            include: :adventure_mission,
-                            order: 'adventure_mission_groups.updated_at')
+      include: :adventure_mission,
+      order: "adventure_mission_groups.updated_at")
   end
 
   private

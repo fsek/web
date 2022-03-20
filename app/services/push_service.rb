@@ -12,9 +12,9 @@ class PushService
     # Firebase supports 1000 registration ids/notification
     clients.each_slice(1000) do |c|
       Rpush::Gcm::Notification.create!(app: app,
-                                       priority: :high,
-                                       data: data_object.android_data,
-                                       registration_ids: c)
+        priority: :high,
+        data: data_object.android_data,
+        registration_ids: c)
     end
   end
 
@@ -25,10 +25,10 @@ class PushService
     # Firebase supports 1000 registration ids/notification
     clients.each_slice(1000) do |c|
       Rpush::Gcm::Notification.create!(app: app,
-                                       data: data_object.ios_data,
-                                       priority: :high,
-                                       notification: data_object.ios_notification,
-                                       registration_ids: c)
+        data: data_object.ios_data,
+        priority: :high,
+        notification: data_object.ios_notification,
+        registration_ids: c)
     end
   end
 

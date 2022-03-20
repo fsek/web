@@ -4,7 +4,7 @@ FactoryBot.define do
     slots 5
     opens { Time.zone.now }
     closes { opens + 1.day }
-    custom_name 'Dryga gamla fös'
+    custom_name "Dryga gamla fös"
     custom 37
     novice 30
     mentor 20

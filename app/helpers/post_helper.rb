@@ -2,7 +2,7 @@ module PostHelper
   def print_post_limit(post)
     if post.present?
       if post.rec_limit == 0 && post.limit == 0 || post.rec_limit > post.limit
-        '*'
+        "*"
       elsif post.rec_limit == post.limit && post.rec_limit > 0
         %(#{post.limit} (x))
       elsif post.limit > 0 && post.rec_limit == 0
@@ -15,7 +15,7 @@ module PostHelper
 
   def post_tab_header(posts)
     if posts.present?
-      content_tag(:ul, class: 'nav nav-tabs') do
+      content_tag(:ul, class: "nav nav-tabs") do
         content = []
         content << post_tab_link(posts.first, first: true)
         posts.offset(1).each do |post|
@@ -39,11 +39,11 @@ module PostHelper
 
   def post_tab_element(post, first: false)
     if first
-      content_tag(:div, id: dom_id(post), class: 'tab-pane fade in active') do
+      content_tag(:div, id: dom_id(post), class: "tab-pane fade in active") do
         safe_join([post_tab_description(post), post_tab_users(post)])
       end
     else
-      content_tag(:div, id: dom_id(post), class: 'tab-pane fade in') do
+      content_tag(:div, id: dom_id(post), class: "tab-pane fade in") do
         safe_join([post_tab_description(post), post_tab_users(post)])
       end
     end
@@ -53,11 +53,11 @@ module PostHelper
     if post.present?
       if first
         content_tag(:li, class: :active) do
-          link_to(post, %(##{dom_id(post)}), data: { toggle: :tab })
+          link_to(post, %(##{dom_id(post)}), data: {toggle: :tab})
         end
       else
         content_tag(:li) do
-          link_to(post, %(##{dom_id(post)}), data: { toggle: :tab })
+          link_to(post, %(##{dom_id(post)}), data: {toggle: :tab})
         end
       end
     end
@@ -65,7 +65,7 @@ module PostHelper
 
   def post_tab_description(post)
     if post.present?
-      content_tag(:div, class: 'col-sm-8') do
+      content_tag(:div, class: "col-sm-8") do
         content = []
         content << content_tag(:div, class: :headline) do
           content_tag(:h4) do
@@ -80,22 +80,22 @@ module PostHelper
 
   def post_tab_users(post)
     if post.present?
-      content_tag(:div, class: 'col-sm-4') do
+      content_tag(:div, class: "col-sm-4") do
         content = []
         content << content_tag(:div, class: :headline) do
           content_tag(:h4) do
-            t('helper.post.who_currently')
+            t("helper.post.who_currently")
           end
         end
-        if post.title == 'Överfös'
-          names = ['Överfös Natalia']
+        if post.title == "Överfös"
+          names = ["Överfös Natalia"]
           names.each do |e|
             content << content_tag(:li) do
               e
             end
           end
-        elsif post.title == 'Cofös'
-          names = ['Cofös Eliot', 'Cofös Gustav', 'Cofös Klara', 'Cofös Axel']
+        elsif post.title == "Cofös"
+          names = ["Cofös Eliot", "Cofös Gustav", "Cofös Klara", "Cofös Axel"]
           names.each do |e|
             content << content_tag(:li) do
               e

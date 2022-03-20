@@ -3,10 +3,10 @@ class Event < ApplicationRecord
   include CarrierWave::Compatibility::Paperclip
   include Categorizable
 
-  TZID = 'Europe/Stockholm'.freeze
-  SINGLE = 'single'.freeze
-  DOUBLE = 'double'.freeze
-  WITHOUT = 'without'.freeze
+  TZID = "Europe/Stockholm".freeze
+  SINGLE = "single".freeze
+  DOUBLE = "double".freeze
+  WITHOUT = "without".freeze
 
   translates(:title, :description, :short, :location)
   globalize_accessors(locales: [:en, :sv], attributes: [:title, :description, :short, :location])
@@ -32,29 +32,29 @@ class Event < ApplicationRecord
   scope :by_start, -> { order(starts_at: :asc) }
   scope :calendar, -> { all }
   scope :translations, -> { includes(:translations) }
-  scope :from_date, -> (date) { between(date.beginning_of_day, date.end_of_day) }
-  scope :after_date, -> (date) { where('starts_at > :date', date: date || 2.weeks.ago) }
-  scope :between, -> (start, stop) do
-    where('(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)',
-          start, stop, start, stop)
+  scope :from_date, ->(date) { between(date.beginning_of_day, date.end_of_day) }
+  scope :after_date, ->(date) { where("starts_at > :date", date: date || 2.weeks.ago) }
+  scope :between, ->(start, stop) do
+    where("(starts_at BETWEEN ? AND ?) OR (all_day IS TRUE AND ends_at BETWEEN ? AND ?)",
+      start, stop, start, stop)
   end
   scope :stream, -> do
     between(Time.zone.now.beginning_of_day, 6.days.from_now.end_of_day).by_start.includes(:event_signup)
   end
 
   scope :starts_within, (lambda do |time|
-    where('starts_at BETWEEN :first AND :second',
-          first: Time.zone.now,
-          second: time.from_now)
+    where("starts_at BETWEEN :first AND :second",
+      first: Time.zone.now,
+      second: time.from_now)
   end)
 
   scope :not_reminded, -> { joins(:event_signup).merge(EventSignup.reminder_not_sent) }
   scope :by_locale, ->(locale: I18n.locale) do
     locale = locale.to_s
-    if locale == 'sv'
+    if locale == "sv"
       includes(:translations).all
-    elsif locale == 'en'
-      translation = Translation.where(locale: 'en').where.not(title: [nil, ''])
+    elsif locale == "en"
+      translation = Translation.where(locale: "en").where.not(title: [nil, ""])
       includes(:translations).joins(:translations).merge(translation)
     else
       none
@@ -62,11 +62,11 @@ class Event < ApplicationRecord
   end
 
   def self.locations_sv
-    Translation.where(locale: 'sv').select(:location).order(:location).distinct.pluck(:location)
+    Translation.where(locale: "sv").select(:location).order(:location).distinct.pluck(:location)
   end
 
   def self.locations_en
-    Translation.where(locale: 'en').select(:location).order(:location).distinct.pluck(:location)
+    Translation.where(locale: "en").select(:location).order(:location).distinct.pluck(:location)
   end
 
   def signup

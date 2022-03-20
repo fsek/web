@@ -4,8 +4,8 @@ class Admin::RentsController < Admin::BaseController
 
   def index
     @rents = Rent.from_date(Time.zone.now.beginning_of_day).includes(:user)
-    @rent_grid = initialize_grid(@rents, order: 'rents.d_from', order_direction: :asc)
-    @faqs = Faq.where(answer: '').where(category: 'Bil')
+    @rent_grid = initialize_grid(@rents, order: "rents.d_from", order_direction: :asc)
+    @faqs = Faq.where(answer: "").where(category: "Bil")
   end
 
   def show
@@ -48,7 +48,7 @@ class Admin::RentsController < Admin::BaseController
 
   def rent_params
     params.require(:rent).permit(:d_from, :d_til, :user_id,
-                                 :purpose, :disclaimer, :council_id,
-                                 :comment, :status, :aktiv, :service)
+      :purpose, :disclaimer, :council_id,
+      :comment, :status, :aktiv, :service)
   end
 end

@@ -1,47 +1,47 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe EventUser, type: :model do
-  it 'should have valid factory' do
+  it "should have valid factory" do
     create(:event_user).should be_valid
   end
 
-  describe 'validations' do
-    it 'checks if signup is open' do
+  describe "validations" do
+    it "checks if signup is open" do
       event_user = create(:event_user)
       event_user.event_signup.stub(:open?).and_return(false)
 
       event_user.valid?.should be_falsey
-      event_user.errors[:event].should include(I18n.t('model.event_signup.not_open'))
+      event_user.errors[:event].should include(I18n.t("model.event_signup.not_open"))
     end
 
-    it 'checks for membership' do
+    it "checks for membership" do
       event_user = create(:event_user)
       event_user.event_signup.stub(:for_members?).and_return(true)
       event_user.user.stub(:member_at).and_return(false)
 
       event_user.valid?.should be_falsey
-      event_user.errors[:user].should include(I18n.t('model.event_user.user_not_member'))
+      event_user.errors[:user].should include(I18n.t("model.event_user.user_not_member"))
     end
 
-    it 'checks user_type' do
+    it "checks user_type" do
       event_user = create(:event_user, user_type: nil)
       event_user.should be_valid
       event_user.user_type = EventSignup::NOVICE
       event_user.event_signup.stub(:order).and_return([EventSignup::MEMBER])
 
       event_user.valid?.should be_falsey
-      event_user.errors[:user_type].should include(I18n.t('model.event_user.unavailable_type'))
+      event_user.errors[:user_type].should include(I18n.t("model.event_user.unavailable_type"))
     end
 
-    it 'checks selected user_type' do
+    it "checks selected user_type" do
       event_user = create(:event_user)
       event_user.user_type = EventSignup::NOVICE
       event_user.user.stub(:novice?).and_return(false)
       event_user.valid?.should be_falsey
-      event_user.errors[:user_type].should include(I18n.t('model.event_user.user_type_not_allowed'))
+      event_user.errors[:user_type].should include(I18n.t("model.event_user.user_type_not_allowed"))
     end
 
-    it 'checks if user is in selected group' do
+    it "checks if user is in selected group" do
       event_user = create(:event_user)
       group = create(:group_user, user: event_user.user).group
       event_user.group = group
@@ -49,12 +49,12 @@ RSpec.describe EventUser, type: :model do
       event_user.user.stub(:groups).and_return([])
 
       event_user.valid?.should be_falsey
-      event_user.errors[:group_id].should include(I18n.t('model.event_user.not_in_group'))
+      event_user.errors[:group_id].should include(I18n.t("model.event_user.not_in_group"))
     end
   end
 
-  describe 'scopes' do
-    it 'returns attending users and reserves correctly' do
+  describe "scopes" do
+    it "returns attending users and reserves correctly" do
       event = create(:event)
       create(:event_signup, event: event,
                             slots: 5,
@@ -78,7 +78,7 @@ RSpec.describe EventUser, type: :model do
       EventUser.reserves(event).should eq(reserve)
     end
 
-    it 'orders attending users by group' do
+    it "orders attending users by group" do
       event = create(:event)
       create(:event_signup, event: event,
                             slots: 5,

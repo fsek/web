@@ -32,7 +32,7 @@ class Admin::AlbumsController < Admin::BaseController
     service = AlbumService.new
     if @album.update(album_params) && service.upload_images(@album)
       redirect_to(admin_album_path(@album),
-                  notice: %(#{alert_update(Album)} #{I18n.t('model.album.uploaded')}: #{service.uploaded}))
+        notice: %(#{alert_update(Album)} #{I18n.t("model.album.uploaded")}: #{service.uploaded}))
     else
       render :show, status: 422
     end
@@ -43,15 +43,15 @@ class Admin::AlbumsController < Admin::BaseController
     album.images.destroy_all
 
     redirect_to(admin_album_path(album),
-                notice: alert_destroy(Image))
+      notice: alert_destroy(Image))
   end
 
   private
 
   def album_params
     params.require(:album).permit(:title_sv, :title_en, :description_sv, :description_en,
-                                  :location, :start_date, :end_date,
-                                  :photographer_user, :photographer_name,
-                                  image_upload: [])
+      :location, :start_date, :end_date,
+      :photographer_user, :photographer_name,
+      image_upload: [])
   end
 end

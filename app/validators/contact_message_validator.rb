@@ -23,7 +23,7 @@ module ContactMessageValidator
       state = false
     end
 
-    if !message.email.match(Devise::email_regexp)
+    if !message.email.match(Devise.email_regexp)
       message.errors.add(:email, :format)
       state = false
     end

@@ -1,5 +1,5 @@
-require 'rails_helper'
-RSpec.feature 'visitor visits paths' do
+require "rails_helper"
+RSpec.feature "visitor visits paths" do
   paths = {
     cafe: [:index],
     contacts: [:index, :show],
@@ -24,7 +24,7 @@ RSpec.feature 'visitor visits paths' do
     value.each do |v|
       scenario %(controller: #{key}, action: #{v}) do
         if v == :show || v == :edit
-          resource = create(key.to_s.split('/').last.singularize.to_sym)
+          resource = create(key.to_s.split("/").last.singularize.to_sym)
           page.visit url_for(controller: key, action: v, id:
                              resource.to_param)
         else

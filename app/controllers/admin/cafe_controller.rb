@@ -4,8 +4,8 @@ class Admin::CafeController < Admin::BaseController
 
   def index
     @cafe_shift_grid = initialize_grid(CafeShift,
-                                       include: :user, order: :start,
-                                       conditions: ['start >= ?', cafe_date])
+      include: :user, order: :start,
+      conditions: ["start >= ?", cafe_date])
   end
 
   def overview

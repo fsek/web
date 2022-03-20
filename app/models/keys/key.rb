@@ -1,7 +1,7 @@
 class Key < ApplicationRecord
   validates :name, :description, presence: true
-  validates :total, numericality: { greater_than: 0, less_than_or_equal_to: 1000000 }
-  validates :free_count, numericality: { greater_than_or_equal_to: 0 }
+  validates :total, numericality: {greater_than: 0, less_than_or_equal_to: 1000000}
+  validates :free_count, numericality: {greater_than_or_equal_to: 0}
   has_many :key_users, dependent: :restrict_with_error
   has_many :users, through: :key_users
 
@@ -17,10 +17,10 @@ class Key < ApplicationRecord
 
   def users
     renters = []
-    self.key_users.each do |key_user|
+    key_users.each do |key_user|
       renters.push(key_user.user.to_s)
     end
-    renters.uniq.join(', ')
+    renters.uniq.join(", ")
   end
 
   def free_count
@@ -28,10 +28,10 @@ class Key < ApplicationRecord
   end
 
   def to_s
-    %(#{name})
+    name.to_s
   end
 
   def to_s_and_free
-    to_s + ' (Antal lediga: ' + free_count.to_s + ')'
+    to_s + " (Antal lediga: " + free_count.to_s + ")"
   end
 end

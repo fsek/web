@@ -1,5 +1,5 @@
 class ConnectedList
-  KEY_BASE = 'connected_to_group_'.freeze
+  KEY_BASE = "connected_to_group_".freeze
 
   def self.redis
     @redis ||= ::Redis.new(url: ActionCableConfig[:url])

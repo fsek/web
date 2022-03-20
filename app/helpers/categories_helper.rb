@@ -1,25 +1,25 @@
 module CategoriesHelper
   def category_button(current)
-    content = safe_join([category_button_text(current), ' ',
-                         content_tag(:span, '', class: 'caret')])
-    content_tag(:button, content, class: 'btn primary dropdown-toggle',
-                                  id: 'category_dropdown', type: 'button',
-                                  data: { toggle: 'dropdown' },
-                                  aria: { haspopup: 'true', expanded: 'true' })
+    content = safe_join([category_button_text(current), " ",
+      content_tag(:span, "", class: "caret")])
+    content_tag(:button, content, class: "btn primary dropdown-toggle",
+                                  id: "category_dropdown", type: "button",
+                                  data: {toggle: "dropdown"},
+                                  aria: {haspopup: "true", expanded: "true"})
   end
 
   def category_collection(categories, index_path)
-    categories = categories.unshift(content_tag(:li, link_to(t('helper.categories.all'),
-                                                             index_path)))
-    content_tag(:ul, safe_join(categories), class: 'dropdown-menu',
-                                            aria: { labelled_by: 'category_dropdown' })
+    categories = categories.unshift(content_tag(:li, link_to(t("helper.categories.all"),
+      index_path)))
+    content_tag(:ul, safe_join(categories), class: "dropdown-menu",
+                                            aria: {labelled_by: "category_dropdown"})
   end
 
   def category_button_text(category)
     if category.present?
       category
     else
-      I18n.t('helper.categories.title')
+      I18n.t("helper.categories.title")
     end
   end
 

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :verify_terms_version, if: -> { !request.get? }
 
   helper_method :alert_update, :alert_create, :alert_destroy,
-                :can_administrate?, :authorize_admin!
+    :can_administrate?, :authorize_admin!
 
   include Alerts
   include InstanceAuthorization
@@ -22,32 +22,32 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActiveRecord::RecordInvalid do |ex|
-    flash[:alert] = ex.record.errors.full_messages.join '; '
+    flash[:alert] = ex.record.errors.full_messages.join "; "
     render referring_action, status: :unprocessable_entity
   end
 
   rescue_from ActiveRecord::RecordNotFound do
     # translate record not found -> HTTP 404
-    fail ActionController::RoutingError.new 'not found'
+    fail ActionController::RoutingError.new "not found"
   end
 
   protected
 
   def prepare_meta_tags(options = {})
-    site_name = I18n.t('global.title')
-    description = options[:description] || I18n.t('global.description')
-    image = options[:image] || view_context.image_url('sektionsmarke.png')
+    site_name = I18n.t("global.title")
+    description = options[:description] || I18n.t("global.description")
+    image = options[:image] || view_context.image_url("sektionsmarke.png")
     current_url = request.url
 
     defaults = {
-      site:        site_name,
-      image:       image,
+      site: site_name,
+      image: image,
       description: description,
-      keywords:    I18n.t('global.keywords'),
+      keywords: I18n.t("global.keywords"),
       twitter: {
         site_name: site_name,
-        site: '@fsektionen',
-        card: 'summary',
+        site: "@fsektionen",
+        card: "summary",
         description: description,
         image: image
       },
@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
         site_name: site_name,
         image: image,
         description: description,
-        type: 'website',
+        type: "website",
         locale: I18n.locale.to_s
       }
     }
@@ -68,9 +68,9 @@ class ApplicationController < ActionController::Base
   def configure_permitted_devise_parameters
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :remember_me])
     devise_parameter_sanitizer.permit(:sign_up, keys: [:firstname, :lastname, :email,
-                                                       :password, :password_confirmation])
+      :password, :password_confirmation])
     devise_parameter_sanitizer.permit(:account_update, keys: [:password, :current_password,
-                                                              :password_confirmation])
+      :password_confirmation])
   end
 
   def set_locale
@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
 
   # Ignore session cookies when we want to sign in with devise token auth!
   def devise_token_controller
-    params[:controller].split('/')[0] == 'devise_token_auth'
+    params[:controller].split("/")[0] == "devise_token_auth"
   end
 
   # Adds pagination meta data (from kaminari) to a serializer
@@ -115,7 +115,7 @@ class ApplicationController < ActionController::Base
   # Get requests are handled in `applications.html`
   def verify_terms_version
     if current_user.present? && current_user.terms_version != Versions.get(:terms)
-      unless controller_name == 'users' || devise_controller?
+      unless controller_name == "users" || devise_controller?
         redirect_to root_path
       end
     end

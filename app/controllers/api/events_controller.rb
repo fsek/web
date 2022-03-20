@@ -6,7 +6,7 @@ class Api::EventsController < Api::BaseController
     authorize!(:index, :api_event)
 
     @events = Event.includes(:translations).between(params[:start], params[:end]).by_start
-    render json: @events, namespace: '' # Use the same serializer as for the web calendar
+    render json: @events, namespace: "" # Use the same serializer as for the web calendar
   end
 
   def matrix
@@ -14,7 +14,7 @@ class Api::EventsController < Api::BaseController
 
     @introduction = Introduction.current
     if @introduction.nil?
-      render json: { error: 'No introduction exists' } and return
+      render json: {error: "No introduction exists"} and return
     end
 
     start = @introduction.start
@@ -23,7 +23,7 @@ class Api::EventsController < Api::BaseController
     @events = Event.includes(:translations).between(start, stop).by_start
     @events = group_events(@events)
 
-    render json: @events, namespace: ''
+    render json: @events, namespace: ""
   end
 
   def scroll
@@ -36,7 +36,7 @@ class Api::EventsController < Api::BaseController
       @events = (@events.to_a + last_day.to_a).uniq
     end
 
-    render json: @events, namespace: ''
+    render json: @events, namespace: ""
   end
 
   def show

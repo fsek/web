@@ -24,7 +24,7 @@ class AdventureService
   end
 
   def self.adventure_active(adventure)
-    return adventure.start_date < Time.now && adventure.end_date > Time.now
+    adventure.start_date < Time.now && adventure.end_date > Time.now
   end
 
   def self.update_locking(old_adventure, new_adventure)

@@ -87,7 +87,7 @@ class NotificationService
 
   # Updates the coutner caches
   def self.update_counters(users)
-    counts = Notification.joins(:user).merge(users).group('users.id').select('users.id, count(*) as score')
+    counts = Notification.joins(:user).merge(users).group("users.id").select("users.id, count(*) as score")
     counts.each do |c|
       User.update(c.id, notifications_count: c.score)
     end

@@ -2,8 +2,8 @@ module CafeHelper
   def cafe_worker_form(shift:, current_user: nil, councils: [])
     if shift.worker?(current_user) || !shift.user.present?
       content_tag(:tr) do
-        content_tag(:td, colspan: '2') do
-          render('cafe_workers/form', cafe_shift: shift,
+        content_tag(:td, colspan: "2") do
+          render("cafe_workers/form", cafe_shift: shift,
                                       councils: councils)
         end
       end
@@ -17,23 +17,24 @@ module CafeHelper
 
   def cafe_worker_working_thumbs(worker, user:)
     if user == worker.user && worker.persisted?
-      content_tag(:span, class: 'cafe working') do
-        safe_join([icon('far', 'thumbs-up'), ' ',
-                   I18n.t('helper.cafe.worker.you_are_working')])
+      content_tag(:span, class: "cafe working") do
+        safe_join([icon("far", "thumbs-up"), " ",
+          I18n.t("helper.cafe.worker.you_are_working")])
       end
     end
   end
 
   def cafe_worker_edit_user(worker)
     if worker.present? &&
-       worker.errors[:user].include?(I18n.t('model.user.attributes_missing'))
-      link_to(I18n.t('model.user.edit_information'),
-              edit_own_user_path,
-              class: 'btn danger small',
-              target: :blank_p)
+        worker.errors[:user].include?(I18n.t("model.user.attributes_missing"))
+      link_to(I18n.t("model.user.edit_information"),
+        edit_own_user_path,
+        class: "btn danger small",
+        target: :blank_p)
     end
   end
+
   def pass_collection
-    [['2 timmar', 2], ['3 timmar', 3], ['1 timme', 1]]
+    [["2 timmar", 2], ["3 timmar", 3], ["1 timme", 1]]
   end
 end

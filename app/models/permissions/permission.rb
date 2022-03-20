@@ -1,5 +1,5 @@
 class Permission < ApplicationRecord
-  CUSTOM = ['all', 'cafe'].freeze
+  CUSTOM = ["all", "cafe"].freeze
   has_many :posts, through: :permission_posts
   has_many :permission_posts
   validates :subject_class, :action, presence: true

@@ -1,13 +1,13 @@
 class PageElement < ApplicationRecord
-  TEXT = 'text'.freeze
-  IMAGE = 'image'.freeze
+  TEXT = "text".freeze
+  IMAGE = "image".freeze
 
   belongs_to :page, required: true
   belongs_to :page_image
   belongs_to :contact
   translates(:text, :headline)
   globalize_accessors(locales: [:en, :sv],
-                      attributes: [:text, :headline])
+    attributes: [:text, :headline])
 
   validates :element_type, presence: true
   validates :text, presence: true, if: :text_element?

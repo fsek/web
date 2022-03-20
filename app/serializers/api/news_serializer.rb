@@ -9,7 +9,7 @@ class Api::NewsSerializer < ActiveModel::Serializer
   end
 
   def image
-    PUBLIC_URL + object.image.large.url if object.image.present?
+    Rails.application.config.public_url + object.image.large.url if object.image.present?
   end
 
   class Api::UserSerializer < ActiveModel::Serializer

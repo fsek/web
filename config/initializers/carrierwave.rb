@@ -4,9 +4,11 @@ if Rails.env.test? || Rails.env.cucumber?
     config.enable_processing = false
   end
 
+  # rubocop:disable Lint/Void
   AttachedImageUploader
   DocumentUploader
   ImageUploader
+  # rubocop:enable Lint/Void
 
   CarrierWave::Uploader::Base.descendants.each do |klass|
     next if klass.anonymous?

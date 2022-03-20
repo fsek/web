@@ -2,8 +2,8 @@ class AddTranslationsToElection < ActiveRecord::Migration[5.0]
   def change
     reversible do |dir|
       dir.up do
-        Election.create_translation_table!({ title: :string, description: :text },
-                                           { migrate_data: true, remove_source_columns: true })
+        Election.create_translation_table!({title: :string, description: :text},
+          {migrate_data: true, remove_source_columns: true})
       end
 
       dir.down do

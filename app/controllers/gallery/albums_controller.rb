@@ -4,7 +4,7 @@ class Gallery::AlbumsController < ApplicationController
 
   def show
     @album = Album.include_for_gallery.includes(:photographers).find(params[:id])
-    @policy = Document.find_by(slug: 'gallery_policy')
+    @policy = Document.find_by(slug: "gallery_policy")
     @start = params.fetch(:start, 0).to_i
   end
 end

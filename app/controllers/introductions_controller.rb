@@ -4,11 +4,11 @@ class IntroductionsController < ApplicationController
 
   def index
     @news = News.for_feed.slug(:nollning).limit(5)
-    @contact = Contact.find_by(slug: 'foset')
+    @contact = Contact.find_by(slug: "foset")
   end
 
   def dance
-    @constant = Constant.find_by_name('nollning-video')
+    @constant = Constant.find_by_name("nollning-video")
   end
 
   def show
@@ -31,9 +31,9 @@ class IntroductionsController < ApplicationController
     cookie = cookies[:hide_matrix]
 
     if param.present? && param != cookie
-      cookies[:hide_matrix] = { value: param, expires_in: 20.days.from_now }
-      flash[:notice] = I18n.t('model.introduction.matrix.hidden') if param == 'true'
-      flash[:notice] ||= I18n.t('model.introduction.matrix.shown')
+      cookies[:hide_matrix] = {value: param, expires_in: 20.days.from_now}
+      flash[:notice] = I18n.t("model.introduction.matrix.hidden") if param == "true"
+      flash[:notice] ||= I18n.t("model.introduction.matrix.shown")
     end
   end
 
@@ -59,10 +59,8 @@ class IntroductionsController < ApplicationController
   end
 
   def date
-    begin
-      Date.strptime(%({#{params[:date]}}), '{%Y-%m-%d}')
-    rescue
-      Date.today
-    end
+    Date.strptime(%({#{params[:date]}}), "{%Y-%m-%d}")
+  rescue
+    Date.today
   end
 end

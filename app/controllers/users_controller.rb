@@ -22,10 +22,10 @@ class UsersController < ApplicationController
   def update_account
     @tab = :account
     if current_user.update_with_password(account_params)
-      flash[:notice] = t('model.user.account_updated')
+      flash[:notice] = t("model.user.account_updated")
       render :edit, status: 200
     else
-      flash[:alert] = t('model.user.password_required')
+      flash[:alert] = t("model.user.password_required")
       render :edit, status: 422
     end
   end
@@ -33,28 +33,28 @@ class UsersController < ApplicationController
   def update_password
     @tab = :password
     if current_user.update_with_password(password_params)
-      flash[:notice] = t('model.user.password_updated')
+      flash[:notice] = t("model.user.password_updated")
       bypass_sign_in(current_user)
       render :edit, status: 200
     else
-      flash[:alert] = t('model.user.password_required')
+      flash[:alert] = t("model.user.password_required")
       render :edit, status: 422
     end
   end
 
   def accept_terms
     current_user.update!(terms_version: Versions.get(:terms))
-    redirect_to root_path, notice: t('model.user.terms_accepted')
+    redirect_to root_path, notice: t("model.user.terms_accepted")
   end
 
   private
 
   def user_params
     params.require(:user).permit(:firstname, :lastname, :program, :start_year,
-                                 :avatar, :student_id, :phone, :display_phone,
-                                 :remove_avatar, :food_custom, :notify_messages,
-                                 :notify_event_users, :notify_event_closing,
-                                 :notify_event_open, food_preferences: [])
+      :avatar, :student_id, :phone, :display_phone,
+      :remove_avatar, :food_custom, :notify_messages,
+      :notify_event_users, :notify_event_closing,
+      :notify_event_open, food_preferences: [])
   end
 
   def account_params

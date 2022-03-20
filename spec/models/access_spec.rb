@@ -1,14 +1,14 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Access, type: :model do
-  it 'has valid factory' do
+  it "has valid factory" do
     build_stubbed(:access).should be_valid
   end
 
-  describe 'validations' do
+  describe "validations" do
     it { Access.new.should validate_presence_of(:door) }
     it { Access.new.should validate_presence_of(:post) }
-    it 'checks uniqueness of door and post' do
+    it "checks uniqueness of door and post" do
       door = create(:door)
       post = create(:post)
 

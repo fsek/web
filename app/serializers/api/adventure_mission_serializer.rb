@@ -11,7 +11,7 @@ class Api::AdventureMissionSerializer < ActiveModel::Serializer
 
     def pending
       @group = scope[:current_user].groups.regular.last
-      object.finished?(@group) and not object.accepted?(@group)
+      object.finished?(@group) and !object.accepted?(@group)
     end
   end
 end

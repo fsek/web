@@ -1,4 +1,3 @@
-# encoding: UTF-8
 FactoryBot.define do
   factory :post do
     title

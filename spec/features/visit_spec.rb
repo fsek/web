@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.feature 'visits paths' do
+RSpec.feature "visits paths" do
   let(:user) { create(:user) }
 
   paths = {
@@ -37,7 +37,7 @@ RSpec.feature 'visits paths' do
     value.each do |v|
       scenario %(controller: #{key}, action: #{v}) do
         if v == :show || v == :edit
-          resource = create(key.to_s.split('/').last.singularize.to_sym)
+          resource = create(key.to_s.split("/").last.singularize.to_sym)
           page.visit url_for(controller: key, action: v, id:
                              resource.to_param)
         else

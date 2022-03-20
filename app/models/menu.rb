@@ -15,7 +15,7 @@ class Menu < ApplicationRecord
 
   def to_partial_path
     if header?
-      '/menus/menu_header'
+      "/menus/menu_header"
     else
       super
     end

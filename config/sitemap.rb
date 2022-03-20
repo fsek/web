@@ -1,7 +1,7 @@
 # Set the host name for URL creation
-puts PUBLIC_URL
-SitemapGenerator::Sitemap.default_host = PUBLIC_URL
-SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
+puts Rails.application.config.public_url
+SitemapGenerator::Sitemap.default_host = Rails.application.config.public_url
+SitemapGenerator::Sitemap.sitemaps_path = "sitemaps/"
 
 SitemapGenerator::Sitemap.create do
   add root_path, priority: 1.0

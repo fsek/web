@@ -3,7 +3,7 @@ class Admin::CouncilsController < Admin::BaseController
   load_permissions_and_authorize_resource find_by: :url
 
   def index
-    @council_grid = initialize_grid(Council, locale: :sv, order: 'council_translations.title')
+    @council_grid = initialize_grid(Council, locale: :sv, order: "council_translations.title")
   end
 
   def new

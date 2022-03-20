@@ -44,24 +44,24 @@ class Admin::ElectionsController < Admin::BaseController
 
   def nominations
     @nominations_grid = initialize_grid(@election.nominations,
-                                        name: 'nominations',
-                                        include: [post: :translations])
+      name: "nominations",
+      include: [post: :translations])
   end
 
   def candidates
     @candidates_grid = initialize_grid(@election.candidates,
-                                       name: 'candidates',
-                                       include: [:user, post: :translations, council: :translations],
-                                       custom_order: { 'posts.id' => 'post_translations.title' })
+      name: "candidates",
+      include: [:user, post: :translations, council: :translations],
+      custom_order: {"posts.id" => "post_translations.title"})
   end
 
   private
 
   def election_params
     params.require(:election).permit(:title_sv, :title_en, :description_sv, :description_en,
-                                     :open, :close_general, :close_all,
-                                     :url, :visible, :mail_link, :board_mail_link,
-                                     :nominate_mail, :candidate_mail, :semester,
-                                     :candidate_mail_star, extra_post_ids: [])
+      :open, :close_general, :close_all,
+      :url, :visible, :mail_link, :board_mail_link,
+      :nominate_mail, :candidate_mail, :semester,
+      :candidate_mail_star, extra_post_ids: [])
   end
 end

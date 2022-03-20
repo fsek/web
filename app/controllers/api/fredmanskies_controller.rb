@@ -7,7 +7,7 @@ class Api::FredmanskiesController < Api::BaseController
         enabled: true
       }, status: :ok
     else
-      render json: { errors: 'You can not join Fredmans' }, status: 422
+      render json: {errors: "You can not join Fredmans"}, status: 422
     end
   end
 
@@ -19,7 +19,7 @@ class Api::FredmanskiesController < Api::BaseController
         enabled: false
       }, status: :ok
     else
-      render json: { errors: 'You can not leave Fredmans' }, status: 422
+      render json: {errors: "You can not leave Fredmans"}, status: 422
     end
   end
 

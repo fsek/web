@@ -1,12 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Admin::EventSignupsController, type: :controller do
   let(:user) { create(:user) }
 
   allow_user_to(:manage, [Event, EventSignup])
 
-  describe 'GET #show' do
-    it 'displays attending users and reserves correctly + sorts by group', pending: true do
+  describe "GET #show" do
+    it "displays attending users and reserves correctly + sorts by group", pending: true do
       # Because of sort_by in EventUser.for_grid the records are not return
       # exactly according to the priority order in the views
       # The priority is used for all other concerns but it is overridden for the
@@ -33,20 +33,20 @@ RSpec.describe Admin::EventSignupsController, type: :controller do
       fourth = new_event_user(event, EventSignup::MEMBER, group1)
 
       # Group 2
-      eu1 = new_event_user(event, EventSignup::MEMBER, group2)
+      _eu1 = new_event_user(event, EventSignup::MEMBER, group2)
       eu4 = new_event_user(event, EventSignup::NOVICE, group2)
       eu7 = new_event_user(event, EventSignup::NOVICE, group2)
 
       # Group 3
-      eu2 = new_event_user(event, EventSignup::MEMBER, group3)
+      _eu2 = new_event_user(event, EventSignup::MEMBER, group3)
       eu5 = new_event_user(event, EventSignup::CUSTOM, group3)
-      eu8 = new_event_user(event, EventSignup::MEMBER, group3)
+      _eu8 = new_event_user(event, EventSignup::MEMBER, group3)
 
       # Expected results
       attend = [first, second, third, fourth, eu4, eu7, eu5]
       reserve = []
 
-      get :show, params: { event_id: event.to_param, event_signup: signup }
+      get :show, params: {event_id: event.to_param, event_signup: signup}
       assigns(:event_signup).should eq(signup)
       assigns(:attending).should eq(attend)
       assigns(:reserves).should eq(reserve)
@@ -54,14 +54,14 @@ RSpec.describe Admin::EventSignupsController, type: :controller do
     end
   end
 
-  describe 'GET #export as csv' do
-    it 'exports properly' do
+  describe "GET #export as csv" do
+    it "exports properly" do
       event = create(:event, :with_signup)
       create(:event_user, event: event)
       create(:event_user, event: event)
       create(:event_user, event: event)
 
-      get :export, format: :csv, params: { event_id: event }
+      get :export, format: :csv, params: {event_id: event}
       response.should have_http_status(200)
     end
   end

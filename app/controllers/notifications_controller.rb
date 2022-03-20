@@ -8,9 +8,9 @@ class NotificationsController < ApplicationController
   def look_all
     if current_user.notifications.not_seen.update_all(seen: true)
       current_user.update!(notifications_count: 0)
-      render json: { unread: current_user.notifications_count }, status: :ok
+      render json: {unread: current_user.notifications_count}, status: :ok
     else
-      render json: { errors: 'Failed to mark all notifications as read' }, status: 422
+      render json: {errors: "Failed to mark all notifications as read"}, status: 422
     end
   end
 
@@ -21,7 +21,7 @@ class NotificationsController < ApplicationController
       current_user.reload
       render json: {}, status: :ok
     else
-      render json: { errors: 'Failed to visit notification' }, status: 422
+      render json: {errors: "Failed to visit notification"}, status: 422
     end
   end
 end

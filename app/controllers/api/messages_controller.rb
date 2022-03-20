@@ -8,9 +8,9 @@ class Api::MessagesController < Api::BaseController
     reset_counter unless params.has_key?(:page)
 
     render json: @messages,
-           scope: @group.id,
-           meta: pagination_meta(@messages),
-           namespace: ''
+      scope: @group.id,
+      meta: pagination_meta(@messages),
+      namespace: ""
   end
 
   def create
@@ -19,7 +19,7 @@ class Api::MessagesController < Api::BaseController
   end
 
   def edit
-    render json: { content: @message.content }
+    render json: {content: @message.content}
   end
 
   def new_token

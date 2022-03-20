@@ -9,13 +9,13 @@ class ToolRenting < ApplicationRecord
 
   def there_are_free_tools
     if !persisted? && tool.present? && tool.free == 0
-      errors.add(:returned, I18n.t('model.tool_renting.no_more_tools'))
+      errors.add(:returned, I18n.t("model.tool_renting.no_more_tools"))
     end
   end
 
   def return_date_lesser_than_today
     if !persisted? && tool.present? && return_date < Date.today
-      errors.add(:returned, I18n.t('model.tool_renting.return_date_lesser_than_today'))
+      errors.add(:returned, I18n.t("model.tool_renting.return_date_lesser_than_today"))
     end
   end
 end

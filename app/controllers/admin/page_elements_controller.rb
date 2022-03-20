@@ -24,7 +24,7 @@ class Admin::PageElementsController < Admin::BaseController
     @page_element = page.page_elements.build(page_element_params)
     if @page_element.save
       redirect_to(edit_admin_page_page_element_path(page, @page_element),
-                  notice: alert_create(PageElement))
+        notice: alert_create(PageElement))
     else
       render :new, status: 422
     end
@@ -36,7 +36,7 @@ class Admin::PageElementsController < Admin::BaseController
 
     if @page_element.update(page_element_params)
       redirect_to(edit_admin_page_page_element_path(page, @page_element),
-                  notice: alert_update(PageElement))
+        notice: alert_update(PageElement))
     else
       render :edit, status: 422
     end
@@ -53,7 +53,7 @@ class Admin::PageElementsController < Admin::BaseController
 
   def page_element_params
     params.require(:page_element).permit(:index, :sidebar, :visible, :text_sv,
-                                         :text_en, :headline_sv, :headline_en,
-                                         :element_type, :page_image_id)
+      :text_en, :headline_sv, :headline_en,
+      :element_type, :page_image_id)
   end
 end

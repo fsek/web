@@ -4,9 +4,8 @@ module DocumentsHelper
   # Uses category button from CategoriesHelper to render the whole button
   def document_dropdown_button(collection:, current:)
     content = safe_join([category_button(current), document_collection(collection)])
-    content_tag(:div, content, class: 'dropdown')
+    content_tag(:div, content, class: "dropdown")
   end
-
 
   # Returns the collection of links fomr the CategoriesHelper.category_collection
   # Uses the index path to add a button for clearing query

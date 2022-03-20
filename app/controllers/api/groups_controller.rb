@@ -3,7 +3,7 @@ class Api::GroupsController < Api::BaseController
 
   def index
     render json: @groups,
-           scope: current_user,
-           include: ['messages', 'messages.user', 'group_user']
+      scope: current_user,
+      include: ["messages", "messages.user", "group_user"]
   end
 end

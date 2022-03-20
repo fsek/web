@@ -10,7 +10,7 @@ class Api::EventUsersController < Api::BaseController
     if @event_user.save
       render json: @event_user
     else
-      render json: { errors: @event_user.errors.full_messages }, status: 422
+      render json: {errors: @event_user.errors.full_messages}, status: 422
     end
   end
 
@@ -21,10 +21,10 @@ class Api::EventUsersController < Api::BaseController
       if @event_user.destroy
         render json: {}, status: :ok
       else
-        render json: { errors: @event_user.errors.full_messages }, status: 500
+        render json: {errors: @event_user.errors.full_messages}, status: 500
       end
     else
-      render json: { errors: ['Signup is not open'], status: 422 }
+      render json: {errors: ["Signup is not open"], status: 422}
     end
   end
 

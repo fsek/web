@@ -1,7 +1,7 @@
 class ProposalsController < ApplicationController
   def form
     @proposal = Proposal.new
-    @proposal.points = ['']
+    @proposal.points = [""]
   end
 
   def generate

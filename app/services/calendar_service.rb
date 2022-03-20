@@ -1,8 +1,8 @@
 module CalendarService
-  require 'icalendar/tzinfo'
+  require "icalendar/tzinfo"
   include MarkdownHelper
 
-  def self.export(events, locale: 'sv')
+  def self.export(events, locale: "sv")
     calendar = set_timezone(Icalendar::Calendar.new)
     if events.present?
       events.each do |e|
@@ -21,13 +21,13 @@ module CalendarService
     calendar
   end
 
-  def self.event(resource, locale: 'sv')
+  def self.event(resource, locale: "sv")
     ical_event = Icalendar::Event.new
     ical_event.uid = resource.id.to_json
 
     set_date(ical_event, resource)
 
-    if locale == 'en'
+    if locale == "en"
       ical_event.description = MarkdownHelper.markdown_plain(resource.description_en)
       ical_event.summary = resource.title_en
     else
@@ -36,11 +36,11 @@ module CalendarService
     end
 
     ical_event.location = resource.location
-    ical_event.created = date_time(resource.created_at.utc, tzid: 'UTC')
-    ical_event.last_modified = date_time(resource.updated_at.utc, tzid: 'UTC')
+    ical_event.created = date_time(resource.created_at.utc, tzid: "UTC")
+    ical_event.last_modified = date_time(resource.updated_at.utc, tzid: "UTC")
     ical_event.url = Rails.application.routes.url_helpers.event_url(resource.id,
-                                                                    host: PUBLIC_URL)
-    ical_event.ip_class = 'PUBLIC'
+      host: Rails.application.config.public_url)
+    ical_event.ip_class = "PUBLIC"
     ical_event
   end
 
@@ -60,6 +60,6 @@ module CalendarService
   end
 
   def self.date_time(value, tzid: nil)
-    Icalendar::Values::DateTime.new(value, 'tzid' => tzid)
+    Icalendar::Values::DateTime.new(value, "tzid" => tzid)
   end
 end

@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Admin::PermissionsController < Admin::BaseController
   load_permissions_and_authorize_resource
   load_and_authorize_resource :post

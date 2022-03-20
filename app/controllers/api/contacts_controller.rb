@@ -26,7 +26,7 @@ class Api::ContactsController < Api::BaseController
     if @contact.send_email
       render json: {}, status: :ok
     else
-      render json: { errors: @contact.errors.full_messages }, status: 422
+      render json: {errors: @contact.errors.full_messages}, status: 422
     end
   end
 

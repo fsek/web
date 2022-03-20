@@ -9,8 +9,8 @@ class AdventureMission < ApplicationRecord
   attr_accessor :finished, :points
 
   validates :title_sv, presence: true
-  validates :index, numericality: { greater_than_or_equal: 0 }, presence: true
-  validates :max_points, numericality: { greater_than: 0 }, presence: true
+  validates :index, numericality: {greater_than_or_equal: 0}, presence: true
+  validates :max_points, numericality: {greater_than: 0}, presence: true
   validates :require_acceptance, null: false
 
   scope :by_group, ->(group) { where(group: group) }
@@ -27,7 +27,7 @@ class AdventureMission < ApplicationRecord
     finished?(group) && adventure_mission_groups.by_group(group).first.pending == false
   end
 
-  def points(group)
+  def points_per_group(group)
     # Points only rewarded once mission is accepted
     if accepted?(group)
       adventure_mission_groups.by_group(group).first.points.to_i

@@ -35,7 +35,7 @@ class ImageUploader < BaseImageUploader
   # Watermark should always be processed after thumbkit, ensuring that we always
   # have a valid image and we don't need to change the extension
   def watermark(options = {})
-    cache_stored_file! if !cached?
+    cache_stored_file! unless cached?
     Watermarker.new(current_path).watermark!(options)
   end
 

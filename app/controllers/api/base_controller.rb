@@ -7,6 +7,6 @@ class Api::BaseController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
 
   rescue_from CanCan::AccessDenied do
-    render(json: { success: false, errors: ["Invalid login credentials"] }, status: 401)
+    render(json: {success: false, errors: ["Invalid login credentials"]}, status: 401)
   end
 end

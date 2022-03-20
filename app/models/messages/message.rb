@@ -10,7 +10,7 @@ class Message < ApplicationRecord
   mount_uploader :image, MessageImageUploader
   paginates_per(30)
 
-  validates :groups, length: { minimum: 1, message: I18n.t('model.message.need_groups') }
+  validates :groups, length: {minimum: 1, message: I18n.t("model.message.need_groups")}
   validates :content, presence: true, if: -> { image.blank? }
   validate :in_group, unless: :by_admin
 
@@ -34,7 +34,7 @@ class Message < ApplicationRecord
   end
 
   def group_names
-    groups.pluck(:name).join(', ');
+    groups.pluck(:name).join(", ")
   end
 
   private
@@ -45,7 +45,7 @@ class Message < ApplicationRecord
 
   def in_group
     unless user.nil? || with_all_groups?
-      errors.add(:groups, I18n.t('model.message.not_part_of_selected_groups'))
+      errors.add(:groups, I18n.t("model.message.not_part_of_selected_groups"))
     end
   end
 

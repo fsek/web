@@ -6,7 +6,7 @@ class MigrateCafe < ActiveRecord::Migration[5.0]
     #
     # NOTE! We can not reverse this change!!
     CafeShift.where(pass: 2).update_all(pass: 1)
-    CafeShift.where('pass = ? OR pass = ?', 3, 4).update_all(pass: 2)
+    CafeShift.where("pass = ? OR pass = ?", 3, 4).update_all(pass: 2)
   end
 
   def down

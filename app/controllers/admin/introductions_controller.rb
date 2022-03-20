@@ -42,6 +42,6 @@ class Admin::IntroductionsController < Admin::BaseController
 
   def introduction_params
     params.require(:introduction).permit(:title_sv, :title_en, :description_sv, :description_en,
-                                         :start, :stop, :slug, :current)
+      :start, :stop, :slug, :current)
   end
 end

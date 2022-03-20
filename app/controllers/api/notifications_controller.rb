@@ -7,7 +7,7 @@ class Api::NotificationsController < Api::BaseController
   end
 
   def unread
-    render json: { unread: current_user.notifications_count }
+    render json: {unread: current_user.notifications_count}
   end
 
   # This method is not really needed but removing it
@@ -17,9 +17,9 @@ class Api::NotificationsController < Api::BaseController
 
     if @notification&.update(seen: true)
       current_user.reload
-      render json: { unread: current_user.notifications_count }, status: :ok
+      render json: {unread: current_user.notifications_count}, status: :ok
     else
-      render json: { errors: 'Failed to mark notification as read' }, status: 422
+      render json: {errors: "Failed to mark notification as read"}, status: 422
     end
   end
 
@@ -28,7 +28,7 @@ class Api::NotificationsController < Api::BaseController
       current_user.update!(notifications_count: 0)
       render json: {}, status: :ok
     else
-      render json: { errors: 'Failed to mark all notifications as read' }, status: 422
+      render json: {errors: "Failed to mark all notifications as read"}, status: 422
     end
   end
 
@@ -39,7 +39,7 @@ class Api::NotificationsController < Api::BaseController
       current_user.reload
       render json: {}, status: :ok
     else
-      render json: { errors: 'Failed to mark notification as visited' }, status: 422
+      render json: {errors: "Failed to mark notification as visited"}, status: 422
     end
   end
 

@@ -3,13 +3,13 @@ class Admin::DocumentsController < Admin::BaseController
 
   def index
     documents = filter_documents(Document.all, params[:category])
-    grid = initialize_grid(documents, order: 'documents.updated_at',
-                                      order_direction: 'desc',
+    grid = initialize_grid(documents, order: "documents.updated_at",
+                                      order_direction: "desc",
                                       include: :user)
 
     @documents = DocumentView.new(grid: grid,
-                                  categories: Document.categories,
-                                  current_category: params[:category])
+      categories: Document.categories,
+      current_category: params[:category])
   end
 
   def edit
