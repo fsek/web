@@ -62,10 +62,10 @@ module CafeService
 
   def self.generate_day(start:, lp:, lv:)
     shifts = []
-    shifts << { start: start, lp: lp, pass: 1, lv: lv }
-    shifts << { start: start, lp: lp, pass: 1, lv: lv }
-    shifts << { start: start + 2.hours, lp: lp, pass: 2, lv: lv }
-    shifts << { start: start + 2.hours, lp: lp, pass: 2, lv: lv }
+    shifts << { start: start, lp: lp, pass: 2, lv: lv }
+    shifts << { start: start, lp: lp, pass: 2, lv: lv }
+    shifts << { start: start + 2.hours, lp: lp, pass: 3, lv: lv }
+    shifts << { start: start + 2.hours, lp: lp, pass: 3, lv: lv }
     shifts
   end
 
@@ -89,7 +89,7 @@ module CafeService
         hash[:years][date.year][:months][I18n.t('date.month_names')[date.month].capitalize][:days]["#{I18n.t('date.day_names')[date.wday].capitalize} - #{date.day}/#{date.month}"] = []
       end
       date += 1.day
-    end
+    end 
 
     shifts_by_ymd = shifts.each_with_object(hash) do |shift, h|
       week_day = shift.start.wday # Returns the day of week (0-6, Sunday is zero)
