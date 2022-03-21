@@ -62,10 +62,10 @@ module CafeService
 
   def self.generate_day(start:, lp:, lv:)
     shifts = []
-    shifts << { start: start, lp: lp, pass: 1, lv: lv }
-    shifts << { start: start, lp: lp, pass: 1, lv: lv }
-    shifts << { start: start + 2.hours, lp: lp, pass: 2, lv: lv }
-    shifts << { start: start + 2.hours, lp: lp, pass: 2, lv: lv }
+    shifts << { start: start, lp: lp, pass: 2, lv: lv }
+    shifts << { start: start, lp: lp, pass: 2, lv: lv }
+    shifts << { start: start + 2.hours, lp: lp, pass: 3, lv: lv }
+    shifts << { start: start + 2.hours, lp: lp, pass: 3, lv: lv }
     shifts
   end
 
