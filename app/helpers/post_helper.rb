@@ -88,14 +88,14 @@ module PostHelper
           end
         end
         if post.title == 'Överfös'
-          names = ['Överfös Natalia']
+          names = ['Överfös Erik']
           names.each do |e|
             content << content_tag(:li) do
               e
             end
           end
         elsif post.title == 'Cofös'
-          names = ['Cofös Eliot', 'Cofös Gustav', 'Cofös Klara', 'Cofös Axel']
+          names = ['Cofös Tilda', 'Cofös Linus', 'Cofös Akke', 'Cofös Emma', 'Cofös Neha', 'Cofös Josephine']
           names.each do |e|
             content << content_tag(:li) do
               e
