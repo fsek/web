@@ -13,6 +13,9 @@ class Ability
     cannot :ladybug, :cafe
     can :show, Page, public: true, visible: true
     can :avatar, User
+    can :bloodfeud, User
+    can :confirm_donation, User
+    can :unconfirm_donation, User
     can :read, BlogPost
 
     # can :read, Event

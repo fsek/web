@@ -1,4 +1,5 @@
 Fsek::Application.routes.draw do
+
   filter :locale, exclude: /^\/admin/
   # Resources on the page
   get('/vecktorn', to: redirect('http://fsektionen.us11.list-manage.com/subscribe?u=b115d5ab658a971e771610695&id=aeb6a02396'),
@@ -57,9 +58,22 @@ Fsek::Application.routes.draw do
       resources :users, path: :anvandare, only: [:index, :edit, :update] do
         post :member, on: :member
         post :unmember, on: :member
+        post :confirm_donation, on: :member
+        post :unconfirm_donation, on: :member
       end
     end
 
+    namespace :admin do
+      get "anvandare/bloodfeud", to: "users#bloodfeud"
+    end
+
+    get "anvandare/bloodfeud", to: "users#bloodfeud"
+
+
+    get "anvandare/bloodfeud/confirm_donation", to: "users#confirm_donation"
+    get "anvandare/bloodfeud/unconfirm_donation", to: "users#unconfirm_donation"
+
+    
     resource :user, path: :anvandare, as: :own_user, only: [:update] do
       get '', action: :edit, as: :edit
       patch :password, path: :losenord, action: :update_password
