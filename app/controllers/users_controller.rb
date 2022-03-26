@@ -5,6 +5,9 @@ class UsersController < ApplicationController
     @user = User.includes(posts: :council).find(params[:id])
   end
 
+  def bloodfeud
+  end
+
   def edit
     @tab = params.fetch(:tab, :profile).to_sym
   end
@@ -45,6 +48,14 @@ class UsersController < ApplicationController
   def accept_terms
     current_user.update!(terms_version: Versions.get(:terms))
     redirect_to root_path, notice: t('model.user.terms_accepted')
+  end
+
+  def confirm_donation
+    current_user.update(donated: true)
+  end
+
+  def unconfirm_donation
+    current_user.update(donated: false)
   end
 
   private

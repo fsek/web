@@ -5,6 +5,10 @@ class Admin::UsersController < Admin::BaseController
     @user_grid = initialize_grid(@users, order: :id)
   end
 
+  def bloodfeud
+   @donated_grid = initialize_grid(User.where(donated: true))
+  end
+
   def edit
     @user = User.find(params[:id])
   end
@@ -26,7 +30,18 @@ class Admin::UsersController < Admin::BaseController
 
   def unmember
     @destroyed = UserService.unmember(@user)
-    render
+  end
+
+  def confirm_donation
+    user = User.find(params[:id])
+    user.update(donation_confirmed: true)
+    redirect_to admin_anvandare_bloodfeud_path, notice: "Donation has been confirmed for: " + user.firstname + " " + user.lastname
+  end
+
+  def unconfirm_donation
+    user = User.find(params[:id])
+    user.update(donation_confirmed: false)
+    redirect_to admin_anvandare_bloodfeud_path, notice: alert_danger("Donation has been unconfirmed for: " + user.firstname + " " + user.lastname)
   end
 
   private

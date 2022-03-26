@@ -27,5 +27,6 @@ class StaticPagesController < ApplicationController
   def index
     member = current_user.present? && current_user.member?
     @start_page = StartPage.new(member: member)
+    @blood = User.blood_count
   end
 end
