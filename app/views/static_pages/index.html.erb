@@ -13,6 +13,16 @@
   </div>
 <% end %>
 
+
+<% cache([@start_page.events, I18n.locale]) do %>
+    <%= render '/events/stream', events: @start_page.events %>
+<% end %>
+
+<div>
+  Så här många har donerat blod:<%= @blood %>
+</div>
+
+
 <div class="col-md-7 col-sm-12 col-xs-12 left">
   <% if @start_page.election_view.present? %>
     <%= render 'countdown', election_view: @start_page.election_view %>
