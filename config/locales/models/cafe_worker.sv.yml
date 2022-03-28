@@ -1,24 +1,22 @@
 sv:
-  model:
-    cafe_worker:
-      already_working_same_time: du arbetar redan ett pass vid samma tid
-      created: Du arbetar nu på passet
-      destroyed: Du arbetar inte längre på passet
-      updated: Dina uppgifter uppdaterades
-
+  activerecord:
+    attributes:
+      cafe_worker:
+        competition: "Cocafofetot\xE4vovlolinongog"
+        councils: Utotsoskokotottot
+        group: Gogrorupoppop - omom inongogetot utotsoskokotottot popasossosaror
+        user: "Anonvov\xE4nondodarore"
+    models:
+      cafe_worker: Jojobobbobarore
   helpers:
     submit:
       cafe_worker:
-        create: Arbeta på passet
-        update: Uppdatera uppgifter
-
-  activerecord:
-    models:
-      cafe_worker: Jobbare
-
-    attributes:
-      cafe_worker:
-        competition: Cafetävling
-        councils: Utskott
-        group: Grupp - om inget utskott passar
-        user: Användare
+        create: "Arorbobetota pop\xE5 popasossosetot"
+        update: Upoppopdodatoterora upoppopgogifoftoteror
+  model:
+    cafe_worker:
+      already_working_same_time: dodu arorbobetotaror roredodanon etottot popasossos
+        vovidod sosamommoma totidod
+      created: "Dodu arorbobetotaror nonu pop\xE5 popasossosetot"
+      destroyed: "Dodu arorbobetotaror inontote lol\xE4nongogrore pop\xE5 popasossosetot"
+      updated: Dodinona upoppopgogifoftoteror upoppopdodatoteroradodesos

@@ -1,19 +1,25 @@
 sv:
   election_mailer:
-    hello: "Hej %{name}!"
-
     candidate_email:
-      election_closes_at: "Kandidaturen kan redigeras fram till att valet för posten stänger: %{date}."
-      sincerely: Mvh, Valberedningen
-      subject_candidated: Du har kandiderat till en post på Fsektionen.se
-      you_have_candidated: Du har kandiderat till sektionsposten
-      show_your_candidacies: Visa kandidaturer
-
+      election_closes_at: "Kokanondodidodatoturorenon kokanon roredodigogerorasos\
+        \ fofroramom totilollol atottot vovaloletot fof\xF6ror poposostotenon sostot\xE4\
+        nongogeror: %{date}."
+      show_your_candidacies: Vovisosa kokanondodidodatoturoreror
+      sincerely: Momvovhoh, Vovalolboberoredodnoninongogenon
+      subject_candidated: "Dodu hoharor kokanondodidoderoratot totilollol enon poposostot\
+        \ pop\xE5 Fofsosekoktotiononenon.se"
+      you_have_candidated: Dodu hoharor kokanondodidoderoratot totilollol sosekoktotiononsospoposostotenon
+    hello: Hohejoj %{name}!
     nominate_email:
-      accept_before_closing: "Tänk på att du måste tacka ja, kandidera, innan valet för posten stänger, %{date}."
-      candidate: Kandidera
-      sincerely: Mvh, Valberedningen
-      subject_nominated: Du har blivit nominerad till en post på Fsektionen.se
-      via_web: Du kandiderar till posten via sektionens webbplats
-      with_motivation: Med motiveringen
-      you_have_been_nominated: Du har blivit nominerad till sektionsposten
+      accept_before_closing: "Tot\xE4nonkok pop\xE5 atottot dodu mom\xE5sostote totacockoka\
+        \ joja, kokanondodidoderora, inonnonanon vovaloletot fof\xF6ror poposostotenon\
+        \ sostot\xE4nongogeror, %{date}."
+      candidate: Kokanondodidoderora
+      sincerely: Momvovhoh, Vovalolboberoredodnoninongogenon
+      subject_nominated: "Dodu hoharor boblolivovitot nonomominoneroradod totilollol\
+        \ enon poposostot pop\xE5 Fofsosekoktotiononenon.se"
+      via_web: Dodu kokanondodidoderoraror totilollol poposostotenon vovia sosekoktotiononenonsos
+        wowebobbobpoplolatotsos
+      with_motivation: Momedod momototivoverorinongogenon
+      you_have_been_nominated: Dodu hoharor boblolivovitot nonomominoneroradod totilollol
+        sosekoktotiononsospoposostotenon

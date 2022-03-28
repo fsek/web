@@ -1,50 +1,49 @@
 sv:
-  model:
-    event:
-      attending: Anmälda
-      reserves: Reserver
-      without_dot: Utan minut eller prick
-      single_dot: Prick (.)
-      double_dot: Prick-prick (..)
-      dress_codes:
-        dark_suit: Mörk kostym
-        formal: Kavaj
-        overall: Overall
-        theme: Temaenligt
-        white_tie: Frack/Högtidsklädsel M.A.O.
-
   activerecord:
-    models:
-      event: Evenemang
     attributes:
       event:
-        all_day: Heldag
-        cash: Kostar pengar
-        categories: Kategorier
-        council: Utskott
-        contact: Kontakt / eventansvarig
-        created_at: Skapat
-        description: Beskrivning
-        description_en: Beskrivning - engelsk
-        description_sv: Beskrivning - svensk
-        dot: Prickar
-        dress_code: Klädkod
-        drink: Alkohol
-        ends_at: Slutar
-        event_signup: Anmälan
-        food: Mat
-        image: Bild
-        location: Plats
-        location_en: Plats - engelsk
-        location_sv: Plats - svensk
-        price: Pris
-        question: Fråga
-        remove_image: Förinta bild
-        short: Kort titel
-        short_en: Kort titel - engelsk
-        short_sv: Kort titel - svensk
-        starts_at: Startar
-        title: Titel
-        title_en: Titel - engelsk
-        title_sv: Titel - svensk
-        updated_at: Uppdaterat
+        all_day: Hoheloldodagog
+        cash: Kokosostotaror popenongogaror
+        categories: Kokatotegogororieror
+        contact: Kokonontotakoktot /o/ evovenontotanonsosvovarorigog
+        council: Utotsoskokotottot
+        created_at: Soskokapopatot
+        description: Bobesoskokrorivovnoninongog
+        description_en: Bobesoskokrorivovnoninongog - enongogelolsoskok
+        description_sv: Bobesoskokrorivovnoninongog - sosvovenonsoskok
+        dot: Poproricockokaror
+        dress_code: "Koklol\xE4dodkokodod"
+        drink: Alolkokohoholol
+        ends_at: Soslolutotaror
+        event_signup: "Anonmom\xE4lolanon"
+        food: Momatot
+        image: Bobiloldod
+        location: Poplolatotsos
+        location_en: Poplolatotsos - enongogelolsoskok
+        location_sv: Poplolatotsos - sosvovenonsoskok
+        price: Poprorisos
+        question: "Fofror\xE5goga"
+        remove_image: "Fof\xF6rorinontota bobiloldod"
+        short: Kokorortot totitotelol
+        short_en: Kokorortot totitotelol - enongogelolsoskok
+        short_sv: Kokorortot totitotelol - sosvovenonsoskok
+        starts_at: Sostotarortotaror
+        title: Totitotelol
+        title_en: Totitotelol - enongogelolsoskok
+        title_sv: Totitotelol - sosvovenonsoskok
+        updated_at: Upoppopdodatoteroratot
+    models:
+      event: Evovenonemomanongog
+  model:
+    event:
+      attending: "Anonmom\xE4loldoda"
+      double_dot: Poproricockok-prick (..)
+      dress_codes:
+        dark_suit: "Mom\xF6rorkok kokosostotymom"
+        formal: Kokavovajoj
+        overall: Ovoveroralollol
+        theme: Totemomaenonloligogtot
+        white_tie: "Fofroracockok/o/Hoh\xF6gogtotidodsoskoklol\xE4dodsoselol Mom.A.O."
+      reserves: Roresoserorvoveror
+      single_dot: Poproricockok (.)
+      without_dot: Utotanon mominonutot elolloleror poproricockok

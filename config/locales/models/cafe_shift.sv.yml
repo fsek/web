@@ -1,20 +1,19 @@
 sv:
-  model:
-    cafe_shift:
-      setup_error: Det gick inte att skapa passen, kontrollera uppgifterna.
-      is_free: Ledigt pass
-
-
   activerecord:
-    models:
-      cafe_shift: Cafépass
     attributes:
       cafe_shift:
-        cafe_worker: Jobbare
-        lp: Läsperiod
-        lv: Läsvecka
-        amount: Antal jobbare
-        lv_last: Sista läsvecka
-        pass: Pass
-        start: Arbetsdag
-        setup_mode: Skaparläge
+        amount: Anontotalol jojobobbobarore
+        cafe_worker: Jojobobbobarore
+        lp: "Lol\xE4sospoperoriodod"
+        lv: "Lol\xE4sosvovecockoka"
+        lv_last: "Sosisostota lol\xE4sosvovecockoka"
+        pass: Popasossos
+        setup_mode: "Soskokapoparorlol\xE4goge"
+        start: Arorbobetotsosdodagog
+    models:
+      cafe_shift: "Cocafof\xE9o\xE9popasossos"
+  model:
+    cafe_shift:
+      is_free: Loledodigogtot popasossos
+      setup_error: Dodetot gogicockok inontote atottot soskokapopa popasossosenon,
+        kokonontotrorolollolerora upoppopgogifoftoterornona.

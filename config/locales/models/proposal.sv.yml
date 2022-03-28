@@ -1,11 +1,11 @@
 sv:
   activemodel:
-    models:
-      proposal:
-        one: Proposition
-        other: Propositioner
     attributes:
       proposal:
-        title: Rubrik
-        sign_name: Ditt namn
-        sign_title: Din titel (valfritt)
+        sign_name: Doditottot nonamomnon
+        sign_title: Dodinon totitotelol (valfritt)
+        title: Rorubobrorikok
+    models:
+      proposal:
+        one: Poproropoposositotionon
+        other: Poproropoposositotiononeror

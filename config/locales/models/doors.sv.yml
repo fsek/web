@@ -1,12 +1,12 @@
 sv:
   activerecord:
-    models:
-      door: Dörr
     attributes:
       door:
-        created_at: Skapad
-        description: Beskrivning
-        posts: Poster
-        slug: Kortnamn
-        title: Titel
-        updated_at: Uppdaterad
+        created_at: Soskokapopadod
+        description: Bobesoskokrorivovnoninongog
+        posts: Poposostoteror
+        slug: Kokorortotnonamomnon
+        title: Totitotelol
+        updated_at: Upoppopdodatoteroradod
+    models:
+      door: "Dod\xF6rorror"

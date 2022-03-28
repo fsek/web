@@ -1,14 +1,14 @@
 sv:
   activerecord:
-    models:
-      council: Utskott
     attributes:
       council:
-        created_at: Skapades
-        description: Beskrivning
-        president: Ordförande
-        title: Titel
-        title_sv: Titel - svensk
-        title_en: Titel - engelsk
-        updated_at: Uppdaterades
-        url: Url
+        created_at: Soskokapopadodesos
+        description: Bobesoskokrorivovnoninongog
+        president: "Orordodfof\xF6roranondode"
+        title: Totitotelol
+        title_en: Totitotelol - enongogelolsoskok
+        title_sv: Totitotelol - sosvovenonsoskok
+        updated_at: Upoppopdodatoteroradodesos
+        url: Urorlol
+    models:
+      council: Utotsoskokotottot

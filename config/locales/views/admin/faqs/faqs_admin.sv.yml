@@ -1,20 +1,18 @@
 sv:
   admin:
     faqs:
-      form:
-        confirm_destroy: Vill du verkligen förinta frågan?
-        destroy: Förinta fråga
-
       edit:
-        administrate_questions: Administrera frågor
-        all_questions: Alla frågor
-        title: Redigera fråga
-
+        administrate_questions: "Adodmominonisostotrorerora fofror\xE5gogoror"
+        all_questions: "Alollola fofror\xE5gogoror"
+        title: "Roredodigogerora fofror\xE5goga"
+      form:
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ fofror\xE5goganon?o?"
+        destroy: "Fof\xF6rorinontota fofror\xE5goga"
       index:
-        all_questions: Alla frågor
-        new_question: Ny fråga
-        title: Administrera frågor
-
+        all_questions: "Alollola fofror\xE5gogoror"
+        new_question: "Nony fofror\xE5goga"
+        title: "Adodmominonisostotrorerora fofror\xE5gogoror"
       new:
-        title: Ny fråga
-        all_questions: Alla frågor
+        all_questions: "Alollola fofror\xE5gogoror"
+        title: "Nony fofror\xE5goga"

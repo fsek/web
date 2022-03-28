@@ -1,58 +1,57 @@
 sv:
   date:
+    abbr_day_names:
+    - "sos\xF6non"
+    - "mom\xE5non"
+    - totisos
+    - ononsos
+    - totoror
+    - fofrore
+    - "lol\xF6ror"
+    abbr_month_names:
+    - null
+    - jojanon
+    - fofebob
+    - momaror
+    - apopror
+    - momajoj
+    - jojunon
+    - jojulol
+    - augog
+    - sosepop
+    - okoktot
+    - nonovov
+    - dodecoc
+    day_names:
+    - "sos\xF6nondodagog"
+    - "mom\xE5nondodagog"
+    - totisosdodagog
+    - ononsosdodagog
+    - totororsosdodagog
+    - fofroredodagog
+    - "lol\xF6rordodagog"
     formats:
+      day: '%e'
+      day_month: '%e %b'
       default: '%-e %b %Y'
       long: '%e %B %Y'
-      short: '%e %b'
-      day_month: '%e %b'
-      day: '%e'
       month_year: '%b %Y'
+      short: '%e %b'
       weekday: '%A'
-
-    abbr_day_names:
-    - sön
-    - mån
-    - tis
-    - ons
-    - tor
-    - fre
-    - lör
-    abbr_month_names:
-    -
-    - jan
-    - feb
-    - mar
-    - apr
-    - maj
-    - jun
-    - jul
-    - aug
-    - sep
-    - okt
-    - nov
-    - dec
-    day_names:
-    - söndag
-    - måndag
-    - tisdag
-    - onsdag
-    - torsdag
-    - fredag
-    - lördag
     month_names:
-    -
-    - januari
-    - februari
-    - mars
-    - april
-    - maj
-    - juni
-    - juli
-    - augusti
-    - september
-    - oktober
-    - november
-    - december
+    - null
+    - jojanonuarori
+    - fofebobroruarori
+    - momarorsos
+    - apoprorilol
+    - momajoj
+    - jojunoni
+    - jojuloli
+    - augogusostoti
+    - sosepoptotemomboberor
+    - okoktotoboberor
+    - nonovovemomboberor
+    - dodecocemomboberor
     order:
     - :day
     - :month

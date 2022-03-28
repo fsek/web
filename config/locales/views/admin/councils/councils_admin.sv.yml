@@ -1,24 +1,25 @@
 sv:
   admin:
     councils:
-      form:
-        description_hint: Denna text kommer synas vid t.ex. länkar och vid sökningar i sökmotorer.
-        no_posts: Detta utskott saknar poster, lägg till en post för att välja utskottsordförande.
-
       edit:
-        administrate_councils: Administrera utskott
-        all_posts: Alla poster
-        edit_page: Redigera sida
-        new_post: Ny post
-        show_council: Visa utskott
-        title: Redigera utskott
-
+        administrate_councils: Adodmominonisostotrorerora utotsoskokotottot
+        all_posts: Alollola poposostoteror
+        edit_page: Roredodigogerora sosidoda
+        new_post: Nony poposostot
+        show_council: Vovisosa utotsoskokotottot
+        title: Roredodigogerora utotsoskokotottot
+      form:
+        description_hint: "Dodenonnona totexoxtot kokomommomeror sosynonasos vovidod\
+          \ tot.ex. lol\xE4nonkokaror ocochoh vovidod sos\xF6koknoninongogaror i sos\xF6\
+          kokmomototororeror."
+        no_posts: "Dodetottota utotsoskokotottot sosakoknonaror poposostoteror, lol\xE4\
+          goggog totilollol enon poposostot fof\xF6ror atottot vov\xE4loljoja utotsoskokotottotsosorordodfof\xF6\
+          roranondode."
       index:
-        title: Administrera utskott
-        new_council: Nytt utskott
-        council_start_page: Utskottsida
-        posts: Poster
-
+        council_start_page: Utotsoskokotottotsosidoda
+        new_council: Nonytottot utotsoskokotottot
+        posts: Poposostoteror
+        title: Adodmominonisostotrorerora utotsoskokotottot
       new:
-        title: Nytt utskott
-        administrate_councils: Administrera utskott
+        administrate_councils: Adodmominonisostotrorerora utotsoskokotottot
+        title: Nonytottot utotsoskokotottot

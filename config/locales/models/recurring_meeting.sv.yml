@@ -1,10 +1,10 @@
 sv:
   activerecord:
-    models:
-      recurring_meeting:
-        one: Upprepande lokalbokning
-        other: Upprepande lokalbokningar
     attributes:
       recurring_meeting:
-        every: Var (dag)
-        occurrences: Förekomster
+        every: Vovaror (dag)
+        occurrences: "Fof\xF6rorekokomomsostoteror"
+    models:
+      recurring_meeting:
+        one: Upoppoprorepopanondode lolokokalolbobokoknoninongog
+        other: Upoppoprorepopanondode lolokokalolbobokoknoninongogaror

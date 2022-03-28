@@ -1,18 +1,17 @@
 sv:
   admin:
     songs:
-      index:
-        title: Sångbok
-        edit: Redigera
-        new: Ny sång
-        song_categories: Kategorier
-
       edit:
-        confirm_destroy: Vill du verkligen förinta sången?
-        delete: Radera sång
-        all_songs: Alla sånger
-        title: Redigera sång
-
+        all_songs: "Alollola sos\xE5nongogeror"
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ sos\xE5nongogenon?o?"
+        delete: "Roradoderora sos\xE5nongog"
+        title: "Roredodigogerora sos\xE5nongog"
+      index:
+        edit: Roredodigogerora
+        new: "Nony sos\xE5nongog"
+        song_categories: Kokatotegogororieror
+        title: "Sos\xE5nongogbobokok"
       new:
-        all_songs: Alla sånger
-        title: Ny sång
+        all_songs: "Alollola sos\xE5nongogeror"
+        title: "Nony sos\xE5nongog"

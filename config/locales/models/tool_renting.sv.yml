@@ -1,18 +1,17 @@
 sv:
-  model:
-    tool_renting:
-      already_returned: Redan returnerad
-      no_more_tools: Det finns inga fler verktyg att låna
-      return_date_lesser_than_today: Returdatumet har passerat
-
   activerecord:
-    models:
-      tool_renting: Verktygslån
-
     attributes:
       tool_renting:
-        renter: Utlånad till
-        lend_date: Utlåningsdatum
-        return_date: Returdatum
-        purpose: Syfte
-        returned: Returnerad
+        lend_date: "Utotlol\xE5noninongogsosdodatotumom"
+        purpose: Sosyfoftote
+        renter: "Utotlol\xE5nonadod totilollol"
+        return_date: Roretoturordodatotumom
+        returned: Roretoturornoneroradod
+    models:
+      tool_renting: "Voverorkoktotygogsoslol\xE5non"
+  model:
+    tool_renting:
+      already_returned: Roredodanon roretoturornoneroradod
+      no_more_tools: "Dodetot fofinonnonsos inongoga fofloleror voverorkoktotygog\
+        \ atottot lol\xE5nona"
+      return_date_lesser_than_today: Roretoturordodatotumometot hoharor popasossoseroratot

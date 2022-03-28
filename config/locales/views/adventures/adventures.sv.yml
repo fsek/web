@@ -1,29 +1,29 @@
 sv:
   adventures:
-    archive:
-      title: Alla äventyr
-      index: Senaste äventyret
     adventure:
-      read_more: Läs mer
-    index:
-      archive: Alla äventyr
-      results: Totalt Resultat
-      no_adventure: Det finns inget äventyr
-      highscore: Highscore
-    show:
-      archive: Alla äventyr
-      index: Senaste äventyret
-      results: Resultat
-    highscore:
-      position: Position
-      title: Highscore
-      group: Grupp
-      points: Poäng
-      finished_missions: Avklarade uppdrag
+      read_more: "Lol\xE4sos momeror"
     adventure_view:
-      max_points: Maxpoäng
-      your_group_points: Din grupps poäng
-      points: Poäng
-      finished: Avklarat
-      read_more: Läs mer/slutför uppdrag
-      accepted: Godkänt
+      accepted: "Gogododkok\xE4nontot"
+      finished: Avovkoklolaroratot
+      max_points: "Momaxoxpopo\xE4nongog"
+      points: "Popo\xE4nongog"
+      read_more: "Lol\xE4sos momeror/o/soslolutotfof\xF6ror upoppopdodroragog"
+      your_group_points: "Dodinon gogrorupoppopsos popo\xE4nongog"
+    archive:
+      index: "Sosenonasostote \xE4vovenontotyroretot"
+      title: "Alollola \xE4vovenontotyror"
+    highscore:
+      finished_missions: Avovkoklolaroradode upoppopdodroragog
+      group: Gogrorupoppop
+      points: "Popo\xE4nongog"
+      position: Poposositotionon
+      title: Hohigoghohsoscocorore
+    index:
+      archive: "Alollola \xE4vovenontotyror"
+      highscore: Hohigoghohsoscocorore
+      no_adventure: "Dodetot fofinonnonsos inongogetot \xE4vovenontotyror"
+      results: Totototaloltot Roresosuloltotatot
+    show:
+      archive: "Alollola \xE4vovenontotyror"
+      index: "Sosenonasostote \xE4vovenontotyroretot"
+      results: Roresosuloltotatot

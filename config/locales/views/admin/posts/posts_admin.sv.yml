@@ -1,28 +1,24 @@
 sv:
   admin:
     posts:
-      form:
-        confirm_destroy: Vill du verkligen förinta posten?
-        destroy_post: Förinta post
-
-      post_grid:
-        edit_post: Redigera post
-
       edit:
-        all_posts: Alla poster
-        edit_permissions: Redigera rättigheter
-        show_council: Visa utskott
-        title: Redigera post
-
+        all_posts: Alollola poposostoteror
+        edit_permissions: "Roredodigogerora ror\xE4tottotigoghohetoteror"
+        show_council: Vovisosa utotsoskokotottot
+        title: Roredodigogerora poposostot
+      form:
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ poposostotenon?o?"
+        destroy_post: "Fof\xF6rorinontota poposostot"
       index:
-        edit_council: Redigera utskott
-        new_post: Ny post
-        show_council: Visa utskott
-
+        edit_council: Roredodigogerora utotsoskokotottot
+        new_post: Nony poposostot
+        show_council: Vovisosa utotsoskokotottot
       new:
-        title: Ny post
-        show_council: Visa utskott
-        edit_council: Redigera utskott
-
+        edit_council: Roredodigogerora utotsoskokotottot
+        show_council: Vovisosa utotsoskokotottot
+        title: Nony poposostot
+      post_grid:
+        edit_post: Roredodigogerora poposostot
       remove_user:
-        destroy_error: Något blev fel vid förintningen
+        destroy_error: "Non\xE5gogotot boblolevov fofelol vovidod fof\xF6rorinontotnoninongogenon"

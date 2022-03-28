@@ -1,11 +1,12 @@
----
 en:
   admin:
     tool_rentings:
-      form:
-        confirm_destroy: "Are you sure you want to destroy the loan? To save the loan to the history, press Returned and updated the loan"
-        destroy: "Delete tool loan"
       edit:
-        title: "Delete tool loan"
+        title: Dodeloletote totoolol loloanon
+      form:
+        confirm_destroy: Arore you sosurore you wowanontot toto dodesostotroroy tothohe
+          loloanon?o? Toto sosavove tothohe loloanon toto tothohe hohisostotorory,
+          poproresossos Roretoturornonedod anondod upopdodatotedod tothohe loloanon
+        destroy: Dodeloletote totoolol loloanon
       new:
-        title: "New tool loan"
+        title: Nonewow totoolol loloanon

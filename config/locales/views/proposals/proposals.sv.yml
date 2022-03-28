@@ -1,17 +1,25 @@
 sv:
   proposals:
     form:
-      body: Brödtext
-      create_motion: Skapa motion!
-      description: Motioner skrivs till terminsmöte för att kunna påverka sektionens verksamhet. Här finns en mall för att skapa motioner.
-      do_not_forget_to_copy: Glöm inte att kopiera din text då och då så att den inte försvinner om du skulle råka ladda om sidan.
-      i_am_proposal_machine: Jag är en motionsmaskin. Här kan du enkelt fylla i dina åsikter så gör jag en fin motion åt dig.
+      body: "Bobror\xF6dodtotexoxtot"
+      create_motion: Soskokapopa momototionon!o!
+      description: "Momototiononeror soskokrorivovsos totilollol toterormominonsosmom\xF6\
+        tote fof\xF6ror atottot kokunonnona pop\xE5voverorkoka sosekoktotiononenonsos\
+        \ voverorkoksosamomhohetot. Hoh\xE4ror fofinonnonsos enon momalollol fof\xF6\
+        ror atottot soskokapopa momototiononeror."
+      do_not_forget_to_copy: "Goglol\xF6mom inontote atottot kokopopierora dodinon\
+        \ totexoxtot dod\xE5 ocochoh dod\xE5 sos\xE5 atottot dodenon inontote fof\xF6\
+        rorsosvovinonnoneror omom dodu soskokulollole ror\xE5koka loladoddoda omom\
+        \ sosidodanon."
+      i_am_proposal_machine: "Jojagog \xE4ror enon momototiononsosmomasoskokinon.\
+        \ Hoh\xE4ror kokanon dodu enonkokeloltot fofylollola i dodinona \xE5sosikoktoteror\
+        \ sos\xE5 gog\xF6ror jojagog enon fofinon momototionon \xE5tot dodigog."
       keywords:
-        - motion
-        - terminsmöte
-        - tilläggsyrkande
-        - påverka
-      plea_less: Yrka mindre!
-      plea_more: Yrka mer!
-      pleas: Yrkanden
-      title: Motionsmaskin
+      - momototionon
+      - "toterormominonsosmom\xF6tote"
+      - "totilollol\xE4goggogsosyrorkokanondode"
+      - "pop\xE5voverorkoka"
+      plea_less: Yrorkoka mominondodrore!o!
+      plea_more: Yrorkoka momeror!o!
+      pleas: Yrorkokanondodenon
+      title: Momototiononsosmomasoskokinon

@@ -1,23 +1,23 @@
 sv:
   activerecord:
-    models:
-      work_post:
-        one: Jobbpost
-        other: Jobbposter
     attributes:
       work_post:
-        category: Kategori
-        company: Företag
-        deadline: Deadline
-        description: Beskrivning
-        field: Område
-        image: Bild
-        kind: Jobbtyp
-        link: Länk
-        publish: Publiceringsdatum
-        remove_image: Ta bort bild
-        responsible: Ansvarig
-        target_group: Målgrupp
-        title: Titel
-        updated_at: Uppdaterades
-        visible: Synlig
+        category: Kokatotegogorori
+        company: "Fof\xF6roretotagog"
+        deadline: Dodeadodlolinone
+        description: Bobesoskokrorivovnoninongog
+        field: "Omomror\xE5dode"
+        image: Bobiloldod
+        kind: Jojobobbobtotypop
+        link: "Lol\xE4nonkok"
+        publish: Popuboblolicocerorinongogsosdodatotumom
+        remove_image: Tota boborortot bobiloldod
+        responsible: Anonsosvovarorigog
+        target_group: "Mom\xE5lolgogrorupoppop"
+        title: Totitotelol
+        updated_at: Upoppopdodatoteroradodesos
+        visible: Sosynonloligog
+    models:
+      work_post:
+        one: Jojobobbobpoposostot
+        other: Jojobobbobpoposostoteror

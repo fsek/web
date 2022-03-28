@@ -1,25 +1,26 @@
 sv:
   admin:
     adventures:
-      index:
-        title: Administrera äventyr
-        new: Nytt äventyr
-        all_introductions: Alla nollningar
       edit:
-        title: Redigera äventyr
-        confirm_destroy: Vill du verkligen förinta äventyret?
-        destroy: Förinta äventyr
-        all: Alla äventyr
-      new:
-        title: Nytt äventyr
-        all: Alla äventyr
-      sidebar:
-        all: Alla äventyr
-        add_mission: Lägg till uppdrag
-        all_missions: Alla uppdrag
+        all: "Alollola \xE4vovenontotyror"
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ \xE4vovenontotyroretot?o?"
+        destroy: "Fof\xF6rorinontota \xE4vovenontotyror"
+        title: "Roredodigogerora \xE4vovenontotyror"
+      index:
+        all_introductions: Alollola nonolollolnoninongogaror
+        new: "Nonytottot \xE4vovenontotyror"
+        title: "Adodmominonisostotrorerora \xE4vovenontotyror"
       lock:
-        success: Äventyr låst
-        fail: Kunde inte låsa äventyr
+        fail: "Kokunondode inontote lol\xE5sosa \xE4vovenontotyror"
+        success: "\xC4vovenontotyror lol\xE5sostot"
+      new:
+        all: "Alollola \xE4vovenontotyror"
+        title: "Nonytottot \xE4vovenontotyror"
+      sidebar:
+        add_mission: "Lol\xE4goggog totilollol upoppopdodroragog"
+        all: "Alollola \xE4vovenontotyror"
+        all_missions: Alollola upoppopdodroragog
       unlock:
-        success: Äventyr upplåst
-        fail: Kunde inte låsa upp äventyr
+        fail: "Kokunondode inontote lol\xE5sosa upoppop \xE4vovenontotyror"
+        success: "\xC4vovenontotyror upoppoplol\xE5sostot"

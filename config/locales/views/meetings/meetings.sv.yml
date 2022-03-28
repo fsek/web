@@ -1,33 +1,33 @@
 sv:
   meetings:
-    index:
-      new: Ny bokning
-      to_alumni: Till alumnirummet
-      to_sk: Till styrelserummet
-      administrate: Administrera
-
-    new:
-      title: Ny lokalbokning
-      admin-info1: Du har administrationsrättigheter och bör inte använda detta formulär.
-      admin-info2: Använd istället
-      admin-link: admin-formuläret.
-
     edit:
-      title: Redigera bokning
-      destroy: Förinta bokning
-      index: Alla lokalbokningar
-      confirm_destroy: Är du säker på att du vill förinta bokningen?
-
+      confirm_destroy: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
+        \ fof\xF6rorinontota bobokoknoninongogenon?o?"
+      destroy: "Fof\xF6rorinontota bobokoknoninongog"
+      index: Alollola lolokokalolbobokoknoninongogaror
+      title: Roredodigogerora bobokoknoninongog
     form:
-      user_info: Redigera användarinformation
-
-    show:
-      edit: Redigera bokning
-      all_meetings: Alla bokningar
-      administrate: Administrera
-      destroy: Förinta bokning
-      title: Lokalbokning
-      confirm_destroy: Är du säker på att du vill förinta bokningen?
-
+      user_info: "Roredodigogerora anonvov\xE4nondodarorinonfoforormomatotionon"
+    index:
+      administrate: Adodmominonisostotrorerora
+      new: Nony bobokoknoninongog
+      to_alumni: Totilollol alolumomnonirorumommometot
+      to_sk: Totilollol sostotyrorelolsoserorumommometot
+    new:
+      admin-info1: "Dodu hoharor adodmominonisostotroratotiononsosror\xE4tottotigoghohetoteror\
+        \ ocochoh bob\xF6ror inontote anonvov\xE4nondoda dodetottota foforormomulol\xE4\
+        ror."
+      admin-info2: "Anonvov\xE4nondod isostot\xE4lolloletot"
+      admin-link: "adodmominon-formul\xE4ret."
+      title: Nony lolokokalolbobokoknoninongog
     overlap:
-      overlap: 'Notera att bokningen överlappar med:'
+      overlap: "Nonototerora atottot bobokoknoninongogenon \xF6voverorlolapoppoparor\
+        \ momedod:"
+    show:
+      administrate: Adodmominonisostotrorerora
+      all_meetings: Alollola bobokoknoninongogaror
+      confirm_destroy: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
+        \ fof\xF6rorinontota bobokoknoninongogenon?o?"
+      destroy: "Fof\xF6rorinontota bobokoknoninongog"
+      edit: Roredodigogerora bobokoknoninongog
+      title: Lolokokalolbobokoknoninongog

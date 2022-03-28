@@ -1,11 +1,11 @@
 sv:
   activerecord:
-    models:
-      group_user:
-        one: Gruppmedlem
-        other: Gruppmedlemmar
     attributes:
       group_user:
-        user: Användare
-        group: Grupp
-        fadder: Fadder/fös
+        fadder: "Fofadoddoderor/o/fof\xF6sos"
+        group: Gogrorupoppop
+        user: "Anonvov\xE4nondodarore"
+    models:
+      group_user:
+        one: Gogrorupoppopmomedodlolemom
+        other: Gogrorupoppopmomedodlolemommomaror

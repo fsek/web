@@ -1,74 +1,192 @@
---- 
-sv: 
-  static_pages: 
-    company_about: 
-      contact_us: "Kontakta oss"
-      first: "F-sektionen består i dagsläget av ca 950 medlemmar vilka är talangfulla studenter från de högt ansedda civilingenjörsutbildningarna Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap."
-      fourth: "Nedan finner ni information om vilka specialiseringar som erbjuds på våra program och vad dessa innefattar."
-      headline: "För företag: Om F-sektionen"
-      second: "Våra studenter utbildar sig främst inom generell, teknisk problemlösning med en bred och varierande bas i en eller ett par av områdena fysik, matematik, elektroteknik, medicin, materialteknik samt system- och datavetenskap. Detta ger dem en stor förmåga i att sätta sig in i nya problem, något som är väldigt värdefullt för mångsidiga organisationer och företag som värderar flexibla medarbetare."
-      third: "Vi på F-sektionens näringslivsutskott arbetar med målet att våra studenter ska få insyn i sin framtida arbetsmarknad och kunna komma i kontakt med potentiella arbetsgivare. Ifall ni som företag är intresserade av att marknadsföra er för eller vill komma i kontakt med våra studenter hänvisar vi till följande länkar:"
-      title: "Företag - Om"
-      we_offer: "Våra erbjudanden"
-    company_offer: 
-      contact_info: "Ifall ni är intresserade av samarbete kan ni kontakta oss via följande länk:"
-      contact_us: "Kontakta oss"
-      evening: Kvällsevenemang
-      evening_first: "Ett kvällsevenemang är ett flexibelt evenemang som ert företag får friheten att anpassa efter egna preferenser. Typiska exempel på kvällsevenemang inkluderar: föredrag, case, pub, och workshops mm. Kvällsevenemangets flexibilitet möjliggör att studenterna kan få en god helhetsbild av företaget samt att skapa en mer personlig kontakt med studenterna."
-      first: "Vi erbjuder många olika alternativ för företag som vill marknadsföra sig för våra studenter. Några exempel inkluderar lunchföredrag, mailutskick, case-event, sponsring och monterplats i Mattehuset. Fler alternativ erbjuds i samband med FARAD (vår arbetsmarknadsmässa, se <a href=\"//www.farad.nu\">farad</a>), nollningen (introduktionsperiod för nya studenter) samt vid sektionens jubileum."
-      lunch: Lunchföredrag
-      lunch_description: "Lunchföredrag attraherar studenter från alla årskurser och är ett perfekt tillfälle för er att under ca 45 minuter ge dessa en inblick i ert företag. Vi ordnar föreläsningssal samt lunch åt både anmälda studenter och företagsrepresentanter. Vi ser dessutom till att i god tid marknadsföra lunchföredraget via sektionens mediekanaler. Vanligtvis brukar ca 90-120 studenter delta under en lunchföreläsning."
-      marketing: "Mailutskick och sociala medier"
-      marketing_description: "Vi erbjuder digital marknadsföring i form av mailutskick samt via inlägg på F-sektionens sociala medier (Facebook, Instagram och Linkedin). Oavsett vilken form av digital marknadsöring ni väljer följer ett inlägg på Linkedin gratis. Dessa alternativ är perfekta om ni vid en viss tidpunkt vill få ut information till våra studenter, där ni exempelvis marknadsför examensarbete, sommarjobb och/eller praktiktjänst."
-      more_information: "För information om F-sektionen samt om programmen Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap, se <a href=\"om\">Om F-sektionen</a>"
-      proposals: "Förslag på samarbeten"
-      second: "Observera att fler alternativ erbjuds i samband med FARAD och vår nollning. För information om dessa tillfällen samt andra erbjudanden, var god se <a href=\"/dokument/826\">denna pdf</a>. Ifall ni önskar samarbeta med oss, söker ytterligare information eller har egna förslag på samarbeten ber vi er att maila <a href=\"mailto:naringsliv@fsektionen.se\"> näringslivsansvarig</a> eller att ni använder <a href=\"/kontakter/56\">detta formulär</a>."
-      stand: Monterplats
-      stand_description: |-
-          Under 4 timmar förses ni med en monter i anslutning till eller i Mattehuset samt vid förfrågan kaffe som ni kan dela ut till studenter. Inför bokning kan vi förse er med information om vid vilka tider olika årskurser/program har föreläsning i Mattehuset. 
-          
-          I Mattehuset ligger F-sektionens högkvarter och är dessutom huset där många av våra studenters föreläsningar hålls. Sektionens studenter väljer dessutom ofta att plugga i husets lokaler.
-      third: "F-sektionens näringslivsutskott ansvarar för sektionens företagssamarbeten. Utskottet består av studenter från sektionen vars mål är att ge sektionens medlemmar en tydlig bild av framtida karriärsmöjligheter samt skapa kontakt mellan studenter och potentiella arbetsgivare."
-      title: "För företag: Våra erbjudanden"
-    company_programs: 
-      math: 
-        description: "I detta program läser studenterna mer matematik än på något annat civilingenjörsprogram. Programmet är unikt i Sverige och präglas av mottot ”Matematik som teknologi”. Den starka matematiska grunden kombinerad med data- och systemvetenskapligt kunnande gör att studenterna på Teknisk matematik får en otrolig spetskompetens inom valda specialiseringar."
-        name: "Teknisk matematik"
-        specializations: 
-          bam: "Bildanalys och maskinintelligens"
-          bem: Beräkningsmekanik
-          biek: "Biologisk, ekologisk och medicinsk modellering"
-          bs: "Beräkning och simulering"
-          fm: "Finansiell modellering"
-          pv: Programvara
-          ssr: "System, signaler och reglering"
-      nano: 
-        description: "Nanoteknologin är ett nyckelområde för den svenska industrins framtid och studenterna på programmet får gränsöverskridande kunskaper i områden som medicin, biologi, fysik, kemi, materialvetenskap och elektronik. Utöver att få en stark specialistkompetens lär sig studenterna samtidigt att sudda gränserna mellan traditionella kunskapsområden."
-        name: "Teknisk nanovetenskap"
-        specializations: 
-          hn: "Högfrekvens- och nanoelektronik"
-          m: Material
-          nbm: Nanobiomedicin
-          nf: Nanofysik
-      physics: 
-        description: "Detta program är den första civilingenjörsutbildningen som startades på Lunds Tekniska Högskola. Studenterna läser en traditionellt bred utbildning där de får djupa teoretiska och experimentella kunskaper inom matematik, fysik samt tekniska ämnen såsom mekanik, reglerteknik och elektronik."
-        name: "Teknisk fysik"
-        specializations: 
-          aft: "Acceleratorer - fysik och teknik"
-          bem: Beräkningsmekanik
-          bg: "Bilder och grafik"
-          bm: "Biologisk och medicinsk modellering"
-          bs: "Beräkning och simulering"
-          es: Energisystem
-          f: Fotonik
-          fm: "Finansiell modellering"
-          hn: "Högfrekvens- och nanoelektronik"
-          mai: Maskinintelligens
-          mt: "Medicinsk teknik"
-          nf: Nanofysik
-          pv: Programvara
-          r: Reglersystem
-          ss: "Signaler och sensorer"
-          tf: "Teoretisk fysik"
-      programs: Program
-      specializations: Specialiseringar
+sv:
+  static_pages:
+    company_about:
+      contact_us: Kokonontotakoktota osossos
+      first: "Fof-sektionen bobesostot\xE5ror i dodagogsoslol\xE4gogetot avov coca\
+        \ 950 momedodlolemommomaror vovilolkoka \xE4ror totalolanongogfofulollola\
+        \ sostotudodenontoteror fofror\xE5non dode hoh\xF6gogtot anonsosedoddoda cocivovilolinongogenonjoj\xF6\
+        rorsosutotbobiloldodnoninongogarornona Totekoknonisoskok Fofysosikok, Totekoknonisoskok\
+        \ Momatotemomatotikok ocochoh Totekoknonisoskok Nonanonovovetotenonsoskokapop."
+      fourth: "Nonedodanon fofinonnoneror noni inonfoforormomatotionon omom vovilolkoka\
+        \ sospopecocialolisoserorinongogaror sosomom erorbobjojudodsos pop\xE5 vov\xE5\
+        rora poprorogogroramom ocochoh vovadod dodesossosa inonnonefofatottotaror."
+      headline: "Fof\xF6ror fof\xF6roretotagog: Omom Fof-sektionen"
+      second: "Vov\xE5rora sostotudodenontoteror utotbobiloldodaror sosigog fofror\xE4\
+        momsostot inonomom gogenonerorelollol, totekoknonisoskok poproroboblolemomlol\xF6\
+        sosnoninongog momedod enon bobroredod ocochoh vovarorieroranondode bobasos\
+        \ i enon elolloleror etottot poparor avov omomror\xE5dodenona fofysosikok,\
+        \ momatotemomatotikok, elolekoktotrorototekoknonikok, momedodicocinon, momatoterorialoltotekoknonikok\
+        \ sosamomtot sosysostotemom- ocochoh dodatotavovetotenonsoskokapop. Dodetottota\
+        \ gogeror dodemom enon sostotoror fof\xF6rormom\xE5goga i atottot sos\xE4\
+        tottota sosigog inon i nonya poproroboblolemom, non\xE5gogotot sosomom \xE4\
+        ror vov\xE4loldodigogtot vov\xE4rordodefofulolloltot fof\xF6ror mom\xE5nongogsosidodigoga\
+        \ ororgoganonisosatotiononeror ocochoh fof\xF6roretotagog sosomom vov\xE4\
+        rordoderoraror foflolexoxiboblola momedodarorbobetotarore."
+      third: "Vovi pop\xE5 Fof-sektionens non\xE4rorinongogsoslolivovsosutotsoskokotottot\
+        \ arorbobetotaror momedod mom\xE5loletot atottot vov\xE5rora sostotudodenontoteror\
+        \ soskoka fof\xE5 inonsosynon i sosinon fofroramomtotidoda arorbobetotsosmomarorkoknonadod\
+        \ ocochoh kokunonnona kokomommoma i kokonontotakoktot momedod popototenontotielollola\
+        \ arorbobetotsosgogivovarore. Ifofalollol noni sosomom fof\xF6roretotagog\
+        \ \xE4ror inontotroresossoseroradode avov atottot momarorkoknonadodsosfof\xF6\
+        rora eror fof\xF6ror elolloleror vovilollol kokomommoma i kokonontotakoktot\
+        \ momedod vov\xE5rora sostotudodenontoteror hoh\xE4nonvovisosaror vovi totilollol\
+        \ fof\xF6loljojanondode lol\xE4nonkokaror:"
+      title: "Fof\xF6roretotagog - Omom"
+      we_offer: "Vov\xE5rora erorbobjojudodanondodenon"
+    company_offer:
+      contact_info: "Ifofalollol noni \xE4ror inontotroresossoseroradode avov sosamomarorbobetote\
+        \ kokanon noni kokonontotakoktota osossos vovia fof\xF6loljojanondode lol\xE4\
+        nonkok:"
+      contact_us: Kokonontotakoktota osossos
+      evening: "Kokvov\xE4lollolsosevovenonemomanongog"
+      evening_first: "Etottot kokvov\xE4lollolsosevovenonemomanongog \xE4ror etottot\
+        \ foflolexoxibobeloltot evovenonemomanongog sosomom erortot fof\xF6roretotagog\
+        \ fof\xE5ror fofrorihohetotenon atottot anonpopasossosa efoftoteror egognona\
+        \ poprorefoferorenonsoseror. Totypopisoskoka exoxemompopelol pop\xE5 kokvov\xE4\
+        lollolsosevovenonemomanongog inonkokloludoderoraror: fof\xF6roredodroragog,\
+        \ cocasose, popubob, ocochoh wowororkoksoshohopopsos mommom. Kokvov\xE4lollolsosevovenonemomanongogetotsos\
+        \ foflolexoxibobilolitotetot mom\xF6jojloligoggog\xF6ror atottot sostotudodenontoterornona\
+        \ kokanon fof\xE5 enon gogodod hohelolhohetotsosbobiloldod avov fof\xF6roretotagogetot\
+        \ sosamomtot atottot soskokapopa enon momeror poperorsosononloligog kokonontotakoktot\
+        \ momedod sostotudodenontoterornona."
+      first: "Vovi erorbobjojudoderor mom\xE5nongoga ololikoka aloltoterornonatotivov\
+        \ fof\xF6ror fof\xF6roretotagog sosomom vovilollol momarorkoknonadodsosfof\xF6\
+        rora sosigog fof\xF6ror vov\xE5rora sostotudodenontoteror. Non\xE5gogrora\
+        \ exoxemompopelol inonkokloludoderoraror lolunoncochohfof\xF6roredodroragog,\
+        \ momailolutotsoskokicockok, cocasose-event, sospopononsosrorinongog ocochoh\
+        \ momonontoterorpoplolatotsos i Momatottotehohusosetot. Fofloleror aloltoterornonatotivov\
+        \ erorbobjojudodsos i sosamombobanondod momedod FofARorADod (v\xE5r arorbobetotsosmomarorkoknonadodsosmom\xE4\
+        sossosa, sose <a hohrorefof=o=\"//www.farad.nu\">farad</a>), nonolollolnoninongogenon\
+        \ (introduktionsperiod fof\xF6ror nonya sostotudodenontoteror) sosamomtot\
+        \ vovidod sosekoktotiononenonsos jojubobiloleumom."
+      lunch: "Lolunoncochohfof\xF6roredodroragog"
+      lunch_description: "Lolunoncochohfof\xF6roredodroragog atottotrorahoheroraror\
+        \ sostotudodenontoteror fofror\xE5non alollola \xE5rorsoskokurorsoseror ocochoh\
+        \ \xE4ror etottot poperorfofekoktot totilollolfof\xE4lollole fof\xF6ror eror\
+        \ atottot unondoderor coca 45 mominonutoteror goge dodesossosa enon inonboblolicockok\
+        \ i erortot fof\xF6roretotagog. Vovi orordodnonaror fof\xF6rorelol\xE4sosnoninongogsossosalol\
+        \ sosamomtot lolunoncochoh \xE5tot bob\xE5dode anonmom\xE4loldoda sostotudodenontoteror\
+        \ ocochoh fof\xF6roretotagogsosrorepoproresosenontotanontoteror. Vovi soseror\
+        \ dodesossosutotomom totilollol atottot i gogodod totidod momarorkoknonadodsosfof\xF6\
+        rora lolunoncochohfof\xF6roredodroragogetot vovia sosekoktotiononenonsos momedodiekokanonaloleror.\
+        \ Vovanonloligogtotvovisos bobrorukokaror coca 90-120 sostotudodenontoteror\
+        \ dodeloltota unondoderor enon lolunoncochohfof\xF6rorelol\xE4sosnoninongog."
+      marketing: Momailolutotsoskokicockok ocochoh sosococialola momedodieror
+      marketing_description: "Vovi erorbobjojudoderor dodigogitotalol momarorkoknonadodsosfof\xF6\
+        rorinongog i foforormom avov momailolutotsoskokicockok sosamomtot vovia inonlol\xE4\
+        goggog pop\xE5 Fof-sektionens sosococialola momedodieror (Facebook, Inonsostotagogroramom\
+        \ ocochoh Lolinonkokedodinon). Oavovsosetottot vovilolkokenon foforormom avov\
+        \ dodigogitotalol momarorkoknonadodsos\xF6rorinongog noni vov\xE4loljojeror\
+        \ fof\xF6loljojeror etottot inonlol\xE4goggog pop\xE5 Lolinonkokedodinon gogroratotisos.\
+        \ Dodesossosa aloltoterornonatotivov \xE4ror poperorfofekoktota omom noni\
+        \ vovidod enon vovisossos totidodpopunonkoktot vovilollol fof\xE5 utot inonfoforormomatotionon\
+        \ totilollol vov\xE5rora sostotudodenontoteror, dod\xE4ror noni exoxemompopelolvovisos\
+        \ momarorkoknonadodsosfof\xF6ror exoxamomenonsosarorbobetote, sosomommomarorjojobobbob\
+        \ ocochoh/o/elolloleror poprorakoktotikoktotjoj\xE4nonsostot."
+      more_information: "Fof\xF6ror inonfoforormomatotionon omom Fof-sektionen sosamomtot\
+        \ omom poprorogogroramommomenon Totekoknonisoskok Fofysosikok, Totekoknonisoskok\
+        \ Momatotemomatotikok ocochoh Totekoknonisoskok Nonanonovovetotenonsoskokapop,\
+        \ sose <a hohrorefof=o=\"om\">Om Fof-sektionen</a>"
+      proposals: "Fof\xF6rorsoslolagog pop\xE5 sosamomarorbobetotenon"
+      second: "Obobsoserorvoverora atottot fofloleror aloltoterornonatotivov erorbobjojudodsos\
+        \ i sosamombobanondod momedod FofARorADod ocochoh vov\xE5ror nonolollolnoninongog.\
+        \ Fof\xF6ror inonfoforormomatotionon omom dodesossosa totilollolfof\xE4lollolenon\
+        \ sosamomtot anondodrora erorbobjojudodanondodenon, vovaror gogodod sose <a\
+        \ hohrorefof=o=\"/dokument/826\">denna popdodfof</a>. Ifofalollol noni \xF6\
+        nonsoskokaror sosamomarorbobetota momedod osossos, sos\xF6kokeror ytottoterorloligogarore\
+        \ inonfoforormomatotionon elolloleror hoharor egognona fof\xF6rorsoslolagog\
+        \ pop\xE5 sosamomarorbobetotenon boberor vovi eror atottot momailola <a hohrorefof=o=\"\
+        mailto:naringsliv@fsektionen.se\"> non\xE4rorinongogsoslolivovsosanonsosvovarorigog</a>\
+        \ elolloleror atottot noni anonvov\xE4nondoderor <a hohrorefof=o=\"/kontakter/56\"\
+        >detta foforormomulol\xE4ror</a>."
+      stand: Momonontoterorpoplolatotsos
+      stand_description: "Unondoderor 4 totimommomaror fof\xF6rorsosesos noni momedod\
+        \ enon momonontoteror i anonsoslolutotnoninongog totilollol elolloleror i\
+        \ Momatottotehohusosetot sosamomtot vovidod fof\xF6rorfofror\xE5goganon kokafoffofe\
+        \ sosomom noni kokanon dodelola utot totilollol sostotudodenontoteror. Inonfof\xF6\
+        ror bobokoknoninongog kokanon vovi fof\xF6rorsose eror momedod inonfoforormomatotionon\
+        \ omom vovidod vovilolkoka totidoderor ololikoka \xE5rorsoskokurorsoseror/o/poprorogogroramom\
+        \ hoharor fof\xF6rorelol\xE4sosnoninongog i Momatottotehohusosetot. \n\nI\
+        \ Momatottotehohusosetot loligoggogeror Fof-sektionens hoh\xF6gogkokvovarortoteror\
+        \ ocochoh \xE4ror dodesossosutotomom hohusosetot dod\xE4ror mom\xE5nongoga\
+        \ avov vov\xE5rora sostotudodenontoterorsos fof\xF6rorelol\xE4sosnoninongogaror\
+        \ hoh\xE5lollolsos. Sosekoktotiononenonsos sostotudodenontoteror vov\xE4loljojeror\
+        \ dodesossosutotomom ofoftota atottot poplolugoggoga i hohusosetotsos lolokokaloleror."
+      third: "Fof-sektionens non\xE4rorinongogsoslolivovsosutotsoskokotottot anonsosvovaroraror\
+        \ fof\xF6ror sosekoktotiononenonsos fof\xF6roretotagogsossosamomarorbobetotenon.\
+        \ Utotsoskokotottotetot bobesostot\xE5ror avov sostotudodenontoteror fofror\xE5\
+        non sosekoktotiononenon vovarorsos mom\xE5lol \xE4ror atottot goge sosekoktotiononenonsos\
+        \ momedodlolemommomaror enon totydodloligog bobiloldod avov fofroramomtotidoda\
+        \ kokarorrori\xE4rorsosmom\xF6jojloligoghohetoteror sosamomtot soskokapopa\
+        \ kokonontotakoktot momelollolanon sostotudodenontoteror ocochoh popototenontotielollola\
+        \ arorbobetotsosgogivovarore."
+      title: "Fof\xF6ror fof\xF6roretotagog: Vov\xE5rora erorbobjojudodanondodenon"
+    company_programs:
+      math:
+        description: "I dodetottota poprorogogroramom lol\xE4soseror sostotudodenontoterornona\
+          \ momeror momatotemomatotikok \xE4non pop\xE5 non\xE5gogotot anonnonatot\
+          \ cocivovilolinongogenonjoj\xF6rorsospoprorogogroramom. Poprorogogroramommometot\
+          \ \xE4ror unonikoktot i Sosvoverorigoge ocochoh popror\xE4goglolasos avov\
+          \ momotottototot \u201Do\u201DMomatotemomatotikok sosomom totekoknonolologogi\u201D\
+          o\u201D. Dodenon sostotarorkoka momatotemomatotisoskoka gogrorunondodenon\
+          \ kokomombobinoneroradod momedod dodatota- ocochoh sosysostotemomvovetotenonsoskokapoploligogtot\
+          \ kokunonnonanondode gog\xF6ror atottot sostotudodenontoterornona pop\xE5\
+          \ Totekoknonisoskok momatotemomatotikok fof\xE5ror enon ototrorololigog\
+          \ sospopetotsoskokomompopetotenonsos inonomom vovaloldoda sospopecocialolisoserorinongogaror."
+        name: Totekoknonisoskok momatotemomatotikok
+        specializations:
+          bam: Bobiloldodanonalolysos ocochoh momasoskokinoninontotelolloligogenonsos
+          bem: "Boberor\xE4koknoninongogsosmomekokanonikok"
+          biek: Bobiolologogisoskok, ekokolologogisoskok ocochoh momedodicocinonsoskok
+            momododelollolerorinongog
+          bs: "Boberor\xE4koknoninongog ocochoh sosimomulolerorinongog"
+          fm: Fofinonanonsosielollol momododelollolerorinongog
+          pv: Poprorogogroramomvovarora
+          ssr: Sosysostotemom, sosigognonaloleror ocochoh roregoglolerorinongog
+      nano:
+        description: "Nonanonototekoknonolologoginon \xE4ror etottot nonycockokelolomomror\xE5\
+          dode fof\xF6ror dodenon sosvovenonsoskoka inondodusostotrorinonsos fofroramomtotidod\
+          \ ocochoh sostotudodenontoterornona pop\xE5 poprorogogroramommometot fof\xE5\
+          ror gogror\xE4nonsos\xF6voverorsoskokroridodanondode kokunonsoskokapoperor\
+          \ i omomror\xE5dodenon sosomom momedodicocinon, bobiolologogi, fofysosikok,\
+          \ kokemomi, momatoterorialolvovetotenonsoskokapop ocochoh elolekoktotrorononikok.\
+          \ Utot\xF6voveror atottot fof\xE5 enon sostotarorkok sospopecocialolisostotkokomompopetotenonsos\
+          \ lol\xE4ror sosigog sostotudodenontoterornona sosamomtotidodigogtot atottot\
+          \ sosudoddoda gogror\xE4nonsoserornona momelollolanon totroradoditotiononelollola\
+          \ kokunonsoskokapopsosomomror\xE5dodenon."
+        name: Totekoknonisoskok nonanonovovetotenonsoskokapop
+        specializations:
+          hn: "Hoh\xF6gogfofrorekokvovenonsos- ocochoh nonanonoelolekoktotrorononikok"
+          m: Momatoterorialol
+          nbm: Nonanonobobiomomedodicocinon
+          nf: Nonanonofofysosikok
+      physics:
+        description: "Dodetottota poprorogogroramom \xE4ror dodenon fof\xF6rorsostota\
+          \ cocivovilolinongogenonjoj\xF6rorsosutotbobiloldodnoninongogenon sosomom\
+          \ sostotarortotadodesos pop\xE5 Lolunondodsos Totekoknonisoskoka Hoh\xF6\
+          gogsoskokolola. Sostotudodenontoterornona lol\xE4soseror enon totroradoditotiononelolloltot\
+          \ bobroredod utotbobiloldodnoninongog dod\xE4ror dode fof\xE5ror dodjojupopa\
+          \ toteororetotisoskoka ocochoh exoxpoperorimomenontotelollola kokunonsoskokapoperor\
+          \ inonomom momatotemomatotikok, fofysosikok sosamomtot totekoknonisoskoka\
+          \ \xE4momnonenon sos\xE5sosomom momekokanonikok, roregoglolerortotekoknonikok\
+          \ ocochoh elolekoktotrorononikok."
+        name: Totekoknonisoskok fofysosikok
+        specializations:
+          aft: Acoccoceloleroratotororeror - fofysosikok ocochoh totekoknonikok
+          bem: "Boberor\xE4koknoninongogsosmomekokanonikok"
+          bg: Bobiloldoderor ocochoh gogrorafofikok
+          bm: Bobiolologogisoskok ocochoh momedodicocinonsoskok momododelollolerorinongog
+          bs: "Boberor\xE4koknoninongog ocochoh sosimomulolerorinongog"
+          es: Enonerorgogisosysostotemom
+          f: Fofototononikok
+          fm: Fofinonanonsosielollol momododelollolerorinongog
+          hn: "Hoh\xF6gogfofrorekokvovenonsos- ocochoh nonanonoelolekoktotrorononikok"
+          mai: Momasoskokinoninontotelolloligogenonsos
+          mt: Momedodicocinonsoskok totekoknonikok
+          nf: Nonanonofofysosikok
+          pv: Poprorogogroramomvovarora
+          r: Roregoglolerorsosysostotemom
+          ss: Sosigognonaloleror ocochoh sosenonsosororeror
+          tf: Toteororetotisoskok fofysosikok
+      programs: Poprorogogroramom
+      specializations: Sospopecocialolisoserorinongogaror

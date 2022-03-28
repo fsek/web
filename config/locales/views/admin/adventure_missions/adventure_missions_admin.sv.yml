@@ -1,25 +1,26 @@
 sv:
   admin:
     adventure_missions:
-      all: Alla äventyrsuppdrag
-      index:
-        title: Administrera äventyrsuppdrag
-        new: Nytt uppdrag
-        all_introductions: Alla nollningar
-        set_points: Sätt poäng
-        missions_for: Uppdrag för äventyr
+      all: "Alollola \xE4vovenontotyrorsosupoppopdodroragog"
       edit:
-        title: Redigera äventyrsuppdrag
-        confirm_destroy: Vill du verkligen förinta äventyrsuppdraget?
-        destroy: Förinta äventyrsuppdrag
-        all: Alla äventyrsuppdrag
+        all: "Alollola \xE4vovenontotyrorsosupoppopdodroragog"
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ \xE4vovenontotyrorsosupoppopdodroragogetot?o?"
+        destroy: "Fof\xF6rorinontota \xE4vovenontotyrorsosupoppopdodroragog"
+        title: "Roredodigogerora \xE4vovenontotyrorsosupoppopdodroragog"
+      index:
+        all_introductions: Alollola nonolollolnoninongogaror
+        missions_for: "Upoppopdodroragog fof\xF6ror \xE4vovenontotyror"
+        new: Nonytottot upoppopdodroragog
+        set_points: "Sos\xE4tottot popo\xE4nongog"
+        title: "Adodmominonisostotrorerora \xE4vovenontotyrorsosupoppopdodroragog"
       new:
-        title: Nytt äventyrsuppdrag
-        all: Alla äventyrsuppdrag
+        all: "Alollola \xE4vovenontotyrorsosupoppopdodroragog"
+        title: "Nonytottot \xE4vovenontotyrorsosupoppopdodroragog"
       sidebar:
-        edit: Redigera äventyr
-        add: Lägg till uppdrag
-        lock: Lås alla uppdrag
-        unlock: Lås upp alla uppdrag
-        acceptance: Godkännande
-        groups: Grupper
+        acceptance: "Gogododkok\xE4nonnonanondode"
+        add: "Lol\xE4goggog totilollol upoppopdodroragog"
+        edit: "Roredodigogerora \xE4vovenontotyror"
+        groups: Gogrorupoppoperor
+        lock: "Lol\xE5sos alollola upoppopdodroragog"
+        unlock: "Lol\xE5sos upoppop alollola upoppopdodroragog"

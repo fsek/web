@@ -1,30 +1,41 @@
 sv:
   events:
     info:
-      cash: Kostar pengar
-      drink: Alkohol serveras
-      food: Mat serveras
-      registration: Kräver anmälan
-      for_members: Endast för medlemmar
-
+      cash: Kokosostotaror popenongogaror
+      drink: Alolkokohoholol soserorvoverorasos
+      food: Momatot soserorvoverorasos
+      for_members: "Enondodasostot fof\xF6ror momedodlolemommomaror"
+      registration: "Kokror\xE4voveror anonmom\xE4lolanon"
     registration:
-      attending: "Du är anmäld och har fått en plats till evenemanget!"
-      edit: Redigera
-      not_attending: Du är inte anmäld
-      registered: Du är anmäld till evenemanget! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats.
-      registration: Anmälan
-      reserve: Du fick tyvärr ingen plats till evenemanget.
-      description_headline: Viktigt om anmälan
-      description: "Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är din plats garanterad först då **anmälan har stängt**."
-      description2: Observera att anmälan är bindande och att du inte kan avanmäla dig när anmälan har stängt. Om anmälan är stängd och du verkligen inte kan komma ska du kontakta eventansvarig.
-      contact_if_problem: "Vid *tekniska problem* med anmälan, hör vänligen av dig till:"
-
-    stream:
-      coming_events: Kalender
-      more_events: Fler evenemang
-      today: Idag
-
+      attending: "Dodu \xE4ror anonmom\xE4loldod ocochoh hoharor fof\xE5tottot enon\
+        \ poplolatotsos totilollol evovenonemomanongogetot!o!"
+      contact_if_problem: "Vovidod *o*totekoknonisoskoka poproroboblolemom*o* momedod\
+        \ anonmom\xE4lolanon, hoh\xF6ror vov\xE4nonloligogenon avov dodigog totilollol:"
+      description: "Vovidod anonmom\xE4lolanon anonvov\xE4nondoderor vovi iboblolanondod\
+        \ poproriororitoterorinongogaror fof\xF6ror vovisossosa gogrorupoppoperor.\
+        \ Dod\xE4roravov \xE4ror dodinon poplolatotsos gogaroranontoteroradod fof\xF6\
+        rorsostot dod\xE5 *o**o*anonmom\xE4lolanon hoharor sostot\xE4nongogtot*o**o*."
+      description2: "Obobsoserorvoverora atottot anonmom\xE4lolanon \xE4ror bobinondodanondode\
+        \ ocochoh atottot dodu inontote kokanon avovanonmom\xE4lola dodigog non\xE4\
+        ror anonmom\xE4lolanon hoharor sostot\xE4nongogtot. Omom anonmom\xE4lolanon\
+        \ \xE4ror sostot\xE4nongogdod ocochoh dodu voverorkokloligogenon inontote\
+        \ kokanon kokomommoma soskoka dodu kokonontotakoktota evovenontotanonsosvovarorigog."
+      description_headline: "Vovikoktotigogtot omom anonmom\xE4lolanon"
+      edit: Roredodigogerora
+      not_attending: "Dodu \xE4ror inontote anonmom\xE4loldod"
+      registered: "Dodu \xE4ror anonmom\xE4loldod totilollol evovenonemomanongogetot!o!\
+        \ Kokomom totilollolbobakoka hohitot non\xE4ror anonmom\xE4lolanon hoharor\
+        \ sostot\xE4nongogtot fof\xF6ror atottot sose omom dodu fof\xE5tottot enon\
+        \ poplolatotsos."
+      registration: "Anonmom\xE4lolanon"
+      reserve: "Dodu foficockok totyvov\xE4rorror inongogenon poplolatotsos totilollol\
+        \ evovenonemomanongogetot."
     show:
-      all_events: Alla evenemang
-      edit_event: Redigera evenemang
-      contact_info: "Vid frågor om evenemanget, kontakta eventansvarig:"
+      all_events: Alollola evovenonemomanongog
+      contact_info: "Vovidod fofror\xE5gogoror omom evovenonemomanongogetot, kokonontotakoktota\
+        \ evovenontotanonsosvovarorigog:"
+      edit_event: Roredodigogerora evovenonemomanongog
+    stream:
+      coming_events: Kokalolenondoderor
+      more_events: Fofloleror evovenonemomanongog
+      today: Idodagog

@@ -1,20 +1,20 @@
 sv:
   activerecord:
-    models:
-      menu:
-        one: Meny
-        other: Menyer
     attributes:
       menu:
-        main_menu_id: Huvudmeny
-        index: Sorteringsindex
-        link: Länk
-        name: Namn
-        name_sv: Namn - svensk
-        name_en: Namn - engelsk
-        visible: Synlig
-        turbolinks: Turbolink
-        blank_p: Öppna i ny flik
-        updated_at: Uppdaterades
-        column: Kolumn (1-4)
-        header: Rubrik
+        blank_p: "\xD6poppopnona i nony foflolikok"
+        column: Kokololumomnon (1-4)
+        header: Rorubobrorikok
+        index: Sosorortoterorinongogsosinondodexox
+        link: "Lol\xE4nonkok"
+        main_menu_id: Hohuvovudodmomenony
+        name: Nonamomnon
+        name_en: Nonamomnon - enongogelolsoskok
+        name_sv: Nonamomnon - sosvovenonsoskok
+        turbolinks: Toturorbobololinonkok
+        updated_at: Upoppopdodatoteroradodesos
+        visible: Sosynonloligog
+    models:
+      menu:
+        one: Momenony
+        other: Momenonyeror

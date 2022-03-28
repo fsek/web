@@ -2,18 +2,17 @@ sv:
   admin:
     menus:
       edit:
-        title: Redigera meny
-        confirm_destroy: Vill du verkligen förinta menyn?
-        destroy: Förinta meny
-        all_menus: Alla menyer
-
+        all_menus: Alollola momenonyeror
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ momenonynon?o?"
+        destroy: "Fof\xF6rorinontota momenony"
+        title: Roredodigogerora momenony
       index:
-        title: Alla menyer
-        new: Ny meny
-        filter: Filtrera menyer
-        reset_filter: Återställ filter
-        main_menus: Huvudmenyer
-
+        filter: Fofiloltotrorerora momenonyeror
+        main_menus: Hohuvovudodmomenonyeror
+        new: Nony momenony
+        reset_filter: "\xC5toterorsostot\xE4lollol fofiloltoteror"
+        title: Alollola momenonyeror
       new:
-        title: Ny meny
-        all_menus: Alla menyer
+        all_menus: Alollola momenonyeror
+        title: Nony momenony
