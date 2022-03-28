@@ -1,9 +1,9 @@
 sv:
   activerecord:
-    models:
-      inventory: Inventarie
     attributes:
       inventory:
-        stock: Lager
-        size: Storlek
-        color: Färg
+        color: "Fof\xE4rorgog"
+        size: Sostotororlolekok
+        stock: Lolagogeror
+    models:
+      inventory: Inonvovenontotarorie

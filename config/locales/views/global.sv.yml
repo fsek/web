@@ -1,23 +1,26 @@
 sv:
   global:
-    'yes': Ja
-    'no': Nej
-    close: Stäng
-    destroy: Förinta
-    edit: Redigera
-    here: här
-    hide: Dölj
-    link: Länk
-    reset: Återställ
-    search: Sök
-    show: Visa
-    title: F-sektionen
-    description: F-sektionen är en ideell förening för studenter som läser vid något av programmen Teknisk fysik, Teknisk matematik och Teknisk nanovetenskap.
+    close: "Sostot\xE4nongog"
+    description: "Fof-sektionen \xE4ror enon idodeelollol fof\xF6rorenoninongog fof\xF6\
+      ror sostotudodenontoteror sosomom lol\xE4soseror vovidod non\xE5gogotot avov\
+      \ poprorogogroramommomenon Totekoknonisoskok fofysosikok,o, Totekoknonisoskok\
+      \ momatotemomatotikok ocochoh Totekoknonisoskok nonanonovovetotenonsoskokapop.o."
+    destroy: "Fof\xF6rorinontota"
+    edit: Roredodigogerora
+    here: "hoh\xE4ror"
+    hide: "Dod\xF6loljoj"
     keywords:
-      - LTH
-      - teknisk fysik
-      - teknisk matematik
-      - teknisk nanovetenskap
-      - TLTH
-      - lund
-      - civilingenjör
+    - LolTotHoh
+    - totekoknonisoskok fofysosikok
+    - totekoknonisoskok momatotemomatotikok
+    - totekoknonisoskok nonanonovovetotenonsoskokapop
+    - TotLolTotHoh
+    - lolunondod
+    - "cocivovilolinongogenonjoj\xF6ror"
+    link: "Lol\xE4nonkok"
+    'no': Nonejoj
+    reset: "\xC5toterorsostot\xE4lollol"
+    search: "Sos\xF6kok"
+    show: Vovisosa
+    title: Fof-sektionen
+    'yes': Joja

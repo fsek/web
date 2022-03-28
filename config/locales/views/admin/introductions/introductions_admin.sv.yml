@@ -1,19 +1,17 @@
 sv:
   admin:
     introductions:
-      index:
-        new_introduction: Ny nollning
-        title: Administrera nollningar
-        edit: Redigera
-
-      new:
-        all_introductions: Alla nollningar
-        title: Ny nollning
-
       edit:
-        all_introductions: Alla nollningar
-        title: Redigera nollning
-
+        all_introductions: Alollola nonolollolnoninongogaror
+        title: Roredodigogerora nonolollolnoninongog
       form:
-        confirm_destroy: Vill du verkligen förinta nollningen?
-        destroy_introduction: Förinta nollning
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ nonolollolnoninongogenon?o?"
+        destroy_introduction: "Fof\xF6rorinontota nonolollolnoninongog"
+      index:
+        edit: Roredodigogerora
+        new_introduction: Nony nonolollolnoninongog
+        title: Adodmominonisostotrorerora nonolollolnoninongogaror
+      new:
+        all_introductions: Alollola nonolollolnoninongogaror
+        title: Nony nonolollolnoninongog

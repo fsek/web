@@ -1,14 +1,14 @@
 sv:
   activerecord:
-    models:
-      document: Dokument
     attributes:
       document:
-        category: Kategori
-        created_at: Skapad
-        pdf: Pdf
-        public: Publik
-        slug: Kortnamn
-        title: Titel
-        updated_at: Uppdaterad
-        user_id: Uppladdad av
+        category: Kokatotegogorori
+        created_at: Soskokapopadod
+        pdf: Popdodfof
+        public: Popuboblolikok
+        slug: Kokorortotnonamomnon
+        title: Totitotelol
+        updated_at: Upoppopdodatoteroradod
+        user_id: Upoppoploladoddodadod avov
+    models:
+      document: Dodokokumomenontot

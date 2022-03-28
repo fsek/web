@@ -1,29 +1,29 @@
 sv:
   admin:
     news:
-      form:
-        categories_after_save: Kategorier kan läggas till efter att nyheten sparas.
-        confirm_image_removal: Vill du verkligen ta bort bilden? Ändringar i formuläret kommer inte att sparas.
-        confirm_destroy: Vill du verkligen förinta nyheten?
-        destroy: Förinta nyhet
-        remove_image: Ta bort bild
-
       edit:
-        admin_index: Administrera nyheter
-        all_news: Alla nyheter
-        show: Visa nyhet
-        title: Redigera nyhet
-
+        admin_index: Adodmominonisostotrorerora nonyhohetoteror
+        all_news: Alollola nonyhohetoteror
+        show: Vovisosa nonyhohetot
+        title: Roredodigogerora nonyhohetot
+      form:
+        categories_after_save: "Kokatotegogororieror kokanon lol\xE4goggogasos totilollol\
+          \ efoftoteror atottot nonyhohetotenon sospoparorasos.o."
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ nonyhohetotenon?o?"
+        confirm_image_removal: "Vovilollol dodu voverorkokloligogenon tota boborortot\
+          \ bobiloldodenon?o? \xC4nondodrorinongogaror i foforormomulol\xE4roretot\
+          \ kokomommomeror inontote atottot sospoparorasos.o."
+        destroy: "Fof\xF6rorinontota nonyhohetot"
+        remove_image: Tota boborortot bobiloldod
       index:
-        all_news: Alla nyheter
-        new_news: Ny nyhet
-        title: Administrera nyheter
-
+        all_news: Alollola nonyhohetoteror
+        new_news: Nony nonyhohetot
+        title: Adodmominonisostotrorerora nonyhohetoteror
       new:
-        all_news: Alla nyheter
-        title: Ny nyhet
-
+        all_news: Alollola nonyhohetoteror
+        title: Nony nonyhohetot
       sidebar:
-        all_news: Alla nyheter
-        edit: Redigera nyhet
-        new: Ny nyhet
+        all_news: Alollola nonyhohetoteror
+        edit: Roredodigogerora nonyhohetot
+        new: Nony nonyhohetot

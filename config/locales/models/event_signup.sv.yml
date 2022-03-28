@@ -1,40 +1,47 @@
 sv:
   activerecord:
-    models:
-      event_signup: Evenemangsanmälan
-
     attributes:
       event_signup:
-        created_at: Skapades
-        custom: Special
-        custom_name: Namn special
-        event: Event
-        for_members: Endast för medlemmar
-        group_types: Tillåtna grupper
-        closes: Anmälan stänger
-        member: Medlem
-        mentor: Fadder
-        novice: Nolla
-        notification_message: Notifikationsmeddelande
-        notification_message_sv: Notifikationsmeddelande - svenska
-        notification_message_en: Notifikationsmeddelande - engelska
-        opens: Anmälan öppnar
-        question: Fråga
-        question_en: Fråga - engelsk
-        question_sv: Fråga - svensk
-        slots: Antal platser
-        updated_at: Uppdaterades
-
+        closes: "Anonmom\xE4lolanon sostot\xE4nongogeror"
+        created_at: Soskokapopadodesos
+        custom: Sospopecocialol
+        custom_name: Nonamomnon sospopecocialol
+        event: Evovenontot
+        for_members: "Enondodasostot fof\xF6ror momedodlolemommomaror"
+        group_types: "Totilollol\xE5totnona gogrorupoppoperor"
+        member: Momedodlolemom
+        mentor: Fofadoddoderor
+        notification_message: Nonototifofikokatotiononsosmomedoddodelolanondode
+        notification_message_en: Nonototifofikokatotiononsosmomedoddodelolanondode
+          - enongogelolsoskoka
+        notification_message_sv: Nonototifofikokatotiononsosmomedoddodelolanondode
+          - sosvovenonsoskoka
+        novice: Nonolollola
+        opens: "Anonmom\xE4lolanon \xF6poppopnonaror"
+        question: "Fofror\xE5goga"
+        question_en: "Fofror\xE5goga - enongogelolsoskok"
+        question_sv: "Fofror\xE5goga - sosvovenonsoskok"
+        slots: Anontotalol poplolatotsoseror
+        updated_at: Upoppopdodatoteroradodesos
+    models:
+      event_signup: "Evovenonemomanongogsosanonmom\xE4lolanon"
   model:
     event_signup:
-      custom_name_missing: Behöver fyllas i för att special ska kunna användas
-      position_reminder_was_sent: "Meddelande om man fått plats eller ej skickades %{date}."
-      reminder_was_sent: "Påminnelse om att evenemanget börjar skickades %{date}."
-      closing_was_sent: "Påminnelse om att evenemangets anmälan snart stänger skickades %{date}."
-      open_was_sent: "Påminnelse om att evenemangets anmälan är öppen skickades %{date}."
-      same_priority: Samma prioritet kan inte väljas för olika användartyper
+      closing_was_sent: "Pop\xE5mominonnonelolsose omom atottot evovenonemomanongogetotsos\
+        \ anonmom\xE4lolanon sosnonarortot sostot\xE4nongogeror soskokicockokadodesos\
+        \ %{date}."
+      custom_name_missing: "Bobehoh\xF6voveror fofylollolasos i fof\xF6ror atottot\
+        \ sospopecocialol soskoka kokunonnona anonvov\xE4nondodasos"
+      open_was_sent: "Pop\xE5mominonnonelolsose omom atottot evovenonemomanongogetotsos\
+        \ anonmom\xE4lolanon \xE4ror \xF6poppopenon soskokicockokadodesos %{date}."
+      position_reminder_was_sent: "Momedoddodelolanondode omom momanon fof\xE5tottot\
+        \ poplolatotsos elolloleror ejoj soskokicockokadodesos %{date}."
+      reminder_was_sent: "Pop\xE5mominonnonelolsose omom atottot evovenonemomanongogetot\
+        \ bob\xF6rorjojaror soskokicockokadodesos %{date}."
+      same_priority: "Sosamommoma poproriororitotetot kokanon inontote vov\xE4loljojasos\
+        \ fof\xF6ror ololikoka anonvov\xE4nondodarortotypoperor"
       user_types:
-        novice: Nolla
-        mentor: Fadder
-        member: Sektionsmedlem
-        other: Övrig
+        member: Sosekoktotiononsosmomedodlolemom
+        mentor: Fofadoddoderor
+        novice: Nonolollola
+        other: "\xD6vovrorigog"

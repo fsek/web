@@ -1,15 +1,14 @@
 sv:
   activerecord:
-    models:
-      song:
-        one: Sång
-        other: Sånger
-
     attributes:
       song:
-        title: Titel
-        song_category: Kategori
-        content: Innehåll
-        author: Författare
-        melody: Melodi
-        visits: Visningar
+        author: "Fof\xF6rorfofatottotarore"
+        content: "Inonnonehoh\xE5lollol"
+        melody: Momelolododi
+        song_category: Kokatotegogorori
+        title: Totitotelol
+        visits: Vovisosnoninongogaror
+    models:
+      song:
+        one: "Sos\xE5nongog"
+        other: "Sos\xE5nongogeror"

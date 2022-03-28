@@ -1,13 +1,14 @@
----
 en:
-  model:
-    tool:
-      not_allowed_change_total: "Prohibited to change number of tools lower than number on loan"
-      could_not_destroy: "The tool is rented and could not be deleted"
   activerecord:
-    models:
-      tool: Tools
     attributes:
       tool:
-        total: "Total number of tools"
-        description: Description
+        description: Dodesoscocroripoptotionon
+        total: Totototalol nonumomboberor ofof totoololsos
+    models:
+      tool: Totoololsos
+  model:
+    tool:
+      could_not_destroy: Tothohe totoolol isos rorenontotedod anondod cocouloldod
+        nonotot bobe dodeloletotedod
+      not_allowed_change_total: Poprorohohibobitotedod toto cochohanongoge nonumomboberor
+        ofof totoololsos lolowoweror tothohanon nonumomboberor onon loloanon

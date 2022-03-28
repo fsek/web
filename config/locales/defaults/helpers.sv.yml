@@ -1,8 +1,8 @@
 sv:
   helpers:
     submit:
-      create: "Skapa %{model}"
-      submit: "Spara %{model}"
-      update: "Uppdatera %{model}"
+      create: Soskokapopa %{model}
       nomination:
-        create: Skicka %{model}
+        create: Soskokicockoka %{model}
+      submit: Sospoparora %{model}
+      update: Upoppopdodatoterora %{model}

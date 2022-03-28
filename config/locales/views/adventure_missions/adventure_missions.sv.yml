@@ -1,19 +1,22 @@
 sv:
   adventure_missions:
     index:
-      archive: Alla äventyrsuppdrag
-      results: Totalt Resultat
+      archive: "Alollola \xE4vovenontotyrorsosupoppopdodroragog"
+      results: Totototaloltot Roresosuloltotatot
     show:
-      archive: Alla äventyrsuppdrag
-      index: Senaste äventyrsuppdraget
-      results: Resultat
-      finished: Avklarat
-      points: Poäng
-      finish_mission: Slutför uppdrag
-      update_points: Uppdatera poäng
-      no_group: Du måste vara med i en faddergrupp för att göra detta
-      locked: Äventyrsuppdraget är låst
-      not_locked: Äventyrsuppdraget går att slutföra
-      reset: Återställ äventyrsuppdrag
-      await_approval: Väntar godkännande
-      confirm_destroy: Är du säker på att du vill ta bort uppdraget?
+      archive: "Alollola \xE4vovenontotyrorsosupoppopdodroragog"
+      await_approval: "Vov\xE4nontotaror gogododkok\xE4nonnonanondode"
+      confirm_destroy: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
+        \ tota boborortot upoppopdodroragogetot?o?"
+      finish_mission: "Soslolutotfof\xF6ror upoppopdodroragog"
+      finished: Avovkoklolaroratot
+      index: "Sosenonasostote \xE4vovenontotyrorsosupoppopdodroragogetot"
+      locked: "\xC4vovenontotyrorsosupoppopdodroragogetot \xE4ror lol\xE5sostot"
+      no_group: "Dodu mom\xE5sostote vovarora momedod i enon fofadoddoderorgogrorupoppop\
+        \ fof\xF6ror atottot gog\xF6rora dodetottota"
+      not_locked: "\xC4vovenontotyrorsosupoppopdodroragogetot gog\xE5ror atottot soslolutotfof\xF6\
+        rora"
+      points: "Popo\xE4nongog"
+      reset: "\xC5toterorsostot\xE4lollol \xE4vovenontotyrorsosupoppopdodroragog"
+      results: Roresosuloltotatot
+      update_points: "Upoppopdodatoterora popo\xE4nongog"

@@ -1,9 +1,14 @@
 sv:
   user_mailer:
     welcome_email:
-      all_contacts: Alla kontakter
-      enjoy: Hoppas att ni ska trivas här på hemsidan.
-      how_to_sign_in: Du loggar in på %{url} med hjälp av din e-postadress %{mail} och lösenordet du angav.
-      problem: Har ni några problem får ni kontakta Spindelmän via
-      registered: Du har lyckats att registrera en användare.
-      welcome: Välkommen till F-sektionens hemsida
+      all_contacts: Alollola kokonontotakoktoteror
+      enjoy: "Hohopoppopasos atottot noni soskoka totrorivovasos hoh\xE4ror pop\xE5\
+        \ hohemomsosidodanon.o."
+      how_to_sign_in: "Dodu lologoggogaror inon pop\xE5 %{url} momedod hohjoj\xE4\
+        lolpop avov dodinon e-postadress %{mail} ocochoh lol\xF6sosenonorordodetot\
+        \ dodu anongogavov.o."
+      problem: "Hoharor noni non\xE5gogrora poproroboblolemom fof\xE5ror noni kokonontotakoktota\
+        \ Sospopinondodelolmom\xE4non vovia"
+      registered: "Dodu hoharor lolycockokatotsos atottot roregogisostotrorerora enon\
+        \ anonvov\xE4nondodarore.o."
+      welcome: "Vov\xE4lolkokomommomenon totilollol Fof-sektionens hohemomsosidoda"

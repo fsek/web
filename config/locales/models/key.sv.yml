@@ -1,17 +1,19 @@
 sv:
   activerecord:
-    models:
-      key: Nyckel
     attributes:
       key:
-        total: Antal
-        description: Beskrivning
-        name: Namn
-        free_count: Antal lediga nycklar
+        description: Bobesoskokrorivovnoninongog
+        free_count: Anontotalol loledodigoga nonycockoklolaror
+        name: Nonamomnon
+        total: Anontotalol
     errors:
       models:
         key:
           attributes:
             base:
               restrict_dependent_destroy:
-                has_many: "Denna nyckel är utlånad och kan därför inte raderas. Radera utlåningen först."
+                has_many: "Dodenonnona nonycockokelol \xE4ror utotlol\xE5nonadod ocochoh\
+                  \ kokanon dod\xE4rorfof\xF6ror inontote roradoderorasos.o. Roradoderora\
+                  \ utotlol\xE5noninongogenon fof\xF6rorsostot.o."
+    models:
+      key: Nonycockokelol

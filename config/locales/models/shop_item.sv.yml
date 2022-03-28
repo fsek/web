@@ -1,11 +1,11 @@
 sv:
   activerecord:
-    models:
-      shop_item: Merch
     attributes:
       shop_item:
-        name: Namn
-        description: Beskrivning
-        price: Pris
-        sizes: Storlekar
-        colors: Färger
+        colors: "Fof\xE4rorgogeror"
+        description: Bobesoskokrorivovnoninongog
+        name: Nonamomnon
+        price: Poprorisos
+        sizes: Sostotororlolekokaror
+    models:
+      shop_item: Momerorcochoh

@@ -1,10 +1,10 @@
 sv:
   activerecord:
-    models:
-      order_item: Vara
     attributes:
       order_item:
-        amount: Antal
-        size: Storlek
-        color: Färg
-        comment: Kommentar
+        amount: Anontotalol
+        color: "Fof\xE4rorgog"
+        comment: Kokomommomenontotaror
+        size: Sostotororlolekok
+    models:
+      order_item: Vovarora

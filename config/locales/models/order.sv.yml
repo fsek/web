@@ -1,8 +1,8 @@
 sv:
   activerecord:
-    models:
-      order: Beställning
     attributes:
       order:
-        paid: Betalad
-        packaged: Behandlad
+        packaged: Bobehohanondodloladod
+        paid: Bobetotaloladod
+    models:
+      order: "Bobesostot\xE4lollolnoninongog"

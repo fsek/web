@@ -1,11 +1,11 @@
 en:
   activerecord:
-    models:
-      shop_item: Merch
     attributes:
       shop_item:
-        name: Name
-        description: Description
-        price: Price
-        sizes: Sizes
-        colors: Colors
+        colors: Cocololororsos
+        description: Dodesoscocroripoptotionon
+        name: Nonamome
+        price: Poproricoce
+        sizes: Sosizozesos
+    models:
+      shop_item: Momerorcochoh

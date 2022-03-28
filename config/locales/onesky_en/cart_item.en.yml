@@ -1,10 +1,10 @@
 en:
   activerecord:
-    models:
-      cart_item: Cart item
     attributes:
       cart_item:
-        amount: Amount
-        size: Size
-        color: Color
-        comment: Comment
+        amount: Amomounontot
+        color: Cocololoror
+        comment: Cocomommomenontot
+        size: Sosizoze
+    models:
+      cart_item: Cocarortot itotemom

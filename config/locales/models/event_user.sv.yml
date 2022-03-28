@@ -1,23 +1,23 @@
 sv:
-  model:
-    event_user:
-      already_registered: Du är redan anmäld till evenemanget
-      not_open: Det går inte att anmäla sig till evenemanget just nu
-      user_not_member: Användare är inte medlem
-      unavailable_type: Felaktig användartyp vald
-      unallowed_type: Grupptypen är inte tillåten
-      user_type_not_allowed: Användartypen tillåts inte
-      not_in_group: Tillhör inte gruppen
-      other_group: Annan
-
   activerecord:
-    models:
-      event_user: Evenemangsanmälan
-
     attributes:
       event_user:
-        answer: Svar
-        user_type: Användartyp
-        created_at: Skapad
-        group: Grupp
-        group_custom: Annan grupp
+        answer: Sosvovaror
+        created_at: Soskokapopadod
+        group: Gogrorupoppop
+        group_custom: Anonnonanon gogrorupoppop
+        user_type: "Anonvov\xE4nondodarortotypop"
+    models:
+      event_user: "Evovenonemomanongogsosanonmom\xE4lolanon"
+  model:
+    event_user:
+      already_registered: "Dodu \xE4ror roredodanon anonmom\xE4loldod totilollol evovenonemomanongogetot"
+      not_in_group: "Totilollolhoh\xF6ror inontote gogrorupoppopenon"
+      not_open: "Dodetot gog\xE5ror inontote atottot anonmom\xE4lola sosigog totilollol\
+        \ evovenonemomanongogetot jojusostot nonu"
+      other_group: Anonnonanon
+      unallowed_type: "Gogrorupoppoptotypopenon \xE4ror inontote totilollol\xE5totenon"
+      unavailable_type: "Fofelolakoktotigog anonvov\xE4nondodarortotypop vovaloldod"
+      user_not_member: "Anonvov\xE4nondodarore \xE4ror inontote momedodlolemom"
+      user_type_not_allowed: "Anonvov\xE4nondodarortotypopenon totilollol\xE5totsos\
+        \ inontote"

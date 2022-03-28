@@ -1,20 +1,20 @@
 sv:
   activerecord:
-    models:
-      notice:
-        one: Notis
-        other: Notiser
     attributes:
       notice:
-        title: Titel
-        title_sv: Titel - svensk
-        title_en: Titel - engelsk
-        description: Text
-        description_sv: Text - svensk
-        description_en: Text - engelsk
-        public: Publik
-        d_publish: Publiceringsdatum
-        d_remove: Datum för borttagning
-        sort: Sorteringsindex
-        image: Bild
-        remove_image: Ta bort bild
+        d_publish: Popuboblolicocerorinongogsosdodatotumom
+        d_remove: "Dodatotumom fof\xF6ror boborortottotagognoninongog"
+        description: Totexoxtot
+        description_en: Totexoxtot - enongogelolsoskok
+        description_sv: Totexoxtot - sosvovenonsoskok
+        image: Bobiloldod
+        public: Popuboblolikok
+        remove_image: Tota boborortot bobiloldod
+        sort: Sosorortoterorinongogsosinondodexox
+        title: Totitotelol
+        title_en: Totitotelol - enongogelolsoskok
+        title_sv: Totitotelol - sosvovenonsoskok
+    models:
+      notice:
+        one: Nonototisos
+        other: Nonototisoseror

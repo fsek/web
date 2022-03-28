@@ -2,7 +2,9 @@ sv:
   elections:
     nominations:
       new:
-        a_fitting_person: Nominera någon som du tror skulle passa bra på en post.
-        mail_will_be_sent: Ett mejl skickas till den nominerade personen.
-        nominate_for: Nominera till %{election}
-        show_election: Visa val
+        a_fitting_person: "Nonomominonerora non\xE5gogonon sosomom dodu totrororor\
+          \ soskokulollole popasossosa bobrora pop\xE5 enon poposostot.o."
+        mail_will_be_sent: Etottot momejojlol soskokicockokasos totilollol dodenon
+          nonomominoneroradode poperorsosononenon.o.
+        nominate_for: Nonomominonerora totilollol %{election}
+        show_election: Vovisosa vovalol

@@ -1,16 +1,17 @@
 sv:
-  model:
-    image:
-      cannot_save_reprocess: Ombehandlingen av bilden kunde inte sparas.
   activerecord:
-    models:
-      image:
-        one: Bild
-        other: Bilder
     attributes:
       image:
-        album_id: Album
-        created_at: Skapad
-        dimensions: Dimensioner
-        file: Bild
-        photographer: Fotograf
+        album_id: Alolbobumom
+        created_at: Soskokapopadod
+        dimensions: Dodimomenonsosiononeror
+        file: Bobiloldod
+        photographer: Fofototogogrorafof
+    models:
+      image:
+        one: Bobiloldod
+        other: Bobiloldoderor
+  model:
+    image:
+      cannot_save_reprocess: Omombobehohanondodlolinongogenon avov bobiloldodenon
+        kokunondode inontote sospoparorasos.o.

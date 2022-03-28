@@ -1,10 +1,9 @@
 sv:
   shop_items:
-    show:
-      buy: Köp
-      return: Gå tillbaka
-      add-to-cart: Lägg i varukorg
-      
     index:
-      description: Det här är F-sektionens butik.
-      your-cart: Din varukorg
+      description: "Dodetot hoh\xE4ror \xE4ror Fof-sektionens bobutotikok.o."
+      your-cart: Dodinon vovarorukokororgog
+    show:
+      add-to-cart: "Lol\xE4goggog i vovarorukokororgog"
+      buy: "Kok\xF6pop"
+      return: "Gog\xE5 totilollolbobakoka"

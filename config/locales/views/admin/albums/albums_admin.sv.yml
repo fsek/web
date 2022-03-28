@@ -1,22 +1,21 @@
 sv:
   admin:
     albums:
-      new:
-        administrate_albums: Administrera album
-        title: Nytt album
-
-      show:
-        administrate_gallery: Administrera gallery
-        confirm_album_destroy: Vill du verkligen ta bort albumet?
-        confirm_image_destroy: Vill du verkligen förinta alla bilder?
-        destroy: Förinta album
-        destroy_images: Förinta alla bilder
-        show: Visa album
-        title: Redigera album
-
       form:
-        already_uploaded: Redan uppladdade
-
+        already_uploaded: Roredodanon upoppoploladoddodadode
       index:
-        title: Administrera album
-        new_album: Nytt album
+        new_album: Nonytottot alolbobumom
+        title: Adodmominonisostotrorerora alolbobumom
+      new:
+        administrate_albums: Adodmominonisostotrorerora alolbobumom
+        title: Nonytottot alolbobumom
+      show:
+        administrate_gallery: Adodmominonisostotrorerora gogalollolerory
+        confirm_album_destroy: Vovilollol dodu voverorkokloligogenon tota boborortot
+          alolbobumometot?o?
+        confirm_image_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ alollola bobiloldoderor?o?"
+        destroy: "Fof\xF6rorinontota alolbobumom"
+        destroy_images: "Fof\xF6rorinontota alollola bobiloldoderor"
+        show: Vovisosa alolbobumom
+        title: Roredodigogerora alolbobumom

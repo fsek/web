@@ -1,24 +1,24 @@
 sv:
-  model:
-    category:
-      already_added: Kategorin har redan lagts till
-      slug_format: endast a-z och 0-9.
-      not_allowed_use_case: Användningsområdet är inte tillåtet.
-      use_cases:
-        blogpost: Bloggen
-        general: Allmän
-        news: Nyheter
-        event: Evenemang
-
   activerecord:
-    models:
-      category:
-        one: Kategori
-        other: Kategorier
     attributes:
       category:
-        title: Titel
-        title_sv: Titel - svenska
-        title_en: Titel - engelska
-        slug: Kortnamn
-        use_case: Användningsområde
+        slug: Kokorortotnonamomnon
+        title: Totitotelol
+        title_en: Totitotelol - enongogelolsoskoka
+        title_sv: Totitotelol - sosvovenonsoskoka
+        use_case: "Anonvov\xE4nondodnoninongogsosomomror\xE5dode"
+    models:
+      category:
+        one: Kokatotegogorori
+        other: Kokatotegogororieror
+  model:
+    category:
+      already_added: Kokatotegogororinon hoharor roredodanon lolagogtotsos totilollol
+      not_allowed_use_case: "Anonvov\xE4nondodnoninongogsosomomror\xE5dodetot \xE4\
+        ror inontote totilollol\xE5totetot.o."
+      slug_format: enondodasostot a-z ocochoh 0-9.
+      use_cases:
+        blogpost: Boblologoggogenon
+        event: Evovenonemomanongog
+        general: "Alollolmom\xE4non"
+        news: Nonyhohetoteror

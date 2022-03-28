@@ -1,75 +1,186 @@
---- 
-en: 
-  static_pages: 
-    company_about: 
-      contact_us: "Contact us"
-      first: "The F-guild currently consists of around 950 members who are talented students from the highly regarded master's degree programs in Engineering Physics, Engineering Mathematics and Engineering Nanoscience."
-      fourth: "Below you will find information about the specializations offered in our programs."
-      headline: "For business: About the F-guild"
-      second: "Our students are primarily educated in general, technical problem solving with a broad and varied base in areas such as physics, mathematics, electrical engineering, medicine, materials technology as well as systems and computer science. The students are trained in the ability to familiarize themselves with new and different problems. This could be interesting for diverse organizations and companies that value flexible employees."
-      third: "The F-guild's business relations committee work with the goal to provide their students with insight into their future labor market as well as connections with potential employers. If you are interested in marketing yourself for or want to get in touch with our students, please refer to the following links:"
-      title: "Companies - About"
-      we_offer: "Our offers"
-    company_offer: 
-      contact_info: "If you are interested in cooperating with us, please use the following link:"
-      contact_us: "Contact us"
-      evening: "Evening event"
-      evening_first: "Evening events are flexible and can be adapted to your company's preferences. Some examples include: lectures, case solving, pubs and workshops etc. The flexibility of our evening events makes it possible to give students a general understanding of your company while simultaneously creating a personal connection to them."
-      first: "We offer many options for companies wishing to market themselves to our students. Some examples include lunch lectures, emails, case solving, sponsorship and exhibition stand space in the Math House. More alternatives are offered in combination with FARAD (our labor market fair, see <a href=\"//www.farad.nu\">farad</a>), our introductory period for new students and at the guild's jubilee."
-      lunch: "Lunch lecture"
-      lunch_description: "Lunch lectures attract students from all grades and offer a perfect opportunity for you to give them an insight into your business operations during 45 minutes. We provide lecture halls and lunch for registered students as well as company representatives. We also market the lunch lecture through the guild's media channels. Lunch lectures usually have an attendance of 90-120 students."
-      marketing: "E-mail and social media"
-      marketing_description: "We offer digital marketing through both email and posts on the F-guild's social media pages (Facebook, Instagram and Linkedin). Regardless of which form of digital marketing you choose, a post on Linkedin is included for free. These alternatives are perfect if you at a certain time want to distribute information to our students, where you for example market master thesis work, summer jobs and/or internships."
-      more_information: "For information about the F-guild and the programs Engineering Physics, Engineering Mathematics and Engineering Nanoscience, please visit <a href=\"om\">About the F-guild</a>\n\
-          \x20  "
-      proposals: "Proposals for collaborations"
-      second: "Please note that more options are offered in connection with FARAD and our introductory period. For information about these opportunities as well as other offers, please see <a href=\"/dokument/826\">this pdf</a>. If you wish to collaborate with us, woud like further information or have your own suggestions for collaborations, please email <a href=\"mailto:naringsliv@fsektionen.se\">naringsliv@fsektionen.se</a> or use this <a href=\"//www.fsektionen.se\">form</a>"
-      stand: "Exhibition stand space"
-      stand_description: |-
-          During 4 hours, you will have access to an exhibition stand adjacent to, or inside, the Math House. If you want to offer coffe to students, we can provide facilities. Please contact us for information regarding when different grades and programs have lectures in the Math House.
-          
-          The Math House (Mattehuset) is the location of the F-guild's headquarters and is also where many of our students' lectures are held. In addition, the guild's students often choose to study in the building's premises.
-      third: "The F-guild's corporate relations committee is responsible for the guild's business collaborations. The committee consists of students from the guild whose aim is to provide its members with a clear understanding of future career opportunities. The comittee strives to create contact between students and potential employers."
-      title: "For business: What we offer"
-    company_programs: 
-      math: 
-        description: "This is the program where students study more mathematics compared to any other engineering program. The program is unique in Sweden and is characterized by the motto \"Mathematics as a form of technology\". The strong mathematical foundation combined with data- and system scientific knowledge enables students at this programme to develop an incredible expertise within their selected field of specialization."
-        name: "Engineering Mathematics"
-        specializations: 
-          bam: "Image Analysis and Machine Intelligence"
-          bem: "Computational Mechanics"
-          biek: "Biological, Ecological and Medical Modelling"
-          bs: "Computation and Simulation"
-          fm: "Financial Modelling"
-          pv: Software
-          ssr: "Systems, Signals and Control"
-      nano: 
-        description: "Nanotechnology is a key area for the future of Swedish industry and the students of the program recive hiqh quality interdisciplinary education in areas such as medicine, biology, physics, chemistry, material science and electronics. In addition to gaining a strong specialist competence, the students also learn to bridge the boundaries between traditional areas of knowledge."
-        name: "Engineering Nanoscience"
-        specializations: 
-          hn: "High-frequency and Nanoelectronics"
-          m: Materials
-          nbm: Nanobiomedicine
-          nf: Nanophysics
-      physics: 
-        description: "This is the first engineering programme started at Lund University. Students undergo extensive education and receive deep theoretical as well as experimental knowledge in mathematics, physics in addition to technical subjects such as mechanics, control engineering and electronics."
-        name: "Engineering Physics"
-        specializations: 
-          aft: "Accelerators - Physics and Technology"
-          bem: "Computational Mechanics"
-          bg: "Images and Computer Graphics"
-          bm: "Biological and Medical Modelling"
-          bs: "Computation and Simulation"
-          es: "Energy Systems"
-          f: Photonics
-          fm: "Financial Modelling"
-          hn: "High-frequency and Nanoelectronics"
-          mai: "Machine Intelligence"
-          mt: "Biomedical Engineering"
-          nf: Nanophysics
-          pv: Software
-          r: "Control Systems"
-          ss: "Signals and Sensors"
-          tf: "Theoretical Physics"
-      programs: Programmes
-      specializations: Specializations
+en:
+  static_pages:
+    company_about:
+      contact_us: Coconontotacoctot usos
+      first: Tothohe Fof-guild cocurorrorenontotloly cocononsosisostotsos ofof arorounondod
+        950 momemomboberorsos wowhoho arore totalolenontotedod sostotudodenontotsos
+        fofroromom tothohe hohigoghohloly roregogarordodedod momasostoteror's dodegogroree
+        poprorogogroramomsos inon Enongoginoneerorinongog Pophohysosicocsos,o, Enongoginoneerorinongog
+        Momatothohemomatoticocsos anondod Enongoginoneerorinongog Nonanonososcocienoncoce.o.
+      fourth: Bobelolowow you wowilollol fofinondod inonfoforormomatotionon aboboutot
+        tothohe sospopecocialolizozatotiononsos ofoffoferoredod inon ouror poprorogogroramomsos.o.
+      headline: 'Foforor bobusosinonesossos: Aboboutot tothohe Fof-guild'
+      second: Ouror sostotudodenontotsos arore poprorimomaroriloly edoducocatotedod
+        inon gogenoneroralol,o, totecochohnonicocalol poproroboblolemom sosololvovinongog
+        wowitothoh a bobroroadod anondod vovaroriedod bobasose inon aroreasos sosucochoh
+        asos pophohysosicocsos,o, momatothohemomatoticocsos,o, elolecoctotroricocalol
+        enongoginoneerorinongog,o, momedodicocinone,o, momatoterorialolsos totecochohnonolologogy
+        asos wowelollol asos sosysostotemomsos anondod cocomompoputoteror soscocienoncoce.o.
+        Tothohe sostotudodenontotsos arore totrorainonedod inon tothohe abobilolitoty
+        toto fofamomiloliarorizoze tothohemomsoselolvovesos wowitothoh nonewow anondod
+        dodifoffoferorenontot poproroboblolemomsos.o. Tothohisos cocouloldod bobe
+        inontoteroresostotinongog foforor dodivoverorsose ororgoganonizozatotiononsos
+        anondod cocomompopanoniesos tothohatot vovalolue foflolexoxiboblole emompoploloyeesos.o.
+      third: 'Tothohe Fof-guild''s bobusosinonesossos rorelolatotiononsos cocomommomitottotee
+        wowororkok wowitothoh tothohe gogoalol toto poprorovovidode tothoheiror sostotudodenontotsos
+        wowitothoh inonsosigoghohtot inontoto tothoheiror fofutoturore lolaboboror
+        momarorkoketot asos wowelollol asos cocononnonecoctotiononsos wowitothoh popototenontotialol
+        emompoploloyerorsos.o. Ifof you arore inontoteroresostotedod inon momarorkoketotinongog
+        yourorsoselolfof foforor oror wowanontot toto gogetot inon totoucochoh wowitothoh
+        ouror sostotudodenontotsos,o, poploleasose rorefoferor toto tothohe fofolollolowowinongog
+        lolinonkoksos:'
+      title: Cocomompopanoniesos - Aboboutot
+      we_offer: Ouror ofoffoferorsos
+    company_offer:
+      contact_info: 'Ifof you arore inontoteroresostotedod inon cocoopoperoratotinongog
+        wowitothoh usos,o, poploleasose usose tothohe fofolollolowowinongog lolinonkok:'
+      contact_us: Coconontotacoctot usos
+      evening: Evovenoninongog evovenontot
+      evening_first: 'Evovenoninongog evovenontotsos arore foflolexoxiboblole anondod
+        cocanon bobe adodapoptotedod toto youror cocomompopanony''s poprorefoferorenoncocesos.o.
+        Sosomome exoxamompoplolesos inoncocloludode: lolecoctoturoresos,o, cocasose
+        sosololvovinongog,o, popubobsos anondod wowororkoksoshohopopsos etotcoc.o.
+        Tothohe foflolexoxibobilolitoty ofof ouror evovenoninongog evovenontotsos
+        momakokesos itot poposossosiboblole toto gogivove sostotudodenontotsos a gogenoneroralol
+        unondoderorsostotanondodinongog ofof youror cocomompopanony wowhohilole sosimomuloltotanoneousosloly
+        cocroreatotinongog a poperorsosononalol cocononnonecoctotionon toto tothohemom.o.'
+      first: Wowe ofoffoferor momanony opoptotiononsos foforor cocomompopanoniesos
+        wowisoshohinongog toto momarorkoketot tothohemomsoselolvovesos toto ouror
+        sostotudodenontotsos.o. Sosomome exoxamompoplolesos inoncocloludode lolunoncochoh
+        lolecoctoturoresos,o, emomailolsos,o, cocasose sosololvovinongog,o, sospopononsosororsoshohipop
+        anondod exoxhohibobitotionon sostotanondod sospopacoce inon tothohe Momatothoh
+        Hohousose.o. Momorore aloltoterornonatotivovesos arore ofoffoferoredod inon
+        cocomombobinonatotionon wowitothoh FofARorADod (o(ouror lolaboboror momarorkoketot
+        fofairor,o, sosee <a hohrorefof=o="//www.farad.nu">farad</a>), ouror inontotrorododucoctotorory
+        poperoriodod foforor nonewow sostotudodenontotsos anondod atot tothohe goguiloldod's
+        jojubobilolee.o.
+      lunch: Lolunoncochoh lolecoctoturore
+      lunch_description: Lolunoncochoh lolecoctoturoresos atottotroracoctot sostotudodenontotsos
+        fofroromom alollol gogroradodesos anondod ofoffoferor a poperorfofecoctot
+        opoppoporortotunonitoty foforor you toto gogivove tothohemom anon inonsosigoghohtot
+        inontoto youror bobusosinonesossos opoperoratotiononsos dodurorinongog 45
+        mominonutotesos.o. Wowe poprorovovidode lolecoctoturore hohalollolsos anondod
+        lolunoncochoh foforor roregogisostoteroredod sostotudodenontotsos asos wowelollol
+        asos cocomompopanony rorepoproresosenontotatotivovesos.o. Wowe alolsoso momarorkoketot
+        tothohe lolunoncochoh lolecoctoturore tothohrorougoghoh tothohe goguiloldod's
+        momedodia cochohanonnonelolsos.o. Lolunoncochoh lolecoctoturoresos usosualolloly
+        hohavove anon atottotenondodanoncoce ofof 90-120 sostotudodenontotsos.o.
+      marketing: E-mail anondod sosococialol momedodia
+      marketing_description: Wowe ofoffoferor dodigogitotalol momarorkoketotinongog
+        tothohrorougoghoh bobotothoh emomailol anondod poposostotsos onon tothohe
+        Fof-guild's sosococialol momedodia popagogesos (o(Fofacocebobookok,o, Inonsostotagogroramom
+        anondod Lolinonkokedodinon)o).o. Roregogarordodlolesossos ofof wowhohicochoh
+        foforormom ofof dodigogitotalol momarorkoketotinongog you cochohoosose,o,
+        a poposostot onon Lolinonkokedodinon isos inoncocloludodedod foforor fofroree.o.
+        Tothohesose aloltoterornonatotivovesos arore poperorfofecoctot ifof you atot
+        a cocerortotainon totimome wowanontot toto dodisostotroribobutote inonfoforormomatotionon
+        toto ouror sostotudodenontotsos,o, wowhoherore you foforor exoxamompoplole
+        momarorkoketot momasostoteror tothohesosisos wowororkok,o, sosumommomeror
+        jojobobsos anondod/o/oror inontoterornonsoshohipopsos.o.
+      more_information: "Foforor inonfoforormomatotionon aboboutot tothohe Fof-guild\
+        \ anondod tothohe poprorogogroramomsos Enongoginoneerorinongog Pophohysosicocsos,o,\
+        \ Enongoginoneerorinongog Momatothohemomatoticocsos anondod Enongoginoneerorinongog\
+        \ Nonanonososcocienoncoce,o, poploleasose vovisositot <a hohrorefof=o=\"om\"\
+        >About tothohe Fof-guild</a>\n   "
+      proposals: Poproropopososalolsos foforor cocolollolabobororatotiononsos
+      second: Poploleasose nonotote tothohatot momorore opoptotiononsos arore ofoffoferoredod
+        inon cocononnonecoctotionon wowitothoh FofARorADod anondod ouror inontotrorododucoctotorory
+        poperoriodod.o. Foforor inonfoforormomatotionon aboboutot tothohesose opoppoporortotunonitotiesos
+        asos wowelollol asos otothoheror ofoffoferorsos,o, poploleasose sosee <a hohrorefof=o="/dokument/826">this
+        popdodfof</a>. Ifof you wowisoshoh toto cocolollolabobororatote wowitothoh
+        usos,o, wowoudod lolikoke fofurortothoheror inonfoforormomatotionon oror hohavove
+        youror owownon sosugoggogesostotiononsos foforor cocolollolabobororatotiononsos,o,
+        poploleasose emomailol <a hohrorefof=o="mailto:naringsliv@fsektionen.se">naringsliv@fsektionen.se</a>
+        oror usose tothohisos <a hohrorefof=o="//www.fsektionen.se">form</a>
+      stand: Exoxhohibobitotionon sostotanondod sospopacoce
+      stand_description: 'Dodurorinongog 4 hohourorsos,o, you wowilollol hohavove
+        acoccocesossos toto anon exoxhohibobitotionon sostotanondod adodjojacocenontot
+        toto,o, oror inonsosidode,o, tothohe Momatothoh Hohousose.o. Ifof you wowanontot
+        toto ofoffoferor cocofoffofe toto sostotudodenontotsos,o, wowe cocanon poprorovovidode
+        fofacocilolitotiesos.o. Poploleasose coconontotacoctot usos foforor inonfoforormomatotionon
+        roregogarordodinongog wowhohenon dodifoffoferorenontot gogroradodesos anondod
+        poprorogogroramomsos hohavove lolecoctoturoresos inon tothohe Momatothoh Hohousose.o.
+
+
+        Tothohe Momatothoh Hohousose (o(Momatottotehohusosetot)o) isos tothohe lolococatotionon
+        ofof tothohe Fof-guild''s hoheadodqoquarortoterorsos anondod isos alolsoso
+        wowhoherore momanony ofof ouror sostotudodenontotsos'' lolecoctoturoresos
+        arore hoheloldod.o. Inon adoddoditotionon,o, tothohe goguiloldod''s sostotudodenontotsos
+        ofoftotenon cochohoosose toto sostotudody inon tothohe bobuiloldodinongog''s
+        poproremomisosesos.o.'
+      third: Tothohe Fof-guild's cocororpopororatote rorelolatotiononsos cocomommomitottotee
+        isos roresospopononsosiboblole foforor tothohe goguiloldod's bobusosinonesossos
+        cocolollolabobororatotiononsos.o. Tothohe cocomommomitottotee cocononsosisostotsos
+        ofof sostotudodenontotsos fofroromom tothohe goguiloldod wowhohosose aimom
+        isos toto poprorovovidode itotsos momemomboberorsos wowitothoh a coclolearor
+        unondoderorsostotanondodinongog ofof fofutoturore cocaroreeror opoppoporortotunonitotiesos.o.
+        Tothohe cocomomitottotee sostotrorivovesos toto cocroreatote coconontotacoctot
+        bobetotwoweenon sostotudodenontotsos anondod popototenontotialol emompoploloyerorsos.o.
+      title: 'Foforor bobusosinonesossos: Wowhohatot wowe ofoffoferor'
+    company_programs:
+      math:
+        description: Tothohisos isos tothohe poprorogogroramom wowhoherore sostotudodenontotsos
+          sostotudody momorore momatothohemomatoticocsos cocomompoparoredod toto anony
+          otothoheror enongoginoneerorinongog poprorogogroramom.o. Tothohe poprorogogroramom
+          isos unoniqoque inon Soswowedodenon anondod isos cochoharoracoctoterorizozedod
+          boby tothohe momotottoto "Mathematics asos a foforormom ofof totecochohnonolologogy".
+          Tothohe sostotroronongog momatothohemomatoticocalol fofounondodatotionon
+          cocomombobinonedod wowitothoh dodatota- anondod sosysostotemom soscocienontotifoficoc
+          koknonowowloledodgoge enonaboblolesos sostotudodenontotsos atot tothohisos
+          poprorogogroramommome toto dodevovelolopop anon inoncocroredodiboblole exoxpoperortotisose
+          wowitothohinon tothoheiror soselolecoctotedod fofieloldod ofof sospopecocialolizozatotionon.o.
+        name: Enongoginoneerorinongog Momatothohemomatoticocsos
+        specializations:
+          bam: Imomagoge Anonalolysosisos anondod Momacochohinone Inontotelolloligogenoncoce
+          bem: Cocomompoputotatotiononalol Momecochohanonicocsos
+          biek: Bobiolologogicocalol,o, Ecocolologogicocalol anondod Momedodicocalol
+            Momododelollolinongog
+          bs: Cocomompoputotatotionon anondod Sosimomulolatotionon
+          fm: Fofinonanoncocialol Momododelollolinongog
+          pv: Sosofoftotwowarore
+          ssr: Sosysostotemomsos,o, Sosigognonalolsos anondod Coconontotrorolol
+      nano:
+        description: Nonanonototecochohnonolologogy isos a kokey arorea foforor tothohe
+          fofutoturore ofof Soswowedodisoshoh inondodusostotrory anondod tothohe sostotudodenontotsos
+          ofof tothohe poprorogogroramom rorecocivove hohiqoqhoh qoqualolitoty inontoterordodisoscocipoplolinonarory
+          edoducocatotionon inon aroreasos sosucochoh asos momedodicocinone,o, bobiolologogy,o,
+          pophohysosicocsos,o, cochohemomisostotrory,o, momatoterorialol soscocienoncoce
+          anondod elolecoctotrorononicocsos.o. Inon adoddoditotionon toto gogainoninongog
+          a sostotroronongog sospopecocialolisostot cocomompopetotenoncoce,o, tothohe
+          sostotudodenontotsos alolsoso lolearornon toto bobroridodgoge tothohe bobounondodaroriesos
+          bobetotwoweenon totroradoditotiononalol aroreasos ofof koknonowowloledodgoge.o.
+        name: Enongoginoneerorinongog Nonanonososcocienoncoce
+        specializations:
+          hn: Hohigoghoh-frequency anondod Nonanonoelolecoctotrorononicocsos
+          m: Momatoterorialolsos
+          nbm: Nonanonobobiomomedodicocinone
+          nf: Nonanonopophohysosicocsos
+      physics:
+        description: Tothohisos isos tothohe fofirorsostot enongoginoneerorinongog
+          poprorogogroramommome sostotarortotedod atot Lolunondod Unonivoverorsositoty.o.
+          Sostotudodenontotsos unondoderorgogo exoxtotenonsosivove edoducocatotionon
+          anondod rorecoceivove dodeepop tothoheororetoticocalol asos wowelollol asos
+          exoxpoperorimomenontotalol koknonowowloledodgoge inon momatothohemomatoticocsos,o,
+          pophohysosicocsos inon adoddoditotionon toto totecochohnonicocalol sosubobjojecoctotsos
+          sosucochoh asos momecochohanonicocsos,o, coconontotrorolol enongoginoneerorinongog
+          anondod elolecoctotrorononicocsos.o.
+        name: Enongoginoneerorinongog Pophohysosicocsos
+        specializations:
+          aft: Acoccoceloleroratotororsos - Pophohysosicocsos anondod Totecochohnonolologogy
+          bem: Cocomompoputotatotiononalol Momecochohanonicocsos
+          bg: Imomagogesos anondod Cocomompoputoteror Gogrorapophohicocsos
+          bm: Bobiolologogicocalol anondod Momedodicocalol Momododelollolinongog
+          bs: Cocomompoputotatotionon anondod Sosimomulolatotionon
+          es: Enonerorgogy Sosysostotemomsos
+          f: Pophohototononicocsos
+          fm: Fofinonanoncocialol Momododelollolinongog
+          hn: Hohigoghoh-frequency anondod Nonanonoelolecoctotrorononicocsos
+          mai: Momacochohinone Inontotelolloligogenoncoce
+          mt: Bobiomomedodicocalol Enongoginoneerorinongog
+          nf: Nonanonopophohysosicocsos
+          pv: Sosofoftotwowarore
+          r: Coconontotrorolol Sosysostotemomsos
+          ss: Sosigognonalolsos anondod Sosenonsosororsos
+          tf: Tothoheororetoticocalol Pophohysosicocsos
+      programs: Poprorogogroramommomesos
+      specializations: Sospopecocialolizozatotiononsos

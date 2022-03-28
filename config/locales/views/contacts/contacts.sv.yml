@@ -1,26 +1,27 @@
 sv:
   contacts:
     contact:
-      users: Posten innehas av
-      contact: Kontakta
-
+      contact: Kokonontotakoktota
+      users: Poposostotenon inonnonehohasos avov
     index:
-      description: Kontakta våra funktionärer om ni undrar eller behöver hjälp med något.
+      contact: Kokonontotakoktota
+      description: "Kokonontotakoktota vov\xE5rora fofunonkoktotionon\xE4roreror omom\
+        \ noni unondodroraror elolloleror bobehoh\xF6voveror hohjoj\xE4lolpop momedod\
+        \ non\xE5gogotot.o."
+      emergency: "Non\xF6dodsositotuatotionon"
+      emergency_body: "Enon avov fof\xF6loljojanondode poperorsosononeror soskokalollol\
+        \ kokonontotakoktotasos vovidod non\xF6dodsositotuatotionon.o."
+      emergency_car_html: "Vovidod non\xF6dodsositotuatotiononeror momedod <strong>F-bilen</strong>:"
+      emergency_general: "Vovidod alollolmom\xE4nona non\xF6dodsositotuatotiononeror:"
+      emergency_introduction_html: "Vovidod non\xF6dodsositotuatotiononeror unondoderor\
+        \ <strong>nollningen</strong>:"
       keywords:
-        - kontakt
-        - styrelse
-        - bil
-      title: Kontaktsida
-      contact: Kontakta
-      emergency: Nödsituation
-      emergency_body: En av följande personer skall kontaktas vid nödsituation.
-      emergency_general: "Vid allmäna nödsituationer:"
-      emergency_introduction_html: "Vid nödsituationer under <strong>nollningen</strong>:"
-      emergency_car_html: "Vid nödsituationer med <strong>F-bilen</strong>:"
-
+      - kokonontotakoktot
+      - sostotyrorelolsose
+      - bobilol
+      title: Kokonontotakoktotsosidoda
     send_form:
-      submit: Skicka meddelande
-
+      submit: Soskokicockoka momedoddodelolanondode
     show:
-      back_to_contacts: Alla kontakter
-      users: Posten innehas av
+      back_to_contacts: Alollola kokonontotakoktoteror
+      users: Poposostotenon inonnonehohasos avov

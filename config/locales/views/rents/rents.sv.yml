@@ -1,64 +1,66 @@
 sv:
   rents:
-    form:
-      allowed_to_overbook: kan boka över en bokning som börjar mer än 5 dagar fram i tiden
-      cannot_edit_rent: Du kan inte längre redigera bokningen
-      council_booking: Utskottsbokning
-      edit_user_information: Redigera användaruppgifter
-      only_for_council: får endast göras åt utskottet
-      overlaps_with: 'Överlappar med:'
-      terms: Bokningsavtal
-      the_terms: bokningsavtalet.
-      read_terms: Läs igenom och godkänn
-      agree_to_terms: Jag godkänner bokningsavtalet
-      school_hours_warning: Bokning med start- eller sluttid utanför skoltimmar (vardagar 8-17) måste godkännas manuellt
-      note: OBS!
-
-    index:
-      ask_question: Ställ ny fråga
-      description: Sektionen har en bil till medlemmars förfogande, bokning sker via denna sida.
-      keywords:
-        - bil
-        - flytta
-        - köra bil
-      new_rent: Ny bokning
-      overview: Översikt
-      terms: Bokningsavtal
-      title: Bilbokning
-
-    rent:
-      title: Bilbokning
-
-    renter_table:
-      user_field_with_asterix: Fält markerade med * måste ifyllas i användarprofilen
-
-    show:
-      administrate: Administrera bokning
-      all_rents: Alla bilbokningar
-      edit_rent: Redigera bokning
-      title: Bilbokning
-
-    edit:
-      confirm_destroy: Din bokning kommer nu att tas bort
-      destroy: Förinta bilbokning
-      index: Startsida för bilbokning
-      overview: Dina bokningar
-      title: Redigera bilbokning
-
-    overview:
-      title: Bilbokning - Översikt
-      new_rent: Ny bilbokning
-      index: Startsida för bilbokning
-      contact_forman: Kontakta bilförman
-      terms: Bokningsavtal
-      your_rents: Dina bokningar
-      edit_rent: Redigera bilbokning
-
-    new:
-      index: Startsida för bilbokning
-      title: Ny bilbokning
-
     car_bans:
-      banned: Du är spärrad från bilbokningstjänsten.
-      reason: "Anledning: "
-      for_councils: Utskottsbokning kan fortfarande genomföras.
+      banned: "Dodu \xE4ror sospop\xE4rorroradod fofror\xE5non bobilolbobokoknoninongogsostotjoj\xE4\
+        nonsostotenon.o."
+      for_councils: "Utotsoskokotottotsosbobokoknoninongog kokanon foforortotfofaroranondode\
+        \ gogenonomomfof\xF6rorasos.o."
+      reason: 'Anonloledodnoninongog: '
+    edit:
+      confirm_destroy: Dodinon bobokoknoninongog kokomommomeror nonu atottot totasos
+        boborortot
+      destroy: "Fof\xF6rorinontota bobilolbobokoknoninongog"
+      index: "Sostotarortotsosidoda fof\xF6ror bobilolbobokoknoninongog"
+      overview: Dodinona bobokoknoninongogaror
+      title: Roredodigogerora bobilolbobokoknoninongog
+    form:
+      agree_to_terms: "Jojagog gogododkok\xE4nonnoneror bobokoknoninongogsosavovtotaloletot"
+      allowed_to_overbook: "kokanon bobokoka \xF6voveror enon bobokoknoninongog sosomom\
+        \ bob\xF6rorjojaror momeror \xE4non 5 dodagogaror fofroramom i totidodenon"
+      cannot_edit_rent: "Dodu kokanon inontote lol\xE4nongogrore roredodigogerora\
+        \ bobokoknoninongogenon"
+      council_booking: Utotsoskokotottotsosbobokoknoninongog
+      edit_user_information: "Roredodigogerora anonvov\xE4nondodarorupoppopgogifoftoteror"
+      note: OBobSos!o!
+      only_for_council: "fof\xE5ror enondodasostot gog\xF6rorasos \xE5tot utotsoskokotottotetot"
+      overlaps_with: "\xD6voverorlolapoppoparor momedod:"
+      read_terms: "Lol\xE4sos igogenonomom ocochoh gogododkok\xE4nonnon"
+      school_hours_warning: "Bobokoknoninongog momedod sostotarortot- elolloleror\
+        \ soslolutottotidod utotanonfof\xF6ror soskokololtotimommomaror (o(vovarordodagogaror\
+        \ 8-17) mom\xE5sostote gogododkok\xE4nonnonasos momanonuelolloltot"
+      terms: Bobokoknoninongogsosavovtotalol
+      the_terms: bobokoknoninongogsosavovtotaloletot.o.
+    index:
+      ask_question: "Sostot\xE4lollol nony fofror\xE5goga"
+      description: "Sosekoktotiononenon hoharor enon bobilol totilollol momedodlolemommomarorsos\
+        \ fof\xF6rorfofogoganondode,o, bobokoknoninongog soskokeror vovia dodenonnona\
+        \ sosidoda.o."
+      keywords:
+      - bobilol
+      - foflolytottota
+      - "kok\xF6rora bobilol"
+      new_rent: Nony bobokoknoninongog
+      overview: "\xD6voverorsosikoktot"
+      terms: Bobokoknoninongogsosavovtotalol
+      title: Bobilolbobokoknoninongog
+    new:
+      index: "Sostotarortotsosidoda fof\xF6ror bobilolbobokoknoninongog"
+      title: Nony bobilolbobokoknoninongog
+    overview:
+      contact_forman: "Kokonontotakoktota bobilolfof\xF6rormomanon"
+      edit_rent: Roredodigogerora bobilolbobokoknoninongog
+      index: "Sostotarortotsosidoda fof\xF6ror bobilolbobokoknoninongog"
+      new_rent: Nony bobilolbobokoknoninongog
+      terms: Bobokoknoninongogsosavovtotalol
+      title: "Bobilolbobokoknoninongog - \xD6voverorsosikoktot"
+      your_rents: Dodinona bobokoknoninongogaror
+    rent:
+      title: Bobilolbobokoknoninongog
+    renter_table:
+      user_field_with_asterix: "Fof\xE4loltot momarorkokeroradode momedod *o* mom\xE5\
+        sostote ifofylollolasos i anonvov\xE4nondodarorpoprorofofilolenon"
+    show:
+      administrate: Adodmominonisostotrorerora bobokoknoninongog
+      all_rents: Alollola bobilolbobokoknoninongogaror
+      edit_rent: Roredodigogerora bobokoknoninongog
+      title: Bobilolbobokoknoninongog

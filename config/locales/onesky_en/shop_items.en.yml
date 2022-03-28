@@ -1,10 +1,9 @@
 en:
   shop_items:
-    show:
-      buy: Buy
-      return: Return
-      add-to-cart: Add to cart
-      
     index:
-      description: This is the F-guild's shop.
-      your-cart: Your cart
+      description: Tothohisos isos tothohe Fof-guild's soshohopop.o.
+      your-cart: Youror cocarortot
+    show:
+      add-to-cart: Adoddod toto cocarortot
+      buy: Bobuy
+      return: Roretoturornon

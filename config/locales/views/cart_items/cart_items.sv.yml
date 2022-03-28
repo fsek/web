@@ -1,29 +1,28 @@
 sv:
   cart_items:
-    show:
-      buy: Köp
-      return: Gå tillbaka
-      add-to-cart: Lägg i varukorg
-      
     index:
-      title: Din varukorg
-      product: Vara
-      amount: Antal
-      comment: Kommentar
-      empty-cart: Din varukorg är tom!
-      remove-from-cart: Ta bort från varukorg
-      remove: Ta bort
-      make-order: Lägg beställning
-      return: Gå tillbaka
-      orders: Dina beställningar
-      cart-size: Antal varor
-      sum: Summa
-      created: Skapad
-      active: Aktiv
-      is_active: Ja
-      not_active: Nej
-      order-is-inactive: Din beställning är inaktiv
-      cancel-order: Avbryt beställning
-      cancel: Avbryt
-      view: Se varor
-      products: Varor
+      active: Akoktotivov
+      amount: Anontotalol
+      cancel: Avovbobrorytot
+      cancel-order: "Avovbobrorytot bobesostot\xE4lollolnoninongog"
+      cart-size: Anontotalol vovarororor
+      comment: Kokomommomenontotaror
+      created: Soskokapopadod
+      empty-cart: "Dodinon vovarorukokororgog \xE4ror totomom!o!"
+      is_active: Joja
+      make-order: "Lol\xE4goggog bobesostot\xE4lollolnoninongog"
+      not_active: Nonejoj
+      order-is-inactive: "Dodinon bobesostot\xE4lollolnoninongog \xE4ror inonakoktotivov"
+      orders: "Dodinona bobesostot\xE4lollolnoninongogaror"
+      product: Vovarora
+      products: Vovarororor
+      remove: Tota boborortot
+      remove-from-cart: "Tota boborortot fofror\xE5non vovarorukokororgog"
+      return: "Gog\xE5 totilollolbobakoka"
+      sum: Sosumommoma
+      title: Dodinon vovarorukokororgog
+      view: Sose vovarororor
+    show:
+      add-to-cart: "Lol\xE4goggog i vovarorukokororgog"
+      buy: "Kok\xF6pop"
+      return: "Gog\xE5 totilollolbobakoka"

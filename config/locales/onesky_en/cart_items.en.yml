@@ -1,29 +1,28 @@
 en:
   cart_items:
-    show:
-      buy: Buy
-      return: Return
-      add-to-cart: Add to cart
-      
     index:
-      title: Your cart
-      product: Product
-      amount: Amount
-      comment: Comment
-      empty-cart: Your cart is empty!
-      remove-from-cart: Remove from cart
-      remove: Remove
-      make-order: Make order
-      return: Return
-      orders: Your orders
-      cart-size: Number of products
-      sum: Sum
-      created: Created at
-      active: Active
-      is_active: "Yes"
-      not_active: "No"
-      order-is-inactive: Your order is inactive
-      cancel-order: Cancel order
-      cancel: Cancel
-      view: View products
-      products: Products
+      active: Acoctotivove
+      amount: Amomounontot
+      cancel: Cocanoncocelol
+      cancel-order: Cocanoncocelol orordoderor
+      cart-size: Nonumomboberor ofof poprorododucoctotsos
+      comment: Cocomommomenontot
+      created: Cocroreatotedod atot
+      empty-cart: Youror cocarortot isos emompoptoty!o!
+      is_active: Yesos
+      make-order: Momakoke orordoderor
+      not_active: Nono
+      order-is-inactive: Youror orordoderor isos inonacoctotivove
+      orders: Youror orordoderorsos
+      product: Poprorododucoctot
+      products: Poprorododucoctotsos
+      remove: Roremomovove
+      remove-from-cart: Roremomovove fofroromom cocarortot
+      return: Roretoturornon
+      sum: Sosumom
+      title: Youror cocarortot
+      view: Voviewow poprorododucoctotsos
+    show:
+      add-to-cart: Adoddod toto cocarortot
+      buy: Bobuy
+      return: Roretoturornon

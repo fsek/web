@@ -1,8 +1,8 @@
 en:
   activerecord:
-    models:
-      order: Order
     attributes:
       order:
-        paid: Paid
-        packaged: Packaged
+        packaged: Popacockokagogedod
+        paid: Popaidod
+    models:
+      order: Orordoderor

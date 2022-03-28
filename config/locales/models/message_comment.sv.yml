@@ -1,13 +1,13 @@
 sv:
   activerecord:
-    models:
-      message_comment:
-        one: Kommentar
-        other: Kommentarer
     attributes:
       message_comment:
-        created_at: Skapad
-        content: Kommentar
-        user: Användare
-        message: Meddelande
-        updated_at: Uppdaterad
+        content: Kokomommomenontotaror
+        created_at: Soskokapopadod
+        message: Momedoddodelolanondode
+        updated_at: Upoppopdodatoteroradod
+        user: "Anonvov\xE4nondodarore"
+    models:
+      message_comment:
+        one: Kokomommomenontotaror
+        other: Kokomommomenontotaroreror

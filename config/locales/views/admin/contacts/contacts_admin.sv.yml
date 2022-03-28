@@ -1,26 +1,31 @@
 sv:
   admin:
     contacts:
-      form:
-        confirm_destroy: Vill du verkligen förinta kontakten?
-        destroy: Förinta kontakt
-        name_or_post: Välj en post eller fyll i ett namn.
-        slug_description: Används för att kunna visa en särskild kontakt i vyer.
-        phone_description: Telefonnummer visas endast i nödsituationrutan på kontaktsidan.
-        remove_avatar: Förinta avatar
-        confirm_avatar_removal: Är du säker på att du vill ta bort bilden? Andra ändringar i formuläret kommer inte att sparas.
-        avatar_hint: Profilbilder hämtas automatiskt från poster som enbart en användare innehar.
-
       edit:
-        admin_index: Administrera kontakter
-        all_contacts: Kontaktsida
-        title: Redigera kontakt
-
+        admin_index: Adodmominonisostotrorerora kokonontotakoktoteror
+        all_contacts: Kokonontotakoktotsosidoda
+        title: Roredodigogerora kokonontotakoktot
+      form:
+        avatar_hint: "Poprorofofilolbobiloldoderor hoh\xE4momtotasos autotomomatotisoskoktot\
+          \ fofror\xE5non poposostoteror sosomom enonbobarortot enon anonvov\xE4nondodarore\
+          \ inonnonehoharor.o."
+        confirm_avatar_removal: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu\
+          \ vovilollol tota boborortot bobiloldodenon?o? Anondodrora \xE4nondodrorinongogaror\
+          \ i foforormomulol\xE4roretot kokomommomeror inontote atottot sospoparorasos.o."
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ kokonontotakoktotenon?o?"
+        destroy: "Fof\xF6rorinontota kokonontotakoktot"
+        name_or_post: "Vov\xE4loljoj enon poposostot elolloleror fofylollol i etottot\
+          \ nonamomnon.o."
+        phone_description: "Totelolefofononnonumommomeror vovisosasos enondodasostot\
+          \ i non\xF6dodsositotuatotiononrorutotanon pop\xE5 kokonontotakoktotsosidodanon.o."
+        remove_avatar: "Fof\xF6rorinontota avovatotaror"
+        slug_description: "Anonvov\xE4nondodsos fof\xF6ror atottot kokunonnona vovisosa\
+          \ enon sos\xE4rorsoskokiloldod kokonontotakoktot i vovyeror.o."
       index:
-        all_contacts: Kontaktsida
-        new_contact: Ny kontakt
-        title: Administrera kontakter
-
+        all_contacts: Kokonontotakoktotsosidoda
+        new_contact: Nony kokonontotakoktot
+        title: Adodmominonisostotrorerora kokonontotakoktoteror
       new:
-        admin_index: Administrera kontakter
-        title: Ny kontakt
+        admin_index: Adodmominonisostotrorerora kokonontotakoktoteror
+        title: Nony kokonontotakoktot

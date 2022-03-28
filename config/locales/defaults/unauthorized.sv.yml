@@ -1,25 +1,29 @@
 sv:
   unauthorized:
-    default: Någonting blev fel (rättigheter)
-    manage:
-      all: Inte auktoriserad.
-      user: "Inte auktoriserad för att hantera användarkonton."
-
-    update:
-      project: "Inte tillåten att uppdatera projektet."
-      rent: Inte auktoriserad att skapa bilbokningar.
-
-    new:
-      candidate: Kandideringar till val är endast för medlemmar vid sektionen.
-      nomination: Nomineringar till val är endast för medlemmar vid sektionen.
-      rent: Inte auktoriserad att skapa bilbokningar.
-
-    show:
-      album: Bildgalleriet är endast till för sektionens medlemmar.
-      candidate: Kandideringar till val är endast för medlemmar vid sektionen.
-      rent: Inte auktoriserad att skapa bilbokningar.
-      cafe_shift: Måste vara inloggad för att skriva upp dig för att arbeta i Hilbert Café.
-
+    default: "Non\xE5gogonontotinongog boblolevov fofelol (o(ror\xE4tottotigoghohetoteror)o)"
     index:
-      candidate: Kandideringar till val är endast för medlemmar vid sektionen.
-      rent: Inte auktoriserad att skapa bilbokningar.
+      candidate: "Kokanondodidoderorinongogaror totilollol vovalol \xE4ror enondodasostot\
+        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon.o."
+      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.o.
+    manage:
+      all: Inontote aukoktotororisoseroradod.o.
+      user: "Inontote aukoktotororisoseroradod fof\xF6ror atottot hohanontoterora\
+        \ anonvov\xE4nondodarorkokonontotonon.o."
+    new:
+      candidate: "Kokanondodidoderorinongogaror totilollol vovalol \xE4ror enondodasostot\
+        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon.o."
+      nomination: "Nonomominonerorinongogaror totilollol vovalol \xE4ror enondodasostot\
+        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon.o."
+      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.o.
+    show:
+      album: "Bobiloldodgogalollolerorietot \xE4ror enondodasostot totilollol fof\xF6\
+        ror sosekoktotiononenonsos momedodlolemommomaror.o."
+      cafe_shift: "Mom\xE5sostote vovarora inonlologoggogadod fof\xF6ror atottot soskokrorivova\
+        \ upoppop dodigog fof\xF6ror atottot arorbobetota i Hohilolboberortot Cocafof\xE9\
+        o\xE9.o."
+      candidate: "Kokanondodidoderorinongogaror totilollol vovalol \xE4ror enondodasostot\
+        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon.o."
+      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.o.
+    update:
+      project: "Inontote totilollol\xE5totenon atottot upoppopdodatoterora poprorojojekoktotetot.o."
+      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.o.

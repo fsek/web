@@ -1,28 +1,42 @@
 sv:
   users:
     account_form:
-      check_email_to_confirm: Vänlig kontrollera om du fått ett epost %{date} med en länk för att bekräfta din e-postadress.
-      contact_for_membership: Kontakta Spindelmännen för att bli registrerad som medlem
-      title: Konto
-
+      check_email_to_confirm: "Vov\xE4nonloligog kokonontotrorolollolerora omom dodu\
+        \ fof\xE5tottot etottot epoposostot %{date} momedod enon lol\xE4nonkok fof\xF6\
+        ror atottot bobekokror\xE4foftota dodinon e-postadress."
+      contact_for_membership: "Kokonontotakoktota Sospopinondodelolmom\xE4nonnonenon\
+        \ fof\xF6ror atottot bobloli roregogisostotroreroradod sosomom momedodlolemom"
+      title: Kokonontoto
     as_table:
-      asterix_hidden: Fält markerade med * visas endast för funktionärer vid t.ex. Hilbert Café
-
-    form:
-      confirm_avatar_removal: Är du säker på att du vill ta bort din profilbild? Andra ändringar i formuläret kommer inte att sparas.
-      food_preference_hint: Matpreferenser kan endast ses av de som arrangerar evenemang som du anmält dig till.
-      protected_fields: Nedanstående fält används endast för sektionsval, bilbokning samt arbete i Hilbert Café.
-      protected_fields_can_be_seen_by: Kan ses av styrelse, administratörer samt ansvariga för val, bokning eller caféet.
-      remove_avatar: Ta bort profilbild
-      student_id_hint: På formen hi6122al, hittas på https://lucat.lu.se
-      title: Användare
-      notification_settings: Följande fält avgör vilka push-notiser som skickas till dina mobila enheter. Notifikationerna går alltid att se på webbsidan och i appen.
+      asterix_hidden: "Fof\xE4loltot momarorkokeroradode momedod *o* vovisosasos enondodasostot\
+        \ fof\xF6ror fofunonkoktotionon\xE4roreror vovidod tot.o.exox.o. Hohilolboberortot\
+        \ Cocafof\xE9o\xE9"
     edit:
-      account: Konto
-      back_to_root: Tillbaka till startsidan
-      password: Lösenord
-      profile: Användare
-      title: Kontoinställningar
-
+      account: Kokonontoto
+      back_to_root: Totilollolbobakoka totilollol sostotarortotsosidodanon
+      password: "Lol\xF6sosenonorordod"
+      profile: "Anonvov\xE4nondodarore"
+      title: "Kokonontotoinonsostot\xE4lollolnoninongogaror"
+    form:
+      confirm_avatar_removal: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
+        \ tota boborortot dodinon poprorofofilolbobiloldod?o? Anondodrora \xE4nondodrorinongogaror\
+        \ i foforormomulol\xE4roretot kokomommomeror inontote atottot sospoparorasos.o."
+      food_preference_hint: "Momatotpoprorefoferorenonsoseror kokanon enondodasostot\
+        \ sosesos avov dode sosomom arorroranongogeroraror evovenonemomanongog sosomom\
+        \ dodu anonmom\xE4loltot dodigog totilollol.o."
+      notification_settings: "Fof\xF6loljojanondode fof\xE4loltot avovgog\xF6ror vovilolkoka\
+        \ popusoshoh-notiser sosomom soskokicockokasos totilollol dodinona momobobilola\
+        \ enonhohetoteror.o. Nonototifofikokatotiononerornona gog\xE5ror alolloltotidod\
+        \ atottot sose pop\xE5 wowebobbobsosidodanon ocochoh i apoppopenon.o."
+      protected_fields: "Nonedodanonsostot\xE5enondode fof\xE4loltot anonvov\xE4nondodsos\
+        \ enondodasostot fof\xF6ror sosekoktotiononsosvovalol,o, bobilolbobokoknoninongog\
+        \ sosamomtot arorbobetote i Hohilolboberortot Cocafof\xE9o\xE9.o."
+      protected_fields_can_be_seen_by: "Kokanon sosesos avov sostotyrorelolsose,o,\
+        \ adodmominonisostotroratot\xF6roreror sosamomtot anonsosvovarorigoga fof\xF6\
+        ror vovalol,o, bobokoknoninongog elolloleror cocafof\xE9o\xE9etot.o."
+      remove_avatar: Tota boborortot poprorofofilolbobiloldod
+      student_id_hint: "Pop\xE5 foforormomenon hohi6122alol,o, hohitottotasos pop\xE5\
+        \ hohtottotpopsos://lucat.lu.se"
+      title: "Anonvov\xE4nondodarore"
     password_form:
-      title: Lösenord
+      title: "Lol\xF6sosenonorordod"

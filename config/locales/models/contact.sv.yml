@@ -1,26 +1,26 @@
 sv:
-  model:
-    contact:
-      message_sent: Meddelandet skickades.
-      something_wrong: Någonting blev fel, prova att skicka igen.
-
   activerecord:
-    models:
-      contact:
-        one: Kontakt
-        other: Kontakter
     attributes:
       contact:
-        created_at: Skapad
+        created_at: Soskokapopadod
         email: E-post
-        message: Meddelande
-        name: Namn
-        name_sv: Namn - svenskt
-        name_en: Namn - engelskt
-        post_id: Post
-        public: Publik
-        slug: Kortreferens
-        text: Beskrivning
-        text_sv: Beskrivning - svensk
-        text_en: Beskrivning - engelsk
-        updated_at: Uppdaterad
+        message: Momedoddodelolanondode
+        name: Nonamomnon
+        name_en: Nonamomnon - enongogelolsoskoktot
+        name_sv: Nonamomnon - sosvovenonsoskoktot
+        post_id: Poposostot
+        public: Popuboblolikok
+        slug: Kokorortotrorefoferorenonsos
+        text: Bobesoskokrorivovnoninongog
+        text_en: Bobesoskokrorivovnoninongog - enongogelolsoskok
+        text_sv: Bobesoskokrorivovnoninongog - sosvovenonsoskok
+        updated_at: Upoppopdodatoteroradod
+    models:
+      contact:
+        one: Kokonontotakoktot
+        other: Kokonontotakoktoteror
+  model:
+    contact:
+      message_sent: Momedoddodelolanondodetot soskokicockokadodesos.o.
+      something_wrong: "Non\xE5gogonontotinongog boblolevov fofelol,o, poprorovova\
+        \ atottot soskokicockoka igogenon.o."
