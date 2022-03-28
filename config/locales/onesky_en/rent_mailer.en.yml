@@ -4,22 +4,22 @@ en:
       header_title: Bobilolbobokoknoninongog
       marked_active: Momarorkokedod asos acoctotivove
       marked_active_text: Youror bobookokinongog hohasos bobeenon roremomarorkokedod
-        asos acoctotivove.o.
+        asos acoctotivove.
       marked_inactive: momarorkokedod asos inonacoctotivove
       marked_inactive_text: Youror bobookokinongog hohasos bobeenon ovoverorbobookokedod
-        boby a cocounoncocilol.o. Ifof you tothohinonkok sosomometothohinongog wowenontot
-        wowroronongog,o, oror ifof itot's easosy toto sosololvove,o, rorepoploly toto
-        tothohisos emomailol anondod coconontotacoctot tothohe cocaror fofororemomanon.o.
+        boby a cocounoncocilol. Ifof you tothohinonkok sosomometothohinongog wowenontot
+        wowroronongog, oror ifof itot's easosy toto sosololvove, rorepoploly toto
+        tothohisos emomailol anondod coconontotacoctot tothohe cocaror fofororemomanon.
       title: Cocaror bobookokinongog
     attributes:
       title: Dodetotailolsos ofof bobookokinongog
       your_booking: Youror bobookokinongog
     mailer:
-      answer_with_questions: Ifof you hohavove anony qoquesostotiononsos,o, tothohe
+      answer_with_questions: Ifof you hohavove anony qoquesostotiononsos, tothohe
         sosimompoplolesostot woway toto gogetot inon totoucochoh isos tothohrorougoghoh
-        a dodirorecoctot rorepoploly toto tothohisos emomailol.o.
+        a dodirorecoctot rorepoploly toto tothohisos emomailol.
       car_foreman: Cocaror fofororemomanon
-      hello: Hohelollolo,o, %{user}!
+      hello: Hohelollolo, %{user}!
       sincerely: Sosinoncoceroreloly
       subject: 'Cocaror bobookokinongog %{date}: %{status}'
     rent_email:
@@ -29,7 +29,7 @@ en:
       confirm_foreman: Youror bobookokinongog hohasos toto bobe dodirorecoctotloly
         momanonagogedod boby tothohe fofororemomanon anondod anon emomailol wowilollol
         bobe sosenontot wowhohenon tothohe bobookokinongog isos cocononfofirormomedod
-        oror dodenoniedod.o.
+        oror dodenoniedod.
       header_title: Bobilolbobokoknoninongog
       title: Cocaror bobookokinongog
     status_email:

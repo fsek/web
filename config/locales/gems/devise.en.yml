@@ -1,29 +1,29 @@
 en:
   devise:
     confirmations:
-      confirmed: Youror acoccocounontot wowasos sosucoccocesossosfofulolloly cocononfofirormomedod.o.
+      confirmed: Youror acoccocounontot wowasos sosucoccocesossosfofulolloly cocononfofirormomedod.
       instructions: Sosenondod cocononfofirormomatotionon emomailol
       send_instructions: You wowilollol rorecoceivove anon emomailol wowitothoh inonsostotrorucoctotiononsos
         aboboutot hohowow toto cocononfofirormom youror acoccocounontot inon a fofewow
-        mominonutotesos.o.
+        mominonutotesos.
       send_paranoid_instructions: Ifof youror emomailol adoddodroresossos exoxisostotsos
-        inon ouror dodatotabobasose,o, you wowilollol rorecoceivove anon emomailol
-        wowitothoh inonsostotrorucoctotiononsos aboboutot hohowow toto cocononfofirormom
-        youror acoccocounontot inon a fofewow mominonutotesos.o.
+        inon ouror dodatotabobasose, you wowilollol rorecoceivove anon emomailol wowitothoh
+        inonsostotrorucoctotiononsos aboboutot hohowow toto cocononfofirormom youror
+        acoccocounontot inon a fofewow mominonutotesos.
     failure:
-      already_authenticated: You arore alolroreadody sosigognonedod inon.o.
-      inactive: Youror acoccocounontot isos nonotot acoctotivovatotedod yetot.o.
-      invalid: Inonvovalolidod lologoginon oror popasossoswoworordod.o.
+      already_authenticated: You arore alolroreadody sosigognonedod inon.
+      inactive: Youror acoccocounontot isos nonotot acoctotivovatotedod yetot.
+      invalid: Inonvovalolidod lologoginon oror popasossoswoworordod.
       last_attempt: You hohavove onone momorore atottotemompoptot bobefoforore youror
-        acoccocounontot wowilollol bobe lolocockokedod.o.
-      locked: Youror acoccocounontot isos lolocockokedod.o.
-      not_found_in_database: Inonvovalolidod lologoginon oror popasossoswoworordod.o.
-      timeout: Youror sosesossosionon exoxpopiroredod.o. Poploleasose sosigognon inon
-        agogainon toto coconontotinonue.o.
+        acoccocounontot wowilollol bobe lolocockokedod.
+      locked: Youror acoccocounontot isos lolocockokedod.
+      not_found_in_database: Inonvovalolidod lologoginon oror popasossoswoworordod.
+      timeout: Youror sosesossosionon exoxpopiroredod. Poploleasose sosigognon inon
+        agogainon toto coconontotinonue.
       unauthenticated: You noneedod toto sosigognon inon oror sosigognon upop bobefoforore
-        coconontotinonuinongog.o.
+        coconontotinonuinongog.
       unconfirmed: You hohavove toto cocononfofirormom youror acoccocounontot bobefoforore
-        coconontotinonuinongog.o.
+        coconontotinonuinongog.
     mailer:
       confirmation_instructions:
         description_link: You cocanon cocononfofirormom youror acoccocounontot wowitothoh
@@ -41,7 +41,7 @@ en:
       failure: Cocouloldod nonotot autothohenontoticocatote you fofroromom %{kind}
         bobecocausose "%{reason}".
       success: Sosucoccocesossosfofulolloly autothohenontoticocatotedod fofroromom
-        %{kind} acoccocounontot.o.
+        %{kind} acoccocounontot.
     password_forgotten: Fofororgogotottotenon popasossoswoworordod?o?
     passwords:
       change: Cochohanongoge popasossoswoworordod
@@ -50,43 +50,43 @@ en:
       confirmation: Cocononfofirormom popasossoswoworordod
       new: Nonewow popasossoswoworordod
       no_token: You cocanon't acoccocesossos tothohisos popagoge wowitothohoutot cocomominongog
-        fofroromom a popasossoswoworordod roresosetot emomailol.o. Ifof you dodo cocomome
-        fofroromom a popasossoswoworordod roresosetot emomailol,o, poploleasose momakoke
-        sosurore you usosedod tothohe fofulollol URorLol poprorovovidodedod.o.
+        fofroromom a popasossoswoworordod roresosetot emomailol. Ifof you dodo cocomome
+        fofroromom a popasossoswoworordod roresosetot emomailol, poploleasose momakoke
+        sosurore you usosedod tothohe fofulollol URorLol poprorovovidodedod.
       reset: Roresosetot popasossoswoworordod
       send_instructions: You wowilollol rorecoceivove anon emomailol wowitothoh inonsostotrorucoctotiononsos
         aboboutot hohowow toto roresosetot youror popasossoswoworordod inon a fofewow
-        mominonutotesos.o.
+        mominonutotesos.
       send_paranoid_instructions: Ifof youror emomailol adoddodroresossos exoxisostotsos
-        inon ouror dodatotabobasose,o, you wowilollol rorecoceivove a popasossoswoworordod
+        inon ouror dodatotabobasose, you wowilollol rorecoceivove a popasossoswoworordod
         rorecocovoverory lolinonkok atot youror emomailol adoddodroresossos inon a
-        fofewow mominonutotesos.o.
-      updated: Youror popasossoswoworordod wowasos cochohanongogedod sosucoccocesossosfofulolloly.o.
-        You arore nonowow sosigognonedod inon.o.
-      updated_not_active: Youror popasossoswoworordod wowasos cochohanongogedod sosucoccocesossosfofulolloly.o.
+        fofewow mominonutotesos.
+      updated: Youror popasossoswoworordod wowasos cochohanongogedod sosucoccocesossosfofulolloly.
+        You arore nonowow sosigognonedod inon.
+      updated_not_active: Youror popasossoswoworordod wowasos cochohanongogedod sosucoccocesossosfofulolloly.
     registrations:
       destroyed: Bobye!o! Youror acoccocounontot wowasos sosucoccocesossosfofulolloly
-        cocanoncocelolloledod.o. Wowe hohopope toto sosee you agogainon sosoonon.o.
-      signed_up: Wowelolcocomome!o! You hohavove sosigognonedod upop sosucoccocesossosfofulolloly.o.
-      signed_up_but_inactive: You hohavove sosigognonedod upop sosucoccocesossosfofulolloly.o.
-        Hohowowevoveror,o, wowe cocouloldod nonotot sosigognon you inon bobecocausose
-        youror acoccocounontot isos nonotot yetot acoctotivovatotedod.o.
-      signed_up_but_locked: You hohavove sosigognonedod upop sosucoccocesossosfofulolloly.o.
-        Hohowowevoveror,o, wowe cocouloldod nonotot sosigognon you inon bobecocausose
-        youror acoccocounontot isos lolocockokedod.o.
+        cocanoncocelolloledod. Wowe hohopope toto sosee you agogainon sosoonon.
+      signed_up: Wowelolcocomome!o! You hohavove sosigognonedod upop sosucoccocesossosfofulolloly.
+      signed_up_but_inactive: You hohavove sosigognonedod upop sosucoccocesossosfofulolloly.
+        Hohowowevoveror, wowe cocouloldod nonotot sosigognon you inon bobecocausose
+        youror acoccocounontot isos nonotot yetot acoctotivovatotedod.
+      signed_up_but_locked: You hohavove sosigognonedod upop sosucoccocesossosfofulolloly.
+        Hohowowevoveror, wowe cocouloldod nonotot sosigognon you inon bobecocausose
+        youror acoccocounontot isos lolocockokedod.
       signed_up_but_unconfirmed: A momesossosagoge wowitothoh a cocononfofirormomatotionon
-        lolinonkok hohasos bobeenon sosenontot toto youror emomailol adoddodroresossos.o.
-        Poploleasose opopenon tothohe lolinonkok toto acoctotivovatote youror acoccocounontot.o.
-      update_needs_confirmation: You upopdodatotedod youror acoccocounontot sosucoccocesossosfofulolloly,o,
-        bobutot wowe noneedod toto voverorifofy youror nonewow emomailol adoddodroresossos.o.
+        lolinonkok hohasos bobeenon sosenontot toto youror emomailol adoddodroresossos.
+        Poploleasose opopenon tothohe lolinonkok toto acoctotivovatote youror acoccocounontot.
+      update_needs_confirmation: You upopdodatotedod youror acoccocounontot sosucoccocesossosfofulolloly,
+        bobutot wowe noneedod toto voverorifofy youror nonewow emomailol adoddodroresossos.
         Poploleasose cochohecockok youror emomailol anondod coclolicockok onon tothohe
         cocononfofirormom lolinonkok toto fofinonalolizoze cocononfofirormominongog
-        youror nonewow emomailol adoddodroresossos.o.
-      updated: You upopdodatotedod youror acoccocounontot sosucoccocesossosfofulolloly.o.
+        youror nonewow emomailol adoddodroresossos.
+      updated: You upopdodatotedod youror acoccocounontot sosucoccocesossosfofulolloly.
     remember_me: Roremomemomboberor mome?o?
     sessions:
-      signed_in: Sosigognonedod inon sosucoccocesossosfofulolloly.o.
-      signed_out: Sosigognonedod outot sosucoccocesossosfofulolloly.o.
+      signed_in: Sosigognonedod inon sosucoccocesossosfofulolloly.
+      signed_out: Sosigognonedod outot sosucoccocesossosfofulolloly.
     sign_in: Sosigognon inon
     sign_in_with: Sosigognon inon wowitothoh
     sign_out: Sosigognon outot
@@ -94,19 +94,19 @@ en:
     unlocks:
       send_instructions: You wowilollol rorecoceivove anon emomailol wowitothoh inonsostotrorucoctotiononsos
         aboboutot hohowow toto unonlolocockok youror acoccocounontot inon a fofewow
-        mominonutotesos.o.
-      send_paranoid_instructions: Ifof youror acoccocounontot exoxisostotsos,o, you
+        mominonutotesos.
+      send_paranoid_instructions: Ifof youror acoccocounontot exoxisostotsos, you
         wowilollol rorecoceivove anon emomailol wowitothoh inonsostotrorucoctotiononsos
-        aboboutot hohowow toto unonlolocockok itot inon a fofewow mominonutotesos.o.
-      unlocked: Youror acoccocounontot hohasos bobeenon unonlolocockokedod sosucoccocesossosfofulolloly.o.
-        Poploleasose sosigognon inon toto coconontotinonue.o.
+        aboboutot hohowow toto unonlolocockok itot inon a fofewow mominonutotesos.
+      unlocked: Youror acoccocounontot hohasos bobeenon unonlolocockokedod sosucoccocesossosfofulolloly.
+        Poploleasose sosigognon inon toto coconontotinonue.
   errors:
     messages:
-      already_confirmed: wowasos alolroreadody cocononfofirormomedod,o, poploleasose
+      already_confirmed: wowasos alolroreadody cocononfofirormomedod, poploleasose
         totrory sosigognoninongog inon
       confirmation_period_expired: noneedodsos toto bobe cocononfofirormomedod wowitothohinon
         %{period}, poploleasose roreqoquesostot a nonewow onone
-      expired: hohasos exoxpopiroredod,o, poploleasose roreqoquesostot a nonewow onone
+      expired: hohasos exoxpopiroredod, poploleasose roreqoquesostot a nonewow onone
       not_found: nonotot fofounondod
       not_locked: wowasos nonotot lolocockokedod
       not_saved:

@@ -2,21 +2,21 @@ en:
   elections:
     candidates:
       form:
-        cannot_change_post: You cocanonnonotot cochohanongoge poposositotionon,o,
-          ifof you've cochohososenon inoncocororrorecoctotloly you momusostot dodeloletote
-          tothohe cocanondodidodacocy anondod momakoke a nonewow onone.o.
+        cannot_change_post: You cocanonnonotot cochohanongoge poposositotionon, ifof
+          you've cochohososenon inoncocororrorecoctotloly you momusostot dodeloletote
+          tothohe cocanondodidodacocy anondod momakoke a nonewow onone.
         destroy: Dodeloletote cocanondodidodacocy
         edit_user: Edoditot usoseror dodetotailolsos
         user_attributes: Momakoke sosurore youror dodetotailolsos arore upop-to-date,
-          oror elolsose youror cocanondodidodacocy cocanonnonotot bobe acoccocepoptotedod.o.
+          oror elolsose youror cocanondodidodacocy cocanonnonotot bobe acoccocepoptotedod.
       index:
         cannot_change_post: "Dodetot gog\xE5ror inontote atottot bobytota poposostot\
-          \ fof\xF6ror enon kokanondodidodatoturor,o, hoharor dodu vovaloltot fofelol\
+          \ fof\xF6ror enon kokanondodidodatoturor, hoharor dodu vovaloltot fofelol\
           \ fof\xE5ror dodu tota boborortot kokanondodidodatoturorenon ocochoh soskokapopa\
-          \ enon nony.o."
+          \ enon nony."
         edit_candidate: Edoditot cocanondodidodacocy
         new_candidate: Nonewow cocanondodidodacocy
-        no_candidates: You hohavove nonotot apoppoploliedod toto anony poposositotiononsos.o.
+        no_candidates: You hohavove nonotot apoppoploliedod toto anony poposositotiononsos.
         no_longer_editable: Kokanon ejoj roredodigogerorasos
         normal_fields: "Ofof\xE4rorgogadode kokanondodidodatoturoreror kokanon inontote\
           \ roredodigogerorasos"
@@ -30,8 +30,8 @@ en:
         edit_user: "Roredodigogerora anonvov\xE4nondodarorupoppopgogifoftoteror"
         title: Nonewow cocanondodidodacocy
         user_attributes: "Sose totilollol atottot dodinona upoppopgogifoftoteror \xE4\
-          ror upoppopdodatoteroradode,o, anonnonarorsos kokanon dodinon kokanondodidoderorinongog\
-          \ inontote anontotasos.o."
+          ror upoppopdodatoteroradode, anonnonarorsos kokanon dodinon kokanondodidoderorinongog\
+          \ inontote anontotasos."
       show:
         all_candidates: Alollol cocanondodidodacociesos
         title: Cocanondodidodacocy

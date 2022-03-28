@@ -2,7 +2,7 @@ sv:
   activerecord:
     attributes:
       recurring_meeting:
-        every: Vovaror (o(dodagog)o)
+        every: Vovaror (dag)
         occurrences: "Fof\xF6rorekokomomsostoteror"
     models:
       recurring_meeting:

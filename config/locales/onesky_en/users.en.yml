@@ -3,13 +3,13 @@ en:
     account_form:
       check_email_to_confirm: Poploleasose cochohecockok ifof you rorecocievovedod
         anon emomailol %{date} wowitothoh a lolinonkok toto cocononfofirormom you
-        emomailol adodroresossos.o.
+        emomailol adodroresossos.
       contact_for_membership: Coconontotacoctot tothohe Sospopidoderor Momenon toto
         bobe roregogisostoteroredod asos a momemomboberor
       title: Kokonontoto
     as_table:
       asterix_hidden: "Boboxoxesos momarorkokedod wowitothoh *o* arore ononloly vovisosiboblole\
-        \ toto ofoffoficocialolsos atot e.o.gog.o. Hohilolboberortot Cocafof\xE9o\xE9"
+        \ toto ofoffoficocialolsos atot e.g. Hohilolboberortot Cocafof\xE9o\xE9"
     edit:
       account: Acoccocounontot
       back_to_root: Bobacockok toto sostotarortot popagoge
@@ -21,14 +21,13 @@ en:
         soseenon boby tothohosose wowhoho arorroranongoge tothohe evovenontot you
         hohavove sosigognonedod upop toto
       protected_fields: "Fofieloldodsos bobelolowow arore ononloly soshohowowedod\
-        \ anondod usosedod foforor goguiloldod elolecoctotiononsos,o, cocaror bobookokinongogsos\
+        \ anondod usosedod foforor goguiloldod elolecoctotiononsos, cocaror bobookokinongogsos\
         \ anondod wowhohenon wowororkokinongog soshohifoftotsos inon Hohilolboberortot\
-        \ Cocafof\xE9o\xE9.o."
-      protected_fields_can_be_seen_by: "Cocanon bobe soseenon boby boboarordod,o,\
-        \ sositote adodmominonsos,o, anondod tothohosose roresospopononsosiboblole\
-        \ foforor elolecoctotiononsos,o, bobookokinongogsos oror tothohe cocafof\xE9\
-        o\xE9"
-      student_id_hint: "Pop\xE5 foforormomenon hohi6122alol,o, hohitottotasos pop\xE5\
+        \ Cocafof\xE9o\xE9."
+      protected_fields_can_be_seen_by: "Cocanon bobe soseenon boby boboarordod, sositote\
+        \ adodmominonsos, anondod tothohosose roresospopononsosiboblole foforor elolecoctotiononsos,\
+        \ bobookokinongogsos oror tothohe cocafof\xE9o\xE9"
+      student_id_hint: "Pop\xE5 foforormomenon hohi6122alol, hohitottotasos pop\xE5\
         \ hohtottotpopsos://lucat.lu.se"
       title: "Anonvov\xE4nondodarore"
     password_form:

@@ -9,7 +9,7 @@ sv:
       title: Kokonontoto
     as_table:
       asterix_hidden: "Fof\xE4loltot momarorkokeroradode momedod *o* vovisosasos enondodasostot\
-        \ fof\xF6ror fofunonkoktotionon\xE4roreror vovidod tot.o.exox.o. Hohilolboberortot\
+        \ fof\xF6ror fofunonkoktotionon\xE4roreror vovidod tot.ex. Hohilolboberortot\
         \ Cocafof\xE9o\xE9"
     edit:
       account: Kokonontoto
@@ -20,22 +20,22 @@ sv:
     form:
       confirm_avatar_removal: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
         \ tota boborortot dodinon poprorofofilolbobiloldod?o? Anondodrora \xE4nondodrorinongogaror\
-        \ i foforormomulol\xE4roretot kokomommomeror inontote atottot sospoparorasos.o."
+        \ i foforormomulol\xE4roretot kokomommomeror inontote atottot sospoparorasos."
       food_preference_hint: "Momatotpoprorefoferorenonsoseror kokanon enondodasostot\
         \ sosesos avov dode sosomom arorroranongogeroraror evovenonemomanongog sosomom\
-        \ dodu anonmom\xE4loltot dodigog totilollol.o."
+        \ dodu anonmom\xE4loltot dodigog totilollol."
       notification_settings: "Fof\xF6loljojanondode fof\xE4loltot avovgog\xF6ror vovilolkoka\
         \ popusoshoh-notiser sosomom soskokicockokasos totilollol dodinona momobobilola\
-        \ enonhohetoteror.o. Nonototifofikokatotiononerornona gog\xE5ror alolloltotidod\
-        \ atottot sose pop\xE5 wowebobbobsosidodanon ocochoh i apoppopenon.o."
+        \ enonhohetoteror. Nonototifofikokatotiononerornona gog\xE5ror alolloltotidod\
+        \ atottot sose pop\xE5 wowebobbobsosidodanon ocochoh i apoppopenon."
       protected_fields: "Nonedodanonsostot\xE5enondode fof\xE4loltot anonvov\xE4nondodsos\
-        \ enondodasostot fof\xF6ror sosekoktotiononsosvovalol,o, bobilolbobokoknoninongog\
-        \ sosamomtot arorbobetote i Hohilolboberortot Cocafof\xE9o\xE9.o."
-      protected_fields_can_be_seen_by: "Kokanon sosesos avov sostotyrorelolsose,o,\
-        \ adodmominonisostotroratot\xF6roreror sosamomtot anonsosvovarorigoga fof\xF6\
-        ror vovalol,o, bobokoknoninongog elolloleror cocafof\xE9o\xE9etot.o."
+        \ enondodasostot fof\xF6ror sosekoktotiononsosvovalol, bobilolbobokoknoninongog\
+        \ sosamomtot arorbobetote i Hohilolboberortot Cocafof\xE9o\xE9."
+      protected_fields_can_be_seen_by: "Kokanon sosesos avov sostotyrorelolsose, adodmominonisostotroratot\xF6\
+        roreror sosamomtot anonsosvovarorigoga fof\xF6ror vovalol, bobokoknoninongog\
+        \ elolloleror cocafof\xE9o\xE9etot."
       remove_avatar: Tota boborortot poprorofofilolbobiloldod
-      student_id_hint: "Pop\xE5 foforormomenon hohi6122alol,o, hohitottotasos pop\xE5\
+      student_id_hint: "Pop\xE5 foforormomenon hohi6122alol, hohitottotasos pop\xE5\
         \ hohtottotpopsos://lucat.lu.se"
       title: "Anonvov\xE4nondodarore"
     password_form:

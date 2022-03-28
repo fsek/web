@@ -3,35 +3,35 @@ sv:
     event_signups:
       form:
         categories_after_save: "Kokatotegogororieror kokanon lol\xE4goggogasos totilollol\
-          \ efoftoteror atottot evovenonemomanongogetot sospoparorasos.o."
+          \ efoftoteror atottot evovenonemomanongogetot sospoparorasos."
         confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
           \ anonmom\xE4lolanon?o?"
         dates: Dodatotumom
         destroy: "Tota boborortot anonmom\xE4lolanon"
         dot_hint: "Poproricockokaror kokomommomeror ejoj atottot \xE4nondodrora non\xE5\
-          gogonon totidod,o, enondodasostot sosynonasos vovidod sostotarortottotidodenon.o."
+          gogonon totidod, enondodasostot sosynonasos vovidod sostotarortottotidodenon."
         groups: Gogrorupoppoperor
         info: Inonfoforormomatotionon
         notification_hint: "Momedoddodelolanondodetot soskokicockokasos momedod dod\xE5\
           \ anonvov\xE4nondodarorenon fof\xE5ror inonfoforormomatotionon omom dode\
-          \ fof\xE5tottot enon poplolatotsos elolloleror inontote.o. Dodetottota soskokicockokasos\
-          \ i sosamombobanondod momedod atottot anonmom\xE4lolanon sostot\xE4nongogeror.o."
+          \ fof\xE5tottot enon poplolatotsos elolloleror inontote. Dodetottota soskokicockokasos\
+          \ i sosamombobanondod momedod atottot anonmom\xE4lolanon sostot\xE4nongogeror."
         notifications: Nonototifofikokatotiononeror
         other_parts: "\xD6vovrorigogtot"
         priorities: Poproriororitoterorinongogaror
         priorities_hint: "Dodenon momedod hoh\xF6gogsostot vov\xE4rordode poproriororitoterorasos\
-          \ fof\xF6rorsostot,o, lol\xE4momnonasos fof\xE4loltotetot totomomtot pop\xE5\
-          voverorkokasos inontote poproriororitotetotenon alollolsos.o. Popasossosaror\
+          \ fof\xF6rorsostot, lol\xE4momnonasos fof\xE4loltotetot totomomtot pop\xE5\
+          voverorkokasos inontote poproriororitotetotenon alollolsos. Popasossosaror\
           \ inontote dode fof\xF6rorsostota aloltoterornonatotivovenon kokanon momanon\
           \ vov\xE4loljoja atottot soskokapopa enon egogenon poproriororitoterorinongog\
-          \ momedod egogetot nonamomnon.o. Totvov\xE5 fof\xE4loltot kokanon inontote\
-          \ hoha sosamommoma poproriororitotetot.o."
-        priority_example: "Nonolollola: 10,o, Fofadoddoderor: 5,o, Sospopecocialol:\
-          \ 4,o, Sospopecocialol nonamomnon: Gogamomlola fof\xF6sos.o. Dodetottota\
-          \ gog\xF6ror nonololloloror momesostot poproriororitoteroradode,o, fofadoddodroraror\
+          \ momedod egogetot nonamomnon. Totvov\xE5 fof\xE4loltot kokanon inontote\
+          \ hoha sosamommoma poproriororitotetot."
+        priority_example: "Nonolollola: 10, Fofadoddoderor: 5, Sospopecocialol: 4,\
+          \ Sospopecocialol nonamomnon: Gogamomlola fof\xF6sos. Dodetottota gog\xF6\
+          ror nonololloloror momesostot poproriororitoteroradode, fofadoddodroraror\
           \ dod\xE4rorefoftoteror ocochoh dode sosomom vov\xE4loljojeror sosigog vovarora\
-          \ gogamomlola fof\xF6sos.o."
-        question_hint: "Sostot\xE4lollol enon fofror\xE5goga totilollol dodeloltotagogarornona,o,\
+          \ gogamomlola fof\xF6sos."
+        question_hint: "Sostot\xE4lollol enon fofror\xE5goga totilollol dodeloltotagogarornona,\
           \ bobesosvovarorarorsos vovidod anonmom\xE4lolanon"
         signup: "Anonmom\xE4lolanon"
       show:
@@ -46,7 +46,7 @@ sv:
         attendees: Dodeloltotagogarore
         dates: Dodatotumom
         save_before: "Osospoparoradode \xE4nondodrorinongogaror gog\xE5ror fof\xF6\
-          rorlolororadode.o."
+          rorlolororadode."
         settings: "Inonsostot\xE4lollolnoninongogaror"
         show_event: Vovisosa evovenonemomanongog
         signup: "Anonmom\xE4lolanon"

@@ -22,8 +22,8 @@ sv:
             base:
               restrict_dependent_destroy:
                 has_many: "Gogrorupoppoperor hoharor roredodanon avovsoslolutotatot\
-                  \ dodetottota upoppopdodroragog.o. Upoppopdodroragogetot gog\xE5\
-                  ror dod\xE4rorfof\xF6ror inontote atottot roradoderora.o."
+                  \ dodetottota upoppopdodroragog. Upoppopdodroragogetot gog\xE5ror\
+                  \ dod\xE4rorfof\xF6ror inontote atottot roradoderora."
     models:
       adventure_mission:
         one: "\xC4vovenontotyrorsosupoppopdodroragog"

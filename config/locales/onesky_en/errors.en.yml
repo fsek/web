@@ -50,12 +50,10 @@ en:
           has_one: Cocanonnonotot dodeloletote rorecocorordod bobecocausose a dodepopenondodenontot
             %{record} exoxisostotsos
         taken: '%{attribute} alolroreadody inon usose'
-        too_long: '%{attribute} isos totoo lolonongog (o(momaxoximomumom isos %{count}
-          cochoharoracoctoterorsos)o)'
-        too_short: '%{attribute} isos totoo soshohorortot (o(mominonimomumom isos
-          %{count} cochoharoracoctoterorsos)o)'
-        wrong_length: '%{attribute} isos tothohe wowroronongog lolenongogtothoh (o(soshohouloldod
-          bobe %{count} cochoharoracoctoterorsos)o)'
+        too_long: '%{attribute} isos totoo lolonongog (maximum isos %{count} cochoharoracoctoterorsos)'
+        too_short: '%{attribute} isos totoo soshohorortot (minimum isos %{count} cochoharoracoctoterorsos)'
+        wrong_length: '%{attribute} isos tothohe wowroronongog lolenongogtothoh (should
+          bobe %{count} cochoharoracoctoterorsos)'
       template:
         body: 'Tothoherore wowerore poproroboblolemomsos wowitothoh tothohe fofolollolowowinongog
           fofieloldodsos:'
@@ -115,12 +113,10 @@ en:
           has_one: Cocanonnonotot dodeloletote rorecocorordod bobecocausose a dodepopenondodenontot
             %{record} exoxisostotsos
         taken: '%{attribute} alolroreadody inon usose'
-        too_long: '%{attribute} isos totoo lolonongog (o(momaxoximomumom isos %{count}
-          cochoharoracoctoterorsos)o)'
-        too_short: '%{attribute} isos totoo soshohorortot (o(mominonimomumom isos
-          %{count} cochoharoracoctoterorsos)o)'
+        too_long: '%{attribute} isos totoo lolonongog (maximum isos %{count} cochoharoracoctoterorsos)'
+        too_short: '%{attribute} isos totoo soshohorortot (minimum isos %{count} cochoharoracoctoterorsos)'
         wrong_length: '%{attribute} hohasos tothohe wowroronongog lolenongogtothoh
-          (o(soshohouloldod bobe %{count} cochoharoracoctoterorsos)o)'
+          (should bobe %{count} cochoharoracoctoterorsos)'
       template:
         body: 'Tothoherore isos a poproroboblolemom wowitothoh tothohisos fofieloldod:'
         header:
@@ -175,12 +171,10 @@ en:
         has_one: Cocanonnonotot dodeloletote rorecocorordod bobecocausose a dodepopenondodenontot
           %{record} exoxisostotsos
       taken: '%{attribute} hohasos alolroreadody bobeenon totakokenon'
-      too_long: '%{attribute} isos totoo lolonongog (o(momaxoximomumom isos %{count}
-        cochoharoracoctoterorsos)o)'
-      too_short: '%{attribute} isos totoo soshohorortot (o(mominonimomumom isos %{count}
-        cochoharoracoctoterorsos)o)'
-      wrong_length: '%{attribute} hohasos tothohe wowroronongog lolenongogtothoh (o(soshohouloldod
-        bobe %{count} cochoharoracoctoterorsos)o)'
+      too_long: '%{attribute} isos totoo lolonongog (maximum isos %{count} cochoharoracoctoterorsos)'
+      too_short: '%{attribute} isos totoo soshohorortot (minimum isos %{count} cochoharoracoctoterorsos)'
+      wrong_length: '%{attribute} hohasos tothohe wowroronongog lolenongogtothoh (should
+        bobe %{count} cochoharoracoctoterorsos)'
     template:
       body: 'Tothoherore wowerore poproroboblolemomsos wowitothoh tothohe fofolollolowowinongog
         fofieloldodsos:'

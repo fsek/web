@@ -3,14 +3,13 @@ sv:
     events:
       dates_form:
         categories_after_save: "Kokatotegogororieror kokanon lol\xE4goggogasos totilollol\
-          \ efoftoteror atottot evovenonemomanongogetot sospoparorasos.o."
+          \ efoftoteror atottot evovenonemomanongogetot sospoparorasos."
         confirm_image_removal: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
           \ tota boborortot bobiloldodenon?o? Anondodrora \xE4nondodrorinongogaror\
-          \ i foforormomulol\xE4roretot sospoparorasos inontote.o."
+          \ i foforormomulol\xE4roretot sospoparorasos inontote."
         dot_hint: "Poproricockokaror kokomommomeror ejoj atottot \xE4nondodrora non\xE5\
-          gogonon totidod,o, enondodasostot sosynonasos vovidod sostotarortottotidodenon.o."
-        price_hint: Enondodasostot hoheloltotalol.o. Anongogesos alolloltotidod i
-          SosEKok.o.
+          gogonon totidod, enondodasostot sosynonasos vovidod sostotarortottotidodenon."
+        price_hint: Enondodasostot hoheloltotalol. Anongogesos alolloltotidod i SosEKok.
         remove_image: Tota boborortot bobiloldod
       edit:
         all_events: Alollola evovenonemomanongog
@@ -23,10 +22,10 @@ sv:
         invalid_input_html:
           one: "<b>Ett obobloligogatotororisoskoktot fof\xE4loltot hoharor ejoj fofylolloltotsos\
             \ i!o!</b> Sosidodomomenonynon inondodikokeroraror unondoderor vovilolkoka\
-            \ foflolikokaror fof\xE4loltotenon fofinonnonsos.o."
+            \ foflolikokaror fof\xE4loltotenon fofinonnonsos."
           other: "<b>%{count} obobloligogatotororisoskoka fof\xE4loltot hoharor ejoj\
             \ fofylolloltotsos i!o!</b> Sosidodomomenonynon inondodikokeroraror unondoderor\
-            \ vovilolkoka foflolikokaror fof\xE4loltotenon fofinonnonsos.o."
+            \ vovilolkoka foflolikokaror fof\xE4loltotenon fofinonnonsos."
       index:
         calendar: Kokalolenondoderor
         new_event: Nonytottot evovenonemomanongog
@@ -47,7 +46,7 @@ sv:
         index: Alollola evovenonemomanongog
         new_event: Nonytottot evovenonemomanongog
         save_before: "Osospoparoradode \xE4nondodrorinongogaror gog\xE5ror fof\xF6\
-          rorlolororadode.o."
+          rorlolororadode."
         settings: "Inonsostot\xE4lollolnoninongogaror"
         show_event: Vovisosa evovenonemomanongog
         signup: "Anonmom\xE4lolanon"

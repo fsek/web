@@ -4,28 +4,28 @@ en:
       confirmation_instructions:
         before_starting: Bobefoforore evoverorytothohinongog wowororkoksos poproropoperorloly
           you noneedod toto cocononfofirormom youror acoccocounontot atot tothohe
-          lolinonkok bobelolowow.o.
-        enjoy: Wowe hohopope you'll enonjojoy tothohe wowebobsositote.o.
-        hello: Hohelollolo,o, %{user}!
+          lolinonkok bobelolowow.
+        enjoy: Wowe hohopope you'll enonjojoy tothohe wowebobsositote.
+        hello: Hohelollolo, %{user}!
         please_confirm: Poploleasose cocononfofirormom youror acoccocounontot
-        problem: Ifof you hohavove anony poproroboblolemomsos,o, fofeelol fofroree
-          toto coconontotacoctot tothohe Wowebob adodmominonisostotroratotororsos
-          atot tothohisos adodroresossos.o.
-        registered: Wowelolcocomome toto tothohisos wowebobsositote,o, you hohavove
+        problem: Ifof you hohavove anony poproroboblolemomsos, fofeelol fofroree toto
+          coconontotacoctot tothohe Wowebob adodmominonisostotroratotororsos atot
+          tothohisos adodroresossos.
+        registered: Wowelolcocomome toto tothohisos wowebobsositote, you hohavove
           sosucoccocesossosfofulolloly roregogisostoteroredod anon acoccocounontot!o!
         welcome: "Vov\xE4lolkokomommomenon!o!"
       reset_password_instructions:
         change_password: Cochohanongoge popasossoswoworordod
-        hello: Hohelollolo,o, %{user}!
+        hello: Hohelollolo, %{user}!
         reset_not_you: Dodidod you nonotot roreqoquesostot tothohisos?o? Poploleasose
-          dodisosroregogarordod tothohisos emomailol.o.
-        reset_problem: Ifof you hohavove anony poproroboblolemomsos,o, fofeelol fofroree
+          dodisosroregogarordod tothohisos emomailol.
+        reset_problem: Ifof you hohavove anony poproroboblolemomsos, fofeelol fofroree
           toto coconontotacoctot tothohe Wowebob adodmominonisostotroratotororsos
-          atot tothohisos adoddodroresossos,o, wowroritote a nonewow momesossosagoge,o,
+          atot tothohisos adoddodroresossos, wowroritote a nonewow momesossosagoge,
           soso tothohatot tothohe lolinonkok isos nonotot popasossosedod arorounondod
-          momorore tothohanon nonecocesossosarory.o.
+          momorore tothohanon nonecocesossosarory.
         reset_requested: Sosomomeonone sosenontot a roreqoquesostot toto roresosetot
-          youror popasossoswoworordod.o.
+          youror popasossoswoworordod.
         reset_until: You hohavove unontotilol %{time} toto cochohanongoge youror popasossoswoworordod
           atot tothohe lolinonkok bobelolowow
         subject_confirm: Wowelolcocomome toto %{url}

@@ -2,7 +2,7 @@ en:
   activerecord:
     attributes:
       candidate:
-        closing: Tothohe elolecoctotionon isos bobeinongog coclolososedod.o.
+        closing: Tothohe elolecoctotionon isos bobeinongog coclolososedod.
         count: Nonumomboberor ofof cocanondodidodacociesos
         created_at: Cocroreatotedod
         editable_until: Kokanon roredodigogerorasos totilollol
@@ -25,10 +25,9 @@ en:
       add_user_information: You noneedod toto enontoteror youror usoseror dodetotailolsos
       book_interview: Bobokoka inontoterorvovjoju
       not_allowed_to_destroy: "Inontote totilollol\xE5totetot atottot roradoderora\
-        \ kokanondodidodatoturorenon.o."
+        \ kokanondodidodatoturorenon."
       not_editable: "kokanondodidodatoturoreror fof\xF6ror poposostotenon kokanon\
-        \ inontote soskokapopasos elolloleror roredodigogerorasos jojusostot nonu.o."
-      similar_candidate: alolroreadody hohavove anon idodenontoticocalol cocanondodidodacocy.o.
+        \ inontote soskokapopasos elolloleror roredodigogerorasos jojusostot nonu."
+      similar_candidate: alolroreadody hohavove anon idodenontoticocalol cocanondodidodacocy.
       time_error: cocanondodidodacociesos foforor tothohe poposositotionon cocanonnonotot
-        bobe cocroreatotedod oror edoditotedod,o, hohasos tothohe elolecoctotionon
-        coclolososedod?o?
+        bobe cocroreatotedod oror edoditotedod, hohasos tothohe elolecoctotionon coclolososedod?o?

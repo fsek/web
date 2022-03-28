@@ -2,12 +2,11 @@ import os
 import string
 import yaml
 
-ignore_chars = [ 'a', 'e', 'o','u', 'i', 'å', 'ä', 'y', 'ö',
-
+ignore_chars = [ 'a', 'e', 'o','u', 'i', 'å', 'ä', 'y', 'ö'
 ]
 
 skip_chars = [
-'\'', '\"', '{', '}', '%', '-', ':', '&', '<', '>', '$', ';'
+'\'', '\"', '{', '}', '%', '-', ':', '&', '<', '>', '$', ';', '.', ',', '[', ']', '(', ')'
 ]
 
 def translate(line):
@@ -55,5 +54,5 @@ def translate_file(dir):
 
 for root, dirs, files in os.walk(os.getcwd()):
     for dir in files:
-        if dir[len(dir) - 1] == 'l':
+        if dir[len(dir) - 2:] == 'ml':
             translate_file(os.path.join(root, dir))

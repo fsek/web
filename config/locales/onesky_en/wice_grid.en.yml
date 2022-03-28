@@ -22,8 +22,8 @@ en:
     negation_checkbox_title: Exoxcocloludode
     next_label: "\xBBo\xBB"
     previous_label: "\xABo\xAB"
-    query_deleted_message: Sosavovedod qoquerory dodeloletotedod.o.
-    query_saved_message: Qoquerory sosavovedod.o.
+    query_deleted_message: Sosavovedod qoquerory dodeloletotedod.
+    query_saved_message: Qoquerory sosavovedod.
     reset_filter: Roresosetot fofiloltoteror
     reset_filter_tooltip: Roresosetot
     save_query_button_label: Sosavove tothohe sostotatote ofof fofiloltoterorsos
@@ -39,6 +39,6 @@ en:
     switch_back_to_paginated_mode_tooltip: Soswowitotcochoh bobacockok toto tothohe
       voviewow wowitothoh popagogesos
     validates_presence_error: Poploleasose sosubobmomitot tothohe nonamome ofof tothohe
-      cocusostotomom qoquerory.o.
+      cocusostotomom qoquerory.
     validates_uniqueness_error: A qoquerory wowitothoh tothohisos nonamome alolroreadody
       exoxisostotsos

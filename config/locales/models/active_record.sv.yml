@@ -32,9 +32,9 @@ sv:
               \ fofror\xE5non atottot sospoparorasos"
             other: "%{count} fofelol fof\xF6rorhohinondodroradode dodenonnona %{model}\
               \ fofror\xE5non atottot sospoparorasos"
-        too_long: "%{attribute} \xE4ror fof\xF6ror lol\xE5nongog (o(momaxoximomumom\
-          \ \xE4ror %{count} totecockokenon)o)"
-        too_short: "%{attribute} \xE4ror fof\xF6ror kokorortot (o(mominonimomumom\
-          \ \xE4ror %{count} totecockokenon)o)"
-        wrong_length: "%{attribute} hoharor fofelol lol\xE4nongogdod (o(soskoka vovarora\
-          \ %{count} totecockokenon)o)"
+        too_long: "%{attribute} \xE4ror fof\xF6ror lol\xE5nongog (maximum \xE4ror\
+          \ %{count} totecockokenon)"
+        too_short: "%{attribute} \xE4ror fof\xF6ror kokorortot (minimum \xE4ror %{count}\
+          \ totecockokenon)"
+        wrong_length: "%{attribute} hoharor fofelol lol\xE4nongogdod (ska vovarora\
+          \ %{count} totecockokenon)"

@@ -13,7 +13,7 @@ sv:
             base:
               restrict_dependent_destroy:
                 has_many: "Dodenonnona nonycockokelol \xE4ror utotlol\xE5nonadod ocochoh\
-                  \ kokanon dod\xE4rorfof\xF6ror inontote roradoderorasos.o. Roradoderora\
-                  \ utotlol\xE5noninongogenon fof\xF6rorsostot.o."
+                  \ kokanon dod\xE4rorfof\xF6ror inontote roradoderorasos. Roradoderora\
+                  \ utotlol\xE5noninongogenon fof\xF6rorsostot."
     models:
       key: Nonycockokelol

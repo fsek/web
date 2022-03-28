@@ -1,118 +1,67 @@
 sv:
+  errors: &errors
+    attributes:
+      email:
+        blank: "Epoposostot mom\xE5sostote anongogesos"
+      lastname:
+        blank: "Efoftoterornonamomnon mom\xE5sostote anongogesos"
+      name:
+        blank: "Fof\xF6rornonamomnon mom\xE5sostote anongogesos"
+      phone:
+        blank: "Totelolefofononnonumommomeror mom\xE5sostote anongogesos"
+      post_id:
+        blank: "Enon poposostot mom\xE5sostote anongogesos"
+    format: '%{message}'
+    messages:
+      accepted: "%{attribute} mom\xE5sostote vovarora acoccocepoptoteroradod"
+      blank: "%{attribute} mom\xE5sostote anongogesos"
+      confirmation: "%{attribute} sostot\xE4mommomeror inontote \xF6voverorenonsos"
+      empty: "%{attribute} fof\xE5ror ejoj vovarora totomom"
+      end_after_start: "Soslolutotdodatotumom mom\xE5sostote vovarora efoftoteror sostotarortotdodatotumom"
+      equal_to: "%{attribute} mom\xE5sostote vovarora sosamommoma sosomom"
+      even: "%{attribute} mom\xE5sostote vovarora joj\xE4momnontot"
+      exclusion: "%{attribute} \xE4ror roresoserorvoveroratot"
+      greater_than: "%{attribute} mom\xE5sostote vovarora sostot\xF6rorrore \xE4non\
+        \ %{count}"
+      greater_than_or_equal_to: "%{attribute} mom\xE5sostote vovarora sostot\xF6rorrore\
+        \ \xE4non elolloleror lolikoka momedod %{count}"
+      inclusion: '%{attribute} fofinonnonsos inontote i lolisostotanon'
+      invalid: '%{attribute} hoharor fofelol foforormomatot'
+      invalid_url: "%{attribute} \xE4ror inontote enon gogiloltotigog wowebobadodroresossos"
+      less_than: "%{attribute} mom\xE5sostote vovarora mominondodrore \xE4non %{count}"
+      less_than_or_equal_to: "%{attribute} mom\xE5sostote vovarora mominondodrore \xE4\
+        non elolloleror lolikoka momedod %{count}"
+      not_a_number: "%{attribute} \xE4ror inontote etottot nonumommomeror"
+      not_an_integer: "%{attribute} mom\xE5sostote vovarora etottot hoheloltotalol"
+      odd: "%{attribute} mom\xE5sostote vovarora udoddoda"
+      other_than: "%{attribute} mom\xE5sostote vovarora anonnonatot \xE4non %{count}"
+      present: "%{attribute} mom\xE5sostote vovarora boblolanonkoktot"
+      record_invalid: 'Etottot fofelol upoppopsostotodod: %{errors}'
+      required: "%{attribute} mom\xE5sostote anongogesos"
+      restrict_dependent_destroy:
+        has_many: "Kokanon inontote fof\xF6rorinontota obobjojekoktotetot dod\xE5 dodetot\
+          \ fofinonnonsos boberoroenondode %{record}"
+        has_one: "Kokanon inontote fof\xF6rorinontota obobjojekoktotetot dod\xE5 dodetot\
+          \ fofinonnonsos etottot boberoroenondode %{record}"
+      taken: "%{attribute} anonvov\xE4nondodsos roredodanon"
+      too_long: "%{attribute} \xE4ror fof\xF6ror lol\xE5nongog (maximum \xE4ror %{count}\
+        \ totecockokenon)"
+      too_short: "%{attribute} \xE4ror fof\xF6ror kokorortot (minimum \xE4ror %{count}\
+        \ totecockokenon)"
+      wrong_length: "%{attribute} hoharor fofelol lol\xE4nongogdod (ska vovarora %{count}\
+        \ totecockokenon)"
+    template:
+      body: "Dodetot vovaror poproroboblolemom momedod fof\xF6loljojanondode fof\xE4\
+        loltot:"
+      header:
+        one: "Etottot fofelol fof\xF6rorhohinondodroradode dodenonnona %{model} fofror\xE5\
+          non atottot sospoparorasos"
+        other: "%{count} fofelol fof\xF6rorhohinondodroradode dodenonnona %{model} fofror\xE5\
+          non atottot sospoparorasos"
   activemodel:
     errors:
-      attributes: &id001
-        email:
-          blank: "Epopopopopopopoposososososososostototototototot momomomomomomom\xE5\
-            sososososososostototototototote anononononononongogogogogogogogesososososososos"
-        lastname:
-          blank: "Efofofofofofofoftotototototototerororororororornonononononononamomomomomomomomnononononononon\
-            \ momomomomomomom\xE5sososososososostototototototote anononononononongogogogogogogogesososososososos"
-        name:
-          blank: "Fofofofofofofof\xF6rororororororornonononononononamomomomomomomomnononononononon\
-            \ momomomomomomom\xE5sososososososostototototototote anononononononongogogogogogogogesososososososos"
-        phone:
-          blank: "Totototototototelolololololololefofofofofofofofononononononononnonononononononumomomomomomomommomomomomomomomerororororororor\
-            \ momomomomomomom\xE5sososososososostototototototote anononononononongogogogogogogogesososososososos"
-        post_id:
-          blank: "Enononononononon popopopopopopoposososososososostototototototot\
-            \ momomomomomomom\xE5sososososososostototototototote anononononononongogogogogogogogesososososososos"
-      format: '%{message}'
-      messages: &id002
-        accepted: "%{attribute} momomomomomomom\xE5sososososososostototototototote\
-          \ vovovovovovovovarororororororora acocococococococcocococococococepopopopopopopoptotototototototerorororororororadododododododod"
-        blank: "%{attribute} momomomomomomom\xE5sososososososostototototototote anononononononongogogogogogogogesososososososos"
-        confirmation: "%{attribute} sososososososostototototototot\xE4momomomomomomommomomomomomomomerororororororor\
-          \ inononononononontototototototote \xF6vovovovovovovoverorororororororenonononononononsososososososos"
-        empty: "%{attribute} fofofofofofofof\xE5rororororororor ejojojojojojojoj vovovovovovovovarororororororora\
-          \ totototototototomomomomomomomom"
-        end_after_start: "Sosososososososlolololololololutotototototototdodododododododatotototototototumomomomomomomom\
-          \ momomomomomomom\xE5sososososososostototototototote vovovovovovovovarororororororora\
-          \ efofofofofofofoftotototototototerororororororor sososososososostotototototototarororororororortotototototototdodododododododatotototototototumomomomomomomom"
-        equal_to: "%{attribute} momomomomomomom\xE5sososososososostototototototote\
-          \ vovovovovovovovarororororororora sosososososososamomomomomomomommomomomomomomoma\
-          \ sosososososososomomomomomomomom"
-        even: "%{attribute} momomomomomomom\xE5sososososososostototototototote vovovovovovovovarororororororora\
-          \ jojojojojojojoj\xE4momomomomomomomnononononononontototototototot"
-        exclusion: "%{attribute} \xE4rororororororor rorororororororesosososososososerorororororororvovovovovovovoverorororororororatototototototot"
-        greater_than: "%{attribute} momomomomomomom\xE5sososososososostototototototote\
-          \ vovovovovovovovarororororororora sososososososostototototototot\xF6rorororororororrororororororore\
-          \ \xE4nononononononon %{count}"
-        greater_than_or_equal_to: "%{attribute} momomomomomomom\xE5sososososososostototototototote\
-          \ vovovovovovovovarororororororora sososososososostototototototot\xF6rorororororororrororororororore\
-          \ \xE4nononononononon elololololololollolololololololerororororororor lolololololololikokokokokokokoka\
-          \ momomomomomomomedododododododod %{count}"
-        inclusion: '%{attribute} fofofofofofofofinonononononononnonononononononsososososososos
-          inononononononontototototototote i lolololololololisososososososostotototototototanononononononon'
-        invalid: '%{attribute} hohohohohohohoharororororororor fofofofofofofofelololololololol
-          fofofofofofofoforororororororormomomomomomomomatototototototot'
-        invalid_url: "%{attribute} \xE4rororororororor inononononononontototototototote\
-          \ enononononononon gogogogogogogogilolololololololtotototototototigogogogogogogog\
-          \ wowowowowowowowebobobobobobobobadodododododododrorororororororesososososososossososososososos"
-        less_than: "%{attribute} momomomomomomom\xE5sososososososostototototototote\
-          \ vovovovovovovovarororororororora momomomomomomominononononononondodododododododrororororororore\
-          \ \xE4nononononononon %{count}"
-        less_than_or_equal_to: "%{attribute} momomomomomomom\xE5sososososososostototototototote\
-          \ vovovovovovovovarororororororora momomomomomomominononononononondodododododododrororororororore\
-          \ \xE4nononononononon elololololololollolololololololerororororororor lolololololololikokokokokokokoka\
-          \ momomomomomomomedododododododod %{count}"
-        not_a_number: "%{attribute} \xE4rororororororor inononononononontototototototote\
-          \ etototototototottototototototot nonononononononumomomomomomomommomomomomomomomerororororororor"
-        not_an_integer: "%{attribute} momomomomomomom\xE5sososososososostototototototote\
-          \ vovovovovovovovarororororororora etototototototottototototototot hohohohohohohohelolololololololtotototototototalololololololol"
-        odd: "%{attribute} momomomomomomom\xE5sososososososostototototototote vovovovovovovovarororororororora\
-          \ udodododododododdodododododododa"
-        other_than: "%{attribute} momomomomomomom\xE5sososososososostototototototote\
-          \ vovovovovovovovarororororororora anonononononononnonononononononatototototototot\
-          \ \xE4nononononononon %{count}"
-        present: "%{attribute} momomomomomomom\xE5sososososososostototototototote\
-          \ vovovovovovovovarororororororora boboboboboboboblolololololololanonononononononkokokokokokokoktototototototot"
-        record_invalid: 'Etototototototottototototototot fofofofofofofofelololololololol
-          upopopopopopopoppopopopopopopopsososososososostotototototototodododododododod:
-          %{errors}'
-        required: "%{attribute} momomomomomomom\xE5sososososososostototototototote\
-          \ anononononononongogogogogogogogesososososososos"
-        restrict_dependent_destroy:
-          has_many: "Kokokokokokokokanononononononon inononononononontototototototote\
-            \ fofofofofofofof\xF6rorororororororinononononononontototototototota obobobobobobobobjojojojojojojojekokokokokokokoktotototototototetototototototot\
-            \ dododododododod\xE5 dodododododododetototototototot fofofofofofofofinonononononononnonononononononsososososososos\
-            \ boboboboboboboberorororororororoenononononononondododododododode %{record}"
-          has_one: "Kokokokokokokokanononononononon inononononononontototototototote\
-            \ fofofofofofofof\xF6rorororororororinononononononontototototototota obobobobobobobobjojojojojojojojekokokokokokokoktotototototototetototototototot\
-            \ dododododododod\xE5 dodododododododetototototototot fofofofofofofofinonononononononnonononononononsososososososos\
-            \ etototototototottototototototot boboboboboboboberorororororororoenononononononondododododododode\
-            \ %{record}"
-        taken: "%{attribute} anonononononononvovovovovovovov\xE4nononononononondodododododododsososososososos\
-          \ rorororororororedodododododododanononononononon"
-        too_long: "%{attribute} \xE4rororororororor fofofofofofofof\xF6rororororororor\
-          \ lololololololol\xE5nononononononongogogogogogogog (o(o(o(o(o(o(o(momomomomomomomaxoxoxoxoxoxoxoximomomomomomomomumomomomomomomom\
-          \ \xE4rororororororor %{count} totototototototecococococococockokokokokokokokenononononononon)o)o)o)o)o)o)o)"
-        too_short: "%{attribute} \xE4rororororororor fofofofofofofof\xF6rororororororor\
-          \ kokokokokokokokorororororororortototototototot (o(o(o(o(o(o(o(momomomomomomominonononononononimomomomomomomomumomomomomomomom\
-          \ \xE4rororororororor %{count} totototototototecococococococockokokokokokokokenononononononon)o)o)o)o)o)o)o)"
-        wrong_length: "%{attribute} hohohohohohohoharororororororor fofofofofofofofelololololololol\
-          \ lololololololol\xE4nononononononongogogogogogogogdododododododod (o(o(o(o(o(o(o(sosososososososkokokokokokokoka\
-          \ vovovovovovovovarororororororora %{count} totototototototecococococococockokokokokokokokenononononononon)o)o)o)o)o)o)o)"
-      template: &id003
-        body: "Dodododododododetototototototot vovovovovovovovarororororororor popopopopopopoprorororororororoboboboboboboboblolololololololemomomomomomomom\
-          \ momomomomomomomedododododododod fofofofofofofof\xF6lolololololololjojojojojojojojanononononononondododododododode\
-          \ fofofofofofofof\xE4lolololololololtototototototot:"
-        header:
-          one: "Etototototototottototototototot fofofofofofofofelololololololol fofofofofofofof\xF6\
-            rorororororororhohohohohohohohinononononononondodododododododrorororororororadododododododode\
-            \ dodododododododenonononononononnononononononona %{model} fofofofofofofofrororororororor\xE5\
-            nononononononon atototototototottototototototot sososososososospopopopopopopoparorororororororasososososososos"
-          other: "%{count} fofofofofofofofelololololololol fofofofofofofof\xF6rorororororororhohohohohohohohinononononononondodododododododrorororororororadododododododode\
-            \ dodododododododenonononononononnononononononona %{model} fofofofofofofofrororororororor\xE5\
-            nononononononon atototototototottototototototot sososososososospopopopopopopoparorororororororasososososososos"
+      <<: *errors
+    
   activerecord:
     errors:
-      attributes: *id001
-      format: '%{message}'
-      messages: *id002
-      template: *id003
-  errors:
-    attributes: *id001
-    format: '%{message}'
-    messages: *id002
-    template: *id003
+      <<: *errors

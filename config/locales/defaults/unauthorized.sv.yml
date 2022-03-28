@@ -1,29 +1,29 @@
 sv:
   unauthorized:
-    default: "Non\xE5gogonontotinongog boblolevov fofelol (o(ror\xE4tottotigoghohetoteror)o)"
+    default: "Non\xE5gogonontotinongog boblolevov fofelol (r\xE4ttigheter)"
     index:
       candidate: "Kokanondodidoderorinongogaror totilollol vovalol \xE4ror enondodasostot\
-        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon.o."
-      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.o.
+        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon."
+      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.
     manage:
-      all: Inontote aukoktotororisoseroradod.o.
+      all: Inontote aukoktotororisoseroradod.
       user: "Inontote aukoktotororisoseroradod fof\xF6ror atottot hohanontoterora\
-        \ anonvov\xE4nondodarorkokonontotonon.o."
+        \ anonvov\xE4nondodarorkokonontotonon."
     new:
       candidate: "Kokanondodidoderorinongogaror totilollol vovalol \xE4ror enondodasostot\
-        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon.o."
+        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon."
       nomination: "Nonomominonerorinongogaror totilollol vovalol \xE4ror enondodasostot\
-        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon.o."
-      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.o.
+        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon."
+      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.
     show:
       album: "Bobiloldodgogalollolerorietot \xE4ror enondodasostot totilollol fof\xF6\
-        ror sosekoktotiononenonsos momedodlolemommomaror.o."
+        ror sosekoktotiononenonsos momedodlolemommomaror."
       cafe_shift: "Mom\xE5sostote vovarora inonlologoggogadod fof\xF6ror atottot soskokrorivova\
         \ upoppop dodigog fof\xF6ror atottot arorbobetota i Hohilolboberortot Cocafof\xE9\
-        o\xE9.o."
+        o\xE9."
       candidate: "Kokanondodidoderorinongogaror totilollol vovalol \xE4ror enondodasostot\
-        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon.o."
-      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.o.
+        \ fof\xF6ror momedodlolemommomaror vovidod sosekoktotiononenon."
+      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.
     update:
-      project: "Inontote totilollol\xE5totenon atottot upoppopdodatoterora poprorojojekoktotetot.o."
-      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.o.
+      project: "Inontote totilollol\xE5totenon atottot upoppopdodatoterora poprorojojekoktotetot."
+      rent: Inontote aukoktotororisoseroradod atottot soskokapopa bobilolbobokoknoninongogaror.

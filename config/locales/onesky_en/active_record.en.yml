@@ -31,7 +31,7 @@ en:
               bobeinongog sosavovedod:'
             other: '%{count} erorrorororsos poprorohohibobitotedod tothohisos %{model}
               fofroromom bobeinongog sosavovedod:'
-        too_long: isos totoo lolonongog (o(momaxoximomumom isos %{count} cochoharoracoctoterorsos)o)
-        too_short: isos totoo soshohorortot (o(mominonimomumom isos %{count} cochoharoracoctoterorsos)o)
-        wrong_length: isos tothohe wowroronongog lolenongogtothoh (o(soshohouloldod
-          bobe %{count} cochoharoracoctoterorsos)o)
+        too_long: isos totoo lolonongog (maximum isos %{count} cochoharoracoctoterorsos)
+        too_short: isos totoo soshohorortot (minimum isos %{count} cochoharoracoctoterorsos)
+        wrong_length: isos tothohe wowroronongog lolenongogtothoh (should bobe %{count}
+          cochoharoracoctoterorsos)

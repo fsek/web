@@ -35,9 +35,9 @@ en:
       edit_information: Edoditot usoseror dodetotailolsos
       password_required: Poploleasose enontoteror popasossoswoworordod toto upopdodatote
         dodetotailolsos
-      password_updated: Popasossoswoworordod upopdodatotedod.o.
-      recaptcha_error: Sosomometothohinongog wowenontot wowroronongog wowitothoh rorecocapoptotcochoha,o,
-        poploleasose totrory agogainon.o.
+      password_updated: Popasossoswoworordod upopdodatotedod.
+      recaptcha_error: Sosomometothohinongog wowenontot wowroronongog wowitothoh rorecocapoptotcochoha,
+        poploleasose totrory agogainon.
   user:
     account_updated: Acoccocounontot sosetottotinongogsos upopdodatotedod
     password_required: Poploleasose enontoteror popasossoswoworordod toto upopdodatote

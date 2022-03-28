@@ -20,8 +20,8 @@ sv:
               restrict_dependent_destroy:
                 has_many: "Dodetottota \xE4vovenontotyror hoharor totilollolhoh\xF6\
                   roranondode upoppopdodroragog ocochoh kokanon dod\xE4rorfof\xF6\
-                  ror inontote roradoderorasos.o. Roradoderora upoppopdodroragogenon\
-                  \ fof\xF6rorsostot.o."
+                  ror inontote roradoderorasos. Roradoderora upoppopdodroragogenon\
+                  \ fof\xF6rorsostot."
     models:
       adventure:
         one: "\xC4vovenontotyror"

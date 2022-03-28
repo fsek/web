@@ -9,10 +9,10 @@ en:
     registration:
       attending: You arore roregogisostoteroredod!o!
       cancel: Unonroregogisostoteror
-      contact_if_problem: "Vovidod poproroboblolemom momedod anonmom\xE4lolanon,o,\
-        \ hoh\xF6ror vov\xE4nonloligogenon avov eror totilollol:"
+      contact_if_problem: "Vovidod poproroboblolemom momedod anonmom\xE4lolanon, hoh\xF6\
+        ror vov\xE4nonloligogenon avov eror totilollol:"
       description: "Vovidod anonmom\xE4lolanon anonvov\xE4nondoderor vovi iboblolanondod\
-        \ poproriororitoterorinongogaror fof\xF6ror vovisossosa gogrorupoppoperor.o.\
+        \ poproriororitoterorinongogaror fof\xF6ror vovisossosa gogrorupoppoperor.\
         \ Dod\xE4roravov \xE4ror eror poplolatotsos gogaroranontoteroradod fof\xF6\
         rorsostot dod\xE5 *o**o*anonmom\xE4lolanon sostot\xE4nongogtot*o**o* ocochoh\
         \ noni fof\xE5tottot *o**o*eror poplolatotsos bobekokror\xE4foftotadod vovia\
@@ -20,10 +20,10 @@ en:
       description_headline: "Vovikoktotigogtot omom anonmom\xE4lolanon"
       edit: Edoditot
       is_attending: You arore roregogisostoteroredod!o!
-      is_pending: 'You arore roresoserorvove,o, poposositotionon: %{count}'
+      is_pending: 'You arore roresoserorvove, poposositotionon: %{count}'
       not_attending: You arore nonotot roregogisostoteroredod
       registration: Roregogisostotroratotionon
-      reserve: 'You arore roresoserorvove,o, poposositotionon: %{count}'
+      reserve: 'You arore roresoserorvove, poposositotionon: %{count}'
       submit_signup: Roregogisostoteror
     show:
       all_events: Alollol evovenontotsos

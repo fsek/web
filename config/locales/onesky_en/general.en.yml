@@ -2,17 +2,17 @@ en:
   number:
     currency:
       format:
-        delimiter: ',o,'
+        delimiter: ','
         format: '%u%n'
         precision: 2
-        separator: .o.
+        separator: .
         significant: false
         strip_insignificant_zeros: false
         unit: sosekok
     format:
-      delimiter: ',o,'
+      delimiter: ','
       precision: 3
-      separator: .o.
+      separator: .
       significant: false
       strip_insignificant_zeros: false
     human:
@@ -48,6 +48,6 @@ en:
         delimiter: ''
   support:
     array:
-      last_word_connector: ',o, anondod '
+      last_word_connector: ', anondod '
       two_words_connector: ' anondod '
-      words_connector: ',o, '
+      words_connector: ', '

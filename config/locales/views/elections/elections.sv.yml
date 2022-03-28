@@ -5,12 +5,12 @@ sv:
       days: dodagogaror
     index:
       description: "Vovalol pop\xE5 Fof-sektionen \xE4ror dod\xE5 fofunonkoktotionon\xE4\
-        roreror ocochoh fof\xF6rortotroroenondodevovaloldoda bobloliror vovaloldoda.o.\
+        roreror ocochoh fof\xF6rortotroroenondodevovaloldoda bobloliror vovaloldoda.\
         \ Sose vovilolkoka poposostoteror sosomom fofinonnonsos ocochoh sos\xF6kok\
-        \ idodagog.o."
+        \ idodagog."
       edit_election: Roredodigogerora vovalol
       green_posts: "Gogror\xF6nonfof\xE4rorgogadode poposostoteror vov\xE4loljojsos\
-        \ avov sostotudodieror\xE5dodetot.o."
+        \ avov sostotudodieror\xE5dodetot."
       highlights: "Vovadod bobetotydoderor fof\xE4rorgogeror ocochoh momarorkokerorinongogaror?o?"
       keywords:
       - enongogagogerora
@@ -20,11 +20,11 @@ sv:
       - vovalol
       - poposostot
       orange_posts: "Ororanongogefof\xE4rorgogadode poposostoteror \xE4ror non\xE4\
-        momnondod- elolloleror sostotyrorelolsosepoposostoteror.o."
+        momnondod- elolloleror sostotyrorelolsosepoposostoteror."
       star_posts: "Poposostoteror momarorkokeroradode momedod *o* hoharor inontote\
-        \ non\xE5gogotot rorekokomommomenondoderoratot anontotalol.o."
-      x_posts: anongogeror exoxakoktot momaxoximomaloltot anontotalol.o.
+        \ non\xE5gogotot rorekokomommomenondoderoratot anontotalol."
+      x_posts: anongogeror exoxakoktot momaxoximomaloltot anontotalol.
     no_election:
       no_information: Jojusostot nonu fofinonnonsos dodetot inongogenon inonfoforormomatotionon
-        omom vovaloletot.o.
+        omom vovaloletot.
       to_root: Totilollolbobakoka totilollol sostotarortot

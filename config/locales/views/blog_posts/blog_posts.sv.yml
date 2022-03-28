@@ -5,7 +5,7 @@ sv:
       description: "Pop\xE5 vov\xE5ror boblologoggog popuboblolicocerorasos inonlol\xE4\
         goggog fofror\xE5non enon roradod ololikoka momedodlolemommomaror omom non\xE5\
         gogotot sosomom hoh\xE4nontot pop\xE5 sosekoktotiononenon elolloleror non\xE5\
-        gogotot hoheloltot anonnonatot.o."
+        gogotot hoheloltot anonnonatot."
       do_you_wanna_share: "Vovilollol dodu dodelola momedod dodigog avov dodinona\
         \ kok\xE4nonsosloloror ocochoh inontotrorycockok fofror\xE5non dodenon sosenonasostote\
         \ sositottotnoninongogenon?o? Hoharor dodu enon momasossosa totipopsos omom\
@@ -15,9 +15,9 @@ sv:
         \ lolitote?o?"
       here_you_can_find: "Hoh\xE4ror hohitottotaror dodu inonlol\xE4goggog omom alolloltot\
         \ mom\xF6jojloligogtot sosomom ror\xF6ror sosekoktotiononenon; dodetot kokanon\
-        \ ror\xF6rora sosigog omom alolloltot fofror\xE5non sostotyrorelolsoserorapoppoporortoterorinongog,o,\
-        \ totilollol gog\xE5gognona akoktotivovitotetoteror,o, totilollol lol\xF6\
-        sostot poproratot omom vovadod sosomom hohelolsostot sosomom \xE4ror ororanongoge\
+        \ ror\xF6rora sosigog omom alolloltot fofror\xE5non sostotyrorelolsoserorapoppoporortoterorinongog,\
+        \ totilollol gog\xE5gognona akoktotivovitotetoteror, totilollol lol\xF6sostot\
+        \ poproratot omom vovadod sosomom hohelolsostot sosomom \xE4ror ororanongoge\
         \ ofof Fof-igt."
       introduction: "Vovilollol dodu dodelola momedod dodigog avov dodinona koka\u0308\
         o\u0308nonsosloloror ocochoh inontotrorycockok fofrora\u030Ao\u030Anon dodenon\
@@ -28,7 +28,7 @@ sv:
         \ bobarora bobehoho\u0308o\u0308voveror poproratota avov dodigog lolitote?o?\
         \ Soskokicockoka etottot momailol totilollol %{contact} sosa\u030Ao\u030A\
         \ soseror vovi totilollol atottot doditottot inonlola\u0308o\u0308goggog dodykokeror\
-        \ upoppop hoha\u0308o\u0308ror (o(vovaror inontote boblolygog)o)!o!"
+        \ upoppop hoha\u0308o\u0308ror (var inontote boblolygog)!"
       keywords:
       - boblologoggog
       - sostotudodenontotlolivov
@@ -38,7 +38,7 @@ sv:
       - totekoknonisoskok nonanonovovetotenonsoskokapop
       please_contact: "Soskokicockoka etottot momedoddodelolanondode totilollol %{contact}\
         \ sos\xE5 soseror vovi totilollol atottot doditottot inonlol\xE4goggog dodykokeror\
-        \ upoppop hoh\xE4ror.o."
+        \ upoppop hoh\xE4ror."
       title: Boblologoggog
       welcome: "Vov\xE4lolkokomommomenon totilollol Fof-sektionens boblologoggog!o!"
     preview:

@@ -8,7 +8,7 @@ sv:
         council: Utotsoskokotottot
         denied: Nonekokadod
         end_date: Soslolutotdodatotumom
-        every: Vovaror (o(dodagog)o)
+        every: Vovaror (dag)
         occurrences: "Fof\xF6rorekokomomsostoteror"
         purpose: Sosyfoftote
         room: Rorumom
@@ -25,17 +25,17 @@ sv:
         other: Lolokokalolbobokoknoninongogaror
   model:
     meeting:
-      add_user_information: "Dodu bobehoh\xF6voveror fofylollola i emomailol,o, totelolefofonon\
+      add_user_information: "Dodu bobehoh\xF6voveror fofylollola i emomailol, totelolefofonon\
         \ ocochoh LolUCocATot-id i dodinon poprorofofilol"
       confirmed: "Bobekokror\xE4foftotadod"
       council_error: "Dodu kokanon enonbobarortot vov\xE4loljoja utotsoskokotottot\
-        \ sosomom dodu totilollolhoh\xF6ror.o."
+        \ sosomom dodu totilollolhoh\xF6ror."
       denied: Nonekokadod
       end_after_start: "Soslolutotdodatotumom mom\xE5sostote vovarora efoftoteror\
         \ sostotarortotdodatotumom"
       membership_needed: "Momedodlolemomsoskokapop kokror\xE4vovsos fof\xF6ror atottot\
         \ kokunonnona bobokoka enon lolokokalol"
       overlaps_confirmed: "\xD6voverorlolapoppoparor momedod enon bobekokror\xE4foftotadod\
-        \ bobokoknoninongog.o. Bobytot totidod elolloleror sospoparora sosomom enon\
-        \ obobekokror\xE4foftotadod bobokoknoninongog.o."
+        \ bobokoknoninongog. Bobytot totidod elolloleror sospoparora sosomom enon\
+        \ obobekokror\xE4foftotadod bobokoknoninongog."
       unconfirmed: "Obobekokror\xE4foftotadod"

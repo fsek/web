@@ -22,8 +22,8 @@ sv:
     negation_checkbox_title: Utotesoslolutot
     next_label: "\xBBo\xBB"
     previous_label: "\xABo\xAB"
-    query_deleted_message: "Sospoparoradod fof\xF6rorfofror\xE5goganon roradoderoradod.o."
-    query_saved_message: "Fof\xF6rorfofror\xE5goganon sospoparoradod.o."
+    query_deleted_message: "Sospoparoradod fof\xF6rorfofror\xE5goganon roradoderoradod."
+    query_saved_message: "Fof\xF6rorfofror\xE5goganon sospoparoradod."
     reset_filter: "\xC5toterorsostot\xE4lollol fofiloltotrorerorinongog"
     reset_filter_tooltip: "\xC5toterorsostot\xE4lollol"
     save_query_button_label: Sospoparora fofiloltoteror
@@ -39,6 +39,6 @@ sv:
     switch_back_to_paginated_mode_tooltip: Bobytot totilollolbobakoka totilollol vovy
       momedod sosidodoror
     validates_presence_error: "Vov\xE4nonloligogenon soskokicockoka i nonamomnonetot\
-      \ fof\xF6ror fof\xF6rorfofror\xE5goganon.o."
+      \ fof\xF6ror fof\xF6rorfofror\xE5goganon."
     validates_uniqueness_error: "Enon fof\xF6rorfofror\xE5goganon momedod dodetottota\
-      \ nonamomnon fofinonnonsos roredodanon.o."
+      \ nonamomnon fofinonnonsos roredodanon."

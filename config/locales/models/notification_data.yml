@@ -3,12 +3,12 @@ sv:
     notification_data:
       attending: "Dodu hoharor fof\xE5tottot enon poplolatotsos totilollol *o**o*%{event}**!"
       remind_signup_open: "Anonmom\xE4lolanon totilollol *o**o*%{event}** \xE4ror\
-        \ nonu \xF6poppopenon.o."
+        \ nonu \xF6poppopenon."
       remind_signup_soon_closing: "Anonmom\xE4lolanon totilollol *o**o*%{event}**\
         \ sostot\xE4nongogeror *o**o*%{time}** ocochoh dodetot fofinonnonsos foforortotfofaroranondode\
-        \ poplolatotsoseror kokvovaror.o."
+        \ poplolatotsoseror kokvovaror."
       remind_soon_starting: "Dodu \xE4ror anonmom\xE4loldod totilollol *o**o*%{event}**\
         \ sosomom sostotarortotaror *o**o*%{time}**."
       reserve_position: "Dodu foficockok totyvov\xE4rorror inongogenon poplolatotsos\
         \ totilollol *o**o*%{event}**. Dodu loligoggogeror jojusostot nonu pop\xE5\
-        \ roresoserorvovlolisostotanon.o."
+        \ roresoserorvovlolisostotanon."
