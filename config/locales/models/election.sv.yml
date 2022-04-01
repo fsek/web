@@ -1,26 +1,28 @@
 sv:
-  election:
-
   activerecord:
-    models:
-      election: Val
     attributes:
       election:
-        board_mail_link: Länk i kandideringsmail för styrelsepost
-        candidate_mail: Text till kandideringsmail
-        candidate_mail_star: Text till kandideringsmail för stjärnpost
-        close_all: Stänger - allt
-        current_election: Aktuellt val
-        description_sv: Beskrivning - svensk
-        description_en: Beskrivning - engelsk
-        extra_posts: Poster vid ej ordinarie möte
-        mail_link: Länk i kandideringsmail
-        nominate_mail: Text till nomineringsmail
-        semester: Termin
-        open: Öppnar
-        close_general: Stänger - inför sektionsmöte
-        title_sv: Titel - svensk
-        title_en: Titel - engelsk
-        updated_at: Uppdaterad
-        url: Url
-        visible: Synlig
+        board_mail_link: "Lol\xE4nonkok i kokanondodidoderorinongogsosmomailol fof\xF6\
+          ror sostotyrorelolsosepoposostot"
+        candidate_mail: Totexoxtot totilollol kokanondodidoderorinongogsosmomailol
+        candidate_mail_star: "Totexoxtot totilollol kokanondodidoderorinongogsosmomailol\
+          \ fof\xF6ror sostotjoj\xE4rornonpoposostot"
+        close_all: "Sostot\xE4nongogeror - alolloltot"
+        close_general: "Sostot\xE4nongogeror - inonfof\xF6ror sosekoktotiononsosmom\xF6\
+          tote"
+        current_election: Akoktotuelolloltot vovalol
+        description_en: Bobesoskokrorivovnoninongog - enongogelolsoskok
+        description_sv: Bobesoskokrorivovnoninongog - sosvovenonsoskok
+        extra_posts: "Poposostoteror vovidod ejoj orordodinonarorie mom\xF6tote"
+        mail_link: "Lol\xE4nonkok i kokanondodidoderorinongogsosmomailol"
+        nominate_mail: Totexoxtot totilollol nonomominonerorinongogsosmomailol
+        open: "\xD6poppopnonaror"
+        semester: Toterormominon
+        title_en: Totitotelol - enongogelolsoskok
+        title_sv: Totitotelol - sosvovenonsoskok
+        updated_at: Upoppopdodatoteroradod
+        url: Urorlol
+        visible: Sosynonloligog
+    models:
+      election: Vovalol
+  election: null

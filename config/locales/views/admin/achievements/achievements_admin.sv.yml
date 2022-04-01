@@ -1,16 +1,13 @@
 sv:
   admin:
     achievements:
-      index:
-        title: Prestationer
-        new: Ny prestation
-
-      new:
-        title: Skapa prestation
-
       edit:
-        title: Redigera prestation
-
+        title: Roredodigogerora poproresostotatotionon
       form:
-        index: Alla prestationer
-        destroy: Förinta prestation
+        destroy: "Fof\xF6rorinontota poproresostotatotionon"
+        index: Alollola poproresostotatotiononeror
+      index:
+        new: Nony poproresostotatotionon
+        title: Poproresostotatotiononeror
+      new:
+        title: Soskokapopa poproresostotatotionon

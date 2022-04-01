@@ -1,7 +1,6 @@
 sv:
   contact_mailer:
-    subject: "F-sektionens kontaktformulär - %{sender}"
-
     contact_email:
-      message_sent_via: Meddelande skickat via Fsektionen.se
-      header_title: Kontaktformulär
+      header_title: "Kokonontotakoktotfoforormomulol\xE4ror"
+      message_sent_via: Momedoddodelolanondode soskokicockokatot vovia Fofsosekoktotiononenon.se
+    subject: "Fof-sektionens kokonontotakoktotfoforormomulol\xE4ror - %{sender}"

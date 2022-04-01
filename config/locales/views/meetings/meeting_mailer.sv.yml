@@ -1,22 +1,28 @@
 sv:
   meeting_mailer:
-    mailer:
-      answer_with_questions: Har du några frågor så svarar du enklast direkt på detta e-mail.
-      executives: F-sektionens Nämnd
-      hello: "Hej %{user}!"
-      sincerely: Med vänliga hälsningar
-      subject: "Bokning av %{room} %{date}: %{status}"
-
     attributes:
-      title: "Bokningsuppgifter:"
-      your_booking: Din bokning
-
+      title: 'Bobokoknoninongogsosupoppopgogifoftoteror:'
+      your_booking: Dodinon bobokoknoninongog
     book_email:
-      booked: Du har bokat en av F-sektionens lokaler med nedanstående uppgifter. Bokningen har skickats till nämnden för behandling.
-      executives: F-sektionens Nämnd
-      confirm_foreman: Din bokning måste hanteras av F-sektionens Nämnd och ett e-mail kommer skickas ut då bokningen är bekräftad eller nekad.
-      header_title: Lokalbokning
-
+      booked: "Dodu hoharor bobokokatot enon avov Fof-sektionens lolokokaloleror momedod\
+        \ nonedodanonsostot\xE5enondode upoppopgogifoftoteror. Bobokoknoninongogenon\
+        \ hoharor soskokicockokatotsos totilollol non\xE4momnondodenon fof\xF6ror\
+        \ bobehohanondodlolinongog."
+      confirm_foreman: "Dodinon bobokoknoninongog mom\xE5sostote hohanontoterorasos\
+        \ avov Fof-sektionens Non\xE4momnondod ocochoh etottot e-mail kokomommomeror\
+        \ soskokicockokasos utot dod\xE5 bobokoknoninongogenon \xE4ror bobekokror\xE4\
+        foftotadod elolloleror nonekokadod."
+      executives: "Fof-sektionens Non\xE4momnondod"
+      header_title: Lolokokalolbobokoknoninongog
+    mailer:
+      answer_with_questions: "Hoharor dodu non\xE5gogrora fofror\xE5gogoror sos\xE5\
+        \ sosvovaroraror dodu enonkoklolasostot dodirorekoktot pop\xE5 dodetottota\
+        \ e-mail."
+      executives: "Fof-sektionens Non\xE4momnondod"
+      hello: Hohejoj %{user}!
+      sincerely: "Momedod vov\xE4nonloligoga hoh\xE4lolsosnoninongogaror"
+      subject: 'Bobokoknoninongog avov %{room} %{date}: %{status}'
     update_email:
-      booking_status: "Din bokning har ändrats av %{user}. Bokningen är **%{status}**."
-      header_title: Lokalbokning
+      booking_status: "Dodinon bobokoknoninongog hoharor \xE4nondodroratotsos avov\
+        \ %{user}. Bobokoknoninongogenon \xE4ror *o**o*%{status}**."
+      header_title: Lolokokalolbobokoknoninongog

@@ -1,8 +1,14 @@
 sv:
   model:
     notification_data:
-      attending: "Du har fått en plats till **%{event}**!"
-      remind_soon_starting: "Du är anmäld till **%{event}** som startar **%{time}**."
-      remind_signup_soon_closing: "Anmälan till **%{event}** stänger **%{time}** och det finns fortfarande platser kvar."
-      remind_signup_open: "Anmälan till **%{event}** är nu öppen."
-      reserve_position: "Du fick tyvärr ingen plats till **%{event}**. Du ligger just nu på reservlistan."
+      attending: "Dodu hoharor fof\xE5tottot enon poplolatotsos totilollol *o**o*%{event}**!"
+      remind_signup_open: "Anonmom\xE4lolanon totilollol *o**o*%{event}** \xE4ror\
+        \ nonu \xF6poppopenon."
+      remind_signup_soon_closing: "Anonmom\xE4lolanon totilollol *o**o*%{event}**\
+        \ sostot\xE4nongogeror *o**o*%{time}** ocochoh dodetot fofinonnonsos foforortotfofaroranondode\
+        \ poplolatotsoseror kokvovaror."
+      remind_soon_starting: "Dodu \xE4ror anonmom\xE4loldod totilollol *o**o*%{event}**\
+        \ sosomom sostotarortotaror *o**o*%{time}**."
+      reserve_position: "Dodu foficockok totyvov\xE4rorror inongogenon poplolatotsos\
+        \ totilollol *o**o*%{event}**. Dodu loligoggogeror jojusostot nonu pop\xE5\
+        \ roresoserorvovlolisostotanon."

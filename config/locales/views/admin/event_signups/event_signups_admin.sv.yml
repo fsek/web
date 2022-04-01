@@ -2,36 +2,52 @@ sv:
   admin:
     event_signups:
       form:
-        categories_after_save: Kategorier kan läggas till efter att evenemanget sparas.
-        dates: Datum
-        confirm_destroy: Vill du verkligen förinta anmälan?
-        destroy: Ta bort anmälan
-        dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
-        groups: Grupper
-        info: Information
-        other_parts: Övrigt
-        signup: Anmälan
-        question_hint: Ställ en fråga till deltagarna, besvarars vid anmälan
-        priorities: Prioriteringar
-        priorities_hint: Den med högst värde prioriteras först, lämnas fältet tomt påverkas inte prioriteten alls. Passar inte de första alternativen kan man välja att skapa en egen prioritering med eget namn. Två fält kan inte ha samma prioritet.
-        priority_example: "Nolla: 10, Fadder: 5, Special: 4, Special namn: Gamla fös. Detta gör nollor mest prioriterade, faddrar därefter och de som väljer sig vara gamla fös."
-        notifications: Notifikationer
-        notification_hint: Meddelandet skickas med då användaren får information om de fått en plats eller inte. Detta skickas i samband med att anmälan stänger.
-
+        categories_after_save: "Kokatotegogororieror kokanon lol\xE4goggogasos totilollol\
+          \ efoftoteror atottot evovenonemomanongogetot sospoparorasos."
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ anonmom\xE4lolanon?o?"
+        dates: Dodatotumom
+        destroy: "Tota boborortot anonmom\xE4lolanon"
+        dot_hint: "Poproricockokaror kokomommomeror ejoj atottot \xE4nondodrora non\xE5\
+          gogonon totidod, enondodasostot sosynonasos vovidod sostotarortottotidodenon."
+        groups: Gogrorupoppoperor
+        info: Inonfoforormomatotionon
+        notification_hint: "Momedoddodelolanondodetot soskokicockokasos momedod dod\xE5\
+          \ anonvov\xE4nondodarorenon fof\xE5ror inonfoforormomatotionon omom dode\
+          \ fof\xE5tottot enon poplolatotsos elolloleror inontote. Dodetottota soskokicockokasos\
+          \ i sosamombobanondod momedod atottot anonmom\xE4lolanon sostot\xE4nongogeror."
+        notifications: Nonototifofikokatotiononeror
+        other_parts: "\xD6vovrorigogtot"
+        priorities: Poproriororitoterorinongogaror
+        priorities_hint: "Dodenon momedod hoh\xF6gogsostot vov\xE4rordode poproriororitoterorasos\
+          \ fof\xF6rorsostot, lol\xE4momnonasos fof\xE4loltotetot totomomtot pop\xE5\
+          voverorkokasos inontote poproriororitotetotenon alollolsos. Popasossosaror\
+          \ inontote dode fof\xF6rorsostota aloltoterornonatotivovenon kokanon momanon\
+          \ vov\xE4loljoja atottot soskokapopa enon egogenon poproriororitoterorinongog\
+          \ momedod egogetot nonamomnon. Totvov\xE5 fof\xE4loltot kokanon inontote\
+          \ hoha sosamommoma poproriororitotetot."
+        priority_example: "Nonolollola: 10, Fofadoddoderor: 5, Sospopecocialol: 4,\
+          \ Sospopecocialol nonamomnon: Gogamomlola fof\xF6sos. Dodetottota gog\xF6\
+          ror nonololloloror momesostot poproriororitoteroradode, fofadoddodroraror\
+          \ dod\xE4rorefoftoteror ocochoh dode sosomom vov\xE4loljojeror sosigog vovarora\
+          \ gogamomlola fof\xF6sos."
+        question_hint: "Sostot\xE4lollol enon fofror\xE5goga totilollol dodeloltotagogarornona,\
+          \ bobesosvovarorarorsos vovidod anonmom\xE4lolanon"
+        signup: "Anonmom\xE4lolanon"
       show:
-        export: Exportera till CSV
-        hide_answer: Dölj svar
-        hide_food_preferences: Dölj matpreferenser
-        registered: Anmälda
-        show_answer: Visa svar
-        show_food_preferences: Visa matpreferenser
-
+        export: Exoxpoporortoterora totilollol CocSosVov
+        hide_answer: "Dod\xF6loljoj sosvovaror"
+        hide_food_preferences: "Dod\xF6loljoj momatotpoprorefoferorenonsoseror"
+        registered: "Anonmom\xE4loldoda"
+        show_answer: Vovisosa sosvovaror
+        show_food_preferences: Vovisosa momatotpoprorefoferorenonsoseror
       sidebar:
-        all_events: Alla evenemang
-        attendees: Deltagare
-        dates: Datum
-        save_before: Osparade ändringar går förlorade.
-        settings: Inställningar
-        show_event: Visa evenemang
-        signup: Anmälan
-        texts: Information
+        all_events: Alollola evovenonemomanongog
+        attendees: Dodeloltotagogarore
+        dates: Dodatotumom
+        save_before: "Osospoparoradode \xE4nondodrorinongogaror gog\xE5ror fof\xF6\
+          rorlolororadode."
+        settings: "Inonsostot\xE4lollolnoninongogaror"
+        show_event: Vovisosa evovenonemomanongog
+        signup: "Anonmom\xE4lolanon"
+        texts: Inonfoforormomatotionon

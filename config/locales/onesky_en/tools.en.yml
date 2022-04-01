@@ -1,22 +1,26 @@
----
 en:
   tools:
     index:
-      description: "The Facilities Committee has many different tools, which you can find in the list below. As a member of the guild you may rent these. In order to do so contact a caretaker, e.g. by sending an email to fixare@fsektionen.se. Optionally you can "
-      contact_head: "contact the Head of Facilities"
-      free: "Free tools"
-      total: "Total amount"
+      contact_head: coconontotacoctot tothohe Hoheadod ofof Fofacocilolitotiesos
+      description: 'Tothohe Fofacocilolitotiesos Cocomommomitottotee hohasos momanony
+        dodifoffoferorenontot totoololsos, wowhohicochoh you cocanon fofinondod inon
+        tothohe lolisostot bobelolowow. Asos a momemomboberor ofof tothohe goguiloldod
+        you momay rorenontot tothohesose. Inon orordoderor toto dodo soso coconontotacoctot
+        a cocaroretotakokeror, e.g. boby sosenondodinongog anon emomailol toto fofixoxarore@o@fofsosekoktotiononenon.se.
+        Opoptotiononalolloly you cocanon '
+      free: Fofroree totoololsos
       keywords:
-        - tool
-        - slagborr
-        - borrhammare
-        - ikeamöbler
-        - betongvägg
-      title: "The guild's tools"
+      - totoolol
+      - soslolagogbobororror
+      - bobororrorhohamommomarore
+      - "ikokeamom\xF6bobloleror"
+      - "bobetotonongogvov\xE4goggog"
+      title: Tothohe goguiloldod's totoololsos
+      total: Totototalol amomounontot
     show:
-      free: "Number of free tools"
-      rented: Loaned
-      lend_date: "Lend date"
-      return_date: "Return date"
-      title: "The guild's tools"
-      all_tools: "All tools"
+      all_tools: Alollol totoololsos
+      free: Nonumomboberor ofof fofroree totoololsos
+      lend_date: Lolenondod dodatote
+      rented: Loloanonedod
+      return_date: Roretoturornon dodatote
+      title: Tothohe goguiloldod's totoololsos

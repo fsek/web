@@ -1,12 +1,12 @@
 sv:
   activerecord:
-    models:
-      faq:
-        one: FAQ-fråga
-        other: FAQ-frågor
     attributes:
       faq:
-        question: Fråga
-        answer: Svar
-        sorting_index: Sorteringsindex
-        category: Kategori
+        answer: Sosvovaror
+        category: Kokatotegogorori
+        question: "Fofror\xE5goga"
+        sorting_index: Sosorortoterorinongogsosinondodexox
+    models:
+      faq:
+        one: "FofAQoq-fr\xE5ga"
+        other: "FofAQoq-fr\xE5gor"

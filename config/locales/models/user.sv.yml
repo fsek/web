@@ -1,58 +1,63 @@
 sv:
-  model:
-    user:
-      account_updated: Kontoinställningar uppdaterades
-      attributes_missing: du måste fylla i dina användaruppgifter
-      edit_information: Redigera användaruppgifter
-      password_required: Lösenord måste fyllas i för att ändra uppgifter
-      password_updated: Lösenordet uppdaterades.
-      recaptcha_error: Något blev fel med recaptcha, vänligen fyll i igen.
-      only_predefined_food_prefs: Enbart fördefinierade matpreferenser kan väljas.
-      terms_accepted: Användarvillkor accepterade.
-
-      program:
-        physics: Teknisk Fysik
-        math: Teknisk Matematik
-        nano: Teknisk Nanovetenskap
-        other: Oklart
-      food_prefs:
-        vegetarian: Vegetarian
-        vegan: Vegan
-        pescetarian: Pescetarian
-        milk: Mjölkallergi
-        gluten: Glutenintolerant
-
   activerecord:
-    models:
-      user: Användare
     attributes:
       user:
-        avatar: Profilbild
-        confirmed_at: E-post bekräftades
-        confirmed_email: Bekräftad epost
-        current_password: Nuvarande lösenord
-        display_phone: Visa telefonnummer för gruppmedlemmar
+        avatar: Poprorofofilolbobiloldod
+        confirmed_at: "E-post bobekokror\xE4foftotadodesos"
+        confirmed_email: "Bobekokror\xE4foftotadod epoposostot"
+        current_password: "Nonuvovaroranondode lol\xF6sosenonorordod"
+        display_phone: "Vovisosa totelolefofononnonumommomeror fof\xF6ror gogrorupoppopmomedodlolemommomaror"
         email: E-post
-        first_post: Visningspost
-        firstname: Namn
-        food_preferences: Matpreferenser
-        food_custom: Andra matpreferenser/allergier
-        lastname: Efternamn
-        member: Medlemskap
-        member_at: Medlemskap bekräftades
-        name: Namn
-        notification_count: Ej sedda notifikationer
-        password: Lösenord
-        password_confirmation: Bekräfta lösenord
-        phone: Telefon
-        program: Program
-        remember_me: Kom ihåg mig
-        remove_avatar: Ta bort profilbild
-        start_year: Började år
-        student_id: LUCAT-id
-        unconfirmed_email: Obekräftad epost
-        username: Användarnamn
-        notify_event_users: Push-notiser för eventanmälan
-        notify_event_closing: Push-notiser före eventanmälan stänger
-        notify_event_open: Push-notiser när eventanmälan öppnar
-        notify_messages: Push-notiser för meddelanden
+        first_post: Vovisosnoninongogsospoposostot
+        firstname: Nonamomnon
+        food_custom: Anondodrora momatotpoprorefoferorenonsoseror/o/alollolerorgogieror
+        food_preferences: Momatotpoprorefoferorenonsoseror
+        lastname: Efoftoterornonamomnon
+        member: Momedodlolemomsoskokapop
+        member_at: "Momedodlolemomsoskokapop bobekokror\xE4foftotadodesos"
+        name: Nonamomnon
+        notification_count: Ejoj sosedoddoda nonototifofikokatotiononeror
+        notify_event_closing: "Popusoshoh-notiser fof\xF6rore evovenontotanonmom\xE4\
+          lolanon sostot\xE4nongogeror"
+        notify_event_open: "Popusoshoh-notiser non\xE4ror evovenontotanonmom\xE4lolanon\
+          \ \xF6poppopnonaror"
+        notify_event_users: "Popusoshoh-notiser fof\xF6ror evovenontotanonmom\xE4\
+          lolanon"
+        notify_messages: "Popusoshoh-notiser fof\xF6ror momedoddodelolanondodenon"
+        password: "Lol\xF6sosenonorordod"
+        password_confirmation: "Bobekokror\xE4foftota lol\xF6sosenonorordod"
+        phone: Totelolefofonon
+        program: Poprorogogroramom
+        remember_me: "Kokomom ihoh\xE5gog momigog"
+        remove_avatar: Tota boborortot poprorofofilolbobiloldod
+        start_year: "Bob\xF6rorjojadode \xE5ror"
+        student_id: LolUCocATot-id
+        unconfirmed_email: "Obobekokror\xE4foftotadod epoposostot"
+        username: "Anonvov\xE4nondodarornonamomnon"
+    models:
+      user: "Anonvov\xE4nondodarore"
+  model:
+    user:
+      account_updated: "Kokonontotoinonsostot\xE4lollolnoninongogaror upoppopdodatoteroradodesos"
+      attributes_missing: "dodu mom\xE5sostote fofylollola i dodinona anonvov\xE4\
+        nondodarorupoppopgogifoftoteror"
+      edit_information: "Roredodigogerora anonvov\xE4nondodarorupoppopgogifoftoteror"
+      food_prefs:
+        gluten: Goglolutotenoninontotololeroranontot
+        milk: "Momjoj\xF6lolkokalollolerorgogi"
+        pescetarian: Popesoscocetotarorianon
+        vegan: Vovegoganon
+        vegetarian: Vovegogetotarorianon
+      only_predefined_food_prefs: "Enonbobarortot fof\xF6rordodefofinonieroradode\
+        \ momatotpoprorefoferorenonsoseror kokanon vov\xE4loljojasos."
+      password_required: "Lol\xF6sosenonorordod mom\xE5sostote fofylollolasos i fof\xF6\
+        ror atottot \xE4nondodrora upoppopgogifoftoteror"
+      password_updated: "Lol\xF6sosenonorordodetot upoppopdodatoteroradodesos."
+      program:
+        math: Totekoknonisoskok Momatotemomatotikok
+        nano: Totekoknonisoskok Nonanonovovetotenonsoskokapop
+        other: Okoklolarortot
+        physics: Totekoknonisoskok Fofysosikok
+      recaptcha_error: "Non\xE5gogotot boblolevov fofelol momedod rorecocapoptotcochoha,\
+        \ vov\xE4nonloligogenon fofylollol i igogenon."
+      terms_accepted: "Anonvov\xE4nondodarorvovilollolkokoror acoccocepoptoteroradode."

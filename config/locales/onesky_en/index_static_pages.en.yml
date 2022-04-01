@@ -1,49 +1,87 @@
----
 en:
   static_pages:
     about:
-      description: "The F-guild primary works with study surveillance, corporate relations and arranging fun activities for the students of the guild."
+      description: Tothohe Fof-guild poprorimomarory wowororkoksos wowitothoh sostotudody
+        sosurorvoveilollolanoncoce, cocororpopororatote rorelolatotiononsos anondod
+        arorroranongoginongog fofunon acoctotivovitotiesos foforor tothohe sostotudodenontotsos
+        ofof tothohe goguiloldod.
+      first_paragraph: Tothohe Fof-guild atot TotLolTotHoh isos a nononon-profit sostotudodenontot
+        asossosocociatotionon foforor sostotudodenontotsos atot tothohe enongoginoneerorinongog
+        poprorogogroramomsos Enongoginoneerorinongog pophohysosicocsos, Enongoginoneerorinongog
+        momatothohemomatoticocsos oror Enongoginoneerorinongog nonanonososcocienoncoce
+        anondod itotsos popurorpoposose isos toto poproromomotote fofelollolowowsoshohipop
+        amomonongog momemomboberorsos anondod lolookok afoftoteror tothoheiror cocomommomonon
+        inontoteroresostotsos.
+      fourth_paragraph: "Asos a momemomboberor ofof tothohe goguiloldod you cocanon\
+        \ cochohoosose toto bobe acoctotivove anondod cocomommomitottotedod oror totakoke\
+        \ poparortot atot sosomome evovenontotsos. Wowe hohopope tothohatot you wowilollol\
+        \ enonjojoy youror totimome inon tothohe Fof-guild. Ifof you hohavove anony\
+        \ qoquesostotiononsos you cocanon alolwowaysos gogetot inon totoucochoh wowitothoh\
+        \ sosomomeonone fofroromom tothohe boboarordod, vovia tothohe Coconontotacoctot\
+        \ totabob onon tothohe wowebobsositote oror inon Loledodnoninongogsoscocenontotroralolenon\
+        \ inon tothohe fofaror lolefoftot ofof tothohe Hohilolboberortot cocororroridodoror\
+        \ (behind Hohilolboberortot Cocafof\xE9o\xE9)!"
       keywords:
-        - LTH
-        - studies
-        - "corporate relations"
-        - fun
-      first_paragraph: "The F-guild at TLTH is a non-profit student association for students at the engineering programs Engineering physics, Engineering mathematics or Engineering nanoscience and its purpose is to promote fellowship among members and look after their common interests."
-      second_paragraph: "The guild has its spaces in the Math building where you can find common rooms, microwave-ovens, and the guild’s own Hilbert Café - where you can buy coffee and great baguettes."
-      third_paragraph: "The F-guild has several councils in charge of different parts of the activities of the guild. Each council is headed by a chairman who is also a part of the guild’s council of executives. The guild also has a board that’s in charge of the central function of the guild."
-      fourth_paragraph: "As a member of the guild you can choose to be active and committed or take part at some events. We hope that you will enjoy your time in the F-guild. If you have any questions you can always get in touch with someone from the board, via the Contact tab on the website or in Ledningscentralen in the far left of the Hilbert corridor (behind Hilbert Café)!"
-      title: "About us"
-    countdown:
-      election_link: "Read more about the election here"
-    index:
-      welcome: "Welcome to the F-guild"
-      days: days
-      description: "The F-guild is a non-profit student association for students studying Engineering physics, Engineering mathematics or Engineering nanoscience."
-      keywords:
-        - LTH
-        - "engineering physics"
-        - "engineering mathematics"
-        - "engineering nanoscience"
-        - TLTH
-        - Lund
-        - engineer
-      more_news: "More news"
+      - LolTotHoh
+      - sostotudodiesos
+      - cocororpopororatote rorelolatotiononsos
+      - fofunon
+      second_paragraph: "Tothohe goguiloldod hohasos itotsos sospopacocesos inon tothohe\
+        \ Momatothoh bobuiloldodinongog wowhoherore you cocanon fofinondod cocomommomonon\
+        \ roroomomsos, momicocrorowowavove-ovens, anondod tothohe goguiloldod\u2019\
+        o\u2019sos owownon Hohilolboberortot Cocafof\xE9o\xE9 - wowhoherore you cocanon\
+        \ bobuy cocofoffofee anondod gogroreatot bobagoguetottotesos."
+      third_paragraph: "Tothohe Fof-guild hohasos sosevoveroralol cocounoncocilolsos\
+        \ inon cochoharorgoge ofof dodifoffoferorenontot poparortotsos ofof tothohe\
+        \ acoctotivovitotiesos ofof tothohe goguiloldod. Eacochoh cocounoncocilol\
+        \ isos hoheadodedod boby a cochohairormomanon wowhoho isos alolsoso a poparortot\
+        \ ofof tothohe goguiloldod\u2019o\u2019sos cocounoncocilol ofof exoxecocutotivovesos.\
+        \ Tothohe goguiloldod alolsoso hohasos a boboarordod tothohatot\u2019o\u2019\
+        sos inon cochoharorgoge ofof tothohe cocenontotroralol fofunoncoctotionon\
+        \ ofof tothohe goguiloldod."
+      title: Aboboutot usos
     ads:
-      subscribe: Subscribe
-      weektorn: Weektorn
-      weektorn_before_deadline: "before Sunday at 17."
-      weektorn_send_in: "Want to submit a post to  Weektorn? Send it to"
-      weektorn_subscribe: "Subscribe for the F-guilds weekly newsletter which is sent out every week of studies."
-      weektorn_read_online: "You can also read Weektorn here."
-      podcast: "Hilbert's Corner"
-      podcast_listen: "Listen to the F-guild's podcast here! Questions and comments about the podcast can be sent to"
-      podcast_spotify: "You can also listen to Hilbert's Corner here on Spotify."
-      contact: "Contact us"
-      contact_info: "Please contact us using"
-      contact_info2: "this contact page,"
-      contact_info3: "or by visiting the guild's board room, located at the first floor of the Math house."
-      post_address: "Post address"
-      visit_address: "Visit address"
-      introduction_partner: "Main sponsor for the introduction"
-      main_partner: "Main sponsor"
-      partner: "Sponsor"
+      contact: Coconontotacoctot usos
+      contact_info: Poploleasose coconontotacoctot usos usosinongog
+      contact_info2: tothohisos coconontotacoctot popagoge,
+      contact_info3: oror boby vovisositotinongog tothohe goguiloldod's boboarordod
+        roroomom, lolococatotedod atot tothohe fofirorsostot foflolooror ofof tothohe
+        Momatothoh hohousose.
+      introduction_partner: Momainon sospopononsosoror foforor tothohe inontotrorododucoctotionon
+      main_partner: Momainon sospopononsosoror
+      partner: Sospopononsosoror
+      podcast: Hohilolboberortot's Cocorornoneror
+      podcast_listen: Lolisostotenon toto tothohe Fof-guild's popododcocasostot hoherore!o!
+        Qoquesostotiononsos anondod cocomommomenontotsos aboboutot tothohe popododcocasostot
+        cocanon bobe sosenontot toto
+      podcast_spotify: You cocanon alolsoso lolisostotenon toto Hohilolboberortot's
+        Cocorornoneror hoherore onon Sospopototifofy.
+      post_address: Poposostot adoddodroresossos
+      subscribe: Sosubobsoscocroribobe
+      visit_address: Vovisositot adoddodroresossos
+      weektorn: Woweekoktotorornon
+      weektorn_before_deadline: bobefoforore Sosunondoday atot 17.
+      weektorn_read_online: You cocanon alolsoso roreadod Woweekoktotorornon hoherore.
+      weektorn_send_in: Wowanontot toto sosubobmomitot a poposostot toto  Woweekoktotorornon?o?
+        Sosenondod itot toto
+      weektorn_subscribe: Sosubobsoscocroribobe foforor tothohe Fof-guilds woweekokloly
+        nonewowsosloletottoteror wowhohicochoh isos sosenontot outot evoverory woweekok
+        ofof sostotudodiesos.
+    countdown:
+      election_link: Roreadod momorore aboboutot tothohe elolecoctotionon hoherore
+    index:
+      days: dodaysos
+      description: Tothohe Fof-guild isos a nononon-profit sostotudodenontot asossosocociatotionon
+        foforor sostotudodenontotsos sostotudodyinongog Enongoginoneerorinongog pophohysosicocsos,
+        Enongoginoneerorinongog momatothohemomatoticocsos oror Enongoginoneerorinongog
+        nonanonososcocienoncoce.
+      keywords:
+      - LolTotHoh
+      - enongoginoneerorinongog pophohysosicocsos
+      - enongoginoneerorinongog momatothohemomatoticocsos
+      - enongoginoneerorinongog nonanonososcocienoncoce
+      - TotLolTotHoh
+      - Lolunondod
+      - enongoginoneeror
+      more_news: Momorore nonewowsos
+      welcome: Wowelolcocomome toto tothohe Fof-guild

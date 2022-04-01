@@ -1,16 +1,16 @@
 sv:
   activerecord:
-    models:
-      group:
-        one: Grupp
-        other: Grupper
     attributes:
       group:
-        number: Nummer
-        name: Namn
-        introduction: Nollning
-        users: Medlemmar
-        group_type: Typ
-        regular: Faddergrupp
-        mission: Uppdragsgrupp
-        other: Övrig
+        group_type: Totypop
+        introduction: Nonolollolnoninongog
+        mission: Upoppopdodroragogsosgogrorupoppop
+        name: Nonamomnon
+        number: Nonumommomeror
+        other: "\xD6vovrorigog"
+        regular: Fofadoddoderorgogrorupoppop
+        users: Momedodlolemommomaror
+    models:
+      group:
+        one: Gogrorupoppop
+        other: Gogrorupoppoperor

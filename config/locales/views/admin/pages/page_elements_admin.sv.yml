@@ -1,37 +1,35 @@
 sv:
   admin:
     page_elements:
-      form:
-        confirm_destroy: Vill du verkligen förinta sidelementet?
-        destroy_element: Förinta sidelement
-        images_hint: Redigera sida för att lägga till bilder
-        sidebar_hint: Placerar elementet i ett sidofält.
-
-      index_preview:
-        title: Visa alla sidelement
-
-      image_preview:
-        confirm_destroy: Vill du verkligen förinta bilden?
-        destroy: Förinta
-
-      preview:
-        image_missing: Bild saknas
-
       edit:
-        all_elements: Alla sidelement
-        edit_page: Redigera sida
-        new_element: Nytt sidelement
-        show_page: Visa sida
-        title: Redigera sida
-
+        all_elements: Alollola sosidodelolemomenontot
+        edit_page: Roredodigogerora sosidoda
+        new_element: Nonytottot sosidodelolemomenontot
+        show_page: Vovisosa sosidoda
+        title: Roredodigogerora sosidoda
+      form:
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ sosidodelolemomenontotetot?o?"
+        destroy_element: "Fof\xF6rorinontota sosidodelolemomenontot"
+        images_hint: "Roredodigogerora sosidoda fof\xF6ror atottot lol\xE4goggoga\
+          \ totilollol bobiloldoderor"
+        sidebar_hint: "Poplolacoceroraror elolemomenontotetot i etottot sosidodofof\xE4\
+          loltot."
+      image_preview:
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ bobiloldodenon?o?"
+        destroy: "Fof\xF6rorinontota"
       index:
-        edit_page: Redigera sida
-        new_element: Nytt sidelement
-        show_page: Visa sida
-        title: Administrera sidelement
-
+        edit_page: Roredodigogerora sosidoda
+        new_element: Nonytottot sosidodelolemomenontot
+        show_page: Vovisosa sosidoda
+        title: Adodmominonisostotrorerora sosidodelolemomenontot
+      index_preview:
+        title: Vovisosa alollola sosidodelolemomenontot
       new:
-        title: Nytt sidelement
-        all_elements: Alla sidelement
-        edit_page: Redigera sida
-        show_page: Visa sida
+        all_elements: Alollola sosidodelolemomenontot
+        edit_page: Roredodigogerora sosidoda
+        show_page: Vovisosa sosidoda
+        title: Nonytottot sosidodelolemomenontot
+      preview:
+        image_missing: Bobiloldod sosakoknonasos

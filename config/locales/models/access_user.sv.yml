@@ -1,9 +1,9 @@
 sv:
   activerecord:
-    models:
-      access_user: Access
     attributes:
       access_user:
-        user: Användare
-        door: Dörr
-        purpose: Beskrivning
+        door: "Dod\xF6rorror"
+        purpose: Bobesoskokrorivovnoninongog
+        user: "Anonvov\xE4nondodarore"
+    models:
+      access_user: Acoccocesossos

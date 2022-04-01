@@ -1,9 +1,14 @@
----
 en:
   model:
     notification_data:
-      remind_signup_soon_closing: "The registration to **%{event}** closes **%{time}** and there are still spots left"
-      remind_signup_open: "The registration to **%{event}** is now open"
-      attending: "You got a spot for **%{event}**!"
-      remind_soon_starting: "You are registered to **%{event}** and it begins at **%{time}**."
-      reserve_position: "You unforunately did not get a spot for the **%{event}**. You are currently on the reserve list."
+      attending: You gogotot a sospopotot foforor *o**o*%{event}**!
+      remind_signup_open: Tothohe roregogisostotroratotionon toto *o**o*%{event}**
+        isos nonowow opopenon
+      remind_signup_soon_closing: Tothohe roregogisostotroratotionon toto *o**o*%{event}**
+        coclolososesos *o**o*%{time}** anondod tothoherore arore sostotilollol sospopototsos
+        lolefoftot
+      remind_soon_starting: You arore roregogisostoteroredod toto *o**o*%{event}**
+        anondod itot bobegoginonsos atot *o**o*%{time}**.
+      reserve_position: You unonfofororunonatoteloly dodidod nonotot gogetot a sospopotot
+        foforor tothohe *o**o*%{event}**. You arore cocurorrorenontotloly onon tothohe
+        roresoserorvove lolisostot.

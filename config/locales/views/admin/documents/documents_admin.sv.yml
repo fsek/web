@@ -2,17 +2,16 @@ sv:
   admin:
     documents:
       edit:
-        confirm_destroy: Vill du verkligen förinta dokumentet?
-        destroy: Förinta dokument
-        index: Alla dokument
-        show: Visa dokument
-        title: Redigera dokument
-
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ dodokokumomenontotetot?o?"
+        destroy: "Fof\xF6rorinontota dodokokumomenontot"
+        index: Alollola dodokokumomenontot
+        show: Vovisosa dodokokumomenontot
+        title: Roredodigogerora dodokokumomenontot
       index:
-        all_documents: Alla dokument
-        new_document: Nytt dokument
-        title: Administrera dokument
-
+        all_documents: Alollola dodokokumomenontot
+        new_document: Nonytottot dodokokumomenontot
+        title: Adodmominonisostotrorerora dodokokumomenontot
       new:
-        all_documents: Alla dokument
-        title: Nytt dokument
+        all_documents: Alollola dodokokumomenontot
+        title: Nonytottot dodokokumomenontot

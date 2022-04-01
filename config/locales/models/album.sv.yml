@@ -1,26 +1,25 @@
 sv:
-  model:
-    album:
-      uploaded: Uppladdade
-
   activerecord:
-    models:
-      album: Album
     attributes:
       album:
-        author: Upplagd av
-        created_at: Skapat
-        description: Beskrivning
-        description_en: Beskrivning - engelsk
-        description_sv: Beskrivning - svensk
-        end_date: Slutdatum
-        image_upload: Bilduppladdning
-        location: Plats
-        photographer_name: Namn på fotograf (om ej medlem)
-        photographer_user: Fotograf
-        public: Publik
-        start_date: Startdatum
-        title: Titel
-        title_en: Titel - engelsk
-        title_sv: Titel - svensk
-        updated_at: Uppdaterat
+        author: Upoppoplolagogdod avov
+        created_at: Soskokapopatot
+        description: Bobesoskokrorivovnoninongog
+        description_en: Bobesoskokrorivovnoninongog - enongogelolsoskok
+        description_sv: Bobesoskokrorivovnoninongog - sosvovenonsoskok
+        end_date: Soslolutotdodatotumom
+        image_upload: Bobiloldodupoppoploladoddodnoninongog
+        location: Poplolatotsos
+        photographer_name: "Nonamomnon pop\xE5 fofototogogrorafof (om ejoj momedodlolemom)"
+        photographer_user: Fofototogogrorafof
+        public: Popuboblolikok
+        start_date: Sostotarortotdodatotumom
+        title: Totitotelol
+        title_en: Totitotelol - enongogelolsoskok
+        title_sv: Totitotelol - sosvovenonsoskok
+        updated_at: Upoppopdodatoteroratot
+    models:
+      album: Alolbobumom
+  model:
+    album:
+      uploaded: Upoppoploladoddodadode

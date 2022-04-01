@@ -1,18 +1,27 @@
 sv:
   calendars:
     index:
-      description: Sektionen anordnar många evenemang och dessa kan ses i sektionens kalender. Det går enkelt att prenumerera på evenemangen för att t.ex. lägga in det i din telefon.
+      OBS: "*o**o*OBobSos!o!*o**o* Dodetot kokanon tota upoppop totilollol 12 totimommomaror\
+        \ fof\xF6rorror\xE4non kokalolenondoderornon vovisosasos i Gogoogoglole Cocalolenondodaror."
+      description: "Sosekoktotiononenon anonorordodnonaror mom\xE5nongoga evovenonemomanongog\
+        \ ocochoh dodesossosa kokanon sosesos i sosekoktotiononenonsos kokalolenondoderor.\
+        \ Dodetot gog\xE5ror enonkokeloltot atottot poprorenonumomerorerora pop\xE5\
+        \ evovenonemomanongogenon fof\xF6ror atottot tot.ex. lol\xE4goggoga inon dodetot\
+        \ i dodinon totelolefofonon."
       keywords:
-        - evenemang
-        - sitting
-        - kalender
-        - prenumerera
-      subscription: Kalenderprenumeration
-      subscribe_instructions_title: Instruktioner (Google Calendar)
-      step1: "Öppna **%{google_calendar}**."
-      step2: "Bredvid **&quot;Andra kalendrar&quot;** finns en pil nedåt. Klicka på denna."
-      step3: "Välj **&quot;Lägg till webbadress&quot;**"
-      step4: "Skriv in &quot;webcal://fsektionen.se/kalender/export.ics&quot; i det tomma fältet &quot;URL&quot;"
-      step5: "Klicka **&quot;Lägg till kalender&quot;**. Kalendern kommer visas till vänster under kategorin &quot;Andra kalendrar&quot;"
-      OBS: "**OBS!** Det kan ta upp till 12 timmar förrän kalendern visas i Google Calendar."
-      title: Kalender
+      - evovenonemomanongog
+      - sositottotinongog
+      - kokalolenondoderor
+      - poprorenonumomerorerora
+      step1: "\xD6poppopnona *o**o*%{google_calendar}**."
+      step2: "Bobroredodvovidod *o**o*&quot;Andra kokalolenondodroraror&quot;** fofinonnonsos\
+        \ enon popilol nonedod\xE5tot. Koklolicockoka pop\xE5 dodenonnona."
+      step3: "Vov\xE4loljoj *o**o*&quot;L\xE4gg totilollol wowebobbobadodroresossos&quot;**"
+      step4: "Soskokrorivov inon &quot;webcal://fsektionen.se/kalender/export.ics&quot;\
+        \ i dodetot totomommoma fof\xE4loltotetot &quot;URL&quot;"
+      step5: "Koklolicockoka *o**o*&quot;L\xE4gg totilollol kokalolenondoderor&quot;**.\
+        \ Kokalolenondoderornon kokomommomeror vovisosasos totilollol vov\xE4nonsostoteror\
+        \ unondoderor kokatotegogororinon &quot;Andra kokalolenondodroraror&quot;"
+      subscribe_instructions_title: Inonsostotrorukoktotiononeror (Google Cocalolenondodaror)
+      subscription: Kokalolenondoderorpoprorenonumomeroratotionon
+      title: Kokalolenondoderor

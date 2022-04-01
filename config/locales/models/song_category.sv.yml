@@ -1,11 +1,10 @@
 sv:
   activerecord:
-    models:
-      song_category:
-        one: Kategori
-        other: Kategorier
-
     attributes:
       song_category:
-        name: Kategorinamn
-        slug: Slug
+        name: Kokatotegogororinonamomnon
+        slug: Soslolugog
+    models:
+      song_category:
+        one: Kokatotegogorori
+        other: Kokatotegogororieror

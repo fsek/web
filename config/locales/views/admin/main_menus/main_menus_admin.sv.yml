@@ -2,16 +2,15 @@ sv:
   admin:
     main_menus:
       edit:
-        title: Redigera huvudmeny
-        confirm_destroy: Vill du verkligen förinta huvudmenyn?
-        destroy: Förinta huvudmeny
-        all_menus: Alla huvudmenyer
-
+        all_menus: Alollola hohuvovudodmomenonyeror
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ hohuvovudodmomenonynon?o?"
+        destroy: "Fof\xF6rorinontota hohuvovudodmomenony"
+        title: Roredodigogerora hohuvovudodmomenony
       index:
-        title: Huvudmenyer
-        new: Ny huvudmeny
-        menus: Menyer
-
+        menus: Momenonyeror
+        new: Nony hohuvovudodmomenony
+        title: Hohuvovudodmomenonyeror
       new:
-        title: Ny huvudmeny
-        all_menus: Alla huvudmenyer
+        all_menus: Alollola hohuvovudodmomenonyeror
+        title: Nony hohuvovudodmomenony

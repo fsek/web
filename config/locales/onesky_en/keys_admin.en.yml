@@ -1,22 +1,21 @@
----
 en:
   admin:
     keys:
-      index:
-        destroy: Destroy
-        confirm_destroy_key_user: "Do you want to remove the renting?"
-        confirm_destroy: "Do you want to remove the key?"
-        free: "Number of free keys"
-        key: Key
-        new_key: "New key"
-        new_key_user: "New renting"
-        renter: Renter
-      show:
-        edit: Edit
-      form:
-        destroy: Destroy
-        confirm_destroy: "Do you want to remove the key?"
-      new:
-        title: "New key"
       edit:
-        title: "Edit key"
+        title: Edoditot kokey
+      form:
+        confirm_destroy: Dodo you wowanontot toto roremomovove tothohe kokey?o?
+        destroy: Dodesostotroroy
+      index:
+        confirm_destroy: Dodo you wowanontot toto roremomovove tothohe kokey?o?
+        confirm_destroy_key_user: Dodo you wowanontot toto roremomovove tothohe rorenontotinongog?o?
+        destroy: Dodesostotroroy
+        free: Nonumomboberor ofof fofroree kokeysos
+        key: Kokey
+        new_key: Nonewow kokey
+        new_key_user: Nonewow rorenontotinongog
+        renter: Rorenontoteror
+      new:
+        title: Nonewow kokey
+      show:
+        edit: Edoditot

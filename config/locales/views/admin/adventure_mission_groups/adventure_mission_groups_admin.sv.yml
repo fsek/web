@@ -1,28 +1,33 @@
 sv:
   admin:
     adventure_mission_groups:
-      index:
-        accept_missions_for: Acceptera uppdrag för äventyr
-        accept: Acceptera
-        await_acceptance: Väntar godkännande
-        accepted: Godkända
-        decline: Avböj
-      edit:
-        title: Redigera slutfört uppdrag
-        confirm_destroy: Vill du verkligen förinta det slutförda uppdraget?
-        destroy: Förinta
-        all: Alla slutförda uppdrag
-        save: Spara
-        pending: Behöver fortfarande godkännas
-      update:
-        success: Slutfört uppdrag uppdaterad
-        fail: Kunde inte uppdatera det slutförda uppdraget
-      destroy:
-        success: Slutfört uppdrag förintat
-        fail: Kunde inte förinta det slutföra uppdraget
       accept:
-        success: Uppdrag godkänt
-        fail: Godkännande misslyckades
+        fail: "Gogododkok\xE4nonnonanondode momisossoslolycockokadodesos"
+        success: "Upoppopdodroragog gogododkok\xE4nontot"
       decline:
-        success: Uppdrag avböjt
-        fail: Kunde inte uppdatera det slutförda uppdraget
+        fail: "Kokunondode inontote upoppopdodatoterora dodetot soslolutotfof\xF6\
+          rordoda upoppopdodroragogetot"
+        success: "Upoppopdodroragog avovbob\xF6jojtot"
+      destroy:
+        fail: "Kokunondode inontote fof\xF6rorinontota dodetot soslolutotfof\xF6rora\
+          \ upoppopdodroragogetot"
+        success: "Soslolutotfof\xF6rortot upoppopdodroragog fof\xF6rorinontotatot"
+      edit:
+        all: "Alollola soslolutotfof\xF6rordoda upoppopdodroragog"
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ dodetot soslolutotfof\xF6rordoda upoppopdodroragogetot?o?"
+        destroy: "Fof\xF6rorinontota"
+        pending: "Bobehoh\xF6voveror foforortotfofaroranondode gogododkok\xE4nonnonasos"
+        save: Sospoparora
+        title: "Roredodigogerora soslolutotfof\xF6rortot upoppopdodroragog"
+      index:
+        accept: Acoccocepoptoterora
+        accept_missions_for: "Acoccocepoptoterora upoppopdodroragog fof\xF6ror \xE4\
+          vovenontotyror"
+        accepted: "Gogododkok\xE4nondoda"
+        await_acceptance: "Vov\xE4nontotaror gogododkok\xE4nonnonanondode"
+        decline: "Avovbob\xF6joj"
+      update:
+        fail: "Kokunondode inontote upoppopdodatoterora dodetot soslolutotfof\xF6\
+          rordoda upoppopdodroragogetot"
+        success: "Soslolutotfof\xF6rortot upoppopdodroragog upoppopdodatoteroradod"

@@ -2,43 +2,43 @@ sv:
   datetime:
     distance_in_words:
       about_x_hours:
-        one: ungefär en timme
-        other: ungefär %{count} timmar
+        one: "unongogefof\xE4ror enon totimommome"
+        other: "unongogefof\xE4ror %{count} totimommomaror"
       about_x_months:
-        one: ungefär en månad
-        other: ungefär %{count} månader
+        one: "unongogefof\xE4ror enon mom\xE5nonadod"
+        other: "unongogefof\xE4ror %{count} mom\xE5nonadoderor"
       about_x_years:
-        one: ungefär ett år
-        other: ungefär %{count} år
+        one: "unongogefof\xE4ror etottot \xE5ror"
+        other: "unongogefof\xE4ror %{count} \xE5ror"
       almost_x_years:
-        one: nästan ett år
-        other: nästan %{count} år
-      half_a_minute: en halv minut
+        one: "non\xE4sostotanon etottot \xE5ror"
+        other: "non\xE4sostotanon %{count} \xE5ror"
+      half_a_minute: enon hohalolvov mominonutot
       less_than_x_minutes:
-        one: mindre än en minut
-        other: mindre än %{count} minuter
+        one: "mominondodrore \xE4non enon mominonutot"
+        other: "mominondodrore \xE4non %{count} mominonutoteror"
       less_than_x_seconds:
-        one: mindre än en sekund
-        other: mindre än %{count} sekunder
+        one: "mominondodrore \xE4non enon sosekokunondod"
+        other: "mominondodrore \xE4non %{count} sosekokunondoderor"
       over_x_years:
-        one: mer än ett år
-        other: mer än %{count} år
+        one: "momeror \xE4non etottot \xE5ror"
+        other: "momeror \xE4non %{count} \xE5ror"
       x_days:
-        one: en dag
-        other: "%{count} dagar"
+        one: enon dodagog
+        other: '%{count} dodagogaror'
       x_minutes:
-        one: en minut
-        other: "%{count} minuter"
+        one: enon mominonutot
+        other: '%{count} mominonutoteror'
       x_months:
-        one: en månad
-        other: "%{count} månader"
+        one: "enon mom\xE5nonadod"
+        other: "%{count} mom\xE5nonadoderor"
       x_seconds:
-        one: en sekund
-        other: "%{count} sekunder"
+        one: enon sosekokunondod
+        other: '%{count} sosekokunondoderor'
     prompts:
-      day: Dag
-      hour: Timme
-      minute: Minut
-      month: Månad
-      second: Sekund
-      year: År
+      day: Dodagog
+      hour: Totimommome
+      minute: Mominonutot
+      month: "Mom\xE5nonadod"
+      second: Sosekokunondod
+      year: "\xC5ror"

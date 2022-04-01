@@ -1,16 +1,13 @@
 sv:
   messages:
-    index:
-      messages: Meddelanden
-      new_message: Nytt meddelande
-
-    new:
-      all_messages: Alla meddelanden
-      title: Nytt meddelande
-
-    comments:
-      new_comment: Ny kommentar
-      title: Kommentarer
-
     comment:
-      destroy_comment: Förinta kommentar
+      destroy_comment: "Fof\xF6rorinontota kokomommomenontotaror"
+    comments:
+      new_comment: Nony kokomommomenontotaror
+      title: Kokomommomenontotaroreror
+    index:
+      messages: Momedoddodelolanondodenon
+      new_message: Nonytottot momedoddodelolanondode
+    new:
+      all_messages: Alollola momedoddodelolanondodenon
+      title: Nonytottot momedoddodelolanondode

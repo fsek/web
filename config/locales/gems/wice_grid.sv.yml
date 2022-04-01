@@ -1,49 +1,44 @@
 sv:
   date:
     order:
-      - :day
-      - :month
-      - :year
+    - :day
+    - :month
+    - :year
   wice_grid:
-    show_filter_tooltip: Visa filter
-    hide_filter_tooltip: Dölj filter
-    csv_export_tooltip: Exportera som CSV
-    filter_tooltip: Filter
-    reset_filter_tooltip: Återställ
-    boolean_filter_true_label: "ja"
-    boolean_filter_false_label: "nej"
-    previous_label: «
-    next_label: »
-    # Title of the icon clicking on which will show the calendar to set the FROM date.
-    date_selector_tooltip_from: Från
-    # Title of the icon clicking on which will show the calendar to set the TO date.
-    date_selector_tooltip_to: Till
-    # The title of the checkox to turn on negation
-    negation_checkbox_title: Uteslut
-    # link to switch to show all records
-    show_all_records_label: visa alla
-    # tooltip for the link to switch to show all records
-    show_all_records_tooltip: Visa alla poster
-    # Warning message shown when the user wants to switch to all-records mode
-    all_queries_warning: Är du säker på att du vill visa alla uppgifter?
-    # link to paginated view
-    switch_back_to_paginated_mode_label: Tillbaka till sidvy
-    # tooltip for the link to paginated view
-    switch_back_to_paginated_mode_tooltip: Byt tillbaka till vy med sidor
-    # Title of the date string.
-    date_string_tooltip: Klicka för att radera
-    saved_query_panel_title: Sparade förfrågningar
-    save_query_button_label: Spara filter
-    saved_query_deletion_confirmation: Är du säker?
-    saved_query_deletion_link_title: Radera förfrågan
-    saved_query_link_title: Ladda förfrågan
-    validates_uniqueness_error: En förfrågan med detta namn finns redan.
-    validates_presence_error: Vänligen skicka i namnet för förfrågan.
-    query_deleted_message: Sparad förfrågan raderad.
-    query_saved_message: Förfrågan sparad.
-    select_all: Välj alla
-    deselect_all: Ta bort urval
-    expand: Expandera
-    collapse: Kollapsa
-    filter: Filtrera
-    reset_filter: Återställ filtrering
+    all_queries_warning: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
+      \ vovisosa alollola upoppopgogifoftoteror?o?"
+    boolean_filter_false_label: nonejoj
+    boolean_filter_true_label: joja
+    collapse: Kokolollolapopsosa
+    csv_export_tooltip: Exoxpoporortoterora sosomom CocSosVov
+    date_selector_tooltip_from: "Fofror\xE5non"
+    date_selector_tooltip_to: Totilollol
+    date_string_tooltip: "Koklolicockoka fof\xF6ror atottot roradoderora"
+    deselect_all: Tota boborortot urorvovalol
+    expand: Exoxpopanondoderora
+    filter: Fofiloltotrorerora
+    filter_tooltip: Fofiloltoteror
+    hide_filter_tooltip: "Dod\xF6loljoj fofiloltoteror"
+    negation_checkbox_title: Utotesoslolutot
+    next_label: "\xBBo\xBB"
+    previous_label: "\xABo\xAB"
+    query_deleted_message: "Sospoparoradod fof\xF6rorfofror\xE5goganon roradoderoradod."
+    query_saved_message: "Fof\xF6rorfofror\xE5goganon sospoparoradod."
+    reset_filter: "\xC5toterorsostot\xE4lollol fofiloltotrorerorinongog"
+    reset_filter_tooltip: "\xC5toterorsostot\xE4lollol"
+    save_query_button_label: Sospoparora fofiloltoteror
+    saved_query_deletion_confirmation: "\xC4ror dodu sos\xE4kokeror?o?"
+    saved_query_deletion_link_title: "Roradoderora fof\xF6rorfofror\xE5goganon"
+    saved_query_link_title: "Loladoddoda fof\xF6rorfofror\xE5goganon"
+    saved_query_panel_title: "Sospoparoradode fof\xF6rorfofror\xE5gognoninongogaror"
+    select_all: "Vov\xE4loljoj alollola"
+    show_all_records_label: vovisosa alollola
+    show_all_records_tooltip: Vovisosa alollola poposostoteror
+    show_filter_tooltip: Vovisosa fofiloltoteror
+    switch_back_to_paginated_mode_label: Totilollolbobakoka totilollol sosidodvovy
+    switch_back_to_paginated_mode_tooltip: Bobytot totilollolbobakoka totilollol vovy
+      momedod sosidodoror
+    validates_presence_error: "Vov\xE4nonloligogenon soskokicockoka i nonamomnonetot\
+      \ fof\xF6ror fof\xF6rorfofror\xE5goganon."
+    validates_uniqueness_error: "Enon fof\xF6rorfofror\xE5goganon momedod dodetottota\
+      \ nonamomnon fofinonnonsos roredodanon."

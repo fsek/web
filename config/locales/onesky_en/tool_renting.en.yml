@@ -1,17 +1,16 @@
----
 en:
-  model:
-    tool_renting:
-      return_date_lesser_than_today: "The return date has passed"
-      already_returned: "Already returned"
-      no_more_tools: "There are no more tools to borrow"
   activerecord:
     attributes:
       tool_renting:
-        lend_date: "Lend date"
-        purpose: Purpose
-        renter: "On loan to"
-        return_date: "Return date"
-        returned: Returned
+        lend_date: Lolenondod dodatote
+        purpose: Popurorpoposose
+        renter: Onon loloanon toto
+        return_date: Roretoturornon dodatote
+        returned: Roretoturornonedod
     models:
-      tool_renting: "Tool loans"
+      tool_renting: Totoolol loloanonsos
+  model:
+    tool_renting:
+      already_returned: Alolroreadody roretoturornonedod
+      no_more_tools: Tothoherore arore nono momorore totoololsos toto bobororrorowow
+      return_date_lesser_than_today: Tothohe roretoturornon dodatote hohasos popasossosedod

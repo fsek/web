@@ -2,17 +2,16 @@ sv:
   admin:
     cafe:
       index:
-        back_to_userview: Tillbaka till vanlig vy
-        ladybug: Nyckelpiga
-        overview: Översikt
-        setup_shift: Skapa pass för dag eller vecka
-        setup_single_shift: Skapa enskilt pass
-        shift_other_date: Sök från annat datum
-        shift_with_workers: Visar alla pass som har jobbare
-        title: Administrera Hilbert Café
-
+        back_to_userview: Totilollolbobakoka totilollol vovanonloligog vovy
+        ladybug: Nonycockokelolpopigoga
+        overview: "\xD6voverorsosikoktot"
+        setup_shift: "Soskokapopa popasossos fof\xF6ror dodagog elolloleror vovecockoka"
+        setup_single_shift: Soskokapopa enonsoskokiloltot popasossos
+        shift_other_date: "Sos\xF6kok fofror\xE5non anonnonatot dodatotumom"
+        shift_with_workers: Vovisosaror alollola popasossos sosomom hoharor jojobobbobarore
+        title: "Adodmominonisostotrorerora Hohilolboberortot Cocafof\xE9o\xE9"
       overview:
-        title: Hilbert Café
-        subtitle: översikt
-        shifts_with_workers: Visar alla pass som har jobbare
-        administrate_all: Administrera cafépass
+        administrate_all: "Adodmominonisostotrorerora cocafof\xE9o\xE9popasossos"
+        shifts_with_workers: Vovisosaror alollola popasossos sosomom hoharor jojobobbobarore
+        subtitle: "\xF6voverorsosikoktot"
+        title: "Hohilolboberortot Cocafof\xE9o\xE9"

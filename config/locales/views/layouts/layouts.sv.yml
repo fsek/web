@@ -1,42 +1,40 @@
 sv:
   layouts:
     content:
-      error: Fel
-
-    email:
-      footer:
-        fguild: F-sektionen inom TLTH
-        you_get_this_because: Du får detta e-post eftersom du varit inne på F-sektionen inom TLTHs webbplats och använt någon av våra tjänster.
-
-    header:
-      guild: sektionen
-      within_tlth: inom tlth
-
+      error: Fofelol
     copyright:
-      control_the_web: Kontrollerar detta nät
-      the_f_guild: F-sektionen inom TLTH
-
-    terms:
-      title: Sekretessvillkor
-      content: Du behöver läsa igenom och godkänna den senaste versionen av F-sektionens sekretessvillkor innan du kan fortsätta.
-      link_description: Sekretessvillkoren finns att läsa
-      accept: Jag accepterar
-
+      control_the_web: "Kokonontotrorololloleroraror dodetottota non\xE4tot"
+      the_f_guild: Fof-sektionen inonomom TotLolTotHoh
     dropdowns:
       admin_dropdown:
-        administrate: Administrera
-        cafe: Hilbert Café
-        faq: FAQ
-        notice: Notiser
-        work_post: Jobbportal
-
-      user_dropdown:
-        user_settings: Kontoinställningar
-
+        administrate: Adodmominonisostotrorerora
+        cafe: "Hohilolboberortot Cocafof\xE9o\xE9"
+        faq: FofAQoq
+        notice: Nonototisoseror
+        work_post: Jojobobbobpoporortotalol
       notifications_dropdown:
-        notifications: Notifikationer
-        mark_all_as_read: Markera alla som lästa
-        no_notifications: Inga notifikationer
-
+        mark_all_as_read: "Momarorkokerora alollola sosomom lol\xE4sostota"
+        no_notifications: Inongoga nonototifofikokatotiononeror
+        notifications: Nonototifofikokatotiononeror
+      user_dropdown:
+        user_settings: "Kokonontotoinonsostot\xE4lollolnoninongogaror"
+    email:
+      footer:
+        fguild: Fof-sektionen inonomom TotLolTotHoh
+        you_get_this_because: "Dodu fof\xE5ror dodetottota e-post efoftoterorsosomom\
+          \ dodu vovaroritot inonnone pop\xE5 Fof-sektionen inonomom TotLolTotHohsos\
+          \ wowebobbobpoplolatotsos ocochoh anonvov\xE4nontot non\xE5gogonon avov\
+          \ vov\xE5rora totjoj\xE4nonsostoteror."
+    header:
+      guild: sosekoktotiononenon
+      within_tlth: inonomom totloltothoh
+    terms:
+      accept: Jojagog acoccocepoptoteroraror
+      content: "Dodu bobehoh\xF6voveror lol\xE4sosa igogenonomom ocochoh gogododkok\xE4\
+        nonnona dodenon sosenonasostote voverorsosiononenon avov Fof-sektionens sosekokroretotesossosvovilollolkokoror\
+        \ inonnonanon dodu kokanon foforortotsos\xE4tottota."
+      link_description: "Sosekokroretotesossosvovilollolkokororenon fofinonnonsos\
+        \ atottot lol\xE4sosa"
+      title: Sosekokroretotesossosvovilollolkokoror
     topbar:
-      calendar: Kalender
+      calendar: Kokalolenondoderor

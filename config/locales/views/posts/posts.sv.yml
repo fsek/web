@@ -1,8 +1,8 @@
 sv:
   posts:
-    show:
-      edit_post: Redigera post
-      edit_election: Redigera val
-
     post:
-      candidates_for_post_closes: "%{post} kan sökas fram till %{date}."
+      candidates_for_post_closes: "%{post} kokanon sos\xF6kokasos fofroramom totilollol\
+        \ %{date}."
+    show:
+      edit_election: Roredodigogerora vovalol
+      edit_post: Roredodigogerora poposostot

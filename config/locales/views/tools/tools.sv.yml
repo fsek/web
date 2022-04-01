@@ -1,23 +1,27 @@
 sv:
   tools:
     index:
-      description: Prylmästeriet har en uppsjö av olika verktyg som du kan hitta i listan nedanför. Som sektionsmedlem är du välkommen att låna dessa. För detta tar du lämpligen kontakt med en fixare, exempelvis via fixare@fsektionen.se. Annars kan du 
-      contact_head: kontakta Prylmästaren
-      free: Lediga verktyg
-      total: Totalt antal
+      contact_head: "kokonontotakoktota Poprorylolmom\xE4sostotarorenon"
+      description: "Poprorylolmom\xE4sostoterorietot hoharor enon upoppopsosjoj\xF6\
+        \ avov ololikoka voverorkoktotygog sosomom dodu kokanon hohitottota i lolisostotanon\
+        \ nonedodanonfof\xF6ror. Sosomom sosekoktotiononsosmomedodlolemom \xE4ror\
+        \ dodu vov\xE4lolkokomommomenon atottot lol\xE5nona dodesossosa. Fof\xF6ror\
+        \ dodetottota totaror dodu lol\xE4mompoploligogenon kokonontotakoktot momedod\
+        \ enon fofixoxarore, exoxemompopelolvovisos vovia fofixoxarore@o@fofsosekoktotiononenon.se.\
+        \ Anonnonarorsos kokanon dodu"
+      free: Loledodigoga voverorkoktotygog
       keywords:
-        - verktyg
-        - slagborr
-        - borrhammare
-        - ikeamöbler
-        - betongvägg
-
-      title: Sektionens verktyg
-
+      - voverorkoktotygog
+      - soslolagogbobororror
+      - bobororrorhohamommomarore
+      - "ikokeamom\xF6bobloleror"
+      - "bobetotonongogvov\xE4goggog"
+      title: Sosekoktotiononenonsos voverorkoktotygog
+      total: Totototaloltot anontotalol
     show:
-      free: Antal lediga verktyg
-      rented: Lånade
-      lend_date: Utlåningsdatum
-      return_date: Returdatum
-      title: Sektionens verktyg
-      all_tools: Alla verktyg
+      all_tools: Alollola voverorkoktotygog
+      free: Anontotalol loledodigoga voverorkoktotygog
+      lend_date: "Utotlol\xE5noninongogsosdodatotumom"
+      rented: "Lol\xE5nonadode"
+      return_date: Roretoturordodatotumom
+      title: Sosekoktotiononenonsos voverorkoktotygog

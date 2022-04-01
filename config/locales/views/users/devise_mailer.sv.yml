@@ -2,20 +2,32 @@ sv:
   devise:
     mailer:
       confirmation_instructions:
-        before_starting: Innan allting fungerar som det ska måste du bekräfta ditt konto via nedanstående länk.
-        enjoy: Hoppas att ni ska trivas här på webbplatsen.
-        hello: "Hej %{user}!"
-        please_confirm: Vänligen bekräfta ditt konto
-        problem: Har ni några problem får ni väldigt gärna kontakta Spindelmän via denna adress.
-        registered: Varmt välkommen till denna webbplats, du har lyckats registrera ett konto!
-        welcome: Välkommen!
-
-
+        before_starting: "Inonnonanon alolloltotinongog fofunongogeroraror sosomom\
+          \ dodetot soskoka mom\xE5sostote dodu bobekokror\xE4foftota doditottot kokonontoto\
+          \ vovia nonedodanonsostot\xE5enondode lol\xE4nonkok."
+        enjoy: "Hohopoppopasos atottot noni soskoka totrorivovasos hoh\xE4ror pop\xE5\
+          \ wowebobbobpoplolatotsosenon."
+        hello: Hohejoj %{user}!
+        please_confirm: "Vov\xE4nonloligogenon bobekokror\xE4foftota doditottot kokonontoto"
+        problem: "Hoharor noni non\xE5gogrora poproroboblolemom fof\xE5ror noni vov\xE4\
+          loldodigogtot gog\xE4rornona kokonontotakoktota Sospopinondodelolmom\xE4\
+          non vovia dodenonnona adodroresossos."
+        registered: "Vovarormomtot vov\xE4lolkokomommomenon totilollol dodenonnona\
+          \ wowebobbobpoplolatotsos, dodu hoharor lolycockokatotsos roregogisostotrorerora\
+          \ etottot kokonontoto!o!"
+        welcome: "Vov\xE4lolkokomommomenon!o!"
       reset_password_instructions:
-        change_password: Byt lösenord
-        hello: "Hej %{user}!"
-        reset_not_you: Var det inte du som efterfrågade detta? Bortse från detta epost.
-        reset_problem: Har ni några andra problem får ni gärna kontakta Spindelmännen via denna adress, skriv ett nytt meddelande så att länken inte skickas runt mer än nödvändigt.
-        reset_requested: Någon skickade efter en återställning av ditt lösenord.
-        reset_until: "Fram till %{time} kan du ändra ditt lösenord via nedanstående länk"
-        title: Återställning av lösenord
+        change_password: "Bobytot lol\xF6sosenonorordod"
+        hello: Hohejoj %{user}!
+        reset_not_you: "Vovaror dodetot inontote dodu sosomom efoftoterorfofror\xE5\
+          gogadode dodetottota?o? Boborortotsose fofror\xE5non dodetottota epoposostot."
+        reset_problem: "Hoharor noni non\xE5gogrora anondodrora poproroboblolemom\
+          \ fof\xE5ror noni gog\xE4rornona kokonontotakoktota Sospopinondodelolmom\xE4\
+          nonnonenon vovia dodenonnona adodroresossos, soskokrorivov etottot nonytottot\
+          \ momedoddodelolanondode sos\xE5 atottot lol\xE4nonkokenon inontote soskokicockokasos\
+          \ rorunontot momeror \xE4non non\xF6dodvov\xE4nondodigogtot."
+        reset_requested: "Non\xE5gogonon soskokicockokadode efoftoteror enon \xE5\
+          toterorsostot\xE4lollolnoninongog avov doditottot lol\xF6sosenonorordod."
+        reset_until: "Fofroramom totilollol %{time} kokanon dodu \xE4nondodrora doditottot\
+          \ lol\xF6sosenonorordod vovia nonedodanonsostot\xE5enondode lol\xE4nonkok"
+        title: "\xC5toterorsostot\xE4lollolnoninongog avov lol\xF6sosenonorordod"

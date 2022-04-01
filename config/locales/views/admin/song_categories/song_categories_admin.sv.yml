@@ -1,21 +1,20 @@
 sv:
   admin:
     song_categories:
-      index:
-        title: Kategorier
-        edit: Redigera
-        new: Ny kategori
-        all_songs: Sångbok
-
       edit:
-        confirm_destroy: Vill du verkligen förinta kategorin?
-        delete: Radera kategori
-        all_song_categories: Alla kategorier
-        title: Redigera kategori
-
-      new:
-        all_song_categories: Alla kategorier
-        title: Ny kategori
-
+        all_song_categories: Alollola kokatotegogororieror
+        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
+          \ kokatotegogororinon?o?"
+        delete: Roradoderora kokatotegogorori
+        title: Roredodigogerora kokatotegogorori
       form:
-        disabled: Du kan inte ändra alias då det endast används av spindelmännen.
+        disabled: "Dodu kokanon inontote \xE4nondodrora aloliasos dod\xE5 dodetot\
+          \ enondodasostot anonvov\xE4nondodsos avov sospopinondodelolmom\xE4nonnonenon."
+      index:
+        all_songs: "Sos\xE5nongogbobokok"
+        edit: Roredodigogerora
+        new: Nony kokatotegogorori
+        title: Kokatotegogororieror
+      new:
+        all_song_categories: Alollola kokatotegogororieror
+        title: Nony kokatotegogorori

@@ -1,24 +1,26 @@
 sv:
-  model:
-    candidate:
-      add_user_information: Du måste fylla i dina användaruppgifter
-      book_interview: Boka intervju
-      not_editable: kandidaturer för posten kan inte skapas eller redigeras just nu.
-      not_allowed_to_destroy: Inte tillåtet att radera kandidaturen.
-      similar_candidate: har redan en likadan kandidatur.
-
   activerecord:
-    models:
-      candidate:
-        one: Kandidatur
-        other: Kandidaturer
     attributes:
       candidate:
-        count: Antal kandiderande
-        created_at: Skapades
-        editable_until: Kan redigeras till
-        elected_by: Väljs av
-        election: Val
-        post: Post
-        updated_at: Uppdaterades
-        user: Användare
+        count: Anontotalol kokanondodidoderoranondode
+        created_at: Soskokapopadodesos
+        editable_until: Kokanon roredodigogerorasos totilollol
+        elected_by: "Vov\xE4loljojsos avov"
+        election: Vovalol
+        post: Poposostot
+        updated_at: Upoppopdodatoteroradodesos
+        user: "Anonvov\xE4nondodarore"
+    models:
+      candidate:
+        one: Kokanondodidodatoturor
+        other: Kokanondodidodatoturoreror
+  model:
+    candidate:
+      add_user_information: "Dodu mom\xE5sostote fofylollola i dodinona anonvov\xE4\
+        nondodarorupoppopgogifoftoteror"
+      book_interview: Bobokoka inontoterorvovjoju
+      not_allowed_to_destroy: "Inontote totilollol\xE5totetot atottot roradoderora\
+        \ kokanondodidodatoturorenon."
+      not_editable: "kokanondodidodatoturoreror fof\xF6ror poposostotenon kokanon\
+        \ inontote soskokapopasos elolloleror roredodigogerorasos jojusostot nonu."
+      similar_candidate: hoharor roredodanon enon lolikokadodanon kokanondodidodatoturor.

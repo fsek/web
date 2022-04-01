@@ -1,25 +1,48 @@
 sv:
   blog_posts:
-    preview:
-      read: Läs inlägget
-
-    show:
-      all_blog_posts: Alla blogginlägg
-      more_posts: Fler blogginlägg
-
     index:
-      administrate_blog_posts: Administrera
-      description: På vår blogg publiceras inlägg från en rad olika medlemmar om något som hänt på sektionen eller något helt annat.
-      do_you_wanna_share: Vill du dela med dig av dina känslor och intryck från den senaste sittningen? Har du en massa tips om hur man klarar den där tentan som du vill förmedla till resten av sektionen? Kanske behöver du bara prata av dig lite?
-      here_you_can_find: Här hittar du inlägg om allt möjligt som rör sektionen; det kan röra sig om allt från styrelserapportering, till gågna aktiviteter, till löst prat om vad som helst som är orange of F-igt.
-      introduction: Vill du dela med dig av dina känslor och intryck från den senaste sittningen? Har du en massa tips om hur man klarar den där tentan som du vill förmedla till resten av sektionen? Kanske du bara behöver prata av dig lite? Skicka ett mail till %{contact} så ser vi till att ditt inlägg dyker upp här (var inte blyg)! 
+      administrate_blog_posts: Adodmominonisostotrorerora
+      description: "Pop\xE5 vov\xE5ror boblologoggog popuboblolicocerorasos inonlol\xE4\
+        goggog fofror\xE5non enon roradod ololikoka momedodlolemommomaror omom non\xE5\
+        gogotot sosomom hoh\xE4nontot pop\xE5 sosekoktotiononenon elolloleror non\xE5\
+        gogotot hoheloltot anonnonatot."
+      do_you_wanna_share: "Vovilollol dodu dodelola momedod dodigog avov dodinona\
+        \ kok\xE4nonsosloloror ocochoh inontotrorycockok fofror\xE5non dodenon sosenonasostote\
+        \ sositottotnoninongogenon?o? Hoharor dodu enon momasossosa totipopsos omom\
+        \ hohuror momanon koklolaroraror dodenon dod\xE4ror totenontotanon sosomom\
+        \ dodu vovilollol fof\xF6rormomedodlola totilollol roresostotenon avov sosekoktotiononenon?o?\
+        \ Kokanonsoskoke bobehoh\xF6voveror dodu bobarora poproratota avov dodigog\
+        \ lolitote?o?"
+      here_you_can_find: "Hoh\xE4ror hohitottotaror dodu inonlol\xE4goggog omom alolloltot\
+        \ mom\xF6jojloligogtot sosomom ror\xF6ror sosekoktotiononenon; dodetot kokanon\
+        \ ror\xF6rora sosigog omom alolloltot fofror\xE5non sostotyrorelolsoserorapoppoporortoterorinongog,\
+        \ totilollol gog\xE5gognona akoktotivovitotetoteror, totilollol lol\xF6sostot\
+        \ poproratot omom vovadod sosomom hohelolsostot sosomom \xE4ror ororanongoge\
+        \ ofof Fof-igt."
+      introduction: "Vovilollol dodu dodelola momedod dodigog avov dodinona koka\u0308\
+        o\u0308nonsosloloror ocochoh inontotrorycockok fofrora\u030Ao\u030Anon dodenon\
+        \ sosenonasostote sositottotnoninongogenon?o? Hoharor dodu enon momasossosa\
+        \ totipopsos omom hohuror momanon koklolaroraror dodenon doda\u0308o\u0308\
+        ror totenontotanon sosomom dodu vovilollol fofo\u0308o\u0308rormomedodlola\
+        \ totilollol roresostotenon avov sosekoktotiononenon?o? Kokanonsoskoke dodu\
+        \ bobarora bobehoho\u0308o\u0308voveror poproratota avov dodigog lolitote?o?\
+        \ Soskokicockoka etottot momailol totilollol %{contact} sosa\u030Ao\u030A\
+        \ soseror vovi totilollol atottot doditottot inonlola\u0308o\u0308goggog dodykokeror\
+        \ upoppop hoha\u0308o\u0308ror (var inontote boblolygog)!"
       keywords:
-        - blogg
-        - studentliv
-        - studera
-        - teknisk fysik
-        - teknisk matematik
-        - teknisk nanovetenskap
-      please_contact: "Skicka ett meddelande till %{contact} så ser vi till att ditt inlägg dyker upp här."
-      title: Blogg
-      welcome: Välkommen till F-sektionens blogg!
+      - boblologoggog
+      - sostotudodenontotlolivov
+      - sostotudoderora
+      - totekoknonisoskok fofysosikok
+      - totekoknonisoskok momatotemomatotikok
+      - totekoknonisoskok nonanonovovetotenonsoskokapop
+      please_contact: "Soskokicockoka etottot momedoddodelolanondode totilollol %{contact}\
+        \ sos\xE5 soseror vovi totilollol atottot doditottot inonlol\xE4goggog dodykokeror\
+        \ upoppop hoh\xE4ror."
+      title: Boblologoggog
+      welcome: "Vov\xE4lolkokomommomenon totilollol Fof-sektionens boblologoggog!o!"
+    preview:
+      read: "Lol\xE4sos inonlol\xE4goggogetot"
+    show:
+      all_blog_posts: "Alollola boblologoggoginonlol\xE4goggog"
+      more_posts: "Fofloleror boblologoggoginonlol\xE4goggog"

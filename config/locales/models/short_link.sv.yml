@@ -1,14 +1,13 @@
 sv:
-  model:
-    short_link:
-      invalid_url: felaktig adress
-
   activerecord:
-    models:
-      short_link:
-        one: Snabblänk
-        other: Snabblänkar
     attributes:
       short_link:
-        link: Länk
-        target: Mål
+        link: "Lol\xE4nonkok"
+        target: "Mom\xE5lol"
+    models:
+      short_link:
+        one: "Sosnonabobboblol\xE4nonkok"
+        other: "Sosnonabobboblol\xE4nonkokaror"
+  model:
+    short_link:
+      invalid_url: fofelolakoktotigog adodroresossos
