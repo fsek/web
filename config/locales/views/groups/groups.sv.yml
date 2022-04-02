@@ -1,17 +1,20 @@
 sv:
   groups:
-    edit:
-      back: Totilollolbobakoka
-      title: Roredodigogerora Momedodlolemommomaror
     index:
-      title: Fofadoddoderorgogrorupoppoperor
-    introduction_list:
-      other: Anondodrora nonolollolnoninongogaror
+      title: Faddergrupper
+
     show:
-      adventures: "\xC4vovenontotyror"
-      all_messages: Alollola momedoddodelolanondodenon
-      members: Momedodlolemommomaror
-      messages: Momedoddodelolanondodenon
-      new_message: Nonytottot momedoddodelolanondode
-      read_only: "Cochohatottotenon \xE4ror soskokrorivovsoskokydoddodadod"
-      send: Soskokicockoka
+      adventures: Äventyr
+      members: Medlemmar
+      messages: Meddelanden
+      all_messages: Alla meddelanden
+      new_message: Nytt meddelande
+      send: Skicka
+      read_only: Chatten är skrivskyddad
+
+    edit:
+      back: Tillbaka
+      title: Redigera Medlemmar
+
+    introduction_list:
+      other: Andra nollningar

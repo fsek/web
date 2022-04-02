@@ -1,24 +1,21 @@
 sv:
-  activerecord:
-    attributes:
-      message:
-        content: Momedoddodelolanondode
-        created_at: Soskokapopadod
-        groups: Gogrorupoppoperor
-        message_comment_count: Anontotalol kokomommomenontotaroreror
-        title: Rorubobrorikok
-        updated_at: Upoppopdodatoteroradod
-        user: "Anonvov\xE4nondodarore"
-    models:
-      message:
-        one: Momedoddodelolanondode
-        other: Momedoddodelolanondodenon
   model:
     message:
-      group_introduction_error: "Gogrorupoppop ocochoh momedoddodelolanondode mom\xE5\
-        sostote totilollolhoh\xF6rora sosamommoma nonolollolnoninongog"
-      need_groups: "mom\xE5sostote soskokicockokasos totilollol mominonsostot enon\
-        \ gogrorupoppop"
-      not_part_of_selected_groups: "dodu \xE4ror inontote momedod i alollola gogrorupoppoperor\
-        \ sosomom vovaloldodesos"
-      updated_at: Roredodigogeroradodesos %{date}
+      need_groups: måste skickas till minst en grupp
+      not_part_of_selected_groups: du är inte med i alla grupper som valdes
+      group_introduction_error: Grupp och meddelande måste tillhöra samma nollning
+      updated_at: Redigerades %{date}
+  activerecord:
+    models:
+      message:
+        one: Meddelande
+        other: Meddelanden
+    attributes:
+      message:
+        content: Meddelande
+        created_at: Skapad
+        groups: Grupper
+        message_comment_count: Antal kommentarer
+        title: Rubrik
+        updated_at: Uppdaterad
+        user: Användare

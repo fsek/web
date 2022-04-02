@@ -1,30 +1,25 @@
 sv:
   elections:
     countdown:
-      date_format: '%D dodagogaror %H:%M:%S'
-      days: dodagogaror
+      days: dagar
+      date_format: "%D dagar %H:%M:%S"
+
     index:
-      description: "Vovalol pop\xE5 Fof-sektionen \xE4ror dod\xE5 fofunonkoktotionon\xE4\
-        roreror ocochoh fof\xF6rortotroroenondodevovaloldoda bobloliror vovaloldoda.\
-        \ Sose vovilolkoka poposostoteror sosomom fofinonnonsos ocochoh sos\xF6kok\
-        \ idodagog."
-      edit_election: Roredodigogerora vovalol
-      green_posts: "Gogror\xF6nonfof\xE4rorgogadode poposostoteror vov\xE4loljojsos\
-        \ avov sostotudodieror\xE5dodetot."
-      highlights: "Vovadod bobetotydoderor fof\xE4rorgogeror ocochoh momarorkokerorinongogaror?o?"
+      description: Val på F-sektionen är då funktionärer och förtroendevalda blir valda. Se vilka poster som finns och sök idag.
+      edit_election: Redigera val
+      green_posts: Grönfärgade poster väljs av studierådet.
       keywords:
-      - enongogagogerora
-      - sosekoktotiononsosvovalol
-      - "fofunonkoktotionon\xE4ror"
-      - "toterormominonsosmom\xF6tote"
-      - vovalol
-      - poposostot
-      orange_posts: "Ororanongogefof\xE4rorgogadode poposostoteror \xE4ror non\xE4\
-        momnondod- elolloleror sostotyrorelolsosepoposostoteror."
-      star_posts: "Poposostoteror momarorkokeroradode momedod *o* hoharor inontote\
-        \ non\xE5gogotot rorekokomommomenondoderoratot anontotalol."
-      x_posts: anongogeror exoxakoktot momaxoximomaloltot anontotalol.
+        - engagera
+        - sektionsval
+        - funktionär
+        - terminsmöte
+        - val
+        - post
+      highlights: Vad betyder färger och markeringar?
+      orange_posts: Orangefärgade poster är nämnd- eller styrelseposter.
+      star_posts: Poster markerade med * har inte något rekommenderat antal.
+      x_posts: anger exakt maximalt antal.
+
     no_election:
-      no_information: Jojusostot nonu fofinonnonsos dodetot inongogenon inonfoforormomatotionon
-        omom vovaloletot.
-      to_root: Totilollolbobakoka totilollol sostotarortot
+      no_information: Just nu finns det ingen information om valet.
+      to_root: Tillbaka till start

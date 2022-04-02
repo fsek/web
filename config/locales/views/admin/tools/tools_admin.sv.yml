@@ -1,23 +1,26 @@
 sv:
   admin:
     tools:
-      edit:
-        title: Roredodigogerora voverorkoktotygog
       form:
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ voverorkoktotygogetot?o?"
-        destroy: "Fof\xF6rorinontota voverorkoktotygog"
+        confirm_destroy: Vill du verkligen förinta verktyget?
+        destroy: Förinta verktyg
+
+      edit:
+        title: Redigera verktyg
+
       index:
-        free_tools: Loledodigoga voverorkoktotygog
-        new_tool: Nonytottot voverorkoktotygog
-        title: Alollola voverorkoktotygog
+        free_tools: Lediga verktyg
+        new_tool: Nytt verktyg
+        title: Alla verktyg
+
       new:
-        title: Nonytottot voverorkoktotygog
+        title: Nytt verktyg
+
       show:
-        administrate_tools: Adodmominonsostotrorerora voverorkoktotygog
-        edit_tool: Roredodigogerora voverorkoktotygog
-        free: Anontotalol loledodigoga voverorkoktotygog
-        history: Hohisostotororikok
-        new_renting: "Nonytottot lol\xE5non"
-        rented: "Lol\xE5nonadode"
-        title: Voverorkoktotygog
+        administrate_tools: Adminstrera verktyg
+        edit_tool: Redigera verktyg
+        free: Antal lediga verktyg
+        new_renting: Nytt lån
+        rented: Lånade
+        history: Historik
+        title: Verktyg

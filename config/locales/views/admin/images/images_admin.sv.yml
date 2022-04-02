@@ -2,9 +2,8 @@ sv:
   admin:
     images:
       show:
-        administrate_album: Adodmominonisostotrorerora alolbobumom
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ bobiloldodenon?o?"
-        destroy_image: "Fof\xF6rorinontota bobiloldod"
-        download_image: Loladoddoda noneror bobiloldod
-        reprocess_image: Omombobehohanondodlola bobiloldod
+        administrate_album: Administrera album
+        confirm_destroy: Vill du verkligen förinta bilden?
+        destroy_image: Förinta bild
+        download_image: Ladda ner bild
+        reprocess_image: Ombehandla bild

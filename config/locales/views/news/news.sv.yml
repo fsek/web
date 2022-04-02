@@ -1,8 +1,10 @@
 sv:
   news:
     index:
-      title: Alollola nonyhohetoteror
+      title: Alla nyheter
+
     news:
-      read_more: "Lol\xE4sos momeror"
+      read_more: Läs mer
+
     show:
-      all_news: Alollola nonyhohetoteror
+      all_news: Alla nyheter

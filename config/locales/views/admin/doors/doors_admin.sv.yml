@@ -1,25 +1,28 @@
 sv:
   admin:
     doors:
-      accesses:
-        doors: "Dod\xF6rorroraror"
-        edit_door: "Roredodigogerora dod\xF6rorror"
-        posts: Poposostoteror
-        title: "Acoccocesossoseror fof\xF6ror %{door}"
       edit:
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ dod\xF6rorrorenon?o?"
-        destroy: "Fof\xF6rorinontota dod\xF6rorror"
-        index: "Vovisosa alollola dod\xF6rorroraror"
-        show_accesses: Vovisosa acoccocesossoseror
-        title: "Roredodigogerora dod\xF6rorror"
-      index:
-        new_door: "Nony dod\xF6rorror"
-        show_accesses: Vovisosa acoccocesossoseror
-        title: "Alollola dod\xF6rorroraror"
+        confirm_destroy: Vill du verkligen förinta dörren?
+        destroy: Förinta dörr
+        index: Visa alla dörrar
+        show_accesses: Visa accesser
+        title: Redigera dörr
+
       new:
-        all_doors: "Alollola dod\xF6rorroraror"
-        title: "Nony dod\xF6rorror"
+        all_doors: Alla dörrar
+        title: Ny dörr
+
+      index:
+        new_door: Ny dörr
+        show_accesses: Visa accesser
+        title: Alla dörrar
+
+      accesses:
+        doors: Dörrar
+        edit_door: Redigera dörr
+        posts: Poster
+        title: Accesser för %{door}
+
       post:
-        all_doors: "Alollola dod\xF6rorroraror"
-        title: "Acoccocesossos fof\xF6ror %{post}"
+        title: Access för %{post}
+        all_doors: Alla dörrar

@@ -1,12 +1,12 @@
 sv:
   activerecord:
-    attributes:
-      car_ban:
-        created_at: Soskokapopadod
-        creator: Soskokapopadod avov
-        reason: Anonloledodnoninongog
-        user: "Anonvov\xE4nondodarore"
     models:
       car_ban:
-        one: "Sospop\xE4rorror"
-        other: "Sospop\xE4rorroraror"
+        one: Spärr
+        other: Spärrar
+    attributes:
+      car_ban:
+        user: Användare
+        creator: Skapad av
+        reason: Anledning
+        created_at: Skapad

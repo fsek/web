@@ -1,10 +1,10 @@
 sv:
   activerecord:
-    attributes:
-      constant:
-        name: Nonamomnon
-        value: "Vov\xE4rordode"
     models:
       constant:
-        one: Kokononsostotanontot
-        other: Kokononsostotanontoteror
+        one: Konstant
+        other: Konstanter
+    attributes:
+      constant:
+        name: Namn
+        value: Värde

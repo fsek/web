@@ -1,28 +1,26 @@
 sv:
   activerecord:
+    models:
+      adventure:
+        one: Äventyr
+        other: Äventyr
     attributes:
       adventure:
-        content: Bobesoskokrorivovnoninongog
-        content_en: Bobesoskokrorivovnoninongog - enongogelolsoskoka
-        content_sv: Bobesoskokrorivovnoninongog - sosvovenonsoskoka
-        end_date: Soslolutotaror
-        groups: Fofadoddoderorgogrorupoppoperor
-        publish_results: Popuboblolicocerora roresosuloltotatotenon
-        start_date: "Bob\xF6rorjojaror"
-        title: Totitotelol
-        title_en: Totitotelol - enongogelolsoskoka
-        title_sv: Totitotelol - sosvovenonsoskoka
+        title: Titel
+        title_sv: Titel - svenska
+        title_en: Titel - engelska
+        content: Beskrivning
+        content_sv: Beskrivning - svenska
+        content_en: Beskrivning - engelska
+        start_date: Börjar
+        end_date: Slutar
+        publish_results: Publicera resultaten
+        groups: Faddergrupper
+
     errors:
       models:
         adventure:
           attributes:
             base:
               restrict_dependent_destroy:
-                has_many: "Dodetottota \xE4vovenontotyror hoharor totilollolhoh\xF6\
-                  roranondode upoppopdodroragog ocochoh kokanon dod\xE4rorfof\xF6\
-                  ror inontote roradoderorasos. Roradoderora upoppopdodroragogenon\
-                  \ fof\xF6rorsostot."
-    models:
-      adventure:
-        one: "\xC4vovenontotyror"
-        other: "\xC4vovenontotyror"
+                has_many: "Detta äventyr har tillhörande uppdrag och kan därför inte raderas. Radera uppdragen först."

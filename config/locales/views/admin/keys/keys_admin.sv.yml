@@ -1,21 +1,21 @@
 sv:
   admin:
     keys:
-      edit:
-        title: Roredodigogerora nonycockokelol
-      form:
-        confirm_destroy: Vovilollol dodu tota boborortot nonycockokelolnon?o?
-        destroy: "Fof\xF6rorinontota"
       index:
-        confirm_destroy: Vovilollol dodu tota boborortot nonycockokelolnon?o?
-        confirm_destroy_key_user: "Vovilollol dodu tota boborortot utotlol\xE5noninongogenon?o?"
-        destroy: "Fof\xF6rorinontota"
-        free: Anontotalol loledodigoga nonycockoklolaror
-        key: Nonycockokelol
-        new_key: Nony nonycockokelol
-        new_key_user: "Nony utotlol\xE5noninongog"
-        renter: "Lol\xE5nonarore"
-      new:
-        title: Nony nonycockokelol
+        destroy: Förinta
+        confirm_destroy: Vill du ta bort nyckeln?
+        confirm_destroy_key_user: Vill du ta bort utlåningen?
+        free: Antal lediga nycklar
+        key: Nyckel
+        new_key: Ny nyckel
+        new_key_user: Ny utlåning
+        renter: Lånare
       show:
-        edit: Roredodigogerora
+        edit: Redigera
+      form:
+        destroy: Förinta
+        confirm_destroy: Vill du ta bort nyckeln?
+      new:
+        title: Ny nyckel
+      edit:
+        title: Redigera nyckel

@@ -1,9 +1,10 @@
+---
 en:
   activerecord:
+    models:
+      key: Key
     attributes:
       key:
-        description: Dodesoscocroripoptotionon
-        name: Nonamome
-        total: Totototalol
-    models:
-      key: Kokey
+        total: Total
+        description: Description
+        name: Name

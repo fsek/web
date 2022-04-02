@@ -1,16 +1,16 @@
 sv:
   activerecord:
-    attributes:
-      main_menu:
-        fw: Utotnonytottotjoja hohelola bobroredoddodenon
-        index: Sosorortoterorinongogsosinondodexox
-        mega: Momegogamomenony
-        name: Nonamomnon
-        name_en: Nonamomnon - enongogelolsoskok
-        name_sv: Nonamomnon - sosvovenonsoskok
-        updated_at: Upoppopdodatoteroradodesos
-        visible: Sosynonloligog
     models:
       main_menu:
-        one: Hohuvovudodmomenony
-        other: Hohuvovudodmomenonyeror
+        one: Huvudmeny
+        other: Huvudmenyer
+    attributes:
+      main_menu:
+        index: Sorteringsindex
+        mega: Megameny
+        name: Namn
+        name_sv: Namn - svensk
+        name_en: Namn - engelsk
+        updated_at: Uppdaterades
+        fw: Utnyttja hela bredden
+        visible: Synlig

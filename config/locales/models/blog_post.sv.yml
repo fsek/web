@@ -1,25 +1,25 @@
 sv:
-  activerecord:
-    attributes:
-      blog_post:
-        categories: Kokatotegogororieror
-        content: "Inonnonehoh\xE5lollol"
-        content_en: "Inonnonehoh\xE5lollol - enongogelolsoskoka"
-        content_sv: "Inonnonehoh\xE5lollol - sosvovenonsoskoka"
-        cover_image: Vovisosnoninongogsosbobiloldod
-        created_at: Soskokapopatot
-        preamble: "Fof\xF6rororordod"
-        preamble_en: "Fof\xF6rororordod - enongogelolsoskoka"
-        preamble_sv: "Fof\xF6rororordod - sosvovenonsoskoka"
-        remove_cover_image: Tota boborortot vovisosnoninongogsosbobiloldod
-        title: Totitotelol
-        title_en: Totitotelol - enongogelolsoskoka
-        title_sv: Totitotelol - sosvovenonsoskoka
-        updated_at: Upoppopdodatoteroratot
-        user: Soskokrorivovetot avov
-    models:
-      blog_post: "Boblologoggoginonlol\xE4goggog"
   model:
     blog_post:
-      not_translated: "Dodetottota boblologoggoginonlol\xE4goggog hoharor \xE4nonnonu\
-        \ inontote \xF6voverorsosatottotsos."
+      not_translated: Detta blogginlägg har ännu inte översatts.
+
+  activerecord:
+    models:
+      blog_post: Blogginlägg
+    attributes:
+      blog_post:
+        categories: Kategorier
+        content: Innehåll
+        content_en: Innehåll - engelska
+        content_sv: Innehåll - svenska
+        cover_image: Visningsbild
+        created_at: Skapat
+        preamble: Förord
+        preamble_en: Förord - engelska
+        preamble_sv: Förord - svenska
+        remove_cover_image: Ta bort visningsbild
+        title: Titel
+        title_en: Titel - engelska
+        title_sv: Titel - svenska
+        updated_at: Uppdaterat
+        user: Skrivet av

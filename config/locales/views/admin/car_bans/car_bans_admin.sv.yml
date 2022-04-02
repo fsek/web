@@ -1,16 +1,18 @@
 sv:
   admin:
     car_bans:
-      edit:
-        title: "Roredodigogerora sospop\xE4rorrornoninongog"
-      form:
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ sospop\xE4rorrornoninongogenon?o?"
-        destroy: "Fof\xF6rorinontota sospop\xE4rorror"
-        index: "Alollola bobokoknoninongogsossospop\xE4rorroraror"
       index:
-        new: "Nony sospop\xE4rorror"
-        rents: Alollola bobilolbobokoknoninongogaror
-        title: "Bobilolbobokoknoninongog - Sospop\xE4rorrora anonvov\xE4nondodarore"
+        title: Bilbokning - Spärra användare
+        new: Ny spärr
+        rents: Alla bilbokningar
+
       new:
-        title: "Sospop\xE4rorrora anonvov\xE4nondodarore"
+        title: Spärra användare
+
+      edit:
+        title: Redigera spärrning
+
+      form:
+        index: Alla bokningsspärrar
+        confirm_destroy: Vill du verkligen förinta spärrningen?
+        destroy: Förinta spärr

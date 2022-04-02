@@ -1,16 +1,14 @@
 sv:
   gallery:
     index:
-      description: "Fof-sektionens bobiloldodgogalollolerori vovisosaror bobiloldoderor\
-        \ fofror\xE5non vov\xE5ror voverorkoksosamomhohetot, evovenonemomanongog,\
-        \ sositottotnoninongog ocochoh nonolollolnoninongog. Enondodasostot fof\xF6\
-        ror momedodlolemommomaror."
+      description: F-sektionens bildgalleri visar bilder från vår verksamhet, evenemang, sittning och nollning. Endast för medlemmar.
       keywords:
-      - bobiloldoderor
-      - bobiloldodgogalollolerori
-      - evovenonemomanongog
-      - sositottotnoninongog
-      - nonolollolnoninongog
-      other_years: "Anondodrora \xE5ror"
-      policy: "Popololicocy fof\xF6ror bobiloldoderor"
-      title: Bobiloldodgogalollolerori
+        - bilder
+        - bildgalleri
+        - evenemang
+        - sittning
+        - nollning
+
+      title: Bildgalleri
+      other_years: Andra år
+      policy: Policy för bilder

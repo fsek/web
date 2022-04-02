@@ -1,22 +1,23 @@
 sv:
-  activerecord:
-    attributes:
-      page:
-        council: Utotsoskokotottot
-        created_at: Soskokapopadod
-        image_upload: Loladoddoda upoppop bobiloldoderor
-        namespace: Gogrorupoppoperorinongog
-        title: Totitotelol
-        title_en: Totitotelol - enongogelolsoskok
-        title_sv: Totitotelol - sosvovenonsoskok
-        updated_at: Upoppopdodatoteroradod
-        url: Urorlol
-        visible: Sosynonloligog
-    models:
-      page:
-        one: Sosidoda
-        other: Sosidodoror
   model:
     page:
-      namespace_format: "Fof\xE5ror enondodasostot vovarora sosmom\xE5 bobokoksostot\xE4\
-        voveror, a-z ocochoh 0-9"
+      namespace_format: Får endast vara små bokstäver, a-z och 0-9
+
+  activerecord:
+    models:
+      page:
+        one: Sida
+        other: Sidor
+
+    attributes:
+      page:
+        council: Utskott
+        created_at: Skapad
+        image_upload: Ladda upp bilder
+        namespace: Gruppering
+        title: Titel
+        title_sv: Titel - svensk
+        title_en: Titel - engelsk
+        updated_at: Uppdaterad
+        url: Url
+        visible: Synlig

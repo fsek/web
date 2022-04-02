@@ -2,15 +2,18 @@ sv:
   admin:
     messages:
       edit:
-        all: Alollola momedoddodelolanondodenon
-        title: Roredodigogerora momedoddodelolanondode
+        title: Redigera meddelande
+        all: Alla meddelanden
+
       index:
-        all_introductions: Alollola nonolollolnoninongogaror
-        title: Momedoddodelolanondodenon
+        title: Meddelanden
+        all_introductions: Alla nollningar
+
       new:
-        all: Alollola momedoddodelolanondodenon
-        title: Nonytottot momedoddodelolanondode
+        title: Nytt meddelande
+        all: Alla meddelanden
+
       new_dropdown:
-        new: Nonytottot momedoddodelolanondode
-        to_all_mission: Totilollol alollola upoppopdodroragogsosgogrorupoppoperor
-        to_all_regular: Totilollol alollola fofadoddoderorgogrorupoppoperor
+        new: Nytt meddelande
+        to_all_regular: Till alla faddergrupper
+        to_all_mission: Till alla uppdragsgrupper

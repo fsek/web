@@ -1,18 +1,21 @@
 sv:
   admin:
     users:
-      edit:
-        title: "Roredodigogerora anonvov\xE4nondodarore"
       index:
-        confirm: "Bobekokror\xE4foftota"
-        edit: Roredodigogerora kokonontotoupoppopgogifoftoteror
-        email_confirmed: "Dodinon e-postadress \xE4ror bobekokror\xE4foftotadod."
-        make_member: Goge momedodlolemomsoskokapop
-        member: Momedodlolemom
-        membership?: Momedodlolemomsoskokapop
-        title: "Adodmominonisostotrorerora anonvov\xE4nondodarore"
-        unmake_member: Tota boborortot momedodlolemomsoskokapop
+        confirm: Bekräfta
+        edit: Redigera kontouppgifter
+        email_confirmed: Din e-postadress är bekräftad.
+        make_member: Ge medlemskap
+        member: Medlem
+        membership?: Medlemskap
+        unmake_member: Ta bort medlemskap
+        title: Administrera användare
+
       member:
-        unmake_member: Tota boborortot momedodlolemomsoskokapop
+        unmake_member: Ta bort medlemskap
+
       unmember:
-        make_member: Goge momedodlolemomsoskokapop
+        make_member: Ge medlemskap
+
+      edit:
+        title: Redigera användare

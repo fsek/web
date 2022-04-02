@@ -1,10 +1,8 @@
 sv:
   election_view:
-    already_closed: "Vovaloletot hoharor sostot\xE4nongogtot"
-    closes_in: "Sostot\xE4nongogeror omom:"
-    opens_in: "\xD6poppopnonaror omom:"
-    posts_can_candidate: "Poposostoteror sosomom kokanon sos\xF6kokasos"
-    posts_cannot_candidate: "Poposostoteror sosomom inontote lol\xE4nongogrore kokanon\
-      \ sos\xF6kokasos"
-    posts_will_candidate: "Poposostoteror sosomom kokomommomeror atottot kokunonnona\
-      \ sos\xF6kokasos"
+    already_closed: Valet har stängt
+    closes_in: 'Stänger om:'
+    opens_in: 'Öppnar om:'
+    posts_can_candidate: Poster som kan sökas
+    posts_cannot_candidate: Poster som inte längre kan sökas
+    posts_will_candidate: Poster som kommer att kunna sökas

@@ -1,13 +1,12 @@
 sv:
   admin:
     tool_rentings:
-      edit:
-        title: "Roredodigogerora voverorkoktotygogsoslol\xE5non"
       form:
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ lol\xE5nonetot?o? Fof\xF6ror atottot sospoparora lol\xE5nonetot totilollol\
-          \ hohisostotororikokenon, koklolicockoka i Roretoturornoneroradod ocochoh\
-          \ upoppopdodatoterora lol\xE5non"
-        destroy: "Fof\xF6rorinontota lol\xE5non"
+        confirm_destroy: Vill du verkligen förinta lånet? För att spara lånet till historiken, klicka i Returnerad och uppdatera lån
+        destroy: Förinta lån
+
+      edit:
+        title: Redigera verktygslån
+
       new:
-        title: "Nonytottot voverorkoktotygogsoslol\xE5non"
+        title: Nytt verktygslån

@@ -1,9 +1,9 @@
 sv:
   admin:
     cafe_workers:
-      form:
-        confirm_destroy: Vovilollol dodu voverorkokloligogenon tota boborortot jojobobbobarorenon?o?
-        remove: "Tota boborortot fofror\xE5non popasossosetot"
       new:
-        administrate: "Adodmominonisostotrorerora cocafof\xE9o\xE9popasossos"
-        remove_shift: "Fof\xF6rorinontota cocafof\xE9o\xE9popasossos"
+        remove_shift: Förinta cafépass
+        administrate: Administrera cafépass
+      form:
+        confirm_destroy: Vill du verkligen ta bort jobbaren?
+        remove: Ta bort från passet

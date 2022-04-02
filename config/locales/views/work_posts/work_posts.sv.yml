@@ -1,15 +1,19 @@
 sv:
   work_posts:
     dropdown_filters:
-      filter_found: Hohitottotadode %{count} sostot
-      reset_filter: Rorenonsosa fofiloltotrorerorinongog
-      show_all: Alollola
-    index:
-      title: Jojobobbobpoporortotalol
+      filter_found: Hittade %{count} st
+      reset_filter: Rensa filtrering
+      show_all: Alla
+
     info:
-      title: Inonfoforormomatotionon
+      title: Information
+
     preview:
-      show_work_post: Vovisosa jojobobbobpoposostot
+      show_work_post: Visa jobbpost
+
+    index:
+      title: Jobbportal
+
     show:
-      back_to_posts: Vovisosa alollola poposostoteror
-      edit_post: Roredodigogerora jojobobbobpoposostot
+      back_to_posts: Visa alla poster
+      edit_post: Redigera jobbpost

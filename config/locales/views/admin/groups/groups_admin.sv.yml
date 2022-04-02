@@ -1,33 +1,35 @@
 sv:
   admin:
     groups:
-      adventures:
-        adventure: "\xC4vovenontotyror"
-        all_adventures: "Alollola \xE4vovenontotyror"
-        all_groups: Alollola gogrorupoppoperor
-        completed_at: Avovkoklolaroratot
-        edit: Roredodigogerora
-        introduction: Nonolollolnoninongog
-        last_updated: Sosenonasostot upoppopdodatoteroradod
-        missions: Upoppopdodroragog
-        points: "Popo\xE4nongog"
-        title: Avovkoklolaroradode upoppopdodroragog avov
-      edit:
-        all_groups: Alollola gogrorupoppoperor
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ gogrorupoppopenon?o?"
-        destroy: "Fof\xF6rorinontota gogrorupoppop"
-        title: Roredodigogerora gogrorupoppop
-      form:
-        number_hint: "Enondodasostot fof\xF6ror fofadoddoderorgogrorupoppoperor"
       index:
-        adventures: "\xC4vovenontotyror"
-        all_introductions: Alollola nonolollolnoninongogaror
-        manage_faddrar: "Vov\xE4loljoj fofadoddodroraror/o/upoppopdodroragogsosfof\xF6\
-          sos"
-        new: Nony gogrorupoppop
-        title: Adodmominonisostotrorerora gogrorupoppoperor
-        year: "\xC5ror"
+        title: Administrera grupper
+        new: Ny grupp
+        manage_faddrar: Välj faddrar/uppdragsfös
+        year: År
+        all_introductions: Alla nollningar
+        adventures: Äventyr
+
       new:
-        all_groups: Alollola gogrorupoppoperor
-        title: Nony gogrorupoppop
+        title: Ny grupp
+        all_groups: Alla grupper
+
+      edit:
+        title: Redigera grupp
+        confirm_destroy: Vill du verkligen förinta gruppen?
+        destroy: Förinta grupp
+        all_groups: Alla grupper
+
+      form:
+        number_hint: Endast för faddergrupper
+
+      adventures:
+        all_groups: Alla grupper
+        all_adventures: Alla äventyr
+        title: Avklarade uppdrag av
+        missions: Uppdrag
+        completed_at: Avklarat
+        last_updated: Senast uppdaterad
+        points: Poäng
+        edit: Redigera
+        adventure: Äventyr
+        introduction: Nollning

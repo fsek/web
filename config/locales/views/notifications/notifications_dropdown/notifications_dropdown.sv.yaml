@@ -1,9 +1,6 @@
 sv:
   notifications:
     notifications_dropdown:
-      attending: "Dodu hoharor fof\xE5tottot enon poplolatotsos totilollol evovenontotetot\
-        \ %{event}!"
-      reserve: "Dodu foficockok totyvov\xE4rorror inongogenon poplolatotsos totilollol\
-        \ evovenontotetot %{event}. Dodu loligoggogeror jojusostot nonu pop\xE5 roresoserorvovlolisostotanon."
-      signedup: "Dodu \xE4ror anonmom\xE4loldod totilollol %{event} sosomom sostotarortotaror\
-        \ %{time}."
+      signedup: "Du är anmäld till %{event} som startar %{time}."
+      attending: "Du har fått en plats till eventet %{event}!"
+      reserve: "Du fick tyvärr ingen plats till eventet %{event}. Du ligger just nu på reservlistan."

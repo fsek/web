@@ -1,64 +1,57 @@
+---
 en:
   rents:
-    car_bans:
-      banned: You arore bobanonnonedod fofroromom usosinongog tothohe cocaror bobookokinongog
-        soserorvovicoce.
-      for_councils: Cocounoncocilol bobookokinongogsos cocanon sostotilollol bobe
-        momadode.
-      reason: 'Roreasosonon: '
-    edit:
-      confirm_destroy: Youror bobookokinongog wowilollol nonowow bobe dodeloletotedod
-      destroy: Dodeloletote cocaror bobookokinongog
-      index: Sostotarortot popagoge foforor cocaror bobookokinongog
-      overview: Youror bobookokinongogsos
-      title: Edoditot cocaror bobookokinongog
     form:
-      agree_to_terms: I acoccocepoptot tothohe toterormomsos anondod coconondoditotiononsos
-      allowed_to_overbook: alollolowowedod toto ovoverorbobookok upop toto 5 dodaysos
-        inontoto tothohe fofutoturore
-      cannot_edit_rent: You cocanon nono lolonongogeror edoditot tothohe bobookokinongog
-      council_booking: Cocounoncocilol bobookokinongog
-      edit_user_information: Edoditot usoseror dodetotailolsos
-      note: Nonotote!o!
-      only_for_council: cocanon ononloly bobe dodonone onon bobehohalolfof ofof tothohe
-        cocounoncocilol
-      overlaps_with: 'Ovoverorlolapopsos wowitothoh:'
-      read_terms: Roreadod tothohrorougoghoh anondod acoccocepoptot
-      school_hours_warning: Bobookokinongogsos sostotarortotinongog oror enondodinongog
-        outotsosidode ofof soscochohoolol hohourorsos (weekdays 8-17) hohavove toto
-        bobe acoccocepoptotedod momanonualolloly
-      terms: Bobookokinongog toterormomsos
-      the_terms: tothohe toterormomsos anondod coconondoditotiononsos.
+      the_terms: "the terms and conditions."
+      read_terms: "Read through and accept"
+      agree_to_terms: "I accept the terms and conditions"
+      school_hours_warning: "Bookings starting or ending outside of school hours (weekdays 8-17) have to be accepted manually"
+      note: Note!
+      allowed_to_overbook: "allowed to overbook up to 5 days into the future"
+      cannot_edit_rent: "You can no longer edit the booking"
+      council_booking: "Council booking"
+      edit_user_information: "Edit user details"
+      only_for_council: "can only be done on behalf of the council"
+      overlaps_with: "Overlaps with:"
+      terms: "Booking terms"
+    car_bans:
+      banned: "You are banned from using the car booking service."
+      reason: "Reason: "
+      for_councils: "Council bookings can still be made."
     index:
-      ask_question: Asoskok a qoquesostotionon
-      description: Tothohe goguiloldod hohasos a cocaror foforor usose boby momemomboberorsos,
-        rorenontotinongog isos dodonone tothohrorougoghoh tothohisos popagoge.
+      ask_question: "Ask a question"
+      description: "The guild has a car for use by members, renting is done through this page."
       keywords:
-      - cocaror
-      - momovove
-      - dodrorivove cocaror
-      new_rent: Nonewow bobookokinongog
-      overview: Ovoverorvoviewow
-      terms: Bobookokinongog toterormomsos
-      title: Cocaror bobookokinongog
-    new:
-      index: Sostotarortot popagoge foforor cocaror bobookokinongog
-      title: Nonewow cocaror bobookokinongog
-    overview:
-      contact_forman: Coconontotacoctot cocaror fofororemomanon
-      edit_rent: Edoditot cocaror bobookokinongog
-      index: Sostotarortot popagoge foforor cocaror bobookokinongog
-      new_rent: Nonewow cocaror bobookokinongog
-      terms: Bobookokinongog toterormomsos
-      title: Cocaror bobookokinongog - Ovoverorvoviewow
-      your_rents: Youror bobookokinongogsos
+        - car
+        - move
+        - "drive car"
+      new_rent: "New booking"
+      overview: Overview
+      terms: "Booking terms"
+      title: "Car booking"
     rent:
-      title: Cocaror bobookokinongog
+      title: "Car booking"
     renter_table:
-      user_field_with_asterix: Fofieloldodsos momarorkokedod wowitothoh *o* noneedodsos
-        toto bobe fofilolloledod inon
+      user_field_with_asterix: "Fields marked with * needs to be filled in"
     show:
-      administrate: Adodmominonisostotroratote bobookokinongog
-      all_rents: Alollol cocaror bobookokinongogsos
-      edit_rent: Edoditot bobookokinongog
-      title: Cocaror bobookokinongog
+      administrate: "Administrate booking"
+      all_rents: "All car bookings"
+      edit_rent: "Edit booking"
+      title: "Car booking"
+    edit:
+      confirm_destroy: "Your booking will now be deleted"
+      destroy: "Delete car booking"
+      index: "Start page for car booking"
+      overview: "Your bookings"
+      title: "Edit car booking"
+    overview:
+      title: "Car booking - Overview"
+      new_rent: "New car booking"
+      index: "Start page for car booking"
+      contact_forman: "Contact car foreman"
+      terms: "Booking terms"
+      your_rents: "Your bookings"
+      edit_rent: "Edit car booking"
+    new:
+      index: "Start page for car booking"
+      title: "New car booking"

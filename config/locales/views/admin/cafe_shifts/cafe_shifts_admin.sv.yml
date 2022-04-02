@@ -2,44 +2,39 @@ sv:
   admin:
     cafe_shifts:
       edit:
-        back_to_hilbert: "Hohilolboberortot Cocafof\xE9o\xE9"
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ cocafof\xE9o\xE9popasossosetot?o?"
-        destroy: "Fof\xF6rorinontota cocafof\xE9o\xE9popasossos"
-        index: Adodmominonisostotrorerora alollola
-        show: "Vovisosa cocafof\xE9o\xE9popasossos"
-        title: "Roredodigogerora cocafof\xE9o\xE9popasossos"
+        title: Redigera cafépass
+        show: Visa cafépass
+        confirm_destroy: Vill du verkligen förinta cafépasset?
+        destroy: Förinta cafépass
+        index: Administrera alla
+        back_to_hilbert: Hilbert Café
+
       new:
-        admin_all_shifts: Totilollolbobakoka totilollol adodmominonisostotrorerora
-        back_to_hilbert: "Hohilolboberortot Cocafof\xE9o\xE9"
-        title: "Nonytottot cocafof\xE9o\xE9popasossos"
+        title: Nytt cafépass
+        admin_all_shifts: Tillbaka till administrera
+        back_to_hilbert: Hilbert Café
+
+
       setup:
-        back_to_admin: Totilollolbobakoka totilollol adodmominonisostotroratotionon
-        back_to_hilbert: "Hohilolboberortot Cocafof\xE9o\xE9"
-        day: Dodagog
-        day_explanation: "Fofylollol i dodatotumom ocochoh totidod fof\xF6ror dodagogenonsos\
-          \ fof\xF6rorsostota popasossos, fofylollol \xE4vovenon i fof\xF6rorsostota\
-          \ lol\xE4sosvovecockoka."
-        error: "Non\xE5gogonontotinongog boblolevov fofelol, kokonontotrorolollolerora\
-          \ atottot alollola fof\xE4loltot fofylolloltotsos i kokororrorekoktot ocochoh\
-          \ atottot dodetot inontote \xF6voverorlolapoppoparor momedod anondodrora\
-          \ popasossos."
-        single: Soskokapopa enonsoskokiloltot popasossos
-        title: "Soskokapopa cocafof\xE9o\xE9popasossos"
-        week: Vovecockoka
-        week_explanation: "Fofylollol i dodatotumom ocochoh totidod fof\xF6ror enon\
-          \ lol\xE4sosvovecockokasos fof\xF6rorsostota popasossos sosamomtot fof\xF6\
-          rorsostota ocochoh sosisostota lol\xE4sosvovecockokanon gogenonerorerorasos\
-          \ popasossos fof\xF6ror alollola lol\xE4sosvovecockokorornona dod\xE4roremomelollolanon."
-      setup_form:
-        back_to_hilbert: "Hohilolboberortot Cocafof\xE9o\xE9"
-        day: Dodagog
-        lv_first: "Fof\xF6rorsostota lol\xE4sosvovecockoka"
-        week: Vovecockoka
+        back_to_admin: Tillbaka till administration
+        day: Dag
+        day_explanation: Fyll i datum och tid för dagens första pass, fyll även i första läsvecka.
+        error: Någonting blev fel, kontrollera att alla fält fyllts i korrekt och att det inte överlappar med andra pass.
+        single: Skapa enskilt pass
+        title: Skapa cafépass
+        week: Vecka
+        week_explanation: Fyll i datum och tid för en läsveckas första pass samt första och sista läsveckan genereras pass för alla läsveckorna däremellan.
+        back_to_hilbert: Hilbert Café
+
       show:
-        administrate: Adodmominonisostotrorerora alollola
-        back_to_hilbert: "Hohilolboberortot Cocafof\xE9o\xE9"
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ cocafof\xE9o\xE9popasossosetot?o?"
-        destroy: "Fof\xF6rorinontota cocafof\xE9o\xE9popasossos"
-        edit: "Roredodigogerora cocafof\xE9o\xE9popasossos"
+        administrate: Administrera alla
+        confirm_destroy: Vill du verkligen förinta cafépasset?
+        destroy: Förinta cafépass
+        edit: Redigera cafépass
+        back_to_hilbert: Hilbert Café
+
+      setup_form:
+        week: Vecka
+        day: Dag
+        lv_first: Första läsvecka
+        back_to_hilbert: Hilbert Café

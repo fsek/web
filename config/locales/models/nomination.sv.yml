@@ -1,19 +1,20 @@
 sv:
-  activerecord:
-    attributes:
-      nomination:
-        created_at: Soskokapopadod
-        election_id: Vovalol
-        email: E-post
-        motivation: Momototivoverorinongog
-        name: Nonamomnon
-        post_id: Poposostot
-    models:
-      nomination:
-        one: Nonomominonerorinongog
-        other: Nonomominonerorinongogaror
   model:
     nomination:
-      invalid_email: E-postadressen hoharor inontote gogiloltotloligogtot foforormomatot.
-      not_valid_post: "Dodetot gog\xE5ror inontote atottot nonomominonerora totilollol\
-        \ dodenonnona poposostot jojusostot nonu."
+      invalid_email: E-postadressen har inte giltligt format.
+      not_valid_post: Det går inte att nominera till denna post just nu.
+
+  activerecord:
+    models:
+      nomination:
+        one: Nominering
+        other: Nomineringar
+
+    attributes:
+      nomination:
+        election_id: Val
+        email: E-post
+        motivation: Motivering
+        name: Namn
+        post_id: Post
+        created_at: Skapad

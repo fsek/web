@@ -1,20 +1,12 @@
 sv:
   event_users:
     form:
-      answer_hint: "Kokanon inontote roredodigogerorasos non\xE4ror anonmom\xE4lolanon\
-        \ soskokapopatotsos."
-      confirm_registration: "Kokomom ihoh\xE5gog atottot anonmom\xE4lolanon \xE4ror\
-        \ bobinondodanondode!o! Omom dodu inontote kokanon kokomommoma soskoka dodu\
-        \ avovanonmom\xE4lola dodigog inonnonanon anonmom\xE4lolanon sostot\xE4nongogeror.\
-        \ Kokonontotrorolollolerora gog\xE4rornona atottot dodinona momatotpoprorefoferorenonsoseror\
-        \ \xE4ror ifofylolloldoda."
-      group_hint: "Omom dodinon gogrorupoppop sosakoknonasos i lolisostotanon sos\xE5\
-        \ kokanon dodu fofylollola i dodenon i fof\xE4loltotetot nonedodanon"
-      submit: "Soskokicockoka anonmom\xE4lolanon"
-      user_type_label: "Vovadod \xE4ror dodu?o?"
+      answer_hint: Kan inte redigeras när anmälan skapats.
+      confirm_registration: Kom ihåg att anmälan är bindande! Om du inte kan komma ska du avanmäla dig innan anmälan stänger. Kontrollera gärna att dina matpreferenser är ifyllda.
+      group_hint: Om din grupp saknas i listan så kan du fylla i den i fältet nedan
+      submit: Skicka anmälan
+      user_type_label: Vad är du?
+
     registered:
-      cancel: "Avovanonmom\xE4lol"
-      confirm_cancel: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
-        \ avovanonmom\xE4lola dodigog?o? Dodetot fofinonnonsos inongogetot sos\xE4\
-        tottot atottot fof\xE5 totilollolbobakoka poplolatotsosenon omom evovenonemomanongogetot\
-        \ boblolivovitot fofulolloltot."
+      cancel: Avanmäl
+      confirm_cancel: Är du säker på att du vill avanmäla dig? Det finns inget sätt att få tillbaka platsen om evenemanget blivit fullt.

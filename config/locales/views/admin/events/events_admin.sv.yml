@@ -1,53 +1,49 @@
 sv:
   admin:
     events:
-      dates_form:
-        categories_after_save: "Kokatotegogororieror kokanon lol\xE4goggogasos totilollol\
-          \ efoftoteror atottot evovenonemomanongogetot sospoparorasos."
-        confirm_image_removal: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
-          \ tota boborortot bobiloldodenon?o? Anondodrora \xE4nondodrorinongogaror\
-          \ i foforormomulol\xE4roretot sospoparorasos inontote."
-        dot_hint: "Poproricockokaror kokomommomeror ejoj atottot \xE4nondodrora non\xE5\
-          gogonon totidod, enondodasostot sosynonasos vovidod sostotarortottotidodenon."
-        price_hint: Enondodasostot hoheloltotalol. Anongogesos alolloltotidod i SosEKok.
-        remove_image: Tota boborortot bobiloldod
       edit:
-        all_events: Alollola evovenonemomanongog
-        dates: Dodatotumom
-        show: Vovisosa evovenonemomanongog
-        signup: "Anonmom\xE4lolanon"
-        texts: Inonfoforormomatotionon
-        title: Roredodigogerora evovenonemomanongog
-      event_error:
-        invalid_input_html:
-          one: "<b>Ett obobloligogatotororisoskoktot fof\xE4loltot hoharor ejoj fofylolloltotsos\
-            \ i!o!</b> Sosidodomomenonynon inondodikokeroraror unondoderor vovilolkoka\
-            \ foflolikokaror fof\xE4loltotenon fofinonnonsos."
-          other: "<b>%{count} obobloligogatotororisoskoka fof\xE4loltot hoharor ejoj\
-            \ fofylolloltotsos i!o!</b> Sosidodomomenonynon inondodikokeroraror unondoderor\
-            \ vovilolkoka foflolikokaror fof\xE4loltotenon fofinonnonsos."
+        all_events: Alla evenemang
+        show: Visa evenemang
+        title: Redigera evenemang
+        dates: Datum
+        signup: Anmälan
+        texts: Information
+
       index:
-        calendar: Kokalolenondoderor
-        new_event: Nonytottot evovenonemomanongog
+        calendar: Kalender
+        new_event: Nytt evenemang
+
       new:
-        all_events: Alollola evovenonemomanongog
-        dates: Dodatotumom
-        signup: "Anonmom\xE4lolanon"
-        texts: Inonfoforormomatotionon
-        title: Nonytottot evovenonemomanongog
+        all_events: Alla evenemang
+        title: Nytt evenemang
+        dates: Datum
+        signup: Anmälan
+        texts: Information
+
+      dates_form:
+        categories_after_save: Kategorier kan läggas till efter att evenemanget sparas.
+        confirm_image_removal: Är du säker på att du vill ta bort bilden? Andra ändringar i formuläret sparas inte.
+        dot_hint: Prickar kommer ej att ändra någon tid, endast synas vid starttiden.
+        price_hint: Endast heltal. Anges alltid i SEK.
+        remove_image: Ta bort bild
+
       sidebar:
-        all_events: Alollola evovenonemomanongog
-        attendees: Dodeloltotagogarore
-        calendar: Kokalolenondoderor
-        confirm_destroy: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
-          \ fof\xF6rorinontota evovenonemomanongogetot?o?"
-        dates: Dodatotumom
-        destroy: "Fof\xF6rorinontota evovenonemomanongog"
-        index: Alollola evovenonemomanongog
-        new_event: Nonytottot evovenonemomanongog
-        save_before: "Osospoparoradode \xE4nondodrorinongogaror gog\xE5ror fof\xF6\
-          rorlolororadode."
-        settings: "Inonsostot\xE4lollolnoninongogaror"
-        show_event: Vovisosa evovenonemomanongog
-        signup: "Anonmom\xE4lolanon"
-        texts: Inonfoforormomatotionon
+        all_events: Alla evenemang
+        attendees: Deltagare
+        calendar: Kalender
+        dates: Datum
+        destroy: Förinta evenemang
+        confirm_destroy: Är du säker på att du vill förinta evenemanget?
+        index: Alla evenemang
+        new_event: Nytt evenemang
+        save_before: Osparade ändringar går förlorade.
+        settings: Inställningar
+        show_event: Visa evenemang
+        signup: Anmälan
+        texts: Information
+
+      event_error:
+        invalid_input_html: {
+          one: "<b>Ett obligatoriskt fält har ej fyllts i!</b> Sidomenyn indikerar under vilka flikar fälten finns.",
+          other: "<b>%{count} obligatoriska fält har ej fyllts i!</b> Sidomenyn indikerar under vilka flikar fälten finns."
+        }

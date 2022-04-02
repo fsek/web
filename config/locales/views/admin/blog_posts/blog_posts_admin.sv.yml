@@ -1,24 +1,23 @@
 sv:
   admin:
     blog_posts:
-      edit:
-        all_blog_posts: "Alollola boblologoggoginonlol\xE4goggog"
-        show_blog_post: "Vovisosa boblologoggoginonlol\xE4goggog"
-        title: "Roredodigogerora boblologoggoginonlol\xE4goggog"
-      form:
-        categories_after_save: "Kokatotegogororieror kokanon lol\xE4goggogasos totilollol\
-          \ non\xE4ror boblologoggoginonlol\xE4goggogetot sospoparoratotsos."
-        confirm_image_removal: "Vovilollol dodu voverorkokloligogenon tota boborortot\
-          \ bobiloldodenon?o? \xC4nondodrorinongogaror i foforormomulol\xE4roretot\
-          \ kokomommomeror inontote atottot sospoparorasos."
-        confirm_post_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ boblologoggoginonlol\xE4goggogetot?o?"
-        destroy: "Fof\xF6rorinontota boblologoggoginonlol\xE4goggog"
-        remove_image: Tota boborortot bobiloldod
       index:
-        blog_posts: "Alollola boblologoggoginonlol\xE4goggog"
-        new_blog_post: "Nonytottot boblologoggoginonlol\xE4goggog"
-        title: "Adodmominonisostotrorerora boblologoggoginonlol\xE4goggog"
+        blog_posts: Alla blogginlägg
+        new_blog_post: Nytt blogginlägg
+        title: Administrera blogginlägg
+
       new:
-        all_blog_posts: "Alollola boblologoggoginonlol\xE4goggog"
-        title: "Nonytottot boblologoggoginonlol\xE4goggog"
+        all_blog_posts: Alla blogginlägg
+        title: Nytt blogginlägg
+
+      edit:
+        all_blog_posts: Alla blogginlägg
+        title: Redigera blogginlägg
+        show_blog_post: Visa blogginlägg
+
+      form:
+        categories_after_save: Kategorier kan läggas till när blogginlägget sparats.
+        confirm_image_removal: Vill du verkligen ta bort bilden? Ändringar i formuläret kommer inte att sparas.
+        confirm_post_destroy: Vill du verkligen förinta blogginlägget?
+        destroy: Förinta blogginlägg
+        remove_image: Ta bort bild
