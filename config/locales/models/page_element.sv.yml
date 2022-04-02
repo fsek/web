@@ -1,26 +1,27 @@
 sv:
-  activerecord:
-    attributes:
-      page_element:
-        created_at: Soskokapopadod
-        element_type: Sosorortot
-        headline: Rorubobrorikok
-        headline_en: Rorubobrorikok - enongogelolsoskok
-        headline_sv: Rorubobrorikok - sosvovenonsoskok
-        index: Vovisosnoninongogsosinondodexox
-        page: Sosidoda
-        page_image: Bobiloldod
-        picture: Bobiloldod
-        sidebar: "Sosidodofof\xE4loltot"
-        text: Totexoxtot
-        text_en: Totexoxtot - enongogelolsoskok
-        text_sv: Totexoxtot - sosvovenonsoskok
-        updated_at: Upoppopdodatoteroradod
-        visible: Sosynonloligog
-    models:
-      page_element: Sosidodelolemomenontot
   model:
     page_element:
-      image: Bobiloldod
-      main: "Hohuvovudodfof\xE4loltot"
-      text: Totexoxtot
+      text: Text
+      image: Bild
+      main: Huvudfält
+
+  activerecord:
+    models:
+      page_element: Sidelement
+    attributes:
+      page_element:
+        created_at: Skapad
+        element_type: Sort
+        headline: Rubrik
+        headline_en: Rubrik - engelsk
+        headline_sv: Rubrik - svensk
+        index: Visningsindex
+        page: Sida
+        page_image: Bild
+        picture: Bild
+        sidebar: Sidofält
+        text: Text
+        text_en: Text - engelsk
+        text_sv: Text - svensk
+        updated_at: Uppdaterad
+        visible: Synlig

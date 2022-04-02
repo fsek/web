@@ -1,12 +1,10 @@
 sv:
   admin:
     short_links:
-      form:
-        already_exists: "Enon sosnonabobboblol\xE4nonkok momedod dodetot nonamomnonetot\
-          \ fofinonnonsos roredodanon. Dodu kokomommomeror atottot sospoparora \xF6\
-          voveror dodenon gogamomlola lol\xE4nonkokenon."
       index:
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ sosnonabobboblol\xE4nonkokenon?o?"
-        destroy_link: "Fof\xF6rorinontota sosnonabobboblol\xE4nonkok"
-        title: "Sosnonabobboblol\xE4nonkokaror"
+        confirm_destroy: Vill du verkligen förinta snabblänken?
+        destroy_link: Förinta snabblänk
+        title: Snabblänkar
+
+      form:
+        already_exists: En snabblänk med det namnet finns redan. Du kommer att spara över den gamla länken.

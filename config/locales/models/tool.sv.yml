@@ -1,15 +1,13 @@
 sv:
-  activerecord:
-    attributes:
-      tool:
-        description: Bobesoskokrorivovnoninongog
-        total: Totototaloltot anontotalol voverorkoktotygog
-    models:
-      tool: Voverorkoktotygog
   model:
     tool:
-      could_not_destroy: "Voverorkoktotygogetot \xE4ror utotlol\xE5nonatot ocochoh\
-        \ kokunondode inontote totasos boborortot"
-      not_allowed_change_total: "Inontote totilollol\xE5totetot atottot \xE4nondodrora\
-        \ anontotaloletot voverorkoktotygog lol\xE4gogrore \xE4non anontotaloletot\
-        \ utotlol\xE5nonadode"
+      not_allowed_change_total: Inte tillåtet att ändra antalet verktyg lägre än antalet utlånade
+      could_not_destroy: Verktyget är utlånat och kunde inte tas bort
+
+  activerecord:
+    models:
+      tool: Verktyg
+    attributes:
+      tool:
+        total: Totalt antal verktyg
+        description: Beskrivning

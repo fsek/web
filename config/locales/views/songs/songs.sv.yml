@@ -1,14 +1,16 @@
 sv:
   songs:
     index:
-      all_songs: "Sos\xE5nongogbobokok"
-      edit: Roredodigogerora
-      title: "Sos\xE5nongogbobokok"
+      title: Sångbok
+      edit: Redigera
+      all_songs: Sångbok
+
     search_bar:
-      all_songs: "Sos\xE5nongogbobokok"
-      no_results: "Inongoga sos\xE5nongogeror hohitottotadodesos"
-      popular: "Popopopulol\xE4rora sos\xE5nongogeror"
-      search: "Lol\xE5totsos\xF6kok"
-      search_input: "Sos\xF6kok efoftoteror enon sos\xE5nongog.."
+      popular: Populära sånger
+      no_results: Inga sånger hittades
+      search: Låtsök
+      search_input: Sök efter en sång..
+      all_songs: Sångbok
+
     show:
-      all_songs: "Sos\xE5nongogbobokok"
+      all_songs: Sångbok

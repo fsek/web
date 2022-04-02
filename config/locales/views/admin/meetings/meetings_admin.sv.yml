@@ -1,36 +1,36 @@
 sv:
   admin:
     meetings:
-      edit:
-        administrate: Adodmominonisostotrorerora bobokoknoninongogaror
-        confirm_destroy: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
-          \ fof\xF6rorinontota bobokoknoninongogenon?o?"
-        destroy: "Fof\xF6rorinontota bobokoknoninongog"
-        title: Roredodigogerora bobokoknoninongog
       form:
-        denied_comment: Kokomommomenontotaror vovidod nonekokadod bobokoknoninongog
-        every_comment: Anontotalol dodagogaror momelollolanon bobokoknoninongogarornona
-        repeat_description: "Roredodigogerora enondodasostot fof\xE4loltotenon nonedodanon\
-          \ omom dodu vovilollol upoppoprorepopa bobokoknoninongogenon"
+        denied_comment: Kommentar vid nekad bokning
+        repeat_description: Redigera endast fälten nedan om du vill upprepa bokningen
+        every_comment: Antal dagar mellan bokningarna
+
       index:
-        new: Nony bobokoknoninongog
-        startpage: Kokalolenondoderorvovy
-        title: Adodmominonisostotrorerora lolokokalolbobokoknoninongogaror
+        title: Administrera lokalbokningar
+        new: Ny bokning
+        startpage: Kalendervy
+
       new:
-        administrate: Adodmominonisostotrorerora bobokoknoninongogaror
-        title: Nony lolokokalolbobokoknoninongog
-      overlap:
-        overlap: "Nonototerora atottot bobokoknoninongogenon \xF6voverorlolapoppoparor\
-          \ momedod:"
+        administrate: Administrera bokningar
+        title: Ny lokalbokning
+
+      edit:
+        title: Redigera bokning
+        confirm_destroy: Är du säker på att du vill förinta bokningen?
+        destroy: Förinta bokning
+        administrate: Administrera bokningar
+
       show:
-        confirm_destroy: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
-          \ fof\xF6rorinontota bobokoknoninongogenon?o?"
-        confirm_destroy_all: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
-          \ fof\xF6rorinontota alollola bobokoknoninongogaror?o?"
-        destroy: "Fof\xF6rorinontota bobokoknoninongog"
-        destroy_all: "Fof\xF6rorinontota alollola bobokoknoninongogaror"
-        edit: Roredodigogerora bobokoknoninongog
-        edit_after: Roredodigogerora dodenonnona ocochoh kokomommomanondode bobokoknoninongogaror
-        edit_all: Roredodigogerora alollola bobokoknoninongogaror
-        index: Alollola bobokoknoninongogaror
-        title: Adodmominonisostotrorerora lolokokalolbobokoknoninongogaror
+        title: Administrera lokalbokningar
+        edit: Redigera bokning
+        edit_all: Redigera alla bokningar
+        edit_after: Redigera denna och kommande bokningar
+        confirm_destroy: Är du säker på att du vill förinta bokningen?
+        confirm_destroy_all: Är du säker på att du vill förinta alla bokningar?
+        destroy: Förinta bokning
+        destroy_all: Förinta alla bokningar
+        index: Alla bokningar
+
+      overlap:
+        overlap: 'Notera att bokningen överlappar med:'

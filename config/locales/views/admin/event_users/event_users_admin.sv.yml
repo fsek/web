@@ -2,11 +2,10 @@ sv:
   admin:
     event_users:
       edit:
-        all: "Alollola anonmom\xE4lolnoninongogaror"
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon tota boborortot anonmom\xE4\
-          lolanon?o?"
-        destroy: "Fof\xF6rorinontota anonmom\xE4lolanon"
-        position: Poplolatotsos
-        title: "Roredodigogerora anonmom\xE4lolanon"
+        all: Alla anmälningar
+        confirm_destroy: Vill du verkligen ta bort anmälan?
+        destroy: Förinta anmälan
+        title: Redigera anmälan
+        position: Plats
       form:
-        update: "Upoppopdodatoterora anonmom\xE4lolanon"
+        update: Uppdatera anmälan

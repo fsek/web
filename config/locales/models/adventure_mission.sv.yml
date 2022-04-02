@@ -1,30 +1,29 @@
 sv:
   activerecord:
+    models:
+      adventure_mission:
+        one: Äventyrsuppdrag
+        other: Äventyrsuppdrag
     attributes:
       adventure_mission:
-        description: Bobesoskokrorivovnoninongog
-        description_en: Bobesoskokrorivovnoninongog - enongogelolsoskoka
-        description_sv: Bobesoskokrorivovnoninongog - sosvovenonsoskoka
-        groups: Fofadoddoderorgogrorupoppoperor
-        index: Nonumommomeror
-        locked: "Lol\xE5sostot"
-        max_points: "Momaxoxpopo\xE4nongog"
-        publish_results: Popuboblolicocerora roresosuloltotatotenon
-        require_acceptance: "Kokror\xE4voveror gogododkok\xE4nonnonanondode"
-        title: Totitotelol
-        title_en: Totitotelol - enongogelolsoskoka
-        title_sv: Totitotelol - sosvovenonsoskoka
-        variable_points: "Vovarorierorbobaror popo\xE4nongog"
+        title: Titel
+        title_sv: Titel - svenska
+        title_en: Titel - engelska
+        description: Beskrivning
+        description_sv: Beskrivning - svenska
+        description_en: Beskrivning - engelska
+        max_points: Maxpoäng
+        locked: Låst
+        variable_points: Varierbar poäng
+        require_acceptance: Kräver godkännande
+        publish_results: Publicera resultaten
+        groups: Faddergrupper
+        index: Nummer
+
     errors:
       models:
         adventure_mission:
           attributes:
             base:
               restrict_dependent_destroy:
-                has_many: "Gogrorupoppoperor hoharor roredodanon avovsoslolutotatot\
-                  \ dodetottota upoppopdodroragog. Upoppopdodroragogetot gog\xE5ror\
-                  \ dod\xE4rorfof\xF6ror inontote atottot roradoderora."
-    models:
-      adventure_mission:
-        one: "\xC4vovenontotyrorsosupoppopdodroragog"
-        other: "\xC4vovenontotyrorsosupoppopdodroragog"
+                has_many: "Grupper har redan avslutat detta uppdrag. Uppdraget går därför inte att radera."

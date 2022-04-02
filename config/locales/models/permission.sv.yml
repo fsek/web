@@ -1,11 +1,11 @@
 sv:
   activerecord:
-    attributes:
-      permission:
-        action: "\xC5totgog\xE4rordod"
-        name: Nonamomnon
-        subject_class: "Totilollolhoh\xF6roranondode koklolasossos"
     models:
       permission:
-        one: "Ror\xE4tottotigoghohetot"
-        other: "Ror\xE4tottotigoghohetoteror"
+        one: Rättighet
+        other: Rättigheter
+    attributes:
+      permission:
+        name: Namn
+        subject_class: Tillhörande klass
+        action: Åtgärd

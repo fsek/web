@@ -1,6 +1,6 @@
 sv:
   pages:
     show:
-      edit_page: Roredodigogerora sosidoda
-      element_index: Alollola sosidodelolemomenontot
-      new_element: Nonytottot sosidodelolemomenontot
+      new_element: Nytt sidelement
+      element_index: Alla sidelement
+      edit_page: Redigera sida

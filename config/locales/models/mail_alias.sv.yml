@@ -1,11 +1,11 @@
 sv:
   activerecord:
-    attributes:
-      mail_alias:
-        domain: "Dodomom\xE4non"
-        target: "Mom\xE5loladodroresossos"
-        username: Aloliasosnonamomnon
     models:
       mail_alias:
-        one: Momailolaloliasos
-        other: Momailolaloliasos
+        one: Mailalias
+        other: Mailalias
+    attributes:
+      mail_alias:
+        username: Aliasnamn
+        domain: Domän
+        target: Måladress

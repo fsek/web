@@ -1,8 +1,6 @@
 sv:
   helper:
     message:
-      destroy_comment: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
-        \ tota boborortot kokomommomenontotarorenon?o?"
-      destroy_message: "\xC4ror dodu sos\xE4kokeror pop\xE5 atottot dodu vovilollol\
-        \ tota boborortot momedoddodelolanondodetot?o?"
-      to: 'Totilollol: '
+      destroy_message: Är du säker på att du vill ta bort meddelandet?
+      destroy_comment: Är du säker på att du vill ta bort kommentaren?
+      to: "Till: "

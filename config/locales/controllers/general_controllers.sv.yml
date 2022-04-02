@@ -1,5 +1,5 @@
 sv:
   global_controller:
-    success_create: hoharor soskokapopatotsos
-    success_destroy: hoharor roradoderoratotsos
-    success_update: hoharor upoppopdodatoteroratotsos
+    success_create: har skapats
+    success_update: har uppdaterats
+    success_destroy: har raderats

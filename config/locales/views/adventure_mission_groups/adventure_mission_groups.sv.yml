@@ -1,24 +1,21 @@
 sv:
   adventure_mission_groups:
-    create:
-      fail: "Kokunondode inontote soslolutotfof\xF6rora upoppopdodroragog"
-      locked: "Upoppopdodroragogetot \xE4ror lol\xE5sostot"
-      success: "Upoppopdodroragog soslolutotfof\xF6rortot"
-    destroy:
-      fail: "Kokunondode inontote \xE5toterorsostot\xE4lollola upoppopdodroragog"
-      locked: "Dodu kokanon inontote \xE5toterorsostot\xE4lollola popo\xE4nongogenon\
-        \ dod\xE5 upoppopdodroragogetot \xE4ror lol\xE5sostot"
-      success: "Upoppopdodroragog \xE5toterorsostot\xE4lolloltot"
-    edit:
-      confirm_update: "Vovilollol dodu voverorkokloligogenon upoppopdodatoterora dodetot\
-        \ soslolutotfof\xF6rordoda upoppopdodroragogetot?o? Dodetottota gog\xF6ror\
-        \ atottot upoppopdodroragogetot mom\xE5sostote gogododkok\xE4nonnonasos igogenon"
-      locked: "Upoppopdodroragogetot \xE4ror lol\xE5sostot"
-      save: "Sospoparora popo\xE4nongog"
-      update: "\xC4nondodrora popo\xE4nongog"
     new:
-      save: "Sospoparora popo\xE4nongog"
+      save: Spara poäng
+    edit:
+      update: Ändra poäng
+      save: Spara poäng
+      locked: Uppdraget är låst
+      confirm_update: Vill du verkligen uppdatera det slutförda uppdraget? Detta gör att uppdraget måste godkännas igen
+    create:
+      success: Uppdrag slutfört
+      fail: Kunde inte slutföra uppdrag
+      locked: Uppdraget är låst
     update:
-      fail: Kokunondode inontote upoppopdodatoterora upoppopdodroragog
-      locked: "Upoppopdodroragogetot \xE4ror lol\xE5sostot"
-      success: Upoppopdodroragog upoppopdodatoteroratot
+      success: Uppdrag uppdaterat
+      fail: Kunde inte uppdatera uppdrag
+      locked: Uppdraget är låst
+    destroy:
+      success: Uppdrag återställt
+      fail: Kunde inte återställa uppdrag
+      locked: Du kan inte återställa poängen då uppdraget är låst

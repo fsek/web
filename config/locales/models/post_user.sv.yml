@@ -1,15 +1,16 @@
 sv:
-  activerecord:
-    attributes:
-      post_user:
-        created_at: Soskokapopadod
-        post: Poposostot
-        updated_at: Upopdodatotedod
-        user: "Anonvov\xE4nondodarore"
-    models:
-      post_user:
-        one: "Anonvov\xE4nondodarore momedod poposostot"
-        other: "Anonvov\xE4nondodarore momedod poposostoteror"
   model:
     post_user:
-      already_have_post: hoharor roredodanon poposostotenon.
+      already_have_post: har redan posten.
+
+  activerecord:
+    models:
+      post_user:
+        one: Användare med post
+        other: Användare med poster
+    attributes:
+      post_user:
+        user: Användare
+        post: Post
+        created_at: Skapad
+        updated_at: Updated

@@ -2,27 +2,24 @@ sv:
   admin:
     rents:
       form:
-        denied_comment: Ororsosakok vovidod nonekokadod bobokoknoninongog
-      index:
-        car_bans: "Sospop\xE4rorrora anonvov\xE4nondodarore"
-        clear_search: "Rorenonsosa sos\xF6koknoninongog"
-        new_rent: Nony bobilolbobokoknoninongog
-        startpage: "Sostotarortotsosidoda fof\xF6ror bobilolbobokoknoninongog"
-        title: Bobilolbobokoknoninongog - adodmominonisostotroratotionon
+        denied_comment: Orsak vid nekad bokning
+
       new:
-        index: Alollola bobilolbobokoknoninongogaror
-        title: Nony bobilolbobokoknoninongog
+        index: Alla bilbokningar
+        title: Ny bilbokning
+
+      index:
+        clear_search: Rensa sökning
+        new_rent: Ny bilbokning
+        startpage: Startsida för bilbokning
+        title: Bilbokning - administration
+        car_bans: Spärra användare
+
       show:
-        admin_index: Sostotarortotsosidoda adodmominonisostotroratotionon
-        aktiv: "sos\xE4tottotsos totilollol fofalolsoskok omom bobokoknoninongogenon\
-          \ tot.ex. bobokokasos \xF6voveror"
-        comment: "soskokicockokasos momedod i momailol omom enon bobokoknoninongogsos\
-          \ \xE4nondodrorasos totilollol Nonekokadod"
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ bobokoknoninongogenon?o?"
-        destroy_rent: "Fof\xF6rorinontota bobilolbobokoknoninongog"
-        inactive: "Enon bobokoknoninongog \xE4ror inonakoktotivoveroradod omom sostotatotusos\
-          \ \xE4ror Nonekokadod elolloleror Akoktotivov \xE4ror sosatottot totilollol\
-          \ fofalolsoskok"
-        status: "sos\xE4gogeror omom bobokoknoninongogenon \xE4ror bobekokror\xE4\
-          foftotadod elolloleror ejoj"
+        admin_index: Startsida administration
+        aktiv: sätts till falsk om bokningen t.ex. bokas över
+        comment: skickas med i mail om en boknings ändras till Nekad
+        confirm_destroy: Vill du verkligen förinta bokningen?
+        destroy_rent: Förinta bilbokning
+        inactive: En bokning är inaktiverad om status är Nekad eller Aktiv är satt till falsk
+        status: säger om bokningen är bekräftad eller ej

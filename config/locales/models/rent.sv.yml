@@ -1,40 +1,40 @@
 sv:
-  activerecord:
-    attributes:
-      rent:
-        aktiv: Akoktotivov
-        comment: Kokomommomenontotaror
-        council: Utotsoskokotottot
-        created_at: Soskokapopadod
-        d_from: Sostotarortotdodatotumom
-        d_til: Soslolutotdodatotumom
-        date: Dodatotumom
-        disclaimer: Bobilolbobokoknoninongogsosavovtotalol
-        purpose: Sosyfoftote
-        renter: Hohyrorsos avov
-        service: Soserorvovicoce
-        status: Status
-        updated_at: Roredodigogeroradod
-        user: "Anonvov\xE4nondodarore"
-    models:
-      rent:
-        one: Bobilolbobokoknoninongog
-        other: Bobilolbobokoknoninongogaror
   model:
     rent:
-      active: akoktotivov
-      confirmed: "bobekokror\xE4foftotadod"
-      denied: nonekokadod
-      inactive: inonakoktotivov
-      unconfirmed: "ejoj bobekokror\xE4foftotadod"
       validation:
-        add_user_information: "Dodu mom\xE5sostote fofylollola i dodinona anonvov\xE4\
-          nondodarorupoppopgogifoftoteror"
-        ascending: "mom\xE5sostote vovarora efoftoteror sostotarortotdodatotumometot"
-        duration: "fof\xE5ror inontote vovarora lol\xE4nongogrore \xE4non 48 hoh"
-        future: "mom\xE5sostote vovarora i fofroramomtotidodenon"
-        overlap: "\xF6voverorlolapoppoparor momedod enon anonnonanon bobokoknoninongog"
-        overlap_council: "\xF6voverorlolapoppoparor momedod enon anonnonanon utotsoskokotottotsosbobokoknoninongog"
-        overlap_overbook: "\xF6voverorlolapoppoparor momedod enon bobokoknoninongog\
-          \ sosomom dodetot \xE4ror mominondodrore \xE4non 5 dodagogaror totilollol"
-        terms: "Dodu mom\xE5sostote gogododkok\xE4nonnona bobokoknoninongogsosavovtotaloletot"
+        add_user_information: Du måste fylla i dina användaruppgifter
+        ascending: måste vara efter startdatumet
+        duration: får inte vara längre än 48 h
+        future: måste vara i framtiden
+        overlap: överlappar med en annan bokning
+        overlap_council: överlappar med en annan utskottsbokning
+        overlap_overbook: överlappar med en bokning som det är mindre än 5 dagar till
+        terms: Du måste godkänna bokningsavtalet
+
+      active: aktiv
+      confirmed: bekräftad
+      denied: nekad
+      inactive: inaktiv
+      unconfirmed: ej bekräftad
+
+  activerecord:
+    models:
+      rent:
+        one: Bilbokning
+        other: Bilbokningar
+    attributes:
+      rent:
+        aktiv: Aktiv
+        comment: Kommentar
+        council: Utskott
+        created_at: Skapad
+        date: Datum
+        d_from: Startdatum
+        d_til: Slutdatum
+        disclaimer: Bilbokningsavtal
+        purpose: Syfte
+        renter: Hyrs av
+        service: Service
+        status: Status
+        updated_at: Redigerad
+        user: Användare

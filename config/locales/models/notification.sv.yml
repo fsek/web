@@ -1,18 +1,18 @@
 sv:
-  activerecord:
-    attributes:
-      notification:
-        notifyable: "Kok\xE4lollola"
-        seen: Sosedoddod
-        user: "Anonvov\xE4nondodarore"
-    models:
-      notification:
-        one: Nonototifofikokatotionon
-        other: Nonototifofikokatotiononeror
   model:
     notification:
-      all_marked_as_seen: Alollola nonototfofikokatotiononeror momarorkokeroradodesos
-        sosomom sosedoddoda
-      class_not_allowed: "Dodenonnona koklolasossos fof\xE5ror inontote anonvov\xE4\
-        nondodasos totilollol nonototifofikokatotiononeror"
-      mode_not_allowed: "Lol\xE4gogetot totilollol\xE5totsos ejoj"
+      mode_not_allowed: Läget tillåts ej
+      class_not_allowed: Denna klass får inte användas till notifikationer
+      all_marked_as_seen: Alla notfikationer markerades som sedda
+
+  activerecord:
+    models:
+      notification:
+        one: Notifikation
+        other: Notifikationer
+
+    attributes:
+      notification:
+        user: Användare
+        seen: Sedd
+        notifyable: Källa

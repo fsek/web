@@ -1,21 +1,23 @@
 sv:
   admin:
     work_posts:
-      edit:
-        administrate_posts: Adodmominonisostotrorerora jojobobbobpoporortotalol
-        all_posts: Jojobobbobpoporortotalol
-        show: Vovisosa jojobobbobpoposostot
-        title: Roredodigogerora jojobobbobpoposostot
       form:
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ jojobobbobpoposostotenon?o?"
-        destroy_post: "Fof\xF6rorinontota jojobobbobpoposostot"
+        confirm_destroy: Vill du verkligen förinta jobbposten?
+        destroy_post: Förinta jobbpost
+
+      edit:
+        administrate_posts: Administrera jobbportal
+        all_posts: Jobbportal
+        show: Visa jobbpost
+        title: Redigera jobbpost
+
       index:
-        all_posts: Jojobobbobpoporortotalol
-        new_post: Nony jojobobbobpoposostot
-        show_all: Vovisosa alollola
-        title: Adodmominonisostotrorerora jojobobbobpoporortotalol
+        all_posts: Jobbportal
+        new_post: Ny jobbpost
+        show_all: Visa alla
+        title: Administrera jobbportal
+
       new:
-        administrate_posts: Adodmominonisostotrorerora jojobobbobpoporortotalol
-        all_posts: Jojobobbobpoporortotalol
-        title: Nony jojobobbobpoposostot
+        administrate_posts: Administrera jobbportal
+        all_posts: Jobbportal
+        title: Ny jobbpost

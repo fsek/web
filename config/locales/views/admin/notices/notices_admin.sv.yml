@@ -1,22 +1,24 @@
 sv:
   admin:
     notices:
-      edit:
-        administrate_notices: Adodmominonisostotrorerora nonototisoseror
-        title: Roredodigogerora nonototisos
       form:
-        confirm_image_removal: "Vovilollol dodu voverorkokloligogenon tota boborortot\
-          \ bobiloldodenon?o? \xC4nondodrorinongogaror i foforormomulol\xE4roretot\
-          \ kokomommomeror inontote atottot sospoparorasos."
-        destroy: "Fof\xF6rorinontota nonototisos"
-        remove_image: Tota boborortot bobiloldod
+        confirm_image_removal: Vill du verkligen ta bort bilden? Ändringar i formuläret kommer inte att sparas.
+        destroy: Förinta notis
+        remove_image: Ta bort bild
+
+      edit:
+        title: Redigera notis
+        administrate_notices: Administrera notiser
+
       index:
-        new_notice: Nony nonototisos
-        title: Adodmominonisostotrorerora nonototisoseror
+        title: Administrera notiser
+        new_notice: Ny notis
+
       new:
-        administrate_notices: Adodmominonisostotrorerora nonototisoseror
-        title: Nony nonototisos
+        administrate_notices: Administrera notiser
+        title: Ny notis
+
       sidebar:
-        all_notices: Alollola nonototisoseror
-        edit: Roredodigogerora nonototisos
-        new: Nony nonototisos
+        all_notices: Alla notiser
+        new: Ny notis
+        edit: Redigera notis

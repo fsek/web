@@ -2,12 +2,12 @@ sv:
   activerecord:
     attributes:
       adventure_mission_group:
-        points: "Popo\xE4nongog"
+        points: Poäng
     models:
       adventure_mission_group:
-        one: "Avovsoslolutotatot \xE4vovenontotyrorsosupoppopdodroragog"
-        other: "Avovsoslolutotadode \xE4vovenontotyrorsosupoppopdodroragog"
+        one: Avslutat äventyrsuppdrag
+        other: Avslutade äventyrsuppdrag
   model:
     adventure_mission_group:
-      invalid_points: "0 < Popo\xE4nongog <= %{max_points}"
-      locked: "\xC4vovenontotyrorsosupoppopdodroragogetot \xE4ror lol\xE5sostot"
+      invalid_points: "0 < Poäng <= %{max_points}"
+      locked: Äventyrsuppdraget är låst

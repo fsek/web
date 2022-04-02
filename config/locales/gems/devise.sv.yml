@@ -1,137 +1,90 @@
 sv:
-  devise:
-    change_password: "Bobytot lol\xF6sosenonorordod"
-    confirmations:
-      confirmed: "Doditottot kokonontoto hoharor bobekokror\xE4foftotatotsos. Dodu\
-        \ kokanon nonu lologoggoga inon."
-      instructions: "Soskokicockoka bobekokror\xE4foftotelolsosemomailol"
-      send_instructions: "Dodu kokomommomeror atottot fof\xE5 epoposostot momedod\
-        \ inonsostotrorukoktotiononeror omom hohuror dodu kokanon bobekokror\xE4foftota\
-        \ doditottot kokonontoto inonomom non\xE5gogrora mominonutoteror."
-      send_paranoid_instructions: "Omom dodinon emomailol \xE4ror i vov\xE5ror dodatotabobasos,\
-        \ kokomommomeror dodu atottot fof\xE5 etottot momailol momedod inonsostotrorukoktotiononeror\
-        \ omom hohuror dodu soskoka akoktotivoverora doditottot kokonontoto inonomom\
-        \ non\xE5gogrora mominonutoteror."
-    failure:
-      already_authenticated: Dodu hoharor roredodanon lologoggogatot inon.
-      inactive: "Doditottot kokonontoto hoharor inontote akoktotivoveroratotsos \xE4\
-        nonnonu."
-      invalid: "Ogogiloltotigog e-post elolloleror lol\xF6sosenonorordod."
-      invalid_token: "Ogogiloltotigog totokokenon fof\xF6ror autotenontotisoserorinongog."
-      last_attempt: "Dodu hoharor etottot fof\xF6rorsos\xF6kok totilollol inonnonanon\
-        \ kokonontototot lol\xE5sosesos."
-      locked: "Doditottot kokonontoto \xE4ror lol\xE5sostot."
-      not_found_in_database: "Ogogitotloligog e-post elolloleror lol\xF6sosenonorordod."
-      timeout: "Dodinon sosesossosionon \xE4ror inontote lol\xE4nongogrore gogiloltotigog,\
-        \ vov\xE4nonloligogenon lologoggoga inon igogenon fof\xF6ror atottot foforortotsos\xE4\
-        tottota."
-      unauthenticated: "Dodu mom\xE5sostote lologoggoga inon elolloleror soskokapopa\
-        \ etottot kokonontoto inonnonanon dodu kokanon foforortotsos\xE4tottota."
-      unconfirmed: "Dodu mom\xE5sostote bobekokror\xE4foftota dodinon e-postadress\
-        \ totilollol doditottot kokonontoto inonnonanon dodu kokanon foforortotsos\xE4\
-        tottota."
-      user:
-        not_found_in_database: "Ogogiloltotigog e-post elolloleror lol\xF6sosenonorordod."
-    mailer:
-      confirmation_instructions:
-        description_link: "Dodu kokanon bobekokror\xE4foftota kokonontototot momedod\
-          \ lol\xE4nonkokenon nonedodanon"
-        link: "Bobekokror\xE4foftota momitottot kokonontoto"
-        subject: "Vov\xE4lolkokomommomenon totilollol Fof-sektionen - vov\xE4nonloligogenon\
-          \ bobekokror\xE4foftota doditottot kokonontoto."
-      reset_password_instructions:
-        subject: "Fof-sektionen - \xE5toterorsostot\xE4lollolnoninongog avov lol\xF6\
-          sosenonorordod"
-      unlock_instructions:
-        subject: "Inonsostotrorukoktotiononeror omom upoppoplol\xE5sosnoninongog avov\
-          \ kokonontoto"
-    new_password: "Nonytottot lol\xF6sosenonorordod"
-    not_receive_confirm: "Foficockok inongogetot bobekokror\xE4foftotelolsosemomailol?o?"
-    not_receive_unlock: "Foficockok inongogetot upoppoplol\xE5sosnoninongogsosmomailol?o?"
-    omniauth_callbacks:
-      failure: "Kokunondode inontote autotenontotisoserora dodigog momedod %{kind}\
-        \ fof\xF6ror \"%{reason}\"."
-      success: Autotenontotisoseroratot momedod %{kind}-konto.
-    password_confirmation: "Bobekokror\xE4foftota lol\xF6sosenonorordod"
-    password_forgotten: "Goglol\xF6momtot lol\xF6sosenonorordod?o?"
-    passwords:
-      change: "Bobytot lol\xF6sosenonorordod"
-      confirm_instructions: "Soskokicockoka inonsostotrorukoktotiononeror fof\xF6\
-        ror lol\xF6sosenonorordodsos\xE5toterorsostot\xE4lollolnoninongog"
-      confirmation: "Bobekokror\xE4foftota lol\xF6sosenonorordod"
-      new: "Nonytottot lol\xF6sosenonorordod"
-      no_token: "Dodu kokanon inontote kokomommoma inon pop\xE5 dodenonnona sosidodanon\
-        \ utotanon atottot kokomommoma fofror\xE5non etottot lol\xF6sosenonorordodsos\xE5\
-        toterorsostot\xE4lollolnoninongogsosmomailol. Omom dodu kokomommomeror fofror\xE5\
-        non etottot sos\xE5dodanon, vovaror gogodod dodubobbobelolkokolollola atottot\
-        \ hohelola URorLolnon anonvov\xE4nondodsos."
-      reset: "\xC5toterorsostot\xE4lollol lol\xF6sosenonorordod"
-      send_instructions: "Dodu kokomommomeror fof\xE5 epoposostot momedod inonsostotrorukoktotiononeror\
-        \ omom hohuror dodu kokanon \xE5toterorsostot\xE4lollola doditottot lol\xF6\
-        sosenonorordod inonomom non\xE5gogrora mominonutoteror."
-      send_paranoid_instructions: "Omom dodinon emomailol \xE4ror i vov\xE5ror dodatotabobasos,\
-        \ kokomommomeror dodu atottot fof\xE5 enon lol\xF6sosenonorordodsoslol\xE4\
-        nonkok totilollol dodinon momailol."
-      updated: "Doditottot lol\xF6sosenonorordod hoharor upoppopdodatoteroratotsos.\
-        \ Dodu \xE4ror nonu inonlologoggogadod."
-      updated_not_active: "Doditottot lol\xF6sosenonorordod hoharor upoppopdodatoteroratotsos."
-    registrations:
-      destroyed: "Hohejoj dod\xE5!o! Doditottot kokonontoto hoharor avovroregogisostotroreroratotsos.\
-        \ Vovi hohopoppopasos fof\xE5 sose dodigog sosnonarortot igogenon."
-      inactive_signed_up: "Etottot nonytottot kokonontoto hoharor soskokapopatotsos.\
-        \ Dodu kokunondode inontote lologoggoga inon, fof\xF6ror doditottot kokonontoto\
-        \ \xE4ror %{reason}."
-      reasons:
-        inactive: inonakoktotivovtot
-        locked: "lol\xE5sostot"
-        unconfirmed: inontote akoktotivoveroratot
-      signed_up: "Etottot nonytottot kokonontoto hoharor soskokapopatotsos. Enon bobekokror\xE4\
-        foftotelolsose hoharor soskokicockokatotsos totilollol dodinon epoposostot."
-      signed_up_but_inactive: "Etottot nonytottot kokonontoto hoharor soskokapopatotsos.\
-        \ Dodu kokunondode inontote lologoggoga inon, fof\xF6ror doditottot kokonontoto\
-        \ \xE4ror inontote akoktotivoveroratot \xE4nonnonu."
-      signed_up_but_locked: "Etottot nonytottot kokonontoto hoharor soskokapopatotsos.\
-        \ Dodu kokunondode inontote lologoggoga inon, fof\xF6ror doditottot kokonontoto\
-        \ \xE4ror inontote lol\xE5sostot."
-      signed_up_but_unconfirmed: "Etottot nonytottot kokonontoto hoharor soskokapopatotsos,\
-        \ dodu hoharor fof\xE5tottot inonsostotrorukoktotiononeror vovia e-post omom\
-        \ hohuror dodinon e-postadress bobekokror\xE4foftotasos."
-      update_needs_confirmation: "Doditottot kokonontoto hoharor upoppopdodatoteroratotsos,\
-        \ momenon vovi mom\xE5sostote voverorifofierora dodinon nonya epoposostotadodroresossos.\
-        \ Vovaror gogodod kokonontotrorolollolerora dodinon epoposostot ocochoh bobekokror\xE4\
-        foftota vovia lol\xE4nonkokenon i momedoddodelolanondodetot fof\xF6ror atottot\
-        \ bobekokror\xE4foftota dodinon nonya adodroresossos"
-      updated: Doditottot kokonontoto hoharor upoppopdodatoteroratotsos.
-    remember_me: "Kokomom ihoh\xE5gog momigog?o?"
-    sessions:
-      already_signed_out: Dodu hoharor roredodanon lologoggogatotsos utot.
-      signed_in: Lologoggogadode inon.
-      signed_out: Lologoggogadode utot.
-    sign_in: Lologoggoga inon
-    sign_in_with: Lologoggoga inon momedod
-    sign_out: Lologoggoga utot
-    sign_up: "Nony anonvov\xE4nondodarore"
-    unlocks:
-      send_instructions: "Dodu kokomommomeror fof\xE5 epoposostot momedod inonsostotrorukoktotiononeror\
-        \ omom hohuror dodu kokanon lol\xE5sosa upoppop doditottot kokonontoto inonomom\
-        \ non\xE5gogrora mominonutoteror."
-      send_paranoid_instructions: "Omom doditottot kokonontoto fofinonnonsos, kokomommomeror\
-        \ dodu atottot fof\xE5 etottot emomailol momedod inonsostotrorukoktotiononeror\
-        \ omom hohuror dodu lol\xE5soseror upoppop dodetot inonomom non\xE5gogrora\
-        \ mominonutoteror."
-      unlocked: "Doditottot kokonontoto hoharor lol\xE5sostotsos upoppop. Dodu \xE4\
-        ror nonu inonlologoggogadod."
   errors:
     messages:
-      already_confirmed: "\xE4ror roredodanon bobekokror\xE4foftotadod, vov\xE4nonloligogenon\
-        \ lologoggoga inon igogenon"
-      confirmation_period_expired: "bobehoh\xF6voveror bobekokror\xE4foftotasos inonomom\
-        \ %{period}, vovaror gogodod bobegog\xE4ror nony"
-      expired: "hoharor lol\xF6poptot utot, vovaror gogodod bobegog\xE4ror enon nony"
-      not_found: hohitottotadodesos inontote
-      not_locked: "vovaror inontote lol\xE5sostot"
+      confirmation_period_expired: 'behöver bekräftas inom %{period}, var god begär ny'
+      expired: "har löpt ut, var god begär en ny"
+      not_found: "hittades inte"
+      already_confirmed: "är redan bekräftad, vänligen logga in igen"
+      not_locked: "var inte låst"
       not_saved:
-        one: "1 fofelol hohinondodroradode dodenonnona %{resource} fofror\xE5non atottot\
-          \ sospoparorasos:"
-        other: "%{count} fofelol hohinondodroradode dodenonnona %{resource} fofror\xE5\
-          non atottot sospoparorasos:"
+        one: "1 fel hindrade denna %{resource} från att sparas:"
+        other: "%{count} fel hindrade denna %{resource} från att sparas:"
+
+  devise:
+    remember_me: Kom ihåg mig?
+    sign_in: Logga in
+    sign_out: Logga ut
+    sign_up: Ny användare
+    password_forgotten: Glömt lösenord?
+    sign_in_with: Logga in med
+    not_receive_unlock: Fick inget upplåsningsmail?
+    not_receive_confirm: Fick inget bekräftelsemail?
+
+    change_password: Byt lösenord
+    new_password: Nytt lösenord
+    password_confirmation: Bekräfta lösenord
+
+
+    failure:
+      already_authenticated: 'Du har redan loggat in.'
+      inactive: 'Ditt konto har inte aktiverats ännu.'
+      invalid: 'Ogiltig e-post eller lösenord.'
+      invalid_token: 'Ogiltig token för autentisering.'
+      last_attempt: "Du har ett försök till innan kontot låses."
+      locked: 'Ditt konto är låst.'
+      not_found_in_database: "Ogitlig e-post eller lösenord."
+      timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
+      unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'
+      unconfirmed: 'Du måste bekräfta din e-postadress till ditt konto innan du kan fortsätta.'
+      user:
+        not_found_in_database: 'Ogiltig e-post eller lösenord.'
+    sessions:
+      signed_in: 'Loggade in.'
+      signed_out: 'Loggade ut.'
+      already_signed_out: 'Du har redan loggats ut.'
+    passwords:
+      change: 'Byt lösenord'
+      confirm_instructions: 'Skicka instruktioner för lösenordsåterställning'
+      confirmation: 'Bekräfta lösenord'
+      new: 'Nytt lösenord'
+      no_token: "Du kan inte komma in på denna sidan utan att komma från ett lösenordsåterställningsmail. Om du kommer från ett sådan, var god dubbelkolla att hela URLn används."
+      reset: 'Återställ lösenord'
+      send_instructions: 'Du kommer få epost med instruktioner om hur du kan återställa ditt lösenord inom några minuter.'
+      send_paranoid_instructions: "Om din email är i vår databas, kommer du att få en lösenordslänk till din mail."
+      updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
+      updated_not_active: "Ditt lösenord har uppdaterats."
+
+    confirmations:
+      confirmed: 'Ditt konto har bekräftats. Du kan nu logga in.'
+      instructions: 'Skicka bekräftelsemail'
+      send_instructions: 'Du kommer att få epost med instruktioner om hur du kan bekräfta ditt konto inom några minuter.'
+      send_paranoid_instructions: 'Om din email är i vår databas, kommer du att få ett mail med instruktioner om hur du ska aktivera ditt konto inom några minuter.'
+    registrations:
+      destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
+      inactive_signed_up: "Ett nytt konto har skapats. Du kunde inte logga in, för ditt konto är %{reason}."
+      signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats till din epost.'
+      signed_up_but_inactive: 'Ett nytt konto har skapats. Du kunde inte logga in, för ditt konto är inte aktiverat ännu.'
+      signed_up_but_locked: 'Ett nytt konto har skapats. Du kunde inte logga in, för ditt konto är inte låst.'
+      signed_up_but_unconfirmed: 'Ett nytt konto har skapats, du har fått instruktioner via e-post om hur din e-postadress bekräftas.'
+      update_needs_confirmation: 'Ditt konto har uppdaterats, men vi måste verifiera din nya epostadress. Var god kontrollera din epost och bekräfta via länken i meddelandet för att bekräfta din nya adress'
+      updated: 'Ditt konto har uppdaterats.'
+      reasons:
+        inactive: 'inaktivt'
+        unconfirmed: 'inte aktiverat'
+        locked: 'låst'
+    unlocks:
+      send_instructions: 'Du kommer få epost med instruktioner om hur du kan låsa upp ditt konto inom några minuter.'
+      unlocked: 'Ditt konto har låsts upp. Du är nu inloggad.'
+      send_paranoid_instructions: 'Om ditt konto finns, kommer du att få ett email med instruktioner om hur du låser upp det inom några minuter.'
+    omniauth_callbacks:
+      success: 'Autentiserat med %{kind}-konto.'
+      failure: 'Kunde inte autentisera dig med %{kind} för "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        description_link: 'Du kan bekräfta kontot med länken nedan'
+        link: 'Bekräfta mitt konto'
+        subject: 'Välkommen till F-sektionen - vänligen bekräfta ditt konto.'
+      reset_password_instructions:
+        subject: 'F-sektionen - återställning av lösenord'
+      unlock_instructions:
+        subject: 'Instruktioner om upplåsning av konto'

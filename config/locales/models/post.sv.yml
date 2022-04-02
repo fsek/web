@@ -1,35 +1,36 @@
 sv:
-  activerecord:
-    attributes:
-      post:
-        board: Sostotyrorelolsosepoposostot
-        car_rent: "Fof\xE5ror hohyrora bobilol"
-        council: Utotsoskokotottot
-        description: Bobesoskokrorivovnoninongog
-        description_en: Bobesoskokrorivovnoninongog - enongogelolsoskok
-        description_sv: Bobesoskokrorivovnoninongog - sosvovenonsoskok
-        elected_by: "Vov\xE4loljojsos avov"
-        limit: "Gogror\xE4nonsos"
-        permission_ids: "Ror\xE4tottotigoghohetoteror"
-        rec_limit: "Rorekokomommomenondoderoradod gogror\xE4nonsos"
-        semester: "Vov\xE4loljojsos pop\xE5"
-        title: Totitotelol
-        title_en: Totitotelol - enongogelolsoskok
-        title_sv: Totitotelol - sosvovenonsoskok
-    models:
-      post:
-        one: Poposostot
-        other: Poposostoteror
   model:
     post:
-      add_error: 'Totilolloldodelolnoninongogenon gogicockok inontote: %{errors}'
-      added: '%{u} totilolloldodeloladodesos %{p}'
-      board: Sostotyrorelolsose
-      education: "Sostotudodieror\xE5dod"
-      general: "Sosekoktotiononsosmom\xF6tote"
+      added: "%{u} tilldelades %{p}"
+      add_error: "Tilldelningen gick inte: %{errors}"
+      user_removed: "%{u} har inte längre posten %{p}"
+      board: Styrelse
+      general: Sektionsmöte
+      education: Studieråd
       semester:
-        autumn: HohTot
-        both: HohTot ocochoh VovTot
-        other: Anonnonatot
-        spring: VovTot
-      user_removed: "%{u} hoharor inontote lol\xE4nongogrore poposostotenon %{p}"
+        autumn: HT
+        both: HT och VT
+        other: Annat
+        spring: VT
+
+  activerecord:
+    models:
+      post:
+        one: Post
+        other: Poster
+    attributes:
+      post:
+        board: Styrelsepost
+        car_rent: Får hyra bil
+        council: Utskott
+        description: Beskrivning
+        description_sv: Beskrivning - svensk
+        description_en: Beskrivning - engelsk
+        elected_by: Väljs av
+        limit: Gräns
+        permission_ids: Rättigheter
+        rec_limit: Rekommenderad gräns
+        semester: Väljs på
+        title: Titel
+        title_sv: Titel - svensk
+        title_en: Titel - engelsk

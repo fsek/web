@@ -2,11 +2,13 @@ sv:
   admin:
     categories:
       edit:
-        all_categories: Alollola kokatotegogororieror
-        title: Roredodigogerora kokatotegogorori
+        all_categories: Alla kategorier
+        title: Redigera kategori
+
       index:
-        new_category: Nony kokatotegogorori
-        title: Adodmominonisostotrorerora kokatotegogororieror
+        new_category: Ny kategori
+        title: Administrera kategorier
+
       new:
-        all_categories: Alollola kokatotegogororieror
-        title: Nony kokatotegogorori
+        all_categories: Alla kategorier
+        title: Ny kategori

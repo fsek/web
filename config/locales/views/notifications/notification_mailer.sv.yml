@@ -1,5 +1,5 @@
 sv:
   notification_mailer:
-    all_notifications: Alollola nonototifofikokatotiononeror
-    subject: Fof-sektionen - Nonototifofikokatotionon
-    title: Nonototifofikokatotionon
+    title: Notifikation
+    subject: F-sektionen - Notifikation
+    all_notifications: Alla notifikationer

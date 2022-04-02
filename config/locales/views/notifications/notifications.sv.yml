@@ -1,9 +1,10 @@
 sv:
   notifications:
     index:
-      all_notifications: Alollola nonototifofikokatotiononeror
-      mark_all_as_read: Momarorkokerora alollola sosomom sosedoddoda
-      no_notifications: Inongoga nonototifofikokatotiononeror
-      title: Nonototifofikokatotiononeror
+      title: Notifikationer
+      mark_all_as_read: Markera alla som sedda
+      no_notifications: Inga notifikationer
+      all_notifications: Alla notifikationer
+
     notification:
-      read_more: "Lol\xE4sos momeror"
+      read_more: Läs mer

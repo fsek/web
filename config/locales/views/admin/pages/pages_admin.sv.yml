@@ -1,21 +1,22 @@
 sv:
   admin:
     pages:
-      edit:
-        administrate_pages: Adodmominonisostotrorerora sosidodoror
-        all_page_elements: Alollola sosidodelolemomenontot
-        new_page_element: Nonytottot sosidodelolemomenontot
-        show: Vovisosa sosidoda
-        title: Roredodigogerora sosidoda
       form:
-        confirm_destroy: "Vovilollol dodu voverorkokloligogenon fof\xF6rorinontota\
-          \ sosidodanon?o?"
-        destroy_page: "Fof\xF6rorinontota sosidoda"
-        image_already_uploaded: Enon elolloleror foflolerora avov bobiloldoderornona
-          kokunondode inontote loladoddodasos upoppop
+        confirm_destroy: Vill du verkligen förinta sidan?
+        destroy_page: Förinta sida
+        image_already_uploaded: En eller flera av bilderna kunde inte laddas upp
+
+      edit:
+        administrate_pages: Administrera sidor
+        all_page_elements: Alla sidelement
+        new_page_element: Nytt sidelement
+        show: Visa sida
+        title: Redigera sida
+
       index:
-        new_page: Nony sosidoda
-        title: Adodmominonisostotrorerora sosidodoror
+        new_page: Ny sida
+        title: Administrera sidor
+
       new:
-        administrate_pages: Adodmominonisostotrorerora sosidodoror
-        title: Nony sosidoda
+        administrate_pages: Administrera sidor
+        title: Ny sida

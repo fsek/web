@@ -1,39 +1,30 @@
 sv:
   rent_mailer:
-    active_email:
-      header_title: Bobilolbobokoknoninongog
-      marked_active: momarorkokeroratotsos sosomom akoktotivov
-      marked_active_text: Dodinon bobokoknoninongog hoharor momarorkokeroratotsos
-        sosomom akoktotivov igogenon.
-      marked_inactive: momarorkokeroratotsos sosomom inonakoktotivov
-      marked_inactive_text: "Dodinon bobokoknoninongog hoharor bobokokatotsos \xF6\
-        voveror utotavov etottot utotsoskokotottot. Omom dodu totrororor atottot non\xE5\
-        gogonontotinongog hoharor gog\xE5tottot fofelol elolloleror omom dodetot \xE4\
-        ror lol\xE4tottot atottot lol\xF6sosa, sosvovarora pop\xE5 dodetottota e-post\
-        \ ocochoh kokonontotakoktota bobilolfof\xF6rormomanonnonenon."
-    attributes:
-      title: Bobokoknoninongogenonsos upoppopgogifoftoteror
-      your_booking: Dodinon bobokoknoninongog
     mailer:
-      answer_with_questions: "Hoharor dodu non\xE5gogrora fofror\xE5gogoror sos\xE5\
-        \ sosvovaroraror dodu enonkoklolasostot dodirorekoktot pop\xE5 dodetottota\
-        \ e-post."
-      car_foreman: "Bobilolfof\xF6rormomanon"
-      hello: Hohejoj %{user}!
-      sincerely: "Momedod vov\xE4nonloligoga hoh\xE4lolsosnoninongogaror"
-      subject: 'Bobilolbobokoknoninongog %{date}: %{status}'
+      answer_with_questions: Har du några frågor så svarar du enklast direkt på detta e-post.
+      car_foreman: Bilförman
+      hello: "Hej %{user}!"
+      sincerely: Med vänliga hälsningar
+      subject: "Bilbokning %{date}: %{status}"
+
+    attributes:
+      title: Bokningens uppgifter
+      your_booking: Din bokning
+
+    active_email:
+      marked_active: markerats som aktiv
+      marked_active_text: Din bokning har markerats som aktiv igen.
+      marked_inactive: markerats som inaktiv
+      marked_inactive_text: Din bokning har bokats över utav ett utskott. Om du tror att någonting har gått fel eller om det är lätt att lösa, svara på detta e-post och kontakta bilförmannen.
+      header_title: Bilbokning
+
     rent_email:
-      booked: "Dodu hoharor bobokokatot Fof-sektionens bobilol momedod nonedodanonsostot\xE5\
-        enondode upoppopgogifoftoteror"
-      car_foreman: "Bobilolfof\xF6rormomanon"
-      confirm_foreman: "Dodinon bobokoknoninongog mom\xE5sostote hohanontoterorasos\
-        \ dodirorekoktot avov bobilolfof\xF6rormomanonnonenon ocochoh etottot e-post\
-        \ kokomommomeror soskokicockokasos utot dod\xE5 bobokoknoninongogenon \xE4\
-        ror bobekokror\xE4foftotadod elolloleror nonekokadod."
-      header_title: Bobilolbobokoknoninongog
+      booked: Du har bokat F-sektionens bil med nedanstående uppgifter
+      car_foreman: Bilförman
+      confirm_foreman: Din bokning måste hanteras direkt av bilförmannen och ett e-post kommer skickas ut då bokningen är bekräftad eller nekad.
+      header_title: Bilbokning
+
     status_email:
-      booking_status: "Dodinon bobokoknoninongogsossostotatotusos hoharor \xE4nondodroratotsos\
-        \ totilollol"
-      denied_appeal: "\xD6voverorkoklolagoganon kokanon gog\xF6rorasos totilollol\
-        \ sostotyrorelolsosenon"
-      header_title: Bobilolbobokoknoninongog
+      booking_status: Din bokningsstatus har ändrats till
+      denied_appeal: Överklagan kan göras till styrelsen
+      header_title: Bilbokning

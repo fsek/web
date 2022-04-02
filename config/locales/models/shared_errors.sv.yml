@@ -3,4 +3,4 @@ sv:
     errors:
       attributes:
         post_id:
-          blank: "Poposostot mom\xE5sostote vov\xE4loljojasos"
+          blank: Post måste väljas
