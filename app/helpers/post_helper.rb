@@ -87,23 +87,7 @@ module PostHelper
             t('helper.post.who_currently')
           end
         end
-        if post.title == 'Överfös'
-          names = ['Överfös Natalia']
-          names.each do |e|
-            content << content_tag(:li) do
-              e
-            end
-          end
-        elsif post.title == 'Cofös'
-          names = ['Cofös Eliot', 'Cofös Gustav', 'Cofös Klara', 'Cofös Axel']
-          names.each do |e|
-            content << content_tag(:li) do
-              e
-            end
-          end
-        else
-          content << post_users_list(post)
-        end
+        content << post_users_list(post)
         safe_join(content)
       end
     end
