@@ -1,27 +1,25 @@
 sv:
   admin:
-    fruits:
+    coffee_cards:
       index:
-        title: Alla frukter
-        name: Namn
-        mold: Möglig?
+        title: Alla kaffekort
+        available_coffees: Kaffe kvar
         user: Ägare
         edit: Redigera
-        edit_fruit: Redigera frukt
+        edit_coffee_card: Redigera kaffekort
         delete: Radera
-        delete_fruit: Radera frukt
-        confirm_delete: Vill du verkligen radera frukten?
-        new: Skapa ny frukt
-        new_fruit: Ny frukt
-        moldy_yes: Ja
-        moldy_no: Nej
+        delete_coffee_card: Radera kaffekort
+        confirm_delete: Vill du verkligen radera kaffekorten?
+        new: Skapa nytt kaffekort
+        new_coffee_card: Nytt kaffekort
+        coffee_card: Kaffekort
+
       edit:
-        title: Redigera frukt
+        title: Redigera kaffekort
       new:
-        title: Ny frukt
+        title: Nytt kaffekort
       form:
-        name: Namn
-        mold: Möglig?
         user: Ägare
         user_prompt: Välj användare
-        all: Alla frukter
+        available_coffees: Kaffe kvar
+        all: Alla kaffekort

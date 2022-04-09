@@ -15,7 +15,7 @@ class Admin::CoffeeCardsController < Admin::BaseController
     end
   
     def update
-      if @coffee_card.update(coffe_card_params)
+      if @coffee_card.update(coffee_card_params)
         redirect_to(edit_admin_coffee_card_path(@coffee_card), notice: alert_update(CoffeeCard))
       else
         render :edit, status: 422
@@ -24,12 +24,12 @@ class Admin::CoffeeCardsController < Admin::BaseController
   
     def destroy
       @coffee_card.destroy!
-      redirect_to(admin_coffee_cards_path, notice: alert_destroy(Fruit))
+      redirect_to(admin_coffee_cards_path, notice: alert_destroy(CoffeeCard))
     end
   
     private
   
-    def coffe_card_params
+    def coffee_card_params
       params.require(:coffee_card).permit(:user_id, :available_coffees)
     end
   end

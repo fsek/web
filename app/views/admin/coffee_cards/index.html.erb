@@ -15,16 +15,8 @@
         coffee_card.user
       end
 
-      g.column(name: t('.name')) do |coffee_card|
-        coffee_card.name
-      end
-
-      g.column(name: t('.mold')) do |coffee_card|
-        if coffee_card.is_moldy
-          t('.moldy_yes')
-        else
-          t('.moldy_no')
-        end
+      g.column(name: t('.available_coffees')) do |coffee_card|
+        coffee_card.available_coffees
       end
 
       g.column(name: t('.edit')) do |coffee_card|

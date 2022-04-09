@@ -5,7 +5,7 @@
                 input_html: { class: 'select2' },
                 include_blank: true, prompt: t('.user_prompt'),
                 label_method: :print_email %>
-    <%= coffee_card.input :available_coffees, :placeholder => 20 label: t('.namavailable_coffeese')%>
+    <%= coffee_card.input :available_coffees, :placeholder => 20, label: t('.available_coffees')%>
     <%= coffee_card.button :submit %> 
     <%= link_to(t('.all'), admin_coffee_cards_path, class: 'btn secondary') %>
 <% end %>
