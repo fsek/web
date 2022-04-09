@@ -14,6 +14,8 @@ class Ability
     can :show, Page, public: true, visible: true
     can :avatar, User
     can :read, BlogPost
+    can :index
+    can :purchase_coffees
 
     # can :read, Event
     can [:index, :export, :introduction], :calendar
