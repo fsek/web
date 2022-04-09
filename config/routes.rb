@@ -71,6 +71,12 @@ Fsek::Application.routes.draw do
       end
     end
 
+    resources :coffee_cards, path: :kaffekort, only: [:index, :show]
+
+    namespace :admin do
+      resources :coffee_cards, path: :kaffekort, except: :show
+    end
+
     resources :users, path: :anvandare, only: [:show]
 
     namespace :admin do
@@ -380,7 +386,9 @@ Fsek::Application.routes.draw do
       get :matrix, on: :collection
       resources :event_users, only: [:create, :destroy]
     end
-
+  
+    resources :coffee_cards, path: :kaffekort, only: [:index, :show]
+    
     resource :push_devices, only: [:create, :destroy]
 
     resources :notifications, only: :index do

@@ -1,0 +1,11 @@
+<%= simple_form_for([:admin, coffee_card]) do |coffee_card|%>
+    <%= coffee_card.input :user_id,
+                label: ('Användare'),
+                collection: User.by_firstname.confirmed,
+                input_html: { class: 'select2' },
+                include_blank: true, prompt: ('Välj användare'),
+                label_method: :print_email %>
+    <%= coffee_card.input :available_coffees, label: ('Antal kaffe kvar')%>
+    <%= coffee_card.button :submit %> 
+    <%= link_to(('Tillbaka'), admin_coffee_cards_path, class: 'btn secondary') %>
+<% end %>
