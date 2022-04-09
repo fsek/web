@@ -1,0 +1,51 @@
+<div class="col-md-12 col-sm-12">
+  <div class= "headline">
+    <h2><%= title(t('.new')) %></h2>
+  </div>
+  <%= link_to(t('.new_coffee_card'), new_admin_coffee_card_path, class: 'btn primary')%>
+</div>
+
+<div class="col-md-12 col-sm-12 reg-page">
+  <div class= "headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+  <div class="col-md-12">
+    <%= grid(@coffee_cards, hide_submit_button: true, hide_reset_button: true) do |g|
+      g.column(name: t('.coffee_card'), attribute: 'user_id') do |coffee_card|
+        coffee_card.user
+      end
+
+      g.column(name: t('.name')) do |coffee_card|
+        coffee_card.name
+      end
+
+      g.column(name: t('.mold')) do |coffee_card|
+        if coffee_card.is_moldy
+          t('.moldy_yes')
+        else
+          t('.moldy_no')
+        end
+      end
+
+      g.column(name: t('.edit')) do |coffee_card|
+        link_to(t('.edit_coffee_card'), edit_admin_coffee_card_path(coffee_card),
+                                     class: 'btn secondary')
+      end
+
+      g.column(name: t('.delete')) do |coffee_card|
+        link_to(t('.delete_coffee_card'), admin_coffee_card_path(coffee_card),
+                                     method: :delete,
+                                     data: {confirm: t('.confirm_delete')},
+                                     class: 'btn danger')
+      end
+    end %>
+
+    <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+      <%= t('wice_grid.filter') %>
+    </button>
+
+    <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+      <%= t('wice_grid.reset_filter') %>
+    </button>
+  </div>
+</div>

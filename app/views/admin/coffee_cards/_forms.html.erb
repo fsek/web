@@ -1,0 +1,11 @@
+<%= simple_form_for([:admin, coffee_card]) do |coffee_card|%>
+    <%= coffee_card.input :user_id,
+                label: t('.user'),
+                collection: User.by_firstname.confirmed,
+                input_html: { class: 'select2' },
+                include_blank: true, prompt: t('.user_prompt'),
+                label_method: :print_email %>
+    <%= coffee_card.input :available_coffees, :placeholder => 20 label: t('.namavailable_coffeese')%>
+    <%= coffee_card.button :submit %> 
+    <%= link_to(t('.all'), admin_coffee_cards_path, class: 'btn secondary') %>
+<% end %>

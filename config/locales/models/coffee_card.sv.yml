@@ -1,0 +1,10 @@
+sv:
+  activerecord:
+    models:
+      coffee_card:
+        one: Kaffekort
+        other: Kaffekort
+    attributes:
+      coffee_card:
+        user: Användare
+        available_coffees: Kaffe kvar

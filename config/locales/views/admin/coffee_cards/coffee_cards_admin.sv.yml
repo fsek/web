@@ -1,0 +1,27 @@
+sv:
+  admin:
+    fruits:
+      index:
+        title: Alla frukter
+        name: Namn
+        mold: Möglig?
+        user: Ägare
+        edit: Redigera
+        edit_fruit: Redigera frukt
+        delete: Radera
+        delete_fruit: Radera frukt
+        confirm_delete: Vill du verkligen radera frukten?
+        new: Skapa ny frukt
+        new_fruit: Ny frukt
+        moldy_yes: Ja
+        moldy_no: Nej
+      edit:
+        title: Redigera frukt
+      new:
+        title: Ny frukt
+      form:
+        name: Namn
+        mold: Möglig?
+        user: Ägare
+        user_prompt: Välj användare
+        all: Alla frukter
