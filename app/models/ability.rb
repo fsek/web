@@ -15,6 +15,8 @@ class Ability
     can :avatar, User
     can :read, BlogPost
     can :read, CoffeeCard
+    can :purchase_coffees, CoffeeCard
+    can :index, CoffeeCard
 
     # can :read, Event
     can [:index, :export, :introduction], :calendar

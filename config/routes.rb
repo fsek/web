@@ -51,6 +51,8 @@ Fsek::Application.routes.draw do
       resources :coffee_cards, path: :kaffe_kort
     end
 
+    
+
     resources :tools, path: :verktyg, only: [:show, :index]
 
     namespace :admin do
@@ -380,6 +382,10 @@ Fsek::Application.routes.draw do
     mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :confirmations]
 
     resources :versions, only: :index
+
+    resources :coffee_cards, path: :kaffe_kort, only: :index do
+      post :purchase_coffees, on: :collection
+    end
 
     resources :events, only: [:index, :show] do
       get :scroll, on: :collection
