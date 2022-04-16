@@ -1,0 +1,19 @@
+<p>
+  <%= @user.name %> ansöker om följande lån av verktyg:
+  <%= @tool.title%>
+  Just nu är <%= @tool.total - @tool.rented%> exemplar lediga.
+</p>
+<p>
+  Detta mejl är auto-genererat av webben.<br>
+</p>
+
+<hr>
+
+<p>Hello <%= @renter.firstname %>,</p>
+<p>
+  Please note that the return date for a tool that you have rented has passed. Either return the tool or ask for an extended renting period.
+</p>
+<p>
+  Best Regards,<br>
+  Your Head of Facilities
+</p>

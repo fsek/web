@@ -11,6 +11,11 @@
   </p>
   <p><b><%= t('.free') %>: </b><%= @tool.free %></p>
 
+<%= if @tool.free > 0
+        link_to(t('.request_rent'), tool_request_rent_path(@tool),
+                                   class: 'btn primary small pull-right')
+      end %>
+
   <div class="headline">
     <h3><%= t('.rented') %></h3>
   </div>
