@@ -6,6 +6,15 @@
 ---
 en:
   users:
+    confirm_donation:
+      conf: "Donation reported!"
+    unconfirm_donation: 
+      conf: "Donation report undone!"
+    bloodfeud:
+      title: "Nice title"
+      donationtext: "Epic page"
+      confirm: "Click here if you want to register your donation!"
+      unconfirm: "Click here if you want to take back your registration of donation!"
     account_form:
       check_email_to_confirm: "Please check if you recieved an email %{date} with a link to confirm you email adress."
       contact_for_membership: "Contact the Spider Men to be registered as a member"

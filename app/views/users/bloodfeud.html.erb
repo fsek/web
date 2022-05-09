@@ -1,8 +1,8 @@
-<h1>big snopp</h1>
-<p>Fill it with blood</p>
+<h1><%= t(".title") %></h1>
+<p><%= t('.donationtext') %></p>
 
 <%= if !current_user.donated
-        link_to("Jag har donerat blod!",  anvandare_bloodfeud_confirm_donation_path) 
+        link_to(t('.confirm'),  anvandare_bloodfeud_confirm_donation_path) 
     else
-        link_to("Jag har inte donerat blod, ångra!",  anvandare_bloodfeud_unconfirm_donation_path) 
+        link_to(t('.unconfirm'),  anvandare_bloodfeud_unconfirm_donation_path) 
     end %>
