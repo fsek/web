@@ -16,5 +16,29 @@ You are on the bloodfeud donations admin page. Click on the button to confirm a 
     end
 
 end %>
+<p>
+ALL users are listed below. If you want to confirm for someone who has not sent in a confirmation on the website but instead only showed you in person find them in the list below.
+</p>
+<%= grid(@user_grid) do |g|
+
+    g.column(name: 'ID', attribute: 'id', filter: false) do |user|
+        user.id
+    end
+    g.column(name: "Member name", attribute: 'firstname') do |user|
+        user.firstname
+    end
+    g.column(name: "Member last name", attribute: 'lastname') do |user|
+        user.lastname
+    end
+
+    g.column(name: "Confirm donation", attribute: 'donation_confirmed') do |user|
+      if !user.donation_confirmed
+        link_to("Has donated", confirm_donation_admin_user_path(user), class: 'btn secondary', method: :post)
+      else
+        link_to("Oops! revert", unconfirm_donation_admin_user_path(user), class: 'btn danger', method: :post)
+      end
+    end
+
+end %>
 
 

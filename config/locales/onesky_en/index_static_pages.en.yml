@@ -28,6 +28,11 @@ en:
         - Lund
         - engineer
       more_news: "More news"
+      feud: "Bloodfeud"
+      bloodlink: "Click on me to report a donation!"
+      bloodcounter: "Thus far this much has been donated: "
+      bloodcard: "The F-guild donates blood!"
+      bloodtext: "If you have donated blood, show some kind of proof to LiBU and then click the link below."
     ads:
       subscribe: Subscribe
       weektorn: Weektorn

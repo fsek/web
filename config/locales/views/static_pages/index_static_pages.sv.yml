@@ -30,6 +30,11 @@ sv:
         - Lund
         - civilingenjör
       more_news: Fler nyheter
+      feud: "Blodsfejden"
+      bloodlink: "Klicka på mig för att rapportera donation!"
+      bloodcounter: "Än så länge så här mycket blod donerats: "
+      bloodcard: "F-sektionen donerar blod!"
+      bloodtext: "Om du har donerat, visa någon form av bevis för LiBU och klicka sedan på länken nedan."
 
     ads:
       subscribe: Prenumerera
