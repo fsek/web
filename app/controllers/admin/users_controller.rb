@@ -6,7 +6,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def bloodfeud
-   @donated_grid = initialize_grid(User.where(donated: true))
+    @donated_grid = initialize_grid(User.where(donated: true))
+    @user_grid = initialize_grid(User.all)
   end
 
   def edit
@@ -23,6 +24,7 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+
   def member
     @success = UserService.make_member(@user)
     render
@@ -34,6 +36,7 @@ class Admin::UsersController < Admin::BaseController
 
   def confirm_donation
     user = User.find(params[:id])
+    user.update(donated: true)
     user.update(donation_confirmed: true)
     redirect_to admin_anvandare_bloodfeud_path, notice: "Donation has been confirmed for: " + user.firstname + " " + user.lastname
   end
