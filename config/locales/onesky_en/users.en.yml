@@ -11,8 +11,8 @@ en:
     unconfirm_donation: 
       conf: "Donation report undone!"
     bloodfeud:
-      title: "Nice title"
-      donationtext: "Epic page"
+      title: "The Blood Feud"
+      donationtext: "Here you can register your donation for The Blood Feud"
       confirm: "Click here if you want to register your donation!"
       unconfirm: "Click here if you want to take back your registration of donation!"
     account_form:
