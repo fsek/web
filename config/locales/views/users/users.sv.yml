@@ -5,8 +5,8 @@ sv:
     unconfirm_donation: 
       conf: "Donationsrapport indragen!"
     bloodfeud:
-      title: "Fin titel"
-      donationtext: "Epic sida"
+      title: "Blodsfejden"
+      donationtext: "Här kan du registrera din donation för Blodsfejden"
       confirm: "Klicka här om du vill registrera din donation!"
       unconfirm: "Klicka här om du vill ångra din donation!"
     account_form:
