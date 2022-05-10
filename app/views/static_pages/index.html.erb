@@ -14,10 +14,6 @@
 <% end %>
 
 
-<% cache([@start_page.events, I18n.locale]) do %>
-    <%= render '/events/stream', events: @start_page.events %>
-<% end %>
-
 <div class="col-md-7 col-sm-12 col-xs-12 left">
   <div class = "news start box">
   <div class= "headline bloodline">
