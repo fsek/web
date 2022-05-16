@@ -8,8 +8,10 @@ en:
   users:
     confirm_donation:
       conf: "Donation reported!"
+      unconfirm: "Click here if you want to take back your registration of donation!"
     unconfirm_donation: 
       conf: "Donation report undone!"
+      confirm: "Click here if you want to register your donation!"
     bloodfeud:
       title: "The Blood Feud"
       donationtext: "Here you can confirm your donation to The Blood Feud"
