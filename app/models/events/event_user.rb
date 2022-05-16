@@ -25,7 +25,6 @@ class EventUser < ApplicationRecord
             WHEN '#{signup.order.fourth}' THEN 'd'
             ELSE 'z'
            END ASC").order(:created_at)
-           # .order("RANDOM()") # Puts them in a random order, to have "normal" order, use .order(:created_at)
   end
 
   def to_s

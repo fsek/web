@@ -136,20 +136,6 @@ ActiveRecord::Schema.define(version: 20220810170700) do
     t.integer "images_count", default: 0, null: false
   end
 
-  create_table "anon_users", force: :cascade do |t|
-    t.string "reference", null: false
-    t.binary "public_key", null: false
-    t.binary "encrypted_private_key", null: false
-    t.binary "private_key_salt", null: false
-    t.binary "private_key_iv", null: false
-    t.binary "encrypted_conversation_key", null: false
-    t.bigint "conversation_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["conversation_id"], name: "index_anon_users_on_conversation_id"
-    t.index ["reference"], name: "index_anon_users_on_reference"
-  end
-
   create_table "blog_post_translations", id: :serial, force: :cascade do |t|
     t.integer "blog_post_id", null: false
     t.string "locale", limit: 255, null: false
@@ -282,11 +268,6 @@ ActiveRecord::Schema.define(version: 20220810170700) do
     t.string "phone"
     t.index ["post_id"], name: "index_contacts_on_post_id"
     t.index ["slug"], name: "index_contacts_on_slug"
-  end
-
-  create_table "conversations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "council_translations", force: :cascade do |t|
@@ -952,16 +933,6 @@ ActiveRecord::Schema.define(version: 20220810170700) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_keys", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "conversation_id", null: false
-    t.binary "encrypted_key", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["conversation_id"], name: "index_user_keys_on_conversation_id"
-    t.index ["user_id"], name: "index_user_keys_on_user_id"
-  end
-
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", limit: 255, default: "", null: false
     t.string "encrypted_password", limit: 255, default: "", null: false
@@ -1039,7 +1010,6 @@ ActiveRecord::Schema.define(version: 20220810170700) do
   add_foreign_key "adventure_mission_groups", "groups"
   add_foreign_key "adventure_missions", "adventures"
   add_foreign_key "adventures", "introductions"
-  add_foreign_key "anon_users", "conversations"
   add_foreign_key "blog_posts", "users"
   add_foreign_key "candidates", "elections"
   add_foreign_key "candidates", "posts"
@@ -1068,5 +1038,4 @@ ActiveRecord::Schema.define(version: 20220810170700) do
   add_foreign_key "push_devices", "users"
   add_foreign_key "rents", "users"
   add_foreign_key "songs", "song_categories"
-  add_foreign_key "user_keys", "conversations"
 end
