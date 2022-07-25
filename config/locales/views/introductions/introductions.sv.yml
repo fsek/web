@@ -33,15 +33,14 @@ sv:
       dance: Nolledans
       foset: Föset
       info: |
-        Välkommen till F-sektionen och årets nollning: En Nollning genom Tiderna. Här hittar du all information du behöver om nollningen för de som börjar programmen Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap. Som blivande student på något av dessa program i höst är du varmt välkommen till oss!
+        Välkommen till F-sektionen och årets nollning: En Nollning i Urskogen. Här hittar du all information du behöver om nollningen för de som börjar programmen Teknisk Fysik, Teknisk Matematik och Teknisk Nanovetenskap. Som blivande student på något av dessa program i höst är du varmt välkommen till oss!
 
-        Denna sida kommer att uppdateras med mer information när terminsstarten börjar närma sig, så bokmärk och kika in då och då så att du inte missar något. Men om du redan nu vill veta mer om vad en nollning är hittar du mer info %{more_info} och vill du veta hur nollningen anpassats för att förhindra smittspridning kan du läsa om det %{corona}.
-
+        Denna sida kommer att uppdateras med mer information när terminsstarten börjar närma sig, så bokmärk och kika in då och då så att du inte missar något. Men om du redan nu vill veta mer om vad en nollning är hittar du mer info %{more_info}.
+        
         <br>
         <li>Läs igenom %{checklist}</li>
         <li>En av faddrarna i det som kommer att vara din faddergrupp under nollningen kommer snart att ringa dig och försöka svara på alla frågor du kan tänkas ha inför skolstarten och nollningen. Om ingen hört av sig till dig innan 19/8, kontakta oss.</li>
-        <li>Föreningen FREJA anordnar en tjejträff för tjejer och ickebinära den 22/8 kl. 15:00 med samling utanför Kårhusets entré. Mer information på deras <a href="https://www.frejalth.se/evenemang/Tjejtr%C3%A4ff">hemsida</a></li>
-        <li>För en djupdykning i F-sektionen och nollning i synnerhet kan du läsa <a href="https://fsektionen.se/dokument/896">Nolleguiden</a>!</li>
+        <li>Föreningen FREJA anordnar en tjejträff för tjejer och ickebinära den 21/8 kl. 15:00 med samling utanför Kårhusets entré. Mer information på deras <a href="https://www.frejalth.se/evenemang/Tjejtr%C3%A4ff">hemsida</a></li>
         <br>
 
         Vi som arrangerar nollningen är %{foset} och om du undrar något så tveka inte att kontakta oss! Du når oss antingen via %{contact} eller %{anonymous_contact} om du vill vara anonym.
