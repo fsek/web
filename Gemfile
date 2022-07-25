@@ -13,7 +13,7 @@ gem 'cancancan'
 gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave_backgrounder', git: 'https://github.com/lardawge/carrierwave_backgrounder'
 gem 'cookies_eu'
-gem 'datetimepicker-rails', git: 'https://github.com/zpaulovics/datetimepicker-rails',
+gem 'datetimepicker-rails', git: 'git@github.com:zpaulovics/datetimepicker-rails.git',
                             branch: 'master',
                             submodules: true
 gem 'devise', '~> 4.7.1'
