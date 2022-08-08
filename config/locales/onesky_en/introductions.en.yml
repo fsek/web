@@ -31,13 +31,14 @@ en:
       contact_us: contact us
       foset: Föset  
       checklist: Checklist
-      info: "Welcome to the F-guild and the introduction of the year: An introduction through the Times. Here you can find all the information you need regarding the Introduction for new students in the programmes Engineering Physics, Engineering Mathematics and Engineering Nanoscience, which exchange students and Master Students also are more than welcome to participate in! 
+      info: "Welcome to the F-guild and the introduction of the year: An introduction in the Enchanted Forest. Here you can find all the information you need regarding the Introduction for new students in the programmes Engineering Physics, Engineering Mathematics and Engineering Nanoscience, which exchange students and Master Students also are more than welcome to participate in! 
 
-      This page will be updated with more information as the start of the semester closes in, so Bookmark this page and check in once in a while so you don’t miss anything. If you want to know a bit more generally what an Introduction is, you can find information %{more_info} and if you wonder how the Introduction has been adapted in order to prevent the spread of infection you can read about it %{corona}.
+      This page will be updated with more information as the start of the semester closes in, so Bookmark this page and check in once in a while so you don’t miss anything. If you want to know a bit more generally what an Introduction is, you can find information %{en_more_info}.
       
-      <li>Check out %{checklist}</li>
+      <br>      
+      <li>Check out %{en_checklist}</li>
 
-      We, the ones arranging the Introduction, are called %{foset} and don’t hesitate to contact us if you have any questions.You can reach us via %{contact} or %{anonymous_contact} if you want to be anonymous.
+      We, the ones arranging the Introduction, are called %{en_foset} and don’t hesitate to contact us if you have any questions. You can reach us via %{contact} or %{anonymous_contact} if you want to be anonymous.
       
       We are looking forward to welcoming you to the F-guild and LTH!
       
