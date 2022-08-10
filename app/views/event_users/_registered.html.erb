@@ -13,6 +13,18 @@
   <% end %>
 <% end %>
 
+<% if event.drink_package? %>
+  <span class="event block">
+    <%= icon('fas', 'gift') %>
+    <%= t('.drink_package')%>
+    <% if event_user.drink_package_answer? %>
+      <%= t('.yes') %>
+    <% else %>
+      <%= t('.no') %>
+    <% end %>
+  </span>
+<% end %>
+
 <% if event_user.user_type.present? %>
   <span class="event block">
     <%= icon('fas', 'wrench') %>
