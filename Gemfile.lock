@@ -1,4 +1,13 @@
 GIT
+  remote: git@github.com:zpaulovics/datetimepicker-rails.git
+  revision: 7a4640cb932e55866500a86c4f78808a4fca46e6
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.16)
+      momentjs-rails (>= 2.9.0)
+
+GIT
   remote: https://github.com/charliesome/better_errors
   revision: 946281d441523c9a009657a1c658f5134c17b482
   specs:
@@ -33,15 +42,6 @@ GIT
       coffee-rails (> 3.2)
       kaminari (~> 0.16)
       rails (~> 5.0, < 5.2)
-
-GIT
-  remote: https://github.com/zpaulovics/datetimepicker-rails
-  revision: 36d21cec5da7f5b214925804f60e63c61c747023
-  branch: master
-  submodules: true
-  specs:
-    datetimepicker-rails (4.7.16)
-      momentjs-rails (>= 2.9.0)
 
 GEM
   remote: https://rubygems.org/
@@ -423,7 +423,7 @@ GEM
       connection_pool (~> 2.2, >= 2.2.2)
       rack (~> 2.0)
       rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 5)
+      redis (>= 3.3.5, < 4.2)
     sidekiq-cron (1.1.0)
       fugit (~> 1.1)
       sidekiq (>= 4.2.1)

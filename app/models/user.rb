@@ -122,6 +122,10 @@ class User < ApplicationRecord
     GroupUser.mentors.merge(group_users).any?
   end
 
+  def self.blood_count    
+    User.where(donation_confirmed: true).count
+  end
+
   private
 
   def food_validation
@@ -152,6 +156,9 @@ class User < ApplicationRecord
   def will_save_change_to_email?
     super
   end
+
+ 
+
 
   ##
   # END DEVISE PATCHES

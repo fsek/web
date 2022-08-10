@@ -1,0 +1,8 @@
+<h1><%= t(".title") %></h1>
+<p><%= t('.donationtext') %></p>
+
+<%= if !current_user.donated
+        link_to(t('.confirm'),  anvandare_bloodfeud_confirm_donation_path) 
+    else
+        link_to(t('.unconfirm'),  anvandare_bloodfeud_unconfirm_donation_path) 
+    end %>

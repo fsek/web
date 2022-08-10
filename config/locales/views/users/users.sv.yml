@@ -1,5 +1,16 @@
 sv:
   users:
+    confirm_donation:
+      conf: "Donation inrapporterad!"
+      unconfirm: "Klicka här för att ångra din donationsrapport!"
+    unconfirm_donation: 
+      confirm: "Klicka här för skicka in din donationsrapport!"
+      conf: "Donationsrapport indragen!"
+    bloodfeud:
+      title: "Blodsfejden"
+      donationtext: "Här kan du registrera din donation för Blodsfejden"
+      confirm: "Klicka här om du vill registrera din donation!"
+      unconfirm: "Klicka här om du vill ångra din donation!"
     account_form:
       check_email_to_confirm: Vänlig kontrollera om du fått ett epost %{date} med en länk för att bekräfta din e-postadress.
       contact_for_membership: Kontakta Spindelmännen för att bli registrerad som medlem

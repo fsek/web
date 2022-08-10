@@ -13,6 +13,8 @@ class Ability
     cannot :ladybug, :cafe
     can :show, Page, public: true, visible: true
     can :avatar, User
+    can :confirm_donation, User
+    can :unconfirm_donation, User
     can :read, BlogPost
 
     # can :read, Event
@@ -32,7 +34,6 @@ class Ability
       can [:create, :update, :destroy], CafeWorker, user_id: user.id
       can [:create, :destroy], EventUser, user_id: user.id
       can :show, User
-
       can :index, Rent
       can [:index, :show], Tool
 
@@ -78,6 +79,7 @@ class Ability
       can :read, Document
 
       can [:create, :index, :new], Candidate
+      can :bloodfeud, User
       can [:destroy], Candidate, user_id: user.id
       can [:create], Nomination
       can :show, Page, visible: true

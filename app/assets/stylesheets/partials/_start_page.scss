@@ -62,4 +62,85 @@
     margin-left: 15px;
     margin-right: 15px;
   }
+
+  $color-background: #fff;
+  $color-outline: #D3D3D3;
+  $color-fill: #8B0000;
+
+  .bloodline {
+    h3 {
+      color: $color-fill;
+    }
+  }
+
+  .bloodbox {
+    position: absolute;
+    background: $color-fill;
+    border: 0.3rem solid $color-outline;
+    box-sizing: border-box;
+    height: 12rem;
+    width: 8rem;
+    outline: 0;
+    overflow: hidden;
+    top: 25px;
+    right: 30px;
+
+    &::before {
+      content: "";
+      font-family: Arial;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0%;
+      left: -60%;
+      height: 120%;
+      width: 230%;
+      box-sizing: border-box;
+      background-color: $color-background;
+      border-radius: 50%;
+      animation: spin 6s linear infinite;
+      animation-fill-mode: both;
+      animation-iteration-count: 1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0%;
+      left: -60%;
+      height: 120%;
+      width: 230%;
+      box-sizing: border-box;
+      background-color: $color-background;
+      border-radius: 50%;
+      animation: wobble 7s linear infinite;
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+      transform: translateY(-60%) rotate(360deg);
+    }
+  }
+
+  @keyframes wobble {
+    0% {
+      transform: translateY(-60%) rotate(0deg);
+    }
+
+    100% {
+      transform: translateY(-60%) rotate(360deg);
+    }
+  }
 }
