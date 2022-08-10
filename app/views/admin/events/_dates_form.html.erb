@@ -32,9 +32,10 @@
   <%= simple_format(t('.categories_after_save')) %>
 <% end %>
 
-<%= form.input :drink, as: :boolean, wrapper_html: {class: 'inline third'} %>
-<%= form.input :food, as: :boolean, wrapper_html: {class: 'inline third'} %>
-<%= form.input :cash, as: :boolean, wrapper_html: {class: 'inline third'} %>
+<%= form.input :drink, as: :boolean, wrapper_html: {class: 'inline fourth'} %>
+<%= form.input :drink_package, as: :boolean, wrapper_html: {class: 'inline fourth'} %>
+<%= form.input :food, as: :boolean, wrapper_html: {class: 'inline fourth'} %>
+<%= form.input :cash, as: :boolean, wrapper_html: {class: 'inline fourth'} %>
 <%= form.input :price, hint: t('.price_hint') %>
 
 <%= link_to('Ändra texter', '#texts', data: {toggle: :tab}, class: 'btn secondary') %>
