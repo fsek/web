@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201220144612) do
+ActiveRecord::Schema.define(version: 20220813124120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -389,6 +389,7 @@ ActiveRecord::Schema.define(version: 20201220144612) do
     t.datetime "sent_position"
     t.datetime "sent_closing"
     t.datetime "sent_open"
+    t.boolean "lottery", default: false
     t.index ["deleted_at"], name: "index_event_signups_on_deleted_at"
     t.index ["event_id"], name: "index_event_signups_on_event_id"
   end
@@ -972,6 +973,8 @@ ActiveRecord::Schema.define(version: 20201220144612) do
     t.boolean "notify_event_closing", default: false, null: false
     t.integer "terms_version", default: 0, null: false
     t.boolean "notify_event_open", default: false, null: false
+    t.boolean "donated", default: false
+    t.boolean "donation_confirmed", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
