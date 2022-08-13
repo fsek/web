@@ -40,7 +40,7 @@ class Api::EventSerializer < ActiveModel::Serializer
   end
 
   class Api::EventSignupSerializer < ActiveModel::Serializer
-    attributes(:id, :opens, :closes, :slots, :question)
+    attributes(:id, :opens, :closes, :slots, :question, :lottery)
     attribute(:closed) { object.closed? }
     attribute(:open) { object.open? }
   end

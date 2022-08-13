@@ -45,13 +45,21 @@ module EventHelper
 
   def persisted_event_user_status(event_signup, event_user)
     if event_signup.closed?
-      if event_user.reserve?
-        event_status_span('reserve lg', 'fas', 'exclamation-circle', t('.reserve'))
+      if event_signup.lottery?
+          event_status_span('attending lg', 'fas', 'exclamation-circle', t('.lottery-processing'))
       else
-        event_status_span('attending lg', 'fas', 'check-circle', t('.attending'))
+        if event_user.reserve?
+          event_status_span('reserve lg', 'fas', 'exclamation-circle', t('.reserve'))
+        else
+          event_status_span('attending lg', 'fas', 'check-circle', t('.attending'))
+        end
       end
     else
-      event_status_span('registered lg', 'fas', 'question-circle', t('.registered'))
+      if event_signup.lottery?
+        event_status_span('registered lg', 'fas', 'question-circle', t('.registered-lottery'))
+      else
+        event_status_span('registered lg', 'fas', 'question-circle', t('.registered'))
+      end
     end
   end
 
