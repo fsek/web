@@ -35,31 +35,39 @@
 
       <%= food_preferences_button(params, @event) %>
       <%= answers_button(params, @event) %>
-
       <div class="headline">
         <h3><%= t('.registered') %></h3>
       </div>
-      <% unless @attending.nil? %>
-        <%= render('/admin/event_users/attending_grid',
-                   grid: @attending,
-                   event: @event) %>
+      <% if !@event_signup.lottery %>
+        <% unless @attending.nil? %>
+          <%= render('/admin/event_users/attending_grid',
+                    grid: @attending,
+                    event: @event) %>
+        <% end %>
+
+        <%= link_to t('.export'), export_admin_event_signup_path(@event, format: :csv) %>
+        <hr>
+
+        <div class="headline">
+          <h3><%= 'Reserver' %></h3>
+        </div>
+
+        <% unless @reserves.nil? %>
+          <%= render('/admin/event_users/attending_grid',
+                    grid: @reserves,
+                    event: @event) %>
+        <% end %>
+        <%= link_to t('.export'), export_admin_event_signup_path(@event,
+                                                                format: :csv,
+                                                                list: 'reserves') %>
+      <% else %>
+        <% unless @attending.nil? %>
+          <%= render('/admin/event_users/attending_grid',
+                    grid: @attending,
+                    event: @event) %>
+          <%= link_to t('.export'), export_admin_event_signup_path(@event, format: :csv) %>
+        <% end %>
       <% end %>
-
-      <%= link_to t('.export'), export_admin_event_signup_path(@event, format: :csv) %>
-      <hr>
-
-      <div class="headline">
-        <h3><%= 'Reserver' %></h3>
-      </div>
-
-      <% unless @reserves.nil? %>
-        <%= render('/admin/event_users/attending_grid',
-                   grid: @reserves,
-                   event: @event) %>
-      <% end %>
-      <%= link_to t('.export'), export_admin_event_signup_path(@event,
-                                                               format: :csv,
-                                                               list: 'reserves') %>
     </div>
   </div>
 </div>

@@ -2,6 +2,7 @@
 en:
   model:
     notification_data:
+      lottery: "The spots to this event is being distributed, those hosting the event will tell you if you got a spot"
       remind_signup_soon_closing: "The registration to **%{event}** closes **%{time}** and there are still spots left"
       remind_signup_open: "The registration to **%{event}** is now open"
       attending: "You got a spot for **%{event}**!"
