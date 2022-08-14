@@ -12,6 +12,10 @@
   <% else %>
     <%= f.input :answer, as: :hidden %>
   <% end %>
+  <% if event.drink_package? %>
+    <%= t(".drink_package")%>
+    <%= f.input :drink_package_answer, label: t('.drink_package_answer'), as: :boolean %>
+  <% end %>
   <% if event.signup.order.any? && event_user_types(event.signup, current_user).any? %>
     <% user_types = event_user_types(event.signup, current_user) %>
 
