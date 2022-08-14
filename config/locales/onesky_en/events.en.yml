@@ -9,7 +9,6 @@ en:
     info:
       cash: "Cash only"
       drink: "Alcohol will be served"
-      drink_package: "Alcohol package"
       food: "Food will be served"
       registration: "Registration required"
       for_members: "Members only"

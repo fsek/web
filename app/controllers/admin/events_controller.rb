@@ -50,7 +50,7 @@ class Admin::EventsController < Admin::BaseController
                                   :short_sv, :short_en,
                                   :location_sv, :location_en, :starts_at, :ends_at,
                                   :all_day, :image, :remove_image,
-                                  :drink, :drink_package, :food, :cash, :price, :contact_id,
+                                  :drink, :food, :cash, :price, :contact_id,
                                   :council_id, :dot, dress_code: [],
                                   category_ids: [])
   end
