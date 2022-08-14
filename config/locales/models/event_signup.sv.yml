@@ -10,6 +10,7 @@ sv:
         custom_name: Namn special
         event: Event
         for_members: Endast för medlemmar
+        lottery: Använd manuell platslottning
         group_types: Tillåtna grupper
         closes: Anmälan stänger
         member: Medlem

@@ -43,10 +43,14 @@ class NotificationData
 
   def init_position
     @icon = 'hashtag'
-    if @notifyable.reserve?
-      @body = I18n.t('model.notification_data.reserve_position', event: @notifyable.event)
+    if @notifyable.event_signup.lottery
+      @body = I18n.t('model.notification_data.lottery', event: @notifyable.event)
     else
-      @body = I18n.t('model.notification_data.attending', event: @notifyable.event)
+      if @notifyable.reserve?
+        @body = I18n.t('model.notification_data.reserve_position', event: @notifyable.event)
+      else
+        @body = I18n.t('model.notification_data.attending', event: @notifyable.event)
+      end
     end
 
     if @notifyable.event_signup.notification_message.present?

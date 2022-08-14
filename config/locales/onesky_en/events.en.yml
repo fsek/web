@@ -17,14 +17,16 @@ en:
       attending: "You are registered!"
       edit: Edit
       cancel: Unregister
+      registered-lottery: You are signed up for the event!
+      lottery-processing: Your sign-up has been registered! The event hosts will let those who got a spot know!
       is_attending: "You are registered!"
       is_pending: "You are reserve, position: %{count}"
       not_attending: "You are not registered"
       registration: Registration
       reserve: "You are reserve, position: %{count}"
-      description_headline: "Viktigt om anmälan"
-      description: "Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är er plats garanterad först då **anmälan stängt** och ni fått **er plats bekräftad via ett e-postmeddelande**."
-      contact_if_problem: "Vid problem med anmälan, hör vänligen av er till:"
+      description_headline: "Important information"
+      description: "Certain groups sometimes have priority for certain events. Therefore your spot can only be guaranteed after this signup has closed and processed"
+      contact_if_problem: "In case of trouble with the sign-up contact:"
       submit_signup: Register
     stream:
       coming_events: "Calendar"
