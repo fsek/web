@@ -15,7 +15,7 @@ class EventUser < ApplicationRecord
 
   scope :attending, ->(event) { where(event: event).priority(event.signup).limit(event.signup.slots) }
   scope :reserves, ->(event) { where(event: event).priority(event.signup).offset(event.signup.slots) }
-  scope :attending_and_reserves, -> (event) {where(event: event)} 
+  scope :attending_and_reserves, ->(event) { where(event: event) }
   scope :for_grid, -> { includes([:user, group: :introduction]).sort_by { |x| x.group_id.to_i } }
 
   scope :priority, ->(signup) do
@@ -25,7 +25,7 @@ class EventUser < ApplicationRecord
             WHEN '#{signup.order.third}' THEN 'c'
             WHEN '#{signup.order.fourth}' THEN 'd'
             ELSE 'z'
-           END ASC").order(:created_at) 
+           END ASC").order(:created_at)
   end
 
   def to_s
