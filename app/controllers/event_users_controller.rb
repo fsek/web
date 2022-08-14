@@ -24,6 +24,6 @@ class EventUsersController < ApplicationController
   private
 
   def event_user_params
-    params.require(:event_user).permit(:answer, :user_type, :group_id, :group_custom)
+    params.require(:event_user).permit(:answer, :user_type, :group_id, :group_custom, :drink_package_answer)
   end
 end
