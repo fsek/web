@@ -29,7 +29,6 @@ en:
         description_sv: "Description - swedish"
         dot: Dots
         drink: Alcohol
-        drink_package: "Alcohol package"
         ends_at: "Ends at"
         event_signup: Anmälan
         food: Food

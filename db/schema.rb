@@ -417,7 +417,6 @@ ActiveRecord::Schema.define(version: 20220813124120) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "group_custom"
-    t.boolean "drink_package_answer"
     t.index ["deleted_at"], name: "index_event_users_on_deleted_at"
     t.index ["event_id"], name: "index_event_users_on_event_id"
     t.index ["group_id"], name: "index_event_users_on_group_id"
@@ -444,7 +443,6 @@ ActiveRecord::Schema.define(version: 20220813124120) do
     t.integer "price"
     t.string "dress_code", limit: 255
     t.integer "contact_id"
-    t.boolean "drink_package"
     t.index ["contact_id"], name: "index_events_on_contact_id"
   end
 
