@@ -1,7 +1,7 @@
 class Api::EventSerializer < ActiveModel::Serializer
   include EventHelper
 
-  attributes(:id, :title, :description, :location, :starts_at, :ends_at, :all_day, :dot, :drink,
+  attributes(:id, :title, :description, :location, :starts_at, :ends_at, :all_day, :dot, :drink, :drink_package,
              :food, :cash, :price, :dress_code, :can_signup, :event_user_count, :short, :user_types)
 
   belongs_to :contact
@@ -48,7 +48,7 @@ class Api::EventSerializer < ActiveModel::Serializer
   class Api::EventUserSerializer < ActiveModel::Serializer
     include EventHelper
 
-    attributes(:id, :group_id, :answer, :user_type, :group_custom)
+    attributes(:id, :group_id, :answer, :user_type, :group_custom, :drink_package_answer)
     attribute(:reserve) { object.reserve? }
 
     def user_type
