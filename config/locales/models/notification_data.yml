@@ -1,6 +1,7 @@
 sv:
   model:
     notification_data:
+      lottery: "Platser slumpas, evenemangsansvariga kommer meddela dig om du fått plats"
       attending: "Du har fått en plats till **%{event}**!"
       remind_soon_starting: "Du är anmäld till **%{event}** som startar **%{time}**."
       remind_signup_soon_closing: "Anmälan till **%{event}** stänger **%{time}** och det finns fortfarande platser kvar."

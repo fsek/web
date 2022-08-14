@@ -12,6 +12,8 @@ sv:
       edit: Redigera
       not_attending: Du är inte anmäld
       registered: Du är anmäld till evenemanget! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats.
+      registered-lottery: Du är anmäld till evenemanget!
+      lottery-processing: Din anmälan är mottagen! Evenemangsansvarig kommer meddela vilka som har fått plats!
       registration: Anmälan
       reserve: Du fick tyvärr ingen plats till evenemanget.
       description_headline: Viktigt om anmälan

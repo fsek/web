@@ -52,7 +52,7 @@ class Admin::EventSignupsController < Admin::BaseController
   private
 
   def event_signup_params
-    params.require(:event_signup).permit(:for_members, :closes, :slots, :question_sv, :question_en,
+    params.require(:event_signup).permit(:for_members, :lottery, :closes, :slots, :question_sv, :question_en,
                                          :notification_message_sv, :notification_message_en,
                                          :novice, :mentor, :member, :custom, :custom_name, :opens,
                                          group_types: [])
@@ -69,7 +69,12 @@ class Admin::EventSignupsController < Admin::BaseController
   end
 
   def set_attending
-    @attending = EventUser.attending(@event).for_grid
+    if @event_signup.lottery
+      @attending = EventUser.attending_and_reserves(@event).for_grid
+    else
+      @attending = EventUser.attending(@event).for_grid
+    end
+
   end
 
   def set_reserves
