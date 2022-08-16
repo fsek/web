@@ -12,6 +12,10 @@
       <li><%= icon('fas', 'flask')%> <%= t('.drink') %></li>
     <% end %>
 
+    <% if event.drink_package? %>
+      <li><%= icon('fas', 'gift')%> <%= t('.drink_package') %></li>
+    <% end %>
+
     <% if event.signup %>
       <li><%= icon('fas', 'edit') %> <%= t('.registration') %></li>
 
