@@ -15,6 +15,10 @@ class Api::UsersController < Api::BaseController
     current_user.update!(terms_version: Versions.get(:terms))
   end
 
+  def is_token_valid
+    render json: {}, status: :ok
+  end
+
   private
 
   def user_params

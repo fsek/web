@@ -80,6 +80,7 @@ class Ability
 
       can [:create, :index, :new], Candidate
       can :bloodfeud, User
+      can :is_token_valid, User
       can [:destroy], Candidate, user_id: user.id
       can [:create], Nomination
       can :show, Page, visible: true

@@ -418,7 +418,9 @@ Fsek::Application.routes.draw do
     resources :songs, only: [:index, :show] do
       get :chants, on: :collection
     end
-
+    
+    get :is_token_valid, to: "users#is_token_valid" 
+    
     resources :users, only: :update do
       patch :accept_terms
     end
