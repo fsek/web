@@ -6,7 +6,7 @@
                                  input_html: {preview: true, rows: 10} %>
     <%= f.input :description_en, as: :pagedown,
                                  input_html: {preview: true, rows: 10} %>
-    <%= f.input :location, collection: Album.locations, input_html: {class: 'select2'} %>
+    <%= f.input :location %>
     <%= f.input :start_date, as: :datetime_picker %>
     <%= f.input :end_date, as: :datetime_picker %>
   </div>
