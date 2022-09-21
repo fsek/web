@@ -1,0 +1,25 @@
+en:
+  blog_posts:
+    preview:
+      read: Read the post
+
+    show:
+      all_blog_posts: All blog posts
+      more_posts: More blog posts
+
+    index:
+      administrate_blog_posts: Administrate
+      description: On our blog we publish posts from different (Vilma Ylvén) guild members. The posts are about everything regarding the guild and sometimes other stuff. 
+      do_you_wanna_share: Do you want to share your feelings and impressions from the last sittning? Do you have a bunch of tips about how you crush your next exam and want to share? Maybe you just need to vent?
+      here_you_can_find: Here you can find posts about everything that is guild related. Rapports from the council, past activities and small talk about everything that is orange.
+      introduction: Do you want to share your feelings and impressions from the last sittning? Do you have a bunch of tips about how you crush your next exam and want to share? Maybe you just need to vent? Send an email to %{contact} and your post will apear here sooner or later (don't be shy).
+      keywords:
+        - blog
+        - student life
+        - studying
+        - teknisk fysik
+        - teknisk matematik
+        - teknisk nanovetenskap
+      please_contact: Send an email to %{contact} and your post will apear here sooner or later (don't be shy).
+      title: Blog
+      welcome: Welcome to the F-Guild blog!
