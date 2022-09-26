@@ -5,6 +5,7 @@ sv:
       create_motion: Skapa motion!
       description: Motioner skrivs till terminsmöte för att kunna påverka sektionens verksamhet. Här finns en mall för att skapa motioner.
       do_not_forget_to_copy: Glöm inte att kopiera din text då och då så att den inte försvinner om du skulle råka ladda om sidan.
+      do_not_forget_to_send: Observera att du fortfarande måste skicka in din motion till sekreteraren (på sekreterare@fsektionen.se).
       i_am_proposal_machine: Jag är en motionsmaskin. Här kan du enkelt fylla i dina åsikter så gör jag en fin motion åt dig.
       keywords:
         - motion
