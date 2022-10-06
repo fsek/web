@@ -2,3 +2,5 @@ sv:
   cafe_workers:
     form:
       destroy: Hoppa av passet
+      cant_unsign: Du kan tyvärr inte avregistera dig från det här passet då det är för nära starttiden av det (kl. 12 dagen innan).
+      contact_head_of_cafe: Om du verkligen behöver avanmäla dig, skriv då till Cafémästaren på cafe@fsektionen.se

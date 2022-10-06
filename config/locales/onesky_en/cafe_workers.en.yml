@@ -8,3 +8,5 @@ en:
   cafe_workers:
     form:
       destroy: "Resign from shift"
+      cant_unsign: "You sadly can't resign from this shift as it is too close to the starting time of this shift (12 am the day before)"
+      contact_head_of_cafe: "If you really need to resign from this shift, write to the Head of the Cafe at cafe@fsektionen.se"
