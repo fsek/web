@@ -15,4 +15,5 @@ end
 
 Sidekiq.configure_client do |config|
   config.redis = redis
+  Sidekiq.logger.level = Logger::WARN;
 end
