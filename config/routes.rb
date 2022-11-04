@@ -252,7 +252,7 @@ Fsek::Application.routes.draw do
       resources :news, path: :nyheter
     end
 
-    resources :news, path: :nyheter, only: :index
+    resources :news, path: :nyheter, only: [:index, :show]
 
     resources :documents, path: :dokument, only: [:index, :show]
 
