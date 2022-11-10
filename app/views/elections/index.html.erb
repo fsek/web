@@ -5,8 +5,8 @@
   <h1 id="election-title"><%= title(@election_view.election.to_s) %></h1>
 </div>
 
-<% if Time.now < DateTime.parse("2022-11-19") %>
   <div class="col-md-3 col-sm-12 election">
+<% if Time.now < DateTime.parse("2022-11-19") %>
     <div class="countdown row">
       <h3>Tid tills mellanliggande val stänger</h3>
       <div class="timer" data-format="%D dagar %H:%M:%S"
