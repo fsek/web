@@ -6,6 +6,13 @@
 </div>
 
 <div class="col-md-3 col-sm-12 election">
+  <div class="countdown row">
+    <p>Tid tills mellanliggande val stänger</p>
+    <div class="timer" data-format="%D dagar %H:%M:%S"
+                        data-time="<%=l(DateTime.parse("2022-11-19"),
+                                  format: '%Y/%m/%d %H:%M:%S %z')%>">
+    </div>
+  </div>
   <%= render 'countdown', election_view: @election_view %>
 
   <hr>
