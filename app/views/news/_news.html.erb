@@ -1,7 +1,7 @@
 <% pinned |= false %>
 <div class="news start box">
   <div class="headline">
-    <h3><%= news.title %></h3>
+    <h3><%= link_to(news, news_path(news)) %></h3>
 
     <% if pinned %>
       <div class="pinned pull-right">
