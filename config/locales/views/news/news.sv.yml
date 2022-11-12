@@ -2,9 +2,12 @@ sv:
   news:
     index:
       title: Alla nyheter
+      
 
     news:
       read_more: Läs mer
+      show_news: Visa nyhet
 
     show:
       all_news: Alla nyheter
+      

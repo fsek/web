@@ -73,6 +73,11 @@
     }
   }
 
+  .news-start {
+    max-height: 300px;
+    overflow: hidden;
+  }
+
   .bloodbox {
     position: absolute;
     background: $color-fill;

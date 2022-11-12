@@ -1,7 +1,7 @@
 <% pinned |= false %>
 <div class="news start box">
   <div class="headline">
-    <h3><%= link_to(news, news_path(news)) %></h3>
+    <h3><%= link_to news, news_path(news), target: :_blank %></h3>
 
     <% if pinned %>
       <div class="pinned pull-right">
@@ -17,9 +17,13 @@
     </span>
   </div>
 
-  <div class="margin-bottom-20">
+  <div class="margin-bottom-20 news-start">
     <%= markdown(news.content) %>
   </div>
+  <div class="read-more pull-right">
+   <%= link_to t('.show_news'), news_path(news), target: :_blank %>
+  </div>
+  
 
   <% if news.image? %>
     <div class="image margin-bottom-20">

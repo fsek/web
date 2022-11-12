@@ -9,6 +9,7 @@ en:
     index:
       title: "All news"
     news:
+      show_news: "Show newspost"
       read_more: "Read more"
     show:
       all_news: "All news"
