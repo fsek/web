@@ -439,7 +439,7 @@ Fsek::Application.routes.draw do
       patch :toggle
     end
 
-    resources :moose_game_scores, only: [:index, :create] do 
+    resources :game_scores, only: [:index, :create] do 
       get :index
       post :create
     end

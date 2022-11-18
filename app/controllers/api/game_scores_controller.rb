@@ -1,15 +1,15 @@
-class Api::MooseGameScoresController < Api::BaseController
+class Api::GameScoresController < Api::BaseController
   load_permissions_and_authorize_resource
   
   def index
-    scores = MooseGameScore.order(score: :desc).all
-    render json: scores, each_serializer: Api::MooseGameScoreSerializer::Index
+    scores = GameScore.order(score: :desc).all
+    render json: scores, each_serializer: Api::GameScoreSerializer::Index
   end
 
   def create
-    score_entry = MooseGameScore.where(user: current_user).first
+    score_entry = GameScore.where(user: current_user).first
     
-    if current_user.moose_game_nickname.nil?
+    if current_user.game_nickname.nil?
       render json: { success: false, message: "Cannot create/update score for user without a game nickname"}, status: 400
       return
     end
@@ -25,7 +25,7 @@ class Api::MooseGameScoresController < Api::BaseController
       end
     else
       #If no user has no score, create it
-      if MooseGameScore.create(user: current_user, score: params[:score]).save
+      if GameScore.create(user: current_user, score: params[:score]).save
         render json: {
           success: true, message: "Created new score entry"
         }, status: :ok
