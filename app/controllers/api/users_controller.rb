@@ -26,6 +26,6 @@ class Api::UsersController < Api::BaseController
                                  :avatar, :student_id, :phone, :display_phone,
                                  :remove_avatar, :food_custom, :notify_messages,
                                  :notify_event_users, :notify_event_closing,
-                                 :notify_event_open, :moose_game_nickname, food_preferences: [])
+                                 :notify_event_open, :game_nickname, food_preferences: [])
   end
 end
