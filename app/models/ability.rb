@@ -36,7 +36,7 @@ class Ability
       can :show, User
       can :index, Rent
       can [:index, :show], Tool
-
+      can [:index, :create], GameScore
       can :read, Event
 
       can [:read, :mail], Contact

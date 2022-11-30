@@ -16,7 +16,7 @@ class Api::GameScoresController < Api::BaseController
     
     if score_entry
       # If already exists, edit
-      score_entry.score = params[:score]
+      score_entry.score = create_params[:score]
       
       if score_entry.save
         render json: { success: true, message: "Updated existing score entry" }
@@ -25,7 +25,7 @@ class Api::GameScoresController < Api::BaseController
       end
     else
       #If no user has no score, create it
-      if GameScore.create(user: current_user, score: params[:score]).save
+      if GameScore.create(user: current_user, score: create_params[:score]).save
         render json: {
           success: true, message: "Created new score entry"
         }, status: :ok
@@ -33,6 +33,9 @@ class Api::GameScoresController < Api::BaseController
         render json: { errors: 'Failed to create highscore' }, status: 422
       end
     end
-    
+  end
+
+  def create_params
+    params.permit(:score)
   end
 end
