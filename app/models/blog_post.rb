@@ -8,13 +8,15 @@ class BlogPost < ApplicationRecord
 
   paginates_per(5)
 
-  belongs_to(:user, required: true)
-  validates(:title, :content, presence: true)
-  validates(:preamble_sv, :preamble_en, length: { maximum: 160 })
+  belongs_to :user, required: true
+  #validates(:title, :content, presence: true)
+  #validates(:preamble_sv, :preamble_en, length: { maximum: 160 })
 
   scope :by_created, -> { order(created_at: :desc) }
   scope :include_for_index, -> { includes(:translations, :categories, :user) }
   scope :other, -> (blog_post) { where.not(id: blog_post.id).limit(3) }
+  validates :title, :content, presence: true
+  validates :title_en, :content_en, presence: true
 
   def cover_image_thumb
     if cover_image.present?

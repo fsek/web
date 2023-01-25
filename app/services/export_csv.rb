@@ -11,10 +11,8 @@ class ExportCSV
                 User.human_attribute_name(:food_preference),
                 EventUser.human_attribute_name(:answer),
                 User.human_attribute_name(:email)]
-        if signup.event.drink_package?
-          column_names << EventUser.human_attribute_name(:drink_package_answer)
-        end
-        csv << column_names    
+        column_names << EventUser.human_attribute_name(:drink_package_answer) if signup.event.drink_package?
+        csv << column_names
 
         attendees.each do |a|
           row = [a.user,
@@ -23,10 +21,8 @@ class ExportCSV
                   food_preferences_str(a.user),
                   a.answer,
                   a.user.email]
-          if signup.event.drink_package?
-            row << a.drink_package_answer
-          end
-          csv << row  
+          row << a.drink_package_answer if signup.event.drink_package?
+          csv << row
         end
       end
     end

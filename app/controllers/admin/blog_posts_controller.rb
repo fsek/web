@@ -17,7 +17,7 @@ class Admin::BlogPostsController < Admin::BaseController
     if @blog_post.save
       redirect_to(edit_admin_blog_post_path(@blog_post), notice: alert_create(BlogPost))
     else
-      render :new, status: 422
+      redirect_to new_admin_blog_post_path, notice: alert_danger(@blog_post.errors.full_messages)
     end
   end
 
