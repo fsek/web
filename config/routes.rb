@@ -73,7 +73,7 @@ Fsek::Application.routes.draw do
     get "anvandare/bloodfeud/confirm_donation", to: "users#confirm_donation"
     get "anvandare/bloodfeud/unconfirm_donation", to: "users#unconfirm_donation"
 
-    
+
     resource :user, path: :anvandare, as: :own_user, only: [:update] do
       get '', action: :edit, as: :edit
       patch :password, path: :losenord, action: :update_password
@@ -381,6 +381,18 @@ Fsek::Application.routes.draw do
         get :search
       end
     end
+  end
+
+  namespace :admin do
+    resources :document_collections, path: :dokumentsamlingar, only: [:index, :show, :new, :delete, :create, :destroy]
+  end
+
+  namespace :admin do
+    resources :election_documents, path: :valdokument, only: [:create, :destroy, :show, :new, :edit, :update]
+  end
+
+
+  namespace :admin do
   end
 
   # API routes
