@@ -1,0 +1,43 @@
+<div class="col-md-12 col-sm-12 fruit-padding">
+  <div class= "headline">
+    <h2><%= title('Skapa nytt dokument') %></h2>
+  </div>
+  <%= link_to('Nytt dokument', new_admin_election_document_path(:parent_document_collection_id => @document_collection_id), class: 'btn primary')%>
+</div>
+
+<div class="col-md-12 col-sm-12 reg-page">
+  <div class= "headline">
+    <h1><%= title('Dokument') %></h1>
+  </div>
+  <div class="col-md-12">
+    <%= grid(@documents, hide_submit_button: true, hide_reset_button: true) do |g|
+      g.column(name: 'Dokumentnamn') do |document|
+        document.document_name
+      end
+
+      g.column(name: 'URL') do |document|
+        document.url
+      end
+
+      g.column(name: 'Typ') do |document|
+        document.document_type
+      end
+
+      g.column(name: 'Ta bort') do |document|
+        link_to('Förinta', admin_election_document_path(document),
+                                     method: :delete,
+                                     data: {confirm: 'Är du säker på att du vill ta bort dokumentet?'},
+                                     class: 'btn danger')
+      end
+    end %>
+
+    <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+      <%= t('wice_grid.filter') %>
+    </button>
+
+    <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+      <%= t('wice_grid.reset_filter') %>
+    </button>
+    <%= link_to("Alla dokumentsamlingar", admin_document_collections_path, class: 'btn secondary') %>
+  </div>
+</div>

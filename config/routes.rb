@@ -73,7 +73,7 @@ Fsek::Application.routes.draw do
     get "anvandare/bloodfeud/confirm_donation", to: "users#confirm_donation"
     get "anvandare/bloodfeud/unconfirm_donation", to: "users#unconfirm_donation"
 
-    
+
     resource :user, path: :anvandare, as: :own_user, only: [:update] do
       get '', action: :edit, as: :edit
       patch :password, path: :losenord, action: :update_password
@@ -383,6 +383,18 @@ Fsek::Application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :document_collections, path: :dokumentsamlingar, only: [:index, :show, :new, :delete, :create, :destroy]
+  end
+
+  namespace :admin do
+    resources :election_documents, path: :valdokument, only: [:create, :destroy, :new]
+  end
+
+
+  namespace :admin do
+  end
+
   # API routes
   namespace :api, constraints: { format: 'json' } do
     mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :confirmations]
@@ -454,6 +466,8 @@ Fsek::Application.routes.draw do
     resources :adventure_mission_groups, only: :index
     resources :cafe, only: [:index, :show, :create, :destroy]
     resources :councils, only: :index
+
+    resources :document_collections, only: [:index, :show]
   end
 
   get 'proposals/form' => 'proposals#form'

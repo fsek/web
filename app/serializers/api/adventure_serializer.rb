@@ -3,7 +3,7 @@ class Api::AdventureSerializer < ActiveModel::Serializer
     has_many :adventure_missions,
              serializer: Api::AdventureMissionSerializer::Index,
              scope: {
-              'current_user': :current_user
+              'document_collection_id': @document_collection_id
             }
 
     attributes :title, :week_number, :video, :missions_accepted, :adventure_missions

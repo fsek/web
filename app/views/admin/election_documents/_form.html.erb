@@ -1,0 +1,6 @@
+<%= simple_form_for([:admin, election_document]) do |election_document|%>
+    <%= election_document.input :document_name, label: "Namn"%>
+    <%= election_document.input :url, label: "Url"%>
+    <%= election_document.input :document_type, label: "Typ"%>
+    <%= election_document.button :submit %>
+<% end %>
