@@ -1,0 +1,5 @@
+<%= simple_form_for([:admin, document_collection]) do |document_collection|%>
+    <%= document_collection.input :collection_name, label: "Namn"%>
+    <%= document_collection.button :submit %>
+    <%= link_to("Alla", admin_document_collections_path, class: 'btn secondary') %>
+<% end %>
