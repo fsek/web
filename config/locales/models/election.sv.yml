@@ -10,7 +10,7 @@ sv:
         candidate_mail: Text till kandideringsmail
         candidate_mail_star: Text till kandideringsmail för stjärnpost
         close_all: Stänger - allt
-        current_election: Aktuellt val
+        current_election: Synligt val
         description_sv: Beskrivning - svensk
         description_en: Beskrivning - engelsk
         extra_posts: Poster vid ej ordinarie möte

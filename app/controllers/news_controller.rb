@@ -8,6 +8,10 @@ class NewsController < ApplicationController
     end
   end
 
+  def show
+    @news = News.find(params[:id]) 
+  end
+
   private
 
   def category(news)
