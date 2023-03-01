@@ -34,6 +34,29 @@
     <% end %>
   <% end %>
 </div>
+
+<div class="col-md-5 col-sm-12 col-xs-12 right">
+  <div class = "event stream box">
+  <div class= "headline bloodline">
+    <h3><%= t('.feud') %></h3>
+  </div>
+  <div class="info">
+    <span class="link"><a target="blank"><i class="fas fa-user"></i> Axel Helgstrand </a></span>
+    <span class="date">
+      18:23, 9 apr 2022
+    </span>
+  </div>
+    
+    <p><%= t('.bloodcard') %></p>
+    <br>
+    <p><%= t('.bloodtext')%></p>
+    <p> <%= t('.bloodcounter') %> <%=  @blood *0.45  %> L</p>
+    <span class="link"><a target="blank" href="/anvandare/bloodfeud"> <%= t('.bloodlink') %> </a>
+    <div class="bloodbox pull-right"></div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
 <div class="col-md-5 col-sm-12 col-xs-12 start-page right">
   <% cache([@start_page.events, I18n.locale]) do %>
     <%= render '/events/stream', events: @start_page.events %>
