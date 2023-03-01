@@ -2,9 +2,7 @@ sv:
   users:
     confirm_donation:
       conf: "Donation inrapporterad!"
-      unconfirm: "Klicka här för att ångra din donationsrapport!"
     unconfirm_donation: 
-      confirm: "Klicka här för skicka in din donationsrapport!"
       conf: "Donationsrapport indragen!"
     bloodfeud:
       title: "Blodsfejden"
