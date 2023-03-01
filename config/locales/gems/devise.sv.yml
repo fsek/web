@@ -19,8 +19,6 @@ sv:
     sign_in_with: Logga in med
     not_receive_unlock: Fick inget upplåsningsmail?
     not_receive_confirm: Fick inget bekräftelsemail?
-    accept_conditions_html: "Genom att klicka på knappen \"Skapa Användare\" godkänner och erkänner du att du är medveten om F-sektionens %{href}."
-    accept_conditions_href: "Riktlinjer för hantering av personuppgifter"
 
     change_password: Byt lösenord
     new_password: Nytt lösenord

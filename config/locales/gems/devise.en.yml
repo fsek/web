@@ -10,8 +10,6 @@ en:
     sign_in_with: Sign in with
     not_receive_unlock: Did not receive email about unlocking?
     not_receive_confirm: Did not receive confirmation email?
-    accept_conditions_html: "By pressing the button \"Create User\" you accept and acknowledge that you are aware of the F-guild's %{href}."
-    accept_conditions_href: "Guidelines for handling personal data"
 
     confirmations:
       confirmed: "Your account was successfully confirmed."

@@ -9,7 +9,6 @@
     <%= f.input :email, required: true %>
     <%= f.input :password, required: true %>
     <%= f.input :password_confirmation, required: true %>
-    <%# <%= f.input :accept_conditions, required: true %>
 
     <div class="form-group <%= "has-error" if resource.errors[:recaptcha] %>">
         <%= recaptcha_tags %>
@@ -19,8 +18,6 @@
           </span>
         <% end %>
     </div>
-
-    <p><%= t('devise.accept_conditions_html', href: link_to(t('devise.accept_conditions_href'), 'https://fsektionen.se/dokument/508')) %></p>
 
     <%= f.button :submit, id: 'user-submit' %>
     <hr>
