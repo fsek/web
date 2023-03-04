@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230227190000) do
+ActiveRecord::Schema.define(version: 20230304101600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -322,6 +322,7 @@ ActiveRecord::Schema.define(version: 20230227190000) do
     t.string "document_name", null: false
     t.string "document_type", null: false
     t.integer "document_collection_id"
+    t.integer "reference"
     t.index ["document_collection_id"], name: "index_election_documents_on_document_collection_id"
   end
 
