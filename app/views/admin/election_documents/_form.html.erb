@@ -1,7 +1,7 @@
 <%= simple_form_for([:admin, election_document]) do |election_document|%>
     <%= election_document.input :document_name, label: "Namn"%>
     <%= election_document.input :url, label: "Url"%>
-    <%= election_document.input :document_type, collection: [["motion", "motion"], ["motionssvar", "motionssvar"]],
+    <%= election_document.input :document_type, collection: [["motion", "motion"], ["motionssvar", "motionssvar"], ["proposition", "proposition"], ["övrig", "övrig"]],
         include_blank: false,
         input_html: {class: 'select2'},
         label: "Typ" %>
