@@ -23,6 +23,13 @@
         document.document_type
       end
 
+      g.column(name: 'Associerad med') do |document|
+        if document.reference
+          ElectionDocument.find(document.reference).document_name
+        end
+      end
+
+
       g.column(name: 'Ta bort') do |document|
         link_to('Förinta', admin_election_document_path(document),
                                      method: :delete,

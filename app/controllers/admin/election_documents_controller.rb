@@ -20,12 +20,16 @@ class Admin::ElectionDocumentsController < Admin::BaseController
     end
 
     def new
+        @other_documents = []
+        ElectionDocument.where(document_collection_id: $parent_document_collection_id).each do |doc|
+           @other_documents.append([doc.document_name, doc.id]) 
+        end
         params = new_params
         $parent_document_collection_id = params[:parent_document_collection_id]
     end
 
     def election_document_params
-        params.require(:election_document).permit(:document_name, :url, :document_type, :document_collection_id, :parent_document_collection_id)
+        params.require(:election_document).permit(:document_name, :url, :document_type, :document_collection_id, :parent_document_collection_id, :reference)
     end
 
     def new_params
