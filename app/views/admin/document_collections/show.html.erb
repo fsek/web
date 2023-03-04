@@ -25,13 +25,15 @@
 
       g.column(name: 'Associerad med') do |document|
         if document.reference
-          ElectionDocument.find(document.reference).document_name
+          if ElectionDocument.exists?(document.reference)
+            ElectionDocument.find(document.reference).document_name
+          end
         end
       end
 
 
       g.column(name: 'Ta bort') do |document|
-        link_to('Förinta', admin_election_document_path(document),
+        link_to('Förinta', admin_election_document_path(document, :parent_document_collection_id => @document_collection_id),
                                      method: :delete,
                                      data: {confirm: 'Är du säker på att du vill ta bort dokumentet?'},
                                      class: 'btn danger')

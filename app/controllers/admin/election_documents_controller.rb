@@ -14,6 +14,7 @@ class Admin::ElectionDocumentsController < Admin::BaseController
     end
 
     def destroy
+        $parent_document_collection_id = params[:parent_document_collection_id]
         parent_collection = DocumentCollection.find($parent_document_collection_id)
         @election_document.destroy!
         redirect_to(admin_document_collection_path(parent_collection), notice: alert_destroy(ElectionDocument))
