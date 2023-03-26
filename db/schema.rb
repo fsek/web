@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220813124120) do
+ActiveRecord::Schema.define(version: 20230304101600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -290,6 +290,10 @@ ActiveRecord::Schema.define(version: 20220813124120) do
     t.index ["url"], name: "index_councils_on_url"
   end
 
+  create_table "document_collections", id: :serial, force: :cascade do |t|
+    t.string "collection_name", null: false
+  end
+
   create_table "documents", id: :serial, force: :cascade do |t|
     t.string "pdf_file_name", limit: 255
     t.string "pdf_content_type", limit: 255
@@ -311,6 +315,15 @@ ActiveRecord::Schema.define(version: 20220813124120) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "election_documents", id: :serial, force: :cascade do |t|
+    t.string "url", null: false
+    t.string "document_name", null: false
+    t.string "document_type", null: false
+    t.integer "document_collection_id"
+    t.integer "reference"
+    t.index ["document_collection_id"], name: "index_election_documents_on_document_collection_id"
   end
 
   create_table "election_posts", id: :serial, force: :cascade do |t|
