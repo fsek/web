@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230304101600) do
+ActiveRecord::Schema.define(version: 20230407193000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -654,6 +654,8 @@ ActiveRecord::Schema.define(version: 20230304101600) do
     t.bigint "sent_at", null: false
     t.string "image"
     t.json "image_details"
+    t.boolean "scheduled", default: false
+    t.datetime "scheduled_time"
     t.index ["deleted_at"], name: "index_messages_on_deleted_at"
     t.index ["introduction_id"], name: "index_messages_on_introduction_id"
     t.index ["user_id"], name: "index_messages_on_user_id"

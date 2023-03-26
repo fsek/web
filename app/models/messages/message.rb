@@ -12,6 +12,8 @@ class Message < ApplicationRecord
 
   validates :groups, length: { minimum: 1, message: I18n.t('model.message.need_groups') }
   validates :content, presence: true, if: -> { image.blank? }
+  # validates :scheduled, presence: true
+  validates :scheduled_time, presence: true, if: -> {scheduled}
   validate :in_group, unless: :by_admin
 
   scope :by_admin, -> { where(by_admin: true) }
