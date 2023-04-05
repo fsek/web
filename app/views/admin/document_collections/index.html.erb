@@ -1,0 +1,34 @@
+<div class="col-md-12 col-sm-12 fruit-padding">
+  <div class= "headline">
+    <h2><%= title('Skapa ny dokumentsamling') %></h2>
+  </div>
+  <%= link_to('Ny dokumentsamling', new_admin_document_collection_path, class: 'btn primary')%>
+</div>
+
+<div class="col-md-12 col-sm-12 reg-page">
+  <div class= "headline">
+    <h1><%= title('Dokumentsamlingen') %></h1>
+  </div>
+  <div class="col-md-12">
+    <%= grid(@document_collections, hide_submit_button: true, hide_reset_button: true) do |g|
+      g.column(name: 'Namn') do |document_collection|
+        link_to(document_collection.collection_name, admin_document_collection_path(document_collection))
+      end
+
+      g.column(name: 'Ta bort') do |document_collection|
+        link_to("Förinta", admin_document_collection_path(document_collection),
+                                     method: :delete,
+                                     data: {confirm: 'Vill du verkligen radera dokumentsamlingen'},
+                                     class: 'btn danger')
+      end
+    end %>
+
+    <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+      <%= t('wice_grid.filter') %>
+    </button>
+
+    <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+      <%= t('wice_grid.reset_filter') %>
+    </button>
+  </div>
+</div>
