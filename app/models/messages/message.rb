@@ -12,7 +12,6 @@ class Message < ApplicationRecord
 
   validates :groups, length: { minimum: 1, message: I18n.t('model.message.need_groups') }
   validates :content, presence: true, if: -> { image.blank? }
-  # validates :scheduled, presence: true
   validates :scheduled_time, presence: true, if: -> {scheduled}
   validate :in_group, unless: :by_admin
 
@@ -55,6 +54,10 @@ class Message < ApplicationRecord
     # The version of MySQL that we use can not store timestamps with a higher precision than seconds.
     # To avoid messages beeing displayed in the wrong order, we use the column `sent_at` to store
     # the time the message was sent in milliseconds from 1970.
-    self.sent_at = (Time.now.to_f * 1000).to_i
+    if self.scheduled
+      self.sent_at = (self.scheduled_time.to_f * 1000).to_i
+    else
+      self.sent_at = (Time.now.to_f * 1000).to_i
+    end
   end
 end

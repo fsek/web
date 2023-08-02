@@ -1,4 +1,7 @@
 class BroadcastMessageCreateWorker < ActiveJob::Base
+  # include Sidekiq::Worker
+  # sidekiq_options unique: :while_executing, unique_expiration: 60 * 24
+
   def perform(message)
     message.groups.each do |group|
       data = ActiveModelSerializers::SerializableResource.new(message)

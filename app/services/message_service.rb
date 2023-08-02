@@ -33,4 +33,11 @@ class MessageService
   def self.broadcast_update(message)
     BroadcastMessageUpdateWorker.perform_later(message)
   end
+
+  def self.broadcast_create_scheduled(message)
+    BroadcastMessageCreateWorker.set(wait_until: message.scheduled_time).perform_later(message)
+    BroadcastUnconnectedWorker.set(wait_until: message.scheduled_time).perform_later(message)
+    # BroadcastMessageCreateWorker.perform_at(message.scheduled_time, message)
+    # BroadcastUnconnectedWorker.perform_at(message.scheduled_time, message)
+  end
 end

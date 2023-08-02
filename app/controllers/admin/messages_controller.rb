@@ -18,7 +18,11 @@ class Admin::MessagesController < Admin::BaseController
     @message.introduction = @introduction
 
     if @message.save
-      MessageService.broadcast_create(@message)
+      if @message.scheduled
+        MessageService.broadcast_create_scheduled(@message)
+      else
+        MessageService.broadcast_create(@message)
+      end
       redirect_to admin_introduction_messages_path, notice: alert_create(Message)
     else
       render :new, status: 422

@@ -1,4 +1,7 @@
 class BroadcastUnconnectedWorker < ActiveJob::Base
+  # include Sidekiq::Worker
+  # sidekiq_options unique: :while_executing, unique_expiration: 60 * 24
+
   def perform(message)
     # Reset on visits to `group#show`
     message.groups.each do |group|
