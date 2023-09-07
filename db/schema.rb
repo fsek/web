@@ -494,6 +494,14 @@ ActiveRecord::Schema.define(version: 20230906183000) do
     t.index ["user_id"], name: "index_fredmanskies_on_user_id"
   end
 
+  create_table "game_scores", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "score", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_game_scores_on_user_id"
+  end
+
   create_table "group_messages", id: :serial, force: :cascade do |t|
     t.integer "group_id"
     t.integer "message_id"
@@ -1008,6 +1016,7 @@ ActiveRecord::Schema.define(version: 20230906183000) do
     t.boolean "notify_event_open", default: false, null: false
     t.boolean "donated", default: false
     t.boolean "donation_confirmed", default: false
+    t.string "game_nickname"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -1056,6 +1065,7 @@ ActiveRecord::Schema.define(version: 20230906183000) do
   add_foreign_key "event_users", "users"
   add_foreign_key "events", "contacts"
   add_foreign_key "fredmanskies", "users"
+  add_foreign_key "game_scores", "users"
   add_foreign_key "group_messages", "groups"
   add_foreign_key "group_messages", "messages"
   add_foreign_key "group_users", "groups"

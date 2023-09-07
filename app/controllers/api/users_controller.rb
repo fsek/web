@@ -15,6 +15,10 @@ class Api::UsersController < Api::BaseController
     current_user.update!(terms_version: Versions.get(:terms))
   end
 
+  def is_token_valid
+    render json: {}, status: :ok
+  end
+
   private
 
   def user_params
@@ -22,6 +26,6 @@ class Api::UsersController < Api::BaseController
                                  :avatar, :student_id, :phone, :display_phone,
                                  :remove_avatar, :food_custom, :notify_messages,
                                  :notify_event_users, :notify_event_closing,
-                                 :notify_event_open, food_preferences: [])
+                                 :notify_event_open, :game_nickname, food_preferences: [])
   end
 end
