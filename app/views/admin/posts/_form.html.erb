@@ -11,7 +11,8 @@
   <%= f.input :car_rent %>
   <%= f.input(:elected_by, collection: [[t("model.post.#{Post::GENERAL}"), Post::GENERAL],
                                         [t("model.post.#{Post::BOARD}"), Post::BOARD],
-                                        [t("model.post.#{Post::EDUCATION}"), Post::EDUCATION]],
+                                        [t("model.post.#{Post::EDUCATION}"), Post::EDUCATION],
+                                        [t("model.post.#{Post::IN_BETWEEN}"), Post::IN_BETWEEN]],
                            include_blank: false,
                            input_html: {class: 'select2'},
                            wrapper_html: {class: 'inline half'}) %>

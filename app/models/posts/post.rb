@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   EDUCATION = 'education'.freeze
   GENERAL = 'general'.freeze
   EXTRA = 'extra'.freeze
+  IN_BETWEEN = 'in_between'.freeze
 
   translates(:title, :description, fallbacks_for_empty_translations: true)
   globalize_accessors(locales: [:en, :sv], attributes: [:title, :description])
@@ -30,6 +31,9 @@ class Post < ApplicationRecord
   scope :education, -> { where(elected_by: EDUCATION) }
   scope :general, -> { where(elected_by: GENERAL) }
   scope :not_general, -> { where.not(elected_by: GENERAL) }
+  scope :in_between, -> { where(elected_by: IN_BETWEEN) }
+  scope :not_in_between, -> { where.not(elected_by: [GENERAL, IN_BETWEEN])}
+  scope :general_and_in_between, -> { where(elected_by: [GENERAL, IN_BETWEEN]) }
 
   scope :autumn, -> { where('semester = ? OR semester = ?', AUTUMN, BOTH) }
   scope :spring, -> { where('semester = ? OR semester = ?', SPRING, BOTH) }
@@ -53,6 +57,10 @@ class Post < ApplicationRecord
 
   def education?
     elected_by == EDUCATION
+  end
+
+  def in_between?
+    elected_by == IN_BETWEEN
   end
 
   def set_permissions(params)

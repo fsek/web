@@ -7,6 +7,8 @@
 en:
   election_view:
     already_closed: "The election has closed"
+    general_closes_in: "The election for positions at the guild assembly closes in:"
+    in_between_closes_in: "The election for positions elected at the in-between meeting closes in:"
     closes_in: "Closing in:"
     opens_in: "Opening in:"
     posts_can_candidate: "Positions available for candidature"

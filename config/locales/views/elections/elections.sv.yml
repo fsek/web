@@ -16,6 +16,7 @@ sv:
         - val
         - post
       highlights: Vad betyder färger och markeringar?
+      light_orange_posts: Ljusorangefärgade poster väljs på det mellanliggande valmötet.
       orange_posts: Orangefärgade poster är nämnd- eller styrelseposter.
       star_posts: Poster markerade med * har inte något rekommenderat antal.
       x_posts: anger exakt maximalt antal.

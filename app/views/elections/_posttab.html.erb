@@ -5,6 +5,8 @@
         {class: "board-post #{post.elected_by}"}
       elsif post.education?
         {class: "education #{post.elected_by}"}
+      elsif post.in_between?
+        {class: "in-between-post #{post.elected_by}"}
       else
         {class: post.elected_by}
       end

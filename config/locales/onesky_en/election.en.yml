@@ -27,6 +27,7 @@ en:
         semester: Term
         open: Öppnar
         close_general: "Stänger - inför sektionsmöte"
+        close_in_between: "Closing - before in between election"
         start: Opens
         text_after: "Text after election"
         text_before: "Text before election"

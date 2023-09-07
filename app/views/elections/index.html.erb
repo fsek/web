@@ -6,17 +6,7 @@
 </div>
 
   <div class="col-md-3 col-sm-12 election">
-<% if Time.now < DateTime.parse("2022-11-19") %>
-    <div class="countdown row">
-      <h3>Tid tills mellanliggande val stänger</h3>
-      <div class="timer" data-format="%D dagar %H:%M:%S"
-                          data-time="<%=l(DateTime.parse("2022-11-19"),
-                                    format: '%Y/%m/%d %H:%M:%S %z')%>">
-      </div>
-    </div>
-<% else %>
   <%= render 'countdown', election_view: @election_view %>
-<% end %>
 
   <hr>
 
@@ -42,6 +32,7 @@
         <li><%= t('.star_posts') %></li>
         <li><strong>(X)</strong> <%= t('.x_posts') %></li>
         <li><%= t('.orange_posts') %></li>
+        <li><%= t('.light_orange_posts') %></li>
         <li><%= t('.green_posts') %></li>
       </ul>
     </div>

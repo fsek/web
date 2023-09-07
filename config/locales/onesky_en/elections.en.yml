@@ -21,6 +21,7 @@ en:
         - val
         - post
       highlights: What do the colors and markings mean?
+      light_orange_posts: "Positions highlighted in light orange are elected on the in-between election."
       orange_posts: "Positions highlighted in orange are members of the Board or the Council of Executives."
       star_posts: "Positions with * have no set limit."
       x_posts: "denotes a set maximum number."
