@@ -32,7 +32,7 @@ class Post < ApplicationRecord
   scope :general, -> { where(elected_by: GENERAL) }
   scope :not_general, -> { where.not(elected_by: GENERAL) }
   scope :in_between, -> { where(elected_by: IN_BETWEEN) }
-  scope :not_in_between, -> { where.not(elected_by: [GENERAL, IN_BETWEEN])}
+  scope :not_in_between, -> { where.not(elected_by: [GENERAL, IN_BETWEEN]) }
   scope :general_and_in_between, -> { where(elected_by: [GENERAL, IN_BETWEEN]) }
 
   scope :autumn, -> { where('semester = ? OR semester = ?', AUTUMN, BOTH) }
