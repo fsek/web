@@ -36,7 +36,7 @@ class Ability
       can :show, User
       can :index, Rent
       can [:index, :show], Tool
-
+      can [:index, :create], GameScore
       can :read, Event
 
       can [:read, :mail], Contact
@@ -80,6 +80,7 @@ class Ability
 
       can [:create, :index, :new], Candidate
       can :bloodfeud, User
+      can :is_token_valid, User
       can [:destroy], Candidate, user_id: user.id
       can [:create], Nomination
       can :show, Page, visible: true

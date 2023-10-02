@@ -20,6 +20,7 @@ class User < ApplicationRecord
   validates :start_year,
             numericality: { greater_than_or_equal_to: 1961, less_than_or_equal_to: Time.current.year },
             allow_nil: true
+  validates :game_nickname, uniqueness: true, allow_nil: true
   validate :food_validation
 
   # Associations
@@ -42,6 +43,7 @@ class User < ApplicationRecord
   has_many :push_devices, dependent: :destroy
   has_one :car_ban
   has_one :fredmansky
+  has_one :game_score
   has_many :achievement_users
   has_many :achievements, through: :achievement_users
 
