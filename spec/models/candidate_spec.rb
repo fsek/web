@@ -54,7 +54,7 @@ RSpec.describe Candidate, type: :model do
     it 'is not editable' do
       # candidates elected by General meeting is only editable :before_general,
       # not :after_general
-      election = create(:election, :after_general, :autumn)
+      election = create(:election, :before_in_between, :autumn)
       postt = create(:post, :general, :autumn)
       candidate = build(:candidate, post: postt, election: election)
 
