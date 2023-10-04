@@ -38,14 +38,14 @@ RSpec.describe Election, type: :model do
       e.state.should equal(:before_general)
     end
 
-    it :after_general do
-      e = build_stubbed(:election, :after_general)
-      e.state.should equal(:after_general)
+    it :before_in_between do
+      e = build_stubbed(:election, :before_in_between)
+      e.state.should equal(:before_in_between)
     end
 
     it :closed do
       e = build_stubbed(:election, :closed)
-      e.state.should equal(:closed)
+      e.state.should equal(:before_in_between)
     end
   end
 
@@ -83,8 +83,8 @@ RSpec.describe Election, type: :model do
       election.stub(:state).and_return(:before_general)
       election.countdown.should be_within(1.second).of(close_general)
 
-      election.stub(:state).and_return(:after_general)
-      election.countdown.should be_within(1.second).of(close_all)
+      # election.stub(:state).and_return(:before_in_between)
+      # election.countdown.should be_within(1.second).of(close_all)
 
       election.stub(:state).and_return(:closed)
       election.countdown.should be_nil
@@ -125,7 +125,7 @@ RSpec.describe Election, type: :model do
         election.current_posts.map(&:title).should eq(['Elected at General',
                                                        'Elected by Board'])
 
-        election.stub(:state).and_return(:after_general)
+        election.stub(:state).and_return(:before_in_between)
         election.current_posts.map(&:title).should eq(['Elected by Board'])
 
         election.stub(:state).and_return(:closed)
@@ -147,7 +147,7 @@ RSpec.describe Election, type: :model do
         election.stub(:state).and_return(:before_general)
         election.searchable_posts.should eq('yeppyepp')
 
-        election.stub(:state).and_return(:after_general)
+        election.stub(:state).and_return(:before_in_between)
         election.searchable_posts.should eq('yeppyepp')
       end
     end

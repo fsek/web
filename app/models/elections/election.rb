@@ -11,7 +11,7 @@ class Election < ApplicationRecord
                   presence: true,
                   format: { with: /\A[a-z0-9_-]+\z/ }
 
-  validates :title, :open, :close_general, :close_all, :semester, presence: true
+  validates :title, :open, :close_in_between, :close_general, :close_all, :semester, presence: true
 
   def self.current
     order(open: :asc).where(visible: true).first || nil
@@ -31,13 +31,17 @@ class Election < ApplicationRecord
   end
 
   def state
+    # REMEMBER TO CHANGE ALL PLACES WHICH USE STATE NOW THAT THE NAMES ARE DIFFERENT!
     t = Time.zone.now
     if t < open
       return :not_opened
     elsif t >= open && t < close_general
       return :before_general
-    elsif t < close_all
-      return :after_general
+    elsif t < close_in_between
+      return :before_in_between
+    elsif  t < close_all
+      # return :after_general
+      return :after_general_and_in_between
     else
       return :closed
     end
@@ -48,15 +52,17 @@ class Election < ApplicationRecord
     case state
     when :not_opened, :before_general
       posts
-    when :after_general
+    when :before_in_between
       posts.not_general
+    when :after_general_and_in_between
+      posts.not_in_between
     when :closed
       Post.none
     end
   end
 
   def searchable_posts
-    if state == :before_general || state == :after_general
+    if state == :before_general || state == :before_in_between || state == :after_general_and_in_between
       current_posts
     else
       Post.none
@@ -65,8 +71,10 @@ class Election < ApplicationRecord
 
   def after_posts
     case state
-    when :after_general
+    when :before_in_between
       posts.general
+    when :after_general_and_in_between
+      posts.general_and_in_between
     when :closed
       posts
     else
@@ -74,14 +82,16 @@ class Election < ApplicationRecord
     end
   end
 
-  # Returns the start_date if before, the end_date if during and none if after.
+  # Returns the start_date if before, the in_between_date if after general, end_date if after that and none if after all elections.
   def countdown
     case state
     when :not_opened
       open
     when :before_general
       close_general
-    when :after_general
+    when :before_in_between
+      close_in_between
+    when :after_general_and_in_between
       close_all
     end
   end
@@ -89,6 +99,8 @@ class Election < ApplicationRecord
   def post_closing(post)
     if post.elected_by == Post::GENERAL
       close_general
+    elsif post.elected_by == Post::IN_BETWEEN
+      close_in_between
     else
       close_all
     end

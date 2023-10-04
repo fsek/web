@@ -4,6 +4,7 @@ FactoryBot.define do
     url
     open { 2.days.ago }
     close_general { 5.days.from_now }
+    close_in_between { 6.days.from_now }
     close_all { 7.days.from_now }
     visible true
     description
@@ -15,18 +16,21 @@ FactoryBot.define do
     trait :not_opened do
       open { 2.days.from_now }
       close_general { 5.days.from_now }
+      close_in_between { 6.days.from_now }
       close_all { 7.days.from_now }
     end
 
     trait :before_general do
       open { 2.days.ago }
       close_general { 5.days.from_now }
+      close_in_between { 6.days.from_now }
       close_all { 7.days.from_now }
     end
 
-    trait :after_general do
+    trait :before_in_between do
       open { 5.days.ago }
       close_general { 1.days.ago }
+      close_in_between { 6.days.from_now }
       close_all { 7.days.from_now }
     end
 

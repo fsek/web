@@ -13,6 +13,7 @@ en:
       board: Board
       general: "General meeting"
       education: "Council of education"
+      in_between: "In-between election"
       semester:
         autumn: "Autumn semester"
         both: "Autumn and spring semesters"

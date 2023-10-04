@@ -11,7 +11,11 @@ class ElectionView
     case @election.state
     when :not_opened
       I18n.t('election_view.opens_in')
-    when :before_general, :after_general
+    when :before_general
+      I18n.t('election_view.general_closes_in')
+    when :before_in_between
+      I18n.t('election_view.in_between_closes_in')
+    when :after_general_and_in_between
       I18n.t('election_view.closes_in')
     when :closed
       I18n.t('election_view.already_closed')
@@ -22,7 +26,7 @@ class ElectionView
     case @election.state
     when :not_opened
       I18n.t('election_view.posts_will_candidate')
-    when :before_general, :after_general
+    when :before_general, :before_in_between, :after_general_and_in_between
       I18n.t('election_view.posts_can_candidate')
     when :closed
       I18n.t('election_view.posts_cannot_candidate')
@@ -30,7 +34,7 @@ class ElectionView
   end
 
   def rest_posts_text
-    if @election.state == :after_general
+    if @election.state == :before_in_between || @election.state == :after_general_and_in_between
       I18n.t('election_view.posts_cannot_candidate')
     end
   end
