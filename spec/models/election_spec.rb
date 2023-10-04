@@ -38,9 +38,9 @@ RSpec.describe Election, type: :model do
       e.state.should equal(:before_general)
     end
 
-    it :after_general do
-      e = build_stubbed(:election, :after_general)
-      e.state.should equal(:after_general)
+    it :before_in_between do
+      e = build_stubbed(:election, :before_in_between)
+      e.state.should equal(:before_in_between)
     end
 
     it :closed do
