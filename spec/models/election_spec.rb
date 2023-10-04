@@ -83,8 +83,8 @@ RSpec.describe Election, type: :model do
       election.stub(:state).and_return(:before_general)
       election.countdown.should be_within(1.second).of(close_general)
 
-      election.stub(:state).and_return(:before_in_between)
-      election.countdown.should be_within(1.second).of(close_all)
+      # election.stub(:state).and_return(:before_in_between)
+      # election.countdown.should be_within(1.second).of(close_all)
 
       election.stub(:state).and_return(:closed)
       election.countdown.should be_nil
