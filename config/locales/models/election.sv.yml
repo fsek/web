@@ -19,6 +19,7 @@ sv:
         semester: Termin
         open: Öppnar
         close_general: Stänger - inför sektionsmöte
+        close_in_between: Stänger - inför mellanliggande valmöte
         title_sv: Titel - svensk
         title_en: Titel - engelsk
         updated_at: Uppdaterad

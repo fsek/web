@@ -7,6 +7,7 @@ sv:
       board: Styrelse
       general: Sektionsmöte
       education: Studieråd
+      in_between: Mellanliggande valmöte
       semester:
         autumn: HT
         both: HT och VT

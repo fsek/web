@@ -11,6 +11,7 @@
   <%= simple_format(t('.semester_hint_for_other')) %>
   <%= f.input :open, as: :datetime_picker %>
   <%= f.input :close_general, as: :datetime_picker %>
+  <%= f.input :close_in_between, as: :datetime_picker %>
   <%= f.input :close_all, as: :datetime_picker %>
   <%= f.input :description_sv, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :description_en, as: :pagedown, input_html: { preview: true, rows: 10 } %>

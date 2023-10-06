@@ -32,6 +32,14 @@
           background-color: rgba($green-highlight, 0.5);
         }
       }
+
+      &.in-between-post {
+        td,
+        &.even td,
+        &.odd td {
+          background-color: rgba($light-orange-higlight, 0.5);
+        }
+      }
     }
   }
 

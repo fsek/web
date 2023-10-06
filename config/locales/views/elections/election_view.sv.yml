@@ -1,6 +1,8 @@
 sv:
   election_view:
     already_closed: Valet har stängt
+    general_closes_in: 'Valet till sektionsmötesvalda poster stänger om:'
+    in_between_closes_in: 'Valet till poster på mellanliggande valmöte stänger om:'
     closes_in: 'Stänger om:'
     opens_in: 'Öppnar om:'
     posts_can_candidate: Poster som kan sökas

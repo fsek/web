@@ -12,7 +12,7 @@ RSpec.feature 'Visit Election' do
 
   scenario 'visits election after_general' do
     create(:post, :autumn)
-    election = create(:election, :after_general, :autumn)
+    election = create(:election, :before_in_between, :autumn)
 
     page.visit elections_path
     page.should have_http_status(200)
