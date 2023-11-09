@@ -50,8 +50,7 @@ class Admin::UsersController < Admin::BaseController
   def export
     respond_to do |format|
       format.csv do
-        send_data(ExportCSV.volonteers(@users),
-                    filename: "volonteer_register_#{Time.now().to_s}.csv")
+        send_data(ExportCSV.volonteers(@users), filename: "volonteer_register_#{Time.now}.csv")
       end
     end
   end
