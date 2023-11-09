@@ -1,5 +1,5 @@
 .start-background {
-  background: image-url("img/bg.jpg") 50% 0%;
+  background: image-url("img/bg.jpg") 50% 0%/50px 50px;
   max-height: 500px;
 
   .container {
@@ -27,7 +27,7 @@
   }
 
   @include min-screen(768px) {
-    background: image-url("img/bg.jpg") 50% 10%;
+    background: image-url("img/bg.jpg") 50% 10%/205vh;
     max-height: 500px;
 
     .container {
