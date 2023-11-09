@@ -228,7 +228,7 @@ GEM
       railties (>= 3.2.16)
     js_cookie_rails (2.2.0)
       railties (>= 3.1)
-    json (2.6.1)
+    json (2.6.3)
     jsonapi-renderer (0.1.2)
     jwt (2.1.0)
     kaminari (0.17.0)
@@ -350,7 +350,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    recaptcha (4.13.1)
+    recaptcha (5.9.0)
       json
     redcarpet (3.5.1)
     redis (3.3.5)
