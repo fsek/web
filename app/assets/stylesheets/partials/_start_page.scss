@@ -27,7 +27,7 @@
   }
 
   @include min-screen(768px) {
-    background: image-url("img/bg.jpg") 50% 10% / 100vw;
+    background: image-url("img/bg.jpg") 50% 10% / 100vw no-repeat;
     max-height: 500px;
 
     .container {
