@@ -11,6 +11,7 @@ en:
         confirm: Confirm
         edit: "Edit account details"
         email_confirmed: "Your email adress is confirmed."
+        export_volonteer_register: "Export volonteer register"
         make_member: "Assign membership"
         member: Member
         membership?: Membership

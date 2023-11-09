@@ -61,6 +61,10 @@ Fsek::Application.routes.draw do
         post :confirm_donation, on: :member
         post :unconfirm_donation, on: :member
       end
+
+      resources :users, path: :anvandare, only: [:index] do
+        get :export, on: :collection
+      end
     end
 
     namespace :admin do

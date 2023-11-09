@@ -27,4 +27,25 @@ class ExportCSV
       end
     end
   end
+
+  def self.volonteers(users)
+    CSV.generate(headers: true) do |csv|
+      column_names = [User.human_attribute_name(:firstname),
+                    User.human_attribute_name(:lastname),
+                    User.human_attribute_name(:program),
+                    User.human_attribute_name(:start_year)
+                    ]
+      csv << column_names
+
+      users.each do |u|
+        if !u.posts.empty?
+    		  row = [u.firstname, u.lastname, u.program.to_s, u.start_year.to_s]
+		        u.posts.each do |p|
+			        row.push(p.title)
+            end
+          end
+        csv << row
+        end
+      end
+  end
 end
