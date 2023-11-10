@@ -47,6 +47,14 @@ class Admin::UsersController < Admin::BaseController
     redirect_to admin_anvandare_bloodfeud_path, notice: alert_danger("Donation has been unconfirmed for: " + user.firstname + " " + user.lastname)
   end
 
+  def export
+    respond_to do |format|
+      format.csv do
+        send_data(ExportCSV.volonteers(@users), filename: "volonteer_register_#{Time.now}.csv")
+      end
+    end
+  end
+
   private
 
   def user_params

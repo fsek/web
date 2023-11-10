@@ -1,6 +1,11 @@
 <div class="headline">
   <h1><%= title(t('.title')) %></h1>
 </div>
+
+<div class="col-md-12 col-sm-12 margin-bottom-20">
+  <%= link_to t(".export_volonteer_register"), export_admin_users_path(format: :csv), class: 'btn primary' %>
+</div>
+
 <div class="col-md-12 col-sm-12 margin-bottom-20">
   <button class="wg-external-submit-button btn primary" data-grid-name="grid">
     <%= t('wice_grid.filter') %>
