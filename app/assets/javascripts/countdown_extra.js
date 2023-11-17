@@ -1,6 +1,6 @@
 function ready() {
-  $('.extra_timer').countdown($('.extra_timer').data('time'), function(event) {
-    $(this).html(event.strftime($('.extra_timer').data('format')));
+  $('.extra-timer').countdown($('.extra-timer').data('time'), function(event) {
+    $(this).html(event.strftime($('.extra-timer').data('format')))
   });
 };
 
