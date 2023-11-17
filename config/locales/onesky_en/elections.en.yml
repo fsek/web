@@ -9,6 +9,7 @@ en:
     countdown:
       days: dagar
       date_format: "%D days %H:%M:%S"
+      extra_closes: "Extraordinary election closes in:"
     index:
       description: "Val på F-sektionen är då funktionärer och förtroendevalda blir valda. Se vilka poster som finns och sök idag."
       edit_election: "Edit election"

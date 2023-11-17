@@ -6,7 +6,8 @@
   }
 
   .countdown {
-    .timer {
+    .timer,
+    .extra-timer {
       color: $gray-headline;
       font-size: 20px;
       font-weight: bold;
@@ -37,7 +38,15 @@
         td,
         &.even td,
         &.odd td {
-          background-color: rgba($light-orange-higlight, 0.5);
+          background-color: rgba($light-orange-highlight, 0.5);
+        }
+      }
+
+      &.extra-post {
+        td,
+        &.even td,
+        &.odd td {
+          background-color: rgba($yellow-highlight, 0.5);
         }
       }
     }

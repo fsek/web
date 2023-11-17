@@ -28,6 +28,7 @@ en:
         open: Öppnar
         close_general: "Stänger - inför sektionsmöte"
         close_in_between: "Closing - before in between election"
+        close_extra: "Closing - before extraordinary election (not obligatory)"
         start: Opens
         text_after: "Text after election"
         text_before: "Text before election"

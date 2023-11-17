@@ -7,3 +7,13 @@
     </div>
   </div>
 <% end %>
+
+<% if election_view.present? && election_view.election.extra_now? %>
+  <div class="countdown row">
+    <h3><%= t('.extra_closes') %></h3>
+    <div class="extra-timer" data-format="<%= t('.date_format') %>"
+                       data-time="<%=l(election_view.election.close_extra,
+                                  format: '%Y/%m/%d %H:%M:%S %z')%>">
+    </div>
+  </div>
+<% end %>
