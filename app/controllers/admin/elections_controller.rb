@@ -60,7 +60,7 @@ class Admin::ElectionsController < Admin::BaseController
   def election_params
     params.require(:election).permit(:title_sv, :title_en, :description_sv, :description_en,
                                      :open, :close_in_between, :close_general, :close_all,
-                                     :url, :visible, :mail_link, :board_mail_link,
+                                     :close_extra, :url, :visible, :mail_link, :board_mail_link,
                                      :nominate_mail, :candidate_mail, :semester,
                                      :candidate_mail_star, extra_post_ids: [])
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230906183000) do
+ActiveRecord::Schema.define(version: 20231117133000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -376,6 +376,7 @@ ActiveRecord::Schema.define(version: 20230906183000) do
     t.datetime "close_all"
     t.string "semester", limit: 255, default: "spring"
     t.datetime "close_in_between"
+    t.datetime "close_extra"
   end
 
   create_table "event_registrations", id: :serial, force: :cascade do |t|
