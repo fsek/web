@@ -1,7 +1,9 @@
 <% if election_view.present? && post_grid.present? %>
   <%= grid(post_grid, html: {class: 'election grid'}) do |g|
     g.row_attributes do |post|
-      if post.board
+      if election_view.election.extra_posts.include? post
+        {class: "extra-post #{post.elected_by}"}
+      elsif post.board
         {class: "board-post #{post.elected_by}"}
       elsif post.education?
         {class: "education #{post.elected_by}"}
