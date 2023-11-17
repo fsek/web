@@ -58,7 +58,7 @@ class Election < ApplicationRecord
       res = Post.none
     end
 
-    if has_extra_now
+    if extra_now?
       post_union(res, extra_posts)
     else
       res
@@ -66,7 +66,7 @@ class Election < ApplicationRecord
   end
 
   def searchable_posts
-    if state == :before_general || state == :before_in_between || state == :after_general_and_in_between || has_extra_now
+    if state == :before_general || state == :before_in_between || state == :after_general_and_in_between || extra_now?
       current_posts
     else
       Post.none
@@ -94,7 +94,7 @@ class Election < ApplicationRecord
   end
 
   # Returns whether or not the current election has extra posts that currently are possible to candidate to
-  def has_extra_now
+  def extra_now?
     close_extra.present? && Time.zone.now < close_extra
   end
 

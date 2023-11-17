@@ -3,6 +3,7 @@ sv:
     countdown:
       days: dagar
       date_format: "%D dagar %H:%M:%S"
+      extra_closes: 'Extrainsatt val stänger om:'
 
     index:
       description: Val på F-sektionen är då funktionärer och förtroendevalda blir valda. Se vilka poster som finns och sök idag.
