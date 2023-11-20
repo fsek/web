@@ -4,4 +4,4 @@ function ready_extra() {
   });
 };
 
-$(document).on('turbolinks:load', ready);
+$(document).on('turbolinks:load', ready_extra);
