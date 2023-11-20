@@ -21,6 +21,7 @@ sv:
       orange_posts: Orangefärgade poster är nämnd- eller styrelseposter.
       star_posts: Poster markerade med * har inte något rekommenderat antal.
       x_posts: anger exakt maximalt antal.
+      yellow_posts: Gulfärgade poster väljs på extrainsatt sektionsmöte
 
     no_election:
       no_information: Just nu finns det ingen information om valet.
