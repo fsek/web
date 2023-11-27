@@ -20,13 +20,19 @@ class Election < ApplicationRecord
   def posts
     case semester
     when Post::AUTUMN
-      Post.autumn
+      res = Post.autumn
     when Post::SPRING
-      Post.spring
+      res = Post.spring
     when Post::OTHER
-      extra_posts
+      res = extra_posts
     else
-      Post.none
+      res = Post.none
+    end
+
+    if close_extra.present?
+      post_union(res, extra_posts)
+    else
+      res
     end
   end
 
