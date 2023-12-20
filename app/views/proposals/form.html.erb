@@ -8,6 +8,7 @@
 <div class="col-md-offset-1 col-md-10 col-sm-12">
   <%= simple_format(t('.i_am_proposal_machine')) %>
   <%= simple_format(t('.do_not_forget_to_copy')) %>
+  <%= simple_format(t('.do_not_forget_to_send')) %>
 
   <%= form_for(@proposal, url: proposals_generate_path(format: :pdf),
                           html: {class: 'proposal-form'}) do |f| %>
