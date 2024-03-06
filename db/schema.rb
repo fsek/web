@@ -136,6 +136,11 @@ ActiveRecord::Schema.define(version: 20231117133000) do
     t.integer "images_count", default: 0, null: false
   end
 
+  create_table "api_images", id: :serial, force: :cascade do |t|
+    t.string "file", limit: 255
+    t.string "filename", limit: 255
+  end
+
   create_table "blog_post_translations", id: :serial, force: :cascade do |t|
     t.integer "blog_post_id", null: false
     t.string "locale", limit: 255, null: false

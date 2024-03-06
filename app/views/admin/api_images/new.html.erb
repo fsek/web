@@ -1,0 +1,10 @@
+<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
+  <div class="headline">
+    <h1><%= title("Ny bild") %></h1>
+  </div>
+
+  <%= render 'form', api_image: @api_image%>
+  <hr>
+  <%= link_to("Administera bilder", admin_api_images_path,
+                                         class: 'btn secondary') %>
+</div>

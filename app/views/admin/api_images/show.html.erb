@@ -1,0 +1,21 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+
+  <%= render 'form', api_image: @api_image %>
+
+  <hr>
+  <%= link_to(t('.destroy'), admin_api_image_path(@api_image),
+                             method: :delete,
+                             data: { confirm: t('.confirm_album_destroy')},
+                             class: 'btn danger') %>
+  <%= link_to(t('.administrate_gallery'), admin_api_images_path,
+                                          class: 'btn secondary') %>
+  <hr>
+  <% if @api_image.file.present? %>
+    <%= image_tag(@api_image.thumb, class: 'img-resposive album-preview') %>
+  <% else %>
+    <% image_tag('smol_file_missing.png') %>
+  <% end %>
+</div>

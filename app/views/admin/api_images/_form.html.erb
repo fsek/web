@@ -1,0 +1,15 @@
+<%= simple_form_for([:admin, @api_image]) do |f|%>
+    <div class="form-files">
+      <%= f.input :file, as: :file, error: false %>
+      <% if @api_image.errors[:file].any? %>
+        <div class="gallery has-error">
+          <%= "Redan uppladdad" %><br>
+          <%= @api_image.errors[:file] %>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+  <div class="form-group">
+    <%= f.button :submit %>
+  </div>
+<% end %>
