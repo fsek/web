@@ -6,8 +6,6 @@ class Admin::ApiImagesController < Admin::BaseController
     end
 
     def show
-        @api_image_id = params[:id]
-        @documents = initialize_grid(ElectionDocument.where(document_collection_id: params[:id]))
     end
 
     def destroy
@@ -24,7 +22,8 @@ class Admin::ApiImagesController < Admin::BaseController
         end
     end
 
+    private
     def api_image_params
-        params.require(:api_image).permit(:filename, :file)
+        params.require(:api_image).permit(:file, :filename)
     end
 end
