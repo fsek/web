@@ -19,10 +19,4 @@ def show
     render json: @chants,
     each_serializer: Api::SongSerializer::Index # Returns id, title and author
   end
-
-  def top_songs
-    @top_songs = Song.order(visits: :desc).take(params[:num])
-    render json: @top_songs
-    each_serializer: Api::SongSerializer::Index # Returns id, title and author
-  end
 end
