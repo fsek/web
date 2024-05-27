@@ -55,7 +55,7 @@ class Ability
       can([:create, :destroy, :edit, :update, :new_token], Message, user_id: user.id)
 
       can :read, Meeting
-      can [:read, :search, :chants], Song
+      can [:read, :search, :chants, :top_songs], Song
       can [:index, :visit, :look, :look_all], Notification, user_id: user.id
       can [:create, :destroy], PushDevice
       can :index, :start
