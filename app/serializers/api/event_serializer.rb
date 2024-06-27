@@ -2,7 +2,7 @@ class Api::EventSerializer < ActiveModel::Serializer
   include EventHelper
 
   attributes(:id, :title, :description, :location, :starts_at, :ends_at, :all_day, :dot, :drink, :drink_package,
-             :food, :cash, :price, :dress_code, :can_signup, :event_user_count, :short, :user_types)
+             :food, :cash, :price, :dress_code, :can_signup, :event_user_count, :short, :user_types, :is_introduction)
 
   belongs_to :contact
   has_one :event_signup

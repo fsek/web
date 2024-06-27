@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20231117133000) do
+ActiveRecord::Schema.define(version: 20240627180200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,11 @@ ActiveRecord::Schema.define(version: 20231117133000) do
     t.datetime "updated_at"
     t.string "category", limit: 255
     t.integer "images_count", default: 0, null: false
+  end
+
+  create_table "api_images", id: :serial, force: :cascade do |t|
+    t.string "file", limit: 255
+    t.string "filename", limit: 255
   end
 
   create_table "blog_post_translations", id: :serial, force: :cascade do |t|
@@ -475,6 +480,7 @@ ActiveRecord::Schema.define(version: 20231117133000) do
     t.string "dress_code", limit: 255
     t.integer "contact_id"
     t.boolean "drink_package"
+    t.boolean "is_introduction"
     t.index ["contact_id"], name: "index_events_on_contact_id"
   end
 
