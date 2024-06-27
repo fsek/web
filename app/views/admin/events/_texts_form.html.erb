@@ -9,5 +9,6 @@
                             include_hidden: false %>
 <%= form.association :contact, collection: Contact.publik.with_post,
                                input_html: {class: 'select2'} %>
+<%= form.input :is_introduction, as: :boolean %>
 <%= link_to('Ändra datum', '#dates', data: {toggle: :tab}, class: 'btn secondary') %>
 <%= form.button :submit %>

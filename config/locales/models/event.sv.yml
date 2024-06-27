@@ -35,6 +35,7 @@ sv:
         event_signup: Anmälan
         food: Mat
         image: Bild
+        is_introduction: Är nollningsevenemang
         location: Plats
         location_en: Plats - engelsk
         location_sv: Plats - svensk
