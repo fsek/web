@@ -28,17 +28,29 @@ en:
       previous: Previous
       next: Next
     index:
-      contact_us: contact us
-      foset: Föset
+      contact_us: email
+      foset: the Introduction Committee
       checklist: Checklist
-      info: "Welcome to the F-guild and the introduction of the year: An introduction between the lines. Here you can find all the information you need regarding the Introduction for new students in the programmes Engineering Physics, Engineering Mathematics and Engineering Nanoscience, which exchange students and Master Students also are more than welcome to participate in!
-      This website will be updated with more information as the start of the semester closes in, so Bookmark this website and check in once in a while so you don’t miss anything. If you want to know a bit more generally what an Introduction is, you can find information %{en_more_info}.
-      <br>
-      <li>Check out %{en_checklist}</li>
-      <br>
-      We, the ones arranging the Introduction, are called %{en_foset} and don't hesitate to contact us if you have any questions. You can reach us via %{contact} or %{anonymous_contact} if you want to be anonymous.
-      We are looking forward to welcoming you to the F-guild and LTH!
-      Best regards, Föset"
+      info: |
+       Welcome to the F-guild and Lund!
+
+        Here you will find all the information you need to prepare for the start of your studies and the introduction:
+        <ul>
+        <li>Everything you need to know about %{en_introduction}.</li>
+        <li> %{en_checklist} for the start of your studies.</li>
+        </ul>
+
+        One of your mentors will call you later in August to try to answer any questions you might have about the introduction or starting university.
+
+        The FREJA association is organizing a meeting for girls and non-binaries on the 25th of August (the day before the introduction). More information can be found on their <a href="https://www.frejalth.se/">website</a>.
+
+        The start of this year's introduction: An introduction among bandits, is on the 26th of August. The introduction will then run for five weeks until Saturday, September 28.
+
+        We who organize the introduction are called %{foset}. If you have any questions, do not hesitate to contact us! You can reach us either via %{en_contact} or %{anonymous_contact} if you want to be anonymous.
+
+        We look forward to welcoming you to the F-guild and LTH!
+
+        Greetings, The Introduction Committee
       info2: "This page will be updated during the summer and the Introduction with important and fun information, make sure to bookmark it to find your way back here."
       info3: "We look forward to meeting you and welcome you to LTH and the F-guild."
       keywords:
@@ -52,7 +64,8 @@ en:
       more_news: "More news"
       news: News
       theme_movie: "Theme movie"
-      this_checklist: "this checklist"
+      the_introduction: "the introduction"
+      this_checklist: "Checklists"
       title: "An Introduction between the Lines"
       what_is_nollning: "What is Introduction?"
     symbols:
