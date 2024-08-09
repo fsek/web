@@ -35,17 +35,16 @@ sv:
       info: |
         Välkommen till F-sektionen och grattis till din plats på civilingenjörsprogrammet i teknisk fysik, teknisk matematik eller teknisk nanovetenskap!
 
+        Årets nollning: En nollning bland rövare, startar den 26/8. Nollningen pågår därefter i fem veckor fram till lördagen den 28/9. En av dina faddrar kommer senare i augusti att ringa dig och försöka svara på alla frågor du kan tänkas ha inför skolstarten och nollningen.
+
+        Föreningen FREJA anordnar en träff för tjejer och ickebinära den 25/8 (dagen före nollningen) kl:14:00-17:00 utanför kårhusets aula. Vill ni läsa mer om FREJA kan ni gå in på deras webbplats <a href="https://www.frejalth.se/">här!</a>
+
         Här finns massor av viktig information inför din studiestart och nollningen:
         <ul>
         <li>Allt du behöver veta om %{introduction}.</li>
         <li> %{checklist} inför studiestarten.</li>
         </ul>
-        Denna hemsida kommer att uppdateras med mer information när terminsstarten börjar närma sig, så bokmärk och kika in då och då så att du inte missar något!
-        <br>
-        Starten för årets nollning: En nollning bland rövare, är den 26/8. Nollningen pågår därefter i fem veckor fram till lördagen den 28/9. En av dina faddrar kommer senare i augusti att ringa dig och försöka svara på alla frågor du kan tänkas ha inför skolstarten och nollningen.
 
-        Föreningen FREJA anordnar en träff för tjejer och ickebinära den 25/8 (dagen före nollningen). Vill ni läsa mer om FREJA kan ni gå in på deras webbplats <a href="https://www.frejalth.se/">här!</a>
-        <br>
         Vi som arrangerar nollningen är %{foset}. Om du undrar något så tveka inte att kontakta oss! Du når oss antingen via %{contact} eller %{anonymous_contact} om du vill vara anonym.
         Vi ser fram emot att få välkomna dig till F-sektionen och LTH!
         <br>
