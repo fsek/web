@@ -14,7 +14,12 @@
   <% end %>
   <% if event.drink_package? %>
     <%= t(".drink_package")%>
-    <%= f.input :drink_package_answer, label: t('.drink_package_answer'), as: :boolean %>
+    <%= f.input :drink_package_answer, collection: drink_package_answer_collection,
+                                       label: false,
+                                       input_html: {class: 'select2'},
+                                       include_blank: false
+                                       %>
+
   <% end %>
   <% if event.signup.order.any? && event_user_types(event.signup, current_user).any? %>
     <% user_types = event_user_types(event.signup, current_user) %>

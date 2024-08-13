@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20240627180200) do
+ActiveRecord::Schema.define(version: 20240812155600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -452,7 +452,7 @@ ActiveRecord::Schema.define(version: 20240627180200) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "group_custom"
-    t.boolean "drink_package_answer"
+    t.string "drink_package_answer"
     t.index ["deleted_at"], name: "index_event_users_on_deleted_at"
     t.index ["event_id"], name: "index_event_users_on_event_id"
     t.index ["group_id"], name: "index_event_users_on_group_id"

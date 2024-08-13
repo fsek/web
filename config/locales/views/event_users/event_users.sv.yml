@@ -3,7 +3,7 @@ sv:
     form:
       answer_hint: Kan inte redigeras när anmälan skapats.
       confirm_registration: Kom ihåg att anmälan är bindande! Om du inte kan komma ska du avanmäla dig innan anmälan stänger. Kontrollera gärna att dina matpreferenser är ifyllda.
-      drink_package: Vill du ha alkoholpaket? (OBS! Detta är inte bindande)
+      drink_package: Vad vill du ha för typ av alkoholpaket?
       drink_package_answer: Jag vill ha ett alkoholpaket
       group_hint: Om din grupp saknas i listan så kan du fylla i den i fältet nedan
       submit: Skicka anmälan
