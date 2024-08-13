@@ -9,6 +9,10 @@ sv:
       user_type_not_allowed: Användartypen tillåts inte
       not_in_group: Tillhör inte gruppen
       other_group: Annan
+      drink_package_answers:
+        alcohol: Alkohol
+        alcohol_free: Alkoholfritt
+        none: Inget
 
   activerecord:
     models:
