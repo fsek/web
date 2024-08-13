@@ -6,9 +6,9 @@ class EventUser < ApplicationRecord
   has_one :event_signup, through: :event, required: true, autosave: false
   has_many :notifications, as: :notifyable, dependent: :destroy
 
-  ALCOHOL_PACKAGE_ANSWER_NONE = "Inget".freeze
-  ALCOHOL_PACKAGE_ANSWER_ALCOHOL = "Alkohol".freeze
-  ALCOHOL_PACKAGE_ANSWER_ALCOHOL_FREE = "Alkoholfritt".freeze
+  ALCOHOL_PACKAGE_ANSWER_NONE = 'Inget'.freeze
+  ALCOHOL_PACKAGE_ANSWER_ALCOHOL = 'Alkohol'.freeze
+  ALCOHOL_PACKAGE_ANSWER_ALCOHOL_FREE = 'Alkoholfritt'.freeze
 
   # validates :user, uniqueness: { scope: :event }
   validate :uniqueness_validation

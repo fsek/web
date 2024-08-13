@@ -160,8 +160,4 @@ module EventHelper
      [I18n.t('model.event_user.drink_package_answers.alcohol'), EventUser::ALCOHOL_PACKAGE_ANSWER_ALCOHOL],
      [I18n.t('model.event_user.drink_package_answers.alcohol_free'), EventUser::ALCOHOL_PACKAGE_ANSWER_ALCOHOL_FREE]]
   end
-
-  def drink_package_default_answer
-
-  end
 end
