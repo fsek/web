@@ -51,7 +51,7 @@ class Admin::EventsController < Admin::BaseController
                                   :location_sv, :location_en, :starts_at, :ends_at,
                                   :all_day, :image, :remove_image,
                                   :drink, :drink_package, :food, :cash, :price, :contact_id,
-                                  :council_id, :dot, dress_code: [],
+                                  :council_id, :dot, :is_introduction, dress_code: [],
                                   category_ids: [])
   end
 

@@ -433,10 +433,11 @@ Fsek::Application.routes.draw do
 
     resources :songs, only: [:index, :show] do
       get :chants, on: :collection
+      get :top_songs, on: :collection
     end
-    
-    get :is_token_valid, to: "users#is_token_valid" 
-    
+
+    get :is_token_valid, to: "users#is_token_valid"
+
     resources :users, only: :update do
       patch :accept_terms
     end
@@ -455,7 +456,7 @@ Fsek::Application.routes.draw do
       patch :toggle
     end
 
-    resources :game_scores, only: [:index, :create] do 
+    resources :game_scores, only: [:index, :create] do
       get :index
       post :create
     end

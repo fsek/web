@@ -35,6 +35,7 @@ en:
         food: Food
         for_members: "For members only"
         image: Image
+        is_introduction: "Introduction event"
         last_reg: "Last signup date"
         last_unreg: "Last date to cancel"
         location: Location
