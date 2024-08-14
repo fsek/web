@@ -10,7 +10,8 @@ class ExportCSV
                 EventUser.human_attribute_name(:group),
                 User.human_attribute_name(:food_preference),
                 EventUser.human_attribute_name(:answer),
-                User.human_attribute_name(:email)]
+                User.human_attribute_name(:email),
+                EventUser.human_attribute_name(:created_at)]
         column_names << EventUser.human_attribute_name(:drink_package_answer) if signup.event.drink_package?
         csv << column_names
 
@@ -20,7 +21,8 @@ class ExportCSV
                   group_str(a),
                   food_preferences_str(a.user),
                   a.answer,
-                  a.user.email]
+                  a.user.email,
+                  a.created_at]
           row << a.drink_package_answer if signup.event.drink_package?
           csv << row
         end
