@@ -17,10 +17,12 @@
   <span class="event block">
     <%= icon('fas', 'gift') %>
     <%= t('.drink_package')%>
-    <% if event_user.drink_package_answer? %>
-      <%= t('.yes') %>
+    <% if event_user.drink_package_answer == EventUser::ALCOHOL_PACKAGE_ANSWER_ALCOHOL %>
+      <%= t('model.event_user.drink_package_answers.alcohol') %>
+    <% elsif event_user.drink_package_answer == EventUser::ALCOHOL_PACKAGE_ANSWER_ALCOHOL_FREE %>
+      <%= t('model.event_user.drink_package_answers.alcohol_free') %>
     <% else %>
-      <%= t('.no') %>
+      <%= t('model.event_user.drink_package_answers.none') %>
     <% end %>
   </span>
 <% end %>

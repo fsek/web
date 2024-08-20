@@ -154,4 +154,10 @@ module EventHelper
       end
     end
   end
+
+  def drink_package_answer_collection
+    [[I18n.t('model.event_user.drink_package_answers.none'), EventUser::ALCOHOL_PACKAGE_ANSWER_NONE],
+     [I18n.t('model.event_user.drink_package_answers.alcohol'), EventUser::ALCOHOL_PACKAGE_ANSWER_ALCOHOL],
+     [I18n.t('model.event_user.drink_package_answers.alcohol_free'), EventUser::ALCOHOL_PACKAGE_ANSWER_ALCOHOL_FREE]]
+  end
 end
