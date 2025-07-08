@@ -12,8 +12,14 @@
   <%= f.input :group %>
   <%= f.button :submit %>
   <% if cafe_shift.cafe_worker.persisted? %>
-    <%= link_to(t('.destroy'),
-                cafe_shift_cafe_worker_path(cafe_shift, cafe_shift.cafe_worker),
-                method: :delete, class: 'btn danger pull-right') %>
+    <!-- if the cafe-shift is close to closing (12:00 the day before), don't allow the user to unsign from the shift -->
+    <% if (cafe_shift.start - 1.day).change(hour: 12) < Time.now %>
+      <%= t('.cant_unsign') %>
+      <%= t('.contact_head_of_cafe') %>
+    <% else %>
+      <%= link_to(t('.destroy'),
+                  cafe_shift_cafe_worker_path(cafe_shift, cafe_shift.cafe_worker),
+                  method: :delete, class: 'btn danger pull-right') %>
+    <% end %>
   <% end %>
 <% end %>
