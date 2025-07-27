@@ -8,9 +8,9 @@ set :rails_env, :production
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
 
-role :app, %w{dirac@fsektionen.se}
-role :web, %w{dirac@fsektionen.se}
-role :db,  %w{dirac@fsektionen.se}
+role :app, %w{dirac@130.235.143.164}
+role :web, %w{dirac@130.235.143.164}
+role :db,  %w{dirac@130.235.143.164}
 
 # Extended Server Syntax
 # ======================
@@ -18,7 +18,7 @@ role :db,  %w{dirac@fsektionen.se}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'fsektionen.se', user: 'dirac', roles: %w{web app}
+server '130.235.143.164', user: 'dirac', roles: %w{web app}
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}/#{fetch(:stage)}"
 set :tmp_dir, "/home/#{fetch(:user)}/tmp/#{fetch(:stage)}"
 
