@@ -1,5 +1,5 @@
 Rails.application.configure do
-  PUBLIC_URL = 'https://fsektionen.se'.freeze
+  PUBLIC_URL = 'https://old.fsektionen.se'.freeze
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
